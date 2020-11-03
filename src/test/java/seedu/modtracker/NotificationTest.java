@@ -85,7 +85,7 @@ class NotificationTest {
                 isPresent = true;
             }
         }
-        String expected = "Oh no! It appears you are spending too little time on CS2000.";
+        String expected = "Oh no! It appears you are spending too little time on CS2000 in week 1.";
         if (outContent.toString().contains(expected)) {
             expIsPresent = true;
         }
@@ -125,9 +125,9 @@ class NotificationTest {
         modules.addExp("addExp CS4000 5", false, storage);
         modules.addTime("addtime cs4000 10 1", false, storage);
         notification.printNotification(modules);
-        boolean expIsPresent = false;
-
-        String expected = "Beware! Seems like you are spending too much time on CS4000." + System.lineSeparator();
+        String tooMuchTime = "Beware! Seems like you are spending too much time on CS4000 in week 1.";
+        String expected = tooMuchTime + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
+        modules.clear();
     }
 }

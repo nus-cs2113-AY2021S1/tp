@@ -26,7 +26,6 @@ class ModuleListTest {
         System.setOut(new PrintStream(outContent));
         modulesTest.addExp("addExp CS3030 4", true, storage);
         String expected = "CS3030, Expected Workload: 4.0h is added." + System.lineSeparator();
-        assertArrayEquals(testList.toArray(), modulesTest.modList.toArray());
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
