@@ -53,6 +53,6 @@ deactivate Formatter
 AddNoteCommand --> NotUS: result
 deactivate AddNoteCommand
 
-deactivate Notus
+deactivate NotUS
 
 @enduml
