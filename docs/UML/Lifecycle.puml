@@ -5,9 +5,8 @@ participant ":Controller" as Controller
 participant ":Ui" as Ui
 participant ":Parser" as Parser
 
-
-activate PaperTrade
 User -> PaperTrade : main()
+activate PaperTrade
 
 create Controller
 PaperTrade -> Controller : new Controller()
@@ -23,30 +22,34 @@ PaperTrade <-- Controller
 deactivate Controller
 
 PaperTrade -> Controller : runApp()
-deactivate PaperTrade
 
 activate Controller
-activate Ui
 Controller -> Ui : greetUser()
+activate Ui
 Controller <-- Ui
+deactivate Ui
+
 loop until user quits
     Controller -> Ui : getUserInput()
+    activate Ui
     Controller <-- Ui : userInput
+    deactivate Ui
 
-    activate Parser
     Controller ->  Parser : class method parseCommand(userInput)
+    activate Parser
     Controller <-- Parser : command
     deactivate Parser
 
     Controller -> Controller : executeCommand(command)
     activate Controller
+    Controller <-- Controller
     deactivate Controller
 end
-deactivate Ui
 
 PaperTrade <-- Controller
 
-User <-- PaperTrade : on exit
 deactivate Controller
+User <-- PaperTrade : on exit
+deactivate PaperTrade
 
 @enduml

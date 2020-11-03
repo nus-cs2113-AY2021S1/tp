@@ -4,14 +4,10 @@ left to right direction
 package controller {
 class Controller
 
-Controller --> Api.StockPriceFetcher
-Controller --> Model.PortfolioManager
-Controller --> Parser.Parser
-Controller --> Ui.Ui
-}
-
-package api {
-class StockPriceFetcher
+Controller --> api.StockPriceFetcher
+Controller --> model.PortfolioManager
+Controller --> parser.Parser
+Controller --> ui.Ui
 }
 
 package command {
@@ -26,31 +22,18 @@ class WalletCommand extends Command
 }
 
 package model {
-class Portfolio {
-HashMap<String, Stock> stocks
-}
-class portfolioManager
+class Portfolio
+class PortfolioManager
 class Stock
 class Transaction
 enum TransactionType
 class Wallet
 
 PortfolioManager --> Portfolio
-PortfolioManager --> Storage.Storage
 Portfolio --> Stock
+Portfolio --> Wallet
 Stock --> Transaction
 Transaction --> TransactionType
 }
 
-package parser {
-class Parser
-}
-
-package storage {
-class Storage
-}
-
-package ui {
-class Ui
-}
 @enduml
