@@ -49,12 +49,17 @@ public class InputParser {
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.toLowerCase().split(" ");
+        boolean commandFormatIsSingleInput = Arrays.asList(singleWordInputs).contains(splitInput[0]);
         if (splitInput.length < 2) {
-            if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
+            if (!commandFormatIsSingleInput) {
                 Ui.printInvalidFormatException();
                 return command;
             }
-
+        } else {
+            if (commandFormatIsSingleInput) {
+                Ui.printInvalidFormatException();
+                return command;
+            }
         }
         switch (command) {
 
@@ -315,7 +320,7 @@ public class InputParser {
             Ui.printInvalidFormatException();
             return;
         } catch (NumberFormatException e) {
-            Ui.printAddNameFormatException();
+            Ui.printInvalidFormatException();
             return;
         }
 
