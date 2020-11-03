@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Deals with loading tasks from the file and saving tasks in the file.
+ * Deals with loading data from the file and saving data in the file.
  */
 public abstract class AccountSaver {
     private static final int LINES_IN_AN_ACCOUNT = 5;
@@ -20,9 +20,9 @@ public abstract class AccountSaver {
     /**
      * Reads file content whenever FinanceTools starts up.
      *
-     * @param filePath file path that contains all the tasks in text format.
-     * @param infoText array that stores all tasks in text format.
-     * @throws FileNotFoundException if file that contains data of tasks is not found.
+     * @param filePath file path that contains all the data in text format.
+     * @param infoText array that stores all data in text format.
+     * @throws FileNotFoundException if file that contains data is not found.
      * @throws FolderNotFoundException if folder not found.
      */
     public static void readFileContents(String filePath, ArrayList<String> infoText)
@@ -39,7 +39,7 @@ public abstract class AccountSaver {
         if (folder.isDirectory() == false) {
             throw new FolderNotFoundException();
         }
-        // Read tasks into FinanceTools
+        // Read data into FinanceTools
         while (s.hasNext()) {
             String line = s.nextLine();
             int countLines = 0;
@@ -57,9 +57,9 @@ public abstract class AccountSaver {
     }
 
     /**
-     * Writes task data to text file.
+     * Writes data to text file.
      *
-     * @param filePath file path that contains all the tasks in text format.
+     * @param filePath file path that contains all the data in text format.
      * @param textToAdd string that would be added to the text file.
      * @throws IOException if there are issues with input or output operations.
      */
@@ -71,11 +71,11 @@ public abstract class AccountSaver {
     }
 
     /**
-     * Updates text file whenever an operation is done on the task.
+     * Updates text file whenever an operation is done.
      *
-     * @param infoText array that stores all tasks in text format.
-     * @param filePath file path that contains all the tasks in text format.
-     * @throws FileNotFoundException if file that contains data of tasks is not found.
+     * @param infoText arraylist that stores all data in text format.
+     * @param filePath file path that contains all the data in text format.
+     * @throws FileNotFoundException if file that contains data is not found.
      */
     public static void updateFile(ArrayList<String> infoText, String filePath) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(filePath); // reset .txt file
@@ -92,7 +92,7 @@ public abstract class AccountSaver {
     /**
      * Creates file if existing file is not available.
      *
-     * @param filePath file path that contains all the tasks in text format.
+     * @param filePath file path that contains all the data in text format.
      * @throws IOException if there are issues with input or output operations.
      */
     public static void createFile(String filePath) throws IOException {
