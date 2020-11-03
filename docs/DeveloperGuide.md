@@ -1225,8 +1225,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: The anime with index of 3 is added into the active watchlist, and a message with the name of the anime is printed.
     
     4.  Other incorrect commands to try:
-        1. `add`
-        2. `add x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+        1.  `add`
+        2.  `add x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
 
 <br/>
 
@@ -1241,8 +1241,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: The third anime in the watchlist is deleted, and a message with the name of the anime is printed.
     
     4.  Other incorrect commands to try:
-        1. `remove`
-        2. `remove x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the watchlist)
+        1.  `remove`
+        2.  `remove x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the watchlist)
 
 <br/>
 
@@ -1257,7 +1257,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: Lists out the name of all anime in the first watchlist.
     
     4.  Other incorrect commands to try:
-        1. `view x` (where x is a negative number, zero, a word, or a number exceeding the number of watchlists)
+        1.  `view x` (where x is a negative number, zero, a word, or a number exceeding the number of watchlists)
 
 <br/>
 
@@ -1272,7 +1272,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: Lists out the information of the anime with index 3.
     
     4.  Other incorrect commands to try:
-        1. `info`
-        2. `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+        1.  `info`
+        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
 
 <br/>
