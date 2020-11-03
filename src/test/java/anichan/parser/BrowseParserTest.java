@@ -19,12 +19,18 @@ class BrowseParserTest {
     private static final String DIFF_ORDER_TEST = "-p 1 -s rating -o asc";
     private static final String DIFF_ORDER_TEST2 = "-s rating -o asc -p 1";
     private static final String INT_OVERFLOW_FIELD_TEST = "-p 999999999999999";
+    private static final String DASH_ABUSE_INPUT1 = "- ";
+    private static final String DASH_ABUSE_INPUT2 = "---";
+    private static final String PARAM_STACKING_INPUT = "-s rating-o dsc-p 23";
+    private static final String DUPLICATE_SORT_INPUT = "-s rating -s name";
+    private static final String DUPLICATE_ORDER_INPUT = "-o asc -o dsc";
+    private static final String DUPLICATE_PAGE_INPUT = "-p 3 -p 5";
 
     @Test
     void parse_invalidDashParameters_throwAniException() {
         BrowseParser testParse = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse("- ");
+            testParse.parse(DASH_ABUSE_INPUT1);
         });
     }
 
@@ -32,7 +38,7 @@ class BrowseParserTest {
     void parse_invalidDashParameters2_throwAniException() {
         BrowseParser testParse = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse("---");
+            testParse.parse(DASH_ABUSE_INPUT2);
         });
     }
 
@@ -40,7 +46,7 @@ class BrowseParserTest {
     void parse_multipleDuplicateSort_throwAniException() {
         BrowseParser testParse = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse("-s rating -s name");
+            testParse.parse(DUPLICATE_SORT_INPUT);
         });
     }
 
@@ -48,7 +54,7 @@ class BrowseParserTest {
     void parse_paramStacked_throwAniException() {
         BrowseParser testParse = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse("-s rating-o dsc-p 23");
+            testParse.parse(PARAM_STACKING_INPUT);
         });
     }
 
@@ -56,7 +62,7 @@ class BrowseParserTest {
     void parse_multipleDuplicateOrder_throwAniException() {
         BrowseParser testParse = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse("-o asc -o dsc");
+            testParse.parse(DUPLICATE_ORDER_INPUT);
         });
     }
 
@@ -64,7 +70,7 @@ class BrowseParserTest {
     void parse_multipleDuplicatePage_throwAniException() {
         BrowseParser testParse = new BrowseParser();
         assertThrows(AniException.class, () -> {
-            testParse.parse("-p 3 -p 5");
+            testParse.parse(DUPLICATE_PAGE_INPUT);
         });
     }
 
