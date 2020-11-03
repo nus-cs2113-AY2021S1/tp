@@ -28,10 +28,10 @@ class RemoveCommandTest {
     
     private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
             + File.separator + "data" + File.separator;
-    private static final String ZERO_WATCHLIST_INDEX = "-d 0";
-    private static final String LARGE_WATCHLIST_INDEX = "-d 3";
-    private static final String EMPTY_WATCHLIST_INDEX = "-d 1";
-    private static final String VALID_WATCHLIST_INDEX = "-d 1";
+    private static final String ZERO_WATCHLIST_INDEX = "0";
+    private static final String LARGE_WATCHLIST_INDEX = "3";
+    private static final String EMPTY_WATCHLIST_INDEX = "1";
+    private static final String VALID_WATCHLIST_INDEX = "1";
 
     @BeforeEach
     void setUp() throws AniException {

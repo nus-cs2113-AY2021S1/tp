@@ -25,9 +25,11 @@ class ViewWatchlistCommandTest {
     Bookmark bookmark;
     Workspace workspace;
 
-    protected static final String ZERO_WATCHLIST_INDEX = "-v 0";
-    protected static final String LARGE_WATCHLIST_INDEX = "-v 3";
-    protected static final String VALID_WATCHLIST_INDEX = "-v 1";
+    protected static final String ZERO_WATCHLIST_INDEX = "0";
+    protected static final String LARGE_WATCHLIST_INDEX = "3";
+    protected static final String VALID_WATCHLIST_INDEX = "1";
+    protected static final String VALID_EMPTY_INPUT1 = "";
+    protected static final String VALID_EMPTY_INPUT2 = "   ";
 
     @BeforeEach
     void setUp() throws AniException {
@@ -100,11 +102,19 @@ class ViewWatchlistCommandTest {
         expectedOutputBuild.append("\t").append("1. testAnime1");
         String expectedOutput = expectedOutputBuild.toString();
 
-        ViewWatchlistParser testParser = new ViewWatchlistParser();
-        ViewWatchlistCommand testView = testParser.parse(VALID_WATCHLIST_INDEX);
-        
-        String actualOutput = testView.execute(animeData, storageManager, user);
-        
-        assertEquals(expectedOutput, actualOutput);
+        ViewWatchlistParser testParser1 = new ViewWatchlistParser();
+        ViewWatchlistCommand testView1 = testParser1.parse(VALID_WATCHLIST_INDEX);
+        String actualOutput1 = testView1.execute(animeData, storageManager, user);
+        assertEquals(expectedOutput, actualOutput1);
+
+        ViewWatchlistParser testParser2 = new ViewWatchlistParser();
+        ViewWatchlistCommand testView2 = testParser2.parse(VALID_EMPTY_INPUT1);
+        String actualOutput2 = testView2.execute(animeData, storageManager, user);
+        assertEquals(expectedOutput, actualOutput2);
+
+        ViewWatchlistParser testParser3 = new ViewWatchlistParser();
+        ViewWatchlistCommand testView3 = testParser3.parse(VALID_EMPTY_INPUT2);
+        String actualOutput3 = testView3.execute(animeData, storageManager, user);
+        assertEquals(expectedOutput, actualOutput3);
     }
 }

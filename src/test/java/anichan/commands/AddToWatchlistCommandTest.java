@@ -29,10 +29,10 @@ class AddToWatchlistCommandTest {
 
     private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
             + File.separator + "data" + File.separator;
-    private static final String ZERO_ANIME_INDEX = "-a 0";
-    private static final String DUPLICATE_ANIME_INDEX = "-a 1";
-    private static final String LARGE_ANIME_INDEX = "-a 3";
-    private static final String VALID_ANIME_INDEX = "-a 2";
+    private static final String ZERO_ANIME_INDEX = "0";
+    private static final String DUPLICATE_ANIME_INDEX = "1";
+    private static final String LARGE_ANIME_INDEX = "3";
+    private static final String VALID_ANIME_INDEX = "2";
     
     @BeforeEach
     void setUp() throws AniException {
