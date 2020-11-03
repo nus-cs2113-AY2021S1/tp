@@ -25,7 +25,7 @@ public abstract class CommandParser {
     protected static final String INTEGER_VALUE_OUTSIDE_OF_INTEGER_RANGE = "Please ensure the integer is not larger"
                                                                             + " than " + Integer.MAX_VALUE + ".";
     protected static final String DESCRIPTION_NOT_REQUIRED = "Command does not require additional parameters!";
-    public static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
+    protected static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
     protected static final String REGEX_PARAMETER = "^.*-[a-zA-z]+.*$";
     protected static final int FIELD_SPLIT_LIMIT = 2;
 

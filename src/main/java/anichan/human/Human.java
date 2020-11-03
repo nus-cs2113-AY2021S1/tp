@@ -1,7 +1,6 @@
 package anichan.human;
 
 import anichan.exception.AniException;
-import static anichan.parser.CommandParser.REGEX_ALPHANUMERIC_WITH_SPACE;
 
 /**
  * Abstract class to represent a Human.
@@ -9,6 +8,7 @@ import static anichan.parser.CommandParser.REGEX_ALPHANUMERIC_WITH_SPACE;
 public abstract class Human {
     private static final int MAX_NAME_LENGTH = 200;
     private static final String EXCEPTION_INVALID_NAME = "Invalid name!";
+    private static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
     protected String name;
 
     /**
