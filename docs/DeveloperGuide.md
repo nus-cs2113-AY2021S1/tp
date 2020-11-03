@@ -1,40 +1,40 @@
 # Developer Guide
 
 ## Table of contents
-* <a href ="#intro">1. Introduction</a> <br>
-* <a href ="#design">2. Design & Implementation</a> <br>
-    * <a href ="#card">2.1 Card Package</a> <br>
-        * <a href ="#quiz">Quiz Package</a> <br>
-            * <a href ="#Qclass">Quiz Class</a> <br>
-            * <a href ="#Qsubject">SubjectQuiz Class</a> <br> 
-            * <a href ="#Qtopic">TopicQuiz Class</a> <br> 
-            * <a href ="#Qresult">Result Class</a> <br>
-        * <a href ="#task">Task Package</a> <br>
-            * <a href ="#Ttask">Task Class</a> <br>
-            * <a href ="#Ttodo">Todo Class</a> <br>
-            * <a href ="#Tdeadline">Deadline Class</a> <br>
-            * <a href ="#Tevent">Event Class</a> <br>
-        * <a href ="#flashcard">Flashcard Class</a> <br>
-        * <a href ="#subject">Subject Class</a> <br>
-        * <a href ="#topic">Topic Class</a> <br>
-    * <a href ="#command">2.2 Command Package</a> <br>
-    * <a href ="#list">2.3 List Package</a> <br>
-    * <a href ="#parser">2.4 Parser Package</a> <br>
-    * <a href ="#ui">2.5 Ui Package</a> <br>
-    * <a href ="#storage">2.6 Storage Package</a> <br>
-       - <a href ="#Sbuilder">Storage Builder</a> <br>
-       - <a href ="#Sstorage">Result</a> <br>
-* <a href ="#scope">3. Product Scope</a> <br>
-   - <a href ="#Ptarget">Target User Profile</a> <br>
-   - <a href ="#Pvalue">Value Proposition</a> <br>
-* <a href ="#user">4. User Stories</a> <br>
-* <a href ="#nfr">5. Non functional Requirements</a> <br>
-* <a href ="#glossary">6. Glossary</a> <br>
-* <a href ="#manual">7. Testing</a> <br>
-    - <a href ="#jartest">Testing the Jar File</a> <br>
-    - <a href ="#sourcetest">Testing the Source Code</a> <br>
-* <a href ="#develop">8. Development</a> <br>
-    - <a href ="#log">Logging</a> <br>
+* <a href ="#intro">1. Introduction</a> 
+* <a href ="#design">2. Design & Implementation</a> 
+    * <a href ="#card">2.1 Card Package</a> 
+        * <a href ="#quiz">Quiz Package</a> 
+            * <a href ="#Qclass">Quiz Class</a> 
+            * <a href ="#Qsubject">SubjectQuiz Class</a>  
+            * <a href ="#Qtopic">TopicQuiz Class</a>  
+            * <a href ="#Qresult">Result Class</a> 
+        * <a href ="#task">Task Package</a> 
+            * <a href ="#Ttask">Task Class</a> 
+            * <a href ="#Ttodo">Todo Class</a> 
+            * <a href ="#Tdeadline">Deadline Class</a> 
+            * <a href ="#Tevent">Event Class</a> 
+        * <a href ="#flashcard">Flashcard Class</a> 
+        * <a href ="#subject">Subject Class</a> 
+        * <a href ="#topic">Topic Class</a> 
+    * <a href ="#command">2.2 Command Package</a> 
+    * <a href ="#list">2.3 List Package</a> 
+    * <a href ="#parser">2.4 Parser Package</a> 
+    * <a href ="#ui">2.5 Ui Package</a> 
+    * <a href ="#storage">2.6 Storage Package</a> 
+       - <a href ="#Sbuilder">Storage Builder</a> 
+       - <a href ="#Sstorage">Result</a> 
+* <a href ="#scope">3. Product Scope</a> 
+   - <a href ="#Ptarget">Target User Profile</a> 
+   - <a href ="#Pvalue">Value Proposition</a> 
+* <a href ="#user">4. User Stories</a> 
+* <a href ="#nfr">5. Non functional Requirements</a> 
+* <a href ="#glossary">6. Glossary</a> 
+* <a href ="#manual">7. Testing</a> 
+    - <a href ="#jartest">Testing the Jar File</a> 
+    - <a href ="#sourcetest">Testing the Source Code</a> 
+* <a href ="#develop">8. Development</a> 
+    - <a href ="#log">Logging</a> 
 
 ## 1. Introduction <a name="intro"> </a>
 
@@ -468,23 +468,22 @@ Students who find it difficult to organise would find this app useful since it
 offers a one stop solution to manage both their revision and their upcoming tasks .
 ## 4. User Stories <a name = "user"> </a>
 
-This section summarises various user stories of this application. These are summarised in the table below.
+This section summarises various user stories of this application in the table below.
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user| add a flash card intuitively|don't get put off by learning a new program |
-|v1.0|long time user| categorize the flashcards to different categories|I know where to look for which flashcard|
-|v1.0|organised person| i would want a program that looks neat| will want to use the program|
-|v1.0|potential user| default flashcard being shown to me| understand how a flashcard looks in this application|
-|v1.0|language student|type in all my notes|practice the spelling of the words|
+|v1.0|long time user| categorize the flashcards to different categories|know where to look for which flashcard|
+|v1.0|organised person| see neat UI and flashcard organization| will want to use the program|
 |v1.0|student|revise all my notes for different subjects|do not have to use multiple applications/websites to revise|
-|v1.0|student| to have colour codes for my notes|quickly glance through and know how much I need to study|
-|v1.0|student|to be able to review them at once or print them|use them offline or as cheat sheets|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-|v2.0|forgetful student|be notified of assignments which are due in a week|prepare for them|
-|v2.0|developer|log messages from the application|troubleshoot for errors|
-
+|v1.0|long time user|add flashcards efficiently |can save time when need to add multiple flashcards|
+|v1.0|long time user|find a to-do item by name|can locate a to-do without having to go through the entire list|
+|v1.0|student|do quizzes on the flashcards added| can know how much I remember the content|
+|v2.0|forgetful student|be notified of assignments which are due in a week|do not forget them|
+|v2.0|new user|see usage instructions|can refer to them when I forget how to use the application|
+|v2.0|CS student|export all data into a readable format| can import the data into another application I made|
+|v2.0|normal user| be able to view my data saved on the disk easily| can do modify the data without launching the app|
+|v2.0|long time user| see all the subjects, topics, and number of flashcards I have added| know what I have added|
 
 ## 5. Non-Functional Requirements <a name = "nfr"> </a>
 
