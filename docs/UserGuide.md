@@ -52,7 +52,7 @@ has successfully executed.
    || \\    /  |//  \//  |  ||//  \/  |/    ||// / _ \ //   \
    ||  \\  /   |||   ||  |  |||   ||  ||    ||\\ | __/ ||
    ||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
-   *****************************************************|
+   ******************************************************
    
    Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/
    Enter <help> for a quick view of available commands.
@@ -66,23 +66,25 @@ has successfully executed.
 
 ### Notes:
 1. Items in <> are the parameters to be supplied by the user.
-   e.g. in addmod <module code>, module code is a parameter which can be used as addmod CS2113T.
-1. The module code is valid if it starts with 2 - 3 characters, followed by 4 digits, followed by an optional character.
-1. Definition of too much / too little time spent on module. 
-    1. A user is considered to spend too little time on a module if the user's actual workload is less than the expected 
-workload by more than 30%. For example, if the expected workload is 10 hours, a user is considered to spend too 
-little time on the module if his actual workload is less than 7 hours.
+   e.g. in `addmod <module code>`, `module code` is a parameter which can be used as such: `addmod CS2113T`.
+1. The module code is valid if it starts with 2 - 3 characters, followed by 4 digits and an optional character.
+1. Definition of too much / too little time spent on a module: 
+    1. A user spends too little time on a module if the user's actual workload is less than the expected 
+workload by more than 30%. For example, if the expected workload is 10 hours,
+but the actual workload is less than 7 hours, the program considers the user
+to be spending too little time on the module.
 
-    1. A user is considered to spend too much time on a module if the user exceeds the expected workload by at least 30%. 
-For example, if the expected workload is 10 hours, a user is considered to spend too much time on the module if 
-his actual workload is 13 hours or more.
+    1. A user spends too much time on a module if the user exceeds the expected workload by at least 30%. 
+For example, if the expected workload is 10 hours, but the actual workload is 13 hours or more,
+the program considers the user to be spending too much time on the module.
     
-    1. A user is considered to spend just right amount of time on a module if the user spends between 70% to 130% of the 
-expected workload. For example, if the expected workload is 10 hours, a user is considered to spend just right amount of
-time on the module if his actual workload is between 7 hours (inclusive) and 13 hours (exclusive).
+    1. A user spends just the right amount of time on a module if the user spends between 70% to 130% of the 
+expected workload. For example, if the expected workload is 10 hours, 
+and the actual workload is between 7 hours (inclusive) and 13 hours (exclusive),
+the program considers the user to be on track.
 
 ### 2.1 View help: `help` <a name="help"></a>
-Shows a list of the commands available.
+Displays a list of all available commands that you can use.
 
 Format: `help`
 
@@ -123,12 +125,12 @@ Available Commands:
 ````
 
 ### 2.2 Add a module: `addmod` <a name="addmod"></a>
-Adds a module to the database.
+Adds a new module to track your time spent on it and tasks related to it.
 
 Format: `addmod <module code>`
 
-* The `module code` is valid. 
-* The `module code` does not exist in the database.
+* The `module code` needs to be valid. 
+* The `module code` should not exist in the database.
 
 Example of usage:
 
@@ -140,11 +142,14 @@ CS2113T is added.
 ````
 
 ### 2.3 Add expected module workload: `addexp` <a name="addexp"></a>
-Adds the expected workload of the module to the database.
+Adds the expected workload of the given module to the database. 
+Every module in NUS has an expected workload, which is the expected 
+number of hours of preparatory work required by a student per week.
+This information can be found on LumiNUS or NUSMODS.
 
 Format: `addexp <module code> <expected workload>`
 
-* The `module code` is valid.
+* The `module code` needs to be valid. 
 * The `expected workload` is expressed in hours. It has to be a whole number between 1 and 24 inclusive.
 * If the `module code` already exists, this command replaces its expected workload with the new expected workload.
 * If the `module code` does not exist, this command creates a new module and adds its expected workload to the database.
@@ -159,11 +164,12 @@ CS2113T, Expected Workload: 10h is added.
 ````
 
 ### 2.4 Add actual time spent on a module: `addtime` <a name="addtime"></a>
-Adds the time spent on the indicated module. At the end there is also a summary for the total hours spent in that week.
+Adds to the time you have spent on the indicated module, for that week. 
+After which, a summary of the total hours spent in that week will also be displayed.
 
 Format: `addtime <module code> <time spent> <week number>`
 
-* The `module code` is valid.
+* The `module code` needs to be valid. 
 * The `time spent` is in hours.
 * The `week number` must be between 1 and 13 inclusive.
 
@@ -178,7 +184,8 @@ Expected output:
 ````
 
 ### 2.5 List expected and actual time spent of all modules: `list` <a name="list"></a>
-Shows a list of the modules, their expected module workload, and the actual time spent for the specific week.
+Shows a list of all of your modules, their expected module workload, 
+and the actual time spent you have spent on each of them for that specific week.
 
 Format: `list <week number>`
 
@@ -198,7 +205,9 @@ Expected output:
 ````
 
 ### 2.6 Analyse actual time spent on all modules: `analyse` <a name="analyse"></a>
-Shows the breakdown and analysis for actual time spent for the specific week.
+To further analyse the data, you can use the `analyse` command.
+It shows the breakdown and analysis of your
+time spent on each module for the specific week.
 
 Format: `analyse <week number>`
 
@@ -234,12 +243,13 @@ Good Job! Great time management!
 ````
  
 ### 2.7 Delete a module: `deletemod` <a name="deletemod"></a>
-Deletes the specified module code from the database.
+Deletes the specified module code from the database,
+together with all its related data, such as the time you have spent on it.
 
 Format: `deletemod <module code>`
 
-* The `module code` is valid.
-* The `module code` exists in the database.
+* The `module code` needs to be valid.
+* The `module code` should exist in the database.
 
 Example of usage:
 
@@ -252,7 +262,7 @@ All tasks under CS2113T are deleted.
 ````
 
 ### 2.8 Delete expected module workload: `deleteexp` <a name="deleteexp"></a>
-Deletes the expected workload of specified module code from the database.
+Deletes the expected workload of the specified module code from the database.
 
 Format: `deleteexp <module code>`
 
@@ -269,12 +279,12 @@ Expected Workload of CS2113T is removed.
 ````
 
 ### 2.9 Minus from actual time spent on a module: `minustime` <a name="minus"></a>
-Minus the actual time spent on a specified module. At the end there is also a summary for the total hours spent in that 
-week.
+Minus the actual time you have spent on a specified module. 
+After which, a summary of the total hours spent in that week will also be displayed.
 
 Format: `minustime <module code> <time spent> <week number>` 
 
-* The `module code` is valid.
+* The `module code` needs to be valid.
 * The `time spent` is in hours.
 * The `week number` must be between 1 and 13 inclusive.
 
@@ -289,11 +299,12 @@ Expected output:
 ````
 
 ### 2.10 Edit actual time spent on a module: `edittime` <a name="edit"></a>
-Edits the actual time spent on a specified module.
+Edits the actual time you have spent on a specified module for that week
+to the given value.
 
 Format: `edittime <module code> <time spent> <week number>` 
 
-* The `module code` is valid.
+* The `module code` needs to be valid.
 * The `time spent` is in hours.
 * The `week number` must be between 1 and 13 inclusive.
 
@@ -308,11 +319,11 @@ Expected output:
 ````
 
 ### 2.11 Delete actual time spent on a module: `deletetime` <a name="deletetime"></a>
-Deletes the actual time spent on a specified module.
+Deletes the actual time you have spent on a specified module for that week.
 
 Format: `deletetime <module code> <week number>` 
 
-* The `module code` is valid.
+* The `module code` needs to be valid.
 * The `week number` must be a whole number between 1 and 13 inclusive.
 
 Example of usage:
@@ -325,11 +336,11 @@ Actual time of CS2113T of week 3 is removed.
 ````
 
 ### 2.12 Add tasks: `addtask` <a name="addtask"></a>
-Adds a task under a specified module.
+Adds a task which is required by the specified module.
 
 Format: `addtask <module code> <task description>`
 
-* The `module code` is valid.
+* The `module code` needs to be valid.
 * The `module code` specified by the user must exist in the database. 
 
 Example of usage:
@@ -344,7 +355,7 @@ Now you have 1 task in the list.
 ````
 
 ### 2.13 List all tasks: `listtask` <a name="listtask"></a>
-Lists all tasks in the database.
+Lists all tasks that you currently have, whether completed or not.
 
 Format: `listtask`
 
@@ -355,7 +366,8 @@ Here are the tasks in your list:
 ````
 
 ### 2.14 Mark task as done: `done` <a name="done"></a>
-Marks a specified task as done.
+Marks the specified task as done in your task list,
+so that you can keep track of what you have completed.
 
 Format: `done <task number>`
 
@@ -373,7 +385,7 @@ Nice! I've marked this task as done:
 ````
 
 ### 2.15 Delete a task: `deletetask` <a name="deletetask"></a>
-Deletes a specified task from the database.
+Deletes a specified task from your task list.
 
 Format: `deletetask <task number>`
 
@@ -390,12 +402,12 @@ Noted. I've removed this task:
 You currently have no task :-)
 ````
 
-
 ### 2.16 Open notification: `open` <a name="open"></a>
-Opens the notification with a randomised encouraging message.
-The user is notified on the progress of the current week.
-The current week is defined by the latest week that has at least one actual time input.
-
+Opens the notification which contains a randomised encouraging message.
+The notification will give the user an update 
+on the progress of the current week.
+The program determines the current week based on
+the latest week that has at least one actual time input.
 
 Format: `open`
 
@@ -411,8 +423,7 @@ Oh no! It appears you are spending too little time on CS1010.
 The harder you work, the closer you are to success!
 ````
 
-Note: The actual output may differ as the encouraging message is randomised.
-
+Note: The actual output may differ as the encouraging message is random.
 
 ### 2.17 Save user data <a name="save"></a>
 The program will save your data such as your name, modules, time spent and tasks
@@ -458,7 +469,8 @@ Clearing of data not confirmed. Your data is safe :)
 ````
  
 ### 2.19 Delete user data: `reset` <a name="reset"></a>
-Deletes all module and tasks data, and the username.
+Deletes all module and tasks data, and the username, 
+effectively resetting the whole program.
 The program will also prompt the user to confirm this action.
 If confirmed, the program will restart and prompt for a new username.
 
@@ -486,7 +498,7 @@ Hello from
 || \\    /  |//  \//  |  ||//  \/  |/    ||// / _ \ //   \
 ||  \\  /   |||   ||  |  |||   ||  ||    ||\\ | __/ ||
 ||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
-*****************************************************|
+******************************************************
 
 Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html
 Enter <help> for a quick view of available commands.
