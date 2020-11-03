@@ -465,7 +465,7 @@ Trigun successfully removed from watchlist
 ### 3.7.7 View all anime in watchlist
 View all the anime that you have stored in your current watchlist, or in a specific watchlist
 
-Format: `view [-v <WATCHLIST_ID>]`
+Format: `view [-v WATCHLIST_ID]`
 *   If the parameter `-v` is not specified, the anime in the current watchlist you are using will be shown.
 
 <br/>
@@ -685,7 +685,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | ---                                          | ---                                                      |
 | Help                                         | `help`                                                   |
 | Estimate time needed to translate the script | `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`      |
-| Browse                                       | `browse [-s <SORT_OPTION>] [-p <PAGE_NO.>] [-o <SORT_ORDER>]`  |
+| Browse                                       | `browse [-s SORT_OPTION] [-p PAGE_NO.] [-o SORT_ORDER]`  |
 | Search by title                              | `search -n <SEARCH_TERM>`                                |
 | Search by genre                              | `search -g <SEARCH_TERM>`                                |
 | View anime information                       | `info <ANIME_ID>`                                     |
@@ -699,7 +699,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                            |
 | Add to watchlist                             | `add <ANIME_ID>`                                      |
 | Remove from watchlist                        | `remove <ANIME_ID_IN_WATCHLIST>`                      |
-| View anime in watchlist                      | `view [-v <WATCHLIST_ID>]`                                 |
+| View anime in watchlist                      | `view [-v WATCHLIST_ID]`                                 |
 | List bookmark                                | `bookmark -l`                                            |
 | Add bookmark entry                           | `bookmark -a <ANIME_ID>`                                 |
 | Delete bookmark entry                        | `bookmark -d <BOOKMARK_ID>`                              |
