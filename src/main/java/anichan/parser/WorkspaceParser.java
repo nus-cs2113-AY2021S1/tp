@@ -103,7 +103,7 @@ public class WorkspaceParser extends CommandParser {
      */
     private void checkName(String workspaceName) throws AniException {
         if (workspaceName != null) {
-            boolean isValid = workspaceName.matches(REGEX_ALPHANUMERIC);
+            boolean isValid = workspaceName.matches(REGEX_ALPHANUMERIC_WITH_SPACE);
 
             if (!isValid || workspaceName.length() > MAXIMUM_WORKSPACE_NAME_LENGTH) {
                 LOGGER.log(Level.WARNING, EXCEPTION_ILLEGAL_WORKSPACE_NAME);

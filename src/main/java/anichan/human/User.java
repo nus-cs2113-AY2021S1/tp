@@ -68,6 +68,11 @@ public class User extends Human {
         }
     }
 
+    /**
+     * Returns gender of User.
+     *
+     * @return Gender of User.
+     */
     public Gender getGender() {
         return gender;
     }
@@ -219,7 +224,7 @@ public class User extends Human {
      * @param findString name of Workspace to search for
      * @return Workspace object is found, else null
      */
-    public Workspace findWorkspace(String findString) {
+    private Workspace findWorkspace(String findString) {
         assert findString != null : ASSERTION_INVALID_MESSAGE;
 
         for (Workspace tempWorkspace : workspaceList) {
@@ -237,7 +242,7 @@ public class User extends Human {
      * @param name of new workspace to be checked
      * @throws AniException if a workspace with same name is found
      */
-    public void checkWorkspaceName(String name) throws AniException {
+    private void checkWorkspaceName(String name) throws AniException {
         assert name != null : ASSERTION_INVALID_MESSAGE;
 
         for (Workspace tempWorkspace : workspaceList) {

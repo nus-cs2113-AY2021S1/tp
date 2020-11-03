@@ -1,8 +1,6 @@
 package anichan.parser;
 
-import anichan.commands.HelpCommand;
 import anichan.commands.Command;
-import anichan.commands.ExitCommand;
 import anichan.exception.AniException;
 import anichan.logger.AniLogger;
 

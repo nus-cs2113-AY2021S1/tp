@@ -117,7 +117,7 @@ public class WatchlistParser extends CommandParser {
             throw new AniException(WATCHLIST_NAME_IS_EMPTY);
         }
 
-        if (!parsedParts[1].trim().matches(REGEX_ALPHANUMERIC)) {
+        if (!parsedParts[1].trim().matches(REGEX_ALPHANUMERIC_WITH_SPACE)) {
             throw new AniException(WATCHLIST_NAME_IS_INVALID);
         }
     }
