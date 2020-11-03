@@ -15,6 +15,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import static fitr.common.Commands.COMMAND_EXERCISE;
+import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Commands.COMMAND_VIEW_BMI;
+import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
 import static fitr.common.Messages.EMPTY_GOAL_LIST;
@@ -39,13 +45,6 @@ import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
 import static fitr.common.Messages.EMPTY_FOOD_LIST_DATE;
 import static fitr.common.Messages.NO_RECORDS_FOUND;
 
-import static fitr.common.Commands.COMMAND_VIEW_FOOD;
-import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
-import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
-import static fitr.common.Commands.COMMAND_VIEW_BMI;
-import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
-import static fitr.common.Commands.COMMAND_GOAL;
-
 public class ViewCommand extends Command {
 
     public ViewCommand(String command) {
@@ -54,9 +53,9 @@ public class ViewCommand extends Command {
 
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
-        if (command.equalsIgnoreCase(COMMAND_VIEW_FOOD)) {
+        if (command.equalsIgnoreCase(COMMAND_FOOD)) {
             viewFood(listManager.getFoodList());
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
+        } else if (command.equalsIgnoreCase(COMMAND_EXERCISE)) {
             viewExercise(listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
             viewSummary(listManager.getFoodList(), listManager.getExerciseList());
@@ -68,9 +67,9 @@ public class ViewCommand extends Command {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
             viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
+        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_EXERCISE)) {
             viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
-        } else if (command.split(" ")[0].equalsIgnoreCase((COMMAND_VIEW_FOOD))) {
+        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_FOOD)) {
             viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
         } else {
             Ui.printFormatError("view");
