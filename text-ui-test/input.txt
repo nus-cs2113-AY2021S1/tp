@@ -33,7 +33,11 @@ Elf
 Queen
 maleS
 Abec Steiner 77th
-FemaLe
+F3maLe
+Abec Steiner 77th
+MaLes
+Abec Steiner 77th
+female
 addws -n
 addws  - 
 addws
@@ -52,6 +56,19 @@ workspace -l
 workspace -d WHITE CHoC MACADAMIA
 workspace -d non existing workspace
 workspace -n COOKIES N CREME CH33SECAKE
+workspace -n APPLE ORANGE OREO PANCAKE APPLE ORANGE OREO PANCAKE
+workspace -n APPLES ORANGES OREOS PANCAKESS
+workspace -n APPLES ORANGES OREOS PANCAKESSS
+workspace -n -999999
+workspace -n 999999
+workspace -d 999999 
+workspace -l
+workspace -n APPLES ORANGES OREOS PANCAKESSS 
+workspace -n APPLES ORANGES OREOS PANCAKESSS  
+workspace -l
+workspace -l  APPLES ORANGES OREOS PANCAKESSS  
+workspace -n   APPLES ORANGES OREOS PANCAKESSS  
+workspace -l
 workspace -s COOKIES N CREME CH33SECAKE
 workspace -d WHITE CHoC MACADAMIA
 workspace 1

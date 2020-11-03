@@ -61,6 +61,12 @@ Hello Queen! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid input detected!
 What's your name?
 Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid input detected!
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
 -------------------------------------------------------------
 
 Default (Default) #> OOPS!!! Unknown command
@@ -104,18 +110,73 @@ WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace does not exist!
 
 WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CREME CH33SECAKE
 
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Invalid parameters detected!
+
+WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: 999999
+
+WHITE CHoC MACADAMIA (Default) #> Successfully deleted workspace: 999999
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
 WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
@@ -129,12 +190,13 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> Watchlist "a" has been created successfully!
 
@@ -349,32 +411,35 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Unknown command
 
@@ -390,12 +455,13 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: Default
 
@@ -421,9 +487,10 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before t
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 2 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 workspace(s):
 1. RED VELVET Crumblesss
 2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Seems like you did not specify a parameter type
 

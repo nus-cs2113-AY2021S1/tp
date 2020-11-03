@@ -12,6 +12,7 @@ public class Workspace {
 
     // ========================== Workspace Initialization ==========================
 
+    public static final String ASSERTION_INVALID_MESSAGE = "Input should not be null.";
     private Bookmark bookmark;
     protected String workspaceName;
     private Watchlist activeWatchlist;
@@ -23,6 +24,7 @@ public class Workspace {
      * @param workspaceName name of new Workspace
      */
     public Workspace(String workspaceName) {
+        assert workspaceName != null : ASSERTION_INVALID_MESSAGE;
         this.workspaceName = workspaceName;
 
         bookmark = new Bookmark();
