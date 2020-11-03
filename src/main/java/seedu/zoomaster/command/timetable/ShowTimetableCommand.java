@@ -215,7 +215,7 @@ public class ShowTimetableCommand extends Command {
     /**
      * Checks if there is an overlap with the input slot timing and the current system time.
      *
-     * @param slot
+     * @param slot The selected slots to be tested.
      * @return isOverlap
      */
     public static boolean hasLessonNow(Slot slot) {
