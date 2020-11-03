@@ -531,20 +531,20 @@ This sequence diagram will show the flow of setting of expense goal:
 <br />
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-#### Feature 5: Save Manager
-##### What it does
-Save Manager is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
+### Feature 5: Save Manager Utility
+#### What it does
+Save Manager utitty is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It allows multiple saves to be created and loaded at will.
 
-##### Overview
-Save Manager is the backup storage and Ui program for the various save handler subclasses. Without Save Manager, save handler alone
-will only save one copy of goal tracker, manual tracker and auto tracker information upon exiting the program and load them upon
-start up.
+#### Overview
+Save Manager utility contains 5 classes. SaveHandler class contains some commonly used functions such as buildFile that is inherited to the 3
+saver child classes. goalTrackerSaver produce text file to save goalTracker states, autoTrackerSaver saves recurringTracker states and
+manualTrackerSaver saves manualTracker states. SaveManager class is the UI class that uses the 3 saver classes to do load and save operations.
 
-##### Save Manager Class Diagram
+#### Save Manager Class Diagram
 ![SaveManagerClassDiagram](uml_images/fPD1RzGm48Nl_XNMdbf5hierMgqA1qGF5KX1dBZCsaDYPM97zXW9IlyxcHGQbNIhYBqzpupVViyxkSaCYSj0glCEjVN94ghS-p12Wa5RWfpVCYT_B8otDeR6_qHzhTJSqRiCt_4E0hIOTlfULTyAqIVWhjRDT2cqgd8-FIkOCSLXvEKyO2YrVXSZ8GHL3U33nQMgmBbcCXT94Pwq9OGamY4Xu.png)
 
-##### Save Manager Sequence Diagram
+#### Save Manager Sequence Diagram
 ![SaveManagerSequenceDiagram](uml_images/SequenceSaveManager.png)
 
 ## Product scope
