@@ -28,7 +28,7 @@ public class SaveManager {
                 helpMenu();
             }
             InputParser parser = InputParser.getInstance();
-            CommandPacket packet = parser.parseInput(UiManager.handleInput("Please no echo"));
+            CommandPacket packet = parser.parseInput(UiManager.handleInput());
             menu = true;
             switch (packet.getCommandString()) {
             case "list":

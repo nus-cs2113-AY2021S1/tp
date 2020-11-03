@@ -15,7 +15,7 @@ public class Entry extends DateTimeItem {
 
     public Entry() {
         super();
-        super.setDefaultDateTimeFormat("time");
+        super.setDefaultDateTimeFormat("");
     }
 
     public void setDescription(String description) {
@@ -74,7 +74,7 @@ public class Entry extends DateTimeItem {
     @Override
     public String getName() {
         return String.format("Entry %d : [ %s ] [ %s ]", this.getIndex() + 1,
-            this.dateTimeOutputManager.getSingleTimeFormatted("time"),
+            this.dateTimeOutputManager.getSingleTimeFormatted(""),
             this.getShortFormDesc(this.description));
     }
 
