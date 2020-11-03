@@ -1258,22 +1258,64 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 # 3.7  <a name = saveManager> </a>Feature: Save Manager
 This utility feature helps to save multiple program states and load them at will.
 
+
 ## 3.7.0 Save Manager Menu
 ![picture](uml_images/saveManager/Capture1.PNG)
+Main menu shows all the available commands and how to use them
+You can enter "help" anytime to return to this main menu
+
 
 ## 3.7.1 Save Manager List Save
 ![picture](uml_images/saveManager/Capture2.PNG)
+You can enter "list" to list all backup saves.
+>syntax
+
+    list
+
+
 ## 3.7.2 Save Manager Add Save
 ![picture](uml_images/saveManager/Capture3.PNG)
+To create a back up save
+>syntax
+
+    add /name save12345
+
 ![picture](uml_images/saveManager/Capture4.PNG)
+In your data/backup directory, you can see 3 text files created.
+
 ![picture](uml_images/saveManager/Capture5.PNG)
+In your names.txt file, an additional entry will be appended.
+
+
 ## 3.7.3 Save Manager Load Save
 ![picture](uml_images/saveManager/Capture6.PNG)
+To load a back up save
+>syntax
+
+    load /name save12345
+
+
+
 ## 3.7.4 Save Manager Delete Save
 ![picture](uml_images/saveManager/Capture7.PNG)
+To remove a back up save
+>syntax
+
+    delete /name save123
+
 ![picture](uml_images/saveManager/Capture8.PNG)
+As you can see, the 3 text files you want to delete are gone.
+names.txt file is also updated.
+
+
 ## 3.7.4 Save Manager Reset
 ![picture](uml_images/saveManager/Capture9.PNG)
+To reset all data currently used by the program enter "reset"
+>syntax
+
+    reset
+
+
 # 4. <a name = featuresSummary> </a>Summary of Features 
 
 ## 4.1 Manual Tracker
