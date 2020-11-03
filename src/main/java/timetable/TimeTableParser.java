@@ -79,7 +79,7 @@ public class TimeTableParser {
                 System.out.println("Please enter the venue: ");
                 isInvalid = false;
             } else {
-                System.out.println("Invalid command command\n Is the class online? ");
+                System.out.println("Invalid command command\n Is the class online? (yes/no)");
             }
         }
         String linkOrVenue = in.nextLine();
@@ -137,19 +137,19 @@ public class TimeTableParser {
             String status = in.nextLine();
             if (status.equals("yes") || status.equals("online")) {
                 isOnline = true;
-                System.out.println("Please enter zoom link");
+                System.out.println("Please enter zoom link: ");
                 isInvalid = false;
             } else if (status.equals("no") || status.equals("offline")) {
-                System.out.println("Please enter the venue");
+                System.out.println("Please enter the venue: ");
                 isInvalid = false;
             } else {
-                System.out.println("Invalid command command\n Is the class online? (yes/no)");
+                System.out.println("Invalid command!\n Is the class online? (yes/no)");
             }
         }
         final String linkOrVenue = in.nextLine();
-        System.out.println("Please enter the date (e.g. 28/10/2020)");
+        System.out.println("Please enter the date of your activity (e.g. 28/10/2020): ");
         LocalDateTime date = getDateTime(in.nextLine());
-        System.out.println("Please enter the time of your activity (e.g. 6-9pm)");
+        System.out.println("Please enter the time of your activity (e.g. 6-9pm): ");
         String time = in.nextLine();
         int startTime = Integer.parseInt(time.split("-")[0]);
         int endTime = Integer.parseInt(time.split("-")[1].replaceAll("[^0-9]", ""));
