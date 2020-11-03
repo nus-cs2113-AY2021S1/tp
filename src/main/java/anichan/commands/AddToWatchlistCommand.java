@@ -25,6 +25,15 @@ public class AddToWatchlistCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistCommand.class.getName());
 
     /**
+     * Creates a new instance of AddToWatchlistCommand with the specified anime index.
+     * 
+     * @param animeIndex the specified anime index to add
+     */
+    public AddToWatchlistCommand(Integer animeIndex) {
+        this.animeIndex = animeIndex - 1; // 1-based to 0-based numbering
+    }
+    
+    /**
      * Executes addition of anime into active Watchlist.
      * 
      * @param animeData used to retrieve anime information
@@ -75,14 +84,5 @@ public class AddToWatchlistCommand extends Command {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
         LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
-    }
-
-    /**
-     * Sets the anime index to be added into the active Watchlist.
-     * 
-     * @param animeIndex the specified anime index to be added
-     */
-    public void setAnimeIndex(Integer animeIndex) {
-        this.animeIndex = animeIndex - 1;
     }
 }

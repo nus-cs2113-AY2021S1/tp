@@ -13,20 +13,10 @@ import java.util.logging.Logger;
  */
 public class ViewWatchlistParser extends CommandParser {
     protected static final String VIEW_PARAM = "v";
-    protected static final String SPLIT_DASH = "-";
-    protected static final String TOO_MUCH_ARGUMENTS = "View command " + TOO_MUCH_FIELDS;
-    protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for watchlist ID!";
+    protected static final String TOO_MUCH_ARGUMENTS = "View command" + TOO_MUCH_FIELDS;
+    protected static final String WATCHLIST_ID = "Watchlist ID!";
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Watchlist ID is invalid!";
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistParser.class.getName());
-
-    private ViewWatchlistCommand viewWatchlistCommand;
-
-    /**
-     * Creates a new instance of ViewWatchlistParser.
-     */
-    public ViewWatchlistParser() {
-        viewWatchlistCommand = new ViewWatchlistCommand();
-    }
 
     /**
      * Parses the specified command description.
@@ -36,17 +26,18 @@ public class ViewWatchlistParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public ViewWatchlistCommand parse(String description) throws AniException {
-        String[] paramGiven = description.split(SPLIT_DASH, 2);
+        description = description.trim();
 
-        paramIsSetCheck(paramGiven);
-        if (paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
-            throw new AniException(NO_PARAMETER_PROVIDED);
+        if (description != null && !description.isBlank()) {
+            String[] paramGiven = description.split(DASH, 2);
+            paramIsSetCheck(paramGiven);
+            Integer watchlistIndex = parameterParser(paramGiven[1]);
+            return new ViewWatchlistCommand(watchlistIndex);
         }
-        
-        parameterParser(paramGiven[1]);
+  
         LOGGER.log(Level.INFO, "Parameter parsed properly");
 
-        return viewWatchlistCommand;
+        return new ViewWatchlistCommand();
     }
 
     /**
@@ -55,22 +46,25 @@ public class ViewWatchlistParser extends CommandParser {
      * @param paramGiven a String Array containing the parameters and the value
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private void parameterParser(String paramGiven) throws AniException {
-        String[] paramParts = paramGiven.split(" ");
+    private Integer parameterParser(String paramGiven) throws AniException {
+        String[] paramParts = paramGiven.split(WHITESPACE, FIELD_SPLIT_LIMIT);
 
         switch (paramParts[0].trim()) {
         case VIEW_PARAM:
             paramFieldCheck(paramParts);
-            paramExtraFieldCheck(paramParts);
-            if (!isInteger(paramParts[1].trim())) {
-                throw new AniException(NON_INTEGER_PROVIDED);
+            String fieldValue = paramParts[1].trim();
+            String[] fieldParts = fieldValue.split(WHITESPACE);
+            
+            if (fieldParts.length > 1) {
+                throw new AniException(TOO_MUCH_ARGUMENTS);
             }
+            isIntegerCheck(fieldValue, WATCHLIST_ID);
+            
             try {
-                viewWatchlistCommand.setWatchlistIndex(Integer.parseInt(paramParts[1].trim()));
+                return Integer.parseInt(paramParts[1].trim());
             } catch (NumberFormatException e) {
                 throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
             }
-            break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
             throw new AniException(invalidParameter);

@@ -26,6 +26,22 @@ public class ViewWatchlistCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(ViewWatchlistCommand.class.getName());
 
     /**
+     * Creates a new instance of ViewWatchlistCommand.
+     */
+    public ViewWatchlistCommand() {
+        
+    }
+
+    /**
+     * Creates a new instance of ViewWatchlistCommand with the specified watchlist index.
+     *
+     * @param watchlistIndex the specified watchlist index to view
+     */
+    public ViewWatchlistCommand(Integer watchlistIndex) {
+        this.watchlistIndex = watchlistIndex - 1; // 1-based to 0-based numbering
+    }
+
+    /**
      * Returns a string representation of all the anime in the
      * specified Watchlist.
      *
@@ -44,15 +60,15 @@ public class ViewWatchlistCommand extends Command {
         if (watchlistSize == 0) {
             LOGGER.log(Level.WARNING, NO_WATCHLIST_ERROR);
             throw new AniException(NO_WATCHLIST_ERROR);
-        } else if (watchlistIndex < 0) {
-            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
-            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
-        } else if (watchlistIndex >= watchlistSize) {
-            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
-            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
         }
-        
-        Watchlist selectedWatchlist = watchlistList.get(watchlistIndex);
+
+        Watchlist selectedWatchlist;
+        if (watchlistIndex == null) {
+            selectedWatchlist = activeWorkspace.getActiveWatchlist();
+        } else {
+            checkValidWatchlistIndex(watchlistSize, watchlistIndex);
+            selectedWatchlist = watchlistList.get(watchlistIndex);
+        }
         ArrayList<Integer> animeInWatchlist = selectedWatchlist.getAnimeList();
         String selectedWatchlistName = selectedWatchlist.getName();
         
@@ -91,7 +107,20 @@ public class ViewWatchlistCommand extends Command {
         return sbWatchlistAnime.toString();
     }
 
-    public void setWatchlistIndex(Integer watchlistIndex) {
-        this.watchlistIndex = watchlistIndex - 1;
+    /**
+     * Checks if watchlist index given is negative or larger than size of watchlist list
+     * 
+     * @param watchlistSize size of the list of watchlists
+     * @param watchlistIndex the specified watchlist index to be viewed
+     * @throws AniException when watchlist index is negative or larger than size of watchlist list
+     */
+    private void checkValidWatchlistIndex(int watchlistSize, Integer watchlistIndex) throws AniException {
+        if (watchlistIndex < 0) {
+            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        } else if (watchlistIndex >= watchlistSize) {
+            LOGGER.log(Level.WARNING, OUT_OF_BOUND_INDEX_ERROR);
+            throw new AniException(OUT_OF_BOUND_INDEX_ERROR);
+        }
     }
 }
