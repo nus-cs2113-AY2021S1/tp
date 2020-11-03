@@ -14,7 +14,7 @@ public class AirConditioner extends Appliance {
 
     public static final String TYPE_WORD = "aircon";
     private static final int LOWER_BOUND = 15;
-    private static final int UPPER_BOUND = 30;
+    private static final int UPPER_BOUND = 31;
     private String temperature;
 
     /**
@@ -64,21 +64,18 @@ public class AirConditioner extends Appliance {
      * @param temperature temperature to set.
      * @return the reciprocal printout message after setting temperature in String.
      */
-    public String setTemperature(String temperature) {
-        String toPrint = "";
+    public boolean setTemperature(String temperature) {
+        boolean isSuccess = true;
         if (temperature.isEmpty()) {
             // default temperature will be set.
-            toPrint = toString();
         } else if (isParameterValid(temperature, LOWER_BOUND, UPPER_BOUND)) {
             // user input speed will be set.
             this.temperature = temperature;
-            toPrint = toString();
         } else {
             // user inputs an invalid temperature.
-            System.out.println(toPrint);
-            toPrint = "\n" + MESSAGE_INVALID_TEMPERATURE_AC;
+            isSuccess = false;
         }
-        return toPrint;
+        return isSuccess;
     }
 
     /**

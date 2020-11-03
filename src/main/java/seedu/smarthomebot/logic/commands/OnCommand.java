@@ -11,7 +11,8 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION;
-
+import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 public class OnCommand extends Command {
 
     public static final String COMMAND_WORD = "on";
@@ -61,16 +62,24 @@ public class OnCommand extends Command {
     }
 
     private String setParameter(String parameter, Appliance appliance) {
+        String setParameterStatement = "";
         switch (appliance.getType().toLowerCase()) {
         case AirConditioner.TYPE_WORD:
             AirConditioner ac = (AirConditioner) appliance;
-            return ac.setTemperature(parameter);
+            if (!ac.setTemperature(parameter)) {
+                setParameterStatement = MESSAGE_INVALID_TEMPERATURE_AC;
+            }
+            break;
         case Fan.TYPE_WORD:
             Fan fan = (Fan) appliance;
-            return fan.setSpeed(parameter);
+            if (!fan.setSpeed(parameter)) {
+                setParameterStatement = MESSAGE_INVALID_FAN_SPEED;
+            }
+            break;
         default:
             return "";
         }
+        return setParameterStatement;
     }
 
     private CommandResult onByLocation() {
@@ -110,12 +119,11 @@ public class OnCommand extends Command {
         String setParameterStatement = setParameter(parameter, toOnAppliance);
         if (!isList) {
             if (onResult) {
-                outputResults = setParameterStatement.contains("Previous set temperature will be set.")
-                        ? "Switching " + toOnAppliance.toString() + ".....ON" + setParameterStatement
-                        : "Switching " + toOnAppliance.toString() + ".....ON";
+                outputResults = setParameterStatement + "Switching " + toOnAppliance.toString() + ".....ON";
 
             } else {
-                outputResults = MESSAGE_APPLIANCE_PREVIOUSLY_ON + setParameterStatement;
+                outputResults = setParameterStatement
+                        + MESSAGE_APPLIANCE_PREVIOUSLY_ON + toOnAppliance.toString();
             }
         }
 
