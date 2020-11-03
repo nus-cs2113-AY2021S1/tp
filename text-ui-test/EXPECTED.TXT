@@ -9,56 +9,68 @@ Welcome to AniChan!
 -------------------------------------------------------------
 User: File does not exist.
 What's your name?
+Hello Tiled say decay spoil now walls meant house. My mr interest thoughts screened of outweigh removing. Evening society musical besides inhabit ye my. Lose hill well up will he over on. Increasing sufficient everything men him admiration unpleasing coke. Around really his use uneasy longer him man. His our pulled nature elinor talked now for excuse result. Admitted add peculiar get joy doubtful! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello Uneasy barton seeing remark happen his has Am possible offering at contempt mr distance stronger amis! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: feMale5
+What's your name?
 Hello Friendly cat! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender: Cat
 What's your name?
 Hello Dog 12345! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender: duuuug
 What's your name?
 Hello ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Invalid name!
 What's your name?
 Hello ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Invalid name!
 What's your name?
 Hello  ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender:  
 What's your name?
 Hello   ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender:   
 What's your name?
 Hello   -! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Invalid name!
 What's your name?
 Hello  ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender:       -
 What's your name?
 Hello ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Invalid name!
 What's your name?
 Hello イングランド王! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Invalid name!
 What's your name?
 Hello    ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender: 女性
 What's your name?
 Hello Duuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuududududu12381828182! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender: 495398475345939 4398594859 ---====== ''''''';;;;;;;;;//////.....445
 What's your name?
 Hello ?????????????????????``````````````````! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Invalid name!
 What's your name?
 Hello random name 123! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender: monster
 What's your name?
 Hello ! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Invalid name!
 What's your name?
 Hello King                                  1! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender: Elf
 What's your name?
 Hello Queen! What might your gender be? (Male/Female/Other)
-OOPS!!! Invalid input detected!
+OOPS!!! Unexpected gender: maleS
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: F3maLe
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: MaLes
 What's your name?
 Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
 -------------------------------------------------------------
@@ -71,9 +83,9 @@ Default (Default) #> OOPS!!! Unknown command
 
 Default (Default) #> OOPS!!! Unknown command
 
-Default (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+Default (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
 
-Default (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+Default (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
 
 Default (Default) #> OOPS!!! Invalid parameters detected!
 
@@ -104,18 +116,73 @@ WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace does not exist!
 
 WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: COOKIES N CREME CH33SECAKE
 
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Invalid parameters detected!
+
+WHITE CHoC MACADAMIA (Default) #> Successfully added new workspace: 999999
+
+WHITE CHoC MACADAMIA (Default) #> Successfully deleted workspace: 999999
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
+WHITE CHoC MACADAMIA (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+WHITE CHoC MACADAMIA (Default) #> Currently, you have 7 workspace(s):
+1. Default
+2. Crunchy Cinnamon
+3. CrispyDonut
+4. RED VELVET Crumblesss
+5. WHITE CHoC MACADAMIA
+6. COOKIES N CREME CH33SECAKE
+7. APPLES ORANGES OREOS PANCAKESS
+
 WHITE CHoC MACADAMIA (Default) #> Workspace switched to COOKIES N CREME CH33SECAKE
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: WHITE CHoC MACADAMIA
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! No parameter provided.
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
@@ -129,12 +196,13 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> Watchlist "a" has been created successfully!
 
@@ -160,9 +228,9 @@ COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 watchlist(s):
 	2. a
 	3. b
 
-COOKIES N CREME CH33SECAKE (Default) #> Cowboy Bebop added to watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Add To Watchlist command has too much fields.
 
-COOKIES N CREME CH33SECAKE (Default) #> Trigun added to watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Add To Watchlist command has too much fields.
 
 COOKIES N CREME CH33SECAKE (Default) #> Saving 1. Cowboy Bebop to bookmark.
 
@@ -235,7 +303,7 @@ COOKIES N CREME CH33SECAKE (Default) #> Listing all anime in bookmark:
 	6. To Heart 2
 
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Anime is already in this watchlist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Add To Watchlist command has too much fields.
 
 COOKIES N CREME CH33SECAKE (Default) #> [ID:1] Cowboy Bebop
 [ID:2] Cowboy Bebop: The Movie - Knockin' on Heaven's Door
@@ -291,7 +359,7 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
 
@@ -343,38 +411,41 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must consist only alphanumeric characters and/or spaces.
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
 
-COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Unknown command
 
@@ -390,12 +461,13 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Invalid parameters detected!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 5 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 6 workspace(s):
 1. Default
 2. Crunchy Cinnamon
 3. CrispyDonut
 4. RED VELVET Crumblesss
 5. COOKIES N CREME CH33SECAKE
+6. APPLES ORANGES OREOS PANCAKESS
 
 COOKIES N CREME CH33SECAKE (Default) #> Successfully deleted workspace: Default
 
@@ -421,8 +493,153 @@ COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before t
 
 COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
 
-COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 2 workspace(s):
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 workspace(s):
 1. RED VELVET Crumblesss
 2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
 
-COOKIES N CREME CH33SECAKE (Default) #> Sayonara Abec Steiner 77th-chan!
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Seems like you did not specify a parameter type
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Seems like you did not specify a parameter type
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -o requires an additional field.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Parameter : -o requires an additional field.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! a is not a valid option
+
+COOKIES N CREME CH33SECAKE (Default) #> 1.   Major S2                                            [Id: 511]
+2.   Steel Angel Kurumi Encore                           [Id: 510]
+3.   Steel Angel Kurumi Zero                             [Id: 509]
+4.   Steel Angel Kurumi 2                                [Id: 508]
+5.   Steel Angel Kurumi                                  [Id: 507]
+6.   Descendants of Darkness                             [Id: 506]
+7.   Digimon: Digital Monsters                           [Id: 505]
+8.   Grappler Baki Maximum Tournament                    [Id: 504]
+9.   YuGiOh!                                             [Id: 503]
+10.  Sky Blue                                            [Id: 502]
+11.  Wind: A Breath of Heart OVA                         [Id: 501]
+12.  Wind: A Breath of Heart (2004)                      [Id: 500]
+13.  Fantasy Chemistry Series: Wandaba Style             [Id: 499]
+14.  Venus Wars                                          [Id: 498]
+15.  Vampire Hunter D: Bloodlust                         [Id: 497]
+16.  Tenchi Muyo! Ryo-Ohki 3                             [Id: 496]
+17.  Tenchi Muyo! Ryo-Ohki 2                             [Id: 495]
+18.  No Need for Tenchi!                                 [Id: 494]
+19.  Tenchi in Tokyo                                     [Id: 493]
+20.  Tekken: The Motion Picture                          [Id: 492]
+Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> 1.   Major S2                                            [Id: 511]
+2.   Steel Angel Kurumi Encore                           [Id: 510]
+3.   Steel Angel Kurumi Zero                             [Id: 509]
+4.   Steel Angel Kurumi 2                                [Id: 508]
+5.   Steel Angel Kurumi                                  [Id: 507]
+6.   Descendants of Darkness                             [Id: 506]
+7.   Digimon: Digital Monsters                           [Id: 505]
+8.   Grappler Baki Maximum Tournament                    [Id: 504]
+9.   YuGiOh!                                             [Id: 503]
+10.  Sky Blue                                            [Id: 502]
+11.  Wind: A Breath of Heart OVA                         [Id: 501]
+12.  Wind: A Breath of Heart (2004)                      [Id: 500]
+13.  Fantasy Chemistry Series: Wandaba Style             [Id: 499]
+14.  Venus Wars                                          [Id: 498]
+15.  Vampire Hunter D: Bloodlust                         [Id: 497]
+16.  Tenchi Muyo! Ryo-Ohki 3                             [Id: 496]
+17.  Tenchi Muyo! Ryo-Ohki 2                             [Id: 495]
+18.  No Need for Tenchi!                                 [Id: 494]
+19.  Tenchi in Tokyo                                     [Id: 493]
+20.  Tekken: The Motion Picture                          [Id: 492]
+Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> 1.   Major S2                                            [Id: 511]
+2.   Steel Angel Kurumi Encore                           [Id: 510]
+3.   Steel Angel Kurumi Zero                             [Id: 509]
+4.   Steel Angel Kurumi 2                                [Id: 508]
+5.   Steel Angel Kurumi                                  [Id: 507]
+6.   Descendants of Darkness                             [Id: 506]
+7.   Digimon: Digital Monsters                           [Id: 505]
+8.   Grappler Baki Maximum Tournament                    [Id: 504]
+9.   YuGiOh!                                             [Id: 503]
+10.  Sky Blue                                            [Id: 502]
+11.  Wind: A Breath of Heart OVA                         [Id: 501]
+12.  Wind: A Breath of Heart (2004)                      [Id: 500]
+13.  Fantasy Chemistry Series: Wandaba Style             [Id: 499]
+14.  Venus Wars                                          [Id: 498]
+15.  Vampire Hunter D: Bloodlust                         [Id: 497]
+16.  Tenchi Muyo! Ryo-Ohki 3                             [Id: 496]
+17.  Tenchi Muyo! Ryo-Ohki 2                             [Id: 495]
+18.  No Need for Tenchi!                                 [Id: 494]
+19.  Tenchi in Tokyo                                     [Id: 493]
+20.  Tekken: The Motion Picture                          [Id: 492]
+Browsing Page: 1
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Seems like you did not specify a parameter type
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! This input is not accepted, please try again!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! This input is not accepted, please try again!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please leave a spacing between each parameter!
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace does not exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 3 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+
+COOKIES N CREME CH33SECAKE (Default) #> Successfully added new workspace: Triple Fromage Cheesecake
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Unknown command
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace already exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> OOPS!!! Workspace already exist!
+
+COOKIES N CREME CH33SECAKE (Default) #> Currently, you have 4 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+
+COOKIES N CREME CH33SECAKE (Default) #> Workspace switched to Triple Fromage Cheesecake
+
+Triple Fromage Cheesecake (Default) #> Workspace switched to Triple Fromage Cheesecake
+
+Triple Fromage Cheesecake (Default) #> Workspace switched to Triple Fromage Cheesecake
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 4 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace already exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace already exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Please switch workspace before trying to delete it.
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 4 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+
+Triple Fromage Cheesecake (Default) #> Sayonara Abec Steiner 77th-chan!

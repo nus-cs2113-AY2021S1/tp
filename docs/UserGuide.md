@@ -244,11 +244,11 @@ The expected outcome:
 ### 3.5 View the information of an anime
 View all the information regarding a specific anime.
 
-Format: `info -a <ANIME_ID>`
+Format: `info <ANIME_ID>`
 
 <br/>
 
-Example of usage: `info -a 1`
+Example of usage: `info 1`
 
 The expected outcome:
 ```
@@ -263,7 +263,6 @@ Genre: [Action, Adventure, Drama, Sci-Fi]
 
 <br/>
 
-<!-- @@author ChanJianHao -->
 ### 3.6 Workspace management
 The workspace management feature provides translators the flexibility of organising their application data like watchlist and bookmark easily.
 
@@ -344,7 +343,6 @@ Successfully deleted workspace: Default
 ```
 
 <br/>
-<!-- @@author -->
 
 ### 3.7 Watchlist management
 The watchlist management feature provide translators with a simple way to keep track of animes and group them based on their own criteria. This enables translators to stay organized, productive, and focus on their work rather than being concerned over irrelevant issues.
@@ -434,13 +432,13 @@ Changed active watchlist to: "Default".
 ### 3.7.5 Add an anime to the current watchlist
 Add an anime to the currently selected watchlist
 
-Format: `add -a <ANIME_ID>`
+Format: `add <ANIME_ID>`
 
 > :warning: You cannot add duplicate anime into the same watchlist.
 
 <br/>
 
-Example of usage: `add -a 3`
+Example of usage: `add 3`
 
 The expected outcome: 
 
@@ -453,12 +451,12 @@ Trigun added to watchlist!
 ### 3.7.6 Remove an anime from the current watchlist
 Remove an anime from the currently selected watchlist
 
-Format: `remove -d <ANIME_ID_IN_WATCHLIST>`
+Format: `remove <ANIME_ID_IN_WATCHLIST>`
 > :bulb: The index used has to be the anime ID in the watchlist, and not the general anime ID
 
 <br/>
 
-Example of usage: 'remove -d 1'
+Example of usage: `remove 1`
 
 The expected outcome:
 
@@ -469,19 +467,30 @@ Trigun successfully removed from watchlist
 <br/>
 
 ### 3.7.7 View all anime in watchlist
-View all the anime that you have stored in a specific watchlist
+View all the anime that you have stored in your current watchlist, or in a specific watchlist
 
-Format: `view -v <WATCHLIST_ID>`
+Format: `view [-v <WATCHLIST_ID>]`
+*   If the parameter `-v` is not specified, the anime in the current watchlist you are using will be shown.
 
 <br/>
 
-Example of usage: 'view -v 1'
+Example of usage: `view`
 
 The expected outcome:
 ```
 Here are the anime in Default watchlist:
 	1. Cowboy Bebop
-	2. Witch Hunter Robin
+   	2. Witch Hunter Robin
+```
+<br/>
+
+Example of usage: 'view -v 2'
+
+The expected outcome:
+```
+Here are the anime in To Translate watchlist:
+	1. Naruto
+        2. Yakitate!! Japan
 ```
 <br/>
 
@@ -680,10 +689,10 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | ---                                          | ---                                                      |
 | Help                                         | `help`                                                   |
 | Estimate time needed to translate the script | `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`      |
-| Browse                                       | `browse -s <SORT_OPTION> -p <PAGE_NO.> -o <SORT_ORDER>`  |
+| Browse                                       | `browse [-s <SORT_OPTION>] [-p <PAGE_NO.>] [-o <SORT_ORDER>]`  |
 | Search by title                              | `search -n <SEARCH_TERM>`                                |
 | Search by genre                              | `search -g <SEARCH_TERM>`                                |
-| View anime information                       | `info -a <ANIME_ID>`                                     |
+| View anime information                       | `info <ANIME_ID>`                                     |
 | Create new workspace                         | `workspace -n <NAME>`                                    |
 | Switch workspace                             | `workspace -s <NAME>`                                    |
 | List workspace                               | `workspace -l`                                           |
@@ -692,9 +701,9 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | List all watchlist                           | `watchlist -l`                                           |
 | Select watchlist                             | `watchlist -s <WATCHLIST_ID>`                            |
 | Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                            |
-| Add to watchlist                             | `add -a <ANIME_ID>`                                      |
-| Remove from watchlist                        | `remove -d <ANIME_ID_IN_WATCHLIST>`                      |
-| View anime in watchlist                      | `view -v <WATCHLIST_ID>`                                 |
+| Add to watchlist                             | `add <ANIME_ID>`                                      |
+| Remove from watchlist                        | `remove <ANIME_ID_IN_WATCHLIST>`                      |
+| View anime in watchlist                      | `view [-v <WATCHLIST_ID>]`                                 |
 | List bookmark                                | `bookmark -l`                                            |
 | Add bookmark entry                           | `bookmark -a <ANIME_ID>`                                 |
 | Delete bookmark entry                        | `bookmark -d <BOOKMARK_ID>`                              |
