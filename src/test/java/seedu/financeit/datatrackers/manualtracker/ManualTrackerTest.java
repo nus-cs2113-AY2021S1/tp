@@ -61,6 +61,7 @@ public class ManualTrackerTest {
             ManualTracker.handleDeleteLedger();
         }
         assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
+        ManualTracker.ledgerList.removeAllItems();
     }
 
     @Test
