@@ -1,9 +1,11 @@
 @startuml
 
+hide circle
+skinparam classAttributeIconSize 0
+hide members
 Rectangle Storage {
-abstract class Storage
-Storage <|- FavStorage
-Storage <|-left FreqStorage
+"{abstract}\nStorage" <|- FavStorage
+"{abstract}\nStorage" <|-left FreqStorage
 }
 
 @enduml

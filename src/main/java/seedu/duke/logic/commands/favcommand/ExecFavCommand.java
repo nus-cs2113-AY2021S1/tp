@@ -14,6 +14,7 @@ public class ExecFavCommand extends Command {
 
     public ExecFavCommand(String input) throws CustomException {
         this.parser = new ExecFavParser(input);
+        super.isValid = false;
     }
 
     private void getFav() throws CustomException {
