@@ -4,9 +4,7 @@ import seedu.duke.Command;
 import seedu.duke.DukeNoMatchException;
 import seedu.duke.backend.UserInput;
 
-/**
- * @@author  Varsha3006
- */
+
 public class CommandEventDel extends Command {
     private UserInput userInput;
     int index;

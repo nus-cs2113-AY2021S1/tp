@@ -12,9 +12,7 @@ import java.util.ArrayList;
 import static java.time.temporal.TemporalAdjusters.next;
 
 
-/**
- * @@author  Varsha3006
- */
+
 public class Event {
     protected String eventName;
     protected String eventTime;

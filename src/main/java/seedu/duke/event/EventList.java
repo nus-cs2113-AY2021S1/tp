@@ -11,9 +11,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @@author  Varsha3006
- */
+
 public class EventList {
     public static ArrayList<Event> events = new ArrayList<>();
     public static Logger logger = Logger.getGlobal();
@@ -37,7 +35,7 @@ public class EventList {
         return events.get(index);
     }
 
-    //@@author Varsha3006
+
     /**
      * Adds member to the arraylist.
      *
@@ -62,7 +60,7 @@ public class EventList {
         return userOutput;
     }
 
-    //@@author Varsha3006
+
     /**
      * To delete an event based on the given index.
      *
@@ -89,7 +87,7 @@ public class EventList {
         return userOutput;
     }
 
-    //@@author Varsha3006
+
     /**
      * Deletes all the events in the list.
      * @return output String informing if list is emptied
@@ -114,7 +112,7 @@ public class EventList {
         return output;
     }
 
-    //@@author Varsha3006
+
     /**
      * Marks a event as done.
      *
@@ -136,7 +134,7 @@ public class EventList {
         return userOutput;
     }
 
-    //@@author Varsha3006
+
     /**
      * Prints a list of events.
      *
@@ -162,7 +160,7 @@ public class EventList {
         return userOutput;
     }
 
-    //@@author Varsha3006
+
     /**
      * Shows number of left to events.
      *
@@ -188,7 +186,7 @@ public class EventList {
         return userOutput;
     }
 
-    //@@author Varsha3006
+
     /**
      * Displays the list of tasks containing the keyword.
      *
@@ -211,7 +209,7 @@ public class EventList {
         return output;
     }
 
-    ////@@author Varsha3006
+
     /**
      * Used to check if there is at least one task containing the keyword in it's description.
      *
@@ -229,7 +227,7 @@ public class EventList {
         return hasMatchedTask;
     }
 
-    ////@@author Varsha3006
+
     /**
      * Used to check if there is at least one task containing the keyword in it's description.
      *
@@ -249,7 +247,7 @@ public class EventList {
         return hasMatchedTask;
     }
 
-    ////@@author Varsha3006
+
     /**
      * Displays the list of tasks containing the keyword.
      *
@@ -268,7 +266,7 @@ public class EventList {
         return output;
     }
 
-    //@@author Varsha3006
+
     /**
      * Displays the list of tasks containing the keyword.
      *
@@ -287,7 +285,7 @@ public class EventList {
         return output;
     }
 
-    //@@author yeyutong811
+
     /**
      * Used to find Event with the given event name.
      *
@@ -303,7 +301,7 @@ public class EventList {
         return null;
     }
 
-    //@@author yeyutong811
+
     /**
      * Check if Event with the given member name exists.
      *
@@ -320,7 +318,7 @@ public class EventList {
         return hasExist;
     }
 
-    //@@author yeyutong811
+
     /**
      * Adds Member with the given member name into participant list of event with the given event name.
      *
@@ -353,7 +351,7 @@ public class EventList {
         return output;
     }
 
-    //@@author yeyutong811
+
     /**
      * Displays participant list of event with the given event name.
      *
@@ -375,7 +373,7 @@ public class EventList {
         return output;
     }
 
-    //@@author yeyutong811
+
     /**
      * Deletes Member with the given member name from participant list of event with the given event name.
      *

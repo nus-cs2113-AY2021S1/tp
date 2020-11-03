@@ -3,9 +3,7 @@ package seedu.duke.event;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
-/**
- * @@author  Varsha3006
- */
+
 public class CommandEventCountdown extends Command {
     private UserInput userInput;
 

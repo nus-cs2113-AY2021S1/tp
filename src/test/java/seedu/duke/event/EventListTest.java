@@ -6,9 +6,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * @@author  Varsha3006
- */
+
 class EventListTest {
     Event event = new Event("PR meeting", "2030-06-30", "08-00");
     Event event2 = new Event("Autodesk course","2030-10-20","08-00");
@@ -69,7 +67,7 @@ class EventListTest {
         assertEquals(expected5,EventList.deleteEvent(3));
 
         EventList.addEvent(event2);
-        //test search events
+
         String expected6 = "1.[E][Up-coming]\n"
                 + "Event Name: Autodesk course\n"
                 + "Date: Oct 20 2030\n"
