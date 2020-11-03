@@ -25,6 +25,7 @@ public class Parser {
     public static final String COMMAND_LISTTASK = "listtask";
     public static final String COMMAND_CLEAR = "clear";
     public static final String COMMAND_RESET = "reset";
+    public static final String EXCEED_WORKLOAD = "Total workload cannot be more than 99 hours.";
 
 
     /**
@@ -41,7 +42,8 @@ public class Parser {
                       boolean toPrint, TaskList taskList) {
         Notification notification = new Notification();
         Ui ui = new Ui();
-        assert input != null : "Input should not be null";
+        assert input != null : "Input not null";
+
         String[] command = input.trim().split(" ");
 
         switch (command[0].toLowerCase()) {
@@ -76,7 +78,7 @@ public class Parser {
             try {
                 modList.addTime(input, toPrint, storage);
             } catch (IllegalArgumentException b) {
-                System.out.println("Total workload cannot be more than 99 hours.");
+                System.out.println(EXCEED_WORKLOAD);
             } catch (Exception e) {
                 ui.printErrorMessage(COMMAND_ADDTIME);
             }

@@ -4,7 +4,7 @@ Hello from
 || \\    /  |//  \//  |  ||//  \/  |/    ||// / _ \ //   \
 ||  \\  /   |||   ||  |  |||   ||  ||    ||\\ | __/ ||
 ||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
-*****************************************************|
+******************************************************
 
 Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html
 Enter <help> for a quick view of available commands.
