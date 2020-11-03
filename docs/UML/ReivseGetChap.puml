@@ -12,6 +12,8 @@ participant ":ChapterList" as ChapterList MODEL_COLOR
 end box
 
 activate ReviseCommand
+ReviseCommand -> ReviseCommand : getChapter(reviseIndex, access)
+activate ReviseCommand
 ReviseCommand -> Access : getModule()
 activate Access
 ReviseCommand <-- Access : module
@@ -28,6 +30,7 @@ ReviseCommand <-- ChapterList : chapter
 deactivate ChapterList
 [<-[hidden]- ChapterList
 destroy ChapterList
+ReviseCommand <-- ReviseCommand : toRevise
 deactivate ReviseCommand
 
 @enduml
