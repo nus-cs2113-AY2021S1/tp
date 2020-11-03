@@ -24,12 +24,16 @@
 #### [6.1.1 Target user profile](#611-Target-user-profile1)
 #### [6.1.2 Value proposition](#612-Value-proposition1)
 #### [6.2 User stories](#62-User-stories1)
+####  [6.3 Non-Functional Requirements](#63-Non-Functional-Requirements1)
+#### [6.4 Glossary](#64-Gloossary1)
+#### [6.5 Instructions for manual testing](#65-Instructions-for-manual-testing1)
+
 
 ## 1. Introduction
 
 ### 1.1 Software Overview
-CanteenHelper is a command line (CLI) application that helps students, staff and even tourists order food in canteens efficiently.
-CanteenHelper will allow users to choose their favorite dishes from different stalls in different canteens based on the date and provided by the users. They also can check the comments of the dishes and operating hours of the stalls and canteens.
+During peak hours, people may not be able to know the dining situation and the density of the canteen they want to go to. To solve this problem, we want to create a program to store and display basic information of stalls in each canteen (e.g. Open hours, current menu, approximation of current waiting time etc.) to all their potential users. CanteenHelper is a command line (CLI) application that helps students, staff and even tourists order food in canteens efficiently. CanteenHelper will allow users to choose their favorite dishes from different stalls in different canteens based on the date and provided by the users. They also can check the comments of the dishes and operating hours of the stalls and canteens.
+
 
 ### 1.2 Purpose
 This document describes the architecture and software design of CanteenHelper. The goal of this document is to cover the high-level system architecture and design.
@@ -41,35 +45,28 @@ The intended audience of this document is the developers, designers, and softwar
 
 ## 2. Setting up and getting started
 
-Before you start:
-Please ensure you have Java 11 installed in you computer.
+Before you start: Please ensure you have Java 11 installed in you computer.
+1) Fork this repo from this link: https://github.com/AY2021S1-CS2113-T16-2/tp
+2) Clone the fork to your own computer. You are highly recommended to use Git tool (like Sourcetree) to track your work.
+3) Use your own IDEA to program. You are highly recommended to use IntelliJ IDEA. Please check whether you have correct JDK version (JDK 11) in your computer and congiure the JDK.
+      If you are using IntelliJ IDEA:
+      -Open IntelliJ
+      -Set up JDK 11 for Gradle
+            Click Configure -> Project Defaults -> Project Structure
+            Click New... and set it to the directory of the JDK 11 installed
+4) Import the project as a Gradle project.
+      If you are using IntelliJ IDEA:
+      -Click Import Project (or Open or Import in newer version of Intellij).
+      -Locate the build.gradle file (not the root folder as you would do in a normal importing) and select it. Click OK.
+      -Click OK to accept the default settings but do ensure that the selected version of Gradle JVM matches the JDK being used for the project.
+      -Wait for importing process to complete
 
-Fork this repo from this link:
-
-Clone the fork to your own computer. You are highly recommended to use Git tool (like Sourcetree) to track your work.
-
-Use your own IDEA to program. You are highly recommended to use IntelliJ IDEA. Please check whether you have correct JDK version (JDK 11) in your computer and congiure the JDK.
-
-If you are using IntelliJ IDEA:
-
-Open IntelliJ
-Set up JDK 11 for Gradle
-Click Configure -> Project Defaults -> Project Structure
-Click New... and set it to the directory of the JDK 11 installed
-Import the project as a Gradle project.
-
-If you are using IntelliJ IDEA:
-Click Import Project (or Open or Import in newer version of Intellij).
-Locate the build.gradle file (not the root folder as you would do in a normal importing) and select it. Click OK.
-Click OK to accept the default settings but do ensure that the selected version of Gradle JVM matches the JDK being used for the project.
-Wait for importing process to complete
-
-Do the testing. Please follow the testing guide
+5) Do the testing. Please follow the testing guide.
 
 ## 3. Design
 
 ### 3.1 Architecture
-
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/arch.png)
 Feature 1. Architecture Diagram
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
 Main:  Our main class has one class called Main.java. It is responsible for,
@@ -126,29 +123,32 @@ Dishes that can be ordered by the user.
 
 ## 6. Appendix: Requirements
 
-### Target user profile
+### 6.1 Product scope
 
-{Describe the target user profile}
+#### 6.1.1 Target user profile
+All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens.
 
-### Value proposition
-
+#### 6.1.2 Value proposition
 {Describe the value proposition: what problem does it solve?}
 
-## User Stories
+### 6.2 User stories
 
-|Version| As a ... | I want to ... | So that I can ...|
+|Version| As a/an ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|view which canteens are open now|decide which canteen to go to now|
+|v2.0|user|check the operating time of canteens|I can go to the canteen which is currently open|
+|v1.0|user|view which stalls are available currently|make my order|
+|v1.0|hungry person who wants to dine now|check the menus of some stalls at the current time|I can order my preferred meal in the menus|
+|v1.0|user who is deciding what to have for the next meal|view the menus of the stalls in advance|I can know what to eat for that meal in the future|
+|v2.0|user who wants to try a new dish|check the comments made by others|I can have a brief idea about it|
+|v2.0|user who is not familiar with the campus|check the location and recommended route to a canteen|get my food as soon as possible|
 
-## Non-Functional Requirements
 
+### 6.3 Non-Functional Requirements
 {Give non-functional requirements}
 
-## Glossary
-
+### 6.4 Glossary
 * *glossary item* - Definition
 
-## Instructions for manual testing
-
+### 6.5 Instructions for manual testing
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}

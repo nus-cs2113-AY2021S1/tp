@@ -20,9 +20,7 @@ public class Main {
     public static void main(String[] args) {
         List<Canteen> canteens = initialize();
         greet(); // call greet() method to greet
-        System.out.println("Please enter your name/day of week/time arrive:");
-        String inputMessage = sc.nextLine();
-        Customer customer = Parser.parseCustomer(inputMessage);
+        Customer customer = getCustomer();
         System.out.println("Please enter your command. (Type help for instruction.)");
         input=sc.nextLine();
         while(!input.equals("bye")) { //if input is not "bye"
@@ -32,6 +30,12 @@ public class Main {
             }
             else if (input.equals("help")) {
                 help();
+            }
+            else if (input.equals("checkcanteen")) {
+                checkCanteenOperatingTime(canteens,customer);
+            }
+            else if (input.equals("checkstall")) {
+                checkStallOperatingTime(canteens,customer);
             }
             /** mark one task as done */
             /** delete one task */
@@ -65,7 +69,29 @@ public class Main {
         bye();
     }
 
-
+    private static Customer getCustomer() {
+        try{
+            System.out.println("Please enter your name/day of week/time arrive:");
+            String inputMessage = sc.nextLine();
+            Customer customer = Parser.parseCustomer(inputMessage);
+            return customer;
+        } catch(DayOfWeekException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong day of week! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getCustomer();
+        }catch(ArriveTimeException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong time! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getCustomer();
+        } catch(Exception e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong format! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getCustomer();
+        }
+    }
 
 
     public static List<Canteen> initialize() {
@@ -211,63 +237,74 @@ public class Main {
         canteens.add(canteen2);
         return canteens;
     }
+    public static void checkCanteenOperatingTime(List<Canteen> canteens,Customer customer){
+        System.out.println("Choose the canteen you want to check:");
+        List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
+        int j = 0;
+        for(Canteen canteen:openCanteens) {
+            j++;
+            System.out.println(j +". " + canteen);
+        }
+        System.out.println("Enter the number in front to choose:");
+        int canteenIdChoosed = sc.nextInt();
+        Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
+        System.out.println("Operating hours for the canteen you choosed is: \n");
+        System.out.println("Open Time: " + canteenChoosed.getOpenTime(customer.getDayOfWeek())/100 + ":00");
+        System.out.println("Closing Time: " + canteenChoosed.getCloseTime(customer.getDayOfWeek())/100 +":" +
+                canteenChoosed.getCloseTime(customer.getDayOfWeek())%100 );
+        System.out.println("____________________________________________________________\n");
+        sc.nextLine();
+    }
+
+
+    public static void checkStallOperatingTime(List<Canteen> canteens,Customer customer){
+        System.out.println("Input the canteen which your desired stall belongs to: \n");
+        List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
+        int j = 0;
+        for(Canteen canteen:openCanteens) {
+            j++;
+            System.out.println(j +". " + canteen);
+        }
+        System.out.println("Enter the number in front to choose:");
+        int canteenIdChoosed = sc.nextInt();
+        Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
+        List<Stall> openStall = customer.checkOpenStalls(canteenChoosed);
+        j = 0;
+        for (Stall stall : openStall) {
+            j++;
+            System.out.println(j +". " + stall);
+        }
+        System.out.println("Please choose a stall:");
+        int stallIdChoosed = sc.nextInt();
+        Stall stallChoosed = openStall.get(stallIdChoosed - 1);
+        System.out.println("Operating hours for the stall you choosed is: \n");
+        System.out.println("Open Time: " + stallChoosed.getOpenTime()/100 + ":00" );
+        System.out.println("Closing Time: " + stallChoosed.getCloseTime()/100 + ":"
+            + String.format("%02d",stallChoosed.getCloseTime()%100));
+        sc.nextLine();
+        System.out.println("____________________________________________________________\n");
+    }
 
     public static void order(List<Canteen> canteens,Customer customer){
 
+        Canteen canteenChoosed = getCanteen(canteens, customer);
 
+        Stall stallChoosed = getStall(customer, canteenChoosed);
 
+        List<Dish> orderedDishes = getDishes(stallChoosed);
 
+        Order order = getOrder(customer, canteenChoosed, stallChoosed, orderedDishes);
 
-            System.out.println("Dear " + customer.name + ",");
-            System.out.println("Please choose a canteen from the list:");
-            List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
-            int j = 0;
-            for(Canteen canteen:openCanteens) {
-                j++;
-                System.out.println(j +". " + canteen);
-            }
-            System.out.println("Enter the number in front to choose:");
-            int canteenIdChoosed = sc.nextInt();
-            Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
+        System.out.println("Your order created! Thanks.");
+        System.out.println(order);
+        sc.nextLine();
+        System.out.println("____________________________________________________________\n");
 
-            System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
+    }
 
-            List<Stall> openStall = customer.checkOpenStalls(canteenChoosed);
-            j = 0;
-            for (Stall stall : openStall) {
-                j++;
-                System.out.println(j +". " + stall);
-            }
-            System.out.println("Please choose a stall:");
-            int stallIdChoosed = sc.nextInt();
-            Stall stallChoosed = openStall.get(stallIdChoosed - 1);
-
-            System.out.println(stallChoosed + " provides following dishes:");
-            j = 0;
-            List<Dish> dishinStall = stallChoosed.getDish();
-            for (Dish d : dishinStall) {
-                j++;
-                System.out.println(j +". " + d);
-            }
-            System.out.println("How many dishes you want to order please?");
-            int numOfDishes = sc.nextInt();
-            System.out.println("Please choose what you want:");
-            List<Dish> orderedDishes = new ArrayList<>();
-            for(int num=0;num<numOfDishes;num++) {
-                int dishIdChoosed = sc.nextInt();
-                Dish dishChoosed = dishinStall.get(dishIdChoosed - 1);
-                orderedDishes.add(dishChoosed);
-            }
-
-        String dummy = sc.nextLine();
-        System.out.println("Do you want to check the comment for this stall? (y/n)");
-        String isComment = sc.nextLine();
-        if (isComment.equals("y")) {
-            checkComment(orderedDishes);
-        }
-
-
-        System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delivery.");
+    private static Order getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes) {
+        try{
+            System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
             int typeChoosed = sc.nextInt();
             String orderType= "Dine in";
             if (typeChoosed == 1) {
@@ -276,20 +313,176 @@ public class Main {
             else if (typeChoosed == 2) {
                 orderType = "Take away";
             }
-            else {
+            else if (typeChoosed == 3){
                 orderType = "Delivery";
+            }else{
+                throw new WrongNumberException();
             }
-
-
-            Order order =customer.order(canteenChoosed,stallChoosed,orderedDishes,orderType);
+            Order order = customer.order(canteenChoosed, stallChoosed, orderedDishes,orderType);
             Order.add(order);
-            System.out.println("Your order created! Thanks.");
-            System.out.println(order);
+            return order;
+        }catch (WrongNumberException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong number. Please enter correct number. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getOrder(customer,canteenChoosed,stallChoosed,orderedDishes);
+        }catch (Exception e){
             sc.nextLine();
             System.out.println("____________________________________________________________\n");
-
-
+            System.out.println("  OOPS!!! Please enter number. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getOrder(customer,canteenChoosed,stallChoosed,orderedDishes);
+        }
     }
+
+    private static List<Dish> getDishes(Stall stallChoosed) {
+        try{
+            int dishCount;
+            System.out.println(stallChoosed + " provides following dishes:");
+            dishCount = 0;
+            List<Dish> dishinStall = stallChoosed.getDish();
+            for (Dish d : dishinStall) {
+                dishCount++;
+                System.out.println(dishCount +". " + d);
+            }
+            int numOfDishes = getNumOfDishes(dishCount);
+            System.out.println("Please choose what you want:");
+            List<Dish> orderedDishes = new ArrayList<>();
+            for(int num=0;num<numOfDishes;num++) {
+                System.out.println("Please enter the " + (num + 1) + " number.");
+                int dishIdChoosed = sc.nextInt();
+                if(dishIdChoosed<=0||dishIdChoosed>dishCount){
+                    throw new WrongNumberException();
+                }
+                Dish dishChoosed = dishinStall.get(dishIdChoosed - 1);
+                orderedDishes.add(dishChoosed);
+            }
+            String dummy = sc.nextLine();
+            String isComment = getYN();
+            if (isComment.equals("y")) {
+                checkComment(orderedDishes);
+            }
+            return orderedDishes;
+        }catch(WrongNumberException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong number of dish! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getDishes(stallChoosed);
+        }catch(Exception e){
+            sc.nextLine();
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong information! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getDishes(stallChoosed);
+        }
+    }
+
+    private static String getYN() {
+        try{
+            System.out.println("Do you want to check the comment for this stall? (y/n)");
+            String isComment = sc.nextLine();
+            if((!isComment.equals("y"))&&(!isComment.equals("n"))){
+                throw new YNException();
+            }
+            return isComment;
+        }catch (YNException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong input! Please enter y or n. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getYN();
+        }catch (Exception e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong input! Please enter y or n. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getYN();
+        }
+    }
+
+    private static int getNumOfDishes(int count) {
+        try{
+            System.out.println("How many dishes you want to order please?");
+            int numberOfDishes = sc.nextInt();
+            if (numberOfDishes<=0||numberOfDishes>count){
+                throw new WrongNumberException();
+            }
+            return numberOfDishes;
+        }catch (WrongNumberException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong dishes number! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getNumOfDishes(count);
+        }catch (Exception e){
+            sc.nextLine();
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong format! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getNumOfDishes(count);
+        }
+    }
+
+    private static Stall getStall(Customer customer, Canteen canteenChoosed) {
+        try{
+            System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
+            int stallCount;
+            List<Stall> openStall = customer.checkOpenStalls(canteenChoosed);
+            stallCount = 0;
+            for (Stall stall : openStall) {
+                stallCount++;
+                System.out.println(stallCount + ". " + stall);
+            }
+            System.out.println("Please choose a stall:");
+            int stallIdChoosed = sc.nextInt();
+            if(stallIdChoosed<=0||stallIdChoosed>stallCount){
+                throw new WrongNumberException();
+            }
+            Stall stallChoosed = openStall.get(stallIdChoosed - 1);
+            return stallChoosed;
+        }catch(WrongNumberException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong stall number! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getStall(customer,canteenChoosed);
+        }catch(Exception e){
+            sc.nextLine();
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong stall number! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getStall(customer,canteenChoosed);
+        }
+    }
+
+
+    private static Canteen getCanteen(List<Canteen> canteens, Customer customer) {
+        try{
+            System.out.println("Dear " + customer.name + ",");
+            System.out.println("Please choose a canteen from the list:");
+            List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
+            int canteenCount = 0;
+            for(Canteen canteen:openCanteens) {
+                canteenCount++;
+                System.out.println(canteenCount +". " + canteen);
+            }
+            System.out.println("Enter the number in front to choose:");
+            int canteenIdChoosed = sc.nextInt();
+            if(canteenIdChoosed<=0||canteenIdChoosed>canteenCount){
+                throw new WrongNumberException();
+            }
+            Canteen canteenChoosed = openCanteens.get(canteenIdChoosed - 1);
+            return canteenChoosed;
+        }catch(WrongNumberException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong canteen number! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getCanteen(canteens, customer);
+        }catch(Exception e){
+            sc.nextLine();
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Wrong canteen number! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            return getCanteen(canteens, customer);
+        }
+    }
+
     public static void changeOrder(Customer customer)
     {
         System.out.println("____________________________________________________________\n");

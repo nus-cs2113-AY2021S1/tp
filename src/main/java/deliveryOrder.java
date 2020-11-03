@@ -7,12 +7,9 @@ public class deliveryOrder extends Order {
 
     private boolean isDeliveryOrder;
 
-
-    deliveryOrder(Canteen canteen, Stall stall, List<Dish> dishes, Customer customer,
-                  boolean isDeliveryOrder) {
+    deliveryOrder(Canteen canteen, Stall stall, List<Dish> dishes, Customer customer, boolean isDeliveryOrder) {
         super(canteen, stall, dishes, customer);
         this.isDeliveryOrder = isDeliveryOrder;
-
     }
 
     public boolean getIsDeliveryOrder() {
@@ -28,11 +25,10 @@ public class deliveryOrder extends Order {
     }
 
 
-
     @Override
     public String toString() {
         if (isDeliveryOrder) {
-            return super.toString() + "(Delivery Order)";
+            return super.toString();
         }
         else {
             return super.toString() + "(Not Delivery Order)";
