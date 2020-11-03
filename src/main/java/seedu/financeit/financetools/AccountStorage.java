@@ -11,7 +11,6 @@ import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 import seedu.financeit.utils.storage.AccountSaver;
 
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -79,8 +78,7 @@ public class AccountStorage extends ParamHandler {
     }
 
     @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/n":
             this.nameLabel = packet.getParam(paramType);

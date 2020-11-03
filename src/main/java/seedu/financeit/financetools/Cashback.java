@@ -27,14 +27,6 @@ public class Cashback extends ParamHandler {
         }
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public void setCashbackRate(Double cashbackRate) {
-        this.cashbackRate = cashbackRate;
-    }
-
     public double calculateCashback() {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.cashbackRate >= 0 : "Cashback rate should not be a negative number";

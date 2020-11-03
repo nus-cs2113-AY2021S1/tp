@@ -26,14 +26,6 @@ public class MilesCredit extends ParamHandler {
         }
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public void setMilesRate(Double milesRate) {
-        this.milesRate = milesRate;
-    }
-
     public double calculateMiles() {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.milesRate >= 0 : "Miles rate should not be a negative number";
@@ -42,8 +34,7 @@ public class MilesCredit extends ParamHandler {
     }
 
     @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);

@@ -28,10 +28,6 @@ public class YearlyCompoundInterest extends ParamHandler {
         }
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
     public double calculateCompoundInterest() {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.interestRate >= 0 : "Interest rate should not be a negative number";
@@ -65,8 +61,7 @@ public class YearlyCompoundInterest extends ParamHandler {
     }
 
     @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
