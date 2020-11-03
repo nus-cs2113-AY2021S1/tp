@@ -16,6 +16,7 @@ import seedu.duke.command.ListCommand;
 import seedu.duke.command.NoteCommand;
 import seedu.duke.command.ReminderCommand;
 import seedu.duke.command.RepeatCommand;
+import seedu.duke.command.SaveCommand;
 import seedu.duke.command.UndoneCommand;
 import seedu.duke.exception.DukeException;
 
@@ -98,6 +99,9 @@ public class Parser {
 
         case "note":
             return new NoteCommand(argument);
+
+        case "save":
+            return new SaveCommand();
 
         default:
             throw new DukeException("Invalid Command.");
