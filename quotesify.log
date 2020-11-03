@@ -474,3 +474,33 @@ Nov 02, 2020 4:39:53 PM seedu.quotesify.commands.delete.DeleteCategoryCommand de
 INFO: successfully removed category from book.
 Nov 02, 2020 4:40:15 PM seedu.quotesify.commands.add.AddCommand execute
 INFO: going to add category to book/quote
+Nov 03, 2020 6:04:40 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add rating to book
+Nov 03, 2020 6:04:40 PM seedu.quotesify.commands.add.AddRatingCommand isRated
+INFO: book has been rated before
+Nov 03, 2020 6:04:44 PM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 03, 2020 6:04:56 PM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 03, 2020 6:05:01 PM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 03, 2020 6:05:07 PM seedu.quotesify.commands.find.FindCommand execute
+INFO: going to find rating of books
+Nov 03, 2020 6:05:07 PM seedu.quotesify.commands.find.FindRatingCommand findRating
+INFO: ratings not found
+Nov 03, 2020 6:05:15 PM seedu.quotesify.commands.find.FindCommand execute
+INFO: going to find rating of books
+Nov 03, 2020 6:05:29 PM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 03, 2020 6:05:29 PM seedu.quotesify.rating.RatingParser checkValidityOfRatingScore
+INFO: rating score out of range
+Nov 03, 2020 6:05:37 PM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 03, 2020 6:05:37 PM seedu.quotesify.commands.edit.EditRatingCommand editRating
+INFO: invalid format provided
+Nov 03, 2020 6:05:50 PM seedu.quotesify.commands.delete.DeleteCommand execute
+INFO: going to delete rating from book
+Nov 03, 2020 6:05:59 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add rating to book
+Nov 03, 2020 6:06:03 PM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books

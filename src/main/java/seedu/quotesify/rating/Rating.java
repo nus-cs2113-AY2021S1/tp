@@ -36,7 +36,7 @@ public class Rating implements JsonSerializer {
     /**
      * Returns author name of rated book.
      *
-     * @return Author name
+     * @return Author name.
      */
     public String getAuthor() {
         return author;
