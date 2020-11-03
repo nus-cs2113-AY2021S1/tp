@@ -46,10 +46,11 @@ Welcome to **CCA Manager!**
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 ### 2. About this User Guide 
+(By:Varsha)
+
 This user guide provides a quick start guide for you to easily setup install CCA manager, 
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
 To navigate between the different sections, you could use the table of contents above.
-
 
 Additionally, throughout this user guide, there will be various icons used as described below:
 > :bulb: This symbol denotes a tip which you might find useful when using the application.
@@ -61,6 +62,7 @@ Additionally, throughout this user guide, there will be various icons used as de
 > : [Hyperlinked]() : Leads you to the appropriate section
 
 ## 3.Quick Start
+(By:Varsha)
 
 This user guide provides a quick start guide for you to easily setup install CCA manager, 
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
@@ -72,7 +74,10 @@ To navigate between the different sections, you could use the table of contents 
   
  :two: Download the latest version of CCA manager from  [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases) <br>
  
- :three: Run the program by entering java -jar cca.java in a terminal.
+ :three: Navigate to the folder where you downloaded CCA Manager. Run the program by entering `java -jar CCAManager.jar` in a terminal. As seen in the figure below, the red arrow points to where you have to type in commands.
+ 
+ ![](userGuidePic/terminal.PNG)
+ 
   > :information_source: Please resize the terminal to full screen mode 
 
 You will see this welcome message if you have done the above steps correctly. <br/>
@@ -80,6 +85,7 @@ You will see this welcome message if you have done the above steps correctly. <b
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
 ## 4.Features 
+
 This section will show the features of our program in detail.
 You can follow along as we go through each of the features if you are starting out, or skip ahead to the Command Summary
 to see the commands of all features at a glance.
@@ -229,6 +235,8 @@ Expected outcome:
 
 
 ### 4.4 Event features`event` 
+(By:Varsha)
+
 #### Add an event: `addEvent`
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
@@ -255,6 +263,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
+(By:Varsha)
+
  Deletes an event from the list of events  <br/>
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
@@ -279,6 +289,8 @@ Expected Outcome:
  [Return to the top](#user-guide)
 
 #### Clear all events: `delEvent all`
+(By:Varsha)
+
 Clear all events from the list of events <br/>
 Format to clear all events in the list: `event delEvent all`
 
@@ -298,6 +310,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### List events: `listEvent`
+(By:Varsha)
+
 Prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
 
@@ -317,6 +331,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Countdown events `countdown`
+(By:Varsha)
+
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
@@ -336,6 +352,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Mark an event as completed `done`
+(By:Varsha)
+
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
@@ -356,6 +374,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Search for an Event `search`
+(By:Varsha)
+
 Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
@@ -521,6 +541,7 @@ The expected outcome is as follows:
 [Return to the top](#user-guide)
 
 ### 4.7 Saving the data
+(By:Varsha)
 
 CCA Manager saves all your data after every command. There is no need to save manually.
 
@@ -568,5 +589,7 @@ summary | `finance summary` |   -
 
 ## 7. Glossary
 
-
+CCA - Co-curricular Activity
+CSV - Comma-seperated values
+Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
 

@@ -6,6 +6,9 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @@author  Varsha3006
+ */
 class EventListTest {
     Event event = new Event("PR meeting", "2030-06-30", "08-00");
     Event event2 = new Event("Autodesk course","2030-10-20","08-00");
