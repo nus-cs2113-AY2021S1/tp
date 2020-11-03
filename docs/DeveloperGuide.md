@@ -933,7 +933,7 @@ Notes for anime:
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note id:1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 38: Bookmark Entries After Remove Note*
+*Figure 38: Bookmark Entries After Edit Episode*
 
 <br/>
 
@@ -946,11 +946,10 @@ The first design consideration was the data structure on how to bookmark entries
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Keep only the anime index information within the bookmark **(current design)**           | - Easy to reference objects within ArrayList using its index and it is easy to implement | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry |
-| 2. Keep the entire anime object in Bookmark                  | - Do not need to reference AnimeData for anime information    | - One extra layer of unnecessary abstraction (nesting), also introducing more coupling and dependency  |
+| 1. Usage of three ArrayList to store anime index, Episode, and Notes **(current design)**     | - Easy to reference objects within ArrayList using its index and it is easy to implement | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry |
+| 2. Use a `BookmarkManager` to handle bookmark features                  | - Do not need to maintain multiple Arraylist    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
 
-
-We have decided to implement the first alternative, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to AnimeData, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using anime object.
+While both alternatives have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
 
 <br/>
 
@@ -960,13 +959,12 @@ The second design consideration was how to keep the reference to the anime objec
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Usage of three ArrayList to store anime index, Episode, and Notes **(current design)**           | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands has to communicate with AnimeData for anime-related functionalities. |
-| 2. Use a `BookmarkManager` to handle bookmark features                  | - Do not need to maintain multiple Arraylist    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
+| 1. Keep only the anime index information within the bookmark **(current design)** | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands have to communicate with AnimeData for anime-related functionalities. |
+| 2. Keep the entire anime object in Bookmark                  | - Do not need to reference AnimeData for anime information    | - Keep a duplicate of anime data, requires synchronisation <br/> - Hard to keep anime object information offline |
 
-While both alternatives have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
+We have decided to implement the first alternative, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to AnimeData, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using anime object.
 
 <br/>
-
 
 ## 5. Documentation, Logging, Testing, and DevOps
 This section details the documentation, logging, testing and dev-ops setup used in this project as well as information on how to use them.
