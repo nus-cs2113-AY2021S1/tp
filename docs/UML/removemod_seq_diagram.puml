@@ -2,7 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":Parser" as Parser LOGIC_COLOR
 participant ":RemoveModuleCommand" as RemoveModuleCommand LOGIC_COLOR
 participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
 end box
@@ -21,21 +20,6 @@ box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
 
-[-> Parser : parse("remove 1")
-activate Parser
-
-create RemoveModuleCommand
-Parser -> RemoveModuleCommand : RemoveModuleCommand(1)
-activate RemoveModuleCommand
-
-RemoveModuleCommand --> Parser : command
-deactivate RemoveModuleCommand
-
-[<-- Parser : command
-deactivate Parser
-[<-[hidden]- Parser
-destroy Parser
-
 -> RemoveModuleCommand : execute(ui, access, storage)
 activate RemoveModuleCommand
 RemoveModuleCommand -> RemoveModuleCommand : removeModule(access, storage)
@@ -44,8 +28,6 @@ RemoveModuleCommand -> Access : getAdmin()
 activate Access
 RemoveModuleCommand <-- Access
 deactivate Access
-[<-[hidden]- Access
-destroy Access
 RemoveModuleCommand -> Admin : getModules()
 activate Admin
 RemoveModuleCommand <-- Admin : getModules
@@ -62,8 +44,6 @@ RemoveModuleCommand -> Storage : deleteDirectory(directory)
 activate Storage
 RemoveModuleCommand <-- Storage : isRemoved
 deactivate Storage
-[<-[hidden]- Storage
-destroy Storage
 RemoveModuleCommand -> RemoveCommand : prepareResult(type, module, count)
 activate RemoveCommand
 RemoveModuleCommand <-- RemoveCommand : result
@@ -76,8 +56,6 @@ RemoveModuleCommand -> Ui : showToUser(result)
 activate Ui
 RemoveModuleCommand <-- Ui
 deactivate Ui
-[<-[hidden]- Ui
-destroy Ui
 <-- RemoveModuleCommand
 deactivate RemoveModuleCommand
 @enduml

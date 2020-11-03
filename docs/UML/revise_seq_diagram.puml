@@ -2,7 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":Parser" as Parser LOGIC_COLOR
 participant ":ReviseCommand" as ReviseCommand LOGIC_COLOR
 participant ":Scheduler" as Scheduler LOGIC_COLOR
 participant ":HistoryCommand" as HistoryCommand LOGIC_COLOR
@@ -22,22 +21,6 @@ end box
 box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
-
-[-> Parser : parse("revise 1")
-activate Parser
-
-create ReviseCommand
-Parser -> ReviseCommand : ReviseCommand(1)
-activate ReviseCommand
-
-ReviseCommand --> Parser : command
-deactivate ReviseCommand
-
-[<-- Parser : command
-deactivate Parser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-[<-[hidden]- Parser
-destroy Parser
 
 [-> ReviseCommand : execute(ui, access, storage)
 activate ReviseCommand
