@@ -20,7 +20,9 @@ import seedu.duke.command.UndoneCommand;
 import seedu.duke.exception.DukeException;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Parser {
 
@@ -102,5 +104,24 @@ public class Parser {
         }
     }
 
+    /**
+     * Function helps to split user inputs into separate command inputs.
+     * Used to allow users to key in more than one command at a time.
+     *
+     * @param userInput String separated by pipe characters to indicate separate commands
+     * @return String ArrayList containing the command inputs as if they were typed separately
+     */
+    public ArrayList<String> multiParse(String userInput) {
+
+        String[] commandInputs;
+        commandInputs = userInput.split("\\|", -1);
+        ArrayList<String> inputList = new ArrayList<>();
+
+        for (String commandInput : commandInputs) {
+            commandInput = commandInput.trim();
+            inputList.add(commandInput);
+        }
+        return inputList;
+    }
 
 }
