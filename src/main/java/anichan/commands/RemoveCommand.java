@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 public class RemoveCommand extends Command {
     protected static final String OUT_OF_BOUND_INDEX_ERROR = "Invalid Watchlist Index!";
     protected static final String EMPTY_WATCHLIST_ERROR = "Watchlist is empty!";
+    protected static final String SUCCESSFUL_REMOVE = "Successfully removed anime from active watchlist";
 
     private Integer animeIndexInWatchlist;
     private Integer animeIndex;
@@ -81,6 +82,6 @@ public class RemoveCommand extends Command {
 
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
-        LOGGER.log(Level.INFO, "Successfully removed anime from active watchlist");
+        LOGGER.log(Level.INFO, SUCCESSFUL_REMOVE);
     }
 }
