@@ -28,8 +28,8 @@ class InfoParserTest {
         });
         
         InfoParser testParse2 = new InfoParser();
-        assertThrows(AniException.class, () -> {
-           testParse2.parse(EMPTY_DESCRIPTION2); 
+        assertThrows(AniException.class, () -> { 
+            testParse2.parse(EMPTY_DESCRIPTION2); 
         });
     }
 
