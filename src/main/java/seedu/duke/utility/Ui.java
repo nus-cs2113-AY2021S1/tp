@@ -174,8 +174,9 @@ public class Ui {
         printLine();
         System.out.println("Your watchlist:");
         for (Show show : ShowList.showList.values()) {
-            System.out.println(show.toString());
+            System.out.println("\t" + show.toString());
         }
+        printLine();
     }
 
 
@@ -313,10 +314,11 @@ public class Ui {
             + "\n" + WatchTime.userReportString());
     }
 
-    public static void printSearchSuccessful(String name) {
+    public static void printSearchSuccessful(String name, String searchResults) {
         printLine();
-        System.out.println("The show: " + name + " is found, here is the detailed information: ");
-        System.out.println(ShowList.getShowList().get(name).toString());
+        System.out.println("Your shows containing the keyword: " + name + " is found, "
+                + "here is the detailed information: ");
+        System.out.println("\t" + searchResults);
     }
 
     public static void promptOverwrite() {
