@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import anichan.exception.AniException;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 //@@author OngDeZhi
@@ -16,11 +17,26 @@ class WatchlistParserTest {
     }
 
     @Test
-    void parse_validParameters_success() throws AniException {
-        watchlistParser.parse("-n correct");
-        watchlistParser.parse("-l");
-        watchlistParser.parse("-s 1");
-        watchlistParser.parse("-d 1");
+    void parse_validParameters_success() {
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-n correct");
+        });
+
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-l");
+        });
+
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-s 1");
+        });
+
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("-d 1");
+        });
+
+        assertDoesNotThrow(() -> {
+            watchlistParser.parse("        -l        ");
+        });
     }
 
     @Test
@@ -29,6 +45,8 @@ class WatchlistParserTest {
         assertThrows(AniException.class, () -> watchlistParser.parse("-invalid"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-n one -one two"));
         assertThrows(AniException.class, () -> watchlistParser.parse("hello -n testing"));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-nnewWatchlistName"));
+        assertThrows(AniException.class, () -> watchlistParser.parse("- n newWatchlistName"));
     }
 
     @Test
@@ -45,10 +63,6 @@ class WatchlistParserTest {
         assertThrows(AniException.class, () -> watchlistParser.parse("-s 0"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-d -1"));
         assertThrows(AniException.class, () -> watchlistParser.parse("-s one"));
-    }
-
-    @Test
-    void parse_nullDescription_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> watchlistParser.parse(null));
+        assertThrows(AniException.class, () -> watchlistParser.parse("-d 1 2 3"));
     }
 }

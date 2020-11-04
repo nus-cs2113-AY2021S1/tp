@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class Main {
     private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
     private static final Logger LOGGER = AniLogger.getAniLogger(Main.class.getName());
+    private static final String DEFAULT_NAME = "Default";
 
     private final Ui ui;
     private final Parser parser;
@@ -188,9 +189,9 @@ public class Main {
 
         if (user.getTotalWorkspaces() == 0) {
             try {
-                Workspace newWorkspace = user.addWorkspace("Default");
+                Workspace newWorkspace = user.addWorkspace(DEFAULT_NAME);
                 ArrayList<Watchlist> watchlistList = new ArrayList<>();
-                watchlistList.add(new Watchlist("Default"));
+                watchlistList.add(new Watchlist(DEFAULT_NAME));
                 newWorkspace.setWatchlistList(watchlistList);
                 user.setActiveWorkspace(newWorkspace);
                 LOGGER.log(Level.INFO, "Workspace created: " + newWorkspace);
@@ -222,7 +223,7 @@ public class Main {
                 storageManager.saveUser(user);
                 break;
             } catch (AniException exception) {
-                ui.printErrorMessage("Invalid input detected!");
+                ui.printErrorMessage(exception.getMessage());
                 LOGGER.log(Level.WARNING, "Exception: " + exception.getMessage());
             }
         }

@@ -13,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BrowseCommandTest {
     private static final String NORM_PAGE_NUM = "-p 1";
+    private static final int RESET_SORT = 3;
+    private static final int TWO_ANIME_PER_PAGE = 2;
     private User user;
     private static AnimeData animeData;
     private static StorageManager storageManager;
-    private final BrowseParser testParse = new BrowseParser();
 
     private static final String NAME_SORT_ASC_2 = "-s name -o asc -p 2";
     private static final String NAME_SORT_DSC_3 = "-s name -o dsc -p 3";
@@ -29,7 +30,8 @@ public class BrowseCommandTest {
     private static final String ID_SORT_ASC = "-o asc";
 
     private static final int LARGE_NUM = 9999;
-    private static final int NEGATIVE_NUM = -1;
+    private static final int ONE_ANIME_PER_PAGE = 1;
+    private static final int NEGATIVE_NUM = -ONE_ANIME_PER_PAGE;
     private static final int ZERO_NUM = 0;
 
     private static final String EMPTY_STRING = "";
@@ -54,23 +56,27 @@ public class BrowseCommandTest {
 
     @Test
     void execute_printLongSeries_correctlyFormattedOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(NORM_PAGE_NUM);
-        testBrowse.setAnimePerPage(2);
+        testBrowse.setAnimePerPage(TWO_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(LONG_RESULT + System.lineSeparator() + OUTPUT_PAGE_1, result);
     }
 
     @Test
     void execute_printLastSeries_correctOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(LAST_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
+        //Not able to prematurely halt the browse print, as the full browse output needs to be obtained here.
         result = result.substring(0,32);
         assertEquals(FIRST_ANIME_2, result);
     }
 
     @Test
-    void execute_assertTest_assertionThrow() {
-        BrowseCommand testBrowse = new BrowseCommand();
+    void execute_assertTest_assertionThrow() throws AniException {
+        BrowseParser testParse = new BrowseParser();
+        BrowseCommand testBrowse = testParse.parse(EMPTY_STRING);
         testBrowse.setSortType(LARGE_NUM);
         assertThrows(AssertionError.class, () -> {
             testBrowse.execute(animeData, storageManager, user);
@@ -86,57 +92,64 @@ public class BrowseCommandTest {
 
     @Test
     void execute_browseWithNoParam_correctOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(EMPTY_STRING);
-        testBrowse.setAnimePerPage(1);
+        testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(FIRST_ANIME + System.lineSeparator() + OUTPUT_PAGE_1, result);
     }
 
     @Test
     void execute_browseByAscOnly_correctOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(ID_SORT_ASC);
-        testBrowse.setAnimePerPage(1);
+        testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(LAST_ANIME + System.lineSeparator() + OUTPUT_PAGE_1, result);
     }
 
     @Test
     void execute_browseByNameAsc_correctOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(NAME_SORT_ASC_2);
-        testBrowse.setAnimePerPage(1);
+        testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(ASC_ANIME + System.lineSeparator() + OUTPUT_PAGE_2, result);
     }
 
     @Test
     void execute_browseByNameDsc_correctOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(NAME_SORT_DSC_3);
-        testBrowse.setAnimePerPage(1);
+        testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(DSC_ANIME + System.lineSeparator() + OUTPUT_PAGE_3, result);
     }
 
     @Test
     void execute_browseByRatingAsc_correctOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(RATING_SORT_ASC_3);
-        testBrowse.setAnimePerPage(1);
+        testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(ASC_RATING + System.lineSeparator() + OUTPUT_PAGE_3, result);
     }
 
     @Test
     void execute_browseByRatingDsc_correctOutput() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(RATING_SORT_DSC_3);
-        testBrowse.setAnimePerPage(1);
+        testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(DSC_RATING + System.lineSeparator() + OUTPUT_PAGE_3, result);
     }
 
     @Test
     void execute_resetSort_correctOutput() throws AniException {
-        BrowseCommand testBrowse = new BrowseCommand();
-        testBrowse.setAnimePerPage(1);
-        testBrowse.setSortType(3);
+        BrowseParser testParse = new BrowseParser();
+        BrowseCommand testBrowse = testParse.parse(EMPTY_STRING);
+        testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
+        testBrowse.setSortType(RESET_SORT);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(FIRST_ANIME + System.lineSeparator() + OUTPUT_PAGE_1, result);
     }
@@ -144,6 +157,7 @@ public class BrowseCommandTest {
 
     @Test
     void execute_invalidPageNum_throwsAniException() throws AniException {
+        BrowseParser testParse = new BrowseParser();
         BrowseCommand testBrowse = testParse.parse(LARGE_PAGE_NUM);
         assertThrows(AniException.class, () -> {
             testBrowse.execute(animeData, storageManager, user);
@@ -153,7 +167,8 @@ public class BrowseCommandTest {
             testParse.parse(NEGATIVE_PAGE_NUM);
         });
 
-        BrowseCommand testBrowse2 = testParse.parse(ZERO_PAGE_NUM);
-        assertEquals(testBrowse2.getPage(), 1);
+        BrowseParser testParse2 = new BrowseParser();
+        BrowseCommand testBrowse2 = testParse2.parse(ZERO_PAGE_NUM);
+        assertEquals(testBrowse2.getPage(), ONE_ANIME_PER_PAGE);
     }
 }

@@ -8,11 +8,12 @@ import anichan.exception.AniException;
  */
 public class SearchParser extends CommandParser {
     private static final String NO_PARAM_PROVIDED = "Please provide a parameter type. Search will accept -n or -g.";
-    private SearchCommand searchCommand;
+    private static final String INIT_STRING = "";
+    private static final int INVALID_SEARCH_TYPE = -1;
 
-    public SearchParser() {
-        searchCommand = new SearchCommand();
-    }
+    private String searchTerm = INIT_STRING;
+    private String searchGenre = INIT_STRING;
+    private int searchType = INVALID_SEARCH_TYPE;
 
     /**
      * Parses the string parameters and creates an executable searchCommand according to the parameters.
@@ -22,10 +23,10 @@ public class SearchParser extends CommandParser {
      * @throws AniException if an error is encountered while parsing
      */
     public SearchCommand parse(String description) throws AniException {
-        String[] paramGiven = description.split(SPLIT_DASH, FIELD_SPLIT_LIMIT);
+        String[] paramGiven = description.split(DASH, FIELD_SPLIT_LIMIT);
         paramIsSetCheck(paramGiven);
         parameterParser(paramGiven);
-        return searchCommand;
+        return new SearchCommand(searchTerm, searchGenre, searchType);
     }
 
     /**
@@ -38,15 +39,17 @@ public class SearchParser extends CommandParser {
         if (paramGiven[1].isBlank()) {
             throw new AniException(NO_PARAM_PROVIDED);
         }
-        String[] paramParts = paramGiven[1].split(SPLIT_WHITESPACE, FIELD_SPLIT_LIMIT);
+        String[] paramParts = paramGiven[1].split(WHITESPACE, FIELD_SPLIT_LIMIT);
         paramFieldCheck(paramParts);
 
         switch (paramParts[0].trim()) {
         case NAME_PARAM:
-            searchCommand.setSearchTerm(paramParts[1]);
+            searchTerm = paramParts[1].trim();
+            searchType = 0;
             break;
         case GENRE_PARAM:
-            searchCommand.setSearchGenre(paramParts[1]);
+            searchGenre = paramParts[1].trim();
+            searchType = 1;
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven[1] + NOT_RECOGNISED;

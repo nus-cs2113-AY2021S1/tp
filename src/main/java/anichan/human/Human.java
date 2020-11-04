@@ -6,19 +6,35 @@ import anichan.exception.AniException;
  * Abstract class to represent a Human.
  */
 public abstract class Human {
+    private static final int MAX_NAME_LENGTH = 200;
+    private static final String EXCEPTION_INVALID_NAME = "Invalid name!";
+    private static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
     protected String name;
 
     /**
      * Creates an instance of a Human object.
      *
      * @param name of the Human
-     * @throws AniException if name is empty
+     * @throws AniException if name is empty, beyond max length, or contain non alphanumerical characters
      */
     public Human(String name) throws AniException {
-        if (!name.isEmpty()) {
-            setName(name);
-        } else {
-            throw new AniException("Is your name empty?");
+        checkName(name);
+        setName(name);
+    }
+
+    /**
+     * Checks if name is legal.
+     *
+     * @param name of the Human
+     * @throws AniException if name is empty, beyond max length, or contain non alphanumerical characters
+     */
+    private void checkName(String name) throws AniException {
+        if (name.isEmpty()) {
+            throw new AniException(EXCEPTION_INVALID_NAME);
+        } else if (name.length() > MAX_NAME_LENGTH) {
+            throw new AniException(EXCEPTION_INVALID_NAME);
+        } else if (!name.matches(REGEX_ALPHANUMERIC_WITH_SPACE)) {
+            throw new AniException(EXCEPTION_INVALID_NAME);
         }
     }
 

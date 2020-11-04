@@ -7,29 +7,29 @@
 <br/>
 
 ## Table of Content
-1. [Introduction](#1-introduction)
+1.  [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
 
-2. [Setting up](#2-setting-up)
-3. [Design](#3-design)
-<br/>&nbsp;3.1 [Architecture](#31-architecture)
-<br/>&nbsp;3.2 [UI Component](#32-ui-component)
-<br/>&nbsp;3.3 [Parser Component](#33-parser-component)
-<br/>&nbsp;3.4 [Command Component](#34-command-component)
-<br/>&nbsp;3.5 [AnimeData Component](#35-animedata-component)
-<br/>&nbsp;3.6 [User Component](#36-user-component)
-<br/>&nbsp;3.7 [Storage Component](#37-storage-component)
+2.  [Setting up](#2-setting-up)
+3.  [Design](#3-design)
+<br/>&nbsp;3.1  [Architecture](#31-architecture)
+<br/>&nbsp;3.2  [UI Component](#32-ui-component)
+<br/>&nbsp;3.3  [Parser Component](#33-parser-component)
+<br/>&nbsp;3.4  [Command Component](#34-command-component)
+<br/>&nbsp;3.5  [AnimeData Component](#35-animedata-component)
+<br/>&nbsp;3.6  [User Component](#36-user-component)
+<br/>&nbsp;3.7  [Storage Component](#37-storage-component)
 
-4. [Implementation](#4-implementation)
-<br/>&nbsp;4.1 [Estimate Feature](#41-estimate-feature)
-<br/>&nbsp;4.2 [Browse Feature](#42-browse-feature)
-<br/>&nbsp;4.3 [View Anime Information Feature](#43-view-anime-information-feature)
-<br/>&nbsp;4.4 [Workspace Feature](#44-workspace-feature)
-<br/>&nbsp;4.5 [Watchlist Management Feature](#45-watchlist-management-feature)
-<br/>&nbsp;4.6 [Add To Watchlist Feature](#46-add-to-watchlist)
-<br/>&nbsp;4.7 [Remove From Watchlist Feature](#47-remove-from-watchlist)
-<br/>&nbsp;4.8 [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist)
-<br/>&nbsp;4.9 [Bookmark Feature](#49-bookmark-feature)
+4.  [Implementation](#4-implementation)
+<br/>&nbsp;4.1  [Estimate Feature](#41-estimate-feature)
+<br/>&nbsp;4.2  [Browse Feature](#42-browse-feature)
+<br/>&nbsp;4.3  [View Anime Information Feature](#43-view-anime-information-feature)
+<br/>&nbsp;4.4  [Workspace Feature](#44-workspace-feature)
+<br/>&nbsp;4.5  [Watchlist Management Feature](#45-watchlist-management-feature)
+<br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist)
+<br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist)
+<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist)
+<br/>&nbsp;4.9  [Bookmark Feature](#49-bookmark-feature)
 
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
 <br/>&nbsp;5.1 [Documentation](#51-documentation)
@@ -42,6 +42,8 @@
 [Appendix B: User Stories](#appendix-b-user-stories)
 
 [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+
+[Appendix D: Instructions For Manual Testing](#appendix-d-instructions-for-manual-testing)
 
 <br/>
 
@@ -64,22 +66,22 @@ Ensure that you have the following installed:
 Firstly, **fork** this repo and **clone** a copy into your computer.
 
 If you plan to use Intellij IDEA: 
-1. **Ensure IntelliJ is configured to use JDK 11**.
-    1. Click on `Configure` > `Structure for New Projects` > `Project Settings` > `Project`, 
-       and ensure the `Project SDK` is using **JDK 11**.
-2. **Import the project as a Gradle project**.
-    1. Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`
-    2. If asked, choose to `Open as Project` (not `Open as File`).
-    3. Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
-    4. The import process could take a few minutes to finish.
-3. **Verify the setup**: 
-    1. Run the `seedu.anichan.Main` and try a few commands. 
-    2. You may want to refer to our [User Guide](UserGuide.md) for the list of commands.
+1.  **Ensure IntelliJ is configured to use JDK 11**.
+    1.  Click on `Configure` > `Structure for New Projects` > `Project Settings` > `Project`, and ensure the `Project SDK` is using **JDK 11**.
 
-----
+2.  **Import the project as a Gradle project**.
+    1.  Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`
+    2.  If asked, choose to `Open as Project` (not `Open as File`).
+    3.  Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
+    4.  The import process could take a few minutes to finish.
+
+3.  **Verify the setup**: 
+    1.  Run `Main.main()` and try a few commands.
+    2.  You may want to refer to our [User Guide](UserGuide.md) for the list of commands supported by **AniChan**.
+
+<br/>
 
 ### 2.2 Before writing code
-
 #### 2.2.1 Configuring the Coding Style
 
 If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
@@ -437,13 +439,13 @@ The view information command is currently implemented by the `InfoCommand`. The 
 
 Given below is an example of the usage scenario of view information command and how it behaves at each step.
 
-**Step 1:** `Ui` would receive input in form of `info -a <ANIME_ID>` in the `Main` class and pass it into `Parser` class
+**Step 1:** `Ui` would receive input in form of `info <ANIME_ID>` in the `Main` class and pass it into `Parser` class
 
 > :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
 
 **Step 2:** The `Parser` class would then extract out `info` from the input given, which will instantiate a new `InfoParser` object, in which `InfoCommand` object is constructed as well.
 
-**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the parameters given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
+**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the field given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
 
 Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information feature
 
@@ -476,7 +478,7 @@ We decided to go with approach 2, as it would enhance the user experience of not
 <br/>
 
 ### 4.4 Workspace Feature
-Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate ‘containers’ and switch between them to avoid intermixing of information.
+Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate containers and switch between them to avoid intermixing of information.
 
 <br/>
 
@@ -583,13 +585,13 @@ Should we allow the user full discretion to naming `Workspace`?
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Yes  | Allows user more flexibility | Confusing names may lead to unexpected outcomes |
+| Yes  | Allows user more flexibility | Confusing or unexpected names may lead to unexpected outcomes |
 | No   | Eliminate unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
 
 For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
 all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
 
-In addition, we also prevent case-insensitive `Workspace` creation and the use of special characters, as they may cause issues when creating folders on certain file systems.
+In addition, we also prevent case-insensitive `Workspace` creation, use of special characters, and long names (i.e. length above 30), as they may cause issues when creating folders on certain file systems.
 
 <br/>
 
@@ -716,19 +718,19 @@ While both alternatives are valid in their own ways, we have decided to **restri
 The `add` feature allows users to add an anime into the active watchlist they are currently at. This helps them keep track of the anime they would like to watch next.
 
 #### 4.6.1 Current Implementation
-The current implementation of the add to watchlist command requires the user to give an input in the form of `add -a <ANIME_ID>`. This will allow users to add the ANIME_ID of the anime they want to add by calling the `addAnimeToList` method in the active `Watchlist` object. 
+The current implementation of the add to watchlist command requires the user to give an input in the form of `add <ANIME_ID>`. This will allow users to add the ANIME_ID of the anime they want to add by calling the `addAnimeToList` method in the active `Watchlist` object. 
 
 Add to watchlist command extends the `Command` class, and the `parse` method in `AddToWatchlistParser` class is being called to validate the parameter that the user has entered.
 
 Below is an example usage scenario of how add to watchlist command behaves at each step.
 
-**Step 1:** Starting from the `Main` class, the user first inputs `add -a <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser` through `Parser#getCommand(userInput)`. 
+**Step 1:** Starting from the `Main` class, the user first inputs `add <ANIME_ID>`. The input will be taken in by the `Ui` class, and passed into `Parser` through `Parser#getCommand(userInput)`. 
 
 > :bulb: The ANIME_ID specified has to be an integer value as specified by the index of anime in the AnimeData. 
 
 **Step 2:** The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object, and its constructor would create a new `AddToWatchlistCommand` object.
 
-**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the parameter that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class. At this point, `AddToWatchlistParser` is terminated.
+**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the field that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class. At this point, `AddToWatchlistParser` is terminated.
 
 The figure below shows the sequence diagram of steps 1 to 3.
 
@@ -766,7 +768,7 @@ Similarly, we decided to go with the second approach as this would be much easie
 The remove from watchlist feature allows users to remove a particular anime from their currently active watchlist. This would allow them to keep their watchlist clean of the anime that they have watched, leaving only those that they have not watched.
 
 #### 4.7.1 Current Implementation
-The remove from watchlist command currently requires the user to give an input in the format: `remove -d <ANIME_ID_IN_WATCHLIST>`. The implementation of remove from watchlist command is similar to the add to watchlist feature with the only difference being that the user has to delete the index of the anime in that watchlist, instead of the actual ANIME_ID.
+The remove from watchlist command currently requires the user to give an input in the format: `remove <ANIME_ID_IN_WATCHLIST>`. The implementation of remove from watchlist command is similar to the add to watchlist feature with the only difference being that the user has to delete the index of the anime in that watchlist, instead of the actual ANIME_ID.
 
 The usage scenario of remove from watchlist is similar to the add to watchlist command, but we will be using `RemoveCommand`, `RemoveCommandParser` and `Watchlist#removeAnimeFromList()`.
 
@@ -794,11 +796,11 @@ The `view` command is currently implemented by the `ViewWatchlistCommand`. It is
 
 An example usage scenario on how view anime in watchlist behaves is given below.
 
-**Step 1:** In the `Main` class, the user will input `view -v <WATCHLIST_ID>`. `Ui` will take in this input and is passed into `Parser`.
+**Step 1:** In the `Main` class, the user will input `view [-v <WATCHLIST_ID>]`. `Ui` will take in this input and is passed into `Parser`.
 
 **Step 2:** In `Parser`, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
 
-**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. 
+**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user, if given. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. If no parameter is given, then the active `Watchlist` object will be used.
 
 **Step 4:** The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`. `ViewWatchlistParser` is terminated.
 
@@ -808,7 +810,7 @@ The sequence diagram for steps 1 to 4 is as shown in the figure below.
 
 **Step 5:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated.
 
-**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the active `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
+**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the seleceted `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
 
 **Step 7:** `ViewWatchlistCommand` is terminated
 
@@ -1076,7 +1078,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 *   Organize anime into different watchlists for different genres.
 *   Portable and works offline.
 
-{*More coming soon*}
+<br/>
 
 ## Appendix B: User Stories
 
@@ -1093,18 +1095,184 @@ If you wish to add new checks, simply add the check file with a filename `check-
 | v1.0 | freelance translator | be able to create new workspaces | can have a clear separation of my work at different companies |
 | v1.0 | freelance translator | switch between workspaces | can swap my workspace to a specific company that my current project is tied to |
 | v1.0 | forgetful user | bookmark specific anime | remember which anime I am currently interested in |
-| v1.0 | forgetful user | set an episode for each bookmarked anime | remember which episode I'm watching or translating |
-| v2.0 | translator | write notes for a bookmark | So that I can remember helpful information regarding a specific anime series |
-| v2.0 | translator | remove notes for a bookmark | So that I can remove outdated information or mistakes in my notes |
+| v1.0 | forgetful user | set an episode for each bookmarked anime | can remember which episode I'm watching or translating |
+| v2.0 | translator | write notes for a bookmark | can remember helpful information regarding a specific anime series |
+| v2.0 | translator | remove notes for a bookmark | can remove outdated information or mistakes in my notes |
 | v2.0 | user | view detailed information of a specific anime | can find out more about that anime series |
 | v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focus on working on one watchlist |
 | v2.0 | user | delete watchlist that I no longer needs | can keep my list of watchlist organized and up-to-date |
-| v2.0 | translator | estimate the time needed to translate a script | better manage my time |
-| v2.0 | user | search for a specific anime with a keyword | find an anime series without remember its full title |
+| v2.0 | translator | estimate the time needed to translate a script | can better manage and plan my time |
+| v2.0 | user | search for a specific anime with a keyword | can find an anime series without remember its full title |
 | v2.0 | user | search for all anime in a genre | can find all similar types anime  |
+
+<br/>
 
 ## Appendix C: Non-Functional Requirements
 
-1.  It should work on major operating systems (OS) such as Windows and Linux that have `Java 11` installed.
+1.  The application should work on major operating systems (OS) such as Windows and Linux that have `Java 11` installed.
 2.  Users with fast typing speed should be able to accomplish tasks easily and faster than when they were using mouse.
-3.  Each command should be processed within 2 seconds.
+3.  The application should be easy to use with an accompanying User Guide and/or Developer Guide.
+4.  The application should utilize memory resources efficiently.
+5.  The application should be responsive.
+
+<br/>
+
+## Appendix D: Instructions for Manual Testing
+
+### D.1: Launch and Shutdown
+#### Initial Launch
+1.  Download the jar file and copy it into an empty folder.
+2.  Open a new command prompt or terminal and navigate to the directory containing `AniChan.jar`.
+3.  Enter the command `java -jar AniChan.jar` to launch **AniChan**.
+4.  { user setup process to be added }.
+
+> :bulb: This is what the input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
+
+#### Shutdown
+1.  To exit **AniChan**, enter the `exit` command.
+
+<br/>
+
+### D.2: Estimate the time needed to translate a script
+1.  Estimating the time needed to translate a script.
+    1.  Prerequisite: Have a non-empty `script.txt` file in the current workspace folder.
+        1.  Create a `.txt` file and name it "script" such that the file name with the file extension is `script.txt`, then fill it up with some content (i.e. random words and sentences).
+        2.  Go to the folder containing `AniChan.jar`.
+        3.  Open the `data` folder (if it does not exist, restart **AniChan**).
+        4.  In the `data` folder, find and open the folder named after the current workspace (if the input prompt shows `Default (myWatchlist) #>`, then look for the folder named "Default" as that is the current workspace name).
+        5.  Move `script.txt` into this folder (i.e. `data/Default/script.txt`).
+
+    2.  Test case: `estimate script.txt`. <br/>
+    Expected: 3 estimation timings are generated and printed.
+
+    3.  Test case: `estimate script.txt -wph 550`. <br/>
+    Expected: 1 estimation timing is generated and printed.
+    
+    4.  Other incorrect commands to try: 
+        1.  `estimate`.
+        2.  `estimate x` (where x is not a `.txt` file, or it is a file path).
+        3.  `estimate script.txt -wph y` (where y is a negative number or a word).
+
+> :memo: The file name (including extension) does not have to be `script.txt`, it is named as such for the convenience of testing.
+
+<br/>
+
+### D.3: Creating watchlist
+1.  Creating a watchlist with a unique name.
+    1.  Prerequisite: Watchlist list does not have a watchlist named "newWatchlist".
+    
+    2.  Test case: `watchlist -n newWatchlist`. <br/>
+    Expected: A empty watchlist named "newWatchlist" is created, and a message indicating the watchlist was created successfully is printed.
+        
+    3.  Other incorrect commands to try: 
+        1.  `watchlist -n`.
+        2.  `watchlist -n x` (where x is a non-unique watchlist name, exceeds 30 characters, or it contains non-alphanumeric characters).
+
+<br/>
+
+### D.4: Listing all watchlist(s)
+1.  Listing all created watchlist(s).
+    1.  Prerequisite: The watchlist list in the current workspace is not empty.
+    
+    2.  Test case: `watchlist -l` <br/>
+    Expected: The names of all watchlist in the current workspace is printed.
+    
+    3.  Other incorrect commands to try: 
+        1.  `watchlist -l x` (where x is any additional parameters or values).
+
+<br/>
+
+### D.5: Selecting a watchlist to be the new active watchlist
+1.  Selecting a watchlist to be the new active watchlist.
+    1.  Prerequisite: The watchlist list in the current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
+    
+    2.  Test case: `watchlist -s 2` <br/>
+    Expected: The second watchlist in the list becomes the new active watchlist, and a message indicating the name of the new active watchlist is printed.
+    
+    3.  Test case: `watchlist -s 1` <br/>
+    Expected: An error message indicating that the selected watchlist is already the active watchlist is printed.
+    
+    4.  Other incorrect commands to try: 
+        1.  `watchlist -s`
+        2.  `watchlist -s x` (where x is a negative number, a word, or an additional parameter).
+
+<br/>
+
+### D.6: Deleting a watchlist
+1.  Deleting a watchlist.
+    1.  Prerequisite: The watchlist list in the current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
+
+    2.  Test case: `watchlist -d 2` <br/>
+    Expected: The second watchlist in the list is deleted, and a message indicating the name of the deleted watchlist is printed.
+    
+    3.  Test case: `watchlist -d 1` <br/>
+    Expected: The first watchlist in the list is deleted, and a message indicating the name of the deleted watchlist, and the name of the new active watchlist is printed.
+    
+    4.  Other incorrect commands to try: 
+        1.  `watchlist -d`
+        2.  `watchlist -d x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.X: Adding an anime to active watchlist
+1.  Adding an anime to active watchlist.
+    1.  Prerequisite: The active watchlist does not contain the anime to be added.
+    
+    2.  Test case: `add 1` <br/>
+    Expected: The anime with index of 1 is added into the active watchlist, and a message with the name of the anime is printed.
+    
+    3.  Test case: `add 3` <br/>
+    Expected: The anime with index of 3 is added into the active watchlist, and a message with the name of the anime is printed.
+    
+    4.  Other incorrect commands to try:
+        1.  `add`
+        2.  `add x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
+
+### D.X: Removing an anime from active watchlist
+1.  Removing an anime from active watchlist.
+    1.  Prerequisite: The active watchlist must contain at least one anime.
+    
+    2.  Test case: `remove 1` <br/>
+    Expected: The first anime in the watchlist is deleted, and a message with the name of the anime is printed.
+    
+    3.  Test case: `remove 3` <br/>
+    Expected: The third anime in the watchlist is deleted, and a message with the name of the anime is printed.
+    
+    4.  Other incorrect commands to try:
+        1.  `remove`
+        2.  `remove x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the watchlist)
+
+<br/>
+
+### D.X: Viewing all anime in a specific or active watchlist
+1.  Viewing all anime in a specific or active watchlist.
+    1.  Prerequisite: The watchlist must contain at least one anime.
+    
+    2.  Test case: `view` <br/>
+    Expected: Lists out the name of all anime in the active watchlist.
+    
+    3.  Test case: `view 1` <br/>
+    Expected: Lists out the name of all anime in the first watchlist.
+    
+    4.  Other incorrect commands to try:
+        1.  `view x` (where x is a negative number, zero, a word, or a number exceeding the number of watchlists)
+
+<br/>
+
+### D.X: Viewing the information of a specific anime
+1.  Viewing the information of a specific anime.
+    1.  Prerequisite:
+    
+    2.  Test case: `info 1` <br/>
+    Expected: Lists out the information of the anime with index 1.
+    
+    3.  Test case: `info 3` <br/>
+    Expected: Lists out the information of the anime with index 3.
+    
+    4.  Other incorrect commands to try:
+        1.  `info`
+        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
