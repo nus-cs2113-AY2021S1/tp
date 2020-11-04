@@ -198,7 +198,6 @@ The `AnimeData `component:
 
 <br/>
 
-<!-- @@author ChanJianHao -->
 ### 3.6 User Component
 ![User Class Diagram](images/User-Class-Diagram.png) <br/>
 *Figure 8: User Class Diagram*
@@ -213,8 +212,6 @@ The `User`component:
 The `Workspace` component:  
 *   can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
 *   can allow `User` to change his active `Watchlist`.
-
-<!-- @@author -->
 
 <br/>
 
