@@ -51,8 +51,8 @@ public class AddGoalCommand extends Command {
                     command = command.split(" ", 2)[1].trim();
                     newGoal = formatGoal(getCurrentDate(), SYMBOL_EXERCISE, command);
 
-                listManager.addGoal(newGoal);
-                Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
+                    listManager.addGoal(newGoal);
+                    Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
                 } catch (FitrException e) {
                     Ui.printFormatError("Smart exercise goal");
                 }
