@@ -53,8 +53,8 @@ public class NoteCommand extends Command {
             Event eventRequested = list.getEventByIndex(index - 1);
             if (eventRequested != null) {
                 ui.printMessage("Please type in your notes."
-                        + " To stop note taking, ensure that you are in a new line and type the semicolon key,"
-                        + " \';\' and press enter");
+                        + " To stop note taking, ensure that you are in a new line"
+                        + " and type 'noteend', and press enter");
                 ArrayList<String> existingNotes = eventRequested.getNotes();
                 ArrayList<String> additionalNotes = getNotesFromUser();
                 ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
@@ -100,7 +100,7 @@ public class NoteCommand extends Command {
         sc = new Scanner(System.in);
         ArrayList<String> notesList = new ArrayList<String>();
         String temp = sc.nextLine().trim();
-        while (!temp.equals(";")) {
+        while (!temp.equals("noteend")) {
             notesList.add(temp);
             temp = sc.nextLine().trim();
         }
@@ -128,7 +128,7 @@ public class NoteCommand extends Command {
         ArrayList<String> convertedList = new ArrayList<>();
 
         for (String note : notes) { //after splitting up the lines based on semicolons, add them
-            String[] lines = note.split(";", -1);
+            String[] lines = note.split("`", -1);
             List<String> toBeAdded = Arrays.asList(lines);
             convertedList.addAll(toBeAdded);
         }
