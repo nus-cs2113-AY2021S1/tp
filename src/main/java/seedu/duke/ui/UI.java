@@ -143,17 +143,17 @@ public class UI {
 
     private static void printHelpDeleteName() {
         System.out.println("Removes a name from the list of names");
-        System.out.println("Format: delete name <INDEX>");
+        System.out.println("Format: delete name INDEX");
     }
 
     private static void printHelpAddName() {
         System.out.println("Add a name to the list of names");
-        System.out.println("Format: add name <NAME>");
+        System.out.println("Format: add name NAME");
     }
 
     private static void printHelpFilterName() {
         System.out.println("Find all the names from the list of names");
-        System.out.println("Format: filter name <NAME>");
+        System.out.println("Format: filter name NAME");
     }
 
     private static void printHelpListName() {
