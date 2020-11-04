@@ -44,7 +44,8 @@ public class Parser {
             matcher = Add.COMMAND_PATTERN.matcher(rawInput);
             if (matcher.find()) {
                 return new Add(matcher.group("description"), matcher.group("date"), matcher.group("st"),
-                        matcher.group("et"), matcher.group("priority"), matcher.group("reminder"));
+                        matcher.group("et"), matcher.group("priority"), matcher.group("reminder"),
+                        matcher.group("t"));
             } else {
                 throw new InvalidCommandException();
             }
@@ -53,7 +54,7 @@ public class Parser {
             if (matcher.find()) {
                 return new Edit(matcher.group("key"), matcher.group("description"),
                         matcher.group("date"), matcher.group("st"), matcher.group("et"),
-                        matcher.group("priority"), matcher.group("reminder"));
+                        matcher.group("priority"), matcher.group("reminder"), matcher.group("t"));
             } else {
                 throw new InvalidCommandException();
             }

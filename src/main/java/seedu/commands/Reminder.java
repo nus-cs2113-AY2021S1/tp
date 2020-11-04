@@ -1,34 +1,24 @@
 package seedu.commands;
 
+import java.time.LocalTime;
 import java.util.Timer;
 import seedu.exceptions.InvalidTaskNumberException;
-import seedu.task.Task;
-import seedu.data.TaskMap;
-import java.util.TimerTask;
-import java.util.regex.Pattern;
-import seedu.ui.Ui;
-import java.util.Date;
-import java.util.Calendar;
-import static seedu.messages.Messages.REMINDER_MESSAGE;
+
 
 public class Reminder {
-    private final Integer time;
+    private final LocalTime time;
     private final Timer timer;
 
-    public Reminder(String timeString) throws InvalidTaskNumberException {
-        timer = new Timer();
-        if (timeString != null) {
-            this.time = Integer.parseInt(timeString);
-        } else {
-            this.time = null;
-        }
+    public Reminder(LocalTime time) {
+       timer = new Timer();
+       this.time = time;
     }
     public Reminder() {
         timer = new Timer();
         this.time = null;
     }
 
-    public Integer getTime() {
+    public LocalTime getTime() {
         return time;
     }
 

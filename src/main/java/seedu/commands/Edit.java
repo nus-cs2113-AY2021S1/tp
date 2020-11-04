@@ -2,6 +2,7 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
+import seedu.data.TimerCanceler;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidDatetimeException;
@@ -22,7 +23,7 @@ public class Edit extends ModificationCommand {
                     + "( st/(?<st>\\d{4}))?"
                     + "( et/(?<et>\\d{4}))?"
                     + "( p/(?<priority>\\d))?"
-                    + "( r/(?<reminder>\\d))?"
+                    + "( r/(?<reminder>\\w+\\s*))?"
                     + "( t-(?<t>\\d{4}))?$");
     private final Integer key;
     private final String description;
@@ -31,9 +32,10 @@ public class Edit extends ModificationCommand {
     private final String endTime;
     private final String priority;
     private final String reminder;
+    private final String reminderTime;
 
     public Edit(String keyString, String description, String date, String startTime, String endTime, String priority,
-                String reminder)
+                String reminder, String reminderTime)
             throws InvalidTaskNumberException {
         try {
             key = Integer.parseInt(keyString);
@@ -46,6 +48,7 @@ public class Edit extends ModificationCommand {
         this.endTime = endTime;
         this.priority = priority;
         this.reminder = reminder;
+        this.reminderTime = reminderTime;
     }
 
     public CommandResult execute(Model model)
@@ -76,8 +79,9 @@ public class Edit extends ModificationCommand {
             editedTask.setPriority(priority);
         }
         if(reminder != null) {
-            editedTask.setReminder(reminder);
+            editedTask.setReminder(reminder, reminderTime);
         }
+        editedTask.startReminder();
         tasks.delete(key);
         tasks.addTask(editedTask);
         model.pushAndUpdate(tasks);

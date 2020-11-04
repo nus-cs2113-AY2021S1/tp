@@ -1,11 +1,7 @@
 package seedu.commands;
 
 import seedu.data.Model;
-import seedu.exceptions.EmptyDataStackException;
-import seedu.exceptions.InvalidDatetimeException;
-import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.MaxNumTaskException;
+import seedu.exceptions.*;
 import seedu.parser.Parser;
 import seedu.ui.Ui;
 
@@ -46,7 +42,7 @@ public class LogicManager {
 
     private CommandResult executeCommand(Command cmd)
         throws MaxNumTaskException, InvalidTaskNumberException, InvalidDatetimeException,
-        InvalidPriorityException, EmptyDataStackException {
+        InvalidPriorityException, EmptyDataStackException, InvalidReminderException {
         if (cmd instanceof ReadOnlyCommand) {
             return cmd.execute(model.getTaskMap());
         } else if (cmd instanceof ModificationCommand) {

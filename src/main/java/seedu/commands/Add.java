@@ -3,6 +3,7 @@ package seedu.commands;
 import seedu.data.DataStack;
 import seedu.data.Model;
 import seedu.data.TaskMap;
+import seedu.data.TimerCanceler;
 import seedu.exceptions.MaxNumTaskException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidDatetimeException;
@@ -22,23 +23,27 @@ public class Add extends ModificationCommand {
                     + "( st/(?<st>\\d{4}))?"
                     + "( et/(?<et>\\d{4}))?"
                     + "( p/(?<priority>\\d))?"
-                    + "( r/(?<reminder>\\d+))?"
+                    + "( r/(?<reminder>\\w+\\s*))?"
                     + "( t-(?<t>\\d{4}))?$");
+
     private final String description;
     private final String date;
     private final String startTime;
     private final String endTime;
     private final String priority;
     private final String reminder;
+    private final String reminderTime;
 
 
-    public Add(String description, String date, String startTime, String endTime, String priority, String reminder) {
+    public Add(String description, String date, String startTime, String endTime, String priority,
+               String reminder, String reminderTime) {
         this.description = description;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.priority = priority;
         this.reminder = reminder;
+        this.reminderTime = reminderTime;
     }
 
     public CommandResult execute(Model model)
@@ -46,7 +51,7 @@ public class Add extends ModificationCommand {
         TaskMap tasks = model.getTaskMap();
         assert description != null;
         // Handle collision by generating new taskID if the value is in use.
-        Task task = new Task(description, date, startTime, endTime, priority, reminder);
+        Task task = new Task(description, date, startTime, endTime, priority, reminder, reminderTime);
         Integer taskID = task.getTaskID();
         if (tasks.size() == TaskMap.MAX_NUM_TASKS) {
             throw new MaxNumTaskException();
@@ -56,6 +61,7 @@ public class Add extends ModificationCommand {
         while (tasks.get(taskID) != null) {
             taskID = (taskID + 1) % TaskMap.MAX_NUM_TASKS;
         }
+        task.startReminder();
         task.setTaskID(taskID);
         tasks.addTask(task);
         // update stack

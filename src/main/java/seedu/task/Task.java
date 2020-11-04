@@ -2,6 +2,7 @@ package seedu.task;
 
 import seedu.data.TaskMap;
 
+import seedu.data.TimerCanceler;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;
@@ -31,7 +32,8 @@ public class Task {
     private Priority priority;
     private Reminder reminder;
 
-    public Task(String description, String dateString, String startTime, String endTime, String priorityString, String reminderString)
+    public Task(String description, String dateString, String startTime, String endTime, String priorityString,
+                String reminderString, String reminderTimeString)
         throws InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
         this.description = description;
         date = dateStringToDate(dateString);
@@ -39,7 +41,7 @@ public class Task {
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
         taskID = generateHashValue();
-        reminder = initiateReminder(reminderString);
+        reminder = initiateReminder(reminderString, reminderTimeString);
     }
 
     public Task(Integer taskID, String description, LocalDate date,
@@ -54,7 +56,8 @@ public class Task {
     }
 
     public Task(String taskID, String description, String dateString,
-                String startTime, String endTime, String priorityString, String reminderString)
+                String startTime, String endTime, String priorityString, String reminderString,
+                String reminderTimeString)
         throws InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
         this.description = description;
         date = dateStringToDate(dateString);
@@ -62,13 +65,18 @@ public class Task {
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
         this.taskID = Integer.parseInt(taskID);
-        this.reminder = initiateReminder(reminderString);
+        this.reminder = initiateReminder(reminderString, reminderTimeString);
     }
 
-    private Reminder initiateReminder(String reminderString) throws InvalidReminderException {
+    private Reminder initiateReminder(String reminderString, String remainderTimeString)
+            throws InvalidReminderException, InvalidDatetimeException {
+        LocalTime time = timeStringToTime(remainderTimeString);
+        if (reminderString == null) {
+            reminderString = "off";
+        }
         switch(reminderString) {
             case "on":
-                return new Reminder();
+                    return new Reminder(time);
             case "off":
                 return null;
             default:
@@ -77,10 +85,14 @@ public class Task {
     }
 
     public void startReminder() {
+        if(reminder == null) {
+            return;
+        }
+        TimerCanceler.add(getReminder().getTimer());
         Calendar calendar = Calendar.getInstance();
         if (reminder.getTime() != null) {
             calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
-                    getDate().getDayOfMonth(), (reminder.getTime() / 100), (reminder.getTime() % 100),0);
+                    getDate().getDayOfMonth(), (reminder.getTime().getHour()), (reminder.getTime().getMinute()),0);
         } else {
             calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
                     getDate().getDayOfMonth(), getStartTime().getHour() - 1,
@@ -101,9 +113,9 @@ public class Task {
     public Reminder getReminder() {
         return reminder;
     }
-
-    public void setReminder(String reminderString) throws InvalidReminderException {
-        reminder = initiateReminder(reminderString);
+    public void setReminder(String reminderString, String reminderTime)
+            throws InvalidReminderException, InvalidDatetimeException {
+        reminder = initiateReminder(reminderString, reminderTime);
     }
     private int generateHashValue() {
         return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);
