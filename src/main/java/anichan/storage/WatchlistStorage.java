@@ -199,11 +199,6 @@ public class WatchlistStorage extends Storage {
             return false;
         }
 
-        boolean isAnimeIndexInteger = isPositiveInteger(animeIndex);
-        if (!isAnimeIndexInteger) {
-            return false;
-        }
-
-        return true;
+        return isPositiveInteger(animeIndex);
     }
 }

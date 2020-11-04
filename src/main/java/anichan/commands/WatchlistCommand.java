@@ -37,20 +37,44 @@ public class WatchlistCommand extends Command {
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
     private final String parameter;
-    private final String watchlistName;
-    private final int watchlistIndex;
+    private String watchlistName;
+    private int watchlistIndex;
 
     /**
-     * Creates a new instance of WatchlistCommand the specified parameter, watchlist name, and watchlist index.
+     * Creates a new instance of WatchlistCommand with the specified parameter and watchlist name.
+     * This is meant for creating watchlist.
      *
      * @param parameter specified watchlist command type
-     * @param watchlistName specified watchlist name (for create)
-     * @param watchlistIndex specified watchlist index (for select and delete)
+     * @param watchlistName specified watchlist name
      */
-    public WatchlistCommand(String parameter, String watchlistName, int watchlistIndex) {
+    public WatchlistCommand(String parameter, String watchlistName) {
         this.parameter = parameter;
         this.watchlistName = watchlistName;
+        LOGGER.log(Level.INFO, "WatchlistCommand object for creating watchlist is created.");
+    }
+
+    /**
+     * Creates a new instance of WatchlistCommand with the specified parameter.
+     * This is meant for listing watchlist.
+     *
+     * @param parameter specified watchlist command type
+     */
+    public WatchlistCommand(String parameter) {
+        this.parameter = parameter;
+        LOGGER.log(Level.INFO, "WatchlistCommand object for listing all watchlist is created.");
+    }
+
+    /**
+     * Creates a new instance of WatchlistCommand with the specified parameter and watchlist index
+     * This is meant for selecting and deleting watchlist.
+     *
+     * @param parameter specified watchlist command type
+     * @param watchlistIndex specified watchlist index
+     */
+    public WatchlistCommand(String parameter, int watchlistIndex) {
+        this.parameter = parameter;
         this.watchlistIndex = watchlistIndex - 1; // 1-based to 0-based numbering
+        LOGGER.log(Level.INFO, "WatchlistCommand object for selecting or deleting watchlist is created.");
     }
 
     /**
@@ -97,6 +121,7 @@ public class WatchlistCommand extends Command {
      * @throws AniException when an error occurred while creating the watchlist
      */
     private String createWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
+        assert !(watchlistName.isBlank()) : "Watchlist name cannot be empty!";
         Watchlist createdWatchlist = new Watchlist(watchlistName);
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
 
