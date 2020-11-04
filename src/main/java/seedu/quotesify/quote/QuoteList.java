@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class QuoteList extends QuotesifyList<Quote> {
     private ArrayList<Quote> quotes = super.getList();
 
+    public static final String DEFAULT_QUOTE = "Better days are coming, they are called Saturday and Sunday.";
+
     public QuoteList() {
         super(new ArrayList<>());
     }
@@ -53,6 +55,16 @@ public class QuoteList extends QuotesifyList<Quote> {
         quotes.get(quoteNumber).setReflection(editedReflection);
     }
 
+    public boolean checkDuplicateQuote(Quote newQuote) {
+        for (Quote quote : getList()) {
+            String quoteToCheck = newQuote.getQuote().toLowerCase();
+            if (quote.getQuote().toLowerCase().equals(quoteToCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void add(Quote newQuote) {
         quotes.add(newQuote);
@@ -84,19 +96,20 @@ public class QuoteList extends QuotesifyList<Quote> {
     public String getRandomQuote() {
         try {
             Random rand = new Random();
-            int randomQuoteNumber = rand.nextInt(getSize() - 1);
+            int randomQuoteNumber = rand.nextInt(getSize());
             Quote quoteToPrint = getQuote(randomQuoteNumber);
             return quoteToPrint.toString();
         } catch (IllegalArgumentException e) {
-            return "*Inserts inspirational quote here*";
+            return DEFAULT_QUOTE;
         }
     }
 
     public String getAllQuotesByAuthor(QuoteList quoteList, String authorName) {
         String listToReturn = "";
+        int quoteCounter = 0;
         for (Quote quote : quoteList.getList()) {
-            if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
-                listToReturn += quote.toString() + System.lineSeparator();
+            if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
+                listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
             }
         }
         return listToReturn;
@@ -104,9 +117,10 @@ public class QuoteList extends QuotesifyList<Quote> {
 
     public String getAllQuotesByReference(QuoteList quoteList, String reference) {
         String listToReturn = "";
+        int quoteCounter = 0;
         for (Quote quote : quoteList.getList()) {
-            if (quote.hasReference() && quote.getReference().equals(reference)) {
-                listToReturn += quote.toString() + System.lineSeparator();
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
+                listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
             }
         }
         return listToReturn;
@@ -114,10 +128,11 @@ public class QuoteList extends QuotesifyList<Quote> {
 
     public String getAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
         String listToReturn = "";
+        int quoteCounter = 0;
         for (Quote quote : quoteList.getList()) {
-            if (quote.hasReference() && quote.getReference().equals(reference)) {
-                if (quote.hasAuthor() && quote.getAuthorName().equals(authorName)) {
-                    listToReturn += quote.toString() + System.lineSeparator();
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
+                if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
+                    listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
                 }
             }
         }
@@ -126,13 +141,14 @@ public class QuoteList extends QuotesifyList<Quote> {
 
     public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
         String listToReturn = "";
+        int matchCounter = 0;
         for (Quote quote : quoteList.getList()) {
-            if (quote.getQuote().contains(keyword)) {
-                listToReturn += quote.toString() + System.lineSeparator();
-            } else if (quote.hasReference() && quote.getReference().contains(keyword)) {
-                listToReturn += quote.toString() + System.lineSeparator();
-            } else if (quote.hasAuthor() && quote.getAuthorName().contains(keyword)) {
-                listToReturn += quote.toString() + System.lineSeparator();
+            if (quote.getQuote().toLowerCase().contains(keyword)) {
+                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
+            } else if (quote.hasReference() && quote.getReference().toLowerCase().contains(keyword)) {
+                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
+            } else if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().contains(keyword)) {
+                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
             }
         }
         return listToReturn;

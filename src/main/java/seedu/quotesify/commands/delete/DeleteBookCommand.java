@@ -35,8 +35,7 @@ public class DeleteBookCommand extends DeleteCommand {
             // delete ratings before deleting the entire book.
             RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
             for (Rating rating : ratings.getList()) {
-                if (rating.getTitleOfRatedBook().equals(bookTitle)
-                        && rating.getAuthorOfRatedBook().equals(author)) {
+                if (rating.getTitle().equals(bookTitle) && rating.getAuthor().equals(author)) {
                     ratings.delete(ratings.getList().indexOf(rating));
                     break;
                 }

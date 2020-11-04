@@ -11,6 +11,9 @@ import seedu.quotesify.commands.find.FindCommand;
 import seedu.quotesify.commands.HelpCommand;
 import seedu.quotesify.commands.list.ListCommand;
 
+/**
+ * Represents a command parser.
+ */
 public class Parser {
     private static final String COMMAND_ADD = "add";
     private static final String COMMAND_EDIT = "edit";
@@ -22,6 +25,12 @@ public class Parser {
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_HELP = "help";
 
+    /**
+     * Returns a command type based on user input.
+     *
+     * @param input user input command
+     * @return command object
+     */
     public Command parseUserCommand(String input) {
         String[] tokens = input.split(" ", 2);
 
@@ -30,7 +39,7 @@ public class Parser {
             tokens = new String[]{tokens[0], ""};
         }
 
-        String command = tokens[0];
+        String command = tokens[0].toLowerCase();
         String arguments = tokens[1];
 
         switch (command) {

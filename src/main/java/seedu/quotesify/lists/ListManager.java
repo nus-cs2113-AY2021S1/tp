@@ -9,6 +9,9 @@ import seedu.quotesify.todo.ToDoList;
 
 import java.util.HashMap;
 
+/**
+ * Manages all quotesify's lists.
+ */
 public class ListManager {
     public static final int BOOK_LIST = 0;
     public static final int BOOKMARK_LIST = 1;
@@ -19,6 +22,9 @@ public class ListManager {
 
     private static HashMap<Integer, QuotesifyList<?>> listManager = new HashMap<>();
 
+    /**
+     * Initialises a new list for all of quotesify's lists.
+     */
     public static void initialiseAllLists() {
         listManager.put(BOOK_LIST, new BookList());
         listManager.put(BOOKMARK_LIST, new BookmarkList());
@@ -28,10 +34,22 @@ public class ListManager {
         listManager.put(TODO_LIST, new ToDoList());
     }
 
+    /**
+     * Adds a quotesify list to the list manager.
+     *
+     * @param type list type
+     * @param list quotesify list
+     */
     public static void addToList(int type, QuotesifyList<?> list) {
         listManager.put(type, list);
     }
 
+    /**
+     * Returns a quotesify list based on the type given.
+     *
+     * @param type list type
+     * @return quotesify list
+     */
     public static QuotesifyList<?> getList(int type) {
         return listManager.get(type);
     }

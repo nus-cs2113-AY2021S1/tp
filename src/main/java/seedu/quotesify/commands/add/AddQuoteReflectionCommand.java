@@ -30,11 +30,11 @@ public class AddQuoteReflectionCommand extends AddCommand {
                 Quote quoteWithReflection = quoteList.addReflection(reflection, quoteNum);
                 ui.printAddReflection(quoteWithReflection, quoteWithReflection.getReflection());
             } else {
-                throw new QuotesifyException(ERROR_MISSING_REFLECTION);
+                throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-            addLogger.log(Level.INFO, "add reflection to quote failed");
+            quotesifyLogger.log(Level.INFO, "add reflection to quote failed");
         }
     }
 }

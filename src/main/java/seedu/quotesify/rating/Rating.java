@@ -4,49 +4,82 @@ import org.json.simple.JSONObject;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.parser.JsonSerializer;
 
+/**
+ * Represents a rating for a book.
+ */
 public class Rating implements JsonSerializer {
-    private String titleOfRatedBook;
-    private String authorOfRatedBook;
+    private String title;
+    private String author;
     private int rating;
-    private Book ratedBook;
 
+    /**
+     * Constructor for rating.
+     *
+     * @param ratedBook Book that is rated.
+     * @param rating Rating score given to book.
+     */
     public Rating(Book ratedBook, int rating) {
-        titleOfRatedBook = ratedBook.getTitle();
-        authorOfRatedBook = ratedBook.getAuthor().getName();
+        title = ratedBook.getTitle();
+        author = ratedBook.getAuthor().getName();
         this.rating = rating;
-        this.ratedBook = ratedBook;
     }
 
-    public String getTitleOfRatedBook() {
-        return titleOfRatedBook;
+    /**
+     * Returns title of rated book.
+     *
+     * @return Title.
+     */
+    public String getTitle() {
+        return title;
     }
 
-    public String getAuthorOfRatedBook() {
-        return authorOfRatedBook;
+    /**
+     * Returns author name of rated book.
+     *
+     * @return Author name.
+     */
+    public String getAuthor() {
+        return author;
     }
 
+    /**
+     * Returns rating score of book.
+     *
+     * @return Rating score.
+     */
     public int getRating() {
         return rating;
     }
 
+    /**
+     * Assigns a rating to book.
+     *
+     * @param rating Rating score.
+     */
     public void setRating(int rating) {
         this.rating = rating;
     }
 
-    public Book getRatedBook() {
-        return ratedBook;
-    }
-
+    /**
+     * Returns details of rating.
+     *
+     * @return Rating details.
+     */
     @Override
     public String toString() {
-        return "[" + titleOfRatedBook + "] by " + authorOfRatedBook + ": " + rating + " star";
+        return "[" + title + "] by " + author + ": " + rating + " star";
     }
 
+    /**
+     * Returns JSON object of the rating for storage.
+     *
+     * @return JSON object.
+     */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("titleOfRatedBook", this.getTitleOfRatedBook());
-        json.put("authorOfRatedBook", this.getAuthorOfRatedBook());
+        json.put("titleOfRatedBook", this.getTitle());
+        json.put("authorOfRatedBook", this.getAuthor());
         json.put("rating", this.getRating());
         return json;
     }

@@ -24,15 +24,12 @@ public class BookList extends QuotesifyList<Book> {
     @Override
     public void add(Book newBook) {
         books.add(newBook);
+        books.sort(comparator);
     }
 
     @Override
     public void delete(int index) {
         books.remove(index);
-    }
-
-    public void deleteByBook(Book book) {
-        books.remove(book);
     }
 
     public boolean isEmpty() {
@@ -45,6 +42,10 @@ public class BookList extends QuotesifyList<Book> {
 
     public Book getBook(int index) {
         return books.get(index);
+    }
+
+    public int getSize() {
+        return books.size();
     }
 
     public void sort() {

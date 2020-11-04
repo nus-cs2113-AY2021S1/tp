@@ -24,13 +24,17 @@ public class AddQuoteCommand extends AddCommand {
     private void addQuote(QuoteList quoteList, TextUi ui) {
         try {
             Quote quote = QuoteParser.parseAddParameters(information);
+            boolean isDuplicate = quoteList.checkDuplicateQuote(quote);
+            if (isDuplicate) {
+                throw new QuotesifyException(ERROR_DUPLICATE_QUOTE);
+            }
             quoteList.add(quote);
             ui.printAddQuote(quote);
-            addLogger.log(Level.INFO, "add quote to quote list success");
+            quotesifyLogger.log(Level.INFO, "add quote to quote list success");
         } catch (QuotesifyException e) {
             System.out.println(e.getMessage());
-            addLogger.log(Level.INFO, "add quote to quote list failed");
-            addLogger.log(Level.WARNING, e.getMessage());
+            quotesifyLogger.log(Level.INFO, "add quote to quote list failed");
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 }

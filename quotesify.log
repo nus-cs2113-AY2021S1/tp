@@ -376,3 +376,131 @@ Oct 25, 2020 12:22:56 PM seedu.quotesify.commands.add.AddCommand execute
 INFO: going to add book to booklist
 Oct 25, 2020 12:22:56 PM seedu.quotesify.commands.add.AddCommand execute
 INFO: added book to booklist
+Oct 27, 2020 12:14:09 AM seedu.quotesify.commands.BookmarkCommand handleBookmarkByNumber
+INFO: add bookmark to bookmarkList failed
+Oct 27, 2020 12:27:47 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Oct 27, 2020 12:27:47 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 1:53:28 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 1:53:28 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 1:53:34 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add rating to book
+Nov 01, 2020 1:53:43 AM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 01, 2020 1:53:51 AM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 01, 2020 1:53:55 AM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 01, 2020 1:54:05 AM seedu.quotesify.commands.find.FindCommand execute
+INFO: going to find rating of books
+Nov 01, 2020 1:54:11 AM seedu.quotesify.commands.delete.DeleteCommand execute
+INFO: going to delete rating from book
+Nov 01, 2020 11:00:30 AM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 01, 2020 11:00:50 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 11:00:50 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 11:02:28 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 11:02:28 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 11:02:46 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 11:02:46 AM seedu.quotesify.commands.add.AddBookCommand addBook
+INFO: add book to booklist failed
+Nov 01, 2020 11:02:46 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 11:02:57 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 11:02:57 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 11:03:22 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 11:03:22 AM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 11:09:44 AM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 01, 2020 4:27:52 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 01, 2020 6:13:28 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 01, 2020 6:13:28 PM seedu.quotesify.commands.add.AddCategoryCommand addCategoryToBook
+INFO: add category to book success
+Nov 01, 2020 6:13:58 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 01, 2020 6:13:58 PM seedu.quotesify.commands.add.AddCategoryCommand addCategoryToBook
+WARNING: Category [test] already exists in book [book2]!
+Nov 01, 2020 6:34:01 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 01, 2020 6:34:10 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 01, 2020 6:34:19 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 01, 2020 6:34:25 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 01, 2020 6:41:28 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 6:41:28 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 01, 2020 11:02:31 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add book to booklist
+Nov 01, 2020 11:02:31 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: added book to booklist
+Nov 02, 2020 4:35:20 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 02, 2020 4:35:20 PM seedu.quotesify.commands.add.AddCategoryCommand addCategoryToBook
+INFO: add category to book success
+Nov 02, 2020 4:35:36 PM seedu.quotesify.commands.delete.DeleteCategoryCommand deleteCategoryFromBook
+INFO: removing category from book.
+Nov 02, 2020 4:35:36 PM seedu.quotesify.commands.delete.DeleteCategoryCommand deleteCategoryFromBook
+INFO: successfully removed category from book.
+Nov 02, 2020 4:35:40 PM seedu.quotesify.commands.delete.DeleteCategoryCommand deleteCategoryFromBookOrQuote
+WARNING: Missing category name
+Nov 02, 2020 4:35:45 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 02, 2020 4:35:50 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 02, 2020 4:39:50 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 02, 2020 4:39:50 PM seedu.quotesify.commands.add.AddCategoryCommand addCategoryToBook
+INFO: add category to book success
+Nov 02, 2020 4:39:53 PM seedu.quotesify.commands.delete.DeleteCategoryCommand deleteCategoryFromBook
+INFO: removing category from book.
+Nov 02, 2020 4:39:53 PM seedu.quotesify.commands.delete.DeleteCategoryCommand deleteCategoryFromBook
+INFO: successfully removed category from book.
+Nov 02, 2020 4:40:15 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add category to book/quote
+Nov 03, 2020 6:04:40 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add rating to book
+Nov 03, 2020 6:04:40 PM seedu.quotesify.commands.add.AddRatingCommand isRated
+INFO: book has been rated before
+Nov 03, 2020 6:04:44 PM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 03, 2020 6:04:56 PM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 03, 2020 6:05:01 PM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books
+Nov 03, 2020 6:05:07 PM seedu.quotesify.commands.find.FindCommand execute
+INFO: going to find rating of books
+Nov 03, 2020 6:05:07 PM seedu.quotesify.commands.find.FindRatingCommand findRating
+INFO: ratings not found
+Nov 03, 2020 6:05:15 PM seedu.quotesify.commands.find.FindCommand execute
+INFO: going to find rating of books
+Nov 03, 2020 6:05:29 PM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 03, 2020 6:05:29 PM seedu.quotesify.rating.RatingParser checkValidityOfRatingScore
+INFO: rating score out of range
+Nov 03, 2020 6:05:37 PM seedu.quotesify.commands.edit.EditCommand execute
+INFO: going to edit rating of book
+Nov 03, 2020 6:05:37 PM seedu.quotesify.commands.edit.EditRatingCommand editRating
+INFO: invalid format provided
+Nov 03, 2020 6:05:50 PM seedu.quotesify.commands.delete.DeleteCommand execute
+INFO: going to delete rating from book
+Nov 03, 2020 6:05:59 PM seedu.quotesify.commands.add.AddCommand execute
+INFO: going to add rating to book
+Nov 03, 2020 6:06:03 PM seedu.quotesify.commands.list.ListCommand execute
+INFO: going to list rating of books

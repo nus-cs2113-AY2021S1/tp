@@ -26,6 +26,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Represents the storage for Quotesify.
+ */
 public class Storage {
     private static final String CURRENT_DIR = System.getProperty("user.dir");
     private static final String SEPARATOR = File.separator;
@@ -40,10 +43,20 @@ public class Storage {
 
     private File saveFile;
 
+    /**
+     * Constructor for storage with file path to save data.
+     *
+     * @param filePath save data directory
+     */
     public Storage(String filePath) {
         initialiseSaveFile(filePath);
     }
 
+    /**
+     * Checks for save file existence and manages its creation.
+     *
+     * @param filePath save data directory
+     */
     public void initialiseSaveFile(String filePath) {
         try {
             filePath = CURRENT_DIR + filePath.replace("/", SEPARATOR).replace("\\", SEPARATOR);
@@ -61,6 +74,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the data into hard disk.
+     */
     public void save() {
         try {
             JSONObject json = new JSONObject();
@@ -80,6 +96,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads data from hard disk.
+     */
     public void load() {
         try {
             FileReader fileReader = new FileReader(saveFile);
@@ -93,6 +112,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates all lists in list manager with saved data.
+     *
+     * @param json JSON serialized save data
+     */
     private void updateListManager(JSONObject json) {
         try {
             ListManager.addToList(ListManager.BOOK_LIST, parseBookList(json));
@@ -106,6 +130,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses save data into book list.
+     *
+     * @param json JSON serialized save data
+     * @return list of saved books
+     */
     private BookList parseBookList(JSONObject json) {
         try {
             JSONArray books = (JSONArray) json.get(BOOKS);
@@ -120,6 +150,12 @@ public class Storage {
         return new BookList();
     }
 
+    /**
+     * Parses save data into quote list.
+     *
+     * @param json JSON serialized save data
+     * @return list of saved quotes
+     */
     private QuoteList parseQuoteList(JSONObject json) {
         try {
             JSONArray quotes = (JSONArray) json.get(QUOTES);
@@ -134,6 +170,12 @@ public class Storage {
         return new QuoteList();
     }
 
+    /**
+     * Parses save data into category list.
+     *
+     * @param json JSON serialized save data
+     * @return list of saved categories
+     */
     private CategoryList parseCategoryList(JSONObject json) {
         try {
             JSONArray categories = (JSONArray) json.get(CATEGORIES);
@@ -148,6 +190,12 @@ public class Storage {
         return new CategoryList();
     }
 
+    /**
+     * Parses save data into rating list.
+     *
+     * @param json JSON serialized save data
+     * @return list of saved ratings
+     */
     private RatingList parseRatingList(JSONObject json) {
         try {
             JSONArray ratings = (JSONArray) json.get(RATINGS);
@@ -162,6 +210,12 @@ public class Storage {
         return new RatingList();
     }
 
+    /**
+     * Parses save data into bookmark list.
+     *
+     * @param json JSON serialized save data
+     * @return list of saved bookmarks
+     */
     private BookmarkList parseBookmarkList(JSONObject json) {
         try {
             JSONArray bookmarks = (JSONArray) json.get(BOOKMARKS);
@@ -176,6 +230,12 @@ public class Storage {
         return new BookmarkList();
     }
 
+    /**
+     * Parses save data into todo list.
+     *
+     * @param json JSON serialized save data
+     * @return list of saved todos
+     */
     private ToDoList parseTodoList(JSONObject json) {
         try {
             JSONArray todos = (JSONArray) json.get(TODOS);
@@ -190,6 +250,13 @@ public class Storage {
         return new ToDoList();
     }
 
+    /**
+     * Parses save data into a book.
+     *
+     * @param json JSON serialized save data
+     * @return saved book details
+     * @throws NullPointerException if fields are missing or corrupted
+     */
     private Book parseBookObject(JSONObject json) throws NullPointerException {
         JSONObject authorObj = (JSONObject) json.get("author");
         Author author = parseAuthorObject(authorObj);
@@ -202,6 +269,13 @@ public class Storage {
         return new Book(author, title, isDone, categories, (int) rating);
     }
 
+    /**
+     * Parses save data into a quote.
+     *
+     * @param json JSON serialized save data
+     * @return saved quote details
+     * @throws NullPointerException if fields are missing or corrupted
+     */
     private Quote parseQuoteObject(JSONObject json) throws NullPointerException {
         JSONObject authorObj = (JSONObject) json.get("author");
         Author author = parseAuthorObject(authorObj);
@@ -214,6 +288,13 @@ public class Storage {
         return new Quote(author, quote, categories, reference, reflection);
     }
 
+    /**
+     * Parses save data into a category.
+     *
+     * @param json JSON serialized save data
+     * @return saved category details
+     * @throws NullPointerException if fields are missing or corrupted
+     */
     private Category parseCategoryObject(JSONObject json) throws NullPointerException {
         String name = (String) json.get("category");
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
@@ -225,6 +306,13 @@ public class Storage {
         return category;
     }
 
+    /**
+     * Parses save data into a rating.
+     *
+     * @param json JSON serialized save data
+     * @return saved rating details
+     * @throws NullPointerException if fields are missing or corrupted
+     */
     private Rating parseRatingObject(JSONObject json) throws NullPointerException {
         String title = (String) json.get("titleOfRatedBook");
         String name = (String) json.get("authorOfRatedBook");
@@ -233,6 +321,13 @@ public class Storage {
         return new Rating(new Book(author, title), (int) rating);
     }
 
+    /**
+     * Parses save data into a bookmark.
+     *
+     * @param json JSON serialized save data
+     * @return saved bookmark details
+     * @throws NullPointerException if fields are missing or corrupted
+     */
     private Bookmark parseBookmarkObject(JSONObject json) throws NullPointerException {
         JSONObject bookObj = (JSONObject) json.get("book");
         Book book = parseBookObject(bookObj);
@@ -240,6 +335,13 @@ public class Storage {
         return new Bookmark(book, (int) pageNum);
     }
 
+    /**
+     * Parses save data into a todo.
+     *
+     * @param json JSON serialized save data
+     * @return saved todo details
+     * @throws NullPointerException if fields are missing or corrupted
+     */
     private ToDo parseTodoObject(JSONObject json) throws NullPointerException {
         String name = (String) json.get("name");
         String deadline = (String) json.get("deadline");
@@ -249,6 +351,12 @@ public class Storage {
         return newToDo;
     }
 
+    /**
+     * Parses save data into an author.
+     *
+     * @param json JSON serialized save data
+     * @return saved author details
+     */
     private Author parseAuthorObject(JSONObject json) {
         try {
             String authorName = (String) json.get("name");

@@ -43,7 +43,7 @@ public class AddToDoCommand extends AddCommand {
             toDos.add(newToDo);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-            addLogger.log(Level.INFO, "add toDo to toDoList failed");
+            quotesifyLogger.log(Level.INFO, "add toDo to toDoList failed");
         }
 
         return newToDo;

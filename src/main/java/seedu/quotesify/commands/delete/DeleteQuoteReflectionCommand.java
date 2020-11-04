@@ -1,5 +1,6 @@
 package seedu.quotesify.commands.delete;
 
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.store.Storage;
@@ -19,10 +20,15 @@ public class DeleteQuoteReflectionCommand extends DeleteCommand {
     private void deleteQuoteReflection(QuoteList quoteList, TextUi ui, String information) {
         try {
             int quoteNumber = Integer.parseInt(information.trim()) - 1;
-            quoteList.deleteReflection(quoteNumber);
-            ui.printDeleteQuoteReflection(quoteList.getQuote(quoteNumber).getQuote());
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            if (quoteList.getQuote(quoteNumber).getReflection() != null) {
+                quoteList.deleteReflection(quoteNumber);
+                ui.printDeleteQuoteReflection(quoteList.getQuote(quoteNumber).toString());
+            } else {
+                throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
+            }
+        } catch (NumberFormatException | IndexOutOfBoundsException | QuotesifyException e) {
             System.out.println(ERROR_INVALID_QUOTE_NUM);
         }
     }
+
 }
