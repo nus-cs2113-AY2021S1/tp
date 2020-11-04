@@ -53,7 +53,7 @@
 
 ### 1.1 Purpose
 
-This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated for each major release, and the current edition of this document is intended for the release v2.0.
+This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated for each major release, and the current edition of this document is intended for the release v2.1.
 
 <br/>
 
@@ -253,7 +253,6 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 **Step 2:** `EstimateParser` is terminated at this point. The application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
 **Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace the user is currently using, then it invokes `StorageManager#loadScriptFile()` to read and store the content of `scriptFileName` in the active workspace folder in `fileContent`.
-
 > :memo: Every workspace is actually a folder in the system.
 
 > :memo: The application assumes that the user has the file placed in the active (currently using) workspace.
@@ -261,7 +260,6 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 <br/>
 
 **Step 4:** Once the file has been read, it calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
-
 > :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimation timing will be generated.
 
 <br/>
@@ -645,8 +643,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 **Step 4:** It first invokes `activeWorkspace.getWatchlistList()` to initialise `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and validated before it is added to `watchlistList`.
 
 **Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and finally, the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
-
-> :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
+> :memo: The validation checks ensure the watchlist name is unique in `watchlistList`, is not empty, and contains less than or equal to 30 alphanumeric characters and/or spaces. 
 
 > :memo: The details of all `Watchlist` object for a workspace will be saved in the file "watchlist.txt" in the workspace folder.
 
@@ -1152,7 +1149,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     4.  Other incorrect commands to try: 
         1.  `estimate`.
         2.  `estimate x` (where x is not a `.txt` file, or it is a file path).
-        3.  `estimate script.txt -wph y` (where y is a negative number or a word).
+        3.  `estimate script.txt -wph x` (where x is a negative number or a word).
 
 > :memo: The file name (including extension) does not have to be `script.txt`, it is named as such for the convenience of testing.
 
