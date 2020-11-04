@@ -116,14 +116,17 @@ public class WritingList {
      *  Triggered when "stats" command is called.
      */
     public static void printWritings() {
-        assert (writinglist.size() > 0) : EMPTY_WRITING_MESSAGE;
-        for (Writings w : writinglist) {
-            w.printWritingsProperties();
-            if (w.getType().equals(POEM)) {
-                w.printPoemProperties();
-            } else if (w.getType().equals(ESSAY)) {
-                w.printEssayProperties();
+        if (writinglist.size() > 0) {
+            for (Writings w : writinglist) {
+                w.printWritingsProperties();
+                if (w.getType().equals(POEM)) {
+                    w.printPoemProperties();
+                } else if (w.getType().equals(ESSAY)) {
+                    w.printEssayProperties();
+                }
             }
+        } else {
+            System.out.println(EMPTY_WRITING_MESSAGE);
         }
     }
 
