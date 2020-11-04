@@ -9,10 +9,10 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand s
 
 ## Summary of Contributions
 
-- **New Feature:** Implemented and maintained the Storage component which included logging, topics and user data.
-  - What it does: allows the data to be saved locally and loaded upon startup.
-  - Justification: This feature improves the product significantly because a user does not need to add questions manually for the quiz through the CLI, the user's statistics will be stored which unhances gamification, and we can see user logs to identfy causes of bugs in the application.
-  - Highlights: The saving of user data does not actually require the implementation of a `User` class as the user attributes for each question are extracted directly from the question.
+- **New Feature:** Implemented and maintained the Storage component.
+  - What it does: `LogStorage` saves logging data, `TopicsStorage` loads topic data and `UserStorage` saves and loads user data locally.
+  - Justification: This feature improves the product significantly because a user does not need to add questions manually for the quiz through the CLI, the user's statistics will be stored which enhances gamification, and user logs are available to identfy causes of bugs in the application.
+  - Highlights: The saving of user data does not actually require the implementation of a `User` class as the user attributes for each question are extracted directly from the question. This design was chosen so as to not increase the overall complexity of the system. The error handling was also challenging as the files save locally are easily editable by the user. For `TopicsStorage`, if the format of the JSON file is not correct then the program will not startup and users will be directed to instructions to fix this instead. For `UserStorage`, if the user chooses to tamper with the user data, badly formatted data will result in a safe loss of data and the program will continue to run.
   - Credits: This feature relies heavily on the use of the `JSON.simple` library as data is stored in JSON format.
 - **New Feature:** Implemented the intial quiz logic to be a seperate interface from the main menu.
 
@@ -22,7 +22,7 @@ Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dash
   - Managed releases `v1.0` - `v2.0` (2 releases) on GitHub
 
 - **Enhancements to existing features:**
-  - Implemented a fix for problems with the timer feature on Windows for command prompt/powershell (Pull requests [#158](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/158))
+  - Implemented a fix for problems with the timer feature on Windows for command prompt/powershell. The user input was no showing up due to the use of the `BufferedReader` instead of the usual `Scanner`. The workaround used `Future` and `ExecutorService` to get the user input asynchronously in a separate thread while allowing for a `TimeoutException` to be used for the timer. However, this required the use of a `Robot` to complete the `Future` which did not work in headless environments like WSL. I recommened for this to be fixed in a separate issue by doing an OS-dependent timer. (Pull requests [#158](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/158))
   
 - **Documentation:**
   - User Guide:
