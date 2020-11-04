@@ -1,4 +1,5 @@
 @startuml
+skinparam Shadowing false
 participant ":Fitr" as Fitr
 participant ":TipList" as TipList
 participant ":StorageManager" as StorageManager

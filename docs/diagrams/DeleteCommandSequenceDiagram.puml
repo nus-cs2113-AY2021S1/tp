@@ -1,4 +1,5 @@
 @startuml
+skinparam Shadowing false
 participant ":Fitr" as Fitr
 participant ":Parser" as Parser <<class>>
 participant ":DeleteCommand" as DeleteCommand
