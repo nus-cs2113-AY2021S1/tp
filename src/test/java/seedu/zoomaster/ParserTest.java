@@ -21,11 +21,10 @@ class ParserTest {
         Parser.programMode = 2;
         ZoomasterException g = assertThrows(ZoomasterException.class, () -> Parser.parse("iNvAlidCOmmand"));
         assertEquals(ZoomasterExceptionType.UNKNOWN_INPUT, g.getError());
-
     }
 
     @Test
-    void parseEmptyCommandMode1ThrowsUnknownInputException() {
+    void parseEmptyCommandThrowsUnknownInputException() {
         Parser.programMode = 0;
         ZoomasterException e = assertThrows(ZoomasterException.class, () -> Parser.parse(""));
         assertEquals(ZoomasterExceptionType.UNKNOWN_INPUT, e.getError());

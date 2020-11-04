@@ -38,8 +38,8 @@ import java.util.Scanner;
  */
 public class Storage<T> {
 
-    private String filePath;
-    private Class<T> storageClass;
+    private final String filePath;
+    private final Class<T> storageClass;
 
     /**
      * Constructs a new Storage instance by storing the given pathname of the file.
@@ -71,8 +71,7 @@ public class Storage<T> {
         } catch (IOException e) {
             return createNewInstance();
         }
-
-        if (!fileAsString.equals("null")) {
+        if (!fileAsString.equals("null") && !fileAsString.isBlank()) {
             Gson gson = new Gson();
             return gson.fromJson(fileAsString, storageClass);
         } else {
@@ -204,6 +203,7 @@ public class Storage<T> {
      */
     // Solution below adapted from AY2021S1-CS2113T-T09-2
     // https://github.com/AY2021S1-CS2113T-T09-2/tp/../data/storage/Decoder.java
+    //@@ Speedweener
     private ArrayList<String> nusModuleListFromNusMods() throws ZoomasterException {
         String weblink = ""; // For exception messages
         try {
@@ -320,6 +320,5 @@ public class Storage<T> {
         }
         fw.close();
     }
-
-
+    //@@ Speedweener
 }
