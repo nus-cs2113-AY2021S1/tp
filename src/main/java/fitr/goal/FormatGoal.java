@@ -3,10 +3,12 @@ package fitr.goal;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import static fitr.common.Messages.SYMBOL_EXERCISE;
+
 public class FormatGoal {
     public static Goal formatGoal(LocalDate createdDate, String goalType, String goalDescription) {
         Goal newGoal = new Goal(createdDate, goalType, goalDescription);
-        String descriptionPart = (goalType.equals("E")) ? "Burn" : "Eat";
+        String descriptionPart = (goalType.equals(SYMBOL_EXERCISE)) ? "Burn" : "Eat";
         boolean isPositiveNumber = goalDescription.substring(1).trim().matches("\\d+");
 
         if (Objects.equals(goalDescription.split(" ", 2)[0].trim().charAt(0), '>')) {

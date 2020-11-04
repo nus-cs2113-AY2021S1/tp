@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Commands.COMMAND_VIEW;
 import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
@@ -72,7 +73,7 @@ public class ViewCommand extends Command {
         } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_FOOD)) {
             viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
         } else {
-            Ui.printFormatError("view");
+            Ui.printFormatError(COMMAND_VIEW);
         }
     }
 

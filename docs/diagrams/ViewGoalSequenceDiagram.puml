@@ -6,10 +6,10 @@ participant "<<class>>\n:Parser"
 participant ":ViewCommand"
 
 activate ":Fitr"
-":Fitr" -> ":Ui" : read()
-activate ":Ui"
-":Fitr" <-- ":Ui"
-deactivate ":Ui"
+":Fitr" -> "<<class>>\n:Ui" : read()
+activate "<<class>>\n:Ui"
+":Fitr" <-- "<<class>>\n:Ui"
+deactivate "<<class>>\n:Ui"
 
 ":Fitr" -> "<<class>>\n:Parser" : parse("view goal")
 activate "<<class>>\n:Parser"
@@ -23,8 +23,8 @@ deactivate "<<class>>\n:Parser"
 activate ":ViewCommand"
 ":ViewCommand" -> ":ViewCommand" : viewGoal()
 activate ":ViewCommand"
-":ViewCommand" -> ":Ui" : printCustomMessage()
-activate ":Ui"
+":ViewCommand" -> "<<class>>\n:Ui" : printCustomMessage()
+activate "<<class>>\n:Ui"
 return
 return
 
@@ -33,5 +33,6 @@ deactivate ":ViewCommand"
 ":ViewCommand" -[hidden]-> ":Fitr"
 destroy ":ViewCommand"
 
+deactivate ":Fitr"
 hide footbox
 @enduml

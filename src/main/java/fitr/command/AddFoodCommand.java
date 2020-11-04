@@ -13,6 +13,11 @@ import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.DateManager.getCurrentDate;
+import static fitr.common.Messages.ECHO_ADDED_FOOD;
+import static fitr.common.Messages.ERROR_INVALID_CALORIE;
+import static fitr.common.Messages.ERROR_IN_FILE;
+import static fitr.common.Messages.FOOD_NAME_HEADER;
+import static fitr.common.Messages.LINE_BREAK;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {
@@ -34,8 +39,8 @@ public class AddFoodCommand extends Command {
                 }
                 listManager.addFood(new Food(nameOfFood, amountOfCalories, getCurrentDate()));
                 storageManager.writeFoodList(listManager.getFoodList());
-                Ui.printCustomMessage("The following food has been added:\n"
-                        + "Name of Food: " + nameOfFood + "\n"
+                Ui.printCustomMessage(ECHO_ADDED_FOOD
+                        + FOOD_NAME_HEADER + nameOfFood + LINE_BREAK
                         + "Calorie Consumed: " + amountOfCalories.get()
                 );
             } else if (command.split(" ").length == 2) {
@@ -50,20 +55,20 @@ public class AddFoodCommand extends Command {
                 }
                 listManager.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
                 storageManager.writeFoodList(listManager.getFoodList());
-                Ui.printCustomMessage("The following food has been added:\n"
-                        + "Name of Food: " + nameOfFood + "\n"
+                Ui.printCustomMessage(ECHO_ADDED_FOOD
+                        + FOOD_NAME_HEADER + nameOfFood + LINE_BREAK
                         + "Calorie Consumed: " + amountOfCalories.get());
             } else {
                 throw new ArrayIndexOutOfBoundsException();
             }
         } catch (NumberFormatException | NullPointerException e) {
-            Ui.printCustomError("Sorry, invalid calorie amount entered");
+            Ui.printCustomError(ERROR_INVALID_CALORIE);
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printFormatError(COMMAND_FOOD);
         } catch (FitrException e) {
             Ui.printCustomError("Sorry, the amount of food has to be a positive number");
         } catch (IOException e) {
-            Ui.printCustomError("Sorry, there is an error in the file");
+            Ui.printCustomError(ERROR_IN_FILE);
         }
     }
 

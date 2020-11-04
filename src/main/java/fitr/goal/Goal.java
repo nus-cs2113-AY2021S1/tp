@@ -7,6 +7,8 @@ import fitr.user.User;
 
 import java.time.LocalDate;
 
+import static fitr.common.Messages.SYMBOL_NO;
+import static fitr.common.Messages.SYMBOL_YES;
 import static fitr.goal.CheckGoalStatus.checkGoalStatus;
 
 public class Goal {
@@ -19,7 +21,7 @@ public class Goal {
         this.createdDate = createdDate;
         this.goalType = goalType;
         this.description = description;
-        this.goalStatus = "N";
+        this.goalStatus = SYMBOL_NO;
     }
 
     public Goal(LocalDate createdDate, String goalType, String goalStatus, String description) {
@@ -43,10 +45,10 @@ public class Goal {
 
     public String getStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
         String rawStatus = checkGoalStatus(goalStatus, goal, foodList, exerciseList, user) + "%";
-        if (rawStatus.equals("0.0%") || rawStatus.equals("N%")) {
-            return "N";
-        } else if (rawStatus.equals("100.0%") || rawStatus.equals("Y%")) {
-            return "Y";
+        if (rawStatus.equals("0.0%") || rawStatus.equals(SYMBOL_NO + "%")) {
+            return SYMBOL_NO;
+        } else if (rawStatus.equals("100.0%") || rawStatus.equals(SYMBOL_YES + "%")) {
+            return SYMBOL_YES;
         }
         return rawStatus;
     }

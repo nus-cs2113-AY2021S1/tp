@@ -39,5 +39,6 @@ DeleteCommand --> Fitr
 deactivate DeleteCommand
 DeleteCommand -[hidden]-> Fitr
 destroy DeleteCommand
+deactivate Fitr
 hide footbox
 @enduml

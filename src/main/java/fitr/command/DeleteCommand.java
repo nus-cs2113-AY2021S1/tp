@@ -12,9 +12,13 @@ import fitr.user.User;
 
 import java.io.IOException;
 
+import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Messages.ERROR_INVALID_FORMAT;
+import static fitr.common.Messages.ERROR_INVALID_INDEX;
+import static fitr.common.Messages.ERROR_IN_FILE;
 
 public class DeleteCommand extends Command {
     public DeleteCommand(String command) {
@@ -95,13 +99,13 @@ public class DeleteCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError("Sorry, that index does not exist in the list");
+            Ui.printCustomError(ERROR_INVALID_INDEX);
         } catch (NumberFormatException e) {
             Ui.printCustomError("Sorry, index deletion must be a positive number");
         } catch (IOException e) {
-            Ui.printCustomError("Sorry, there is an error in the file");
+            Ui.printCustomError(ERROR_IN_FILE);
         } catch (FitrException e) {
-            Ui.printCustomError("Sorry, you have keyed in an invalid format");
+            Ui.printFormatError(COMMAND_DELETE);
         }
     }
 
