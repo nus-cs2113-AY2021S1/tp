@@ -21,7 +21,7 @@ public class Edit extends ModificationCommand {
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( st/(?<st>\\d{4}))?"
                     + "( et/(?<et>\\d{4}))?"
-                    + "( p/(?<priority>\\d))?$");
+                    + "( p/(?<priority>\\d))?");
     private final Integer key;
     private final String description;
     private final String date;

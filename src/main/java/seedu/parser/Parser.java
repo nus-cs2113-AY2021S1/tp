@@ -44,7 +44,7 @@ public class Parser {
             matcher = Add.COMMAND_PATTERN.matcher(rawInput);
             if (matcher.find()) {
                 return new Add(matcher.group("description"), matcher.group("date"), matcher.group("st"),
-                        matcher.group("et"), matcher.group("priority"));
+                        matcher.group("et"), matcher.group("priority"), matcher.group("reminder"));
             } else {
                 throw new InvalidCommandException();
             }
@@ -73,13 +73,6 @@ public class Parser {
             }
         } else if (rawInput.startsWith(Undo.COMMAND_WORD)) {
             return new Undo();
-        } else if (rawInput.startsWith(Reminder.COMMAND_WORD)) {
-            matcher = Reminder.COMMAND_PATTERN.matcher(rawInput);
-            if (matcher.find()) {
-                return new Reminder(matcher.group("key"), matcher.group("t"));
-            } else {
-                throw new InvalidCommandException();
-            }
         } else {
             throw new UnknowCommandException();
         }

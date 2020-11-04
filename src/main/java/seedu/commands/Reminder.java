@@ -11,55 +11,31 @@ import java.util.Date;
 import java.util.Calendar;
 import static seedu.messages.Messages.REMINDER_MESSAGE;
 
-public class Reminder extends ReadOnlyCommand {
-    public static final String COMMAND_WORD = "reminder";
-    public static final Pattern COMMAND_PATTERN = Pattern.compile("^reminder (?<key>\\d+)"
-            + "( t/(?<t>\\d{4}))?$");
-    private final Integer key;
+public class Reminder {
     private final Integer time;
     private final Timer timer;
 
-    public Reminder(String keyString, String timeString) throws InvalidTaskNumberException {
+    public Reminder(String timeString) throws InvalidTaskNumberException {
         timer = new Timer();
         if (timeString != null) {
             this.time = Integer.parseInt(timeString);
         } else {
             this.time = null;
         }
-        try {
-            key = Integer.parseInt(keyString);
-        } catch (NumberFormatException e) {
-            throw new InvalidTaskNumberException();
-        }
+    }
+    public Reminder() {
+        timer = new Timer();
+        this.time = null;
     }
 
-    public CommandResult execute(TaskMap tasks) throws InvalidTaskNumberException {
-        Task task = tasks.get(key);
-        if (task == null) {
-            throw new InvalidTaskNumberException();
-        }
-        Calendar calendar = Calendar.getInstance();
-        TaskMap taskReminder = new TaskMap();
-        taskReminder.addTask(task);
-        if (time != null) {
-            calendar.set(task.getDate().getYear(), task.getDate().getMonthValue() - 1,
-                    task.getDate().getDayOfMonth(), (time / 100), (time % 100),0);
-        } else {
-            calendar.set(task.getDate().getYear(), task.getDate().getMonthValue() - 1,
-                    task.getDate().getDayOfMonth(), task.getStartTime().getHour() - 1,
-                    task.getStartTime().getMinute(),0);
-        }
-        Date date = calendar.getTime();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println("Reminder, you have an upcoming task: ");
-                Ui ui = new Ui();
-                ui.displayTasks(taskReminder);
-                timer.cancel();
-            }
-        }, date);
-        return new CommandResult(REMINDER_MESSAGE);
+    public Integer getTime() {
+        return time;
     }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+
 
 }

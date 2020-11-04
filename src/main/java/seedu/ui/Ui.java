@@ -4,10 +4,13 @@ import seedu.commands.CommandResult;
 import seedu.commons.Util;
 import seedu.data.TaskMap;
 import seedu.task.Task;
+import seedu.task.Priority;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 
+
+import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -82,9 +85,28 @@ public class Ui {
                 task.getPriority());
     }
 
+    public void printContentFormat(LocalDate date, LocalTime startTime, LocalTime endTime, Priority priority,
+                                   Integer taskID, String description) {
+        String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
+        out.format(contentFormat,"#" + taskID,
+                Util.limitStringWithDots(description, 20),
+                date,
+                startTime == null ? "" : startTime,
+                endTime == null ? "" : endTime,
+                priority);
+    }
+
     public void displaySingleTask(Task task) {
         printHeader();
         printContentFormat(task);
+        out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
+        out.println();
+    }
+
+    public void displaySingleTask(LocalDate date, LocalTime startTime, LocalTime endTime, Priority priority,
+                                  Integer taskID, String description) {
+        printHeader();
+        printContentFormat(date, startTime, endTime, priority, taskID, description);
         out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
         out.println();
     }

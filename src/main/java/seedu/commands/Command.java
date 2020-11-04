@@ -2,11 +2,7 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.EmptyDataStackException;
-import seedu.exceptions.InvalidDatetimeException;
-import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.MaxNumTaskException;
+import seedu.exceptions.*;
 
 public class Command {
     public CommandResult execute() {
@@ -18,7 +14,7 @@ public class Command {
     }
 
     public CommandResult execute(Model model) throws InvalidPriorityException, InvalidDatetimeException,
-        MaxNumTaskException, InvalidTaskNumberException, EmptyDataStackException {
+        MaxNumTaskException, InvalidTaskNumberException, EmptyDataStackException, InvalidCommandException {
         return new CommandResult("");
     }
 }
