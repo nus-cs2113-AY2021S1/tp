@@ -1396,3 +1396,56 @@ If you wish to add new checks, simply add the check file with a filename `check-
         4.  `bookmark x -r x` (where x is a negative number, a word, or an additional parameter)
 
 <br/>
+
+### D.x: Browse 
+1.  Utilising the `browse` feature
+    1.  Prerequisite:  None.
+
+    2.  Test case: `browse` <br/>
+    Expected: Will list 20 anime series according to the anime ID.
+    
+    3.  Test case: `browse -s rating` <br/>
+    Expected: Will list 20 anime series according to the most popular anime ratings.
+    
+    4.  Test case: `browse -s rating -o asc` <br/>
+    Expected: Will list 20 anime series from the lowest rated anime series.
+    
+    5.  Other incorrect commands to try: 
+        1.  `browse -s alpha`
+        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter)
+        3.  `browse -s name -s rating`
+        4.  `browse ---`
+        5.  `browse -s rating-o asc`
+<br/>
+
+### D.x: Search by name
+1.  Finding an anime series with `search` feature
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -n Mushi` <br/>
+    Expected: Will return anime with the keyword 'Mush'. In this case it would return MUSHI-SHI.
+    
+    3.  Test case: `search -n MUSHI-` <br/>
+    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return MUSHI-SHI.
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -n mush -n shi` In this case it would attempt to search for `mush -n shi`. And return no results.
+        3.  `search -n`
+<br/>
+
+### D.x: Search by genre
+1.  Finding all anime series that has a specific genre with `search` feature
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -g Music` <br/>
+    Expected: Will return all anime that has 'Music' as its genre
+    
+    3.  Test case: `search -n slice of life` <br/>
+    Expected: Will return anime that has 'Slice of Life' as its genre
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -g musik` In this case it would attempt to search for `mush -n shi`. And return no results.
+        3.  `search -g`
+<br/>
