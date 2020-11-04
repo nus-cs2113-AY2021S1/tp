@@ -64,7 +64,10 @@ public class RepeatCommand extends Command {
      * @return RepeatCommand set to either add additional dates or set to list out current dates in event
      */
     public static Command parse(String input) throws DukeException {
-        String[] words = input.split(" ");
+        String[] words = input.split(";");
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].trim();
+        }
         switch (words.length) {
         case 2:
             words[0] = formatListName(words[0]);

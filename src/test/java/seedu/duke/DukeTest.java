@@ -71,14 +71,14 @@ class DukeTest {
 
             assertEquals("_________________________________" + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator()
+                            + "[P][X] birthday on 2001-01-03, 00:00" + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
                             + "Here is a list of your Personal events:" + System.lineSeparator()
-                            + "1. [P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator()
+                            + "1. [P][X] birthday on 2001-01-03, 00:00" + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
                             + "You have successfully deleted this event!" + System.lineSeparator()
-                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator(),
+                            + "[P][X] birthday on 2001-01-03, 00:00" + System.lineSeparator(),
                     outputStreamCaptor.toString());
         } catch (DukeException e) {
             fail("Should not have any errors in executing commands");
@@ -106,7 +106,7 @@ class DukeTest {
 
             assertEquals("_________________________________" + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator(),
+                            + "[P][X] birthday on 2001-01-03, 00:00" + System.lineSeparator(),
                     outputStreamCaptor.toString());
         } catch (DukeException e) {
             fail("Should not have any errors in executing commands");
@@ -139,7 +139,7 @@ class DukeTest {
             System.setIn(stdin);
             assertEquals("_________________________________" + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] birthday on 2001-01-03, 00:00" + System.lineSeparator()
+                            + "[P][X] birthday on 2001-01-03, 00:00" + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator(),
                     outputStreamCaptor.toString());
         }
@@ -182,7 +182,7 @@ class DukeTest {
                             + "One date detected and chosen: 2021-01-27" + System.lineSeparator()
                             + "One timing detected and chosen: 09:00" + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] meeting on 2021-01-27, 09:00" + System.lineSeparator(),
+                            + "[P][X] meeting on 2021-01-27, 09:00" + System.lineSeparator(),
                     outputStreamCaptor.toString());
         }
 
