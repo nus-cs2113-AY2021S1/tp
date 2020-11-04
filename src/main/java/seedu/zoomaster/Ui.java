@@ -86,6 +86,8 @@ public class Ui {
             System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 3) {
             System.out.print(ansi().fg(MAGENTA).a("[Planner mode] Input: ").reset());
+        } else if (Parser.getProgramMode() == 4) {
+            System.out.print(ansi().fg(MAGENTA).a("[Settings mode] Input: ").reset());
         } else {
             System.out.print("[An error has occurred] ");
         }

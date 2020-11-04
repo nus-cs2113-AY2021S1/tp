@@ -18,6 +18,7 @@ import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
 import seedu.zoomaster.command.planner.SavePlannerCommand;
 
+import seedu.zoomaster.command.settings.ShowSettingsCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.LaunchModuleAndSlotBookmark;
@@ -70,6 +71,8 @@ public class Parser {
             command = createTimetableCommand(input);
         } else if (programMode == 3) {
             command = createPlannerCommand(input);
+        } else if (programMode == 4) {
+            command = createSettingsCommand(input);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
@@ -129,6 +132,15 @@ public class Parser {
             return new SavePlannerCommand();
         } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
             return new LoadPlannerCommand();
+        } else {
+            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
+        }
+    }
+
+    //@@author fchensan
+    private static Command createSettingsCommand(String input) throws ZoomasterException {
+        if (input.startsWith(ShowSettingsCommand.SHOW_KW)) {
+            return new ShowSettingsCommand();
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }

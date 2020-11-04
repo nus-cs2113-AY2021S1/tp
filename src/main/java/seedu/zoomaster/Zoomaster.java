@@ -2,6 +2,7 @@ package seedu.zoomaster;
 
 import com.google.gson.JsonParseException;
 import seedu.zoomaster.bookmark.BookmarkList;
+import seedu.zoomaster.settings.UserSettings;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.command.Command;
 import seedu.zoomaster.exception.ZoomasterException;
@@ -15,11 +16,14 @@ public class Zoomaster {
     private Storage<BookmarkList> bookmarkStorage;
     private Storage<Timetable> timetableStorage;
     private Storage<Timetable> plannerStorage;
+    private Storage<UserSettings> userSettingsStorage;
     private BookmarkList bookmarks;
     private Timetable timetable;
     private Timetable planner;
     //private ArrayList<File> files;
     private Ui ui;
+
+    public static UserSettings userSettings;
 
     /**
      * Constructs a new Zoomaster instance.
@@ -30,14 +34,16 @@ public class Zoomaster {
      */
     public Zoomaster(String bookmarkFilePath, String timetableFilePath) {
         ui = new Ui();
-      
+
         bookmarkStorage = new Storage<>(getJarFilepath() + bookmarkFilePath, BookmarkList.class);
         timetableStorage = new Storage<>(getJarFilepath() + timetableFilePath, Timetable.class);
+        userSettingsStorage = new Storage<>(getJarFilepath() + timetableFilePath, UserSettings.class);
       
         try {
             bookmarks = bookmarkStorage.load();
             timetable = timetableStorage.load();
             planner = new Timetable();
+            userSettings = userSettingsStorage.load();
             Module.setModuleList(timetableStorage.loadModuleList());
         } catch (ZoomasterException e) {
             ui.showErrorMessage(e);
@@ -66,11 +72,14 @@ public class Zoomaster {
                     c.execute(bookmarks, timetable, ui);
                 }
                 isExit = c.isExit();
+
                 bookmarkStorage.save(bookmarks);
                 timetableStorage.save(timetable);
-
+                userSettingsStorage.save(userSettings);
             } catch (ZoomasterException e) {
                 ui.showErrorMessage(e);
+            } catch (Exception e) {
+                ui.print(e.getMessage());
             }
         } while (!isExit);
     }
