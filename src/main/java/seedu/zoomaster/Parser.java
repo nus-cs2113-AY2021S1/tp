@@ -38,6 +38,7 @@ public class Parser {
      * programMode == 0: Main menu mode
      * programMode == 1: Bookmark mode
      * programMode == 2: Timetable mode
+     * programMode == 3: Planner mode
      */
     public static int programMode = 0;
 
