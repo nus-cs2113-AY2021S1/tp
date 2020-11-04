@@ -723,7 +723,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                            |
 | Add to watchlist                             | `add <ANIME_ID>`                                         |
 | Remove from watchlist                        | `remove <ANIME_ID_IN_WATCHLIST>`                         |
-| View anime in watchlist                      | `view [-v <WATCHLIST_ID>]`                               |
+| View anime in watchlist                      | `view [-v WATCHLIST_ID]`                                 |
 | List bookmark                                | `bookmark -l`                                            |
 | Add bookmark entry                           | `bookmark -a <ANIME_ID>`                                 |
 | Delete bookmark entry                        | `bookmark -d <BOOKMARK_ID>`                              |
