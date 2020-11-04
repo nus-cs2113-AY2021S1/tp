@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.notus.ui.Formatter.LS;
+import static seedu.notus.util.PrefixSyntax.*;
 
 //@@author prachi2023
 
@@ -137,7 +138,9 @@ public class StorageManager {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
         while (s.hasNext()) {
-            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
+            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine()
+                                + " " + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + isArchive
+                                + " " + PREFIX_DELIMITER + PREFIX_LOAD;
             Command command = parserManager.parseCommand(taskDetails);
             command.setData(notebook, timetable, tagManager, this);
             command.execute();
@@ -341,9 +344,9 @@ public class StorageManager {
 
         for (RecurringEvent event: recurringEvents) {
             eventDetails = getEventDetailsSaveFormat(event);
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
+            eventDetails += PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
                         + " " + event.getRecurrenceType() + " "
-                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
+                        + PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
                         + " " + event.getEndRecurrenceDateTime() + " "
                         + LS;
             fwAppend.write(eventDetails);
@@ -353,13 +356,13 @@ public class StorageManager {
 
     private static String getEventDetailsSaveFormat(Event event) {
         String eventDetails;
-        eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
-                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " ";
+        eventDetails = PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
+                + PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " ";
 
         ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
 
         if (!reminderPeriods.isEmpty()) {
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " ";
+            eventDetails += PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " ";
             for (String reminderPeriod : reminderPeriods) {
                 eventDetails += reminderPeriod + " ";
             }
