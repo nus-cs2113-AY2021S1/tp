@@ -30,6 +30,11 @@ Given below are my contributions to the project.
     *   Justification: There needs to be a way to handle logging for all the classes in **AniChan** without duplicating Java `logger` everywhere.
     *   Highlights: Implemented method for all classes to easily get logger for their own logging usage. Standardized application-wide **AniChan** logging settings and level for both console and file system. **AniLogger** is fully capable of handling add and removals of console and file handlers and manage logs creation and exceptions, if any.
 
+*   **New Feature:** Implemented Workspace delete feature for `Storage`.
+    *   What it does: Deletes Workspace on the file system when `Workspace` is deleted in **AniChan**.
+    *   Justification: When Workspace is deleted in AniChan, the leftover folder and files in `data` should be deleted as well.
+    *   Highlights: Implemented a safe recursive delete approach for `Workspace` deletion, where it searches recursively for leftover `Watchlist`/`Bookmark` data to delete first before deleting the folder. Exceptions and input validation built in for deletion to prevent file system related issues to crash the program or cause unexpected results.
+
 *   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao)
     
 *   **Documentation:**
