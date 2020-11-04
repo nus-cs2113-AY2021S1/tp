@@ -1,7 +1,8 @@
 # Michael Dinata - Project Portfolio Page
 
 ## Overview
-
+AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve
+their workflow efficiency and translation accuracy. AniChan is built for fast typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC. 
 
 ### Summary of Contributions
 This section shows a summary of my coding, documentation and other contributions to the team project.
