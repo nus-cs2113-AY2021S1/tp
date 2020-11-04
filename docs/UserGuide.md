@@ -8,7 +8,9 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
+
 2. [Quick Start](#2-quick-start)
+
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help](#31-view-the-help)
 <br/>&nbsp;3.2 [Estimate time need to translate the script](#32-estimate-time-needed-to-translate-the-script)
@@ -40,7 +42,9 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.7 [View information of a bookmark entry](#387-view-information-of-a-bookmark-entry)
 <br/>&nbsp;3.9 [Exit AniChan](#39-exit-anichan)
 <br/>&nbsp;3.10 [Saving and loading data](#310-saving-and-loading-data)
+
 4. [FAQ](#4-faq)
+
 5. [Command Summary](#5-command-summary)
 
 <br/>
@@ -57,12 +61,32 @@ This guide provides you with in-depth information on setting up AniChan and how 
 
 <br/>
 
+### 1.2 Using this guide
+
+Along the way you might encounter several icons. These icons can help provide several types of information that may be useful to you. 
+
+> :bulb: Take note when you see this icon, as it might tell you something important.
+
+> :memo: This icon represents a friendly tip that might be useful when using our application.
+
+> :warning: A caution that you have to keep in mind when using the command
+
+Lastly, text that are blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this user guide. 
+
+<br/>
+
 ## 2. Quick Start
 1.  Ensure that you have Java 11 or above installed.
 2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **command prompt** or **terminal** and change directory into the folder. Run `java -jar AniChan.jar`.
-5.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
+5.  You will be greeted by a prompt for your name and gender as shown below.
+6.  Upon completing these 2 prompts, you can begin using **AniChan**!
+7.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
+
+![First Time Setup](images/User-Guide-Setting-Up.png)
+
+*Figure 1: Example of First Time Setup*
 
 <br/>
 
@@ -71,6 +95,9 @@ This guide provides you with in-depth information on setting up AniChan and how 
 
 *   Commands are case-sensitive. <br/>
 E.g. Only `help` will work, and so `HELP`, `hElp`, and its other variant will not work.
+
+*   All parameter options are lowercase letters. <br/>
+E.g. `-l` in this case would be a lowercase letter of 'L'. Not to be mistaken with `1` or `I`.
 
 *   Words in UPPERCASE are values that can be supplied to the command. <br/>
 E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.` can be replaced with `name` and `1` respectively. 
@@ -88,9 +115,8 @@ E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result,
 ### 3.1 View the help
 This command will provide the details of all available commands and their usage. 
 This is done by displaying the ‘Command Summary’ as listed below to the user. 
-You can also provide the optional `COMMAND_TYPE` to view the details for that specific command.
 
-Format: `help [COMMAND_TYPE]`
+Format: `help`
 
 <br/>
 
@@ -137,11 +163,13 @@ Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
 *   The order of the options does not matter
 *   If no option or only `-o` is specified then it will display anime in no particular order.
 
+> :memo: It will actually be sorted according to its ID which is assigned randomly by our data source.
+
 <br/>
 
 Here are some commonly used `browse` commands to get you started. Feel free to experiment with different combinations!
-*   `browse -s name -o dsc`: browse alphabetically from A - Z
-*   `browse -s rating -o dsc`: browse starting from the most highly rated anime
+*   `browse -s name -o dsc` browse alphabetically from A - Z
+*   `browse -s rating -o dsc` browse starting from the most highly rated anime
 
 <br/>
 
@@ -208,7 +236,7 @@ Format: `search -g <SEARCH_TERM>`
 
 <br/>
 
-Here are some of the popular genres that you can try:
+Here are some popular anime genres that you can try out!
 *   Action
 *   Adventure
 *   Music
@@ -355,7 +383,7 @@ Creates a new watchlist to keep track of anime(s).
 
 Format: `watchlist -n <WATCHLIST_NAME>`
 
-> :bulb: Watchlist name can only consist of alphanumeric characters and/or spaces.
+> :bulb: Watchlist name can only contain a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only.
 > :warning: Watchlist name has to be unique in the workspace.
 
 <br/>
@@ -466,7 +494,7 @@ Trigun successfully removed from watchlist
 ### 3.7.7 View all anime in watchlist
 View all the anime that you have stored in your current watchlist, or in a specific watchlist
 
-Format: `view [-v WATCHLIST_ID]`
+Format: `view [-v <WATCHLIST_ID>]`
 *   If the parameter `-v` is not specified, the anime in the current watchlist you are using will be shown.
 
 <br/>
@@ -654,6 +682,10 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
+![Data Loaded on Startup](images/Data-Loaded-On-Startup.png)
+
+*Figure 2: Example of Data Loaded On Startup*
+
 <br/>
 
 ## 4. FAQ
@@ -689,7 +721,7 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | Browse                                       | `browse [-s SORT_OPTION] [-p PAGE_NO.] [-o SORT_ORDER]`  |
 | Search by title                              | `search -n <SEARCH_TERM>`                                |
 | Search by genre                              | `search -g <SEARCH_TERM>`                                |
-| View anime information                       | `info <ANIME_ID>`                                     |
+| View anime information                       | `info <ANIME_ID>`                                        |
 | Create new workspace                         | `workspace -n <NAME>`                                    |
 | Switch workspace                             | `workspace -s <NAME>`                                    |
 | List workspace                               | `workspace -l`                                           |
@@ -698,8 +730,8 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | List all watchlist                           | `watchlist -l`                                           |
 | Select watchlist                             | `watchlist -s <WATCHLIST_ID>`                            |
 | Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                            |
-| Add to watchlist                             | `add <ANIME_ID>`                                      |
-| Remove from watchlist                        | `remove <ANIME_ID_IN_WATCHLIST>`                      |
+| Add to watchlist                             | `add <ANIME_ID>`                                         |
+| Remove from watchlist                        | `remove <ANIME_ID_IN_WATCHLIST>`                         |
 | View anime in watchlist                      | `view [-v WATCHLIST_ID]`                                 |
 | List bookmark                                | `bookmark -l`                                            |
 | Add bookmark entry                           | `bookmark -a <ANIME_ID>`                                 |

@@ -225,4 +225,35 @@ search   -n fate
 search -n   fate
 search  -n fate
 search -g music
+watchlist
+watchlist -unknown helloworld
+watchlist -n abc
+watchlist -n abc -hello
+watchlist -n -hello
+watchlist -n testing1233333333333333333333333333333333333333
+watchlist -n abc
+watchlist -l
+watchlist -l a
+watchlist -l -hello
+watchlist -l -----
+watchlist -l -1
+watchlist -s 2
+watchlist -s 1 2
+watchlist -s -1
+watchlist -s one
+watchlist -s -hello
+watchlist -s -------
+watchlist -d 2
+watchlist -d 1 2
+watchlist -d -1
+watchlist -d one
+watchlist -d -hello
+watchlist -d -------
+watchlist             -n           Hello               World
+watchlist             -l
+watchlist             -l                         abc
+watchlist                -s                 2
+watchlist                -s                 5                   5
+watchlist                     -d                 2
+watchlist                     -d                 5              5
 exit

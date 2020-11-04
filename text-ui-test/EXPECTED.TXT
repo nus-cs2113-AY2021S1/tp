@@ -663,4 +663,72 @@ Triple Fromage Cheesecake (Default) #> [ID:39] Beck: Mongolian Chop Squad
 [ID:476] Mermaid Melody: Pichi Pichi Pitch
 
 
+Triple Fromage Cheesecake (Default) #> OOPS!!! No parameter provided.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command only accepts the parameters: -n, -l, -s, and -d.
+
+Triple Fromage Cheesecake (Default) #> Watchlist "abc" has been created successfully!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much parameters.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much parameters.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name should not be longer than 30 characters!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name is used already!
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 2 watchlist(s):
+	1. Default
+	2. abc
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much parameters.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> "abc" is now your active watchlist!
+
+Triple Fromage Cheesecake (abc) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (abc) #> OOPS!!! Please provide a positive integer instead!
+
+Triple Fromage Cheesecake (abc) #> OOPS!!! Please provide a integer instead!
+
+Triple Fromage Cheesecake (abc) #> OOPS!!! Watchlist command has too much parameters.
+
+Triple Fromage Cheesecake (abc) #> OOPS!!! Please provide a integer instead!
+
+Triple Fromage Cheesecake (abc) #> Watchlist "abc" has been deleted successfully!
+Changed active watchlist to: "Default".
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a positive integer instead!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a integer instead!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much parameters.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a integer instead!
+
+Triple Fromage Cheesecake (Default) #> Watchlist "Hello               World" has been created successfully!
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 2 watchlist(s):
+	1. Default
+	2. Hello               World
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> "Hello               World" is now your active watchlist!
+
+Triple Fromage Cheesecake (Hello               World) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (Hello               World) #> Watchlist "Hello               World" has been deleted successfully!
+Changed active watchlist to: "Default".
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
+
 Triple Fromage Cheesecake (Default) #> Sayonara Abec Steiner 77th-chan!

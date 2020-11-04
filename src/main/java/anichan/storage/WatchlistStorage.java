@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class WatchlistStorage extends Storage {
     private static final String WATCHLIST_FILE_NAME = "watchlist.txt";
-    private static final String WATCHLIST_LINE_DELIMITER_FOR_DECODE = " \\| ";
+    private static final String WATCHLIST_LINE_DELIMITER_FOR_DECODE = "\\|";
     private static final String WATCHLIST_LINE_DELIMITER_FOR_ENCODE = " | ";
     private static final String DELIMITER_FOR_ENCODED_ANIME_LIST = ",";
     private static final String ENCODED_ANIME_LIST_FIRST_CHARACTER = "[";
@@ -26,7 +26,7 @@ public class WatchlistStorage extends Storage {
     private static final String SOME_WATCHLIST_LOADED = "Not all loaded successfully (some invalid).";
     private static final String LOAD_SUCCESS = "Loaded successfully.";
 
-    private static final int MAX_ANIME_INDEX = 510;
+    private static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
     private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistStorage.class.getName());
 
@@ -133,28 +133,30 @@ public class WatchlistStorage extends Storage {
             return null;
         }
 
-        String watchlistName = lineSplit[0];
-        String animeListString = lineSplit[1].substring(1, lineSplit[1].length() - 1);
+        String watchlistName = lineSplit[0].trim();
+        if (watchlistName.isBlank()) {
+            return null;
+        }
+
+        String animeListString = lineSplit[1].trim();
+        String animeListStringContent = animeListString.substring(1, animeListString.length() - 1);
 
         ArrayList<Integer> animeList = new ArrayList<>();
-        if (animeListString.isBlank()) {
+        if (animeListStringContent.isBlank()) {
             return new Watchlist(watchlistName, animeList);
         }
 
-        String[] animes = animeListString.split(DELIMITER_FOR_ENCODED_ANIME_LIST);
+        String[] animes = animeListStringContent.split(DELIMITER_FOR_ENCODED_ANIME_LIST);
         for (String animeIndex : animes) {
             String trimmedIndex = animeIndex.trim();
-            if (!isValidAnimeIndexString(trimmedIndex)) {
+            if (!isPositiveInteger(trimmedIndex)) {
                 return null;
             }
 
-            int parsedAnimeIndex = Integer.parseInt(trimmedIndex);
-            if (parsedAnimeIndex > MAX_ANIME_INDEX) {
-                return null;
-            }
-
-            // Checks for duplicate anime index
-            if (animeList.contains(parsedAnimeIndex)) {
+            int parsedAnimeIndex = parseStringToInteger(trimmedIndex);
+            boolean isValidAnimeIndex = (parsedAnimeIndex <= MAX_ANIME_INDEX)
+                                        && !(animeList.contains(parsedAnimeIndex));
+            if (!isValidAnimeIndex) {
                 return null;
             }
 
@@ -178,32 +180,15 @@ public class WatchlistStorage extends Storage {
             return false;
         }
 
-        String watchlistName = lineSplit[0];
-        if (watchlistName.length() > MAX_WATCHLIST_NAME_LENGTH) {
+        String watchlistName = lineSplit[0].trim();
+        boolean isValidWatchlistName = (watchlistName.length() <= MAX_WATCHLIST_NAME_LENGTH)
+                                        && (watchlistName.matches(REGEX_ALPHANUMERIC_WITH_SPACE));
+        if (!isValidWatchlistName) {
             return false;
         }
 
-        return (lineSplit[1].startsWith(ENCODED_ANIME_LIST_FIRST_CHARACTER))
-                && (lineSplit[1].endsWith(ENCODED_ANIME_LIST_LAST_CHARACTER));
-    }
-
-    /**
-     * Validates the anime index read from the string representation of the watchlist object.
-     *
-     * @param animeIndex the index of an anime series
-     * @return {@code true} if the index is valid; {@code false} otherwise
-     */
-    private boolean isValidAnimeIndexString(String animeIndex) {
-        boolean isAnimeIndexBlank = animeIndex.isBlank();
-        if (isAnimeIndexBlank) {
-            return false;
-        }
-
-        boolean isAnimeIndexInteger = isPositiveInteger(animeIndex);
-        if (!isAnimeIndexInteger) {
-            return false;
-        }
-
-        return true;
+        String animeListString = lineSplit[1].trim();
+        return (animeListString.startsWith(ENCODED_ANIME_LIST_FIRST_CHARACTER))
+                && (animeListString.endsWith(ENCODED_ANIME_LIST_LAST_CHARACTER));
     }
 }

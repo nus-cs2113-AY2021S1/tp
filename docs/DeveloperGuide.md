@@ -11,6 +11,7 @@
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
 
 2.  [Setting up](#2-setting-up)
+
 3.  [Design](#3-design)
 <br/>&nbsp;3.1  [Architecture](#31-architecture)
 <br/>&nbsp;3.2  [UI Component](#32-ui-component)
@@ -18,7 +19,7 @@
 <br/>&nbsp;3.4  [Command Component](#34-command-component)
 <br/>&nbsp;3.5  [AnimeData Component](#35-animedata-component)
 <br/>&nbsp;3.6  [User Component](#36-user-component)
-<br/>&nbsp;3.7  [Storage Component](#37-storage-component)
+<br/>&nbsp;3.7  [StorageManager Component](#37-storagemanager-component)
 
 4.  [Implementation](#4-implementation)
 <br/>&nbsp;4.1  [Estimate Feature](#41-estimate-feature)
@@ -52,7 +53,7 @@
 
 ### 1.1 Purpose
 
-This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated for each major release, and the current edition of this document is intended for the release v2.0.
+This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated for each major release, and the current edition of this document is intended for the release v2.1.
 
 <br/>
 
@@ -107,7 +108,7 @@ This section will help provide insight to the general overview of **Anichan**’
 
 <br/>
 
-![Architectural Diagram](images/Architectural-Design.png)
+![Architecture Diagram](images/Architecture-Design.png)
 
 *Figure 1: Architecture Design Diagram*
 
@@ -127,7 +128,7 @@ The rest of **AniChan** consists of 6 components:
 *   `Command`: Executes the command.
 *   `User`: Manages the workspace(s) and user data.
 *   `AnimeData`: Provides data from the anime source file.
-*   `Storage`: Reads data from, and writes data to, the hard disk.
+*   `StorageManager`: Reads data from, and writes data to, the hard disk.
 
 <br/>
 
@@ -217,11 +218,11 @@ The `Workspace` component:
 
 <br/>
 
-### 3.7 Storage Component
-![Storage Class Diagram](images/Storage-Class-Diagram.png) <br/>
-*Figure 9: Storage Class Diagram*
+### 3.7 StorageManager Component
+![StorageManager Class Diagram](images/StorageManager-Class-Diagram.png) <br/>
+*Figure 9: StorageManager Class Diagram*
 
-The `Storage` component consist of `StorageManager` which:
+The `StorageManager` component:
 *   can **save** workspace created by the user as a folder.
 *   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
 *   can **read** script files that are in `.txt` format using the class `ScriptStorage`.
@@ -252,7 +253,6 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 **Step 2:** `EstimateParser` is terminated at this point. The application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
 **Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace the user is currently using, then it invokes `StorageManager#loadScriptFile()` to read and store the content of `scriptFileName` in the active workspace folder in `fileContent`.
-
 > :memo: Every workspace is actually a folder in the system.
 
 > :memo: The application assumes that the user has the file placed in the active (currently using) workspace.
@@ -260,7 +260,6 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 <br/>
 
 **Step 4:** Once the file has been read, it calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
-
 > :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimation timing will be generated.
 
 <br/>
@@ -412,7 +411,10 @@ The first design consideration was how the sorting should be carried out. The ma
 While the 1st approach is the fastest, the consequence of leaving the main list unsorted is too great and may produce a 
 lot of uncertain results as well as confuse the user. Although the 3rd approach provides the best benefit, 
 its complexity may end up violating the project’s memory limit constraint if the list is large. 
+
 Therefore, the 2nd approach was adopted, as its performance cost outweighs the others.
+
+<br/>
 
 Aspect: **Should the program use an interactive or static browsing approach**
 
@@ -427,6 +429,7 @@ The main concern here was cohesiveness and interactivity.
 Though the 1st approach could have created a more authentic browsing feature it is not a good fit of the OOP requirements.
 While the 2nd approach allows for more precise browsing of pages means that more experienced users are able to utilise the 
 tool quicker and to the same effect as the first approach. 
+
 As a result, the 2nd approach was adopted in favour of having an application that is highly object-oriented.
 
 <br/>
@@ -644,8 +647,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 **Step 4:** It first invokes `activeWorkspace.getWatchlistList()` to initialise `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and validated before it is added to `watchlistList`.
 
 **Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and finally, the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
-
-> :memo: The validation checks ensure the watchlist name is unique in `watchlistList` and the name does not exceed 30 characters.
+> :memo: The validation checks ensure the watchlist name is unique in `watchlistList`, is not empty, and contains less than or equal to 30 alphanumeric characters and/or spaces. 
 
 > :memo: The details of all `Watchlist` object for a workspace will be saved in the file "watchlist.txt" in the workspace folder.
 
@@ -703,14 +705,14 @@ Having considered both of these alternatives, we have decided to save watchlist 
 
 <br/>
 
-Aspect: **Length of watchlist name**
+Aspect: **Watchlist name restriction**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| No restriction | Users have more flexibility | This may hinder user's vision of the input prompt |
-| Restricted to 30 characters **(current design)** | Ensures users have proper view of the input prompt | Users have less flexibility in naming |
+| No restriction. | Users have more flexibility. | This may hinder user's vision of the input prompt and affects the usability. |
+| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only **(current design)**. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
 
-While both alternatives are valid in their own ways, we have decided to **restrict the length of watchlist name to 30 characters** because we find that long names can muddle up the readability. We also believe that most users would probably prefer to use short names as that makes it easier for them to identify what the watchlist is.
+While both alternatives are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
 
 <br/>
 
@@ -1155,7 +1157,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     4.  Other incorrect commands to try: 
         1.  `estimate`.
         2.  `estimate x` (where x is not a `.txt` file, or it is a file path).
-        3.  `estimate script.txt -wph y` (where y is a negative number or a word).
+        3.  `estimate script.txt -wph x` (where x is a negative number or a word).
 
 > :memo: The file name (including extension) does not have to be `script.txt`, it is named as such for the convenience of testing.
 
