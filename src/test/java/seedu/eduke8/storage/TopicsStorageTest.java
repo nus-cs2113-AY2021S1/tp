@@ -4,6 +4,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.topic.Topic;
 
@@ -41,7 +42,31 @@ class TopicsStorageTest extends Eduke8Test {
     }
 
     @Test
-    void load_exampleJson_returnsTopicsFromJson() throws IOException, ParseException {
+    void load_noCorrectAnswerJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/no_correct_answer.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
+    void load_twoCorrectAnswerJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/two_correct_answer.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
+    void load_threeOptionsJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/three_options.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
+    void load_fiveOptionsJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/five_options.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
+    void load_exampleJson_returnsTopicsFromJson() throws IOException, ParseException, Eduke8Exception {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_TOPICS_JSON);
 
         ArrayList<Displayable> topics = topicsStorage.load();
