@@ -1,7 +1,4 @@
-# Kingston Kuan - Project Portfolio Page
-
-*Table of Contents
-{:toc}
+# Kingston Kuan Jun Xiang - Project Portfolio Page
 
 ## Overview
 
