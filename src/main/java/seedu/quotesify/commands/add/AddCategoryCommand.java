@@ -82,9 +82,16 @@ public class AddCategoryCommand extends AddCommand {
 
                 String bookNum = parameters[1];
                 String quoteNum = parameters[2];
+                int bookTagCount = Integer.parseInt(parameters[3]);
+                int quoteTagCount = Integer.parseInt(parameters[4]);
 
-                addCategoryToBook(category, bookNum, ui);
-                addCategoryToQuote(category, quoteNum, ui);
+                if (bookTagCount == 1) {
+                    addCategoryToBook(category, bookNum, ui);
+                }
+
+                if (quoteTagCount == 1) {
+                    addCategoryToQuote(category, quoteNum, ui);
+                }
                 categoryList.updateListsInCategory(category);
             }
         } catch (QuotesifyException e) {
@@ -94,7 +101,7 @@ public class AddCategoryCommand extends AddCommand {
     }
 
     /**
-     * Adds a category to the list of categories.
+     * Adds a category to the list of categories if it does not exist.
      *
      * @param categories list of categories
      * @param categoryName category name
@@ -115,6 +122,7 @@ public class AddCategoryCommand extends AddCommand {
     private void addCategoryToBook(Category category, String bookNum, TextUi ui) {
         // ignore this action if user did not provide book title
         if (bookNum.isEmpty()) {
+            ui.printErrorMessage(ERROR_NO_BOOK_NUMBER);
             return;
         }
         assert category != null;
@@ -154,6 +162,7 @@ public class AddCategoryCommand extends AddCommand {
     private void addCategoryToQuote(Category category, String quoteNum, TextUi ui) {
         // ignore this action if user did not provide quote number
         if (quoteNum.isEmpty()) {
+            ui.printErrorMessage(ERROR_NO_QUOTE_NUMBER);
             return;
         }
         assert category != null;

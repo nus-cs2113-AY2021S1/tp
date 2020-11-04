@@ -38,6 +38,7 @@ public class ListCategoryCommand extends ListCommand {
      */
     private void listCategories(CategoryList categoryList, TextUi ui) {
         categoryList.updateListsInAllCategories();
+        categoryList.removeEmptyCategories();
         if ((information.isEmpty())) {
             listAllCategories(categoryList, ui);
         } else {

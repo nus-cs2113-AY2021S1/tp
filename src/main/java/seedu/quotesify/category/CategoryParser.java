@@ -33,7 +33,7 @@ public class CategoryParser {
      * Fetches the essential parameters from a string array.
      *
      * @param tokens array of string
-     * @return array of string in {categories, book number, quote number} format
+     * @return parameters in {categories, book-number, quote-number, book-tag-count, quote-tag-count} format
      * @throws QuotesifyException if invalid parameters are specified
      */
     public static String[] getRequiredParameters(String[] tokens) throws QuotesifyException {
@@ -67,7 +67,7 @@ public class CategoryParser {
             throw new QuotesifyException(ERROR_INVALID_PARAMS);
         }
 
-        return new String[]{categories, bookTitle, quoteNum};
+        return new String[]{categories, bookTitle, quoteNum, bookTagCount + "", quoteTagCount + ""};
     }
 
     /**
@@ -78,16 +78,17 @@ public class CategoryParser {
      */
     public static int validateParametersResult(String[] parameters) {
         String categoryName = parameters[0];
-        String bookNum = parameters[1];
-        String quoteNum = parameters[2];
+        int bookTagCount = Integer.parseInt(parameters[3]);
+        int quoteTagCount = Integer.parseInt(parameters[4]);
 
         if (categoryName.isEmpty()) {
             return -1;
         }
 
-        if (quoteNum.isEmpty() && bookNum.isEmpty()) {
+        if (bookTagCount == 0 && quoteTagCount == 0) {
             return 0;
         }
+
         return 1;
     }
 
