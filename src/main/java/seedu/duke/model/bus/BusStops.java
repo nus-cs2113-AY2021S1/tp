@@ -103,7 +103,7 @@ public enum BusStops {
     }
 
     /**
-     * Re-initialise all search frequencies to zero
+     * Re-initialise all search frequencies to zero.
      */
     public static void resetSearchFrequency() {
         for (BusStops busStop : EnumSet.allOf(BusStops.class)) {
@@ -112,7 +112,7 @@ public enum BusStops {
     }
 
     /**
-     * Searches for the most searched bus top with highest search frequency
+     * Searches for the most searched bus top with highest search frequency.
      *
      * @return bus Bus object, if found
      */

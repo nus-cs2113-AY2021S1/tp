@@ -26,7 +26,7 @@ public class FreqStorage extends Storage {
     }
 
     /**
-     * Reads stored TXT file by calling on private loadFile function
+     * Reads stored TXT file by calling on private loadFile function.
      */
     @Override
     public void readFile() throws CustomException {
@@ -39,7 +39,7 @@ public class FreqStorage extends Storage {
     }
 
     /**
-     * Updates stored TXT file by calling on private saveFile function
+     * Updates stored TXT file by calling on private saveFile function.
      *
      * @throws CustomException If file can't be updated
      */
@@ -54,7 +54,7 @@ public class FreqStorage extends Storage {
     }
 
     /**
-     * Saves files in a line of integers for the bus stops
+     * Saves files in a line of integers for the bus stops.
      *
      * @param frequencyList ArrayList of all the search frequencies
      * @throws IOException catch error occurred during an input-output operation
@@ -100,7 +100,7 @@ public class FreqStorage extends Storage {
     }
 
     /**
-     * Handles corrupted file eg missing entries/ senseless data
+     * Handles corrupted file eg missing entries/ senseless data.
      *
      * @throws CustomException If file can't be updated
      */
@@ -119,7 +119,7 @@ public class FreqStorage extends Storage {
     }
 
     /**
-     * Initialise the file to all zeroes
+     * Initialise the file to all zeroes.
      *
      * @throws CustomException If file can't be updated
      */

@@ -30,7 +30,7 @@ public class BusData {
     }
 
     /**
-     * Searches and select bus that matches name
+     * Searches and select bus that matches name.
      *
      * @param busCode bus code input to search with
      * @return bus Bus object, if found

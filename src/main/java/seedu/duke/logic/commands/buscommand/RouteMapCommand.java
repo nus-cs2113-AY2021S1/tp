@@ -21,7 +21,7 @@ public class RouteMapCommand extends Command {
     }
 
     /**
-     * Select and print bus route, if found
+     * Select and print bus route, if found.
      *
      * @param userBusRouteSelection user-specified bus route
      * @throws CustomException to catch missing bus code or invalid bus code
