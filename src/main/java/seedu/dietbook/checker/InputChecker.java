@@ -249,7 +249,7 @@ public class InputChecker {
         if (age < 0) {
             throw new DietException("Age value cannot be less than 0!");
         } else if (age > AGE_CAP) {
-            throw new DietException("Age value cannot be more than 125!");
+            throw new DietException("Age value cannot be more than " + AGE_CAP + "!");
         }
     }
 
@@ -263,7 +263,7 @@ public class InputChecker {
         if (height < 1) {
             throw new DietException("Height value cannot be less than 1");
         } else if (height > HEIGHT_CAP) {
-            throw new DietException("Height value cannot be more than 273!");
+            throw new DietException("Height value cannot be more than " + HEIGHT_CAP + "!");
         }
     }
 
@@ -277,7 +277,7 @@ public class InputChecker {
         if (weight < 1) {
             throw new DietException("Weight value cannot be less than 1!");
         } else if (weight > WEIGHT_CAP) {
-            throw new DietException("Weight value cannot be more than 443!");
+            throw new DietException("Weight value cannot be more than " + WEIGHT_CAP + "!");
         }
     }
 
