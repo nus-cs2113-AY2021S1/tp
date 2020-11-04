@@ -33,7 +33,6 @@ public class Zoomaster {
       
         bookmarkStorage = new Storage<>(getJarFilepath() + bookmarkFilePath, BookmarkList.class);
         timetableStorage = new Storage<>(getJarFilepath() + timetableFilePath, Timetable.class);
-      
         try {
             bookmarks = bookmarkStorage.load();
             timetable = timetableStorage.load();
