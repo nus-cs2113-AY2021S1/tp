@@ -78,6 +78,9 @@ public class Task {
             case "on":
                     return new Reminder(time);
             case "off":
+                if(reminder != null) {
+                    offReminder();
+                }
                 return null;
             default:
                 throw new InvalidReminderException();
@@ -88,7 +91,6 @@ public class Task {
         if(reminder == null) {
             return;
         }
-        TimerCanceler.add(getReminder().getTimer());
         Calendar calendar = Calendar.getInstance();
         if (reminder.getTime() != null) {
             calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
@@ -106,8 +108,16 @@ public class Task {
                 Ui ui = new Ui();
                 ui.displaySingleTask(getDate(),getStartTime(),getEndTime(),getPriority(),getTaskID(),getDescription());
                 reminder.getTimer().cancel();
+                reminder.setIsReminder(false);
+                reminder = null;
             }
         }, date);
+    }
+
+    public void offReminder() {
+        reminder.getTimer().cancel();
+        reminder.setIsReminder(false);
+        reminder = null;
     }
 
     public Reminder getReminder() {
