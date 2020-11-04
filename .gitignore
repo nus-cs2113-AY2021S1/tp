@@ -19,7 +19,8 @@ text-ui-test/EXPECTED-UNIX.TXT
 # file to store data
 data/modtracker.txt
 
+# test data files
 test/data/modlist.txt
-
+test/data/modtracker.txt
 test/data/notification.txt
 test/data/tasklist.txt

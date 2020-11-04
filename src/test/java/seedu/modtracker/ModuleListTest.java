@@ -98,7 +98,6 @@ class ModuleListTest {
 
     @Test
     public void deleteExp_ModuleWithExpTime_ModuleWithExpTimeRemoved() {
-
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.deleteExp("deleteExp CS3030", true, storage);
