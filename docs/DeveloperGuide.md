@@ -1217,4 +1217,68 @@ If you wish to add new checks, simply add the check file with a filename `check-
     4.  Other incorrect commands to try: 
         1.  `watchlist -d`
         2.  `watchlist -d x` (where x is a negative number, a word, or an additional parameter)
-        
+
+<br/>
+
+### D.X: Adding an anime to active watchlist
+1.  Adding an anime to active watchlist.
+    1.  Prerequisite: The active watchlist does not contain the anime to be added.
+    
+    2.  Test case: `add 1` <br/>
+    Expected: The anime with index of 1 is added into the active watchlist, and a message with the name of the anime is printed.
+    
+    3.  Test case: `add 3` <br/>
+    Expected: The anime with index of 3 is added into the active watchlist, and a message with the name of the anime is printed.
+    
+    4.  Other incorrect commands to try:
+        1.  `add`
+        2.  `add x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
+
+### D.X: Removing an anime from active watchlist
+1.  Removing an anime from active watchlist.
+    1.  Prerequisite: The active watchlist must contain at least one anime.
+    
+    2.  Test case: `remove 1` <br/>
+    Expected: The first anime in the watchlist is deleted, and a message with the name of the anime is printed.
+    
+    3.  Test case: `remove 3` <br/>
+    Expected: The third anime in the watchlist is deleted, and a message with the name of the anime is printed.
+    
+    4.  Other incorrect commands to try:
+        1.  `remove`
+        2.  `remove x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the watchlist)
+
+<br/>
+
+### D.X: Viewing all anime in a specific or active watchlist
+1.  Viewing all anime in a specific or active watchlist.
+    1.  Prerequisite: The watchlist must contain at least one anime.
+    
+    2.  Test case: `view` <br/>
+    Expected: Lists out the name of all anime in the active watchlist.
+    
+    3.  Test case: `view 1` <br/>
+    Expected: Lists out the name of all anime in the first watchlist.
+    
+    4.  Other incorrect commands to try:
+        1.  `view x` (where x is a negative number, zero, a word, or a number exceeding the number of watchlists)
+
+<br/>
+
+### D.X: Viewing the information of a specific anime
+1.  Viewing the information of a specific anime.
+    1.  Prerequisite:
+    
+    2.  Test case: `info 1` <br/>
+    Expected: Lists out the information of the anime with index 1.
+    
+    3.  Test case: `info 3` <br/>
+    Expected: Lists out the information of the anime with index 3.
+    
+    4.  Other incorrect commands to try:
+        1.  `info`
+        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
