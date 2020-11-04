@@ -25,7 +25,7 @@ This section shows a summary of my coding, documentation and other contributions
 *   **Documentation:**
     *   User Guide:
         *   Added documentation for the features `info`, `add`, `remove`, and `view`: [#189](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/189)
-        
+
     *   Developer Guide:
         *   Added implementation details of `info`, `add`, `remove` and `view` features: [#202](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/202)
         *   Added sequence diagrams and user stories: [#209](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/209)
