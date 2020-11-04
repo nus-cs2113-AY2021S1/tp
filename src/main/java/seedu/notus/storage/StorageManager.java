@@ -46,6 +46,7 @@ public class StorageManager {
     private static final Logger LOGGER = Logger.getLogger("StorageManager");
 
     /** Default folders directory. */
+    public static final String LOGS_DIR = "logs";
     public static final String FOLDER_DIR = "data";
     public static final String NOTES_DIR = "/notes";
     private static final String ARCHIVED_NOTES_DIR = "/archived";
@@ -112,7 +113,7 @@ public class StorageManager {
     /**
      * Creates a directory path data/notes. In case both data and /notes do not exist.
      */
-    private void createDirectory(String path) {
+    public static void createDirectory(String path) {
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
@@ -418,7 +419,7 @@ public class StorageManager {
         LOGGER.setLevel(Level.INFO);
 
         try {
-            FileHandler fileHandler = new FileHandler("storage.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "storage.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);

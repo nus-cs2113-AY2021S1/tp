@@ -3,6 +3,7 @@ package seedu.notus.command;
 import seedu.notus.data.notebook.Note;
 import seedu.notus.ui.Formatter;
 
+import static seedu.notus.storage.StorageManager.LOGS_DIR;
 import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 import static seedu.notus.util.CommandMessage.VIEW_NOTE_SUCCESSFUL_MESSAGE;
 
@@ -88,7 +89,7 @@ public class ViewNoteCommand extends Command {
         LOGGER.setLevel(Level.INFO);
 
         try {
-            FileHandler fileHandler = new FileHandler("ViewNoteCommand.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "/ViewNoteCommand.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);
