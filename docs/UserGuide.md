@@ -3,9 +3,9 @@
 
 # Table of contents
 
-- [1.Introduction](#1introduction)
+- [1. Introduction](#1-introduction)
 - [2. About this User Guide](#2-about-this-user-guide)
-- [3.Quick Start](#3quick-start)
+- [3. Quick Start](#3-quick-start)
 - [4.Features](#4features)
     - [Command Format](#command-format)
   - [4.1 Help `help`](#41-help-help)
@@ -40,7 +40,7 @@
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
 
-## 1.Introduction
+## 1. Introduction
 
 Welcome to **CCA Manager!**
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
@@ -61,7 +61,7 @@ Additionally, throughout this user guide, there will be various icons used as de
 
 > : [Hyperlinked]() : Leads you to the appropriate section
 
-## 3.Quick Start
+## 3. Quick Start
 (By:Varsha)
 
 This user guide provides a quick start guide for you to easily setup install CCA manager, 
@@ -244,9 +244,10 @@ Expected outcome:
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
- > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
-
+> :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
+> :information_source: The EVENT_DATE entered should be in the format YYYY-MM-DD. <br/>
+> :information_source: The EVENT_TIME entered should be in the 24-hour clock format. <br/>
 
 Shorthand Command : <br/>
 event --> e <br/>
@@ -272,8 +273,8 @@ Expected Outcome:
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
- > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+> :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
  Shorthand Command : <br/>
  event --> e <br/>
@@ -304,7 +305,7 @@ Shorthand Command : <br/>
 event --> e <br/>
 delEvent --> del/d <br/>
 
- > :information_source A confirmation message will be prompted. To clear, type `Y` in terminal.
+> :information_source: A confirmation message will be prompted. To clear, type `Y` in terminal.
 
 Expected Outcome:
 
@@ -360,8 +361,8 @@ Expected Outcome:
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
- > :information_source The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+> :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
+> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
 Shorthand Command : <br/>
 event --> e <br/>
@@ -403,7 +404,8 @@ Expected Outcome:
 #### Add a participant to an event: `addAttendance`
 Adds an event to the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
- > :information_source Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
+ 
+> :information_source: Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
 
 Example of usage: <br/>
  `event addAttendance /n arduino course /m peter`<br/>
@@ -516,7 +518,7 @@ Shorthand format:
 Example of usage:  
 `finance changeLog /i 1 /n buy cake 5.5`  
 
-Expected outcome:  
+Expected Outcome:  
 ![Example of usage](userGuidePic/FinanceChangeLog%20Outcome.png)  
 
 [Return to the top](#user-guide)
@@ -555,11 +557,11 @@ CCA Manager saves all your data after every command. There is no need to save ma
 
 This section details the frequently asked questions (FAQ) regarding the use of the application.
 
-*Q* How do I transfer my data to another computer ?
-*A* Install CCA Manager in the other computer and overwrite the empty data files it creates with the file that contains the data from your previous computer.
+**Q** How do I transfer my data to another computer? <br/>
+**A** Install CCA Manager in the other computer and overwrite the empty data files it creates with the file that contains the data from your previous computer. <br/>
 
-*Q* Is CCA Manager optimized for all Operating Systems(OS)?
-*A* CCA Manager id available for doenload on all major Operating Systems such as Windows, Mac and Linux.
+**Q** Is CCA Manager optimized for all Operating Systems(OS)? <br/>
+**A** CCA Manager id available for doenload on all major Operating Systems such as Windows, Mac and Linux.
 
 
 
@@ -601,7 +603,7 @@ summary | `finance summary` |   -
 
 ## 7. Glossary
 
-CCA - Co-curricular Activity
-CSV - Comma-seperated values
-Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
-OS - Operating Systems
+CCA - Co-curricular Activity <br/>
+CSV - Comma-seperated values <br/>
+Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text. <br/>
+OS - Operating Systems <br/>
