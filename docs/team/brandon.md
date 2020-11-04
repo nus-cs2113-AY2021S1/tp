@@ -11,9 +11,9 @@ The overview below follows the following standards:
 - Development and Maintenance of Timetable Scheduling
 
 ### Summary of Contributions
-- Set up and designed the architecture used for event scheduling in the timetable
-    - Handled `Event`, `RecurringEvent`, `Timetable`, `Reminder` and other relevant `Command` subclasses for event scheduling functionality.
-- Assisted in development of common `Parser` methods
+- Set up and designed the architecture used for Event scheduling in the timetable
+    - Handled `Event`, `RecurringEvent`, `Timetable`, `Reminder` and other relevant `Command` subclasses for Event scheduling functionality.
+- Assisted in development of two common `Parser` methods
 
 
 ### Contributions to User Guide
