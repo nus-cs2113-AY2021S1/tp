@@ -2,8 +2,8 @@
 
 Display | Name | Github Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
-![](https://via.placeholder.com/100.png?text=Photo) | Chin Heng | [Github](https://github.com/dozenmatter) | [Portfolio](team/dozenmatter.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Si Hao | [Github](https://github.com/yuen-sihao) | [Portfolio](team/yuen-sihao.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Nathaniel | [Github](https://github.com/nat-ho) | [Portfolio](team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Chloe | [Github](https://github.com/chloesyy) | [Portfolio](team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Yilun | [Github](https://github.com/lunzard) | [Portfolio](team/johndoe.md)
+![](team/images/profile_Picture_chinheng.jpg) | Tay Chin Heng | [Github](https://github.com/dozenmatter) | [Portfolio](team/dozenmatter.md)
+![](team/images/profilePicture_sihao.jpg) | Yuen Si Hao | [Github](https://github.com/yuen-sihao) | [Portfolio](team/yuen-sihao.md)
+![](team/images/profile_Picture_nathaniel.jpg) | Ho Chong Han Nathaniel | [Github](https://github.com/nat-ho) | [Portfolio](team/nat-ho.md)
+![](team/images/profile_Picture_chloe.jpg) | Seah Yi Yi Chloe | [Github](https://github.com/chloesyy) | [Portfolio](team/johndoe.md)
+![](team/images/profilePicture_yilun.jpg) | Ni Yilun | [Github](https://github.com/lunzard) | [Portfolio](team/johndoe.md)
