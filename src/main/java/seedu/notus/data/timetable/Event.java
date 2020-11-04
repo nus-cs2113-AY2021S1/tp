@@ -292,7 +292,7 @@ public class Event extends TaggableObject implements Comparable<Event> {
     public boolean equals(Object o) {
         if (o instanceof Event) {
             Event event = (Event) o;
-            return (compareTo(event) == 0 && title.equalsIgnoreCase(event.title));
+            return (occursDuringEvent(event) && title.equalsIgnoreCase(event.title));
         }
         return false;
     }
