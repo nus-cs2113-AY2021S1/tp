@@ -42,7 +42,7 @@ public class Fan extends Appliance {
     @Override
     public String getParameter(boolean isList) {
         if (isList) {
-            return " Speed " + getParameter(false);
+            return "Speed " + getParameter(false);
         } else {
             return this.speed;
         }

@@ -1,1 +1,4 @@
 theme: jekyll-theme-slate
+favicon: docs/images/favicon.ico
+title: SmartHomeBot
+description: SmartHomeBot - Java CLI Application that monitor your smart home.

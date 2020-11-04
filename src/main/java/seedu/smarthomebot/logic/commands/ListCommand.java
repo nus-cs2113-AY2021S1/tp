@@ -24,7 +24,7 @@ public class ListCommand extends Command {
     private static final String DISPLAY_STATUS = " | Status: ";
     private static final String DISPLAY_WATT = " | Watt: ";
     private static final String DISPLAY_TYPE = " | Type: ";
-    private static final String DISPLAY_PARAMETER = " | Parameter:";
+    private static final String DISPLAY_PARAMETER = " | Parameter: ";
 
     private final String parameter;
     private final String filteredLocation;
@@ -86,13 +86,14 @@ public class ListCommand extends Command {
     }
 
     private String displayOutput(String header, ArrayList<Appliance> displayList) {
+        autoFormattingStringIndex();
         int index = 1;
         String outputList = header;
-        String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
-                + DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                + DISPLAY_STATUS + "%-5s"
+        String format = "%-2d. %-" + maxNameLength + "s"
+                + DISPLAY_LOCATION + "%-" + maxLocationLength + "s"
+                + DISPLAY_STATUS + "%-3s"
                 + DISPLAY_WATT + "%-4sW"
-                + DISPLAY_TYPE + "%-6s"
+                + DISPLAY_TYPE + "%-9s"
                 + DISPLAY_PARAMETER + "%s";
 
         for (Appliance a : displayList) {
