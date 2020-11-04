@@ -24,40 +24,23 @@ public class ListQuoteCommand extends ListCommand {
     private void listQuotes(QuoteList quoteList, TextUi ui) {
         try {
             if ((information.isEmpty())) {
-                listAllQuotes(quoteList, ui);
+                ui.printAllQuotes(quoteList);
             } else if (information.contains(Command.FLAG_AUTHOR) && information.contains(Command.FLAG_REFERENCE)) {
-                information = information.substring(1);
-                HashMap<String, String> referenceAndAuthorName = QuoteParser.parseReferenceAndAuthor(information);
-                String reference = referenceAndAuthorName.get(Command.REFERENCE_KEYWORD).toLowerCase();
-                String authorName = referenceAndAuthorName.get(Command.AUTHORNAME_KEYWORD).toLowerCase();
-                listQuotesByReferenceAndAuthor(quoteList, reference, authorName, ui);
+                HashMap<String, String> referenceAndAuthor = QuoteParser.getReferenceAndAuthor(information.substring(1));
+                String reference = referenceAndAuthor.get(Command.REFERENCE_KEYWORD);
+                String authorName = referenceAndAuthor.get(Command.AUTHORNAME_KEYWORD);
+                ui.printAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
             } else if (information.contains(Command.FLAG_AUTHOR)) {
-                String authorName = QuoteParser.parseListWithAuthor(information).toLowerCase();
-                listQuotesByAuthor(quoteList, authorName, ui);
+                String authorName = QuoteParser.parseListWithAuthor(information);
+                ui.printAllQuotesByAuthor(quoteList, authorName);
             } else if (information.contains(Command.FLAG_REFERENCE)) {
-                String reference = QuoteParser.parseListWithReference(information).toLowerCase();
-                listQuotesByReference(quoteList, reference, ui);
+                String reference = QuoteParser.parseListWithReference(information);
+                ui.printAllQuotesByReference(quoteList, reference);
             } else {
                 throw new QuotesifyException(ERROR_LIST_UNKNOWN_COMMAND);
             }
         } catch (QuotesifyException e) {
-            System.out.println(e.getMessage());
+            ui.printErrorMessage(e.getMessage());
         }
-    }
-
-    private void listQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName, TextUi ui) {
-        ui.printAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
-    }
-
-    private void listAllQuotes(QuoteList quoteList, TextUi ui) {
-        ui.printAllQuotes(quoteList);
-    }
-
-    private void listQuotesByAuthor(QuoteList quoteList, String authorName, TextUi ui) {
-        ui.printAllQuotesByAuthor(quoteList, authorName);
-    }
-
-    private void listQuotesByReference(QuoteList quoteList, String reference, TextUi ui) {
-        ui.printAllQuotesByReference(quoteList, reference);
     }
 }

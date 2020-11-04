@@ -33,11 +33,11 @@ public class QuoteList extends QuotesifyList<Quote> {
         return quotes.indexOf(quote);
     }
 
-    public void updateQuote(Quote quote, int quoteNumber) {
+    public void updateQuote(Quote updatedQuote, int quoteNumber) {
         if (quotes.get(quoteNumber).getReflection() != null)  {
-            quote.setReflection(quotes.get(quoteNumber).getReflection());
+            updatedQuote.setReflection(quotes.get(quoteNumber).getReflection());
         }
-        quotes.set(quoteNumber, quote);
+        quotes.set(quoteNumber, updatedQuote);
     }
 
     public Quote addReflection(String reflection, int quoteNumber) throws QuotesifyException {
@@ -68,6 +68,76 @@ public class QuoteList extends QuotesifyList<Quote> {
         return false;
     }
 
+    public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
+        String listToReturn = "";
+        int matchCounter = 0;
+        for (Quote quote : quoteList.getList()) {
+            if (quote.getQuote().toLowerCase().contains(keyword)) {
+                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
+            } else if (quote.hasReference() && quote.getReference().toLowerCase().contains(keyword)) {
+                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
+            } else if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().contains(keyword)) {
+                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
+            }
+        }
+        return listToReturn;
+    }
+
+    public String getRandomQuote() {
+        try {
+            Random rand = new Random();
+            int randomQuoteNumber = rand.nextInt(getSize());
+            Quote quoteToPrint = getQuote(randomQuoteNumber);
+            return quoteToPrint.toString();
+        } catch (IllegalArgumentException e) {
+            return DEFAULT_QUOTE;
+        }
+    }
+
+    public String getQuotesByAuthor(QuoteList quoteList, String authorName) {
+        String listToReturn = "";
+        int quoteCounter = 0;
+        for (Quote quote : quoteList.getList()) {
+            if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
+                listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
+            }
+        }
+        return listToReturn;
+    }
+
+    public String getQuotesByReference(QuoteList quoteList, String reference) {
+        String listToReturn = "";
+        int quoteCounter = 0;
+        for (Quote quote : quoteList.getList()) {
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
+                listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
+            }
+        }
+        return listToReturn;
+    }
+
+    public String getQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
+        String listToReturn = "";
+        int quoteCounter = 0;
+        for (Quote quote : quoteList.getList()) {
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
+                if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
+                    listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
+                }
+            }
+        }
+        return listToReturn;
+    }
+
+    public QuoteList filterByCategory(String categoryName) {
+        ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
+                .filter(quote -> {
+                    ArrayList<String> categories = quote.getCategories();
+                    return categories.contains(categoryName);
+                }).collect(Collectors.toList());
+        return new QuoteList(filteredQuotes);
+    }
+
     @Override
     public void add(Quote newQuote) {
         quotes.add(newQuote);
@@ -85,76 +155,6 @@ public class QuoteList extends QuotesifyList<Quote> {
             quotesToReturn += (i + 1 + ". " + quotes.get(i).toString()) + System.lineSeparator();
         }
         return quotesToReturn;
-    }
-
-    public QuoteList filterByCategory(String categoryName) {
-        ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
-                .filter(quote -> {
-                    ArrayList<String> categories = quote.getCategories();
-                    return categories.contains(categoryName);
-                }).collect(Collectors.toList());
-        return new QuoteList(filteredQuotes);
-    }
-
-    public String getRandomQuote() {
-        try {
-            Random rand = new Random();
-            int randomQuoteNumber = rand.nextInt(getSize());
-            Quote quoteToPrint = getQuote(randomQuoteNumber);
-            return quoteToPrint.toString();
-        } catch (IllegalArgumentException e) {
-            return DEFAULT_QUOTE;
-        }
-    }
-
-    public String getAllQuotesByAuthor(QuoteList quoteList, String authorName) {
-        String listToReturn = "";
-        int quoteCounter = 0;
-        for (Quote quote : quoteList.getList()) {
-            if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
-                listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
-            }
-        }
-        return listToReturn;
-    }
-
-    public String getAllQuotesByReference(QuoteList quoteList, String reference) {
-        String listToReturn = "";
-        int quoteCounter = 0;
-        for (Quote quote : quoteList.getList()) {
-            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
-                listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
-            }
-        }
-        return listToReturn;
-    }
-
-    public String getAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
-        String listToReturn = "";
-        int quoteCounter = 0;
-        for (Quote quote : quoteList.getList()) {
-            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
-                if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
-                    listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
-                }
-            }
-        }
-        return listToReturn;
-    }
-
-    public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
-        String listToReturn = "";
-        int matchCounter = 0;
-        for (Quote quote : quoteList.getList()) {
-            if (quote.getQuote().toLowerCase().contains(keyword)) {
-                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
-            } else if (quote.hasReference() && quote.getReference().toLowerCase().contains(keyword)) {
-                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
-            } else if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().contains(keyword)) {
-                listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
-            }
-        }
-        return listToReturn;
     }
 
     @Override

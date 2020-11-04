@@ -48,12 +48,12 @@ public class Quote implements JsonSerializer {
         this.reflection = reflection;
     }
 
-    public Author getAuthor() {
-        return author;
+    public String getQuote() {
+        return quote;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public Author getAuthor() {
+        return author;
     }
 
     public String getAuthorName() {
@@ -68,20 +68,8 @@ public class Quote implements JsonSerializer {
         }
     }
 
-    public String getQuote() {
-        return quote;
-    }
-
-    public void setQuote(String quote) {
-        this.quote = quote;
-    }
-
     public String getReference() {
         return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
     }
 
     public boolean hasReference() {
@@ -92,24 +80,24 @@ public class Quote implements JsonSerializer {
         }
     }
 
-    public ArrayList<String> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(ArrayList<String> categories) {
-        this.categories = categories;
+    public String getReflection() {
+        return reflection;
     }
 
     public void setReflection(String reflection) {
         this.reflection = reflection;
     }
 
-    public String getReflection() {
-        return reflection;
-    }
-
     public void setReflectionNull() {
         reflection = null;
+    }
+
+    public ArrayList<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
     }
 
     @Override

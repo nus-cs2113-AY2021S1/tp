@@ -21,16 +21,15 @@ public class FindQuoteCommand extends FindCommand {
     private void findQuote(QuoteList quoteList, TextUi ui) {
         try {
             String keyword = information.trim().toLowerCase();
-            if (!keyword.isEmpty()) {
-                String resultList = quoteList.findQuoteByKeyword(quoteList, keyword);
-                if (!resultList.isEmpty()) {
-                    ui.printFindQuoteSuccess(resultList);
-                } else {
-                    ui.printFindQuoteFail();
-                }
-            } else {
+            if (keyword.isEmpty()) {
                 throw new QuotesifyException(ERROR_FIND_KEYWORD_MISSING);
             }
+            String findResultList = quoteList.findQuoteByKeyword(quoteList, keyword);
+
+            if (findResultList.isEmpty()) {
+                ui.printFindQuoteFail();
+            }
+            ui.printFindQuoteSuccess(findResultList);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(ERROR_FIND_KEYWORD_MISSING);
         }
