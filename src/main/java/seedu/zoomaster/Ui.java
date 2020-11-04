@@ -36,7 +36,7 @@ import static org.fusesource.jansi.Ansi.ansi;
  * Represents the user interface on the command line and deals with interactions with the user.
  */
 public class Ui {
-    private static final String NEW_LINE = System.lineSeparator();
+    public static final String NEW_LINE = System.lineSeparator();
     private static final String LINE = "____________________________________________________________" + NEW_LINE;
     private Scanner scanner;
 

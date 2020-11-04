@@ -1,5 +1,6 @@
 package seedu.zoomaster.bookmark;
 
+import seedu.zoomaster.Ui;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 
@@ -11,7 +12,6 @@ import java.util.logging.Logger;
  */
 public class BookmarkList {
     private ArrayList<Bookmark> bookmarks;
-    private final String lineSeparator = System.lineSeparator();
     private static Logger logger = Logger.getLogger(BookmarkList.class.getName());
 
 
@@ -48,7 +48,7 @@ public class BookmarkList {
         assert bookmark != null : "Added bookmark should not be null!";
         bookmarks.add(bookmark);
         return "Added bookmark: " + "[" + bookmark.getDescription() + "] "
-                +  bookmark.getUrl() + System.lineSeparator();
+                +  bookmark.getUrl() + Ui.NEW_LINE;
     }
 
     private void loadBookmark(String line) {
@@ -68,7 +68,7 @@ public class BookmarkList {
     public String getData() {
         StringBuilder data = new StringBuilder();
         for (Bookmark bookmark : bookmarks) {
-            data.append(bookmark.getExport()).append(System.lineSeparator());
+            data.append(bookmark.getExport()).append(Ui.NEW_LINE);
         }
         return data.toString().trim();
     }
@@ -124,15 +124,15 @@ public class BookmarkList {
      * @return The string message containing the matching bookmarks
      */
     public String showBookmarks() {
-        String message = "Here are the bookmarks in your list:" + lineSeparator;
+        String message = "Here are the bookmarks in your list:" + Ui.NEW_LINE;
         if (bookmarks.isEmpty()) {
-            message = message + "Bookmark list is empty" + lineSeparator;
+            message = message + "Bookmark list is empty" + Ui.NEW_LINE;
         } else {
             for (int i = 0; i < bookmarks.size(); i++) {
                 message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
             }
         }
-        return message + lineSeparator;
+        return message + Ui.NEW_LINE;
     }
 
     /**
@@ -145,13 +145,13 @@ public class BookmarkList {
         assert !description.equals("") : "Description should not be empty!";
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + lineSeparator;
+            message = "Empty List" + Ui.NEW_LINE;
         } else {
             message = getMatchingBookmarks(description.toUpperCase());
             if (!message.isEmpty()) {
-                message = "Here are your matching bookmarks" + lineSeparator + message;
+                message = "Here are your matching bookmarks" + Ui.NEW_LINE + message;
             } else {
-                message = "No bookmarks contain the specified keyword!" + lineSeparator;
+                message = "No bookmarks contain the specified keyword!" + Ui.NEW_LINE;
             }
         }
         return message;
@@ -161,7 +161,7 @@ public class BookmarkList {
         String message = "";
         for (int i = 0; i < bookmarks.size(); i++) {
             if (bookmarks.get(i).getDescription().toUpperCase().contains(description)) {
-                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + lineSeparator;
+                message += (i + 1) + "." + bookmarks.get(i).getBookmarkAsString() + Ui.NEW_LINE;
             }
         }
         return message;
@@ -182,9 +182,9 @@ public class BookmarkList {
         } else {
             message = launchMatchingBookmarks(description.toUpperCase());
             if (!message.isBlank()) {
-                message = "Launched these bookmarks:" + lineSeparator + message;
+                message = "Launched these bookmarks:" + Ui.NEW_LINE + message;
             } else {
-                message = "No bookmarks contain the specified keyword!" + lineSeparator;
+                message = "No bookmarks contain the specified keyword!" + Ui.NEW_LINE;
             }
         }
         return message;
@@ -204,19 +204,19 @@ public class BookmarkList {
             }
         }
         if (!errorMessage.isBlank()) {
-            message += "Failed to launch these bookmarks:" + lineSeparator + errorMessage;
+            message += "Failed to launch these bookmarks:" + Ui.NEW_LINE + errorMessage;
         }
-        return message + lineSeparator;
+        return message + Ui.NEW_LINE;
     }
 
     public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + lineSeparator;
+            message = "Empty List" + Ui.NEW_LINE;
         } else {
             message = launchBookmarksFromList();
             if (!message.isEmpty()) {
-                message = "Launched these bookmarks:" + lineSeparator + message;
+                message = "Launched these bookmarks:" + Ui.NEW_LINE + message;
             }
         }
         return message;
@@ -234,7 +234,7 @@ public class BookmarkList {
             }
         }
         if (!errorMessage.isBlank()) {
-            message += "Failed to launch these bookmarks:" + lineSeparator + errorMessage;
+            message += "Failed to launch these bookmarks:" + Ui.NEW_LINE + errorMessage;
         }
         return message;
     }
