@@ -25,15 +25,15 @@ public class ListQuoteCommand extends ListCommand {
         try {
             if ((information.isEmpty())) {
                 ui.printAllQuotes(quoteList);
-            } else if (information.contains(Command.FLAG_AUTHOR) && information.contains(Command.FLAG_REFERENCE)) {
+            } else if (information.contains(FLAG_AUTHOR) && information.contains(FLAG_REFERENCE)) {
                 HashMap<String, String> referenceAndAuthor = QuoteParser.getReferenceAndAuthor(information.substring(1));
                 String reference = referenceAndAuthor.get(Command.REFERENCE_KEYWORD);
                 String authorName = referenceAndAuthor.get(Command.AUTHORNAME_KEYWORD);
                 ui.printAllQuotesByReferenceAndAuthor(quoteList, reference, authorName);
-            } else if (information.contains(Command.FLAG_AUTHOR)) {
+            } else if (information.contains(FLAG_AUTHOR)) {
                 String authorName = QuoteParser.parseListWithAuthor(information);
                 ui.printAllQuotesByAuthor(quoteList, authorName);
-            } else if (information.contains(Command.FLAG_REFERENCE)) {
+            } else if (information.contains(FLAG_REFERENCE)) {
                 String reference = QuoteParser.parseListWithReference(information);
                 ui.printAllQuotesByReference(quoteList, reference);
             } else {
