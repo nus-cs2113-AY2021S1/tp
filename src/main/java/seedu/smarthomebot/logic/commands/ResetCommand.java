@@ -6,6 +6,9 @@ import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_USAGE_RESET;
 
+/**
+ * Represent the command to reset the power monitored.
+ */
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "p_reset";

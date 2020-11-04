@@ -11,6 +11,7 @@ import seedu.smarthomebot.storage.ReadStorageFile;
 import seedu.smarthomebot.storage.WriteStorageFile;
 import seedu.smarthomebot.ui.TextUi;
 
+
 /**
  * Entry point of the SmartHome application.
  * Initializes the application and starts the interaction with the user.
@@ -28,7 +29,9 @@ public class Main {
         new Main().run();
     }
 
-    /** Runs the program until termination. */
+    /**
+     * Runs the program until termination.
+     */
     private void run() {
         start();
         runCommandLoopUntilExitCommand();
@@ -45,14 +48,18 @@ public class Main {
         readFile.execute();
     }
 
-    /** Prints the Goodbye message and exits. */
+    /**
+     * Prints the Goodbye message and exits.
+     */
     private void exit() {
         ui.printToUser(Messages.MESSAGE_EXPORT);
         ui.showGoodByeMessage();
         System.exit(0);
     }
 
-    /** Reads the user command and executes it, until the user issues the bye command. */
+    /**
+     * Reads the user command and executes it, until the user issues the bye command.
+     */
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {

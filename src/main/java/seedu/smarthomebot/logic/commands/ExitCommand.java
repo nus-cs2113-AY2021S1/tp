@@ -2,6 +2,9 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
 
+/**
+ * Represent the command to terminate the program.
+ */
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
