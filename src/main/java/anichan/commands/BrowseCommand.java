@@ -31,7 +31,6 @@ public class BrowseCommand extends Command {
     private static final int ANIME_PER_PAGE = 20;
     private static final int ORDER_ASCENDING = 0;
     private static final int ORDER_DESCENDING = 1;
-    private static final int ORDER_NOT_SET = 2;
     private static final int ID_SORT = 0;
     private static final int NAME_SORT = 1;
     private static final int RATING_SORT = 2;
