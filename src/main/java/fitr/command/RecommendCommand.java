@@ -29,6 +29,7 @@ public class RecommendCommand extends Command {
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         StandardExerciseList recommendList = recommender.recommend();
         int fitnessLevel = user.getFitnessLevel();
+        assert fitnessLevel >= 0 && fitnessLevel <= 2;
         for (int i = 0; i < 4; i++) {
             StandardExercise standardExercise = recommendList.getExercise(i);
             int calorieBurnt = (int) (standardExercise.getDuration().get(fitnessLevel)
