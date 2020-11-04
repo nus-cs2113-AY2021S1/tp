@@ -10,7 +10,7 @@ If you can type fast, Zoomaster can help fetch useful website links for you quic
 
 <br/><br/> 
 ## 2.0 Preface
-This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to 
+This user guide would walk you through the features of Zoomaster and ways to input commands to it to 
 access these features.
 
 

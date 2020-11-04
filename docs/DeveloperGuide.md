@@ -4,26 +4,33 @@
 ## **Introduction**
  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
 ### Introduction to Zoomaster
-Zoomaster is a Java application for the Command Line. It provides a simple and intuitive way to store Zoom links for online classes abd other useful links for the lesson at hand.<br/>
+Zoomaster is a Java application for the Command Line. It provides a simple and intuitive way to store Zoom links for 
+online classes abd other useful links for the lesson at hand.<br/>
 
-Zoomaster can also intelligently determine the current lesson users are having, allowing them to launch the correct links quickly and elegantly from the command line.
+Zoomaster can also intelligently determine the current lesson users are having, allowing them to launch the correct 
+links quickly and elegantly from the command line.
 
 ### Target audience
 This developer guide is for experienced programmers with knowledge of object oriented programming.
 
 
 ### Purpose
-This guide seeks to introduce to you the design and implementation of Zoomaster features. It will share our reasoning behind the way we implemented different features and its logic flow. With this, you would be able to tweak and further develop Zoomaster without confusion or introduce unwanted bugs to the App.
+This guide seeks to introduce to you the design and implementation of Zoomaster features. It will share our reasoning 
+behind the way we implemented different features and its logic flow. With this, you would be able to tweak and further 
+develop Zoomaster without confusion or introduce unwanted bugs to the App.
 
 ### Scope
 First, the guide will help you set up Zoomaster in its current iteration so that you can familiarise with it. <br/> 
 Secondly, the guide will explain the design of Zoomaster and its various components. <br/>
-Next, the guide will showcase how we implement various features into Zoomaster with step by step explanations and diagram. <br/>
-Finally, the guide has several appendixes explaining the scope of the product, user stories, non-function requirements, glossary and instructions for manual testing.
+Next, the guide will showcase how we implement various features into Zoomaster with 
+step by step explanations and diagram. <br/>
+Finally, the guide has several appendixes explaining the scope of the product, user stories, non-function requirements, 
+glossary and instructions for manual testing.
 
 ### Navigation
 You can navigate the guide via the table of contents below. <br/>
-Otherwise, each major section is distinguished by a bold header and underline. Sub-sections are of a smaller font than major sections but still larger than normal paragraphs to distingush them.
+Otherwise, each major section is distinguished by a bold header and underline. Sub-sections are of a smaller font than 
+major sections but still larger than normal paragraphs to distinguish them.
 
 ### Table of contents
 * [Getting Started](#getting-started)
@@ -48,18 +55,21 @@ Otherwise, each major section is distinguished by a bold header and underline. S
 * [Appendix E: Instructions for manual testing](#appendix-e)
   * [Launch and shutdown](#command-summary)
 
-<a name="getting-started"></a>a>
+<a name="getting-started"></a>
 ## **Getting Started**
 First, download the source cod and jar file of Zoomaster [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases).
 
-Next, follow the startup procedures as stated in the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) and familiarise yourself with Zoomaster's features.
+Next, follow the startup procedures as stated in the 
+[User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) and familiarize yourself with 
+Zoomaster's features.
 
 Now, you can dive into the source code and explore the inner workings of Zoomaster with this guide.
 
 <a name="design"></a>
 ## **Design**
 
-This section explains the design behind Zoomaster by first sharing the grand architecture of the code then it's various components.
+This section explains the design behind Zoomaster by first sharing the grand architecture of the code 
+then its various components.
 
 <a name="architecture"></a>
 ### Architecture
@@ -106,11 +116,15 @@ The UI component is responsible for all visual output to the User from the app.
 
 The only class carrying out the component's function is the `Ui` class.
 
-It utilises the `Jansi` library to enable the usage of ANSI escape codes to format the console, allowing the app to output in colour. <br/>
+It utilises the `Jansi` library to enable the usage of ANSI escape codes to format the console, 
+allowing the app to output in colour. <br/>
 
-The UI also receives input from the User using a `Scanner` object. It returns the input as a String to the main function. <br/>
+The UI also receives input from the User using a `Scanner` object. It returns the input as a String 
+to the main function. <br/>
 
-In addition, the UI contains the different exception and error messages which can be displayed. When a particular exception is thrown (eg. **UNKNOWN_INPUT**), the corresponding function is called in UI to print out the error message (**printUnknownInputMessage()**). 
+In addition, the UI contains the different exception and error messages which can be displayed. 
+When a particular exception is thrown (eg. **UNKNOWN_INPUT**), the corresponding method is called in UI to 
+print out the error message (**printUnknownInputMessage()**). 
 
 
 Its main roles are:
@@ -125,7 +139,8 @@ Its main roles are:
 *<center/> Figure 1.3 Class diagram of Parser </center> <br/></br>*
 
 
-The Parser component is responsible for decoding the user's input and telling the Main function which command to execute.
+The Parser component is responsible for decoding the user's input and telling the Main function 
+which command to execute.
 
 It also contains the **programMode** which indicates which mode the program currently is in.
 
@@ -145,7 +160,7 @@ The interaction of the Parser component with the Command component is covered in
 
 <a name="command"></a>
 ### Commands component
-Figures 1.3 to 1.6 below show the class-level diagrams for Parser and Command for each different mode. <br/>
+Figures 1.4 to 1.7 below show the class-level diagrams for Parser and Command for each different mode. <br/>
 The diagrams are colour coded as such:
 * Orange -> Global
 * Green -> Bookmark Mode
@@ -166,16 +181,20 @@ The diagrams are colour coded as such:
 <br></br>
 The Command component is responsible for carrying out the functions of Zoomaster.
 
-Usually, a successful command will return a message to indicate a successful execution or updates to Zoomaster. Otherwide it will create error messages for the Ui to display to the users.
+Usually, a successful command will return a message to indicate a successful execution or updates to Zoomaster. 
+Otherwise, it will create error messages for the Ui to display to the users.
 
-It consists of `ChangeModeCommand`, `ClearCommand`,  `ExitCommand`,  `HelpCommand`,   `LaunchNowCommand`, `AddBookmarkCommand`,   `DeleteBookmarkCommand`,  `FindBookmarkCommand`,  `LaunchBookmarkCommand`, `ShowBookmarkCommand`, `AddTimetableCommand`, `DeleteTimetableCommand`, `ShowTimetableCommand`, `EditTimetableCommand`, `LaunchTimetableCommand`, `AddMeetingCommand`, `LoadPlannerCommand` and `SavePlannerCommand` classes.
+It consists of `ChangeModeCommand`, `ClearCommand`,  `ExitCommand`,  `HelpCommand`,   `LaunchNowCommand`, 
+`AddBookmarkCommand`,   `DeleteBookmarkCommand`,  `FindBookmarkCommand`,  `LaunchBookmarkCommand`, 
+`ShowBookmarkCommand`, `AddTimetableCommand`, `DeleteTimetableCommand`, `ShowTimetableCommand`, `EditTimetableCommand`, 
+`LaunchTimetableCommand`, `AddMeetingCommand`, `LoadPlannerCommand` and `SavePlannerCommand` classes.
 
 Its main roles are:
 
-* Executing commands to carry out functionalities of Zoomaster
+* Execute commands to carry out functionalities of Zoomaster
 * Signal to Ui successful execution of commands
 * Create messages for Ui on updates to Zoomaster
-* Catch errors or conflicts in users commands and return the appropriate exception to the Main function
+* Catch errors or conflicts in users commands and throw the appropriate exception to the Main function
 
 <a name="temp-list"></a>
 ### Temp List component
@@ -193,7 +212,9 @@ Its main role is:
 
 The Storage component is responsible for saving and retrieving Zoomaster data to and from an external text file.
 
-It uses `Gson` library to encode temporary data from Temp List into a HTML format. Then it writes the encoded data to an external text file. On the other hand, it decodes the HTML format from the external text file and update the Temp List of Zoomaster
+It uses `Gson` library to encode temporary data from Temp List into a HTML format. Then it writes the encoded data to 
+an external text file. On the other hand, it decodes the HTML format from the external text file and update the 
+Temp List of Zoomaster.
 
 The only class carrying out the component's function is the `Storage` class.
 
@@ -215,7 +236,8 @@ Its main role is:
 <a name="exceptions"></a>
 ### Exceptions component
 
-The Exceptions component is responsible for responding to the different errors different components of Zoomaster sends back to the Main function.
+The Exceptions component is responsible for responding to the different errors different components of Zoomaster sends 
+back to the Main function.
 
 It extends the `Exception` class and uses it to catch unique exceptions thrown by different components of Zoomaster.
 
@@ -223,12 +245,13 @@ It consists of  `ZoomasterException` and `ZoomasterExceptionType` classes.
 
 Its main role is:
 
-* Create unique exceptions thrown by different components to signal the Main function what error has occured
+* Create unique exceptions thrown by different components to signal the Main function what error has occurred
 
 
 ## **Implementation**
 
-This section explains the implementations of Zoomaster features. It goes through the step-by-step proccess, expected outcomes of each feature and the design considerations.
+This section explains the implementations of Zoomaster's features. It goes through the step-by-step process, 
+expected outcomes of each feature and the design considerations.
 
 <a name="mode"></a>
 ### Bookmark, Timetable and Planner modes feature (TYS)
@@ -418,7 +441,7 @@ Below is the general flow on how the mechanism works:
 
 * NUS students
 * Students with fast typing skills 
-* Students comfortable using the command line interface
+* Students comfortable with using the command line interface
 
 ### Value proposition
 
@@ -468,6 +491,9 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 ### NUS
 > National University of Singapore
 
+### Mainstream OS
+> Windows, Linux, Unix, OS-X
+
 <a name="appendix-e"></a>
 ## **Appendix E: Instructions for manual testing**
 
@@ -477,9 +503,24 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     3. Enter `java -jar zoomaster.jar` in the command line. You should expect to see the welcome screen of the application.
 2. Testing
     1. Download the test cases text file from github [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/tree/master/text-ui-test). <br></br>
-    It's name is input.txt. 
+    Its name is input.txt. 
     2. These are some the sample test cases used to test if the program is working as intended. You should get the same results <br></br>
     as shown in EXPECTED.txt file.
     3. You can refer to the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) for the full list <br></br>
     of features and available commands for Zoomaster.
     4. Now you can manually input test cases into Zoomaster and see the results.
+    5. Note that the output of the application is dependent on the system time of your machine.
+3. Saving and Loading
+    1. Saving and loading of data is done automatically in Zoomaster. 
+    2. The application uses the Gson library to convert the java objects in Zoomaster into JSON constructs, then 
+    writing them into the text files stored locally in the machine.
+    3. Data is stored in 3 separate text files; `bookmarks.txt`, `modulelist.txt` and `timetable.txt` which are located
+    in the `data` folder. The `data` folder is created in the directory where `zoomaster.jar` is placed.
+    4. To test the saving feature, you can enter input some data into the Zoomaster through the command line interface
+     such as using the commands `mode timetable` then `add CS2113T`.
+    5. Exit the application by using the command `exit` and look in the `timetable.txt` file. The module "CS2113T" 
+    should be recorded.
+    6. You can test the loading feature by launching Zoomaster and entering the commands `mode timetable` 
+    and `add CS2113T`. There should be a message that the module "CS2113T" already exists. 
+    7. You can also edit the data in the text files in JSON format and test the loading of data into the Zoomaster by 
+    launching the application. You can refer to the class diagrams above for the associations between the classes.
