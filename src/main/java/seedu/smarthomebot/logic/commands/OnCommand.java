@@ -14,6 +14,9 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 
+/**
+ * Represent the command to turn on the appliance.
+ */
 public class OnCommand extends Command {
 
     public static final String COMMAND_WORD = "on";

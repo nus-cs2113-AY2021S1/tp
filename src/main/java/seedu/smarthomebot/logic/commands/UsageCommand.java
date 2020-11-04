@@ -8,9 +8,8 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_POWER_USAGE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_TOTAL_POWER_USAGE;
 
 /**
- * Usage command of the application to show power usage.
+ * Represent the command to display power usage of the application to the user.
  */
-
 public class UsageCommand extends Command {
 
     public static final String COMMAND_WORD = "usage";

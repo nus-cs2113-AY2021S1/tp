@@ -11,6 +11,9 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
 
+/**
+ * Represent the command to list LocationList or ApplianceList to the user.
+ */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";

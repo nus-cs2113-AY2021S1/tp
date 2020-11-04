@@ -3,6 +3,10 @@ package seedu.smarthomebot.logic.commands;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
+//@@author zongxian-ctrl
+/**
+ * Represent the command for creating a location in the LocationList.
+ */
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
@@ -12,6 +16,7 @@ public class CreateCommand extends Command {
     private final String userEnteredLocation;
 
     public CreateCommand(String location) {
+        assert location.isEmpty() != true : "CreateCommand must not accept empty parameter";
         this.userEnteredLocation = location;
     }
 

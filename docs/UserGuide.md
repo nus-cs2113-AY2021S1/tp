@@ -61,7 +61,7 @@ Some example commands you can try:
    `create Bedroom1`.
    * Words in **[UPPER_CASE]** are case-sensitive.
    * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** has to be unique and not duplicate of each other. 
-   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` \ `.
+   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` / ` or ` | ` .
 
 ### Viewing help: `help`
 Shows all available commands to the user
@@ -162,7 +162,7 @@ Output:
    
    ![](images/user_guide/onCommand3.png) 
 
-Example: `on bedroom1`
+Example: `on Bedroom1`
 
 Output: 
    
@@ -181,7 +181,7 @@ Output:
    ![](images/user_guide/offCommand1.png) 
 
 
-Example: `off bedroom1`
+Example: `off Bedroom1`
 
 Output: 
    
@@ -209,7 +209,7 @@ Output:
    
    ![](images/user_guide/listCommand2.png) 
 
-Example: `list appliance l/bedroom1`
+Example: `list appliance l/Bedroom1`
 
 Output: 
    
@@ -265,7 +265,7 @@ Function | Format | Example
 Help|`help`
 Create location|`create [LOCATION_NAME]`|`create Bedroom 1`
 Remove location|`remove [LOCATION_NAME]`|`remove Bedroom 1`
-Add appliance|`add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]`|`add AIRCON1 l/Bedroom 1 w/3500 t/airconditioner`
+Add appliance|`add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]`|`add AIRCON1 l/Bedroom1 w/3500 t/aircon`
 Delete appliance|`delete [APPLIANCE_NAME]`|`delete AIRCON1`
 Switch On|`on [APPLIANCE_NAME]`|`on AIRCON1`
 Switch Off|`off [APPLIANCE_NAME]`|`off AIRCON1`

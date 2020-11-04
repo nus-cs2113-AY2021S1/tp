@@ -22,7 +22,7 @@ public class WriteStorageFile extends StorageFile {
     @Override
     public void execute() {
         try {
-            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "FILE_PATH should be data/SmartHome.txt";
             createFile();
             clearFile();
             FileWriter myWriter = new FileWriter(FILE_PATH);
@@ -38,7 +38,7 @@ public class WriteStorageFile extends StorageFile {
 
     private void createFile() {
         try {
-            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "FILE_PATH should be data/SmartHome.txt";
             File myObj = new File(FILE_PATH);
             if (!myObj.getParentFile().exists()) {
                 myObj.getParentFile().mkdirs();
@@ -54,7 +54,7 @@ public class WriteStorageFile extends StorageFile {
 
     private void clearFile() {
         try {
-            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "FILE_PATH should be data/SmartHome.txt";
             PrintWriter writer = new PrintWriter(FILE_PATH);
             writer.print("");
             writer.close();

@@ -33,7 +33,7 @@ public class ReadStorageFile extends StorageFile {
     @Override
     public void execute() {
         try {
-            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "filePath should be data/SmartHome.txt";
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "FILE_PATH should be data/SmartHome.txt";
             int i = 0;
             File myFile = new File(FILE_PATH);
             Scanner myReader = new Scanner(myFile);
