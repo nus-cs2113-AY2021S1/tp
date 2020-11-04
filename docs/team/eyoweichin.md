@@ -1,28 +1,20 @@
 # Eyo Wei Chin - Project Portfolio Page
 
 ## Project: AniChan
-
-AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve
-thier workflow effiency and translation accuracy. AniChan is built for fast typers, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC. 
+AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficiency and translation accuracy. AniChan is built for fast-typers, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC. 
 
 Given below are my contributions to the project.
 
 ### Summary of Contributions
 
 *   **New Feature**: Added `Browse` which is the ability to access and view all anime with ease.
-    *   What it does: Is a useful feature that allows users to look through all available anime series
-    The browse feature utilises a page system, so that the user can 'flip' through the list of anime series. Users will be able to 
-    browse through highly rated anime or in alphabetical order.
-    *   Justification: By having a `browse` feature, users can easily access and view all anime series that are available
-    As a translator, this will be an essential tool to find a series for potential work opportunity or for future references
-    *   Highlights: The implementation was challenging as many of the anime titles have special unicode characters which is viewed by the system as more than 1 char, 
-    which seen by users as 1 char only. This made it difficult to print the anime in a consistent format. Additionally, there was several design considerations that I had to make in order
-    to ensure that `browse` was able to fulfil its purpose and adhere to the constraints, these considerations could is further elaborated in the developer guide [here](#docs/DeveloperGuide.md)
+    *   What it does: Is a useful feature that allows users to look through all available anime series. The browse feature utilises a page system, so that the user can 'flip' through the list of anime series. Users will be able to browse through highly rated anime or in alphabetical order.
+    *   Justification: By having a `browse` feature, users can easily access and view all anime series that are available. As a translator, this will be an essential tool to find a series for potential work opportunity or for future references
+    *   Highlights: The implementation was challenging as many of the anime titles have special unicode characters which is viewed by the system as more than 1 char, which seen by users as 1 char only. This made it difficult to print the anime in a consistent format. Additionally, there was several design considerations that I had to make in order to ensure that `browse` was able to fulfil its purpose and adhere to the constraints, these considerations could is further elaborated in the developer guide [here](#docs/DeveloperGuide.md)
 
 *   **New Feature**: Added `Search` which is the ability to find any anime with a search term.
     *   What it does: Allows users to search for a specific anime by its full title, just a keyword or with a genre.
-    *   Justification: `search` was built to find difficult to remember anime titles such as `MUSHI-SHI` or long anime titles (>52 characters)
-    This feature should be used in conjunction with the watchlist and bookmark feature to effectively find the anime that the translator wants quickly without much hassle.
+    *   Justification: `search` was built to find difficult to remember anime titles such as `MUSHI-SHI` or long anime titles (>52 characters). This feature should be used in conjunction with the watchlist and bookmark feature to effectively find the anime that the translator wants quickly without much hassle.
     *   Highlights: The challenges of this implementation was with input validation, parsing the parameters into the command and finding the anime that fits the search term.
     
 *   **Existing Features**
