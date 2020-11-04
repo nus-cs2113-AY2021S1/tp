@@ -14,11 +14,9 @@ public class Zoomaster {
 
     private Storage<BookmarkList> bookmarkStorage;
     private Storage<Timetable> timetableStorage;
-    private Storage<Timetable> plannerStorage;
     private BookmarkList bookmarks;
     private Timetable timetable;
     private Timetable planner;
-    //private ArrayList<File> files;
     private Ui ui;
 
     /**
@@ -43,7 +41,7 @@ public class Zoomaster {
             ui.showErrorMessage(e);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (JsonParseException e) {
+        } catch (JsonParseException | ClassCastException e) {
             ui.showParsingErrorAndExit();
         }
     }
