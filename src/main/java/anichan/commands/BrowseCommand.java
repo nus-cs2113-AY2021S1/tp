@@ -174,7 +174,6 @@ public class BrowseCommand extends Command {
         } else if (sortType == RESET_SORT) {
             usableList.sort(Comparator.comparing(Anime::getAnimeID));
         } else {
-            System.out.println("Here : " + 7);
             LOGGER.log(Level.INFO, SORT_ID_ASCENDING);
         }
     }
