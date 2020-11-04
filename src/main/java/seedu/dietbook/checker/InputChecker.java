@@ -1,6 +1,7 @@
 package seedu.dietbook.checker;
 
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.parser.Parser;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +26,7 @@ public class InputChecker {
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
     public static final String[] PARAM_GENDER = {"M","F","O"};
     public static final String[] PARAM_INFO = {"g/","a/","h/","f/","o/","t/","c/"};
+    public static final String[] PARAM_EDIT_INFO = {"n/","g/","a/","h/","f/","o/","t/","c/"};
 
     /**
      * Takes in user input and command to check for any expected parameters after the command.
@@ -55,6 +57,57 @@ public class InputChecker {
             }
         } else {
             throw new DietException("Error! Option specified with empty field!");
+        }
+    }
+
+    /**
+     * Takes in user input to check if at least 1 option is present.
+     *
+     * @param input user input.
+     * @throws DietException when an option is not present.
+     */
+    public static void checkForOption(String input) throws DietException {
+        String parameter = Parser.getCommandParam(input);
+        boolean isValidOption = false;
+        if (parameter.contains("/")) {
+            String checker = parameter.substring(parameter.indexOf("/") - 1,parameter.indexOf("/") + 1);
+            for (String param: PARAM_EDIT_INFO) {
+                if (checker.equals(param)) {
+                    isValidOption = true;
+                }
+            }
+            if (!isValidOption) {
+                throw new DietException("Error! No such option '" + checker + "'!");
+            }
+        } else {
+            throw new DietException("Error! No option present!");
+        }
+    }
+
+    /**
+     * Takes in user input to check if all option specified are at least one of the expected option.
+     *
+     * @param input user input.
+     * @param paramList the expected list of options.
+     * @throws DietException when an option is not of the expected.
+     */
+    public static void checkValidOptions(String input, String[] paramList) throws DietException {
+        String parameter = Parser.getCommandParam(input);
+        long noOfOptions = parameter.chars().filter(num -> num == '/').count();
+        int slashTracker = parameter.indexOf("/");
+        boolean isValidOption;
+        for (int i = 0; i < noOfOptions; i++) {
+            isValidOption = false;
+            String checker = parameter.substring(slashTracker - 1, slashTracker + 1);
+            for (String param: paramList) {
+                if (checker.equals(param)) {
+                    isValidOption = true;
+                }
+            }
+            if (!isValidOption) {
+                throw new DietException("Error! No such option '" + checker + "'!");
+            }
+            slashTracker = parameter.indexOf("/", slashTracker + 1);
         }
     }
 

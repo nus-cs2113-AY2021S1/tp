@@ -105,6 +105,7 @@ public class Parser {
         String[] processedParam;
         String[] paramList = {"x/", "n/", "k/", "c/", "p/", "f/"};
         InputChecker.checkRepeatedOption(getCommand(userInput), getCommandParam(userInput));
+        InputChecker.checkValidOptions(userInput, paramList);
         for (String param: paramList) {
             if (getCommandParam(userInput).contains(param)) {
                 processedParam = getCommandParam(userInput).split(param);
@@ -181,6 +182,7 @@ public class Parser {
         String trimmedParam;
         String[] processedParam;
         InputChecker.checkRepeatedOption(getCommand(userInput), getCommandParam(userInput));
+        InputChecker.checkValidOptions(userInput, PARAM_INFO);
         for (String param: PARAM_INFO) {
             processedParam = getCommandParam(userInput).split(param);
             InputChecker.checkEmptyOption(processedParam);
@@ -263,6 +265,8 @@ public class Parser {
         String trimmedParam;
         String[] processedParam;
         InputChecker.checkRepeatedOption(getCommand(userInput), getCommandParam(userInput));
+        InputChecker.checkForOption(userInput);
+        InputChecker.checkValidOptions(userInput, PARAM_EDIT_INFO);
         for (String param : PARAM_EDIT_INFO) {
             if (getCommandParam(userInput).contains(param)) {
                 processedParam = getCommandParam(userInput).split(param);
