@@ -20,19 +20,19 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of **E-Duke-8** from [here](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
 3. Copy the files to the folder you want to use for the application.
-4. If you download the jar file by itself, you will also need the question , `topics.json`, found in `data.zip`. After extracting, include the `data` folder and the `eduke8.jar` file in the same folder for E-Duke-8 to run smoothly. Alternatively, you can simply download `eduke8.zip` which includes both the jar file along with the data folder.
+4. If you have downloaded the jar file by itself, you will also need the question file, `topics.json`, found in `data.zip`. Therefore, after extracting `data.zip`, include the `data` folder and the `eduke8.jar` file in the same folder for E-Duke-8 to run smoothly. Alternatively, you can simply download `eduke8.zip`, which includes both the jar file along with the data folder, and extract it. 
 5. Double click on eduke8.jar to start up the program. If the program does not start up, continue to step 6, otherwise skip to step 8.
 6. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
 7. Enter the following command `java -jar eduke8.jar`.
-8. Type a command in the terminal and press Enter to execute it. e.g. typing 'help' and pressing Enter will list all the commands that you can use in this application. Here is a list of commands you can try:
+8. Type a command in the terminal and press Enter to execute it. e.g. typing 'help' and pressing Enter will list all the commands that you can use in this application. For a start, here is a list of commands you can try:
    - about : Provides information about E-Duke-8.
+   - help : Displays available commands.
    - topics : Lists CS2113/T topics that E-Duke-8 knows.
    - textbook : Provides you with a link to the CS2113/T website.
    - quiz : Starts a quiz. Eg. `quiz t/OOP n/5 s/10` will start a quiz with five questions based on OOP concepts. You will have 10 seconds to complete each question. 
-   - hint	  :   Shows a hint to the current question.
    - exit : Exits the app.
 
-9. Refer to the section on **Features** below for details of each command.
+9. Refer to the section on **Features** below for the full list of commands you can use and the details of each.
 
 ## 3. Features 
 
@@ -52,9 +52,9 @@ If the data has been loaded successfully you should see this message:
 
 ![data loaded](./images/data_loaded.png)
 
-If you wish to edit the data such as add questions you follow instructions found in [**4. FAQ**](#4-faq).
+If you wish to edit the data available, such as adding your own questions to the question bank, then do follow the instructions found in [**4. FAQ**](#4-faq). However, it is recommended that you do this only after fully exploring E-Duke-8.
 
-If have trouble opening E-Duke-8 and receive the following warning message then please refer to section [**6. Troubleshooting**](#6-troubleshooting).
+If have trouble opening E-Duke-8 and received the following warning message, then please refer to section [**6. Troubleshooting**](#6-troubleshooting) for help in resolving the issue.
 
 ![data error](./images/data_error.png)
 
@@ -124,22 +124,22 @@ What you should see:
 
 ### 3.7. Starting a quiz: `quiz`
 
-By following a specific input format for your command (shown below), you can start a quiz with the number of questions, topic and time to complete each question as specified by you.
+By following a specific input format for your command (shown below), you can start a quiz where the number of questions, topic and time to complete each question are specified by you.
 
-While on a question, you can choose to answer it, ask for a hint if you are unsure of the answer or bookmark it for future reference!
+While on a question, you can choose to answer it, ask for a hint (if you are unsure of the answer) or bookmark it for future reference!
 
 You will have to complete the question within the specified time as well. If you are unable to complete it in time, it will be regarded as an incorrect answer and the correct answer, along with the explanation, will be shown to you. You will then proceed to the next question where the timer will restart. 
 
-A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. No point will be awarded for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a later section of this guide.
+A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. You will not be awarded any points for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a later section of this guide.
 
 Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then proceed to the next question.
 
 Note:
 - Each of the questions in the quiz will be related to the topic you have chosen.
-- You can choose any topic from the topic list.
-- Refer to [topics](#35-listing-all-topics-topics) to see the number of questions you can choose from.
+- You can choose any topic from the [topic](#35-listing-all-topics-topics) list.
+- The [topic](#35-listing-all-topics-topics) list also shows you the number of questions you can choose from for each topic.
 - The first question will be immediately displayed to you once the quiz starts.
-- The quiz will only end when you have attempted all of the questions in the it.
+- The quiz will only end when you have attempted all of the questions in it.
 
 Input format: `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`
 
@@ -193,7 +193,7 @@ Adds a note to a specified topic.
 
 Note:
 - There can be many notes under each topic
-- The UI will guide you through the note-adding process
+- E-Duke-8 will guide you through the note-adding process
 
 Example of usage:
 ```
@@ -302,7 +302,7 @@ If you want a better score you can always reattempt a quiz!
 **Q**: How do I change the questions in the quizzes?
 
 **A**: Open `topics.json` in any text editor to edit the questions, make sure to follow the format of the questions
-already provided an example is shown below.
+already provided. An example is shown below.
 
 ```json
 [
@@ -337,17 +337,22 @@ already provided an example is shown below.
 ]
 ```
 
-Note that the title will be loaded with spaces replaced with underscores, there must be 4 options for each question,
-and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
-`correct` key. If you edit the title of existing topics or description of existing questions then their associated user 
+Note:
+- The title will be loaded with spaces replaced with underscores.
+- There must be 4 options for each question.
+- There must be one and only one option chosen as the correct answer by specifying `true` as the value of the
+`correct` field. 
+- If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
 
 **Q**: What happens if I modify the user data in `user.json`?
 
-**A**: If you still wish to modify the user data, the application may not be able to load it successfully. You will 
+**A**: If you wish to modify the user data, the application may not be able to load it successfully. You will 
 receive the following message, and the affected user data will be erased.
 
 ![user data error](./images/user_data_error.png)
+
+Therefore, it is recommended that you do not modify the user data. Do build up your stats by attempting more quizzes! 
 
 ## 5. Command summary
 
@@ -368,11 +373,11 @@ receive the following message, and the affected user data will be erased.
 ## 6. Troubleshooting
 
 If you have trouble starting the application there could be two sources of error for loading data.
-Firstly, `topics.json` may not present in the right folder.
+Firstly, `topics.json` may not be present in the right folder.
 Please check inside the `data` folder followed by the `main` folder that `topics.json` is present.
 
 Next, it is possible that the format of data inside `topics.json` or `user.json` is wrong and thus cannot be parsed
-correctly. Please ensure if you wish to edit the data in `topics.json` such as add questions you follow instructions found in [**4. FAQ**](#4-faq).
+correctly. Please ensure that if you wish to edit the data in `topics.json`, such as to add questions, then you should follow the instructions found in [**4. FAQ**](#4-faq) carefully.
 
 On the other hand, `user.json` should not be manually edited. If you have accidentally changed this file, you may delete
 the file to reset the data. A new file will be created on start up. 
