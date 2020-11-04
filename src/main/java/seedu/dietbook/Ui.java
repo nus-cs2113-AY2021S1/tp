@@ -1,6 +1,7 @@
 package seedu.dietbook;
 
-import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.exception.DietException;
+import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Gender;
 
 import java.time.LocalDateTime;
@@ -74,16 +75,16 @@ public class Ui {
                 + "- Your current weight in kg." + LINE_SEPARATOR
                 + "- Your target weight in kg, or your current weight if that is also your target weight."
                 + LINE_SEPARATOR
-                + "- Your activity level, represented by a number from 1 to 5." + LINE_SEPARATOR
-                + "  1 = " + ActivityLevel.NONE.getDescription() + LINE_SEPARATOR
-                + "  2 = " + ActivityLevel.LOW.getDescription() + LINE_SEPARATOR
-                + "  3 = " + ActivityLevel.MEDIUM.getDescription() + LINE_SEPARATOR
-                + "  4 = " + ActivityLevel.HIGH.getDescription() + LINE_SEPARATOR
-                + "  5 = " + ActivityLevel.EXTREME.getDescription() + LINE_SEPARATOR + LINE_SEPARATOR
+                + "- Your fitness level, represented by a number from 1 to 5." + LINE_SEPARATOR
+                + "  1 = " + FitnessLevel.NONE.getDescription() + LINE_SEPARATOR
+                + "  2 = " + FitnessLevel.LOW.getDescription() + LINE_SEPARATOR
+                + "  3 = " + FitnessLevel.MEDIUM.getDescription() + LINE_SEPARATOR
+                + "  4 = " + FitnessLevel.HIGH.getDescription() + LINE_SEPARATOR
+                + "  5 = " + FitnessLevel.EXTREME.getDescription() + LINE_SEPARATOR + LINE_SEPARATOR
                 + "Please input your details in the following format:" + LINE_SEPARATOR
                 + "  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT "
-                + "l/ACTIVITY_LEVEL" + LINE_SEPARATOR
-                + "  Example: info g/F a/21 h/165 o/65 c/65 t/55 l/2");
+                + "f/FITNESS_LEVEL" + LINE_SEPARATOR
+                + "  Example: info g/F a/21 h/165 o/65 c/65 t/55 f/2");
     }
 
     /**
