@@ -131,7 +131,7 @@ public class UI {
 
     public static void printHelp() {
         String[] listCommands = {"help", "divider",
-                "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny",
+            "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny",
             "list", "list filter words", "start", "filter words", "stats", "reset", "name",
             "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
         System.out.println("Type 'help <function name here>' to view help for each command.");
