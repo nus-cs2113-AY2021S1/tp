@@ -129,11 +129,22 @@ public class EditEventCommand extends Command {
         results.add(EDIT_TITLE_MESSAGE);
     }
 
+    /**
+     * Private method to check if two datetime are on the same day.
+     *
+     * @param startDateTime Start Date to check
+     * @param endDateTime End Date to check
+     * @return Whether they are the same day
+     */
+    private boolean isSameDay(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return (endDateTime.getDayOfYear() == startDateTime.getDayOfYear());
+    }
+
     private String getStartEndTimeErrors(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         if (endDateTime.compareTo(startDateTime) < 0) {
             return EDIT_EVENT_END_TIME_AFTER_START_WARNING;
         }
-        if (endDateTime.getDayOfYear() != startDateTime.getDayOfYear()) {
+        if (isSameDay(startDateTime, endDateTime)) {
             return EDIT_EVENT_END_DATE_AFTER_START_DATE_WARNING;
         }
         return "";
@@ -152,7 +163,7 @@ public class EditEventCommand extends Command {
             if (newEndDateTime == null) {
                 LocalDateTime endDateTime = newStartDateTime.plusMinutes(event.getEventLengthInMinutes());
                 event.setStartDateTime(newStartDateTime);
-                if (endDateTime.getDayOfYear() != newStartDateTime.getDayOfYear()) {
+                if (isSameDay(newStartDateTime, endDateTime)) {
                     event.setEndDateTime(newStartDateTime.with(DEFAULT_EVENT_END_TIMING));
                     results.add(EDIT_EVENT_START_TIME_SUCCESS_WARNING);
                     return;
