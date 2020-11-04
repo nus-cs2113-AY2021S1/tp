@@ -118,6 +118,7 @@ public class Parser {
                 }
                 switch (param) {
                 case "x/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     portionSize = Integer.parseInt(trimmedParam);
                     InputChecker.checkFoodLimit(portionSize);
                     break;
@@ -125,18 +126,22 @@ public class Parser {
                     foodName = trimmedParam;
                     break;
                 case "k/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     calorie = Integer.parseInt(trimmedParam);
                     InputChecker.checkFoodLimit(calorie);
                     break;
                 case "c/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     carb = Integer.parseInt(trimmedParam);
                     InputChecker.checkFoodLimit(carb);
                     break;
                 case "p/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     protein = Integer.parseInt(trimmedParam);
                     InputChecker.checkFoodLimit(protein);
                     break;
                 default:
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     fat = Integer.parseInt(trimmedParam);
                     InputChecker.checkFoodLimit(fat);
                     break;
@@ -194,22 +199,27 @@ public class Parser {
                 }
                 break;
             case "a/":
+                InputChecker.checkValidNumber(trimmedParam, param);
                 age = Integer.parseInt(trimmedParam);
                 InputChecker.checkAgeLimit(age);
                 break;
             case "h/":
+                InputChecker.checkValidNumber(trimmedParam, param);
                 height = Integer.parseInt(trimmedParam);
                 InputChecker.checkHeightLimit(height);
                 break;
             case "o/":
+                InputChecker.checkValidNumber(trimmedParam, param);
                 orgWeight = Integer.parseInt(trimmedParam);
                 InputChecker.checkWeightLimit(orgWeight);
                 break;
             case "c/":
+                InputChecker.checkValidNumber(trimmedParam, param);
                 currWeight = Integer.parseInt(trimmedParam);
                 InputChecker.checkWeightLimit(currWeight);
                 break;
             case "t/":
+                InputChecker.checkValidNumber(trimmedParam, param);
                 tarWeight = Integer.parseInt(trimmedParam);
                 InputChecker.checkWeightLimit(tarWeight);
                 break;
@@ -279,26 +289,31 @@ public class Parser {
                     manager.getPerson().setName(name);
                     break;
                 case "a/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     age = Integer.parseInt(trimmedParam);
                     InputChecker.checkAgeLimit(age);
                     manager.getPerson().setAge(age);
                     break;
                 case "h/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     height = Integer.parseInt(trimmedParam);
                     InputChecker.checkHeightLimit(height);
                     manager.getPerson().setHeight(height);
                     break;
                 case "o/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     orgWeight = Integer.parseInt(trimmedParam);
                     InputChecker.checkWeightLimit(orgWeight);
                     manager.getPerson().setOriginalWeight(orgWeight);
                     break;
                 case "c/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     currWeight = Integer.parseInt(trimmedParam);
                     InputChecker.checkWeightLimit(currWeight);
                     manager.getPerson().setCurrentWeight(currWeight);
                     break;
                 case "t/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
                     tarWeight = Integer.parseInt(trimmedParam);
                     InputChecker.checkWeightLimit(tarWeight);
                     manager.getPerson().setTargetWeight(tarWeight);

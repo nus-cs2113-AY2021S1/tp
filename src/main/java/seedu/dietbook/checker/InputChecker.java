@@ -59,6 +59,21 @@ public class InputChecker {
     }
 
     /**
+     * Takes in the parameter in which number is expected and checks for validity.
+     *
+     * @param number number to be checked.
+     * @param param the parameter of the number being checked.
+     * @throws DietException when a number is not valid.
+     */
+    public static void checkValidNumber(String number, String param) throws DietException {
+        try {
+            int check = Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new DietException("Invalid value for option '" + param + "'!");
+        }
+    }
+
+    /**
      * Takes in user input to check for repeated options.
      *
      * @param command command part of user input.
