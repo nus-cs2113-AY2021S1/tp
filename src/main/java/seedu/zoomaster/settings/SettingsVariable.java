@@ -8,15 +8,13 @@ public class SettingsVariable<T> {
     public static final String OFF = "off";
 
     private String fieldName;
-    private String keyword;
 
     private String description;
     private T[] options;
     private int chosenOptionIndex;
 
-    public SettingsVariable(String fieldName, String keyword, String description, T[] options) {
+    public SettingsVariable(String fieldName, String description, T[] options) {
         this.fieldName = fieldName;
-        this.keyword = keyword;
         this.options = options;
         this.description = description;
         chosenOptionIndex = 0;
@@ -28,14 +26,6 @@ public class SettingsVariable<T> {
 
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
     }
 
     public T[] getOptions() {

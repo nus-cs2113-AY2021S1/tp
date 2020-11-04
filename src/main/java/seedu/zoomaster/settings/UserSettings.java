@@ -4,22 +4,22 @@ import seedu.zoomaster.command.Mode;
 import seedu.zoomaster.slot.Day;
 
 public class UserSettings {
-    public static final String DEFAULT_MODE_KW = "mode";
+    public static final String DEFAULT_MODE_FIELD = "mode";
     private static final String DEFAULT_MODE_DESC = "Default mode at start up";
     private static final Mode[] DEFAULT_MODE_OPTIONS = {Mode.BOOKMARK, Mode.TIMETABLE, Mode.PLANNER, Mode.SETTINGS};
 
-    public static final String FIRST_DAY_KW = "startday";
+    public static final String FIRST_DAY_FIELD = "startday";
     private static final String FIRST_DAY_DESC = "First day of the week";
     private static final Day[] FIRST_DAY_OPTIONS = {Day.MON, Day.SUN};
 
-    public static final String AUTO_SAVE_KW = "autosave";
+    public static final String AUTO_SAVE_FIELD = "autosave";
     private static final String AUTO_SAVE_DESC = "Autosave after each command (only saves on exit if OFF)";
     private static final String[] AUTO_SAVE_OPTIONS = {SettingsVariable.ON, SettingsVariable.OFF};
 
     private SettingsVariable[] variables = {
-            new SettingsVariable<Mode>(DEFAULT_MODE_KW, DEFAULT_MODE_KW, DEFAULT_MODE_DESC, DEFAULT_MODE_OPTIONS),
-            new SettingsVariable<Day>(FIRST_DAY_KW, FIRST_DAY_KW, FIRST_DAY_DESC, FIRST_DAY_OPTIONS),
-            new SettingsVariable<String>(AUTO_SAVE_KW, AUTO_SAVE_KW, AUTO_SAVE_DESC, AUTO_SAVE_OPTIONS),
+            new SettingsVariable<Mode>(DEFAULT_MODE_FIELD, DEFAULT_MODE_DESC, DEFAULT_MODE_OPTIONS),
+            new SettingsVariable<Day>(FIRST_DAY_FIELD, FIRST_DAY_DESC, FIRST_DAY_OPTIONS),
+            new SettingsVariable<String>(AUTO_SAVE_FIELD, AUTO_SAVE_DESC, AUTO_SAVE_OPTIONS),
     };
 
     public SettingsVariable[] getVariables() {
