@@ -25,5 +25,5 @@ The overview below follows the following standards:
 
 ### Contributions to Developer Guide
 1. AddEventCommand Sequence Diagram
-2. RemindCommand Sequence Diagram
-3. Timetable and Event Class Diagram
+1. RemindCommand Sequence Diagram
+1. Timetable and Event Class Diagram
