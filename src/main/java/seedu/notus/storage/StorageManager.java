@@ -24,18 +24,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import java.util.logging.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import static seedu.notus.ui.Formatter.LS;
-import static seedu.notus.util.PrefixSyntax.*;
+import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
+import static seedu.notus.util.PrefixSyntax.PREFIX_LOAD;
+import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
+
 
 //@@author prachi2023
 
-/**
- * Represents a StorageManager. Manages the saving and loading of task list data.
+/** Represents a StorageManager.
+ * Manages the saving and loading of task list data.
  */
 public class StorageManager {
-    /** logging */
+    /** logging. */
     private static final Logger LOGGER = Logger.getLogger("StorageManager");
 
     /** Default folders directory. */
@@ -396,10 +403,10 @@ public class StorageManager {
      *
      * @throws IOException if unable to save to the file.
      */
-    public void saveAll () throws IOException {
-        saveTimetable ();
-        saveAllNoteDetails (false);
-        saveAllNoteDetails (true);
+    public void saveAll() throws IOException {
+        saveTimetable();
+        saveAllNoteDetails(false);
+        saveAllNoteDetails(true);
     }
 
     private void setupLogger() {

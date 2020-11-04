@@ -36,6 +36,7 @@ public class AddNoteCommand extends Command {
         this.note = note;
         this.isStored = isStored;
     }
+
     @Override
     public String execute() {
         ArrayList<String> content = note.getContent();

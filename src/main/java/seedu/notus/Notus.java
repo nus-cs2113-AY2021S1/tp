@@ -47,8 +47,8 @@ public class Notus {
 
             storageManager.loadAllNotes(false);
             storageManager.loadAllNotes(true);
-            storageManager.saveAllNoteDetails (false);
-            storageManager.saveAllNoteDetails (true);
+            storageManager.saveAllNoteDetails(false);
+            storageManager.saveAllNoteDetails(true);
             storageManager.loadTimetable();
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());

@@ -10,7 +10,11 @@ import seedu.notus.data.tag.Tag;
 
 import java.util.ArrayList;
 
-import static seedu.notus.util.PrefixSyntax.*;
+import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
+import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
+import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
+import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
+import static seedu.notus.util.PrefixSyntax.PREFIX_LOAD;
 
 /**
  * Represents a parser object specifically to parse message for AddNoteCommand.
