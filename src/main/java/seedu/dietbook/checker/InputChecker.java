@@ -35,7 +35,7 @@ public class InputChecker {
      */
     public static void checkEmpty(String userInput, String command) throws DietException {
         if (userInput.split(command).length < 2
-                || userInput.split(command)[1].equals(" ")) {
+                || userInput.split(command)[1].trim().equals("")) {
             throw new DietException("Error! Missing command parameters!");
         }
     }

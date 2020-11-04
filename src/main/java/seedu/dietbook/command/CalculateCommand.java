@@ -78,7 +78,7 @@ public class CalculateCommand extends Command {
                     ui.printCalorieIntake(calorie, startTime, endTime);
                 }
                 break;
-            case "carbohydrate":
+            case "carb":
                 if (processedParam.length == 1) {
                     ui.printCarbIntake(this.carb);
                 } else if (processedParam.length == 2) {
@@ -110,7 +110,7 @@ public class CalculateCommand extends Command {
                     ui.printProteinIntake(protein, startTime, endTime);
                 }
                 break;
-            default:
+            case "fat":
                 if (processedParam.length == 1) {
                     ui.printFatIntake(this.fat);
                 } else if (processedParam.length == 2) {
@@ -125,6 +125,9 @@ public class CalculateCommand extends Command {
                     fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
                     ui.printFatIntake(fat, startTime, endTime);
                 }
+                break;
+            default:
+                throw new DietException("No such nutrient type!");
             }
         } catch (Exception e) {
             throw new DietException("Wrong date time format (Format: yyyy-mm-ddTHH:mm) or future date entered!");
