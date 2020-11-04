@@ -62,7 +62,7 @@ public class AddNoteCommand extends Command {
                     note.setArchived(!note.getIsArchived());
                 } else {
                     // do not add the file as it does not exist anymore
-                    return Formatter.formatString(NOTE_UNSUCCESSFUL_MESSAGE);
+                    return Formatter.formatString(NOTE_EXIST_MESSAGE);
                 }
             } catch (SystemException exception) {
                 return Formatter.formatString(exception.getMessage());
