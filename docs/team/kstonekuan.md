@@ -9,7 +9,7 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand s
 
 ## Summary of Contributions
 
-- **New Feature:** I implemented and maintained the Storage component which included logging, topics and user data.
+- **New Feature:** Implemented and maintained the Storage component which included logging, topics and user data.
   - What it does: allows the data to be saved locally and loaded upon startup.
   - Justification: This feature improves the product significantly because a user does not need to add questions manually for the quiz through the CLI, the user's statistics will be stored which unhances gamification, and we can see user logs to identfy causes of bugs in the application.
   - Highlights: The saving of user data does not actually require the implementation of a `User` class as the user attributes for each question are extracted directly from the question.
