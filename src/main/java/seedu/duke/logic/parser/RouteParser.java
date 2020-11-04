@@ -26,10 +26,7 @@ public class RouteParser extends Parser {
                 throw new CustomException(ExceptionType.NO_LOCATIONS);
             } else if (super.getUserInput().contains(DELIMITER)) {
                 String[] components = super.splitCommands(2, DELIMITER);
-                if (components[0].contains(DELIMITER) | components[1].contains(DELIMITER)) {
-                    logger.warning("Too many delimiters \"/to\".");
-                    throw new CustomException(ExceptionType.MANY_DELIMITERS_ROUTE);
-                }
+                checkTooManyDelimiters(components);
                 return new String[]{components[0], components[1]};
             } else {
                 logger.warning("Delimiter /to is missing.");
@@ -38,6 +35,13 @@ public class RouteParser extends Parser {
         } catch (StringIndexOutOfBoundsException error) {
             logger.warning("Either of the locations is missing");
             throw new CustomException(ExceptionType.NO_LOCATIONS);
+        }
+    }
+
+    private void checkTooManyDelimiters(String[] components) throws CustomException {
+        if (components[0].contains(DELIMITER) | components[1].contains(DELIMITER)) {
+            logger.warning("Too many delimiters \"/to\".");
+            throw new CustomException(ExceptionType.MANY_DELIMITERS_ROUTE);
         }
     }
 

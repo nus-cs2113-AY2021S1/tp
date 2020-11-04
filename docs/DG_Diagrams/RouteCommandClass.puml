@@ -1,25 +1,49 @@
 @startuml
 
-abstract class Command
-Class RouteCommand
-Class RouteParser
+hide circle
+skinparam classAttributeIconSize 0
+!define ABSTRACT &#123;abstract&#125;
+
+Class "{abstract}\nCommand" {
+# isValid: boolean
+
++ executeCommand() ABSTRACT
+}
+Class RouteCommand {
+- rawMessage: String
+
++ executeCommand()
+- areValidLocations(: String[]): boolean
+- checkLocations(: String[])
+- similarLocations(: String[]): ArrayList<String>
+}
+
+Class RouteParser {
+
++ getLocations(): String[]
+- checkTooManyDelimiters(: String[])
+}
 Class Parser
+
 Class BusData {
-{static} possibleBuses (:String, :String) : ArrayList<Bus>
++ {static} possibleBuses (: String, : String) : ArrayList<Bus>
 }
+
 Class Bus {
-getPossibleRoute(:String, :String) : ArrayList<BusStops>
+# busNumber: String
+# getPossibleRoute(: String, : String): ArrayList<BusStops>
 }
+
 Class SimilarityCheck {
-{static} similarLoc(:String) : ArrayList<String>
+{static} similarLoc(: String): ArrayList<String>
 }
 
 Class Ui {
-{static} printRouteMessage(:ArrayList<Bus>)
-{static} printPossibleLocsMessage(:ArrayList<String>)
++ {static} printRouteMessage(:ArrayList<Bus>)
++ {static} printPossibleLocsMessage(:ArrayList<String>)
 }
 
-enum BusStops {
+enum "<<Enumeration>>\nBusStops" {
 PGP
 KENTRIDGEMRTSTATION
 ...
@@ -27,24 +51,27 @@ COLLEGEGREEN
 OEITIONGHAM
 }
 
-enum ExceptionType {
-NO_ROUTE_DELIMITER
-NO_LOCATIONS
-SAME_LOCATIONS
-...
-}
+'enum "<<Enumeration>>\nExceptionType" {
+'NO_ROUTE_DELIMITER
+'NO_LOCATIONS
+'SAME_LOCATIONS
+'...
+'}
 
-Command <|- RouteCommand
-Parser <|- RouteParser
-RouteParser "1"<--down RouteCommand
+"{abstract}\nCommand" <|-- RouteCommand
+hide Parser members
+Parser <|--up RouteParser
+RouteParser "1"<- RouteCommand
 RouteCommand .> BusData
-BusData --> "0..*" Bus
-Bus ..> BusStops
-RouteCommand "throws"..> CustomException
-RouteParser "throws"..> CustomException
-Bus "throws"..> CustomException
-CustomException -> ExceptionType
-RouteCommand .left> SimilarityCheck
+BusData --> "*" Bus
+Bus -left>"*" "<<Enumeration>>\nBusStops"
+'RouteCommand ..down> CustomException: throws
+'RouteParser ..> CustomException: throws
+'Bus ..> CustomException: throws
+'CustomException -> "<<Enumeration>>\nExceptionType"
+RouteCommand ..up> SimilarityCheck
+RouteCommand ..> "<<Enumeration>>\nBusStops"
+RouteCommand ..> Bus
 
 RouteCommand ..up> Ui
 

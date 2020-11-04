@@ -22,8 +22,10 @@ public class BusCommand extends Command {
         if (possibleLocs.isEmpty()) {
             this.busStop = BusStops.formatName(busStop.trim());
             BusStops.findBusStop(busStop).incrementSearchCount();
+            super.isValid = true;
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
+            super.isValid = false;
         }
     }
 
@@ -31,7 +33,7 @@ public class BusCommand extends Command {
     public void executeCommand() {
         if (busStop != null) {
             printLine();
-            ArrayList<Bus> busList = BusData.busAtStop(busStop);
+            ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
             Ui.printBusAtBusStop(busList, busStop);
         }
     }

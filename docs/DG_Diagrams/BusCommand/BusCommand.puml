@@ -1,0 +1,68 @@
+@startuml
+skinparam BoxPadding 30
+box Logic
+participant ":Parser"
+participant ":BusCommand"
+end box
+
+box Model
+participant ":BusData" <<Class>>
+end box
+
+box Ui
+participant ":Ui" <<Class>>
+end box
+
+[-> ":Parser": setUserInput("/bus busStop")
+activate ":Parser"
+[<-- ":Parser"
+deactivate ":Parser"
+
+[-> ":Parser": extractType()
+activate ":Parser"
+
+create ":BusCommand"
+":Parser" -> ":BusCommand": BusCommand(busStop)
+
+activate ":BusCommand"
+ref over ":BusCommand"
+get exact bus stop name
+end
+":BusCommand" --> ":Parser"
+deactivate ":BusCommand"
+
+
+
+":Parser" -> ":BusCommand": executeCommand()
+activate ":BusCommand"
+
+":BusCommand"->":BusData": getBusAtStop(busStop)
+activate ":BusData"
+'ref over ":BusData"
+'get Buses at busStop
+'end
+":BusData" -->":BusCommand": ArrayList<Bus> busList
+deactivate ":BusData"
+
+":BusCommand"->":Ui": printBusAtBusStop(busList)
+activate ":Ui"
+":Ui"-->":BusCommand"
+deactivate ":Ui"
+
+":BusCommand"-->":Parser"
+deactivate ":BusCommand"
+[<-- ":Parser"
+deactivate ":Parser"
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

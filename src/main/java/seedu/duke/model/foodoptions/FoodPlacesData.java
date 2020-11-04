@@ -37,7 +37,7 @@ public class FoodPlacesData {
             {"Cool Spot Drinks", "COM2", "24/7"},
             {"Takeaway Food Kiosks", "COM2", "24/7"},
             {"Cafe Delight", "Ventus", "Mon-Fri, 8.00am-6.00pm"},
-            {"Reedz Café", "SFAH", "Mon-Fri, 8.30am-5.30pm Sat/Sun, 8.00am-3.00pm"},
+            {"Reedz Cafe", "SFAH", "Mon-Fri, 8.30am-5.30pm Sat/Sun, 8.00am-3.00pm"},
             {"University Club", "SFAH", "Mon-Fri, 11.30am-2.30pm (Last seating 2pm, Last order 2.10pm) "
                     + "6.30pm-10.00pm (Last seating 9.45pm, Last order 10pm) Lounge Area: 11.30am to 11pm "
                     + "(Last seating 9.45pm, Last order 10pm)"},
@@ -51,7 +51,7 @@ public class FoodPlacesData {
             {"Subway - Halal Certified", "YIH", "Mon-Sun, 10.00am-10.00pm"},
             {"Old Chang Kee - Halal Certified", "YIH", "Mon-Fri, 7.30am-9.00pm Sat, 7.30am-4.00pm"},
             {"Goh Bros", "YIH", "Mon-Fri, 7.30am-9.00pm Sat, 7.30am-4.00pm"},
-            {"Platypus Food Bar", "Design & Environment Block SDE4", "Mon-Fri, 8.30am-8.00pm"},
+            {"Platypus Food Bar (SDE)", "Design & Environment Block SDE4", "Mon-Fri, 8.30am-8.00pm"},
             {"Platypus Food Bar", "Engineering Block E2A", "Mon-Fri, 9.00am-7.30pm"},
             {"E2 Halal Cafeteria - Halal Certified", "Engineering Block E2", "Mon-Fri, 7.00am-7.00pm Sat, "
                     + "08.00-am-1.00pm"},
