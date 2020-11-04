@@ -69,7 +69,7 @@ class RepeatCommandTest {
 
 
         // Create Repeat Command
-        String inputString = "personal 1 monthly 4";
+        String inputString = "personal; 1; monthly; 4;";
         System.setOut(new PrintStream(outputStreamCaptor));
 
         Command repeatCommand = RepeatCommand.parse(inputString);
@@ -80,7 +80,7 @@ class RepeatCommandTest {
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
-        inputString = "personal 1";
+        inputString = "personal; 1;";
         outputStreamCaptor.reset();
 
         repeatCommand = RepeatCommand.parse(inputString);
@@ -101,7 +101,7 @@ class RepeatCommandTest {
 
 
         // Create Repeat Command
-        String inputString = "personal 3 monthly 4";
+        String inputString = "personal; 3; monthly; 4;";
         System.setOut(new PrintStream(outputStreamCaptor));
 
         Command repeatCommand = RepeatCommand.parse(inputString);
@@ -112,7 +112,7 @@ class RepeatCommandTest {
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
-        inputString = "personal 3";
+        inputString = "personal; 3;";
         outputStreamCaptor.reset();
 
         repeatCommand = RepeatCommand.parse(inputString);
@@ -133,7 +133,7 @@ class RepeatCommandTest {
 
 
         // Create Repeat Command
-        String inputString = "personal 4 monthly 24";
+        String inputString = "personal; 4; monthly; 24;";
         System.setOut(new PrintStream(outputStreamCaptor));
 
         Command repeatCommand = RepeatCommand.parse(inputString);
@@ -144,7 +144,7 @@ class RepeatCommandTest {
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
-        inputString = "personal 4";
+        inputString = "personal; 4;";
         outputStreamCaptor.reset();
 
         repeatCommand = RepeatCommand.parse(inputString);
@@ -186,7 +186,7 @@ class RepeatCommandTest {
 
         try {
             // Create Repeat Command
-            String inputString = "personal 4";
+            String inputString = "personal; 4;";
             System.setOut(new PrintStream(outputStreamCaptor));
 
             Command repeatCommand = RepeatCommand.parse(inputString);
@@ -204,7 +204,7 @@ class RepeatCommandTest {
     void repeat_zoomEventWeekly_zoomEventRepeatedWeekly() throws DukeException {
 
         //creating repeat command
-        String inputString = "zoom 1 weekly 3";
+        String inputString = "zoom; 1; weekly; 3;";
         System.setOut(new PrintStream(outputStreamCaptor));
 
         Command repeatCommand = RepeatCommand.parse(inputString);
@@ -214,7 +214,7 @@ class RepeatCommandTest {
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
         //check the dates reported and erase previous output
-        inputString = "zoom 1";
+        inputString = "zoom; 1;";
         outputStreamCaptor.reset();
 
         repeatCommand = RepeatCommand.parse(inputString);
@@ -234,7 +234,7 @@ class RepeatCommandTest {
     void repeat_timeTableEventDaily_timeTableEventRepeatedDaily() throws DukeException {
 
         //creating repeat command
-        String inputString = "timetable 1 daily 3";
+        String inputString = "timetable; 1; daily; 3;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
@@ -246,7 +246,7 @@ class RepeatCommandTest {
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
-        inputString = "timetable 1";
+        inputString = "timetable; 1;";
         outputStreamCaptor.reset();
 
         repeatCommand = RepeatCommand.parse(inputString);
@@ -265,7 +265,7 @@ class RepeatCommandTest {
     void repeat_personalEventRepeatDailyMonthlyChange_personalEventDailyToMonthly() throws DukeException {
 
         //create repeat command for daily
-        String inputString = "personal 1 daily 4";
+        String inputString = "personal; 1; daily; 4;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
@@ -278,7 +278,7 @@ class RepeatCommandTest {
 
         //clear screen and now test changing repeat from daily 4 to monthly 2
         outputStreamCaptor.reset();
-        inputString = "personal 1 monthly 2";
+        inputString = "personal; 1; monthly; 2;";
 
         repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
@@ -290,7 +290,7 @@ class RepeatCommandTest {
 
         //clear screen and check if monthly repeats were successfully recorded
         outputStreamCaptor.reset();
-        inputString = "personal 1";
+        inputString = "personal; 1;";
 
         repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
@@ -309,7 +309,7 @@ class RepeatCommandTest {
     @Test
     void repeat_repeatingEventNoDeadline_missingDeadlineExceptionThrown() {
         //create repeat command for event with no deadline
-        String inputString = "personal 2 daily 4";
+        String inputString = "personal; 2; daily; 4;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
@@ -328,7 +328,7 @@ class RepeatCommandTest {
     @Test
     void repeat_repeatingEventWrongIndex_indexOutOfBoundsExceptionThrown() {
         //create repeat command for an index which does not exist
-        String inputString = "personal 5 daily 4";
+        String inputString = "personal; 5; daily; 4;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
@@ -345,7 +345,7 @@ class RepeatCommandTest {
     @Test
     void repeat_repeatingEventWrongUnit_invalidTimeUnitExceptionThrown() {
         //create repeat command for event using wrong time unit
-        String inputString = "personal 1 fortnightly 4";
+        String inputString = "personal; 1; fortnightly; 4;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
@@ -361,7 +361,7 @@ class RepeatCommandTest {
     @Test
     void repeat_tooLittleArgumentsProvided_wrongNumberOfArgumentsExceptionThrown() {
         //create repeat command for event with too little information
-        String inputString = "personal";
+        String inputString = "personal;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
@@ -376,7 +376,7 @@ class RepeatCommandTest {
     void repeat_repeatingEventWrongType_invalidEventListTypeExceptionThrown() {
 
         //create repeat command for an event type that does not exist
-        String inputString = "holiday 5 daily 4";
+        String inputString = "holiday; 5; daily; 4;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 
@@ -392,7 +392,7 @@ class RepeatCommandTest {
     void repeat_userTypeWrongNumber_NumberFormatExceptionThrown() {
 
         //create repeat command using wrong number writing format
-        String inputString = "personal 1 weekly three";
+        String inputString = "personal; 1; weekly; three;";
         PrintStream outputLoc = new PrintStream(outputStreamCaptor);
         System.setOut(outputLoc);
 

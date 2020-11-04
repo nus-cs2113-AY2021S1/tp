@@ -72,7 +72,7 @@ public class ReminderCommandTest {
         String input = "timetable wakeup; " + last.toString() + "; 1000";
         Command addTimetableEvent = new AddCommand(input);
         addTimetableEvent.execute(data, ui, storage);
-        String repeatInput = "timetable 1 weekly 1";
+        String repeatInput = "timetable; 1; weekly; 1";
         Command repeatCommand = RepeatCommand.parse(repeatInput);
         repeatCommand.execute(data, ui, storage);
         ReminderCommand testWithEvents = new ReminderCommand();
