@@ -354,15 +354,31 @@ You can delete a food entry using this command. You would need to know the index
 
 Format: `delete food DATE_OF_ENTRY INDEX_OF_FOOD`
 
+For example, you can enter `delete food 4/11/2020 1`, and you should expect to see the following:
+```
+The following food has been deleted for the 4/11/2020: apple
+```
+
 ### 2.4.2 Deleting an exercise entry
 You can delete an exercise entry using this command. You would need to know the index of that particular exercise entry as well as the date of its entry. You can try to use the view exercise command to find the index of the exercise before deleting.
 
 Format: `delete exercise DATE_OF_ENTRY INDEX_OF_EXERCISE`
 
+For example, you can enter `delete exercise 4/11/2020 1`, and you should expect to see the following:
+```
+The following exercise has been deleted for the 1/11/2020: Triceps dips
+```
+
 ### 2.4.3 Deleting a goal entry
 To delete a particular goal entry, you can use this command. However, you would need to know the index of that particular goal entry to utilise this command.
 
 Format: `delete goal INDEX`
+
+For example, you can enter `delete goal 1`, and you should expect to see the following:
+```
+The following has been deleted from the list of goals: Burn more than 30000 calories
+```
+
 
 ## 2.5 Clearing Commands
 Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
@@ -413,9 +429,77 @@ Food, exercise and goal lists are all cleared!
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
 
 ### 2.6.1 Getting a recommended workout
-If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. If you do accept it, It will automatically be added into your exercise entries.
+If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. 
+
+If you do accept it, It will automatically be added into your exercise entries, however you can just to add particular exercises from the recommended list by keying in the index separated by spaces
 
 Format: `recommend`
+
+For example, if you key in `recommend`, the expected outcome is as follows:
+```
+[1] Exercise: Triceps dips
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[2] Exercise: Side Lunges
+    Intensity: 3 sets of 1.0 minutes
+    Burnt Cal: 12
+[3] Exercise: Jumping rope
+    Intensity: 3 sets of 4.0 minutes
+    Burnt Cal: 167
+[4] Exercise: Mountain stretch
+    Intensity: 4 sets of 0.5 minutes
+    Burnt Cal: 5
+Will you be doing this workout?
+type y for yes to add all 4 to your exercise list
+or you can type in the index of the exercises you want added to you exercise list (separated by a space)
+Any other key will be taken as a no :D
+```
+
+If you follow this up with a `y`, you will then see the exercises added in as follows
+```
+The following exercise has been added:
+[1] Exercise: Triceps dips
+    Burnt Cal: 6
+[2] Exercise: Side Lunges
+    Burnt Cal: 12
+[3] Exercise: Jumping rope
+    Burnt Cal: 167
+[4] Exercise: Mountain stretch
+    Burnt Cal: 5
+```
+
+However, if you only decide to add certain indexes, then you can key in the exercise index separated by a space.
+
+For example if you recommended exercises are as follows:
+
+```
+[1] Exercise: Standard Pushups
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[2] Exercise: Cossack Squat
+    Intensity: 3 sets of 1.0 minutes
+    Burnt Cal: 17
+[3] Exercise: Sprints (in minutes)
+    Intensity: 3 sets of 1.0 minutes
+    Burnt Cal: 54
+[4] Exercise: Spinal rotations
+    Intensity: 4 sets of 0.5 minutes
+    Burnt Cal: 5
+Will you be doing this workout?
+type y for yes to add all 4 to your exercise list
+or you can type in the index of the exercises you want added to you exercise list (separated by a space)
+Any other key will be taken as a no :D
+
+```
+
+If you decide, you only want 2 and 4 to be added, you can key in `2 4` and you will see as follows:
+```
+The following exercise has been added:
+[1] Exercise: Cossack Squat
+    Burnt Cal: 17
+[2] Exercise: Spinal rotations
+    Burnt Cal: 5
+```
 
 ### 2.6.2 Marking a goal as complete
 After completing a goal, you can mark it as complete. However, if it is a smart goal, Fitr will mark it as complete according to your calorie intake or calorie burnt.
