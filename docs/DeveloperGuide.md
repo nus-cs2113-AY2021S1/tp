@@ -1333,15 +1333,15 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: No bookmark entry information is displayed. Error details show that bookmark id cannot be 0.
     
     4.  Other incorrect commands to try: 
-        1. `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
+        1.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
 
 <br/>
 
 ### D.x: Editing a bookmark entry episode
 1.  Editing a bookmark entry episode.
     1.  Prerequisite: 
-         1. List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
-         2. View the information of bookmark entry using 'bookmark <BOOKMARK_ID>'. The total episode of the anime series.
+        1.  List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+        2.  View the information of bookmark entry using `bookmark <BOOKMARK_ID>`. The total episode of the anime series.
 
     2.  Test case: `bookmark 1 -e 1` <br/>
     Expected: The bookmark episode for that id will be edited to 1, and a message indicating the anime current episode has been edited.
