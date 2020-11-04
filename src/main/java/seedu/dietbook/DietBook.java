@@ -101,7 +101,7 @@ public class DietBook {
     /**
      * Main method to run the program.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DietException {
         DietBook dietBook = new DietBook();
         dietBook.ui.printWelcomeMessage();
         //dietBook.loadPerson();
@@ -114,6 +114,8 @@ public class DietBook {
                 c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
+            } catch (Exception e) {
+                throw new DietException("Wrong command format!");
             }
         }
     }

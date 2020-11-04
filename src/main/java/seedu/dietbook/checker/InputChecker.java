@@ -179,9 +179,9 @@ public class InputChecker {
      */
     public static void checkFoodLimit(int foodValue) throws DietException {
         if (foodValue < 0) {
-            throw new DietException("Input value cannot be less than 0!");
+            throw new DietException("Portion size, carb, protein or fat value cannot be less than 0!");
         } else if (foodValue > FOOD_CAP) {
-            throw new DietException("Input value cannot be more than 100,000!");
+            throw new DietException("Portion size, carb, protein or fat value cannot be more than 100,000!");
         }
     }
 
@@ -247,9 +247,9 @@ public class InputChecker {
      */
     public static void checkAgeLimit(int age) throws DietException {
         if (age < 0) {
-            throw new DietException("Input value cannot be less than 0!");
+            throw new DietException("Age value cannot be less than 0!");
         } else if (age > AGE_CAP) {
-            throw new DietException("Input value cannot be more than 125!");
+            throw new DietException("Age value cannot be more than 125!");
         }
     }
 
@@ -261,9 +261,9 @@ public class InputChecker {
      */
     public static void checkHeightLimit(int height) throws DietException {
         if (height < 1) {
-            throw new DietException("Input value cannot be less than 1");
+            throw new DietException("Height value cannot be less than 1");
         } else if (height > HEIGHT_CAP) {
-            throw new DietException("Input value cannot be more than 273!");
+            throw new DietException("Height value cannot be more than 273!");
         }
     }
 
@@ -275,9 +275,9 @@ public class InputChecker {
      */
     public static void checkWeightLimit(int weight) throws DietException {
         if (weight < 1) {
-            throw new DietException("Input value cannot be less than 1!");
+            throw new DietException("Weight value cannot be less than 1!");
         } else if (weight > WEIGHT_CAP) {
-            throw new DietException("Input value cannot be more than 443!");
+            throw new DietException("Weight value cannot be more than 443!");
         }
     }
 
