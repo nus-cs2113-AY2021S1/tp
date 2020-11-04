@@ -13,7 +13,7 @@ import seedu.notus.ui.InterfaceManager;
 import seedu.notus.ui.Formatter;
 import seedu.notus.util.parser.ParserManager;
 
-import java.io.IOException;
+import static seedu.notus.storage.StorageManager.LOGS_DIR;
 
 /**
  * Entry point of the NotUS application.
@@ -35,6 +35,8 @@ public class Notus {
      * Initializes the required managers.
      */
     private void init() {
+        StorageManager.createDirectory(LOGS_DIR);
+
         this.interfaceManager = new InterfaceManager();
         this.notebook = new Notebook();
         this.timetable = new Timetable();
@@ -48,6 +50,7 @@ public class Notus {
             storageManager.loadAllNotes(false);
             storageManager.loadAllNotes(true);
             storageManager.loadTimetable();
+
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
         }

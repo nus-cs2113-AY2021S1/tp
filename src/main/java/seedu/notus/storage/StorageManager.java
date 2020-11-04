@@ -33,6 +33,7 @@ import static seedu.notus.ui.Formatter.LS;
  */
 public class StorageManager {
     /** Default folders directory. */
+    public static final String LOGS_DIR = "logs";
     public static final String FOLDER_DIR = "data";
     public static final String NOTES_DIR = "/notes";
     private static final String ARCHIVED_NOTES_DIR = "/archived";
@@ -95,7 +96,7 @@ public class StorageManager {
     /**
      * Creates a directory path data/notes. In case both data and /notes do not exist.
      */
-    private void createDirectory(String path) {
+    public static void createDirectory(String path) {
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
