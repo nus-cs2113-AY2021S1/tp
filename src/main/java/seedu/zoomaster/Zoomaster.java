@@ -32,12 +32,12 @@ public class Zoomaster {
      * @param bookmarkFilePath The filepath of the bookmark txt file.
      * @param timetableFilePath The filepath of the slot txt file.
      */
-    public Zoomaster(String bookmarkFilePath, String timetableFilePath) {
+    public Zoomaster(String bookmarkFilePath, String timetableFilePath, String storageFilePath) {
         ui = new Ui();
 
         bookmarkStorage = new Storage<>(getJarFilepath() + bookmarkFilePath, BookmarkList.class);
         timetableStorage = new Storage<>(getJarFilepath() + timetableFilePath, Timetable.class);
-        userSettingsStorage = new Storage<>(getJarFilepath() + timetableFilePath, UserSettings.class);
+        userSettingsStorage = new Storage<>(getJarFilepath() + storageFilePath, UserSettings.class);
       
         try {
             bookmarks = bookmarkStorage.load();
@@ -90,7 +90,9 @@ public class Zoomaster {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        new Zoomaster("./data/bookmarks.txt", "./data/timetable.txt").run();
+        new Zoomaster("./data/bookmarks.txt",
+                "./data/timetable.txt",
+                "./data/settings.txt").run();
     }
 
 
