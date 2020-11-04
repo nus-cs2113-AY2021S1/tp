@@ -12,8 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BookListTest {
     private BookList bookList;
-    private Book book1, book2;
-    private Author author1, author2;
+    private Book book1;
+    private Book book2;
+    private Author author1;
+    private Author author2;
 
     @BeforeEach
     void setUp() {

@@ -25,20 +25,20 @@ class BookTest {
 
     @Test
     public void getBookDetailString_noRating() {
-        assertEquals("Title: Harry Potter" + System.lineSeparator() +
-                "Author: JK Rowling" + System.lineSeparator() +
-                "Categories: " + System.lineSeparator() +
-                "There are no categories created!" + System.lineSeparator(), book.getBookDetailString());
+        assertEquals("Title: Harry Potter" + System.lineSeparator()
+                + "Author: JK Rowling" + System.lineSeparator()
+                + "Categories: " + System.lineSeparator()
+                + "There are no categories created!" + System.lineSeparator(), book.getBookDetailString());
     }
 
     @Test
     public void getBookDetailString_hasRating() {
         book.setRating(5);
-        assertEquals("Title: Harry Potter" + System.lineSeparator() +
-                "Author: JK Rowling" + System.lineSeparator() +
-                "Categories: " + System.lineSeparator() +
-                "There are no categories created!" + System.lineSeparator() +
-                "Rating: 5" + System.lineSeparator(), book.getBookDetailString());
+        assertEquals("Title: Harry Potter" + System.lineSeparator()
+                + "Author: JK Rowling" + System.lineSeparator()
+                + "Categories: " + System.lineSeparator()
+                + "There are no categories created!" + System.lineSeparator()
+                + "Rating: 5" + System.lineSeparator(), book.getBookDetailString());
     }
 
     @Test
@@ -46,9 +46,9 @@ class BookTest {
         ArrayList<String> categories = new ArrayList();
         categories.add("Fantasy");
         book.setCategories(categories);
-        assertEquals("Title: Harry Potter" + System.lineSeparator() +
-                "Author: JK Rowling" + System.lineSeparator() +
-                "Categories: " + System.lineSeparator() +
-                "1. Fantasy" + System.lineSeparator(), book.getBookDetailString());
+        assertEquals("Title: Harry Potter" + System.lineSeparator()
+                + "Author: JK Rowling" + System.lineSeparator()
+                + "Categories: " + System.lineSeparator()
+                + "1. Fantasy" + System.lineSeparator(), book.getBookDetailString());
     }
 }
