@@ -28,6 +28,7 @@ public abstract class CommandParser {
     protected static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
     protected static final String REGEX_PARAMETER = "^.*-[a-zA-z]+.*$";
     protected static final String NON_INTEGER_PROVIDED = "Please specify an integer value for ";
+    protected static final String PARAMETER_PARSED = "Parameter parsed properly";
     protected static final int FIELD_SPLIT_LIMIT = 2;
 
     private static final String REGEX_POSITIVE_INTEGER = "^\\d+$";

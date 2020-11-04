@@ -8,11 +8,12 @@ import anichan.exception.AniException;
  */
 public class SearchParser extends CommandParser {
     private static final String NO_PARAM_PROVIDED = "Please provide a parameter type. Search will accept -n or -g.";
-    private SearchCommand searchCommand;
+    private static final String INIT_STRING = "";
+    private static final int INVALID_SEARCH_TYPE = -1;
 
-    public SearchParser() {
-        searchCommand = new SearchCommand();
-    }
+    private String searchTerm = INIT_STRING;
+    private String searchGenre = INIT_STRING;
+    private int searchType = INVALID_SEARCH_TYPE;
 
     /**
      * Parses the string parameters and creates an executable searchCommand according to the parameters.
@@ -25,7 +26,7 @@ public class SearchParser extends CommandParser {
         String[] paramGiven = description.split(DASH, FIELD_SPLIT_LIMIT);
         paramIsSetCheck(paramGiven);
         parameterParser(paramGiven);
-        return searchCommand;
+        return new SearchCommand(searchTerm, searchGenre, searchType);
     }
 
     /**
@@ -43,10 +44,12 @@ public class SearchParser extends CommandParser {
 
         switch (paramParts[0].trim()) {
         case NAME_PARAM:
-            searchCommand.setSearchTerm(paramParts[1]);
+            searchTerm = paramParts[1].trim();
+            searchType = 0;
             break;
         case GENRE_PARAM:
-            searchCommand.setSearchGenre(paramParts[1]);
+            searchGenre = paramParts[1].trim();
+            searchType = 1;
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven[1] + NOT_RECOGNISED;

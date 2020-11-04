@@ -220,6 +220,11 @@ workspace -n   Triple Fromage Cheesecake
 workspace -d   Triple Fromage Cheesecake 
 workspace -d Triple Fromage Cheesecake
 workspace -l
+search - n fate
+search   -n fate
+search -n   fate
+search  -n fate
+search -g music
 watchlist
 watchlist -unknown helloworld
 watchlist -n abc

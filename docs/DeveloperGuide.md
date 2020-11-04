@@ -819,7 +819,7 @@ The figure below is the sequence diagram for steps 5 to 7
 <br/>
 
 ### 4.9 Bookmark Feature
-Overview of the different features provided by bookmark
+
 The `bookmark` feature aims to provide the user with the ability to create shortcuts to anime they wish to track. This feature further provides tools to monitor the progress of a series and make informative notes.
 
 <br/>
@@ -868,7 +868,7 @@ Below is a list of bookmark operations:
 *   `Bookmark#getBookmarkEpisode()`: Retrieve the episode field for a Bookmark entry.
 *   `Bookmark#getNoteInString()`: Retrieve notes in a list within the specified bookmark entry.
 
-**Step 4:** The user executes `bookmark -a 430` command to add the anime id: 3 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
+**Step 4:** The user executes `bookmark -a 430` command to add the anime id: 430 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
 *Figure 32: Bookmark Entry After Add*
@@ -899,7 +899,7 @@ Listing all anime in bookmark:
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
 *Figure 35: Bookmark Entries After Delete*
 
-> :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease.
+> :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease by 1.
 
 **Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
 
@@ -944,8 +944,10 @@ The first design consideration was the data structure on how to bookmark entries
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Keep only the anime index information within the bookmark **(Current)**            | - Easy to reference objects within ArrayList using its index and it is easy to implement | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry |
+| 1. Usage of three ArrayList to store anime index, Episode, and Notes **(current design)**     | - Easy to reference objects within ArrayList using its index and it is easy to implement | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry |
 | 2. Use a `BookmarkManager` to handle bookmark features                  | - Do not need to maintain multiple Arraylist    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
+
+While both alternatives have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
 
 <br/>
 
@@ -955,8 +957,10 @@ The second design consideration was how to keep the reference to the anime objec
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Usage of three ArrayList to store anime index, Episode, and Notes **(Current)**            | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands has to communicate with AnimeData for anime-related functionalities. |
-| 2. Keep the entire anime object in Bookmark                  | - Do not need to reference AnimeData for anime information    | - One extra layer of unnecessary abstraction (nesting), also introducing more coupling and dependency  |
+| 1. Keep only the anime index information within the bookmark **(current design)** | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands have to communicate with AnimeData for anime-related functionalities. |
+| 2. Keep the entire anime object in Bookmark                  | - Do not need to reference AnimeData for anime information    | - Keep a duplicate of anime data, requires synchronisation <br/> - Hard to keep anime object information offline |
+
+We have decided to implement the first alternative, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to AnimeData, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using anime object.
 
 <br/>
 
@@ -1209,4 +1213,180 @@ If you wish to add new checks, simply add the check file with a filename `check-
     4.  Other incorrect commands to try: 
         1.  `watchlist -d`
         2.  `watchlist -d x` (where x is a negative number, a word, or an additional parameter)
-        
+
+<br/>
+
+### D.X: Adding an anime to active watchlist
+1.  Adding an anime to active watchlist.
+    1.  Prerequisite: The active watchlist does not contain the anime to be added.
+    
+    2.  Test case: `add 1` <br/>
+    Expected: The anime with index of 1 is added into the active watchlist, and a message with the name of the anime is printed.
+    
+    3.  Test case: `add 3` <br/>
+    Expected: The anime with index of 3 is added into the active watchlist, and a message with the name of the anime is printed.
+    
+    4.  Other incorrect commands to try:
+        1.  `add`
+        2.  `add x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
+
+### D.X: Removing an anime from active watchlist
+1.  Removing an anime from active watchlist.
+    1.  Prerequisite: The active watchlist must contain at least one anime.
+    
+    2.  Test case: `remove 1` <br/>
+    Expected: The first anime in the watchlist is deleted, and a message with the name of the anime is printed.
+    
+    3.  Test case: `remove 3` <br/>
+    Expected: The third anime in the watchlist is deleted, and a message with the name of the anime is printed.
+    
+    4.  Other incorrect commands to try:
+        1.  `remove`
+        2.  `remove x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the watchlist)
+
+<br/>
+
+### D.X: Viewing all anime in a specific or active watchlist
+1.  Viewing all anime in a specific or active watchlist.
+    1.  Prerequisite: The watchlist must contain at least one anime.
+    
+    2.  Test case: `view` <br/>
+    Expected: Lists out the name of all anime in the active watchlist.
+    
+    3.  Test case: `view 1` <br/>
+    Expected: Lists out the name of all anime in the first watchlist.
+    
+    4.  Other incorrect commands to try:
+        1.  `view x` (where x is a negative number, zero, a word, or a number exceeding the number of watchlists)
+
+<br/>
+
+### D.X: Viewing the information of a specific anime
+1.  Viewing the information of a specific anime.
+    1.  Prerequisite:
+    
+    2.  Test case: `info 1` <br/>
+    Expected: Lists out the information of the anime with index 1.
+    
+    3.  Test case: `info 3` <br/>
+    Expected: Lists out the information of the anime with index 3.
+    
+    4.  Other incorrect commands to try:
+        1.  `info`
+        2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
+
+<br/>
+
+### D.x: Listing bookmark entries
+1.  Listing bookmark entries.
+    1.  Prerequisite: None.
+
+    2.  Test case: `bookmark -l` <br/>
+    Expected: All bookmark entries will be listed, if the bookmark list is empty then a bookmark empty message will be printed.
+
+<br/>
+
+### D.x: Adding a bookmark entry
+1.  Adding a bookmark entry.
+    1.  Prerequisite: Look up the anime id using the `info` command. The anime id is in `AnimeData` source.
+
+    2.  Test case: `bookmark -a 1` <br/>
+    Expected: The anime id will be added as a bookmark entry, and a message indicating the name of anime is added to the bookmark.
+    
+    3.  Test case: `bookmark -a 0` <br/>
+    Expected: No anime is added to the bookmark. Error details show that anime id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -a`
+        2.  `bookmark -a x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Deleting a bookmark entry
+1.  Deleting a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+
+    2.  Test case: `bookmark -d 1` <br/>
+    Expected: The bookmark id will be deleted from the bookmark, and a message indicating the name of anime deleted from the bookmark.
+    
+    3.  Test case: `bookmark -d 0` <br/>
+    Expected: No bookmark entry is deleted from the bookmark. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -d`
+        2.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: View info of a bookmark entry
+1.  View info of a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+
+    2.  Test case: `bookmark 1` <br/>
+    Expected: All information on a bookmark entry will be printed.
+    
+    3.  Test case: `bookmark 0` <br/>
+    Expected: No bookmark entry information is displayed. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Editing a bookmark entry episode
+1.  Editing a bookmark entry episode.
+    1.  Prerequisite: 
+        1.  List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+        2.  View the information of bookmark entry using `bookmark <BOOKMARK_ID>`. The total episode of the anime series.
+
+    2.  Test case: `bookmark 1 -e 1` <br/>
+    Expected: The bookmark episode for that id will be edited to 1, and a message indicating the anime current episode has been edited.
+    
+    3.  Test case: `bookmark 0 -e 1` <br/>
+    Expected: No bookmark entry will have its episode edited. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -e`
+        2.  `bookmark -e x` (where x is a negative number, a word, or an additional parameter)
+        3.  `bookmark x -e` (where x is a negative number, a word, or an additional parameter)
+        4.  `bookmark x -e x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Adding a note to a bookmark entry
+1.  Adding a note to a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+         
+    2.  Test case: `bookmark 1 -n test` <br/>
+    Expected: The note will be added to bookmark id, and a message indicating the note has been edited for that anime.
+    
+    3.  Test case: `bookmark 0 -n test` <br/>
+    Expected: No bookmark note will be added. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -n`
+        2.  `bookmark -n x` (where x is a negative number, a word, or an additional parameter)
+        3.  `bookmark x -n` (where x is a negative number, a word, or an additional parameter)
+        4.  `bookmark x -n x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Removing a note from a bookmark entry
+1.  Removing a note from a bookmark entry.
+    1.  Prerequisite:  View the information on bookmark entry using 'bookmark <BOOKMARK_ID>'. Multiple notes for that bookmarked anime.
+
+    2.  Test case: `bookmark 1 -r 1` <br/>
+    Expected: The first note of the bookmark entry will be removed, and a message indicating the note has been removed from the anime.
+    
+    3.  Test case: `bookmark 0 -r 1` <br/>
+    Expected: No notes will be removed. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -r`
+        2.  `bookmark -r x` (where x is a negative number, a word, or an additional parameter)
+        3.  `bookmark x -r` (where x is a negative number, a word, or an additional parameter)
+        4.  `bookmark x -r x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
