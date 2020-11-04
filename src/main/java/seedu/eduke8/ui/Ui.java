@@ -240,7 +240,7 @@ public class Ui {
                 System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
                 String noteName = SCANNER.nextLine();
 
-                while(noteName.replace(" ", "").isEmpty()) {
+                while (noteName.replace(" ", "").isEmpty()) {
                     System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
                     noteName = SCANNER.nextLine();
                 }
@@ -248,7 +248,7 @@ public class Ui {
                 System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                 String noteBody = SCANNER.nextLine();
 
-                while(noteBody.replace(" ", "").isEmpty()) {
+                while (noteBody.replace(" ", "").isEmpty()) {
                     System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                     noteBody = SCANNER.nextLine();
                 }
