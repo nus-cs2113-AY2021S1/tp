@@ -6,7 +6,7 @@ import seedu.zoomaster.slot.Day;
 public class UserSettings {
     public static final String DEFAULT_MODE_FIELD = "mode";
     private static final String DEFAULT_MODE_DESC = "Default mode at start up";
-    private static final Mode[] DEFAULT_MODE_OPTIONS = {Mode.BOOKMARK, Mode.TIMETABLE, Mode.PLANNER, Mode.SETTINGS};
+    private static final Mode[] DEFAULT_MODE_OPTIONS = {Mode.BOOKMARK, Mode.TIMETABLE};
 
     public static final String FIRST_DAY_FIELD = "startday";
     private static final String FIRST_DAY_DESC = "First day of the week";
