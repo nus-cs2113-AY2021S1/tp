@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
  * @author tikimonarch
  */
 public class Parser {
+    public static final int timeFormatLength = 16;
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
     public static final String COMMAND_EDIT_INFO = "editinfo";
@@ -109,11 +110,11 @@ public class Parser {
                 processedParam = getCommandParam(userInput).split(param);
                 InputChecker.checkEmptyOption(processedParam);
                 trimmedParam = processedParam[1].trim();
-
                 if (processedParam[1].contains("/")) {
                     trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 1).trim();
-                } else if (trimmedParam.split("\\s+").length == 2) {
-                    trimmedParam = trimmedParam.split("\\s+")[0];
+                } else if (trimmedParam.split("\\s+").length >= 2) {
+                    int lengthWithoutTime = trimmedParam.length() - timeFormatLength;
+                    trimmedParam = trimmedParam.substring(0,lengthWithoutTime).trim();
                 }
                 switch (param) {
                 case "x/":
