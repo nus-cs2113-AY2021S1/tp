@@ -10,7 +10,7 @@ title : Developer Guide
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 ParserManager](#parserManager)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser and ParserManager](#parserManager)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
@@ -27,6 +27,9 @@ title : Developer Guide
 #### [5. Non-Functional Requirements](#nfr)
 #### [6. Glossary](#gloss)
 #### [7. Instructions for Manual Testing](#testinstr)
+#### [8. Appendix] (#appendix)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 ParseCommands](#parseCommands)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Commands](#XYZCommands)
 
 <br>
 
@@ -85,7 +88,7 @@ NotUS manages the flow of the application. On launch, it will create the necessa
   <br><em>Figure 2</em>
 </p>
 
-#### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
+#### <a id="parserManager"><ins>2.3 Parser and ParserManager</ins></a>
 
 The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action. The class diagram is as follows.
 
@@ -95,6 +98,8 @@ The ParserManager manages the creation of specific parser objects based on the t
 </p>
 
 💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
+💡 Different ParseXYZCommand has different variables, thus they are omitted in the diagram.
+💡 For a full list of ParseXYZCommands, see [ParseCommands] (#parseCommands)
 
 1. The ParserManager receives the user input message as a whole.
 1. Interprets the type of command and creates the respective parser for each command.
@@ -108,12 +113,15 @@ The sequence diagram is as follows.
   <br><em>Figure 4</em>
 </p>
 
-💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are various paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
+💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are various paths, they are omitted from the diagram. The Command object in the diagram is used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
+💡 The lifeline for ParseAddNoteCommand and ParseDeleteNoteCommand should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
  <p align="center">
    <img alt="AddNoteParser" src="diagrams/out/AddNoteParser.png" />
    <br><em>Figure 5</em>
  </p>
+
+💡 The lifeline for ParseAddNoteCommand should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 Based on the user input, the Parser handles and creates the corresponding Command object.
 
@@ -370,3 +378,26 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 1. Enter the command `help` to get a list of all available commands and its usages.
 1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
 1. Simply enter `exit` to terminate and exit the application.
+
+## <a id="appendix">8. Appendix</a>
+
+#### <a id="parseCommands"><ins>8.1 ParseCommands</ins></a>
+
+| ParseXYZCommands |  Functions  |
+|------------------|-------------|
+|ParseAddNoteCommand|Creates a AddNoteCommand|
+|ParseAddEventCommand|Creates a AddEventCommand|
+|ParseEditNoteCommand|Creates a EditNoteCommand|
+|ParseEditEventCommand|Creates a EditEventCommand|
+|ParseDeleteNoteCommand|Creates a DeleteNoteCommand|
+|ParseDeleteEventCommand|Creates a DeleteEventCommand|
+|ParseListNoteCommand|Creates a ListNoteCommand|
+|ParseListEventCommand|Creates a ListEventCommand|
+|ParseFindCommand|Creates a FindCommand|
+|ParsePinCommand|Creates a PinCommand|
+|ParseViewNoteCommand|Creates a ViewNoteCommand|
+|ParseArchiveOrUnarchiveNoteCommand|Creates either ArchiveNoteCommand or UnarchiveNoteCommand|
+|ParseCreateOrDeleteTagCommand|Creates a CreateTagCommand or DeleteTagCommand|
+|ParseTagCommand|Creates a TagNoteCommand or TagEventCommand|
+
+#### <a id="XYZCommands"><ins>8.2 Commands</ins></a>
