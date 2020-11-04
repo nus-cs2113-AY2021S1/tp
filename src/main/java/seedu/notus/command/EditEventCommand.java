@@ -23,7 +23,6 @@ import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SHIFT_SUCCESS_
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SHIFT_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SUCCESS_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_START_TIME_SUCCESS_MESSAGE;
-import static seedu.notus.util.CommandMessage.EDIT_EVENT_START_TIME_SUCCESS_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_SUCCESSFUL_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_END_RECURRENCE_DATE_MESSAGE;
@@ -108,7 +107,7 @@ public class EditEventCommand extends Command {
             results.add(EDIT_EVENT_UNSUCCESSFUL_MESSAGE);
         } else {
             try {
-                storageManager.saveTimetable(timetable);
+                storageManager.saveTimetable();
             } catch (IOException exception) {
                 results.add(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
                 return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
