@@ -85,7 +85,8 @@ Lastly, text that are blue like this [example](#12-using-this-guide), are clicka
 7.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
 
 ![First Time Setup](images/User-Guide-Setting-Up.png)
-*Figure 1: Sample First Time Setup Prompt*
+
+*Figure 1: Example of First Time Setup Prompt*
 
 <br/>
 
@@ -682,7 +683,8 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
 ![Data Loaded on Startup](images/Data-Loaded-On-Startup.png)
-*Figure 2: Sample of the Data Loaded On Startup*
+
+*Figure 2: Example of Data Loaded On Startup*
 
 <br/>
 
