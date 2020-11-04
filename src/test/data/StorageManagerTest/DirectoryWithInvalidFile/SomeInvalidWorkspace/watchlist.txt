@@ -7,7 +7,7 @@ duplicate | []
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 s | [ 1 , 2 , 3 ]
 c | [0, 511]
-d | [0, 510]
+d | [0, 509, 510]
 s | [ 1 , 2 , 3,4,5 ]
 hmm | [1,2,3,1,2,3,1,2,3]
 hello /|\ []

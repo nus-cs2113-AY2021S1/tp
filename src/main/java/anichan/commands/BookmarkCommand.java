@@ -18,6 +18,12 @@ import java.util.logging.Logger;
  */
 public class BookmarkCommand extends Command {
 
+
+    //Error Header
+    private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
+    private static final String BOOKMARK_ERROR_MESSAGE = " provided is invalid.";
+
+    //Error Message Trailer
     private static final String ANIME_ID_ERROR = " Anime index is outside AnimeData range "
             + "(Bigger than number of anime).";
     private static final String ANIME_ID_EXIST_ERROR = " Anime index is already in bookmark.";
@@ -27,9 +33,20 @@ public class BookmarkCommand extends Command {
             + "(Bigger than number of notes).";
     private static final String BOOKMARK_EPISODE_ERROR = " is invalid." + System.lineSeparator()
             + "Episode provided is bigger than the total episode.";
-    private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
-    private static final String BOOKMARK_ERROR_MESSAGE = " provided is invalid.";
     private static final String BOOKMARK_NOTE_ERROR_MESSAGE = " provided contain \"~\" which is not allowed.";
+    private static final String ANIME_ID_ZERO_ERROR = " Anime index start from 1.";
+    private static final String NOTE_ID_ZERO_ERROR = " Note index start from 1.";
+    private static final String BOOKMARK_ID_ZERO_ERROR = " Bookmark index start from 1.";
+    private static final String BOOKMARK_ACTION_NULL = "Bookmark action cannot be null.";
+    private static final String BOOKMARK_NOTE_NULL_ERROR = "Bookmark note cannot be null.";
+
+    //Output message header
+    private static final String EPISODE_HEADER = "Current Episode: ";
+    private static final String NOTES_HEADER = "Notes for anime:";
+    private static final String LIST_HEADER = "Listing all anime in bookmark:";
+    private static final String INFO_HEADER = "Here is the information for that anime.";
+
+    //Logging message
     private static final String BOOKMARK_EXECUTE_EDIT = "Executing Edit Episode.";
     private static final String BOOKMARK_EXECUTE_ADD = "Executing Add Anime to Bookmark.";
     private static final String BOOKMARK_EXECUTE_DELETE = "Executing Delete Anime from Bookmark.";
@@ -38,27 +55,30 @@ public class BookmarkCommand extends Command {
     private static final String BOOKMARK_EXECUTE_ADD_NOTE = "Executing bookmark add note.";
     private static final String BOOKMARK_EXECUTE_REMOVE_NOTE = "Executing bookmark remove note.";
     private static final String BOOKMARK_EXECUTE_SUCCESS = "Execute Bookmark command successful.";
-    private static final String BOOKMARK_LIST_HEADER = "Listing all anime in bookmark:";
-    private static final String BOOKMARK_INFO_HEADER = "Here is the information for that anime.";
+
+    //Constant Parameter
+    private static final int ZERO_PARAM = 0;
     private static final String BOOKMARK_NOTE_FORBIDDEN_CHAR = "~";
-    public static final String EPISODE_HEADER = "Current Episode: ";
-    public static final String NOTES_HEADER = "Notes for anime:";
-    public static final String ANIME_ID_ZERO_ERROR = " Anime index start from 1.";
-    public static final String NOTE_ID_ZERO_ERROR = " Note index start from 1.";
-    public static final String BOOKMARK_ID_ZERO_ERROR = " Bookmark index start from 1.";
-    public static final int ZERO_PARAM = 0;
+
+    //Bookmark required field
     private int bookmarkIndex;
     private int animeIndex;
-
-
     private int noteIndex;
     private int bookmarkEpisode;
     private String bookmarkAction;
     private String bookmarkNote;
+
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkCommand.class.getName());
 
-    public BookmarkCommand() {
-        bookmarkAction = null;
+    public BookmarkCommand(String bookmarkAction, int bookmarkIndex, int animeIndex, int bookmarkEpisode,
+                           int noteIndex, String bookmarkNote) {
+        assert bookmarkAction != null : BOOKMARK_ACTION_NULL;
+        this.bookmarkAction = bookmarkAction;
+        this.bookmarkIndex = bookmarkIndex;
+        this.animeIndex = animeIndex;
+        this.bookmarkEpisode = bookmarkEpisode;
+        this.noteIndex = noteIndex;
+        this.bookmarkNote = bookmarkNote;
         LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
 
@@ -103,16 +123,17 @@ public class BookmarkCommand extends Command {
             break;
         case BookmarkParser.LIST_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_LIST);
-            result = BOOKMARK_LIST_HEADER;
+            result = LIST_HEADER;
             String bookmarkList = listBookmark(animeData, bookmark);
             result += bookmarkList;
             break;
         case BookmarkParser.INFO_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_INFO);
-            result = BOOKMARK_INFO_HEADER + System.lineSeparator();
+            result = INFO_HEADER + System.lineSeparator();
             result += getBookmarkInfo(animeData, bookmark);
             break;
         case BookmarkParser.ADD_NOTE_PARAM:
+            assert bookmarkNote != null : BOOKMARK_NOTE_NULL_ERROR;
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_ADD_NOTE);
             result = addNoteToBookmark(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
@@ -388,32 +409,9 @@ public class BookmarkCommand extends Command {
         return bookmark.getListInString(animeData);
     }
 
+    //Getters and Setters
     public String getBookmarkAction() {
         return this.bookmarkAction;
-    }
-
-    public void setBookmarkAction(String actionString) {
-        this.bookmarkAction = actionString;
-    }
-
-    public void setBookmarkIndex(int bookmarkIndex) {
-        this.bookmarkIndex = bookmarkIndex;
-    }
-
-    public void setAnimeIndex(int animeIndex) {
-        this.animeIndex = animeIndex;
-    }
-
-    public void setBookmarkEpisode(int bookmarkEpisode) {
-        this.bookmarkEpisode = bookmarkEpisode;
-    }
-
-    public void setBookmarkNote(String note) {
-        this.bookmarkNote = note;
-    }
-
-    public void setNoteIndex(int noteIndex) {
-        this.noteIndex = noteIndex;
     }
 
 }

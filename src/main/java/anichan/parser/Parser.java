@@ -1,8 +1,6 @@
 package anichan.parser;
 
-import anichan.commands.HelpCommand;
 import anichan.commands.Command;
-import anichan.commands.ExitCommand;
 import anichan.exception.AniException;
 import anichan.logger.AniLogger;
 
@@ -18,7 +16,8 @@ public class Parser {
      */
     public Command getCommand(String fullCommand) throws AniException {
         LOGGER.log(Level.INFO, "Parse: " + fullCommand);
-
+        
+        fullCommand = fullCommand.trim();
         String[] fullCommandSplit = parseUserInput(fullCommand);
         String description = "";
         String command = fullCommandSplit[0];

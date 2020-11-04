@@ -22,6 +22,7 @@ public abstract class Storage {
     private static final String FILE_DOES_NOT_EXIST = "File does not exist.";
     private static final String WRITE_TO_FILE_FAILED = "Failed to write to file.";
 
+    protected static final int MAX_ANIME_INDEX = 510;
     private static final Logger LOGGER = AniLogger.getAniLogger(Storage.class.getName());
 
     /**
@@ -81,5 +82,24 @@ public abstract class Storage {
      */
     public boolean isPositiveOrNegativeInteger(String integerString) {
         return integerString.matches(REGEX_POSITIVE_INTEGER) || integerString.matches(REGEX_NEGATIVE_INTEGER);
+    }
+
+    /**
+     * Parses the string argument as a signed integer.
+     *
+     * @param stringInteger {@code String} argument to be parsed to {@code integer}
+     * @return the {@code integer} that was parsed successfully
+     */
+    protected int parseStringToInteger(String stringInteger) {
+        try {
+            return Integer.parseInt(stringInteger);
+        } catch (NumberFormatException exception) {
+            // To indicate parsing failed, it is not a good idea to throw exception here
+            // because that would break the entire data loading process, causing valid
+            // watchlist entry to not be loaded too.
+
+            LOGGER.log(Level.WARNING, "Received invalid anime index: " + stringInteger);
+            return (MAX_ANIME_INDEX + 1);
+        }
     }
 }

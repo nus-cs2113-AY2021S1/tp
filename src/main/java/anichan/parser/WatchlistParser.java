@@ -18,23 +18,28 @@ public class WatchlistParser extends CommandParser {
     private static final String DELETE_PARAM = "d";
     private static final String BLANK = "";
 
-    private static final String WATCHLIST_COMMAND_TOO_MUCH_FIELDS = "Watchlist command" + TOO_MUCH_FIELDS;
-    private static final String WATCHLIST_COMMAND_TOO_MANY_PARAMETERS = "Watchlist command" + TOO_MUCH_PARAMETERS;
-    private static final String WATCHLIST_NAME_IS_EMPTY = "Watchlist name cannot be empty!";
-    private static final String WATCHLIST_NAME_IS_INVALID = "Watchlist name can only consist of alphanumeric "
-                                                            + "characters and spaces!";
-    private static final String WATCHLIST_INDEX_IS_EMPTY = "Watchlist index cannot be empty!";
-    private static final String WATCHLIST_INDEX_IS_ZERO = "Watchlist index cannot be zero!";
-
-    private static final String NO_PARAMETER_TO_CHECK = "There should be at least one element to check!";
-    private static final String INVALID_PARAMETER = "Watchlist command only accepts the parameters: "
+    private static final String WATCHLIST_COMMAND_TOO_MUCH_FIELDS_ERROR = "Watchlist command" + TOO_MUCH_FIELDS;
+    private static final String WATCHLIST_COMMAND_TOO_MANY_PARAMETERS_ERROR = "Watchlist command"
+                                                                              + TOO_MUCH_PARAMETERS;
+    private static final String WATCHLIST_NAME_IS_EMPTY_ERROR = "Watchlist name cannot be empty!";
+    private static final String WATCHLIST_NAME_IS_INVALID_ERROR = "Watchlist name can only consist of up to "
+                                                                  + "30 alphanumeric characters and/or spaces!";
+    private static final String WATCHLIST_INDEX_IS_EMPTY_ERROR = "Watchlist index cannot be empty!";
+    private static final String WATCHLIST_INDEX_IS_ZERO_ERROR = "Watchlist index cannot be zero!";
+    private static final String NO_PARAMETER_TO_CHECK_ERROR = "There should be a one parameter to check!";
+    private static final String INVALID_PARAMETER_ERROR = "Watchlist command only accepts the parameters: "
                                                     + "-n, -l, -s, and -d.";
 
+    private static final int DEFAULT_WATCHLIST_INDEX = -1;
     private static final int CREATION_REQUIRED_PARAMETER_COUNT = 2;
     private static final int LIST_REQUIRED_PARAMETER_COUNT = 1;
     private static final int MODIFICATION_REQUIRED_PARAMETER_COUNT = 2;
 
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistParser.class.getName());
+
+    private String parameter;
+    private String watchlistName;
+    private int watchlistIndex;
 
     /**
      * Parses the specified command description.
@@ -51,54 +56,55 @@ public class WatchlistParser extends CommandParser {
             throw new AniException(paramGiven[0] + NOT_RECOGNISED);
         }
 
-        String[] parsedParts = parameterParser(paramGiven);
-        int watchlistIndex = 0;
-        if (!parsedParts[2].equals(BLANK)) {
-            watchlistIndex = parseStringToInteger(parsedParts[2]);
-            if (watchlistIndex == 0) {
-                throw new AniException(WATCHLIST_INDEX_IS_ZERO);
-            }
+        watchlistName = BLANK;
+        watchlistIndex = DEFAULT_WATCHLIST_INDEX;
+        parameterParser(paramGiven);
+        if (watchlistIndex == 0) {
+            throw new AniException(WATCHLIST_INDEX_IS_ZERO_ERROR);
         }
 
         LOGGER.log(Level.INFO, "Returning WatchlistCommand object with parameter: "
-                                    + parsedParts[0] + ", and information: " + parsedParts[1] + ", " + parsedParts[2]);
-        String parameter = parsedParts[0];
-        String watchlistName = parsedParts[1];
-        return new WatchlistCommand(parameter, watchlistName, watchlistIndex);
+                                    + parameter + ", and information: " + watchlistName + " OR " + watchlistIndex);
+        if (!watchlistName.equals(BLANK)) {
+            return new WatchlistCommand(parameter, watchlistName);
+        } else if (watchlistIndex != DEFAULT_WATCHLIST_INDEX) {
+            return new WatchlistCommand(parameter, watchlistIndex);
+        } else {
+            return new WatchlistCommand(parameter);
+        }
     }
 
     /**
      * Parses the parameter provided in the command description.
      *
      * @param paramGiven an String Array containing the parameters and the value
-     * @return the parsed list of parameters for initialisation
      * @throws AniException when an error while parsing the parameters
      */
-    private String[] parameterParser(String[] paramGiven) throws AniException {
+    private void parameterParser(String[] paramGiven) throws AniException {
         if (paramGiven[1].matches(REGEX_PARAMETER)) {
-            throw new AniException(WATCHLIST_COMMAND_TOO_MANY_PARAMETERS);
+            throw new AniException(WATCHLIST_COMMAND_TOO_MANY_PARAMETERS_ERROR);
         } else if (paramGiven[1].startsWith(WHITESPACE)) {
-            throw new AniException(INVALID_PARAMETER);
+            throw new AniException(INVALID_PARAMETER_ERROR);
         }
 
         String[] parsedParts = paramGiven[1].trim().split(WHITESPACE, 2);
-        String parameter = parsedParts[0].trim();
+        parameter = parsedParts[0].trim();
         switch (parameter) {
         case CREATE_PARAM:
             checkCreationParameters(parsedParts);
-            String watchlistName = parsedParts[1].trim();
-            return new String[] {parameter, watchlistName, BLANK};
+            watchlistName = parsedParts[1].trim();
+            return;
         case LIST_PARAM:
             checkListParameters(parsedParts);
-            return new String[] {parameter, BLANK, BLANK};
+            return;
         case SELECT_PARAM:
             // Fallthrough because select parameter will call checkModificationParameters method too.
         case DELETE_PARAM:
             checkModificationParameters(parsedParts);
-            String watchlistIndex = parsedParts[1].trim();
-            return new String[] {parameter, BLANK, watchlistIndex};
+            watchlistIndex = parseStringToInteger(parsedParts[1].trim());
+            return;
         default:
-            throw new AniException(INVALID_PARAMETER);
+            throw new AniException(INVALID_PARAMETER_ERROR);
         }
     }
 
@@ -112,13 +118,13 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when the watchlist creation parameters are invalid
      */
     private void checkCreationParameters(String[] parsedParts) throws AniException {
-        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
+        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK_ERROR;
         if (parsedParts.length != CREATION_REQUIRED_PARAMETER_COUNT) {
-            throw new AniException(WATCHLIST_NAME_IS_EMPTY);
+            throw new AniException(WATCHLIST_NAME_IS_EMPTY_ERROR);
         }
 
-        if (!parsedParts[1].trim().matches(REGEX_ALPHANUMERIC)) {
-            throw new AniException(WATCHLIST_NAME_IS_INVALID);
+        if (!parsedParts[1].trim().matches(REGEX_ALPHANUMERIC_WITH_SPACE)) {
+            throw new AniException(WATCHLIST_NAME_IS_INVALID_ERROR);
         }
     }
 
@@ -132,9 +138,9 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when the watchlist list parameters are invalid
      */
     private void checkListParameters(String[] parsedParts) throws AniException {
-        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
+        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK_ERROR;
         if (parsedParts.length > LIST_REQUIRED_PARAMETER_COUNT) {
-            throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS);
+            throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS_ERROR);
         }
     }
 
@@ -149,14 +155,14 @@ public class WatchlistParser extends CommandParser {
      * @throws AniException when the watchlist modification parameters are invalid
      */
     private void checkModificationParameters(String[] parsedParts) throws AniException {
-        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK;
+        assert parsedParts.length != 0 : NO_PARAMETER_TO_CHECK_ERROR;
         if (parsedParts.length != MODIFICATION_REQUIRED_PARAMETER_COUNT) {
-            throw new AniException(WATCHLIST_INDEX_IS_EMPTY);
+            throw new AniException(WATCHLIST_INDEX_IS_EMPTY_ERROR);
         }
 
         String watchlistIndex = parsedParts[1].trim();
         if (watchlistIndex.contains(WHITESPACE)) {
-            throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS);
+            throw new AniException(WATCHLIST_COMMAND_TOO_MUCH_FIELDS_ERROR);
         }
 
         if (isNegativeInteger(watchlistIndex)) {
