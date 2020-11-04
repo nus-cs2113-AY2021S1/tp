@@ -1,4 +1,4 @@
-# Developer Guide
+# <img src="images/smarthomebot-logo.png" width="50"> Developer Guide
 
 ## Table of Contents
 * [Setting up](#setting-up)

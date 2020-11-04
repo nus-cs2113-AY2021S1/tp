@@ -2,6 +2,6 @@
 Welcome to your SmartHomeBot V2.0!
 Load File does not exist. No contents will be loaded.
 ====================================================
-Enter command: Exiting SmartHomeBot as requested ...
+Enter command: Exiting SmartHomeBot as requested, all appliances are switched off.
 Exporting data........Completed!
 Good bye!
