@@ -683,6 +683,9 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|view the list of contacts of the prof/admin|so that i know how to contact them for admin matters|
 |v2.0|user|reassign member roles |so that I can update their roles and responsibilities|
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
+|v2.0|user|take attendence | so that I can keep track of members participation in the club|
+|v2.0|user|view members absence rate | so that I can identify members with low participation rate|
+|v2.0|user| import other csv files | So that I can transfer my existing data into the program easily|
 
 [Return to top](#CCA-manager-developer-guide)
 
@@ -700,6 +703,7 @@ CCA - Co-curricular Activity <br/>
 CLI - Command Line interface <br/>
 UML - Unified Modelling Language <br/>
 CSV - Comma-seperated values <br/>
+OS - Operating Systems  <br/>
 
 [Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing
@@ -730,7 +734,8 @@ This section contains information on how to test CCA Manager to ensure that the 
 16. Type `event listAttendance /n Autodesk course` to view the event attendance
 17. Type `event delAttendance /n Autodesk course /m Harry Potter` to delete the attendance record
 17. Clean up the entries by deleting them
-    * Use `event delEvent 1` to remove the event
+    * Use `event delEvent 1` to remove an event
+    * Use `event delEvent all` to remove all events
     * Use `finance dellog 1` to remove the finance log
     * Use `hr delMember 1` to remove the member
 18. Type `bye` to exit the program
