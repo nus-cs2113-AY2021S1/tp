@@ -60,6 +60,7 @@ import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
 public class Ui {
     private static final String HELP_SPACER = "%-90s%s%n";
     private static final String VIEW_SPACER = "%-30s%s%n";
+    private static final String GOAL_SPACER = "%-45s%s%n";
     private static final String DELETE_SPACER = "%-60s%s%n";
     private static final String GREEN_COLOUR = "\033[0;32m";
     private static final String RED_COLOUR = "\033[0;31m";
@@ -168,7 +169,10 @@ public class Ui {
             break;
         case COMMAND_GOAL:
             printCustomError(ERROR_FORMAT_MESSAGE);
-            printCustomMessage(FORMAT + FORMAT_FOOD_GOAL + " or " + FORMAT_EXERCISE_GOAL);
+            System.out.printf(GOAL_SPACER, FORMAT_FOOD_GOAL, "Add a food goal");
+            System.out.printf(GOAL_SPACER, FORMAT_SMART_FOOD_GOAL, "Add a smart food goal");
+            System.out.printf(GOAL_SPACER, FORMAT_EXERCISE_GOAL, "Add an exercise goal");
+            System.out.printf(GOAL_SPACER, FORMAT_SMART_EXERCISE_GOAL, "Add a smart exercise goal");
             break;
         case COMMAND_VIEW:
             printCustomError(ERROR_FORMAT_MESSAGE);
@@ -203,6 +207,14 @@ public class Ui {
             System.out.printf(HELP_SPACER, FORMAT_EDIT_FOOD, "Edit your previous food entry");
             System.out.printf(HELP_SPACER, FORMAT_EDIT_EXERCISE, "Edit your previous exercise entry");
             System.out.printf(HELP_SPACER, FORMAT_EDIT_GOAL, "Edit your previous goal entry");
+            break;
+        case "Smart food goal":
+            printCustomError(ERROR_FORMAT_MESSAGE);
+            printCustomMessage(FORMAT + FORMAT_SMART_FOOD_GOAL);
+            break;
+        case "Smart exercise goal":
+            printCustomError(ERROR_FORMAT_MESSAGE);
+            printCustomMessage(FORMAT + FORMAT_SMART_EXERCISE_GOAL);
             break;
         default:
             printInvalidCommandError();

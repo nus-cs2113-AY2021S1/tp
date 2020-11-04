@@ -55,6 +55,9 @@ public class Parser {
         case Commands.COMMAND_EDIT:
             return new EditCommandParser(arguments).editCommand();
         case Commands.COMMAND_HELP:
+            if (arguments.length() != 0) {
+                return new InvalidCommand("Extra parameters");
+            }
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
             return new DeleteCommand(arguments);
