@@ -53,7 +53,7 @@ public class BunnyList {
                 genre = commandArguments.get(GENRE_TAG);
             }
         } catch (NullPointerException e) {
-            throw new CommandInvalidException();
+
         }
 
 
