@@ -1,15 +1,15 @@
 package seedu.revised.parser;
 
-import seedu.revised.command.task.AddDeadlineCommand;
-import seedu.revised.command.task.AddEventCommand;
-import seedu.revised.command.task.AddTodoCommand;
-import seedu.revised.command.task.DeleteTaskCommand;
-import seedu.revised.command.task.DoneTaskCommand;
-import seedu.revised.command.task.ExitTaskCommand;
-import seedu.revised.command.task.FindTaskCommand;
-import seedu.revised.command.task.ListTaskCommand;
-import seedu.revised.command.task.SorryTaskCommand;
-import seedu.revised.command.task.TaskCommand;
+import seedu.revised.command.taskcommand.AddDeadlineCommand;
+import seedu.revised.command.taskcommand.AddEventCommand;
+import seedu.revised.command.taskcommand.AddTodoCommand;
+import seedu.revised.command.taskcommand.DeleteTaskCommand;
+import seedu.revised.command.taskcommand.DoneTaskCommand;
+import seedu.revised.command.taskcommand.ExitTaskCommand;
+import seedu.revised.command.taskcommand.FindTaskCommand;
+import seedu.revised.command.taskcommand.ListTaskCommand;
+import seedu.revised.command.taskcommand.SorryTaskCommand;
+import seedu.revised.command.taskcommand.TaskCommand;
 
 
 public class TaskParser {

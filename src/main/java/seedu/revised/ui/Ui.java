@@ -7,9 +7,9 @@ import seedu.revised.list.TopicList;
 
 import seedu.revised.card.Flashcard;
 
-import seedu.revised.card.quiz.Result;
+import seedu.revised.card.quizcard.Result;
 
-import seedu.revised.card.task.Task;
+import seedu.revised.card.taskcard.Task;
 import seedu.revised.list.TaskList;
 
 import java.io.File;

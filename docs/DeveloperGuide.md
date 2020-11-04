@@ -139,7 +139,7 @@ and is split into 2 packages, quiz and task, as well as Subject, Topic and Flash
 
 Each of the classes in the card package contains:
 * Getters and Setters of its own attributes
-* methods that alter an instance of its own class
+* Methods that alter an instance of its own class
 
 #### Quiz package <a name="quiz"></a>
 The `Quiz` package holds the necessary classes for the quiz functionality of this application. The following are
@@ -265,6 +265,15 @@ the following packages.
     - Subject
     - Topic
     - Task
+
+Each of the classes in the command package contains:
+* An execute command to execute the respective commands
+* An isExit method that checks if the command exits its loop
+
+#### subject package
+The `Subject` package holds the necessary classes for executing methods based on user input decoded by the parser.
+Each 
+
 
 ### 3.6 Storage Package <a name="storage"></a>
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
