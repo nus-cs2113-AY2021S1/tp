@@ -27,7 +27,7 @@ public class BrowseCommandTest {
     private static final String NEGATIVE_PAGE_NUM = "-p -1";
     private static final String ZERO_PAGE_NUM = "-p 0";
     private static final String LAST_PAGE = "-p 26";
-    private static final String ID_SORT_ASC = "-o asc";
+    private static final String ID_SORT_DSC = "-o dsc";
 
     private static final int LARGE_NUM = 9999;
     private static final int ONE_ANIME_PER_PAGE = 1;
@@ -100,9 +100,9 @@ public class BrowseCommandTest {
     }
 
     @Test
-    void execute_browseByAscOnly_correctOutput() throws AniException {
+    void execute_browseByDscOnly_correctOutput() throws AniException {
         BrowseParser testParse = new BrowseParser();
-        BrowseCommand testBrowse = testParse.parse(ID_SORT_ASC);
+        BrowseCommand testBrowse = testParse.parse(ID_SORT_DSC);
         testBrowse.setAnimePerPage(ONE_ANIME_PER_PAGE);
         String result = testBrowse.execute(animeData, storageManager, user);
         assertEquals(LAST_ANIME + System.lineSeparator() + OUTPUT_PAGE_1, result);
