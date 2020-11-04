@@ -43,6 +43,10 @@ public class WritingList {
     public static ArrayList<Writings> writinglist = new ArrayList<>();
     //Used to clear all of writings when resetting database
     static int countWritings = 0;
+    private static String topic;
+    private static String content;
+    private static String title;
+    private static String type;
 
     public WritingList() {
         writinglist = new ArrayList<>();
@@ -164,47 +168,51 @@ public class WritingList {
     /**
      * Operate when command "type" is called, allow the user to choose the desire topic.
      *
-     * @param writings the list of writings to be modified (in this case: added new item)
      */
-    public static void checkType(WritingList writings) {
+    public static void checkType() {
         Scanner scanner = new Scanner(System.in);
         String newUserInput;
         File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
         try {
-            CommandChecker commandStartChecker = UNRECOGNISED;
-            while (commandStartChecker != POEM && commandStartChecker != ESSAY) {
+            CommandChecker commandTypeChecker = UNRECOGNISED;
+            while (commandTypeChecker != POEM && commandTypeChecker != ESSAY) {
                 WritingList.printAskForType();
                 newUserInput = getUserInput(scanner);
-                commandStartChecker = extractCommandType(newUserInput);
+                commandTypeChecker = extractCommandType(newUserInput);
             }
-            WritingList.printAskForTopic();
-            newUserInput = getUserInput(scanner);
-            String topic = newUserInput;
-            WritingList.printAskForTitle();
-            newUserInput = getUserInput(scanner);
-            String title = newUserInput;
-            System.out.println(INSTRUCTION_FOR_ADDING_NEW_WRITINGS);
-            String content = "";
-            String contentUserInput = getUserInput(scanner);
-            while (!contentUserInput.equals("end")) {
-                content = content.concat(contentUserInput + "\n");
-                contentUserInput = getUserInput(scanner);
-            }
-            WritingList.printAskForReminderDate();
-            newUserInput = getUserInput(scanner);
-            LocalDate reminderDate = LocalDate.parse(newUserInput, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            Random rand = new Random();
-            int newId = rand.nextInt(MAX_NUM_WRITINGS);
-            if (commandStartChecker == POEM) {
-                addPoem(title, newId, topic, content, user.getName(), reminderDate);
-            } else if (commandStartChecker == ESSAY) {
-                addEssay(title, newId, topic, content, user.getName(), reminderDate);
-            }
-            System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
-            //recordListToFile(f, writings);
+            getInformation(commandTypeChecker);
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    private static void getInformation(CommandChecker commandTypeChecker) {
+        Scanner scanner = new Scanner(System.in);
+        String newUserInput;
+        WritingList.printAskForTopic();
+        newUserInput = getUserInput(scanner);
+        String topic = newUserInput;
+        WritingList.printAskForTitle();
+        newUserInput = getUserInput(scanner);
+        String title = newUserInput;
+        System.out.println(INSTRUCTION_FOR_ADDING_NEW_WRITINGS);
+        String content = "";
+        String contentUserInput = getUserInput(scanner);
+        while (!contentUserInput.equals("end")) {
+            content = content.concat(contentUserInput + "\n");
+            contentUserInput = getUserInput(scanner);
+        }
+        WritingList.printAskForReminderDate();
+        newUserInput = getUserInput(scanner);
+        LocalDate reminderDate = LocalDate.parse(newUserInput, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Random rand = new Random();
+        int newId = rand.nextInt(MAX_NUM_WRITINGS);
+        if (commandTypeChecker == POEM) {
+            addPoem(title, newId, topic, content, user.getName(), reminderDate);
+        } else if (commandTypeChecker == ESSAY) {
+            addEssay(title, newId, topic, content, user.getName(), reminderDate);
+        }
+        System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
     }
 
     /**

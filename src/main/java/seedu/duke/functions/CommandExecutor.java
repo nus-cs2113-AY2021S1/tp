@@ -181,7 +181,7 @@ public class CommandExecutor {
             WritingList.checkStart(writings);
             break;
         case TYPE:
-            WritingList.checkType(writings);
+            WritingList.checkType();
             break;
         case COUNT_WRITINGS:
             WritingList.printWritingSize();
