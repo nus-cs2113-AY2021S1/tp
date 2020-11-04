@@ -253,7 +253,7 @@ public class EditEventCommand extends Command {
             results.add(EDIT_EVENT_UNSUCCESSFUL_MESSAGE);
         } else {
             try {
-                storageManager.saveTimetable(timetable);
+                storageManager.saveTimetable();
             } catch (IOException exception) {
                 results.add(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
                 return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);

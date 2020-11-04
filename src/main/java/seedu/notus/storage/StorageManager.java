@@ -319,9 +319,8 @@ public class StorageManager {
     /**
      * Saves all the Events in the Timetable to the storage file.
      *
-     * @param timetable The Timetable containing all the events to be saved.
      */
-    public void saveTimetable(Timetable timetable) throws IOException {
+    public void saveTimetable() throws IOException {
         String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
 
         //clear file
@@ -374,5 +373,17 @@ public class StorageManager {
         }
 
         return eventDetails;
+    }
+
+    /**
+     * Saves all the information that has been changed.
+     * Information includes: note details and event/timetable information.
+     *
+     * @throws IOException if unable to save to the file.
+     */
+    public void saveAll () throws IOException {
+        saveTimetable ();
+        saveAllNoteDetails (false);
+        saveAllNoteDetails (true);
     }
 }

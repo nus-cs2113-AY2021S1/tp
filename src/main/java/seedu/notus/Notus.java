@@ -75,6 +75,11 @@ public class Notus {
      * Exits the application.
      */
     private void exit() {
+        try {
+            storageManager.saveAll();
+        } catch (IOException exception) {
+            interfaceManager.prints("Unable to save to a file");
+        }
     }
 
     /** Runs the program until termination. */
