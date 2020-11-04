@@ -3,6 +3,7 @@ package seedu.eduke8.bookmark;
 import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.common.EditableList;
+import seedu.eduke8.question.Question;
 
 import java.util.ArrayList;
 
@@ -10,8 +11,8 @@ public class BookmarkList implements DisplayableList, EditableList {
 
     private ArrayList<Displayable> bookmarks;
 
-    public BookmarkList(ArrayList<Displayable> bookmarks) {
-        this.bookmarks = bookmarks;
+    public BookmarkList() {
+        bookmarks = new ArrayList<>();
     }
 
     @Override
@@ -19,11 +20,11 @@ public class BookmarkList implements DisplayableList, EditableList {
         return bookmarks;
     }
 
-
     @Override
     public void add(Displayable question) {
         assert question != null;  // Exception in future if user can add question
         bookmarks.add(question);
+        ((Question) question).markAsBookmarked();
     }
 
     @Override

@@ -8,6 +8,7 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.note.Note;
 import seedu.eduke8.note.NoteList;
+import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.question.QuestionList;
 import seedu.eduke8.stats.TopicalStatsCalculator;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class UserStorage extends LocalStorage {
+    public static final String KEY_TEXT = "text";
     private BookmarkList bookmarkList;
     private TopicList topicList;
 
@@ -35,7 +37,7 @@ public class UserStorage extends LocalStorage {
      * Returns the file where data was written to.
      *
      * @return File where data was written to.
-     * @throws IOException  If the file is not found or cannot be written to.
+     * @throws IOException If the file is not found or cannot be written to.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -47,7 +49,7 @@ public class UserStorage extends LocalStorage {
         // Get all the questions seen before
         JSONArray topics = new JSONArray();
 
-        for (Displayable topicObject: topicList.getInnerList()) {
+        for (Displayable topicObject : topicList.getInnerList()) {
             topics.add(parseToTopicJson(topicObject));
         }
 
@@ -66,9 +68,9 @@ public class UserStorage extends LocalStorage {
      * Returns the topics in the topicList.
      *
      * @return Topics from the topicList in an ArrayList.
-     * @throws IOException  If the file is not found or cannot be read.
-     * @throws ParseException  If the file contents cannot be parsed as a JSON.
-     * @throws ClassCastException If the the nesting of arrays and objects in the JSON is wrong
+     * @throws IOException          If the file is not found or cannot be read.
+     * @throws ParseException       If the file contents cannot be parsed as a JSON.
+     * @throws ClassCastException   If the the nesting of arrays and objects in the JSON is wrong
      * @throws NullPointerException If the keys required are not present in the file.
      */
     @Override
@@ -81,7 +83,7 @@ public class UserStorage extends LocalStorage {
 
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
-        for (Object topic: topicsAsJsonArray) {
+        for (Object topic : topicsAsJsonArray) {
             parseFromTopicJson((JSONObject) topic);
         }
 
@@ -89,6 +91,7 @@ public class UserStorage extends LocalStorage {
 
         return topicList.getInnerList();
     }
+
 
     private void parseFromTopicJson(JSONObject topic) throws Eduke8Exception {
         String topicDescription = (String) topic.get(KEY_TOPIC);
@@ -103,14 +106,14 @@ public class UserStorage extends LocalStorage {
 
     private void loadNotes(JSONArray notes, Topic topicObject) throws Eduke8Exception {
         NoteList noteList = topicObject.getNoteList();
-        for (Object note: notes) {
+        for (Object note : notes) {
             parseFromNoteJson((JSONObject) note, noteList);
         }
     }
 
     private void parseFromNoteJson(JSONObject note, NoteList noteList) throws Eduke8Exception {
-        String noteDescription = (String) note.get("description");
-        String text = (String) note.get("text");
+        String noteDescription = (String) note.get(KEY_DESCRIPTION);
+        String text = (String) note.get(KEY_TEXT);
         Note noteObject = new Note(noteDescription, text);
 
         noteList.add(noteObject);
@@ -118,7 +121,7 @@ public class UserStorage extends LocalStorage {
 
     private void loadQuestionAttributes(JSONArray questions, Topic topicObject) throws Eduke8Exception {
         QuestionList questionList = topicObject.getQuestionList();
-        for (Object question: questions) {
+        for (Object question : questions) {
             parseFromQuestionJson(questionList, (JSONObject) question);
         }
     }
@@ -154,18 +157,19 @@ public class UserStorage extends LocalStorage {
     @SuppressWarnings("unchecked")
     private JSONArray getNotesJsonArray(NoteList noteList) {
         JSONArray notes = new JSONArray();
-        for (Displayable noteObject: noteList.getInnerList()) {
+        for (Displayable noteObject : noteList.getInnerList()) {
             JSONObject note = parseToNoteJson((Note) noteObject);
             notes.add(note);
         }
         return notes;
     }
 
+    @SuppressWarnings("unchecked")
     private JSONObject parseToNoteJson(Note noteObject) {
         JSONObject note = new JSONObject();
 
-        note.put("description", noteObject.getDescription());
-        note.put("text", noteObject.getNoteText());
+        note.put(KEY_DESCRIPTION, noteObject.getDescription());
+        note.put(KEY_TEXT, noteObject.getNoteText());
 
         return note;
     }
@@ -176,7 +180,7 @@ public class UserStorage extends LocalStorage {
         JSONArray questions = new JSONArray();
         TopicalStatsCalculator topicalStatsCalculator = new TopicalStatsCalculator(topicObject);
         ArrayList<Displayable> attemptedQuestions = topicalStatsCalculator.getTopicalAttemptedQuestions();
-        for (Displayable questionObject: attemptedQuestions) {
+        for (Displayable questionObject : attemptedQuestions) {
             JSONObject question = parseToQuestionJson((Question) questionObject);
             questions.add(question);
         }

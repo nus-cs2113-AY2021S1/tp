@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AnswerCommandTest extends Eduke8Test {
     @Test
-    public void execute_correctAnswer_markAnsweredCorrectly() throws Eduke8Exception {
+    void execute_correctAnswer_markAnsweredCorrectly() throws Eduke8Exception {
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
         Option correctOption = (Option) question.getOptionList().find(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
         correctOption.markAsCorrectAnswer();
@@ -24,7 +24,7 @@ public class AnswerCommandTest extends Eduke8Test {
     }
 
     @Test
-    public void execute_wrongAnswer_notMarkAnsweredCorrectly() throws Eduke8Exception {
+    void execute_wrongAnswer_notMarkAnsweredCorrectly() throws Eduke8Exception {
         Question question = createTestQuestion(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
         Option wrongOption = (Option) question.getOptionList().find(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
 

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OptionTest extends Eduke8Test {
@@ -18,6 +19,7 @@ class OptionTest extends Eduke8Test {
     void wasShown_placeholderOptionDescription_expectsTrue() {
         Option option = new Option(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
 
+        assertFalse(option.wasShown());
         option.getDescription();
         assertTrue(option.wasShown());
     }
@@ -26,6 +28,7 @@ class OptionTest extends Eduke8Test {
     void markAsCorrectAnswer_optionMarkedAsCorrectOption_expectsTrue() {
         Option option = new Option(PLACEHOLDER_OPTION_ONE_DESCRIPTION);
 
+        assertFalse(option.isCorrectAnswer());
         option.markAsCorrectAnswer();
         assertTrue(option.isCorrectAnswer());
     }

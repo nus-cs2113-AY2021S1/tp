@@ -11,12 +11,13 @@
       - [2.2.2. Implementation of TopicList](#222-implementation-of-topiclist)
       - [2.2.3. Implementation of Notes](#223-implementation-of-notes)
       - [2.2.4. Design of Option and OptionList](#224-design-of-option-and-optionlist)
+      - [2.2.5. Implementation of Option and OptionList](#225-implementation-of-option-and-optionlist)
     - [2.3. Logic Component](#23-logic-component)
       - [2.3.1. Design of Parser](#231-design-of-parser)
       - [2.3.2. Implementation of MenuParser](#232-implementation-of-menuparser)
       - [2.3.3. Design of QuizQuestionsManager](#233-design-of-quizquestionsmanager)
       - [2.3.4. Implementation of QuizQuestionsManager](#234-implementation-of-quizquestionsmanager)
-      - [2.3.5. Design of Stats Feature](#235-design-of-stats-feature)
+      - [2.3.5 Design of Stats Feature](#235-design-of-stats-feature)
       - [2.3.6. Implementation of Stats Feature](#236-implementation-of-stats-feature)
     - [2.4. Storage Component](#24-storage-component)
       - [2.4.1. Design of TopicsStorage](#241-design-of-topicsstorage)
@@ -31,7 +32,8 @@
   - [4. User Stories](#4-user-stories)
   - [5. Non-Functional Requirements](#5-non-functional-requirements)
   - [6. Glossary](#6-glossary)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
+  - [7. Appendix](#7-appendix)
+    - [7.1. Instructions for manual testing](#71-instructions-for-manual-testing)
 
 ## 1. Introduction
 
@@ -67,10 +69,12 @@ The high-level design of our program is based on a 3-tier architecture which con
 
 ### 2.2. Model Component
 
+The data model is centered around `DisplayableList` objects which hold `Displayable` objects. This implementation allows us to create various topics with questions, options, hints and explanations. This was also extended to creating bookmarks and notes.
+
 ####  2.2.1. Design of TopicList
 
 TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
-in the code for EDuke8. As such, many of the commands that manipulate the TopicList make 
+in the code for E-Duke-8. As such, many of the commands that manipulate the TopicList make 
 use of the package java.util.ArrayList. The TopicList is used to store Topics. Additionally,
 each topic stores a NoteList, which contains Notes.
 
@@ -89,11 +93,13 @@ each topic stores a NoteList, which contains Notes.
 
 This task is performed by the `TopicList.showTopics()` method.
 
-Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
+Step 1. The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
         `TopicList.showTopics()` method.
-Step 2: The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
+        
+Step 2. The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
         current `TopicList` is passed into the called method.
-Step 3: The `Ui.printTopicList()` method then prints out the description of each topic in the 
+        
+Step 3. The `Ui.printTopicList()` method then prints out the description of each topic in the 
         `TopicList`. 
 
 `NoteList` is also an `ArrayList` of type `Displayable`, which is one of two interfaces implemented in the code for 
@@ -106,31 +112,31 @@ The `NoteList` stores `Note` objects. Each topic has 1 `NoteList`.
 
 This task is performed by the `NoteList.add()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
+Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
         A new `Note` object is passed into its parameter.
 
-Step 2: The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
+Step 2. The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
         the `Note` object into `NoteList`.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
+Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
         An integer that represents the index of the `Note` object to be deleted within the `NoteList` is passed into 
         this method.
 
-Step 2: The `NoteList.delete()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
+Step 2. The `NoteList.delete()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
         delete the `Note` object in `NoteList`.
 
 **Listing out all notes in a topic**
 
 This task is performed by the `Ui.printNoteList()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
+Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
 and calls the `Ui.listInteraction` method. 
 
-Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
+Step 2. The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
 this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the 
 topic's `NoteList`.
 
@@ -140,9 +146,29 @@ The `Option` and `OptionList` classes implements the `Displayable` and `Displaya
 The `Option` object stores one option of a question while the `OptionList` object stores all 4 options of the same 
 question. The class diagram below illustrates the structure of both classes. 
 
+The `Option` class implements the `Displayable` interface while the `OptionList` class implements the `DisplayableList` interface. The illustration below shows the class diagram of `Option` and `OptionList`. 
+
 ![Option_and_OptionList_Class](./images/Option.png)
 
+The `Option` object stores the description of one option from a question. It also indicates if the option is the correct answer for the question by using the `isCorrectAnswer` boolean. 
+The `OptionList` object stores all 4 options of the same question. 
+
+#### 2.2.5. Implementation of Option and OptionList
+
+An example of when the `Option` and `OptionList` classes are used is when the quiz mode is activated. The quiz requires all the options of a particular question to be printed out. 
+
+![Option_and_OptionList_Sequence](./images/OptionSequence.png)
+
+Step 1. When a quiz is started, the `SingleTopicQuiz()` method will instantiate a `SingleTopicQuiz` object which calls the `getOptionList()` method. 
+
+Step 2. The `OptionList` object then calls the `getInnerList()` method, a getter method, to get the list of options for the same question. 
+
+Step 3. The `printOption()` method is then called to print out all the options for the user to see. The `options.get(i)` parameter will get the description of the specific option and the `i+1` parameter 
+will handle the numbering of the options. The printing out of the options will be handled by the `Ui` class. 
+
 ### 2.3. Logic Component
+
+The main application logic, such as provisioning quizes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
 
 #### 2.3.1. Design of Parser
 
@@ -244,14 +270,16 @@ The sequence diagram below shows the interactions between the different objects 
 
 Through the logic in the object of `UserStatsCalculator`, necessary information regarding the user’s statistics, such as the `totalPointsGained` integer value and `totalPointsAvailable` integer value, are calculated, and then passed to the `Ui` object to print them to the user. This same concept and procedure are applied to the display the other aggregate results.
 
-A similar procedure is being employed by the `TopicalStatsCalculator` object to calculate the topic-level statistics for the user. The only difference between the objects of these two classes is that instead of iterating through all the topics available, the ` TopicalStatsCalculator` object only deals with a particular topic at any point of time. By iterating through the questions of the single topic, it calculates statistics for the topic and returns it back to the `Stats` object, which will then pass them to the `Ui` object to display them to the user. As such, in order to display the user’s statistics for each and every topic, a loop is done in the `Stats` object to repeatedly calculate the topic-level information for all of the topics and displaying them concurrently. 
+A similar procedure is being employed by the `TopicalStatsCalculator` object to calculate the topic-level statistics for the user. The only difference between the objects of these two classes is that instead of iterating through all the topics available, the `TopicalStatsCalculator` object only deals with a particular topic at any point of time. By iterating through the questions of the single topic, it calculates statistics for the topic and returns it back to the `Stats` object, which will then pass them to the `Ui` object to display them to the user. As such, in order to display the user’s statistics for each and every topic, a loop is done in the `Stats` object to repeatedly calculate the topic-level information for all of the topics and displaying them concurrently. 
 
 
 ### 2.4. Storage Component
 
+The storage component is implemented locally and mainly saves and loads files in JavaScript Object Notation (JSON) format, except for log files which are stored as normal text files.
+
 #### 2.4.1. Design of TopicsStorage
 
-Given data for the topics and questions is loaded automatically from JSON (JavaScript Object Notation) files in the data folder. This is mainly facilitated through the `TopicsStorage` 
+Given data for the topics and questions is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` 
 class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects. The class diagram below shows this relationship.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
@@ -293,14 +321,12 @@ The format of the JSON file is important as it is loaded in a particular way. Th
 
 #### 2.4.2. Implementation of TopicsStorage
 
-Given below is an example usage scenario of loading in two topics with two questions each.
-
 When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
-which will return a `TopicList` object. The following sequence diagram shows how the load operation works:
+which will return an `ArrayList` of  `Topic` objects. The following sequence diagram shows how the load operation works, focusing on how options are marked as correct:
 
 ![TopicsStorage::load Sequence Diagram](./images/TopicsStorage_load.png)
 
-As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level. For example, a `Question` object requires an `OptionList` which is created with an `ArrayList<Option>` collection. Thus, `parseToOptionObject(optionAsJson)` must first be called to return the `Option` objects to be placed in the `ArrayList<Option>`. More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
+As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level. In the diagram above, the `Option` objects within each `Topic` has to be constructed with a description from the file and then marked as the correct answer if `correct` was `true` in the given data.  More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
 
 #### 2.4.3. Design of UserStorage
 
@@ -348,6 +374,8 @@ A similar method is used to extract the attributes from each `Question` object i
 
 ### 2.5. UI Component
 
+The command line interface was chosen for users that prefer to type using a keyboard over using the mouse.
+
 #### 2.5.1. Implementation of Ui
 
 The `Ui` class handles all the interactions with the users. It reads the input from the users and prints out replies to 
@@ -382,7 +410,7 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 |v1.0|new user|answer given questions|start testing myself immediately|
 |v1.0|long-time user|get different questions each time|repeatedly test my understanding for the particular topic|
 |v1.0|busy user|test myself on concepts using short, targeted quizzes|confirm my understanding of concepts|
-|v1.0|user|get a hint for the question in the quiz|I can think about the question from a different angle|
+|v1.0|user|get a hint for the question in the quiz|think about the question from a different angle|
 |v1.0|user|see what the available topics are|navigate around the app effectively|
 |v1.0|user|select the number of questions to do in the quiz|manage the workload and time spent on the quiz|
 |v2.0|slow but hardworking user|see the explanations provided in the quiz|learn from my mistakes and revise|
@@ -392,12 +420,15 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 
 ## 5. Non-Functional Requirements
 
-{Give non-functional requirements}
+- Should work on any mainstream [Operating System (OS)](#6-glossary) as long as it has Java 11 or above installed.
+- A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## 6. Glossary
 
-* *glossary item* - Definition
+- **Mainstream Operating Systems (OS)**: Windows, Linux, Unix, OS-X
 
-## Instructions for manual testing
+## 7. Appendix
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### 7.1. Instructions for manual testing
+
+To test the product please refer to the E-Duke-8 [User Guide](https://ay2021s1-cs2113t-f12-3.github.io/tp/UserGuide.html).
