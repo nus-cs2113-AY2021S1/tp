@@ -47,7 +47,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `NotUS` from [here](https://github.com/AY2021S1-CS2113-T13-1/tp/releases) or under [releases from the homepage](https://github.com/AY2021S1-CS2113-T13-1/tp).
-1. Go to the folder of the download and open your command terminal. Enter the following `java -jar Notus.jar`. Wait for the program to run.
+1. Go to the folder of the download and open your command terminal*. Enter the following `java -jar Notus.jar`. Wait for the program to run.
 1. If the program is running correctly, you should see the following:
 
 <p align="center">
@@ -55,6 +55,9 @@ Any points with the 💡 emoji represents an additional information. You can acc
 </p>
 
 5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
+
+💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS Terminal and linux. Other terminals, such as Cygwin may not support color display.
+💡 Recommended to use black background for better color contrast.
 
 <br>
 
@@ -526,7 +529,7 @@ Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
 
-* Deletes the event at the specified INDEX. The index refers to the index number shown in the displayed event list (list-e). The index must be a **positive integer** (1, 2, 3, …).
+- Deletes the event at the specified INDEX. The index refers to the index number shown in the displayed event list (list-e). The index must be a **positive integer** (1, 2, 3, …).
 
 Example of usage: 
 
