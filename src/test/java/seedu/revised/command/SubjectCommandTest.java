@@ -72,7 +72,8 @@ public class SubjectCommandTest {
     }
 
     @Test
-    public void addSubjectCommand_validCommand_returnsSubjectTitle() throws RepeatedSubjectException, InvalidSubjectException {
+    public void addSubjectCommand_validCommand_returnsSubjectTitle()
+            throws RepeatedSubjectException, InvalidSubjectException {
         addCommand = new AddSubjectCommand("add Maths");
         addCommand.execute(subjects, storage);
         assertEquals("Maths", subjects.getList().get(3).getTitle());

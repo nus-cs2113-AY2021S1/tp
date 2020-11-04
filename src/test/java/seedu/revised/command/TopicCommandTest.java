@@ -4,11 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.command.subject.*;
-import seedu.revised.command.topic.*;
-import seedu.revised.exception.subject.InvalidSubjectException;
-import seedu.revised.exception.subject.NoSubjectException;
-import seedu.revised.exception.subject.RepeatedSubjectException;
+import seedu.revised.command.topic.AccessTopicCommand;
+import seedu.revised.command.topic.AddTopicCommand;
+import seedu.revised.command.topic.DeleteTopicCommand;
+import seedu.revised.command.topic.FindTopicCommand;
+import seedu.revised.command.topic.ListTopicCommand;
+import seedu.revised.command.topic.QuizTopicCommand;
+import seedu.revised.command.topic.ResultTopicCommand;
 import seedu.revised.list.TopicList;
 import seedu.revised.exception.topic.InvalidTopicException;
 import seedu.revised.exception.topic.NoTopicException;
@@ -59,7 +61,8 @@ public class TopicCommandTest {
     }
 
     @Test
-    public void addTopicCommand_validCommand_returnsSubjectTitle() throws RepeatedTopicException, InvalidTopicException {
+    public void addTopicCommand_validCommand_returnsSubjectTitle()
+            throws RepeatedTopicException, InvalidTopicException {
         addCommand = new AddTopicCommand("add Geometry");
         addCommand.execute(subject);
         assertEquals("Geometry", topics.getList().get(3).getTitle());
