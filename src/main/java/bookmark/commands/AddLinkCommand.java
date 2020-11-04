@@ -41,7 +41,7 @@ public class AddLinkCommand extends BookmarkCommand {
         } catch (InvalidBookmarkException e) {
             ui.showInvalidError("Link");
         } catch (ExistingBookmarkException e) {
-            ui.showExistingBookmarkError();
+            ui.showExistingBookmarkError("link");
         }
     }
 

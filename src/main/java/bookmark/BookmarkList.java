@@ -11,7 +11,7 @@ public class BookmarkList {
         this.title = title;
     }
 
-    public String getLink() {
+    public String getPrintLink() {
         String returnLink = "";
         if (star) {
             returnLink += "|STAR|";
@@ -23,6 +23,9 @@ public class BookmarkList {
         }
     }
 
+    public String getLink() {
+        return link;
+    }
 
     public void markLinkAsStar() {
         if (!this.star) {

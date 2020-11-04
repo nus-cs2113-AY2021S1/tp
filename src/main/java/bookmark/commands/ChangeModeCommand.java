@@ -24,27 +24,26 @@ public class ChangeModeCommand extends BookmarkCommand {
         try {
             int category = getChosenCategory(categories);
             if (category == categoryNumber) {
-                ui.showAlreadyInModeMessage(categories.get(categoryNumber - 1).getName());
+                ui.showAlreadyInModeMessage(categories,categoryNumber);
                 assert category == categoryNumber : "studyit.Mode does not change when it is already in the mode";
             } else {
                 categoryNumber = category;
                 int categoryNumberInList = categoryNumber - 1;
                 ui.showModeChangeMessage(categories, categoryNumberInList);
+                assert category > 0 : "Category number incorrect";
             }
         } catch (EmptyBookmarkException e) {
             ui.showEmptyError("Category Number");
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.showInvalidNumberError();
         } catch (InvalidBookmarkException e) {
             ui.showInvalidError("Category Number");
-        } catch (IndexOutOfBoundsException e) {
-            ui.showInvalidNumberError();
         }
     }
 
     private int getChosenCategory(ArrayList<BookmarkCategory> categories)
             throws InvalidBookmarkException, EmptyBookmarkException, NumberFormatException {
-        if (line.trim().length() <= RM_LENGTH) {
+        if (line.length() <= RM_LENGTH) {
             throw new EmptyBookmarkException();
         }
         int category = Integer.parseInt(line.substring(RM_LENGTH).trim());
