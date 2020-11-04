@@ -8,7 +8,9 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
+
 2. [Quick Start](#2-quick-start)
+
 3. [Features](#3-features)
 <br/>&nbsp;3.1 [View the help](#31-view-the-help)
 <br/>&nbsp;3.2 [Estimate time need to translate the script](#32-estimate-time-needed-to-translate-the-script)
@@ -40,7 +42,9 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.7 [View information of a bookmark entry](#387-view-information-of-a-bookmark-entry)
 <br/>&nbsp;3.9 [Exit AniChan](#39-exit-anichan)
 <br/>&nbsp;3.10 [Saving and loading data](#310-saving-and-loading-data)
+
 4. [FAQ](#4-faq)
+
 5. [Command Summary](#5-command-summary)
 
 <br/>
@@ -81,7 +85,8 @@ Lastly, text that are blue like this [example](#12-using-this-guide), are clicka
 7.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
 
 ![First Time Setup](images/User-Guide-Setting-Up.png)
-*Figure 1: Sample First Time Setup Prompt*
+
+*Figure 1: Example of First Time Setup*
 
 <br/>
 
@@ -378,7 +383,7 @@ Creates a new watchlist to keep track of anime(s).
 
 Format: `watchlist -n <WATCHLIST_NAME>`
 
-> :bulb: Watchlist name can only consist of alphanumeric characters and/or spaces.
+> :bulb: Watchlist name can only contain a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only.
 > :warning: Watchlist name has to be unique in the workspace.
 
 <br/>
@@ -676,6 +681,10 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 *   User data will be stored in `data/user.txt`.
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
+
+![Data Loaded on Startup](images/Data-Loaded-On-Startup.png)
+
+*Figure 2: Example of Data Loaded On Startup*
 
 <br/>
 
