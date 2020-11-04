@@ -46,9 +46,6 @@ public class ChangeModeCommand extends Command {
         } else if (setToMode == 3) {
             Parser.programMode = 3;
             ui.print("Changing to planner mode" + System.lineSeparator());
-        } else if (setToMode == 4) {
-            Parser.programMode = 4;
-            ui.print("Changing to settings mode" + System.lineSeparator());
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODE);
         }
@@ -83,8 +80,6 @@ public class ChangeModeCommand extends Command {
             outputData = 2;
         } else if (modeData.toLowerCase().compareTo("planner") == 0) {
             outputData = 3;
-        } else if (modeData.toLowerCase().compareTo("settings") == 0) {
-            outputData = 4;
         } else {
             outputData = 0;
         }

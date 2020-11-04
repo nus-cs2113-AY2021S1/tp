@@ -76,4 +76,8 @@ public class SettingsVariable<T> {
 
         throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_OPTION);
     }
+
+    public T getChosenOption() {
+        return options[getChosenOptionIndex()];
+    }
 }

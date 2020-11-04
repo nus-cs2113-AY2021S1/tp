@@ -10,7 +10,7 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.slot.Timetable;
 
 public class ShowSettingsCommand extends Command {
-    public static final String SHOW_KW = "show";
+    public static final String SHOW_KW = "showsettings";
 
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {

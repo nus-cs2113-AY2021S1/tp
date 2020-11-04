@@ -2,6 +2,8 @@ package seedu.zoomaster;
 
 import com.google.gson.JsonParseException;
 import seedu.zoomaster.bookmark.BookmarkList;
+import seedu.zoomaster.command.ChangeModeCommand;
+import seedu.zoomaster.command.Mode;
 import seedu.zoomaster.settings.UserSettings;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.command.Command;
@@ -52,6 +54,8 @@ public class Zoomaster {
         } catch (JsonParseException e) {
             ui.showParsingErrorAndExit();
         }
+
+        applySettings();
     }
 
     /**
@@ -105,4 +109,13 @@ public class Zoomaster {
                 .getPath()).getParent().replace("%20", " ");
     }
 
+    private void applySettings() {
+        try {
+            String defaultMode;
+            defaultMode = (String) userSettings.getSettingsVariable(UserSettings.DEFAULT_MODE_FIELD).getChosenOption();
+            new ChangeModeCommand(ChangeModeCommand.MODE_KW + " " + defaultMode).execute(bookmarks, timetable, ui);
+        } catch (ZoomasterException e) {
+            e.printStackTrace();
+        }
+    }
 }

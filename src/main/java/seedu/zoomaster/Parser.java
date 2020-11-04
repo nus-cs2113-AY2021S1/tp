@@ -66,14 +66,16 @@ public class Parser {
             command = new ClearCommand();
         } else if (input.startsWith(HelpCommand.HELP_KW)) {
             command = new HelpCommand(input);
+        } else if (input.startsWith(ShowSettingsCommand.SHOW_KW)) {
+            command = new ShowSettingsCommand();
+        } else if (input.startsWith(SetSettingsCommand.SET_KW)) {
+            command = new SetSettingsCommand(input);
         } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
             command = createTimetableCommand(input);
         } else if (programMode == 3) {
             command = createPlannerCommand(input);
-        } else if (programMode == 4) {
-            command = createSettingsCommand(input);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
@@ -133,17 +135,6 @@ public class Parser {
             return new SavePlannerCommand();
         } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
             return new LoadPlannerCommand();
-        } else {
-            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
-        }
-    }
-
-    //@@author fchensan
-    private static Command createSettingsCommand(String input) throws ZoomasterException {
-        if (input.startsWith(ShowSettingsCommand.SHOW_KW)) {
-            return new ShowSettingsCommand();
-        } else if (input.startsWith(SetSettingsCommand.SET_KW)) {
-            return new SetSettingsCommand(input);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
