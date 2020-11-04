@@ -19,12 +19,13 @@ This section shows a summary of my coding, documentation and other contributions
 *   **New Feature:** Added the ability to view the information of a specific anime.
     *   What it does: Allows the user to find out more about a specific anime.
     *   Justification: The user may want to find out more details of an anime such as the number of episodes and its release date. The `info` command will provide users with the information that they need.
-    
+
 *   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=michaeldinata&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=michaeldinata&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 *   **Documentation:**
     *   User Guide:
         *   Added documentation for the features `info`, `add`, `remove`, and `view`: [#189](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/189)
+        
     *   Developer Guide:
         *   Added implementation details of `info`, `add`, `remove` and `view` features: [#202](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/202)
         *   Added sequence diagrams and user stories: [#209](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/209)
