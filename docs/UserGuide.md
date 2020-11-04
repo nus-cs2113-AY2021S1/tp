@@ -703,7 +703,7 @@ Here is the lsit of all bookmark(s) recorded:
 Delete the bookmark that you have already added.
 
 Format: `delete -bm BOOKMARK_NUMBER`
-* You mist specify the bookmark number.
+* You must specify the bookmark number.
 
 Example of usage: `delete -bm 1`
 
@@ -721,7 +721,7 @@ The command is the same as adding a new bookmark.
 
 Format: `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER`
 * You must add the bookmark of the same book before so as to update it.
-* * You must specify both book number and page number.
+* You must specify both book number and page number.
 
 Example of usage: `bookmark -b 3 /pg 185`
 
