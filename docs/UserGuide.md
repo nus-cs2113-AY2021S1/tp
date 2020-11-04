@@ -1,54 +1,48 @@
 # User Guide
 
 ## Table of Contents
-<pre>
-<a href =#intro>1. Introduction </a>
-<a href =#start>2. Quick Start </a>
-<a href =#init>3. Initialisation </a>
-<a href =#features>4. Features </a>      
-   <a href =#subjects>4.1 Subjects </a>
-   <a href =#topics>4.2 Topics </a>
-   <a href =#tasks>4.3 Tasks </a>
-   <a href =#flashcards>4.4 Flashcards </a>
-   <a href =#takeQuiz>4.5 Taking Quizzes </a>
-   <a href =#result>4.6 Viewing quiz results </a>
-   <a href =#store>4.7 Storing data </a>
-   <a href =#load>4.8 Loading data </a>
-   <a href =#export>4.9 Exporting data </a>
-<a href =#faq>5. FAQ </a>
-<a href =#summary>6. Command Summary </a>
-</pre>
+
+* <a href =#intro>1. Introduction </a>
+* <a href =#start>2. Quick Start </a>
+* <a href =#features>3. Features </a>      
+   * <a href =#main-level>3.1 Main Level Features </a>
+   * <a href =#subject-level>3.2 Subject Level Features </a>
+   * <a href =#topic-level>3.3 Topic Level Features </a>
+   * <a href =#other-feat>3.4 Other Features </a>
+* <a href =#faq>4. FAQ </a>
+* <a href =#summary>5. Command Summary </a>
+
 ## 1. Introduction <a name="intro"></a>
 
 **revisED** aims to help students to revise their subjects through the creation of flashcards or tasks that have
-to be completed. The user can store the flashcards under different topics, which can be created under different
-subjects. The tasks can be stored under subjects. This application ensures that students would be
+to be completed. The users can store the tasks under different subjects and flashcards under different topics, which can be created under the
+subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
 
 This user guide provides an in-depth documentation on the installation process, the program features, and
 the program usage to get you started.
 
-Here is a guide on how to use this UserGuide effectively:<br>
+Note the following symbols and formatting used in this document:
 
-1. Use the hyperlinks in the table of contents to navigate about the user guide quickly.
-2. The code is always marked out like `this` to distinguish it from the rest of the text.
-3. The **_NOTE:_** sections point out additional information that you can refer to for
-additional information regarding the application.
-4. The **_WARNING:_** sections point out things that you should avoid while using 
-the application.
+Symbols / Formatting|Meaning
+------|------
+ℹ️ **_NOTE:_** | Important or additional information
+⚠️ **_WARNING:_** | Things to avoid or pay extra attention to
+`Grey highlight` | Code or terms related to the code/application
 
 
 ## 2. Quick Start <a name="start"></a>
 
+To setup the application,
+
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `revisED` from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
-3. Transfer the jar file to the folder that you prefer to use.
-4. Open command prompt and run the command `java -jar revised.jar` to begin the application.
+2. Download the latest version of `revised.jar` [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
+3. Transfer the jar file to the folder of your choice.
+4. Open a command prompt in the folder you just put the jar file in. Follow this [guide](https://www.groovypost.com/howto/open-command-window-terminal-window-specific-folder-windows-mac-linux/)
+if you are unsure how.
+5. Run the command `java -jar revised.jar` to start the application.
 
-
-## 3. Initialisation <a name="init"> </a>
-
-You will see the logo of the application, as shown below,  once u begin running it.
+You will see the logo of the application, as shown below, once u run it.
 
 ```
 Hello from
@@ -60,31 +54,29 @@ Hello from
 | |   \___|  \____/  |_|/_______/   |_____|_____/
 ```
 
-After that, the application shows any tasks that are due within a week.
-<pre><code>
-Hello from
-Here are the tasks that are due by next week
+Subsequently, you can begin using the application!
 
-maths
-1:[D][✘] homework (by: 6:00 PM 21 Oct 2020)
-2:[E][✘] match (at: 6:00 PM 22 Oct 2020)
-science
-1:[E][✘] fund-raising (at: 6:00 PM 22 Oct 2020)
-2:[D][✘] assignment (by: 6:00 PM 21 Oct 2020)
-</code></pre> 
+## 3. Features <a name="features"></a>
 
-Subsequently,you can begin using the application.
-## 4. Features <a name="features"></a>
-* Subjects
-* Topics
-* Flashcards
-* Tasks
-* Quiz 
-* Results
-* Storing data
+This section elaborates on the features of **revisED** along with their usage. We further break this section down into several
+subsections to better illustrate the design of the application.
 
-### 4.1 Subjects <a name="subjects"></a>
-#### 4.1.1 `help` - Display all commands 
+* <a href =#main-level>3.1 Main Level Features </a>
+* <a href =#subject-level>3.2 Subject Level Features </a>
+* <a href =#topic-level>3.3 Topic Level Features </a>
+* <a href =#other-feat>3.4 Other Features </a>
+
+To give you some context, **revisED** is divided into 3 logical levels—**main**, **subject**, and **topic** levels. In the main level,
+you can add/configure different subjects; in the subject level, you can add/configure different topics and tasks (under a subject); and in the topic
+level, you can add/configure different flashcards (under a topic & subject). Continue reading to learn more about the features
+in each level.
+
+> ℹ️ **_NOTE:_** The format of the command, an example of usage, and a sample output will be presented in `grey boxes` 
+> for each feature that involves the use of a command.
+
+
+### 3.1 Main Level Features <a name="main-level"></a>
+#### 3.1.1 `help` - Display all commands 
 
 Displays all the available commands.
 
@@ -112,7 +104,7 @@ bye:           exits the application
 ________________________________________________________________________________________________________________________
 ```
 
-#### 4.1.2 `add` - Add subject
+#### 3.1.2 `add` - Add subject
 
 Add a subject.
 
@@ -131,7 +123,7 @@ Now you have 5 subjects in the list.
 ____________________________________________________________
 ```
 
-#### 4.1.3 `list` - List all subjects <a name="list"></a>
+#### 3.1.3 `list` - List all subjects <a name="list"></a>
 
 Prints a list of all subjects stored
 
@@ -153,7 +145,7 @@ Here are the subject(s) in your list:
 ____________________________________________________________
 ```
 
-#### 4.1.4 `delete` - Delete a subject
+#### 3.1.4 `delete` - Delete a subject
 
 Deletes the specified subject.
 
@@ -172,7 +164,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.1.5 `find` Find subjects
+#### 3.1.5 `find` Find subjects
 
 Searches the list of subjects for all subjects that contains the query
 
@@ -193,7 +185,7 @@ ____________________________________________________________
 
 ```
 
-####  4.1.6 `subject` - Enter a subject
+#### 3.1.6 `subject` - Enter a subject
 
 Enters a pre-existing subject
 
@@ -210,9 +202,45 @@ You are currently looking at the subject: CS2113T
 ____________________________________________________________
 ```
 
-### 4.2 Topics <a name = "topics"> </a>
+#### 3.1.7 Starting Subject Quiz - `quiz`
+
+This type of quiz helps you prepare for a particular subject. For more details, 
+
+Format: `quiz NAMEOFSUBJECT`<br>
+Example of usage: 
+```
+quiz Maths
+```
+
+Sample output: 
+```
+You are about to begin the quiz for maths.You have 2 minutes.
+```
+
+#### 3.1.8 `results`
+
+#### 3.1.9 Exporting data - `export` <a name="export-command"></a>
+This command exports all the data of the application to an external file. For more details, see <a href="#export">Exporting Data section</a>.
+
+Format: `export`
+
+Example of usage:
+```
+export
+```
+
+Sample output:
+```
+____________________________________________________________
+Your data has been successfully exported to /home/guest/revised/export/data.json.
+____________________________________________________________
+```
+
+#### 3.1.10 `bye`
+
+### 3.2 Subject Level Features <a name = "subject-level"> </a>
 Topic commands can only be used when looking at a subject.
-#### 4.2.1 `help` - Display all commands
+#### 3.2.1 `help` - Display all commands
 
 Displays all the available commands.
 
@@ -245,7 +273,7 @@ results abc:                       gives you the results of all attempted quizze
 exit:                              exits the subject to return to the main screen, where you can work with subjects
 ________________________________________________________________________________________________________________________
 ```
-#### 4.2.2 `add` - Add topic
+#### 3.2.2 `add` - Add topic
 
 Add a topic.
 
@@ -267,7 +295,7 @@ Now you have 1 topic in the list.
 ____________________________________________________________
 ```
 
-#### 4.2.3 `delete topic` - Delete a topic
+#### 3.2.3 `delete topic` - Delete a topic
 
 Deletes the specified topic.
 
@@ -289,7 +317,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.2.4 `list` - List all topics and tasks
+#### 3.2.4 `list` - List all topics and tasks
 
 Prints a list of all topics and tasks of the subject you are currently viewing.
   
@@ -312,7 +340,7 @@ ____________________________________________________________
 
 ```
 
-#### 4.2.5 `find` - Find topics and tasks
+#### 3.2.5 `find` - Find topics and tasks
 
 Searches the current subject for all the topics and tasks that contains the query.
 
@@ -335,7 +363,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.2.6 `topic` - Enter a topic
+#### 3.2.6 `topic` - Enter a topic
 
 Enters a pre-existing topic.
 
@@ -352,10 +380,7 @@ You are currently looking at the topic: speed
 ____________________________________________________________
 ```
 
-### 4.3 Tasks <a name="tasks"> </a>
-Task commands can only be used when looking at a subject.
-
-#### 4.3.1 `todo` - Add todo
+#### 3.2.7 `todo` - Add todo
 
 Add a todo task.
 
@@ -377,7 +402,7 @@ Now you have 4 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 4.3.2 `deadline` - Add deadline
+#### 3.2.8 `deadline` - Add deadline
 
 Add a deadline task.
 
@@ -401,7 +426,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 4.3.3 `event` - Add event
+#### 3.2.9 `event` - Add event
 
 Add an event task.
 
@@ -423,7 +448,7 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 4.3.4 `delete` - Delete Task
+#### 3.2.10 `delete` - Delete Task
 
 Deletes the specified task.
 
@@ -445,7 +470,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 4.3.5 `done` - Mark task as completed
+#### 3.2.11 `done` - Mark task as completed
 
 Marks the specified task as done.
 
@@ -466,7 +491,26 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-### 4.4 Flashcards <a name ="flashcards"> </a>
+#### 3.2.12 Starting Topic Quiz - `quiz`
+
+This type of quiz helps you to prepare for a particular topic. For more details, 
+
+Format: `quiz NAMEOFTOPIC`<br>
+Example of usage: 
+```
+quiz speed
+```
+
+Sample output: 
+```
+You are about to begin the quiz for speed.You have 1 minute.
+```
+
+#### 3.2.13 `results`
+
+#### 3.2.14 `exit`
+
+### 3.3 Topic Level Features <a name="topic-level"> </a>
 
 Flashcards can be added to take notes, in the form of questions and answers.
 These flashcards can also be used to take quizzes, which is described in the next section.
@@ -475,7 +519,7 @@ and add, delete and list flashcards.
 
 > ℹ️ **_NOTE:_** Flashcard commands can only be used when looking at a topic.
 
-#### 4.4.1 `help` - Displaying all commands
+#### 3.3.1 `help` - Displaying all commands
 
 The help command displays all the available commands so that you can refer to them whenever you get confused 
 or need help to navigate the application.   
@@ -499,7 +543,7 @@ ________________________________________________________________________________
 ```
 > ℹ️ **_NOTE:_** Do not add extra spaces after or before help.
 
-#### 4.4.2 `add` - Adding a flashcard
+#### 3.3.2 `add` - Adding a flashcard
 
 The add command allows you to add a flashcard, under the topic you are currently viewing.
 These flashcards can be added to take notes. 
@@ -525,7 +569,7 @@ ____________________________________________________________
 ```
 > ℹ️ **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
 
-#### 4.4.3 `delete` - Deleting a flashcard
+#### 3.3.3 `delete` - Deleting a flashcard
 
 The delete command deletes the specified flashcard. 
 This can be used if you make a mistake or no longer need a flashcard.
@@ -548,7 +592,7 @@ ____________________________________________________________
  Now you have 2 flashcards in the list.
 ____________________________________________________________```
 ```
-#### 4.4.4 `list` - List all flashcards
+#### 3.3.4 `list` - List all flashcards
 
 The list command prints a list of all flashcards of the topic you are currently viewing. 
 This will help you to keep track of all the flashcards you have added 
@@ -568,7 +612,13 @@ Here are the flashcard(s) under speed:
 ```
 > ℹ️ **_NOTE:_** Do not add extra spaces after or before list.
 
-### 4.5 Taking quizzes <a name = "takeQuiz"> </a>
+#### 3.3.5 `exit`
+
+### 3.4 Other Features <a name="other-feat"></a>
+This section expands on the features that are not specific to any part of the previous sections and features that
+require further explanations.
+
+#### 3.4.1 Taking quizzes <a name = "takeQuiz"> </a>
 Once you have added the necessary flashcards, you can use the Quiz functionality to test yourself. This would
 let you gauge how much you understand from the material. This will be beneficial if you are running out of time
 to revise your own notes.
@@ -578,7 +628,7 @@ certain time limit. There are two types of quizzes :
 * SubjectQuiz
 * TopicQuiz
 
-#### 4.5.1 Subject quiz
+##### Subject quiz
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
 You have 2 minutes to complete the quiz.
 
@@ -587,7 +637,7 @@ Example: `quiz Maths`
 
 Output: `You are about to begin the quiz for maths.You have 2 minutes.`
 
-#### 4.5.2 Topic quiz
+##### Topic quiz
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
 You have 1 minute to complete the quiz.
 
@@ -640,7 +690,7 @@ Result:1/2 -- Pass
 ____________________________________________________________
 </code></pre>
 
-### 4.6 Viewing quiz results <a name ="result"> </a>
+#### 3.4.2 Viewing quiz results <a name ="result"> </a>
 After completing a few number of quizzes, you would want to look at the results of the previous quizzes to see if
 you have improved over the time. You can use the `results` functionality to check your results.
 This can be done for the subjects or for the topics.
@@ -654,7 +704,7 @@ Quiz 2: 0/1 -- Fail
 </code></pre>
 >️ ℹ️ **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
 
-### 4.7 Storing data <a name="store"> </a>
+#### 3.4.3 Storing data <a name="store"> </a>
 When you exit the application, the data you have added to the program is automatically saved to the disk. 
 The data is stored under the `data/` folder in the same folder where you run the application. 
 
@@ -664,7 +714,7 @@ The data is stored under the `data/` folder in the same folder where you run the
 Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
 `Maths/` folder will be created under the `data/` folder and an `Algebra` folder will be created under the `Maths/`
-folder, as shown in figure 4.7.1 below. 
+folder, as shown in figure 3.4.1 below. 
 
 <pre>
 revised.jar                     <em>--> <b>revisED</b> Application</em>
@@ -676,7 +726,7 @@ data                            <em>--> Data main folder</em>
     ├── subjectResults.json
     └── tasks.txt
 </pre>
-<sup>***Figure 4.7.1*** Sample directory structure created</sup>
+<sup>***Figure 3.4.1** Sample directory structure created*</sup>
 
 
 The details of the files that are created under each subject and topic folder will be explained below.
@@ -684,7 +734,7 @@ The details of the files that are created under each subject and topic folder wi
 > ℹ️ **_NOTE:_**  The name of the subject and topic folders can be changed manually, and the changes will be reflected
 > in the application the next time you launch it.
 
-#### 4.7.1 tasks.txt
+##### tasks.txt
 One `tasks.txt` file will be created under each subject folder. This file contains the tasks (Todo, Event, Deadline) you
 have added to a specific subject. An example of the file content is shown below.
 
@@ -693,7 +743,7 @@ T | 1 | someTodoTask                                    <em>--> Todo task</em>
 D | 0 | someDeadlineTask | 11:59 PM 20 Dec 2020         <em>--> Deadline task</em>
 E | 0 | someEventTask | 1:00 PM 10 Nov 2020             <em>--> Event task</em>
 </pre>
-<sup>***Figure 4.7.2*** Sample tasks.txt content</sup>
+<sup>***Figure 3.4.2** Sample tasks.txt content*</sup>
 
 The first column of data shows the type of task, where T corresponds to `Todo` task, D corresponds to `Deadline` 
 task, and E corresponds to `Event` task. The second column shows if a task is completed, where 0 means not completed 
@@ -705,7 +755,7 @@ a deadline or event task.
 > **If the data is corrupted, it will not be loaded by the application.**
 > Make a copy of the file before making changes if you have to do so manually.
 
-#### 4.7.2 subjectResults.json / topicResults.json
+##### subjectResults.json / topicResults.json
 One `subjectResults.json` will be created under each subject folder, and one `topicResults.json` will be created 
 under each topic folder. `subjectResults.json` stores the quiz results you have obtained from doing quizzes under 
 a subject, while `topicResults.json` stores the quiz results you have obtained from doing quizzes under a topic. 
@@ -725,10 +775,10 @@ the file content is shown below.
   ...
 ]
 </pre>
-<sup>***Figure 4.7.3*** Sample subjectResults.json content</sup>
+<sup>***Figure 3.4.3** Sample subjectResults.json content*</sup>
 
 
-#### 4.7.3 flashcards.json
+##### flashcards.json
 One `flashcards.json` file will be created under each topic folder. This file stores all the flashcard data you 
 have added under a specific subject and topic. An example of the file content is shown below.
 
@@ -744,7 +794,7 @@ have added under a specific subject and topic. An example of the file content is
   ...
 ]
 </pre>
-<sup>***Figure 4.7.4*** Sample flashcard.json content</sup>
+<sup>***Figure 3.4.4** Sample flashcard.json content*</sup>
 
 Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 
@@ -752,34 +802,21 @@ Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 > a mismatch in the format will corrupt the data. **If the data is corrupted, it will not be loaded by the application.** 
 > Therefore, make a copy of the file before making changes if you have to do so.
 
-### 4.8 Loading data <a name="load"> </a>
+#### 3.4.4 Loading data <a name="load"> </a>
 Similar to <a href =#store>storing data</a>,
 when you launch the application, the saved data is automatically loaded from the disk.
 
 > ℹ️ **_NOTE:_** Loaded subjects and topics will be sorted in alphabetical order, which can be seen when running
-> <a href=#list>list</a> command.
+> <a href=#list>list</a> command. Flashcards, tasks, and results data, on the other hand, are not sorted and instead
+> follow the added order.
 
 > ⚠️ **_WARNING:_** If you have manually modified the contents of the files stored with wrong syntax, the files affected 
 > will not be loaded (and, instead, empty data will be loaded) when the application launches. 
 
-### 4.9 Exporting data <a name= "export"> </a>
+#### 3.4.5 Exporting data <a name= "export"> </a>
 You can export all the data, including the quiz results and tasks, to a `json` file so that it can be imported into
-other applications that understand the data. To export the data, run the following command when you are in the main 
-level of the application.
-
-Format: `export`
-
-Example of usage:
-```
-export
-```
-
-Expected output:
-```
-____________________________________________________________
-Your data has been successfully exported to /path/to/revised/export/data.json.
-____________________________________________________________
-```
+other applications that understand the data. To export the data, run the <a href="#export-command">export command</a> 
+when you are in the main level of the application. 
 
 After running the command, the data will be exported to 
 `export/data.json` under the same folder where **revisED** application resides. An example of the file content is shown 
@@ -834,7 +871,7 @@ below.
   ...                                                               <em>--> More subjects</em>
 ]
 </pre>
-<sup>***Figure 4.9.1*** Sample data.json content</sup>
+<sup>***Figure 3.4.5** Sample data.json content*</sup>
 
 Note that the content of the file follows the same logical structure as that
 in the `data/` folder.
@@ -842,23 +879,31 @@ in the `data/` folder.
 > ℹ️ **_NOTE:_** **Importing** of the exported file is **currently not supported** as it is meant to be read by other 
 > applications. Nevertheless, the feature may be implemented in the future versions if it is highly requested.
 
-## 5. FAQ <a name = "faq"> </a>
-Commonly asked questions from users.
+## 4. FAQ <a name = "faq"> </a>
+This section answers some common questions that you may have about **revisED**.
 
-Question: I moved the jar file to another location. Will my previous data be erased automatically?<br>
-Answer: Do not worry. You previous data will still be avaiable in the `data/` folder.
+**_Q:_ I moved the jar file to another location. Will my previous data be erased automatically?**<br>
+**_A:_** Do not worry. You previous data will still be avaiable in the `data/` folder.
 
-Question: I accidentally saved a task as an event, when it is a deadline. Is there any method to change the type of the task?<br>
-Answer: Unfortunately, no. You will have to delete the event using the `delete task [TASK_INDEX]`to delete the task, and then 
+**_Q:_ I accidentally saved a task as an event, when it is a deadline. Is there any method to change the type of the task?**<br>
+**_A:_** Unfortunately, no. You will have to delete the event using the `delete task [TASK_INDEX]`to delete the task, and then 
 add the task back using the `deadline [DESCRIPTION] /by [TIME]` command.
 
-Question: I stopped a quiz without completing it. Can I resume it?<br>
-Answer: No. You will have to start a new quiz.
+**_Q:_ I stopped a quiz without completing it. Can I resume it?**<br>
+**_A:_** No. You will have to start a new quiz.
 
-Question: Is there any limit to the number of topics/subjects that I can store in my application?<br>
-Answer: No. You can store unlimited number of topics/subjects.   
+**_Q:_ Is there any limit to the number of topics/subjects that I can store in my application?**<br>
+**_A:_** No. You can store unlimited number of topics/subjects.   
 
-## 6. Command Summary <a name="summary"></a>
+**_Q:_ A file named `revisED0.log` appears in the folder after I run the application. What is it? Can I delete it?**<br>
+**_A:_** This is the log file that logs down the activities of the application when you are running it. In the case where
+you find any bugs or the application crashes, you can send us a bug report
+[here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues) along with the log file to help us with solving the bugs. 
+Nevertheless, you can delete it if you want to, and it does not affect the behavior of the application in any way.
+
+## 5. Command Summary <a name="summary"></a>
+A summary of all the commands available is shown in the table below.
+
 Action|Examples
 ------|------
 Add subject|`add math` (while in main menu)
