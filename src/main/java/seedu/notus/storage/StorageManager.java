@@ -354,23 +354,11 @@ public class StorageManager {
         //rewrite information to the file
         FileWriter fwAppend = new FileWriter(path, true);
 
-        ArrayList<Event> nonRecurringEvents = timetable.getAllNonRecurringEvents();
+        ArrayList<Event> allEvents = timetable.getEvents();
         String eventDetails;
 
-        for (Event event: nonRecurringEvents) {
+        for (Event event: allEvents) {
             eventDetails = getEventDetailsSaveFormat(event);
-            fwAppend.write(eventDetails);
-        }
-
-        ArrayList<RecurringEvent> recurringEvents = timetable.getAllRecurringEventsArray();
-
-        for (RecurringEvent event: recurringEvents) {
-            eventDetails = getEventDetailsSaveFormat(event);
-            eventDetails += PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
-                        + " " + event.getRecurrenceType() + " "
-                        + PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
-                        + " " + event.getEndRecurrenceDateTime() + " "
-                        + LS;
             fwAppend.write(eventDetails);
         }
         fwAppend.close();
@@ -394,12 +382,14 @@ public class StorageManager {
             }
         }
 
-
-        if (!event.getRecurring()) {
-            eventDetails += LS;
+        if (event instanceof RecurringEvent) {
+            RecurringEvent recEvent = (RecurringEvent) event;
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
+                    + " " + recEvent.getRecurrenceType() + " ";
+            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
+                    + " " + recEvent.getEndRecurrenceDateTime();
         }
-
-        return eventDetails;
+        return eventDetails + LS;
     }
 
     /**
