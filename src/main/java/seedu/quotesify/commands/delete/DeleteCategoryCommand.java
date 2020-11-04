@@ -84,9 +84,17 @@ public class DeleteCategoryCommand extends DeleteCommand {
 
                 String bookTitle = parameters[1];
                 String quoteNum = parameters[2];
+                int bookTagCount = Integer.parseInt(parameters[3]);
+                int quoteTagCount = Integer.parseInt(parameters[4]);
 
-                deleteCategoryFromBook(category, bookTitle, ui);
-                deleteCategoryFromQuote(category, quoteNum, ui);
+                if (bookTagCount == 1) {
+                    deleteCategoryFromBook(category, bookTitle, ui);
+                }
+
+                if (quoteTagCount == 1) {
+                    deleteCategoryFromQuote(category, quoteNum, ui);
+                }
+
                 categoryList.updateListsInCategory(category);
 
                 if (category.getSize() == 0) {
@@ -109,6 +117,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
     private void deleteCategoryFromBook(Category category, String bookIndex, TextUi ui) {
         // ignore this action if user did not provide book title
         if (bookIndex.isEmpty()) {
+            ui.printErrorMessage(ERROR_NO_BOOK_NUMBER);
             return;
         }
         assert category != null;
@@ -150,6 +159,7 @@ public class DeleteCategoryCommand extends DeleteCommand {
     private void deleteCategoryFromQuote(Category category, String index, TextUi ui) {
         // ignore this action if user did not provide quote number
         if (index.isEmpty()) {
+            ui.printErrorMessage(ERROR_NO_QUOTE_NUMBER);
             return;
         }
         assert category != null;

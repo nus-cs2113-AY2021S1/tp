@@ -26,6 +26,7 @@ public abstract class Command {
     public static final String ERROR_INVALID_BOOKMARK_NUM = "Invalid bookmark number specified!";
     public static final String ERROR_INVALID_TAG = "Invalid / No tag provided";
     public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
+    public static final String ERROR_NO_BOOK_NUMBER = "Book number is missing";
     public static final String ERROR_BOOK_TITLE_MISSING = "There is no book title specified!";
     public static final String ERROR_BOOK_ALREADY_EXISTS = "The book already exists!";
     public static final String ERROR_CATEGORY_EXISTS_IN_BOOK = "Category [%s] already exists in book [%s]!";

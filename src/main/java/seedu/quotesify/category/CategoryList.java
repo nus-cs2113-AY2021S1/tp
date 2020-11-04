@@ -91,6 +91,13 @@ public class CategoryList extends QuotesifyList<Category> {
     }
 
     /**
+     * Removes empty categories from the list.
+     */
+    public void removeEmptyCategories() {
+        categories.removeIf(category -> category.getSize() == 0);
+    }
+
+    /**
      * Finds a category by keyword.
      *
      * @param keyword user specified keyword.
