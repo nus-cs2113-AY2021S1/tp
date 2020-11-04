@@ -48,7 +48,11 @@ public class PersonalEvent extends Event {
     }
 
     public LocalDate getEndDate() {
-        return LocalDate.from(end);
+        try {
+            return LocalDate.from(end);
+        } catch (NullPointerException e) {
+            return LocalDate.from(at);
+        }
     }
 
     public PersonalEvent(String description, Location location, LocalDateTime at) {
@@ -99,7 +103,7 @@ public class PersonalEvent extends Event {
         try {
             return LocalDateTime.from(end);
         } catch (NullPointerException e) {
-            return null;
+            return LocalDateTime.from(at);
         }
     }
 

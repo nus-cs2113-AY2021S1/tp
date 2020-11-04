@@ -37,10 +37,10 @@ public class StudyTimeCommand extends Command {
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
             throws NoEventDoneException {
-        ArrayList<Event> filteredEventList = events.filterDateDoneEventWith(date);
+        ArrayList<Event> filteredEventList = events.filterDateDoneAcademicEventWith(date);
         if (filteredEventList.size() == 0) {
             throw new NoEventDoneException();
         }
-        ui.printStudyTime(filteredEventList,date);
+        ui.printStudyTime(filteredEventList, date);
     }
 }

@@ -316,8 +316,12 @@ public class UI {
      * @param date              the date that the user want to know his or her study time.
      */
     public void printStudyTime(ArrayList<Event> filteredEventList, LocalDate date) {
-        int hour = 0, minute = 0;
-        int startHour, endHour, startMinute, endMinute;
+        int hour = 0;
+        int minute = 0;
+        int startHour;
+        int endHour;
+        int startMinute;
+        int endMinute;
         for (Event event : filteredEventList) {
             if (event.getDate().isBefore(date)) {
                 startHour = 0;

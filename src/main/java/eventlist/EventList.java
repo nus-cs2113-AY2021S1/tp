@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Class;
 import event.Event;
 import event.PersonalEvent;
+import event.SelfStudy;
 import exception.EditNoEndTimeException;
 import exception.EmptyEventListException;
 import exception.ExistingEventInListException;
@@ -307,23 +308,23 @@ public class EventList {
      */
     public ArrayList<Event> filterDateWith(LocalDate date) {
         ArrayList<Event> filteredEventList = (ArrayList<Event>) events.stream()
-                .filter(s -> (s.getDate().isEqual(date) ||
-                        (s.getDate().isBefore(date) && s.getEndDate().isAfter(date))))
+                .filter(s -> (s.getDate().isEqual(date)
+                        || (s.getDate().isBefore(date) && s.getEndDate().isAfter(date))))
                 .collect(toList());
 
         return filteredEventList;
     }
 
     /**
-     * Filter the event list to find the events happen on the date that have been done already.
+     * Filter the event list to find the academic related events happen on the date that have been done already.
      *
      * @param date the date that the user is looking for.
      * @return he filtered list. this list contains only the events that satisfy the requirement.
      */
-    public ArrayList<Event> filterDateDoneEventWith(LocalDate date) {
+    public ArrayList<Event> filterDateDoneAcademicEventWith(LocalDate date) {
         ArrayList<Event> filteredEventList = filterDateWith(date);
         filteredEventList = (ArrayList<Event>) filteredEventList.stream()
-                .filter(Event::isDone)
+                .filter(s -> (s.isDone() && ((s instanceof Class) || (s instanceof SelfStudy))))
                 .collect(toList());
         return filteredEventList;
     }
@@ -402,7 +403,7 @@ public class EventList {
     public ArrayList<Event> filterDateNotDoneWith(LocalDate date) {
         ArrayList<Event> filteredEventList = filterDateWith(date);
         filteredEventList = (ArrayList<Event>) filteredEventList.stream()
-                .filter(s -> ((!s.isDone())&&(s.getEndDate().isEqual(date))))
+                .filter(s -> ((!s.isDone()) && (s.getEndDate().isEqual(date))))
                 .collect(toList());
         return filteredEventList;
     }
