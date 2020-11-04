@@ -1280,3 +1280,115 @@ If you wish to add new checks, simply add the check file with a filename `check-
         2.  `info x` (where x is a negative number, zero, a word, or a number exceeding the number of anime in the database)
 
 <br/>
+
+### D.x: Listing bookmark entries
+1.  Listing bookmark entries.
+    1.  Prerequisite: None.
+
+    2.  Test case: `bookmark -l` <br/>
+    Expected: All bookmark entries will be listed, if the bookmark list is empty then a bookmark empty message will be printed.
+
+<br/>
+
+### D.x: Adding a bookmark entry
+1.  Adding a bookmark entry.
+    1.  Prerequisite: Look up the anime id using the `info` command. The anime id is in `AnimeData` source.
+
+    2.  Test case: `bookmark -a 1` <br/>
+    Expected: The anime id will be added as a bookmark entry, and a message indicating the name of anime is added to the bookmark.
+    
+    3.  Test case: `bookmark -a 0` <br/>
+    Expected: No anime is added to the bookmark. Error details show that anime id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -a`
+        2.  `bookmark -a x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Deleting a bookmark entry
+1.  Deleting a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+
+    2.  Test case: `bookmark -d 1` <br/>
+    Expected: The bookmark id will be deleted from the bookmark, and a message indicating the name of anime deleted from the bookmark.
+    
+    3.  Test case: `bookmark -d 0` <br/>
+    Expected: No bookmark entry is deleted from the bookmark. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -d`
+        2.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: View info of a bookmark entry
+1.  View info of a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+
+    2.  Test case: `bookmark 1` <br/>
+    Expected: All information on a bookmark entry will be printed.
+    
+    3.  Test case: `bookmark 0` <br/>
+    Expected: No bookmark entry information is displayed. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1. `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Editing a bookmark entry episode
+1.  Editing a bookmark entry episode.
+    1.  Prerequisite: 
+         1. List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+         2. View the information of bookmark entry using 'bookmark <BOOKMARK_ID>'. The total episode of the anime series.
+
+    2.  Test case: `bookmark 1 -e 1` <br/>
+    Expected: The bookmark episode for that id will be edited to 1, and a message indicating the anime current episode has been edited.
+    
+    3.  Test case: `bookmark 0 -e 1` <br/>
+    Expected: No bookmark entry will have its episode edited. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -e`
+        2.  `bookmark -e x` (where x is a negative number, a word, or an additional parameter)
+        3.  `bookmark x -e` (where x is a negative number, a word, or an additional parameter)
+        4.  `bookmark x -e x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Adding a note to a bookmark entry
+1.  Adding a note to a bookmark entry.
+    1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
+         
+    2.  Test case: `bookmark 1 -n test` <br/>
+    Expected: The note will be added to bookmark id, and a message indicating the note has been edited for that anime.
+    
+    3.  Test case: `bookmark 0 -n test` <br/>
+    Expected: No bookmark note will be added. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -n`
+        2.  `bookmark -n x` (where x is a negative number, a word, or an additional parameter)
+        3.  `bookmark x -n` (where x is a negative number, a word, or an additional parameter)
+        4.  `bookmark x -n x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
+
+### D.x: Removing a note from a bookmark entry
+1.  Removing a note from a bookmark entry.
+    1.  Prerequisite:  View the information on bookmark entry using 'bookmark <BOOKMARK_ID>'. Multiple notes for that bookmarked anime.
+
+    2.  Test case: `bookmark 1 -r 1` <br/>
+    Expected: The first note of the bookmark entry will be removed, and a message indicating the note has been removed from the anime.
+    
+    3.  Test case: `bookmark 0 -r 1` <br/>
+    Expected: No notes will be removed. Error details show that bookmark id cannot be 0.
+    
+    4.  Other incorrect commands to try: 
+        1.  `bookmark -r`
+        2.  `bookmark -r x` (where x is a negative number, a word, or an additional parameter)
+        3.  `bookmark x -r` (where x is a negative number, a word, or an additional parameter)
+        4.  `bookmark x -r x` (where x is a negative number, a word, or an additional parameter)
+
+<br/>
