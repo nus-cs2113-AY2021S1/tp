@@ -593,15 +593,19 @@ The intended user of Quotesify is someone that meets the following criterias:
 ---
 
 #### Non-Functional Requirements
-1. Should work on major Operating Systems (OS) such as Windows and Mac with at least `Java 11` installed.
+1. Should work on major Operating Systems (OS) with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
 3. Users should prefer typing to GUI.
 4. Data should be stored locally inside the device's hard disk.
+5. Data should be in a human editable text file.
+6. Program should work without requiring an installer and/or remote server.
 
 ---
 
 #### Glossary
 * *GUI* - Graphical User Interface
+* *JAR file* - Java ARchive file
+* *Major OS* - Windows, Linux, OS-X
 
 ---
 
@@ -614,11 +618,11 @@ The intended user of Quotesify is someone that meets the following criterias:
    2. Download the latest **Quotesify JAR file** from [here](https://github.com/AY2021S1-CS2113T-T09-3/tp/releases).
    3. Save the jar file in a desired file directory.
    4. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
-   5. Run `java -jar quotesify.jar` to launch Quotesify.
+   5. Run `java -jar [CS2113T-T09-3][Quotesify].jar` to launch Quotesify.
    
 #### Subsequent launch
    1. Open your command line or terminal and navigate into the file directory where Quotesify is saved.
-   2. Run `java -jar quotesify.jar` to launch Quotesify.
+   2. Run `java -jar [CS2113T-T09-3][Quotesify].jar` to launch Quotesify.
    3. Data will be automatically loaded from the data file upon launch.
    
 #### Shutdown
