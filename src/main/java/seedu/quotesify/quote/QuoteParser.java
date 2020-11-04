@@ -196,6 +196,9 @@ public class QuoteParser {
 
     public static int getQuoteNumber(String userInput, QuoteList quotes, String command) throws QuotesifyException {
         try {
+            if (!userInput.contains(command))  {
+                throw new QuotesifyException("The \"" + command + "\" flag is missing!");
+            }
             int quoteNumberToEdit = Integer.parseInt(userInput.split(command, 2)[0].trim());
             if (quoteNumberToEdit <= 0 || quoteNumberToEdit > quotes.getSize()) {
                 throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
@@ -212,9 +215,13 @@ public class QuoteParser {
         return parseAddParameters(quoteAndInformation);
     }
 
-    public static String getReflectionToAdd(String userInput) {
-        String reflection = userInput.split(Command.FLAG_REFLECT, 2)[1].trim();
-        return reflection;
+    public static String getReflectionToAdd(String userInput) throws QuotesifyException {
+        try {
+            String reflection = userInput.split(Command.FLAG_REFLECT, 2)[1].trim();
+            return reflection;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+        }
     }
 
     public static String getEditedReflection(String userInput) {

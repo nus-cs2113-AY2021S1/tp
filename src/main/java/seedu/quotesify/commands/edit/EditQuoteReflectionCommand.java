@@ -21,10 +21,6 @@ public class EditQuoteReflectionCommand extends  EditCommand {
 
     private void editQuoteReflection(QuoteList quoteList, TextUi ui) {
         try {
-            if (!information.contains(FLAG_EDIT)) {
-                throw new QuotesifyException(ERROR_MISSING_EDIT_FLAG);
-            }
-
             int quoteNumToEdit = QuoteParser.getQuoteNumber(information, quoteList, Command.FLAG_EDIT);
             if (quoteList.getQuote(quoteNumToEdit).getReflection() == null) {
                 throw new QuotesifyException(ERROR_NO_REFLECTION);

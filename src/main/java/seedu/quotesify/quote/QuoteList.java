@@ -40,8 +40,11 @@ public class QuoteList extends QuotesifyList<Quote> {
         quotes.set(quoteNumber, quote);
     }
 
-    public Quote addReflection(String reflection, int quoteNumber) {
+    public Quote addReflection(String reflection, int quoteNumber) throws QuotesifyException {
         Quote quote = quotes.get(quoteNumber);
+        if (quote.getReflection() != null) {
+            throw new QuotesifyException("Quote already has a reflection. Please use the edit command instead.");
+        }
         quote.setReflection(reflection);
         quotes.set(quoteNumber, quote);
         return quote;
