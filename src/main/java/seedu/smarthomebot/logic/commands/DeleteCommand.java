@@ -22,6 +22,7 @@ public class DeleteCommand extends Command {
     public CommandResult execute() {
         try {
             Appliance toDeleteAppliance = applianceList.deleteAppliance(this.userEnteredName);
+            autoFormattingStringIndex();
             return new CommandResult("Deleting " + toDeleteAppliance + ".......DELETED.");
         } catch (ApplianceNotFoundException e) {
             return new CommandResult(this.userEnteredName + " does not exist.");

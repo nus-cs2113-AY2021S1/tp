@@ -42,7 +42,7 @@ public class AirConditioner extends Appliance {
     @Override
     public String getParameter(boolean isList) {
         if (isList) {
-            return String.format(" %s Degrees", getParameter(false));
+            return String.format("%s Degrees", getParameter(false));
         } else {
             return this.temperature;
         }
@@ -102,6 +102,5 @@ public class AirConditioner extends Appliance {
 
         return super.toString() + temperatureStatement;
     }
-
 
 }

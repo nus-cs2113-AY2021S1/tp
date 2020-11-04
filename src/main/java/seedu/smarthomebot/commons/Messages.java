@@ -19,7 +19,7 @@ public class Messages {
     public static final String MESSAGE_POWER_USAGE = "Here are the power usage consumption:";
     public static final String MESSAGE_LIST_NO_LOCATIONS = "There is currently no locations in the list.";
     public static final String MESSAGE_LIST_NO_APPLIANCES = "There is currently no appliances in the list.";
-    public static final String MESSAGE_USAGE_RESET = "Power usage has been reset!";
+    public static final String MESSAGE_USAGE_RESET = "Resetting previous recorded usage.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid Command Format";
     public static final String MESSAGE_INVALID_ADD_COMMAND =
             "Please follow this order, add NAME l/[LOCATION_NAME] w/[WATTS] t/[TYPE_OF_APPLIANCE]";

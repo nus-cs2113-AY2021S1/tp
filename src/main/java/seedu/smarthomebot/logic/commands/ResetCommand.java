@@ -12,7 +12,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_USAGE_RESET;
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "p_reset";
-    public static final String MESSAGE_USAGE = "Resetting usage of appliances: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "Resetting previous recorded usage: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute() {

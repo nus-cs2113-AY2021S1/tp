@@ -23,7 +23,7 @@ class PowerTest {
         String bedroom = "bedroom";
         locationList = new LocationList();
         locationList.addLocation(bedroom);
-        coolingFan = new Fan("Speedy", bedroom, "150", locationList);
+        coolingFan = new Fan("PowerfulSpeedy", bedroom, "9000", locationList);
     }
 
     @Test
@@ -60,13 +60,13 @@ class PowerTest {
     @Test
     void getPower_fanOnForThreeSeconds_returnPowerValue() throws InterruptedException {
         useFanForThreeSeconds();
-        assertEquals(0.0, coolingFan.getPowerInDouble());
+        assertEquals(0.01, coolingFan.getPowerInDouble());
     }
 
     @Test
     void testToString() throws InterruptedException {
         useFanForThreeSeconds();
-        assertEquals("0.00", coolingFan.getPowerInString());
+        assertEquals("0.01", coolingFan.getPowerInString());
     }
 
     private void useFanForThreeSeconds() throws InterruptedException {

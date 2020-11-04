@@ -1,4 +1,4 @@
-# SmartHomeBot User Guide
+# <img src="images/smarthomebot-logo.png" width="50"> SmartHomeBot User Guide 
 
 SmartHomeBot is a **desktop application that consolidates all home appliance’s control into a 
 centralized system via a Command Line Interface (CLI)**. Users can switch on or off appliances using this application
@@ -6,6 +6,7 @@ and review and monitor electricity usage; having a clearer picture of their elec
 SmartHomeBot has an auto-save feature that will automatically save all the appliances' data
 and export it to a text file. Upon the start of the application, it will import the data 
 from the text file and loads the appliances' data back.
+
 
 ## Table of Contents
 * [Quick start](#quick-start)
@@ -217,8 +218,8 @@ Output:
 
 
 <br/><br/> 
-### Displaying the usage of appliance: `usage`
-Display the current power usage of all appliances and total power consumption. 
+### Displaying the recorded usage of appliance: `usage`
+Display the current power usage of all appliances and total power consumption monitored within SmartHomeBot. 
 
 Format: `usage`
 
@@ -229,7 +230,9 @@ Output:
 
 <br/><br/> 
 ### Resetting all power usage in application: `p_reset`
-Reset the current power usage of all appliances and total power consumption to zero. 
+Reset the previous recorded power usage of all appliances and total power consumption to zero. Note that if appliance remains **ON**, its usage will be reset to zero, monitoring process continues, as the appliance remains running.
+
+
 Format: `p_reset`
 
 Output: 
@@ -239,7 +242,7 @@ Output:
 
 <br/><br/> 
 ### Exiting the application: `exit`
-Exits the application.
+Exits the application and switch off all appliances within SmartHomeBot. The monitoring of all appliances will be stop.
 
 Format: `exit`
    

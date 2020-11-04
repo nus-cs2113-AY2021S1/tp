@@ -26,10 +26,11 @@ public class UsageCommand extends Command {
         if (applianceList.getAllAppliance().size() == 0) {
             return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
         } else {
+            autoFormattingStringIndex();
             String formattedResult = (LINE + MESSAGE_POWER_USAGE);
-            String format = "%-2d. %-" + Appliance.getMaxNameLength() + "s"
-                    + DISPLAY_LOCATION + "%-" + Appliance.getMaxLocationLength() + "s"
-                    + DISPLAY_STATUS + "%-5s"
+            String format = "%-2d. %-" + maxNameLength + "s"
+                    + DISPLAY_LOCATION + "%-" + maxLocationLength + "s"
+                    + DISPLAY_STATUS + "%-3s"
                     + DISPLAY_USAGE + "%.2f kWh";
             for (Appliance a : applianceList.getAllAppliance()) {
                 formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
