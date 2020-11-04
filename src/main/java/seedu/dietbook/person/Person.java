@@ -2,7 +2,7 @@ package seedu.dietbook.person;
 
 /**
  * Represents a Person.
- * A <code>Person</code> has a name, gender, age, height, certain activity level, original and desired weight.
+ * A <code>Person</code> has a name, gender, age, height, certain fitness level, original and desired weight.
  */
 public class Person {
 
@@ -15,12 +15,12 @@ public class Person {
     /* The target weight of the person in kg */
     private int targetWeight;
     private int age;
-    private ActivityLevel activityLevel;
+    private FitnessLevel fitnessLevel;
     private Gender gender;
     private String name;
 
     /**
-     * Constructs a <code>Person</code> with the given name, gender, age, height, activity level, original,
+     * Constructs a <code>Person</code> with the given name, gender, age, height, fitness level, original,
      * current and target weight.
      *
      * @param name The name of the person.
@@ -30,13 +30,13 @@ public class Person {
      * @param originalWeight The original weight of the person when he or she first started using DietBook.
      * @param currentWeight The current weight of the person.
      * @param targetWeight The target/desired weight that the person wants to achieve.
-     * @param activityLevel The activity level of the person or in other words, the amount of exercise the
+     * @param fitnessLevel The fitness level of the person or in other words, the amount of exercise the
      *     person engages in.
      */
     public Person(String name, Gender gender, int age, int height, int originalWeight,
-                  int currentWeight, int targetWeight, ActivityLevel activityLevel) {
+                  int currentWeight, int targetWeight, FitnessLevel fitnessLevel) {
         performAssertionsForPerson(name, gender, age, height, originalWeight, currentWeight,
-                targetWeight, activityLevel);
+                targetWeight, fitnessLevel);
 
         this.name = name.trim();
         this.gender = gender;
@@ -45,7 +45,7 @@ public class Person {
         this.originalWeight = originalWeight;
         this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
-        this.activityLevel = activityLevel;
+        this.fitnessLevel = fitnessLevel;
     }
 
     /**
@@ -59,11 +59,11 @@ public class Person {
      *     using DietBook.
      * @param newCurrentWeight The new/revised current weight of the person.
      * @param newTargetWeight The new/revised target weight that the person wants to achieve.
-     * @param newActivityLevel The new/revised activity level of the person or in other words, the amount
+     * @param newFitnessLevel The new/revised fitness level of the person or in other words, the amount
      *     of exercise the person engages in.
      */
     public void setAll(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight,
-                             int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel) {
+                             int newCurrentWeight, int newTargetWeight, FitnessLevel newFitnessLevel) {
         setName(newName);
         setGender(newGender);
         setAge(newAge);
@@ -71,7 +71,7 @@ public class Person {
         setOriginalWeight(newOriginalWeight);
         setCurrentWeight(newCurrentWeight);
         setTargetWeight(newTargetWeight);
-        setActivityLevel(newActivityLevel);
+        setFitnessLevel(newFitnessLevel);
     }
 
     /**
@@ -208,27 +208,27 @@ public class Person {
     }
 
     /**
-     * Returns the activity level of the person.
+     * Returns the fitness level of the person.
      *
-     * @return The activity level of the person.
+     * @return The fitness level of the person.
      */
-    public ActivityLevel getActivityLevel() {
-        return activityLevel;
+    public FitnessLevel getFitnessLevel() {
+        return fitnessLevel;
     }
 
     /**
-     * Sets the activity level of the person to the new activity level given.
+     * Sets the fitness level of the person to the new fitness level given.
      *
-     * @param newActivityLevel The new/revised activity level of the person.
+     * @param newFitnessLevel The new/revised fitness level of the person.
      */
-    public void setActivityLevel(ActivityLevel newActivityLevel) {
-        performAssertionsForActivityLevel(newActivityLevel);
-        activityLevel = newActivityLevel;
+    public void setFitnessLevel(FitnessLevel newFitnessLevel) {
+        performAssertionsForFitnessLevel(newFitnessLevel);
+        fitnessLevel = newFitnessLevel;
     }
 
     /**
      * Returns a string representation of all information related to the user.
-     * Information includes name, gender, age, height, original weight, target weight and activity level.
+     * Information includes name, gender, age, height, original weight, target weight and fitness level.
      *
      * @return A string representation of all information related to the user.
      */
@@ -241,7 +241,7 @@ public class Person {
                 + "  Original weight: " + originalWeight + "kg" + System.lineSeparator()
                 + "  Current weight: " + currentWeight + "kg" + System.lineSeparator()
                 + "  Target weight: " + targetWeight + "kg" + System.lineSeparator()
-                + "  Activity level: " + activityLevel.getDescription();
+                + "  Fitness level: " + fitnessLevel.getDescription();
         return userInformation;
     }
 
@@ -255,12 +255,12 @@ public class Person {
      * @param originalWeight The original weight of the person when he or she first started using DietBook.
      * @param currentWeight The current weight of the person.
      * @param targetWeight The target/desired weight that the person wants to achieve.
-     * @param activityLevel The activity level of the person or in other words, the amount of exercise the
+     * @param fitnessLevel The fitness level of the person or in other words, the amount of exercise the
      *     person engages in.
      */
     private void performAssertionsForPerson(String name, Gender gender, int age, int height,
                                             int originalWeight, int currentWeight, int targetWeight,
-                                            ActivityLevel activityLevel) {
+                                            FitnessLevel fitnessLevel) {
         performAssertionsForNameInput(name);
         performAssertionsForGenderInput(gender);
         performAssertionsForAgeInput(age);
@@ -268,17 +268,17 @@ public class Person {
         performAssertionsForWeight(originalWeight, "Original weight");
         performAssertionsForWeight(currentWeight, "Current weight");
         performAssertionsForWeight(targetWeight, "Target weight");
-        performAssertionsForActivityLevel(activityLevel);
+        performAssertionsForFitnessLevel(fitnessLevel);
     }
 
     /**
-     * Performs assertion on the activity level input.
+     * Performs assertion on the fitness level input.
      *
-     * @param activityLevel The activity level of the person or in other words, the amount of exercise the
+     * @param fitnessLevel The fitness level of the person or in other words, the amount of exercise the
      *     person engages in.
      */
-    private void performAssertionsForActivityLevel(ActivityLevel activityLevel) {
-        assert activityLevel != null : "Activity level of person should not be null";
+    private void performAssertionsForFitnessLevel(FitnessLevel fitnessLevel) {
+        assert fitnessLevel != null : "Fitness level of person should not be null";
     }
 
     /**

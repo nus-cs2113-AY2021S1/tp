@@ -4,6 +4,7 @@ import seedu.dietbook.Manager;
 import seedu.dietbook.Ui;
 import seedu.dietbook.exception.DietException;
 
+//@@author tikimonarch
 public class HelpCommand extends Command {
     @Override
     public void execute(Manager manager, Ui ui) throws DietException {
