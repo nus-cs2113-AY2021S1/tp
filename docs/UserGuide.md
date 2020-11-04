@@ -77,7 +77,9 @@ Output:
 Adds a new location with a name. 
 
 Format: `create [LOCATION_NAME]` 
-* `LOCATION_NAME` must be a unique name 
+* `LOCATION_NAME` must be a unique name. 
+* `Space` cannot be included in `LOCATION_NAME`. However `_` can be used to replace `space` if you want to create a 
+`LOCATION_NAME` with more than one word.
 
 Example: `create Bedroom1`
 
@@ -266,8 +268,8 @@ that contains the data of your previous SmartHomeBot folder.
 Function | Format | Example 
 -------- |--------|-------- 
 Help|`help`
-Create location|`create [LOCATION_NAME]`|`create Bedroom 1`
-Remove location|`remove [LOCATION_NAME]`|`remove Bedroom 1`
+Create location|`create [LOCATION_NAME]`|`create Bedroom1`
+Remove location|`remove [LOCATION_NAME]`|`remove Bedroom1`
 Add appliance|`add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]`|`add AIRCON1 l/Bedroom1 w/3500 t/aircon`
 Delete appliance|`delete [APPLIANCE_NAME]`|`delete AIRCON1`
 Switch On|`on [APPLIANCE_NAME]`|`on AIRCON1`
