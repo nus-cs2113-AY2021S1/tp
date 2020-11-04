@@ -5,8 +5,7 @@ I am part of a team of 5 software engineering students and we were tasked to des
 Command Line Interface (CLI) desktop application for our team project. The application that we developed
 is called Quotesify. I was tasked with the Rating System for Books feature in Quotesify.
 
-### About the project
-Quotesify is a free desktop application to help book readers improve their reading experience. With Quotesify,
+Quotesify is an application to help book readers improve their reading experience. With Quotesify,
 users can add books and quotes they wished to remember into the application. Users can also categorize their books and
 quotes, as well as rate their books. Quotesify is also built with a progress tracker to manage your reading activities.
 
