@@ -49,11 +49,11 @@ public class Messages {
     public static final String MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST =
             "Appliance or Location does not exist in the list.";
     public static final String MESSAGE_INVALID_TEMPERATURE_AC =
-            "Invalid Temperature is inputted, ensure that it is within 16-30 degrees. \n"
-                    + "Previous set temperature will be set.";
+            "Invalid Temperature is inputted, ensure that it is within 16-30 degrees.\n"
+                    + "Previous set temperature will be set. ";
     public static final String MESSAGE_INVALID_FAN_SPEED =
-            "Invalid speed is inputted, ensure that it is within 1-3 speed. \n "
-                    + "Previous set speed will be set.";
+            "Invalid speed is inputted, ensure that it is within 1-3 speed.\n"
+                    + "Previous set speed will be set. ";
     public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or / detected in";
     public static final String MESSAGE_EMPTY_PARAMETER =
             "Empty Parameter detected! Please follow format and enter require parameters.";

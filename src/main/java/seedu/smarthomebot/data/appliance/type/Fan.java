@@ -63,20 +63,18 @@ public class Fan extends Appliance {
      * @param speed speed to set.
      * @return the reciprocal printout message after setting speed in String.
      */
-    public String setSpeed(String speed) {
-        String toPrint;
+    public boolean setSpeed(String speed) {
+        boolean isSuccess = true;
         if (speed.isEmpty()) {
             // default speed will be set.
-            toPrint = toString();
         } else if (isParameterValid(speed, LOWER_BOUND, UPPER_BOUND)) {
             // user input speed will be set.
             this.speed = speed;
-            toPrint = toString();
         } else {
             // user inputs an invalid speed.
-            toPrint = "\n" + MESSAGE_INVALID_FAN_SPEED;
+            isSuccess = false;
         }
-        return toPrint;
+        return isSuccess;
     }
 
     /**
@@ -97,7 +95,7 @@ public class Fan extends Appliance {
     public String toString() {
         String speedStatement;
         if (appliancePower.getStatus()) {
-            speedStatement = " @" + getParameter(true);
+            speedStatement = "@" + getParameter(true);
         } else {
             speedStatement = "";
         }
