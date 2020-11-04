@@ -19,10 +19,14 @@ public class ListCommand extends BookmarkCommand {
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         if (input.substring(LIST_LENGTH).length() > 0) {
-            System.out.println("I think you meant list...");
-            System.out.println("Executing list command...");
+            ui.showCorrectCommand("list");
         }
-        ui.showBookmarkList(categories);
+        if (categoryNumber == 0) {
+            ui.showBookmarkList(categories, "Bookmark Main");
+        } else {
+            ui.showBookmarkList(categories, categories.get(categoryNumber - 1).getName());
+            assert categoryNumber > 0 : "print category name when it is not available";
+        }
     }
 
     public int getCategoryNumber() {

@@ -18,8 +18,7 @@ public class BackCommand extends BookmarkCommand {
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         if (input.substring(BACK_LENGTH).length() > 0) {
-            System.out.println("I think you meant back...");
-            System.out.println("Executing back command...");
+            ui.showCorrectCommand("back");
         }
         if (categoryNumber == 0) {
             ui.printGoodbyeMessage();

@@ -16,6 +16,7 @@ public class BookmarkUi {
     }
 
     public void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
+        showCurrentMode("Bookmark Main");
         System.out.println("Here are the categories available:");
         int i = 1;
         for (BookmarkCategory category: bookmarkCategories) {
@@ -27,7 +28,7 @@ public class BookmarkUi {
     public void showBookmarkLinkList(ArrayList<BookmarkList> links) {
         System.out.println("Bookmarks:");
         if (links.size() == 0) {
-            System.out.println("<empty>");
+            System.out.println("\t<empty>");
         } else {
             int i = 1;
             for (BookmarkList link: links) {
@@ -38,11 +39,13 @@ public class BookmarkUi {
     }
 
     public void printGoodbyeMessage() {
+        showCurrentMode("Bookmark Main");
         System.out.println("Use \"exit\" to exit the mode or enter another category\n"
                 + "using \"bm <category index>\"");
     }
 
-    public void showBookmarkList(ArrayList<BookmarkCategory> categories) {
+    public void showBookmarkList(ArrayList<BookmarkCategory> categories, String name) {
+        showCurrentMode(name);
         System.out.println("Here is the list");
         for (int i = 0; i < categories.size(); i++) {
             System.out.println((i + 1) + ". Category: " + categories.get(i).getName());
@@ -63,7 +66,9 @@ public class BookmarkUi {
     }
 
     public void showInvalidError(String item) {
-        System.out.println("Not a valid " + item + ", please enter a valid link.");
+        System.out.println("Sorry you have entered an invalid " + item
+                + " or your input is in the wrong format!");
+        System.out.println("Please enter a valid " + item + " or input 'help' to find out the correct format!");
     }
 
     public void showInvalidNumberError() {
@@ -77,8 +82,8 @@ public class BookmarkUi {
         System.out.println("Add new bookmarks by using \"add <link>\"");
     }
 
-    public void showAlreadyInModeMessage() {
-        System.out.println("Already in chosen Category");
+    public void showAlreadyInModeMessage(String name) {
+        System.out.println("You are already in chosen Category: " + name);
     }
 
     public void showStarBookmarks(ArrayList<BookmarkCategory> categories) {
@@ -99,6 +104,15 @@ public class BookmarkUi {
     }
 
     public void showExistingBookmarkError() {
-        System.out.println("Sorry your link already exist in your list!");
+        System.out.println("Your link already exist in your list!");
+    }
+
+    public void showCorrectCommand(String item) {
+        System.out.println("I think you meant " + item + "...");
+        System.out.println("Executing " + item + " command...");
+    }
+
+    public void showCurrentMode(String name) {
+        System.out.println("You are now in " + name + " category");
     }
 }
