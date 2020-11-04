@@ -50,7 +50,7 @@ public class DoneCommand extends Command {
             throw new WrongNumberOfArgumentsException("Event type or index not provided.");
         }
 
-        String listType = capitaliseFirstLetter(inputParameters[0]);
+        String listType = capitaliseFirstLetter(inputParameters[0].trim());
         String eventIdentifier = inputParameters[1].trim();
 
         try {

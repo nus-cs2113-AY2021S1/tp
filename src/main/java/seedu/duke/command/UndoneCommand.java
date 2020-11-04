@@ -38,7 +38,8 @@ public class UndoneCommand extends Command {
      * @throws WrongNumberOfArgumentsException if the event type or event index is missing.
      * @throws WrongNumberFormatException if the event index is not an integer.
      */
-    public static Command parse(String input) throws MissingSemicolonException, WrongNumberOfArgumentsException, WrongNumberFormatException {
+    public static Command parse(String input) throws MissingSemicolonException,
+            WrongNumberOfArgumentsException, WrongNumberFormatException {
         if (!input.contains(";")) {
             throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
         }
@@ -49,7 +50,7 @@ public class UndoneCommand extends Command {
             throw new WrongNumberOfArgumentsException("Event type or index not provided.");
         }
 
-        String listType = capitaliseFirstLetter(inputParameters[0]);
+        String listType = capitaliseFirstLetter(inputParameters[0].trim());
         String eventIdentifier = inputParameters[1].trim();
 
         try {
