@@ -55,7 +55,7 @@ public class AddEventCommand extends Command {
         timetable.addEvent(event);
 
         try {
-            storageManager.saveTimetable(timetable);
+            storageManager.saveTimetable();
         } catch (IOException exception) {
             return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
         }

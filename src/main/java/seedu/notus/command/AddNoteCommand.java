@@ -22,6 +22,7 @@ public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "add-n";
 
     private Note note;
+    private boolean isStored = false;
 
     /**
      * Constructs an AddNoteCommand to add a Note into the Notebook.
@@ -30,6 +31,11 @@ public class AddNoteCommand extends Command {
      */
     public AddNoteCommand(Note note) {
         this.note = note;
+    }
+
+    public AddNoteCommand(Note note, boolean isStored) {
+        this.note = note;
+        this.isStored = isStored;
     }
 
     @Override
@@ -45,15 +51,23 @@ public class AddNoteCommand extends Command {
         }
 
         // Get Content
-        try {
-            if (storageManager.noteExists(note, note.getIsArchived())) {
-                content = storageManager.getNoteContent(note, note.getIsArchived());
+        if (isStored) {
+            try {
+                // check if the note is in the right folder
+                if (storageManager.noteExists(note, note.getIsArchived())) {
+                    content = storageManager.getNoteContent(note, note.getIsArchived());
+                    // check if the file has moved folders change the status of the archivedness of the note
+                } else if (storageManager.noteExists(note, !note.getIsArchived()))  {
+                    content = storageManager.getNoteContent(note, !note.getIsArchived());
+                    note.setArchived(!note.getIsArchived());
+                } else {
+                    // do not add the file as it does not exist anymore
+                    return Formatter.formatString(NOTE_EXIST_MESSAGE);
+                }
+            } catch (SystemException exception) {
+                return Formatter.formatString(exception.getMessage());
             }
-        } catch (SystemException exception) {
-            return Formatter.formatString(exception.getMessage());
-        }
-
-        if (content.isEmpty()) {
+        } else if (content.isEmpty()) {
             content = inputContent();
         }
         // Edit the note
@@ -64,10 +78,12 @@ public class AddNoteCommand extends Command {
         notebook.addNote(note);
 
         //Save the notes in storage
-        try {
-            storageManager.saveNote(note, note.getIsArchived());
-        } catch (IOException exception) {
-            return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+        if (!isStored) {
+            try {
+                storageManager.saveNote(note, note.getIsArchived());
+            } catch (IOException exception) {
+                return Formatter.formatString(FILE_WRITE_UNSUCCESSFUL_MESSAGE);
+            }
         }
 
         return Formatter.formatNote(ADD_NOTE_SUCCESSFUL_MESSAGE, note);

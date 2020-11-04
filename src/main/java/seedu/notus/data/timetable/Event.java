@@ -178,14 +178,15 @@ public class Event extends TaggableObject implements Comparable<Event> {
 
         ArrayList<Integer> dayRepeatPeriod = reminderPeriods.get(REMINDER_DAY);
         ArrayList<Integer> weekRepeatPeriod = reminderPeriods.get(REMINDER_WEEK);
-
         if (dayRepeatPeriod != null) {
+            dayRepeatPeriod.sort(Integer::compareTo);
             for (Integer unit: dayRepeatPeriod) {
                 periods.add(unit + "-day");
             }
         }
 
         if (weekRepeatPeriod != null) {
+            weekRepeatPeriod.sort(Integer::compareTo);
             for (Integer unit : weekRepeatPeriod) {
                 periods.add(unit + "-week");
             }
