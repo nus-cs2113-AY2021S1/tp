@@ -2,6 +2,7 @@ package fitr.command;
 
 import fitr.calorie.Calorie;
 import fitr.common.DateManager;
+import fitr.exception.FitrException;
 import fitr.goal.Goal;
 import fitr.exercise.Recommender;
 import fitr.common.Commands;
@@ -59,7 +60,7 @@ public class EditEntryCommand extends Command {
                 Ui.printInvalidCommandError();
                 break;
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | FitrException e) {
             Ui.printCustomError("Invalid value entered!");
         }
 
@@ -161,7 +162,7 @@ public class EditEntryCommand extends Command {
         Ui.printCustomMessage("Successfully edited food to: " + foodName);
     }
 
-    private void editGoal(GoalList goalList, String arguments) {
+    private void editGoal(GoalList goalList, String arguments) throws FitrException {
         LOGGER.fine("Editing a goal entry...");
         Matcher matcher = GOAL_FORMAT.matcher(arguments);
 

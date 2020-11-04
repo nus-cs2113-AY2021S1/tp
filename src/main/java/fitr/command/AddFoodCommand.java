@@ -59,7 +59,7 @@ public class AddFoodCommand extends Command {
                         + FOOD_NAME_HEADER + nameOfFood + LINE_BREAK
                         + "Calorie Consumed: " + amountOfCalories.get());
             } else {
-                throw new ArrayIndexOutOfBoundsException();
+                Ui.printFormatError("Extra parameters");
             }
         } catch (NumberFormatException | NullPointerException e) {
             Ui.printCustomError(ERROR_INVALID_CALORIE);
