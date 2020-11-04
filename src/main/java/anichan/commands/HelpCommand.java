@@ -128,6 +128,10 @@ public class HelpCommand extends Command {
         result.append(buildViewResult());
         result.append(appendLineSeparators());
         result.append(buildBookmarkResult());
+        result.append(appendLineSeparators());
+        result.append("Click on the link below for more information on all of our commands: ");
+        result.append(System.lineSeparator());
+        result.append("https://ay2021s1-cs2113t-f12-2.github.io/tp/UserGuide.html");
         return result;
     }
 
@@ -277,17 +281,19 @@ public class HelpCommand extends Command {
         StringBuilder result = new StringBuilder();
         result.append("Bookmark management:");
         result.append(System.lineSeparator());
-        result.append("    - Bookmark an anime:     bookmark -a <ANIME_ID>");
+        result.append("    - Bookmark an anime:         bookmark -a <ANIME_ID>");
         result.append(System.lineSeparator());
-        result.append("    - Delete bookmark:       bookmark -d <BOOKMARK_ID>");
+        result.append("    - Delete bookmark:           bookmark -d <BOOKMARK_ID>");
         result.append(System.lineSeparator());
-        result.append("    - List bookmark entries: bookmark -l");
+        result.append("    - List bookmark entries:     bookmark -l");
         result.append(System.lineSeparator());
-        result.append("    - Edit a bookmark:       bookmark <BOOKMARK_ID> -e <EPISODE>");
+        result.append("    - Edit a bookmark:           bookmark <BOOKMARK_ID> -e <EPISODE>");
         result.append(System.lineSeparator());
-        result.append("    - Add note to bookmark:  bookmark <BOOKMARK_ID> -n <NOTE>");
+        result.append("    - Add note to bookmark:      bookmark <BOOKMARK_ID> -n <NOTE>");
         result.append(System.lineSeparator());
-        result.append("    - View info of bookmark: bookmark <BOOKMARK_ID>");
+        result.append("    - Remove note from bookmark: bookmark <BOOKMARK_ID> -r <NOTE_ID>");
+        result.append(System.lineSeparator());
+        result.append("    - View info of bookmark:     bookmark <BOOKMARK_ID>");
         return result;
     }
 
