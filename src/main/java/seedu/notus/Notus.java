@@ -49,10 +49,14 @@ public class Notus {
 
             storageManager.loadAllNotes(false);
             storageManager.loadAllNotes(true);
+            storageManager.saveAllNoteDetails(false);
+            storageManager.saveAllNoteDetails(true);
             storageManager.loadTimetable();
 
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
+        } catch (IOException exception) {
+            interfaceManager.prints("Unable to save to a file");
         }
         interfaceManager.prints(WELCOME_MSG_STRING);
     }
@@ -74,6 +78,11 @@ public class Notus {
      * Exits the application.
      */
     private void exit() {
+        try {
+            storageManager.saveAll();
+        } catch (IOException exception) {
+            interfaceManager.prints("Unable to save to a file");
+        }
     }
 
     /** Runs the program until termination. */

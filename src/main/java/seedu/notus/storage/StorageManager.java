@@ -24,14 +24,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 import static seedu.notus.ui.Formatter.LS;
+import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
+import static seedu.notus.util.PrefixSyntax.PREFIX_LOAD;
+import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
+
 
 //@@author prachi2023
 
-/**
- * Represents a StorageManager. Manages the saving and loading of task list data.
+/** Represents a StorageManager.
+ * Manages the saving and loading of task list data.
  */
 public class StorageManager {
+    /** logging. */
+    private static final Logger LOGGER = Logger.getLogger("StorageManager");
+
     /** Default folders directory. */
     public static final String LOGS_DIR = "logs";
     public static final String FOLDER_DIR = "data";
@@ -56,6 +69,9 @@ public class StorageManager {
         this.parserManager = parserManager;
         this.notebook = notebook;
         this.tagManager = tagManager;
+
+        setupLogger();
+        LOGGER.log(Level.INFO, "New storageManager object created.");
     }
 
     /* Set up of Storage manager */
@@ -88,6 +104,7 @@ public class StorageManager {
             try {
                 createFile(file);
             } catch (IOException exception) {
+                LOGGER.log(Level.INFO, "Unable to create a file");
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
             }
         }
@@ -100,6 +117,7 @@ public class StorageManager {
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
+            LOGGER.log(Level.INFO, "Created directory: " + directory);
         }
     }
 
@@ -112,6 +130,7 @@ public class StorageManager {
         File file = new File(path);
         if (!file.exists()) {
             file.createNewFile();
+            LOGGER.log(Level.INFO, "Created file: " + file);
         }
     }
 
@@ -137,8 +156,11 @@ public class StorageManager {
         } catch (FileNotFoundException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
+        LOGGER.log(Level.INFO, "Found file: " + path);
         while (s.hasNext()) {
-            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine();
+            String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine()
+                                + " " + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + isArchive
+                                + " " + PREFIX_DELIMITER + PREFIX_LOAD;
             Command command = parserManager.parseCommand(taskDetails);
             command.setData(notebook, timetable, tagManager, this);
             command.execute();
@@ -161,6 +183,7 @@ public class StorageManager {
         } catch (FileNotFoundException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
+        LOGGER.log(Level.INFO, "Found file: " + path);
         while (s.hasNext()) {
             String eventDetails = AddEventCommand.COMMAND_WORD + " " +  s.nextLine();
             Command command = parserManager.parseCommand(eventDetails);
@@ -187,7 +210,7 @@ public class StorageManager {
         } catch (FileNotFoundException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
-
+        LOGGER.log(Level.INFO, "Found file: " + path);
         while (s.hasNext()) {
             content.add(s.nextLine());
         }
@@ -282,10 +305,12 @@ public class StorageManager {
         File file = new File(path);
 
         if (file.exists()) {
+            LOGGER.log(Level.INFO, "Found file: " + path);
             if (!file.delete()) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_DELETION_ERROR);
             }
         } else {
+            LOGGER.log(Level.INFO, "Unable to find file: " + path);
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
     }
@@ -317,9 +342,8 @@ public class StorageManager {
     /**
      * Saves all the Events in the Timetable to the storage file.
      *
-     * @param timetable The Timetable containing all the events to be saved.
      */
-    public void saveTimetable(Timetable timetable) throws IOException {
+    public void saveTimetable() throws IOException {
         String path = FOLDER_DIR + TIMETABLE_FILE_PATH;
 
         //clear file
@@ -342,9 +366,9 @@ public class StorageManager {
 
         for (RecurringEvent event: recurringEvents) {
             eventDetails = getEventDetailsSaveFormat(event);
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
+            eventDetails += PREFIX_DELIMITER + PrefixSyntax.PREFIX_RECURRING
                         + " " + event.getRecurrenceType() + " "
-                        + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
+                        + PREFIX_DELIMITER + PrefixSyntax.PREFIX_STOP_RECURRING
                         + " " + event.getEndRecurrenceDateTime() + " "
                         + LS;
             fwAppend.write(eventDetails);
@@ -354,13 +378,17 @@ public class StorageManager {
 
     private static String getEventDetailsSaveFormat(Event event) {
         String eventDetails;
+
         eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
-                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " ";
+                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " "
+                + event.getStartDateTimeString() + " "
+                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_END_TIMING + " "
+                + event.getEndDateTimeString() + " ";
 
         ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
 
         if (!reminderPeriods.isEmpty()) {
-            eventDetails += PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " ";
+            eventDetails += PREFIX_DELIMITER + PrefixSyntax.PREFIX_REMIND + " ";
             for (String reminderPeriod : reminderPeriods) {
                 eventDetails += reminderPeriod + " ";
             }
@@ -372,5 +400,32 @@ public class StorageManager {
         }
 
         return eventDetails;
+    }
+
+    /**
+     * Saves all the information that has been changed.
+     * Information includes: note details and event/timetable information.
+     *
+     * @throws IOException if unable to save to the file.
+     */
+    public void saveAll() throws IOException {
+        saveTimetable();
+        saveAllNoteDetails(false);
+        saveAllNoteDetails(true);
+    }
+
+    private void setupLogger() {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.INFO);
+
+        try {
+            FileHandler fileHandler = new FileHandler("storage.log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            fileHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(fileHandler);
+        } catch (IOException exception) {
+            LOGGER.log(Level.SEVERE, "File logger not working.", exception);
+        }
+
     }
 }
