@@ -1,5 +1,10 @@
 package seedu.dietbook.person;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Represents a Person.
  * A <code>Person</code> has a name, gender, age, height, certain fitness level, original and desired weight.
@@ -18,6 +23,7 @@ public class Person {
     private FitnessLevel fitnessLevel;
     private Gender gender;
     private String name;
+    private static final Logger LOGGER = Logger.getLogger(Person.class.getName());
 
     /**
      * Constructs a <code>Person</code> with the given name, gender, age, height, fitness level, original,
@@ -38,7 +44,19 @@ public class Person {
         performAssertionsForPerson(name, gender, age, height, originalWeight, currentWeight,
                 targetWeight, fitnessLevel);
 
+        initialiseLogger();
+        LOGGER.log(Level.FINE, "Start constructing a person");
+        LOGGER.log(Level.FINE, "Name: " + name);
+        LOGGER.log(Level.FINE, "Gender: " + gender.getDescription());
+        LOGGER.log(Level.FINE, "Age: " + age);
+        LOGGER.log(Level.FINE, "Height: " + height);
+        LOGGER.log(Level.FINE, "Original weight: " + originalWeight);
+        LOGGER.log(Level.FINE, "Current weight: " + currentWeight);
+        LOGGER.log(Level.FINE, "Target weight: " + targetWeight);
+        LOGGER.log(Level.FINE, "Fitness Level: " + fitnessLevel.getDescription());
+
         this.name = name.trim();
+        LOGGER.log(Level.FINE, "Trimmed Name: " + this.name);
         this.gender = gender;
         this.age = age;
         this.height = height;
@@ -46,6 +64,17 @@ public class Person {
         this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
         this.fitnessLevel = fitnessLevel;
+        LOGGER.log(Level.FINE, "Person constructed");
+    }
+
+    /**
+     * Initialises the logger and sets the log level.
+     */
+    private void initialiseLogger() {
+        Handler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.WARNING);
+        LOGGER.addHandler(consoleHandler);
+        LOGGER.setLevel(Level.WARNING);
     }
 
     /**
@@ -90,7 +119,9 @@ public class Person {
      */
     public void setName(String newName) {
         performAssertionsForNameInput(newName);
+        LOGGER.log(Level.FINE, "New name: " + newName);
         name = newName.trim();
+        LOGGER.log(Level.FINE, "Trimmed new name: " + this.name);
     }
 
     /**
@@ -109,6 +140,7 @@ public class Person {
      */
     public void setGender(Gender newGender) {
         performAssertionsForGenderInput(newGender);
+        LOGGER.log(Level.FINE, "New gender: " + newGender.getDescription());
         gender = newGender;
     }
 
@@ -128,6 +160,7 @@ public class Person {
      */
     public void setAge(int newAge) {
         performAssertionsForAgeInput(newAge);
+        LOGGER.log(Level.FINE, "New age: " + newAge);
         age = newAge;
     }
 
@@ -147,6 +180,7 @@ public class Person {
      */
     public void setHeight(int newHeight) {
         performAssertionsForHeight(newHeight);
+        LOGGER.log(Level.FINE, "New height: " + newHeight);
         height = newHeight;
     }
 
@@ -166,6 +200,7 @@ public class Person {
      */
     public void setOriginalWeight(int newOriginalWeight) {
         performAssertionsForWeight(newOriginalWeight,"Original weight");
+        LOGGER.log(Level.FINE, "New original weight: " + newOriginalWeight);
         originalWeight = newOriginalWeight;
     }
 
@@ -185,6 +220,7 @@ public class Person {
      */
     public void setCurrentWeight(int newCurrentWeight) {
         performAssertionsForWeight(newCurrentWeight, "Current weight");
+        LOGGER.log(Level.FINE, "New current weight: " + newCurrentWeight);
         currentWeight = newCurrentWeight;
     }
 
@@ -204,6 +240,7 @@ public class Person {
      */
     public void setTargetWeight(int newTargetWeight) {
         performAssertionsForWeight(newTargetWeight, "Target weight");
+        LOGGER.log(Level.FINE, "New target weight: " + newTargetWeight);
         targetWeight = newTargetWeight;
     }
 
@@ -223,6 +260,7 @@ public class Person {
      */
     public void setFitnessLevel(FitnessLevel newFitnessLevel) {
         performAssertionsForFitnessLevel(newFitnessLevel);
+        LOGGER.log(Level.FINE, "New fitness level: " + newFitnessLevel);
         fitnessLevel = newFitnessLevel;
     }
 
@@ -282,10 +320,11 @@ public class Person {
     }
 
     /**
-     * Performs assertions the weight related inputs.
+     * Performs assertions on the weight related inputs.
      *
      * @param weight Either the original, current or target weight of the person.
-     * @param weightType A string describing whether the weight given the original, current or target weight.
+     * @param weightType A string describing whether the given weight is the original, current or target
+     *     weight.
      */
     private void performAssertionsForWeight(int weight, String weightType) {
         int minWeight = 1;
