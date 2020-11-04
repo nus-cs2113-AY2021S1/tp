@@ -29,7 +29,7 @@ public class AddCategoryCommand extends BookmarkCommand {
             ui.showBookmarkCategoryList(categories);
             storage.saveLinksToFile(categories);
         } catch (EmptyBookmarkException e) {
-            ui.showEmptyLinkError();
+            ui.showEmptyError("Category");
         }
     }
 

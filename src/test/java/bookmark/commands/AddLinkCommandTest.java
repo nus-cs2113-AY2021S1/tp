@@ -62,6 +62,28 @@ class AddLinkCommandTest {
         assertEquals(0,categories.get(categoryNumber + 1).getLinks().size());
     }
 
+    @Test
+    public void executeCommand_validLinkWithTitle_addLinkCorrectly() {
+        categories.add(new BookmarkCategory("NUS"));
+        categories.add(new BookmarkCategory("Zoom"));
+        String inputString = "add https://facebook.com t->Social Media";;
+        int categoryNumber = 2;
+        AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
+        command.executeCommand(ui,categories,storage);
+        assertEquals(1,categories.get(categoryNumber - 1).getLinks().size());
+    }
+
+    @Test
+    public void executeCommand_validLinkWithEmptyTitle_doesNotAddLink() {
+        categories.add(new BookmarkCategory("NUS"));
+        categories.add(new BookmarkCategory("Zoom"));
+        String inputString = "add https://facebook.com t->";;
+        int categoryNumber = 2;
+        AddLinkCommand command = new AddLinkCommand(inputString,categoryNumber);
+        command.executeCommand(ui,categories,storage);
+        assertEquals(0,categories.get(categoryNumber - 1).getLinks().size());
+    }
+
 
 
 

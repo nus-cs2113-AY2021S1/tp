@@ -18,10 +18,21 @@ public class MainMenu extends Ui {
             + "\nThe time now is " + currentTimeFormatted
             + "\n\n"
             + "Let's get productive!"
-            + "\n"
+            + "\n\n"
+            + HelpMessage.currentModes
+            + "\nInsert \"cd MODE_INDEX or MODE_NAME\" to access these modes"
+            + "\nor \"help\" to get the list of available commands\n"
             + LINE_DIVIDER;
 
     public static void printWelcome() {
         System.out.println(WELCOME_MESSAGE);
+    }
+
+    public static void printWelcomeBackMessage() {
+        System.out.println("Welcome back to main menu!"
+                + "\n"
+                + "\nToday's date: " + currentDateFormatted
+                + "\nThe time now is " + currentTimeFormatted);
+        printDivider();
     }
 }

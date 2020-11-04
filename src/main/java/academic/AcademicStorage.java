@@ -23,7 +23,7 @@ public class AcademicStorage {
         } catch (FileNotFoundException | InvalidEmailException e) {
             File f = new File(filePath);
             f.createNewFile();
-            System.out.println("New file created for academic helper.");
+            System.out.println("data/academic.txt is not found, creating a new file now!");
         }
     }
 

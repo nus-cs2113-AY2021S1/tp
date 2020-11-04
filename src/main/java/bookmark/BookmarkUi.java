@@ -8,11 +8,11 @@ public class BookmarkUi {
 
     }
 
-    //TODO: make this print the list when entering
     public static void printWelcomeBookmarkMessage() {
         System.out.println("Welcome to bookmark mode!");
-        System.out.println("Choose your category by typing \"bm <category index>!\"");
-        // showBookmarkCategoryList();
+        System.out.println("You can use this mode to bookmark your links for easier access!");
+        System.out.println("\nChoose your category by typing \"bm <category index>!\"");
+        System.out.println("Otherwise, insert \"help\" to find the list of commands available");
     }
 
     public void showBookmarkCategoryList(ArrayList<BookmarkCategory> bookmarkCategories) {
@@ -58,12 +58,12 @@ public class BookmarkUi {
         System.out.println("Please choose a category.");
     }
 
-    public void showEmptyLinkError() {
-        System.out.println("Empty link :(");
+    public void showEmptyError(String item) {
+        System.out.println("Empty " + item + " :(");
     }
 
-    public void showInvalidLinkError() {
-        System.out.println("Not a valid link, please enter a valid link.");
+    public void showInvalidError(String item) {
+        System.out.println("Not a valid " + item + ", please enter a valid link.");
     }
 
     public void showInvalidNumberError() {
@@ -92,6 +92,13 @@ public class BookmarkUi {
                 }
             }
         }
+        if (i == 0) {
+            System.out.println("\t<empty>");
+        }
 
+    }
+
+    public void showExistingBookmarkError() {
+        System.out.println("Sorry your link already exist in your list!");
     }
 }
