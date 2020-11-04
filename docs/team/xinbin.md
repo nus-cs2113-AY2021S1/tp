@@ -10,10 +10,8 @@ Given below are my contributions to the project.
 ### Summary of Contributions
 
 *   **Application setup**: Loading of anime information from JSON data file
-    *   What it does: Setting up the anime information from offline data sources, the data sources are stored as JSON files embed within our program. The file data requires a parser to properly extract anime information and convert it into an anime object, which will be used by many features to query anime information.
-    
+    *   What it does: Setting up the anime information from offline data sources, the data sources are stored as JSON files embed within our program. The file data requires a parser to properly extract anime information and convert it into an anime object, which will be used by many features to query anime information.   
     *   Justification: By extracting anime data, the program can easily use anime-related functions. As a translator, it is crucial to have anime information that is required by the translator.
-    
     *   Highlights: The implementation was challenging as the JSON parser library I was familiar with was rejected, this means I have to use a new JSON library. JSON simple which was the library approved, could not read our entire JSON file and our data files have to be divided into smaller JSON files. In addition, the need to embed our data file into our release file took us a while to figure the mechanism out. 
 
 *   **New Feature**: Added the ability to add, list, delete a bookmark. With extended features to view, edit the episode, add a note and remove a note for a bookmark entry.
@@ -25,7 +23,7 @@ Given below are my contributions to the project.
     *   What it does: Helps the user to automatically save their bookmark data into the file `bookmark.txt`, and loads the data found in this file automatically when the application is launched.
     *   Justification: Being an application to help users keep track of their anime, the current episodes, and the anime notes, persistent storage would be essential to ensure users not would have to re-enter their bookmark information each time they use the application.
     *   Highlights: When loading bookmark data, each entry (each line) recorded in `bookmark.txt` would be split into parts that form a bookmark entry. If the object do not properly form each bookmark object they are deemed corrupted. If the bookmark is corrupted, then only that specific bookmark cannot be loaded, the rest of the bookmark(s) will still be loaded if they are valid.
-    
+
 *   **Code contributed:** [RepoSense](#https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#search=n3wsoldier&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=n3wsoldier&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 *   **Documentation**
