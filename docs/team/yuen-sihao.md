@@ -31,9 +31,9 @@ This feature is designed to allow users to rate the books that they have read, a
 about the book. This will help users to be able to recommend books to their friends and fellow book readers easily.
 
 **Highlights:**
-One design thought with the user in mind would be that the ratings are sorted according to their rating score when
-listed, with the highest rating at the top. This is because users would usually recommend the books they like best,
-and this reduces the amount of scrolling needed to be done by the user.
+The ratings are sorted according to their rating score when listed, with the highest rating at the top.
+This is to reduce the amount users need to scroll as they would often want to view the ratings of books
+that they like, rather than those with lower ratings.
 
 ### Contributions to documentation:
 * I contributed to the parts of the UG that describe and explain the Rating System for books feature.
@@ -51,4 +51,4 @@ User Stories, and Non-Functional Requirements.
 * General formatting of UG/DG as a team.
 
 ### Contributions beyond the project team:
-* I offered suggestions for other teams to consider for their DG, as well as potential bugs based on the version they released for PE-D.
+* I reported bugs and offered suggestions for other teams to consider during the DG review and PE tests.
