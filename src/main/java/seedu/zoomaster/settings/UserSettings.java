@@ -19,8 +19,8 @@ public class UserSettings {
     private static final String[] AUTO_SAVE_OPTIONS = {SettingsVariable.ON, SettingsVariable.OFF};
 
     private SettingsVariable[] variables = {
-            new SettingsVariable<String>(DEFAULT_MODE_FIELD, DEFAULT_MODE_DESC, DEFAULT_MODE_OPTIONS),
-            new SettingsVariable<String>(AUTO_SAVE_FIELD, AUTO_SAVE_DESC, AUTO_SAVE_OPTIONS),
+        new SettingsVariable<String>(DEFAULT_MODE_FIELD, DEFAULT_MODE_DESC, DEFAULT_MODE_OPTIONS),
+        new SettingsVariable<String>(AUTO_SAVE_FIELD, AUTO_SAVE_DESC, AUTO_SAVE_OPTIONS),
     };
 
     public SettingsVariable[] getVariables() {
