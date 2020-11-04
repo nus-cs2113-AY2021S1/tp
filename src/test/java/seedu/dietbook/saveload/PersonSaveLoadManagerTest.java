@@ -39,6 +39,6 @@ class PersonSaveLoadManagerTest {
         assertEquals(100, localpslTest.getAge());
         assertEquals(300, localpslTest.getCurrentWeight());
         assertEquals(100, localpslTest.getTargetWeight());
-        assertEquals(0, localpslTest.getActivityLevel());
+        assertEquals(0, localpslTest.getFitnessLevel());
     }
 }

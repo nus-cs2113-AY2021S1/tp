@@ -31,7 +31,7 @@ public class PersonSaveLoadManager {
     private static final int DEFAULT_ORIGINAL_WEIGHT = 0;
     private static final int DEFAULT_CURRENT_WEIGHT = 0;
     private static final int DEFAULT_TARGET_WEIGHT = 0;
-    private static final int DEFAULT_ACTIVITY_LEVEL = 0;
+    private static final int DEFAULT_FITNESS_LEVEL = 0;
 
     private String name;
     private String gender;
@@ -40,7 +40,7 @@ public class PersonSaveLoadManager {
     private int originalWeight;
     private int currentWeight;
     private int targetWeight;
-    private int activityLevel;
+    private int fitnessLevel;
 
     private Saver saver;
     private Loader fileLoader;
@@ -56,7 +56,7 @@ public class PersonSaveLoadManager {
         this.originalWeight = DEFAULT_ORIGINAL_WEIGHT;
         this.currentWeight = DEFAULT_CURRENT_WEIGHT;
         this.targetWeight = DEFAULT_TARGET_WEIGHT;
-        this.activityLevel = DEFAULT_ACTIVITY_LEVEL;
+        this.fitnessLevel = DEFAULT_FITNESS_LEVEL;
     }
 
     /**
@@ -82,8 +82,8 @@ public class PersonSaveLoadManager {
                 Integer.toString(DEFAULT_CURRENT_WEIGHT)));
         this.targetWeight = Integer.parseInt(this.fileLoader.get(TARGET_WEIGHT_ENTRY_INDEX, PERSON_DATA_ROW).orElse(
                 Integer.toString(DEFAULT_TARGET_WEIGHT)));
-        this.activityLevel = Integer.parseInt(this.fileLoader.get(ACTIVITY_LEVEL_ENTRY_INDEX, PERSON_DATA_ROW).orElse(
-                Integer.toString(DEFAULT_ACTIVITY_LEVEL)));
+        this.fitnessLevel = Integer.parseInt(this.fileLoader.get(ACTIVITY_LEVEL_ENTRY_INDEX, PERSON_DATA_ROW).orElse(
+                Integer.toString(DEFAULT_FITNESS_LEVEL)));
 
     }
 
@@ -114,7 +114,7 @@ public class PersonSaveLoadManager {
         this.originalWeight = DEFAULT_ORIGINAL_WEIGHT;
         this.currentWeight = DEFAULT_CURRENT_WEIGHT;
         this.targetWeight = DEFAULT_TARGET_WEIGHT;
-        this.activityLevel = DEFAULT_ACTIVITY_LEVEL;
+        this.fitnessLevel = DEFAULT_FITNESS_LEVEL;
     }
 
     // ----- Setters and Getters ------
@@ -146,13 +146,14 @@ public class PersonSaveLoadManager {
         return targetWeight;
     }
 
-    public int getActivityLevel() {
-        return activityLevel;
+    public int getFitnessLevel() {
+        return fitnessLevel;
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
 
     public void setGender(String gender) {
         this.gender = gender;
@@ -179,6 +180,6 @@ public class PersonSaveLoadManager {
     }
 
     public void setActivityLevel(int activityLevel) {
-        this.activityLevel = activityLevel;
+        this.fitnessLevel = activityLevel;
     }
 }
