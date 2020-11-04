@@ -2,14 +2,12 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.data.TimerCanceler;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidReminderException;
 import seedu.task.Task;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.EDIT_MESSAGE;

@@ -1,8 +1,5 @@
 package seedu.task;
 
-import seedu.data.TaskMap;
-
-import seedu.data.TimerCanceler;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;

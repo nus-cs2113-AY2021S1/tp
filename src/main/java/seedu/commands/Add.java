@@ -1,9 +1,7 @@
 package seedu.commands;
 
-import seedu.data.DataStack;
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.data.TimerCanceler;
 import seedu.exceptions.MaxNumTaskException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidDatetimeException;

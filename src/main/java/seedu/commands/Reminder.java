@@ -3,9 +3,8 @@ package seedu.commands;
 import java.time.LocalTime;
 import java.util.Timer;
 
-import seedu.data.TimerCanceler;
-import seedu.task.Task;
-import seedu.exceptions.InvalidTaskNumberException;
+import seedu.data.Timers;
+
 
 
 public class Reminder {
@@ -15,13 +14,15 @@ public class Reminder {
 
     public Reminder(LocalTime time) {
        timer = new Timer();
-       TimerCanceler.add(timer);
+       isReminder = true;
+       Timers.add(timer);
        this.time = time;
     }
+
     public Reminder() {
         timer = new Timer();
         isReminder = true;
-        TimerCanceler.add(timer);
+        Timers.add(timer);
         this.time = null;
     }
 
