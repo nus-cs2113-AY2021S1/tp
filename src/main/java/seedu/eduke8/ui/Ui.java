@@ -88,6 +88,9 @@ public class Ui {
     private static final String MESSAGE_BOOKMARK_INDICATOR = "Bookmarked this question!";
     private static final String MESSAGE_BOOKMARK_LIST = "This is your list of bookmarks: ";
     private static final String MESSAGE_BOOKMARKED_ALREADY_INDICATOR = "This has already been bookmarked.";
+    private static final String MESSAGE_BOOKMARK_DELETED_PART_ONE = "Bookmark number ";
+    private static final String MESSAGE_BOOKMARK_DELETED_PART_TWO = " will be deleted right away!";
+    private static final String MESSAGE_BOOKMARK_CORRECT_ANS_INDICATOR = " [Correct Answer] ";
     private static final String CLOSE_BRACKET = ") ";
     private static final String OPEN_SQUARE_BRACKET = "[";
     private static final String CLOSE_SQUARE_BRACKET = "] ";
@@ -193,7 +196,7 @@ public class Ui {
             long startingTime = System.currentTimeMillis();
 
             while (((System.currentTimeMillis() - startingTime) < timeLeft * CONVERSION_FROM_SECONDS_TO_MILLIS)
-                    && System.in.available() ==  0) {
+                    && System.in.available() == 0) {
             }
 
             if (userInput.ready()) {
@@ -202,7 +205,7 @@ public class Ui {
                 return null;
             }
 
-        //This is for the Windows operating system 
+            //This is for the Windows operating system
         } else {
             String userInput;
             Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
@@ -490,6 +493,12 @@ public class Ui {
         printMessage(MESSAGE_BOOKMARK_LIST + System.lineSeparator() + list);
     }
 
+    public void printDeletedBookmarkIndicator(int deleteIndex) {
+        String messageOutput = MESSAGE_BOOKMARK_DELETED_PART_ONE + deleteIndex + MESSAGE_BOOKMARK_DELETED_PART_TWO;
+
+        printMessage(messageOutput);
+    }
+
     private String listOfBookmarkedQuestions(BookmarkList bookmarks) {
         int i = 1;
         ArrayList<Displayable> allBookmarks;
@@ -501,7 +510,9 @@ public class Ui {
             ArrayList<Displayable> optionsAvailable = properQuestion.getOptionList().getInnerList();
             int j = 1;
             for (Displayable option : optionsAvailable) {
+                Option castedOption = (Option) option;
                 optionOutput += System.lineSeparator() + "    " + j + CLOSE_BRACKET + option.getDescription()
+                        + (castedOption.isCorrectAnswer() ? MESSAGE_BOOKMARK_CORRECT_ANS_INDICATOR : "")
                         + ((j == optionsAvailable.size()) ? System.lineSeparator() : "");
                 j++;
             }
