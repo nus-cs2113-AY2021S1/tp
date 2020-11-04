@@ -118,10 +118,6 @@ public class Book implements JsonSerializer {
 
     @Override
     public String toString() {
-        if (categories != null) {
-            return title + " by " + author.getName(); // removed display of category
-        }
-
         return title + " by " + author.getName();
     }
 
