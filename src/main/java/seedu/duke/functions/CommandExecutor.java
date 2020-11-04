@@ -1,5 +1,6 @@
 package seedu.duke.functions;
 
+import seedu.duke.bunny.Bunny;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
@@ -201,6 +202,9 @@ public class CommandExecutor {
             break;
         case RESET_WORDS:
             WordList.clearAllWords();
+            break;
+        case RESET_BUNNY:
+            BunnyList.clearAllBunny();
             break;
         case CLEAR:
             try {
