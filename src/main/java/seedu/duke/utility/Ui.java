@@ -353,6 +353,10 @@ public class Ui {
         System.out.println(ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
     }
 
+    public static void printInvalidTimeInput() {
+        System.out.println(ExceptionResponse.EXCEPTION_INVALID_TIME_INPUT);
+    }
+
     public static void printInvalidFormatException() {
         System.out.println(ExceptionResponse.EXCEPTION_INVALID_FORMAT);
     }

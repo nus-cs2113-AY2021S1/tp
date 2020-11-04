@@ -21,11 +21,15 @@ public class TimeParser {
         try {
             String[] splitHours = input.split("h");
             String[] splitMinutes = splitHours[1].split("m");
-            int hours = Integer.parseInt(splitHours[0]);
-            int minutes = Integer.parseInt(splitMinutes[0]);
+            int hours = Integer.parseInt(splitHours[0].strip());
+            int minutes = Integer.parseInt(splitMinutes[0].strip());
+            if (minutes > 59) {
+                Ui.printInvalidTimeInput();
+            }
             return hours * 60 + minutes;
         } catch (ArrayIndexOutOfBoundsException e) {
-            int result = Integer.parseInt(input);
+            String[] inputTime = input.split("m");
+            int result = Integer.parseInt(inputTime[0]);
             return result;
 
         } catch (NumberFormatException e) {

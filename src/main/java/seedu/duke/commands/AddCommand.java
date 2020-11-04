@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
+import seedu.duke.utility.TimeParser;
 import seedu.duke.utility.Ui;
 
 import java.util.Scanner;
@@ -15,12 +16,14 @@ public class AddCommand extends Command {
 
     /**
      * Adds a new show.
-     *
-     *
+     * @throws NullPointerException when the input does no match expected length
+     * @throws IndexOutOfBoundsException when the user input has too few or too many arguments
+     * @throws RuntimeException when input is empty string
      */
-    public static void processCommand() throws NullPointerException, ArrayIndexOutOfBoundsException {
-        if (input.length < 3) {
-            throw new ArrayIndexOutOfBoundsException();
+    public static void processCommand() throws NullPointerException, IndexOutOfBoundsException, RuntimeException {
+        //check that the user inputs are in the right format
+        if (input.length < 5 || input.length > 6) {
+            throw new IndexOutOfBoundsException();
         }
         int numSeasons = Integer.parseInt(input[2]);
         String[] tokenizedSeasons = input[3].split(",");
@@ -34,7 +37,15 @@ public class AddCommand extends Command {
             i++;
         }
         String name = input[1];
-        int duration = Integer.parseInt(input[4]);
+        if (name.contentEquals("")) {
+            throw new RuntimeException();
+        }
+        int duration;
+        if (input.length == 6) {
+            duration = TimeParser.parseTime(input[4].concat(input[5]));
+        } else {
+            duration = TimeParser.parseTime(input[4]);
+        }
         Show show = new Show(name, numSeasons, seasonEpisodes, duration);
         boolean isGoingToBeAdded = false;
         try {

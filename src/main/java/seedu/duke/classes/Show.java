@@ -157,6 +157,8 @@ public class Show {
             des.append("| Review:");
             des.append(review);
         }
+        des.append("| Duration: ");
+        des.append(episodeDuration);
         return des.toString();
     }
 
