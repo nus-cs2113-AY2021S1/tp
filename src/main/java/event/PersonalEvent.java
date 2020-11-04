@@ -47,6 +47,14 @@ public class PersonalEvent extends Event {
         return LocalDate.from(at);
     }
 
+    public LocalDate getEndDate() {
+        try {
+            return LocalDate.from(end);
+        } catch (NullPointerException e) {
+            return LocalDate.from(at);
+        }
+    }
+
     public PersonalEvent(String description, Location location, LocalDateTime at) {
         super(description, location);
         this.at = at;
@@ -95,7 +103,7 @@ public class PersonalEvent extends Event {
         try {
             return LocalDateTime.from(end);
         } catch (NullPointerException e) {
-            return null;
+            return LocalDateTime.from(at);
         }
     }
 
@@ -119,7 +127,7 @@ public class PersonalEvent extends Event {
         boolean isEqual = false;
 
         if (object instanceof PersonalEvent) {
-            isEqual = (this.description.equals(((PersonalEvent) object).description))
+            isEqual = (this.description.equalsIgnoreCase(((PersonalEvent) object).description))
                     && (this.link != null ? (this.link.equals(((PersonalEvent) object).link))
                     : (this.location.equals(((PersonalEvent) object).location)))
                     && (this.at.isEqual(((PersonalEvent) object).at));

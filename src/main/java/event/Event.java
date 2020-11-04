@@ -53,6 +53,10 @@ public abstract class Event {
         this.isDone = true;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
     public abstract String fileString();
 
     /**
@@ -88,6 +92,10 @@ public abstract class Event {
     }
 
     public LocalDateTime getEndDateTime() {
+        return null;
+    }
+
+    public LocalDate getEndDate() {
         return null;
     }
 

@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Class;
 import event.Event;
 import event.PersonalEvent;
+import event.SelfStudy;
 import exception.EditNoEndTimeException;
 import exception.EmptyEventListException;
 import exception.ExistingEventInListException;
@@ -140,7 +141,7 @@ public class EventList {
 
         // start and end are set to the user input if they are not null. Otherwise, set them to their original value.
         if (startEnd[0] == null) {
-            if (events.get(index) instanceof  Assignment) {
+            if (events.get(index) instanceof Assignment) {
                 start = events.get(index).getEndDateTime();
             } else {
                 start = events.get(index).getStartDateTime();
@@ -308,9 +309,24 @@ public class EventList {
      */
     public ArrayList<Event> filterDateWith(LocalDate date) {
         ArrayList<Event> filteredEventList = (ArrayList<Event>) events.stream()
-                .filter(s -> s.getDate().isEqual(date))
+                .filter(s -> (s.getDate().isEqual(date)
+                        || (s.getDate().isBefore(date) && s.getEndDate().isAfter(date))))
                 .collect(toList());
 
+        return filteredEventList;
+    }
+
+    /**
+     * Filter the event list to find the academic related events happen on the date that have been done already.
+     *
+     * @param date the date that the user is looking for.
+     * @return he filtered list. this list contains only the events that satisfy the requirement.
+     */
+    public ArrayList<Event> filterDateDoneAcademicEventWith(LocalDate date) {
+        ArrayList<Event> filteredEventList = filterDateWith(date);
+        filteredEventList = (ArrayList<Event>) filteredEventList.stream()
+                .filter(s -> (s.isDone() && ((s instanceof Class) || (s instanceof SelfStudy))))
+                .collect(toList());
         return filteredEventList;
     }
 
@@ -376,6 +392,20 @@ public class EventList {
             filteredEventList.addAll(filteredEventList2);
             filteredEventList.remove(event);
         }
+        return filteredEventList;
+    }
+
+    /**
+     * Filter the event list to find the events happen on the date that have not been done yet.
+     *
+     * @param date the date that the user is looking for.
+     * @return he filtered list. this list contains only the events that satisfy the requirement.
+     */
+    public ArrayList<Event> filterDateNotDoneWith(LocalDate date) {
+        ArrayList<Event> filteredEventList = filterDateWith(date);
+        filteredEventList = (ArrayList<Event>) filteredEventList.stream()
+                .filter(s -> ((!s.isDone()) && (s.getEndDate().isEqual(date))))
+                .collect(toList());
         return filteredEventList;
     }
 }

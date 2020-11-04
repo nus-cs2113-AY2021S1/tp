@@ -51,6 +51,15 @@ public class Assignment extends Event {
     }
 
     /**
+     * A dummy method which provides the same function as getDate().
+     *
+     * @return the LocalDate get from LocalDateTime.
+     */
+    public LocalDate getEndDate() {
+        return getDate();
+    }
+
+    /**
      * Provides the date time of the class.
      *
      * @return the LocalDateTime get from LocalDateTime.
@@ -77,7 +86,7 @@ public class Assignment extends Event {
         boolean isEqual = false;
 
         if (object instanceof Assignment) {
-            isEqual = (this.description.equals(((Assignment) object).description))
+            isEqual = (this.description.equalsIgnoreCase(((Assignment) object).description))
                     && (this.link != null ? (this.link.equals(((Assignment) object).link))
                     : (this.location.equals(((Assignment) object).location)))
                     && (this.by.isEqual(((Assignment) object).by));
