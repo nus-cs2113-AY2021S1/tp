@@ -34,9 +34,7 @@ Given below are my contributions to the project.
     *   What it does: Deletes Workspace on the file system when `Workspace` is deleted in **AniChan**.
     *   Justification: When Workspace is deleted in AniChan, the leftover folder and files in `data` should be deleted as well.
     *   Highlights: Implemented a safe recursive delete approach for `Workspace` deletion, where it searches recursively for leftover `Watchlist`/`Bookmark` data to delete first before deleting the folder. Exceptions and input validation built in for deletion to prevent file system related issues to crash the program or cause unexpected results.
-
-*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
-    
+  
 *   **Documentation:**
     *   README.md:
         * Designed **AniChan** logo.
@@ -46,16 +44,28 @@ Given below are my contributions to the project.
         *   Contributed to writeup on Quick Start.
         *   Documented guide on `Workspace` management.
     *   Developer Guide:
-        *   Contributed to writeup on User architecture and diagram.
-        *   
+        *   Contributed to writeup on `User` architecture and diagram.
+        *   Contributed to `Workspace` related user stories.
+        *   Documented `Workspace` implementation and its diagrams.
+        *   Documented the section on 'Documentation, Logging, Testing, and DevOps'
     
 *   **Team-based Tasks**
-    *   a
+    *   Created team organisation and GitHub repository
+    *   Contributed to input sanitization and validation of overall program
+    *   Refactored common code found in Main and Ui, and assisted to delete redundant imports and variables
+    *   Setting up GitHub pages and Gradle
+    *   Maintaining the issue tracker
+    *   Setup of team's Telegram & Discord channel for communication
+    *   Implemented additional CI checks for repository quality
     
 *   **Beyond Project Team Tasks**
-    *   a
+    *   Reported substantial amount of bugs in another team's repository (e.g. [#101](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/101), [#94](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/94), [#93](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/93), [#96](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/96))
+    *   Provided helpful feedback 
+    
+*   **Tools:**
+    *   Integrated Codacy static code analysis to improve code and documentation quality within team
+    *   Integrated Travis CI for DevOps purposes
+    *   Integrated Codecov for coverage tracking
+    *   Added Discord bot for GitHub tracking
 
-
-
-Code contributed: 
-
+*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) 
