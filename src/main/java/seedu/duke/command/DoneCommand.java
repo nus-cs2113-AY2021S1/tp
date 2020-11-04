@@ -83,13 +83,14 @@ public class DoneCommand extends Command {
             doneEvent.markAsDone();
             ui.printEventMarkedDoneMessage(doneEvent);
         } else if (eventIdentifierArray.length == 2 && doneEvent.getRepeatType() != null) { // event is a repeat task
-            LocalDate doneEventDate = dateParser(eventIdentifierArray[1]);
-            ArrayList<Event> repeatEventList = doneEvent.getRepeatEventList();
-            for (Event e: repeatEventList) {
-                if (e.getDate().isEqual(doneEventDate)) {
-                    e.markAsDone();
-                    ui.printEventMarkedDoneMessage(e);
-                }
+            LocalDate doneEventDate = dateParser(eventIdentifierArray[1].trim());
+
+            if (doneEventDate.isEqual(doneEvent.getDate())) {
+                doneEvent.markAsDone();
+                ui.printEventMarkedDoneMessage(doneEvent);
+            } else {
+                ArrayList<Event> repeatEventList = doneEvent.getRepeatEventList();
+                scanRepeatList(repeatEventList, doneEventDate, ui);
             }
         }
     }
@@ -103,5 +104,21 @@ public class DoneCommand extends Command {
     private static String capitaliseFirstLetter(String input) {
         input = input.toLowerCase();
         return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
+
+    /**
+     * Scans the repeat event array list of a repeat event for an event matching the given date and marks it done.
+     *
+     * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
+     * @param doneEventDate the date of the sub repeat event to be marked done.
+     * @param ui containing the responses to print.
+     */
+    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate doneEventDate, Ui ui) {
+        for (Event e: repeatEventList) {
+            if (e.getDate().isEqual(doneEventDate)) {
+                e.markAsDone();
+                ui.printEventMarkedDoneMessage(e);
+            }
+        }
     }
 }

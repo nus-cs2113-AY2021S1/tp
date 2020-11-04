@@ -83,13 +83,14 @@ public class UndoneCommand extends Command {
             undoneEvent.markAsUndone();
             ui.printEventMarkedUndoneMessage(undoneEvent);
         } else if (eventIdentifierArray.length == 2 && undoneEvent.getRepeatType() != null) { // event is a repeat task
-            LocalDate undoneEventDate = dateParser(eventIdentifierArray[1]);
-            ArrayList<Event> repeatEventList = undoneEvent.getRepeatEventList();
-            for (Event e: repeatEventList) {
-                if (e.getDate().isEqual(undoneEventDate)) {
-                    e.markAsUndone();
-                    ui.printEventMarkedUndoneMessage(e);
-                }
+            LocalDate undoneEventDate = dateParser(eventIdentifierArray[1].trim());
+
+            if (undoneEventDate.isEqual(undoneEvent.getDate())) {
+                undoneEvent.markAsUndone();
+                ui.printEventMarkedUndoneMessage(undoneEvent);
+            } else {
+                ArrayList<Event> repeatEventList = undoneEvent.getRepeatEventList();
+                scanRepeatList(repeatEventList, undoneEventDate, ui);
             }
         }
     }
@@ -103,5 +104,21 @@ public class UndoneCommand extends Command {
     private static String capitaliseFirstLetter(String input) {
         input = input.toLowerCase();
         return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
+
+    /**
+     * Scans the repeat event array list of a repeat event for an event matching the given date and marks it undone.
+     *
+     * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
+     * @param undoneEventDate the date of the sub repeat event to be marked done.
+     * @param ui containing the responses to print.
+     */
+    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate undoneEventDate, Ui ui) {
+        for (Event e: repeatEventList) {
+            if (e.getDate().isEqual(undoneEventDate)) {
+                e.markAsUndone();
+                ui.printEventMarkedUndoneMessage(e);
+            }
+        }
     }
 }

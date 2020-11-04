@@ -49,7 +49,7 @@ public class DeleteCommand extends Command {
         String eventIdentifier = inputParameters[1].trim();
 
         try {
-            String[] eventIdentifierArray = eventIdentifier.split(" ",2);
+            String[] eventIdentifierArray = eventIdentifier.split(";",2);
             Integer.parseInt(eventIdentifierArray[0]);
         } catch (NumberFormatException e) {
             throw new WrongNumberFormatException("Event index given is not an integer.");
@@ -78,15 +78,14 @@ public class DeleteCommand extends Command {
             eventList.getEvents().remove(deleteEvent);
             ui.printEventDeletedMessage(deleteEvent);
         } else if (eventIdentifierArray.length == 2 && deleteEvent.getRepeatType() != null) { // event is a repeat task
-            LocalDate deleteEventDate = dateParser(eventIdentifierArray[1]);
-            ArrayList<Event> repeatEventList = deleteEvent.getRepeatEventList();
+            LocalDate deleteEventDate = dateParser(eventIdentifierArray[1].trim());
 
-            for (Event e: repeatEventList) {
-                if (e.getDate().isEqual(deleteEventDate)) {
-                    repeatEventList.remove(e);
-                    ui.printEventDeletedMessage(e);
-                    break;
-                }
+            if (deleteEventDate.isEqual(deleteEvent.getDate())) {
+                eventList.getEvents().remove(deleteEvent);
+                ui.printEventDeletedMessage(deleteEvent);
+            } else {
+                ArrayList<Event> repeatEventList = deleteEvent.getRepeatEventList();
+                scanRepeatList(repeatEventList, deleteEventDate, ui);
             }
         }
     }
@@ -100,5 +99,15 @@ public class DeleteCommand extends Command {
     private static String capitaliseFirstLetter(String input) {
         input = input.toLowerCase();
         return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
+
+    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate deleteEventDate, Ui ui) {
+        for (Event e: repeatEventList) {
+            if (e.getDate().isEqual(deleteEventDate)) {
+                repeatEventList.remove(e);
+                ui.printEventDeletedMessage(e);
+                break;
+            }
+        }
     }
 }
