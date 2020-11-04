@@ -4,8 +4,8 @@ The Save/Load feature is implemented by the saveload package.
 At the base of the package, there is the <mark> Saver </mark> 
 and <mark> Loader </mark>  class.
 
-### Architecture
-![Alt text](Architecture.png)
+### Design
+![Alt text](saveload_design.png)
 Note only the Saver and Loader class is flexible. They can be adapted to new situations without modifying
 the code. The FoodSaveLoadManager and PersonSaveLoadManager are written specifically for this version. They
 will have to be modified/replaced for future versions.
