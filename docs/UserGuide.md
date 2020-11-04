@@ -130,7 +130,7 @@ While on a question, you can choose to answer it, ask for a hint (if you are uns
 
 You will have to complete the question within the specified time as well. If you are unable to complete it in time, it will be regarded as an incorrect answer and the correct answer, along with the explanation, will be shown to you. You will then proceed to the next question where the timer will restart. 
 
-A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. You will not be awarded any points for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a later section of this guide.
+A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. You will not be awarded any points for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a [later section](#311-displaying-stats-stats) of this guide.
 
 Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then proceed to the next question.
 
@@ -140,6 +140,7 @@ Note:
 - The [topic](#35-listing-all-topics-topics) list also shows you the number of questions you can choose from for each topic.
 - The first question will be immediately displayed to you once the quiz starts.
 - The quiz will only end when you have attempted all of the questions in it.
+- Refer to [FAQ](#4-faq) to know more about the quiz system and the point system.
 
 Input format: `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`
 
@@ -186,41 +187,12 @@ What you should see:
 
 ![hint](./images/hint.png)
 
+Note: 
+- Once a hint is used for a question, it will be recorded into your [stats](#311-displaying-stats-stats).
+- When a hint is used, getting the question correct will earn you 1 point instead of 2.
+- Refer to [FAQ](#4-faq) to understand why you should use hint despite the penalties.
 
-### 3.9. Adding a note: `note add`
-
-Adds a note to a specified topic.
-
-Note:
-- There can be many notes under each topic
-- E-Duke-8 will guide you through the note-adding process
-
-Example of usage:
-```
-note add
-```
-
-What you should see:
-
-### 3.10. Deleting a note: `note delete`
-
-Deletes a note from a specific topic.
-
-Example of usage:
-```
-note delete
-```
-
-### 3.11. Listing out notes: `note list`
-
-Lists out all notes belonging to a specific topic.
-
-Example of usage:
-```
-note list
-```
-
-### 3.12. Bookmarking a question: `bookmark`
+### 3.9. Bookmarking a question: `bookmark`
 
 Stores any question encountered in a quiz in a list.
 
@@ -232,7 +204,7 @@ Example of usage:
 bookmark
 ```
 
-### 3.13. Listing out all bookmarked questions: `bookmark`
+### 3.10. Listing out all bookmarked questions: `bookmark`
 
 Lists out all the bookmarked questions and each of their four options.
 
@@ -244,9 +216,9 @@ Example of usage:
 bookmark
 ```
 
-### 3.14. Displaying stats: `stats`
+### 3.11. Displaying stats: `stats`
 
-Displays the points you have earned, and the accumulated statistics of your quiz attempts on E-Duke-8.
+Displays the points you have earned, hints used, and the accumulated statistics of your quiz attempts on E-Duke-8.
 
 Both overall statistics of all your previous quiz attempts and topic-level statistics will be displayed.
 
@@ -264,6 +236,42 @@ If you have attempted the quizzes on E-Duke-8, you would be able to see your own
 This is an example of what you should see:
 
 ![stats_with_progress](./images/stats_Some_Progress.png)
+
+- Refer to [FAQ](#4-faq) for more information about the point system in E-Duke-8.
+
+### 3.12. Adding a note: `note add`
+
+Adds a note to a specified topic.
+
+Note:
+- There can be many notes under each topic
+- E-Duke-8 will guide you through the note-adding process
+
+Example of usage:
+```
+note add
+```
+
+What you should see:
+
+
+### 3.13. Deleting a note: `note delete`
+
+Deletes a note from a specific topic.
+
+Example of usage:
+```
+note delete
+```
+
+### 3.14. Listing out notes: `note list`
+
+Lists out all notes belonging to a specific topic.
+
+Example of usage:
+```
+note list
+```
 
 
 ### 3.15. Exiting the program: `exit`
@@ -298,6 +306,28 @@ history. Please do not attempt to edit this file as it will disrupt the running 
 If you want a better score you can always reattempt a quiz!
 
 ## 4. FAQ
+
+**Q**: Am I be able to re-attempt the same question after my quiz ends?
+
+**A**: Yes, you may. Questions for the quizzes are chosen randomly from all of the questions in a certain topic. Hence, there is a chance that the question you have attempted before gets chosen again if you choose to attempt another quiz from the same topic.
+
+**Q**: Why does my stats only improve as I do more quizzes? Shouldn't the penalities from my previous quizzes remain?
+
+**A**: E-Duke-8 tries to motivate you to understand CS2113/T concepts better. E-Duke-8 also encourages learning from failure. Therefore, you do not have to be disheartened by incorrect answers when attempting quizzes. Learn from the explanations given and get the question correct in your future quiz attempts to improve your stats!
+A correct answer in a future quiz attempt would also mean that you have come to understand the concept being tested in the question, and hence, you should deserve the points for it.  
+
+**Q**: Why does my hint usage indicator for a question not disappear after I re-attempt the question without using hint?
+
+**A**: This is because the hint usage serves as an indicator that you might still have some doubts in the topic, and hence you might want to read more about it. Resetting the count for hint usage might take away this benefit. 
+
+**Q**: Using hints will limit the total points that I can earn to build up my stats, so why should I still use hint?
+
+**A**: While points you earn will indeed be lesser, you are still encouraged to use hint when answering questions to spur your thinking, or to confirm your thoughts. 
+       Hints might give you an alternative perspective to think about the question at hand, which may be helpful to how you answer similar questions in the future.
+
+**Q**: How are the points awarded for correct answers?
+
+**A**: A correct answer without requesting for a hint will earn you **2 points**, whereas a correct answer with hint requested will earn you **1 point**. You will not be awarded any points for incorrect answers.
 
 **Q**: How do I change the questions in the quizzes?
 
@@ -344,6 +374,8 @@ Note:
 `correct` field. 
 - If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
+- Do refrain from adding duplicate questions because you can already re-attempt the same question if you start a quiz from the topic the question is from.
+- If duplicate questions are added, then you might find that the same question might appear more than once in your quiz.
 
 **Q**: What happens if I modify the user data in `user.json`?
 
@@ -364,10 +396,12 @@ Therefore, it is recommended that you do not modify the user data. Do build up y
 | Accessing the CS2113T textbook content        | `textbook`                                                 |
 | Starting a quiz |  `quiz t/TOPIC n/QUESTIONS s/TIMER` <br/> e.g. `quiz t/OOP n/5 s/10`                                              |
 | Showing a hint        |           `hint`                                      |
+| Bookmarking a question | `bookmark` | 
+| Listing out all bookmarked questions | `bookmark` | 
+| Displaying statistics | `stats` | 
 | Adding a note | `note add` | 
 | Deleting a note | `note delete` | 
 | Listing out notes | `note list` | 
-| Displaying statistics | `stats` | 
 | Exit        | `exit`                                                 |
 
 ## 6. Troubleshooting

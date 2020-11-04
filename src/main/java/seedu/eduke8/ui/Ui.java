@@ -65,7 +65,8 @@ public class Ui {
             + System.lineSeparator() + "9) exit (saves your data too!)";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
-            + System.lineSeparator() + "Hope you have learnt something new!";
+            + System.lineSeparator() + "Hope you have learnt something new!"
+            + System.lineSeparator() + "You can view how well you have done using the 'stats' command!";
     private static final String MESSAGE_ANSWER_WRONG = "Oops! The correct answer is ";
     private static final String MESSAGE_ANSWER_WRONG_SECOND = "! Do visit the textbook to read up more.";
     private static final String MESSAGE_ANSWER_CORRECT = "Great Job! That is the correct answer! Keep it up!";
