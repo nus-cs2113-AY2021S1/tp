@@ -18,7 +18,8 @@ import java.util.logging.Logger;
  */
 public class BookmarkCommand extends Command {
 
-    //Common error
+
+    //Error Header
     private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
     private static final String BOOKMARK_ERROR_MESSAGE = " provided is invalid.";
 
@@ -36,6 +37,8 @@ public class BookmarkCommand extends Command {
     private static final String ANIME_ID_ZERO_ERROR = " Anime index start from 1.";
     private static final String NOTE_ID_ZERO_ERROR = " Note index start from 1.";
     private static final String BOOKMARK_ID_ZERO_ERROR = " Bookmark index start from 1.";
+    private static final String BOOKMARK_ACTION_NULL = "Bookmark action cannot be null.";
+    private static final String BOOKMARK_NOTE_NULL_ERROR = "Bookmark note cannot be null.";
 
     //Output message header
     private static final String EPISODE_HEADER = "Current Episode: ";
@@ -67,8 +70,15 @@ public class BookmarkCommand extends Command {
 
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkCommand.class.getName());
 
-    public BookmarkCommand() {
-        bookmarkAction = null;
+    public BookmarkCommand(String bookmarkAction, int bookmarkIndex, int animeIndex, int bookmarkEpisode,
+                           int noteIndex, String bookmarkNote) {
+        assert bookmarkAction != null : BOOKMARK_ACTION_NULL;
+        this.bookmarkAction = bookmarkAction;
+        this.bookmarkIndex = bookmarkIndex;
+        this.animeIndex = animeIndex;
+        this.bookmarkEpisode = bookmarkEpisode;
+        this.noteIndex = noteIndex;
+        this.bookmarkNote = bookmarkNote;
         LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
     }
 
@@ -123,6 +133,7 @@ public class BookmarkCommand extends Command {
             result += getBookmarkInfo(animeData, bookmark);
             break;
         case BookmarkParser.ADD_NOTE_PARAM:
+            assert bookmarkNote != null : BOOKMARK_NOTE_NULL_ERROR;
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_ADD_NOTE);
             result = addNoteToBookmark(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
@@ -401,30 +412,6 @@ public class BookmarkCommand extends Command {
     //Getters and Setters
     public String getBookmarkAction() {
         return this.bookmarkAction;
-    }
-
-    public void setBookmarkAction(String actionString) {
-        this.bookmarkAction = actionString;
-    }
-
-    public void setBookmarkIndex(int bookmarkIndex) {
-        this.bookmarkIndex = bookmarkIndex;
-    }
-
-    public void setAnimeIndex(int animeIndex) {
-        this.animeIndex = animeIndex;
-    }
-
-    public void setBookmarkEpisode(int bookmarkEpisode) {
-        this.bookmarkEpisode = bookmarkEpisode;
-    }
-
-    public void setBookmarkNote(String note) {
-        this.bookmarkNote = note;
-    }
-
-    public void setNoteIndex(int noteIndex) {
-        this.noteIndex = noteIndex;
     }
 
 }
