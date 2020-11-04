@@ -44,7 +44,9 @@ ginseng chicken|450|25|32|66
 ramen|530|76|25|43
 &%UP
 Gong Cha
-
+gong cha green tea|100|0|0|0
+gong cha ooloong tea|100|0|0|0
+gong cha bubble tea|200|0|0|0
 &%UP
 &%UP
 &%STOP
