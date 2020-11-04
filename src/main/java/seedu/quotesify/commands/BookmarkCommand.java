@@ -45,27 +45,6 @@ public class BookmarkCommand extends Command {
         storage.save();
     }
 
-    public void handleBookmark(BookList books, BookmarkList bookmarks, TextUi ui) {
-        String[] titleAndPage = information.split("/pg");
-
-        try {
-            if (titleAndPage.length == 1) {
-                throw new QuotesifyException(ERROR_NO_PAGE_NUM);
-            }
-
-            String title = titleAndPage[0].trim();
-            String page = titleAndPage[1].trim();
-            Book bookToMark = books.findByTitle(title);
-            if (bookToMark != null) {
-                addBookmarkToBook(bookToMark, bookmarks, page, ui);
-            } else {
-                System.out.println(ERROR_NO_BOOK_FOUND);
-            }
-        } catch (QuotesifyException e) {
-            ui.printErrorMessage(ERROR_NO_PAGE_NUM);
-            addLogger.log(Level.INFO, "add bookmark to bookmarkList failed");
-        }
-    }
 
     public void handleBookmarkByNumber(BookList books, BookmarkList bookmarks, TextUi ui) {
         String[] numberAndPage = information.split("/pg");
@@ -73,17 +52,21 @@ public class BookmarkCommand extends Command {
         try {
             if (numberAndPage.length == 1) {
                 throw new QuotesifyException(ERROR_NO_PAGE_NUM);
-            }
-
-            String bookNumber = numberAndPage[0].trim();
-            String page = numberAndPage[1].trim();
-            int number = convertBookNumToInt(bookNumber);
-            Book bookToMark = books.findByNum(number);
-
-            if (bookToMark != null) {
-                addBookmarkToBook(bookToMark, bookmarks, page, ui);
             } else {
-                System.out.println(ERROR_NO_BOOK_FOUND);
+
+                String bookNumber = numberAndPage[0].trim();
+                String page = numberAndPage[1].trim();
+                int number = convertBookNumToInt(bookNumber);
+
+                if (number > 0) {
+                    Book bookToMark = books.findByNum(number);
+
+                    if (bookToMark != null) {
+                        addBookmarkToBook(bookToMark, bookmarks, page, ui);
+                    } else {
+                        System.out.println(ERROR_NO_BOOK_FOUND);
+                    }
+                }
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(ERROR_NO_PAGE_NUM);
@@ -123,8 +106,13 @@ public class BookmarkCommand extends Command {
         int pageNum = -1;
         try {
             pageNum = Integer.parseInt(information);
+            if (pageNum <= 0) {
+                throw new QuotesifyException(ERROR_NEGATIVE_PAGE_NUM);
+            }
         } catch (NumberFormatException e) {
             System.out.println(ERROR_INVALID_PAGE_NUM);
+        } catch (QuotesifyException e) {
+            System.out.println(ERROR_NEGATIVE_PAGE_NUM);
         }
 
         return pageNum;
@@ -134,8 +122,13 @@ public class BookmarkCommand extends Command {
         int bookNum = -1;
         try {
             bookNum = Integer.parseInt(information);
+            if (bookNum <= 0) {
+                throw new QuotesifyException(ERROR_NEGATIVE_BOOK_NUM);
+            }
         } catch (NumberFormatException e) {
             System.out.println(ERROR_INVALID_BOOK_NUM);
+        } catch (QuotesifyException e) {
+            System.out.println(ERROR_NEGATIVE_BOOK_NUM);
         }
 
         return bookNum;
