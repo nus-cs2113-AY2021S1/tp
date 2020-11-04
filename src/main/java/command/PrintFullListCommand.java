@@ -8,6 +8,9 @@ import storage.Storage;
 import eventlist.EventList;
 import ui.UI;
 
+/**
+ * Represent the command for printing everything in the list.
+ */
 public class PrintFullListCommand extends Command {
 
     /**

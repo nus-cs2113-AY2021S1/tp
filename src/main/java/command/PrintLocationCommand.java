@@ -6,7 +6,9 @@ import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
 
-
+/**
+ * Represent the command for print the locations.
+ */
 public class PrintLocationCommand extends Command {
     /**
      * Prints list of locations.

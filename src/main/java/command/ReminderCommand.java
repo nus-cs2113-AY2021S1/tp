@@ -33,10 +33,10 @@ public class ReminderCommand extends Command {
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
             throws NoEventDateRemindException {
-        ArrayList<Event> filteredEventList = events.filterDateWith(filterDate);
+        ArrayList<Event> filteredEventList = events.filterDateNotDoneWith(filterDate);
         if (filteredEventList.size() == 0) {
             throw new NoEventDateRemindException();
         }
-        ui.printFilteredEventList(filteredEventList);
+        ui.printRemindEventList(filteredEventList);
     }
 }

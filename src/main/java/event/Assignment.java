@@ -86,7 +86,7 @@ public class Assignment extends Event {
         boolean isEqual = false;
 
         if (object instanceof Assignment) {
-            isEqual = (this.description.equals(((Assignment) object).description))
+            isEqual = (this.description.equalsIgnoreCase(((Assignment) object).description))
                     && (this.link != null ? (this.link.equals(((Assignment) object).link))
                     : (this.location.equals(((Assignment) object).location)))
                     && (this.by.isEqual(((Assignment) object).by));

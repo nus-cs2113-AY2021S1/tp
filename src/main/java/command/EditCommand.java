@@ -24,7 +24,7 @@ public class EditCommand extends Command {
     private final int index;
     private final String[] editInformation;
     private final LocalDateTime[] startEnd;
-    //private final Event event;
+    
     private final Location location;
     private final OnlineLocation onlineLocation;
 

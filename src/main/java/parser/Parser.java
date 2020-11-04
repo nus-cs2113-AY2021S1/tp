@@ -118,6 +118,8 @@ public abstract class Parser {
             return new HelpCommand();
         case CLEAR:
             return new ClearCommand();
+        case REMIND:
+            return new ReminderCommand();
         default:
             break;
         }
@@ -168,11 +170,6 @@ public abstract class Parser {
             } catch (DateTimeParseException e) {
                 throw new DateFormatException();
             }
-        }
-
-        //this block deals with remind command
-        if (words[0].equals(REMIND)) {
-            return new ReminderCommand();
         }
 
         int eventIndex;

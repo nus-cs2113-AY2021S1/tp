@@ -123,7 +123,7 @@ public class PersonalEvent extends Event {
         boolean isEqual = false;
 
         if (object instanceof PersonalEvent) {
-            isEqual = (this.description.equals(((PersonalEvent) object).description))
+            isEqual = (this.description.equalsIgnoreCase(((PersonalEvent) object).description))
                     && (this.link != null ? (this.link.equals(((PersonalEvent) object).link))
                     : (this.location.equals(((PersonalEvent) object).location)))
                     && (this.at.isEqual(((PersonalEvent) object).at));

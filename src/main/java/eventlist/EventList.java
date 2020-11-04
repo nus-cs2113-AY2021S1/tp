@@ -314,6 +314,12 @@ public class EventList {
         return filteredEventList;
     }
 
+    /**
+     * Filter the event list to find the events happen on the date that have been done already.
+     *
+     * @param date the date that the user is looking for.
+     * @return he filtered list. this list contains only the events that satisfy the requirement.
+     */
     public ArrayList<Event> filterDateDoneEventWith(LocalDate date) {
         ArrayList<Event> filteredEventList = filterDateWith(date);
         filteredEventList = (ArrayList<Event>) filteredEventList.stream()
@@ -384,6 +390,20 @@ public class EventList {
             filteredEventList.addAll(filteredEventList2);
             filteredEventList.remove(event);
         }
+        return filteredEventList;
+    }
+
+    /**
+     * Filter the event list to find the events happen on the date that have not been done yet.
+     *
+     * @param date the date that the user is looking for.
+     * @return he filtered list. this list contains only the events that satisfy the requirement.
+     */
+    public ArrayList<Event> filterDateNotDoneWith(LocalDate date) {
+        ArrayList<Event> filteredEventList = filterDateWith(date);
+        filteredEventList = (ArrayList<Event>) filteredEventList.stream()
+                .filter(s -> ((!s.isDone())&&(s.getEndDate().isEqual(date))))
+                .collect(toList());
         return filteredEventList;
     }
 }

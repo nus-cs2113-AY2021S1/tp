@@ -105,7 +105,7 @@ public class Class extends Event {
         boolean isEqual = false;
 
         if (object instanceof Class) {
-            isEqual = (this.description.equals(((Class) object).description))
+            isEqual = (this.description.equalsIgnoreCase(((Class) object).description))
                     && (this.link != null ? (this.link.equals(((Class) object).link))
                     : (this.location.equals(((Class) object).location)))
                     && (this.at.isEqual(((Class) object).at));

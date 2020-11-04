@@ -108,7 +108,7 @@ public class UI {
     public void printFilteredEventList(ArrayList<Event> events) {
         int numPrintedEvents = 0;
 
-        System.out.println(" Here are the matching Events in your list:");
+        System.out.println("Here are the matching Events in your list:");
         for (Event event : events) {
             numPrintedEvents++;
             System.out.println(numPrintedEvents + ". " + event.toString());
@@ -344,6 +344,21 @@ public class UI {
 
         System.out.println("The amount of time you spent on study on that day is:\n"
                 + hour + " hour(s) " + minute + " minute(s)");
+    }
+
+    /**
+     * Print the Not Done events today.
+     *
+     * @param filteredEventList The events that are not done today.
+     */
+    public void printRemindEventList(ArrayList<Event> filteredEventList) {
+        int numPrintedEvents = 0;
+
+        System.out.println("Here are the events that you should do today:");
+        for (Event event : filteredEventList) {
+            numPrintedEvents++;
+            System.out.println(numPrintedEvents + ". " + event.toString());
+        }
     }
 }
 
