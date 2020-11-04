@@ -76,6 +76,7 @@ public class EditCardCommand extends EditCommand {
             logger.info("Flashcard successfully edited to: " + card);
             result.append(prepareAfterEdit(CARD, card.toString()));
             storage.saveCards(cards, access.getModule().getModuleName(), access.getChapter().getChapterName());
+            logger.info("Successfully saved the flashcards.");
             return result.toString();
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_INDEX_RANGE, CARD));
