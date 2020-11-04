@@ -40,7 +40,7 @@ class CheckCommandTest {
 
         EventList personalList =  data.getEventList("Personal");
         String expectedString = "Here is a list of your coinciding events:" + System.lineSeparator()
-                + "1. [P][✕] Go out for dinner on 2020-05-05, 12:00" + System.lineSeparator()
+                + "1. [P][X] Go out for dinner on 2020-05-05, 12:00" + System.lineSeparator()
                 + "_________________________________";
         assertEquals(expectedString, outputStreamCaptor.toString().trim());
     }

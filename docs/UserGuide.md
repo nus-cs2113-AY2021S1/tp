@@ -252,19 +252,19 @@ Expected Output:
 ```
 _________________________________
 You have successfully added this event to your list!
-[Z][✕] CS2113T Meeting, Link: zoom.com.sg on 2020-09-16, 21:00
+[Z][X] CS2113T Meeting, Link: zoom.com.sg on 2020-09-16, 21:00
 _________________________________
 ```
 ```
 _________________________________
 You have successfully added this event to your list!
-[P][✕] Family Meeting on 2020-09-18
+[P][X] Family Meeting on 2020-09-18
 _________________________________
 ```
 ```
 _________________________________
 You have successfully added this event to your list!
-[T][✕] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
+[T][X] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
 _________________________________
 ```
 {{box op="start" cssClass="boxed noteBox"}}
@@ -403,10 +403,10 @@ _________________________________
 list personal
 _________________________________
 Here is a list of your Personal events:
-1. [P][✕] party on 2000-10-09, 13:00
-2. [P][✕] surprise on 2020-09-14, 08:00
-3. [P][✕] sleep on 2002-02-02, 23:00
-4. [P][✕] dental appointment on 2020-03-02, 15:00
+1. [P][X] party on 2000-10-09, 13:00
+2. [P][X] surprise on 2020-09-14, 08:00
+3. [P][X] sleep on 2002-02-02, 23:00
+4. [P][X] dental appointment on 2020-03-02, 15:00
 _________________________________
 ```
 In this case, the index number of our sleep is 3.
@@ -472,10 +472,10 @@ _________________________________
 list personal
 _________________________________
 Here is a list of your Personal events:
-1. [P][✕] party on 2000-10-09, 13:00
-2. [P][✕] surprise on 2020-09-14, 08:00
-3. [P][✕] hello there on 2002-02-02, 07:00
-4. [P][✕] dental appointment on 2020-03-02, 15:00
+1. [P][X] party on 2000-10-09, 13:00
+2. [P][X] surprise on 2020-09-14, 08:00
+3. [P][X] hello there on 2002-02-02, 07:00
+4. [P][X] dental appointment on 2020-03-02, 15:00
 _________________________________
 ```
 In this case, the index number of our dental appointment is 4.
@@ -494,7 +494,7 @@ When you type in the command repeat personal 4 monthly 3, the program automatica
 ```
 repeat personal 4 monthly 3
 _________________________________
-[P][✕] dental appointment on 2020-03-02, 15:00
+[P][X] dental appointment on 2020-03-02, 15:00
 is now repeating monthly for 3 times
 _________________________________
 ```
@@ -505,10 +505,10 @@ To check the status of the repeated event, simply key in repeat personal 4 in th
 ```
 repeat personal 4
 _________________________________
-[P][✕] dental appointment on 2020-03-02, 15:00 is also on:
-02 Apr 2020 3:00 PM [✕]
-02 May 2020 3:00 PM [✕]
-02 Jun 2020 3:00 PM [✕]
+[P][X] dental appointment on 2020-03-02, 15:00 is also on:
+02 Apr 2020 3:00 PM [X]
+02 May 2020 3:00 PM [X]
+02 Jun 2020 3:00 PM [X]
 _________________________________
 ```
 
@@ -527,10 +527,10 @@ Examples:
 ```
 repeat personal 4
 _________________________________
-[P][✕] eat dinner on 2020-01-09, 18:00 is also on:
-10 Jan 2020 6:00 PM [✕]
-10 Jan 2020 6:00 PM [✕]
-10 Jan 2020 6:00 PM [✕]
+[P][X] eat dinner on 2020-01-09, 18:00 is also on:
+10 Jan 2020 6:00 PM [X]
+10 Jan 2020 6:00 PM [X]
+10 Jan 2020 6:00 PM [X]
 _________________________________
 ```
 
@@ -626,7 +626,7 @@ _________________________________
 done personal 2 1/3/2020
 _________________________________
 You have successfully marked this event as done!
-[P][✓] test 2 on 2020-03-01, 14:00
+[P][O] test 2 on 2020-03-01, 14:00
 _________________________________
 ```
 
@@ -649,7 +649,7 @@ _________________________________
 undone personal 2 1/3/2020
 _________________________________
 You have successfully marked this event as undone!
-[P][✕] test 2 on 2020-03-01, 14:00
+[P][X] test 2 on 2020-03-01, 14:00
 _________________________________
 ```
 
@@ -668,7 +668,7 @@ _________________________________
 delete personal 3
 _________________________________
 You have successfully deleted this event!
-[P][✕] test 3 on 2020-01-01
+[P][X] test 3 on 2020-01-01
 _________________________________
 ```
 
@@ -789,7 +789,7 @@ _________________________________
 _________________________________
 2
 You have successfully added this event to your list!
-[Z][✕] CG2271 Quiz 2, Link: https://nus-sg.zoom.us/j/2226375MG on 2020-10-15, 15:30
+[Z][X] CG2271 Quiz 2, Link: https://nus-sg.zoom.us/j/2226375MG on 2020-10-15, 15:30
 _________________________________
 ````
 As shown above, the user can choose the date/time they want for the event as long as it is a valid number in the list.

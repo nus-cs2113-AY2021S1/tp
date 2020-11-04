@@ -43,9 +43,9 @@ class DeadlineCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
-        printWriter.println("[P][✕] sleep");
+        printWriter.println("[P][X] sleep");
         printWriter.println("You have successfully updated the deadline for this event!");
-        printWriter.println("[P][✕] sleep on 2020-10-07");
+        printWriter.println("[P][X] sleep on 2020-10-07");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected,
@@ -63,9 +63,9 @@ class DeadlineCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
-        printWriter.println("[P][✕] sleep");
+        printWriter.println("[P][X] sleep");
         printWriter.println("You have successfully updated the deadline for this event!");
-        printWriter.println("[P][✕] sleep on 2020-10-07, 23:20");
+        printWriter.println("[P][X] sleep on 2020-10-07, 23:20");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected,

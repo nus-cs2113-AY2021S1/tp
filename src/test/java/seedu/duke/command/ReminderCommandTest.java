@@ -56,9 +56,9 @@ public class ReminderCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
-        printWriter.println("[T][✕] wakeup on " + printDate + ", 10:00");
+        printWriter.println("[T][X] wakeup on " + printDate + ", 10:00");
         printWriter.println("You have the following events today: ");
-        printWriter.println("[T][✕] wakeup on " + printDate + ", 10:00");
+        printWriter.println("[T][X] wakeup on " + printDate + ", 10:00");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected, outputStreamCaptor.toString());
@@ -82,12 +82,12 @@ public class ReminderCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
-        printWriter.println("[T][✕] wakeup on " + printLastDate + ", 10:00");
-        printWriter.println("[T][✕] wakeup on " + printLastDate + ", 10:00");
+        printWriter.println("[T][X] wakeup on " + printLastDate + ", 10:00");
+        printWriter.println("[T][X] wakeup on " + printLastDate + ", 10:00");
         printWriter.println("is now repeating weekly for 1 times.");
         printWriter.println("_________________________________");
         printWriter.println("You have the following events today: ");
-        printWriter.println("[T][✕] wakeup on " + printDate + ", 10:00");
+        printWriter.println("[T][X] wakeup on " + printDate + ", 10:00");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected, outputStreamCaptor.toString());
