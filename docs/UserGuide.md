@@ -658,6 +658,9 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
+![Data Loaded on Startup](images/Data-Loaded-On-Startup.png)
+*Figure 2: Sample of the Data Loaded On Startup*
+
 <br/>
 
 ## 4. FAQ
