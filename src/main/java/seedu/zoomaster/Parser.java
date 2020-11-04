@@ -18,6 +18,7 @@ import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
 import seedu.zoomaster.command.planner.SavePlannerCommand;
 
+import seedu.zoomaster.command.settings.SetSettingsCommand;
 import seedu.zoomaster.command.settings.ShowSettingsCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
@@ -141,6 +142,8 @@ public class Parser {
     private static Command createSettingsCommand(String input) throws ZoomasterException {
         if (input.startsWith(ShowSettingsCommand.SHOW_KW)) {
             return new ShowSettingsCommand();
+        } else if (input.startsWith(SetSettingsCommand.SET_KW)) {
+            return new SetSettingsCommand(input);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }

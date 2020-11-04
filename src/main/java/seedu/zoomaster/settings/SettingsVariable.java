@@ -1,5 +1,8 @@
 package seedu.zoomaster.settings;
 
+import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
+
 public class SettingsVariable<T> {
     public static final String ON = "on";
     public static final String OFF = "off";
@@ -62,7 +65,7 @@ public class SettingsVariable<T> {
                 optionsListString.append("<<");
             }
 
-            optionsListString.append(options[i]);
+            optionsListString.append(options[i].toString().toLowerCase());
 
             if (i == chosenOptionIndex) {
                 optionsListString.append(">>");
@@ -71,5 +74,16 @@ public class SettingsVariable<T> {
             optionsListString.append(" ");
         }
         return optionsListString.toString();
+    }
+
+    public void setChosenOption(String optionAsString) throws ZoomasterException {
+        for (int i = 0; i < options.length; i++) {
+            if (options[i].toString().toLowerCase().equals(optionAsString)) {
+                setChosenOptionIndex(i);
+                return;
+            }
+        }
+
+        throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_OPTION);
     }
 }
