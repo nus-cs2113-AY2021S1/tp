@@ -510,18 +510,17 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     of features and available commands for Zoomaster.
     4. Now you can manually input test cases into Zoomaster and see the results.
     5. Note that the output of the application is dependent on the system time of your machine.
-3. Saving
-    1. Saving of data is done automatically in Zoomaster. 
-    2. To test the saving feature, you will need to add some data into the application.
-    3. Refer to the [User Guide](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/UserGuide.md) to try out 
-    some commands such as adding a bookmark or adding a module.
-    4. Exit the application using the `exit` command.
-    5. Search for the `data` folder in the directory where the `zoomaster.jar` is located and open the folder.
-    6. There should be 3 files in the folder: `bookmarks.txt`, `modulelist.txt` and `timetable.txt`.
-    7. Look in each of the text files, the data which you entered should be recorded.
-4. Loading
-    1. Loading of data is done automatically in Zoomaster. You may test the loading of data after testing the saving 
-    feature as there needs to be data recorded to test the feature.
-    2. Launch Zoomaster on the command prompt.
-    3. Enter the mode where the data is from and use the `show` command.
-    4. You should expect to see the recorded data show up in the user interface.
+3. Saving and Loading
+    1. Saving and loading of data is done automatically in Zoomaster. 
+    2. The application uses the Gson library to convert the java objects in Zoomaster into JSON constructs, then 
+    writing them into the text files stored locally in the machine.
+    3. Data is stored in 3 separate text files; `bookmarks.txt`, `modulelist.txt` and `timetable.txt` which are located
+    in the `data` folder. The `data` folder is created in the directory where `zoomaster.jar` is placed.
+    4. To test the saving feature, you can enter input some data into the Zoomaster through the command line interface
+     such as using the commands `mode timetable` then `add CS2113T`.
+    5. Exit the application by using the command `exit` and look in the `timetable.txt` file. The module "CS2113T" 
+    should be recorded.
+    6. You can test the loading feature by launching Zoomaster and entering the commands `mode timetable` 
+    and `add CS2113T`. There should be a message that the module "CS2113T" already exists. 
+    7. You can also edit the data in the text files in JSON format and test the loading of data into the Zoomaster by 
+    launching the application. You can refer to the class diagrams above for the associations between the classes.
