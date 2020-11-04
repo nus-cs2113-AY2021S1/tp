@@ -16,12 +16,15 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static seedu.notus.util.CommandMessage.EDIT_EVENT_DUPLICATE_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_DATE_AFTER_START_DATE_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_AFTER_START_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SHIFT_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SUCCESS_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_START_TIME_SUCCESS_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_EVENT_START_TIME_SUCCESS_WARNING;
+import static seedu.notus.util.CommandMessage.EDIT_EVENT_SUCCESSFUL_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_END_RECURRENCE_DATE_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_RECURRENCE_TYPE_MESSAGE;
@@ -100,7 +103,7 @@ public class EditEventCommand extends Command {
         // Set endRecurrenceDate to the original or DEFAULT whichever is set originally first.
         editRecurrenceType(event, results);
         editRecurrenceDate(timetable.getEvent(index), results);
-
+        checkClashes(timetable.getEvent(index), results);
         if (results.size() == 1) {
             results.add(EDIT_EVENT_UNSUCCESSFUL_MESSAGE);
         } else {
@@ -425,5 +428,22 @@ public class EditEventCommand extends Command {
         } else {
             results.add(EDIT_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE);
         }
+    }
+
+    private void checkClashes(Event event, ArrayList<String> results) {
+        timetable.deleteEvent(index);
+        ArrayList<Event> clashes = timetable.getClashingEvents(event);
+        String error = "";
+        for (Event clashEvent : clashes) {
+            if (clashEvent.equals(event)) {
+                error = EDIT_EVENT_DUPLICATE_WARNING;
+                break;
+            }
+            error = EDIT_EVENT_SUCCESSFUL_WARNING;
+        }
+        if (!error.isBlank()) {
+            results.add(error);
+        }
+        timetable.addEvent(index, event);
     }
 }

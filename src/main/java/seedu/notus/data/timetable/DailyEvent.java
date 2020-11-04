@@ -54,4 +54,9 @@ public class DailyEvent extends RecurringEvent {
     public LocalDate timeStep(LocalDate date) {
         return date.plusDays(TIME_STEP);
     }
+
+    @Override
+    public LocalDate timeStep(LocalDate date, int steps) {
+        return date.plusDays(steps * TIME_STEP);
+    }
 }

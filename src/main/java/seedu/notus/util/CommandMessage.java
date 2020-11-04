@@ -195,6 +195,11 @@ public class CommandMessage {
             + "in the specified time period: ";
 
     public static final String ADD_EVENT_SUCCESSFUL_MESSAGE = colorize("Added the following event:", GREEN);
+    public static final String ADD_EVENT_SUCCESSFUL_WARNING = colorize("Warning! "
+            + "The specified timing already has an event ongoing. The following event is still added:", GREEN);
+    public static final String ADD_EVENT_DUPLICATE_WARNING = colorize("Warning! "
+            + "The event is very similar to one already stored. Please ensure the input details are correct. "
+            + "The following event is still added:", GREEN);
     public static final String DELETE_EVENT_SUCCESSFUL_MESSAGE = colorize("Event deleted", GREEN);
     public static final String EDIT_TITLE_MESSAGE = colorize("Title edited!", GREEN);
     public static final String EDIT_START_DATE_MESSAGE = colorize("Start Date edited!", GREEN);
@@ -207,10 +212,16 @@ public class CommandMessage {
             + "successfully changed.", GREEN);
     public static final String EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE = colorize("Event end time shifted "
             + "to maintain event time duration.", GREEN);
+    public static final String EDIT_EVENT_START_TIME_SUCCESS_WARNING = colorize("Event start time "
+            + "successfully changed. However, event duration is compressed and end time is set at 23:59.", GREEN);
+    public static final String EDIT_EVENT_SUCCESSFUL_WARNING = colorize("Warning! "
+            + "The specified timing already has an event ongoing. The edited event is still stored.", GREEN);
+    public static final String EDIT_EVENT_DUPLICATE_WARNING = colorize("Warning! "
+            + "The event is very similar to one already stored. Please ensure the input details are correct. "
+            + "The edited event is still stored.", GREEN);
     public static final String EDIT_EVENT_END_TIME_SHIFT_WARNING = colorize("However, event duration "
             + "is compressed and end time is set at 23:59.", GREEN);
-    public static final String EDIT_EVENT_END_TIME_AFTER_START_WARNING = colorize("Event end time cannot be before "
-            + "the start time.", RED);
+
 
     public static final String DELETE_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Event failed to delete", RED);
     public static final String ADD_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Failed to add event: "
@@ -224,6 +235,9 @@ public class CommandMessage {
             + "recurrence date on a non-recurring event. No recurrence date was set.", RED);
     public static final String EDIT_EVENT_END_DATE_AFTER_START_DATE_WARNING = colorize("Event end date cannot be "
             + "different from the start date in this version.", RED);
+    public static final String EDIT_EVENT_END_TIME_AFTER_START_WARNING = colorize("Event end time cannot be before "
+            + "the start time.", RED);
+
     public static final String LIST_EVENT_UNSUCCESSFUL_MESSAGE = colorize("There are no events in the timetable!",
             RED);
     public static final String LIST_EVENT_UNSUCCESSFUL_TIME_PERIOD_MESSAGE = colorize("Failed to find any events "
