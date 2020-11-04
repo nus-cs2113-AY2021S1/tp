@@ -27,7 +27,7 @@ public class BunnyList {
             throws CommandMissingArgumentsException, BunnyIdeaMissingException, CommandInvalidException {
         // for returning filter options parsed from the user input
         HashMap<String, String> commandArguments = new HashMap<>();
-        String idea;
+        String idea = "";
         String genre = "none";
 
         // parse bunny command into segments
@@ -40,22 +40,25 @@ public class BunnyList {
         }
 
         // check if there is task type param
-        if (commandArguments.containsKey(IDEA_TAG) & !commandArguments.get(IDEA_TAG).isBlank()) {
-            idea = commandArguments.get(IDEA_TAG);
-        } else {
+        if (!commandArguments.containsKey(IDEA_TAG)) {
             throw new BunnyIdeaMissingException();
+        }
+
+        if (!commandArguments.get(IDEA_TAG).isBlank()) {
+            idea = commandArguments.get(IDEA_TAG);
         }
 
         assert commandArguments.containsKey(IDEA_TAG) : "Missing idea argument not handled!";
 
-        try {
-            if (commandArguments.containsKey(GENRE_TAG) & !commandArguments.get(GENRE_TAG).isBlank()) {
+        if (commandArguments.containsKey(GENRE_TAG)) {
+            if (!commandArguments.get(GENRE_TAG).isBlank()) {
                 genre = commandArguments.get(GENRE_TAG);
             }
-        } catch (NullPointerException e) {
-            throw new CommandInvalidException();
         }
 
+        if (idea.isBlank()) {
+            throw new BunnyIdeaMissingException();
+        }
 
         // todo: add the character list to bunny in ver 2
         //ArrayList<Character> characters = new ArrayList<>();

@@ -142,4 +142,6 @@ public class FluffleMessages {
     /** Stop execution message. */
     public static final String STOP_START_COMMAND = "start command stopped\nPlease give it another try.";
 
+    /** Change line divider message. */
+    public static final String CHANGING_LINE_DIVIDER_MSG = "Changing line divider...";
 }
