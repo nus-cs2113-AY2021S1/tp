@@ -412,7 +412,10 @@ The first design consideration was how the sorting should be carried out. The ma
 While the 1st approach is the fastest, the consequence of leaving the main list unsorted is too great and may produce a 
 lot of uncertain results as well as confuse the user. Although the 3rd approach provides the best benefit, 
 its complexity may end up violating the project’s memory limit constraint if the list is large. 
+
 Therefore, the 2nd approach was adopted, as its performance cost outweighs the others.
+
+<br/>
 
 Aspect: **Should the program use an interactive or static browsing approach**
 
@@ -427,6 +430,7 @@ The main concern here was cohesiveness and interactivity.
 Though the 1st approach could have created a more authentic browsing feature it is not a good fit of the OOP requirements.
 While the 2nd approach allows for more precise browsing of pages means that more experienced users are able to utilise the 
 tool quicker and to the same effect as the first approach. 
+
 As a result, the 2nd approach was adopted in favour of having an application that is highly object-oriented.
 
 <br/>
