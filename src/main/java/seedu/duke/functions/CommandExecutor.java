@@ -199,6 +199,9 @@ public class CommandExecutor {
         case RESET_WRITINGS:
             WritingList.clearAll(writings);
             break;
+        case RESET_WORDS:
+            WordList.clearAllWords();
+            break;
         case CLEAR:
             try {
                 ClearLoader.clearItems(userInput, writings, wordList);
