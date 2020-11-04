@@ -3,7 +3,6 @@ package anichan.human;
 import anichan.exception.AniException;
 import org.junit.jupiter.api.Test;
 
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -118,6 +117,14 @@ class UserTest {
         user.addWorkspace("Default");
 
         assertThrows(AniException.class, () -> user.addWorkspace("Default"));
+    }
+
+    @Test
+    void addWorkspace_similarNameExist_throwsAniException() throws AniException {
+        User user = new User("new User", "femaLe");
+        user.addWorkspace("Default");
+
+        assertThrows(AniException.class, () -> user.addWorkspace("default"));
     }
 
     @Test

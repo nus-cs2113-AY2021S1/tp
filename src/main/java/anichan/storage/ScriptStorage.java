@@ -7,8 +7,9 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
- * Manages the storage of script data.
+ * Represents the class to manage script data.
  */
 public class ScriptStorage extends Storage {
     private final String storageDirectory;

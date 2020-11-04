@@ -16,14 +16,15 @@ import java.util.logging.Logger;
  * Represents the command to manage the workspace(s) in AniChan.
  */
 public class WorkspaceCommand extends Command {
+    // Constants for command option, logger, and errors
     private static final String CREATE_OPTION = "n";
     private static final String SWITCH_OPTION = "s";
     private static final String LIST_OPTION = "l";
     private static final String DELETE_OPTION = "d";
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
-    public static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
+    private static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
             + "options: -n, -s, -l, and -d.";
-    public static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
+    private static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
 
     private final String commandOption;
     private final String workspaceName;
@@ -56,17 +57,17 @@ public class WorkspaceCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert (commandOption != null) : "Option should not be null.";
+        assert commandOption != null : "Option should not be null.";
 
         switch (commandOption) {
         case CREATE_OPTION:
-            return createWorkspace(user, storageManager);
+            return createWorkspace(storageManager, user);
         case SWITCH_OPTION:
             return switchWorkspace(user);
         case LIST_OPTION:
             return listWorkspace(user);
         case DELETE_OPTION:
-            return deleteWorkspace(user, storageManager);
+            return deleteWorkspace(storageManager, user);
         default:
             LOGGER.log(Level.WARNING, "Invalid workspace command provided.");
             throw new AniException(EXPECTED_PARAMETERS_MESSAGE);
@@ -81,7 +82,7 @@ public class WorkspaceCommand extends Command {
      * @return result after executing the command
      * @throws AniException when an error occurred while executing the command
      */
-    private String createWorkspace(User user, StorageManager storageManager) throws AniException {
+    private String createWorkspace(StorageManager storageManager, User user) throws AniException {
         Workspace newWorkspace = user.addWorkspace(workspaceName);
 
         Watchlist newWatchlist = new Watchlist("Default");
@@ -118,7 +119,7 @@ public class WorkspaceCommand extends Command {
      * @return result after executing the command
      * @throws AniException when an error occurred while executing the command
      */
-    private String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
+    private String deleteWorkspace(StorageManager storageManager, User user) throws AniException {
         if (user.getActiveWorkspace().toString().equals(workspaceName)) {
             throw new AniException(EXCEPTION_WORKSPACE_IN_USE);
         }
@@ -135,17 +136,20 @@ public class WorkspaceCommand extends Command {
      *
      * @param user used to modify user data
      * @return result after executing the command
-     * @throws AniException when an error occurred while executing the command
      */
     private String listWorkspace(User user) {
         StringBuilder workspacesString = new StringBuilder();
         ArrayList<Workspace> userWorkspaces = user.getWorkspaceList();
 
-        workspacesString.append("Currently, you have " + userWorkspaces.size() + " workspace(s):");
+        workspacesString.append("Currently, you have ");
+        workspacesString.append(userWorkspaces.size());
+        workspacesString.append(" workspace(s):");
 
         for (int i = 0; i < userWorkspaces.size(); i++) {
             int workspaceIndex = i + 1;
-            workspacesString.append(System.lineSeparator() + workspaceIndex + ". " + userWorkspaces.get(i).toString());
+            workspacesString.append(System.lineSeparator()).append(workspaceIndex);
+            workspacesString.append(". ");
+            workspacesString.append(userWorkspaces.get(i).toString());
         }
 
         return workspacesString.toString();
