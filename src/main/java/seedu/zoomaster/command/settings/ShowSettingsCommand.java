@@ -20,12 +20,12 @@ public class ShowSettingsCommand extends Command {
     private String generateSettingsListMessage() {
         StringBuilder message = new StringBuilder();
         SettingsVariable[] settingsVariables = Zoomaster.userSettings.getVariables();
-        for (int i = 0; i < settingsVariables.length; i++) {
+        for (SettingsVariable settingsVariable: settingsVariables) {
             String lineHeader = String.format(
-                    "[%d] %s: ", i+1, settingsVariables[i].getDescription());
+                    "[%s] %s: ", settingsVariable.getFieldName(), settingsVariable.getDescription());
             message.append(lineHeader);
 
-            message.append(settingsVariables[i].getOptionsList());
+            message.append(settingsVariable.getOptionsList());
             message.append("\n");
         }
 

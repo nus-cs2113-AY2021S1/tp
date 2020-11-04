@@ -4,6 +4,7 @@ import com.google.gson.JsonParseException;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.ChangeModeCommand;
 import seedu.zoomaster.command.Mode;
+import seedu.zoomaster.settings.SettingsVariable;
 import seedu.zoomaster.settings.UserSettings;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.command.Command;
@@ -77,9 +78,7 @@ public class Zoomaster {
                 }
                 isExit = c.isExit();
 
-                bookmarkStorage.save(bookmarks);
-                timetableStorage.save(timetable);
-                userSettingsStorage.save(userSettings);
+                performSave(isExit);
             } catch (ZoomasterException e) {
                 ui.showErrorMessage(e);
             } catch (Exception e) {
@@ -119,6 +118,17 @@ public class Zoomaster {
             new ChangeModeCommand(ChangeModeCommand.MODE_KW + " " + defaultMode).execute(bookmarks, timetable, ui);
         } catch (ZoomasterException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void performSave(boolean isExit) throws ZoomasterException {
+        String autosaveSetting = (String) userSettings.getSettingsVariable(UserSettings.AUTO_SAVE_FIELD)
+                .getChosenOption();
+
+        if (autosaveSetting == SettingsVariable.ON || isExit) {
+            bookmarkStorage.save(bookmarks);
+            timetableStorage.save(timetable);
+            userSettingsStorage.save(userSettings);
         }
     }
 }

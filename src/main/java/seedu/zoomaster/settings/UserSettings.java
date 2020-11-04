@@ -10,21 +10,16 @@ public class UserSettings {
     public static final String MODE_TIMETABLE = "timetable";
     public static final String MODE_BOOKMARK = "bookmark";
 
-    public static final String DEFAULT_MODE_FIELD = "mode";
+    public static final String DEFAULT_MODE_FIELD = "def_mode";
     private static final String DEFAULT_MODE_DESC = "Default mode at start up";
     private static final String[] DEFAULT_MODE_OPTIONS = {MODE_MAINMENU, MODE_TIMETABLE, MODE_BOOKMARK};
 
-    public static final String FIRST_DAY_FIELD = "startday";
-    private static final String FIRST_DAY_DESC = "First day of the week";
-    private static final Day[] FIRST_DAY_OPTIONS = {Day.MON, Day.SUN};
-
     public static final String AUTO_SAVE_FIELD = "autosave";
-    private static final String AUTO_SAVE_DESC = "Autosave after each command (only saves on exit if OFF)";
+    private static final String AUTO_SAVE_DESC = "Autosave after each command (if off, only save on exit)";
     private static final String[] AUTO_SAVE_OPTIONS = {SettingsVariable.ON, SettingsVariable.OFF};
 
     private SettingsVariable[] variables = {
             new SettingsVariable<String>(DEFAULT_MODE_FIELD, DEFAULT_MODE_DESC, DEFAULT_MODE_OPTIONS),
-            new SettingsVariable<Day>(FIRST_DAY_FIELD, FIRST_DAY_DESC, FIRST_DAY_OPTIONS),
             new SettingsVariable<String>(AUTO_SAVE_FIELD, AUTO_SAVE_DESC, AUTO_SAVE_OPTIONS),
     };
 

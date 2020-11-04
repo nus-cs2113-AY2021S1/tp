@@ -15,30 +15,25 @@ import java.util.regex.Pattern;
 public class SetSettingsCommand extends Command {
     public static final String SET_KW = "set";
 
-    private int settingsIndex;
+    private String fieldName;
     private String newValue;
 
     public SetSettingsCommand(String command) throws ZoomasterException {
-        Pattern pattern = Pattern.compile(SET_KW + "\\s+(?<settingsIndex>[0-9]+)\\s+(?<newValue>\\w+)");
+        Pattern pattern = Pattern.compile(SET_KW + "\\s+(?<fieldName>\\w+)\\s+(?<newValue>\\w+)");
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
             throw new ZoomasterException(ZoomasterExceptionType.INVALID_EDIT_INPUT);
         }
 
-        settingsIndex = Integer.parseInt(matcher.group("settingsIndex"));
+        fieldName = matcher.group("fieldName");
         newValue = matcher.group("newValue");
     }
 
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         SettingsVariable[] variable = Zoomaster.userSettings.getVariables();
-        SettingsVariable settingsVariable;
-        try {
-            settingsVariable = variable[settingsIndex - 1];
-        } catch (IndexOutOfBoundsException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_NUMBER);
-        }
+        SettingsVariable settingsVariable = Zoomaster.userSettings.getSettingsVariable(fieldName);
         settingsVariable.setChosenOption(newValue);
 
         new ShowSettingsCommand().execute(bookmarks, timetable, ui);
