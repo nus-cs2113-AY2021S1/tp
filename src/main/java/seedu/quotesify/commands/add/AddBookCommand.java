@@ -37,7 +37,6 @@ public class AddBookCommand extends AddCommand {
             Book newBook = createNewBook(books, title, authorName);
 
             books.add(newBook);
-            books.sort();
             ui.printAddBook(newBook);
 
         } catch (QuotesifyException e) {
