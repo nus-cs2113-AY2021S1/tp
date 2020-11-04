@@ -259,6 +259,7 @@ Diagram 1: Event Commands
 ![](EventDiagram/EventArchi1.png)
 
 Diagram 2: Event Architecture
+
 ![](EventDiagram/EventArchi2.png)
 
 There are a total of 6 commands under Event feature.
@@ -277,8 +278,11 @@ The `CommandEventDel` class in the same package handles deleting of a event. It 
 They implement the following operations:  
 * `CommandEventAdd#execute()` - Adds a new event into the `EventList` according to `userInput`.  
 * `CommandEventDel#execute()` - Deletes an event from `EventList` or deletes all the events in the list. 
-To delete a particular event, enter the index of the event.
-To delete all the events in the list, enter `all` instead of the index of the event.
+ 
+Note: To delete a particular event, enter the index of the event. For example, `event delEvent 2` <br/>
+Note: To delete all the events in the list, enter `all` instead of the index of the event. For example, `event delEvent all` <br/>
+Note: When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
+      to the event list. <br/>
 
 Given below is an example usage scenario and how add/delete event function behaves at each step.  
 
@@ -287,7 +291,7 @@ Step 1. The user launches the application for the first time.
 ![](EventDiagram/EventSteps/Step1.png)
 
 Step 2. The user executes `event addEvent /n arduino course /d 2020-12-30 /t 18-00` command to add a new event with the name "arduino course", 
-the date of the event "2020-12-30" and the time "8pm" into event list. 
+the date of the event "2020-12-30" and the time "18-00" into event list. 
 The `event addEvent` command calls `CommandEventAdd#execute()`, then `EventList` will add a new `Event` with event name as `arduino course`, date as `2020-12-30` and time as `18-00`.  
 
 ![](EventDiagram/EventSteps/Step2.png)
@@ -301,7 +305,12 @@ The sequence diagram for adding an event is as shown below:
 
 ![CommandEventAdd](EventDiagram/SequenceDiagram/CommandEventAdd.png)
 
+The sequence diagram for deleting a particular event or all events is as shown below:
+
+![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
+
 **3.4.1.2. Design Considerations** <br/>
+
 Aspect : User input format for adding an event <br/>
 
 *Alternative 1 (current choice) : The user will input the command in the format `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`. <br/>
@@ -312,14 +321,12 @@ Aspect : User input format for adding an event <br/>
 *pros: It is more convenient for the user to type commands and easier to memorise the command format. <br/>
 *cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered. <br/>
 
-The sequence diagram for deleting a particular event or all events is as shown below:
-
-![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
 **3.4.2. Listing Events** `CommandEventList`
 
 (By: Varsha)<br/>
 **3.4.2.1 Current implementation**
+
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
 
 It implements the following operation:  
@@ -327,17 +334,18 @@ It implements the following operation:
 
 Given below is an example usage scenario and how the program list the events.  
 
-Step 1. After some `Event addEvent` commands, the user has created a `EventList` with some `Event`. Assuming there are 2 events in the list.
-The first `Event` has the name arduino course on 30 December 2020 at 8pm and the second `Event` has the name Autodesk course on 25 May 2021 from 10-12pm.
+Step 1. Assume there are 2 `Event` in the `EventList`.
+The first `Event` has the name arduino course on 30 December 2020 at 18-00 and the second `Event` has the name Autodesk course on 25 May 2021 from 12-00.
 
 ![](EventDiagram/EventSteps/2Step1.png)
 
 Step 2.The user executes `event listEvent` command to list the `EventList`. The `event listEvent` command calls 
 `CommandEventList#execute()`, then every `Event` in `EventList` will be printed out. Nothing will be changed in `EventList`.  
 
-![](EventDiagram/EventSteps/Step2.png)
+![](EventDiagram/EventSteps/2Step2.png)
 
 **3.4.2.2. Design Considerations** <br/>
+
  Aspect: Repeated items  <br/>
  *Alternative 1 (Current Choice): `event listEvent` command will only list unique events present in the list. It will not show repeated events.
  When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
@@ -371,7 +379,8 @@ It implements the following operation:
 
 (By: Varsha)<br/>
 **Current Implementation**
-The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
+
+The `CommandEventCountdown` class in `seedu.duke.event` handles displaying of countdown as an additional feature in the `EventList`.
  
 It implements the following operation:
 *`CommandEventCountdown#execute()` -  displays countdown feature for all upcoming `Event` in the `EventList`.
@@ -384,6 +393,7 @@ The sequence diagram for displaying countdown is as shown below:
 
 (By: Varsha)<br/>
 **Current Implementation**
+
 The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
  
 It implements the following operation:
