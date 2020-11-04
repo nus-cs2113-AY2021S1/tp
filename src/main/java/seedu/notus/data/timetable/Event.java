@@ -31,11 +31,13 @@ public class Event extends TaggableObject implements Comparable<Event> {
      * Creates an Event object with its title, date and time provided.
      *
      * @param title Title of the event.
-     * @param startDateTime Start DateTime of the event.
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      */
-    public Event(String title, LocalDateTime startDateTime) {
+    public Event(String title, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         this.title = title;
         this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.isToRemind = false;
         this.isRecurring = false;
     }
@@ -44,12 +46,14 @@ public class Event extends TaggableObject implements Comparable<Event> {
      * Creates an Event object with its title, date, time, isToRemind and isRecurring provided.
      *
      * @param title Title of the event.
-     * @param startDateTime Start DateTime of the event.
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      * @param isToRemind Whether the event requires a reminder.
      * @param isRecurring Whether the event will re-occur.
      */
-    public Event(String title, LocalDateTime startDateTime, boolean isToRemind, boolean isRecurring) {
-        this(title, startDateTime);
+    public Event(String title, LocalDateTime startDateTime, LocalDateTime endDateTime,
+                 boolean isToRemind, boolean isRecurring) {
+        this(title, startDateTime, endDateTime);
         this.isToRemind = isToRemind;
         this.isRecurring = isRecurring;
     }
@@ -58,15 +62,17 @@ public class Event extends TaggableObject implements Comparable<Event> {
      * Creates an Event object with its title, date, time, isToRemind, isRecurring, reminder periods and tags provided.
      *
      * @param title Title of event.
-     * @param startDateTime Start DateTime of event.
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      * @param isToRemind Whether the event requires a reminder.
      * @param isRecurring Whether the event will reoccur.
      * @param reminderPeriods When the reminders will be given.
      * @param tags Tags of the event.
      */
-    public Event(String title, LocalDateTime startDateTime, boolean isToRemind, boolean isRecurring,
-                  HashMap<String, ArrayList<Integer>> reminderPeriods, ArrayList<Tag> tags) {
-        this(title, startDateTime, isToRemind, isRecurring);
+    public Event(String title, LocalDateTime startDateTime, LocalDateTime endDateTime,
+                 boolean isToRemind, boolean isRecurring,
+                 HashMap<String, ArrayList<Integer>> reminderPeriods, ArrayList<Tag> tags) {
+        this(title, startDateTime, endDateTime, isToRemind, isRecurring);
         this.reminderPeriods = reminderPeriods;
         this.tags = tags;
     }
@@ -75,14 +81,16 @@ public class Event extends TaggableObject implements Comparable<Event> {
      * Creates an Event object with its title, date, time, isToRemind, isRecurring as well as reminder periods provided.
      *
      * @param title Title of event.
-     * @param startDateTime Start DateTime of event.
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      * @param isToRemind Whether the event requires a reminder.
      * @param isRecurring Whether the event will reoccur.
      * @param reminderPeriods When the reminders will be given.
      */
-    public Event(String title, LocalDateTime startDateTime, boolean isToRemind, boolean isRecurring,
+    public Event(String title, LocalDateTime startDateTime, LocalDateTime endDateTime,
+                 boolean isToRemind, boolean isRecurring,
                  HashMap<String, ArrayList<Integer>> reminderPeriods) {
-        this(title, startDateTime, isToRemind, isRecurring);
+        this(title, startDateTime, endDateTime, isToRemind, isRecurring);
         this.reminderPeriods = reminderPeriods;
     }
 
@@ -127,8 +135,22 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return endDateTime.toLocalTime();
     }
 
-    public String getDateTime() {
-        return startDateTime.toLocalDate().toString() + " " + startDateTime.toLocalTime().toString();
+    public String getStartDateTimeString() {
+        return getLocalDateTimeStringRep(startDateTime);
+    }
+
+    public String getEndDateTimeString() {
+        return getLocalDateTimeStringRep(endDateTime);
+    }
+
+    /**
+     * Provides a format for LocalDateTime output.
+     *
+     * @param dateTime DateTime to format.
+     * @return String representation for saving.
+     */
+    private String getLocalDateTimeStringRep(LocalDateTime dateTime) {
+        return dateTime.toLocalDate().toString() + " " + dateTime.toLocalTime().toString();
     }
 
     public boolean getIsToRemind() {
@@ -156,19 +178,40 @@ public class Event extends TaggableObject implements Comparable<Event> {
 
         ArrayList<Integer> dayRepeatPeriod = reminderPeriods.get(REMINDER_DAY);
         ArrayList<Integer> weekRepeatPeriod = reminderPeriods.get(REMINDER_WEEK);
-
         if (dayRepeatPeriod != null) {
+            dayRepeatPeriod.sort(Integer::compareTo);
             for (Integer unit: dayRepeatPeriod) {
                 periods.add(unit + "-day");
             }
         }
 
         if (weekRepeatPeriod != null) {
+            weekRepeatPeriod.sort(Integer::compareTo);
             for (Integer unit : weekRepeatPeriod) {
                 periods.add(unit + "-week");
             }
         }
         return periods;
+    }
+
+    /**
+     * Checks if the start and end date are the same date.
+     *
+     * @return Whether the start date's date is the same as the end date's date.
+     */
+    public boolean hasSameStartEndDateDate() {
+        return (getStartDate().compareTo(getEndDate()) == 0);
+    }
+
+    /**
+     * Get the event length in minutes.
+     *
+     * @return Minutes of how long the event will run.
+     */
+    public int getEventLengthInMinutes() {
+        int eventDuration = (getEndTime().getHour() - getStartTime().getHour()) * 60;
+        eventDuration += (getEndTime().getMinute() - getStartTime().getMinute());
+        return eventDuration;
     }
 
     /**
@@ -203,6 +246,20 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return dates;
     }
 
+    public boolean occursDuringEvent(Event event) {
+        if (checkClash(event.startDateTime, event.endDateTime, startDateTime)) {
+            return !startDateTime.equals(event.endDateTime);
+        }
+        if (checkClash(startDateTime, endDateTime, event.startDateTime)) {
+            return !event.startDateTime.equals(endDateTime);
+        }
+        return false;
+    }
+
+    public boolean checkClash(LocalDateTime startDateTime, LocalDateTime endDateTime, LocalDateTime timeToCheck) {
+        return (timeToCheck.compareTo(startDateTime) >= 0 && timeToCheck.compareTo(endDateTime) <= 0);
+    }
+
     /**
      * Converts an Event to a format for a reminder.
      *
@@ -230,5 +287,14 @@ public class Event extends TaggableObject implements Comparable<Event> {
     @Override
     public int compareTo(Event o) {
         return startDateTime.compareTo(o.startDateTime);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            Event event = (Event) o;
+            return (occursDuringEvent(event) && title.equalsIgnoreCase(event.title));
+        }
+        return false;
     }
 }

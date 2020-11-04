@@ -11,6 +11,8 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static seedu.notus.storage.StorageManager.LOGS_DIR;
+
 //@@author Chongjx
 /**
  * Represents a TagManager. Manages the tags for the notes.
@@ -241,7 +243,7 @@ public class TagManager {
         LOGGER.setLevel(Level.INFO);
 
         try {
-            FileHandler fileHandler = new FileHandler("TagManager.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "/TagManager.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);

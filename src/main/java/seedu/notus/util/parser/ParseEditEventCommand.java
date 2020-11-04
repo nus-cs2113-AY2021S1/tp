@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static seedu.notus.util.PrefixSyntax.PREFIX_END_TIMING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_INDEX;
 import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND_ADD;
@@ -57,9 +58,14 @@ public class ParseEditEventCommand extends Parser {
                     newTitle = checkBlank(infoDetails[1], exception);
                     break;
                 case PREFIX_TIMING:
-                    exception = ExceptionType.EXCEPTION_MISSING_TIMING;
+                    exception = ExceptionType.EXCEPTION_MISSING_START_TIMING;
                     String timingString = checkBlank(infoDetails[1], exception);
                     startDateTime = DateTimeManager.dateTimeParser(timingString);
+                    break;
+                case PREFIX_END_TIMING:
+                    exception = ExceptionType.EXCEPTION_MISSING_END_TIMING;
+                    timingString = checkBlank(infoDetails[1], exception);
+                    endDateTime = DateTimeManager.dateTimeParser(timingString);
                     break;
                 case PREFIX_INDEX:
                     exception = ExceptionType.EXCEPTION_MISSING_INDEX;
@@ -131,7 +137,7 @@ public class ParseEditEventCommand extends Parser {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_INDEX_PREFIX);
         }
 
-        return new EditEventCommand(index - 1, newTitle, startDateTime,
+        return new EditEventCommand(index - 1, newTitle, startDateTime, endDateTime,
                 reminderTodo, reminderSchedule, recurringType, endRecurrenceDate);
     }
 }

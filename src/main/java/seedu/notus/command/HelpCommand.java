@@ -10,6 +10,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static seedu.notus.storage.StorageManager.LOGS_DIR;
 import static seedu.notus.util.CommandMessage.HELP_COMMAND_USAGE;
 
 //@@author R-Ramana
@@ -38,7 +39,7 @@ public class HelpCommand extends Command {
         LOGGER.addHandler(consoleHandler);
 
         try {
-            FileHandler fileHandler = new FileHandler("HelpCommand.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "HelpCommand.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);
