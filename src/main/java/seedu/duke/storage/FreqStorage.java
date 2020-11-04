@@ -87,6 +87,7 @@ public class FreqStorage extends Storage {
         }
         if (isCorrupted) {
             initialiseFile();
+            throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
         } else {
             LOGGER.fine("FreqList.txt file read successfully.");
             System.out.println(FILE_READ);
