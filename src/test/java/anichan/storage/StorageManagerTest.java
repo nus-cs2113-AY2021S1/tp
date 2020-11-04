@@ -38,7 +38,6 @@ class StorageManagerTest {
     private StorageManager invalidFileSM;
     private StorageManager emptySM;
     private StorageManager invalidDirectorySM;
-    private User userToSave;
     private User userToLoad;
     private Bookmark bookmarkToLoad;
     private ArrayList<Watchlist> watchlistListForLoad;
@@ -51,10 +50,7 @@ class StorageManagerTest {
         invalidDirectorySM = new StorageManager(INVALID_TEST_DIRECTORY);
 
         userToLoad = null;
-        userToSave = new User("Testing", "Male");
-
         bookmarkToLoad = null;
-
         watchlistListForLoad = new ArrayList<>();
 
         Watchlist firstWatchlist = new Watchlist("a");
@@ -88,8 +84,9 @@ class StorageManagerTest {
 
         // Valid Directory (Use result from testSaveUser())
         userToLoad = validFileSM.loadUser();
-        assertEquals(userToLoad.getName(), userToSave.getName());
-        assertEquals(userToLoad.getGender(), userToSave.getGender());
+        User expectedUser = new User("Testing", "Male");
+        assertEquals(userToLoad.getName(), expectedUser.getName());
+        assertEquals(userToLoad.getGender(), expectedUser.getGender());
     }
 
     @Test
