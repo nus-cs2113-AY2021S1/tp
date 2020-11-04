@@ -11,6 +11,7 @@ import fitr.user.User;
 import fitr.parser.Parser;
 import org.fusesource.jansi.AnsiConsole;
 
+
 import java.io.IOException;
 
 public class Fitr {
