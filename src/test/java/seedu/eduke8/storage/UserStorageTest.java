@@ -73,9 +73,9 @@ public class UserStorageTest extends Eduke8Test {
     }
 
     @Test
-    void load_missingKeyJson_expectNullPointerException() {
+    void load_missingKeyJson_expectEduke8Exception() {
         UserStorage userStorage = new UserStorage(DATA_TEST_MISSING_KEY_JSON, topicList, bookmarkList);
-        assertThrows(NullPointerException.class, userStorage::load);
+        assertThrows(Eduke8Exception.class, userStorage::load);
     }
 
     @Test
