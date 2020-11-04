@@ -44,7 +44,7 @@ public class AddDoctorCommand extends Command {
 
         ui.showDoctorAdded(newDoctor);
 
-        assert !patients.getPatients().isEmpty() : "No doctors!";
+        assert !doctors.getDoctors().isEmpty() : "No doctors!";
         storage.saveDoctors(doctors);
     }
 }

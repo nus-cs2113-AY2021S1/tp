@@ -336,7 +336,7 @@ public class Ui {
      * @param doctorName Name of doctor.
      */
     public void printDoctorNotFound(String doctorName) {
-        printWithIndent("Patient " + doctorName + " not found in database!");
+        printWithIndent("Doctor " + doctorName + " not found in database!");
     }
 
     /**
