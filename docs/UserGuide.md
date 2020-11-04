@@ -104,7 +104,7 @@ Expected Outcome:
 ![helpCommand](userGuidePic/helpCommand.PNG)
 
 ### 4.2 Exit the program: `bye` 
-Exits the program.
+Exits the program. <br/>
 Format: `bye`
 
 ### 4.3 HR features `HR` 
@@ -551,6 +551,14 @@ CCA Manager saves all your data after every command. There is no need to save ma
 
 This section details the frequently asked questions (FAQ) regarding the use of the application.
 
+*Q* How do I transfer my data to another computer ?
+*A* Install CCA Manager in the other computer and overwrite the empty data files it creates with the file that contains the data from your previous computer.
+
+*Q* Is CCA Manager optimized for all Operating Systems(OS)?
+*A* CCA Manager id available for doenload on all major Operating Systems such as Windows, Mac and Linux.
+
+
+
 [Return to the top](#user-guide)
 
 ## 6. Command Summary
@@ -592,4 +600,4 @@ summary | `finance summary` |   -
 CCA - Co-curricular Activity
 CSV - Comma-seperated values
 Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
-
+OS - Operating Systems
