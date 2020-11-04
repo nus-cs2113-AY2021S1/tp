@@ -244,7 +244,7 @@ Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 > :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 > :information_source: The EVENT_DATE entered should be in the format YYYY-MM-DD. <br/>
-> > :information_source: The EVENT_TIME entered should be in the 24-hour clock format. <br/>
+> :information_source: The EVENT_TIME entered should be in the 24-hour clock format. <br/>
 
 Shorthand Command : <br/>
 event --> e <br/>
@@ -358,7 +358,7 @@ Expected Outcome:
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
- > :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
+> :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
 Shorthand Command : <br/>
@@ -402,7 +402,7 @@ Expected Outcome:
 Adds an event to the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
  
->> :information_source: Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
+> :information_source: Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
 
 Example of usage: <br/>
  `event addAttendance /n arduino course /m peter`<br/>

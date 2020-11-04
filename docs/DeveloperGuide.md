@@ -13,7 +13,7 @@
   * [3.4. Event](#34-event)
   * [3.5. HR](#35-hr)
   * [3.6. Storage](#36-storage)
-- [4. Product scope](#4-product-scope)
+- [4. Product Scope](#4-product-scope)
   * [4.1. Target user profile](#41-target-user-profile)
   * [4.2. Value proposition](#42-value-proposition)
 - [5. User Stories](#5-user-stories)
@@ -255,12 +255,15 @@ The sequence diagram of changing information of a finance log entry is shown bel
 (By: Varsha)<br/>
 The diagrams below shows the architecture for Event feature. 
 
-Diagram 1: Event Commands
-![](EventDiagram/EventArchi1.png)
 
-Diagram 2: Event Architecture
+Diagram 1: Event Architecture
 
 ![](EventDiagram/EventArchi2.png)
+
+Diagram 2: Event Commands
+
+![](EventDiagram/EventArchi1.png)
+
 
 There are a total of 6 commands under Event feature.
  `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`,`CommandDelEventAttendance`, `CommandViewEventAttendence`. 
@@ -661,7 +664,7 @@ Aspect: The format of the file
     
 [Return to top](#CCA-manager-developer-guide)
 
-## 4. Product scope
+## 4. Product Scope
 ### 4.1. Target user profile
 
 Our product targets people who manage interest groups and CCAs. 
