@@ -56,7 +56,7 @@ public class EditCommand {
      * @param input length of episode
      */
     public static void editDuration(String input) {
-        String[] tokenizedInput = input.split(" ");
+        String[] tokenizedInput = input.split(" ",2);
         try {
             int duration = TimeParser.parseTime(tokenizedInput[1]);
             show.setEpisodeDuration(duration);

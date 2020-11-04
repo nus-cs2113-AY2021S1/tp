@@ -157,8 +157,8 @@ public class InputParser {
     private static void parseEditCommand(String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
-            EditCommand edit = new EditCommand(tokenizedString.get(1));
-            edit.processCommand();
+            new EditCommand(tokenizedString.get(1));
+            EditCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
             Ui.printSpecifyShowName();
             return;
