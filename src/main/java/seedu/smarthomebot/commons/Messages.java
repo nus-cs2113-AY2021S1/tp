@@ -8,7 +8,8 @@ public class Messages {
     public static final String MESSAGE_GOODBYE = "Good bye!";
     public static final String MESSAGE_IMPORT = "Importing data........Completed!";
     public static final String MESSAGE_EXPORT = "Exporting data........Completed!";
-    public static final String MESSAGE_APPLIANCE_TYPE_NOT_EXIST = "Type Entered does not exist.";
+    public static final String MESSAGE_APPLIANCE_TYPE_NOT_EXIST =
+            "Invalid type of appliance entered. Only aircon, fan, light and smartplug are currently accepted as type.";
     public static final String MESSAGE_APPLIANCE_EXIST = "Appliance name already exists.";
     public static final String MESSAGE_LOCATION_NOT_EXIST = "Location does not exist.";
     public static final String MESSAGE_APPLIANCE_LOCATION_CONFLICT =
@@ -19,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_POWER_USAGE = "Here are the power usage consumption:";
     public static final String MESSAGE_LIST_NO_LOCATIONS = "There is currently no locations in the list.";
     public static final String MESSAGE_LIST_NO_APPLIANCES = "There is currently no appliances in the list.";
-    public static final String MESSAGE_USAGE_RESET = "Resetting previous recorded usage.";
+    public static final String MESSAGE_USAGE_RESET = "Power usage has been reset!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid Command Format";
     public static final String MESSAGE_INVALID_ADD_COMMAND =
             "Please follow this order, add NAME l/[LOCATION_NAME] w/[WATTS] t/[TYPE_OF_APPLIANCE]";
