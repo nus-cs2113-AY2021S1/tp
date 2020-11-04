@@ -34,8 +34,6 @@ public class AnswerCommand extends Command {
             } catch (Eduke8Exception e) {
                 ui.printError(e.getMessage());
             }
-
-            assert !question.wasAnsweredCorrectly();
         }
     }
 }

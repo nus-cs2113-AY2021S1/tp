@@ -1,29 +1,6 @@
 # User Guide for E-Duke-8
-
-Table of contents:
-- [User Guide for E-Duke-8](#user-guide-for-e-duke-8)
-  - [1. Introduction](#1-introduction)
-  - [2. Quick Start](#2-quick-start)
-  - [3. Features](#3-features)
-    - [3.1. Loading Data](#31-loading-data)
-    - [3.2. Welcome Page](#32-welcome-page)
-    - [3.3. Viewing E-Duke-8 information: `about`](#33-viewing-e-duke-8-information-about)
-    - [3.4. Viewing available commands: `help`](#34-viewing-available-commands-help)
-    - [3.5. Listing all topics: `topics`](#35-listing-all-topics-topics)
-    - [3.6. Accessing the CS2113T textbook content: `textbook`](#36-accessing-the-cs2113t-textbook-content-textbook)
-    - [3.7. Starting a quiz: `quiz`](#37-starting-a-quiz-quiz)
-    - [3.8. Showing a hint: `hint`](#38-showing-a-hint-hint)
-    - [3.9. Adding a note: `note add`](#39-adding-a-note-note)
-    - [3.10. Deleting a note: `note delete`](#310-deleting-a-note-note)
-    - [3.11. Listing out notes: `note add`](#311-listing-out-notes-notes)
-    - [3.12. Displaying stats: `stats`](#312-displaying-stats-stats)
-    - [3.13. Exiting the program: `exit`](#313-exiting-the-program-exit)
-    - [3.14. Saving user data](#314-saving-user-data)
-  - [4. FAQ](#4-faq)
-  - [5. Command summary](#5-command-summary)
-  - [6. Glossary](#6-glossary)
-        - [1. Command Line Interface (CLI)](#1-command-line-interface-cli)
-        - [2. Object-oriented Programming (OOP)](#2-object-oriented-programming-oop)
+* Table of Contents
+{:toc}
 
 ## 1. Introduction
 
@@ -50,7 +27,7 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
    - about : Provides information about E-Duke-8.
    - topics : Lists CS2113/T topics that E-Duke-8 knows.
    - textbook : Provides you with a link to the CS2113/T website.
-   - quiz : Starts a quiz. Eg. `quiz t/OOP n/5` will start a quiz with five questions based on OOP concepts.
+   - quiz : Starts a quiz. Eg. `quiz t/OOP n/5 s/10` will start a quiz with five questions based on OOP concepts. You will have 10 seconds to complete each question. 
    - hint	  :   Shows a hint to the current question.
    - exit : Exits the app.
 
@@ -60,13 +37,19 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 
 ℹ️ Notes about the command format:
 - Words in UPPER_CASE are the parameters that you can specify for your usage.
-- e.g. in `quiz t/TOPIC n/NUM_QUESTIONS`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, and 'NUM_QUESTIONS' specifies the number of questions you want to have in your quiz. 
+- e.g. in `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, 'NUM_QUESTIONS' specifies the number of questions you want to have in your quiz, and 'TIMER' specifies the number of seconds given to complete each question. 
 
 ### 3.1. Loading Data 
 
-Data is automatically loaded from the files in the **data** folder for use in quizzes and notes.
+Data will be automatically loaded from the files in the **data** folder for use in quizzes and notes.
+You will see this message while the data loads:
+
+![data loading](./images/data_loading.png)
 
 To ensure that data could be loaded successfully, ensure that the data folder that comes along with the eduke8.jar file is placed in the same folder as eduke8.jar. This is part of the setup and is to be done prior to the running of the app. 
+If the data has been loaded successfully you should see this message:
+
+![data loaded](./images/data_loaded.png)
 
 ### 3.2. Welcome Page
 
@@ -134,9 +117,11 @@ What you should see:
 
 ### 3.7. Starting a quiz: `quiz`
 
-By following a specific input format for your command (seen below), you can start a quiz with the number of questions and topic as specified by you.
+By following a specific input format for your command (shown below), you can start a quiz with the number of questions, topic and time to complete each question as specified by you.
 
 While on a question, you can choose to answer it, ask for a hint if you are unsure of the answer or bookmark it for future reference!
+
+You will have to complete the question within the specified time as well. If you are unable to complete it in time, it will be regarded as an incorrect answer and the correct answer, along with the explanation, will be shown to you. You will then proceed to the next question where the timer will restart. 
 
 A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. No point will be awarded for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a later section of this guide.
 
@@ -149,13 +134,13 @@ Note:
 - The first question will be immediately displayed to you once the quiz starts.
 - The quiz will only end when you have attempted all of the questions in the it.
 
-Input format: `quiz t/TOPIC n/NUM_QUESTIONS`
+Input format: `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`
 
 Example of usage:
 ```
-quiz t/OOP n/5
+quiz t/OOP n/5 s/10
 ```
-- This will start a quiz that contains 5 randomly-chosen questions from the topic on OOP.
+- This will start a quiz that contains 5 randomly-chosen questions from the topic on OOP. Each question will have to be completed within 10 seconds. 
 
 What you should see:
 
@@ -172,6 +157,9 @@ If you have entered the correct answer, this is what you will see:
 
 If you have entered the wrong answer, this is what you will see:
 ![quiz](./images/quiz_wrong.png)
+
+If you did not answer the question within the specified time, this is what you will see: 
+![quiz](./images/quiz_times_up.png)
 
 After attempting all of the questions, the quiz will automatically end:
 ![quiz](./images/quiz_end.png)
@@ -225,7 +213,31 @@ Example of usage:
 note list
 ```
 
-### 3.12. Displaying stats: `stats`
+### 3.12. Bookmarking a question: `bookmark`
+
+Stores any question encountered in a quiz in a list.
+
+Note: 
+- Bookmarking a question can only be done during a quiz
+
+Example of usage:
+```
+bookmark
+```
+
+### 3.13. Listing out all bookmarked questions: `bookmark`
+
+Lists out all the bookmarked questions and each of their four options.
+
+Note:
+- Listing out all bookmarked questions can only be done in the main menu
+
+Example of usage:
+```
+bookmark
+```
+
+### 3.14. Displaying stats: `stats`
 
 Displays the points you have earned, and the accumulated statistics of your quiz attempts on E-Duke-8.
 
@@ -247,7 +259,7 @@ This is an example of what you should see:
 ![stats_with_progress](./images/stats_Some_Progress.png)
 
 
-### 3.13. Exiting the program: `exit`
+### 3.15. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -261,10 +273,18 @@ exit
 
 ![exit](./images/exit.png)
 
-### 3.14. Saving user data
+### 3.16. Saving user data
 
-User data is only saved upon successful exit of the application through the `exit` command. This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your quiz history.
+User data will only be saved upon successful exit of the application through the `exit` command.
+You will see this message while the data saves:
 
+![data saving](./images/data_saving.png)
+
+If the data has been saved successfully you should see this message:
+
+![data saved](./images/data_saved.png)
+
+This is store in the `user.json` file in the `data` folder and can be transferred between machines to keep your own history.
 
 ## 4. FAQ
 
@@ -280,8 +300,12 @@ User data is only saved upon successful exit of the application through the `exi
 | Viewing available commands    | `help`                                              |
 | Listing all topics        | `topics`  |
 | Accessing the CS2113T textbook content        | `textbook`                                                 |
-| Starting a quiz |  `quiz t/TOPIC n/QUESTIONS` <br/> e.g. `quiz t/OOP n/5`                                              |
+| Starting a quiz |  `quiz t/TOPIC n/QUESTIONS s/TIMER` <br/> e.g. `quiz t/OOP n/5 s/10`                                              |
 | Showing a hint        |           `hint`                                      |
+| Adding a note | `note add` | 
+| Deleting a note | `note delete` | 
+| Listing out notes | `note list` | 
+| Displaying statistics | `stats` | 
 | Exit        | `exit`                                                 |
 
 ## 6. Glossary
