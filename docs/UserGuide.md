@@ -77,9 +77,11 @@ Lastly, text that are blue like this [example](#12-using-this-guide), are clicka
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **command prompt** or **terminal** and change directory into the folder. Run `java -jar AniChan.jar`.
 5.  You will be greeted by a prompt for your name and gender as shown below.
-![First Time Setup](images/User-Guide-Setting-Up.png)
 6.  Upon completing these 2 prompts, you can begin using **AniChan**!
 7.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
+
+![First Time Setup](images/User-Guide-Setting-Up.png)
+*Figure 1: Sample First Time Setup Prompt*
 
 <br/>
 
