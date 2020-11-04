@@ -32,15 +32,7 @@ public class Duke {
      */
     public static void main(String[] args) throws IOException {
         new Duke();
-        try {
-            favFile.readFile();
-            favFile.updateFile();
-            freqFile.readFile();
-            freqFile.updateFile();
-        } catch (CustomException e) {
-            System.out.println(e);
-        }
-
+        readAllStorageFiles();
         Ui.printWelcomeMessage();
         parser = new Parser(DUMMY_PARAM);
         boolean isOngoing = true;
@@ -54,6 +46,17 @@ public class Duke {
                 Ui.showError(error);
             }
             favFile.updateFile();
+        }
+    }
+
+    private static void readAllStorageFiles() throws IOException {
+        try {
+            favFile.readFile();
+            favFile.updateFile();
+            freqFile.readFile();
+            freqFile.updateFile();
+        } catch (CustomException e) {
+            System.out.println(e);
         }
     }
 }
