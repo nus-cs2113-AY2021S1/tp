@@ -39,8 +39,8 @@ public class AccessSubjectCommand extends SubjectCommand {
         this.subjectList = subjectList;
         Subject gotoSubject = null;
 
-        String[] message = this.fullcommand.split(" ");
-        if (message[1].isEmpty()) {
+        String[] message = this.fullcommand.split(" ",2);
+        if (message.length == 1 || message[1].isEmpty()) {
             throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
         for (Subject subject : subjectList.getList()) {

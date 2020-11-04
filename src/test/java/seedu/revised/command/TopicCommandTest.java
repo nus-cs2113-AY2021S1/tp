@@ -43,15 +43,15 @@ public class TopicCommandTest {
     }
 
     @Test
-    public void accessSubjectCommand_NoTopicInputWithSpace_throwsException() {
+    public void accessTopicCommand_NoTopicInputWithSpace_throwsException() {
         accessCommand = new AccessTopicCommand("topic ");
-        assertThrows(IndexOutOfBoundsException.class, () -> accessCommand.execute(subject));
+        assertThrows(NoTopicException.class, () -> accessCommand.execute(subject));
     }
 
     @Test
     public void accessTopicCommand_NoTopicInputWithoutSpace_throwsException() {
         accessCommand = new AccessTopicCommand("topic");
-        assertThrows(IndexOutOfBoundsException.class, () -> accessCommand.execute(subject));
+        assertThrows(NoTopicException.class, () -> accessCommand.execute(subject));
     }
 
     @Test

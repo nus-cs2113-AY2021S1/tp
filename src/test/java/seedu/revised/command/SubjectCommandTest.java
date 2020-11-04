@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import seedu.revised.card.Subject;
+import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.list.SubjectList;
 import seedu.revised.command.subject.AddSubjectCommand;
 import seedu.revised.command.subject.DeleteSubjectCommand;
@@ -56,13 +57,13 @@ public class SubjectCommandTest {
     @Test
     public void accessSubjectCommand_NoSubjectInputWithSpace_throwsException() {
         accessCommand = new AccessSubjectCommand("subject ");
-        assertThrows(IndexOutOfBoundsException.class, () -> accessCommand.execute(subjects, storage));
+        assertThrows(NoSubjectException.class, () -> accessCommand.execute(subjects, storage));
     }
 
     @Test
     public void accessSubjectCommand_NoSubjectInputWithoutSpace_throwsException() {
         accessCommand = new AccessSubjectCommand("subject");
-        assertThrows(IndexOutOfBoundsException.class, () -> accessCommand.execute(subjects, storage));
+        assertThrows(NoSubjectException.class, () -> accessCommand.execute(subjects, storage));
     }
 
     @Test
