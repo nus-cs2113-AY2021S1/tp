@@ -1,0 +1,61 @@
+@startuml
+
+activate NotUS
+
+create AddEventCommand
+
+ParseAddEventCommand -> AddEventCommand: <<create>>
+
+activate AddEventCommand
+AddEventCommand --> NotUS
+deactivate AddEventCommand
+
+deactivate ParseAddEventCommand
+
+destroy ParseAddEventCommand
+
+NotUS -> Command: setData()
+
+activate Command
+Command --> NotUS
+deactivate Command
+
+NotUS -> NotUS: executeCommand()
+activate NotUS
+NotUS -> AddEventCommand: execute()
+
+activate AddEventCommand
+alt eventEndBeforeStarting
+AddEventCommand -> Formatter: formatEventString()
+activate Formatter
+return
+deactivate Formatter
+AddEventCommand --> NotUS: result
+end
+
+AddEventCommand -> Timetable: getClashingEvents()
+activate Timetable
+return
+deactivate Timetable
+
+AddEventCommand -> Timetable: addEvent()
+activate Timetable
+return
+deactivate Timetable
+
+AddEventCommand -> StorageManager: saveTimetable()
+activate StorageManager
+return
+deactivate StorageManager
+
+AddEventCommand -> Formatter: formatEventString()
+activate Formatter
+return
+deactivate Formatter
+
+AddEventCommand --> NotUS: result
+deactivate AddEventCommand
+
+deactivate NotUS
+destroy AddEventCommand
+@enduml

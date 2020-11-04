@@ -1,0 +1,59 @@
+@startuml
+
+activate NotUS
+
+create RemindCommand
+
+ParserManager -> RemindCommand: <<create>>
+
+activate RemindCommand
+RemindCommand --> NotUS
+deactivate RemindCommand
+
+deactivate ParserManager
+
+NotUS -> Command: setData()
+
+activate Command
+Command --> NotUS
+deactivate Command
+
+NotUS -> NotUS: executeCommand()
+activate NotUS
+NotUS -> RemindCommand: execute()
+
+activate RemindCommand
+
+
+RemindCommand -> Timetable: getReminders()
+activate Timetable
+
+Timetable -> Timetable: getAllEvents()
+activate Timetable
+return allEventsInAMonth
+Timetable -> Timetable: getEventSetReminder()
+activate Timetable
+return remindersToday
+return remindersToday
+deactivate Timetable
+
+alt noReminders
+RemindCommand -> Formatter: formatString()
+activate Formatter
+return
+deactivate Formatter
+
+else else
+RemindCommand -> Formatter: formatReminders()
+activate Formatter
+return
+deactivate Formatter
+end
+
+
+RemindCommand --> NotUS: result
+deactivate RemindCommand
+
+deactivate NotUS
+destroy RemindCommand
+@enduml

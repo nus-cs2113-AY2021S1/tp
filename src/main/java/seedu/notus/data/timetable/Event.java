@@ -255,7 +255,7 @@ public class Event extends TaggableObject implements Comparable<Event> {
         return false;
     }
 
-    public boolean checkClash(LocalDateTime startDateTime, LocalDateTime endDateTime, LocalDateTime timeToCheck) {
+    private boolean checkClash(LocalDateTime startDateTime, LocalDateTime endDateTime, LocalDateTime timeToCheck) {
         return (timeToCheck.compareTo(startDateTime) >= 0 && timeToCheck.compareTo(endDateTime) <= 0);
     }
 
