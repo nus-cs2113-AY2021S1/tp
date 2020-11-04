@@ -18,14 +18,17 @@ public class DailyEvent extends RecurringEvent {
      * Constructor of DailyEvent with a specified recurrence type and specified endRecurrence date.
      *
      * @param title Title of Event
-     * @param dateTime DateTime of Event
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param endRecurrence When the Event should stop re-occurring.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags linked to the event
      */
-    public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
+    public DailyEvent(String title, LocalDateTime startDateTime, LocalDateTime endDateTime,
+                      boolean isToRemind, LocalDate endRecurrence,
                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
-        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.DAILY_RECURRENCE_TYPE,
+        super(title, startDateTime, endDateTime, isToRemind, endRecurrence, RecurringEvent.DAILY_RECURRENCE_TYPE,
                 reminderSchedule, tags);
     }
 
@@ -33,13 +36,16 @@ public class DailyEvent extends RecurringEvent {
      * Constructor of DailyEvent with a specified recurrence type and default end time of recurrence (Year 3000).
      *
      * @param title Title of Event
-     * @param dateTime DateTime of Event
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags linked to the event
      */
-    public DailyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
+    public DailyEvent(String title, LocalDateTime startDateTime, LocalDateTime endDateTime, boolean isToRemind,
                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
-        super(title, dateTime, isToRemind, RecurringEvent.DAILY_RECURRENCE_TYPE, reminderSchedule, tags);
+        super(title, startDateTime, endDateTime,
+                isToRemind, RecurringEvent.DAILY_RECURRENCE_TYPE, reminderSchedule, tags);
     }
 
 

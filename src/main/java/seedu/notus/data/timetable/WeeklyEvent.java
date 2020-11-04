@@ -18,15 +18,17 @@ public class WeeklyEvent extends RecurringEvent {
      * Constructor of WeeklyEvent with a specified recurrence type and specified endRecurrence date.
      *
      * @param title Title of Event
-     * @param dateTime DateTime of Event
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param endRecurrence When the Event should stop re-occurring.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
      * @param tags Tags related to this event.
      */
-    public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrence,
-                       HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
-        super(title, dateTime, isToRemind, endRecurrence, RecurringEvent.WEEKLY_RECURRENCE_TYPE,
+    public WeeklyEvent(String title, LocalDateTime startDateTime, LocalDateTime endDateTime, boolean isToRemind,
+                       LocalDate endRecurrence, HashMap<String, ArrayList<Integer>> reminderSchedule,
+                       ArrayList<Tag> tags) {
+        super(title, startDateTime, endDateTime, isToRemind, endRecurrence, RecurringEvent.WEEKLY_RECURRENCE_TYPE,
                 reminderSchedule, tags);
     }
 
@@ -34,14 +36,16 @@ public class WeeklyEvent extends RecurringEvent {
      * Constructor of WeeklyEvent with a specified recurrence type and default end time of recurrence (Year 3000).
      *
      * @param title Title of Event
-     * @param dateTime DateTime of Event
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
      * @param isToRemind Whether the Event requires reminders.
      * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
      * @param tags Tags related to this event.
      */
-    public WeeklyEvent(String title, LocalDateTime dateTime, boolean isToRemind,
+    public WeeklyEvent(String title, LocalDateTime startDateTime, LocalDateTime endDateTime, boolean isToRemind,
                        HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
-        super(title, dateTime, isToRemind, RecurringEvent.WEEKLY_RECURRENCE_TYPE, reminderSchedule, tags);
+        super(title, startDateTime, endDateTime,
+                isToRemind, RecurringEvent.WEEKLY_RECURRENCE_TYPE, reminderSchedule, tags);
     }
 
     @Override
