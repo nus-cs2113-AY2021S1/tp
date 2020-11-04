@@ -541,7 +541,7 @@ _________________________________
 ### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
-Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_DATE]`
+Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
 
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
@@ -614,20 +614,20 @@ _________________________________
 ### 3.9 Mark events as done: `done` (Marcus Tan)
 If you would like to mark an event as done, you can use the done command to do so. 
 
-Format: `done EVENT_TYPE EVENT_INDEX [EVENT_DATE]` 
+Format: `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]` 
 
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY 
 
 If you wish to mark a specific event in a repeated task as done, you may enter the date of that repeated event.
 
 Examples:
--	`done personal 1` marks the 1st Personal event as done.
--	`done personal 2 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as done 
+-	`done personal; 1` marks the 1st Personal event as done.
+-	`done personal; 2; 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as done 
 
 Expected output:
 ```
 _________________________________
-done personal 2 1/3/2020
+done personal; 2; 1/3/2020
 _________________________________
 You have successfully marked this event as done!
 [P][✓] test 2 on 2020-03-01, 14:00
@@ -637,20 +637,20 @@ _________________________________
 ### 3.10 Mark events as not done: `undone` (Marcus Tan)
 Did you accidentally mark an event as done? Not to worry, just use the undone command to set the event status back to undone.
 
-Format: `undone EVENT_TYPE EVENT_INDEX [EVENT_DATE]`
+Format: `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY 
 
 If you wish to mark a specific event in a repeated task as undone, you may enter the date of that repeated event.
 
 Examples:
--	`undone zoom 3` marks the 3rd Zoom event as not done.
--	`undone personal 2 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as undone 
+-	`undone zoom; 3` marks the 3rd Zoom event as not done.
+-	`undone personal; 2; 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as undone 
 
 Expected output:
 ```
 _________________________________
-undone personal 2 1/3/2020
+undone personal; 2; 1/3/2020
 _________________________________
 You have successfully marked this event as undone!
 [P][✕] test 2 on 2020-03-01, 14:00
@@ -664,12 +664,12 @@ Want to remove an event from your schedule? Use the delete command to get rid of
 Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 
 Examples:
--	`delete personal 3` deletes the 3rd Personal event from Scheduler.
+-	`delete personal; 3` deletes the 3rd Personal event from Scheduler.
 
 Expected output:
 ```
 _________________________________
-delete personal 3
+delete personal; 3
 _________________________________
 You have successfully deleted this event!
 [P][✕] test 3 on 2020-01-01
