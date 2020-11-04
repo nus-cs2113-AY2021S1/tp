@@ -371,13 +371,13 @@ _________________________________
 ### 3.5 Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
 
-Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM`
+Format: `deadline EVENT_INDEX; DD/MM/YY; [HH:MM AM/PM]`
 
 - `EVENT_INDEX` is a number. It contains the index of the personal event that will have its deadline set or changed. 
 
 * `DD/MM/YY` contains a date string in the format `[DD/MM/YY]`. This is the date of the deadline for the personal event. 
 
-* `[HH:MM]` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
+* `[HH:MM AM/PM]` is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format. 
 
 `deadline 2; 23/07/20` sets the deadline of event number 2 to be on 23 July 2020 a 
 
@@ -390,10 +390,47 @@ Expected output:
 You have successfully updated the deadline for this event!
 [P][X] sleep on 2020-08-29, 23:20
 ```
+#### How to use? 
+
+We will use the example of created a deadline for personal event named “sleep”. 
+
+##### Step 1: Find the index number of the event to be repeated. 
+
+You can do this by typing the command list personal into your application. The result for the following command is shown in the following photo. 
+
+```
+_________________________________
+list personal
+_________________________________
+Here is a list of your Personal events:
+1. [P][✕] party on 2000-10-09, 13:00
+2. [P][✕] surprise on 2020-09-14, 08:00
+3. [P][✕] sleep on 2002-02-02, 23:00
+4. [P][✕] dental appointment on 2020-03-02, 15:00
+_________________________________
+```
+In this case, the index number of our sleep is 3.
+
+##### Step 2: Type the command into the terminal
+
+In our example, the arguments are set as such:
+
+- EVENT_TYPE is set to personal
+- EVENT_INDEX is set to 3
+- DD/MM/YY is set to 29/08/20
+- HH:MM AM/PM is set to 11:20 PM
+
+When you type in the command deadline 3; 29/08/20; 11:20 PM, the program reports that it has set the event deadline as shown in the following image. 
+
+```
+You have successfully updated the deadline for this event!
+[P][X] sleep on 2020-08-29, 23:20
+```
 
 {{box op="start" cssClass="boxed noteBox"}}
 **Note!**
 
+* Deadline can only be used to set/update for Personal events
 * The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
 * You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 * AM/PM is required for 12 hour format
@@ -648,32 +685,38 @@ Example of usage:
 
 #### How to use?
 
-1. Find the index number of the event to write the note for 
-    You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
-    ```
-    Here is a list of your Personal events:
-    1. [P][X] sleep 
-    ```
-    In this case, the index number that you want is 1.
-1. Type the command into the terminal
-    ```
-    note personal; 1 
-   ```
-1. Scheduler will prompt you to type your notes
-    ```
-    Please type in your notes. To stop note taking, ensure that you are in a new line and type the semicolon key, ';' and press enter 
-   
-   ```
-1. Tell Scheduler you are done by pressing enter to go to a new line and insert a semicolon `;`
-1. Voilà! Your notes have been saved! 
-    ```
-   You have successfully written the note for this event!
-   [P][X] sleep
-   ---------2020-10-30T00:53:01.907824900---------
-   hello there!
-   scheduler says hi:)
-   _________________________________
-   ```
+##### Step 1: Find the index number of the event to write the note for 
+You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
+
+```
+Here is a list of your Personal events:
+1. [P][X] sleep 
+```
+In this case, the index number that you want is 1.
+
+##### Step 2: Type the command into the terminal
+````
+note personal; 1 
+````
+
+##### Step 3: Scheduler will prompt you to type your notes
+```
+Please type in your notes. To stop note taking, ensure that you are in a new line and type the semicolon key, ';' and press enter 
+
+```
+
+##### Step 4: Tell Scheduler you are done 
+By pressing enter to go to a new line and insert a semicolon `;`
+
+##### Step 5: Voilà! Your notes have been saved! 
+```
+You have successfully written the note for this event!
+[P][X] sleep
+---------2020-10-30T00:53:01.907824900---------
+hello there!
+scheduler says hi:)
+_________________________________
+``` 
 
 
 {{box op="start" cssClass="boxed warningBox"}}
