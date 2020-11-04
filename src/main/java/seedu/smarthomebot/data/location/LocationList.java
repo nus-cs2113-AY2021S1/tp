@@ -1,7 +1,7 @@
 package seedu.smarthomebot.data.location;
 
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
-import seedu.smarthomebot.commons.exceptions.InvalidRemovalLocationException;
+import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
 import java.util.ArrayList;
 
@@ -35,9 +35,9 @@ public class LocationList {
      *
      * @param location used to be removed from the location list.
      */
-    public void removeLocation(String location) throws InvalidRemovalLocationException {
+    public void removeLocation(String location) throws InvalidLocationException {
         if (!(isLocationCreated(location))) {
-            throw new InvalidRemovalLocationException();
+            throw new InvalidLocationException();
         } else {
             int removeIndex = getRemoveLocationIndex(location);
             this.locationList.remove(removeIndex);

@@ -191,7 +191,7 @@ public abstract class Appliance {
      * @return the printout for appliance.
      */
     public String toString() {
-        return this.getName() + "(" + this.getWattage() + "W)" + " in " + this.getLocation() + " ";
+        return this.getName() + "(" + this.getWattage() + "W)" + " located at " + this.getLocation() + " ";
     }
 
     /**
