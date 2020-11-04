@@ -35,6 +35,7 @@ public class BrowseParser extends CommandParser {
     private static final char CHAR_WHITESPACE = ' ';
     private static final int ORDER_ASCENDING = 0;
     private static final int ORDER_DESCENDING = 1;
+    private static final int ORDER_NOT_SET = 2;
     private static final int SORT_NAME = 1;
     private static final int SORT_RATING = 2;
     private static final int SORT_ID = 0;
@@ -49,7 +50,7 @@ public class BrowseParser extends CommandParser {
 
     //Default values of Browse
     private int sortType = SORT_ID;
-    private int order = ORDER_DESCENDING;
+    private int order = ORDER_NOT_SET;
     private int page = FIRST_PAGE;
 
     /**

@@ -29,7 +29,9 @@ public class BrowseCommand extends Command {
 
     //Constant values used for sortBrowseList()
     private static final int ANIME_PER_PAGE = 20;
-    private static final int ORDER_DESCENDING = 0;
+    private static final int ORDER_ASCENDING = 0;
+    private static final int ORDER_DESCENDING = 1;
+    private static final int ORDER_NOT_SET = 2;
     private static final int ID_SORT = 0;
     private static final int NAME_SORT = 1;
     private static final int RATING_SORT = 2;
@@ -84,7 +86,7 @@ public class BrowseCommand extends Command {
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         ArrayList<Anime> usableList = animeData.getAnimeDataList();
         assert (sortType < 4) : ASSERT_SORT_TYPE;
-        assert (order < 2) : ASSERT_ORDER_TYPE;
+        assert (order < 3) : ASSERT_ORDER_TYPE;
         sortBrowseList(usableList);
         String result = buildBrowseOutput(usableList);
         setSortType(RESET_SORT);
@@ -158,12 +160,12 @@ public class BrowseCommand extends Command {
             LOGGER.log(Level.INFO, SORT_ID_DESCENDING);
             usableList.sort(Comparator.comparing(Anime::getAnimeID).reversed());
         } else if (sortType == NAME_SORT && order == ORDER_DESCENDING) {
-            LOGGER.log(Level.INFO, SORT_NAME_ASCENDING);
-            usableList.sort(Comparator.comparing(Anime::getAnimeName));
-        } else if (sortType == NAME_SORT) {
             LOGGER.log(Level.INFO, SORT_NAME_DESCENDING);
             usableList.sort(Comparator.comparing(Anime::getAnimeName).reversed());
-        } else if (sortType == RATING_SORT && order == ORDER_DESCENDING) {
+        } else if (sortType == NAME_SORT) {
+            LOGGER.log(Level.INFO, SORT_NAME_ASCENDING);
+            usableList.sort(Comparator.comparing(Anime::getAnimeName));
+        } else if (sortType == RATING_SORT && order == ORDER_ASCENDING) {
             LOGGER.log(Level.INFO, SORT_RATING_ASCENDING);
             usableList.sort(Comparator.comparing(Anime::getRating));
         } else if (sortType == RATING_SORT) {
@@ -172,6 +174,7 @@ public class BrowseCommand extends Command {
         } else if (sortType == RESET_SORT) {
             usableList.sort(Comparator.comparing(Anime::getAnimeID));
         } else {
+            System.out.println("Here : " + 7);
             LOGGER.log(Level.INFO, SORT_ID_ASCENDING);
         }
     }
