@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Represents a text user interface that deals with taking in user commands.
+ * Represents a helper that provide methods utilised in the other Ui related classes.
  * A <code>UiHelper</code> object contains all the helper methods needed for the other Ui related classes.
  */
 public class UiHelper {
