@@ -8,10 +8,22 @@ title : Brandon - Project Portfolio Page
 The overview below follows the following standards: 
 *Roles (short for ‘in charge of role’): Description*
 
-- 
+- Development and Maintenance of Timetable Scheduling
 
 ### Summary of Contributions
+- Set up and designed the architecture used for event scheduling in the timetable
+    - Handled `Event`, `RecurringEvent`, `Timetable`, `Reminder` and other relevant `Command` subclasses for event scheduling functionality.
+- Assisted in development of common `Parser` methods
+
 
 ### Contributions to User Guide
+1. Maintain portions on commands related to Events.
+    - `add-e`
+    - `edit-e`
+    - `list-e`
+    - `delete-e`
 
 ### Contributions to Developer Guide
+1. AddEventCommand Sequence Diagram
+2. RemindCommand Sequence Diagram
+3. Timetable and Event Class Diagram
