@@ -223,7 +223,8 @@ public class Formatter {
 
         result.add("Event: " + event.getTitle());
         result.add("Date: " + event.getStartDate().toString()
-                + EMPTY_SPACE.repeat(4) + "Time: " + event.getStartTime().toString());
+                + EMPTY_SPACE.repeat(4) + "Start: " + event.getStartTime().toString()
+                + EMPTY_SPACE.repeat(4) + "End: " + event.getEndTime().toString());
 
         result.add(reminderString);
         String repeatingString = "Repeating: ";

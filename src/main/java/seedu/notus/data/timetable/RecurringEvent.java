@@ -23,10 +23,22 @@ public abstract class RecurringEvent extends Event {
     public static final String MONTHLY_RECURRENCE_TYPE = "monthly";
     public static final String YEARLY_RECURRENCE_TYPE = "yearly";
 
-    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, LocalDate endRecurrenceDate,
-                          String recurrenceType, HashMap<String, ArrayList<Integer>> reminderPeriods,
-                          ArrayList<Tag> tags) {
-        super(title, dateTime, isToRemind, true, reminderPeriods, tags);
+    /**
+     * Constructor to create a recurring event. Default endRecurrenceDate is forever unless specified.
+     *
+     * @param title Title of Event
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
+     * @param isToRemind Whether the Event requires reminders.
+     * @param endRecurrenceDate When the Event should stop re-occurring.
+     * @param recurrenceType String representation of what type of recurrence this event is.
+     * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags linked to the event
+     */
+    public RecurringEvent(String title, LocalDateTime startDateTime, LocalDateTime endDateTime, boolean isToRemind,
+                          LocalDate endRecurrenceDate, String recurrenceType,
+                          HashMap<String,ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
+        super(title, startDateTime, endDateTime, isToRemind, true, reminderSchedule, tags);
         if (endRecurrenceDate == null) {
             endRecurrenceDate = DEFAULT_END_RECURRENCE;
         }
@@ -35,9 +47,22 @@ public abstract class RecurringEvent extends Event {
         this.recurrenceType = recurrenceType;
     }
 
-    public RecurringEvent(String title, LocalDateTime dateTime, boolean isToRemind, String recurrenceType,
-                          HashMap<String, ArrayList<Integer>> reminderPeriods, ArrayList<Tag> tags) {
-        this(title, dateTime, isToRemind, DEFAULT_END_RECURRENCE, recurrenceType, reminderPeriods, tags);
+    /**
+     * An overloaded constructor which provides a default value for endRecurrenceDate.
+     *
+     * @param title Title of Event
+     * @param startDateTime Start DateTime of Event
+     * @param endDateTime End DateTime of Event
+     * @param isToRemind Whether the Event requires reminders.
+     * @param recurrenceType String representation of what type of recurrence this event is.
+     * @param reminderSchedule Reminder Schedule of when reminder should be provided for this event.
+     * @param tags Tags linked to the event
+     */
+    public RecurringEvent(String title, LocalDateTime startDateTime, LocalDateTime endDateTime,
+                          boolean isToRemind, String recurrenceType,
+                          HashMap<String, ArrayList<Integer>> reminderSchedule, ArrayList<Tag> tags) {
+        this(title, startDateTime, endDateTime, isToRemind,
+                DEFAULT_END_RECURRENCE, recurrenceType, reminderSchedule, tags);
     }
 
     public String getRecurrenceType() {
@@ -82,7 +107,10 @@ public abstract class RecurringEvent extends Event {
             }
             if (toReoccur(startDate)) {
                 LocalDateTime dateTime = LocalDateTime.of(startDate, getStartTime());
-                Event event = new Event(getTitle(), dateTime, getIsToRemind(), false, getReminderPeriods());
+                LocalDateTime endDateTime = dateTime.withHour(getEndTime().getHour());
+                endDateTime = endDateTime.withMinute(getEndTime().getMinute());
+                Event event = new Event(getTitle(), dateTime, endDateTime,
+                        getIsToRemind(), false, getReminderPeriods());
                 eventSet.add(event);
             }
             startDate = startDate.plusDays(1);

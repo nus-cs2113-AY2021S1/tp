@@ -4,8 +4,11 @@ import seedu.notus.data.timetable.Event;
 import seedu.notus.ui.Formatter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static seedu.notus.util.CommandMessage.ADD_EVENT_SUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.ADD_EVENT_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
 
 //@@author brandonywl
@@ -16,6 +19,8 @@ import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "add-e";
+    public static final int DEFAULT_EVENT_LENGTH = 1;
+    public static final LocalTime DEFAULT_EVENT_END_TIMING = LocalTime.of(23,59);
 
     private Event event;
 
@@ -28,8 +33,21 @@ public class AddEventCommand extends Command {
         this.event = event;
     }
 
+    // Only scenario for the command to fail is when endDateTime < startDateTime
     @Override
     public String execute() {
+        String warnings = "";
+        // End datetime can be the same as start datetime -> 1 minute event
+        if (event.getEndDateTime().compareTo(event.getStartDateTime()) < 0) {
+            return Formatter.formatString(ADD_EVENT_UNSUCCESSFUL_MESSAGE);
+        }
+
+        if (!event.hasSameStartEndDateDate()) {
+            // Throw a warning that end date time will be adjusted to startDateTime's date @ 2359
+            LocalDateTime endDateTime = event.getStartDateTime().with(DEFAULT_EVENT_END_TIMING);
+            event.setEndDateTime(endDateTime);
+        }
+
         timetable.addEvent(event);
 
         try {
