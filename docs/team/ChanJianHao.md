@@ -3,9 +3,13 @@
 
 ## Overview
 
-
+AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficacy and translation accuracy. AniChan is built for fast-typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC.
 
 ### Summary of Contributions
 
-Code contributed: [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ChanJianHao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+
+
+
+
+Code contributed: [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao)
 
