@@ -401,7 +401,6 @@ Filters specific bunny ideas from the list by searching the idea or the genre fo
 Format: `filter bunny i\[IDEA] g\[GENRE]`  
 
 Note:
-* If you accidentally type duplicate parameter eg `filter i\some i\idea` it would use the last instance of that parameter.
 * If you indicate the tag but leave the parameter blank (eg `filter bunny i\`) then it will not restrict the output of filter by that tag (ie in this case all ideas are selected by the filter).
 * You must include either `i\` or `g\` tags in the command but it can be left blank.
 
