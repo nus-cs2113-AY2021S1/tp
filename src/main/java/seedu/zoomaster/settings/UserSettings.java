@@ -6,9 +6,13 @@ import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Day;
 
 public class UserSettings {
+    public static final String MODE_MAINMENU = "mainmenu";
+    public static final String MODE_TIMETABLE = "timetable";
+    public static final String MODE_BOOKMARK = "bookmark";
+
     public static final String DEFAULT_MODE_FIELD = "mode";
     private static final String DEFAULT_MODE_DESC = "Default mode at start up";
-    private static final String[] DEFAULT_MODE_OPTIONS = {"timetable", "bookmark"};
+    private static final String[] DEFAULT_MODE_OPTIONS = {MODE_MAINMENU, MODE_TIMETABLE, MODE_BOOKMARK};
 
     public static final String FIRST_DAY_FIELD = "startday";
     private static final String FIRST_DAY_DESC = "First day of the week";

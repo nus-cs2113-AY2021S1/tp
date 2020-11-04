@@ -113,6 +113,9 @@ public class Zoomaster {
         try {
             String defaultMode;
             defaultMode = (String) userSettings.getSettingsVariable(UserSettings.DEFAULT_MODE_FIELD).getChosenOption();
+            if (defaultMode.equals(UserSettings.MODE_MAINMENU)) {
+                return;
+            }
             new ChangeModeCommand(ChangeModeCommand.MODE_KW + " " + defaultMode).execute(bookmarks, timetable, ui);
         } catch (ZoomasterException e) {
             e.printStackTrace();
