@@ -83,9 +83,11 @@ public class Ui {
         } else if (Parser.getProgramMode() == 1) {
             System.out.print(ansi().fg(CYAN).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
-            System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
+            System.out.print("\u001b[31;1m[Timetable mode] Input: ");
+            System.out.print(ansi().reset());
         } else if (Parser.getProgramMode() == 3) {
-            System.out.print(ansi().fg(MAGENTA).a("[Planner mode] Input: ").reset());
+            System.out.print("\u001b[35;1m[Planner mode] Input: ");
+            System.out.print(ansi().reset());
         } else {
             System.out.print("[An error has occurred] ");
         }
