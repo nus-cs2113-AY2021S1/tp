@@ -48,6 +48,10 @@ public class TopicList implements DisplayableList {
         throw new Eduke8Exception(ERROR_TOPIC_DOES_NOT_EXIST);
     }
 
+    public Topic get(int i) {
+        return (Topic) topics.get(i);
+    }
+
     public int getCount() {
         return topics.size();
     }

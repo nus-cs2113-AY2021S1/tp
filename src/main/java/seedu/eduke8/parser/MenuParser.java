@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_WRONG_NOTE_FORMAT;
 
 /**
  * Parses user input from the main menu, in order to execute the correct option.
@@ -97,12 +98,16 @@ public class MenuParser implements Parser {
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
         case COMMAND_NOTE:
-            if (commandArr[1].equalsIgnoreCase("add") || commandArr[1]
-                    .equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
-                LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
-                return new NoteCommand(commandArr[1], (TopicList) topicList);
-            } else {
-                break;
+            try {
+                if (commandArr[1].equalsIgnoreCase("add") || commandArr[1]
+                        .equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
+                    LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
+                    return new NoteCommand(commandArr[1], (TopicList) topicList);
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                return new IncorrectCommand(ERROR_WRONG_NOTE_FORMAT);
             }
         case COMMAND_EXIT:
             LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");

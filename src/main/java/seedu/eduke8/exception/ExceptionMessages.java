@@ -19,4 +19,5 @@ public class ExceptionMessages {
     public static final String ERROR_QUESTION_DOES_NOT_EXIST = "No such question exists, did you spell it correctly?";
     public static final String ERROR_OPTION_DOES_NOT_EXIST = "No such option exists, did you spell it correctly?";
     public static final String ERROR_NO_RIGHT_ANSWER = "Error with question: No right answer specified";
+    public static final String ERROR_WRONG_NOTE_FORMAT = "Incorrect command! Try: \nnote add \nnote list \nnote delete";
 }
