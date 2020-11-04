@@ -46,14 +46,6 @@ public class DateTimeParser {
     public static LocalTime timeParser(String time) throws TimeErrorException {
         assert time != null : "time cannot be null";
         time = time.toUpperCase();
-        if (time.contains("PM") || time.contains("AM")) {
-            if (!time.contains(" ")) {
-                time = time.substring(0, time.length() - 2) + " " + time.substring(time.length() - 2);
-            }
-            if (!time.contains(":")) {
-                time = time.substring(0, time.length() - 3) + ":00 " + time.substring(time.length() - 2);
-            }
-        }
         int i = 0;
         while (i < timeFormatStrings.length) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timeFormatStrings[i]);

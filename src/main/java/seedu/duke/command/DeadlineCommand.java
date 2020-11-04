@@ -94,6 +94,7 @@ public class DeadlineCommand extends Command {
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
                 assert date != null : "date is not detected after parsing";
                 String timeString = commandSplit[2].trim();
+                timeString = timeString.replace(":", "");
                 time = DateTimeParser.timeParser(timeString);
                 assert time != null : "time is not detected after parsing";
             } catch (DateErrorException e) {
