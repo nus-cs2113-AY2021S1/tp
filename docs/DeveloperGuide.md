@@ -562,8 +562,13 @@ The intended user of Quotesify is someone that meets the following criterias:
 * comfortable with using Command Line Interface (CLI) applications
 
 #### Value proposition
-Quotesify will help you to improve your reading experience with quick and easy features such as book management,
-quote management, progress tracker, category management and a rating system for your books.
+* Helps user track books that they have read with their relevant review/rating
+* Allows user to capture and log quotes with their reflection
+* Timely quote reminders to resurface previously saved quotes
+* Personalised categories created to only suit what the user needs
+* Find books, quotes and categories with a single command
+* Works offline and data is only stored locally
+* Portable
 
 ---
 
