@@ -1,11 +1,11 @@
 # Ong De Zhi - Project Portfolio Page
 
 ## Overview
-**AniChan** is an all-rounded tool for Anime translators and professionals. It features a suite of functionality that can help reduce administration workload, as well as improve translation efficiency and accuracy.
+AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve thier workflow effiency and translation accuracy. AniChan is built for fast typers, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC.
+
+Given below are my contributions to the project.
 
 ### Summary of Contributions
-This section provides a summary of my contribution to the **AniChan** which includes the features implemented, documentations written, and other helpful contributions.
-
 *   **New Feature:** Added the ability to estimate the time needed to translate a script.
     *   What it does: Allows the user to estimate the time needed to translate one script at a time.
     *   Justification: This feature allows users to find out the time needed to translate a script. This will help users to better manage and plan their time.
