@@ -1,7 +1,6 @@
 package seedu.dietbook.checker;
 
 import seedu.dietbook.exception.DietException;
-import seedu.dietbook.parser.Parser;
 
 import java.time.LocalDateTime;
 

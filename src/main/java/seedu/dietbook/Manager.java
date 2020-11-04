@@ -35,7 +35,7 @@ public class Manager {
     private Person person;
     private FoodList foodList;
     private String name;
-    private int commandCount = 1;
+    private int commandCount = 1; // This is currently unused
     private DataBase dataBase;
     private Calculator calculator;
 
