@@ -1,7 +1,7 @@
 # Ong De Zhi - Project Portfolio Page
 
 ## Project: AniChan
-AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve thier workflow effiency and translation accuracy. AniChan is built for fast typers, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC.
+AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficiency and translation accuracy. AniChan is built for fast-typers, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC. 
 
 Given below are my contributions to the project.
 

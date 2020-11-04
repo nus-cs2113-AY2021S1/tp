@@ -80,9 +80,9 @@ Lastly, text that are blue like this [example](#12-using-this-guide), are clicka
 2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **command prompt** or **terminal** and change directory into the folder. Run `java -jar AniChan.jar`.
-5.  You will be greeted by a prompt for your name and gender as shown below.
+5.  You will be first greeted by the **command prompt** for your name and gender as shown below.
 6.  Upon completing these 2 prompts, you can begin using **AniChan**!
-7.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
+7.  Type a command into the **command prompt** and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
 
 ![First Time Setup](images/User-Guide-Setting-Up.png)
 
@@ -168,7 +168,7 @@ Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
 <br/>
 
 Here are some commonly used `browse` commands to get you started. Feel free to experiment with different combinations!
-*   `browse -s name -o dsc` browse alphabetically from A - Z
+*   `browse -s name` browse alphabetically from A - Z
 *   `browse -s rating -o dsc` browse starting from the most highly rated anime
 
 <br/>
