@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.util.logging.*;
+
 import static seedu.notus.ui.Formatter.LS;
 import static seedu.notus.util.PrefixSyntax.*;
 
@@ -33,6 +35,9 @@ import static seedu.notus.util.PrefixSyntax.*;
  * Represents a StorageManager. Manages the saving and loading of task list data.
  */
 public class StorageManager {
+    /** logging */
+    private static final Logger LOGGER = Logger.getLogger("StorageManager");
+
     /** Default folders directory. */
     public static final String FOLDER_DIR = "data";
     public static final String NOTES_DIR = "/notes";
@@ -56,6 +61,9 @@ public class StorageManager {
         this.parserManager = parserManager;
         this.notebook = notebook;
         this.tagManager = tagManager;
+
+        setupLogger();
+        LOGGER.log(Level.INFO, "New storageManager object created.");
     }
 
     /* Set up of Storage manager */
@@ -88,6 +96,7 @@ public class StorageManager {
             try {
                 createFile(file);
             } catch (IOException exception) {
+                LOGGER.log(Level.INFO, "Unable to create a file");
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_CREATION_ERROR);
             }
         }
@@ -100,6 +109,7 @@ public class StorageManager {
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
+            LOGGER.log(Level.INFO, "Created directory: " + directory);
         }
     }
 
@@ -112,6 +122,7 @@ public class StorageManager {
         File file = new File(path);
         if (!file.exists()) {
             file.createNewFile();
+            LOGGER.log(Level.INFO, "Created file: " + file);
         }
     }
 
@@ -137,6 +148,7 @@ public class StorageManager {
         } catch (FileNotFoundException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
+        LOGGER.log(Level.INFO, "Found file: " + path);
         while (s.hasNext()) {
             String taskDetails = AddNoteCommand.COMMAND_WORD + " " +  s.nextLine()
                                 + " " + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + isArchive
@@ -163,6 +175,7 @@ public class StorageManager {
         } catch (FileNotFoundException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
+        LOGGER.log(Level.INFO, "Found file: " + path);
         while (s.hasNext()) {
             String eventDetails = AddEventCommand.COMMAND_WORD + " " +  s.nextLine();
             Command command = parserManager.parseCommand(eventDetails);
@@ -189,7 +202,7 @@ public class StorageManager {
         } catch (FileNotFoundException exception) {
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
-
+        LOGGER.log(Level.INFO, "Found file: " + path);
         while (s.hasNext()) {
             content.add(s.nextLine());
         }
@@ -284,10 +297,12 @@ public class StorageManager {
         File file = new File(path);
 
         if (file.exists()) {
+            LOGGER.log(Level.INFO, "Found file: " + path);
             if (!file.delete()) {
                 throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_DELETION_ERROR);
             }
         } else {
+            LOGGER.log(Level.INFO, "Unable to find file: " + path);
             throw new SystemException(SystemException.ExceptionType.EXCEPTION_FILE_NOT_FOUND_ERROR);
         }
     }
@@ -385,5 +400,20 @@ public class StorageManager {
         saveTimetable ();
         saveAllNoteDetails (false);
         saveAllNoteDetails (true);
+    }
+
+    private void setupLogger() {
+        LogManager.getLogManager().reset();
+        LOGGER.setLevel(Level.INFO);
+
+        try {
+            FileHandler fileHandler = new FileHandler("storage.log");
+            fileHandler.setFormatter(new SimpleFormatter());
+            fileHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(fileHandler);
+        } catch (IOException exception) {
+            LOGGER.log(Level.SEVERE, "File logger not working.", exception);
+        }
+
     }
 }
