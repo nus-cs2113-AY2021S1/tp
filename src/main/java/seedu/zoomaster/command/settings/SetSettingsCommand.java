@@ -42,6 +42,6 @@ public class SetSettingsCommand extends Command {
         settingsVariable.setChosenOption(newValue);
 
         new ShowSettingsCommand().execute(bookmarks, timetable, ui);
-        ui.print("Settings updated!");
+        ui.print("Settings updated!\n");
     }
 }

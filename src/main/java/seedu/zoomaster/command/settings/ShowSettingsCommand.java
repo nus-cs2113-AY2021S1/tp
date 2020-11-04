@@ -22,7 +22,7 @@ public class ShowSettingsCommand extends Command {
         SettingsVariable[] settingsVariables = Zoomaster.userSettings.getVariables();
         for (int i = 0; i < settingsVariables.length; i++) {
             String lineHeader = String.format(
-                    "[%d] %s: ", i, settingsVariables[i].getDescription());
+                    "[%d] %s: ", i+1, settingsVariables[i].getDescription());
             message.append(lineHeader);
 
             message.append(settingsVariables[i].getOptionsList());
