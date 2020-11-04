@@ -10,10 +10,11 @@ import seedu.notus.data.tag.Tag;
 
 import java.util.ArrayList;
 
-import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TAG;
 import static seedu.notus.util.PrefixSyntax.PREFIX_TITLE;
 import static seedu.notus.util.PrefixSyntax.PREFIX_PIN;
+import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
+import static seedu.notus.util.PrefixSyntax.PREFIX_LOAD;
 
 /**
  * Represents a parser object specifically to parse message for AddNoteCommand.
@@ -37,6 +38,7 @@ public class ParseAddNoteCommand extends Parser {
         ArrayList<String> content = new ArrayList<>();
         boolean isPinned = false;
         boolean isArchived = false;
+        boolean isStored = false;
         ArrayList<Tag> tags = new ArrayList<>();
 
         try {
@@ -60,6 +62,9 @@ public class ParseAddNoteCommand extends Parser {
                     isArchived = Boolean.parseBoolean(checkBlank(infoDetails[1],
                             ExceptionType.EXCEPTION_MISSING_ARCHIVE));
                     break;
+                case PREFIX_LOAD:
+                    isStored = true;
+                    break;
                 default:
                     throw new SystemException(ExceptionType.EXCEPTION_INVALID_PREFIX);
                 }
@@ -70,7 +75,7 @@ public class ParseAddNoteCommand extends Parser {
             note = tags.isEmpty() ? new Note(title, content, isPinned, isArchived) :
                     new Note(title, content, isPinned, isArchived, tags);
 
-            return new AddNoteCommand(note);
+            return new AddNoteCommand(note, isStored);
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
         }

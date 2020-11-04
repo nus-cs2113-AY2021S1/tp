@@ -57,8 +57,8 @@ public class ParseListEventCommand extends Parser {
                     year = Integer.parseInt(timings[0]);
                     month = Integer.parseInt(timings[1]);
                 }
-                if (year <= ListEventCommand.SMALLEST_YEAR || year >= ListEventCommand.LARGEST_YEAR
-                        || month <= ListEventCommand.SMALLEST_MONTH || month >= ListEventCommand.LARGEST_MONTH) {
+                if (year < ListEventCommand.SMALLEST_YEAR || year > ListEventCommand.LARGEST_YEAR
+                        || month < ListEventCommand.SMALLEST_MONTH || month > ListEventCommand.LARGEST_MONTH) {
                     throw new SystemException(ExceptionType.EXCEPTION_SEARCH_DATE_OUT_OF_RANGE);
                 }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException exception) {

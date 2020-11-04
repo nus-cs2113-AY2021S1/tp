@@ -52,4 +52,9 @@ public class MonthlyEvent extends RecurringEvent {
     public LocalDate timeStep(LocalDate date) {
         return date.plusMonths(TIME_STEP);
     }
+
+    @Override
+    public LocalDate timeStep(LocalDate date, int steps) {
+        return date.plusMonths(steps * TIME_STEP);
+    }
 }

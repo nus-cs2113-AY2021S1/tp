@@ -12,6 +12,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static seedu.notus.storage.StorageManager.LOGS_DIR;
 import static seedu.notus.util.CommandMessage.FIND_NOTE_SUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.FIND_NOTE_UNSUCCESSFUL_MESSAGE;
 
@@ -68,7 +69,7 @@ public class FindCommand extends Command {
         LOGGER.addHandler(consoleHandler);
 
         try {
-            FileHandler fileHandler = new FileHandler("FindCommand.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "/FindCommand.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);
