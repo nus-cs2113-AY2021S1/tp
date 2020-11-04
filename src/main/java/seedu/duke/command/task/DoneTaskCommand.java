@@ -27,16 +27,24 @@ public class DoneTaskCommand extends Command {
         }
 
         Project proj = projectListManager.getSelectedProject();
+        if (parameters.size() == 0) {
+            Ui.showError("Missing parameters.");
+            return;
+        }
         for (int i = 0; i < parameters.size(); i++) {
             Task task;
             try {
                 int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
-                if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
+                //if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
+                if (backlogId <= proj.getProjectBacklog().getNextId()) {
                     task = proj.getProjectBacklog().getTask(backlogId);
                     task.setAsDone();
-                    Ui.showToUserLn(task.getTitle() + " has been marked as done.");
+                    Ui.showToUserLn("The task ID: " + task.getId()
+                            + " and title: " + task.getTitle() + " has been marked as done.");
                 } else {
-                    Ui.showError(Messages.MESSAGE_INVALID_ID);
+                    Ui.showError("The following task ID: " + backlogId
+                            + " doesn't exist in backlog.\nPlease enter a"
+                            + " valid ID.");
                 }
             } catch (NumberFormatException e) {
                 Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);

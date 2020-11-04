@@ -46,7 +46,9 @@ public class DeleteTaskCommand extends Command {
                         }
                     }
                 } else {
-                    Ui.showError(Messages.MESSAGE_INVALID_ID);
+                    Ui.showError("The following task ID: " + taskId
+                            + " doesn't exist in backlog.\nPlease enter a"
+                            + " valid ID.");
                 }
             } catch (NumberFormatException e) {
                 Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);

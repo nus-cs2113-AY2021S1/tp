@@ -20,6 +20,7 @@ import static seedu.duke.command.CommandSummary.REMOVETASK;
 import static seedu.duke.command.CommandSummary.VIEW;
 import static seedu.duke.command.CommandSummary.ALLOCATE;
 import static seedu.duke.command.CommandSummary.DEALLOCATE;
+import static seedu.duke.parser.DateTimeParser.catchDateFormat;
 
 public class SprintParser implements ExceptionsParser {
 
@@ -186,9 +187,12 @@ public class SprintParser implements ExceptionsParser {
     private void checkStartParam(Hashtable<String, String> parameters) throws DukeException {
         if (parameters.containsKey("start")) {
             try {
-                DateTimeParser.parseDate(parameters.get("start"));
+                String date = parameters.get("start");
+                String correctDate = catchDateFormat(date);
+                DateTimeParser.parseDate(correctDate);
             } catch (DukeException e) {
-                throw new DukeException("Please indicate your start date in this following format: YYYYMMDD");
+                throw new DukeException("Please indicate your start date in this following format: YYYYMMDD.\n "
+                        + "Please check if you have entered an invalid date e.g. 20201131.");
             }
         }
     }

@@ -9,6 +9,8 @@ import seedu.duke.ui.Ui;
 import java.time.LocalDate;
 import java.util.Hashtable;
 
+import static seedu.duke.parser.DateTimeParser.catchDateFormat;
+
 public class CreateSprintCommand extends SprintCommand {
     /**
      * Parameters for the command.
@@ -59,7 +61,13 @@ public class CreateSprintCommand extends SprintCommand {
         }
         if (checkIsFirstSprint()) {
             if (this.parameters.containsKey("start")) {
-                this.sprintStart = DateTimeParser.parseDate(this.parameters.get("start"));
+                String date = this.parameters.get("start");
+                try {
+                    String correctDate = catchDateFormat(date);
+                    this.sprintStart = DateTimeParser.parseDate(correctDate);
+                } catch (DukeException e) {
+                    Ui.showError(e.getMessage());
+                }
             }
         } else {
             Sprint prevSprint = sprintList.getSprint(sprintList.size());

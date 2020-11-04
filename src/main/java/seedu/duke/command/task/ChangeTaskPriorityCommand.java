@@ -33,7 +33,7 @@ public class ChangeTaskPriorityCommand extends Command {
         String priority;
 
         id = Integer.parseInt(parameters.get(TASK_ID));
-        priority = parameters.get(PRIORITY).trim();
+        priority = parameters.get(PRIORITY).trim().toUpperCase();
 
         Project proj = projectListManager.getSelectedProject();
         try {
