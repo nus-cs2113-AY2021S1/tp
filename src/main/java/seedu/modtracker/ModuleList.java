@@ -12,13 +12,15 @@ public class ModuleList {
 
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
-    private static final String MODULECODE_LENGTH = Ui.MODULECODE_LENGTH;
+    private static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
     private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
-                + "expected workload.";
+                + "expected workload with a maximum of 1 decimal place.";
     private static final String NEGATIVE_TIME_ERROR = "Please input a positive number for time.";
     private static final String INVALID_TIME_ERROR = "Please input a number between 0 and 99 for time.";
     private static final String ERROR_ADDMOD = "Please type addmod <module code>";
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
+    private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
+            + "with a maximum of 1 decimal place.";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
     private static final String NO_WORKLOAD_ERROR = "Cannot minus actual time as there is no actual time inputted.";
@@ -35,7 +37,7 @@ public class ModuleList {
     private static final int MAX_TIME_HOURS = 99;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
-    public static double NO_INPUT = -1;
+    public static double NO_INPUT = -1.0;
 
 
     /**
@@ -72,42 +74,54 @@ public class ModuleList {
         Pattern secondPattern;
         Matcher secondMatcher;
         boolean matchFound;
-        String trimmedMod = module.trim();
-        if (trimmedMod.contains(" ")) {
-            ui.printInvalidModuleSpacing(toPrint);
-        } else if (trimmedMod.length() < MIN_MOD_LENGTH || trimmedMod.length() > MAX_MOD_LENGTH) {
-            ui.printInvalidModuleLength(toPrint);
-        } else if (trimmedMod.length() == MIN_MOD_LENGTH) {
+        if (module.length() == MIN_MOD_LENGTH) {
             pattern = Pattern.compile(regexType1);
-            matcher = pattern.matcher(trimmedMod);
+            matcher = pattern.matcher(module);
             matchFound = matcher.find();
             if (matchFound) {
                 return true;
-            } else {
-                ui.printInvalidModuleType(toPrint);
             }
-        } else if (trimmedMod.length() == (MIN_MOD_LENGTH + 1)) {
+        } else if (module.length() == (MIN_MOD_LENGTH + 1)) {
             pattern = Pattern.compile(regexType2);
-            matcher = pattern.matcher(trimmedMod);
+            matcher = pattern.matcher(module);
             secondPattern = Pattern.compile(regexType3);
-            secondMatcher = secondPattern.matcher(trimmedMod);
+            secondMatcher = secondPattern.matcher(module);
             matchFound = (matcher.find() || secondMatcher.find());
             if (matchFound) {
                 return true;
-            } else {
-                ui.printInvalidModuleType(toPrint);
             }
         } else {
             pattern = Pattern.compile(regexType4);
-            matcher = pattern.matcher(trimmedMod);
+            matcher = pattern.matcher(module);
             matchFound = matcher.find();
             if (matchFound) {
                 return true;
-            } else {
-                ui.printInvalidModuleType(toPrint);
             }
         }
+        ui.printInvalidModuleType(toPrint);
         return false;
+    }
+
+    /**
+     * Checks if the expected workload has less than or equal to 1 decimal place.
+     *
+     * @param exp   expected workload typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @return true if expected workload is valid, false otherwise.
+     */
+    public boolean checkIfExpStringValid(String exp, boolean toPrint) {
+        if (!exp.contains(".")) {
+            return true;
+        }
+        String[] arrayOfExp = exp.split("\\.", 2);
+        if (arrayOfExp[1].length() > 1) {
+            if (toPrint) {
+                System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
+            }
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -163,6 +177,7 @@ public class ModuleList {
         try {
             String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
+            modCode = modCode.trim();
             modCode = modCode.toUpperCase();
 
             if (!checkIfModuleValid(modCode, toPrint)) {
@@ -177,8 +192,8 @@ public class ModuleList {
             } else {
                 Module currentModule = new Module(modCode);
                 modList.add(currentModule);
+                ui.printAdd(currentModule, toPrint);
                 if (toPrint) {
-                    ui.printAdd(currentModule);
                     storage.appendToFile(input);
                 }
             }
@@ -190,11 +205,11 @@ public class ModuleList {
     }
 
     /**
-     * Creates a module and adds the module with expected time to the
+     * Creates a module and adds the module with expected workload to the
      * list of modules if module does not exist.
-     * If module already exist, update expected time based on user input.
+     * If module already exist, update expected workload based on user input.
      *
-     * @param input   module code and expected time typed in by user.
+     * @param input   module code and expected workload typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -207,6 +222,9 @@ public class ModuleList {
             if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
             }
+            if (!checkIfExpStringValid(expTime, toPrint)) {
+                return;
+            }
             double expectedTime = Double.parseDouble(expTime);
             expectedTime = Math.round(expectedTime * 10) / 10.0;
             if (!checkIfExpTimeValid(expectedTime, toPrint)) {
@@ -216,12 +234,22 @@ public class ModuleList {
             Module currentMod = new Module(modCode, expTime);
             if (!checkIfModuleExist(modCode)) {
                 modList.add(currentMod);
+                ui.printAdd(currentMod, toPrint);
             } else {
                 int index = modList.indexOf(currentMod);
-                modList.get(index).setExpectedWorkload(expectedTime);
+                double initialExp = modList.get(index).getExpectedWorkload();
+                if (initialExp == expectedTime) {
+                    ui.printExpAlreadyUpdated(expectedTime, toPrint);
+                    return;
+                } else if (initialExp == NO_INPUT) {
+                    modList.get(index).setExpectedWorkload(expectedTime);
+                    ui.printAdd(currentMod, toPrint);
+                } else {
+                    modList.get(index).setExpectedWorkload(expectedTime);
+                    ui.printExpUpdated(modCode, expectedTime, toPrint);
+                }
             }
             if (toPrint) {
-                ui.printAdd(currentMod);
                 storage.appendToFile(input);
             }
         } catch (IndexOutOfBoundsException e) {
@@ -230,14 +258,13 @@ public class ModuleList {
             }
         } catch (NumberFormatException nfe) {
             if (toPrint) {
-                System.out.println(ERROR_ADDEXP);
-                System.out.println(INVALID_EXP_HOURS + System.lineSeparator());
+                System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
             }
         }
     }
 
     /**
-     * Deletes the module if module exists.
+     * Deletes the module from list of modules.
      *
      * @param input   module code typed in by user.
      * @param toPrint whether the UI should print the output.
@@ -247,6 +274,7 @@ public class ModuleList {
         try {
             String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
+            modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
@@ -281,9 +309,9 @@ public class ModuleList {
     }
 
     /**
-     * Deletes the expected time of the module if module exists.
+     * Deletes the expected workload of the module.
      *
-     * @param input   module code and expected time typed in by user.
+     * @param input   module code typed in by user.
      * @param toPrint whether the UI should print the output.
      * @param storage storage object where data is stored.
      */
@@ -291,6 +319,7 @@ public class ModuleList {
         try {
             String[] modInfo = input.trim().split(" ", 2);
             String modCode = modInfo[1];
+            modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
                 return;
@@ -298,6 +327,12 @@ public class ModuleList {
             if (checkIfModuleExist(modCode)) {
                 Module inputMod = new Module(modCode);
                 int index = modList.indexOf(inputMod);
+                if (modList.get(index).getExpectedWorkload() == NO_INPUT) {
+                    if (toPrint) {
+                        System.out.println("There is no input in the expected workload." + System.lineSeparator());
+                    }
+                    return;
+                }
                 modList.get(index).setExpectedWorkload(NO_INPUT);
                 if (toPrint) {
                     ui.printDeleteExp(modCode);
@@ -315,6 +350,13 @@ public class ModuleList {
         }
     }
 
+    /**
+     * Deletes the actual time of the module of the particular week.
+     *
+     * @param input   module code and week number typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @param storage storage object where data is stored.
+     */
     public void deleteTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 3);
         String modCode;
@@ -334,6 +376,12 @@ public class ModuleList {
             int week = Integer.parseInt(commandInfo[2]);
             if (week < 1 || week > 13) {
                 System.out.println("The week number should be between 1 and 13." + System.lineSeparator());
+                return;
+            }
+            if (modList.get(index).getActualTimeInSpecificWeek(commandInfo[2]) == -1.0) {
+                if (toPrint) {
+                    System.out.println("There is no input in the actual time." + System.lineSeparator());
+                }
                 return;
             }
             modList.get(index).deleteActualTime(week);

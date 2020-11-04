@@ -28,9 +28,11 @@ public class TaskListTest {
         System.setOut(new PrintStream(outContent));
 
         taskList.addTask("addtask cs21 study", true, null);
-        String expected = "Please check module code again. The module code should have "
-                + "6 - 8 characters without any spacing." + System.lineSeparator();
-        assertEquals(expected + System.lineSeparator(), outContent.toString());
+        String expectedStart = "The module code should have 2 - 3 characters, followed by "
+                + "4 digits, followed by an optional character without any spacing." + System.lineSeparator();
+        String expectedEnd = "The accepted module code is of the following forms: CG1111, "
+                + "CS2113T, GER1000, GES1000T." + System.lineSeparator();
+        assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
     }
 
     @Test
