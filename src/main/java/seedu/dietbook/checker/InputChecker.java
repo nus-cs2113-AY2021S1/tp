@@ -4,13 +4,13 @@ import seedu.dietbook.exception.DietException;
 
 import java.time.LocalDateTime;
 
+//@@author tikimonarch
 /**
  * InputChecker class of the program.
  * This class checks the validity of the user input and throws an exception if input is not as intended/expected.
  *
  * @author tikimonarch
  */
-
 public class InputChecker {
     /**
      * The value limits are based on current limits observed in th world.
@@ -19,12 +19,12 @@ public class InputChecker {
     public static final int FOOD_CAP = 100000;
     public static final int HEIGHT_CAP = 300;
     public static final int WEIGHT_CAP = 500;
-    public static final String[] PARAM_ACTIVITY = {"1","2","3","4","5"};
+    public static final String[] PARAM_FITNESS = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
     public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/"};
     public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
     public static final String[] PARAM_GENDER = {"M","F","O"};
-    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/","c/"};
+    public static final String[] PARAM_INFO = {"g/","a/","h/","f/","o/","t/","c/"};
 
     /**
      * Takes in user input and command to check for any expected parameters after the command.
@@ -204,20 +204,20 @@ public class InputChecker {
     }
 
     /**
-     * Takes in user input to check if the activity level is of the expected input.
+     * Takes in user input to check if the fitness level is of the expected input.
      *
      * @param userInput user input.
-     * @throws DietException when it is not one of the expected activity level.
+     * @throws DietException when it is not one of the expected fitness level.
      */
-    public static void checkActivity(String userInput) throws DietException {
+    public static void checkFitness(String userInput) throws DietException {
         boolean checkContain = false;
-        for (String param: PARAM_ACTIVITY) {
+        for (String param: PARAM_FITNESS) {
             if (userInput.equals(param)) {
                 checkContain = true;
             }
         }
         if (!checkContain) {
-            throw new DietException("No such activity level!");
+            throw new DietException("No such fitness level!");
         }
     }
 

@@ -2,28 +2,28 @@ package seedu.dietbook.parser;
 
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
-import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.Manager;
 import seedu.dietbook.checker.InputChecker;
 
 import java.time.LocalDateTime;
 
+//@@author tikimonarch
 /**
  * Parser class of the program.
  * The parser class takes in user input and process it into command data that manager can use.
  *
  * @author tikimonarch
  */
-
 public class Parser {
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
     public static final String COMMAND_EDIT_INFO = "editinfo";
     public static final String COMMAND_INFO = "info";
     public static final String COMMAND_NAME = "name";
-    public static final String[] PARAM_INFO = {"g/","a/","h/","l/","o/","t/","c/"};
-    public static final String[] PARAM_EDIT_INFO = {"n/","g/","a/","h/","l/","o/","t/","c/"};
+    public static final String[] PARAM_INFO = {"g/","a/","h/","f/","o/","t/","c/"};
+    public static final String[] PARAM_EDIT_INFO = {"n/","g/","a/","h/","f/","o/","t/","c/"};
 
     /**
      * Returns the command of a user input.
@@ -111,7 +111,7 @@ public class Parser {
                 trimmedParam = processedParam[1].trim();
 
                 if (processedParam[1].contains("/")) {
-                    trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 2).trim();
+                    trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 1).trim();
                 } else if (trimmedParam.split("\\s+").length == 2) {
                     trimmedParam = trimmedParam.split("\\s+")[0];
                 }
@@ -166,7 +166,7 @@ public class Parser {
      */
     public static void executeProcessedInfo(String userInput, Manager manager) throws DietException {
         Gender gender = Gender.MALE;
-        ActivityLevel actLvl = ActivityLevel.NONE;
+        FitnessLevel fitLvl = FitnessLevel.NONE;
         int age = 0;
         int height = 0;
         int orgWeight = 0;
@@ -180,7 +180,7 @@ public class Parser {
             InputChecker.checkEmptyOption(processedParam);
             trimmedParam = processedParam[1].trim();
             if (processedParam[1].contains("/")) {
-                trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 2).trim();
+                trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 1).trim();
             }
             switch (param) {
             case "g/":
@@ -213,23 +213,23 @@ public class Parser {
                 InputChecker.checkWeightLimit(tarWeight);
                 break;
             default:
-                String processActLvl = trimmedParam;
-                InputChecker.checkActivity(processActLvl);
-                if (processActLvl.equals("1")) {
-                    actLvl = ActivityLevel.NONE;
-                } else if (processActLvl.equals("2")) {
-                    actLvl = ActivityLevel.LOW;
-                } else if (processActLvl.equals("3")) {
-                    actLvl = ActivityLevel.MEDIUM;
-                } else if (processActLvl.equals("4")) {
-                    actLvl = ActivityLevel.HIGH;
+                String processFitLvl = trimmedParam;
+                InputChecker.checkFitness(processFitLvl);
+                if (processFitLvl.equals("1")) {
+                    fitLvl = FitnessLevel.NONE;
+                } else if (processFitLvl.equals("2")) {
+                    fitLvl = FitnessLevel.LOW;
+                } else if (processFitLvl.equals("3")) {
+                    fitLvl = FitnessLevel.MEDIUM;
+                } else if (processFitLvl.equals("4")) {
+                    fitLvl = FitnessLevel.HIGH;
                 } else {
-                    actLvl = ActivityLevel.EXTREME;
+                    fitLvl = FitnessLevel.EXTREME;
                 }
                 break;
             }
         }
-        manager.setPerson(manager.getName(), gender, age, height, orgWeight, currWeight, tarWeight, actLvl);
+        manager.setPerson(manager.getName(), gender, age, height, orgWeight, currWeight, tarWeight, fitLvl);
     }
 
     /**
@@ -242,7 +242,7 @@ public class Parser {
      */
     public static void executeEditInfo(String userInput, Manager manager) throws DietException {
         Gender gender;
-        ActivityLevel actLvl;
+        FitnessLevel fitLvl;
         String name;
         int age;
         int height;
@@ -258,7 +258,7 @@ public class Parser {
                 InputChecker.checkEmptyOption(processedParam);
                 trimmedParam = processedParam[1].trim();
                 if (processedParam[1].contains("/")) {
-                    trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 2).trim();
+                    trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 1).trim();
                 }
                 switch (param) {
                 case "g/":
@@ -303,20 +303,20 @@ public class Parser {
                     manager.getPerson().setTargetWeight(tarWeight);
                     break;
                 default:
-                    String processActLvl = trimmedParam;
-                    InputChecker.checkActivity(processActLvl);
-                    if (processActLvl.equals("1")) {
-                        actLvl = ActivityLevel.NONE;
-                    } else if (processActLvl.equals("2")) {
-                        actLvl = ActivityLevel.LOW;
-                    } else if (processActLvl.equals("3")) {
-                        actLvl = ActivityLevel.MEDIUM;
-                    } else if (processActLvl.equals("4")) {
-                        actLvl = ActivityLevel.HIGH;
+                    String processFitLvl = trimmedParam;
+                    InputChecker.checkFitness(processFitLvl);
+                    if (processFitLvl.equals("1")) {
+                        fitLvl = FitnessLevel.NONE;
+                    } else if (processFitLvl.equals("2")) {
+                        fitLvl = FitnessLevel.LOW;
+                    } else if (processFitLvl.equals("3")) {
+                        fitLvl = FitnessLevel.MEDIUM;
+                    } else if (processFitLvl.equals("4")) {
+                        fitLvl = FitnessLevel.HIGH;
                     } else {
-                        actLvl = ActivityLevel.EXTREME;
+                        fitLvl = FitnessLevel.EXTREME;
                     }
-                    manager.getPerson().setActivityLevel(actLvl);
+                    manager.getPerson().setFitnessLevel(fitLvl);
                     break;
                 }
             }

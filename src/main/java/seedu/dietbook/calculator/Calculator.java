@@ -224,7 +224,7 @@ public class Calculator {
         double requirement = 0;
         int recomendation;
         double activityScore = 0;
-        switch (person.getActivityLevel()) {
+        switch (person.getFitnessLevel()) {
         case NONE:
             activityScore = 1;
             break;

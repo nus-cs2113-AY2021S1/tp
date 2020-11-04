@@ -15,7 +15,7 @@ import seedu.dietbook.command.NameCommand;
 import seedu.dietbook.command.RecommendCommand;
 import seedu.dietbook.command.UserinfoCommand;
 import seedu.dietbook.list.FoodList;
-import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Person;
 import seedu.dietbook.calculator.Calculator;
 import seedu.dietbook.database.DataBase;
@@ -23,7 +23,7 @@ import seedu.dietbook.person.Gender;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.parser.Parser;
 
-
+//@@author tikimonarch
 /**
  * Manager class of the program.
  * The manager class takes in the checked and processed input and carry out the command specified.
@@ -31,7 +31,6 @@ import seedu.dietbook.parser.Parser;
  *
  * @author tikimonarch
  */
-
 public class Manager {
     private Person person;
     private FoodList foodList;
@@ -57,7 +56,7 @@ public class Manager {
     public Manager(FoodList foodlist, DataBase dataBase) {
         this.name = "John Doe";
         this.person = new Person(this.name, Gender.MALE, 1,1,1,1,
-                1, ActivityLevel.LOW);
+                1, FitnessLevel.LOW);
         this.foodList = foodlist;
         this.dataBase = dataBase;
         this.calculator = new Calculator(foodList.getFoods());
@@ -76,8 +75,8 @@ public class Manager {
     }
 
     public void setPerson(String name, Gender gender, int age,int height,int orgWeight, int currWeight,
-                          int targWeight, ActivityLevel actLvl) {
-        this.person.setAll(name, gender, age, height, orgWeight, currWeight, targWeight, actLvl);
+                          int targWeight, FitnessLevel fitLvl) {
+        this.person.setAll(name, gender, age, height, orgWeight, currWeight, targWeight, fitLvl);
     }
 
     public Calculator getCalculator() {

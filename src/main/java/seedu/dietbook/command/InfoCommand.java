@@ -5,6 +5,7 @@ import seedu.dietbook.Ui;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.parser.Parser;
 
+//@@author tikimonarch
 public class InfoCommand extends Command {
     String userInput;
 
