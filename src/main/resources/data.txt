@@ -26,22 +26,25 @@
 &%START
 Science canteen
 Halal Mini Wok
-Prawn Mee Soup(Dry)(Large)|490|0|0|0
-Prawn Mee Soup(Dry)(Small)|390|0|0|0
-Fried Hokkien Prawn Mee(Large)|470|0|0|0
-Fried Hokkien Prawn Mee(Small)|350|0|0|0
-Clay Pot Chicken|440|0|0|0
-Black Pepper Chicken|490|0|0|0
+Prawn Mee Soup(Dry)(Large)|490|30|20|26
+Prawn Mee Soup(Dry)(Small)|390|25|15|19
+Fried Hokkien Prawn Mee(Large)|470|40|20|20
+Fried Hokkien Prawn Mee(Small)|350|30|15|15
+Clay Pot Chicken|440|34|15|15
+Black Pepper Chicken|490|34|16|16
 &%UP
 Ayam Penyet
-Ayam Penyet Set|699|0|0|0
-Steamed Chicken Set |475|0|0|0
-Ikan Grouper Penyet Set|669|0|0|0
+Ayam Penyet Set|699|45|30|30
+Steamed Chicken Set |475|35|20|20
+Ikan Grouper Penyet Set|669|50|40|50
 &%UP
-Michelin Star Restaurant
-Bouillabaisse with cock crab and poached lobster|520|45|35|56
-Chicken wings with Reblochon pomme purée|450|25|32|66
-Sea bass with prawn tortellini, fennel purée and white wine sauce|530|76|25|43
+Korean
+kimchi fried rice|520|45|35|56
+ginseng chicken|450|25|32|66
+ramen|530|76|25|43
+&%UP
+Gong Cha
+
 &%UP
 &%UP
 &%STOP
