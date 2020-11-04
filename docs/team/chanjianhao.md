@@ -35,13 +35,19 @@ Given below are my contributions to the project.
     *   Justification: When Workspace is deleted in AniChan, the leftover folder and files in `data` should be deleted as well.
     *   Highlights: Implemented a safe recursive delete approach for `Workspace` deletion, where it searches recursively for leftover `Watchlist`/`Bookmark` data to delete first before deleting the folder. Exceptions and input validation built in for deletion to prevent file system related issues to crash the program or cause unexpected results.
 
-*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao)
+*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
     
 *   **Documentation:**
+    *   README.md:
+        * Designed **AniChan** logo.
+        * Created badges on various DevOps and statuses (for UG and DG too).
+        * Add short writeup to introduce **AniChan** and provide useful links to pages like user guide and developer guide.
     *   User Guide: 
-        *   a
+        *   Contributed to writeup on Quick Start.
+        *   Documented guide on `Workspace` management.
     *   Developer Guide:
-        *   a
+        *   Contributed to writeup on User architecture and diagram.
+        *   
     
 *   **Team-based Tasks**
     *   a
