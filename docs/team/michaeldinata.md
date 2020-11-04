@@ -34,7 +34,7 @@ This section shows a summary of my coding, documentation and other contributions
     *   Fixed bugs: [#223](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/223)
     *   Implemented Help feature: [#110](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/110)
     *   Wrote additional tests for existing features to improve coverage: [#265](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/265)
-    
+
 *   **Beyond Project Team Tasks**
     *   Review the User Guide and Developer Guide of other teams and gave feedbacks on them.
     *   Reported bugs and suggestions for other teams in PE-D.
