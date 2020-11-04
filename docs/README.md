@@ -5,7 +5,7 @@ books and the related quotes that you wish to remember. You can categorize your 
 customized categories, and even rate your books. Quotesify also comes with a progress tracker just to improve
 your reading experience.
 
-Quotesify is available for download on all major operating systems such as Windows and Mac.
+Quotesify is available for download on all major operating systems such as Windows, Linux and OS-X.
 
 Useful links:
 * [User Guide](UserGuide.md)
