@@ -20,6 +20,12 @@ public class UI {
      */
     public static String currentLineDivider = PLAIN_TEXT_DIVIDER;
 
+    /**
+     * Changes the line divider used.
+     * @param userInput user input command
+     * @throws DividerCommandWrongFormatException the command is wrongly formatted
+     * @throws DividerIndexOutOfBoundsException the index for the divider is invalid
+     */
     public static void changeLineDivider(String userInput)
             throws DividerCommandWrongFormatException, DividerIndexOutOfBoundsException {
         if (userInput.trim().toLowerCase().contains("divider")) {
@@ -31,8 +37,9 @@ public class UI {
         }
     }
 
+
     private static void changeDividerMessage() {
-        System.out.println("Changing line divider...");
+        System.out.println(FluffleMessages.CHANGING_LINE_DIVIDER_MSG);
     }
 
     public static int getDividerNumFromInput(String userInput) throws DividerIndexOutOfBoundsException {
@@ -334,6 +341,11 @@ public class UI {
         System.out.println(FluffleMessages.BUNNY_LIST_SAVED_MSG);
     }
 
+    /**
+     * Prints the list fo filtered bunny ideas.
+     * @param numBunny number of bunnies filtered
+     * @param filteredBunny list of filtered bunnies and their index.
+     */
     public static void printFilteredBunny(int numBunny, HashMap<Integer, Bunny> filteredBunny) {
         int i;
         int bunnyFiltered = 0;
@@ -376,6 +388,10 @@ public class UI {
         System.out.println(FluffleMessages.DIVIDER_INDEX_INDICATED_OUT_OF_BOUNDS_MSG);
     }
 
+    /**
+     * Print a the bunny that was randomly chosen.
+     * @param bunnySelected index of the random bunny chosen
+     */
     public static void bunnyRandomlySelected(int bunnySelected) {
         System.out.print(FluffleMessages.BUNNY_RANDOMLY_SELECTED_MSG);
         System.out.print(bunniesList.get(bunnySelected).getDescription());
@@ -385,6 +401,10 @@ public class UI {
         System.out.println(FluffleMessages.LIST_BUNNIES_EMPTY_MSG);
     }
 
+    /**
+     * Print a single bunny from the list.
+     * @param bunny Bunny description
+     */
     public static void printBunnyInList(String bunny) {
         System.out.println(bunny);
     }
