@@ -11,6 +11,7 @@ import java.util.logging.Logger;
  * Handles parsing for browse command.
  */
 public class BrowseParser extends CommandParser {
+    //Parameters and their fields
     private static final String SORT_PARAM = "s";
     private static final String ORDER_PARAM = "o";
     private static final String PAGE_PARAM = "p";
@@ -23,22 +24,33 @@ public class BrowseParser extends CommandParser {
     private static final String INVALID_OPTION = " is not a valid option";
     private static final String NOT_RECOGNISED = " is not recognised!";
     private static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
-    private static final Logger LOGGER = AniLogger.getAniLogger(BrowseParser.class.getName());
     private static final String NO_PARAMETER_SPECIFIED_ERROR = "Seems like you did not specify a parameter type";
     private static final String INVALID_INPUT_ERROR = "This input is not accepted, please try again!";
     private static final String NO_SPACE_BETWEEN_PARAM_ERROR = "Please leave a spacing between each parameter!";
     private static final String MULTIPLE_PAGE_PARAM_ERROR = "Please specify only one -p parameter!";
     private static final String MULTIPLE_ORDER_PARAM_ERROR = "Please specify only one -o parameter!";
-    private static final String MULIPLE_SORT_PARAM_ERROR = "Please specify only one -s parameter!";
+    private static final String MULTIPLE_SORT_PARAM_ERROR = "Please specify only one -s parameter!";
 
-    private BrowseCommand browseCommand;
+    private static final char CHAR_DASH = '-';
+    private static final char CHAR_WHITESPACE = ' ';
+    private static final int ORDER_ASCENDING = 0;
+    private static final int ORDER_DESCENDING = 1;
+    private static final int SORT_NAME = 1;
+    private static final int SORT_RATING = 2;
+    private static final int SORT_ID = 0;
+    private static final int FIRST_LOOP = 1;
+
+    private static final Logger LOGGER = AniLogger.getAniLogger(BrowseParser.class.getName());
+    private static final int FIRST_PAGE = 1;
+
     private boolean sortFlag = false;
     private boolean orderFlag = false;
     private boolean pageFlag = false;
 
-    public BrowseParser() {
-        browseCommand = new BrowseCommand();
-    }
+    //Default values of Browse
+    private int sortType = SORT_ID;
+    private int order = ORDER_DESCENDING;
+    private int page = FIRST_PAGE;
 
     /**
      * Parses the string parameters and creates an executable browseCommand according to the parameters.
@@ -54,7 +66,7 @@ public class BrowseParser extends CommandParser {
             parameterParser(paramGiven);
             LOGGER.log(Level.INFO, BROWSE_SETTINGS_CHANGED_INFO);
         }
-        return browseCommand;
+        return new BrowseCommand(sortType, order, page);
     }
 
     /**
@@ -66,11 +78,11 @@ public class BrowseParser extends CommandParser {
     private void checkForDashAbuse(String description) throws AniException {
         //Check for invalid --- inputs
         for (int i = 0; i < description.length(); i++) {
-            if (description.charAt(i) == '-') {
-                if (i + 1 >= description.length() || description.charAt(i + 1) == ' ') {
+            if (description.charAt(i) == CHAR_DASH) {
+                if (i + 1 >= description.length() || description.charAt(i + 1) == CHAR_WHITESPACE) {
                     throw new AniException(NO_PARAMETER_SPECIFIED_ERROR);
                 }
-                if (description.charAt(i + 1) == '-') {
+                if (description.charAt(i + 1) == CHAR_DASH) {
                     throw new AniException(INVALID_INPUT_ERROR);
                 }
             }
@@ -88,7 +100,7 @@ public class BrowseParser extends CommandParser {
         for (String param : paramGiven) {
             paramLoops++;
             //Skip first empty field which is a blank
-            if (paramLoops == 1) {
+            if (paramLoops == FIRST_LOOP) {
                 continue;
             }
             String[] paramParts = param.split(WHITESPACE, FIELD_SPLIT_LIMIT);
@@ -120,7 +132,7 @@ public class BrowseParser extends CommandParser {
      */
     private void checkForParamStacking(int totalParams, int paramLoops, String theParam) throws AniException {
         //Forgive the last param
-        if (totalParams > 2 && !theParam.endsWith(" ") && paramLoops != totalParams) {
+        if (totalParams > 2 && !theParam.endsWith(WHITESPACE) && paramLoops != totalParams) {
             throw new AniException(NO_SPACE_BETWEEN_PARAM_ERROR);
         }
     }
@@ -134,7 +146,7 @@ public class BrowseParser extends CommandParser {
     private void parsePageParam(String[] paramParts) throws AniException {
         paramFieldCheck(paramParts);
         paramExtraFieldCheck(paramParts);
-        browseCommand.setPage(parseStringToInteger(paramParts[1].trim()));
+        page = parseStringToInteger(paramParts[1].trim());
         if (pageFlag) {
             throw new AniException(MULTIPLE_PAGE_PARAM_ERROR);
         } else {
@@ -153,10 +165,10 @@ public class BrowseParser extends CommandParser {
         paramExtraFieldCheck(paramParts);
         switch (paramParts[1].trim()) {
         case ASCENDING_FIELD:
-            browseCommand.setOrder(0);
+            order = ORDER_ASCENDING;
             break;
         case DESCENDING_FIELD:
-            browseCommand.setOrder(1);
+            order = ORDER_DESCENDING;
             break;
         default:
             String paramFieldError = paramParts[1] + INVALID_OPTION;
@@ -180,17 +192,17 @@ public class BrowseParser extends CommandParser {
         paramExtraFieldCheck(paramParts);
         switch (paramParts[1].trim()) {
         case NAME_FIELD:
-            browseCommand.setSortType(1);
+            sortType = SORT_NAME;
             break;
         case RATING_FIELD:
-            browseCommand.setSortType(2);
+            sortType = SORT_RATING;
             break;
         default:
             String paramFieldError = paramParts[1] + INVALID_OPTION;
             throw new AniException(paramFieldError);
         }
         if (sortFlag) {
-            throw new AniException(MULIPLE_SORT_PARAM_ERROR);
+            throw new AniException(MULTIPLE_SORT_PARAM_ERROR);
         } else {
             sortFlag = true;
         }

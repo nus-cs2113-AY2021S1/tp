@@ -16,6 +16,11 @@ import java.util.logging.Logger;
  * Represents the command that allows the user to browse through all anime series.
  */
 public class BrowseCommand extends Command {
+    private static final int MAX_NAME_LEN = 51;
+    private static final int MAX_ID_LEN = 3;
+    private static final int MAX_INDEX_LEN = 5;
+    private static final int TRIM_TITLE_END = 48;
+    private static final int TRIM_TITLE_START = 0;
     private int sortType;
     private int order;
     private int page;
@@ -24,18 +29,17 @@ public class BrowseCommand extends Command {
 
     //Constant values used for sortBrowseList()
     private static final int ANIME_PER_PAGE = 20;
-    private static final int ID_SORT = 0;
     private static final int ORDER_DESCENDING = 0;
+    private static final int ID_SORT = 0;
     private static final int NAME_SORT = 1;
     private static final int RATING_SORT = 2;
     private static final int RESET_SORT = 3;
-    private static final int ORDER_ASCENDING = 1;
 
     //Constant Strings used for buildBrowseOutput()
     private static final String ID_HEADER = " [Id: ";
     private static final String ID_CLOSER = "]";
     private static final String ASCII_ONLY_REGEX = "[^\\x00-\\x7F]";
-    private static final String INDICATE_MORE = "...";
+    private static final String THREE_DOTS = "...";
     private static final String PERCENTAGE_STRING = "%";
     private static final String S_STRING = "s";
     private static final String EMPTY_STRING = "";
@@ -58,12 +62,12 @@ public class BrowseCommand extends Command {
 
     private static final Logger LOGGER = AniLogger.getAniLogger(BrowseCommand.class.getName());
 
-    public BrowseCommand() {
-        this.sortType = ID_SORT;
-        this.order = ORDER_ASCENDING;
-        this.page = 1;
+    public BrowseCommand(int sortType, int order, int page) {
         this.indexToPrint = 0;
         animePerPage = ANIME_PER_PAGE;
+        setSortType(sortType);
+        setOrder(order);
+        setPage(page);
     }
 
     /**
@@ -103,17 +107,17 @@ public class BrowseCommand extends Command {
             String animeName = browseAnime.getAnimeName();
             //Removes non-ascii and trim long titles.
             animeName = animeName.replaceAll(ASCII_ONLY_REGEX, EMPTY_STRING);
-            if (animeName.length() >= 51) {
-                animeName = animeName.substring(0, 48);
-                animeName += INDICATE_MORE;
+            if (animeName.length() >= MAX_NAME_LEN) {
+                animeName = animeName.substring(TRIM_TITLE_START, TRIM_TITLE_END);
+                animeName += THREE_DOTS;
             }
 
             //Pads the output if necessary
             String currAnimeID = Integer.toString(browseAnime.getAnimeID());
             String browseIndex = i + 1 + DOT_SPACE;
-            animeName = String.format(PERCENTAGE_STRING + (-51) + S_STRING, animeName.trim());
-            currAnimeID = String.format(PERCENTAGE_STRING + (-3) + S_STRING, currAnimeID);
-            browseIndex = String.format(PERCENTAGE_STRING + (-5) + S_STRING, browseIndex);
+            animeName = String.format(PERCENTAGE_STRING + (-MAX_NAME_LEN) + S_STRING, animeName.trim());
+            currAnimeID = String.format(PERCENTAGE_STRING + (-MAX_ID_LEN) + S_STRING, currAnimeID);
+            browseIndex = String.format(PERCENTAGE_STRING + (-MAX_INDEX_LEN) + S_STRING, browseIndex);
 
             result.append(browseIndex);
             result.append(animeName);

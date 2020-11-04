@@ -642,4 +642,25 @@ Triple Fromage Cheesecake (Default) #> Currently, you have 4 workspace(s):
 3. APPLES ORANGES OREOS PANCAKESS
 4. Triple Fromage Cheesecake
 
+Triple Fromage Cheesecake (Default) #> OOPS!!! Parameter : - n fate is not recognised!
+
+Triple Fromage Cheesecake (Default) #> [ID:323] Fate/stay night
+
+
+Triple Fromage Cheesecake (Default) #> [ID:323] Fate/stay night
+
+
+Triple Fromage Cheesecake (Default) #> [ID:323] Fate/stay night
+
+
+Triple Fromage Cheesecake (Default) #> [ID:39] Beck: Mongolian Chop Squad
+[ID:102] Full Moon
+[ID:144] RahXephon
+[ID:212] Gravitation TV
+[ID:295] Piano: The Melody of a Young Girl's Heart
+[ID:433] Macross Plus
+[ID:462] Gravitation: Lyrics of Love
+[ID:476] Mermaid Melody: Pichi Pichi Pitch
+
+
 Triple Fromage Cheesecake (Default) #> Sayonara Abec Steiner 77th-chan!

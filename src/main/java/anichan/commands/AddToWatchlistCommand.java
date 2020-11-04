@@ -18,12 +18,22 @@ import java.util.logging.Logger;
  * Represents the command to add an anime to active Watchlist.
  */
 public class AddToWatchlistCommand extends Command {
-    protected static final String DUPLICATE_ANIME_ERROR = "Anime is already in this watchlist!";
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
+    private static final String DUPLICATE_ANIME_ERROR = "Anime is already in this watchlist!";
+    private static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
+    private static final String SUCCESSFUL_ADD = "Successfully added and stored anime into active watchlist";
 
     private Integer animeIndex;
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistCommand.class.getName());
 
+    /**
+     * Creates a new instance of AddToWatchlistCommand with the specified anime index.
+     * 
+     * @param animeIndex the specified anime index to add
+     */
+    public AddToWatchlistCommand(Integer animeIndex) {
+        this.animeIndex = animeIndex - 1; // 1-based to 0-based numbering
+    }
+    
     /**
      * Executes addition of anime into active Watchlist.
      * 
@@ -74,15 +84,6 @@ public class AddToWatchlistCommand extends Command {
 
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
-        LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
-    }
-
-    /**
-     * Sets the anime index to be added into the active Watchlist.
-     * 
-     * @param animeIndex the specified anime index to be added
-     */
-    public void setAnimeIndex(Integer animeIndex) {
-        this.animeIndex = animeIndex - 1;
+        LOGGER.log(Level.INFO, SUCCESSFUL_ADD);
     }
 }
