@@ -86,7 +86,7 @@ Lastly, text that are blue like this [example](#12-using-this-guide), are clicka
 
 ![First Time Setup](images/User-Guide-Setting-Up.png)
 
-*Figure 1: Example of First Time Setup Prompt*
+*Figure 1: Example of First Time Setup*
 
 <br/>
 

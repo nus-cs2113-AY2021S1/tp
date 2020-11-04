@@ -148,15 +148,13 @@ public class WatchlistStorage extends Storage {
 
         String[] animes = animeListStringContent.split(DELIMITER_FOR_ENCODED_ANIME_LIST);
         for (String animeIndex : animes) {
-            // Validates the anime index when it is a String
             String trimmedIndex = animeIndex.trim();
-            if (!isValidAnimeIndexString(trimmedIndex)) {
+            if (!isPositiveInteger(trimmedIndex)) {
                 return null;
             }
 
-            // Validates the anime index when it is a integer.
             int parsedAnimeIndex = parseStringToInteger(trimmedIndex);
-            boolean isValidAnimeIndex = !(parsedAnimeIndex > MAX_ANIME_INDEX)
+            boolean isValidAnimeIndex = (parsedAnimeIndex <= MAX_ANIME_INDEX)
                                         && !(animeList.contains(parsedAnimeIndex));
             if (!isValidAnimeIndex) {
                 return null;
@@ -183,7 +181,7 @@ public class WatchlistStorage extends Storage {
         }
 
         String watchlistName = lineSplit[0].trim();
-        boolean isValidWatchlistName = !(watchlistName.length() > MAX_WATCHLIST_NAME_LENGTH)
+        boolean isValidWatchlistName = (watchlistName.length() <= MAX_WATCHLIST_NAME_LENGTH)
                                         && (watchlistName.matches(REGEX_ALPHANUMERIC_WITH_SPACE));
         if (!isValidWatchlistName) {
             return false;
@@ -192,20 +190,5 @@ public class WatchlistStorage extends Storage {
         String animeListString = lineSplit[1].trim();
         return (animeListString.startsWith(ENCODED_ANIME_LIST_FIRST_CHARACTER))
                 && (animeListString.endsWith(ENCODED_ANIME_LIST_LAST_CHARACTER));
-    }
-
-    /**
-     * Validates the anime index read from the string representation of the watchlist object.
-     *
-     * @param animeIndex the index of an anime series
-     * @return {@code true} if the index is valid; {@code false} otherwise
-     */
-    private boolean isValidAnimeIndexString(String animeIndex) {
-        boolean isAnimeIndexBlank = animeIndex.isBlank();
-        if (isAnimeIndexBlank) {
-            return false;
-        }
-
-        return isPositiveInteger(animeIndex);
     }
 }

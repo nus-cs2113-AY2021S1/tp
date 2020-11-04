@@ -30,7 +30,6 @@ class EstimateCommandTest {
                                                        + File.separator;
 
     private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
-    private static final int ZERO = 0;
 
     private StorageManager validSM;
     private StorageManager emptySM;
