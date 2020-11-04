@@ -9,26 +9,26 @@ Given below are my contributions to the project.
 
 ### Summary of Contributions
 
-*   **New Feature**: Added Browse command
-    *   What it does: Is a useful feature that users will use to look through all available anime series
-    The browse feature utilises a page system, so that the user can 'flip' through the list of anime series
-    To further enhanced this feature, sorting capabilities was introduced. Users will be able to browse through highly rated anime or in alphabetical order
-    *   Justification: By having a browse feature, users can find easily view all anime series that are available
-    As a translator, this will be useful to find a series for potential work opportunity or for future references
+*   **New Feature**: Added `Browse` which is the ability to access and view all anime with ease.
+    *   What it does: Is a useful feature that allows users to look through all available anime series
+    The browse feature utilises a page system, so that the user can 'flip' through the list of anime series. Users will be able to 
+    browse through highly rated anime or in alphabetical order.
+    *   Justification: By having a `browse` feature, users can easily access and view all anime series that are available
+    As a translator, this will be an essential tool to find a series for potential work opportunity or for future references
     *   Highlights: The implementation was challenging as many of the anime titles have special unicode characters which is viewed by the system as more than 1 char, 
     which seen by users as 1 char only. This made it difficult to print the anime in a consistent format. Additionally, there was several design considerations that I had to make in order
-    to ensure that Browse was able to fulfil its purpose and adhere to the constraints, this considerations could be read in the developer guide [here](#)
+    to ensure that `browse` was able to fulfil its purpose and adhere to the constraints, these considerations could is further elaborated in the developer guide [here](#docs/DeveloperGuide.md)
 
-*   **New Feature**: Added Search command
-    *   What it does: Allows the user to search for a specific anime by its full title, just a keyword or with a genre.
-    *   Justification: This search feature was designed to get around or find hard to remember anime titles such as `MUSHI-SHI` or long anime titles (>52 characters)
+*   **New Feature**: Added `Search` which is the ability to find any anime with a search term.
+    *   What it does: Allows users to search for a specific anime by its full title, just a keyword or with a genre.
+    *   Justification: `search` was built to find difficult to remember anime titles such as `MUSHI-SHI` or long anime titles (>52 characters)
     This feature should be used in conjunction with the watchlist and bookmark feature to effectively find the anime that the translator wants quickly without much hassle.
-    *   Highlights: The challenges of this implementation was in the input validation, 
-
+    *   Highlights: The challenges of this implementation was with input validation, parsing the parameters into the command and finding the anime that fits the search term.
+    
 *   **Existing Features**
     *   Helped contributed to development of the Switch Workspace feature [#106](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/106) [#101](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/101) [#99](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/99)
     *   Helped contribute to writing of the CommandParser logic [#128](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/128)
-    *   Helped to refactor Main.java
+    *   Helped to refactor Main.java [#261](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/261)
     *   Decoupled UI from Parser, Command classes for better cohesiveness [#80](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/80)
     *   Contributed to the development of Anime Class [#22](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/22)
 
