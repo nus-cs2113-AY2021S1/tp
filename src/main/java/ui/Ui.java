@@ -110,7 +110,7 @@ public class Ui {
     }
 
     public void showCardRevision(Card c) {
-        out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
+        out.println(c.getRevisionQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c);
     }
 
@@ -121,7 +121,7 @@ public class Ui {
 
             input = in.nextLine();
         }
-        out.println(c.getAnswer());
+        out.println(c.getRevisionAnswer());
     }
 
     public String getInput(String prompt) {

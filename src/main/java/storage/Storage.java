@@ -1,7 +1,7 @@
 package storage;
 
 import common.KajiLog;
-import exception.DuplicateDataException;
+import exception.StorageDataException;
 import exception.ExclusionFileException;
 import manager.card.Card;
 import manager.history.History;
@@ -105,11 +105,11 @@ public class Storage {
         return StorageWrite.deleteDirectory(directoryToBeDeleted);
     }
 
-    public void renameChapter(String newChapterName, Module module, Chapter chapter) throws DuplicateDataException {
+    public void renameChapter(String newChapterName, Module module, Chapter chapter) throws StorageDataException {
         StorageWrite.renameChapter(newChapterName, module, chapter, filePath);
     }
 
-    public void renameModule(String newModuleName, Module module) throws DuplicateDataException {
+    public void renameModule(String newModuleName, Module module) throws StorageDataException {
         StorageWrite.renameModule(newModuleName, module, filePath);
     }
 

@@ -31,8 +31,7 @@ public class ChapterList {
         return chapters.get(chapterIndex);
     }
 
-    public boolean checkChapterExistence(Chapter newChapter) {
-        String newChapterName = newChapter.getChapterName().toLowerCase();
+    public boolean checkChapterExistence(String newChapterName) {
         for (Chapter chapter : chapters) {
             String chapterName = chapter.getChapterName().toLowerCase();
             if (chapterName.equals(newChapterName)) {
