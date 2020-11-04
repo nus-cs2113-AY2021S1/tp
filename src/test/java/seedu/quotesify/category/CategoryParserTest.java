@@ -13,11 +13,11 @@ public class CategoryParserTest {
         String param1 = "action -b 1";
         String param2 = "romance -q 1";
         String param3 = "fantasy -b 1 -q 1";
-        assertArrayEquals(new String[]{"action", "1", ""},
+        assertArrayEquals(new String[]{"action", "1", "", "1", "0"},
                 CategoryParser.getRequiredParameters(param1.split(" ")));
-        assertArrayEquals(new String[]{"romance", "", "1"},
+        assertArrayEquals(new String[]{"romance", "", "1", "0", "1"},
                 CategoryParser.getRequiredParameters(param2.split(" ")));
-        assertArrayEquals(new String[]{"fantasy", "1", "1"},
+        assertArrayEquals(new String[]{"fantasy", "1", "1", "1", "1"},
                 CategoryParser.getRequiredParameters(param3.split(" ")));
     }
 
