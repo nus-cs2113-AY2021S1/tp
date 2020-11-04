@@ -1,48 +1,15 @@
 # Developer Guide for E-Duke-8
-
-- [Developer Guide for E-Duke-8](#developer-guide-for-e-duke-8)
-  - [1. Introduction](#1-introduction)
-    - [1.1. Software Overview](#11-software-overview)
-    - [1.2. Setting up](#12-setting-up)
-  - [2. Design & implementation](#2-design--implementation)
-    - [2.1. Architecture](#21-architecture)
-    - [2.2. Model Component](#22-model-component)
-      - [2.2.1. Design of TopicList](#221-design-of-topiclist)
-      - [2.2.2. Implementation of TopicList](#222-implementation-of-topiclist)
-      - [2.2.3. Implementation of Notes](#223-implementation-of-notes)
-      - [2.2.4. Design of Option and OptionList](#224-design-of-option-and-optionlist)
-      - [2.2.5. Implementation of Option and OptionList](#225-implementation-of-option-and-optionlist)
-    - [2.3. Logic Component](#23-logic-component)
-      - [2.3.1. Design of Parser](#231-design-of-parser)
-      - [2.3.2. Implementation of MenuParser](#232-implementation-of-menuparser)
-      - [2.3.3. Design of QuizQuestionsManager](#233-design-of-quizquestionsmanager)
-      - [2.3.4. Implementation of QuizQuestionsManager](#234-implementation-of-quizquestionsmanager)
-      - [2.3.5 Design of Stats Feature](#235-design-of-stats-feature)
-      - [2.3.6. Implementation of Stats Feature](#236-implementation-of-stats-feature)
-    - [2.4. Storage Component](#24-storage-component)
-      - [2.4.1. Design of TopicsStorage](#241-design-of-topicsstorage)
-      - [2.4.2. Implementation of TopicsStorage](#242-implementation-of-topicsstorage)
-      - [2.4.3. Design of UserStorage](#243-design-of-userstorage)
-      - [2.4.4. Implementation of UserStorage](#244-implementation-of-userstorage)
-    - [2.5. UI Component](#25-ui-component)
-      - [2.5.1. Implementation of Ui](#251-implementation-of-ui)
-  - [3. Product scope](#3-product-scope)
-    - [3.1. Target user profile](#31-target-user-profile)
-    - [3.2. Value proposition](#32-value-proposition)
-  - [4. User Stories](#4-user-stories)
-  - [5. Non-Functional Requirements](#5-non-functional-requirements)
-  - [6. Glossary](#6-glossary)
-  - [7. Appendix](#7-appendix)
-    - [7.1. Instructions for manual testing](#71-instructions-for-manual-testing)
+* Table of Contents
+{:toc}
 
 ## 1. Introduction
 
 ### 1.1. Software Overview
 
-E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and OOP principles** through a gamified
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [Object-oriented Programming (OOP)](#6-glossary) principles** through a gamified
 platform and enhances their learning experience. 
 
-On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the **Command Line Interface (CLI)**, to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the [Command Line Interface (CLI)](#6-glossary), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
 E-Duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
 
@@ -293,6 +260,7 @@ A similar procedure is being employed by the `TopicalStatsCalculator` object to 
 ### 2.4. Storage Component
 
 The storage component is implemented locally and mainly saves and loads files in JavaScript Object Notation (JSON) format, except for log files which are stored as normal text files.
+The JSON format was chosen as it is a well-known standard which is easy to parse.
 
 #### 2.4.1. Design of TopicsStorage
 
@@ -301,32 +269,33 @@ class which handles accessing the file as well as converting from JSON into `Top
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
-The format of the JSON file is important as it is loaded in a particular way. This format was designed as an array of topics that hold the different properties for questions, options, hints and explanations. An example is as such:
+The format of the JSON file is important as it is loaded in a particular way. This format has been designed as an array 
+of topics that hold the different properties for questions, options, hints and explanations. An example is as such:
 
 ```json
 [
   {
-    "topic": "OOP",
+    "topic": "Topic Title", 
     "questions": [
       {
-        "description": "What is encapsulation?",
-        "hint": "check the textbook",
-        "explanation": "because option A is the best answer",
-        "options": [
+        "description": "What is your question?",
+        "hint": "Put the hint here",
+        "explanation": "Put the explanation here",
+        "options": [ 
           {
-            "description": "A",
+            "description": "This is the first option and correct answer",
             "correct": true
           },
           {
-            "description": "B",
+            "description": "This is the second option",
             "correct": false
           },
           {
-            "description": "C",
+            "description": "This is the third option",
             "correct": false
           },
           {
-            "description": "D",
+            "description": "This is the fourth option",
             "correct": false
           }
         ]
@@ -335,6 +304,11 @@ The format of the JSON file is important as it is loaded in a particular way. Th
   }
 ]
 ```
+
+Users may choose to edit this data as well and are provided with the following requirements from the User Guide:
+> Note that the title will be loaded with spaces replaced with underscores, there must be 4 options for each question,
+and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
+`correct` key.
 
 #### 2.4.2. Implementation of TopicsStorage
 
@@ -361,33 +335,44 @@ The attributes will be saved in the JSON file tied to each question in a topic a
       {
         "correct":true,
         "bookmarked":true,
-        "hint":true,
-        "description":"OO is a higher level mechanism than the procedural paradigm."
+        "hint":false,
+        "description":"First Question"
       },
       {
         "correct":false,
         "bookmarked":false,
         "hint":true,
-        "description":"Which of the following is NOT a core concept of OOP?"
+        "description":"Second Question"
       }
     ],
-    "topic":"OOP"
+    "topic":"First Topic"
   },
   {
-    "notes":[],
+    "notes":[
+      {
+        "description":"Note Title",
+        "text":"Note Text"
+      }
+    ],
     "questions":[],
-    "topic":"Code_Quality"
+    "topic":"Second Topic"
   }
 ]
 ```
 
+Unlike `topics.json`, users should not be editing the `user.json` file as it is system generated.
+If the user edits this file and does not follow the correct format then the affected parts of the data will be lost but the 
+program will continue to run.
+
 #### 2.4.4. Implementation of UserStorage
 
-Unlike `TopicStorage`, `UserStorage` accesses existing objects in order to extract their attributes. The following sequence diagram shows an example of getting the topic description from a `Topic` object within the `TopicList`.
+Unlike `TopicsStorage` which constructs objects, `UserStorage` accesses existing objects in order to extract their attributes.
+The following sequence diagram shows an example of getting the topic description from a `Topic` object within the `TopicList`.
 
 ![UserStorage::save Sequence Diagram](./images/UserStorage_save.png)
 
 A similar method is used to extract the attributes from each `Question` object inside the `Topic`.
+It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` as continues to persist until the program shuts down.
 
 ### 2.5. UI Component
 
@@ -441,6 +426,10 @@ enhance their learning experience. Consolidate key concepts for easy revision.
 - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ## 6. Glossary
+
+- **Command Line Interface (CLI):** CLI is a text-based interface that allows users to respond to visual prompts by typing single commands into the interface and receiving a reply in the same way. (From [techopedia](https://www.techopedia.com/definition/3337/command-line-interface-cli))
+
+- **Object-oriented Programming (OOP):** OOP is a programming paradigm. A programming paradigm guides programmers to analyze programming problems, and structure programming solutions, in a specific way. (From [CS2113/T textbook](https://nus-cs2113-ay2021s1.github.io/website/se-book-adapted/chapters/oop.html))
 
 - **Mainstream Operating Systems (OS)**: Windows, Linux, Unix, OS-X
 

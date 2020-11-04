@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.explanation.Explanation;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.option.Option;
@@ -16,12 +17,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import static java.util.stream.Collectors.toList;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_NOT_FOUR_OPTIONS;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_NO_CORRECT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_PREFACE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_QUESTION;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_TOO_MANY_CORRECT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_TOPIC;
 
 public class TopicsStorage extends LocalStorage {
+    private boolean wasCorrectAnswerMarked;
+    private String currentQuestionDescription;
+    private String currentTopicTitle;
 
     public TopicsStorage(String filePath) {
         super(filePath);
+        wasCorrectAnswerMarked = false;
+        currentQuestionDescription = "";
+        currentTopicTitle = "";
     }
 
     /**
@@ -34,14 +46,14 @@ public class TopicsStorage extends LocalStorage {
      * @throws NullPointerException If the keys required are not present in the file.
      */
     @Override
-    @SuppressWarnings("unchecked")
-    public ArrayList<Displayable> load() throws IOException, ParseException, ClassCastException, NullPointerException {
+    public ArrayList<Displayable> load()
+            throws Eduke8Exception, IOException, ParseException, ClassCastException, NullPointerException {
         JSONArray topicsAsJsonArray = getJsonArrayFromFile();
 
-        //Iterate over topics array
-        ArrayList<Displayable> topicsAsObjects = (ArrayList<Displayable>) topicsAsJsonArray.stream()
-                .map(topic -> parseToTopicObject((JSONObject) topic))
-                .collect(toList());
+        ArrayList<Displayable> topicsAsObjects = new ArrayList<>();
+        for (Object topic : topicsAsJsonArray) {
+            topicsAsObjects.add(parseToTopicObject((JSONObject) topic));
+        }
 
         assert topicsAsObjects.get(0) instanceof Topic;
 
@@ -50,29 +62,47 @@ public class TopicsStorage extends LocalStorage {
         return topicsAsObjects;
     }
 
-    @SuppressWarnings("unchecked")
-    private Topic parseToTopicObject(JSONObject topic) {
-        String topicTitle = (String) topic.get(KEY_TOPIC);
+    private Topic parseToTopicObject(JSONObject topic) throws Eduke8Exception {
+        currentTopicTitle = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
 
         JSONArray questionsAsJsonArray = (JSONArray) topic.get(KEY_QUESTIONS);
-        ArrayList<Displayable> questionsAsObjects = (ArrayList<Displayable>) questionsAsJsonArray.stream()
-                .map(question -> parseToQuestionObject((JSONObject) question))
-                .collect(toList());
+
+        ArrayList<Displayable> questionsAsObjects = new ArrayList<>();
+        for (Object question : questionsAsJsonArray) {
+            questionsAsObjects.add(parseToQuestionObject((JSONObject) question));
+        }
 
         assert questionsAsObjects.get(0) instanceof Question;
 
         QuestionList questionList = new QuestionList(questionsAsObjects);
 
-        return new Topic(topicTitle, questionList);
+        return new Topic(currentTopicTitle, questionList);
     }
 
-    @SuppressWarnings("unchecked")
-    private Question parseToQuestionObject(JSONObject question) {
-        String questionDescription = (String) question.get(KEY_DESCRIPTION);
+    private Question parseToQuestionObject(JSONObject question) throws Eduke8Exception {
+        currentQuestionDescription = (String) question.get(KEY_DESCRIPTION);
         JSONArray optionsAsJsonArray = (JSONArray) question.get(KEY_OPTIONS);
-        ArrayList<Displayable> optionsAsObjects = (ArrayList<Displayable>) optionsAsJsonArray.stream()
-                .map(option -> parseToOptionObject((JSONObject) option))
-                .collect(toList());
+
+        wasCorrectAnswerMarked = false;
+
+        ArrayList<Displayable> optionsAsObjects = new ArrayList<>();
+        for (Object option : optionsAsJsonArray) {
+            optionsAsObjects.add(parseToOptionObject((JSONObject) option));
+        }
+
+        if (optionsAsObjects.size() != 4) {
+            throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
+                    + System.lineSeparator() + ERROR_TOPICS_JSON_QUESTION + currentQuestionDescription
+                    + ERROR_TOPICS_JSON_TOPIC + currentTopicTitle
+                    + ERROR_TOPICS_JSON_NOT_FOUR_OPTIONS);
+        }
+
+        if (!wasCorrectAnswerMarked) {
+            throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
+                    + System.lineSeparator() + ERROR_TOPICS_JSON_QUESTION + currentQuestionDescription
+                    + ERROR_TOPICS_JSON_TOPIC + currentTopicTitle
+                    + ERROR_TOPICS_JSON_NO_CORRECT);
+        }
 
         assert optionsAsObjects.get(0) instanceof Option;
 
@@ -86,17 +116,25 @@ public class TopicsStorage extends LocalStorage {
 
         Explanation explanation = new Explanation(explanationDescription);
 
-        return new Question(questionDescription, optionList, hint, explanation);
+        return new Question(currentQuestionDescription, optionList, hint, explanation);
     }
 
-    private Option parseToOptionObject(JSONObject option) {
+    private Option parseToOptionObject(JSONObject option) throws Eduke8Exception {
         String optionDescription = (String) option.get(KEY_DESCRIPTION);
         boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT);
 
         Option optionAsObject = new Option(optionDescription);
 
         if (isCorrectAnswer) {
-            optionAsObject.markAsCorrectAnswer();
+            if (!wasCorrectAnswerMarked) {
+                optionAsObject.markAsCorrectAnswer();
+                wasCorrectAnswerMarked = true;
+            } else {
+                throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
+                        + System.lineSeparator() + ERROR_TOPICS_JSON_QUESTION + currentQuestionDescription
+                        + ERROR_TOPICS_JSON_TOPIC + currentTopicTitle
+                        + ERROR_TOPICS_JSON_TOO_MANY_CORRECT);
+            }
         }
 
         assert optionAsObject.isCorrectAnswer() == isCorrectAnswer;

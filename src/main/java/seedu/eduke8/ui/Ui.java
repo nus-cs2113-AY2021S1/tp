@@ -76,7 +76,7 @@ public class Ui {
             + "you earn 2 points if you did not request for hint, "
             + System.lineSeparator() + "and 1 point if you did. No point is awarded for wrong answers.";
     private static final String MESSAGE_GET_INPUT_FROM_USER = "Enter your command or 'help': ";
-    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark':";
+    private static final String MESSAGE_GET_INPUT_FROM_USER_QUIZ = "Enter your answer, 'hint' or 'bookmark': ";
     private static final String MESSAGE_PRINT_TOPIC_LIST = "These are the available topics and the number of "
             + "available questions in each:";
     private static final String MESSAGE_EXPLANATION = "Explanation:";
@@ -108,8 +108,11 @@ public class Ui {
             + " to delete?";
     private static final String DELETE_NOTE_SUCCESSFULLY = "The note has been deleted!";
     private static final String DELETE_NOTE_UNSUCCESSFULLY = "The note was not deleted successfully. Try again!";
+
+    private static final String INVALID_TOPIC_INDEX = "Please enter a valid topic index";
+
     private static final String LIST_NOTE_PROMPT = "Which topic's notes would you like to view?";
-    private static final String INPUT_ERROR = "Please provide a valid input!";
+    private static final String INPUT_ERROR = "Please provide a valid topic!";
     private static final String MESSAGE_SHOW_POINTS = "You have earned ";
     private static final String MESSAGE_SHOW_POINTS_SECOND = " points out of a total of ";
     private static final String MESSAGE_SHOW_POINTS_THIRD = " points available!";
@@ -135,6 +138,10 @@ public class Ui {
     private static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(1);
     public static final String ERROR_READING_INPUT = "Error reading input.";
     public static final String ERROR_USING_ROBOT = "Error using robot to enter key";
+    public static final String MESSAGE_QUIZ_TO_PROCEED = "Press 'Enter' to proceed!";
+    public static final String OS_NAME = "os.name";
+    public static final String OS_LINUX = "nux";
+    public static final String OS_MAC = "mac";
 
     private static String operatingSystem = null;
 
@@ -156,7 +163,7 @@ public class Ui {
     public boolean getEnterFromUser() {
         boolean enterIsUsed = false;
 
-        System.out.print("Press 'Enter' to proceed!");
+        System.out.print(MESSAGE_QUIZ_TO_PROCEED);
 
         String userInput;
         Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
@@ -174,7 +181,7 @@ public class Ui {
 
     private static String findUserOperatingSystem() {
         if (operatingSystem == null) {
-            operatingSystem = System.getProperty("os.name").toLowerCase();
+            operatingSystem = System.getProperty(OS_NAME).toLowerCase();
         }
         return operatingSystem;
     }
@@ -184,7 +191,7 @@ public class Ui {
         operatingSystem = findUserOperatingSystem();
 
         //This is for Linus and Mac operating systems because Robot doesn't work on WSL
-        if (operatingSystem.contains("nux") || operatingSystem.contains("mac")) {
+        if (operatingSystem.contains(OS_LINUX) || operatingSystem.contains(OS_MAC)) {
             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
             long startingTime = System.currentTimeMillis();
 
@@ -317,23 +324,28 @@ public class Ui {
     }
 
     public void addNoteInteractions(TopicList topicList) {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(ADD_NOTE_PROMPT_FOR_TOPIC);
-        String topicName = SCANNER.nextLine();
+        String topicName = SCANNER.nextLine().trim();
         Ui ui = new Ui();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
+                System.out.println(HORIZONTAL_LINE);
                 System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
-                String noteName = SCANNER.nextLine();
+                String noteName = SCANNER.nextLine().trim();
+                System.out.println(HORIZONTAL_LINE);
                 System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
-                String noteBody = SCANNER.nextLine();
+                String noteBody = SCANNER.nextLine().trim();
+                System.out.println(HORIZONTAL_LINE);
 
                 Note note = new Note(noteName, noteBody);
                 Topic topic = (Topic) topicList.find(topicName);
                 topic.getNoteList().add(note);
                 System.out.println(ADD_NOTE_SUCCESSFULLY);
+                System.out.println(HORIZONTAL_LINE);
             } else {
-                System.out.println(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
+                printMessage(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -343,8 +355,9 @@ public class Ui {
     public void deleteNoteInteractions(TopicList topicList) {
         Ui ui = new Ui();
 
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(DELETE_NOTE_PROMPT_FOR_TOPIC);
-        String topicName = SCANNER.nextLine();
+        String topicName = SCANNER.nextLine().trim();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
@@ -353,18 +366,18 @@ public class Ui {
                 ui.printNoteList(noteList);
 
                 System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
-                String input = SCANNER.nextLine();
+                String input = SCANNER.nextLine().trim();
 
                 if (input.matches("[0-9]+") && Integer.parseInt(input) > 0
                         && Integer.parseInt(input) <= noteList.getCount()) {
                     int index = Integer.parseInt(input);
                     topic.getNoteList().delete(index - 1);
-                    System.out.println(DELETE_NOTE_SUCCESSFULLY);
+                    printMessage(DELETE_NOTE_SUCCESSFULLY);
                 } else {
-                    System.out.println(INVALID_TOPIC_NAME + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                    printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
                 }
             } else {
-                System.out.println(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                printMessage(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -374,8 +387,9 @@ public class Ui {
     public void listInteraction(TopicList topicList) {
         Ui ui = new Ui();
 
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(LIST_NOTE_PROMPT);
-        String topicName = SCANNER.nextLine();
+        String topicName = SCANNER.nextLine().trim();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
@@ -383,13 +397,12 @@ public class Ui {
                 NoteList noteListTopic = topic.getNoteList();
                 ui.printNoteList(noteListTopic);
             } else {
-                System.out.println(INPUT_ERROR);
+                printMessage(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
         }
     }
-
 
     public void printNoteList(NoteList notes) {
 
