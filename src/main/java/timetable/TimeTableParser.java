@@ -32,7 +32,7 @@ public class TimeTableParser {
                     Activity activity = addActivity();
                     dateList.addEvent(activity);
                     storage.writeFile(activity);
-                    System.out.println(Message.printSuccessfulClassAddition);
+                    System.out.println(Message.printSuccessfulActivityAddition);
                 }
                     break;
                 case "class": {
@@ -52,10 +52,10 @@ public class TimeTableParser {
             System.out.println(Message.printInvalidEvent);
             StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
         } catch (InvalidDayOfTheWeekException e) {
-            System.out.println("Day of the week input is invalid. Please add the class again");
+            System.out.println("Day of the week input is invalid. Please add the class again.");
             StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
         } catch (ClashScheduleException e) {
-            System.out.println("There is a clash in schedule");
+            System.out.println("There is a clash in schedule!");
         }
     }
 
@@ -67,7 +67,7 @@ public class TimeTableParser {
         while (isInvalid) {
             moduleCode = in.nextLine();
             if (moduleCode.length() > 7) {
-                System.out.println("The code exceed the maximum number of characters allowed please enter again");
+                System.out.println("The code exceeded the maximum number of characters allowed. Please enter again: ");
             } else {
                 isInvalid = false;
             }
@@ -79,17 +79,17 @@ public class TimeTableParser {
             String status = in.nextLine();
             if (status.equals("yes") || status.equals("online")) {
                 isOnline = true;
-                System.out.println("Please enter zoom link");
+                System.out.println("Please enter zoom link: ");
                 isInvalid = false;
             } else if (status.equals("no") || status.equals("offline")) {
-                System.out.println("Please enter the venue");
+                System.out.println("Please enter the venue: ");
                 isInvalid = false;
             } else {
-                System.out.println("Invalid command command\n Is the class online? ");
+                System.out.println("Invalid command command\n Is the class online? (yes/no)");
             }
         }
         String linkOrVenue = in.nextLine();
-        System.out.println("What are the days and time of the lesson\n(eg. Monday 5-8pm, Tuesday 6-9pm)");
+        System.out.println("What are the days and time of the lesson?\n(e.g. Monday 5-8pm, Tuesday 6-9pm)");
         String [] periods = in.nextLine().split(", ");
         System.out.println("How many weeks is the lesson?");
         int repeat = Integer.parseInt(in.nextLine());
@@ -144,19 +144,19 @@ public class TimeTableParser {
             String status = in.nextLine();
             if (status.equals("yes") || status.equals("online")) {
                 isOnline = true;
-                System.out.println("Please enter zoom link");
+                System.out.println("Please enter zoom link: ");
                 isInvalid = false;
             } else if (status.equals("no") || status.equals("offline")) {
-                System.out.println("Please enter the venue");
+                System.out.println("Please enter the venue: ");
                 isInvalid = false;
             } else {
-                System.out.println("Invalid command command\n Is the class online? ");
+                System.out.println("Invalid command!\n Is the class online? (yes/no)");
             }
         }
         final String linkOrVenue = in.nextLine();
-        System.out.println("Please enter the date (eg. 28/10/2020)");
-        LocalDateTime date = getDate(in.nextLine());
-        System.out.println("Please enter the time of your activity(eg. 6-9pm)");
+        System.out.println("Please enter the date of your activity (e.g. 28/10/2020): ");
+        LocalDateTime date = getDateTime(in.nextLine());
+        System.out.println("Please enter the time of your activity (e.g. 6-9pm): ");
         String time = in.nextLine();
         int startTime = Integer.parseInt(time.split("-")[0]);
         int endTime = Integer.parseInt(time.split("-")[1].replaceAll("[^0-9]", ""));

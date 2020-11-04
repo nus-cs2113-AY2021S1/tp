@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class FlashcardDeck {
 
-
     public ArrayList<Flashcard> flashcardDeck;
 
     public FlashcardDeck() {
@@ -24,7 +23,7 @@ public class FlashcardDeck {
         System.out.println("Please enter answer: ");
         String answer = in.nextLine();
         while (answer.equals("back")) {
-            System.out.println("The answer cannot be 'back'! Please enter another answer: ");
+            System.out.println("The answer cannot be \"back\"! Please enter another answer: ");
             answer = in.nextLine();
         }
         Ui.printDivider();
