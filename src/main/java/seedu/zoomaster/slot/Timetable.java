@@ -61,6 +61,7 @@ public class Timetable {
         return module;
     }
 
+    //@@author fchensan
     public Module getModuleContainingSlot(Slot slot) {
         for (Module module: modules) {
             if (module.getSlotList().contains(slot)) {
@@ -70,6 +71,7 @@ public class Timetable {
         return null;
     }
 
+    //@@author
     public void deleteModule(Module module) {
         modules.remove(module);
     }
@@ -100,6 +102,7 @@ public class Timetable {
         return isGreaterEquals;
     }
 
+    //@@author fchensan
     public Slot getSlotByIndexInDay(String day, int index) throws ZoomasterException {
         ArrayList<Slot> slots = new ArrayList<>();
         ArrayList<String> moduleCodeList = new ArrayList<>();
@@ -123,7 +126,6 @@ public class Timetable {
         }
     }
 
-    //@@author fchensan
     /**
      * Move a slot to another module given a user input module code.
      *
@@ -146,6 +148,7 @@ public class Timetable {
         newModule.addSlot(slot);
     }
 
+    //@@author
     public boolean isEmpty() {
         return modules.isEmpty();
     }
