@@ -4,11 +4,13 @@ import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
 import seedu.duke.commands.CommandChecker;
-import seedu.duke.constants.FilterMessages;
+import seedu.duke.constants.FluffleMessages;
 import seedu.duke.database.ClearLoader;
 import seedu.duke.database.WordsSaver;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
+import seedu.duke.exceptions.BunnyListEmptyException;
+import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.DividerCommandWrongFormatException;
 import seedu.duke.exceptions.DividerIndexOutOfBoundsException;
@@ -80,7 +82,7 @@ public class CommandExecutor {
             try {
                 FilterExecutor.executeFilterCommand(userInput);
             } catch (FilterCommandException e) {
-                System.out.println(FilterMessages.FILTER_UNKNOWN_TYPE);
+                System.out.println(FluffleMessages.FILTER_UNKNOWN_TYPE);
             }
             break;
         case LIST_FILTER:
@@ -94,6 +96,8 @@ public class CommandExecutor {
                 UI.bunnyWrongFormat();
             } catch (BunnyIdeaMissingException e) {
                 UI.bunnyMissingIdea();
+            } catch (CommandInvalidException e) {
+                UI.commandNotRecognisedMsg();
             }
             break;
         case LIST_BUNNY:
@@ -106,6 +110,8 @@ public class CommandExecutor {
                 UI.bunnyMissingFilterOption();
             } catch (NoFilteredItemsException e) {
                 UI.bunnyFilterNoneFound();
+            } catch (CommandInvalidException e) {
+                UI.commandNotRecognisedMsg();
             }
             break;
         case SAVE_BUNNY:
@@ -124,7 +130,11 @@ public class CommandExecutor {
             }
             break;
         case RANDOM_BUNNY:
-            GenBunny.pickRandomBunny(bunniesList);
+            try {
+                GenBunny.pickRandomBunny(bunniesList);
+            } catch (BunnyListEmptyException e) {
+                UI.bunnyListEmpty();
+            }
             break;
         case REMIND:
             WritingReminder.printReminderOnADay(userInput);
@@ -194,7 +204,7 @@ public class CommandExecutor {
                 ClearLoader.clearItems(userInput, writings, wordList);
             } catch (WrongClearCommandFormat e) {
                 System.out.println("The appropriate format is:\n"
-                    + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
+                        + "clear type\\<TYPE_OF_ELEMENT> item\\<INDICATOR_OF_ELEMENT>");
             }
             break;
         case DELETE:

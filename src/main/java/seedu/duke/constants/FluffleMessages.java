@@ -38,6 +38,7 @@ public class FluffleMessages {
     public static final String ADD_VERB_MSG = "Added the following verb: ";
     public static final String ADD_ADJECTIVE_MSG = "Added the following adjective: ";
     public static final String LIST_WORDS_MSG = "Here are the words stored in the program:";
+    public static final String EMPTY_WORDLIST_MSG = "Currently, there are no words in the words list.";
     public static final String EMPTY_INPUT_MSG = "Please enter a word and its description to save!";
     public static final String EMPTY_DESC_MSG = "Please enter the word's description after typing 'd\\'!";
     public static final String INVALID_NOUN_MSG = "Please use correct command format! Type 'help noun' for more info.";
@@ -57,6 +58,25 @@ public class FluffleMessages {
     /** Bunny deletion message. */
     public static final String BUNNY_DELETED_MSG = "Bunny deleted: \n";
 
+    /** Bunny filter messages. */
+    public static final String NUMBER_BUNNY_FILTERED_MSG = "number bunny filtered: ";
+    public static final String FILTER_BUNNY_COMMAND_MISSING_FILTER_OPTIONS_MSG =
+            "filter bunny command missing filter options.";
+    public static final String NO_BUNNY_MATCHING_FILTER_OPTIONS_MSG = "No bunny matching filter options";
+    public static final String BUNNY_INDEX_NOT_IN_LIST_MSG = "Bunny index is not in list.";
+    public static final String DIVIDER_COMMAND_OF_WRONG_FORMAT_MSG = "Divider command of wrong format";
+    public static final String DIVIDER_INDEX_INDICATED_OUT_OF_BOUNDS_MSG = "Divider index indicated out of bounds";
+
+    /** Bunny listing messages. */
+    public static final String LIST_BUNNIES_EMPTY_MSG = "List of bunnies is empty.";
+    public static final String TOTAL_BUNNIES_IN_LIST_MSG = "Total Bunnies in list: ";
+
+    /** Bunny save and load messages. */
+    public static final String BUNNY_LIST_SAVED_MSG = "Bunny list saved!";
+    public static final String FAILED_TO_SAVE_BUNNY_LIST_MSG = "Failed to save bunny list";
+    public static final String WRITING_TO_BUNNY_FILE_MSG = "Writing to bunny file";
+    public static final String NUM_BUNNY_LOADED_MSG = "%1$s of %2$s bunnies loaded!";
+
     /** Bunny random selection message. */
     public static final String BUNNY_RANDOMLY_SELECTED_MSG = "Random Bunny: \n";
 
@@ -64,6 +84,34 @@ public class FluffleMessages {
     public static final String ADD_CHARACTER_MSG = "New character added!";
     public static final String LIST_CHARACTER_MSG = "Here are the characters stored in the program:";
     public static final String BUNNY_CHARACTER_FORMAT = "Character command wrong format";
+
+    /** Filter messages. */
+    public static final String INVALID_FILTER_CODE = "invalid filter type in the code";
+    public static final String NO_FILTER_RESULT = "Nothing was found in the filter list!!";
+    public static final String FILTER_MESSAGE = "Printing all %d word(s) in your filter list:\n";
+    public static final String FILTER_MESSAGE_LIMIT = "Printing the first %d out of %d word(s) "
+            + "from your filter list:\n";
+    public static final String PRINT_LIMIT_NOT_FOUND = "There are cases that\n"
+            + "- You didn't specify the print limit\n" + "- Your limit is not an integer\n"
+            + "The program will print out all the words in your filter list.\n";
+    public static final String FILTER_UNKNOWN_COMMAND = "Filter command format is incorrect.";
+    public static final String FILTER_UNKNOWN_TYPE = "Filter type was not recognized in the command.";
+    public static final String LONG_FILTER_LIST_MESSAGE = "Your filter list has more than %d word(s)\n"
+            + "Do you want to print all the words in the filter list? y/n\n";
+    public static final String INVALID_LIST_FILTER_ANSWER = "Your answer is not y/n. "
+            + "The filter list will not be printed."
+            + "You can use \"list filter words\" command to print out the filter result.";
+    public static final String INVALID_LIMIT_LIST_FILTER_WORDS =
+            "Your print limit is not valid so no words will be printed out.\n"
+                    + "You can use \"list filter words\" command to print out the filter result.";
+    public static final String INVALID_PRINT_LIMIT_MESSAGE = "Your limit is invalid.";
+
+    /** Reminder messages. */
+    public static final String NO_WRITING_DUE = "You don't have any writings due that day!!!";
+    public static final String CONTINUE_WRITINGS = "On %s, you should continue on the following writing(s):\n";
+    public static final String PARSE_DATETIME_EXCEPTION =
+            "Cannot parse date and time. Please enter date in a correct format (dd/MM/yyyy)"
+                    + " with valid day, month and year.";
 
     /** Command not recognised message. */
     public static final String COMMAND_UNRECOGNISED_MSG = "Command not recognised?";
@@ -83,8 +131,15 @@ public class FluffleMessages {
             + "by keying the date in the format \"dd/MM/yyyy\"";
     public static final String EMPTY_WRITING_MESSAGE = "The storage is currently empty, please type "
             + "\"start\" command to add";
-    public static final String CLEAR_DATA_MESSAGE = "We have clear all data in the writings list";
 
     /** User interactive messages. */
     public static final String HELP_MESSAGE = "Please type in \"help\" command for information!";
+
+    /** Clear messages. */
+    public static final String CLEAR_SUCCESS_MESSAGE = "Nice! The %s \"%s\" has just been deleted from the database!\n";
+    public static final String CLEAR_DATA_MESSAGE = "We have clear all data in the writings list";
+
+    /** Stop execution message. */
+    public static final String STOP_START_COMMAND = "start command stopped\nPlease give it another try.";
+
 }

@@ -1,12 +1,15 @@
 package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
+import seedu.duke.constants.FluffleMessages;
 import seedu.duke.database.FileFunctions;
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
+import seedu.duke.ui.UI;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;

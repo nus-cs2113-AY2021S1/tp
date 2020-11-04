@@ -1,6 +1,6 @@
 package seedu.duke.filters;
 
-import seedu.duke.constants.FilterMessages;
+import seedu.duke.constants.FluffleMessages;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Words;
 
@@ -89,7 +89,7 @@ public class WordsFilter {
                     }
                     break;
                 default:
-                    LOGGER.log(Level.WARNING, FilterMessages.INVALID_FILTER_CODE);
+                    LOGGER.log(Level.WARNING, FluffleMessages.INVALID_FILTER_CODE);
                 }
             }
             if (!keepsWord) {
@@ -121,7 +121,7 @@ public class WordsFilter {
                     }
                     break;
                 default:
-                    LOGGER.log(Level.WARNING, FilterMessages.INVALID_FILTER_CODE);
+                    LOGGER.log(Level.WARNING, FluffleMessages.INVALID_FILTER_CODE);
                 }
             }
         }

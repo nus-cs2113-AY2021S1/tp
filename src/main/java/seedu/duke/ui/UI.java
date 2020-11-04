@@ -90,6 +90,21 @@ public class UI {
         case "exit":
             printHelpExit();
             break;
+        case "name":
+            printHelpName();
+            break;
+        case "list name":
+            printHelpListName();
+            break;
+        case "filter name":
+            printHelpFilterName();
+            break;
+        case "add name":
+            printHelpAddName();
+            break;
+        case "delete name":
+            printHelpDeleteName();
+            break;
         default:
             printHelp();
             break;
@@ -97,12 +112,39 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"noun", "verb", "adj", "settings", "list", "stats", "start", "clear", "exit"};
+        String[] listCommands = {"help", "divider", "bunny", "list bunny", "filter bunny", "save bunny",
+            "list", "list filter words", "start", "filter words", "stats", "reset", "name",
+            "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
         System.out.println("Type 'help <function name here>' to view help for each command.");
         System.out.println("Available commands:");
         for (String listCommand : listCommands) {
             System.out.println(listCommand);
         }
+    }
+
+    private static void printHelpDeleteName() {
+        System.out.println("Removes a name from the list of names");
+        System.out.println("Format: delete name <INDEX>");
+    }
+
+    private static void printHelpAddName() {
+        System.out.println("Add a name to the list of names");
+        System.out.println("Format: add name <NAME>");
+    }
+
+    private static void printHelpFilterName() {
+        System.out.println("Find all the names from the list of names");
+        System.out.println("Format: filter name <NAME>");
+    }
+
+    private static void printHelpListName() {
+        System.out.println("List all the names from the list of names");
+        System.out.println("Format: list name");
+    }
+
+    private static void printHelpName() {
+        System.out.println("Gets a random name from the list of names");
+        System.out.println("Format: name");
     }
 
     public static void printHelpSettings() {
@@ -222,19 +264,19 @@ public class UI {
     }
 
     public static void numBunnyLoaded(int numBunnies, int numBunniesLoaded) {
-        System.out.println(String.format("%1$s of %2$s bunnies loaded!", numBunniesLoaded, numBunnies));
+        System.out.println(String.format(FluffleMessages.NUM_BUNNY_LOADED_MSG, numBunniesLoaded, numBunnies));
     }
 
     public static void createNewBunnyFile() {
-        System.out.println("Writing to bunny file");
+        System.out.println(FluffleMessages.WRITING_TO_BUNNY_FILE_MSG);
     }
 
     public static void failedToSaveBunny() {
-        System.out.println("Failed to save bunny list");
+        System.out.println(FluffleMessages.FAILED_TO_SAVE_BUNNY_LIST_MSG);
     }
 
     public static void bunnySaved() {
-        System.out.println("Bunny list saved!");
+        System.out.println(FluffleMessages.BUNNY_LIST_SAVED_MSG);
     }
 
     public static void printFilteredBunny(int numBunny, HashMap<Integer, Bunny> filteredBunny) {
@@ -246,20 +288,16 @@ public class UI {
                 bunnyFiltered++;
             }
         }
+        System.out.println(FluffleMessages.NUMBER_BUNNY_FILTERED_MSG + bunnyFiltered);
 
-        bunnyFilterSummary(bunnyFiltered);
-    }
-
-    private static void bunnyFilterSummary(int bunnyFiltered) {
-        System.out.println("number bunny filtered: " + bunnyFiltered);
     }
 
     public static void bunnyMissingFilterOption() {
-        System.out.println("filter bunny command missing filter options.");
+        System.out.println(FluffleMessages.FILTER_BUNNY_COMMAND_MISSING_FILTER_OPTIONS_MSG);
     }
 
     public static void bunnyFilterNoneFound() {
-        System.out.println("No bunny matching filter options");
+        System.out.println(FluffleMessages.NO_BUNNY_MATCHING_FILTER_OPTIONS_MSG);
     }
 
     public static void bunnyDeleted(int bunnyNum) {
@@ -272,24 +310,24 @@ public class UI {
     }
 
     public static void bunnyIndexOutOfBounds() {
-        System.out.println("Bunny index is not in list.");
+        System.out.println(FluffleMessages.BUNNY_INDEX_NOT_IN_LIST_MSG);
     }
 
     public static void dividerCommandWrongFormat() {
-        System.out.println("Divider command of wrong format");
+        System.out.println(FluffleMessages.DIVIDER_COMMAND_OF_WRONG_FORMAT_MSG);
     }
 
     public static void dividerIndexOutOfBounds() {
-        System.out.println("Divider index indicated out of bounds");
+        System.out.println(FluffleMessages.DIVIDER_INDEX_INDICATED_OUT_OF_BOUNDS_MSG);
     }
 
     public static void bunnyRandomlySelected(int bunnySelected) {
         System.out.print(FluffleMessages.BUNNY_RANDOMLY_SELECTED_MSG);
-        System.out.print(bunniesList.get(bunnySelected - 1).getDescription());
+        System.out.print(bunniesList.get(bunnySelected).getDescription());
     }
 
     public static void bunnyListEmpty() {
-        System.out.println("List of bunnies is empty.");
+        System.out.println(FluffleMessages.LIST_BUNNIES_EMPTY_MSG);
     }
 
     public static void printBunnyInList(String bunny) {
@@ -297,6 +335,14 @@ public class UI {
     }
 
     public static void printNumBunnies(int numBunny) {
-        System.out.println("Total Bunnies in list: " + numBunny);
+        System.out.println(FluffleMessages.TOTAL_BUNNIES_IN_LIST_MSG + numBunny);
+    }
+
+    public static void printClearCommandSuccess(String type, String word) {
+        System.out.printf(FluffleMessages.CLEAR_SUCCESS_MESSAGE, type, word);
+    }
+
+    public static void echoInput(String input) {
+        System.out.println(input);
     }
 }

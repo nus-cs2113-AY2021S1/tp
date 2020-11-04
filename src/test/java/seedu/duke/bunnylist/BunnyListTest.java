@@ -2,6 +2,7 @@ package seedu.duke.bunnylist;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
+import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.wordlist.WordList;
 
@@ -17,7 +18,7 @@ public class BunnyListTest {
             BunnyList.addBunny("bunny i\\ funny idea g\\ fun");
             BunnyList.addBunny("bunny i\\ some strange idea g\\ mystery");
             BunnyList.addBunny("bunny i\\ idea example g\\ unknown");
-        } catch (CommandMissingArgumentsException | BunnyIdeaMissingException e) {
+        } catch (CommandMissingArgumentsException | BunnyIdeaMissingException | CommandInvalidException e) {
             e.printStackTrace();
         }
     }

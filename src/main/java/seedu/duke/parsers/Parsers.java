@@ -97,8 +97,11 @@ public class Parsers {
         // extract the option
         parsedOption = userInput.substring(startPositionIndex + 1);
         optionIndicator = userInput.substring(startPositionIndex - 2, startPositionIndex);
-        // store the option
-        parsedParams.put(optionIndicator.toLowerCase(), parsedOption);
+
+        if (!parsedParams.containsKey(optionIndicator)) {
+            // store the option
+            parsedParams.put(optionIndicator.toLowerCase(), parsedOption);
+        }
     }
 
     /**
@@ -110,7 +113,7 @@ public class Parsers {
      */
     public static void parseSingleCharacterTaggedParamsFromUserInput(String userInput,
                                                                      HashMap<String, String> parsedParams)
-            throws MissingParamsException {
+            throws MissingParamsException, StringIndexOutOfBoundsException {
 
         String parsedOption;
         String optionIndicator;
@@ -133,11 +136,15 @@ public class Parsers {
             if (endPositionIndex == -1) {
                 break;
             }
+
             // extract the option
             parsedOption = userInput.substring(startPositionIndex + 1, endPositionIndex - 1);
             optionIndicator = userInput.substring(startPositionIndex - 1, startPositionIndex);
-            // store the option
-            parsedParams.put(optionIndicator, parsedOption);
+
+            if (!parsedParams.containsKey(optionIndicator)) {
+                // store the option
+                parsedParams.put(optionIndicator, parsedOption);
+            }
         }
 
         // extract the option

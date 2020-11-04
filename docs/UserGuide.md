@@ -52,8 +52,6 @@ As a fast-typing writer, this CLI app is highly suitable for you.
 
 [Jump to top](#fluffle-user-guide)
 
-This User Guide aims at providing you with the best way to utilize Fluffle for your own writing experience.
-
 ## About This Document
 
 This document aims to provide you with the best way to utilize Fluffle for your own writing experience. 
@@ -66,7 +64,7 @@ You may want to first have a look at the glossary to be clear on the terminology
 1. Check that your computer has `Java 11` installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder.
-1. Type in a command prompt ./duke.jar and press Enter.
+1. Type in a command prompt `java -jar duke.jar` and press Enter.
 1. Type the `help` command and press Enter to get started.
 1. Some example commands you can try:
     1. `list words`: List the vocabulary stored in the word list.
@@ -106,7 +104,7 @@ Basic CLI commands consist of commands that are standard CLI application command
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
 Output:  
 ```
-Type “help COMMAND_NAME” to figure out how to use the particular command.  
+Type 'help <function name here>' to view help for each command.
 - help
 - divider
 - bunny
@@ -135,8 +133,6 @@ Example of usage:
 
 `help filter name`
 
-[Jump to top](#fluffle-user-guide)
-
 #### Changing line divider in Fluffle: `divider`
 Allows the user to change the line divider used in Fluffle.
 Format: `divider DIVIDER_OPTION`
@@ -147,7 +143,7 @@ The `DIVIDER_OPTION` is a parameter indicating your preferable type of line divi
 1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Example usages:
-* `divider 1` changes divider option to 2
+* `divider 1` changes divider option to 1
 
 Example output: 
 ```
@@ -162,8 +158,6 @@ divider 3
 Changing line divider...
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ```
-
-[Jump to top](#fluffle-user-guide)
 
 #### Clearing certain object in the database: `clear`
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
@@ -211,8 +205,6 @@ Format: `clear type\word item\-verbkill`
 
 Expected effect: Check the existence of word "kill" with type "verb" in the database and then remove it
 
-[Jump to top](#fluffle-user-guide)
-
 #### Closing the program: `exit`
 Exits the program. All data is auto-saved.  
 
@@ -227,31 +219,21 @@ Fluffle has a word list which stores the words that you wish to store. It can be
 Adds a noun, together with its meaning, into the word bank in the program.  
 Format: `noun WORD d\DESCRIPTION`
 
-[Jump to top](#fluffle-user-guide)
-
 #### Adding a verb: `verb`
 Adds a verb, together with its meaning, into the word bank in the program.  
 Format: `verb WORD d\DESCRIPTION`
-
-[Jump to top](#fluffle-user-guide)
 
 #### Adding an adjective: `adj`
 Adds an adjective, together with its meaning, into the word bank in the program.  
 Format: `adj WORD d\DESCRIPTION`
 
-[Jump to top](#fluffle-user-guide)
-
 #### Listing words: `list words`
 List all words stored in the program.  
 Format: `list words`
 
-[Jump to top](#fluffle-user-guide)
-
 #### Generating three random words: `three words`
 Generates three random words from the Fluffle word bank. You may use this function when you need inspiration for story ideas.  
 Format: `three words`
-
-[Jump to top](#fluffle-user-guide)
 
 #### Filtering words in word list: `filter words`
 Suppose you need to list out all the nouns in your word bank, or you want to find out the words starting with the 
@@ -317,8 +299,6 @@ Printing all 1 word(s) from your filter list:
 - grass: a common wild plant with narrow green leaves and stems
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Listing your filter list: `list filter words`
 Suppose you want to refer back to the words that have just been filtered recently. 
 In this scenario, you can use the command `list filter words` to print out the filtered list.
@@ -359,7 +339,9 @@ This list is not automatically saved.
 
 Format: `bunny i\IDEA g\[GENRE]`  
 
-Note: If you add a bunny with no genre then the genre will be left blank
+Note:
+* If the genre is not indicated it is set as "none" by default.
+* The program allows duplicate bunnies as some users may have more than 1 idea for the same writing prompt.
 
 Example usages:
 - `bunny i\test idea 1`
@@ -374,8 +356,6 @@ bunny i\test idea 2 g\ fantasy
    genre:  fantasy
  ---------------------------------------------------
 ```
-
-[Jump to top](#fluffle-user-guide)
 
 #### Listing bunny ideas: `list bunny`
 
@@ -404,12 +384,15 @@ Here are the bunnies stored in the program:
 ------------------------------------------------------
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Filtering bunny ideas: `filter bunny`
 Filters specific bunny ideas from the list by searching the idea or the genre for specific key terms.  
 
-Format: `filter bunny i\IDEA g\[GENRE]`  
+Format: `filter bunny i\[IDEA] g\[GENRE]`  
+
+Note:
+* If you accidentally type duplicate parameter eg `filter i\some i\idea` it would use the last instance of that parameter.
+* If you indicate the tag but leave the parameter blank (eg `filter bunny i\`) then it will not restrict the output of filter by that tag (ie in this case all ideas are selected by the filter).
+* You must include either `i\` or `g\` tags in the command but it can be left blank.
 
 Example usages:
 - filter bunny i\test idea 1  
@@ -431,8 +414,6 @@ number bunny filter: 2
 -------------------------------------------------------
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Saving bunny ideas: `save bunny`
 Save the current list of bunnies in the program into the designated text file. The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.
 
@@ -448,8 +429,6 @@ save bunny
 Bunny list saved!
 --------------------------------------------------------------
 ```
-
-[Jump to top](#fluffle-user-guide)
 
 #### Deleting a bunny idea: `delete bunny`
 You can delete a selected bunny from the list of bunny ideas when you have written it or are no longer interested in writing it.
@@ -469,8 +448,6 @@ Bunny deleted:
   genre: none
 --------------------------------------------------------------
 ```
-
-[Jump to top](#fluffle-user-guide)
 
 #### Generating a random bunny idea: `random bunny`
 The app can pick a random bunny from your list of plot bunnies for you to work on.
@@ -498,6 +475,7 @@ Names List commands allow you to look through a pre-built list of character name
 
 #### Generating names from name database: `name`
 You can generate a name randomly from the stored database of names.
+
 Format: `name`
 
 Example output:  
@@ -508,10 +486,9 @@ name 2
 --------------------------------------------------------------
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Listing names from name database: `list name`
 You can display all the names currently stored in the names database. 
+
 Format: `list name`
 
 Example usages:
@@ -527,10 +504,9 @@ list name
 --------------------------------------------------------------
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Finding names from name database: `filter name`
 You can get the list of names after filtering from the stored list of names. 
+
 Format: `filter name NAME`
 
 Example usage:
@@ -557,10 +533,9 @@ filter name name
 --------------------------------------------------------------
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Adding names from name database: `add name`
 You can add a name to the list of names currently stored in the names database.
+
 Format: `add name NAME`
 
 Example usages:
@@ -574,10 +549,9 @@ name 3 has been added to the Names list!
 --------------------------------------------------------------
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Removing names from name database: `delete name`
 You can remove a name from the list of names currently stored in the names database.
+
 Format: `delete name INDEX`
 
 Example usages:
@@ -604,12 +578,8 @@ Requires you to type the following commands for your writings’ configurations:
 
 After choosing the “type” and the “topic” configuration, we can start writing our poems and essays.
 
-[Jump to top](#fluffle-user-guide)
-
 #### Choosing the “type” of your writing: `type`
 Currently, our application offers you with 2 options of “type”, which are “poem” or “essay”.
-
-[Jump to top](#fluffle-user-guide)
 
 #### Choosing the “topic” of your writing: `topic` 
 #### (Reserved for v2.1, currently you are only able to choose any arbitrary topic for your writing)
@@ -641,8 +611,6 @@ This Poem, Der Erlkönig has been added
 Done! We have added your writing to our storage! You can type "stats" for future reference!
 ```
 
-[Jump to top](#fluffle-user-guide)
-
 #### Tracking your past writings: `stats`
 Informs the user detailed specifications like IDs, authors, contents, and other attributes of the writings stored in database. 
  
@@ -667,8 +635,6 @@ In seinen Armen das Kind war tot.
 This writing was created on 2020-10-18
 --------------------------------------------------------------
 ```
-
-[Jump to top](#fluffle-user-guide)
 
 #### Getting reminders for your writings scheduled for a specific day: `remind`
 Let’s say you are a forgetful person, and you would like the program to remind you which writings you are about to 
