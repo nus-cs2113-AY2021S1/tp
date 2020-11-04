@@ -386,8 +386,12 @@ CS2113/T Students
 
 ### 3.2. Value proposition
 
-Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and 
-enhance their learning experience. Consolidate key concepts for easy revision.
+To help CS2113/T students learn and understand software engineering and Object-oriented Programming (OOP) principles through a gamified
+platform and enhances their learning experience. 
+
+It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the Command Line Interface (CLI), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+
+Students can earn points for themselves as they answer questions in the quizzes, and they can view their quizzes' statistics to gauge their level of mastery of the topics in CS2113/T.
 
 ## 4. User Stories
 
