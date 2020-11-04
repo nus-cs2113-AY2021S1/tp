@@ -32,6 +32,9 @@ public class ErrorMessage extends Ui {
                 + "or you can type \"help\" for more information");
     }
 
+    public static void printRepeatedGrade() {
+        printLine("This grade has already been added!");
+    }
 }
 
 

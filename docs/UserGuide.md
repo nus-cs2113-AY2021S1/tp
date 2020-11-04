@@ -461,13 +461,16 @@ Instruction:
 Expected output:
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
+**Useful information:**
+* You can use this command from any mode to access the academic mode easily and quickly!
+
 ### 3.2 Adding a contact: 
-`add contact c/CONTACT DETAILS m/MOBILE NUMBER  e/EMAIL`
+`add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
 In academic mode, you can add a contact to the current list of contacts, following the instructions below. 
 
 Instruction: 
-1. `add contact c/CONTACT DETAILS  m/MOBILE NUMBER  e/EMAIL`
+1. `add contact c/CONTACT_DETAILS  m/MOBILE_NUMBER  e/EMAIL`
 
 Example of usage: 
 
@@ -477,7 +480,8 @@ will add a contact with the name Prof Lim, mobile number 81234567, and email E76
 Expected output:  
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
-*Note that contacts must be fully numerical and emails must contain an @.
+**Warning:**
+* Numbers should be fully numerical with 8 or fewer digits , and email should be in the form abc@xyz.
 
 ### 3.3 Listing all contacts: 
 `list contact`
@@ -526,12 +530,12 @@ Expected output:
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
 
 ### 3.6 Adding a grade: 
-`add grade n/MODULE NAME  m/MC  g/GRADE`
+`add grade n/MODULE_NAME  m/MC  g/GRADE`
 
 In academic mode, you can add a grade to the current list of grades, following the instructions below. 
 
 Instruction: 
-1. `add grade n/MODULE NAME  m/MC  g/GRADE`
+1. `add grade n/MODULE_NAME  m/MC  g/GRADE`
 
 Example of usage: 
 
@@ -541,7 +545,8 @@ will add a grade with the title CS2101 that has 4 credits and scored an A-.
 Expected output:  
 ![Academic_3_6](Images/AcademicUG/Academic_3_6.png)
 
-*Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+**Warning:**
+* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
 
 ### 3.7 Listing all grades: 
 `list grade`
