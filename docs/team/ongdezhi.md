@@ -21,7 +21,7 @@ Given below are my contributions to the project.
     *   Justification: Being an application to help users keep track of their animes and ensure they stay organized, persistent storage would be needed otherwise, users would have to re-enter their data every time they use the application and that can result in a frustrating experience.
     *   Highlights: During the loading of the watchlist data, each entry recorded in `watchlist.txt` would be validated to ensure they are not corrupted. **If a watchlist is corrupted, then only that watchlist will not be loaded**, the rest of the watchlist(s) will still be loaded if they are valid. A corrupted watchlist is defined as one that has information missing, has an invalid format, or it contains anime ids that are not found in our database.
 
-*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ongdezhi)
+*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ongdezhi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=OngDeZhi&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 *   **Documentation:**
     *   User Guide: 
