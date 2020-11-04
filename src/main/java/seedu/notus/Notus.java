@@ -13,6 +13,8 @@ import seedu.notus.ui.InterfaceManager;
 import seedu.notus.ui.Formatter;
 import seedu.notus.util.parser.ParserManager;
 
+import java.io.IOException;
+
 import static seedu.notus.storage.StorageManager.LOGS_DIR;
 
 /**
