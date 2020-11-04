@@ -1,5 +1,6 @@
 package seedu.dietbook;
 
+import seedu.dietbook.ui.Ui;
 import seedu.dietbook.database.DataBase;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.exception.DietException;
@@ -109,7 +110,7 @@ public class DietBook {
 
         while (!isExit) {
             try {
-                String userInput = dietBook.ui.readCommand();
+                String userInput = dietBook.ui.getCommand();
                 Command c = dietBook.manager.manage(userInput);
                 c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {

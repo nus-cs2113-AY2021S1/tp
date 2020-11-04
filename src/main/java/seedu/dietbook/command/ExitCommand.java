@@ -2,9 +2,9 @@ package seedu.dietbook.command;
 
 import seedu.dietbook.DietBook;
 import seedu.dietbook.Manager;
-import seedu.dietbook.Ui;
 import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Gender;
+import seedu.dietbook.ui.Ui;
 import seedu.dietbook.saveload.PersonSaveLoadManager;
 import seedu.dietbook.saveload.FoodSaveLoadManager;
 

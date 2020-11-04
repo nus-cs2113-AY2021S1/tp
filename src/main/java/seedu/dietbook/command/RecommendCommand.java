@@ -1,7 +1,7 @@
 package seedu.dietbook.command;
 
 import seedu.dietbook.Manager;
-import seedu.dietbook.Ui;
+import seedu.dietbook.ui.Ui;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.person.Person;
 
