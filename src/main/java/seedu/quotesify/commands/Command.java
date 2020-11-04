@@ -41,6 +41,8 @@ public abstract class Command {
     public static final String ERROR_LIST_SPECIFIED_RATING_NOT_FOUND = "I can't find any books rated %d star!";
     public static final String ERROR_NO_AUTHOR_NAME = "Please type in the author name.";
     public static final String ERROR_NO_PAGE_NUM = "There is no page number provided!";
+    public static final String ERROR_NEGATIVE_PAGE_NUM = "Are You Kidding me? Page Number provided must be positive!";
+    public static final String ERROR_NEGATIVE_BOOK_NUM = "Are You Kidding me? Book Number provided must be positive!";
     public static final String ERROR_NO_TASK_NAME = "There is no task name provided!";
     public static final String ERROR_RATING_EXIST = "This book has already been rated!";
     public static final String ERROR_RATING_DO_NOT_EXIST = "This book has not been rated!";
