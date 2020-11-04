@@ -361,6 +361,7 @@ Format: `bunny i\IDEA g\[GENRE]`
 
 Note:
 * If the genre is not indicated it is set as "none" by default.
+* The program allows duplicate bunnies as some users may have more than 1 idea for the same writing prompt.
 
 Example usages:
 - `bunny i\test idea 1`
