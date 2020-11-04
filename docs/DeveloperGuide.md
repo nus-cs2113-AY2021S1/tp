@@ -126,6 +126,7 @@ Aspect: `Command` resolution and validation
 [Return to top](#CCA-manager-developer-guide)
 
 ### 3.3. Finance  
+(by: Wang Zixin)  
 The diagram below shows the architecture of Finance feature:  
 ![Architecture of Finance](financeDiagramPic/Architecture.png)  
 

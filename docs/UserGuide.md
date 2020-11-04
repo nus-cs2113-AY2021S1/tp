@@ -175,6 +175,7 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
 
 #### search members: `search`  
+(by: Wang Zixin)  
 Search the members whose information matches user input.  
 :bulb: If a member's information matches any of the conditions that the user inputs, 
 it will return this member.  
@@ -197,6 +198,7 @@ Expected outcomes:
 
 
 #### view contacts of prof/admin: `list prof&admin`  
+(by: Wang Zixin)  
 List the contacts of the professors and administrators.  
 :bulb: Professor/prof and administrator/admin are roles of members.  
 Format: `hr list prof&admin`  
@@ -216,6 +218,7 @@ Expected outcome:
 
 
 #### view contacts of connections: `list connections`  
+(by: Wang Zixin)  
 List the contacts of connections(alumni, speakers).  
 :bulb: Alumni and speaker are roles of members.  
 Format: `hr list connections`  
@@ -446,6 +449,7 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 ### 4.5 Finance features `finance`  
+(by: Wang Zixin)  
 #### 4.5.1 Add finance log entry: `addLog`  
 Adds an entry into the finance log.  
 Format: `finance addLog ITEM_NAME ITEM_VALUE`  
