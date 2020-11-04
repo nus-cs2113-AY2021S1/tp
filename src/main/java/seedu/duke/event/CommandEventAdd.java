@@ -11,6 +11,9 @@ public class CommandEventAdd extends Command {
     private Event cachedEvent;
     private static final String PATTERN =
             "([01]?[0-9]|2[0-3])-([0-5][0-9])";
+    public static final String WRONG_TIME_FORMAT =
+            "Please enter time in HH-mm format. Note that it is 24 hour clock format.";
+    public static final String DUPLICATE_EVENT = "This event already exists!";
 
     @Override
     public String execute()  {
@@ -28,9 +31,9 @@ public class CommandEventAdd extends Command {
         boolean matchFound = matcher.matches();
 
         if (!(matchFound)) {
-            output = "Please enter time in HH-mm format. Note that it is 24 hour clock format.";
+            output = WRONG_TIME_FORMAT;
         } else if ((EventList.checkIfEventNameMatch(eventName)) && (EventList.checkIfEventDateMatch(eventDate))) {
-            output = "This event already exists!";
+            output = DUPLICATE_EVENT;
         } else {
             output = EventList.addEvent(cachedEvent);
         }

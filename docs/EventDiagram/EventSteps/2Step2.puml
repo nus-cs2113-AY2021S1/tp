@@ -6,12 +6,12 @@ skinparam ClassBorderColor #000000
 title Step 2
 
 package EventList0 {
-    class State1 as "Event\nArduino Course 30 Dec 2020 8pm"
-    class State2 as "Event\nAutoDesk Course 25 May 2021 10-12pm"
+    class State1 as "Event\nArduino Course  Dec 30 2020 18-00"
+    class State2 as "Event\nAutoDesk Course  May 25 2021 12-00"
 }
 package EventList1 {
-    class State3 as "Event\nArduino Course 30 Dec 2020 8pm"
-    class State4 as "Event\nAutoDesk Course 25 May 2021 10-12pm"
+    class State3 as "Event\nArduino Course  Dec 30 2020 18-00"
+    class State4 as "Event\nAutoDesk Course May 25 2021 12-00"
 }
 
 EventList0 -left->EventList1 : event listEvent
