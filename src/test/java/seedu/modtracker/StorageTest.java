@@ -3,6 +3,10 @@ package seedu.modtracker;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -37,7 +41,7 @@ public class StorageTest {
     }
 
     @Test
-    public void load_validFormat_success() throws Exception {
+    public void loadData_validFormat_success() {
         ModTracker modTracker = new ModTracker(TEST_DATA_FILEPATH);
         modTracker.getStorage().loadData(modTracker);
 
@@ -50,4 +54,49 @@ public class StorageTest {
         assertEquals("CS1000", actualTaskList.getTaskData().get(0).getModCode());
         assertEquals(1, actualTaskList.getTaskData().size());
     }
+
+    @Test
+    public void appendToFile_validFormat_success() {
+        long lines = numOfLines();
+        Storage storage = new Storage(TEST_DATA_FILEPATH);
+        storage.appendToFile("addmod AB1000C");
+        storage.appendToFile("deletemod AB1000C");
+        assertEquals(lines + 2, numOfLines());
+    }
+
+    @Test
+    public void clearData_validFormat_success() {
+        Storage storage = new Storage(TEST_DATA_FILEPATH);
+        storage.clearData();
+        assertEquals(1, numOfLines());
+
+        // load back data for other tests
+        storage.appendToFile("addmod CS1000");
+        storage.appendToFile("addmod EE2000");
+        storage.appendToFile("addtask CS1000 revision");
+    }
+
+    @Test
+    public void resetData_validFormat_success() {
+        Storage storage = new Storage(TEST_DATA_FILEPATH);
+        storage.reset();
+        assertEquals(0, numOfLines());
+
+        // load back data for other tests
+        storage.appendToFile("John Doe");
+        storage.appendToFile("addmod CS1000");
+        storage.appendToFile("addmod EE2000");
+        storage.appendToFile("addtask CS1000 revision");
+    }
+
+    private long numOfLines() {
+        try {
+            Path path = Paths.get(TEST_DATA_FILEPATH);
+            return Files.lines(path).count();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 }

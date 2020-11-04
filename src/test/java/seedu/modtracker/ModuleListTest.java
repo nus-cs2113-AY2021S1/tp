@@ -103,7 +103,7 @@ class ModuleListTest {
     }
 
     @Test
-    public void addModule_invalidInput_printErrorMessage() {
+    public void addModule_invalidAddModInput_printErrorMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         String expected = "Please type addmod <module code>" + System.lineSeparator();
@@ -170,7 +170,7 @@ class ModuleListTest {
     }
 
     @Test
-    public void deleteModule_invalidModule_printErrorMessage() {
+    public void deleteModule_invalidDeleteModInput_printErrorMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         String expected = "Please type deletemod <module code>" + System.lineSeparator();
