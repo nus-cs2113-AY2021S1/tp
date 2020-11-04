@@ -50,11 +50,11 @@ public abstract class Command {
     public static final String ERROR_TODO_NOT_FOUND = "There is no such task!";
     public static final String ERROR_BOOKMARK_NOT_FOUND = "There is no such bookmark!";
     public static final String ERROR_LIST_UNKNOWN_COMMAND = "I do not understand that command. Try again";
-    public static final String ERROR_MISSING_EDIT_FLAG = "Editing requires a \"/to\" flag";
     public static final String ERROR_MISSING_KEYWORD = "Please type in the keyword.";
     public static final String ERROR_MISSING_CATEGORY = "Missing category name";
     public static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
     public static final String ERROR_MISSING_REFLECTION_FIELD = "Please specify your reflection!";
+    public static final String ERROR_MISSING_REFLECTION_TAG = "Please specify your reflection!";
     public static final String ERROR_NO_REFLECTION = "The quote you selected does not have a reflection!";
 
     public static final String FLAG_AUTHOR = "/by";
