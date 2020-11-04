@@ -20,6 +20,7 @@ import static seedu.notus.util.CommandMessage.EDIT_EVENT_DUPLICATE_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_DATE_AFTER_START_DATE_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_AFTER_START_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE;
+import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SHIFT_WARNING;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_END_TIME_SUCCESS_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_START_TIME_SUCCESS_MESSAGE;
 import static seedu.notus.util.CommandMessage.EDIT_EVENT_START_TIME_SUCCESS_WARNING;
@@ -131,14 +132,46 @@ public class EditEventCommand extends Command {
         results.add(EDIT_TITLE_MESSAGE);
     }
 
+    /**
+     * Private method to check if two datetime are on the same day.
+     *
+     * @param startDateTime Start Date to check
+     * @param endDateTime End Date to check
+     * @return Whether they are the same day
+     */
+    private boolean isSameDay(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return (endDateTime.getDayOfYear() == startDateTime.getDayOfYear());
+    }
+
     private String getStartEndTimeErrors(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         if (endDateTime.compareTo(startDateTime) < 0) {
             return EDIT_EVENT_END_TIME_AFTER_START_WARNING;
         }
-        if (endDateTime.getDayOfYear() != startDateTime.getDayOfYear()) {
+        if (!isSameDay(startDateTime, endDateTime)) {
             return EDIT_EVENT_END_DATE_AFTER_START_DATE_WARNING;
         }
         return "";
+    }
+
+    /**
+     * Private method to get the endDateTime from startDateTime and the original event length. If the event lasts more
+     * than a day, it will be truncated to the same day as startDateTime, until 2359.
+     * Error message/success message will then be added to the results
+     *
+     * @param startDateTime StartDateTime to start from.
+     * @param eventLength How many minutes to add.
+     * @param results Where to store the results.
+     * @return The resulting newEndDateTime be it 2359 or maintain event length.
+     */
+    private LocalDateTime getNewEndDateTime(LocalDateTime startDateTime, int eventLength, ArrayList<String> results) {
+        LocalDateTime endDateTime = startDateTime.plusMinutes(eventLength);
+        if (!isSameDay(startDateTime, endDateTime)) {
+            endDateTime = startDateTime.with(DEFAULT_EVENT_END_TIMING);
+            results.add(EDIT_EVENT_END_TIME_SHIFT_WARNING);
+        } else {
+            results.add(EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE);
+        }
+        return endDateTime;
     }
 
     /**
@@ -152,16 +185,11 @@ public class EditEventCommand extends Command {
         // Edit startDate is indicated
         if (newStartDateTime != null) {
             if (newEndDateTime == null) {
-                LocalDateTime endDateTime = newStartDateTime.plusMinutes(event.getEventLengthInMinutes());
-                event.setStartDateTime(newStartDateTime);
-                if (endDateTime.getDayOfYear() != newStartDateTime.getDayOfYear()) {
-                    event.setEndDateTime(newStartDateTime.with(DEFAULT_EVENT_END_TIMING));
-                    results.add(EDIT_EVENT_START_TIME_SUCCESS_WARNING);
-                    return;
-                }
-                event.setEndDateTime(endDateTime);
                 results.add(EDIT_EVENT_START_TIME_SUCCESS_MESSAGE);
-                results.add(EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE);
+                LocalDateTime endDateTime = getNewEndDateTime(newStartDateTime,
+                        event.getEventLengthInMinutes(), results);
+                event.setStartDateTime(newStartDateTime);
+                event.setEndDateTime(endDateTime);
                 return;
             }
 

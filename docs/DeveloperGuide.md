@@ -6,6 +6,7 @@ title : Developer Guide
 ## Table of Contents
 #### [1. Introduction](#intro)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting Up](#setup)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Project Management & Development Practices](#management)
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
@@ -47,6 +48,10 @@ Ensures that you are using the correct JDK version (For this project we are usin
 
 For a more detailed set of instructions, please refer to the [following guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/README.md).
 
+#### <a id="management"><ins>1.2 Project Management and Development Practices</ins></a>
+
+Please refer to the [Development Practices Guide](DevelopmentPractices.md) for the Software Development practices used in the project. The document serves to inform on the Project Management frameworks used in the project.
+
 <br>
 
 ## <a id="design">2. Design & Implementation</a>
@@ -71,20 +76,13 @@ The architecture design is given in the diagram above. The main components of No
 1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
 1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
 
-A Program Evaluation Review Technique (PERT) Chart was created prior to the start of developing NotUS and was constantly updated based on progress and updates from the development team's weekly meetings. A PERT chart is a project management tool that provides a visual representation of a project's timeline. The chart breaks down the individual tasks and aids in identifying task dependencies. A diagram of the PERT chart used for this application is shown below.
-
-<p align="center">
-  <img alt="PERT Chart" src="diagrams/out/PERT_Chart.png" />
-  <br><em>Figure 2</em>
-</p>
-
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 
 NotUS manages the flow of the application. On launch, it will create the necessary components, as listed above and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
 
 <p align="center">
   <img alt="NotUS" src="diagrams/out/Notus.png" />
-  <br><em>Figure 3</em>
+  <br><em>Figure 2</em>
 </p>
 
 #### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
@@ -93,7 +91,7 @@ The ParserManager manages the creation of specific parser objects based on the t
 
 <p align="center">
   <img alt="ParserManagerClass" src="diagrams/out/ParserManagerClass.png" />
-  <br><em>Figure 4</em>
+  <br><em>Figure 3</em>
 </p>
 
 💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
@@ -107,14 +105,14 @@ The sequence diagram is as follows.
 
 <p align="center">
   <img alt="Parser" src="diagrams/out/Parser.png" />
-  <br><em>Figure 5</em>
+  <br><em>Figure 4</em>
 </p>
 
 💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are various paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
 
  <p align="center">
    <img alt="AddNoteParser" src="diagrams/out/AddNoteParser.png" />
-   <br><em>Figure 6</em>
+   <br><em>Figure 5</em>
  </p>
 
 Based on the user input, the Parser handles and creates the corresponding Command object.
@@ -161,7 +159,7 @@ Command used to add notes.
 
 <p align="center">
    <img alt="AddNote_Sequence" src="diagrams/out/AddNote_Sequence.png"/>
-   <br><em>Figure 7</em>
+   <br><em>Figure 6</em>
 </p>
 
 **PinCommand**
@@ -175,7 +173,7 @@ Command used to pin/unpin notes.
 
 <p align="center"> 
    <img alt="PinCommand" src="diagrams/out/PinCommand.png"/>
-   <br><em>Figure 8</em>
+   <br><em>Figure 7</em>
 </p>
 
 <br>
@@ -190,7 +188,7 @@ The diagram below is a class diagram of the relationship between the Notebook, N
 
 <p align="center">
    <img alt="NotebookObject" src="diagrams/out/NotebookObject.png"/>
-   <br><em>Figure 9</em>
+   <br><em>Figure 8</em>
 </p>
 
 There are multiple overloaded methods:
@@ -215,7 +213,7 @@ The class diagram below denotes the relationship between the TagManager and the 
 
 <p align="center">
    <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
-   <br><em>Figure 10</em>
+   <br><em>Figure 9</em>
 </p>
  
 💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
@@ -227,14 +225,14 @@ The StorageManager saves and loads data to text files. On launch, the storage ma
 
 <p align="center">
    <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
-   <br><em>Figure 11</em>
+   <br><em>Figure 10</em>
 </p>
 
 While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
-   <br><em>Figure 12</em>
+   <br><em>Figure 11</em>
 </p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
@@ -243,7 +241,7 @@ The Formatter class handles the formatting of the Note(s), Event(s) and message(
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 13</em>
+   <br><em>Figure 12</em>
 </p>
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
@@ -253,7 +251,7 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure 14</em>
+   <br><em>Figure 13</em>
 </p>
 
 💡 As there are various types of exception, the class diagram is split into two.
@@ -272,7 +270,7 @@ The figure below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 15</em>
+ <br><em>Figure 14</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>

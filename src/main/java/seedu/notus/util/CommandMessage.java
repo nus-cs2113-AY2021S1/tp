@@ -219,6 +219,8 @@ public class CommandMessage {
     public static final String EDIT_EVENT_DUPLICATE_WARNING = colorize("Warning! "
             + "The event is very similar to one already stored. Please ensure the input details are correct. "
             + "The edited event is still stored.", GREEN);
+    public static final String EDIT_EVENT_END_TIME_SHIFT_WARNING = colorize("However, event duration "
+            + "is compressed and end time is set at 23:59.", GREEN);
 
 
     public static final String DELETE_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Event failed to delete", RED);
@@ -235,6 +237,7 @@ public class CommandMessage {
             + "different from the start date in this version.", RED);
     public static final String EDIT_EVENT_END_TIME_AFTER_START_WARNING = colorize("Event end time cannot be before "
             + "the start time.", RED);
+    
     public static final String LIST_EVENT_UNSUCCESSFUL_MESSAGE = colorize("There are no events in the timetable!",
             RED);
     public static final String LIST_EVENT_UNSUCCESSFUL_TIME_PERIOD_MESSAGE = colorize("Failed to find any events "
