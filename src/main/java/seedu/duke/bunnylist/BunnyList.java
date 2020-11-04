@@ -97,4 +97,11 @@ public class BunnyList {
         return bunniesList.size();
     }
 
+    /**
+     * Clear all bunnies stored in the storage and reset the bunny.txt
+     */
+    public static void clearAllBunny() {
+        bunniesList.clear();
+        System.out.println("Type in \"save bunny\" to confirm your deletion of the bunny ideas!");
+    }
 }

@@ -41,6 +41,8 @@ public enum CommandChecker {
     ESSAY,
     COUNT_WRITINGS,
     RESET_WRITINGS,
+    RESET_WORDS,
+    RESET_BUNNY,
     CLEAR,
 
     STATS,
@@ -127,6 +129,10 @@ public enum CommandChecker {
             return CommandChecker.COUNT_WRITINGS;
         } else if (userInput.toLowerCase().trim().startsWith("reset writings")) {
             return CommandChecker.RESET_WRITINGS;
+        } else if (userInput.toLowerCase().trim().startsWith("reset words")) {
+            return CommandChecker.RESET_WORDS;
+        } else if (userInput.toLowerCase().trim().startsWith("reset bunny")) {
+            return CommandChecker.RESET_BUNNY;
         } else if (userInput.toLowerCase().trim().startsWith("clear")) {
             return CommandChecker.CLEAR;
         } else {

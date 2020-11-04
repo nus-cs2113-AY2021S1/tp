@@ -175,4 +175,8 @@ public class WordList {
             }
         }
     }
+
+    public static void clearAllWords() {
+        wordList.clear();
+    }
 }
