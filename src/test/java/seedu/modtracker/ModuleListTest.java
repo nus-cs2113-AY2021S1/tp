@@ -156,7 +156,7 @@ class ModuleListTest {
         assertFalse(modulesTest.checkIfModuleExist("CS5000"));
         assertEquals(expected + System.lineSeparator(), outContent.toString());
         modulesTest.clear();
-
+        taskList.clear();
     }
 
     @Test
