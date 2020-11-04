@@ -3,7 +3,7 @@
 ## Overview
 _ModTracker_ is a desktop app for NUS students to track the time spent 
 as well as tasks to do for each of their modules.
-It helps students prioritise their work and 
+It helps students to prioritise their work and 
 balance their time spent amongst their modules. 
 This app uses a Command Line Interface (CLI).
 
@@ -21,15 +21,16 @@ The Ui class handles the user interface of the program. I implemented part of th
 creating the welcome screen logo as well as the exit screen.
 
 As for the feature enhancements, I implemented a feature where users can add tasks under an existing module, as well as 
-managing the tasks such as marking a task as done or deleting a task. The addtask feature will check if the module code 
-entered by the user is valid or pre-exist in the module list by calling relevant methods in the ModuleList class. All these
-implementations are handled in the Task and TaskList classes created by me.
+managing the tasks such as marking a task as done or deleting a task. The user are also able to see the tasks linked to a 
+specific module with the list task feature. Next, the add task feature will check if the module code 
+entered by the user is valid or pre-exist in the module list by calling relevant methods created by my teammates in the
+ModuleList class. All these implementations are handled in the Task and TaskList classes.
 
-#### Contributions to Documentation
+#### Contributions to User Guide
 I created the general structure and format of the user guide. As for the program features, I added the details
 of the _help, addtask, listtask, done, deletetask_ and _exit_ features (Section 2.1, 2.12-1.15, and 2.10) in the user guide.
 
-#### Contributions to the DG
+#### Contributions to the Developer Guide
 I contributed to the _setting up and getting started_ (Section 2) part of the developer guide. As for personal implementations, I 
 added the implementations of the _add task_ (Section 4.7) and _mark task as done_ (Section 4.8) features. I added two sequence
 diagrams under these implementations. 
