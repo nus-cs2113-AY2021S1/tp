@@ -206,6 +206,8 @@ This requires the model classes to implement two methods required for JSON seria
 
 ## Implementation
 ### Project
+![Figure X: Project Class Diagram](./image/developerguide/ProjectClassDiagram.png
+ "Project Class Diagram")
 #### Create Project
 ![Figure X: Sequence diagram of CreateProjectCommand](./image/developerguide/createProjectSequenceDiagram.png
  "Add Project Sequence Diagram") 
@@ -226,7 +228,7 @@ Before execution:
 Implementation:
 
 1. Prepare parameters
-    1. Extracts required arguements, to be passed as parameters for project creation.
+    1. Extracts required fields, to be passed as parameters for project creation.
         
 1. `projectManager.addProject()` adds a project using the parameters provided.
     
