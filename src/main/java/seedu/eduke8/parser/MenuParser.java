@@ -172,7 +172,7 @@ public class MenuParser implements Parser {
                     break;
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                return new IncorrectCommand(ERROR_WRONG_NOTE_FORMAT);
+                return new IncorrectCommand(ERROR_NOTE_WRONG_FORMAT);
             }
         case COMMAND_EXIT:
             LOGGER.log(Level.INFO, "Parsing complete: exit command chosen.");
