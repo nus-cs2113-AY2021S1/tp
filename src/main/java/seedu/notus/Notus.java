@@ -15,6 +15,8 @@ import seedu.notus.util.parser.ParserManager;
 
 import java.io.IOException;
 
+import static seedu.notus.storage.StorageManager.LOGS_DIR;
+
 /**
  * Entry point of the NotUS application.
  */
@@ -35,6 +37,8 @@ public class Notus {
      * Initializes the required managers.
      */
     private void init() {
+        StorageManager.createDirectory(LOGS_DIR);
+
         this.interfaceManager = new InterfaceManager();
         this.notebook = new Notebook();
         this.timetable = new Timetable();
@@ -47,9 +51,14 @@ public class Notus {
 
             storageManager.loadAllNotes(false);
             storageManager.loadAllNotes(true);
+            storageManager.saveAllNoteDetails(false);
+            storageManager.saveAllNoteDetails(true);
             storageManager.loadTimetable();
+
         } catch (SystemException exception) {
             interfaceManager.prints(exception.getMessage());
+        } catch (IOException exception) {
+            interfaceManager.prints("Unable to save to a file");
         }
         interfaceManager.prints(WELCOME_MSG_STRING);
     }
@@ -71,6 +80,11 @@ public class Notus {
      * Exits the application.
      */
     private void exit() {
+        try {
+            storageManager.saveAll();
+        } catch (IOException exception) {
+            interfaceManager.prints("Unable to save to a file");
+        }
     }
 
     /** Runs the program until termination. */

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static seedu.notus.util.PrefixSyntax.PREFIX_END_TIMING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_RECURRING;
 import static seedu.notus.util.PrefixSyntax.PREFIX_REMIND;
 import static seedu.notus.util.PrefixSyntax.PREFIX_STOP_RECURRING;
@@ -50,7 +51,8 @@ public class ParseAddEventCommand extends Parser {
     public Command parse() throws SystemException {
         // add-e eventTitle /t timing /rec occurrence /rem time before (default same day)
         String title = "";
-        LocalDateTime dateTime = null;
+        LocalDateTime startDateTime = null;
+        LocalDateTime endDateTime = null;
         // Not set yet. Has no prefix for this.
         LocalDateTime recurringEndTime = null;
         boolean toRemind = false;
@@ -74,9 +76,14 @@ public class ParseAddEventCommand extends Parser {
                     tags.add(tag);
                     break;
                 case PREFIX_TIMING:
-                    exception = ExceptionType.EXCEPTION_MISSING_TIMING;
+                    exception = ExceptionType.EXCEPTION_MISSING_START_TIMING;
                     String timingString = checkBlank(infoDetails[1], exception);
-                    dateTime = DateTimeManager.dateTimeParser(timingString);
+                    startDateTime = DateTimeManager.dateTimeParser(timingString);
+                    break;
+                case PREFIX_END_TIMING:
+                    exception = ExceptionType.EXCEPTION_MISSING_END_TIMING;
+                    timingString = checkBlank(infoDetails[1], exception);
+                    endDateTime = DateTimeManager.dateTimeParser(timingString);
                     break;
                 case PREFIX_REMIND:
                     toRemind = true;
@@ -107,8 +114,14 @@ public class ParseAddEventCommand extends Parser {
             }
             title = checkBlank(title, ExceptionType.EXCEPTION_MISSING_TITLE);
 
-            if (dateTime == null) {
-                throw new SystemException(ExceptionType.EXCEPTION_MISSING_TIMING);
+            if (startDateTime == null) {
+                throw new SystemException(ExceptionType.EXCEPTION_MISSING_START_TIMING);
+            }
+
+            if (endDateTime == null) {
+                // Handle warning if endDateTime extends into the next day in AddEventCommand
+                // Handle warning if endDateTime < startDateTime in the AddEventCommand
+                endDateTime = startDateTime.plusHours(AddEventCommand.DEFAULT_EVENT_LENGTH);
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
             throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
@@ -120,22 +133,22 @@ public class ParseAddEventCommand extends Parser {
             LocalDate date = (recurringEndTime != null) ? recurringEndTime.toLocalDate() : null;
             switch (recurringType) {
             case RecurringEvent.DAILY_RECURRENCE_TYPE:
-                event = new DailyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
+                event = new DailyEvent(title, startDateTime, endDateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.WEEKLY_RECURRENCE_TYPE:
-                event = new WeeklyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
+                event = new WeeklyEvent(title, startDateTime, endDateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.MONTHLY_RECURRENCE_TYPE:
-                event = new MonthlyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
+                event = new MonthlyEvent(title, startDateTime, endDateTime, toRemind, date, reminderSchedule, tags);
                 break;
             case RecurringEvent.YEARLY_RECURRENCE_TYPE:
-                event = new YearlyEvent(title, dateTime, toRemind, date, reminderSchedule, tags);
+                event = new YearlyEvent(title, startDateTime, endDateTime, toRemind, date, reminderSchedule, tags);
                 break;
             default:
                 throw new SystemException(ExceptionType.EXCEPTION_INVALID_RECURRING_TYPE);
             }
         } else {
-            event = new Event(title, dateTime, toRemind, false, reminderSchedule, tags);
+            event = new Event(title, startDateTime, endDateTime, toRemind, false, reminderSchedule, tags);
         }
         return new AddEventCommand(event);
     }

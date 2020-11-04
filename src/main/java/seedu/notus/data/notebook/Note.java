@@ -138,7 +138,6 @@ public class Note extends TaggableObject {
         }
         noteDetails += PREFIX_DELIMITER + PREFIX_TITLE + " " + this.title + " "
                     + PREFIX_DELIMITER + PREFIX_PIN + " " + this.isPinned + " "
-                    + PREFIX_DELIMITER + PREFIX_ARCHIVE + " " + this.isArchived + " "
                     + tagDetails + LS;
 
         return noteDetails;
