@@ -10,6 +10,7 @@ import static seedu.notus.util.CommandMessage.EDIT_NOTE_SUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.INVALID_LINE_UNSUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 import static seedu.notus.util.CommandMessage.SAME_NOTE_TITLE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_EXIST_MESSAGE;
 import static seedu.notus.util.parser.Parser.inputContent;
 
 //@@author Nazryl
@@ -56,6 +57,9 @@ public class EditNoteCommand extends Command {
         if (!newNote.getTitle().isBlank()) {
             if (newNote.getTitle().equals(oldNote.getTitle())) {
                 return Formatter.formatString(SAME_NOTE_TITLE_UNSUCCESSFUL_MESSAGE);
+            }
+            if (notebook.getNote(newNote.getTitle()))  {
+                return Formatter.formatString(NOTE_EXIST_MESSAGE);
             }
             oldNote.setTitle(newNote.getTitle());
         }

@@ -102,7 +102,7 @@ public class Note extends TaggableObject {
     }
 
     public String getPinnedString() {
-        return (isPinned ? "Y" : "N");
+        return (isPinned ? "Pinned" : "Unpinned");
     }
 
     public void togglePinned() {
@@ -119,6 +119,10 @@ public class Note extends TaggableObject {
 
     public boolean getIsArchived() {
         return this.isArchived;
+    }
+
+    public String getIsArchivedString() {
+        return (isArchived ? "Archived" : "Unarchived");
     }
 
     public void setArchived(boolean archived) {

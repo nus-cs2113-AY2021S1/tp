@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 import static seedu.notus.util.CommandMessage.ADD_NOTE_SUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
-import static seedu.notus.util.CommandMessage.NOTE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_EXIST_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_ARCHIVED_EXIST_MESSAGE;
 import static seedu.notus.util.parser.Parser.inputContent;
 
 //@@author Nazryl
@@ -42,8 +43,11 @@ public class AddNoteCommand extends Command {
         ArrayList<String> content = note.getContent();
 
         // Search for duplicates
-        if (notebook.getNote(note.getTitle()) || notebook.getArchiveNote(note.getTitle()))  {
-            return Formatter.formatString(NOTE_UNSUCCESSFUL_MESSAGE);
+        if (notebook.getNote(note.getTitle()))  {
+            return Formatter.formatString(NOTE_EXIST_MESSAGE);
+        }
+        if (notebook.getArchiveNote(note.getTitle()))  {
+            return Formatter.formatString(NOTE_ARCHIVED_EXIST_MESSAGE);
         }
 
         // Get Content

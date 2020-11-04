@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.notus.util.CommandMessage.NOTE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.NOTE_EXIST_MESSAGE;
 
-//@@author Narzyl
+//@@author Nazryl
 class AddNoteCommandTest {
     Notebook notebook;
     Timetable timetable;
@@ -82,7 +82,7 @@ class AddNoteCommandTest {
         String result = command.execute();
 
         assertFalse(result.contains(note.getTitle()));
-        assertEquals(Formatter.formatString(NOTE_UNSUCCESSFUL_MESSAGE), result);
+        assertEquals(Formatter.formatString(NOTE_EXIST_MESSAGE), result);
         ArrayList<Note> checkBook = notebook.getNotes();
         assertTrue(checkBook.contains(note));
         assertEquals(1, checkBook.size());

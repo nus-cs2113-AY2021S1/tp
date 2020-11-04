@@ -109,11 +109,16 @@ public class Formatter {
         return encloseTopAndBottom(formattedString);
     }
 
-    //@@author Narzyl
-    public static String formatNote(String header, Note note) {
+    //@@author Nazryl
+    public static String formatNote(String message, Note note) {
         String formattedString = "";
+        String header = message.concat(note.getTitle() + " " + note.getTagsName());
 
-        header = header.concat(note.getTitle() + " " + note.getTagsName());
+        header = header.concat("| " + note.getPinnedString() + " ");
+
+        if (note.getIsArchived()) {
+            header = header.concat("| " + note.getIsArchivedString());
+        }
 
         formattedString = formattedString.concat(generatesHeader(header));
         for (String line : note.getContent()) {
@@ -326,7 +331,7 @@ public class Formatter {
      * @param hasHeader Determines if there is a header. Header MUST be the first element in the list.
      * @return Formatted message.
      */
-    public static String formatString(String[] messages, boolean hasHeader) {
+    public static String formatString(String[] messages, boolean hasHeader, boolean isContent) {
         String formattedString = "";
         if (hasHeader) {
             formattedString = generatesHeader(messages[0]);
@@ -339,7 +344,12 @@ public class Formatter {
                 formattedString = formattedString.concat(encloseRow(s));
             }
         }
-        return encloseTopAndBottom(formattedString);
+
+        String result = encloseTopAndBottom(formattedString);
+        if (isContent) {
+            return result.substring(0, result.length() - 1);
+        }
+        return result;
     }
 
     /**

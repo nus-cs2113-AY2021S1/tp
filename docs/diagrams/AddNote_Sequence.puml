@@ -1,86 +1,58 @@
 @startuml
-box "Parser" #LightBlue
 
-activate Notus #DarkSalmon
-Notus -> ParserManager: parseCommand()
-
-create ParseAddNoteCommand
-ParserManager -> ParseAddNoteCommand: <<create>>
-
-activate ParseAddNoteCommand #DarkSalmon
-ParseAddNoteCommand --> ParserManager
-deactivate ParseAddNoteCommand
-
-ParserManager -> ParseAddNoteCommand: parse()
-activate ParseAddNoteCommand #DarkSalmon
-ParseAddNoteCommand -> ParseAddNoteCommand: splitInfoDetails(String)
-
-loop infoDetails in splitInfo
-
-alt /t
-ParseAddNoteCommand -> ParseAddNoteCommand: checkBlank()
-
-else /tag
-ParseAddNoteCommand -> ParseAddNoteCommand: handleTagPrefix(String)
-
-else /pin
-ParseAddNoteCommand -> ParseAddNoteCommand: checkBlank()
-
-else /archive
-ParseAddNoteCommand -> ParseAddNoteCommand: checkBlank()
-
-end
-end
+activate NotUS
 
 create AddNoteCommand
+
 ParseAddNoteCommand -> AddNoteCommand: <<create>>
 
-activate AddNoteCommand #DarkSalmon
-AddNoteCommand --> Notus
+activate AddNoteCommand
+AddNoteCommand --> NotUS
 deactivate AddNoteCommand
 
 deactivate ParseAddNoteCommand
 
 destroy ParseAddNoteCommand
 
-Notus -> AddNoteCommand: setData()
+NotUS -> Command: setData()
 
-activate AddNoteCommand #DarkSalmon
-AddNoteCommand --> Notus
-deactivate AddNoteCommand
+activate Command
+Command --> NotUS
+deactivate Command
 
-Notus -> Notus: executeCommand()
-activate Notus #DarkSalmon
-Notus -> AddNoteCommand: execute()
+NotUS -> NotUS: executeCommand()
+activate NotUS
+NotUS -> AddNoteCommand: execute()
 
-activate AddNoteCommand #DarkSalmon
+activate AddNoteCommand
 AddNoteCommand -> Parser: inputContent()
-activate Parser #DarkSalmon
+activate Parser
 return
+
 deactivate Parser
 AddNoteCommand -> TagManager: rebindTags()
-activate TagManager #DarkSalmon
+activate TagManager
 return
 deactivate TagManager
 
 AddNoteCommand -> Notebook: addNote()
-activate Notebook #DarkSalmon
+activate Notebook
 return
 deactivate Notebook
 
 AddNoteCommand -> StorageManager: saveNote()
-activate StorageManager #DarkSalmon
+activate StorageManager
 return
 deactivate StorageManager
 
 AddNoteCommand -> Formatter: formatNote()
-activate Formatter #DarkSalmon
+activate Formatter
 return
 deactivate Formatter
 
-AddNoteCommand --> Notus
+AddNoteCommand --> NotUS: result
 deactivate AddNoteCommand
 
-deactivate Notus
+deactivate NotUS
 
 @enduml
