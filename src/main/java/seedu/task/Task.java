@@ -1,9 +1,10 @@
 package seedu.task;
 
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidCommandException;
+
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidReminderException;
 
 import seedu.commands.Reminder;
 import seedu.ui.Ui;
@@ -31,7 +32,7 @@ public class Task {
     private Reminder reminder;
 
     public Task(String description, String dateString, String startTime, String endTime, String priorityString, String reminderString)
-        throws InvalidPriorityException, InvalidDatetimeException, InvalidCommandException {
+        throws InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
         this.description = description;
         date = dateStringToDate(dateString);
         this.startTime = timeStringToTime(startTime);
@@ -42,18 +43,19 @@ public class Task {
     }
 
     public Task(Integer taskID, String description, LocalDate date,
-                LocalTime startTime, LocalTime endTime, Priority priority) {
+                LocalTime startTime, LocalTime endTime, Priority priority, Reminder reminder) {
         this.description = description;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.priority = priority;
         this.taskID = taskID;
+        this.reminder = reminder;
     }
 
     public Task(String taskID, String description, String dateString,
                 String startTime, String endTime, String priorityString, String reminderString)
-        throws InvalidPriorityException, InvalidDatetimeException, InvalidCommandException {
+        throws InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
         this.description = description;
         date = dateStringToDate(dateString);
         this.startTime = timeStringToTime(startTime);
@@ -63,14 +65,14 @@ public class Task {
         this.reminder = initiateReminder(reminderString);
     }
 
-    private Reminder initiateReminder(String reminderString) throws InvalidCommandException {
+    private Reminder initiateReminder(String reminderString) throws InvalidReminderException {
         switch(reminderString) {
             case "on":
                 return new Reminder();
             case "off":
                 return null;
             default:
-                throw new InvalidCommandException();
+                throw new InvalidReminderException();
         }
     }
 
@@ -94,6 +96,14 @@ public class Task {
                 reminder.getTimer().cancel();
             }
         }, date);
+    }
+
+    public Reminder getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(String reminderString) throws InvalidReminderException {
+        reminder = initiateReminder(reminderString);
     }
     private int generateHashValue() {
         return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);

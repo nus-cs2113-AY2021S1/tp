@@ -3,10 +3,10 @@ package seedu.commands;
 import seedu.data.DataStack;
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidCommandException;
-import seedu.exceptions.InvalidDatetimeException;
-import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.MaxNumTaskException;
+import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.InvalidReminderException;
 import seedu.task.Task;
 
 import java.util.regex.Pattern;
@@ -42,7 +42,7 @@ public class Add extends ModificationCommand {
     }
 
     public CommandResult execute(Model model)
-        throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidCommandException {
+        throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
         assert description != null;
         // Handle collision by generating new taskID if the value is in use.

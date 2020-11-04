@@ -2,10 +2,10 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidCommandException;
-import seedu.exceptions.InvalidDatetimeException;
-import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidTaskNumberException;
+import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.InvalidReminderException;
 import seedu.task.Task;
 
 import java.util.regex.Matcher;
@@ -21,15 +21,19 @@ public class Edit extends ModificationCommand {
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( st/(?<st>\\d{4}))?"
                     + "( et/(?<et>\\d{4}))?"
-                    + "( p/(?<priority>\\d))?");
+                    + "( p/(?<priority>\\d))?"
+                    + "( r/(?<reminder>\\d))?"
+                    + "( t-(?<t>\\d{4}))?$");
     private final Integer key;
     private final String description;
     private final String date;
     private final String startTime;
     private final String endTime;
     private final String priority;
+    private final String reminder;
 
-    public Edit(String keyString, String description, String date, String startTime, String endTime, String priority)
+    public Edit(String keyString, String description, String date, String startTime, String endTime, String priority,
+                String reminder)
             throws InvalidTaskNumberException {
         try {
             key = Integer.parseInt(keyString);
@@ -41,10 +45,11 @@ public class Edit extends ModificationCommand {
         this.startTime = startTime;
         this.endTime = endTime;
         this.priority = priority;
+        this.reminder = reminder;
     }
 
     public CommandResult execute(Model model)
-        throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException {
+        throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
         Task task = tasks.get(key);
         if (task == null) {
@@ -52,7 +57,7 @@ public class Edit extends ModificationCommand {
         }
 
         Task editedTask = new Task(key, task.getDescription(), task.getDate(), task.getStartTime(),
-            task.getEndTime(), task.getPriority());
+            task.getEndTime(), task.getPriority(), task.getReminder());
 
         // Set field
         if (description != null) {
@@ -69,6 +74,9 @@ public class Edit extends ModificationCommand {
         }
         if (priority != null) {
             editedTask.setPriority(priority);
+        }
+        if(reminder != null) {
+            editedTask.setReminder(reminder);
         }
         tasks.delete(key);
         tasks.addTask(editedTask);

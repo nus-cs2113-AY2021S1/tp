@@ -14,7 +14,7 @@ public class Command {
     }
 
     public CommandResult execute(Model model) throws InvalidPriorityException, InvalidDatetimeException,
-        MaxNumTaskException, InvalidTaskNumberException, EmptyDataStackException, InvalidCommandException {
+        MaxNumTaskException, InvalidTaskNumberException, EmptyDataStackException, InvalidReminderException {
         return new CommandResult("");
     }
 }

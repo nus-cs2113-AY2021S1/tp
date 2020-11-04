@@ -53,7 +53,7 @@ public class Parser {
             if (matcher.find()) {
                 return new Edit(matcher.group("key"), matcher.group("description"),
                         matcher.group("date"), matcher.group("st"), matcher.group("et"),
-                        matcher.group("priority"));
+                        matcher.group("priority"), matcher.group("reminder"));
             } else {
                 throw new InvalidCommandException();
             }
