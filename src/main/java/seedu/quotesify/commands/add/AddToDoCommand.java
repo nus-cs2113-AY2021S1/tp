@@ -30,7 +30,7 @@ public class AddToDoCommand extends AddCommand {
             if (taskNameAndDeadline.length == 1) {
                 taskNameAndDeadline = new String[]{taskNameAndDeadline[0], "not specified"};
             }
-            if (taskNameAndDeadline[0].isEmpty()) {
+            if (taskNameAndDeadline[0].trim().isEmpty()) {
                 throw new QuotesifyException(ERROR_NO_TASK_NAME);
             }
 
