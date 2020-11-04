@@ -72,8 +72,8 @@ public class UI {
         case "adj":
             printHelpAdj();
             break;
-        case "settings":
-            printHelpSettings();
+        case "divider":
+            printHelpDivider();
             break;
         case "list":
             printHelpList();
@@ -105,6 +105,24 @@ public class UI {
         case "delete name":
             printHelpDeleteName();
             break;
+        case "bunny":
+            printHelpBunny();
+            break;
+        case "list bunny":
+            printHelpListBunny();
+            break;
+        case "filter bunny":
+            printHelpFilterBunny();
+            break;
+        case "save bunny":
+            printHelpSaveBunny();
+            break;
+        case "delete bunny":
+            printHelpDeleteBunny();
+            break;
+        case "random bunny":
+            printHelpRandomBunny();
+            break;
         default:
             printHelp();
             break;
@@ -112,7 +130,8 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"help", "divider", "bunny", "list bunny", "filter bunny", "save bunny",
+        String[] listCommands = {"help", "divider",
+            "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny",
             "list", "list filter words", "start", "filter words", "stats", "reset", "name",
             "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
         System.out.println("Type 'help <function name here>' to view help for each command.");
@@ -124,17 +143,17 @@ public class UI {
 
     private static void printHelpDeleteName() {
         System.out.println("Removes a name from the list of names");
-        System.out.println("Format: delete name <INDEX>");
+        System.out.println("Format: delete name INDEX");
     }
 
     private static void printHelpAddName() {
         System.out.println("Add a name to the list of names");
-        System.out.println("Format: add name <NAME>");
+        System.out.println("Format: add name NAME");
     }
 
     private static void printHelpFilterName() {
         System.out.println("Find all the names from the list of names");
-        System.out.println("Format: filter name <NAME>");
+        System.out.println("Format: filter name NAME");
     }
 
     private static void printHelpListName() {
@@ -147,10 +166,46 @@ public class UI {
         System.out.println("Format: name");
     }
 
-    public static void printHelpSettings() {
-        System.out.println("Use the following format for the 'settings' command:");
-        System.out.println("settings n\\<name> d\\<divider option>");
-        System.out.println("Example: settings n\\Alice d\\3");
+    public static void printHelpDivider() {
+        System.out.println("Change the line divider used in Fluffle");
+        System.out.println("Format: divider DIVIDER_OPTION");
+        System.out.println("  Where DIVIDER_OPTION is a number from 1 to 3");
+        System.out.println("Example: divider 1");
+    }
+
+    private static void printHelpBunny() {
+        System.out.println("Add a bunny to the list of bunnies");
+        System.out.println("Format: bunny i\\IDEA g\\[GENRE]");
+        System.out.println("Examples: bunny i\\some fantasy idea g\\ fantasy");
+        System.out.println("          bunny i\\some random idea");
+    }
+
+    private static void printHelpListBunny() {
+        System.out.println("Prints the list of bunnies");
+        System.out.println("Format: list bunny");
+    }
+
+    private static void printHelpFilterBunny() {
+        System.out.println("Filters specific bunny ideas from the list");
+        System.out.println("Format: filter bunny i\\[IDEA] g\\[GENRE]");
+        System.out.println("Examples: filter bunny g\\ fantasy");
+        System.out.println("          filter bunny i\\ horse");
+    }
+
+    private static void printHelpSaveBunny() {
+        System.out.println("Save the current list of bunnies");
+        System.out.println("Format: save bunny");
+    }
+
+    private static void printHelpDeleteBunny() {
+        System.out.println("Delete a selected bunny from the list");
+        System.out.println("Format: delete bunny BUNNY_INDEX");
+        System.out.println("Example: delete bunny 2");
+    }
+
+    private static void printHelpRandomBunny() {
+        System.out.println("pick a random bunny from your list");
+        System.out.println("Format: random bunny");
     }
 
     public static void printHelpNoun() {

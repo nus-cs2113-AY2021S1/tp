@@ -131,7 +131,18 @@ Format: `help [COMMAND_NAME]`
 
 Example of usage: 
 
+`help`
+
 `help filter name`
+
+Example output: 
+```
+help filter name
+--------------------------------------------------------------
+Find all the names from the list of names
+Format: filter name <NAME>
+--------------------------------------------------------------
+```
 
 #### Changing line divider in Fluffle: `divider`
 Allows the user to change the line divider used in Fluffle.

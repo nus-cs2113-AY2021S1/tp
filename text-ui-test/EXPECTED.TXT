@@ -23,6 +23,8 @@ bunny
 list bunny
 filter bunny
 save bunny
+delete bunny
+random bunny
 list
 list filter words
 start
