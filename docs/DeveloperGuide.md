@@ -1,42 +1,42 @@
 # Developer Guide
 
-##Table of contents
-* <a href ="#intro">Introduction</a> <br>
-* <a href ="#design">Design & Implementation</a> <br>
-* <a href ="#card">Card Package</a> <br>
-    * <a href ="#quiz">Quiz Package</a> <br>
-        * <a href ="#Qclass">Quiz Class</a> <br>
-        * <a href ="#Qsubject">SubjectQuiz Class</a> <br> 
-        * <a href ="#Qtopic">TopicQuiz Class</a> <br> 
-        * <a href ="#Qresult">Result Class</a> <br>
-    * <a href ="#task">Task Package</a> <br>
-        * <a href ="#Ttask">Task Class</a> <br>
-        * <a href ="#Ttodo">Todo Class</a> <br>
-        * <a href ="#Tdeadline">Deadline Class</a> <br>
-        * <a href ="#Tevent">Event Class</a> <br>
-    * <a href ="#flashcard">Flashcard Class</a> <br>
-    * <a href ="#subject">Subject Class</a> <br>
-    * <a href ="#topic">Topic Class</a> <br>
-* <a href ="#command">Command Package</a> <br>
-* <a href ="#list">List Package</a> <br>
-* <a href ="#parser">Parser Package</a> <br>
-* <a href ="#ui">Ui Package</a> <br>
-* <a href ="#storage">Storage Package</a> <br>
-   - <a href ="#Sbuilder">Storage Builder</a> <br>
-   - <a href ="#Sstorage">Result</a> <br>
-* <a href ="#scope">Product Scope</a> <br>
+## Table of contents
+* <a href ="#intro">1. Introduction</a> <br>
+* <a href ="#design">2. Design & Implementation</a> <br>
+    * <a href ="#card">2.1 Card Package</a> <br>
+        * <a href ="#quiz">Quiz Package</a> <br>
+            * <a href ="#Qclass">Quiz Class</a> <br>
+            * <a href ="#Qsubject">SubjectQuiz Class</a> <br> 
+            * <a href ="#Qtopic">TopicQuiz Class</a> <br> 
+            * <a href ="#Qresult">Result Class</a> <br>
+        * <a href ="#task">Task Package</a> <br>
+            * <a href ="#Ttask">Task Class</a> <br>
+            * <a href ="#Ttodo">Todo Class</a> <br>
+            * <a href ="#Tdeadline">Deadline Class</a> <br>
+            * <a href ="#Tevent">Event Class</a> <br>
+        * <a href ="#flashcard">Flashcard Class</a> <br>
+        * <a href ="#subject">Subject Class</a> <br>
+        * <a href ="#topic">Topic Class</a> <br>
+    * <a href ="#command">2.2 Command Package</a> <br>
+    * <a href ="#list">2.3 List Package</a> <br>
+    * <a href ="#parser">2.4 Parser Package</a> <br>
+    * <a href ="#ui">2.5 Ui Package</a> <br>
+    * <a href ="#storage">2.6 Storage Package</a> <br>
+       - <a href ="#Sbuilder">Storage Builder</a> <br>
+       - <a href ="#Sstorage">Result</a> <br>
+* <a href ="#scope">3. Product Scope</a> <br>
    - <a href ="#Ptarget">Target User Profile</a> <br>
    - <a href ="#Pvalue">Value Proposition</a> <br>
-* <a href ="#user">User Stories</a> <br>
-* <a href ="#nfr">Non functional Requirements</a> <br>
-* <a href ="#glossary">Glossary</a> <br>
-* <a href ="#manual">Testing</a> <br>
+* <a href ="#user">4. User Stories</a> <br>
+* <a href ="#nfr">5. Non functional Requirements</a> <br>
+* <a href ="#glossary">6. Glossary</a> <br>
+* <a href ="#manual">7. Testing</a> <br>
     - <a href ="#jartest">Testing the Jar File</a> <br>
     - <a href ="#sourcetest">Testing the Source Code</a> <br>
-* <a href ="#develop">Development</a> <br>
+* <a href ="#develop">8. Development</a> <br>
     - <a href ="#log">Logging</a> <br>
 
-## Introduction <a name="intro"> </a>
+## 1. Introduction <a name="intro"> </a>
 
 RevisED is a command line application to help students revise by creating flashcards and taking quizzes, 
 and keeping track of their deadlines, tasks and any other important dates. This application allows users to add subjects, 
@@ -49,7 +49,16 @@ This developer guide is for developers who wish to understand and/or develop Rev
 This guide includes design, implementation, product scope, user stories, non-functional requirements, glossary, 
 testing and development sections to help developers better understand the application.
 
-## Design & implementation <a name= "design"> </a>
+Note the following symbols and formatting used in this document:
+
+Symbols / Formatting|Meaning
+------|------
+ℹ️ **_NOTE:_** | Important or additional information
+⚠️ **_WARNING:_** | Things to avoid or pay extra attention to
+✔️ **_TODO:_** | Things that should be but have not been done
+`Grey highlight` | Code or terms related to the code/application
+
+## 2. Design & implementation <a name= "design"> </a>
 
 This section describes how RevisED has been designed and implemented so that developers can better understand the 
 designing of the code, with the help of visual aids.
@@ -75,7 +84,7 @@ the following packages.
 * Task: Contains the classes for the different types of tasks.
 * Ui: In charge of interaction with the user.
 
-### Card Package
+### 2.1 Card Package
 The Card package consists of different classes that holds information on the main functionalities of the application,
 and is split into 2 packages, quiz and task, as well as Subject, Topic and Flashcard classes.
 - Quiz Package
@@ -202,7 +211,7 @@ subject-`String`, a list of various topics in a subject-`TopicList`, a list of v
 and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
 attributes in the `Subject` class and a toString method to return the title of the subject.
 
-####  Topic Class <a name = "topic"> </a>
+#### Topic Class <a name = "topic"> </a>
 The `Topic` class is a class to store information of topics. It has various attributes such as the title of the subject-`String`,
 a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
 contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
@@ -210,7 +219,7 @@ contains various constructors, getters for all its attributes, and a toString me
 An example of how classes in the card package interact with each other is shown in the figure below. 
 In this example, a student has 2 main subjects, mainly Math and Science. Math has topics algebra and calculus, while science has topics speed and light. He also made flashcards the various topics.
 
-### Command Package
+### 2.2 Command Package
 The Command package consists of different classes that executes the various commands of the application due to user input,
 and is split into 4 packages, flashcard, subject, task and topic, as well as a abstract command class, that is a superclass of the various classes in the different packages.
 
@@ -221,11 +230,13 @@ the following packages.
     - Topic
     - Task
 
-### Storage Package <a name = "storage"> </a>
+### 2.6 Storage Package <a name = "storage"> </a>
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
 relationship between the two classes.
 
 ![StorageClass](https://user-images.githubusercontent.com/15065550/97547893-9cfe6b80-198b-11eb-8475-0992c8274ee3.png)
+
+<sub>***Figure 2.6.1** UML class diagram for storage package*</sub>
 
 #### StorageBuilder <a name = "Sbuilder"> </a>
 
@@ -236,47 +247,200 @@ be created through `StorageBuilder`, and this is enforced by disabling the publi
 
 #### Storage <a name = "Sstorage"> </a>
 
-`Storage` class handles every operation that involves data storage, including saving, loading, and exporting of 
-application data. 
+`Storage` class handles every operation that involves data storage, including storing, loading, and exporting of 
+application data. Storing of data only happens when the application exits while loading of data only happens
+when the application launches. On the other hand, exporting of data happens when the user runs `export` command.
 
 ##### Storing data 
 
 `Storage` class stores the data following the same logical structure (subject -> topic) of the application to 
 make the stored data more presentable to the user. `Subject` and `Topic` data are stored as nested directories, while 
 `Flashcard` and `Result` data are stored in [JSON](https://en.wikipedia.org/wiki/JSON) format so that they are readable 
-to the users and allows them to change the saved data manually. `Task` data are stored differently as text files due to 
-legacy reason, but they are also readable and can be changed manually as well. An example of the structure mentioned is 
-shown in the figure below.
+to the users and allows them to change the saved data manually. 
+[Gson](https://github.com/google/gson/blob/master/UserGuide.md) library is used to create the json files.
+`Task` data are stored differently as text files due to 
+legacy reason, but they are also readable and can be changed manually as well. 
 
-```
-Maths
-├── Algebra
-│   ├── subjectResults.json
-│   └── flashcards.json
-├── topicResults.json
-└── tasks.txt
-```
+> ℹ️ **_NOTE:_** If the users modify the file contents with wrong syntax, the data in the affected files will
+> not be loaded and empty data will be returned instead so that the application can still run.
 
-This class also stores the data in a cascading manner, meaning that when a call to save topics is made, all the data 
+An example of the structure mentioned is shown in the figure below.
+
+<pre>
+data                            <em>--> Data main folder</em>
+└── Maths                       <em>--> Maths subject folder</em>
+    ├── Algebra                 <em>--> Algebra topic folder under Maths subject</em>
+    │   ├── topicResults.json
+    │   └── flashcards.json
+    ├── subjectResults.json
+    └── tasks.txt
+</pre>
+<sub>***Figure 2.6.2** Sample directory structure*</sub>
+
+###### File formats
+
+One `tasks.txt` file is created under each subject folder, storing the tasks (Todo, Event, Deadline) data under 
+that subject. An example of the file content is shown below.
+
+<pre>
+T | 1 | someTodoTask                                    <em>--> Todo task</em>
+D | 0 | someDeadlineTask | 11:59 PM 20 Dec 2020         <em>--> Deadline task</em>
+E | 0 | someEventTask | 1:00 PM 10 Nov 2020             <em>--> Event task</em>
+</pre>
+<sup>***Figure 2.6.3** Sample tasks.txt content*</sup>
+
+The first column of data shows the type of task, where T corresponds to `Todo` task, D corresponds to `Deadline` 
+task, and E corresponds to `Event` task. The second column shows if a task is completed, where 0 means not completed 
+while 1 means completed. The third column shows the name of a task. Lastly, the fourth column shows the time and date of 
+a deadline or event task. 
+
+Moving on, one `subjectResults.json` is created under each subject folder, and one `topicResults.json` is created 
+under each topic folder. `subjectResults.json` stores the quiz results the users have obtained from doing quizzes under 
+a subject, while `topicResults.json` stores the quiz results the users have obtained from doing quizzes under a topic. 
+Both of the files have the same content format, and an example of 
+the file content is shown below.
+
+<pre>
+[
+  {                                    <em>--> Result record 1</em>
+    "score": 1.0,                      <em>--> Score obtained</em>
+    "maxScore": 1.0,                   <em>--> Maximum score that can be obtained</em>
+    "description": "Excellent"         <em>--> Result description</em>
+  },
+  {                                    <em>--> Result record 2</em>
+    ...
+  },
+  ...
+]
+</pre>
+<sup>***Figure 2.6.4** Sample subjectResults.json content*</sup>
+
+This content format is a result of converting a list of `Result` data into json form. 
+
+Lastly, one `flashcards.json` file is created under each topic folder, storing all the flashcard data the users 
+have added under a specific subject and topic. An example of the file content is shown below.
+
+<pre>
+[
+  {                                            <em>--> Flashcard 1</em>
+    "question": "x + y = 4. y = ? ",
+    "answer": "4 - x"
+  },
+  {                                            <em>--> Flashcard 2</em>
+    ...
+  },
+  ...
+]
+</pre>
+<sup>***Figure 2.6.5** Sample flashcard.json content*</sup>
+
+Similarly, this content format is a result of converting a list of `Flashcard` data into json form.
+
+###### Implementation
+
+The implementation stores the data in a cascading manner, meaning that when a call to save topics is made, all the data 
 under the topics will be saved. Similarly, when a call to save subjects is made, all the data under the subjects
 including topics will be saved. The behavior mentioned is shown in the diagram below.
 
 ![StorageSaveSubjects](https://user-images.githubusercontent.com/15065550/97779044-cdcfd380-1b38-11eb-8e5e-a4f258a726e5.png)
 
+<sub>***Figure 2.6.6** UML sequence diagram for storing subjects*</sub>
+
 ![StorageSaveTopics](https://user-images.githubusercontent.com/15065550/97779045-ce686a00-1b38-11eb-821f-1b468dcb996e.png)
+
+<sub>***Figure 2.6.7** UML sequence diagram for storing topics*</sub>
+
+As can be seen in figure , all the data is deleted from the disk before saving of data takes place. It is implemented this way
+to make sure the deletion of a subject or topic by the user is also saved. Otherwise, the subject or topic will not be
+deleted since the rest of the method calls only replace or create data.
+
+> ✔️ **_TODO:_** As the amount of data grows larger, this saving algorithm can get very slow since it only saves the data
+> when the application exits, not to mention the (most of the time) needless deletion of all data before each save. 
+> To speed up the process, the implementation can be changed such that data is saved right after each user command that involves data manipulation.
 
 ##### Loading data
 
+For the data stored in json format, they are loaded using the same [Gson](https://github.com/google/gson/blob/master/UserGuide.md)
+library, whereas for the data `tasks.txt`, they are parsed line by line and converted into corresponding `Task` objects.
 The loading of data follows a similar cascading manner as saving, as can be seen in the diagram below.
 
-![StorageLoadSubjects](https://user-images.githubusercontent.com/15065550/97779041-cb6d7980-1b38-11eb-9068-1b54a561dad3.png)
+![StorageLoadSubjects](https://user-images.githubusercontent.com/15065550/97828501-1cd25180-1c7c-11eb-94e9-9c7731711e30.png)
+
+<sub>***Figure 2.6.8** UML sequence diagram for loading subjects*</sub>
 
 ![StorageLoadTopics](https://user-images.githubusercontent.com/15065550/97779042-cc9ea680-1b38-11eb-9e06-f36274dd4286.png)
 
-Before returning topics and subjects, the methods sort them in alphabetical order to let the users locate their 
-subjects or topics more easily. 
+<sub>***Figure 2.6.9** UML sequence diagram for loading topics*</sub>
 
-## Product scope <a name = "scope"> </a>
+Note that only `Subject` and `Topic` data are sorted; `Result`, `Flashcard`, and `Task` data still follow the added 
+order. This is because subjects and topics are stored as directories, and the order of the directories loaded is not 
+guaranteed by the Java, so the sorting is just to fix the inconsistency of the order. The rest of the data, on the
+other hand, is guarenteed to have the same order every time they are loaded, so they are not sorted. 
+
+##### Exporting data
+
+The user can export all data of the application to the pre-defined `export/data.json` in the same directory where 
+the application runs. An example of the file content is shown below.
+
+<pre>
+[
+  {                                                                  <em>--> Subject 1</em>
+    "title": "Maths",                                                
+    "topics": {
+      "topics": [                                                    <em>--> Topics under Maths subject</em>
+        {                                                            <em>--> Topic 1</em>
+          "title": "Algebra",                                        
+          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Algebra topic</em>
+          "results": {
+            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Algebra topic</em>
+          }
+        },
+        ...
+      ]
+    },
+    "tasks": {                                                       <em>--> Tasks under Maths subject</em>
+      "taskList": [
+        {                                                            <em>--> Task 1</em>
+          "description": "someTodoTask",
+          "isDone": false
+        },
+        {                                                            <em>--> Task 2</em>
+          "dateTime": {
+            "date": {
+              "year": 2020,
+              "month": 12,
+              "day": 20
+            },
+            "time": {
+              "hour": 23,
+              "minute": 59,
+              "second": 0,
+              "nano": 0
+            }
+          },
+          "description": "someDeadlineTask",
+          "isDone": false
+        },
+        ...                                                       
+      ]
+    },                            
+    "results": {
+      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under Maths subject</em>
+    }
+  },
+  ...                                                               <em>--> More subjects</em>
+]
+</pre>
+<sup>***Figure 2.6.10** Sample data.json content*</sup>
+
+This content format is a result of converting a list of `Subject` objects with populated data into json form.
+
+> ✔️ **_TODO:_** Importing of the exported data is not yet supported, and it would make sense to implement it in the
+> future versions. However, it may not be straightforward as type conversion is needed to convert the data into the
+> right types 
+> (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
+
+## 3. Product scope <a name = "scope"> </a>
 
 This section describes the scope of the application. To be specific, the target audience and 
 the uses and benefits of this application.
@@ -302,7 +466,7 @@ regarding the upcoming tasks, which would prompt the students to prepare them.
 
 Students who find it difficult to organise would find this app useful since it
 offers a one stop solution to manage both their revision and their upcoming tasks .
-## User Stories <a name = "user"> </a>
+## 4. User Stories <a name = "user"> </a>
 
 This section summarises various user stories of this application. These are summarised in the table below.
 
@@ -322,7 +486,7 @@ This section summarises various user stories of this application. These are summ
 |v2.0|developer|log messages from the application|troubleshoot for errors|
 
 
-## Non-Functional Requirements <a name = "nfr"> </a>
+## 5. Non-Functional Requirements <a name = "nfr"> </a>
 
 The application satisfies the following requirements:
  * Portability: Users can transfer their data from the application since all the data is stored in a txt file.
@@ -335,7 +499,7 @@ The application satisfies the following requirements:
  developers could also modify the input.txt file to provide a set of inputs and test if the application returns the 
  expected output.
 
-## Glossary <a name = "glossary"> </a>
+## 6. Glossary <a name = "glossary"> </a>
 
 * *Revised* - The main class which initiates the whole application.
 * *ui* - Package which contains the Ui class, in charge of user interactions.
@@ -368,7 +532,7 @@ results and topics.
 flashcards and an arraylist of results.
 * *TopicList* - A class which holds an ArrayList of Topics.
 
-## Testing <a name = "manual"> </a>
+## 7. Testing <a name = "manual"> </a>
 
 This section describes how to carry out testing of the application. It focuses on testing the jar file and the source code.
 
@@ -465,12 +629,20 @@ code.
 * The .md files for the UserGuide,README,and the DeveloperGuide
 
 
-## Development <a name="develop"> </a>
+## 8. Development <a name="develop"></a>
 
-### Logging < a name = "log"> </a>
+### Logging <a name = "log"> </a>
 Whenever you need to use logging in a class, add this line 
-`private static final Logger logger = Logger.getLogger(<CurrentClass>.class.getName());` to the start
-of the class, where \<CurrentClass\> is replaced by the class name you are adding the logger to.
 
-The logging configuration can be found under `src/main/resources/logging.properties`. The current configuration directs
-the logs to a file named `revisED%u.log` in the project root directory. 
+```java
+private static final Logger logger = Logger.getLogger(CurrentClass.class.getName());
+```
+
+to the start of the class to get a logger instance,
+where `CurrentClass` is replaced by the class name you are adding the logger to. To learn more about
+how logging works, read the [official logging documentation](https://docs.oracle.com/javase/7/docs/technotes/guides/logging/overview.html).
+
+The current configuration logs all the messages with log levels above `FINE` into a file (`revisED%u.log`) in the same
+directory where the application is run. You can find more details about the logging configurations (and change them or add more)
+in `src/main/resources/logging.properties`. 
+For consistency, you should only change the behavior of logging via this file.
