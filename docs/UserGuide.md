@@ -52,8 +52,6 @@ As a fast-typing writer, this CLI app is highly suitable for you.
 
 [Jump to top](#fluffle-user-guide)
 
-This User Guide aims at providing you with the best way to utilize Fluffle for your own writing experience.
-
 ## About This Document
 
 This document aims to provide you with the best way to utilize Fluffle for your own writing experience. 
