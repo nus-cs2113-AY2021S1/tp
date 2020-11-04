@@ -63,7 +63,7 @@ class AddCommandTest {
         addCommand.execute(data, ui, storage);
 
         assertEquals("You have successfully added this event to your list!" + System.lineSeparator()
-                        + "[T][✕] Math class, Location: "
+                        + "[T][X] Math class, Location: "
                         + "math building on 2000-10-17, 13:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
