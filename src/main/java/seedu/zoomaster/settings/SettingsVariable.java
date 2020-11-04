@@ -24,18 +24,6 @@ public class SettingsVariable<T> {
         return fieldName;
     }
 
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
-
-    public T[] getOptions() {
-        return options;
-    }
-
-    public void setOptions(T[] options) {
-        this.options = options;
-    }
-
     public int getChosenOptionIndex() {
         return chosenOptionIndex;
     }
