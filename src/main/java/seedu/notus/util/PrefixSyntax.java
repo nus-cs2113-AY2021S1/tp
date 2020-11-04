@@ -22,6 +22,7 @@ public class PrefixSyntax {
 
     /** Event related prefix. */
     public static final String PREFIX_TIMING = "timing";
+    public static final String PREFIX_END_TIMING = "end";
     public static final String PREFIX_RECURRING = "repeat";
     public static final String PREFIX_REMIND = "remind";
     public static final String PREFIX_REMIND_ADD = "remind-add";

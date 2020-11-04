@@ -377,8 +377,12 @@ public class StorageManager {
 
     private static String getEventDetailsSaveFormat(Event event) {
         String eventDetails;
-        eventDetails = PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
-                + PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " " + event.getDateTime() + " ";
+
+        eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
+                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " "
+                + event.getStartDateTimeString() + " "
+                + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_END_TIMING + " "
+                + event.getEndDateTimeString() + " ";
 
         ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
 
