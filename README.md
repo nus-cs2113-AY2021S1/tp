@@ -1,8 +1,11 @@
 # Quotesify
 
-Quotesify is a greenfield Java project by a team of software engineering students.
+Quotesify is a free greenfield Java project by a team of software engineering students.
 
-Quotesify is a free desktop CLI application to help users in their reading activities.
+Are you constantly reading books and browsing articles on the web only to forget most of it in a short period of time?
+
+If so Quotesify is for you! A minimal distraction free CLI that helps you manage the information you consume by tracking
+the things you read and logging those important nuggets of wisdom you find along the way!
 
 With Quotesify, users can add books and quotes that they wish to remember. They can categorize their books and quotes
 by author, customized categories, and even rate their books. Quotesify also comes with a progress tracker just to
@@ -49,7 +52,7 @@ What would you like to do with Quotesify?
 
 ## Documentation
 
-Documentation for Quotesify is stored in */docs* directory.
+Documentation for Quotesify including User and Developer guide is stored in */docs* directory.
 
 Click [here](https://ay2021s1-cs2113t-t09-3.github.io/tp/) to access the documentation such as User Guide and Developer Guide.
 

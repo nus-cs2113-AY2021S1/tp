@@ -5,8 +5,7 @@ I am part of a team of 5 software engineering students and we were tasked to des
 Command Line Interface (CLI) desktop application for our team project. The application that we developed
 is called Quotesify. I was tasked with the Quote Management and Quote Reflection feature in Quotesify.
 
-### About the project
-Quotesify is a free desktop application to help book readers improve their reading experience. With Quotesify,
+Quotesify is an application to help book readers improve their reading experience. With Quotesify,
 users can add books and quotes they wished to remember into the application. Users can also categorize their books and
 quotes, as well as rate their books. Quotesify is also built with a progress tracker to manage your reading activities.
 
@@ -22,8 +21,7 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
 
     **What it does:**
     * The user may use the `add -q` command to add quotes in Quotesify.
-    * The user may use the `edit -q` command to edit existing quotes in Quotesify.
-    * The user may use the `delete -q` command to delete existing quotes in Quotesify.
+    * The user may use the `edit -q` or `delete -q` command to edit or delete an existing quote in Quotesify.
     * The user may use the `list -q` command to list all existing quotes, list quotes from a specified author,  list quotes from a specified reference or both.
     * The user may also use the `find -q` command to find quotes that contains the specified keyword.
 
@@ -33,18 +31,15 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
     of those quotes, enabling users to revisit and find them effectively.
     
     **Highlights:**
-    To enable a wider range of use cases, Quotesify accepts multiple formats for quotes. Author name and reference title are
-    optional flags that can be added to provide more information which will enable users to find and list quotes more 
-    efficiently. This feature was designed so that users will not be forced to follow a specific format, moreover, quotes 
-    found on the internet may not have reliable author names and/or reference titles.Users will also be reminded of previous
-    quotes that have been saved, resurfacing and reminding them so that they can better remember those quotes in the long run.
+    To enable a wider range of use cases, Quotesify accepts multiple formats for quotes. Author and reference are optional 
+    flags that can be added to provide more information which will enable users to find and list quotes more efficiently. 
+    Users will also be reminded of saved quotes, resurfacing and reminding them so that they can better remember them in the long run.
     
 2. Quote Reflection feature in Quotesify.
     
     **What it does:**
     * The user may use the `add -qr` command to add a reflection to an existing quote in Quotesify.
-    * The user may use the `edit -qr` command to edit an existing reflection for a specified quote.
-    * The user may use the `delete -qr` command to delete an existing reflection for a specified quote.
+    * The user may use the `edit -qr` or `delete -qr` command to edit or delete an existing reflection for a specified quote.
     * The user may use the `list -qr` command to list the reflection of a specified quote.
     
     **Justification:**
