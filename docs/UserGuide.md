@@ -220,7 +220,7 @@ Date: 30/10/2020
 #### 2.2.4.1 Viewing food entries on a specific date
 To view food entries for a specific day, you may enter the date at the back of the `view food` command. 
 
-Format: `view food DATE/MONTH/YEAR (dd/MM/yyyy)`
+Format: `view food dd/MM/yyyy`
 
 For example, if you would like to view your food entries on 22/10/2020, you may key in `view food 22/10/2020`. The expected outcome should be similar to below:
 
@@ -284,7 +284,7 @@ Format: `view summary`
 #### 2.2.7.1 Viewing calorie summary of a specific date
 You may also choose to view the summary for a specific day by specifying a date at the back of `view summary`.
 
-Format: `view summary DATE/MONTH/YEAR (dd/MM/yyyy)`
+Format: `view summary dd/MM/yyyy`
 
 For example, if you would like to view your caloric summary on 22/10/2020, you may key in `view summary 25/10/2020`, and you should get an output similar to below:
 ```
@@ -316,21 +316,21 @@ Height (in m) changed to: 1.95
 ### 2.3.2 Editing a food entry
 You can edit your previous food entries, for example, if you previously made a mistake when entering a food that you consumed.
 
-Format: `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
+Format: `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
 
 For example, you can enter `edit food 25/10/2020 1 apple /100 1`, and you should expect to see the following output:
 ```
-Successfully edited food to: apple
+Successfully edited food to: apple, calories: 100, amount: 1
 ```
 
 ### 2.3.3 Editing an exercise entry
 You can edit your previous exercise entries, for example, if you previously made a mistake when entering an exercise that you performed.
 
-Format: `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
+Format: `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
 
 For example, you can enter `edit exercise 25/10/2020 1 Push ups /500`, and you should expect to see the following output:
 ```
-Successfully edited exercise to: Push ups
+Successfully edited exercise to: Push ups, calories burnt: 500
 ```
 
 ### 2.3.4 Editing a goal entry
@@ -544,18 +544,18 @@ View Help | `help` |
 View User Profile | `view profile` |
 View User BMI | `view bmi` |
 View Food Entry | `view food` |
-View Food Entries on a Specified Date | `view food DATE/MONTH/YEAR` | `view food 26/10/2020`
+View Food Entries on a Specified Date | `view food dd/MM/yyyy` | `view food 26/10/2020`
 View Exercise Entry | `view exercise` | 
-View Exercise Entries on a Specified Date | `view exercise DATE/MONTH/YEAR` | `view exercise 26/10/2020`
+View Exercise Entries on a Specified Date | `view exercise dd/MM/yyyy` | `view exercise 26/10/2020`
 View Goal Entry | `view goal` | 
 View Calorie Summary | `view summary` |
-View Calorie Summary on a Specified Date | `view summary DATE/MONTH/YEAR` | `view summary 26/10/2020`
+View Calorie Summary on a Specified Date | `view summary dd/MM/yyyy` | `view summary 26/10/2020`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
-Edit Food Entry | `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 25/10/2020 1 green apple /50 1`
-Edit Exercise Entry | `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 25/10/2020 1 5km run /360`
+Edit Food Entry | `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 25/10/2020 1 green apple /50 1`
+Edit Exercise Entry | `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 25/10/2020 1 5km run /360`
 Edit Goal Entry | `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION` | `edit goal 1 food eat healthier`
-Delete a Food Entry | `delete food DATE INDEX` | `delete food 24/10/2020 3`
-Delete an Exercise Entry | `delete exercise DATE INDEX` | `delete exercise 24/10/2020 3`
+Delete a Food Entry | `delete food dd/MM/yyyy INDEX` | `delete food 24/10/2020 3`
+Delete an Exercise Entry | `delete exercise dd/MM/yyyy INDEX` | `delete exercise 24/10/2020 3`
 Delete a Goal Entry | `delete goal INDEX` | `delete goal 5`
 Clear All Food Entries | `clear food` |
 Clear All Exercise Entries | `clear exercise` | 

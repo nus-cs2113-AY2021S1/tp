@@ -208,7 +208,6 @@ public class ViewCommand extends Command {
             viewSummary(foodListByDate, exerciseListByDate);
         } catch (Exception ex) {
             Ui.printCustomError(ERROR_INVALID_DATE);
-            Ui.printCustomMessage(EMPTY_STRING);
         }
     }
 
