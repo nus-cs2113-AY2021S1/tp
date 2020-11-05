@@ -21,41 +21,42 @@ public class TimeTableParser {
         case "show activity":
             showActivities(dateList);
             return;
-        }
-        try {
-            String[] words = command.split(" ");
-            String action = words[0];
-            String type = words[1];
-            if (action.equals("add")) {
-                switch (type) {
-                case "activity": {
-                    Activity activity = addActivity();
-                    dateList.addEvent(activity);
-                    storage.writeFile(activity);
-                    System.out.println(Message.printSuccessfulActivityAddition);
-                }
+        default:
+            try {
+                String[] words = command.split(" ");
+                String action = words[0];
+                String type = words[1];
+                if (action.equals("add")) {
+                    switch (type) {
+                    case "activity": {
+                        Activity activity = addActivity();
+                        dateList.addEvent(activity);
+                        storage.writeFile(activity);
+                        System.out.println(Message.printSuccessfulActivityAddition);
+                    }
                     break;
-                case "class": {
-                    Lesson lesson = addClass();
-                    dateList.addEvent(lesson);
-                    storage.writeFile(lesson);
-                    System.out.println(Message.printSuccessfulClassAddition);
+                    case "class": {
+                        Lesson lesson = addClass();
+                        dateList.addEvent(lesson);
+                        storage.writeFile(lesson);
+                        System.out.println(Message.printSuccessfulClassAddition);
+                    }
+                    break;
+                    default:
+                        System.out.println((Message.printInvalidEvent));
+                    }
+                } else {
+                    System.out.println(Message.printInvalidEvent);
                 }
-                break;
-                default:
-                    System.out.println((Message.printInvalidEvent));
-                }
-            } else {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println(Message.printInvalidEvent);
+                StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
+            } catch (InvalidDayOfTheWeekException e) {
+                System.out.println("Day of the week input is invalid. Please add the class again.");
+                StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule!");
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(Message.printInvalidEvent);
-            StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
-        } catch (InvalidDayOfTheWeekException e) {
-            System.out.println("Day of the week input is invalid. Please add the class again.");
-            StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
-        } catch (ClashScheduleException e) {
-            System.out.println("There is a clash in schedule!");
         }
     }
 
@@ -201,6 +202,7 @@ public class TimeTableParser {
 
     public static void fileParser(String command, DateList dateList) {
         String[] words = command.split("\\|");
+        Scanner in = new Scanner(System.in);
         EventType eventType = EventType.valueOf(words[0]);
         String name = words[1];
         String linkOrVenue = words[2];
