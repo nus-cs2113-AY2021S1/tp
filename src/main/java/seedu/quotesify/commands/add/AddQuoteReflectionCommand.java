@@ -24,14 +24,10 @@ public class AddQuoteReflectionCommand extends AddCommand {
 
     private void addQuoteReflection(QuoteList quoteList, TextUi ui) {
         try {
-            int quoteNum = QuoteParser.getQuoteNumber(information, quoteList, Command.FLAG_REFLECT);
+            int quoteNum = QuoteParser.getQuoteNumber(information, quoteList.getSize(), FLAG_REFLECT);
             String reflection = QuoteParser.getReflectionToAdd(information);
-            if (!reflection.isEmpty()) {
-                Quote quoteWithReflection = quoteList.addReflection(reflection, quoteNum);
-                ui.printAddReflection(quoteWithReflection, quoteWithReflection.getReflection());
-            } else {
-                throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
-            }
+            quoteList.addReflection(reflection, quoteNum);
+            ui.printAddReflection(quoteList.getQuote(quoteNum));
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
             quotesifyLogger.log(Level.INFO, "add reflection to quote failed");

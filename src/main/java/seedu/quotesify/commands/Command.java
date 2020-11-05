@@ -20,6 +20,7 @@ public abstract class Command {
     /** Error messages for the different commands. */
     public static final String ERROR_INVALID_BOOK_NUM = "Invalid book number specified!";
     public static final String ERROR_INVALID_QUOTE_NUM = "Invalid quote number specified!";
+    public static final String LIST_NO_QUOTES_SAVED_MESSAGE = "You have no saved quotes!";
     public static final String ERROR_DUPLICATE_QUOTE = "This quote has already been added!";
     public static final String ERROR_INVALID_TODO_NUM = "Invalid task number specified!";
     public static final String ERROR_INVALID_PAGE_NUM = "Invalid page number specified!";
@@ -53,8 +54,6 @@ public abstract class Command {
     public static final String ERROR_MISSING_KEYWORD = "Please type in the keyword.";
     public static final String ERROR_MISSING_CATEGORY = "Missing category name";
     public static final String ERROR_MISSING_BOOK_OR_QUOTE = "Please specify a book title or quote number!";
-    public static final String ERROR_MISSING_REFLECTION_FIELD = "Please specify your reflection!";
-    public static final String ERROR_MISSING_REFLECTION_TAG = "Please specify your reflection!";
     public static final String ERROR_NO_REFLECTION = "The quote you selected does not have a reflection!";
 
     public static final String FLAG_AUTHOR = "/by";

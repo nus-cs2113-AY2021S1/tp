@@ -21,21 +21,23 @@ public class EditQuoteReflectionCommand extends  EditCommand {
 
     private void editQuoteReflection(QuoteList quoteList, TextUi ui) {
         try {
-            int quoteNumToEdit = QuoteParser.getQuoteNumber(information, quoteList, Command.FLAG_EDIT);
-            if (quoteList.getQuote(quoteNumToEdit).getReflection() == null) {
+            int quoteNumToEdit = QuoteParser.getQuoteNumber(information, quoteList.getSize(), FLAG_EDIT);
+            if (!hasReflection(quoteNumToEdit, quoteList)) {
                 throw new QuotesifyException(ERROR_NO_REFLECTION);
             }
-
             String editedReflection = QuoteParser.getEditedReflection(information);
-            if (!editedReflection.isEmpty()) {
-                quoteList.updateReflection(editedReflection, quoteNumToEdit);
-                ui.printEditQuoteReflection(quoteList.getQuote(quoteNumToEdit), editedReflection);
-            } else {
-                throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
-            }
+            quoteList.updateReflection(editedReflection, quoteNumToEdit);
+            ui.printEditQuoteReflection(quoteList.getQuote(quoteNumToEdit));
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }
+    }
+
+    private boolean hasReflection(int quoteNumber, QuoteList quoteList) {
+        if (quoteList.getQuote(quoteNumber).getReflection() ==  null) {
+            return false;
+        }
+        return true;
     }
 
 }

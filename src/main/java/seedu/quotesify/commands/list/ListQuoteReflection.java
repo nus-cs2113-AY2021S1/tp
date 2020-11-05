@@ -20,20 +20,38 @@ public class ListQuoteReflection extends ListCommand {
 
     private void listQuoteReflection(QuoteList quoteList, TextUi ui) {
         try {
-            if (information.trim().isEmpty()) {
-                throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
-            }
-            int quoteNumber = Integer.parseInt(information.trim()) - 1;
-            if (quoteNumber < 0 || quoteNumber > quoteList.getSize()) {
-                throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
-            } else {
+            int quoteNumber = getQuoteNumber(information);
+            if (isValidQuoteNumber(quoteNumber, quoteList)) {
                 Quote quote = quoteList.getQuote(quoteNumber);
                 ui.printQuoteAndReflection(quote);
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
-        } catch (NumberFormatException e) {
-            ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
         }
     }
+
+    private int getQuoteNumber(String userInput) throws QuotesifyException {
+        try {
+            if (userInput.isEmpty()) {
+                throw new QuotesifyException(ERROR_NO_QUOTE_NUMBER);
+            }
+            return Integer.parseInt(userInput.trim()) - 1;
+        } catch (NumberFormatException e) {
+            throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
+        }
+    }
+
+    private boolean isValidQuoteNumber(int quoteNumber, QuoteList quoteList) throws QuotesifyException {
+        if (quoteList.getSize() == 0) {
+            throw new QuotesifyException(LIST_NO_QUOTES_SAVED_MESSAGE);
+        } else if (quoteNumber < 0 || quoteNumber >= quoteList.getSize()) {
+            throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
+        } else if (quoteList.getQuote(quoteNumber).getReflection()  ==  null){
+            throw new QuotesifyException(ERROR_NO_REFLECTION);
+        } else {
+            return true;
+        }
+    }
+
+
 }

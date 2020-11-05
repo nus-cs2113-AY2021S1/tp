@@ -10,15 +10,21 @@ public class QuoteParser {
     public static final String FLAG_DELIMITER = "/";
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";
+    public static final String FLAG_REFLECT = "/reflect";
+    public static final String FLAG_EDIT = "/to";
     public static final String ERROR_MISSING_QUOTE = "I don't see the quote anywhere";
     public static final String ERROR_MISSING_AUTHOR = "Author name cannot be empty if \"/by\" flag is present";
     public static final String ERROR_MISSING_REFERENCE = "Reference field cannot be empty if \"/from\" flag is present";
     public static final String ERROR_MISSING_REFERENCE_OR_AUTHOR = "Author name and Reference cannot be empty if "
             + "\"/by\" flag and \"/from\" flag are present";
     public static final String ERROR_INVALID_QUOTE_NUM = "Quote number provided is invalid";
+    public static final String ERROR_MISSING_QUOTE_NUM = "Please provide a quote number!";
     public static final String ERROR_INVALID_PARAMETERS = "Invalid parameters!";
     public static final String ERROR_DUPLICATE_REFERENCE_FLAG = "Reference flag can only be used once!";
     public static final String ERROR_DUPLICATE_AUTHOR_FLAG = "Author flag can only be used once!";
+    public static final String ERROR_DUPLICATE_REFLECT_FLAG = "Reflect flag can only be used once!";
+    public static final String ERROR_DUPLICATE_EDIT_FLAG = "Edit flag can only be used once!";
+    public static final String ERROR_MISSING_REFLECTION_FIELD = "Please specify your reflection!";
 
     public static Quote parseAddParameters(String userInput) throws QuotesifyException {
         assert !userInput.isEmpty() : "field should not be empty";
@@ -88,7 +94,7 @@ public class QuoteParser {
             throw new QuotesifyException(ERROR_MISSING_REFERENCE_OR_AUTHOR);
         }
         // throws exception is duplicate flags found
-        checkExtraAuthorReferenceFlags(authorName, reference); // check this need catch or not
+        checkExtraAuthorReferenceFlags(authorName, reference);
         HashMap<String, String> referenceAndAuthorName = new HashMap<String, String>();
         referenceAndAuthorName.put("reference", reference);
         referenceAndAuthorName.put("authorName", authorName);
@@ -113,14 +119,14 @@ public class QuoteParser {
 
     public static String[] trimAndCheckReferenceFlag(String userInput) throws QuotesifyException {
         String[] quoteAndReference = userInput.split(FLAG_REFERENCE, 2);
-        if (hasExtraReferenceFlag(quoteAndReference[1])) {
+        if (hasExtraFlag(quoteAndReference[1], FLAG_REFERENCE)) {
             throw new QuotesifyException(ERROR_DUPLICATE_REFERENCE_FLAG);
         }
         return quoteAndReference;
     }
 
-    public static boolean hasExtraReferenceFlag(String reference) {
-        if (!reference.contains(FLAG_REFERENCE)) {
+    public static boolean hasExtraFlag(String userInput, String flag) {
+        if (!userInput.contains(flag)) {
             return false;
         } else {
             return true;
@@ -147,18 +153,10 @@ public class QuoteParser {
 
     public static String[] trimAndCheckAuthorFlags(String userInput) throws QuotesifyException {
         String[] quoteAndAuthor = userInput.split(FLAG_AUTHOR, 2);
-        if (hasExtraAuthorFlag(quoteAndAuthor[1])) {
+        if (hasExtraFlag(quoteAndAuthor[1], FLAG_AUTHOR)) {
             throw new QuotesifyException(ERROR_DUPLICATE_AUTHOR_FLAG);
         }
         return quoteAndAuthor;
-    }
-
-    public static boolean hasExtraAuthorFlag(String authorName) {
-        if (!authorName.contains(FLAG_AUTHOR)) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     public static Author trimAndCheckEmptyAuthor(String authorName) throws QuotesifyException {
@@ -175,7 +173,7 @@ public class QuoteParser {
         String[] authorFlagAndName = userInput.split(FLAG_AUTHOR, 2);
         try {
             String authorName = authorFlagAndName[1].trim();
-            if (hasExtraAuthorFlag(authorName)) {
+            if (hasExtraFlag(authorName, FLAG_AUTHOR)) {
                 throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
             }
             return authorName;
@@ -188,7 +186,7 @@ public class QuoteParser {
         String[] referenceFlagAndName = userInput.split(FLAG_REFERENCE, 2);
         try {
             String reference = referenceFlagAndName[1].trim();
-            if (hasExtraReferenceFlag(reference)) {
+            if (hasExtraFlag(reference, FLAG_REFERENCE)) {
                 throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
             }
             return reference;
@@ -197,19 +195,27 @@ public class QuoteParser {
         }
     }
 
-    public static int getQuoteNumber(String userInput, QuoteList quotes, String command) throws QuotesifyException {
+    public static int getQuoteNumber(String userInput, int quoteListSize, String command) throws QuotesifyException {
         try {
-            if (!userInput.contains(command))  {
-                throw new QuotesifyException("The \"" + command + "\" flag is missing!");
+            if (!userInput.contains(command)) {
+                throw new QuotesifyException("Invalid parameters, the \"" + command + "\" flag is missing!");
             }
-            int quoteNumberToEdit = Integer.parseInt(userInput.split(command, 2)[0].trim());
-            if (quoteNumberToEdit <= 0 || quoteNumberToEdit > quotes.getSize()) {
+            String[] quoteNumberAndInformation = userInput.split(command, 2);
+            if (quoteNumberAndInformation[0].isEmpty()) {
+                throw new QuotesifyException(ERROR_MISSING_QUOTE_NUM);
+            } else if (quoteNumberAndInformation[0].contains(FLAG_DELIMITER)) {
+                throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+            }
+            int quoteNumberToEdit = Integer.parseInt(quoteNumberAndInformation[0].trim());
+            if (quoteNumberToEdit <= 0 || quoteNumberToEdit > quoteListSize) {
                 throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
-            } else {
-                return quoteNumberToEdit - 1;
             }
+            return quoteNumberToEdit - 1;
         } catch (NumberFormatException e) {
-            throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
+            if (!userInput.contains(command)) {
+                throw new QuotesifyException("Invalid parameters, the \"" + command + "\" flag is missing!");
+            }
+            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
         }
     }
 
@@ -221,14 +227,26 @@ public class QuoteParser {
     public static String getReflectionToAdd(String userInput) throws QuotesifyException {
         try {
             String reflection = userInput.split(Command.FLAG_REFLECT, 2)[1].trim();
+            if (reflection.isEmpty()) {
+                throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
+            }
+            if (hasExtraFlag(reflection, FLAG_REFLECT)) {
+                throw new QuotesifyException(ERROR_DUPLICATE_REFLECT_FLAG);
+            }
             return reflection;
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
         }
     }
 
-    public static String getEditedReflection(String userInput) {
-        String updatedReflection = userInput.split(Command.FLAG_EDIT, 2)[1].trim();
+    public static String getEditedReflection(String userInput) throws QuotesifyException {
+        String updatedReflection = userInput.split(FLAG_EDIT, 2)[1].trim();
+        if (hasExtraFlag(updatedReflection, FLAG_EDIT)) {
+            throw new QuotesifyException(ERROR_DUPLICATE_EDIT_FLAG);
+        }
+        if (updatedReflection.isEmpty()) {
+            throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
+        }
         return updatedReflection;
     }
 }
