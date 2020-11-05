@@ -8,6 +8,10 @@ public class HrTest {
 
     @Test
     public void addListDelMember_executesNormally() {
+        String non;
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
         String expected1 = "Got it. I've added this member:\n"
                 + "name: James Gosling |phone: 11111111 |email: 111111@gmail.com |role: member |attendance rate: 0%\n"
                 + "Now you have 1 member in the list.\n";
@@ -31,6 +35,10 @@ public class HrTest {
 
     @Test
     public void removeMember_MemberNotExists() {
+        String non;
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
         String expected = "OOPS!!! The member does not exist.\n";
         String actual = MemberList.deleteFromList(0);
         assertEquals(expected, actual);
@@ -38,6 +46,10 @@ public class HrTest {
 
     @Test
     public void listMember_MemberListEmpty() {
+        String non;
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
         String expected = "OOPS!!! The member list is empty!\n";
         String actual = MemberList.listMembers();
         assertEquals(expected, actual);
