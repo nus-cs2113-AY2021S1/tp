@@ -6,4 +6,4 @@ Display | Name | Github Profile | Portfolio
 ![](https://via.placeholder.com/100.png?text=Photo) | Joseph Abraham | [Github](https://github.com/josephhhhhhhhh) | [Portfolio](docs/team/joseph.md)
 ![](https://via.placeholder.com/100.png?text=Photo) | Lim An Qi | [Github](https://github.com/anqi20) | [Portfolio](docs/team/anqi.md)
 ![](https://via.placeholder.com/100.png?text=Photo) | Joel Ng | [Github](https://github.com/joelngyx) | [Portfolio](docs/team/joel.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Kingston Kuan | [Github](https://github.com/kstonekuan) | [Portfolio](docs/team/kingston.md)
+![Kingston Kuan Jun Xiang](https://avatars0.githubusercontent.com/u/35717847?s=460&u=fd4a6977a95813022f82662ada8694105196b9a0&v=4) | Kingston Kuan Jun Xiang | [Github](https://github.com/kstonekuan) | [Portfolio](docs/team/kstonekuan.md)
