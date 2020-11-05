@@ -23,9 +23,7 @@ import seedu.zoomaster.exception.ZoomasterException;
 import java.util.Scanner;
 
 import static org.fusesource.jansi.Ansi.Color.BLACK;
-import static org.fusesource.jansi.Ansi.Color.BLUE;
 import static org.fusesource.jansi.Ansi.Color.CYAN;
-import static org.fusesource.jansi.Ansi.Color.MAGENTA;
 import static org.fusesource.jansi.Ansi.Color.GREEN;
 import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.Color.WHITE;
@@ -40,7 +38,7 @@ public class Ui {
     private static final String LINE = "____________________________________________________________" + NEW_LINE;
     private Scanner scanner;
 
-
+    //@@author Speedweener
     private String logo2 =
              "                                                                                                 \n"
             + "                                  ████████████████████████████                                   \n"
@@ -152,6 +150,7 @@ public class Ui {
         System.out.println(ansi().bg(BLACK));
         System.out.println(LINE);
     }
+    //@@author
 
     /**
      * Prints a message before exiting the program.
@@ -313,6 +312,40 @@ public class Ui {
         printRedWithBorder("Please enter " + info + " with input!" + NEW_LINE);
     }
 
+    private void printUnknownModeMessage() {
+        printRedWithBorder("Unknown mode input" + NEW_LINE + "Valid modes: bookmark, timetable, planner" + NEW_LINE);
+    }
+
+    private void printUnknownDayMessage() {
+        printRedWithBorder("Unknown day input" + NEW_LINE
+                + "Valid days: mon, tue, wed, thu, fri, sat, sun" + NEW_LINE);
+    }
+
+    private void printEmptyTimetableMessage() {
+        printRedWithBorder("Timetable is empty" + NEW_LINE);
+    }
+
+    private void printInvalidSlotInput() {
+        printRedWithBorder("Invalid slot input" + NEW_LINE);
+    }
+
+    private void printInvalidEditInput() {
+        printRedWithBorder("Invalid edit format" + NEW_LINE
+                + "Enter \"help edit\" for the correct format." + NEW_LINE);
+    }
+
+    private void printInvalidTimeFormat() {
+        printRedWithBorder("Invalid time format" + NEW_LINE);
+    }
+
+    public void showParsingErrorAndExit() {
+        printRedWithBorder("File corrupted! Please check data files or delete them." + NEW_LINE
+                + "Zoomaster will now shut down" + NEW_LINE);
+        AnsiConsole.systemUninstall();
+        System.exit(0);
+    }
+
+
     public void printHelpMessage() {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
         if (Parser.programMode == 0) {
@@ -356,6 +389,7 @@ public class Ui {
         printCyan("help {command}" + NEW_LINE);
     }
 
+    //@@author Speedweener
     public void printHelpMessage(String input) {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
         if (input.equals(ClearCommand.CLEAR_KW)) {
@@ -373,207 +407,191 @@ public class Ui {
             printCyan("Format: launch now" + NEW_LINE);
             System.out.println(LINE);
         } else if (Parser.programMode == 1) {
-            switch (input) {
-            case AddBookmarkCommand.ADD_KW:
-                System.out.println(LINE);
-                printYellow("Adds a bookmark to the bookmark list" + NEW_LINE
-                        + "URL must start with www or https:// or http://" + NEW_LINE);
-                printCyan("Format: add {description} {URL}" + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case DeleteBookmarkCommand.DEL_KW:
-                System.out.println(LINE);
-                printYellow("Deletes bookmark from the bookmark list with their indexes" + NEW_LINE);
-                printCyan("Format: delete {index} " + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case ShowBookmarkCommand.SHOW_KW:
-                printYellowWithBorder("Shows the whole list of bookmarks." + NEW_LINE);
-                break;
-            case FindBookmarkCommand.FIND_KW:
-                System.out.println(LINE);
-                printYellow("Finds and shows bookmarks with description matching the keyword" + NEW_LINE);
-                printCyan("Format: find {keyword} " + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case LaunchBookmarkCommand.LAUNCH_KW:
-                System.out.println(LINE);
-                printYellow("Finds and launches bookmarks with description matching the keyword"
-                        + " or index " + NEW_LINE);
-                printCyan("Format: launch {keyword} " + NEW_LINE
-                        + "Format: launch {index} " + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            default:
-                printYellowWithBorder("something went wrong...");
-                break;
-            }
+            printModeOneExtendedHelp(input);
 
         } else if (Parser.programMode == 2) {
-            switch (input) {
-            case AddSlotCommand.ADD_KW:
-                System.out.println(LINE);
-                printYellow("Adds modules and their timeslots to the timetable " + NEW_LINE);
-                printCyan("Format: add {module} {slot description} {day of the week} "
-                        + "{start time} {end time} {URL}" + NEW_LINE);
-                printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
-                printYellow("You can also add the module first then add the slot afterwards, "
-                        + "then add the bookmark to that slot. " + NEW_LINE);
-                printGreen("eg. add CS2113" + NEW_LINE
-                        + "    add CS2113 lecture fri 16:00 18:00" + NEW_LINE
-                        + "    add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
-
-                printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
-                printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
-                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html"
-                        + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case DeleteSlotCommand.DEL_KW:
-                System.out.println(LINE);
-                printYellow("Deletes slots or bookmarks belonging to that slot " + NEW_LINE);
-                printCyan("Format: delete {module} {slot index} 'bookmarks'" + NEW_LINE);
-                printGreen("eg. delete CS2113 1 (Deletes the slot at index 1 of CS2113)" + NEW_LINE);
-                printGreen("eg. delete CS2113 1 bookmarks"
-                        + " (Deletes the bookmarks of slot at index 1 of CS2113)" + NEW_LINE);
-                printYellow("You can display the slot indexes using: ");
-                printCyan("show {module}" + NEW_LINE + NEW_LINE);
-                printYellow("You can also delete the entire module or the module's bookmarks" + NEW_LINE);
-                printCyan("Format: delete {module} 'bookmarks'" + NEW_LINE);
-                printGreen("eg. delete CS2113 (Deletes the module CS2113)" + NEW_LINE);
-                printGreen("eg. delete CS2113 bookmarks"
-                        + " (Deletes the bookmarks tagged to CS2113)" + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case ShowTimetableCommand.SHOW_KW:
-                System.out.println(LINE);
-                printYellow("Shows the entire timetable, or slots on a particular day" + NEW_LINE);
-                printCyan("Format: show '{day}'" + NEW_LINE);
-                printGreen("eg. show" + NEW_LINE);
-                printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
-
-                printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
-                printCyan("Format: show {module} 'bookmarks'" + NEW_LINE);
-                printGreen("eg. show CS2113" + NEW_LINE);
-                printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case EditSlotCommand.EDIT_KW:
-                System.out.println(LINE);
-                printYellow("Edits the details of slots in the timetable based on their "
-                        + "index in the timetable" + NEW_LINE);
-                printYellow("Details you can edit include the module, title of slot and time of slot"
-                        + NEW_LINE);
-                printYellow("You can view the indexes using: ");
-                printCyan("show" + NEW_LINE + NEW_LINE);
-
-                printCyan("Format: edit module {day} {index} {new module}" + NEW_LINE);
-                printGreen("eg. edit module mon 1 CS1010 (Changes the module of slot 1 on Monday "
-                        + "to CS1010)" + NEW_LINE + NEW_LINE);
-                printCyan("Format: edit title {day} {index} {new description}" + NEW_LINE);
-                printGreen("eg. edit title mon 1 lecture (Changes the description of slot 1 on Monday "
-                        + "to lecture)" + NEW_LINE + NEW_LINE);
-                printCyan("Format: edit time {day} {index} {new time}" + NEW_LINE);
-                printGreen("eg. edit time mon 1 fri 10:00 12:00 (Changes the time of slot 1 on Monday "
-                        + "to fri 10:00 12:00)" + NEW_LINE + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case LaunchModuleAndSlotBookmark.LAUNCH_KW:
-                System.out.println(LINE);
-                printYellow("Launches the bookmarks of slots based on their index in the module " + NEW_LINE);
-                printYellow("You can also launch bookmarks tagged to the module itself" + NEW_LINE);
-                printCyan("Format: launch {module} {index}" + NEW_LINE);
-                printGreen("eg. launch CS2113 2 (Bookmarks for slot 2 of CS2113)" + NEW_LINE);
-                printGreen("eg. launch CS2113 (Bookmarks tagged directly to CS2113)" + NEW_LINE + NEW_LINE);
-                break;
-            default:
-                printYellowWithBorder("something went wrong...");
-                break;
-            }
+            printModeTwoExtendedHelp(input);
 
         } else if (Parser.programMode == 3) {
-            switch (input) {
-            case AddMeetingCommand.ADD_KW:
-                System.out.println(LINE);
-                printYellow("Adds modules and their timeslots to the common timetable " + NEW_LINE);
-                printCyan("Format: add {module} {slot description} {day of the week} "
-                        + "{start time} {end time} {URL}" + NEW_LINE);
-                printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
-                printYellow("You can also add the module first then add the slot afterwards, "
-                        + "then add the bookmark to that slot. " + NEW_LINE);
-                printGreen("eg. add CS2113" + NEW_LINE
-                        + "    add CS2113 lecture fri 16:00 18:00" + NEW_LINE
-                        + "    add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
-
-                printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
-                printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
-                printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html"
-                        + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case LoadPlannerCommand.LOAD_KW:
-                System.out.println(LINE);
-                printYellow("Loads the common empty slots from a few individual timetables " + NEW_LINE);
-                printCyan("Format: load" + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case ShowTimetableCommand.SHOW_KW:
-                System.out.println(LINE);
-                printYellow("Shows the common empty slots along with the newly added slots (if any)" + NEW_LINE);
-                printCyan("Format: show '{day}'" + NEW_LINE);
-                printGreen("eg. show" + NEW_LINE);
-                printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
-
-                printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
-                printCyan("Format: show {module} bookmarks" + NEW_LINE);
-                printGreen("eg. show CS2113" + NEW_LINE);
-                printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            case SavePlannerCommand.SAVE_KW:
-                System.out.println(LINE);
-                printYellow("Saves the newly added slot(s) to each individual timetables" + NEW_LINE);
-                printCyan("Format: save" + NEW_LINE);
-                System.out.println(LINE);
-                break;
-            default:
-                printYellowWithBorder("something went wrong...");
-                break;
-            }
+            printModeThreeExtendedHelp(input);
         }
 
     }
 
-    private void printUnknownModeMessage() {
-        printRedWithBorder("Unknown mode input" + NEW_LINE + "Valid modes: bookmark, timetable, planner" + NEW_LINE);
+    private void printModeOneExtendedHelp(String input) {
+        switch (input) {
+        case AddBookmarkCommand.ADD_KW:
+            System.out.println(LINE);
+            printYellow("Adds a bookmark to the bookmark list" + NEW_LINE
+                    + "URL must start with www or https:// or http://" + NEW_LINE);
+            printCyan("Format: add {description} {URL}" + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case DeleteBookmarkCommand.DEL_KW:
+            System.out.println(LINE);
+            printYellow("Deletes bookmark from the bookmark list with their indexes" + NEW_LINE);
+            printCyan("Format: delete {index} " + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case ShowBookmarkCommand.SHOW_KW:
+            printYellowWithBorder("Shows the whole list of bookmarks." + NEW_LINE);
+            break;
+        case FindBookmarkCommand.FIND_KW:
+            System.out.println(LINE);
+            printYellow("Finds and shows bookmarks with description matching the keyword" + NEW_LINE);
+            printCyan("Format: find {keyword} " + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case LaunchBookmarkCommand.LAUNCH_KW:
+            System.out.println(LINE);
+            printYellow("Finds and launches bookmarks with description matching the keyword"
+                    + " or index " + NEW_LINE);
+            printCyan("Format: launch {keyword} " + NEW_LINE
+                    + "Format: launch {index} " + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        default:
+            printYellowWithBorder("something went wrong...");
+            break;
+        }
     }
 
-    private void printUnknownDayMessage() {
-        printRedWithBorder("Unknown day input" + NEW_LINE
-              + "Valid days: mon, tue, wed, thu, fri, sat, sun" + NEW_LINE);
+
+
+    private void printModeTwoExtendedHelp(String input) {
+        switch (input) {
+        case AddSlotCommand.ADD_KW:
+            System.out.println(LINE);
+            printYellow("Adds modules and their timeslots to the timetable " + NEW_LINE);
+            printCyan("Format: add {module} {slot description} {day of the week} "
+                    + "{start time} {end time} {URL}" + NEW_LINE);
+            printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+            printYellow("You can also add the module first then add the slot afterwards, "
+                    + "then add the bookmark to that slot. " + NEW_LINE);
+            printGreen("eg. add CS2113" + NEW_LINE
+                    + "    add CS2113 lecture fri 16:00 18:00" + NEW_LINE
+                    + "    add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+
+            printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
+            printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
+            printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html"
+                    + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case DeleteSlotCommand.DEL_KW:
+            System.out.println(LINE);
+            printYellow("Deletes slots or bookmarks belonging to that slot " + NEW_LINE);
+            printCyan("Format: delete {module} {slot index} 'bookmarks'" + NEW_LINE);
+            printGreen("eg. delete CS2113 1 (Deletes the slot at index 1 of CS2113)" + NEW_LINE);
+            printGreen("eg. delete CS2113 1 bookmarks"
+                    + " (Deletes the bookmarks of slot at index 1 of CS2113)" + NEW_LINE);
+            printYellow("You can display the slot indexes using: ");
+            printCyan("show {module}" + NEW_LINE + NEW_LINE);
+            printYellow("You can also delete the entire module or the module's bookmarks" + NEW_LINE);
+            printCyan("Format: delete {module} 'bookmarks'" + NEW_LINE);
+            printGreen("eg. delete CS2113 (Deletes the module CS2113)" + NEW_LINE);
+            printGreen("eg. delete CS2113 bookmarks"
+                    + " (Deletes the bookmarks tagged to CS2113)" + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case ShowTimetableCommand.SHOW_KW:
+            System.out.println(LINE);
+            printYellow("Shows the entire timetable, or slots on a particular day" + NEW_LINE);
+            printCyan("Format: show '{day}'" + NEW_LINE);
+            printGreen("eg. show" + NEW_LINE);
+            printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
+
+            printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
+            printCyan("Format: show {module} 'bookmarks'" + NEW_LINE);
+            printGreen("eg. show CS2113" + NEW_LINE);
+            printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case EditSlotCommand.EDIT_KW:
+            System.out.println(LINE);
+            printYellow("Edits the details of slots in the timetable based on their "
+                    + "index in the timetable" + NEW_LINE);
+            printYellow("Details you can edit include the module, title of slot and time of slot"
+                    + NEW_LINE);
+            printYellow("You can view the indexes using: ");
+            printCyan("show" + NEW_LINE + NEW_LINE);
+
+            printCyan("Format: edit module {day} {index} {new module}" + NEW_LINE);
+            printGreen("eg. edit module mon 1 CS1010 (Changes the module of slot 1 on Monday "
+                    + "to CS1010)" + NEW_LINE + NEW_LINE);
+            printCyan("Format: edit title {day} {index} {new description}" + NEW_LINE);
+            printGreen("eg. edit title mon 1 lecture (Changes the description of slot 1 on Monday "
+                    + "to lecture)" + NEW_LINE + NEW_LINE);
+            printCyan("Format: edit time {day} {index} {new time}" + NEW_LINE);
+            printGreen("eg. edit time mon 1 fri 10:00 12:00 (Changes the time of slot 1 on Monday "
+                    + "to fri 10:00 12:00)" + NEW_LINE + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case LaunchModuleAndSlotBookmark.LAUNCH_KW:
+            System.out.println(LINE);
+            printYellow("Launches the bookmarks of slots based on their index in the module " + NEW_LINE);
+            printYellow("You can also launch bookmarks tagged to the module itself" + NEW_LINE);
+            printCyan("Format: launch {module} {index}" + NEW_LINE);
+            printGreen("eg. launch CS2113 2 (Bookmarks for slot 2 of CS2113)" + NEW_LINE);
+            printGreen("eg. launch CS2113 (Bookmarks tagged directly to CS2113)" + NEW_LINE + NEW_LINE);
+            break;
+        default:
+            printYellowWithBorder("something went wrong...");
+            break;
+        }
     }
 
-    private void printEmptyTimetableMessage() {
-        printRedWithBorder("Timetable is empty" + NEW_LINE);
+    private void printModeThreeExtendedHelp(String input) {
+        switch (input) {
+        case AddMeetingCommand.ADD_KW:
+            System.out.println(LINE);
+            printYellow("Adds modules and their timeslots to the common timetable " + NEW_LINE);
+            printCyan("Format: add {module} {slot description} {day of the week} "
+                    + "{start time} {end time} {URL}" + NEW_LINE);
+            printGreen("eg. add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+            printYellow("You can also add the module first then add the slot afterwards, "
+                    + "then add the bookmark to that slot. " + NEW_LINE);
+            printGreen("eg. add CS2113" + NEW_LINE
+                    + "    add CS2113 lecture fri 16:00 18:00" + NEW_LINE
+                    + "    add CS2113 lecture fri 16:00 18:00 www.google.com" + NEW_LINE + NEW_LINE);
+
+            printYellow("You can also add bookmarks tagged to the entire module" + NEW_LINE);
+            printCyan("Format: add {module} {description} {URL}" + NEW_LINE);
+            printGreen("eg. add CS2113 homepage https://nus-cs2113-ay2021s1.github.io/website/index.html"
+                    + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case LoadPlannerCommand.LOAD_KW:
+            System.out.println(LINE);
+            printYellow("Loads the common empty slots from a few individual timetables " + NEW_LINE);
+            printCyan("Format: load" + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case ShowTimetableCommand.SHOW_KW:
+            System.out.println(LINE);
+            printYellow("Shows the common empty slots along with the newly added slots (if any)" + NEW_LINE);
+            printCyan("Format: show '{day}'" + NEW_LINE);
+            printGreen("eg. show" + NEW_LINE);
+            printGreen("eg. show mon" + NEW_LINE + NEW_LINE);
+
+            printYellow("You can also shows the slots for a module, or bookmarks for a module " + NEW_LINE);
+            printCyan("Format: show {module} bookmarks" + NEW_LINE);
+            printGreen("eg. show CS2113" + NEW_LINE);
+            printGreen("eg. show CS2113 bookmarks" + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case SavePlannerCommand.SAVE_KW:
+            System.out.println(LINE);
+            printYellow("Saves the newly added slot(s) to each individual timetables" + NEW_LINE);
+            printCyan("Format: save" + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        default:
+            printYellowWithBorder("something went wrong...");
+            break;
+        }
     }
 
-    private void printInvalidSlotInput() {
-        printRedWithBorder("Invalid slot input" + NEW_LINE);
-    }
 
-    private void printInvalidEditInput() {
-        printRedWithBorder("Invalid edit format" + NEW_LINE
-            + "Enter \"help edit\" for the correct format." + NEW_LINE);
-    }
 
-    private void printInvalidTimeFormat() {
-        printRedWithBorder("Invalid time format" + NEW_LINE);
-    }
-
-    public void showParsingErrorAndExit() {
-        printRedWithBorder("File corrupted! Please check data files or delete them." + NEW_LINE
-                + "Zoomaster will now shut down" + NEW_LINE);
-        AnsiConsole.systemUninstall();
-        System.exit(0);
-    }
 }
