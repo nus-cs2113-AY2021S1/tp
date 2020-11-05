@@ -12,21 +12,25 @@ Package " "<<Rectangle>>{
     Class ParserManager
     Class Command
     Class Notus
+    Class Formatter
 }
 
-Notus --> StorageManager
-Notus --> InterfaceManager
-Notus --> Notebook
-Notus --> Timetable
-Notus --> TagManager
-Notus --> ParserManager
-Notus --> Command
+Notus -left> InterfaceManager
+Notus -down-> ParserManager
+Notus -right> Command
+ParserManager -up-> Command
 
-ParserManager --> Command
 
-Command --> Notebook
-Command --> Timetable
-Command --> TagManager
-Command --> StorageManager
+Notus -up-> StorageManager
+Notus -up-> Notebook
+Notus -up-> Timetable
+Notus -up-> TagManager
+
+Command -up> StorageManager
+Command -up> Notebook
+Command -up> Timetable
+Command -up> TagManager
+
+Command ..right> Formatter
 
 @enduml

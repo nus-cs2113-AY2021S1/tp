@@ -22,9 +22,9 @@ class XYZCommand {
 + setData(Notebook, Timetable, TagManager, StorageManager)
 }
 
-XYZCommand -|> "{abstract} \n Command"
+XYZCommand -left|> "{abstract} \n Command"
 
-note left of XYZCommand
+note right of XYZCommand
 XYZCommand = AddNoteCommand,
 AddEventCommand, etc
 end note

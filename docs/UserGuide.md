@@ -56,7 +56,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 5. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
-💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS Terminal and linux Terminal. Other terminals, such as Cygwin may not support color display.
+💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.
 💡 Recommended to use black background for better color contrast.
 
 <br>
@@ -332,7 +332,7 @@ Create tags.
 Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
 
 - Creates a tag with the name TAG. TAG can only be a single word.
-- [TAG_COLOR] is an optional input to specify the tag color to display. The possible colors are red, green, blue, yellow, purple, cyan, white. The tag color is set as white by default.
+- [TAG_COLOR] is an optional input to specify the tag color to display. The possible colors are red, green, blue, yellow, purple, cyan, white. Any other input will set the tag as white. If no color is specified, the color of the tag will be set to the default white color. This applies to other input that has `/tag TAG [TAG_COLOR]` as an optional field. 
 - The user can create multiple tags within a single line.
 
 💡 Creating a tag that already exists will override the tag color.
@@ -342,8 +342,6 @@ Example of usage:
 `create-t /tag CS2113`
 
 `create-t /tag important red /tag CS2113 blue`
-
-💡 If no tag color is specified, the color of the tag will be that of the default white color.
 
 Expected output:
 

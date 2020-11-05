@@ -1,26 +1,40 @@
 @startuml
 
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":ParseAddNoteCommand" as ParseAddNoteCommand
+participant ":AddNoteCommand" as AddNoteCommand
+participant ":Parser" as Parser
+participant ":TagManager" as TagManager
+participant ":Notebook" as Notebook
+participant ":StorageManager" as StorageManager
+participant ":Formatter" as Formatter
+
 activate NotUS
 
-create AddNoteCommand
+create ParseAddNoteCommand
+activate ParseAddNoteCommand
 
+create AddNoteCommand
 ParseAddNoteCommand -> AddNoteCommand: <<create>>
 
 activate AddNoteCommand
 AddNoteCommand --> NotUS
 deactivate AddNoteCommand
+deactivate ParseAddNoteCommand
 
 deactivate ParseAddNoteCommand
 
-destroy ParseAddNoteCommand
+NotUS -> AddNoteCommand: setData()
 
-NotUS -> Command: setData()
-
-activate Command
-Command --> NotUS
-deactivate Command
+activate AddNoteCommand
+AddNoteCommand --> NotUS
+deactivate AddNoteCommand
 
 NotUS -> NotUS: executeCommand()
+
+destroy ParseAddNoteCommand
 activate NotUS
 NotUS -> AddNoteCommand: execute()
 

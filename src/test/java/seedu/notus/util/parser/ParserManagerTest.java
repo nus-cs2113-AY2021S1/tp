@@ -7,6 +7,7 @@ import seedu.notus.command.Command;
 import seedu.notus.command.CreateTagCommand;
 import seedu.notus.command.DeleteTagCommand;
 import seedu.notus.command.IncorrectCommand;
+import seedu.notus.command.TagEventCommand;
 import seedu.notus.command.TagNoteCommand;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -123,7 +124,7 @@ class ParserManagerTest {
     }
 
     @Test
-    void parseCommand_validTagNoteString_returnTagNoteCommand() {
+    void parseCommand_validTagString_returnTagCommand() {
         inputString = "tag-n /tag tag1 /i 1";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof TagNoteCommand);
@@ -131,6 +132,14 @@ class ParserManagerTest {
         inputString = "tag-n /i 1 /tag tag1 /tag tag2 red";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof TagNoteCommand);
+
+        inputString = "tag-e /tag tag1 /i 1";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof TagEventCommand);
+
+        inputString = "tag-e /i 1 /tag tag1 /tag tag2 red";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof TagEventCommand);
     }
 
     @Test
@@ -144,6 +153,18 @@ class ParserManagerTest {
         assertTrue(command instanceof IncorrectCommand);
 
         inputString = "tag-n /i 1 /tag ";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "tag-e /tag ";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "tag-e /i 1 ";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "tag-e /i 1 /tag ";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
     }

@@ -1,9 +1,21 @@
 @startuml
+
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":ParsePinCommand" as ParsePinCommand
+participant ":PinCommand" as PinCommand
+participant ":Notebook" as Notebook
+
+participant ":Note" as Note
+
 create NotUS
+create ParsePinCommand
+
 create PinCommand
 activate PinCommand
 
-Parser -> PinCommand : PinCommand(index)
+ParsePinCommand -> PinCommand : <<create>>
 deactivate PinCommand
 
 NotUS -> PinCommand: execute()
