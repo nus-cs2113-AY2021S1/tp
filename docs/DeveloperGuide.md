@@ -94,39 +94,41 @@ Each of the modules listed above are a collection of constituent classes, with e
 ![Figure X: Simplified class diagram for UI Component](./image/developerguide/UI.png "User Interface")  
 
 ### Logic Component
+The `Logic` component contains the `ParserManager` and its subclasses, and the `Command` class and its subclasses, which mainly handles the commands input by the user. 
 ![Figure X: Simplified class diagram for Logic Component](./image/developerguide/parserandcommand.png)
 
 When a user types a command, `SCRUMptious`calls the `ParserManager`. The `ParserManager` then parses commands from the user. Subsequently, 
 the `ParserManager` passes the commands on to the respective exceptions parsers which inherit from the `ExceptionsParser` interface. 
 The exceptions parsers consist of:  
-- `ProjectParser`
-- `MemberParser`
-- `TaskParser`
-- `SprintParser`
-- `HelpParser`
+&nbsp; &nbsp; &nbsp; &nbsp; 1. `ProjectParser`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 2. `MemberParser`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 3. `TaskParser`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 4. `SprintParser`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 5. `HelpParser`<br>
 
-The `ProjectParser` validates the parameters of the command. If the command is valid, it returns the respective `ProjectCommandXYZ` to the `ParserManager`.
+1. The `ProjectParser` validates the parameters of the command. If the command is valid, it returns the respective `ProjectCommandXYZ` to the `ParserManager`.
 If the command is invalid, the `ProjectParser` returns an appropriate warning message to the user.  
 
-The `MemberParser` validates the parameters of the command. If the command is valid, it returns the respective `MemberCommandXYZ` to the `ParserManager`.
+1. The `MemberParser` validates the parameters of the command. If the command is valid, it returns the respective `MemberCommandXYZ` to the `ParserManager`.
 If the command is invalid, the `TaskParser` returns an appropriate warning message to the user.  
 
-The `TaskParser` validates the parameters of the command. If the command is valid, it returns the respective `TaskCommandXYZ` to the `ParserManager`.
+1. The `TaskParser` validates the parameters of the command. If the command is valid, it returns the respective `TaskCommandXYZ` to the `ParserManager`.
 If the command is invalid, the `TaskParser` returns an appropriate warning message to the user.  
 
-The `SprintParser` validates the parameters of the command. If the command is valid, it returns the respective `SprintCommandXYZ` to the `ParserManager`.
+1. The `SprintParser` validates the parameters of the command. If the command is valid, it returns the respective `SprintCommandXYZ` to the `ParserManager`.
 If the command is invalid, the `SprintParser` returns an appropriate warning message to the user.  
 
-The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `HelpParserCommandXYZ` to the `ParserManager`.
+1. The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `HelpParserCommandXYZ` to the `ParserManager`.
 If the command is invalid, the `HelpParser` returns an appropriate warning message to the user.
 
-The subcommand classes `HelpParserCommandXYZ`, `ProjectCommandXYZ`, `MemberCommandXYZ`, `TaskCommandXYZ`, `SprintCommandXYZ` all inherit from an abstract `Command` class, 
+The subcommand classes `XYZHelpCommand`, `XYZProjectCommand`, `XYZMemberCommand`, `XYZTaskCommand`, `XYZSprintCommand` all inherit from an abstract `Command` class, 
 which has an execute function.
 
 The `ParserManager` then returns the command back to `SCRUMptious`, which then executes the command.
 
 ![Figure X: Simplified class diagram for Command Component](./image/developerguide/commandClassDiagram.png "Command
  Class Diagram")  
+
 A detailed list of the subcommand classes is described in the diagram above.
 
 ### Model Component
