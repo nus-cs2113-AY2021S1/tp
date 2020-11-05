@@ -1,23 +1,27 @@
 package seedu.smarthomebot.logic.commands;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
-import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 public class RemoveCommandTest {
 
     @Test
-    public void removeLocationTest() throws DuplicateDataException {
-        //Create Sample Locations and empty appliance list
-        LocationList locationList = new LocationList();
-        locationList.addLocation("BedRoom1");
-        locationList.addLocation("BedRoom3");
+    public void removeLocationTest_doesNotThrowException() throws DuplicateDataException {
 
-        // Prepare to read output of command
-        assertThrows(InvalidLocationException.class, () -> locationList.removeLocation("Bedroom 2"));
+        LocationList locationList = new LocationList();
+        ApplianceList applianceList = new ApplianceList();
+        locationList.addLocation("BedRoom1");
+        locationList.addLocation("BedRoom2");
+
+        Command removeLocation = new RemoveCommand("BedRoom1");
+        removeLocation.setData(applianceList, locationList);
+
+        assertDoesNotThrow(() -> removeLocation.execute());
     }
 }

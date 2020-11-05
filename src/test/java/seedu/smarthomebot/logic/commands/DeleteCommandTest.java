@@ -1,36 +1,36 @@
 package seedu.smarthomebot.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
+import seedu.smarthomebot.data.appliance.ApplianceList;
+import seedu.smarthomebot.data.appliance.type.Lights;
+import seedu.smarthomebot.data.location.LocationList;
+import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
+import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 public class DeleteCommandTest {
-    /*
-    @Test
-    public void deleteApplianceTest() throws InvalidAdditionOfAppliance, InvalidAddtionOfLocation,
-            EmptyParameterException {
-        //Create Sample Locations and empty appliance list
 
-        HomeLocations homeLocations = new HomeLocations();
+    @Test
+    public void deleteApplianceTest_doesNotThrowException() throws DuplicateDataException,
+            InvalidApplianceNameException, LocationNotFoundException {
+
+        LocationList locationList = new LocationList();
         ApplianceList applianceList = new ApplianceList();
-        homeLocations.addLocation("BedRoom1");
-        Lights l1 = new Lights("l1", "BedRoom1", "50");
-        Lights l2 = new Lights("l2", "BedRoom1", "50");
+        locationList.addLocation("BedRoom1");
+        Lights l1 = new Lights("l1", "BedRoom1", "50", locationList);
+        Lights l2 = new Lights("l2", "BedRoom1", "50", locationList);
         applianceList.addAppliance(l1);
         applianceList.addAppliance(l2);
 
-        // Prepare to read output of command
-        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-
         Command deleteAppliance = new DeleteCommand("l3");
-        deleteAppliance.setData(applianceList, homeLocations);
-        deleteAppliance.execute();
+        deleteAppliance.setData(applianceList, locationList);
 
-        //Process ui output
-        String outputString = outContent.toString().replace(System.getProperty("line.separator"), "");
-
-        //compare outputs
-        assertEquals("l3 does not exist.", outputString);
+        assertDoesNotThrow(() -> deleteAppliance.execute());
     }
 
-     */
+
 }
