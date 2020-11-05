@@ -96,7 +96,7 @@ Lastly, text that are blue like this [example](#12-using-this-guide), are clicka
 *   Commands are case-sensitive. <br/>
 E.g. Only `help` will work, and so `HELP`, `hElp`, and its other variant will not work.
 
-*   All parameter options are lowercase letters. <br/>
+*   All parameters are lowercase letters. <br/>
 E.g. `-l` in this case would be a lowercase letter of 'L'. Not to be mistaken with `1` or `I`.
 
 *   Words in UPPERCASE are values that can be supplied to the command. <br/>
@@ -155,13 +155,13 @@ You would need 2 hour(s) 58 minute(s).
 ### 3.3 Browse through anime
 This command will provide a realistic **browsing** experience as you are able to ‘flip’ through pages of different anime series. This is a useful way to get a quick overview of all available anime series.
 
-`browse` will also has various options to customise each browsing session by being able to sort the anime list.
+`browse` will also has various parameters to customise each browsing session by being able to sort the anime list.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
 *   `-s` will indicate how the list is sorted and will accept the values `name` or `rating` 
 *   `-o` will arrange the list in descending or ascending order by using the values `asc` or `dsc`
-*   The order of the options does not matter
-*   If no option or only `-o` is specified then it will display anime in no particular order.
+*   The order of the parameters does not matter
+*   If no parameter or only `-o` is specified then it will display anime in no particular order.
 
 > :memo: It will actually be sorted according to its ID which is assigned randomly by our data source.
 

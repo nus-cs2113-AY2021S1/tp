@@ -29,7 +29,7 @@
 <br/>&nbsp;4.5  [Watchlist Management Feature](#45-watchlist-management-feature)
 <br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist-feature)
 <br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist-feature)
-<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-anime-in-watchlist-feature)
+<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist-feature)
 <br/>&nbsp;4.9  [Bookmark Feature](#49-bookmark-feature)
 
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
@@ -237,9 +237,7 @@ This section introduces the specific implementation details and design considera
 The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, this feature allows users to better manage their time and be able to provide clients with much accurate estimation timings.
 
 #### 4.1.1 Current Implementation
-The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant arguments, `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction. The command takes in two parameters: 
-*   `scriptFileName` (mandatory).
-*   `wordsPerHour` (optional).
+The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant field (and parameter), `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction.
 
 <br/>
 
@@ -292,14 +290,14 @@ Having considered both approach, we have decided to implement the first approach
 
 Aspect: **The way user can specify the script file**
 
-As the command takes in a script file name, there is a need to decide on whether the user needs to include the file extension as well.
+As the user have to specify a script file for the command, there is a need to decide on whether the user needs to include the file extension as well.
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
 | Specify file extension. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
 | Do not have to specify file extension. | Users can easily specify the file to read. | May read the wrong file due to identical names but different file extension. |
 
-We have decided to the implement the first approach, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
+We have decided to the implement the first approach, **users should specify the file extension** because it is important for the application to generate the correct estimation timing to the user, and this far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are also costly for our users.
 
 <br/>
 
@@ -372,7 +370,7 @@ If the 2nd page of the list was requested instead with the command `browse -p 2`
 
 **Step 5:** For each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
 
-**Step 6:** After all `Anime` objects in the page window have been retrieved, it will return the printable result back to `BrowseCommand#execute()`. At this point it will utilise `BrowseCommand#sortBrowseOption()` again to reset the `AnimeData` list to its original form if it has been altered.
+**Step 6:** After all `Anime` objects in the page window have been retrieved, it will return the printable result back to `BrowseCommand#execute()`. At this point it will utilise `BrowseCommand#sortBrowseList()` again to reset the `AnimeData` list to its original form if it has been altered.
 
 **Step 7:** Once `AnimeData` has been sorted, it will return the result back to `Main` for printing.
 
@@ -614,18 +612,15 @@ We picked the first approach as it is the safer option. By allowing **AniChan** 
 The watchlist management feature aims to provide translators with a simple way to keep track of anime by being able to group anime based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over management issues.
 
 #### 4.5.1 Current Implementation
-The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant options and arguments, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. The command takes in three parameters: 
-*   `option` (mandatory).
-*   `watchlistName` (mandatory only if the option `-n` was specified).
-*   `watchlistIndex` (mandatory only if the option `-s` and `-d` was specified).
+The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant parameter and field, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. 
 
-Below is a table describing the 4 options supported by the `watchlist` command, including the methods (parameters are omitted) invoked for the option.
+Below is a table describing the 4 parameters supported by the `watchlist` command, and the corresponding method that is invoked (required parameters are omitted).
 > :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by `activeWatchlist` in `Workspace`.
 
-| Option | Method | Description |
+| Parameters | Method | Description |
 | --- | --- | --- |
 | `-n` | `WatchlistCommand#createWatchlist()` | Creates a new watchlist |
-| `-l` | `WatchlistCommand#listAllWatchlist()` | Lists all watchlist in the workspace |
+| `-l` (lowercase letter 'L') | `WatchlistCommand#listAllWatchlist()` | Lists all watchlist in the workspace |
 | `-s` | `WatchlistCommand#selectWatchlist()` | Selects a watchlist to be the new active watchlist |
 | `-d` | `WatchlistCommand#deleteWatchlist()` | Deletes a watchlist |
 
@@ -660,8 +655,9 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 <br/>
 
-All the other options in the watchlist command also follows a similar execution process. The following diagrams will **continue from step 6**, and it will show how the state of the application changes as it continues to execute the select and delete option.
-> :memo: The list option (`-l`) is not shown as there will not be any change in the application state after its execution.
+All the other parameters in the `watchlist` command also follows a similar execution process. 
+The following diagrams will **continue from step 6**, and it will show how the `activeWatchlist` state will change as the `watchlist` command executes with the select (`-s`) and delete (`-d`) parameter.
+> :memo: The execution with the list parameter (`-l`) is not shown as it does not result in any change to the `activeWatchlist` state.
 
 **Step 7:** The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
 
@@ -682,7 +678,7 @@ All the other options in the watchlist command also follows a similar execution 
 The sequence diagram presented below depicts the interaction between the components for running the command, `watchlist -n NewAnime`.
 > :memo: The sequence diagram shows the interaction from step 2 onward.
 
-> :memo: The other options (`-l`, `-s`, `-d`) follow a similar process, only the list and select option does not interact with `StorageManager` as they do not modify the watchlist list.
+> :memo: The other parameters (list, select, and delete) follows a similar process, only the list and the select parameter does not interact with the `StorageManager` since they do not modify the watchlist data.
 
 ![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
 
@@ -719,7 +715,7 @@ While both approach are valid in their own ways, we have decided to **restrict w
 
 <br/>
 
-### 4.6 Add To Watchlist
+### 4.6 Add To Watchlist Feature
 The `add` feature allows users to add an anime into the active watchlist. This helps them keep track of the anime they would like to watch next.
 
 #### 4.6.1 Current Implementation
@@ -763,7 +759,7 @@ Below shows the considerations taken when implementing the `AddToWatchlist` feat
 
 Aspect: **Using anime title or anime ID as the field for input**
 
-This consideration is similar to our `info` feature consideration, so below is the same table we find in our `info` deature section.
+This consideration is similar to our `info` feature consideration, so below is the same table we find in our `info` feature section.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
@@ -774,7 +770,7 @@ Similarly, we decided to go with the second approach as this would be much easie
 
 <br/>
 
-### 4.7 Remove From Watchlist
+### 4.7 Remove From Watchlist Feature
 The remove from watchlist feature allows users to remove a particular anime from their currently active watchlist. This would allow them to keep their watchlist clean of the anime that they have watched, leaving only those that they have not watched.
 
 #### 4.7.1 Current Implementation
@@ -798,7 +794,7 @@ We have decided to use approach 2 instead of 1, as it will not only will it be m
 
 <br/>
 
-### 4.8 View All Anime in Watchlist
+### 4.8 View All Anime in Watchlist Feature
 Users can view the anime that they have stored in his active watchlist, or a specific watchlist, by using the `view` command. In doing so, they can easily check what anime they would like to watch next.
 
 #### 4.8.1 Current Implementation
@@ -822,7 +818,7 @@ The sequence diagram for steps 1 to 4 is as shown in the figure below.
 
 **Step 5:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated.
 
-**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the seleceted `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
+**Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the selected `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
 
 **Step 7:** `ViewWatchlistCommand` is terminated.
 
@@ -1093,7 +1089,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 *   Allows the user to organise work from different projects and companies into workspaces.
 *   Allows the user to write and refer to notes on different anime series while translating.
 *   Find relevant information regarding an anime series quickly.
-*   Organize anime into different watchlists for different genres.
+*   Organize anime into different watchlist for different genres.
 *   Portable and works offline.
 
 <br/>
@@ -1275,7 +1271,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: Lists out the name of all anime in the first watchlist.
     
     4.  Other incorrect commands to try:
-        1.  `view x` (where x is a negative number, zero, a word, or a number exceeding the number of watchlists)
+        1.  `view x` (where x is a negative number, zero, a word, or a number exceeding the number of watchlist)
 
 <br/>
 
