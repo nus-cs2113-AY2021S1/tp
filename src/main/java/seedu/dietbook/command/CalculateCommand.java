@@ -55,6 +55,7 @@ public class CalculateCommand extends Command {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
+                    InputChecker.checkEndDate(startTime, endTime);
                     calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
                     carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
                     protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
@@ -74,6 +75,7 @@ public class CalculateCommand extends Command {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
+                    InputChecker.checkEndDate(startTime, endTime);
                     calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
                     ui.printCalorieIntake(calorie, startTime, endTime);
                 }
@@ -90,6 +92,7 @@ public class CalculateCommand extends Command {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
+                    InputChecker.checkEndDate(startTime, endTime);
                     carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
                     ui.printCarbIntake(carb, startTime, endTime);
                 }
@@ -106,6 +109,7 @@ public class CalculateCommand extends Command {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
+                    InputChecker.checkEndDate(startTime, endTime);
                     protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
                     ui.printProteinIntake(protein, startTime, endTime);
                 }
@@ -122,6 +126,7 @@ public class CalculateCommand extends Command {
                     startTime = LocalDateTime.parse(processedParam[1]);
                     InputChecker.checkFutureDate(startTime);
                     endTime = LocalDateTime.parse(processedParam[2]);
+                    InputChecker.checkEndDate(startTime, endTime);
                     fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
                     ui.printFatIntake(fat, startTime, endTime);
                 }

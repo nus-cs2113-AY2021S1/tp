@@ -186,6 +186,19 @@ public class InputChecker {
     }
 
     /**
+     * Takes in the start and end date time objects and see if the end time is earlier than start time.
+     *
+     * @param startTime a date time class object, the start time.
+     * @param endTime a date time class object, the end time.
+     * @throws DietException if end date time is before the start date time.
+     */
+    public static void checkEndDate(LocalDateTime startTime, LocalDateTime endTime) throws DietException {
+        if (startTime.isAfter(endTime)) {
+            throw new DietException("The start date, time cannot be later than the end date, time!");
+        }
+    }
+
+    /**
      * Takes in user input to check if the expected number and type of parameter for the add command is present.
      *
      * @param userInput user input.

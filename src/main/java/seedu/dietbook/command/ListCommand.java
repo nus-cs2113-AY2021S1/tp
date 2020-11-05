@@ -39,6 +39,7 @@ public class ListCommand extends Command {
                     startTime = LocalDateTime.parse(processedInput[1]);
                     endTime = LocalDateTime.parse(processedInput[2]);
                     InputChecker.checkFutureDate(startTime);
+                    InputChecker.checkEndDate(startTime, endTime);
                     ui.printFoodList(foodList.getInDateTimeRangeToString(startTime,endTime), startTime, endTime);
                 }
             } catch (Exception e) {
