@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-class ParserTest {
+public class ParserTest {
 
     @Test
     public void parse_add() throws Exception {
