@@ -63,36 +63,35 @@ public class OffCommand extends Command {
         } else {
             assert toOffApplianceIndex > 0 : "Index should be positive.";
             Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
-            String outputResult = offAppliance(toOffAppliance, "", false);
+            String outputResult = offAppliance(toOffAppliance, false);
             return new CommandResult(outputResult);
         }
     }
 
     private CommandResult offByLocation() {
-        String outputResults = offByApplianceLoop();
-        outputResults = outputResults.concat("All appliance in \"" + this.argument + "\" are turned off ");
+        offByApplianceLoop();
+        String outputResults = "All Appliances in \"" + this.argument + "\" are turned off ";
         return new CommandResult(outputResults);
     }
 
-    private String offByApplianceLoop() {
-        String outputResults = LINE;
+    private void offByApplianceLoop() {
         for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
             if (toOffAppliance.getLocation().equals(this.argument)) {
-                outputResults = offAppliance(toOffAppliance, outputResults, true);
+                offAppliance(toOffAppliance, true);
             }
         }
-        return outputResults;
     }
 
-    private String offAppliance(Appliance toOffAppliance, String outputResults, boolean isList) {
+    private String offAppliance(Appliance toOffAppliance, boolean isList) {
         boolean offResult = toOffAppliance.switchOff();
+        String outputResults = "";
         assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
 
         if (!isList) {
             if (offResult) {
-                outputResults = LINE + "Switching: " + toOffAppliance + "......OFF";
+                outputResults = "Switching: " + toOffAppliance + "......OFF";
             } else {
-                outputResults = LINE + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
+                outputResults = toOffAppliance.getName() + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
             }
         }
         return outputResults;
