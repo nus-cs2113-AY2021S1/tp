@@ -99,7 +99,7 @@ If asked, choose to `Open as Project` (not `Open as File`).
 ## 3. Design (Architecture)
 (Zeyu)
 
-![Architecture Diagram of Design Component](UML/Architecture.png)
+![Architecture Diagram of Design Component](DG_Images/Architecture.png)
 
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
