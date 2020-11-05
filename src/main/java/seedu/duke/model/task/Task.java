@@ -50,10 +50,6 @@ public class Task implements JsonableObject {
         priority = Priority.valueOf(input);
     }
 
-    public boolean isDone() {
-        return isDone;
-    }
-
     public void setDone(boolean done) {
         isDone = done;
     }
