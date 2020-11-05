@@ -3,6 +3,7 @@ package seedu.quotesify.rating;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
 import seedu.quotesify.commands.add.AddCommand;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 
 import java.util.logging.Level;
@@ -26,24 +27,22 @@ public class RatingParser {
 
     /**
      * Checks the validity of rating score.
-     * If rating score is invalid, 0 is returned.
      *
      * @param rating Rating to be validated.
      * @return Value of rating score.
+     * @throws QuotesifyException If rating score is invalid.
      */
-    public static int checkValidityOfRatingScore(String rating) {
-        int ratingScore = 0;
+    public static int checkValidityOfRatingScore(String rating) throws QuotesifyException {
+        int ratingScore;
         try {
             ratingScore = Integer.parseInt(rating);
         } catch (NumberFormatException e) {
             AddCommand.quotesifyLogger.log(Level.INFO, "invalid format provided");
-            System.out.println(ERROR_INVALID_FORMAT_RATING);
-            return 0;
+            throw new QuotesifyException(ERROR_INVALID_FORMAT_RATING);
         }
         if (!(ratingScore >= RATING_ONE && ratingScore <= RATING_FIVE)) {
             AddCommand.quotesifyLogger.log(Level.INFO, "rating score out of range");
-            System.out.println(ERROR_INVALID_RATING_SCORE);
-            return 0;
+            throw new QuotesifyException(ERROR_INVALID_RATING_SCORE);
         }
         return ratingScore;
     }
@@ -52,14 +51,13 @@ public class RatingParser {
      * Checks if user input is empty.
      *
      * @param information Input entered by user.
-     * @return Value to determine if user input is empty.
+     * @throws QuotesifyException If user input is empty.
      */
-    public static boolean checkUserInput(String information) {
+    public static void checkUserInput(String information) throws QuotesifyException {
         if (information.isEmpty()) {
-            System.out.println(ERROR_RATING_MISSING_INPUTS);
-            return true;
+            AddCommand.quotesifyLogger.log(Level.INFO, "user input is missing");
+            throw new QuotesifyException(ERROR_RATING_MISSING_INPUTS);
         }
-        return false;
     }
 
     /**
@@ -67,17 +65,18 @@ public class RatingParser {
      *
      * @param bookNumber Index of book.
      * @return Book with the specified index.
+     * @throws QuotesifyException If book does not exist.
      */
-    public static Book checkBookExists(String bookNumber) {
+    public static Book checkBookExists(String bookNumber) throws QuotesifyException {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         assert bookList != null : "book list should not be null";
-        Book bookToRate = null;
+        Book bookToRate;
         try {
             int indexOfBook = Integer.parseInt(bookNumber) - 1;
             bookToRate = bookList.getBook(indexOfBook);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             AddCommand.quotesifyLogger.log(Level.INFO, "book does not exist");
-            System.out.println(ERROR_NO_BOOK_FOUND);
+            throw new QuotesifyException(ERROR_NO_BOOK_FOUND);
         }
         return bookToRate;
     }

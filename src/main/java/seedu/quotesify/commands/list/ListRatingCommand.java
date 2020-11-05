@@ -1,5 +1,6 @@
 package seedu.quotesify.commands.list;
 
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
@@ -45,7 +46,11 @@ public class ListRatingCommand extends ListCommand {
         if (information.isEmpty()) {
             listAllRatings(ratingList, ui);
         } else {
-            listSpecifiedRating(ratingList, ui);
+            try {
+                listSpecifiedRating(ratingList, ui);
+            } catch (QuotesifyException e) {
+                ui.printErrorMessage(e.getMessage());
+            }
         }
     }
 
@@ -53,11 +58,13 @@ public class ListRatingCommand extends ListCommand {
         ui.printAllRatings(ratingList);
     }
 
-    private void listSpecifiedRating(RatingList ratings, TextUi ui) {
+    private void listSpecifiedRating(RatingList ratings, TextUi ui) throws QuotesifyException {
         assert !information.isEmpty() : "Rating details should not be empty";
-        int ratingToPrint = RatingParser.checkValidityOfRatingScore(information);
-
-        if (ratingToPrint == RatingParser.INVALID_RATING) {
+        int ratingToPrint = 0;
+        try {
+            ratingToPrint = RatingParser.checkValidityOfRatingScore(information);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
             return;
         }
 
@@ -68,12 +75,10 @@ public class ListRatingCommand extends ListCommand {
                 break;
             }
         }
-
-        if (isFound) {
-            ui.printSpecifiedRating(ratings, ratingToPrint);
-        } else {
-            System.out.printf((ERROR_LIST_SPECIFIED_RATING_NOT_FOUND) + "\n", ratingToPrint);
+        if (!isFound) {
             quotesifyLogger.log(Level.INFO, "ratings not found");
+            throw new QuotesifyException(ERROR_LIST_SPECIFIED_RATING_NOT_FOUND);
         }
+        ui.printSpecifiedRating(ratings, ratingToPrint);
     }
 }
