@@ -1,5 +1,6 @@
 package seedu.duke.logic.commands.buscommand;
 
+import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.model.bus.Bus;
 import seedu.duke.model.bus.BusData;
 import seedu.duke.model.bus.BusStops;
@@ -26,16 +27,14 @@ public class BusCommand extends Command {
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
             super.isValid = false;
+            throw new CustomException(ExceptionType.POSSIBLE_LOCS);
         }
     }
 
     @Override
     public void executeCommand() {
-        if (busStop != null) {
-            printLine();
-            ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
-            Ui.printBusAtBusStop(busList, busStop);
-        }
+        ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
+        Ui.printBusAtBusStop(busList, busStop);
     }
 
     private ArrayList<String> similarLocations(String location) {
