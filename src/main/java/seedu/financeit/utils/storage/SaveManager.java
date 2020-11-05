@@ -177,20 +177,30 @@ public class SaveManager {
             while (scanner.hasNext()) {
                 String saveString = scanner.nextLine();
                 if (saveString.equals(name)) {
-                    FileChannel sourceChannel = new FileInputStream(path + "_gt.txt").getChannel();
-                    FileChannel destChannel = new FileOutputStream(desGoal).getChannel();
+                    FileInputStream inGt = new FileInputStream(path + "_gt.txt");
+                    FileOutputStream outGt = new FileOutputStream(desGoal);
+                    FileChannel sourceChannel = inGt.getChannel();
+                    FileChannel destChannel = outGt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
-                    sourceChannel = new FileInputStream(path + "_mt.txt").getChannel();
-                    destChannel = new FileOutputStream(desManual).getChannel();
+                    FileInputStream inMt = new FileInputStream(path + "_mt.txt");
+                    FileOutputStream outMt = new FileOutputStream(desManual);
+                    sourceChannel = inMt.getChannel();
+                    destChannel = outMt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
-                    sourceChannel = new FileInputStream(path + "_at.txt").getChannel();
-                    destChannel = new FileOutputStream(desAuto).getChannel();
+                    FileInputStream inAt = new FileInputStream(path + "_at.txt");
+                    FileOutputStream outAt = new FileOutputStream(desAuto);
+                    sourceChannel = inAt.getChannel();
+                    destChannel = outAt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
-                    sourceChannel.close();
-                    destChannel.close();
+                    inGt.close();
+                    inMt.close();
+                    inAt.close();
+                    outMt.close();
+                    outGt.close();
+                    outAt.close();
                     clear();
                     Financeit.load();
                     prompt = name + " has been loaded!";
