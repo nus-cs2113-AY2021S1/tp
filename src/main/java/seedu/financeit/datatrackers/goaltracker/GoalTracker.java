@@ -109,7 +109,7 @@ public class GoalTracker {
                             goalToSet = new Goal(expenseGoal, "Expense", month);
                             totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have successfully"
-                                    + " edited your expense goal for " + month);
+                                    + " edited your expense goal for " + month + " to $" + expenseGoal);
 
                         }
 
@@ -131,7 +131,7 @@ public class GoalTracker {
                             goalToSet = new Goal(incomeGoal, "Income", month);
                             totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have successfully"
-                                    + " edited your income goal for " + month);
+                                    + " edited your income goal for " + month + " to $" + incomeGoal);
                             execute();
                         }
                     } catch (NullPointerException e) {
@@ -230,7 +230,7 @@ public class GoalTracker {
                             + " as your Expense Goals for " + month);
                 }
             }
-
+            month = null;
         } catch (DateTimeException e) { // This exception occurs if they did not enter correct format for the month
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                     + " a valid month");
@@ -278,6 +278,7 @@ public class GoalTracker {
                             + " as your Income Goals for " + month);
                 }
             }
+            month = null;
         } catch (DateTimeException e) { // This exception occurs if they did not enter correct format for the month
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Invalid input. Please enter "
                     + " a valid month");
@@ -386,6 +387,7 @@ public class GoalTracker {
     public static void printExpenseGoal() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
+                month = Month.of(Integer.parseInt(cmdPacket[3]));
                 try {
                     if (ledgerMonth == null) {
                         if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
@@ -458,6 +460,7 @@ public class GoalTracker {
                             + " to spend.");
                 }
             }
+            month = null;
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You did not set "
                     + "a goal for expense.");
@@ -534,6 +537,7 @@ public class GoalTracker {
     public static void printIncomeGoal() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
+                month = Month.of(Integer.parseInt(cmdPacket[3]));
                 try {
                     if (ledgerMonth == null) {
                         if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
@@ -569,7 +573,7 @@ public class GoalTracker {
             double goalDifference = incomeGoal - totalIncomes;
             if (ledgerMonth == null) {
                 if (goalDifference < 0) {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current, "
+                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
                             + "income goal status for " + month + ". You have saved $" + totalIncomes + " / $"
                             + incomeGoal + ". You have met your " + "revenue goal.");
                     UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
@@ -582,7 +586,7 @@ public class GoalTracker {
                         printIncomeGoal();
                     }
                 } else {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current, "
+                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
                             + "income goal status for " + month + ". You have saved $" + totalIncomes + " / $"
                             + incomeGoal + ". You have not met your " + "revenue goal. You are $" + goalDifference
                             + " away from your goal.");
@@ -608,6 +612,7 @@ public class GoalTracker {
                             + " away from your goal.");
                 }
             }
+            month = null;
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You did not set "
                     + "a goal for income.");
