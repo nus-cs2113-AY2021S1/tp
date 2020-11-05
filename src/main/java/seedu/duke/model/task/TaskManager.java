@@ -3,6 +3,7 @@ package seedu.duke.model.task;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.sprint.Sprint;
 import seedu.duke.storage.JsonableObject;
 import seedu.duke.ui.Ui;
 
@@ -95,6 +96,10 @@ public class TaskManager implements JsonableObject {
         } catch (NumberFormatException e) {
             Ui.showToUserLn("Task id is not an integer.");
         }
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return backlogTasks;
     }
 
     public boolean checkTaskExist(int id) {

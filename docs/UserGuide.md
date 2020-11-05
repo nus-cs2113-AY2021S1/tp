@@ -22,6 +22,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.3. [Delete Tasks](#delete-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.4. [Change the Priority of Tasks](#change-the-priority-of-a-tasks)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.5. [Mark Tasks as Complete](#mark-task-as-complete)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.6. [View Tasks by descending priority](#view-tasks-in-descending-priority)<br>
 &nbsp;&nbsp;3.4. [Sprint `sprint`](#sprint-codesprintcode)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Create a New Sprint](#create-a-new-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [View Sprint Information](#view-sprint-information)<br>
@@ -192,7 +193,7 @@ mary has been removed from the project.
 ```
 
 ### 3.3. Project Backlog `task`
-#### 3.3.1. Add Tasks
+#### 3.3.1. Add Task
 Add a task to the project backlog.
 ##### Format: `task /add -title <title> -desc <description> -priority <category>`
 ##### Constraints:
@@ -215,7 +216,7 @@ Task successfully created.
         Task have yet to be assigned to anyone
 ```
 
-#### 3.3.2. View Task
+#### 3.3.2. View Task(s)
 Display the information of the specified task.
 ##### Format: `task /view <taskid> [<taskid>...]`
 ##### Constraints:
@@ -247,7 +248,7 @@ The details of the tasks are as follows:
     Completion: Completed
  ```
 
-#### 3.3.3. Delete Tasks
+#### 3.3.3. Delete Task(s)
 Delete the specified task from the project backlog.
 ##### Format: `task /del <taskid> [<taskid>...]`
 ##### Constraints:
@@ -263,7 +264,7 @@ The corresponding task Del UI has been removed from project.
 The corresponding task UI has been removed from project.
 ```
 
-#### 3.3.4. Change the Priority of a Tasks
+#### 3.3.4. Change the Priority of a Task
 Change the priority of the specified task.
 ##### Format: `task /priority -priority <category> -id <taskid>`
 ##### Constraints:
@@ -278,7 +279,7 @@ The task Add parser has its priority changed to:
         High priority
 ```
 
-#### 3.3.5. Mark Task as Complete
+#### 3.3.5. Mark Task(s) as Complete
 Mark specified task as complete.
 ##### Format: `task /done <taskid> [<taskid>...]`
 ##### Example: `task /done 1 2 3`
@@ -291,6 +292,37 @@ Mark specified task as complete.
 Add parser has been marked as done.
 Foo has been marked as done.
 Bar has been marked as done.
+```
+
+#### 3.3.6. View Tasks in descending priority
+Views all tasks in current project, arranged by their priority. The higher priority tasks are shown first.
+##### Format: `task /priorityview`
+##### Constraints: 
+* There are no parameters for this command. Any parameters added will be ignored.
+##### Expected outcome: (Assuming there are 3 tasks with titles `Foo` of high priority, `Bar` of low priority and `FooBar` of medium priority respectively)
+```
+The details of the tasks, in descending priority, are as follows: 
+[Task]
+	ID: 1
+	Title: Foo
+	Description: abcdefg
+	Priority: High priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 3
+	Title: FooBar
+	Description: abcdefg
+	Priority: Medium priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
+[Task]
+	ID: 2
+	Title: Bar
+	Description: abcdefgh
+	Priority: Low priority
+	Completion: Incomplete
+	Task have yet to be assigned to anyone
 ```
 
 ### 3.4. Sprint `sprint`

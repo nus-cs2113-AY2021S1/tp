@@ -17,5 +17,5 @@ public enum Priority {
         public String toString() {
             return "Low priority";
         }
-    }
+    };
 }
