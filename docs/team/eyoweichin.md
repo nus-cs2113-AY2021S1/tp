@@ -1,6 +1,7 @@
 # Eyo Wei Chin - Project Portfolio Page
 
 ## Project: AniChan
+
 **AniChan** is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficiency and translation accuracy. **AniChan** is built for fast typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC.
 
 ### Summary of Contributions
@@ -27,7 +28,7 @@
 *   **Documentation**
     *   User Guide:
         *   Add documentation for the features `browse` and `search`: [#190](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/190), [#111](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/111/files).
-        *   Contributed to the "Using the Guide" section of the user guide.
+        *   Contributed to the "Using the Guide" section of the user guide: [#274](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/274).
     *   Developer Guide:
         *   Add Command and Starting Up sequence diagrams: [#261](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/261).
         *   Add implementation details of `browse` feature: [#196](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/196), [#161](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/161).
@@ -47,6 +48,6 @@
     *   Gave demonstrations during product demos of **AniChan**.
 
 *   **Beyond Project Team Tasks**
-    *   Reported bugs for a team in PE-D
+    *   Identified and reported bugs for a team in PE-D
     *   Reviewed another team's Developer Guide 
     *   Reviewed another team's User Guide 
