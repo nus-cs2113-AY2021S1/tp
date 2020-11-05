@@ -16,9 +16,9 @@ public class CommandDelMember extends Command {
     @Override
     public int validate(UserInput input) {
         this.savedInput = input;
-        if (input.getCategory().equals("hr") && input.getCommand().equalsIgnoreCase("delMember")
+        if (input.getCategory().equals("hr") && (input.getCommand().equalsIgnoreCase("delMember")
                 || input.getCommand().equalsIgnoreCase("delete")
-                || input.getCommand().equalsIgnoreCase("d")) {
+                || input.getCommand().equalsIgnoreCase("d"))) {
             if (input.getNumArgs() == 1) {
                 if ((input.getArg("") != null) && isNumber(input.getArg(""))) {
 
