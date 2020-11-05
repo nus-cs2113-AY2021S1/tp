@@ -50,23 +50,24 @@
 <br/>
 
 ## 1. Introduction
-**AniChan** is a command-line application written in **Java 11**. It is written using the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized and reusable pieces of codes, making it more efficient for future improvements and revisions.
+
+**Welcome to AniChan!**
+
+**AniChan** is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage their time more effectively by identifying the time needed to translate a script. Moreover, **AniChan** comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
+
+**AniChan** is written in **Java 11** and uses the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized and reusable pieces of codes, making it more efficient for future improvements and revisions.
 
 ### 1.1 Purpose
 
 This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated with each major release. The current edition of this document is intended for the release v2.1.
 
-<br/>
-
-### 1.2 Using this guide
+### 1.2 Using this Guide
 
 Along the way you might encounter several icons. These icons can help provide several types of information that may be useful to you. 
 
 > :bulb: Take note when you see this icon, as it might tell you something important.
 
 > :memo: This icon represents a friendly tip that might be useful when using our application.
-
-> :warning: A caution that you have to keep in mind when using the command
 
 Lastly, text that are blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this developer guide.
 
@@ -83,18 +84,32 @@ Firstly, **fork** this repo and **clone** a copy into your computer.
 
 If you plan to use Intellij IDEA: 
 1.  **Ensure IntelliJ is configured to use JDK 11**.
-    1.  Click on `Configure` > `Structure for New Projects` > `Project Settings` > `Project`, and ensure the `Project SDK` is using **JDK 11**.
+    1.  If you are not at the welcome screen, click `File` > `Close Project` to close any existing project.
+    2.  Click on `Configure` > `Structure for New Projects` > `Project Settings` > `Project`, and ensure the `Project SDK` is using **JDK 11**.
 
 2.  **Import the project as a Gradle project**.
     1.  Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`.
     2.  If asked, choose to `Open as Project` (not `Open as File`).
     3.  Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
-    4.  The import process could take a few minutes to finish.
+    4.  Wait for the importing process to finish (could take a few minutes).
 
 3.  **Verify the setup**: 
-    1.  Run `Main.main()` and try a few commands.
-    2.  You may want to refer to our [User Guide](UserGuide.md) for the list of commands supported by **AniChan**.
-
+    1.  After the importing is complete, locate the `src/main/java/anichan/Main.java` file, right-click it, and choose `Run Main.main()`. If the setup is correct, you should see something like the below:
+    
+    ```text
+    Welcome to AniChan!
+                      _  _____ _
+          /\         (_)/ ____| |
+         /  \   _ __  _| |    | |__   __ _ _ __
+        / /\ \ | '_ \| | |    | '_ \ / _` | '_ \
+       / ____ \| | | | | |____| | | | (_| | | | |
+      /_/    \_\_| |_|_|\_____|_| |_|\__,_|_| |_|
+    
+    -------------------------------------------------------------
+    User: File does not exist.
+    What's your name?
+    ```
+    
 <br/>
 
 ### 2.2 Before writing code
