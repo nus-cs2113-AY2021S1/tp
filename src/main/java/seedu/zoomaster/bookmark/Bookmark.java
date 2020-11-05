@@ -1,3 +1,5 @@
+//@@author xingrong123
+
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.exception.ZoomasterException;
@@ -49,6 +51,7 @@ public class Bookmark {
         return descriptionUrl;
     }
 
+    //@@author Speedweener
     public static Boolean isUrlValid(String url) {
         if (url.contains(" ")) {
             return false;
@@ -71,6 +74,7 @@ public class Bookmark {
         return "  [" + description + "] " + url;
     }
 
+    //@@author xingrong123
     private void launchUrl() throws IOException {
         Runtime rt = Runtime.getRuntime();
         String os = System.getProperty("os.name").toLowerCase();
