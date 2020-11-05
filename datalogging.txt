@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-11-05T07:22:31.002547300Z</date>
+  <millis>1604560951002</millis>
+  <nanos>547300</nanos>
+  <sequence>0</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Logger created</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:36.505251800Z</date>
+  <millis>1604560956505</millis>
+  <nanos>251800</nanos>
+  <sequence>1</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>personal file saved</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:36.509934200Z</date>
+  <millis>1604560956509</millis>
+  <nanos>934200</nanos>
+  <sequence>2</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>timetable file saved</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:36.514072700Z</date>
+  <millis>1604560956514</millis>
+  <nanos>72700</nanos>
+  <sequence>3</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>zoom file saved</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:36.516595800Z</date>
+  <millis>1604560956516</millis>
+  <nanos>595800</nanos>
+  <sequence>4</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>goal file saved</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:38.502631800Z</date>
+  <millis>1604560958502</millis>
+  <nanos>631800</nanos>
+  <sequence>5</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>personal file saved</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:38.505605600Z</date>
+  <millis>1604560958505</millis>
+  <nanos>605600</nanos>
+  <sequence>6</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>timetable file saved</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:38.509933600Z</date>
+  <millis>1604560958509</millis>
+  <nanos>933600</nanos>
+  <sequence>7</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>zoom file saved</message>
+</record>
+<record>
+  <date>2020-11-05T07:22:38.513581Z</date>
+  <millis>1604560958513</millis>
+  <nanos>581000</nanos>
+  <sequence>8</sequence>
+  <logger>storageLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveAll</method>
+  <thread>1</thread>
+  <message>goal file saved</message>
+</record>
+</log>
