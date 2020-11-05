@@ -138,12 +138,12 @@ public abstract class Parser {
         }
 
         //this block deals with locate command
-        if (words[0].equals(LOCATE_EVENT)) {
+        if (words[0].equalsIgnoreCase(LOCATE_EVENT)) {
             return new LocateCommand(words[1]);
         }
 
         //this block deals with find command
-        if (words[0].equals(EVENT_FIND)) {
+        if (words[0].equalsIgnoreCase(EVENT_FIND)) {
             if (fullCommand.substring(4).isBlank()) {
                 throw new EmptyFindException();
             }
@@ -151,7 +151,7 @@ public abstract class Parser {
         }
 
         //this block deals with find date command
-        if (words[0].equals(EVENT_FIND_DATE)) {
+        if (words[0].equalsIgnoreCase(EVENT_FIND_DATE)) {
             if (fullCommand.substring(4).isBlank()) {
                 throw new EmptyFindDateException();
             }
@@ -163,7 +163,7 @@ public abstract class Parser {
         }
 
         //this block deals with study time command
-        if (words[0].equals(STUDY_TIME)) {
+        if (words[0].equalsIgnoreCase(STUDY_TIME)) {
             if (fullCommand.substring(9).isBlank()) {
                 throw new EmptyStudyTimeDateException();
             }
@@ -177,7 +177,7 @@ public abstract class Parser {
         int eventIndex;
 
         //this block deals with done command
-        if (words[0].equals(EVENT_DONE)) {
+        if (words[0].equalsIgnoreCase(EVENT_DONE)) {
             if (fullCommand.substring(4).isBlank()) {
                 throw new EmptyDoneException();
             }
@@ -190,7 +190,7 @@ public abstract class Parser {
         }
 
         //this block deals with delete command
-        if (words[0].equals(EVENT_DELETE)) {
+        if (words[0].equalsIgnoreCase(EVENT_DELETE)) {
             if (fullCommand.substring(6).isBlank()) {
                 throw new EmptyDeleteException();
             }
@@ -203,7 +203,7 @@ public abstract class Parser {
         }
 
         //this block deals with sorting
-        if (words[0].equals(SORT)) {
+        if (words[0].equalsIgnoreCase(SORT)) {
             if (fullCommand.length() == 4) {
                 throw new NoSortCriteriaException();
             }
@@ -242,7 +242,7 @@ public abstract class Parser {
 
 
         //this block deals with edit command
-        if (words[0].equals(EDIT)) {
+        if (words[0].equalsIgnoreCase(EDIT)) {
             if (fullCommand.length() == 4) {
                 throw new EmptyEventIndexException();
             }
@@ -263,8 +263,10 @@ public abstract class Parser {
 
 
             if (!editInformation[0].isBlank()) {
-                if (!editInformation[0].equals(ASSIGNMENT) && !editInformation[0].equals(CLASS)
-                        && !editInformation[0].equals(PERSONAL_EVENT) && !editInformation[0].equals(SELF_STUDY)) {
+                if (!editInformation[0].equalsIgnoreCase(ASSIGNMENT) && !editInformation[0].equalsIgnoreCase(CLASS)
+                        && !editInformation[0].equalsIgnoreCase(PERSONAL_EVENT)
+                        && !editInformation[0].equalsIgnoreCase(SELF_STUDY)) {
+
                     throw new InvalidEditTypeException();
                 }
             }
