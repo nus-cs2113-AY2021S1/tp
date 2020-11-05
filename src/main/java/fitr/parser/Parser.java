@@ -48,9 +48,6 @@ public class Parser {
         case Commands.COMMAND_VIEW:
             return new ViewCommand(arguments);
         case Commands.COMMAND_RECOMMEND:
-            if (arguments.split(" ").length > 1) {
-                return new InvalidCommand("Extra parameters");
-            }
             return new RecommendCommand(arguments);
         case Commands.COMMAND_EDIT:
             return new EditCommandParser(arguments).editCommand();
