@@ -1,4 +1,12 @@
 @startuml
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":AddEventCommand" as AddEventCommand
+participant ":ParseAddEventCommand" as ParseAddEventCommand
+participant ":Command" as Command
+participant ":Formatter" as Formatter
+participant ":Timetable" as Timetable
 
 activate NotUS
 

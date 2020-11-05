@@ -1,5 +1,14 @@
 @startuml
 
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":RemindCommand" as RemindCommand
+participant ":ParserManager" as ParserManager
+participant ":Command" as Command
+participant ":Timetable" as Timetable
+participant ":Formatter" as Formatter
+
 activate NotUS
 
 create RemindCommand
