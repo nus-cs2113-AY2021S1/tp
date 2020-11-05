@@ -1,6 +1,7 @@
 package seedu.duke.logic.commands.favcommand;
 
 import seedu.duke.exceptions.CustomException;
+import seedu.duke.exceptions.ExceptionType;
 import seedu.duke.logic.commands.commons.Command;
 import seedu.duke.logic.parser.ExecFavParser;
 import seedu.duke.logic.parser.Parser;
@@ -28,6 +29,12 @@ public class ExecFavCommand extends Command {
         getFav();
         Parser parser = new Parser(fav.getCommand());
         System.out.println(fav.getCommand());
-        boolean done = !parser.extractType();
+        try {
+            boolean done = !parser.extractType();
+        } catch (CustomException e) {
+            FavList.deleteFav(index + 1);
+            throw new CustomException(ExceptionType.LIST_INDEX_CORRUPTED);
+        }
+
     }
 }
