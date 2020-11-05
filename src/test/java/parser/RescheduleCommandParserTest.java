@@ -1,8 +1,5 @@
 package parser;
 
-import commands.EditCardCommand;
-import commands.EditChapterCommand;
-import commands.EditModuleCommand;
 import commands.RescheduleCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
@@ -10,7 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static common.Messages.*;
+import static common.Messages.ADMIN;
+import static common.Messages.CHAPTER;
+import static common.Messages.MODULE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

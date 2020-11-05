@@ -52,14 +52,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidQuestionAnswer_throwsInvalidInputException() {
         final String[] inputs = {
-                // no content for question and answer
-                "1 q: | a:",
-                // no question and answer separator prefix
-                "1 q:1*1 a:1",
-                // no question prefix
-                "1 1+1 | a:",
-                // no answer prefix
-                "1 q:1+1 | 2",
+            // no content for question and answer
+            "1 q: | a:",
+            // no question and answer separator prefix
+            "1 q:1*1 a:1",
+            // no question prefix
+            "1 1+1 | a:",
+            // no answer prefix
+            "1 q:1+1 | 2",
         };
         for (String input : inputs) {
             assertThrows(InvalidInputException.class, () -> parser.parse(input, CHAPTER));
@@ -79,12 +79,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_validInput_returnsEditCardCommand() throws Exception {
         final String[] inputs = {
-                // content for question and answer
-                "1 q:1+1 | a:2",
-                // no content for question
-                "1 q: | a:1",
-                // no content for answer
-                "1 q:1+1 | a:",
+            // content for question and answer
+            "1 q:1+1 | a:2",
+            // no content for question
+            "1 q: | a:1",
+            // no content for answer
+            "1 q:1+1 | a:",
         };
         for (String input : inputs) {
             assertTrue(parser.parse(input, CHAPTER) instanceof EditCardCommand);

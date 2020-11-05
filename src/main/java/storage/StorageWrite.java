@@ -227,7 +227,7 @@ public class StorageWrite {
             File f = new File("data/history/" + date + ".txt");
             createFile(f);
         } catch (IOException e) {
-           throw new IOException("Error creating the data/history file.");
+            throw new IOException("Error creating the data/history file.");
         }
     }
 

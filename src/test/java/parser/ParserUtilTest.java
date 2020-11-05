@@ -21,7 +21,7 @@ public class ParserUtilTest {
     @Test
     public void parseQuestion_invalidInput_throwsInvalidInputException() {
         assertThrows(InvalidInputException.class,
-                () -> ParserUtil.parseQuestion(INVALID_QUESTION, AddCardCommand.MESSAGE_USAGE));
+            () -> ParserUtil.parseQuestion(INVALID_QUESTION, AddCardCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class ParserUtilTest {
     @Test
     public void parseAnswer_invalidInput_throwsInvalidInputException() {
         assertThrows(InvalidInputException.class,
-                () -> ParserUtil.parseAnswer(INVALID_ANSWER, AddCardCommand.MESSAGE_USAGE));
+            () -> ParserUtil.parseAnswer(INVALID_ANSWER, AddCardCommand.MESSAGE_USAGE));
     }
 
     @Test

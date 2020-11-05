@@ -18,6 +18,8 @@ import commands.RescheduleCommand;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -73,9 +75,10 @@ public class ParserTest {
     @Test
     public void parse_reschedule() throws Exception {
         Access access = new Access();
+        String date = LocalDate.now().plusDays(1).toString();
 
         access.setIsModuleLevel();
-        assertTrue(Parser.parse(RescheduleCommand.COMMAND_WORD + " 1 2020-11-05", access)
+        assertTrue(Parser.parse(RescheduleCommand.COMMAND_WORD + " 1 " + date, access)
                 instanceof RescheduleCommand);
     }
 
@@ -89,40 +92,6 @@ public class ParserTest {
     public void parse_unknownCommand_throwsInvalidInputException() {
         Access access = new Access();
         assertThrows(InvalidInputException.class, () -> Parser.parse("unknownCommand", access));
-    }
-
-
-    @Test
-    public void parse_addCommandEmptyArgs_expectException() {
-        Access access = new Access();
-        final String[] inputs = {"add", "add "};
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_addCardInvalidArgs_expectException() {
-        Access access = new Access();
-        access.setIsChapterLevel();
-        final String[] inputs = {
-            "add wrong args format",
-            // no content for question and answer
-            "add q: | a:",
-            // no content for question
-            "add q: | a:2",
-            // no content for answer
-            "add q:1+1 | a:",
-            // no question and answer separator prefix
-            "add q:1+1 a:2",
-            // no question prefix
-            "add 1+1 | a:2",
-            // no answer prefix
-            "add q:1+1 | 2",
-        };
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
     }
 
     @Test
