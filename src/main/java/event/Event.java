@@ -119,6 +119,28 @@ public abstract class Event {
     public static Comparator<Event> descriptionComparator = (o1, o2) ->
             o1.getDescription().compareToIgnoreCase(o2.getDescription());
 
+
+    public static Comparator<Event> locationComparator = (e1, e2) -> {
+
+        if (e2.getLocation() == null && e1.getLocation() == null) {
+            if (e1.getLink() == null) {
+                return 1;
+            }
+            if (e2.getLink() == null) {
+                return -1;
+            }
+            return e1.getLink().getLink().compareToIgnoreCase(e2.getLink().getLink());
+        }
+
+        if (e1.getLocation() == null) {
+            return 1;
+        }
+        if (e2.getLocation() == null) {
+            return -1;
+        }
+        return e1.getLocation().getName().compareToIgnoreCase(e2.getLocation().getName());
+    };
+
 }
 
 

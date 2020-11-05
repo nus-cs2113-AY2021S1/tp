@@ -211,6 +211,7 @@ public abstract class Parser {
             switch (type) {
             case "description":
             case "time":
+            case "location":
                 return new SortCommand(type);
             default:
                 throw new InvalidSortCriteriaException();
@@ -263,7 +264,9 @@ public abstract class Parser {
 
             if (!editInformation[0].isBlank()) {
                 if (!editInformation[0].equalsIgnoreCase(ASSIGNMENT) && !editInformation[0].equalsIgnoreCase(CLASS)
-                        && !editInformation[0].equalsIgnoreCase(PERSONAL_EVENT)) {
+                        && !editInformation[0].equalsIgnoreCase(PERSONAL_EVENT)
+                        && !editInformation[0].equalsIgnoreCase(SELF_STUDY)) {
+
                     throw new InvalidEditTypeException();
                 }
             }
@@ -306,15 +309,17 @@ public abstract class Parser {
             }
 
             if (!editInformation[4].isBlank()) {
-                if (editInformation[4].length() != 16) {
-                    throw new TimeFormatException();
-                }
-                startDateTime = editInformation[4].substring(0, 10) + "T" + editInformation[4].substring(11);
-                try {
-                    startEnd[1] = LocalDateTime.parse(startDateTime);
-                    //System.out.println(startEnd[1]);
-                } catch (DateTimeException e) {
-                    throw new TimeFormatException();
+                if (!editInformation[4].equals("nil")) {
+                    if (editInformation[4].length() != 16) {
+                        throw new TimeFormatException();
+                    }
+                    startDateTime = editInformation[4].substring(0, 10) + "T" + editInformation[4].substring(11);
+                    try {
+                        startEnd[1] = LocalDateTime.parse(startDateTime);
+                        //System.out.println(startEnd[1]);
+                    } catch (DateTimeException e) {
+                        throw new TimeFormatException();
+                    }
                 }
             }
 
