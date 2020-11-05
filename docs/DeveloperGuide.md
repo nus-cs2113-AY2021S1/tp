@@ -135,7 +135,7 @@ Its main roles are:
 <a name="parser"></a>
 ### Parser component
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram.png?raw=true)
+![]()
 *<center/> Figure 1.3 Class diagram of Parser </center> <br/></br>*
 
 
