@@ -4,6 +4,7 @@
 
 ## 1.1 Overview of architecture
 __Architecture Diagram__
+
 ![](.DeveloperGuide_images/Overall.png)
 
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
@@ -17,6 +18,7 @@ The design of the software can be split into 5 distinct components:
 * Storage component
 
 ### 1.2 Handler component
+
 ![](.DeveloperGuide_images/Handler.png)
 
 __Description__
@@ -40,6 +42,7 @@ finance calculator tools within it.
 to perform the operation associated with the user input.
 
 ### 1.3 Logic component
+
 ![](.DeveloperGuide_images/Logic.png)
 
 __Description__
@@ -49,6 +52,7 @@ __API__
 
 
 ### 1.4 Input Manager component
+
 ![](.DeveloperGuide_images/InputManager.png)
 
 __Description__
@@ -65,6 +69,7 @@ and produce an equivalent ```CommandPacket``` instance.
 ```Command``` classes or perform the next operation.
 
 ### 1.5 Model component
+
 ![](.DeveloperGuide_images/Data.png)
 
 __Description__
@@ -83,6 +88,7 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
      
 
 ### 1.6 Storage component
+
 ![](.DeveloperGuide_images/Logic.png)
 
 __Description__
@@ -465,14 +471,17 @@ The following class diagram shows how the Account Storage feature works:
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
+
 ![SequenceDiagram1](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(1).png)
 <br />
 <br />
 The following sequence diagram shows how the Account Storage feature works:
 <br />
+
 ![SequenceDiagram2](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(2).png)
 <br />
 <br />
+
 ![SequenceDiagram3](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(3).png)
  
 #### Command and Calculation History
@@ -504,10 +513,12 @@ Lastly, the goal status will be displayed to the user.
  
 This class diagram will show how the setting of expense goal works:
 <br />
+
 ![ExpenseClassDiagram](uml_images/goaltracker/SetExpenseGoalClassDiagram.png)
  
 This sequence diagram will show the flow of setting of expense goal:
 <br />
+
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
 ### 2.2.6 Feature 5: Save Manager Utility
@@ -521,9 +532,11 @@ saver child classes. goalTrackerSaver produce text file to save goalTracker stat
 manualTrackerSaver saves manualTracker states. SaveManager class is the UI class that uses the 3 saver classes to do load and save operations.
 
 #### Save Manager Class Diagram
+
 ![SaveManagerClassDiagram](uml_images/saveManager/SaveManagerClass.png)
 
 #### Save Manager Sequence Diagram
+
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
 
 ## 3. Product scope
@@ -600,7 +613,9 @@ bill payments
     1. ```ManualTracker```
         1. Enter ```manual``` into the console.
             You should see the following: 
+            
 ![](.DeveloperGuide_images/main_menu_manual.png)
+
     1. ```RecurringTracker```
     1. ```GoalTracker```
     1. ```SaveManager```
@@ -609,57 +624,114 @@ bill payments
 1. Exiting the main menu and quit the program: 
     1. Enter ```exit``` into the console.
         You should see the following: 
+        
 ![](.DeveloperGuide_images/main_menu_exit.png)
 
-### 7.2 Testing ManualTracker
-#### 7.2.1 Testing Create Ledger
+###<a name = 7.2></a> 7.2 Testing ManualTracker
+#### 7.2.1 Testing Show Command List
+1. Enter ```commands``` into the console.
+You should see the following: 
+
+![](.DeveloperGuide_images/manual_commands.png)
+
+####<a name = 7.2.2></a> 7.2.2 Testing Create Ledger
 ##### Positive test
 1. Enter ```new /date 200505``` into the console.
 You should see the following:
+
 ![](.DeveloperGuide_images/manual_new.png)
+
 ##### Negative test: Duplicate inputs
 1. Again, enter ```new /date 200505``` into the console.
 You should see the following:
+
 ![](.DeveloperGuide_images/manual_new_dup.png)
 
-#### <a name = 7.2.1></a>7.2.4 Testing Show Ledger List
+#### 7.2.3 Testing Show Ledger List
 ##### Positive test
 1. Enter ```list``` into the console. 
 You should see the following: 
+
 ![](.DeveloperGuide_images/manual_list.png)
+
     * Observe that there is currently one ledger in the list, of date 2020-05-05.
 1. Refer to [7.2.1](#7.2.1) to create another ledger of date 2020-06-06 using the command: 
 ```new /date 200606```. 
 1. Enter ```list``` into the console. 
     * Observe that there are now two ledgers in the list.
 You should see the following: 
+
 ![](.DeveloperGuide_images/manual_list2.png)
 
-#### 7.2.2 Testing Delete Ledger
+#### 7.2.4 Testing Delete Ledger
 ##### Positive test
 1. Enter ```delete /id 1``` into the console.
     * This will delete the first ledger on index, which is of date 2020-05-05
 1. Enter ```list``` into the consolde.
 You should see the following:
+
 ![](.DeveloperGuide_images/manual_delete1.png)
+
     * Observe there is now one ledger on the list.
 
-#### 7.2.3 Testing Open Ledger
+#### 7.2.5 Testing Open Ledger
 1. Enter ```open /date 200707``` into the console.
 You should see the following:
+
 ![](.DeveloperGuide_images/manual_open.png)
+
     * Note that the ledger of date 2020-07-07 was not created beforehand. 
     However, the ledger will be automatically created by the operation, and
     will resume as per normal. 
 
-#### 7.2.5 Testing Show Command List
-1. Enter ```commands``` into the console.
-You should see the following: 
-![](.DeveloperGuide_images/manual_commands.png)
-
 ### 7.3 Testing EntryTracker
+1. The following testing guide assumes that testing at [7.2](#7.2) is completed.
+#### 7.3.1 Testing Show Command List
+1. Enter ```commands``` into the console.
+You should see the following:
+
+![](.DeveloperGuide_images/entry_commands.png)
+
+#### 7.3.2 Testing Show Category List
+1. Enter ```cat``` into the console.
+You should see the following:
+
+![](.DeveloperGuide_images/entry_cat.png)
+
+#### 7.3.2 Testing Create Entry
+1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -e``` into the console.
+You should see the following:
+
+![](.DeveloperGuide_images/entry_create.png)
+1. Enter ```new /time 1500 /cat slr /amt $16.30 /desc Riding the bus back home -i``` into the console.
+You should see the following:
+
+![](.DeveloperGuide_images/entry_create2.png)
+
+1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -i``` into the console.
+You should see the following:
+
+![](.DeveloperGuide_images/entry_create_err1.png)
+    * Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
+    considered an expenditure, and `-e` should have been used instead.
+
+#### 7.3.3 Testing Show Entry List
+1. Enter ```list``` into the console.
+You should see the following:
+
+![](.DeveloperGuide_images/entry_list.png)
+    * Note that the number of entries is now two.
+
+#### 7.3.4 Testing Edit Entry
+
+![](.DeveloperGuide_images/entry_edit_list.png)
+
+#### 7.3.5 Testing Delete Entry 
+
+![](.DeveloperGuide_images/entry_delete_list.png)
 
 ### 7.4 Testing RecurringTracker
+
 
 ### 7.5 GoalTracker
 
