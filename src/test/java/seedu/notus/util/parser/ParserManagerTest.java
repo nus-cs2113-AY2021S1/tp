@@ -99,15 +99,15 @@ class ParserManagerTest {
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
 
-        inputString = "archive /i 2";
-        command = parserManager.parseCommand(inputString);
-        assertTrue(command instanceof IncorrectCommand);
-
-        inputString = "archive /t hola";
-        command = parserManager.parseCommand(inputString);
-        assertTrue(command instanceof IncorrectCommand);
-
         inputString = "archive-n /t";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "archive-n /i 0";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "archive-n";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
     }
@@ -129,11 +129,11 @@ class ParserManagerTest {
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
 
-        inputString = "unarchive /i 2";
+        inputString = "archive-n /i 0";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
 
-        inputString = "unarchive /t hola";
+        inputString = "archive-n";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
 
@@ -198,10 +198,6 @@ class ParserManagerTest {
 
     @Test
     void parseCommand_invalidListNote_returnIncorrectCommand() {
-        inputString = "list";
-        command = parserManager.parseCommand(inputString);
-        assertTrue(command instanceof IncorrectCommand);
-
         inputString = "list-n /tag";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
@@ -322,6 +318,26 @@ class ParserManagerTest {
         assertTrue(command instanceof IncorrectCommand);
 
         inputString = " ";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "archive /i 2";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "archive /t hola";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "unarchive /i 2";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "unarchive /t test";
+        command = parserManager.parseCommand(inputString);
+        assertTrue(command instanceof IncorrectCommand);
+
+        inputString = "list";
         command = parserManager.parseCommand(inputString);
         assertTrue(command instanceof IncorrectCommand);
     }

@@ -209,16 +209,16 @@ The rationale for overloading such methods are given below:<br>
     2. Second takes in a `String` of the note title.
     3. The third takes in a `String` of the note title, and a `boolean` isArchive.  
 
-- getNote(`int`) returns the Note that is in the position of specified index within the default notebook.
-- getNote(`String`) checks if the note of the specified title exists in the default notebook and returns a `boolean` value.
-- getNote(`String`, `boolean`) checks if the note of the specified title exists and returns a `boolean` value. The `boolean` acts as a flag to determine which of the notebook (default/archived), will be streamed and filtered.
+- getNote(`int`) returns the Note that is in the position of specified index within the default list of notes.
+- getNote(`String`) checks if the note of the specified title exists in the default list of notes and returns a `boolean` value.
+- getNote(`String`, `boolean`) checks if the note of the specified title exists and returns a `boolean` value. The `boolean` acts as a flag to determine which of the list of notes (default/archived), will be streamed and filtered.
 
 **2. getPinnedNotes()**<br>
 - There are a total of 2 getPinnedNotes() methods.
     1. First one takes no arguments.
     2. Second takes in an `ArrayList<Note>` representing the ArrayList to be filtered.
 
-- getPinnedNotes() returns an `ArrayList<Note>` containing all the pinned notes found in the default notebook.
+- getPinnedNotes() returns an `ArrayList<Note>` containing all the pinned notes found in the default list of notes.
 - getPinnedNotes(`ArrayList<Note>`) returns an `ArrayList<Note>` containing all the pinned notes found in the `ArrayList<Note>` parameter that was passed in. Used when the user wants to filter the list-n search with tags. The ArrayList would only contain notes with the specific tags.
 
 **3. getUnpinnedNotes()**<br>
@@ -226,15 +226,15 @@ The rationale for overloading such methods are given below:<br>
     1. First one takes no arguments.
     2. Second takes in an `ArrayList<Note>` representing the ArrayList to be filtered.
 
-- getUnpinnedNotes() returns an `ArrayList<Note>` containing all the unpinned notes found in the default notebook.
+- getUnpinnedNotes() returns an `ArrayList<Note>` containing all the unpinned notes found in the default list of notes.
 - getUnpinnedNotes(`ArrayList<Note>`) returns an `ArrayList<Note>` containing all the unpinned notes found in the `ArrayList<Note>` parameter that was passed in. Used when the user wants to filter the list-n search with tags. The ArrayList would only contain notes with the specific tags.
 
 **4. getSortedList()**<br>
 - There are a total of 2 getSortedList() methods.
-    1. First one takes in 2 `Boolean` parameters specifying if only pinned notes are to be filtered, as well as a flag for the sort order.
+    1. First one takes in 2 `Boolean` parameters specifying if only pinned notes from the default list of notes are to be filtered, as well as a flag for the sort order.
     2. Second takes in 2 `Boolean` parameters specifying if only pinned notes are to be filtered, as well as a flag for the sort order. A third `ArrayList<Note>` parameter representing the ArrayList to be filtered is also taken in.
 
-- getSortedList(`Boolean`, `Boolean`) returns an `ArrayList<Note>` containing all notes, or just pinned notes found in the default notebook, in the specified sort order.
+- getSortedList(`Boolean`, `Boolean`) returns an `ArrayList<Note>` containing all notes, or just pinned notes found in the default list of notes, in the specified sort order.
 - getSortedList(`Boolean`, `Boolean`, `ArrayList<Note>`) returns an `ArrayList<Note>` containing all notes, or just pinned notes found in the `ArrayList<Note>` parameter that was passed, in the specified sort order. Used when the user wants to filter the list-n search with tags. The ArrayList would only contain notes with the specific tags.
 
 **5. archiveNotes()**<br>
@@ -243,7 +243,7 @@ The rationale for overloading such methods are given below:<br>
     2. Second takes in a `String` of the note title.
 
 - archiveNotes(`int`) returns a String value of the note title that is in the position of specified index, and that is being archived.
-- archiveNotes(`String`) checks if the note of the specified title exists in the default notebook and returns a `boolean` value. If the note exists, it will be archived.
+- archiveNotes(`String`) checks if the note of the specified title exists in the default list of notes and returns a `boolean` value. If the note exists, it will be archived.
 
 **6. unarchiveNotes()**<br>
 - There are a total of 2 unarchiveNotes() methods.
@@ -251,7 +251,7 @@ The rationale for overloading such methods are given below:<br>
     2. Second takes in a `String` of the note title.
 
 - unarchiveNotes(`int`) returns a String value of the note title that is in the position of specified index, and that is being unarchived.
-- unarchiveNotes(`String`) checks if the note of the specified title exists in the archived notebook and returns a `boolean` value. If the note exists, it will be unarchived.
+- unarchiveNotes(`String`) checks if the note of the specified title exists in the archived list of notes and returns a `boolean` value. If the note exists, it will be unarchived.
 
 #### <a id="event"><ins>2.6 Timetable</ins></a>
 
