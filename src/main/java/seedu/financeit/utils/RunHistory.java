@@ -21,6 +21,7 @@ public class RunHistory {
     }
 
     public static LocalDateTime getCurrentRunDateTime() {
+        setCurrentRunDateTime();
         return RunHistory.currentRunDateTime;
     }
 

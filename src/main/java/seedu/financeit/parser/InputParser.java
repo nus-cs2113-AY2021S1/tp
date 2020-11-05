@@ -8,7 +8,6 @@ import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
-import java.util.logging.Level;
 import java.util.regex.Matcher;
 
 //@@author Artemis-Hunt
@@ -96,7 +95,7 @@ public class InputParser {
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, e.getMessage());
         }
         CommandPacket packet = new CommandPacket(commandString, params);
-        LoggerCentre.loggerInputParser.log(Level.INFO, packet.toString());
+        LoggerCentre.loggerInputParser.info(packet.toString());
         return packet;
     }
 
