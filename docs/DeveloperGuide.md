@@ -465,6 +465,9 @@ This section shows the considerations taken when designing this feature.
 
 Aspect: **Using anime title or Anime ID**
 
+The user may at some point want to know more about a particular anime, in which he may or may not know the full title of the anime.
+It is therefore important to decide on whether to prompt users to give the title of the anime, or just give its ID.
+
 | Approach | Pros | Cons  |
 | --- | --- | --- |
 | Use anime title as input. | - Easier for users who know anime titles. | - Users will have to input the full anime title. <br/> - The program has to search through the whole list of anime data. |
@@ -749,9 +752,9 @@ For better illustration, Figure 28 below shows the sequence diagram of steps 4 t
 #### 4.6.2 Design consideration
 Below shows the considerations taken when implementing the `AddToWatchlist` feature. 
 
-Aspect: **Using anime title or anime ID as the field for input**
+Aspect: **Using anime title or anime ID**
 
-This consideration is similar to our `info` feature consideration, so below is the same table we find in our `info` deature section.
+This consideration is similar to our `info` feature consideration, so below is the same table we find in our `info` feature section.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
@@ -776,6 +779,9 @@ The usage scenario of remove from watchlist is similar to the add to watchlist c
 This section describes the design considerations taken when implementing this feature.
 
 Aspect: **Which index to use when removing an anime**
+
+It is important to decide the what type of input that the user should give, given that they will frequently use the remove 
+command to remove one, or multiple anime from his watchlist.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
@@ -827,7 +833,7 @@ The `bookmark` feature aims to provide the user with the ability to create short
 The `Bookmark` class uses three ArrayList to store bookmark entries of the user, these ArrayLists maintain information about the anime index, episode and notes. The synchronisation between ArrayList is required so that it enables easy retrieval of bookmark information using the bookmark index on the three ArrayList.
 
 ![Bookmark Class Diagram](images/Bookmark-Class-Diagram.png) <br/>
-*Figure 31: Bookmark Class Diagram*
+*Figure 28: Bookmark Class Diagram*
 
 `BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction, the `Parser` will determine the required field for the `BookmarkCommand`. The table below shows the required field for each action.
 
@@ -869,19 +875,19 @@ Below is a list of bookmark operations:
 **Step 4:** The user executes `bookmark -a 430` command to add the anime ID: 430 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
-*Figure 28: Bookmark Entry After Add*
+*Figure 29: Bookmark Entry After Add*
 
 > :memo: The table shows the three ArrayList objects in the column with the bookmark ID. When adding a new anime ID into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
 
 **Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime ID 1 and 410 to the bookmark.
 
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
-*Figure 29: Bookmark Entries with more Add*
+*Figure 30: Bookmark Entries with more Add*
 
 The following sequence diagram shows how the `Add Bookmark` operation works:
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
-*Figure 30: Bookmark Add Command Sequence Diagram*
+*Figure 31: Bookmark Add Command Sequence Diagram*
 
 **Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
 
@@ -895,19 +901,19 @@ Listing all anime in bookmark:
 **Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
-*Figure 31: Bookmark Entries After Delete*
+*Figure 32: Bookmark Entries After Delete*
 
 > :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease by 1.
 
 **Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 32: Bookmark Entries After Edit Episode*
+*Figure 33: Bookmark Entries After Edit Episode*
 
 **Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID: 1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
-*Figure 33: Bookmark Entries After Add Note*
+*Figure 34: Bookmark Entries After Add Note*
 
 **Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime ID at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
 
@@ -929,7 +935,7 @@ Notes for anime:
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note ID: 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 34: Bookmark Entries After Edit Episode*
+*Figure 35: Bookmark Entries After Edit Episode*
 
 <br/>
 
