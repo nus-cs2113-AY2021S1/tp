@@ -492,11 +492,9 @@ Implementation:
 To make the data persistent and portable, JSON has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium which stores the program. JSON is also **human-readable** which allows users to directly modify the data file easily. 
 This can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 
-#### Location
-![Figure X: Running the Jar](image/developerguide/savingdata1.png "Running the Jar")  
-_Figure X: Running the Jar_  
-![Figure X: Running in IDE](image/developerguide/savingdata2.png "Running in IDE")  
-_Figure X: Running in IDE_  
+#### Location  
+![Figure X: Running the Jar](image/developerguide/storage_save_directory.png "Running the Jar")  
+_Figure X: Running the Jar or in IDE_
 
 As shown in the above diagram, the program will save the data as _"data.json"_. The data file is saved in the _“data/”_ folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the _“data/”_ folder will be in the root of the project folder.  
 When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the program.  
