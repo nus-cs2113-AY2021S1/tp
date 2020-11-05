@@ -63,7 +63,6 @@ public class EditCommand extends Command {
 
     public static String[] newEditInformation() {
         UI ui = new UI();
-        String[] editInformation = ui.readEditCommand();
-        return editInformation;
+        return ui.readEditCommand();
     }
 }

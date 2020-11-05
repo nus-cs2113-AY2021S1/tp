@@ -264,7 +264,7 @@ public abstract class Parser {
 
             if (!editInformation[0].isBlank()) {
                 if (!editInformation[0].equals(ASSIGNMENT) && !editInformation[0].equals(CLASS)
-                        && !editInformation[0].equals(PERSONAL_EVENT)) {
+                        && !editInformation[0].equals(PERSONAL_EVENT) && !editInformation[0].equals(SELF_STUDY)) {
                     throw new InvalidEditTypeException();
                 }
             }
@@ -307,15 +307,17 @@ public abstract class Parser {
             }
 
             if (!editInformation[4].isBlank()) {
-                if (editInformation[4].length() != 16) {
-                    throw new TimeFormatException();
-                }
-                startDateTime = editInformation[4].substring(0, 10) + "T" + editInformation[4].substring(11);
-                try {
-                    startEnd[1] = LocalDateTime.parse(startDateTime);
-                    //System.out.println(startEnd[1]);
-                } catch (DateTimeException e) {
-                    throw new TimeFormatException();
+                if (!editInformation[4].equals("nil")) {
+                    if (editInformation[4].length() != 16) {
+                        throw new TimeFormatException();
+                    }
+                    startDateTime = editInformation[4].substring(0, 10) + "T" + editInformation[4].substring(11);
+                    try {
+                        startEnd[1] = LocalDateTime.parse(startDateTime);
+                        //System.out.println(startEnd[1]);
+                    } catch (DateTimeException e) {
+                        throw new TimeFormatException();
+                    }
                 }
             }
 

@@ -109,12 +109,12 @@ public class EventList {
     private void editNewType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                              OnlineLocation onlineLocation) throws EditNoEndTimeException,
             EndBeforeStartEventException {
-        Event newEvent = null;
+        Event newEvent;
         String newDescription;
         Location newLocation = null;
         OnlineLocation newOnlineLocation = null;
         LocalDateTime start;
-        LocalDateTime end;
+        LocalDateTime end = null;
 
         // newDescription is set to the user input if it is not null. Otherwise, set it to the original value.
         if (editInformation[1].isBlank()) {
@@ -152,8 +152,11 @@ public class EventList {
 
         if (startEnd[1] == null) {
             end = events.get(index).getEndDateTime();
+            if (editInformation[4].equals("nil")) {
+                end = null;
+            }
             // conversion from an assignment to other type would result in an error if END date is not specified.
-            if (end == null && !editInformation[0].equals("assignment")) {
+            if (end == null && editInformation[0].equals("class")) {
                 throw new EditNoEndTimeException();
             }
         } else {
@@ -176,11 +179,34 @@ public class EventList {
                 newEvent = new Class(newDescription, newOnlineLocation, start, end);
             }
             break;
+        case "selfStudy":
+            if (newLocation != null) {
+                if (end == null) {
+                    newEvent = new SelfStudy(newDescription, newLocation, start);
+                } else {
+                    newEvent = new SelfStudy(newDescription, newLocation, start, end);
+                }
+            } else {
+                if (end == null) {
+                    newEvent = new SelfStudy(newDescription, newOnlineLocation, start);
+                } else {
+                    newEvent = new SelfStudy(newDescription, newOnlineLocation, start, end);
+                }
+            }
+            break;
         default:
             if (newLocation != null) {
-                newEvent = new PersonalEvent(newDescription, newLocation, start, end);
+                if (end == null) {
+                    newEvent = new PersonalEvent(newDescription, newLocation, start);
+                } else {
+                    newEvent = new PersonalEvent(newDescription, newLocation, start, end);
+                }
             } else {
-                newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
+                if (end == null) {
+                    newEvent = new PersonalEvent(newDescription, newOnlineLocation, start);
+                } else {
+                    newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
+                }
             }
             break;
         }
@@ -225,12 +251,25 @@ public class EventList {
             if (startEnd[1] != null) {
                 ((PersonalEvent) events.get(index)).setEnd(startEnd[1]);
             }
+            if (editInformation[4].equals("nil")) {
+                ((PersonalEvent) events.get(index)).setEnd(null);
+            }
         } else if (events.get(index) instanceof Class) {
             if (startEnd[0] != null) {
                 ((Class) events.get(index)).setAt(startEnd[0]);
             }
-            if (startEnd[0] != null) {
+            if (startEnd[1] != null) {
                 ((Class) events.get(index)).setEnd(startEnd[1]);
+            }
+        } else if (events.get(index) instanceof SelfStudy) {
+            if (startEnd[0] != null) {
+                ((SelfStudy) events.get(index)).setAt(startEnd[0]);
+            }
+            if (startEnd[1] != null) {
+                ((SelfStudy) events.get(index)).setEnd(startEnd[1]);
+            }
+            if (editInformation[4].equals("nil")) {
+                ((SelfStudy) events.get(index)).setEnd(null);
             }
         }
     }
