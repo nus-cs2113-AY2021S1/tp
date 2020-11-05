@@ -9,6 +9,7 @@
 ## Table of Content
 1.  [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
+<br/>&nbsp;1.2 [Using This Guide](#12-using-this-guide)
 
 2.  [Setting up](#2-setting-up)
 
@@ -54,6 +55,20 @@
 ### 1.1 Purpose
 
 This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated with each major release. The current edition of this document is intended for the release v2.1.
+
+<br/>
+
+### 1.2 Using this guide
+
+Along the way you might encounter several icons. These icons can help provide several types of information that may be useful to you. 
+
+> :bulb: Take note when you see this icon, as it might tell you something important.
+
+> :memo: This icon represents a friendly tip that might be useful when using our application.
+
+> :warning: A caution that you have to keep in mind when using the command
+
+Lastly, text that are blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this developer guide.
 
 <br/>
 
