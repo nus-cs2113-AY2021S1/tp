@@ -354,7 +354,7 @@ For this case since it is a default browse operation, there is no sorting perfor
 *Figure 11: Browse Default State Object Diagram*
 
 In this example, it fetches the following `Anime` objects.
-```
+```text
 Charlie
 Echo
 Gamma
