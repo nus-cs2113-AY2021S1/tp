@@ -49,7 +49,12 @@
 <br/>
 
 ## 1. Introduction
-**AniChan** is a command-line application written in **Java 11**. It is written using the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized and reusable pieces of codes, making it more efficient for future improvements and revisions.
+
+**Welcome to AniChan!**
+
+**AniChan** is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage their time more effectively by identifying the time needed to translate a script. Moreover, **AniChan** comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
+
+**AniChan** is written in **Java 11** and uses the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized and reusable pieces of codes, making it more efficient for future improvements and revisions.
 
 ### 1.1 Purpose
 
