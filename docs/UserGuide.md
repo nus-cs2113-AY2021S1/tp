@@ -62,7 +62,7 @@ It should look similar to the picture below:
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png) <br/><br/> 
 7. Finally, press <kbd>Enter</kbd>. You should should see something similar to this Zoomaster logo indicating 
 that you have successfully started your Zoomaster program. <br/><br/> 
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/startscreen.png)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommandline.PNG)
 
 8. The app is now ready to go! Go ahead and test it out with a `help` command. 
 The app should print out a list of different commands. <br/><br/> 
@@ -107,25 +107,26 @@ Format: help {COMMAND(optional)}
 >Let's say you require help to see the commands you can access the main menu mode. 
 >You will first enter `help` into the console.
 >
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20cmd%20main.png?raw=true)
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpcommandsingle.PNG)
 >
 >Then you should see the following message to guide you with the relevant commands.
 >
 >![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpmainmenu.PNG)
 
->Similarly, you require help to see the commands you can access in the bookmark mode. 
->You will first enter `help` into the console.
->
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20cmd%20bkmrk.png?raw=true)
->
->Then you should see the following message to guide you with the relevant commands.
->
->![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
+<br/><br/> 
+>Typing `help` in bookmark mode will show these commands.
 
->Alternatively, you require help to see the commands you can access in the timetable mode. 
->You will first enter `help` into the console.
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
 >
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20cmd%20time.png?raw=true)
+<br/><br/> 
+>Typing `help` in timetable mode will show these commands.
+>
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helptimetable.PNG)
+
+<br/><br/> 
+>Lastly, typing `help` in planner mode will show these commands.
+>
+>![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplannermode.PNG)
 >
 >Then you should see the following message to guide you with the relevant commands.
 >
@@ -204,13 +205,6 @@ allowing you to launch your zoom session ahead of time.
 Format: launch now    
 ```
 
-<br/><br/> 
-<a name="clear"></a>  
-#### 2.1.4. Clear screen: `clear`
-This feature helps you clear the screen in the command prompt. It is useful if the screen gets too cluttered with past commands.
-```
-Format: clear
-```
 
 <br/><br/> 
 <a name="exit"></a>  
