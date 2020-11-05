@@ -18,7 +18,7 @@
 
 *   **New Feature:** Added the ability to save and load watchlist data automatically.
     *   What it does: Helps the user to automatically save their watchlist data into the file `watchlist.txt`, and loads these data automatically when the application is launched.
-    *   Justification: Being an application to help users keep track of their animes and ensure they stay organized, persistent storage would be needed otherwise, users would have to re-enter their data every time they use the application and that can result in a frustrating experience.
+    *   Justification: Being an application to help users keep track of their animes and ensure they stay organized, persistent storage would be needed otherwise, users would have to re-enter their watchlist data every time they use the application.
     *   Highlights: During the loading of the watchlist data, each entry recorded in `watchlist.txt` would be validated to ensure they are not corrupted. **If a watchlist is corrupted, then only that watchlist will not be loaded**, the rest of the watchlist(s) will still be loaded if they are valid. A corrupted watchlist is defined as one that has information missing, has an invalid format, or it contains anime ids that are not found in our database.
 
 *   **New Feature:** Added the ability to save and load user data automatically.
