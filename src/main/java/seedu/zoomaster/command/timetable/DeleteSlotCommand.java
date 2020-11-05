@@ -32,7 +32,7 @@ public class DeleteSlotCommand extends Command {
         if (!details.startsWith(" ")) {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
-        String[] deleteCommands = details.trim().split(" ", 3);
+        String[] deleteCommands = details.trim().split("\\s+", 3);
         moduleCode = deleteCommands[0];
 
         try {
