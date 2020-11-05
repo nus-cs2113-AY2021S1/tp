@@ -38,6 +38,7 @@ public class AddCommand extends Command {
     private LocalTime time;
     private String[] dateTime;
     private LocalDate date;
+    private static int recurringCount;
 
     public AddCommand(String userInput) {
         super(userInput);
@@ -183,12 +184,12 @@ public class AddCommand extends Command {
         //temp[0] = "" and temp[1] = nus
         command = command[1].split("/", 2);
         //command[0] = 10; command[1] = 101020 1230
-        int recurringCount = Integer.parseInt(command[0].trim());
+        //int recurringCount = Integer.parseInt(command[0].trim());
+        recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
-
         if (moduleCode.isEmpty()) {
             throw new CommandException("tutorial");
         } else if (recurringCount < 0 || recurringCount > 13) {
