@@ -1,4 +1,5 @@
 //@@author fchensan
+
 package seedu.zoomaster.settings;
 
 import seedu.zoomaster.command.Mode;

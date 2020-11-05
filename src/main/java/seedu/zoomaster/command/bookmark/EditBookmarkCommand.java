@@ -1,4 +1,5 @@
 //@@author fchensan
+
 package seedu.zoomaster.command.bookmark;
 
 import seedu.zoomaster.Ui;

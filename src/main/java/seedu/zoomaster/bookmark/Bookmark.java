@@ -1,4 +1,5 @@
 //@@author xingrong123
+
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.exception.ZoomasterException;

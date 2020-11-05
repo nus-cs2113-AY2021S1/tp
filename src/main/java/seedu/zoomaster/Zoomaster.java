@@ -97,7 +97,7 @@ public class Zoomaster {
                 "./data/settings.txt").run();
     }
 
-     //@@author Speedweener
+    //@@author Speedweener
     /**
      * Returns path of jar file during execution to allow
      * app to create txt file in the same location.

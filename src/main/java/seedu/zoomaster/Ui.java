@@ -417,6 +417,7 @@ public class Ui {
         }
 
     }
+
     private void printModeOneExtendedHelp(String input) {
         switch (input) {
         case AddBookmarkCommand.ADD_KW:

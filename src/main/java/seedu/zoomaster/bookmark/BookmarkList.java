@@ -1,4 +1,5 @@
 //@@author xingrong123
+
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -211,7 +212,7 @@ public class BookmarkList {
         return message + Ui.NEW_LINE;
     }
 
-   //@@author xingrong123
+    //@@author xingrong123
     public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
