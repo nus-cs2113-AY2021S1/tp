@@ -27,7 +27,6 @@ public class Parser {
     public static final String COMMAND_RESET = "reset";
     public static final String EXCEED_WORKLOAD = "Total workload cannot be more than 99 hours.";
 
-
     /**
      * Parses user inputs.
      *
@@ -67,11 +66,13 @@ public class Parser {
             modList.deleteExp(input, toPrint, storage);
             break;
         case COMMAND_OPEN_NOTIFICATION:
-            input = input.toLowerCase().trim();
-            if (input.equals(COMMAND_OPEN_NOTIFICATION)) {
-                notification.printNotification(modList);
-            } else {
-                ui.printInvalidCommand();
+            if (isToPrintTrue(toPrint, ui, input)) {
+                input = input.toLowerCase().trim();
+                if (input.equals(COMMAND_OPEN_NOTIFICATION)) {
+                    notification.printNotification(modList);
+                } else {
+                    ui.printInvalidCommand();
+                }
             }
             break;
         case COMMAND_ADDTIME:
@@ -98,19 +99,21 @@ public class Parser {
             }
             break;
         case COMMAND_LIST:
-            assert toPrint : "toPrint should be true";
-            try {
-                ui.printTable(modList, Integer.parseInt(command[1]));
-            } catch (Exception e) {
-                ui.printErrorMessage(COMMAND_LIST);
+            if (isToPrintTrue(toPrint, ui, input)) {
+                try {
+                    ui.printTable(modList, Integer.parseInt(command[1]));
+                } catch (Exception e) {
+                    ui.printErrorMessage(COMMAND_LIST);
+                }
             }
             break;
         case COMMAND_ANALYSIS:
-            try {
-                assert toPrint : "toPrint should be true";
-                ui.printBreakDownAnalysis(modList, Integer.parseInt(command[1]));
-            } catch (Exception e) {
-                ui.printErrorMessage(COMMAND_ANALYSIS);
+            if (isToPrintTrue(toPrint, ui, input)) {
+                try {
+                    ui.printBreakDownAnalysis(modList, Integer.parseInt(command[1]));
+                } catch (Exception e) {
+                    ui.printErrorMessage(COMMAND_ANALYSIS);
+                }
             }
             break;
         case COMMAND_ADDTASK:
@@ -123,49 +126,63 @@ public class Parser {
             taskList.setDone(input, toPrint, storage);
             break;
         case COMMAND_LISTTASK:
-            assert toPrint : "toPrint should be true";
-            ui.printTaskList(taskList);
+            if (isToPrintTrue(toPrint, ui, input)) {
+                ui.printTaskList(taskList);
+            }
             break;
         case COMMAND_HELP:
-            assert toPrint : "toPrint should be true";
-            if (!input.toLowerCase().trim().equals(COMMAND_HELP)) {
-                ui.printInvalidCommand();
-            } else {
-                ui.printHelpList();
+            if (isToPrintTrue(toPrint, ui, input)) {
+                if (!input.toLowerCase().trim().equals(COMMAND_HELP)) {
+                    ui.printInvalidCommand();
+                } else {
+                    ui.printHelpList();
+                }
             }
             break;
         case COMMAND_EXIT:
-            assert toPrint : "toPrint should be true";
-            if (!input.toLowerCase().trim().equals(COMMAND_EXIT)) {
-                ui.printInvalidCommand();
-            } else {
-                ui.printExitScreen(name);
-                exit = true;
+            if (isToPrintTrue(toPrint, ui, input)) {
+                if (!input.toLowerCase().trim().equals(COMMAND_EXIT)) {
+                    ui.printInvalidCommand();
+                } else {
+                    ui.printExitScreen(name);
+                    exit = true;
+                }
             }
             break;
         case COMMAND_CLEAR:
-            assert toPrint : "toPrint should be true";
-            if (ui.confirmClear()) {
-                storage.clearData();
-                modList.clear();
-                taskList.clear();
+            if (isToPrintTrue(toPrint, ui, input)) {
+                if (ui.confirmClear()) {
+                    storage.clearData();
+                    modList.clear();
+                    taskList.clear();
+                }
             }
             break;
         case COMMAND_RESET:
-            assert toPrint : "toPrint should be true";
-            if (ui.confirmReset()) {
-                storage.reset();
-                modList.clear();
-                taskList.clear();
-                restart = true;
-                exit = true;
+            if (isToPrintTrue(toPrint, ui, input)) {
+                if (ui.confirmReset()) {
+                    storage.reset();
+                    modList.clear();
+                    taskList.clear();
+                    restart = true;
+                    exit = true;
+                }
             }
             break;
         default:
-            assert toPrint : "toPrint should be true";
-            ui.printInvalidCommand();
+            if (isToPrintTrue(toPrint, ui, input)) {
+                ui.printInvalidCommand();
+            }
             break;
         }
+    }
+
+    private boolean isToPrintTrue(boolean toPrint, Ui ui, String input) {
+        if (!toPrint) {
+            ui.printDataError(input);
+            return false;
+        }
+        return true;
     }
 
     /**

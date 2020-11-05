@@ -427,6 +427,12 @@ public class Ui {
         return false;
     }
 
+    public void printDataError(String input) {
+        System.out.println("Unrecognised command in data file: " + input);
+        System.out.println("Please do not modify the file. Clear or reset the program to clean up the file!");
+        System.out.println();
+    }
+
     /**
      * Prints the given error message.
      */
