@@ -48,12 +48,10 @@ public class InputChecker {
      * @param input user input.
      * @throws DietException when an option is specified but its field is empty.
      */
-    public static void checkEmptyOption(String[] input) throws DietException {
+    public static void checkEmptyOption(String[] input, String param) throws DietException {
         if (input.length > 1) {
-            if (input[1].trim().length() > 1) {
-                if (input[1].trim().charAt(1) == '/') {
-                    throw new DietException("Error! Option specified with empty field!");
-                }
+            if ((input[1].trim().length() > 1 && input[1].trim().charAt(1) == '/') || input[1].trim().equals("")) {
+                throw new DietException("Error! Option '" + param + "' specified with empty field!");
             }
         } else {
             throw new DietException("Error! Option specified with empty field!");
