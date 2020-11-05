@@ -1,6 +1,7 @@
 package academic;
 
 import exceptions.InvalidEmailException;
+import exceptions.RepeatedGradeException;
 import timetable.DateList;
 import userinterface.Ui;
 
@@ -20,15 +21,15 @@ public class AcademicStorage {
     public static void loadFile(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades) throws IOException {
         try {
             loadText(listOfPerson,listOfGrades);
-        } catch (FileNotFoundException | InvalidEmailException e) {
+        } catch (FileNotFoundException | InvalidEmailException | RepeatedGradeException e) {
             File f = new File(filePath);
             f.createNewFile();
-            System.out.println("New file created for academic helper.");
+            System.out.println("data/academic.txt is not found, creating a new file now!");
         }
     }
 
     private static void loadText(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades)
-            throws FileNotFoundException, InvalidEmailException {
+            throws FileNotFoundException, InvalidEmailException, RepeatedGradeException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         while (s.hasNext()) {

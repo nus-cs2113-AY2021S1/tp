@@ -22,7 +22,6 @@ class CommandParserTest {
 
         // Checks if exit detects correctly when it is in main menu
         assertEquals(CommandType.EXIT_PROGRAM, commandParser.getCommandType("exit"));
-
         assertEquals(CommandType.LOCATION, commandParser.getCommandType("location"));
         assertEquals(CommandType.CHANGE_MODE, commandParser.getCommandType("cd 3"));
         assertEquals(CommandType.HELP, commandParser.getCommandType("help"));

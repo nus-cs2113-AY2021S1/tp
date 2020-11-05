@@ -39,10 +39,10 @@ public class RemoveLinkCommand extends BookmarkCommand {
                 storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
-            ui.showEmptyLinkError();
+            ui.showEmptyError("Link Number");
         } catch (InvalidBookmarkException e) {
-            ui.showInvalidLinkError();
-        } catch (NumberFormatException e) {
+            ui.showInvalidError("Link Number");
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.showInvalidNumberError();
         }
     }

@@ -38,10 +38,10 @@ public class RemoveCategoryCommand extends BookmarkCommand {
                 storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
-            ui.showEmptyLinkError();
+            ui.showEmptyError("Category Number");
         } catch (InvalidBookmarkException e) {
-            ui.showInvalidLinkError();
-        } catch (NumberFormatException e) {
+            ui.showInvalidError("Category Number");
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.showInvalidNumberError();
         }
     }
