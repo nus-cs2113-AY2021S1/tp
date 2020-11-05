@@ -75,7 +75,7 @@ public class Task {
         if (reminderString == null) {
             reminderString = "off";
         }
-        switch(reminderString) {
+        switch (reminderString) {
             case "on":
                 reminder.setIsOn(true);
                 if (time != null) {
@@ -145,6 +145,7 @@ public class Task {
             throws InvalidReminderException, InvalidDatetimeException {
         initiateReminder(reminderString, reminderTime);
     }
+    
     private int generateHashValue() {
         return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);
     }

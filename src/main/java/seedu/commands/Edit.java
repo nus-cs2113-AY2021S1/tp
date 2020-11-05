@@ -50,7 +50,8 @@ public class Edit extends ModificationCommand {
     }
 
     public CommandResult execute(Model model)
-        throws InvalidTaskNumberException, InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
+        throws InvalidTaskNumberException, InvalidPriorityException,
+            InvalidDatetimeException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
         Task task = tasks.get(key);
         if (task == null) {
@@ -76,7 +77,7 @@ public class Edit extends ModificationCommand {
         if (priority != null) {
             editedTask.setPriority(priority);
         }
-        if(reminder != null) {
+        if (reminder != null) {
             editedTask.setReminder(reminder, reminderTime);
         }
         editedTask.startReminder();

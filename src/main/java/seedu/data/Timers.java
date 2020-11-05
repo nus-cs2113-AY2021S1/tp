@@ -11,7 +11,7 @@ public class Timers {
     }
 
     public static void cancel() {
-        for(Timer t : timers) {
+        for (Timer t : timers) {
             t.cancel();
         }
     }
