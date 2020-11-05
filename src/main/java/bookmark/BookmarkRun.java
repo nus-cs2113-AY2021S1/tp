@@ -34,7 +34,7 @@ public class BookmarkRun {
             c.executeCommand(bookmarkUi,bookmarkCategories,bookmarkStorage);
             mode = c.getCategoryNumber();
         } catch (InvalidCommandException e) {
-            bookmarkUi.showInvalidBookmarkCommand();
+            bookmarkUi.showInvalidError("Bookmark Command");
             StudyItLog.logger.warning("Invalid bookmark command: Command unidentifiable");
         }
     }

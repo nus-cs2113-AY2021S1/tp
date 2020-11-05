@@ -87,7 +87,18 @@ public class FlashcardDeck {
         int cardIndex = 0;
         try {
             cardIndex = Integer.parseInt(userInput);
-            if (cardIndex > flashcardDeck.size()) {
+            if (flashcardDeck.size() == 0) {
+                Ui.printDivider();
+                System.out.println("You do not have any cards in your deck!\n"
+                        + "Please use \"add\" to add flashcards to your deck.");
+                Ui.printDivider();
+            }
+            else if (cardIndex == 0 || cardIndex < 0) {
+                Ui.printDivider();
+                System.out.println("Please enter a card index greater than 0!");
+                Ui.printDivider();
+            }
+            else if (cardIndex > flashcardDeck.size()) {
                 Ui.printDivider();
                 System.out.println("Sorry, you only have " + flashcardDeck.size() + " cards in your deck!\n"
                         + "Please enter a number within the range of 1-" + flashcardDeck.size() + ".");

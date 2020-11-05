@@ -4,6 +4,7 @@ import bookmark.BookmarkCategory;
 import bookmark.BookmarkStorage;
 import bookmark.BookmarkUi;
 import exceptions.EmptyBookmarkException;
+import exceptions.ExistingBookmarkException;
 
 import java.util.ArrayList;
 
@@ -24,12 +25,15 @@ public class AddCategoryCommand extends BookmarkCommand {
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage storage) {
         try {
             evaluateCategory();
+            checkCategory(categories);
             categories.add(new BookmarkCategory(categoryName));
             System.out.println("Adding " + categoryName + " to bookmark category...");
             ui.showBookmarkCategoryList(categories);
             storage.saveLinksToFile(categories);
         } catch (EmptyBookmarkException e) {
             ui.showEmptyError("Category");
+        } catch (ExistingBookmarkException e) {
+            ui.showExistingBookmarkError("category");
         }
     }
 
@@ -39,6 +43,14 @@ public class AddCategoryCommand extends BookmarkCommand {
         }
         assert categoryToAdd.length() > 0 : "Link should not be empty";
         categoryName = categoryToAdd.substring(CAT_LENGTH).trim();
+    }
+
+    private void checkCategory(ArrayList<BookmarkCategory> categories) throws ExistingBookmarkException {
+        for (BookmarkCategory existingCategory : categories) {
+            if (categoryName.equals(existingCategory.getName())) {
+                throw new ExistingBookmarkException();
+            }
+        }
     }
 
     public int getCategoryNumber() {

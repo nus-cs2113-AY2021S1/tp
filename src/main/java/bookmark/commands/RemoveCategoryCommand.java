@@ -41,9 +41,7 @@ public class RemoveCategoryCommand extends BookmarkCommand {
             ui.showEmptyError("Category Number");
         } catch (InvalidBookmarkException e) {
             ui.showInvalidError("Category Number");
-        } catch (NumberFormatException e) {
-            ui.showInvalidNumberError();
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.showInvalidNumberError();
         }
     }
