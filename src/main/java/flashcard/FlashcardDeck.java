@@ -58,7 +58,7 @@ public class FlashcardDeck {
             System.out.println("What is the answer to this question?");
             System.out.println(flashcardDeck.get(randomIndex).question);
             attempt = in.nextLine();
-            while (!attempt.equals(flashcardDeck.get(randomIndex).answer) && !attempt.equals("back")) {
+            while (!attempt.equalsIgnoreCase(flashcardDeck.get(randomIndex).answer) && !attempt.equals("back")) {
                 System.out.println("Incorrect! Try again?");
                 attempt = in.nextLine();
             }
@@ -123,7 +123,7 @@ public class FlashcardDeck {
         int numberOfCardsFound = 0;
         Scanner in = new Scanner(System.in);
         Ui.printDivider();
-        System.out.println("Please enter a relevant search term: ");
+        System.out.println("Please enter a search term: ");
         String searchItem = in.nextLine();
         ArrayList<Flashcard> cardsFound = (ArrayList<Flashcard>) flashcardDeck.stream()
                 .filter((flashcard) -> flashcard.question.contains(searchItem))
