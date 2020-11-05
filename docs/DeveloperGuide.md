@@ -172,7 +172,7 @@ Command used to add notes into the notebook.
 1. Obtain content input into note.
 1. Add the note into the notebook.
 1. Save the note's tag(s) into TagManager.
-1. Save the data as text file.
+1. Save the data into a text file.
 1. Returns the formatted result string to be displayed.
 
 <p align="center">
@@ -194,6 +194,32 @@ Command used to pin/unpin notes.
    <br><em>Figure 8</em>
 </p>
 
+**AddEventCommand**
+1. Created by the ParseAddEventCommand with the event object and all the information.
+1. Checks if the event's information is valid. If it is not, return the error.
+1. Gets all events that clashes with this.
+1. Saves the event into a text file.
+1. Returns the result of the operation including warnings like clashes and duplicates.
+
+<p align="center"> 
+   <img alt="AddEventCommand" src="diagrams/out/AddEvent_Sequence.png"/>
+   <br><em>Figure 9</em>
+</p>
+
+**RemindCommand**
+1. Created by the ParseRemindCommand.
+1. Calls the getReminders from Timetable.
+1. Timetable then gets all events that is occurring 1 month from now.
+1. Timetable then generates all reminders for all the events from the previous step.
+1. Timetable returns all reminders that are to occur today.
+1. Formatter formats the reminders.
+1. Returns the result of the formatting.
+
+<p align="center"> 
+   <img alt="RemindCommand" src="diagrams/out/Remind_Sequence.png"/>
+   <br><em>Figure 10</em>
+</p>
+
 <br>
 
 #### <a id="note"><ins>2.5 Notebook</ins></a>
@@ -202,11 +228,11 @@ The notebook component stores a catalogue of notes. On launch, an empty notebook
 Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
 
 A single note holds information such as title, contents, tags, if its pinned and if its archived. Tag helps to sort user's notes as the program allows user to retrieve notes by tags.
-Figure 9 below is a class diagram of the relationship between the Notebook, Note and Tags.
+Figure 11 below is a class diagram of the relationship between the Notebook, Note and Tags.
 
 <p align="center">
    <img alt="NotebookObject" src="diagrams/out/NotebookObject.png"/>
-   <br><em>Figure 9</em>
+   <br><em>Figure 11</em>
 </p>
 
 There are multiple overloaded methods:
@@ -221,17 +247,32 @@ There are multiple overloaded methods:
 
 #### <a id="event"><ins>2.6 Timetable</ins></a>
 
+Timetable handles adding, deleting and getting all instances of stored events in a given time period. All scheduling, retrieving and processing of events are done here
+
 The timetable component stores an array of events. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
 
-Timetable handles adding, deleting and getting all instances of stored events in a given time period.
+ <p align="center">
+   <img alt="TimetableClassDiagram" src="diagrams/out/TimetableClass.png" />
+   <br><em>Figure 12</em>
+ </p>
+ 
+ Key Methods Provided:
+ 1. getNonRecurringEvents(): Gets all non-recurring events that occurs between the start and end date parameters.
+ 1. getAllRecurringEvents(): Gets all recurring events that occurs between the start and end date parameters. Includes repeated events for those that re-occurs.
+ 1. getEventSetReminder(): Gets all reminders from a provided set of events.
+ 1. getReminders(): Gets all reminders to occur today.
+ 1. getTimetable(): Gets all events to occur between the start and end date parameters. Returns a hashmap mapping the month to nested hashmap. The nested hashmap acts as a standard calendar where the keys are the day of the month and values are ArrayList of events occurring on that day.
+ 1. getMonthTimetable(): Wrapper around getTimetable for a specific month.
+ 1. getYearTimetable(): Wrapper around getMonthTimetable for a specific year.
+ 1. getClashingEvents(): Checks the input event to all other events in the timetable to check if the timing clashes. Uses getTimetable on that date of the input event.
 
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
-Figure 10 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
+Figure 13 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
 
 <p align="center">
    <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
-   <br><em>Figure 10</em>
+   <br><em>Figure 13</em>
 </p>
  
 💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
@@ -244,14 +285,14 @@ The StorageManager saves and loads data to text files. On launch, the storage ma
 
 <p align="center">
    <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
-   <br><em>Figure 11</em>
+   <br><em>Figure 14</em>
 </p>
 
 While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
-   <br><em>Figure 12</em>
+   <br><em>Figure 15</em>
 </p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
@@ -260,14 +301,14 @@ The InterfaceManger receives the input from the user which is then processed by 
 
 <p align="center">
    <img alt="InterfaceManager" src="diagrams/out/InterfaceManagerClass.png"/>
-   <br><em>Figure 13</em>
+   <br><em>Figure 16</em>
 </p>
 
 The Formatter class handles the formatting of the Note(s), Event(s) and message(s) into a String which is then passed to InterfaceManager to be printed out through NotUS. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 14</em>
+   <br><em>Figure 17</em>
 </p>
 
 There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.
@@ -281,7 +322,7 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure 15</em>
+   <br><em>Figure 18</em>
 </p>
 
 💡 As there are various types of exception, the diagram is split into two.
@@ -296,11 +337,11 @@ IntelliJ's *'Dracula'* and *'High Contrast'* themes print white fonts as black a
 
 - Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black and White to the correct RGB value.
 
-Figure 16 below illustrates what you should see on your screen.
+Figure 19 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 16</em>
+ <br><em>Figure 19</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>
