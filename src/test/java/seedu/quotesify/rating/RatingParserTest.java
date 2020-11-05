@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Represents a test class for RatingParser.
@@ -38,16 +37,25 @@ public class RatingParserTest {
     /**
      * Tests if the rating score is valid.
      * Invalid values of -1 and 6 are used based on EP and BVA.
-     * Checks if the rating score is invalid (0).
+     * Invalid value of non-int format is used.
      */
     @Test
-    public void checkValidityOfRatingScore_invalidRatingScore_error() {
+    public void checkValidityOfRatingScore_invalidRatingScore_throwsQuotesifyException() {
         String ratingValue = "6";
         String secondRatingValue = "-1";
         String thirdRatingValue = "a string";
-        assertEquals(RatingParser.checkValidityOfRatingScore(ratingValue), 0);
-        assertEquals(RatingParser.checkValidityOfRatingScore(secondRatingValue), 0);
-        assertEquals(RatingParser.checkValidityOfRatingScore(thirdRatingValue), 0);
+        Throwable exception = assertThrows(QuotesifyException.class, () -> {
+            RatingParser.checkValidityOfRatingScore(ratingValue);
+        });
+        Throwable exception2 = assertThrows(QuotesifyException.class, () -> {
+            RatingParser.checkValidityOfRatingScore(secondRatingValue);
+        });
+        Throwable exception3 = assertThrows(QuotesifyException.class, () -> {
+            RatingParser.checkValidityOfRatingScore(thirdRatingValue);
+        });
+        assertEquals(RatingParser.ERROR_INVALID_RATING_SCORE, exception.getMessage());
+        assertEquals(RatingParser.ERROR_INVALID_RATING_SCORE, exception2.getMessage());
+        assertEquals(RatingParser.ERROR_INVALID_FORMAT_RATING, exception3.getMessage());
     }
 
     /**
@@ -56,7 +64,7 @@ public class RatingParserTest {
      * Checks if the rating score returned is that of the user input.
      */
     @Test
-    public void checkValidityOfRatingScore_validRatingScore_success() {
+    public void checkValidityOfRatingScore_validRatingScore_success() throws QuotesifyException {
         String ratingValue = "1";
         String secondRatingValue = "5";
         assertEquals(RatingParser.checkValidityOfRatingScore(ratingValue), 1);
@@ -68,44 +76,35 @@ public class RatingParserTest {
      * Checks for true if the user input is empty.
      */
     @Test
-    public void checkUserInput_emptyInput_returnTrue() {
+    public void checkUserInput_emptyInput_throwsQuotesifyException() {
         String information = "";
-        assertTrue(RatingParser.checkUserInput(information));
-    }
-
-    /**
-     * Tests if the user input is empty.
-     * Checks for false if the user input is not empty.
-     */
-    @Test
-    public void checkForUserInput_validInput_returnFalse() {
-        String informationForAddDeleteEdit = "3 1";
-        String secondInformationForFind = "POT";
-        String thirdInformationForList = "5";
-        assertFalse(RatingParser.checkUserInput(informationForAddDeleteEdit));
-        assertFalse(RatingParser.checkUserInput(secondInformationForFind));
-        assertFalse(RatingParser.checkUserInput(thirdInformationForList));
+        Throwable exception = assertThrows(QuotesifyException.class, () -> {
+            RatingParser.checkUserInput(information);
+        });
+        assertEquals(RatingParser.ERROR_RATING_MISSING_INPUTS, exception.getMessage());
     }
 
     /**
      * Tests if the book exists in Quotesify.
-     * If the book does not exists, Null is returned.
+     * If the book does not exist, Quotesify Exception is thrown.
      * Uses an invalid book in this case (negative test).
      */
     @Test
-    public void checkBookExists_invalidBook_returnNull() {
+    public void checkBookExists_invalidBook_throwsQuotesifyException() {
         String bookNumber = "2";
-        Book bookToRate = RatingParser.checkBookExists(bookNumber);
-        assertNull(bookToRate);
+        Throwable exception = assertThrows(QuotesifyException.class, () -> {
+            RatingParser.checkBookExists(bookNumber);
+        });
+        assertEquals(RatingParser.ERROR_NO_BOOK_FOUND, exception.getMessage());
     }
 
     /**
      * Tests if the book exists in Quotesify.
-     * If the book exists, the book will be returned instead of Null.
+     * If the book exists, the book will be returned.
      * Uses a valid book in this case (positive test).
      */
     @Test
-    public void checkBookExists_validBook_returnNotNull() {
+    public void checkBookExists_validBook_returnNotNull() throws QuotesifyException {
         String bookNumber = "1";
         Book bookToRate = RatingParser.checkBookExists(bookNumber);
         assertNotNull(bookToRate);

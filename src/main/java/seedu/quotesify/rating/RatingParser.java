@@ -23,7 +23,7 @@ public class RatingParser {
     public static final String ERROR_INVALID_RATING_SCORE = "That score is out of our range my friend!";
     public static final String ERROR_INVALID_FORMAT_RATING = "Sorry I don't understand you";
     public static final String ERROR_RATING_MISSING_INPUTS = "I need more details from you!";
-    private static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
+    public static final String ERROR_NO_BOOK_FOUND = "There is no such book!";
 
     /**
      * Checks the validity of rating score.
