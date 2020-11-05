@@ -356,7 +356,7 @@ You can delete a food entry using this command. You would need to know the index
 
 Format: `delete food DATE_OF_ENTRY INDEX_OF_FOOD`
 
-For example, you can enter `delete food 4/11/2020 1`, and you should expect to see the following:
+For example, you can enter `delete food 4/11/2020 1`    , and you should expect to see the following:
 ```
 The following food has been deleted for the 4/11/2020: apple
 ```
