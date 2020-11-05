@@ -35,7 +35,6 @@ public class AddCommand extends Command {
 
     private String venue;
     private String moduleCode;
-    private String recurringValue;
     private LocalTime time;
     private String[] dateTime;
     private LocalDate date;
@@ -192,6 +191,9 @@ public class AddCommand extends Command {
 
         if (moduleCode.isEmpty()) {
             throw new CommandException("tutorial");
+        } else if (recurringCount < 0 || recurringCount > 13) {
+            System.out.println("The number of tutorial can only be in the range of 0 to 13. \n");
+            throw new CommandException("invalid recurring number");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));

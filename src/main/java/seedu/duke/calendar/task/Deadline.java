@@ -24,8 +24,8 @@ public class Deadline extends Task {
         this.taskType = "D";
         this.isImportant = getIsImportant();
         if (TODAY.isAfter(by)) {
-            super.markAsDone();
-            System.out.println("The deadline has already passed! Automatically marked as done!\n");
+            System.out.println("WARNING! The deadline has already passed! "
+                    + "May be you want to double confirm? Good Luck!\n");
         }
     }
 
