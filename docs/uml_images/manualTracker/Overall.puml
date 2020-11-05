@@ -5,7 +5,6 @@ skinparam BoxPadding 50
 skinparam shadowing false
 left to right direction
 
-
 skinparam package<<Layout>> {
   borderColor Transparent
   backgroundColor Transparent
@@ -13,115 +12,40 @@ skinparam package<<Layout>> {
   stereotypeFontColor Transparent
 }
 
-rectangle StorageOutput {
-    rectangle goalTrackerSave.txt {
+rectangle "Storage Output" {
+    rectangle "Save files in *.txt" {
     }
-    rectangle manualTrackerSave.txt {
-    }
-    rectangle entryTrackerSave.txt {
-    }
-
 }
 
 
 rectangle FinanceIt {
 
     rectangle InputManager {
-        rectangle Parser {
-        }
-        rectangle UiManager {
-        }
     }
 
-    rectangle Handler {
-        rectangle ManualTracker {
-        }
-        rectangle GoalTracker {
-        }
-        rectangle EntryTracker {
-        }
-        rectangle FinanceTools {
-        }
+    rectangle LogicManager {
     }
 
     rectangle Storage {
     }
 
     rectangle Logic {
-        rectangle Commands {
-        }
-
-        rectangle ParamChecker {
-        }
-        ParamChecker --> Commands
     }
 
     rectangle Model {
-        rectangle DataList {
-        }
-
-        rectangle Data {
-        }
     }
 
-    Storage --> DataList : Performs save and load operations
-    DataList --> Data
-    ManualTracker --> DataList : Manages Data in DataList (Ledger)
-    EntryTracker --> DataList : Manages Data in DataList (Entry)
-    GoalTracker --> Data : Tracks entries against goals set (Entry)
-    Handler <.. InputManager : Receives processed input
-    Parser ..> UiManager : Retrieves raw input from
-    Handler <.. Logic : Handles operation control flow and logic
-    Storage --> StorageOutput : Saves program state into text files
+    LogicManager <-- Model: Manipulates data \nrepresented in Model
+    Storage <--- Model: Performs save and \nload operations
+    LogicManager <... InputManager : Receives processed input
+    LogicManager ...> Logic : Handles operation \ncontrol flow and logic
+    Storage <.. "Storage Output" : Handles saving of \nprogram state \ninto text files
 
 }
 rectangle Person {
 }
 
-Person --> UiManager : Supply input string
+Person -> InputManager : Supply \ninput \nstring
 FinanceIt -[hidden]right Person
 
-/'
-rectangle Model {
-    class Entry {
-    }
-}
-
-rectangle InputManager {
-}
-
-
-
-rectangle Handler {
-    class ManualTracker {
-        ~ {static} handleCreateLedger() : State
-        ~ {static} handleOpenLedger() : State
-        ~ {static} handleDeleteLedger() : State
-    }
-
-    class EntryTracker {
-        ~ {static} handleCreateEntry() : State
-        ~ {static} handleEditEntry() : State
-        ~ {static} handleDeleteEntry() : State
-    }
-
-    class GoalTracker {
-    }
-
-    class FinanceTools{
-    }
-
-    EntryTracker --> Model : stores entries with >
-    ManualTracker --> Model : stores ledgers with >
-}
-
-ManualTracker --> InputManager : Handles input <
-EntryTracker --> InputManager : Handles input <
-
-GoalTracker --> Entry : Tracks against \n input goal >
-GoalTracker ..> EntryTracker : Displays goal progress >
-
-
-Handler -[hidden]- Model
-'/
 @enduml

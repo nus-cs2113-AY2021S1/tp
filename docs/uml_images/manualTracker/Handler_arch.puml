@@ -3,7 +3,7 @@ hide circle
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 50
 skinparam shadowing false
-left to right direction
+
 
 
 skinparam package<<Layout>> {
@@ -28,15 +28,9 @@ rectangle InputManager {
 
 rectangle LogicManagers {
     class ManualTracker {
-        ~ {static} handleCreateLedger() : State
-        ~ {static} handleOpenLedger() : State
-        ~ {static} handleDeleteLedger() : State
     }
 
     class EntryTracker {
-        ~ {static} handleCreateEntry() : State
-        ~ {static} handleEditEntry() : State
-        ~ {static} handleDeleteEntry() : State
     }
 
     class GoalTracker {
@@ -52,10 +46,10 @@ rectangle LogicManagers {
 ManualTracker --> InputManager : Handles input <
 EntryTracker --> InputManager : Handles input <
 
-GoalTracker --> Entry : Tracks against \n input goal >
-GoalTracker ..> EntryTracker : Displays goal progress >
+GoalTracker --> Entry : Tracks against \ninput goal >
+GoalTracker ..> EntryTracker : Displays \ngoal \nprogress >
 
 
-Handler -[hidden]- Model
+
 
 @enduml

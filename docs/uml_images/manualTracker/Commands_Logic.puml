@@ -54,8 +54,8 @@ rectangle Logic {
     p3 -[hidden] ParamHandler
 }
 
-rectangle Commands {
-    rectangle LedgerCommands {
+rectangle "CommandHandlers"    {
+    rectangle "Ledger CommandHandlers"    {
         class createLedgerCommand {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
@@ -71,7 +71,7 @@ rectangle Commands {
     package p4 <<Layout>> {
     }
 
-    rectangle EntryCommands {
+    rectangle "Entry CommandHandlers"    {
         class createEntryCommand {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
@@ -89,11 +89,11 @@ rectangle Commands {
         }
     }
 
-    EntryCommands -[hidden]- p4
+    "Entry CommandHandlers"    -[hidden]- p4
     ParamChecker -[hidden]- ParamHandler
 }
 
-Commands -[hidden]down- Logic
+"CommandHandlers"    -[hidden]down- Logic
 
 ParamChecker "1" <.[norank]. createLedgerCommand #line:blue;text:black
 ParamChecker "1" <.[norank]. retrieveLedgerCommand #line:blue;text:black

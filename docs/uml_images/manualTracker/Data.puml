@@ -48,13 +48,13 @@ rectangle Data {
             + getTime() : LocalTime
         }
 
-        abstract class Item {
+        abstract class "{abstract}\nItem"{
         }
 
 
     }
     rectangle DataList {
-        abstract class ItemList {
+        abstract class "{abstract}\nItemList"{
             # currItem : Item
             # items : ArrayList<Item>
             # indexToModify : int
@@ -93,17 +93,18 @@ rectangle Data {
 
 
 
-    DateTimeItem --|> Item
+    DateTimeItem --|> "{abstract}\nItem"
     Ledger --|> DateTimeItem
     Entry --|> DateTimeItem
-    LedgerList --|> ItemList
-    EntryList --|> ItemList
+    LedgerList --|> "{abstract}\nItemList"
+    EntryList --|> "{abstract}\nItemList"
     LedgerList --> "*" Ledger : contains >
     EntryList --> "*" Entry : contains >
+    Ledger *-> "1" EntryList #line:blue;text:blue : Maintains >
 
 }
 
-rectangle Handler {
+rectangle LogicManagers {
     class GoalTracker {
     }
 

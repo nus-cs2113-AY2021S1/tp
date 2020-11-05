@@ -11,7 +11,7 @@ skinparam package<<Layout>> {
   stereotypeFontColor Transparent
 }
 
-rectangle Handler {
+rectangle "LogicManagers" {
     class ManualTracker {
         ~ {static} handleCreateLedger() : State
         ~ {static} handleOpenLedger() : State
@@ -25,39 +25,39 @@ rectangle Handler {
     }
 }
 
-rectangle Commands {
-    rectangle LedgerCommands {
-        class createLedgerCommand {
+rectangle "CommandHandlers" {
+    rectangle LedgerHandlers {
+        class createLedgerHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
+            + handleParams(packet : HandlerPacket) : void
         }
-        class retrieveLedgerCommand {
+        class retrieveLedgerHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
+            + handleParams(packet : HandlerPacket) : void
         }
-        ManualTracker --> createLedgerCommand
-        ManualTracker --> retrieveLedgerCommand
+        ManualTracker --> createLedgerHandler
+        ManualTracker --> retrieveLedgerHandler
     }
 
-    rectangle EntryCommands {
-        class createEntryCommand {
+    rectangle EntryHandlers {
+        class createEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
+            + handleParams(packet : HandlerPacket) : void
         }
         class editEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
+            + handleParams(packet : HandlerPacket) : void
         }
         class retrieveEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
+            + handleParams(packet : HandlerPacket) : void
         }
-        EntryTracker --> createEntryCommand
+        EntryTracker --> createEntryHandler
         EntryTracker --> retrieveEntryHandler
         EntryTracker --> editEntryHandler
 
