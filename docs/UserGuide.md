@@ -85,6 +85,15 @@ expected workload. For example, if the expected workload is 10 hours,
 and the actual workload is between 7 hours (inclusive) and 13 hours (exclusive),
 the program considers the user to be on track.
 
+         |Analysis|Amount of time spent|
+         |--------|--------|
+         |Too little time|A < 70% E|
+         |Just right|  70% E ≤ A < 130% E|
+         |Too much time| A > 130% E |
+
+          E - Expected workload <br>
+          A - Actual time spent
+
 ### 2.1 View help: `help` <a name="help"></a>
 Displays a list of all available commands that you can use.
 
@@ -226,12 +235,12 @@ Expected output:
 Module    Week 1
 
 CS2113T
-Actual   | ███ 3.0
-Expected | ██████████ 10.0
+Actual   | [][][] 3.0
+Expected | [][][][][][][][][][] 10.0
 
 CS1231
-Actual   | ███████ 7.0
-Expected | ████████ 8.0
+Actual   | [][][][][][][] 7.0
+Expected | [][][][][][][][] 8.0
 
 Total time spent: 10.0 H
 30% of time is spent on CS2113T
