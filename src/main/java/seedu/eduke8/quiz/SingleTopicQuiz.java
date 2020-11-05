@@ -118,7 +118,7 @@ public class SingleTopicQuiz implements Quiz {
 
             //User has to press enter so that the next question will be shown / quiz will end
             boolean enterIsUsed = false;
-            while (!enterIsUsed) {
+            while (!enterIsUsed && !quizQuestionsManager.areAllQuestionsAnswered()) {
                 enterIsUsed = ui.getEnterFromUser();
             }
         }

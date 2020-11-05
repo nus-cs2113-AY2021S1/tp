@@ -182,7 +182,7 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         
 #### 2.3.3. Design of QuizQuestionsManager
 
-To start a quiz in E-Duke-8, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
+To start a quiz in E-Duke-8, apart from the time limit for each question, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
 
 The class diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
 
@@ -190,7 +190,7 @@ The class diagram given below explains the high-level design of the Quiz system 
 
 An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duke-8. Its `numberOfQuestions` attribute and `Topic` object correspond to the user's specified number of questions and topic for the quiz respectively.
 
-The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager` by passing into it `numberOfQuestions`, as well as an ArrayList of questions from the `Topic` object. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method. 
+The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager`, by passing into its constructor `QuizQuestionsManager(:int, :ArrayList<Displayable>)`, `numberOfQuestions` for its first parameter and an ArrayList of questions from the `Topic` object for its second parameter. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method, where the first parameter will take in `numberOfQuestions` and its second parameter will take in the ArrayList of questions from the `Topic` object passed into the `QuizQuestionsManager` object. 
 
 Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
 
@@ -203,9 +203,11 @@ The sequence diagram below shows how `QuizQuestionsManager` is implemented to ac
 
 ![QuizQuestionsManager::setQuizQuestions_Sequence_Diagram](./images/QuizQuestionsManager_setQuizQuestions.png)
 
-`nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
+`nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer `randomQuestionIndex` where its value is between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
 
-To ensure that no two of the same question is selected, the selected randomQuestionIndex is checked to see if it is repeated. To determine if randomQuestionIndex is not selected before, an integer ArrayList is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
+Using the `Arraylist`'s method of `get(randomQuestionIndex)`, a random question will be selected from the list of questions in the `Topic` object.
+
+To ensure that no two of the same question is selected, the selected `randomQuestionIndex` is checked to see if it is repeated. To determine if `randomQuestionIndex` is not selected before, an integer `ArrayList` is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
 
 An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
 
@@ -221,7 +223,7 @@ The class diagram given below showcases the high-level design of the stats featu
 
 Results of the quiz attempts can be calculated using the information stored in a `Question` object, because of its methods, namely `wasShown()`,  `wasHintShown()` and `wasAnsweredCorrectly()`, that indicate if it has been attempted before, whether hint was used when user attempted the question and if the question was answered correctly respectively. 
 
-The current design of the stats feature is such that a correct answer without hint being used would award the user with 2 points, while a correct answer with hint used would award the user with 1 point. No point is awarded to the user if they chose the wrong answer. `calculatePointsEarnedForQuestion( :Question)` in `StatsCalculator` class and its subclasses, is the method that contains the logic for this calculation.
+The current design of the stats feature is such that a correct answer without hint being used would award the user with 2 points, while a correct answer with hint used would award the user with 1 point. No point is awarded to the user if they chose the wrong answer. `calculatePointsEarnedForQuestion(:Question)` in `StatsCalculator` class and its subclasses, is the method that contains the logic for this calculation.
 
 An object of `UserStatsCalculator` class is responsible for calculating the aggregate results from the user’s previous quiz results. For instance, its `calculateTotalPointsEarned()` method will iterate through the multiple topics stored in E-Duke-8 and calculate the total sum of the user’s past results of the quizzes done for those topics.
 
@@ -295,12 +297,15 @@ and there must be one and only one option chosen as the correct answer by specif
 
 #### 2.4.2. Implementation of TopicsStorage
 
-When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
-which will return an `ArrayList` of  `Topic` objects. The following sequence diagram shows how the load operation works, focusing on how options are marked as correct:
+When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method which will return an `ArrayList` of  `Topic` objects.
+The following sequence diagram shows how the load operation works, focusing on how options are marked as correct:
 
 ![TopicsStorage::load Sequence Diagram](./images/TopicsStorage_load.png)
 
-As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level. In the diagram above, the `Option` objects within each `Topic` has to be constructed with a description from the file and then marked as the correct answer if `correct` was `true` in the given data.  More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
+As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level.
+In the diagram above, the `Option` objects within each `Topic` has to be constructed with a description from the file.
+They are then marked as the correct answer with `markAsCorrectAnswer` if the value of the key `correct` was `true` in the given data.
+More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
 
 #### 2.4.3. Design of UserStorage
 
@@ -354,8 +359,13 @@ The following sequence diagram shows an example of getting the topic description
 
 ![UserStorage::save Sequence Diagram](./images/UserStorage_save.png)
 
-A similar method is used to extract the attributes from each `Question` object inside the `Topic`.
-It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` as continues to persist until the program shuts down.
+It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` and continues to persist until the program shuts down.
+A similar method is used to extract the attributes from each `Question` object inside the `Topic` object.
+For example, the `wasAnsweredCorrectly` method is called on the `Question` object to check if it was answered
+correctly by the user or not.
+This value is then stored as an attribute of the question in the JSON file.
+Loading back the user data is done in reverse. If the boolean value of the key `correct` is true for a
+particular question, then the `markAsAnsweredCorrectly` method is called on the corresponding `Question` object.
 
 ### 2.5. UI Component
 
@@ -384,8 +394,12 @@ CS2113/T Students
 
 ### 3.2. Value proposition
 
-Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and 
-enhance their learning experience. Consolidate key concepts for easy revision.
+To help CS2113/T students learn and understand software engineering and Object-oriented Programming (OOP) principles through a gamified
+platform and enhances their learning experience. 
+
+It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the Command Line Interface (CLI), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+
+Students can earn points for themselves as they answer questions in the quizzes, and they can view their quizzes' statistics to gauge their level of mastery of the topics in CS2113/T.
 
 ## 4. User Stories
 
