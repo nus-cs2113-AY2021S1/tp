@@ -1,15 +1,11 @@
-
 # Chan Jian Hao - Project Portfolio Page
 
-## Overview
+## Project: AniChan
 
-**AniChan** is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficacy and translation accuracy. **AniChan** is built for fast-typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC.
-
-### Summary of Contributions
-
-Given below are my contributions to the project.
+**AniChan** is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficiency and translation accuracy. **AniChan** is built for fast typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC. 
 
 ### Summary of Contributions
+
 *   **New Feature:** Added the ability to create `User`.
     *   What it does: On first execution, prompts user for his name and gender to create `User` profile.
     *   Justification: This feature allows program to know user better so that program may greet user appropriately as part of good user experience we hope to provide.
