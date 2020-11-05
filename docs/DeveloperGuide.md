@@ -27,9 +27,9 @@
 <br/>&nbsp;4.3  [View Anime Information Feature](#43-view-anime-information-feature)
 <br/>&nbsp;4.4  [Workspace Feature](#44-workspace-feature)
 <br/>&nbsp;4.5  [Watchlist Management Feature](#45-watchlist-management-feature)
-<br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist)
-<br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist)
-<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist)
+<br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist-feature)
+<br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist-feature)
+<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-anime-in-watchlist-feature)
 <br/>&nbsp;4.9  [Bookmark Feature](#49-bookmark-feature)
 
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
@@ -49,11 +49,11 @@
 <br/>
 
 ## 1. Introduction
-**AniChan** is a command-line application written in **Java 11**. It is written using the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized, reusable and reusable pieces of code that makes it good for future improvements and revisions.
+**AniChan** is a command-line application written in **Java 11**. It is written using the Object-Oriented Programming (OOP) paradigm which provides us with means to structure a software program into organized and reusable pieces of codes, making it more efficient for future improvements and revisions.
 
 ### 1.1 Purpose
 
-This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated for each major release, and the current edition of this document is intended for the release v2.1.
+This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated with each major release. The current edition of this document is intended for the release v2.1.
 
 <br/>
 
@@ -71,7 +71,7 @@ If you plan to use Intellij IDEA:
     1.  Click on `Configure` > `Structure for New Projects` > `Project Settings` > `Project`, and ensure the `Project SDK` is using **JDK 11**.
 
 2.  **Import the project as a Gradle project**.
-    1.  Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`
+    1.  Click on `Import Project` and locate the `build.gradle` file and select it. Click `OK`.
     2.  If asked, choose to `Open as Project` (not `Open as File`).
     3.  Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
     4.  The import process could take a few minutes to finish.
@@ -85,7 +85,7 @@ If you plan to use Intellij IDEA:
 ### 2.2 Before writing code
 #### 2.2.1 Configuring the Coding Style
 
-If using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
+If you are using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
 #### 2.2.2 Set up CI
     
@@ -93,18 +93,18 @@ There is no set up required as the project comes with a GitHub Actions config fi
     
 #### 2.2.3 Learn the Design
     
-When you are ready to start writing codes, we recommended that you have a look at **AniChan**'s overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+Before starting to write any code, we recommend that you have a look at **AniChan**'s overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
     
 <br/>
 
 ## 3. Design 
 
-The following section describes the architecture design of **Anichan**. This section starts off by looking at the overall architecture design in a general view, before going into the specific implementation details of the individual features.
+The following section describes the architecture design of **AniChan**. This section starts off by looking at the overall architecture design in a general view, before going into the specific implementation details of the individual features.
 
 <br/>
 
 ### 3.1 Architecture
-This section will help provide insight to the general overview of **Anichan**’s architecture.
+This section will help provide insight to the general overview of **AniChan**’s architecture.
 
 <br/>
 
@@ -118,7 +118,7 @@ This section will help provide insight to the general overview of **Anichan**’
 
 The **Architecture Diagram** presented above explains the high-level design of **AniChan**, and given below is a quick overview of each component involved.
 
-The `Main` class is the starting point of the application and has only one class called `Main`, it is responsible for, 
+The `Main` class is the starting point of the application and has only one class called `Main`. It is responsible for: 
 *   At launch: Initializes the various components in the correct sequence, connects them up with each other, and loads any saved data.
 *   At shut down: Shuts down the components and invokes any clean up methods where necessary.
 
@@ -134,13 +134,13 @@ The rest of **AniChan** consists of 6 components:
 
 Below are some example sequence diagram to help illustrate the general program flow and how the different objects interact with each other.
 
-The first sequence diagram shows the program flow of starting AniChan as an existing user.
+The first sequence diagram below shows the program flow of starting AniChan as an existing user.
 ![Starting Sequence Diagram](images/Starting-Sequence-Diagram.png) <br/>
 *Figure 2: Starting Up Sequence Diagram*
 
 <br/>
 
-The next sequence diagram shows an example command execution.
+The next sequence diagram shows an instance of command execution.
 
 ![Command Execution Sequence Diagram](images/Command-Execution-Sequence-Diagram.png) <br/>
 *Figure 3: Command Execution Sequence Diagram*
@@ -151,7 +151,7 @@ The next sequence diagram shows an example command execution.
 ![UI Class Diagram](images/Ui-Class-Diagram.png) <br/>
 *Figure 4: UI Class Diagram*
 
-The UI component consists of a `UI` class that handles all user input and system output. The UI is only dependent on the `Main` class and does not interact directly with other classes ensuring high cohesiveness and separation of roles.
+The UI component consists of a `UI` class that handles all user input and system output. The UI is only dependent on the `Main` class and does not interact directly with other classes, ensuring high cohesiveness and separation of roles.
 
 The `Ui` component listens for: 
 *   the execution of commands to print the result of the Command.
@@ -163,11 +163,11 @@ The `Ui` component listens for:
 ![Parser Class Diagram](images/Parser-Class-Diagram.png) <br/>
 *Figure 5: Parser Class Diagram*
 
-The `Parser` component consists of a `Parser` class and multiple `XYZParser` each representing a specific command’s parser. The Parser class will first receive a user command from `Main` and will proceed to determine the command type.
+The `Parser` component consists of a `Parser` class and multiple `XYZParser`, each representing a specific command’s parser. The Parser class will first receive a user command from `Main` and will proceed to determine the command type.
 
 Once the command type is known, it will then create the respective `XYZParser` class.
 
-Example: If Browse command was parsed, `Parser` will create `BrowseParser`.
+Example: If Browse command was parsed, `Parser` will create a new instance of `BrowseParser`.
 
 `XYZParser` will then parse the parameter and perform input validation, before creating the Command object to return to `Main`.
 
@@ -177,11 +177,11 @@ Example: If Browse command was parsed, `Parser` will create `BrowseParser`.
 ![Command Class Diagram](images/Command-Class-Diagram.png) <br/>
 *Figure 6: Command Class Diagram*
 
-The `Command` component consists of different commands represented together as `XYZCommand` which all inherits from the abstract `Command` class. 
+The `Command` component consists of different commands, each represented by `XYZCommand` which inherits from the abstract `Command` class. 
 
 Example: The Browse command would be represented by a `BrowseCommand`.
 
-`Main` would utilise the `Command.execute` operation to carry out the execution of the command and retrieve a String output that will contain the successful result of the `Command`. If the `Command` was not successful an exception will be thrown with details of the failure.
+`Main` would utilise the `Command#execute()` operation to carry out the execution of the `Command` and retrieve a String output that will contain the successful result of the `Command`. If the `Command` was not successful, an exception will be thrown with details of the failure.
 
 <br/>
 
@@ -189,32 +189,29 @@ Example: The Browse command would be represented by a `BrowseCommand`.
 ![AnimeData Class Diagram](images/AnimeData-Class-Diagram.png) <br/>
 *Figure 7: AnimeData Class Diagram*
 
-The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects providing **AniChan** with an interface for the program to retrieve with the source data.
+The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects, providing **AniChan** with an interface for the program to retrieve the source data.
 
 The `AnimeData `component:
-*   can retrieve Anime objects using ID.
-*   can view detailed  information of each Anime Object.
-*   can browse the Anime catalog with sorting algorithms.
+*   can retrieve `Anime` objects using their index.
+*   can view detailed  information of each `Anime` object.
+*   can browse the `Anime` catalog with sorting algorithms.
 
 <br/>
 
-<!-- @@author ChanJianHao -->
 ### 3.6 User Component
 ![User Class Diagram](images/User-Class-Diagram.png) <br/>
 *Figure 8: User Class Diagram*
 
-The User inherits from the abstract `Human` class and stores the name and gender of the user. It represents the user's interaction with `Workspace` class.
+The `User` class inherits from the abstract `Human` class and stores the name and gender of the user. It represents the user's interactions with `Workspace` class.
 
 The `User`component: 
-*   can provide user information like `name`, `gender`, and `honorific name`
-*   stores an array list of type `Workspace`
-*   can add, set, and switch between workspaces 
+*   can provide user information such as `name`, `gender`, and `honorific name`.
+*   stores an ArrayList of type `Workspace`.
+*   can add, set, and switch between workspaces.
 
 The `Workspace` component:  
 *   can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
 *   can allow `User` to change his active `Watchlist`.
-
-<!-- @@author -->
 
 <br/>
 
@@ -224,7 +221,7 @@ The `Workspace` component:
 
 The `StorageManager` component:
 *   can **save** workspace created by the user as a folder.
-*   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using their respective storage class, `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
+*   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using their respective storage class: `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
 *   can **read** script files that are in `.txt` format using the class `ScriptStorage`.
 
 **AniChan** saved these data as `.txt` files so advanced users will be able to view and manipulate these saved data easily with any available text editor.
@@ -237,7 +234,7 @@ This section introduces the specific implementation details and design considera
 <br/>
 
 ### 4.1 Estimate Feature
-The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, allowing users to better manage their time and be able to provide clients with much accurate estimation timings.
+The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, this feature allows users to better manage their time and be able to provide clients with much accurate estimation timings.
 
 #### 4.1.1 Current Implementation
 The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant arguments, `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction. The command takes in two parameters: 
@@ -284,7 +281,7 @@ Aspect: **When should the program read the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution **(current design)**. | Easy to implement since `Command` already handle file matters. | Memory resources are wasted if file validation fails during the execution. |
+| During command execution. | Easy to implement since `Command` already handle file matters. | Memory resources are wasted if file validation fails during the execution. |
 | During parsing. | No memory resource wasted as it will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
 Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
@@ -295,7 +292,7 @@ Aspect: **The way user can specify the script file**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| Specify file extension **(current design)**. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
+| Specify file extension. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
 | Do not have to specify file extension. | Users can easily specify the file to read. | May read the wrong file due to identical names but different file extension. |
 
 We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
@@ -315,7 +312,7 @@ The `BrowseCommand` is executed by `BrowseCommandParser` after parsing the user 
 *   `BrowseCommand#buildBrowseOutput()` - Creates the output string to be printed to users.
 <br/>
 
-These are the two fundamental operations that will carry out the execution of the browse command.
+Given above are the two fundamental operations that will carry out the execution of the browse command.
 
 `BrowseCommand` will be constructed with default values. This ensures that even when there is no input provided, 
 it can still perform a default browse and return relevant useful information.
@@ -338,20 +335,20 @@ These are the attributes that will define the scope of a browse command.
 Given below is an example usage scenario to showcase how a `BrowseCommand` will behave at each step. 
 This example will utilise a small sample list of `AnimeData` and a page size of `3`.
 
-> :memo: It is set to `20` as default in actual execution. 
+> :memo: The page size is set to `20` as default in actual execution. 
 
-**Step 1:** When the user enters the command for `Browse`, the input will be processed and parsed by `parser.java` and 
-then further parsed by `BrowseParser.java`.
+**Step 1:** When the user enters the command for `Browse`, the input will be processed and parsed by `Parser` and 
+then further parsed by `BrowseParser`.
 
-**Step 2:** Upon completion of parsing and input validation, `BrowseParser.java` will create an executable `BrowseCommand` 
-object and return it to `main`.
+**Step 2:** Upon completion of parsing and input validation, `BrowseParser` will create an executable `BrowseCommand` 
+object and return it to `Main`.
 
 **Step 3:** Once the `BrowseCommand` object is executed, it will firstly process the `AnimeData` by calling on its `BrowseCommand#sortBrowseList()` operation to identify the order that the list will need to be in (if any).
 
 For this case since it is a default browse operation, there is no sorting performed.
 
 **Step 4:** Now `BrowseCommand` will utilise its `BrowseCommand#buildBrowseOutput()` operation to access all 
-`Anime objects within the page window, as shown in the diagram below.
+`Anime` objects within the page window, as shown in the diagram below.
 
 ![Browse Object Diagram 1](images/Browse-Default-State.png) <br/>
 *Figure 11: Browse Default State Object Diagram*
@@ -369,7 +366,7 @@ If the 2nd page of the list was requested instead with the command `browse -p 2`
 ![Browse Object Diagram 2](images/Browse-Default-State2.png) <br/>
 *Figure 12: Browse Next Page Object Diagram*
 
-**Step 5:** At each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
+**Step 5:** For each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
 
 **Step 6:** After all `Anime` objects in the page window have been retrieved, it will return the printable result back to `BrowseCommand#execute()`. At this point it will utilise `BrowseCommand#sortBrowseOption()` again to reset the `AnimeData` list to its original form if it has been altered.
 
@@ -386,7 +383,7 @@ The only step that would change would be at Step 3, where it will perform sortin
 As you can see, even though the page window is at the same position as the previous command, 
 the list is different as it has been sorted.
 
-From this point onwards, the operation will continue as per the steps above but during the final `BrowseCommand#sortBrowseList()` call in step 6. It will perform a sort to reset the list.
+From this point onwards, the operation will continue as per the steps above, but during the final `BrowseCommand#sortBrowseList()` call in step 6. It will perform a sort to reset the list.
 
 Here is the sequence diagram to better illustrate the lifecycle of a browse command.
 
@@ -404,15 +401,15 @@ The first design consideration was how the sorting should be carried out. The ma
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Leaving the list unsorted        | - No complexity and fastest approach  | - List will be unsorted and may cause confusion to users |
-| 2. Resorting the list again         | - The list will be back into its original form before browsing    | - May hinder performance as resorting could take time <br/> - Requires altering of the main list |
-| 3. Cloning a duplicate list to sort | - The list will be back to its original form <br/> - The main list will not be affected at all | - Expensive operation that will require large storage and time complexity |
+| Leaving the list unsorted.        | - No complexity and fastest approach.  | - List will be unsorted and may cause confusion to users. |
+| Resorting the list again.         | - The list will be back into its original form before browsing.    | - May hinder performance as resorting could take time. <br/> - Requires altering of the main list. |
+| Cloning a duplicate list to sort. | - The list will be back to its original form. <br/> - The main list will not be affected at all. | - Expensive operation that will require large storage and time complexity. |
 
-While the 1st approach is the fastest, the consequence of leaving the main list unsorted is too great and may produce a 
-lot of uncertain results as well as confuse the user. Although the 3rd approach provides the best benefit, 
+While the first approach is the fastest, the consequence of leaving the main list unsorted is too great and may produce a 
+lot of uncertain results, which may confuse the user. Although the third approach provides the best benefit, 
 its complexity may end up violating the project’s memory limit constraint if the list is large. 
 
-Therefore, the 2nd approach was adopted, as its performance cost outweighs the others.
+Therefore, the second approach was adopted, as its performance cost outweighs the others.
 
 <br/>
 
@@ -423,14 +420,14 @@ The main concern here was cohesiveness and interactivity.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Interactive browsing, users can `flip` pages and `pick` to view specific anime | - Fluid and seamless browsing session. <br/>- Very good usability. | - Would require `BrowseCommand` to get user input. |
-| 2. Static browsing, users specify the page they want to access. | - Completely decoupled from Ui component <br/>- Allows for browse to be more precise in finding what the user wants |  - Not as seamless as the first approach but still usable. |
+| Interactive browsing, users can `flip` pages and `pick` to view specific anime. | - Fluid and seamless browsing session. <br/>- Very good usability. | - Would require `BrowseCommand` to get user input. |
+| Static browsing, users specify the page they want to access. | - Completely decoupled from Ui component. <br/>- Allows for browse to be more precise in finding what the user wants. |  - Not as seamless as the first approach but still usable. |
 
-Though the 1st approach could have created a more authentic browsing feature it is not a good fit of the OOP requirements.
-While the 2nd approach allows for more precise browsing of pages means that more experienced users are able to utilise the 
+Though the first approach could have created a more authentic browsing feature, it is not a good fit of the OOP requirements.
+Meanwhile, the second approach allows for more precise browsing of pages, which means that more experienced users are able to utilise the 
 tool quicker and to the same effect as the first approach. 
 
-As a result, the 2nd approach was adopted in favour of having an application that is highly object-oriented.
+As a result, the second approach was adopted in favour of having an application that is highly object-oriented.
 
 <br/>
 
@@ -438,19 +435,21 @@ As a result, the 2nd approach was adopted in favour of having an application tha
 The `info` command allows the user to view all the relevant information regarding a specific anime that the user specifies. This allows them to know more about a particular anime.
 
 #### 4.3.1 Current Implementation
-The view information command is currently implemented by the `InfoCommand`. The user has to give an input of the form `info -a <ANIME_ID>`, and this would allow users to check all the information available for the ANIME_ID they have specified.
+The view information command is currently implemented by the `InfoCommand`. The user has to give an input of the form `info <ANIME_ID>`, and this would allow users to check all the information available for the ANIME_ID they have specified.
 
 Given below is an example of the usage scenario of view information command and how it behaves at each step.
 
-**Step 1:** `Ui` would receive input in form of `info <ANIME_ID>` in the `Main` class and pass it into `Parser` class
+**Step 1:** `Ui` would receive input in the form of `info <ANIME_ID>` in the `Main` class and pass it into `Parser` class.
 
-> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
+> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of nime in the AnimeData. 
 
-**Step 2:** The `Parser` class would then extract out `info` from the input given, which will instantiate a new `InfoParser` object, in which `InfoCommand` object is constructed as well.
+**Step 2:** The `Parser` class would then extract out `info` from the input given, which will instantiate a new `InfoParser` object.
 
-**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the field given by the user. Once validated, ANIME_ID will be set inside the `InfoCommand` object that was created previously. `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
+**Step 3:** The `InfoParser#parse()` method will be invoked, and this will validate the field given by the user. 
+Once validated, a new `InfoCommand` object will be constructed with the ANIME_ID. 
+`InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
 
-Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information feature
+Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information feature.
 
 ![Info Command Step 1 to 3 Sequence Diagram](images/InfoCommand-Step1-3-Sequence-Diagram.png) <br/>
 *Figure 15: Info feature steps 1 to 3 sequence diagram*
@@ -459,7 +458,7 @@ Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information f
 
 **Step 5:** The string is returned all the way back to `Main` and printed out by `Ui`.
 
-**Step 6:** `InfoCommand` is terminated
+**Step 6:** `InfoCommand` is terminated.
 
 The diagram below is the sequence diagram from steps 4 onward.
 
@@ -473,10 +472,12 @@ Aspect: **Using anime title or Anime ID as the field for input**
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Use anime title as input | - Easier for users who know anime titles | - Users will have to input the full anime title <br/> - The program has to search through the whole list of anime data |
-| 2. Use anime ID as input | - Users will only need to input one single integer | - Users will have to search for the anime ID if they do not know the ID |
+| Use anime title as input. | - Easier for users who know anime titles. | - Users will have to input the full anime title. <br/> - The program has to search through the whole list of anime data. |
+| Use anime ID as input. | - Users will only need to input one single integer. | - Users will have to search for the anime ID if they do not know the ID. |
 
-We decided to go with approach 2, as it would enhance the user experience of not having to key in the full anime title. At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a title to search against the whole data of anime to retrieve information.
+We decided to go with the second approach, as it would enhance the user experience of not having to key in the full anime title. It would be very frustrating for the user as well if he misspells the title.
+
+At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a title to search against the whole data of anime to retrieve information.
 
 <br/>
 
@@ -485,7 +486,7 @@ Similar to a desktop, **AniChan** has a workspace feature which allows users to 
 
 <br/>
 
-`Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (i.e., `Watchlist`, `Bookmark`). 
+`Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (e.g., `Watchlist`, `Bookmark`). 
 
 As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
 and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
@@ -519,13 +520,13 @@ to **create new** `Workspace`:
 
 <br/>
 
-**Step 2:** User enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser.java` and then further parsed by `WorkspaceParser.java`.
+**Step 2:** User enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser` and then further parsed by `WorkspaceParser`.
 
-**Step 3:** Upon completion of parsing and input validation, `WorkspaceParser.java` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
+**Step 3:** Upon completion of parsing and input validation, `WorkspaceParser` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
 
 **Step 4:** `Main` calls `WorkspaceCommand#execute()` and it checks the `commandOption` before running `WorkspaceCommand#createWorkspace()` accordingly.
 
-**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList` for the `User`.
+**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList()` for the `User`.
 Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
 
 ![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
@@ -573,8 +574,8 @@ As most commands in `WorkspaceCommand` operates on an individual `Workspace`, th
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Identify using a number ID | Users can quickly `switch` and `delete` `Workspace` just by keying in a number | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic |
-| Identify using name  | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first | User may waste time typing long workspace names |
+| Identify using a number ID. | Users can quickly `switch` and `delete` `Workspace` just by keying in a number. | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic. |
+| Identify using name.  | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first. | User may waste time typing long workspace names. |
 
 We have decided to use `name` to identify `Workspace` as it is more intuitive for the end-user. 
 This also avoids the need to maintain an integer `ID` for each `Workspace`.
@@ -588,10 +589,10 @@ Should we allow the user full discretion to naming `Workspace`?
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Yes  | Allows user more flexibility | Confusing or unexpected names may lead to unexpected outcomes |
-| No   | Eliminate unexpected names which could lead to unexpected outcomes | Less flexibility and more code required to enforce |
+| Yes  | Allows user more flexibility. | Confusing or unexpected names may lead to unexpected outcomes. |
+| No   | Eliminate unexpected names which could lead to unexpected outcomes. | Less flexibility and more code required to enforce. |
 
-For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in future when he tries to list 
+For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in the future when he tries to list 
 all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
 
 In addition, we also prevent case-insensitive `Workspace` creation, use of special characters, and long names (i.e. length above 30), as they may cause issues when creating folders on certain file systems.
@@ -604,15 +605,15 @@ As there needs to be an `activeWorkspace` set at all times for operations such a
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Scan from data folder and pick first result  | Able to adapt to changes even if malicious edits were made to file system | User may need to switch to his favourite `Workspace` on each startup, if any |
-| Store last used `Workspace`                  | `User` might gain some convenience of not needing to switch to his favourite `Workspace` | Prone to potential issues from the file system |
+| Scan from data folder and pick first result.  | Able to adapt to changes even if malicious edits were made to file system. | User may need to switch to his favourite `Workspace` on each startup, if any. |
+| Store last used `Workspace`.                  | `User` might gain some convenience of not needing to switch to his favourite `Workspace`. | Prone to potential issues from the file system. |
 
 We picked the first approach as it is the safer option. By allowing **AniChan** to scan and adapt to file system changes (e.g. `User` accidentally moves/renames/deletes `Workspace` on his hard drive), we avoid potential issues of relying on old information created in previous runtime which may hinder user experience.
 
 <br/>
 
 ### 4.5 Watchlist Management Feature
-The watchlist management feature aims to provide translators with a simple way to keep track of animes by being able to group animes based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over management issues.
+The watchlist management feature aims to provide translators with a simple way to keep track of anime by being able to group anime based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over management issues.
 
 #### 4.5.1 Current Implementation
 The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant options and arguments, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. The command takes in three parameters: 
@@ -661,7 +662,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 <br/>
 
-All the other options in the watchlist command also follows a similar execution process. The following diagrams will **continue from step 6**, and it will show you how the state of the application changes as it continues to execute the select and delete option.
+All the other options in the watchlist command also follows a similar execution process. The following diagrams will **continue from step 6**, and it will show how the state of the application changes as it continues to execute the select and delete option.
 > :memo: The list option (`-l`) is not shown as there will not be any change in the application state after its execution.
 
 **Step 7:** The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
@@ -698,7 +699,7 @@ Aspect: **Saving watchlist data**
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| After each command execution **(current design)**. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
+| After each command execution. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
 | When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
 Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
@@ -710,17 +711,18 @@ Aspect: **Watchlist name restriction**
 | Approach | Pros | Cons |
 | --- | --- | --- |
 | No restriction. | Users have more flexibility. | This may hinder user's vision of the input prompt and affects the usability. |
-| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only **(current design)**. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
+| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
 
 While both alternatives are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
 
 <br/>
 
 ### 4.6 Add To Watchlist
-The `add` feature allows users to add an anime into the active watchlist they are currently at. This helps them keep track of the anime they would like to watch next.
+The `add` feature allows users to add an anime into the active watchlist. This helps them keep track of the anime they would like to watch next.
 
 #### 4.6.1 Current Implementation
-The current implementation of the add to watchlist command requires the user to give an input in the form of `add <ANIME_ID>`. This will allow users to add the ANIME_ID of the anime they want to add by calling the `addAnimeToList` method in the active `Watchlist` object. 
+The current implementation of the add to watchlist command requires the user to give an input in the form of `add <ANIME_ID>`. 
+This will allow users to add the ANIME_ID specified by calling the `Watchlist#addAnimeToList()` method in the active `Watchlist` object. 
 
 Add to watchlist command extends the `Command` class, and the `parse` method in `AddToWatchlistParser` class is being called to validate the parameter that the user has entered.
 
@@ -730,22 +732,26 @@ Below is an example usage scenario of how add to watchlist command behaves at ea
 
 > :bulb: The ANIME_ID specified has to be an integer value as specified by the index of anime in the AnimeData. 
 
-**Step 2:** The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object, and its constructor would create a new `AddToWatchlistCommand` object.
+**Step 2:** The `Parser` class would then extract the `add` command out of the input and it will instantiate a new `AddToWatchlistParser` object.
 
-**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the field that has been given, and then sets the anime index in the `AddToWatchlistCommand` object by calling the setter method. The `AddToWatchlistCommand` object will then be returned back to `Main` class. At this point, `AddToWatchlistParser` is terminated.
+**Step 3:** `AddToWatchlistParser#parse()` is then called by the `Parser` class. This will validate the field that has been given. 
+A new `AddToWatchlistCommand` object is instantiated with the specified ANIME_ID, and is returned back to `Main` class.
+At this point, `AddToWatchlistParser` is terminated.
 
 The figure below shows the sequence diagram of steps 1 to 3.
 
 ![Add To Watchlist Command Step 1 to 3](images/AddToWatchlist-Step1-3-Sequence-Diagram.png) <br/>
 *Figure 27: Sequence diagram for Add To Watchlist feature steps 1 to 3*
 
-**Step 4:** `AddToWatchlistCommand#execute()` is then invoked in `Main`, which retrieve the active `workspace` through `AddToWatchlistCommand#getActiveWorkspace()`, and `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
+**Step 4:** `AddToWatchlistCommand#execute()` is then invoked in `Main`, which retrieve the active `workspace` through `AddToWatchlistCommand#getActiveWorkspace()`, 
+and `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
 
-**Step 5:** `Watchlist#AddAnimeToList()` will then be called, passing in the anime index. This will then add the anime index into the ArrayList of integers storing all the animes in that `Watchlist`.
+**Step 5:** `Watchlist#AddAnimeToList()` will then be called, passing in the anime index. This will then add the anime index into the 
+ArrayList of integers storing all the anime in that `Watchlist`.
 
-**Step 6:** `commandResult` will then be passed back to `Main` to be printed out by `Ui`, and `AddToWatchlistCommand` is  terminated
+**Step 6:** `commandResult` will then be passed back to `Main` to be printed out by `Ui`, and `AddToWatchlistCommand` is terminated
 
-For better illustration, Figure 27 below shows the sequence diagram of steps 4 to 6.
+For better illustration, Figure 28 below shows the sequence diagram of steps 4 to 6.
 
 ![Add To Watchlist Command Step 4 to 6](images/AddToWatchlist-Step4-6-Sequence-Diagram.png) <br/>
 *Figure 28: Sequence diagram for Add To Watchlist feature steps 4 to 6*
@@ -759,8 +765,8 @@ This consideration is similar to our `info` feature consideration, so below is t
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Use anime title as input | Easier for users who remember anime titles | Users will have to input the full anime title  |
-| 2. Use anime ID as input | Users will only need to input one single integer | Users will have to search for the anime ID if they do not know the ID |
+| Use anime title as input. | Easier for users who remember anime titles. | Users will have to input the full anime title.  |
+| Use anime ID as input. | Users will only need to input one single integer. | Users will have to search for the anime ID if they do not know the ID. |
 
 Similarly, we decided to go with the second approach as this would be much easier for users to key in, and also faster for the program to find the anime the user wants to add into the watchlist.
 
@@ -779,30 +785,32 @@ The usage scenario of remove from watchlist is similar to the add to watchlist c
 #### 4.7.2 Design Consideration
 This section describes the design considerations taken when implementing this feature.
 
-Aspect: **which index to use when removing an anime**
+Aspect: **Which index to use when removing an anime**
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Use anime title as input | - Easier for users who know anime titles | - Users will have to input the full anime title <br/> - The program has to search through the whole list of anime data |
-| 2. Use anime ID as input | - Users will only need to input one single integer | - Users will have to search for the anime ID if they do not know the ID |
+| Use anime ID in AnimeData as input. | - Easier for users who remember the anime ID as they added it in to the watchlist before. | - Users will have to search for the anime ID again in the event that he forgets it. <br/> - The program has to search through the whole list anime in the watchlist. |
+| Use anime ID in Watchlist as input. | - Program can easily delete a particular index of an ArrayList  | - Users will have to find out the anime index in the watchlist using the `view` command. |
 
 We have decided to use approach 2 instead of 1, as it will not only will it be much faster for the program to delete one particular index instead of having to search through the whole list, it would be provide better user experience as the user will not need to search for the anime ID that he wants to remove in the case that he does not know the anime ID.
 
 <br/>
 
 ### 4.8 View All Anime in Watchlist
-Users can view the anime that they have stored in a specific watchlist by using the `view` command. In doing so, they can easily check what anime they would like to watch next.
+Users can view the anime that they have stored in his active watchlist, or a specific watchlist, by using the `view` command. In doing so, they can easily check what anime they would like to watch next.
 
 #### 4.8.1 Current Implementation
 The `view` command is currently implemented by the `ViewWatchlistCommand`. It is instantiated by `Parser` and executed by `Main`. This allows users to view all the anime currently inside a `Watchlist` object. 
 
 An example usage scenario on how view anime in watchlist behaves is given below.
 
-**Step 1:** In the `Main` class, the user will input `view [-v <WATCHLIST_ID>]`. `Ui` will take in this input and is passed into `Parser`.
+**Step 1:** In the `Main` class, the user will input `view [-v WATCHLIST_ID]`. `Ui` will take in this input and is passed into `Parser`.
 
-**Step 2:** In `Parser`, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated, and in the constructor, a new `ViewWatchlistCommand` is created.
+**Step 2:** In `Parser`, `view` will be extracted out of the input, leading to a new `ViewWatchlistParser` object being instantiated.
 
-**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`, which will validate the parameter that was given by the user, if given. If the parameter is correct, the watchlist index will be set in the `ViewWatchlistCommand` object. If no parameter is given, then the active `Watchlist` object will be used.
+**Step 3:** `ViewWatchListParser#parse()` is then called in `Parser`. 
+If no parameter is given, then an empty constructor of `ViewWatchlistCommand` will be instantiated.
+Otherwise, the parameter and field will be validated, and a constructor of `ViewWatchlistCommand` with WATCHLIST_ID is instantiated.
 
 **Step 4:** The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`. `ViewWatchlistParser` is terminated.
 
@@ -814,7 +822,7 @@ The sequence diagram for steps 1 to 4 is as shown in the figure below.
 
 **Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the seleceted `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
 
-**Step 7:** `ViewWatchlistCommand` is terminated
+**Step 7:** `ViewWatchlistCommand` is terminated.
 
 The figure below is the sequence diagram for steps 5 to 7
 ![View Watchlist Command Step 5 to 7](images/ViewWatchlist-Step5-7-Sequence-Diagram.png) <br/>
@@ -830,12 +838,12 @@ The `bookmark` feature aims to provide the user with the ability to create short
 
 #### 4.9.1 Current Implementation
 
-The Bookmark class uses three ArrayList to store bookmark entries of the user, these arraylists maintain information about the anime index, episode and notes. The synchronisation between arraylist is required so that it enables easy retrieval of bookmark information using the bookmark index on the three arraylist.
+The `Bookmark` class uses three ArrayList to store bookmark entries of the user, these ArrayLists maintain information about the anime index, episode and notes. The synchronisation between ArrayList is required so that it enables easy retrieval of bookmark information using the bookmark index on the three ArrayList.
 
 ![Bookmark Class Diagram](images/Bookmark-Class-Diagram.png) <br/>
 *Figure 31: Bookmark Class Diagram*
 
-`BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction the parser will determine the required field for the BookmarkCommand. Below table shows the required field for each action:
+`BookmarkCommand` is instantiated by `BookmarkParser`, and requires a mandatory BookmarkAction. With the BookmarkAction, the `Parser` will determine the required field for the `BookmarkCommand`. The table below shows the required field for each action.
 
 | Bookmark Command | Bookmark Action | Required field |
 |---|---|---|
@@ -857,7 +865,7 @@ Given below is the example usage scenario and how the `Bookmark` command behaves
 
 **Step 2:** `BookmarkParser` extracts “Bookmark Action” from the command, and based on the command type, it will determine the respective required field. The `BookmarkParser` is responsible for validating the input parameters and will throw an `AniException` when encountering unrecognised inputs.
 
-For example: `bookmark 2 -e 5`, the parser will create `BookmarkCommand` and call the method setBookmarkAction(“e”), setBookmarkIndex(2) and setBookmarkEpisode(5).
+For example: `bookmark 2 -e 5`, the parser will create `BookmarkCommand` and call the methods `setBookmarkAction(“e”)`, `setBookmarkIndex(2)` and `setBookmarkEpisode(5)`.
 
 **Step 3:** The application calls `BookmarkCommand#execute()` and the command will use the `BookmarkAction` to do a corresponding validation check on the field before calling the  Bookmark Operations.
 
@@ -868,18 +876,18 @@ Below is a list of bookmark operations:
 *   `Bookmark#editBookmarkEpisode()`: Edit the current episode for a Bookmark entry .
 *   `Bookmark#addNote()`: Add a note for a Bookmark entry.
 *   `Bookmark#removeNote()`: Remove a note from a Bookmark entry.
-*   `Bookmark#getAnimeInfoFromBookmark()`: Retrieve the anime info on the anime id kept at the specified bookmark entry.
+*   `Bookmark#getAnimeInfoFromBookmark()`: Retrieve the anime info on the anime ID kept at the specified bookmark entry.
 *   `Bookmark#getBookmarkEpisode()`: Retrieve the episode field for a Bookmark entry.
 *   `Bookmark#getNoteInString()`: Retrieve notes in a list within the specified bookmark entry.
 
-**Step 4:** The user executes `bookmark -a 430` command to add the anime id: 430 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
+**Step 4:** The user executes `bookmark -a 430` command to add the anime ID: 430 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
 *Figure 32: Bookmark Entry After Add*
 
-> :memo: The table shows the three ArrayList objects in the column with the bookmark id. When adding a new anime id into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
+> :memo: The table shows the three ArrayList objects in the column with the bookmark ID. When adding a new anime ID into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
 
-**Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime id 1 and 410 to the bookmark.
+**Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime ID 1 and 410 to the bookmark.
 
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
 *Figure 33: Bookmark Entries with more Add*
@@ -898,7 +906,7 @@ Listing all anime in bookmark:
 	3. InuYasha the Movie 2: The Castle Beyond the Looking Glass
 ```
 
-**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark id: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
+**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
 *Figure 35: Bookmark Entries After Delete*
@@ -910,12 +918,12 @@ Listing all anime in bookmark:
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 36: Bookmark Entries After Edit Episode*
 
-**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()' will then add a note to the bookmark entry at bookmark id:1.
+**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID: 1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
 *Figure 37: Bookmark Entries After Add Note*
 
-**Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime id at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
+**Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime ID at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
 
 ```text
 Here is the information for that anime.
@@ -932,7 +940,7 @@ Notes for anime:
 1. Schedule push back
 ```
 
-**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note id:1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
+**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note ID: 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 38: Bookmark Entries After Edit Episode*
@@ -944,27 +952,27 @@ This section describes the various design considerations taken when implementing
 
 Aspect: **How should the bookmark entries be kept**
 
-The first design consideration was the data structure on how to bookmark entries should be maintained. The main issue here was the cohesiveness between the `bookmark` object and the `workspace`.
+The first design consideration was the data structure on how the bookmark entries should be maintained. The main issue here was the cohesiveness between the `Bookmark` object and the `Workspace`.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Usage of three ArrayList to store anime index, Episode, and Notes **(current design)**     | - Easy to reference objects within ArrayList using its index and it is easy to implement | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry |
-| 2. Use a `BookmarkManager` to handle bookmark features                  | - Do not need to maintain multiple Arraylist    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
+| Usage of three ArrayList to store anime index, Episode, and Notes.     | - Easy to reference objects within ArrayList using its index and it is easy to implement. | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry. |
+| Use a `BookmarkManager` to handle bookmark features.                  | - Do not need to maintain multiple ArrayLists.    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
 
-While both alternatives have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
+While both alternatives have their own benefits, we have decided to use **three ArrayLists to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
 
 <br/>
 
 Aspect: **How should bookmark entries keep anime information**
 
-The second design consideration was how to keep the reference to the anime object. The main issue here was the storage and duplication of data.
+The second design consideration was how to keep the reference to the `Anime` object. The main issue here was the storage and duplication of data.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| 1. Keep only the anime index information within the bookmark **(current design)** | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands have to communicate with AnimeData for anime-related functionalities. |
-| 2. Keep the entire anime object in Bookmark                  | - Do not need to reference AnimeData for anime information    | - Keep a duplicate of anime data, requires synchronisation <br/> - Hard to keep anime object information offline |
+| Keep only the anime index information within the bookmark. | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands have to communicate with AnimeData for anime-related functionalities. |
+| Keep the entire `Anime` object in `Bookmark`.                  | - Do not need to reference AnimeData for anime information.    | - Keep a duplicate of anime data, requires synchronisation. <br/> - Hard to keep anime object information offline. |
 
-We have decided to implement the first alternative, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to AnimeData, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using anime object.
+We have decided to implement the first approach, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to `AnimeData`, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using `Anime` object.
 
 <br/>
 
@@ -974,25 +982,25 @@ This section details the documentation, logging, testing and dev-ops setup used 
 <br/>
 
 ### 5.1 Documentation
-We use **Jekyll** to manage documentation. We recommend that you document your features implementation and code changes so that other developers are aware of its architecture.
+We use **Jekyll** to manage documentation. We recommend that you document your feature implementations and code changes so that other developers are aware of its architecture.
 
-The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website at with [this guide](https://se-education.org/guides/tutorials/jekyll.html).
+The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website using [this guide](https://se-education.org/guides/tutorials/jekyll.html).
 
 <br/>
 
 ### 5.2 Logging
-We encourage the use of logger in this project as they provide deeper insights than error messages which can greatly help developers identify bugs and simplify their logging process.
+We encourage the use of logger in this project as they provide deeper insights as compared to error messages which can greatly help developers identify bugs and simplify their logging process.
 
 We are using `java.util.logging`  package for logging. The logger can be accessed using the  `AniLogger`  class. 
 
-`AniLogger` is used to manage the logging levels and logging destinations. Based on the default setting, logs will be written to both console and file `data/AniChan.log`.
+`AniLogger` is used to manage the logging levels and logging destinations. Based on the default settings, logs will be written to both console and file `data/AniChan.log`.
 
 The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
 
 We use the following log levels:
-*   `Level.SEVERE` A critical failure, which prevents normal execution of the program.
-*   `Level.WARNING`Indicates a potential problem, but can proceed with caution.
-*   `Level.INFO` General noteworthy information of the program.
+*   `Level.SEVERE`: A critical failure, which prevents normal execution of the program.
+*   `Level.WARNING`: Indicates a potential problem, but can proceed with caution.
+*   `Level.INFO`: General noteworthy information of the program.
 
 <br/>
 
@@ -1027,21 +1035,21 @@ These tools allow us to detect and mitigate bugs before they are merged to the r
 This project uses Gradle for build automation and dependency management.
 
 It automates tasks such as:
-*   Managing library dependencies
-*   Analyzing code for style compliance
-*   Running tests
+*   Managing library dependencies.
+*   Analyzing code for style compliance.
+*   Running tests.
 
 The gradle configuration file can be located in `build.gradle`.
 
 <br/>
 
-#### 5.4.2 Continuous integration (CI)
+#### 5.4.2 Continuous Integration (CI)
 
-We use [GitHub Actions](https://github.com/features/actions) and [Travis CI](https://travis-ci.org/) as our tool for Continuous integration.
+We use [GitHub Actions](https://github.com/features/actions) and [Travis CI](https://travis-ci.org/) as our tool for Continuous Integration (CI).
 
 Their configuration is complete and there is no need to modify them, these CI will automatically run checks on every commit to **AniChan** repository.
 
-If you wish to modify these tools, you may find their configuration at:
+If you wish to modify these tools, you may find their configurations at:
 *   **GitHub Workflow:** `.github/workflows`
 *   **Travis CI:** `.travis.yml`
 
@@ -1090,13 +1098,13 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 | Version | As a ... | I want to ... | So that I ... |
 | --- | --- | --- | --- |
-| v1.0 | user | create new watchlist | can keep track of animes easily based on my defined criteria |
-| v1.0 | user | add and remove an anime to a watchlist | can organise my anime into the defined criterias |
+| v1.0 | user | create new watchlist | can keep track of anime easily based on my defined criteria |
+| v1.0 | user | add and remove an anime to a watchlist | can organise my anime into the defined criterion |
 | v1.0 | forgetful user | find out all watchlist I have created | can find out what watchlist I have |
 | v1.0 | user | save the data I have created | can remember what I have done |
 | v1.0 | user | load the data I created previously | can continue to work on these data |
 | v1.0 | new user | view all available commands | can easily find a specific command and its usage |
-| v1.0 | user | be able to browse through all anime series | can see easily what anime are available  |
+| v1.0 | user | be able to browse through all anime series | can easily see what anime are available  |
 | v1.0 | user | be able to sort my browsing session | will only browse through relevant data |
 | v1.0 | freelance translator | be able to create new workspaces | can have a clear separation of my work at different companies |
 | v1.0 | freelance translator | switch between workspaces | can swap my workspace to a specific company that my current project is tied to |
@@ -1105,10 +1113,10 @@ If you wish to add new checks, simply add the check file with a filename `check-
 | v2.0 | translator | write notes for a bookmark | can remember helpful information regarding a specific anime series |
 | v2.0 | translator | remove notes for a bookmark | can remove outdated information or mistakes in my notes |
 | v2.0 | user | view detailed information of a specific anime | can find out more about that anime series |
-| v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focus on working on one watchlist |
-| v2.0 | user | delete watchlist that I no longer needs | can keep my list of watchlist organized and up-to-date |
+| v2.0 | user | be able to select a watchlist from my list of watchlist to use | can stay focused on working on one watchlist |
+| v2.0 | user | delete watchlist that I no longer need | can keep my list of watchlist organized and up-to-date |
 | v2.0 | translator | estimate the time needed to translate a script | can better manage and plan my time |
-| v2.0 | user | search for a specific anime with a keyword | can find an anime series without remember its full title |
+| v2.0 | user | search for a specific anime with a keyword | can find an anime series without remembering its full title |
 | v2.0 | user | search for all anime in a genre | can find all similar types anime  |
 
 <br/>
@@ -1116,7 +1124,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 ## Appendix C: Non-Functional Requirements
 
 1.  The application should work on major operating systems (OS) such as Windows and Linux that have `Java 11` installed.
-2.  Users with fast typing speed should be able to accomplish tasks easily and faster than when they were using mouse.
+2.  Users with fast typing speed should be able to accomplish tasks more easily and faster as compared to using mouse.
 3.  The application should be easy to use with an accompanying User Guide and/or Developer Guide.
 4.  The application should utilize memory resources efficiently.
 5.  The application should be responsive.
@@ -1269,7 +1277,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ### D.X: Viewing the information of a specific anime
 1.  Viewing the information of a specific anime.
-    1.  Prerequisite:
+    1.  Prerequisite: None.
     
     2.  Test case: `info 1` <br/>
     Expected: Lists out the information of the anime with index 1.
@@ -1294,13 +1302,13 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ### D.x: Adding a bookmark entry
 1.  Adding a bookmark entry.
-    1.  Prerequisite: Look up the anime id using the `info` command. The anime id is in `AnimeData` source.
+    1.  Prerequisite: Look up the anime ID using the `info` command. The anime ID is in `AnimeData` source.
 
     2.  Test case: `bookmark -a 1` <br/>
-    Expected: The anime id will be added as a bookmark entry, and a message indicating the name of anime is added to the bookmark.
+    Expected: The anime ID will be added as a bookmark entry, and a message indicating the name of anime is added to the bookmark.
     
     3.  Test case: `bookmark -a 0` <br/>
-    Expected: No anime is added to the bookmark. Error details show that anime id cannot be 0.
+    Expected: No anime is added to the bookmark. Error details show that anime ID cannot be 0.
     
     4.  Other incorrect commands to try: 
         1.  `bookmark -a`
@@ -1313,10 +1321,10 @@ If you wish to add new checks, simply add the check file with a filename `check-
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
     2.  Test case: `bookmark -d 1` <br/>
-    Expected: The bookmark id will be deleted from the bookmark, and a message indicating the name of anime deleted from the bookmark.
+    Expected: The bookmark ID will be deleted from the bookmark, and a message indicating the name of anime deleted from the bookmark.
     
     3.  Test case: `bookmark -d 0` <br/>
-    Expected: No bookmark entry is deleted from the bookmark. Error details show that bookmark id cannot be 0.
+    Expected: No bookmark entry is deleted from the bookmark. Error details show that bookmark ID cannot be 0.
     
     4.  Other incorrect commands to try: 
         1.  `bookmark -d`
@@ -1324,15 +1332,15 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: View info of a bookmark entry
-1.  View info of a bookmark entry.
+### D.x: View information of a bookmark entry
+1.  View information of a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
     2.  Test case: `bookmark 1` <br/>
     Expected: All information on a bookmark entry will be printed.
     
     3.  Test case: `bookmark 0` <br/>
-    Expected: No bookmark entry information is displayed. Error details show that bookmark id cannot be 0.
+    Expected: No bookmark entry information is displayed. Error details show that bookmark ID cannot be 0.
     
     4.  Other incorrect commands to try: 
         1.  `bookmark -d x` (where x is a negative number, a word, or an additional parameter)
@@ -1346,10 +1354,10 @@ If you wish to add new checks, simply add the check file with a filename `check-
         2.  View the information of bookmark entry using `bookmark <BOOKMARK_ID>`. The total episode of the anime series.
 
     2.  Test case: `bookmark 1 -e 1` <br/>
-    Expected: The bookmark episode for that id will be edited to 1, and a message indicating the anime current episode has been edited.
+    Expected: The bookmark episode for that ID will be edited to 1, and a message indicating the anime current episode has been edited.
     
     3.  Test case: `bookmark 0 -e 1` <br/>
-    Expected: No bookmark entry will have its episode edited. Error details show that bookmark id cannot be 0.
+    Expected: No bookmark entry will have its episode edited. Error details show that bookmark ID cannot be 0.
     
     4.  Other incorrect commands to try: 
         1.  `bookmark -e`
@@ -1364,10 +1372,10 @@ If you wish to add new checks, simply add the check file with a filename `check-
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
          
     2.  Test case: `bookmark 1 -n test` <br/>
-    Expected: The note will be added to bookmark id, and a message indicating the note has been edited for that anime.
+    Expected: The note will be added to bookmark ID, and a message indicating the note has been edited for that anime.
     
     3.  Test case: `bookmark 0 -n test` <br/>
-    Expected: No bookmark note will be added. Error details show that bookmark id cannot be 0.
+    Expected: No bookmark note will be added. Error details show that bookmark ID cannot be 0.
     
     4.  Other incorrect commands to try: 
         1.  `bookmark -n`
@@ -1385,7 +1393,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: The first note of the bookmark entry will be removed, and a message indicating the note has been removed from the anime.
     
     3.  Test case: `bookmark 0 -r 1` <br/>
-    Expected: No notes will be removed. Error details show that bookmark id cannot be 0.
+    Expected: No notes will be removed. Error details show that bookmark ID cannot be 0.
     
     4.  Other incorrect commands to try: 
         1.  `bookmark -r`
@@ -1393,4 +1401,57 @@ If you wish to add new checks, simply add the check file with a filename `check-
         3.  `bookmark x -r` (where x is a negative number, a word, or an additional parameter)
         4.  `bookmark x -r x` (where x is a negative number, a word, or an additional parameter)
 
+<br/>
+
+### D.x: Browse 
+1.  Utilising the `browse` feature
+    1.  Prerequisite:  None.
+
+    2.  Test case: `browse` <br/>
+    Expected: Will list 20 anime series according to the anime ID.
+    
+    3.  Test case: `browse -s rating` <br/>
+    Expected: Will list 20 anime series according to the most popular anime ratings.
+    
+    4.  Test case: `browse -s rating -o asc` <br/>
+    Expected: Will list 20 anime series from the lowest rated anime series.
+    
+    5.  Other incorrect commands to try: 
+        1.  `browse -s alpha`
+        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter)
+        3.  `browse -s name -s rating`
+        4.  `browse ---`
+        5.  `browse -s rating-o asc`
+<br/>
+
+### D.x: Search by name
+1.  Finding an anime series with `search` feature
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -n Mushi` <br/>
+    Expected: Will return anime with the keyword 'Mushi'. In this case it would return MUSHI-SHI.
+    
+    3.  Test case: `search -n MUSHI-` <br/>
+    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return MUSHI-SHI.
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -n mush -n shi` In this case it would attempt to search for `mush -n shi`, and return no results.
+        3.  `search -n`
+<br/>
+
+### D.x: Search by genre
+1.  Finding all anime series that has a specific genre with `search` feature
+    1.  Prerequisite:  None.
+
+    2.  Test case: `search -g Music` <br/>
+    Expected: Will return all anime that has 'Music' as its genre
+    
+    3.  Test case: `search -n slice of life` <br/>
+    Expected: Will return anime that has 'Slice of Life' as its genre
+    
+    4.  Other incorrect commands to try: 
+        1.  `search`
+        2.  `search -g musik` In this case it would attempt to search for `musik`, and return no results.
+        3.  `search -g`
 <br/>

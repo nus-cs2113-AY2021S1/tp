@@ -80,9 +80,9 @@ Lastly, text that are blue like this [example](#12-using-this-guide), are clicka
 2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **command prompt** or **terminal** and change directory into the folder. Run `java -jar AniChan.jar`.
-5.  You will be greeted by a prompt for your name and gender as shown below.
+5.  You will be first greeted by the **command prompt** for your name and gender as shown below.
 6.  Upon completing these 2 prompts, you can begin using **AniChan**!
-7.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
+7.  Type a command into the **command prompt** and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
 
 ![First Time Setup](images/User-Guide-Setting-Up.png)
 
@@ -103,7 +103,7 @@ E.g. `-l` in this case would be a lowercase letter of 'L'. Not to be mistaken wi
 E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.` can be replaced with `name` and `1` respectively. 
 
 *   Angle brackets (`<MANDATORY>`) are mandatory, while square brackets (`[OPTIONAL]`) are optional. <br/>
-E.g. `estimate <SCRIPT_NAME> [-t WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
+E.g. `estimate <SCRIPT_NAME> [-wph WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
 *   Order of parameters (`-n`, `-l`, etc.) are not important, but they have to be defined after the non-parameter fields. <br/>
 E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not an parameter.
@@ -168,7 +168,7 @@ Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
 <br/>
 
 Here are some commonly used `browse` commands to get you started. Feel free to experiment with different combinations!
-*   `browse -s name -o dsc` browse alphabetically from A - Z
+*   `browse -s name` browse alphabetically from A - Z
 *   `browse -s rating -o dsc` browse starting from the most highly rated anime
 
 <br/>
@@ -267,7 +267,7 @@ The expected outcome:
 <br/>
 
 ### 3.5 View the information of an anime
-View all the information regarding a specific anime.
+The `info` feature allows you to view all the information regarding a specific anime.
 
 Format: `info <ANIME_ID>`
 
@@ -494,7 +494,7 @@ Trigun successfully removed from watchlist
 ### 3.7.7 View all anime in watchlist
 View all the anime that you have stored in your current watchlist, or in a specific watchlist
 
-Format: `view [-v <WATCHLIST_ID>]`
+Format: `view [-v WATCHLIST_ID]`
 *   If the parameter `-v` is not specified, the anime in the current watchlist you are using will be shown.
 
 <br/>

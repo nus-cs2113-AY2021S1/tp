@@ -208,7 +208,6 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if the only field is not integer or empty
      */
     private void setSingleParameter(String paramGiven) throws AniException {
-        parseStringToInteger(paramGiven.trim());
         if (!isInteger(paramGiven.trim())) {
             String invalidBookmarkIndex = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
                     + System.lineSeparator() + BOOKMARK_INDEX_INFO_ERROR;
