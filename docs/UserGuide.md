@@ -85,8 +85,8 @@ To get started on this application, please perform the following steps:
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `Kaji` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
-1. Copy the file to the folder you want to use as the <I>home folder</I> for your Kaji.
-1. Double-click the file to start the app or open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
+1. Copy the file to an empty folder you want to use as the <I>home folder</I> for your Kaji.
+1. Open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
 ![Welcome screen](images/kaji.PNG)
 1. Type the command in the command window and press Enter to execute it. 
    e.g. typing `help` and pressing Enter will open the help window.<br>
