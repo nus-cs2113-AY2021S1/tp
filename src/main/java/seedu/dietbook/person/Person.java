@@ -23,7 +23,7 @@ public class Person {
     private FitnessLevel fitnessLevel;
     private Gender gender;
     private String name;
-    private static final Logger LOGGER = Logger.getLogger(Person.class.getName());
+    private final Logger logger;
 
     /**
      * Constructs a <code>Person</code> with the given name, gender, age, height, fitness level, original,
@@ -44,19 +44,20 @@ public class Person {
         performAssertionsForPerson(name, gender, age, height, originalWeight, currentWeight,
                 targetWeight, fitnessLevel);
 
+        logger = Logger.getLogger(Person.class.getName());
         initialiseLogger();
-        LOGGER.log(Level.FINE, "Start constructing a person");
-        LOGGER.log(Level.FINE, "Name: " + name);
-        LOGGER.log(Level.FINE, "Gender: " + gender.getDescription());
-        LOGGER.log(Level.FINE, "Age: " + age);
-        LOGGER.log(Level.FINE, "Height: " + height);
-        LOGGER.log(Level.FINE, "Original weight: " + originalWeight);
-        LOGGER.log(Level.FINE, "Current weight: " + currentWeight);
-        LOGGER.log(Level.FINE, "Target weight: " + targetWeight);
-        LOGGER.log(Level.FINE, "Fitness Level: " + fitnessLevel.getDescription());
+        logger.log(Level.FINE, "Start constructing a person");
+        logger.log(Level.FINE, "Name: " + name);
+        logger.log(Level.FINE, "Gender: " + gender.getDescription());
+        logger.log(Level.FINE, "Age: " + age);
+        logger.log(Level.FINE, "Height: " + height);
+        logger.log(Level.FINE, "Original weight: " + originalWeight);
+        logger.log(Level.FINE, "Current weight: " + currentWeight);
+        logger.log(Level.FINE, "Target weight: " + targetWeight);
+        logger.log(Level.FINE, "Fitness Level: " + fitnessLevel.getDescription());
 
         this.name = name.trim();
-        LOGGER.log(Level.FINE, "Trimmed Name: " + this.name);
+        logger.log(Level.FINE, "Trimmed Name: " + this.name);
         this.gender = gender;
         this.age = age;
         this.height = height;
@@ -64,7 +65,7 @@ public class Person {
         this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
         this.fitnessLevel = fitnessLevel;
-        LOGGER.log(Level.FINE, "Person constructed");
+        logger.log(Level.FINE, "Person constructed");
     }
 
     /**
@@ -73,8 +74,8 @@ public class Person {
     private void initialiseLogger() {
         Handler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.WARNING);
-        LOGGER.addHandler(consoleHandler);
-        LOGGER.setLevel(Level.WARNING);
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.WARNING);
     }
 
     /**
@@ -119,9 +120,9 @@ public class Person {
      */
     public void setName(String newName) {
         performAssertionsForNameInput(newName);
-        LOGGER.log(Level.FINE, "New name: " + newName);
+        logger.log(Level.FINE, "New name: " + newName);
         name = newName.trim();
-        LOGGER.log(Level.FINE, "Trimmed new name: " + this.name);
+        logger.log(Level.FINE, "Trimmed new name: " + this.name);
     }
 
     /**
@@ -140,7 +141,7 @@ public class Person {
      */
     public void setGender(Gender newGender) {
         performAssertionsForGenderInput(newGender);
-        LOGGER.log(Level.FINE, "New gender: " + newGender.getDescription());
+        logger.log(Level.FINE, "New gender: " + newGender.getDescription());
         gender = newGender;
     }
 
@@ -160,7 +161,7 @@ public class Person {
      */
     public void setAge(int newAge) {
         performAssertionsForAgeInput(newAge);
-        LOGGER.log(Level.FINE, "New age: " + newAge);
+        logger.log(Level.FINE, "New age: " + newAge);
         age = newAge;
     }
 
@@ -180,7 +181,7 @@ public class Person {
      */
     public void setHeight(int newHeight) {
         performAssertionsForHeight(newHeight);
-        LOGGER.log(Level.FINE, "New height: " + newHeight);
+        logger.log(Level.FINE, "New height: " + newHeight);
         height = newHeight;
     }
 
@@ -200,7 +201,7 @@ public class Person {
      */
     public void setOriginalWeight(int newOriginalWeight) {
         performAssertionsForWeight(newOriginalWeight,"Original weight");
-        LOGGER.log(Level.FINE, "New original weight: " + newOriginalWeight);
+        logger.log(Level.FINE, "New original weight: " + newOriginalWeight);
         originalWeight = newOriginalWeight;
     }
 
@@ -220,7 +221,7 @@ public class Person {
      */
     public void setCurrentWeight(int newCurrentWeight) {
         performAssertionsForWeight(newCurrentWeight, "Current weight");
-        LOGGER.log(Level.FINE, "New current weight: " + newCurrentWeight);
+        logger.log(Level.FINE, "New current weight: " + newCurrentWeight);
         currentWeight = newCurrentWeight;
     }
 
@@ -240,7 +241,7 @@ public class Person {
      */
     public void setTargetWeight(int newTargetWeight) {
         performAssertionsForWeight(newTargetWeight, "Target weight");
-        LOGGER.log(Level.FINE, "New target weight: " + newTargetWeight);
+        logger.log(Level.FINE, "New target weight: " + newTargetWeight);
         targetWeight = newTargetWeight;
     }
 
@@ -260,7 +261,7 @@ public class Person {
      */
     public void setFitnessLevel(FitnessLevel newFitnessLevel) {
         performAssertionsForFitnessLevel(newFitnessLevel);
-        LOGGER.log(Level.FINE, "New fitness level: " + newFitnessLevel);
+        logger.log(Level.FINE, "New fitness level: " + newFitnessLevel);
         fitnessLevel = newFitnessLevel;
     }
 
