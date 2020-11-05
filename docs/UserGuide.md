@@ -7,11 +7,11 @@
 <br/>
 
 ## Table of Contents
-1. [Introduction](#1-introduction)
+1.  [Introduction](#1-introduction)
 
-2. [Quick Start](#2-quick-start)
+2.  [Quick Start](#2-quick-start)
 
-3. [Features](#3-features)
+3.  [Features](#3-features)
 <br/>&nbsp;3.1 [View the help](#31-view-the-help)
 <br/>&nbsp;3.2 [Estimate time need to translate the script](#32-estimate-time-needed-to-translate-the-script)
 <br/>&nbsp;3.3 [Browse through all anime](#33-browse-through-anime)
@@ -43,9 +43,9 @@
 <br/>&nbsp;3.9 [Exit AniChan](#39-exit-anichan)
 <br/>&nbsp;3.10 [Saving and loading data](#310-saving-and-loading-data)
 
-4. [FAQ](#4-faq)
+4.  [FAQ](#4-faq)
 
-5. [Command Summary](#5-command-summary)
+5.  [Command Summary](#5-command-summary)
 
 <br/>
 
@@ -137,7 +137,7 @@ Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 Example of usage: `estimate script.txt`
 
 The expected outcome: 
-```
+```text
 Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).
 Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).
 Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).
@@ -147,7 +147,7 @@ Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).
 Example of usage: `estimate script.txt -wph 777`
 
 The expected outcome:
-```
+```text
 You would need 2 hour(s) 58 minute(s).
 ```
 <br/>
@@ -176,7 +176,7 @@ Here are some commonly used `browse` commands to get you started. Feel free to e
 Example of usage: `browse -s name -o asc`
 
 The expected outcome:
-```
+```text
 1.   .hack//Gift                                         [Id: 413]
 2.   .hack//Legend Of The Twilight                       [Id: 267]
 3.   .hack//Liminality                                   [Id: 268]
@@ -221,7 +221,7 @@ Format: `search -n <SEARCH_TERM>`
 Example of usage: `search -n bey`
 
 The expected outcome:
-```
+```text
 [ID:216] Haruka: Beyond the Stream of Time – A Tale of the Eight Guardians
 [ID:257] Beyblade
 [ID:410] InuYasha the Movie 2: The Castle Beyond the Looking Glass
@@ -248,7 +248,7 @@ Here are some popular anime genres that you can try out!
 Example of usage: `search -g Slice of Life`
 
 The expected outcome:
-```
+```text
 [ID:7] Honey and Clover
 [ID:8] Hungry Heart: Wild Striker
 [ID:35] Ai Yori Aoshi
@@ -276,7 +276,7 @@ Format: `info <ANIME_ID>`
 Example of usage: `info 1`
 
 The expected outcome:
-```
+```text
 Here is the information for the anime:
 Index: 1
 Name: Cowboy Bebop
@@ -309,7 +309,7 @@ Format: `workspace -n <NAME>`
 Example of usage: `workspace -n Crispy Donuts Studio`
 
 The expected outcome:
-```
+```text
 Successfully added new workspace: Crispy Donuts Studio
 ```
 
@@ -327,7 +327,7 @@ Format: `workspace -s <NAME>`
 Example of usage: `workspace -s Crispy Donuts Studio`
 
 The expected outcome:
-```
+```text
 Workspace switched to Crispy Donuts Studio
 ```
 
@@ -343,7 +343,7 @@ Format: `workspace -l`
 Example of usage: `workspace -l`
 
 The expected outcome:
-```
+```text
 Currently, you have 2 workspace(s):
 1. Default
 2. Crispy Donuts Studio
@@ -363,7 +363,7 @@ Format: `workspace -d <NAME>`
 Example of usage: `workspace -d Default`
 
 The expected outcome:
-```
+```text
 Successfully deleted workspace: Default
 ```
 
@@ -391,7 +391,7 @@ Format: `watchlist -n <WATCHLIST_NAME>`
 Example of usage: `watchlist -n Adventure Anime`
 
 The expected outcome:
-```
+```text
 Watchlist "Adventure Anime" has been created successfully!
 ```
 
@@ -407,7 +407,7 @@ Format: `watchlist -l`
 Example of usage: `watchlist -l`
 
 The expected outcome:
-```
+```text
 Currently, you have 2 watchlist(s):
     1. Default
     2. Adventure Anime
@@ -427,7 +427,7 @@ Format: `watchlist -s <WATCHLIST_ID>`
 Example of usage: `watchlist -s 2`
 
 The expected outcome:
-```
+```text
 "Adventure Anime" is now your active watchlist!
 ```
 
@@ -447,7 +447,7 @@ Format: `watchlist -d <WATCHLIST_ID>`
 Example of usage: `watchlist -d 2`
 
 The expected outcome:
-```
+```text
 Watchlist "Adventure Anime" has been deleted successfully!
 Changed active watchlist to: "Default".
 ```
@@ -466,8 +466,7 @@ Format: `add <ANIME_ID>`
 Example of usage: `add 3`
 
 The expected outcome: 
-
-```
+```text
 Trigun added to watchlist!
 ```
 
@@ -484,8 +483,7 @@ Format: `remove <ANIME_ID_IN_WATCHLIST>`
 Example of usage: `remove 1`
 
 The expected outcome:
-
-```
+```text
 Trigun successfully removed from watchlist
 ```
 
@@ -502,7 +500,7 @@ Format: `view [-v <WATCHLIST_ID>]`
 Example of usage: `view`
 
 The expected outcome:
-```
+```text
 Here are the anime in Default watchlist:
 	1. Cowboy Bebop
    	2. Witch Hunter Robin
@@ -512,7 +510,7 @@ Here are the anime in Default watchlist:
 Example of usage: 'view -v 2'
 
 The expected outcome:
-```
+```text
 Here are the anime in To Translate watchlist:
 	1. Naruto
         2. Yakitate!! Japan
@@ -538,7 +536,7 @@ Format: `bookmark -l`
 Example of usage: `bookmark -l`
 
 The expected outcome:
-```
+```text
 Listing all anime in bookmark:
   1. InuYasha the Movie 3: Swords of an Honorable Ruler
   2. To Heart 2
@@ -558,7 +556,7 @@ Format: `bookmark -a <ANIME_ID>`
 Example of usage: `bookmark -a 3`
 
 The expected outcome:
-```
+```text
 Saving 3. Trigun to bookmark.
 ```
 
@@ -574,7 +572,7 @@ Format: `bookmark -d <BOOKMARK_ID>`
 Example of usage: `bookmark -d 2`
 
 The expected outcome:
-```
+```text
 Removing To Heart 2! :(
 ```
 
@@ -590,7 +588,7 @@ Format: `bookmark <BOOKMARK_ID> -e <EPISODE>`
 Example of usage: `bookmark 2 -e 5`
 
 The expected outcome:
-```
+```text
 Editing Trigun to have 5 episode(s).
 ```
 
@@ -606,7 +604,7 @@ Format: `bookmark <BOOKMARK_ID> -n <NOTE>`
 Example of usage: `bookmark 2 -n Episode 5: Schedule push back`
 
 The expected outcome:
-```
+```text
 Adding note:"Episode 5: Schedule push back" to Trigun!
 ```
 
@@ -622,7 +620,7 @@ Format: `bookmark <BOOKMARK_ID> -r <NOTE_ID>`
 Example of usage: `bookmark 2 -r 1`
 
 The expected outcome:
-```
+```text
 Deleting note: Episode 5: Schedule push back
 From: Trigun.
 ```
@@ -639,7 +637,7 @@ Format: `bookmark <BOOKMARK_ID>`
 Example of usage: `bookmark 2`
 
 The expected outcome:
-```
+```text
 Here is the information for that anime.
 Index: 3
 Name: Trigun
@@ -652,7 +650,6 @@ Current Episode: 5
 
 Notes for anime:
 1. Episode 5: Schedule push back
-
 ```
 
 <br/>
@@ -667,7 +664,7 @@ Format: `exit`
 Example of usage: `exit`
 
 The expected outcome:
-```
+```text
 Sayonara <NAME>!
 ```
 

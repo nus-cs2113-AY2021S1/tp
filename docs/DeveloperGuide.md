@@ -277,25 +277,29 @@ The sequence diagram presented below depicts the interaction between the compone
 #### 4.1.2 Design Considerations
 This section shows some design considerations taken when implementing the estimate feature.
 
-Aspect: **When should the program read the script file**
+Aspect: **When should the program validate the script file**
+
+Since the script file specified by the user can be non-existent or empty, it is important to determine when the application should reject the user's command if the file happens to be invalid.
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution **(current design)**. | Easy to implement since `Command` already handle file matters. | Memory resources are wasted if file validation fails during the execution. |
-| During parsing. | No memory resource wasted as it will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
+| During command execution. | Easy to implement since `Command` already handle file matters. | Memory resources are wasted if the file fails validation during the execution. |
+| During parsing. | No memory resource wasted since the file needs to be validated before proceeding. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
-Having considered both of the alternatives, we have decided to implement the first alternative, **read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
+Having considered both of the approaches, we have decided to implement the first approach, **validate and read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
 
 <br/>
 
 Aspect: **The way user can specify the script file**
 
+As the command takes in a script file name, there is a need to decide on whether the user needs to include the file extension when they specify the script file to estimate.
+
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| Specify file extension **(current design)**. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
+| Specify file extension. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
 | Do not have to specify file extension. | Users can easily specify the file to read. | May read the wrong file due to identical names but different file extension. |
 
-We have decided to the implement the first alternative, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
+We have decided to the implement the first approach, **users should specify the file extension in their input** because there is great importance in getting a correct estimation timing, and it far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are costly for our users.
 
 <br/>
 
@@ -680,7 +684,7 @@ All the other options in the watchlist command also follows a similar execution 
 The sequence diagram presented below depicts the interaction between the components for running the command, `watchlist -n NewAnime`.
 > :memo: The sequence diagram shows the interaction from step 2 onward.
 
-> :memo: The other options (`-l`, `-s`, `-d`) follow a similar process, only the list and select option does not interact with `StorageManager`.
+> :memo: The other options (`-l`, `-s`, `-d`) follow a similar process, only the list and select option does not interact with `StorageManager` as they do not modify the watchlist list.
 
 ![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
 
@@ -693,23 +697,27 @@ This section shows some design considerations taken when implementing the watchl
 
 Aspect: **Saving watchlist data**
 
+Since the user would likely make frequent changes to their watchlist throughout their use of the application, it is important to decide on the frequency of saving these watchlist data.
+
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| After each command execution **(current design)**. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
+| After each command execution. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
 | When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
-Having considered both of these alternatives, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
+Having considered both of the approaches, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
 
 <br/>
 
 Aspect: **Watchlist name restriction**
 
+Users would often name their watchlist based on the animes they have added to it, and these names can affect the usability. Hence, there is a need to decide on whether the watchlist name needs to be restricted.
+
 | Approach | Pros | Cons |
 | --- | --- | --- |
 | No restriction. | Users have more flexibility. | This may hinder user's vision of the input prompt and affects the usability. |
-| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only **(current design)**. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
+| Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
 
-While both alternatives are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
+While both approaches are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
 
 <br/>
 
@@ -948,7 +956,7 @@ The first design consideration was the data structure on how to bookmark entries
 | 1. Usage of three ArrayList to store anime index, Episode, and Notes **(current design)**     | - Easy to reference objects within ArrayList using its index and it is easy to implement | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry |
 | 2. Use a `BookmarkManager` to handle bookmark features                  | - Do not need to maintain multiple Arraylist    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
 
-While both alternatives have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
+While both approaches have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
 
 <br/>
 
@@ -961,7 +969,7 @@ The second design consideration was how to keep the reference to the anime objec
 | 1. Keep only the anime index information within the bookmark **(current design)** | - Easy to add and delete, which also simplifies the information to keep in offline storage. | - Bookmark Commands have to communicate with AnimeData for anime-related functionalities. |
 | 2. Keep the entire anime object in Bookmark                  | - Do not need to reference AnimeData for anime information    | - Keep a duplicate of anime data, requires synchronisation <br/> - Hard to keep anime object information offline |
 
-We have decided to implement the first alternative, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to AnimeData, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using anime object.
+We have decided to implement the first approach, **the bookmark will keep the anime index within bookmark entries**. Although the lookup for anime information of a bookmark entry requires a query to AnimeData, the management and offline storage of the bookmark entries will be more efficient (keeping only anime index). There are more considerations like synchronisation and duplication of the object data that comes with using anime object.
 
 <br/>
 
@@ -1443,4 +1451,3 @@ If you wish to add new checks, simply add the check file with a filename `check-
         1.  `search`
         2.  `search -g musik` In this case it would attempt to search for `mush -n shi`. And return no results.
         3.  `search -g`
-<br/>
