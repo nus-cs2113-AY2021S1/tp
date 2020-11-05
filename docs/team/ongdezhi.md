@@ -7,13 +7,13 @@
 ### Summary of Contributions
 
 *   **New Feature:** Added the ability to estimate the time needed to translate a script.
-    *   What it does: Allows user to estimate the time needed to translate a script.
-    *   Justification: This feature allows users to find out the time needed to translate a script, and this helps them to better manage and plan their time.
+    *   What it does: Allows the user to figure out the time needed to translate a script.
+    *   Justification: Being able to estimate the time needed to translate a script can help the user in managing and planning their time.
     *   Highlights: A file name could contain special characters, whitespaces, and even file extensions in some cases, and that makes the validation process highly complicated, and hence, this feature would need to perform extensive checks on the file name to ensure that it is a single valid file. Moreover, there is a need to check for the existence of the optional parameter to ensure it is not missed or accidentally validated as part of the file name, and also to ensure the parameter value supplied is valid.
 
 *   **New Feature:** Added the ability to create, list, select, and delete watchlist.
     *   What it does: Allows the user to create, list, select, and delete watchlist.
-    *   Justification: This feature provides users with a simple way to keep track of animes and group them based on their own criteria, and this helps them to be more organized.
+    *   Justification: This feature provides the user with a simple way to keep track of animes and group them based on their own criteria, and this helps them to be more organized.
     *   Highlights: Besides the need to validate the inputs (i.e. not empty, is a positive integer, etc.), this feature is also in-charge of maintaining the active watchlist pointer. This pointer is used by the input prompt, and if it is ever invalid, the application would not function as intended.
 
 *   **New Feature:** Added the ability to save and load watchlist data automatically.
@@ -23,7 +23,7 @@
 
 *   **New Feature:** Added the ability to save and load user data automatically.
     *   What it does: Helps the user to automatically save their profile details into the file `user.txt`, and load these data automatically when the application is launched.
-    *   Justification: This feature aims to allow existing users of AniChan to feel welcomed when they use our application.
+    *   Justification: These data would allow the application to greet the user so they can feel welcomed.
     *   Highlights: During the loading of user profile data, the data would be validated to ensure they are not corrupted (i.e. invalid username or gender), and if the data is found to be corrupted, the user profile data would not be loaded into the application. In addition, the failure to load user profile data does not prevent existing watchlist and bookmark data from being loaded.
 
 *   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ongdezhi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=OngDeZhi&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
