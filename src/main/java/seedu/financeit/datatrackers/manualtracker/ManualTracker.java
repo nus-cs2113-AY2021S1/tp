@@ -12,60 +12,29 @@ import seedu.financeit.datatrackers.manualtracker.ledgerhandlers.RetrieveLedgerH
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.utils.FiniteStateMachine;
 
 /**
  * Class to handle routine for manual ledger management.
  */
 public class ManualTracker {
     static LedgerList ledgerList = new LedgerList();
-    private static GoalTracker goalTrack = new GoalTracker();
     private static CommandPacket packet;
     private static boolean isUnderTest = false;
+    private static boolean endTracker;
 
     public static void setTestPacket(CommandPacket inputPacket) {
         packet = inputPacket;
         isUnderTest = true;
     }
 
-    public static void main() {
-        boolean endTracker = false;
-        FiniteStateMachine fsm = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);
+    public static void execute() {
+        endTracker = false;
         UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
         while (!endTracker) {
-            switch (fsm.getCurrState()) {
-            case MAIN_MENU:
-                fsm.setNextState(handleMainMenu());
-                break;
-            case CREATE_LEDGER:
-                fsm.setNextState(handleCreateLedger());
-                break;
-            case OPEN_LEDGER:
-                fsm.setNextState(handleOpenLedger());
-                break;
-            case DELETE_LEDGER:
-                fsm.setNextState(handleDeleteLedger());
-                break;
-            case SHOW_LEDGER:
-                fsm.setNextState(handleShowLedger());
-                break;
-            case INVALID_STATE:
-                fsm.setNextState(handleInvalidState());
-                break;
-            case EXIT:
-                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Exiting from ManualTracker");
-                endTracker = true;
-                break;
-            case END_TRACKER:
-                endTracker = true;
-                break;
-            default:
-                break;
-            }
-            fsm.transitionState();
+            endTracker = false;
+            handleMainMenu();
         }
     }
-
 
     public static LedgerList getLedgerList() {
         return ledgerList;
@@ -79,7 +48,7 @@ public class ManualTracker {
         handleCreateLedger();
     }
 
-    private static FiniteStateMachine.State handleMainMenu() {
+    private static void handleMainMenu() {
         UiManager.printWithStatusIcon(Common.PrintType.DIRECTORY, "[ MAIN_MENU -> MANUAL_TRACKER_MENU ]");
         UiManager.printInputPromptMessage();
         String input;
@@ -91,35 +60,31 @@ public class ManualTracker {
 
         UiManager.refreshPage();
         switch (packet.getCommandString()) {
-        case "ledger open":
-            // Fall through
         case "open":
-            return FiniteStateMachine.State.OPEN_LEDGER;
-        case "ledger new":
-            // Fall through
+            handleOpenLedger();
+            break;
         case "new":
-            return FiniteStateMachine.State.CREATE_LEDGER;
-        case "ledger list":
-            // Fall through
+            handleCreateLedger();
+            break;
         case "list":
-            return FiniteStateMachine.State.SHOW_LEDGER;
-        case "ledger delete":
-            // Fall through
+            handleShowLedger();
+            break;
         case "delete":
-            return FiniteStateMachine.State.DELETE_LEDGER;
+            handleDeleteLedger();
+            break;
         case "exit":
-            return FiniteStateMachine.State.EXIT;
+            endTracker = true;
+            break;
         case "commands":
             printCommandList();
-            return FiniteStateMachine.State.MAIN_MENU;
+            break;
         default:
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Command failed. Try again.");
-            return FiniteStateMachine.State.MAIN_MENU;
+            break;
         }
     }
 
-    static FiniteStateMachine.State handleCreateLedger() {
-        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
+    static void handleCreateLedger() {
         CreateLedgerHandler createLedgerHandler = CreateLedgerHandler.getInstance();
 
         Ledger ledger;
@@ -153,11 +118,9 @@ public class ManualTracker {
                     "Input failed due to param error.");
             }
         }
-        return state;
     }
 
-    static FiniteStateMachine.State handleDeleteLedger() {
-        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
+    static void handleDeleteLedger() {
         Ledger deletedLedger;
         RetrieveLedgerHandler retrieveLedgerHandler = RetrieveLedgerHandler.getInstance();
         try {
@@ -179,21 +142,13 @@ public class ManualTracker {
                     "Input failed due to param error.");
             }
         }
-        return state;
     }
 
-    private static FiniteStateMachine.State handleShowLedger() {
+    private static void handleShowLedger() {
         ledgerList.printList();
-        return FiniteStateMachine.State.MAIN_MENU;
     }
 
-    private static FiniteStateMachine.State handleInvalidState() {
-        System.out.println("You dun goof bro uwu");
-        return FiniteStateMachine.State.MAIN_MENU;
-    }
-
-    private static FiniteStateMachine.State handleOpenLedger() {
-        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
+    private static void handleOpenLedger() {
         Ledger ledger;
         RetrieveLedgerHandler retrieveLedgerHandler = RetrieveLedgerHandler.getInstance();
         try {
@@ -212,7 +167,7 @@ public class ManualTracker {
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
-            return state;
+            return;
         } catch (ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
@@ -222,23 +177,22 @@ public class ManualTracker {
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 "Generating new ledger...");
             handleCreateLedger();
-            return handleOpenLedger();
+            handleOpenLedger();
         } finally {
             if (!retrieveLedgerHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
-        return EntryTracker.main();
     }
 
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command            ;Input Format                  ");
-        TablePrinter.addRow("1.;Open ledger;ledger open /date {YYMMDD}");
-        TablePrinter.addRow("2.;New ledger;ledger new /date {YYMMDD}");
-        TablePrinter.addRow("3.;list ledgers;ledger list");
-        TablePrinter.addRow("4.;delete ledgers;ledger delete /date {YYMMDD}");
+        TablePrinter.addRow("1.;Open ledger;open /date {YYMMDD}");
+        TablePrinter.addRow("2.;New ledger;new /date {YYMMDD}");
+        TablePrinter.addRow("3.;list ledgers;list");
+        TablePrinter.addRow("4.;delete ledgers;delete /date {YYMMDD}");
         TablePrinter.addRow("5.;exit to main menu;exit");
         TablePrinter.printList();
     }

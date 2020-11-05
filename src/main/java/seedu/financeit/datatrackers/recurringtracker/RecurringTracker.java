@@ -21,7 +21,7 @@ public class RecurringTracker {
         return entries;
     }
 
-    public static void main() {
+    public static void execute() {
         boolean endTracker = false;
         UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, WelcomeMessage);
         do {

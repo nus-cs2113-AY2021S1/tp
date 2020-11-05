@@ -1,6 +1,7 @@
 package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.common.Common;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
@@ -45,18 +46,18 @@ public class Financeit {
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
             case "manual":
-                ManualTracker.main();
+                ManualTracker.execute();
                 break;
             case "recur":
-                RecurringTracker.main();
+                RecurringTracker.execute();
                 break;
             case "acc": //AccSummary.main();
                 break;
             case "goal": //GoalTracker.main();
-                GoalTracker.main();
+                GoalTracker.execute();
                 break;
             case "financial": //FinancialCalculator.main();
-                FinanceTools.main();
+                FinanceTools.execute();
                 break;
             case "saver":
                 SaveManager.main();
@@ -74,6 +75,8 @@ public class Financeit {
                 break;
             case "exit":
                 save();
+                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
+                    "Exiting the program. Have a nice day!");
                 return;
             default:
                 prompt = "Invalid Command";
