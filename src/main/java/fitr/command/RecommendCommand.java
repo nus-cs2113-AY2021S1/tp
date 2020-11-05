@@ -121,7 +121,7 @@ public class RecommendCommand extends Command {
                 } catch (NumberFormatException e) {
                     Ui.printCustomError("The indexes have to be a number!");
                 } catch (IndexOutOfBoundsException e) {
-                    Ui.printCustomError("Sorry you have to key in a positive number below 4 inclusive.");
+                    Ui.printCustomError("Sorry, you have to key in a positive number below 4 inclusive.");
                 } catch (DuplicateIndexException e) {
                     Ui.printCustomError("You cannot add the same index multiple times!");
                 }
@@ -129,7 +129,7 @@ public class RecommendCommand extends Command {
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
         } catch (InvalidRecommendationException e) {
-            Ui.printCustomError("sorry that is an invalid recommendation type");
+            Ui.printCustomError("Sorry, that is an invalid recommendation type.");
         }
 
     }
