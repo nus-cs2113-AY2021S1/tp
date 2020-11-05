@@ -1,13 +1,88 @@
 package parser;
 
 import access.Access;
+import commands.AddCardCommand;
+import commands.AddChapterCommand;
+import commands.AddCommand;
+import commands.AddModuleCommand;
+import commands.EditCardCommand;
+import commands.EditChapterCommand;
+import commands.EditCommand;
+import commands.EditModuleCommand;
+import commands.ExitCommand;
+import commands.ListCardsCommand;
+import commands.ListChaptersCommand;
+import commands.ListCommand;
+import commands.ListModulesCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 class ParserTest {
+
+    @Test
+    public void parse_add() throws Exception {
+        Access access = new Access();
+
+        access.setIsAdminLevel();
+        assertTrue(Parser.parse(AddCommand.COMMAND_WORD + " CS2113", access) instanceof AddModuleCommand);
+
+        access.setIsModuleLevel();
+        assertTrue(Parser.parse(AddCommand.COMMAND_WORD + " Chapter 1", access)
+                instanceof AddChapterCommand);
+
+        access.setIsChapterLevel();
+        assertTrue(Parser.parse(AddCommand.COMMAND_WORD + " q:1+1 | a:2", access) instanceof AddCardCommand);
+    }
+
+    @Test
+    public void parse_edit() throws Exception {
+        Access access = new Access();
+
+        access.setIsAdminLevel();
+        assertTrue(Parser.parse(EditCommand.COMMAND_WORD + " 1 CS2113", access)
+                instanceof EditModuleCommand);
+
+        access.setIsModuleLevel();
+        assertTrue(Parser.parse(EditCommand.COMMAND_WORD + " 1 Chapter 1", access)
+                instanceof EditChapterCommand);
+
+        access.setIsChapterLevel();
+        assertTrue(Parser.parse(EditCommand.COMMAND_WORD + " 1 q:1+1 | a:", access)
+                instanceof EditCardCommand);
+    }
+
+    @Test
+    public void parse_list() throws Exception {
+        Access access = new Access();
+
+        access.setIsAdminLevel();
+        assertTrue(Parser.parse(ListCommand.COMMAND_WORD, access) instanceof ListModulesCommand);
+
+        access.setIsModuleLevel();
+        assertTrue(Parser.parse(ListCommand.COMMAND_WORD, access) instanceof ListChaptersCommand);
+
+        access.setIsChapterLevel();
+        assertTrue(Parser.parse(ListCommand.COMMAND_WORD, access) instanceof ListCardsCommand);
+    }
+
+    @Test
+    public void parse_exit() throws Exception {
+        Access access = new Access();
+        assertTrue(Parser.parse(ExitCommand.COMMAND_WORD, access) instanceof ExitCommand);
+    }
+
+    @Test
+    public void parse_unknownCommand_throwsInvalidInputException() {
+        Access access = new Access();
+        assertThrows(InvalidInputException.class, () -> Parser.parse("unknownCommand", access));
+    }
+
+
     @Test
     public void parse_addCommandEmptyArgs_expectException() {
         Access access = new Access();
