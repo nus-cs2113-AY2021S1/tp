@@ -354,7 +354,7 @@ public class Ui {
 
                 String noteName = SCANNER.nextLine().trim();
 
-                while (noteName.replace(" ", "").isEmpty()) {
+                while (noteName.replace(SPACE, EMPTY).isEmpty()) {
                     printMessage(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
                     noteName = SCANNER.nextLine();
                 }
@@ -362,7 +362,7 @@ public class Ui {
                 printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                 String noteBody = SCANNER.nextLine().trim();
 
-                while (noteBody.replace(" ", "").isEmpty()) {
+                while (noteBody.replace(SPACE, EMPTY).isEmpty()) {
                     printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                     noteBody = SCANNER.nextLine();
                 }
@@ -410,7 +410,7 @@ public class Ui {
                 topic.getNoteList().delete(index - 1);
                 System.out.println(DELETE_NOTE_SUCCESSFULLY);
             } else {
-                printMessage(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
         } else {
             System.out.println(INVALID_TOPIC);
