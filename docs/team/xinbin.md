@@ -1,11 +1,7 @@
 # Ong Xin Bin - Project Portfolio Page
 
 ## Project: AniChan
-
-AniChan is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve
-their workflow efficiency and translation accuracy. AniChan is built for fast typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC. 
-
-Given below are my contributions to the project.
+**AniChan** is a desktop application created for anime translators to help efficiently manage their workload and time. It has a wide variety of tools that can help improve their workflow efficiency and translation accuracy. **AniChan** is built for fast typists, as such the user will interact with it through a CLI. It is written in Java with almost 14K LOC.
 
 ### Summary of Contributions
 
@@ -24,22 +20,22 @@ Given below are my contributions to the project.
     *   Justification: Being an application to help users keep track of their anime, the current episodes, and the anime notes, persistent storage would be essential to ensure users not would have to re-enter their bookmark information each time they use the application.
     *   Highlights: When loading bookmark data, each entry (each line) recorded in `bookmark.txt` would be split into parts that form a bookmark entry. If the object do not properly form each bookmark object they are deemed corrupted. If the bookmark is corrupted, then only that specific bookmark cannot be loaded, the rest of the bookmark(s) will still be loaded if they are valid.
 
-*   **Code contributed:** [RepoSense](#https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#search=n3wsoldier&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=n3wsoldier&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+*   **Code contributed:** [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#search=n3wsoldier&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=n3wsoldier&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 *   **Documentation**
     *   User Guide:
-        *   Add documentation for the feature `bookmark`: [#193](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/193)
+        *   Add documentation for the feature `bookmark`: [#193](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/193)
 
     *   Developer Guide:
-        *   Add implementation details of `bookmark` feature: [#201](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/201)
-        *   Contributed to the design and their write-ups of Command, AnimeData, User and Storage Manager Class diagram designs: [#174](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/174)
-        *   Contributed to manual testing of `bookmark` feature: [#271](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/271)
-        *   Contributed to user stories: [#215](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/215)
+        *   Add implementation details of `bookmark` feature: [#201](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/201)
+        *   Contributed to the design and their write-ups of Command, AnimeData, User and Storage Manager Class diagram designs: [#174](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/174)
+        *   Contributed to manual testing of `bookmark` feature: [#271](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/271)
+        *   Contributed to user stories: [#215](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/215)
 
 *   **Team-based tasks**
     *   Created issues based on team's discussions and meeting
     *   Review and comment on PR by other team members 
-    *   Added comprehensive JUnit testing to increase code coverage [#183](#https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/183)
+    *   Added comprehensive JUnit testing to increase code coverage [#183](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/183)
 
 *   **Beyond Project Team Tasks**
     *   Review the Developer Guide of another team
