@@ -15,12 +15,11 @@
   * [Progress Tracker](#43-feature-progress-tracker)
   * [Category Management](#44-feature-category-management)
   * [Rating System for books](#45-feature-rating-system-for-books)
-- [Appendix: Requirements](#appendix-requirements)
-  * [Product Scope](#product-scope)
-  * [User Stories](#user-stories)
-  * [Non-Functional Requirments](#non-functional-requirements)
-  * [Glossary](#glossary)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix A: Product Scope](#appendix-a-product-scope)
+- [Appendix B: User Stories](#appendix-b-user-stories)
+- [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+- [Appendix D: Glossary](#appendix-d-glossary)
+- [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
   * [Launch and Shutdown](#launch-and-shutdown)
     + [Initial Launch](#initial-launch)
     + [Subsequent Launch](#subsequent-launch)
@@ -114,6 +113,7 @@ ________                __                .__  _____
 Welcome to Quotesify v2.1!
 Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
+----------------------------------------------------------------
 
 What would you like to do with Quotesify?
 ```
@@ -548,11 +548,10 @@ to inform the user and the method is returned.
 
 ---
 
-## Appendix: Requirements
+## Appendix A: Product Scope
 
-### Product scope
+### Target user profile
 
-#### Target user profile
 The intended user of Quotesify is someone that meets the following criterias:
 * reads a lot
 * has difficulty remembering content after reading them
@@ -561,7 +560,8 @@ The intended user of Quotesify is someone that meets the following criterias:
 * prefers using desktop applications
 * comfortable with using Command Line Interface (CLI) applications
 
-#### Value proposition
+### Value proposition
+
 * Helps user track books that they have read with their relevant review/rating
 * Allows user to capture and log quotes with their reflection
 * Timely quote reminders to resurface previously saved quotes
@@ -572,7 +572,7 @@ The intended user of Quotesify is someone that meets the following criterias:
 
 ---
 
-#### User Stories
+## Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that I ...|
 |--------|----------|---------------|------------------|
@@ -592,7 +592,8 @@ The intended user of Quotesify is someone that meets the following criterias:
 
 ---
 
-#### Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
+
 1. Should work on major Operating Systems (OS) with at least `Java 11` installed.
 2. A user should have no problems using the various commands without referring to the help page after some time.
 3. Users should prefer typing to GUI.
@@ -602,14 +603,15 @@ The intended user of Quotesify is someone that meets the following criterias:
 
 ---
 
-#### Glossary
+## Appendix D: Glossary
+
 * *GUI* - Graphical User Interface
 * *JAR file* - Java ARchive file
 * *Major OS* - Windows, Linux, OS-X
 
 ---
 
-## Appendix: Instructions for manual testing
+## Appendix E: Instructions for Manual Testing
 
 ### Launch and shutdown
 
@@ -629,9 +631,11 @@ The intended user of Quotesify is someone that meets the following criterias:
    1. To terminate Quotesify, enter the `bye` command. You should see the following:
    2. Data will be automatically saved into a data file.
 ```
+---------------------------------------------------------------
 Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
 Alright, have a nice day!
+---------------------------------------------------------------
 ```
 
 *Note: If you have added a quote before, the quote printed will be randomized.*
