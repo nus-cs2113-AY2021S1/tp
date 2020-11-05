@@ -257,7 +257,7 @@ note add
 
 What you should see:
 
-![notelist](./images/noteadd.png)
+![noteadd](./images/noteadd.png)
 
 ### 3.13. Deleting a note: `note delete`
 
@@ -270,7 +270,7 @@ note delete
 
 What you should see:
 
-![notelist](./images/notedelete.png)
+![notedelete](./images/notedelete.png)
 
 ### 3.14. Listing out notes: `note list`
 
