@@ -27,9 +27,9 @@
 <br/>&nbsp;4.3  [View Anime Information Feature](#43-view-anime-information-feature)
 <br/>&nbsp;4.4  [Workspace Feature](#44-workspace-feature)
 <br/>&nbsp;4.5  [Watchlist Management Feature](#45-watchlist-management-feature)
-<br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist)
-<br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist)
-<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-all-anime-in-watchlist)
+<br/>&nbsp;4.6  [Add To Watchlist Feature](#46-add-to-watchlist-feature)
+<br/>&nbsp;4.7  [Remove From Watchlist Feature](#47-remove-from-watchlist-feature)
+<br/>&nbsp;4.8  [View Anime In Watchlist Feature](#48-view-anime-in-watchlist-feature)
 <br/>&nbsp;4.9  [Bookmark Feature](#49-bookmark-feature)
 
 5.  [Documentation, Logging, Testing, and DevOps](#5-documentation-logging-testing-and-devops)
