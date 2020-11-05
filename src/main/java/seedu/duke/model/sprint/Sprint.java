@@ -137,7 +137,7 @@ public class Sprint implements JsonableObject {
             sprintInString.append(String.format("[No allocated tasks]%n"));
         } else {
             for (int taskIds : taskList) {
-                Task task = owner.getTaskList().getTask(taskIds);
+                Task task = owner.getBacklog().getTask(taskIds);
                 sprintInString.append(task.toString());
             }
         }

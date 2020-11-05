@@ -22,7 +22,7 @@ public class ChangeTaskPriorityCommandTest {
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
-        String setupPriority = projectList.getSelectedProject().getTaskList()
+        String setupPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("High priority", setupPriority);
 
@@ -35,35 +35,35 @@ public class ChangeTaskPriorityCommandTest {
         parameters.put("priority", "medIum");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
 
-        String outputPriority = projectList.getSelectedProject().getTaskList()
+        String outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Medium priority", outputPriority);
 
         parameters.put("priority", "lOW");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
 
-        outputPriority = projectList.getSelectedProject().getTaskList()
+        outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Low priority", outputPriority);
 
         parameters.put("priority", "MEDIUM");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
 
-        outputPriority = projectList.getSelectedProject().getTaskList()
+        outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Medium priority", outputPriority);
 
         parameters.put("priority", "higH");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
 
-        outputPriority = projectList.getSelectedProject().getTaskList()
+        outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("High priority", outputPriority);
 
         parameters.put("priority", "Medium");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
 
-        outputPriority = projectList.getSelectedProject().getTaskList()
+        outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Medium priority", outputPriority);
     }
@@ -81,7 +81,7 @@ public class ChangeTaskPriorityCommandTest {
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
-        String setupPriority = projectList.getSelectedProject().getTaskList()
+        String setupPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("High priority", setupPriority);
 
@@ -91,7 +91,7 @@ public class ChangeTaskPriorityCommandTest {
         parameters.put("priority", "very high");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
 
-        String outputPriority = projectList.getSelectedProject().getTaskList()
+        String outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("High priority", outputPriority);
     }

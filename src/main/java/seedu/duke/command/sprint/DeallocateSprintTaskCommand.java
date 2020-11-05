@@ -53,9 +53,9 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
             for (String userId : this.userIds) {
                 Member mem = this.projOwner.getProjectMember().getMember(userId.trim());
                 mem.deallocateTask(taskId);
-                this.projOwner.getTaskList().getTask(taskId).removeFromMember(mem.getUserId());
+                this.projOwner.getBacklog().getTask(taskId).removeFromMember(mem.getUserId());
             }
-            Ui.showToUserLn(this.projOwner.getTaskList().getTask(taskId).getTitle()
+            Ui.showToUserLn(this.projOwner.getBacklog().getTask(taskId).getTitle()
                     + " is removed from "
                     + Arrays.toString(this.userIds));
         }
@@ -83,7 +83,7 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
      */
     private void checkAllocation() throws DukeException {
         for (int taskId : this.taskIds) {
-            Task task = this.projOwner.getTaskList().getTask(taskId);
+            Task task = this.projOwner.getBacklog().getTask(taskId);
             List<String> chosenMember = Arrays.asList(this.userIds);
             if (!task.getMemberList().containsAll(chosenMember)) {
                 throw new DukeException("Not all Tasks are allocated to member: " + Arrays.toString(this.userIds));

@@ -36,13 +36,13 @@ public class ViewTaskCommand extends TaskCommand {
                 Task task;
                 int taskId = Integer.parseInt(parameters.get(Integer.toString(i)));
 
-                if (taskId <= proj.getTaskList().getNextId() && taskId > 0) {
+                if (taskId <= proj.getBacklog().getNextId() && taskId > 0) {
                     if (!validTask) {
                         Ui.showToUserLn("The details of the tasks are as follows: ");
                         validTask = true;
                     }
 
-                    task = proj.getTaskList().getTask(taskId);
+                    task = proj.getBacklog().getTask(taskId);
                     Ui.showToUserLn(task.toString());
                 } else {
                     Ui.showError("The following task ID: " + taskId

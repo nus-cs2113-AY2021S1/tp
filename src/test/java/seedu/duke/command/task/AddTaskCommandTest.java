@@ -25,20 +25,20 @@ public class AddTaskCommandTest {
 
         new AddTaskCommand(parameters, projectList).execute();
 
-        String outputDescription = projectList.getSelectedProject().getTaskList()
+        String outputDescription = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getDescription();
 
-        String outputTitle = projectList.getSelectedProject().getTaskList()
+        String outputTitle = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getTitle();
 
-        String outputPriority = projectList.getSelectedProject().getTaskList()
+        String outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
 
         assertEquals("a", outputTitle);
         assertEquals("b", outputDescription);
         assertEquals("High priority", outputPriority);
 
-        boolean outputDone = projectList.getSelectedProject().getTaskList()
+        boolean outputDone = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getDone();
 
         assertFalse(outputDone);
@@ -56,7 +56,7 @@ public class AddTaskCommandTest {
 
         new AddTaskCommand(parameters, projectList).execute();
 
-        Task task = projectList.getSelectedProject().getTaskList().getTask(1);
+        Task task = projectList.getSelectedProject().getBacklog().getTask(1);
         assertNull(task);
     }
 
@@ -73,7 +73,7 @@ public class AddTaskCommandTest {
         new AddTaskCommand(parameters, projectList).execute();
         new AddTaskCommand(parameters, projectList).execute();
 
-        Task task = projectList.getSelectedProject().getTaskList().getTask(2);
+        Task task = projectList.getSelectedProject().getBacklog().getTask(2);
         assertNull(task);
     }
 }

@@ -37,8 +37,8 @@ public class ChangeTaskPriorityCommand extends Command {
 
         Project proj = projectListManager.getSelectedProject();
         try {
-            task = proj.getTaskList().getTask(id);
-            if (!proj.getTaskList().checkValidPriority(priority)) {
+            task = proj.getBacklog().getTask(id);
+            if (!proj.getBacklog().checkValidPriority(priority)) {
                 Ui.showError("Invalid priority!");
                 return;
             }

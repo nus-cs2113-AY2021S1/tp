@@ -22,7 +22,7 @@ public class DoneTaskCommandTest {
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
-        boolean isSetupDone = projectList.getSelectedProject().getTaskList()
+        boolean isSetupDone = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getDone();
 
         assertFalse(isSetupDone);
@@ -31,7 +31,7 @@ public class DoneTaskCommandTest {
         parameters.put("0", "1");
         new DoneTaskCommand(parameters, projectList).execute();
 
-        boolean isDone = projectList.getSelectedProject().getTaskList()
+        boolean isDone = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getDone();
 
         assertTrue(isDone);
@@ -50,7 +50,7 @@ public class DoneTaskCommandTest {
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
-        boolean isSetupDone = projectList.getSelectedProject().getTaskList()
+        boolean isSetupDone = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getDone();
 
         assertFalse(isSetupDone);
@@ -60,7 +60,7 @@ public class DoneTaskCommandTest {
         parameters.put("0", "0");
         new DoneTaskCommand(parameters, projectList).execute();
 
-        boolean isDone = projectList.getSelectedProject().getTaskList()
+        boolean isDone = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getDone();
 
         assertFalse(isDone);

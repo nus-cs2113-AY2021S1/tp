@@ -38,8 +38,8 @@ public class DoneTaskCommand extends Command {
                 if (taskId <= 0) {
                     Ui.showError("The ID: " + taskId + " is invalid. "
                             + "Please enter a positive integer.");
-                } else if (taskId <= proj.getTaskList().getNextId()) {
-                    task = proj.getTaskList().getTask(taskId);
+                } else if (taskId <= proj.getBacklog().getNextId()) {
+                    task = proj.getBacklog().getTask(taskId);
                     task.setAsDone();
                     Ui.showToUserLn("The task ID: " + task.getId()
                             + " and title: " + task.getTitle() + " has been marked as done.");

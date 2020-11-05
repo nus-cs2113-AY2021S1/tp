@@ -24,7 +24,7 @@ public class DeleteTaskCommandTest {
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
-        String outputTitle = projectList.getSelectedProject().getTaskList()
+        String outputTitle = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getTitle();
 
         assertEquals("a", outputTitle);
@@ -34,7 +34,7 @@ public class DeleteTaskCommandTest {
         parameters.put("0", "1");
         new DeleteTaskCommand(parameters, projectList).execute();
 
-        Task task = projectList.getSelectedProject().getTaskList().getTask(1);
+        Task task = projectList.getSelectedProject().getBacklog().getTask(1);
         assertNull(task);
     }
 }
