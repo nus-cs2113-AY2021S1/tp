@@ -135,7 +135,7 @@ Its main roles are:
 <a name="parser"></a>
 ### Parser component
 
-![]()
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram%20new.png?raw=true)
 *<center/> Figure 1.3 Class diagram of Parser </center> <br/></br>*
 
 
@@ -338,6 +338,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 *<center/>Figure 2.06 Activity diagram for ShowTimetableCommand</center> <br/></br>*
 
 
+
 #### Design consideration:
 
 ##### Aspect: What keyword for the user to input to get show timetable feature.
@@ -356,7 +357,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Less user-friendly. Users have to type an additional phrase to show their timetable. Experienced users
     whom can memorise the command would not encounter the error message of Alternative 1, thus would find typing the
     additional keyword troublesome.
-
 
 <a name="add-module-slot"></a>
 ### Add Module and Slot feature (Xing Rong)
