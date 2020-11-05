@@ -53,6 +53,10 @@ public class CommandAddMember extends Command {
         }
         String standardName = standardizeMemberName(savedInput.getArg("n"));
         Member test = findMemberByName(standardName);
+        String [] email = savedInput.getArg("e").split(" ");
+        if (email.length > 1) {
+            return "Your email address must be a whole string.\n";
+        }
         if (test == null) {
             Member m = new Member(standardName, phone, savedInput.getArg("e"), savedInput.getArg("r"));
             output = MemberList.addToList(m);

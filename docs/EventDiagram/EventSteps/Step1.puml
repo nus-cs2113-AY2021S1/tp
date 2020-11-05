@@ -9,8 +9,9 @@ package EventList0 {
     class State1 as " "
 }
 package EventList1 {
-    class State2 as "Event \narduino course 30 Dec 2020 8pm"
+    class State2 as "Event \narduino course Dec 30  2020 18-00"
 }
+
 
 package EventList2 {
     class State00 as " "

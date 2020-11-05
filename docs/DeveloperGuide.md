@@ -13,7 +13,7 @@
   * [3.4. Event](#34-event)
   * [3.5. HR](#35-hr)
   * [3.6. Storage](#36-storage)
-- [4. Product scope](#4-product-scope)
+- [4. Product Scope](#4-product-scope)
   * [4.1. Target user profile](#41-target-user-profile)
   * [4.2. Value proposition](#42-value-proposition)
 - [5. User Stories](#5-user-stories)
@@ -126,6 +126,7 @@ Aspect: `Command` resolution and validation
 [Return to top](#CCA-manager-developer-guide)
 
 ### 3.3. Finance  
+(by: Wang Zixin)  
 The diagram below shows the architecture of Finance feature:  
 ![Architecture of Finance](financeDiagramPic/Architecture.png)  
 
@@ -162,12 +163,13 @@ The sequence diagram for deleting a finance log entry is shown below:
 ![](financeDiagramPic/CommandFinanceDel.png)  
 
 **3.3.1.2. Design Considerations**  
-Aspect: User input format for adding a finance log entry
+Aspect: User input format for adding a finance log entry  
 *Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
     *Pros: It is more convenient for the user to type commands and easier to memorize the command format.  
     *Cons: It takes longer time to execute the command for the program has to identify which part is ITEM_NAME and which part is
     ITEM_VALUE. If the user inputs a separate number for ITEM_NAME but forgets to type ITEM_VALUE, then the program will mistake 
-    the separate number in ITEM_NAME for its ITEM_VALUE.  
+    the separate number in ITEM_NAME for its ITEM_VALUE. For example, if the user just input `finance summary iphone 12` but forgot to
+    type the price, then the finance log entry will become `iphone $12`.    
 *Alternative 2: The user inputs command in format of "finance addLog /n ITEM_VALUE /v ITEM_VALUE".  
     *Pros: The program can easily detect if the input command is valid.  
     *Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
@@ -249,23 +251,31 @@ The sequence diagram of changing information of a finance log entry is shown bel
 
 
 [Return to top](#CCA-manager-developer-guide)
+
 ### 3.4. Event
+
+(By: Varsha)<br/>
 The diagrams below shows the architecture for Event feature. 
 
-Diagram 1: Event Commands
+
+Diagram 1: Event Architecture
+
+![](EventDiagram/EventArchi2.png)
+
+Diagram 2: Event Commands
+
 ![](EventDiagram/EventArchi1.png)
 
-Diagram 2: Event Architecture
-![](EventDiagram/EventArchi2.png)
 
 There are a total of 6 commands under Event feature.
  `CommandEventAdd`, `CommandEventDel`, `CommandEventList`  ,`CommandEventStatus`, `CommandSearchEvent` , `CommandEventCountdown` , `CommandAddEventAttendance`,`CommandDelEventAttendance`, `CommandViewEventAttendence`. 
- They are packaged under EventCommands as shown in diagram 1.
+ They are packaged under EventCommands as shown above in Diagram 1.
  
  The implementation for each Event command is described in detail below.
                                                              
 **3.4.1. Add/delete events feature** `CommandEventAdd` , `CommandEventDel` 
 
+(By: Varsha)<br/>
 **3.4.1.1. Current Implementation** <br/>
 
 The `CommandEventAdd` class in `seedu.duke.event` handles the adding of events. According to the `userInput`, it adds a new event to the `EventList`. 
@@ -273,8 +283,11 @@ The `CommandEventDel` class in the same package handles deleting of a event. It 
 They implement the following operations:  
 * `CommandEventAdd#execute()` - Adds a new event into the `EventList` according to `userInput`.  
 * `CommandEventDel#execute()` - Deletes an event from `EventList` or deletes all the events in the list. 
-To delete a particular event, enter the index of the event.
-To delete all the events in the list, enter `all` instead of the index of the event.
+ 
+Note: To delete a particular event, enter the index of the event. For example, `event delEvent 2` <br/>
+Note: To delete all the events in the list, enter `all` instead of the index of the event. For example, `event delEvent all` <br/>
+Note: When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
+      to the event list. <br/>
 
 Given below is an example usage scenario and how add/delete event function behaves at each step.  
 
@@ -283,7 +296,7 @@ Step 1. The user launches the application for the first time.
 ![](EventDiagram/EventSteps/Step1.png)
 
 Step 2. The user executes `event addEvent /n arduino course /d 2020-12-30 /t 18-00` command to add a new event with the name "arduino course", 
-the date of the event "2020-12-30" and the time "8pm" into event list. 
+the date of the event "2020-12-30" and the time "18-00" into event list. 
 The `event addEvent` command calls `CommandEventAdd#execute()`, then `EventList` will add a new `Event` with event name as `arduino course`, date as `2020-12-30` and time as `18-00`.  
 
 ![](EventDiagram/EventSteps/Step2.png)
@@ -297,7 +310,12 @@ The sequence diagram for adding an event is as shown below:
 
 ![CommandEventAdd](EventDiagram/SequenceDiagram/CommandEventAdd.png)
 
+The sequence diagram for deleting a particular event or all events is as shown below:
+
+![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
+
 **3.4.1.2. Design Considerations** <br/>
+
 Aspect : User input format for adding an event <br/>
 
 *Alternative 1 (current choice) : The user will input the command in the format `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`. <br/>
@@ -308,13 +326,12 @@ Aspect : User input format for adding an event <br/>
 *pros: It is more convenient for the user to type commands and easier to memorise the command format. <br/>
 *cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered. <br/>
 
-The sequence diagram for deleting a particular event or all events is as shown below:
-
-![CommandEventDelete](EventDiagram/SequenceDiagram/CommandEventDelete.png)
 
 **3.4.2. Listing Events** `CommandEventList`
 
+(By: Varsha)<br/>
 **3.4.2.1 Current implementation**
+
 The `CommandEventList` class in `seedu.duke.event` handles listing all the events in `EventList`.
 
 It implements the following operation:  
@@ -322,17 +339,18 @@ It implements the following operation:
 
 Given below is an example usage scenario and how the program list the events.  
 
-Step 1. After some `Event addEvent` commands, the user has created a `EventList` with some `Event`. Assuming there are 2 events in the list.
-The first `Event` has the name arduino course on 30 December 2020 at 8pm and the second `Event` has the name Autodesk course on 25 May 2021 from 10-12pm.
+Step 1. Assume there are 2 `Event` in the `EventList`.
+The first `Event` has the name arduino course on 30 December 2020 at 18-00 and the second `Event` has the name Autodesk course on 25 May 2021 from 12-00.
 
 ![](EventDiagram/EventSteps/2Step1.png)
 
 Step 2.The user executes `event listEvent` command to list the `EventList`. The `event listEvent` command calls 
 `CommandEventList#execute()`, then every `Event` in `EventList` will be printed out. Nothing will be changed in `EventList`.  
 
-![](EventDiagram/EventSteps/Step2.png)
+![](EventDiagram/EventSteps/2Step2.png)
 
 **3.4.2.2. Design Considerations** <br/>
+
  Aspect: Repeated items  <br/>
  *Alternative 1 (Current Choice): `event listEvent` command will only list unique events present in the list. It will not show repeated events.
  When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
@@ -349,6 +367,7 @@ The sequence diagram for listing events is as shown below:
 
 **3.4.3. Searching for an event via name or date** `CommandSearchEvent`
 
+(By: Varsha)<br/>
 **Current Implementation**
 The `CommandSearchEvent` class in `seedu.duke.event` handles searching of an event via its name or its date.
 
@@ -363,8 +382,10 @@ It implements the following operation:
  
 **3.4.4. Displaying countdown to upcoming events** `CommandEventCountdown`
 
+(By: Varsha)<br/>
 **Current Implementation**
-The `CommandEventCountdown` class in `seedu.duke.event` handles displays the countdown as an additional feature in the eventlist.
+
+The `CommandEventCountdown` class in `seedu.duke.event` handles displaying of countdown as an additional feature in the `EventList`.
  
 It implements the following operation:
 *`CommandEventCountdown#execute()` -  displays countdown feature for all upcoming `Event` in the `EventList`.
@@ -375,7 +396,9 @@ The sequence diagram for displaying countdown is as shown below:
 
 **3.4.5. Mark an event as completed** `CommandEventStatus`
 
+(By: Varsha)<br/>
 **Current Implementation**
+
 The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
  
 It implements the following operation:
@@ -438,17 +461,17 @@ Given below is an example usage scenario and how the program list the participan
 Step 1. After a `event addEvent` commands, the user has created a `EventList` with a `Event`. 
         The`Event` has the name arduino course on 30 December 2020 at 8pm.
         
-![](EventDiagramPic/7Step1.png)
+![](EventDiagram/EventSteps/7Step1.png)
 
 Step 2. After some `hr addMember` commands, the user created a `MemberList` with some `Member`. Assuming there are 2 members in the list.
         The first `Member` has the name "John Sterling" with phone number "12345678", email "123@gmail.com", role "member".
         The second `Member` has the name "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president". <br/>
         
-![](EventDiagramPic/7Step2.png)
+![](EventDiagram/EventSteps/7Step2.png)
 
 Step 3. After some `event addAttendance` commands, the user created a `MemberList` with some `Member`. Assuming the 2 participants in the event participants list are the 2 members in the `MemberList`.
         
-![](EventDiagramPic/7Step3.png)
+![](EventDiagram/EventSteps/7Step3.png)
 
 Step 4.The user executes `event listAttendance` command to list the event participants list. The `event listAttendance` command calls 
 `CommandViewEventAttendance#execute()`, then every `Member` in event participants list of the `Event` will be printed out. Nothing will be changed in the event participants list.  
@@ -643,7 +666,7 @@ Aspect: The format of the file
     
 [Return to top](#CCA-manager-developer-guide)
 
-## 4. Product scope
+## 4. Product Scope
 ### 4.1. Target user profile
 
 Our product targets people who manage interest groups and CCAs. 
@@ -660,6 +683,8 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 [Return to top](#CCA-manager-developer-guide)
 ## 5. User Stories
 
+(By: Varsha)
+
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|user|add/delete members to the list |keep track of the members in the CCA|
@@ -673,8 +698,12 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v2.0|user|view the list of contacts of the prof/admin|so that i know how to contact them for admin matters|
 |v2.0|user|reassign member roles |so that I can update their roles and responsibilities|
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
+|v2.0|user|take attendence | so that I can keep track of members participation in the club|
+|v2.0|user|view members absence rate | so that I can identify members with low participation rate|
+|v2.0|user| import other csv files | So that I can transfer my existing data into the program easily|
 
 [Return to top](#CCA-manager-developer-guide)
+
 ## 6. Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
@@ -685,7 +714,11 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 [Return to top](#CCA-manager-developer-guide)
 ## 7. Glossary
 
-* *glossary item* - Definition
+CCA - Co-curricular Activity <br/>
+CLI - Command Line interface <br/>
+UML - Unified Modelling Language <br/>
+CSV - Comma-seperated values <br/>
+OS - Operating Systems  <br/>
 
 [Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing
@@ -716,7 +749,8 @@ This section contains information on how to test CCA Manager to ensure that the 
 16. Type `event listAttendance /n Autodesk course` to view the event attendance
 17. Type `event delAttendance /n Autodesk course /m Harry Potter` to delete the attendance record
 17. Clean up the entries by deleting them
-    * Use `event delEvent 1` to remove the event
+    * Use `event delEvent 1` to remove an event
+    * Use `event delEvent all` to remove all events
     * Use `finance dellog 1` to remove the finance log
     * Use `hr delMember 1` to remove the member
 18. Type `bye` to exit the program

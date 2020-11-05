@@ -3,6 +3,7 @@ package seedu.duke.event;
 import seedu.duke.Command;
 import seedu.duke.backend.UserInput;
 
+
 public class CommandEventList extends Command {
     private UserInput userInput;
 

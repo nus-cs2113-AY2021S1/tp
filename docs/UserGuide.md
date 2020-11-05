@@ -1,10 +1,12 @@
 # User Guide
 ![](CCAManager_logo.png) 
+
 # Table of contents
-- [1. Introduction](#1introduction)
+
+- [1. Introduction](#1-introduction)
 - [2. About this User Guide](#2-about-this-user-guide)
-- [3. Quick Start](#3quick-start)
-- [4. Features](#4features)
+- [3. Quick Start](#3-quick-start)
+- [4.Features](#4features)
     - [Command Format](#command-format)
   - [4.1 Help `help`](#41-help-help)
   - [4.2 Exit the program: `bye`](#42-exit-the-program-bye)
@@ -26,26 +28,29 @@
     - [Search for an Event `search`](#search-for-an-event-search)
     - [Add a participant to an event: `addAttendance`](#add-a-participant-to-an-event-addattendance)
     - [Delete a participant from an event: `delAttendance`](#delete-a-participant-from-an-event-delattendance)
-    - [List events: `listAttendance`](#list-participants-in-an-event-listattendance)
+    - [List participants in an event: `listAttendance`](#list-participants-in-an-event-listattendance)
   - [4.5 Finance features `finance`](#45-finance-features-finance)
-    - [4.5.1 Add finance log entry: `addLog`](#add-finance-log-entry-addlog)
-    - [4.5.2 Delete finance log entry: `delLog`](#delete-finance-log-entry-dellog)
-    - [4.5.3 View financial summary: `summary`](#view-financial-summary-summary)
-  - [4.6 Importing features](#46-import)
+    - [4.5.1 Add finance log entry: `addLog`](#451-add-finance-log-entry-addlog)
+    - [4.5.2 Delete finance log entry: `delLog`](#452-delete-finance-log-entry-dellog)
+    - [4.5.3 View financial summary: `summary`](#453-view-financial-summary-summary)
+    - [4.5.4 Change finance log entry information: `changeLog`](#454-change-finance-log-entry-information-changelog)
+  - [4.6 Import](#46-import)
+  - [4.7 Saving the data](#47-saving-the-data)
 - [5. FAQ](#5-faq)
 - [6. Command Summary](#6-command-summary)
 - [7. Glossary](#7-glossary)
 
-## 1.Introduction
+## 1. Introduction
 
 Welcome to **CCA Manager!**
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 ### 2. About this User Guide 
+(By:Varsha)
+
 This user guide provides a quick start guide for you to easily setup install CCA manager, 
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
 To navigate between the different sections, you could use the table of contents above.
-
 
 Additionally, throughout this user guide, there will be various icons used as described below:
 > :bulb: This symbol denotes a tip which you might find useful when using the application.
@@ -56,7 +61,8 @@ Additionally, throughout this user guide, there will be various icons used as de
 
 > : [Hyperlinked]() : Leads you to the appropriate section
 
-## 3.Quick Start
+## 3. Quick Start
+(By:Varsha)
 
 This user guide provides a quick start guide for you to easily setup install CCA manager, 
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
@@ -68,7 +74,10 @@ To navigate between the different sections, you could use the table of contents 
   
  :two: Download the latest version of CCA manager from  [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/releases) <br>
  
- :three: Run the program by entering java -jar cca.java in a terminal.
+ :three: Navigate to the folder where you downloaded CCA Manager. Run the program by entering `java -jar CCAManager.jar` in a terminal. As seen in the figure below, the red arrow points to where you have to type in commands.
+ 
+ ![](userGuidePic/terminal.PNG)
+ 
   > :information_source: Please resize the terminal to full screen mode 
 
 You will see this welcome message if you have done the above steps correctly. <br/>
@@ -76,6 +85,7 @@ You will see this welcome message if you have done the above steps correctly. <b
 ![Welcome Message](userGuidePic/welcomeMessage.PNG)
 
 ## 4.Features 
+
 This section will show the features of our program in detail.
 You can follow along as we go through each of the features if you are starting out, or skip ahead to the Command Summary
 to see the commands of all features at a glance.
@@ -94,7 +104,7 @@ Expected Outcome:
 ![helpCommand](userGuidePic/helpCommand.PNG)
 
 ### 4.2 Exit the program: `bye` 
-Exits the program.
+Exits the program. <br/>
 Format: `bye`
 
 ### 4.3 HR features `HR` 
@@ -165,8 +175,9 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
 
 #### search members: `search`  
-Search the members whose information matches user input. If a member's information 
-matches any of the conditions that the user inputs, 
+(by: Wang Zixin)  
+Search the members whose information matches user input.  
+:bulb: If a member's information matches any of the conditions that the user inputs, 
 it will return this member.  
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
 
@@ -187,8 +198,9 @@ Expected outcomes:
 
 
 #### view contacts of prof/admin: `list prof&admin`  
-List the contacts of the professors and administrators. Professors and administrators are roles
-of members.  
+(by: Wang Zixin)  
+List the contacts of the professors and administrators.  
+:bulb: Professor/prof and administrator/admin are roles of members.  
 Format: `hr list prof&admin`  
 
 Shorthand format:  
@@ -206,7 +218,9 @@ Expected outcome:
 
 
 #### view contacts of connections: `list connections`  
-List the contacts of connections(alumni, speakers). Alumni and speakers are roles of members.  
+(by: Wang Zixin)  
+List the contacts of connections(alumni, speakers).  
+:bulb: Alumni and speaker are roles of members.  
 Format: `hr list connections`  
 
 Shorhand format:  
@@ -224,13 +238,16 @@ Expected outcome:
 
 
 ### 4.4 Event features`event` 
+(By:Varsha)
+
 #### Add an event: `addEvent`
 Adds an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
- > :information_source The EVENT_INDEX refers to the index number shown in the list of events.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
-
+> :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
+> :information_source: The EVENT_DATE entered should be in the format YYYY-MM-DD. <br/>
+> :information_source: The EVENT_TIME entered should be in the 24-hour clock format. <br/>
 
 Shorthand Command : <br/>
 event --> e <br/>
@@ -250,13 +267,15 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
+(By:Varsha)
 
  Deletes an event from the list of events  <br/>
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
  Deletes the event at the specified EVENT_INDEX.<br/>
  
-![Symbol](userGuidePic/Symbol5.PNG)
- 
+> :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
+> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
+
  Shorthand Command : <br/>
  event --> e <br/>
  addEvent --> del/d <br/>
@@ -274,6 +293,8 @@ Expected Outcome:
  [Return to the top](#user-guide)
 
 #### Clear all events: `delEvent all`
+(By:Varsha)
+
 Clear all events from the list of events <br/>
 Format to clear all events in the list: `event delEvent all`
 
@@ -284,7 +305,7 @@ Shorthand Command : <br/>
 event --> e <br/>
 delEvent --> del/d <br/>
 
- > :information_source A confirmation message will be prompted. To clear, type `Y` in terminal.
+> :information_source: A confirmation message will be prompted. To clear, type `Y` in terminal.
 
 Expected Outcome:
 
@@ -293,6 +314,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### List events: `listEvent`
+(By:Varsha)
+
 Prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
 
@@ -312,6 +335,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Countdown events `countdown`
+(By:Varsha)
+
 lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
@@ -331,11 +356,13 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Mark an event as completed `done`
+(By:Varsha)
+
 Mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
- > :information_source The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
- > :information_source The EVENT_INDEX must be an integer greater than 0. <br/>
+> :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
+> :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
 Shorthand Command : <br/>
 event --> e <br/>
@@ -351,6 +378,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Search for an Event `search`
+(By:Varsha)
+
 Search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
@@ -375,7 +404,8 @@ Expected Outcome:
 #### Add a participant to an event: `addAttendance`
 Adds an event to the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
- > :information_source Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
+ 
+> :information_source: Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
 
 Example of usage: <br/>
  `event addAttendance /n arduino course /m peter`<br/>
@@ -419,6 +449,7 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 ### 4.5 Finance features `finance`  
+(by: Wang Zixin)  
 #### 4.5.1 Add finance log entry: `addLog`  
 Adds an entry into the finance log.  
 Format: `finance addLog ITEM_NAME ITEM_VALUE`  
@@ -487,7 +518,7 @@ Shorthand format:
 Example of usage:  
 `finance changeLog /i 1 /n buy cake 5.5`  
 
-Expected outcome:  
+Expected Outcome:  
 ![Example of usage](userGuidePic/FinanceChangeLog%20Outcome.png)  
 
 [Return to the top](#user-guide)
@@ -515,7 +546,26 @@ The expected outcome is as follows:
 
 [Return to the top](#user-guide)
 
+### 4.7 Saving the data
+(By:Varsha)
+
+CCA Manager saves all your data after every command. There is no need to save manually.
+
+[Return to the top](#user-guide)
+
 ## 5. FAQ
+
+This section details the frequently asked questions (FAQ) regarding the use of the application.
+
+**Q** How do I transfer my data to another computer? <br/>
+**A** Install CCA Manager in the other computer and overwrite the empty data files it creates with the file that contains the data from your previous computer. <br/>
+
+**Q** Is CCA Manager optimized for all Operating Systems(OS)? <br/>
+**A** CCA Manager id available for doenload on all major Operating Systems such as Windows, Mac and Linux.
+
+
+
+[Return to the top](#user-guide)
 
 ## 6. Command Summary
 
@@ -553,5 +603,7 @@ summary | `finance summary` |   -
 
 ## 7. Glossary
 
-
-
+CCA - Co-curricular Activity <br/>
+CSV - Comma-seperated values <br/>
+Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text. <br/>
+OS - Operating Systems <br/>

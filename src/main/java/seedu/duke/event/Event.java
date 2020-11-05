@@ -1,5 +1,6 @@
 package seedu.duke.event;
 
+import seedu.duke.DukeArgumentException;
 import seedu.duke.hr.Member;
 
 import java.time.DayOfWeek;
@@ -9,8 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-
 import static java.time.temporal.TemporalAdjusters.next;
+
+
 
 public class Event {
     protected String eventName;
@@ -145,6 +147,9 @@ public class Event {
         }
         if (start != null) {
             date = start.toLocalDate();
+        }
+        if (date == null) {
+            throw new RuntimeException();
         }
     }
 
