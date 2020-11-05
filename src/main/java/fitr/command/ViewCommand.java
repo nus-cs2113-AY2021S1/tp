@@ -54,26 +54,52 @@ public class ViewCommand extends Command {
 
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
-        if (command.equalsIgnoreCase(COMMAND_FOOD)) {
-            viewFood(listManager.getFoodList());
-        } else if (command.equalsIgnoreCase(COMMAND_EXERCISE)) {
-            viewExercise(listManager.getExerciseList());
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummary(listManager.getFoodList(), listManager.getExerciseList());
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(" ")[1]);
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
-            viewBmi(user);
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
-            viewProfile(user);
-        } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
-            viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_EXERCISE)) {
-            viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_FOOD)) {
-            viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
-        } else {
+        switch (command.split(" ")[0]) {
+        case COMMAND_FOOD:
+            if (command.split(" ").length == 2) {
+                viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
+            } else {
+                viewFood(listManager.getFoodList());
+            }
+            break;
+        case COMMAND_EXERCISE:
+            if (command.split(" ").length == 2) {
+                viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
+            } else {
+                viewExercise(listManager.getExerciseList());
+            }
+            break;
+        case COMMAND_VIEW_SUMMARY:
+            if (command.split(" ").length == 2) {
+                viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(" ")[1]);
+            } else {
+                viewSummary(listManager.getFoodList(), listManager.getExerciseList());
+            }
+            break;
+        case COMMAND_VIEW_BMI:
+            if (command.split(" ").length == 2) {
+                Ui.printFormatError("Extra parameters");
+            } else {
+                viewBmi(user);
+            }
+            break;
+        case COMMAND_VIEW_PROFILE:
+            if (command.split(" ").length == 2) {
+                Ui.printFormatError("Extra parameters");
+            } else {
+                viewProfile(user);
+            }
+            break;
+        case COMMAND_GOAL:
+            if (command.split(" ").length == 2) {
+                Ui.printFormatError("Extra parameters");
+            } else {
+                viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
+            }
+            break;
+        default:
             Ui.printFormatError(COMMAND_VIEW);
+            break;
         }
     }
 

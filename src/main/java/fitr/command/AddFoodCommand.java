@@ -44,15 +44,16 @@ public class AddFoodCommand extends Command {
                         + "Calorie Consumed: " + amountOfCalories.get()
                 );
             } else if (command.split(" ").length == 2) {
-                Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0])
-                        * Integer.parseInt(command.split(" ")[1]));
-                int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
-                if (amountOfCalories.get() < 0) {
+                String individualCalorie = command.split(" ", 2)[0];
+                if (!individualCalorie.matches("\\d+")) {
                     throw new NumberFormatException();
                 }
-                if (amountOfFood < 0) {
+                if (!command.split(" ", 2)[1].matches("\\d+")) {
                     throw new FitrException();
                 }
+                int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
+                Calorie amountOfCalories = new Calorie(Integer.parseInt(individualCalorie)
+                        * amountOfFood);
                 listManager.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
                 storageManager.writeFoodList(listManager.getFoodList());
                 Ui.printCustomMessage(ECHO_ADDED_FOOD
@@ -66,7 +67,7 @@ public class AddFoodCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printFormatError(COMMAND_FOOD);
         } catch (FitrException e) {
-            Ui.printCustomError("Sorry, the amount of food has to be a positive number");
+            Ui.printCustomError("Sorry, quantity should be a positive integer!");
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
         }

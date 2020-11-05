@@ -64,6 +64,9 @@ public class Parser {
         case Commands.COMMAND_CLEAR:
             return new ClearCommand(arguments);
         case Commands.COMMAND_BYE:
+            if (arguments.length() != 0) {
+                return new InvalidCommand("Extra parameters");
+            }
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
             return new AddGoalCommand(arguments);
