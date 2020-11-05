@@ -29,9 +29,6 @@ public class NoteCommandTest {
 
     @Nested
     class TestCreateNote {
-        UserData data = new UserData();
-        Ui ui = new Ui();
-        Storage storage = new Storage("data", ui);
 
         @BeforeEach
         public void setUp() {
@@ -43,6 +40,9 @@ public class NoteCommandTest {
 
         @Test
         void execute_CreateNote_printSuccessfulCreate() throws DukeException {
+            UserData data = new UserData();
+            Ui ui = new Ui();
+            Storage storage = new Storage("data", ui);
             String input = "personal sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
@@ -75,6 +75,11 @@ public class NoteCommandTest {
             }
             String withoutTimestamp = actualString.toString();
             assertEquals(expected, withoutTimestamp);
+        }
+
+        @AfterEach
+        public void tearDown() {
+            System.setOut(standardOut);
         }
     }
 

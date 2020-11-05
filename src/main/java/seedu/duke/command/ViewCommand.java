@@ -40,19 +40,17 @@ public class ViewCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        try {
-            parseUserCommand(command);
-            EventList list = data.getEventList(event);
-            Event eventRequested = list.getEventByIndex(index - 1);
-            if (eventRequested != null) {
-                ArrayList<String> existingNotes = eventRequested.getNotes();
-                ui.printViewNote(existingNotes);
-            } else {
-                throw new InvalidListException("No such event type");
-            }
-        } catch (InvalidIndexException e) {
+
+        parseUserCommand(command);
+        EventList list = data.getEventList(event);
+        Event eventRequested = list.getEventByIndex(index - 1);
+        if (eventRequested != null) {
+            ArrayList<String> existingNotes = eventRequested.getNotes();
+            ui.printViewNote(existingNotes);
+        } else {
             throw new InvalidIndexException("Error, no such index is available!");
         }
+
     }
 
     private void parseUserCommand(String command) throws DukeException {

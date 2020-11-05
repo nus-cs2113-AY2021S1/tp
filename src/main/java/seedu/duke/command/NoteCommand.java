@@ -47,26 +47,22 @@ public class NoteCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        try {
-            parseUserCommand(command);
-            EventList list = data.getEventList(event);
-            Event eventRequested = list.getEventByIndex(index - 1);
-            if (eventRequested != null) {
-                ui.printMessage("Please type in your notes."
-                        + " To stop note taking, ensure that you are in a new line"
-                        + " and type 'noteend', and press enter");
-                ArrayList<String> existingNotes = eventRequested.getNotes();
-                ArrayList<String> additionalNotes = getNotesFromUser(ui);
-                ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
-                eventRequested.setNotes(updatedNotes);
-                ui.printNoteMessage(eventRequested, updatedNotes);
-            } else {
-                throw new InvalidListException("No such event type");
-            }
-            storage.saveFile(storage.getFileLocation(list.getName()), data, list.getName());
-        } catch (InvalidIndexException e) {
+        parseUserCommand(command);
+        EventList list = data.getEventList(event);
+        Event eventRequested = list.getEventByIndex(index - 1);
+        if (eventRequested != null) {
+            ui.printMessage("Please type in your notes."
+                    + " To stop note taking, ensure that you are in a new line"
+                    + " and type 'noteend', and press enter");
+            ArrayList<String> existingNotes = eventRequested.getNotes();
+            ArrayList<String> additionalNotes = getNotesFromUser(ui);
+            ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
+            eventRequested.setNotes(updatedNotes);
+            ui.printNoteMessage(eventRequested, updatedNotes);
+        } else {
             throw new InvalidIndexException("Error, no such index is available!");
         }
+        storage.saveFile(storage.getFileLocation(list.getName()), data, list.getName());
     }
 
     /**
