@@ -46,10 +46,10 @@ public class Fitr {
         while (!isExit) {
             System.out.print("> ");
             String userInput = Ui.read();
-            System.out.println("-".repeat(100));
+            System.out.println("-".repeat(136));
             Command c = Parser.parse(userInput);
             c.execute(listManager, storageManager, user, recommender);
-            System.out.println("-".repeat(100));
+            System.out.println("-".repeat(136));
             isExit = c.isExit();
         }
         Ui.printExitMessage();

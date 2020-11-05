@@ -27,6 +27,9 @@ This quick start section provides a step-by-step procedure to get you started wi
 2. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
 3. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
 4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
+
+> :bulb: Please resize your window to ensure that the separator lines are not wrapped.
+
 5. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
 6. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
 
@@ -131,52 +134,51 @@ Do note that:
  * Items in square brackets are [optional]
  * Items in brackets are (additional information)
 
-------------------------------------------------------Profile-------------------------------------------------------
-view profile                                                          View your profile information
-view bmi                                                              View your BMI
-edit name                                                             Edit your profile name
-edit age                                                              Edit your profile age
-edit gender                                                           Edit your profile gender
-edit height                                                           Edit your profile height
-edit weight                                                           Edit your profile weight
-edit fitness                                                          Edit your profile fitness
+----------------------------------------------------------------Profile-----------------------------------------------------------------
+view profile                                                                              View your profile information
+view bmi                                                                                  View your BMI
+edit name NEW_NAME                                                                        Edit your profile name
+edit age NEW_AGE                                                                          Edit your profile age
+edit gender NEW_GENDER ('M' for Male or 'F' for Female)                                   Edit your profile gender
+edit height NEW_HEIGHT (in m)                                                             Edit your profile height
+edit weight NEW_WEIGHT (in kg)                                                            Edit your profile weight
+edit fitness NEW_FITNESS_LEVEL (0 for Unfit; 1 for Normal; 2 for Fit)                     Edit your profile fitness
 
---------------------------------------------------------Food--------------------------------------------------------
-food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                      Add a food entry
-view food                                                             View your food entries
-view food DATE/MONTH/YEAR (dd/MM/yyyy)                                View your food entries on a specified date
-edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY
-                                                                      Edit your previous food entry
-delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                        Delete a food entry
-clear food                                                            Clear all your food entries
+------------------------------------------------------------------Food------------------------------------------------------------------
+food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                                          Add a food entry
+view food                                                                                 View your food entries
+view food DATE/MONTH/YEAR (dd/MM/yyyy)                                                    View your food entries on a specified date
+edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY    Edit your previous food entry
+delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                            Delete a food entry
+clear food                                                                                Clear all your food entries
 
-------------------------------------------------------Exercise------------------------------------------------------
-recommend                                                             Get a recommended workout
-exercise NAME_OF_EXERCISE /CALORIES_BURNT                             Add an exercise entry
-view exercise                                                         View your exercise entries
-view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                            View your exercise entries on a specified date
-edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT
-                                                                      Edit your previous exercise entry
-delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                    Delete an exercise entry
-clear exercise                                                        Clear all your exercise entries
+----------------------------------------------------------------Exercise----------------------------------------------------------------
+recommend                                                                                 Get a recommended workout
+exercise NAME_OF_EXERCISE /CALORIES_BURNT                                                 Add an exercise entry
+view exercise                                                                             View your exercise entries
+view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                                                View your exercise entries on a specified date
+edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT         Edit your previous exercise entry
+delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                        Delete an exercise entry
+clear exercise                                                                            Clear all your exercise entries
 
---------------------------------------------------------Goal--------------------------------------------------------
-goal food GOAL_DESCRIPTION                                            Add a food goal
-goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES      Add a smart food goal
-goal exercise GOAL_DESCRIPTION                                        Add an exercise goal
-goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT      Add a smart exercise goal
-view goal                                                             View your goals
-edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                         Edit your previous goal entry
-complete goal INDEX                                                   Mark your goal entry as complete
-delete goal INDEX                                                     Delete a goal entry
-clear goal                                                            Clear all your goal entries
+------------------------------------------------------------------Goal------------------------------------------------------------------
+goal food GOAL_DESCRIPTION                                                                Add a food goal
+goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES                          Add a smart food goal
+goal exercise GOAL_DESCRIPTION                                                            Add an exercise goal
+goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT                          Add a smart exercise goal
+view goal                                                                                 View your goals
+edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                                             Edit your previous goal entry
+complete goal INDEX                                                                       Mark your goal entry as complete
+delete goal INDEX                                                                         Delete a goal entry
+clear goal                                                                                Clear all your goal entries
 
--------------------------------------------------------Other--------------------------------------------------------
-help                                                                  Display available commands
-view summary                                                          View calorie summary
-view summary DATE/MONTH/YEAR (dd/MM/yyyy)                             View calorie summary on a specified date
-clear                                                                 Clear all food, exercise and goal entries
-bye                                                                   Exit the application
+-----------------------------------------------------------------Other------------------------------------------------------------------
+help                                                                                      Display available commands
+view summary                                                                              View calorie summary
+view summary DATE/MONTH/YEAR (dd/MM/yyyy)                                                 View calorie summary on a specified date
+clear                                                                                     Clear all food, exercise and goal entries
+bye                                                                                       Exit the application
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.2.2 Viewing your profile
