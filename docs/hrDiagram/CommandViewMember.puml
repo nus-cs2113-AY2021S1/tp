@@ -4,23 +4,25 @@
 activate ":CommandViewMember"
 
 ":CommandViewMember"  -> ":MemberList":listMembers()
-activate ":MemberList" #DarkSalmon
-alt Member.numOfMembers == 0
+activate ":MemberList"
+alt memberSize == 0
     ":MemberList" --> ":CommandViewMember"
+    <-- ":CommandViewMember" : output
 else else
-    loop until end of ArrayList
+    loop memberSize
         ":MemberList" -> ":Member" : toString()
         activate ":Member"
-        ":Member" --> ":MemberList" : updateAttendanceRate()
-        ":MemberList" --> ":MemberList" : calculateAttendanceRate()
+        ref over ":Member", ":MemberList"
+            updateEventAttendance
+        end ref
         return output
         deactivate ":Member"
         ":MemberList" --> ":CommandViewMember" : output
         deactivate ":MemberList"
-        return output
     end
     deactivate ":MemberList"
-    deactivate ":MemberList"
-    deactivate ":CommandViewMember"
 end
+<-- ":CommandViewMember" : output
+deactivate ":CommandViewMember"
+
 @enduml
