@@ -89,13 +89,22 @@ public class TimeTableParser {
                 System.out.println("Invalid command command\n Is the class online? (yes/no)");
             }
         }
-        String linkOrVenue = in.nextLine();
+        final String linkOrVenue = in.nextLine();
         System.out.println("What are the days and time of the lesson?\n(e.g. Monday 5-8pm, Tuesday 6-9pm)");
-        String [] periods = in.nextLine().split(", ");
+        final String [] periods = in.nextLine().split(", ");
         System.out.println("How many weeks is the lesson?");
         int repeat = Integer.parseInt(in.nextLine());
-        System.out.println("Which date does the lesson start? (eg. 26/10/2020)");
-        LocalDateTime startDay = getDate(in.nextLine());
+        isInvalid = true;
+        LocalDateTime startDay = null;
+        while (isInvalid) {
+            try {
+                System.out.println("Which date does the lesson start? (eg. 26/10/2020)");
+                startDay = getDate(in.nextLine());
+                isInvalid = false;
+            } catch (NumberFormatException e) {
+                System.out.println("You have entered an invalid date format. Please try again");
+            }
+        }
         Lesson lesson = new Lesson(moduleCode, linkOrVenue, isOnline, repeat);
         addClassPeriods(periods, repeat, startDay, lesson);
         return lesson;
@@ -156,7 +165,7 @@ public class TimeTableParser {
         }
         final String linkOrVenue = in.nextLine();
         System.out.println("Please enter the date of your activity (e.g. 28/10/2020): ");
-        LocalDateTime date = getDateTime(in.nextLine());
+        LocalDateTime date = getDate(in.nextLine());
         System.out.println("Please enter the time of your activity (e.g. 6-9pm): ");
         String time = in.nextLine();
         int startTime = Integer.parseInt(time.split("-")[0]);
@@ -202,7 +211,6 @@ public class TimeTableParser {
 
     public static void fileParser(String command, DateList dateList) {
         String[] words = command.split("\\|");
-        Scanner in = new Scanner(System.in);
         EventType eventType = EventType.valueOf(words[0]);
         String name = words[1];
         String linkOrVenue = words[2];
