@@ -8,6 +8,7 @@ activate ":EventList"
 opt event does not exist
 ":EventList" -> ":EventList" : checkEventExistence()
 ":EventList" --> ":CommandDelEventAttendance" : output
+<-- ":CommandDelEventAttendance" : output
 end
 
 ":EventList" -> ":EventList" : findEventByName()
@@ -19,6 +20,8 @@ activate ":MemberList"
 activate ":Event"
 return
 ":MemberList" --> ":EventList"
+":EventList" --> ":CommandDelEventAttendance" : output
+<-- ":CommandDelEventAttendance" : output
 end
 
 activate ":MemberList"
@@ -48,6 +51,7 @@ deactivate ":MemberList"
 
 ":EventList" --> ":CommandDelEventAttendance" : output
 deactivate ":EventList"
+<-- ":CommandDelEventAttendance" : output
 deactivate ":CommandDelEventAttendance"
 
 

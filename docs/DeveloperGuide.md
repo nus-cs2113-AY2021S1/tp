@@ -410,6 +410,7 @@ The sequence diagram for marking an event as done is as shown below:
 
 **3.4.6. Add/delete event participants feature** `CommandAddEventAttendance` , `CommandDelEventAttendance` 
 
+(By: Ye Yutong)<br/>
 **3.4.6.1. Current Implementation**  
 The `CommandAddEventAttendance` class in `seedu.duke.event` handles the adding of event participants. According to the `userInput`, it adds a new participant to the specified event in the `EventList`. 
 The `CommandDelEventAttendance` class in the same package handles deleting of an event participant. It deletes a `Member` instance from the event participants list of the specified `Event`.  
@@ -450,6 +451,7 @@ The sequence diagram for deleting a participant from a particular event is as sh
 
 **3.4.7. Listing event participants** `CommandViewEventAttendance`
 
+(By: Ye Yutong)<br/>
 **3.4.7.1 Current implementation**
 The `CommandViewEventAttendance` class in `seedu.duke.event` handles listing all the participants of the given event in the event participants list.
 
@@ -476,6 +478,8 @@ Step 3. After some `event addAttendance` commands, the user created a `MemberLis
 Step 4.The user executes `event listAttendance` command to list the event participants list. The `event listAttendance` command calls 
 `CommandViewEventAttendance#execute()`, then every `Member` in event participants list of the `Event` will be printed out. Nothing will be changed in the event participants list.  
 
+![](EventDiagram/EventSteps/7Step4.png) 
+
 The sequence diagram for listing participants in an event is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandViewEventAttendance.png)
@@ -485,14 +489,20 @@ The sequence diagram for listing participants in an event is as shown below:
 ### 3.5. HR
 The diagram below shows the architecture for HR feature.<br/>
 
-![](hrDiagramPic/HrArchitecture.png)
+Diagram 1: HR Architecture<br/>
+![](hrDiagramPic/HrArchitecture1.png)
 
-There are a total of 7 commands under HR feature.
+Diagram 1: HR Commands<br/>
+![](hrDiagramPic/HrArchitecture2.png)
+
+There are a total of 7 commands under HR feature:
  `CommandAddMember`, `CommandDelMember`, `CommandViewMember`  ,`CommandListConnection`, `CommandSearchMember` , `CommandListProfAdmin` and `CommandChangeMemberInfo`. 
  
 The implementation for each command is described in detail below.
 
 **3.5.1. Add/delete member feature**  
+
+(By: Ye Yutong)<br/>
 3.5.1.1. Current Implementation  
 The add/delete member mechanism is facilitated by `CommandAddMember` and `CommandDelMember` classes. The 
 `CommandAddMember` class in `seedu.duke.hr` handles adding members. It adds a new `Member` instance according to 
@@ -527,7 +537,8 @@ The following shortcut commands can achieve the same result: <br/>
 ![](hrDiagramPic/2-1S2.png)
 
 Step 3. The user executes `hr delMember 1` command to delete the member in the member list. The `hr delMember`
-command calls `CommandDelMember#execute()`, causing the `Member` of index 1 removed from `MemberList`.  
+command calls `CommandDelMember#execute()`, causing the `Member` of index 1 removed from `MemberList`, and the same 
+`Member` removed from the list of event participants of each `Event` in the `EventList`. 
 
  The following shortcut commands can achieve the same result: <br/>
  `hr delete 1`<br/>
@@ -543,8 +554,19 @@ The sequence diagram for deleting a member is as shown below:
 
 ![CommandDelMember](hrDiagramPic/CommandDelMember.png)
 
+The method `MemberList#updateAttendanceRate()` referenced in the above diagrams is as shown below:
+
+![CommandDelMember](hrDiagramPic/UpdateAttendanceRate.png)
+
+The method `MemberList#deleteFromEvents()` referenced in the above diagram is as shown below:
+
+![CommandDelMember](hrDiagramPic/DeleteFromEvents.png)
+
+Refer to section 3.4.6.1 for the sequence diagram of the method `EventList#deletAttendance()` referenced in the above diagram. 
 
 **3.5.2. List the members**  
+
+(By: Ye Yutong)<br/>
 3.5.2.1. Current Implementation  
 The `CommandViewMember` class in `seedu.duke.hr` handles listing all the members in `MemberList` and 
 showing the contacts and role information of all the `Member`.  
@@ -572,6 +594,8 @@ Step 2. The user executes `hr listMember` command to list the summary of `Member
  ![CommandViewMember](hrDiagramPic/CommandViewMember.png)
 
 **3.5.3. Change member information**  
+
+(By: Ye Yutong)<br/>
 3.5.3.1. Current Implementation  
 The `CommandChangeInfo` class in `seedu.duke.hr` handles changing contacts and roles information of the members in 
 `MemberList` and showing the contacts and roles of the changed `Member`.  
