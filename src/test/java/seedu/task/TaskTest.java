@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.messages.Messages.INVALID_DATETIME;
 import static seedu.messages.Messages.INVALID_PRIORITY;
+import static seedu.messages.Messages.INVALID_REMINDER;
 
 class TaskTest {
 
@@ -78,5 +79,36 @@ class TaskTest {
         }
     }
 
+    @Test
+    void initialiseTask_differentReminder_success() throws InvalidDatetimeException, InvalidPriorityException {
 
+        try {
+            new Task("t1", null,
+                    "1800", null, null, "on", null);
+            new Task("t2", null,
+                    null, null, null, "off", null);
+            new Task("t3", null,
+                    null, null, null, "on", "1800");
+        } catch (InvalidReminderException e) {
+            fail();
+        }
+    }
+
+    @Test
+    void initialise_task_invalidReminderExceptionThrown() throws InvalidPriorityException, InvalidDatetimeException {
+
+        try {
+            new Task("reminder_fail",
+                    null, null, null, null, "random", null);
+        } catch (InvalidReminderException e) {
+            assertEquals(INVALID_REMINDER, e.toString());
+        }
+
+        try {
+            new Task("reminder_time_fail",
+                    null, null, null, null, "on", null);
+        } catch (InvalidReminderException e) {
+            assertEquals(INVALID_REMINDER, e.toString());
+        }
+    }
 }
