@@ -479,7 +479,7 @@ public class Ui {
             break;
         case "lab":
             System.out.println("Error: Please key in the lab in this format: \n"
-                    + "lab <module code> @<venue> /ddMMyy HHmm");
+                    + "lab <module code> @<venue> -r <number of lab session> /ddMMyy HHmm");
             break;
         case "exam":
             System.out.println("Error: Please key in the exam in this format: \n"
@@ -543,6 +543,8 @@ public class Ui {
             break;
         case "command not found":
             System.out.println("Command not found. Please input a valid command.");
+        case "invalid recurring number":
+            System.out.println("The recurring number is in the range of 0 - 13 only.");
             break;
         default:
             System.out.println("Unknown Error.");
