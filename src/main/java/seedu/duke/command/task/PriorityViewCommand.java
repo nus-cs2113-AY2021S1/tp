@@ -27,22 +27,23 @@ public class PriorityViewCommand extends TaskCommand {
 
         try {
             Project proj = projectListManager.getSelectedProject();
+            ArrayList<Task> tasks = proj.getBacklog().getTaskList();
             ArrayList<Task> highPriorityTasks = new ArrayList<>();
             ArrayList<Task> mediumPriorityTasks = new ArrayList<>();
             ArrayList<Task> lowPriorityTasks = new ArrayList<>();
-            for (int i = 0; i <= proj.getProjectBacklog().getNextId(); i++) {
-                Task task = proj.getProjectBacklog().getTask(i);
+
+            for (Task task: tasks) {
 
                 if (task != null) {
                     String priority = task.getPriority().substring(0, 1);
                     if (priority.equals("H")) {
-                        highPriorityTasks.add(proj.getProjectBacklog().getTask(i));
+                        highPriorityTasks.add(task);
                     }
                     if (priority.equals("M")) {
-                        mediumPriorityTasks.add(proj.getProjectBacklog().getTask(i));
+                        mediumPriorityTasks.add(task);
                     }
                     if (priority.equals("L")) {
-                        lowPriorityTasks.add(proj.getProjectBacklog().getTask(i));
+                        lowPriorityTasks.add(task);
                     }
                 }
             }

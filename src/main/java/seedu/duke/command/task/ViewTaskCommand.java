@@ -36,7 +36,7 @@ public class ViewTaskCommand extends TaskCommand {
                 Task task;
                 int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
 
-                
+
                 if (backlogId <= proj.getProjectBacklog().getNextId() && backlogId > 0) {
                     if (!validTask) {
                         Ui.showToUserLn("The details of the tasks are as follows: ");
