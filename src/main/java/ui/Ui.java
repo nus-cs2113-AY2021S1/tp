@@ -31,6 +31,12 @@ import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
 public class Ui {
+    public static final String INCLUSION_SUCCESS_MESSAGE = "Success! The %s has been included back into your schedule. "
+            +  "Check out your updated due dates with the \"due\" command or \"preview\" command now.";
+    public static final String EXCLUSION_SUCCESS_MESSAGE = "Success! The %s has been excluded from your schedule. "
+            + "Check out your updated due dates with the \"due\" command or \"preview\" command now.";
+    public static final String PRINT_FORMAT_MODULE = "Module: %s";
+    public static final String PRINT_FORMAT_CHAPTER = "Module: %s; Chapter: %s";
     private final Scanner in;
     private final PrintStream out;
 
@@ -198,16 +204,6 @@ public class Ui {
 
     }
 
-    public boolean isValidExclusionChoice(String choice) {
-        switch (choice.toLowerCase()) {
-        case ExcludeCommand.EXCLUDE_COMMAND_OPTION_MODULE:
-        case ExcludeCommand.EXCLUDE_COMMAND_OPTION_CHAPTER:
-            return true;
-        default:
-            return false;
-        }
-    }
-
     public String getExcludedModuleName(String type) {
         if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MODULE)) {
             showToUser("Which module will you like to be excluded from your schedule?");
@@ -235,4 +231,45 @@ public class Ui {
         showToUser("Which chapter in the Module: " + moduleName + " would you like to include?");
         return readCommand().toLowerCase();
     }
+
+    private void printInclusionSuccessMessage(String inclusionTarget) {
+        showToUser(String.format(INCLUSION_SUCCESS_MESSAGE, inclusionTarget));
+    }
+
+    private void printModuleInclusionSuccess(String moduleName) {
+        printInclusionSuccessMessage(String.format(PRINT_FORMAT_MODULE, moduleName));
+    }
+
+    private void printChapterInclusionSuccess(String moduleName, String chapterName) {
+        printInclusionSuccessMessage(String.format(PRINT_FORMAT_CHAPTER, moduleName, chapterName));
+    }
+
+    public void printInclusionSuccess(String type, String moduleName, String chapterName) {
+        if (type.equals(IncludeCommand.INCLUDE_COMMAND_OPTION_MODULE)) {
+            printModuleInclusionSuccess((moduleName));
+        } else {
+            printChapterInclusionSuccess(moduleName,chapterName);
+        }
+    }
+
+    private void printExclusionSuccessMessage(String inclusionTarget) {
+        showToUser(String.format(EXCLUSION_SUCCESS_MESSAGE, inclusionTarget));
+    }
+
+    private void printModuleExclusionSuccess(String moduleName) {
+        printExclusionSuccessMessage(String.format(PRINT_FORMAT_MODULE, moduleName));
+    }
+
+    private void printChapterExclusionSuccess(String moduleName, String chapterName) {
+        printExclusionSuccessMessage(String.format(PRINT_FORMAT_CHAPTER, moduleName, chapterName));
+    }
+
+    public void printExclusionSuccess(String type, String moduleName, String chapterName) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MODULE)) {
+            printModuleExclusionSuccess((moduleName));
+        } else {
+            printChapterExclusionSuccess(moduleName,chapterName);
+        }
+    }
+
 }

@@ -47,6 +47,7 @@ public class IncludeCommand extends Command {
         String chapterName = ui.getIncludedChapterName(moduleName);
         try {
             storage.removeChapterFromExclusionFile(moduleName,chapterName);
+            ui.printInclusionSuccess(type, moduleName,chapterName);
         } catch (FileNotFoundException e) {
             throw new InvalidInputException("Sorry, the Chapter: " + chapterName + " could not be included as it does"
                     + " not exist.");
@@ -58,6 +59,7 @@ public class IncludeCommand extends Command {
         String moduleName = ui.getIncludedModuleName(type);
         try {
             storage.removeModuleFromExclusionFile(moduleName);
+            ui.printInclusionSuccess(type, moduleName, "");
         } catch (FileNotFoundException e) {
             throw new InvalidInputException("Sorry, the Module: " + moduleName + "could not be included as it "
                     + "does not exist.");

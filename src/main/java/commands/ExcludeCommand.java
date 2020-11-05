@@ -46,6 +46,7 @@ public class ExcludeCommand extends Command {
         String chapterName = ui.getExcludedChapterName(moduleName);
         try {
             storage.appendChapterToExclusionFile(moduleName,chapterName);
+            ui.printExclusionSuccess(type, moduleName,chapterName);
         } catch (FileNotFoundException e) {
             throw new InvalidInputException("Sorry, the Chapter: " + chapterName + " could not be excluded as it does"
                     + " not exist.");
@@ -57,6 +58,7 @@ public class ExcludeCommand extends Command {
         String moduleName = ui.getExcludedModuleName(type);
         try {
             storage.appendModuleToExclusionFile(moduleName);
+            ui.printExclusionSuccess(type, moduleName,"");
         } catch (FileNotFoundException e) {
             throw new InvalidInputException("Sorry, the Module: " + moduleName + " could not be excluded as it "
                     + "does not exist.");
