@@ -286,13 +286,13 @@ Since the script file specified by the user can be non-existent or empty, it is 
 | During command execution. | Easy to implement since `Command` already handle file matters. | Memory resource are wasted if the file is invalid. |
 | During parsing. | No memory resource wasted since invalid file will be detected early. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
-Having considered both of the approaches, we have decided to implement the first approach, **validate the script file during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted is a worthy exchange for the cohesion preserved.
+Having considered both approach, we have decided to implement the first approach, **validate the script file during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted is a worthy exchange for the cohesion preserved.
 
 <br/>
 
 Aspect: **The way user can specify the script file**
 
-As the command takes in a script file name, there is a need to decide on whether the user needs to include the file extension when they specify the script file to estimate.
+As the command takes in a script file name, there is a need to decide on whether the user needs to include the file extension as well.
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -701,20 +701,20 @@ This section shows some design considerations taken when implementing the watchl
 
 Aspect: **Saving watchlist data**
 
-Since the user would likely make frequent changes to their watchlist throughout their use of the application, it is important to decide on the frequency of saving these watchlist data.
+Since watchlist can be created and deleted at any point of time, it is important to decide on when the application should save the watchlist data.
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| After each command execution. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
+| When the watchlist data has been modified. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
 | When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
-Having considered both of the approaches, we have decided to save watchlist data **after each command execution** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if these data are important.
+Having considered both approach, we have decided to save watchlist data **when the watchlist data has been modified** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if the data are important.
 
 <br/>
 
 Aspect: **Watchlist name restriction**
 
-Users would often name their watchlist based on the animes they have added to it, and these names can affect the usability. Hence, there is a need to decide on whether the watchlist name needs to be restricted.
+To create a watchlist, users would have to give it a name, and these names can affect the usability of the application in the long run. Hence, there is a need to decide on whether the watchlist name needs to be restricted to ensure it remains readable in the long run. 
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
@@ -967,7 +967,7 @@ The first design consideration was the data structure on how the bookmark entrie
 | Usage of three ArrayList to store anime index, Episode, and Notes.     | - Easy to reference objects within ArrayList using its index and it is easy to implement. | - Require to synchronise the three ArrayList so the same index reference the components of the same bookmark entry. |
 | Use a `BookmarkManager` to handle bookmark features.                  | - Do not need to maintain multiple ArrayLists.    | - One extra layer of unnecessary abstraction (nesting), while introducing more coupling and dependency.  |
 
-While both approaches have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
+While both approach have their own benefits, we have decided to use **three ArrayList to keep the information of the bookmark entries**. Considering the structure of how bookmark is within the workspace, we prefer to directly use the bookmark as the bookmark manager will create another layer of unrequired abstraction.
 
 <br/>
 
