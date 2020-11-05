@@ -159,8 +159,8 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new CommandException("lab");
         }  else if (recurringCount < 0 || recurringCount > 13) {
-            System.out.println("The number of lab session can only be in the range of 0 to 13. \n");
-            throw new CommandException("invalid recurring number");
+            System.out.println("Warning! The number of lab session can only be in the range of 0 to 13. \n");
+            throw new CommandException("lab");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lab(moduleCode, date, time, venue));
@@ -196,8 +196,8 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new CommandException("tutorial");
         } else if (recurringCount < 0 || recurringCount > 13) {
-            System.out.println("The number of tutorial can only be in the range of 0 to 13. \n");
-            throw new CommandException("invalid recurring number");
+            System.out.println("Warning! The number of tutorial can only be in the range of 0 to 13. \n");
+            throw new CommandException("tutorial");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Tutorial(moduleCode, date, time, venue));
@@ -228,8 +228,8 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new CommandException("lecture");
         }  else if (recurringCount < 0 || recurringCount > 13) {
-            System.out.println("The number of lecture can only be in the range of 0 to 13. \n");
-            throw new CommandException("invalid recurring number");
+            System.out.println("Warning! The number of lecture can only be in the range of 0 to 13. \n");
+            throw new CommandException("lecture");
         } else {
             for (int i = 0; i < recurringCount; i++) {
                 calendarList.addEvent(new Lecture(moduleCode, date, time, venue));
