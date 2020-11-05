@@ -47,26 +47,22 @@ public class NoteCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        try {
-            parseUserCommand(command);
-            EventList list = data.getEventList(event);
-            Event eventRequested = list.getEventByIndex(index - 1);
-            if (eventRequested != null) {
-                ui.printMessage("Please type in your notes."
-                        + " To stop note taking, ensure that you are in a new line and type the semicolon key,"
-                        + " \';\' and press enter");
-                ArrayList<String> existingNotes = eventRequested.getNotes();
-                ArrayList<String> additionalNotes = getNotesFromUser();
-                ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
-                eventRequested.setNotes(updatedNotes);
-                ui.printNoteMessage(eventRequested, updatedNotes);
-            } else {
-                throw new InvalidListException("No such event type");
-            }
-            storage.saveFile(storage.getFileLocation(list.getName()), data, list.getName());
-        } catch (InvalidIndexException e) {
+        parseUserCommand(command);
+        EventList list = data.getEventList(event);
+        Event eventRequested = list.getEventByIndex(index - 1);
+        if (eventRequested != null) {
+            ui.printMessage("Please type in your notes."
+                    + " To stop note taking, ensure that you are in a new line"
+                    + " and type 'noteend', and press enter");
+            ArrayList<String> existingNotes = eventRequested.getNotes();
+            ArrayList<String> additionalNotes = getNotesFromUser(ui);
+            ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
+            eventRequested.setNotes(updatedNotes);
+            ui.printNoteMessage(eventRequested, updatedNotes);
+        } else {
             throw new InvalidIndexException("Error, no such index is available!");
         }
+        storage.saveFile(storage.getFileLocation(list.getName()), data, list.getName());
     }
 
     /**
@@ -95,14 +91,13 @@ public class NoteCommand extends Command {
      *
      * @return a list of notes.
      */
-    private ArrayList<String> getNotesFromUser() {
+    private ArrayList<String> getNotesFromUser(Ui ui) {
 
-        sc = new Scanner(System.in);
         ArrayList<String> notesList = new ArrayList<String>();
-        String temp = sc.nextLine().trim();
-        while (!temp.equals(";")) {
+        String temp = ui.receiveCommand().trim();
+        while (!temp.equals("noteend")) {
             notesList.add(temp);
-            temp = sc.nextLine().trim();
+            temp = ui.receiveCommand().trim();
         }
         return notesList;
     }
@@ -127,8 +122,8 @@ public class NoteCommand extends Command {
     private ArrayList<String> convertSemiColonToBlank(ArrayList<String> notes) {
         ArrayList<String> convertedList = new ArrayList<>();
 
-        for (String note : notes) { //after splitting up the lines based on semicolons, add them
-            String[] lines = note.split(";", -1);
+        for (String note : notes) { //after splitting up the lines based on `, add them
+            String[] lines = note.split("`", -1);
             List<String> toBeAdded = Arrays.asList(lines);
             convertedList.addAll(toBeAdded);
         }

@@ -376,7 +376,7 @@ public class StorageParser {
             assert noteList.size() == 0 : "There were notes provided";
         } else {
             //do not discard trailing empty strings
-            String[] noteArr = noteString.split(";", -1);
+            String[] noteArr = noteString.split("`", -1);
             Collections.addAll(noteList, noteArr);
         }
 
@@ -396,7 +396,7 @@ public class StorageParser {
             for (String s : notes) {
                 if (s != "") {
                     notesBuffer.append(s);
-                    notesBuffer.append(";");
+                    notesBuffer.append("`");
                 }
 
             }
