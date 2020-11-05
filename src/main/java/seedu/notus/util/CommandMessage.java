@@ -212,8 +212,6 @@ public class CommandMessage {
             + "successfully changed.", GREEN);
     public static final String EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE = colorize("Event end time shifted "
             + "to maintain event time duration.", GREEN);
-    public static final String EDIT_EVENT_START_TIME_SUCCESS_WARNING = colorize("Event start time "
-            + "successfully changed. However, event duration is compressed and end time is set at 23:59.", GREEN);
     public static final String EDIT_EVENT_SUCCESSFUL_WARNING = colorize("Warning! "
             + "The specified timing already has an event ongoing. The edited event is still stored.", GREEN);
     public static final String EDIT_EVENT_DUPLICATE_WARNING = colorize("Warning! "
