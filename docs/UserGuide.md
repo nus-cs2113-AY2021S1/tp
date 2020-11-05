@@ -373,7 +373,7 @@ differ if you have different items stored in the calendar list.
 ### Printing events:
 
 If you want to delete past events or to add additional information to a certain event, you can always ask the program 
-to display all events saved in the program. This feature will definitely save your brain space wated on memorising them.
+to display all events saved in the program. This feature will definitely save your brain space wasted on memorising them.
 
 Format: `print events`
 

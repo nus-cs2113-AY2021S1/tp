@@ -3,8 +3,6 @@ package seedu.duke;
 import seedu.duke.calendar.CalendarList;
 import seedu.duke.command.Command;
 
-import java.io.FileNotFoundException;
-
 /**
  * Entry point of the Main application.
  * Initializes the application and starts the interaction with the user.
