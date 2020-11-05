@@ -14,6 +14,7 @@ Invalid Command Format
 Enter command: ----------------------------------------------------
 Invalid Command Format
 ====================================================
-Enter command: Exiting SmartHomeBot as requested, all Appliances are switched off.
+Enter command: ----------------------------------------------------
+Exiting SmartHomeBot as requested, all Appliances are switched off.
 Exporting data........Completed!
 Good bye!
