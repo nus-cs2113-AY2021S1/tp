@@ -449,6 +449,17 @@ The sequence diagram for deleting a participant from a particular event is as sh
 
 ![CommandDelEventAttendance](EventDiagram/SequenceDiagram/CommandDelEventAttendance.png)
 
+**3.4.6.2. Design Considerations** <br/>
+
+ Aspect: Delete participant attendance from an event  <br/>
+ *Alternative 1 (Current Choice): `event delAttendance` command will only delete member from each event by the member name. <br/>
+ *Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
+ *Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
+ 
+ *Alternative 2 : `event delAttendance` command will only delete member from each event by the member's index in the participant list. <br/>
+ *Pros : It is easier to implement.  
+ *Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
+
 **3.4.7. Listing event participants** `CommandViewEventAttendance`
 
 (By: Ye Yutong)<br/>
@@ -503,7 +514,7 @@ The implementation for each command is described in detail below.
 **3.5.1. Add/delete member feature**  
 
 (By: Ye Yutong)<br/>
-3.5.1.1. Current Implementation  
+**3.5.1.1. Current Implementation**  
 The add/delete member mechanism is facilitated by `CommandAddMember` and `CommandDelMember` classes. The 
 `CommandAddMember` class in `seedu.duke.hr` handles adding members. It adds a new `Member` instance according to 
 `userInput` into `MemberList`.  
@@ -567,7 +578,7 @@ Refer to section 3.4.6.1 for the sequence diagram of the method `EventList#delet
 **3.5.2. List the members**  
 
 (By: Ye Yutong)<br/>
-3.5.2.1. Current Implementation  
+**3.5.2.1. Current Implementation**  
 The `CommandViewMember` class in `seedu.duke.hr` handles listing all the members in `MemberList` and 
 showing the contacts and role information of all the `Member`.  
 It implements the following operation:  
@@ -596,7 +607,7 @@ Step 2. The user executes `hr listMember` command to list the summary of `Member
 **3.5.3. Change member information**  
 
 (By: Ye Yutong)<br/>
-3.5.3.1. Current Implementation  
+**3.5.3.1. Current Implementation**  
 The `CommandChangeInfo` class in `seedu.duke.hr` handles changing contacts and roles information of the members in 
 `MemberList` and showing the contacts and roles of the changed `Member`.  
 It implements the following operation:  
@@ -622,8 +633,8 @@ The sequence diagram for changing contacts and role information of a member is a
 
 ![CommandChangeMemberInfo](hrDiagramPic/CommandChangeMemberInfo.png)
 
-**3.5.4. Design Considerations**  
-Aspect: Changing member information 
+**3.5.3.2. Design Considerations** 
+Aspect: Changing member information <br/>
 *Alternative 1(Current Choice): Member information is to be modified based on the member's full name.  
     *Pros: Easy to implement. Also, if the user knows the name of the target member, which is a likely case in actual 
     practice, he can change the member's information quickly.

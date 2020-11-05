@@ -30,7 +30,7 @@ activate ":MemberList"
 activate ":Event"
 return index
 ":MemberList" --> ":EventList" :index
-
+deactivate ":MemberList"
 ":EventList" -> ":Event" : getEventParticipants()
 activate ":Event"
 ":Event" -> ":Event" : get()
@@ -47,7 +47,7 @@ activate ":Event"
 return output
 
 deactivate ":Event"
-deactivate ":MemberList"
+
 
 ":EventList" --> ":CommandDelEventAttendance" : output
 deactivate ":EventList"
