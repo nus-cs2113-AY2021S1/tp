@@ -7,6 +7,8 @@ import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 
+//@@author leonlowzd
+
 /**
  * Represents Fan type extended from Appliance.
  */

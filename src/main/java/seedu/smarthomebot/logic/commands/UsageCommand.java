@@ -24,10 +24,10 @@ public class UsageCommand extends Command {
         int index = 1;
 
         if (applianceList.getAllAppliance().size() == 0) {
-            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
+            return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
         } else {
             autoFormattingStringIndex();
-            String formattedResult = (LINE + MESSAGE_POWER_USAGE);
+            String formattedResult = (MESSAGE_POWER_USAGE);
             String format = "%-2d. %-" + maxNameLength + "s"
                     + DISPLAY_LOCATION + "%-" + maxLocationLength + "s"
                     + DISPLAY_STATUS + "%-3s"

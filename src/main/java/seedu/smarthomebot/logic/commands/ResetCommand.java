@@ -22,7 +22,7 @@ public class ResetCommand extends Command {
             for (Appliance a : applianceList.getAllAppliance()) {
                 a.resetPowerUsage();
             }
-            return new CommandResult(LINE + MESSAGE_USAGE_RESET);
+            return new CommandResult(MESSAGE_USAGE_RESET);
         }
     }
 

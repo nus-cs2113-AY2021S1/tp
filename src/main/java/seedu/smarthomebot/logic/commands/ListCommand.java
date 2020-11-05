@@ -32,7 +32,7 @@ public class ListCommand extends Command {
     private final String parameter;
     private final String filteredLocation;
 
-    public ListCommand(String arguments,String filteredLocation) {
+    public ListCommand(String arguments, String filteredLocation) {
         assert arguments.isEmpty() != true : "InvalidCommand must not accept empty arguments";
         this.parameter = arguments;
         this.filteredLocation = filteredLocation;
@@ -54,16 +54,16 @@ public class ListCommand extends Command {
     private CommandResult listAppliance() {
         if (filteredLocation.equals("")) {
             if (applianceList.getAllAppliance().size() == 0) {
-                return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
+                return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
             }
-            String header = (LINE + MESSAGE_LIST_APPLIANCES);
+            String header = (MESSAGE_LIST_APPLIANCES);
             String outputApplianceList = displayOutput(header, applianceList.getAllAppliance());
             return new CommandResult(outputApplianceList);
         } else {
             ArrayList<Appliance> filterApplianceList =
                     (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                    .filter((s) -> s.getLocation().equals(filteredLocation))
-                    .collect(toList());
+                            .filter((s) -> s.getLocation().equals(filteredLocation))
+                            .collect(toList());
 
             if (filterApplianceList.isEmpty()) {
                 if (locationList.isLocationCreated(filteredLocation)) {
@@ -71,7 +71,7 @@ public class ListCommand extends Command {
                 }
                 return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
             }
-            String header = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
+            String header = ("Here are the appliances in \"" + filteredLocation + ":");
             String outputFilteredList = displayOutput(header, filterApplianceList);
             return new CommandResult(outputFilteredList);
         }
@@ -79,9 +79,9 @@ public class ListCommand extends Command {
 
     private CommandResult listLocation(int index) {
         if (locationList.getAllLocations().size() == 0) {
-            return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
+            return new CommandResult(MESSAGE_LIST_NO_LOCATIONS);
         }
-        String outputLocationsList = LINE + MESSAGE_LIST_LOCATIONS;
+        String outputLocationsList = MESSAGE_LIST_LOCATIONS;
         for (String location : locationList.getAllLocations()) {
             outputLocationsList = outputLocationsList.concat(System.lineSeparator() + index + ": " + location);
             index++;
