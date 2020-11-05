@@ -1,13 +1,12 @@
 package seedu.duke.hr;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.hr.Member;
 import seedu.duke.hr.MemberList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HrTest {
 
