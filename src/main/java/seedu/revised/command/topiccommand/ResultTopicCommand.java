@@ -14,7 +14,6 @@ public class ResultTopicCommand extends TopicCommand {
 
     public ResultTopicCommand(String fullcommand) {
         this.fullcommand = fullcommand;
-
     }
 
     public void execute(Subject subject) throws NoTopicException, InvalidTopicException {
@@ -38,5 +37,9 @@ public class ResultTopicCommand extends TopicCommand {
                 + "application prints" + "the results.");
         logger.fine(String.format("The subject is %s", resultTopic.getTitle()));
         Ui.printTopicResults(resultTopic);
+    }
+
+    public boolean isExit() {
+        return false;
     }
 }
