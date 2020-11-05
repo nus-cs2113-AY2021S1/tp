@@ -758,19 +758,19 @@ The following sequence diagram shows how the revise feature works:
 
 * Get Chapter:
 <p align="center">
-  <img src="DG_Images/ReviseGetChap.png" width="800" alt="Sequence Diagram of Revise Get Chapter"/>
+  <img src="DG_Images/ReviseGetChap.png" width="600" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get chapter for revision
 </p>
 
 * Chapter is not due for revision:
 <p align="center">
-  <img src="DG_Images/ReviseNotDue.png" width="800" alt="Sequence Diagram of Revise Not Due"/>
+  <img src="DG_Images/ReviseNotDue.png" width="600" alt="Sequence Diagram of Revise Not Due"/>
   <br/>Figure <>. Sequence diagram of revise for chapter that is not due
 </p>
  
 * Get Cards:
 <p align="center">
-  <img src="DG_Images/ReviseGetCards.png" width="800" alt="Sequence Diagram of Revise Get Chapter"/>
+  <img src="DG_Images/ReviseGetCards.png" width="600" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get cards for revision
 </p>
 
