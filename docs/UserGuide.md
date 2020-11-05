@@ -207,30 +207,33 @@ This section contains 8 commands:
 * 1.8 : [Starring / Unstarring a link]()
 
 ### 1.1 Viewing all the bookmarks links: 
-`list`,`list star`, `list cat`   
+`list`,`list -s`, `list -c`, `list -a`
 
 Are you trying to find your links by entering into each category to view your links?
 You might want to have an easy way to view the overview of your links. 
-You can now either view the entire list of links, the starred links, or the list of 
-categories using the following commands. 
+You can now either view the entire list of links in the category you are in, 
+the starred links, the list of categories available, 
+or the entire list of links in every category using the following commands. 
 
 Instructions:
-1. If you want to view the entire list of links = `list`  
-2. If you want to view the entire list of starred links = `list star`
-3. If you want to view the entire list of category = `list cat`
+1. If you want to view the list of links in the category you are in  = `list`  
+2. If you want to view the entire list of starred links = `list -s`
+3. If you want to view the entire list of category available = `list -c`
+4. if you want to view the entire list of links in every category = `list -a`
 
 Expected output:
 ![Bookmark_List](Images/BookmarkUG/Figure1.png)
-![Bookmark_List_Star_Cat](Images/BookmarkUG/Figure2.png)
+![Bookmark_List_1Star_Cat](Images/BookmarkUG/Figure2.png)
 
 **Useful Information:**
 * You can only use this command anywhere after entering the bookmark mode. (Refer to General Command 2)
 * If your category does not have any links, it will indicate that the list is empty.
+* If you are in bookmark main, and you input `list`, it will show you the entire list of links in every category. (Same command as `list -a`)
 * To star / unstar a link refer to 1.8
 * To add a category refer to 1.3, to delete a category refer to 1.4 
 
 **Warning**
-* Follow the format `list`, `list star`, `list cat` without adding additional inputs. 
+* Follow the format `list`, `list -s`, `list -c`, `list -a` without adding additional inputs. 
 If additional input is detected, the program will prompt you to input the correct format. 
 
 ### 1.2 Going into each category: 
