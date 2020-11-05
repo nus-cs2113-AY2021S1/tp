@@ -5,7 +5,7 @@ activate ":CommandViewEventAttendance"
 ":CommandViewEventAttendance" -> ":EventList" : listAttendance()
 activate ":EventList"
 ":EventList" -> ":EventList" : checkEventExistence()
-alt isEventExists
+opt eventExists
     ":EventList" -> ":Event" : findEventByName()
     activate ":Event"
     return e
@@ -15,10 +15,10 @@ alt isEventExists
     ":EventList" -> ":Event" : size()
     activate ":Event"
     return output
-else else
 end
 
 return output
 deactivate ":EventList"
+<-- ":CommandViewEventAttendance" : output
 deactivate ":CommandViewEventAttendance"
 @enduml

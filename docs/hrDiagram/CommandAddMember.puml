@@ -10,10 +10,11 @@ activate ":Member"
 return
 ":MemberList" -> ":Member" : toString()
 activate ":Member"
-":Member" --> ":MemberList" : updateAttendanceRate()
-":MemberList" --> ":MemberList" : calculateAttendanceRate()
+ref over ":Member", ":MemberList"
+    updateEventAttendance
+end ref
 return output
 return output
-return output
+<-- ":CommandAddMember" : output
 deactivate ":CommandAddMember"
 @enduml

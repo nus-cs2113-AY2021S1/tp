@@ -3,18 +3,24 @@
  -> ":CommandDelMember": execute()
 activate ":CommandDelMember"
 activate ":MemberList"
-activate ":MemberList" #DarkSalmon
 ":CommandDelMember" -> ":MemberList" : deleteFromList()
 activate ":MemberList"
 ":MemberList" -> ":Member" : toString()
 activate ":Member"
-":Member" --> ":MemberList" : updateAttendanceRate()
-":MemberList" --> ":MemberList" : calculateAttendanceRate()
+ref over ":Member", ":MemberList"
+    updateEventAttendance
+end ref
 return output
+
+ref over ":MemberList", ":Member", ":EventList", ":Event"
+    deleteFromEvents
+end ref
+
 ":MemberList" -> ":Member": remove()
 activate ":Member"
 return output
 return output
-return output
-
+deactivate ":MemberList"
+<-- ":CommandDelMember" : output
+deactivate ":CommandDelMember"
 @enduml
