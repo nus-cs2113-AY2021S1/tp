@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
@@ -34,8 +35,7 @@ public class Storage {
     private Path fileGoalPath;
 
     private Ui ui;
-    private static Logger logger = Logger.getLogger("storageLog");
-    private static FileHandler fh;
+    private static Logger logger = EventLogger.getEventLogger();
 
     /**
      * Returns the path to the file specified by the user.
@@ -71,15 +71,7 @@ public class Storage {
         //Directory words only contain info on making the folder
         //File words contain the info on how to make the file itself
 
-        String logging = initPath + "logging.txt";
-        try {
-            fh = new FileHandler(logging);
-            logger.addHandler(fh);
-            logger.setLevel(Level.ALL);
-            logger.fine("Logger created");
-        } catch (IOException e) {
-            ui.printErrorMessage("log file was not created");
-        }
+
         String[] pathDirectoryWords = initPath.split(",");
         fileDirectoryPath = createPath(pathDirectoryWords);
 
@@ -111,8 +103,10 @@ public class Storage {
         if (!Files.exists(fileDirectoryPath)) {
             try {
                 Files.createDirectory(fileDirectoryPath);
+                logger.fine("Data folder was created on the computer successfully.");
             } catch (IOException e) {
                 System.out.println("IO exception encountered when creating data directory.");
+                logger.severe("Data folder failed to be created on the computer.");
             }
         }
     }
@@ -127,11 +121,12 @@ public class Storage {
 
         if (!Files.exists(fileText)) {
             try {
-
                 Files.createFile(fileText);
                 System.out.println("File Created: " + fileType);
+                logger.fine("File " + fileType + " was created on the computer successfully.");
             } catch (IOException e) {
                 ui.printErrorMessage("IO exception error! File cannot be created on system!");
+                logger.severe("File " + fileType + " encountered an error while being produced");
             }
         }
     }
@@ -143,14 +138,9 @@ public class Storage {
      */
     public void saveAll(UserData data) {
         saveFile(filePersonalPath, data, "Personal");
-        logger.fine("personal file saved");
         saveFile(fileTimeTablePath, data, "Timetable");
-        logger.fine("timetable file saved");
         saveFile(fileZoomPath, data, "Zoom");
-        logger.fine("zoom file saved");
         saveFile(fileGoalPath, data, "Goal");
-        logger.fine("goal file saved");
-
 
     }
 
@@ -171,7 +161,9 @@ public class Storage {
                 goalSave(fileName, data, toBeWritten);
             } else { //special case for event
                 eventSave(fileName, data, fileType, toBeWritten);
+
             }
+            logger.fine(fileType + " saved successfully");
 
 
 
@@ -179,6 +171,7 @@ public class Storage {
             System.out.println("Error! List invalid type. Should not happen");
         } catch (IOException e) {
             ui.printErrorMessage("Error! File cannot be written to");
+            logger.severe("File " + fileType + " could not be saved due to IO error!");
         }
 
     }
@@ -203,9 +196,11 @@ public class Storage {
         for (Event event:events) {
             String entry = StorageParser.eventToString(event, fileType);
             toBeWritten.add(entry);
+            logger.fine("\"" + entry + "\" added to stuff to be written");
         }
 
         Files.write(fileName, toBeWritten);
+        logger.fine("All changes recorded successfully to " + fileType + " save file");
     }
 
     /**
@@ -220,10 +215,12 @@ public class Storage {
         Goal entry = data.getGoal();
         if (entry != null) {
             toBeWritten.add(entry.toString());
+            logger.fine("\"" + entry + "\" added to stuff to be written");
             Files.write(fileName, toBeWritten);
         } else { //nothing to modify in toBeWritten, so write a blank file
             Files.write(fileName, toBeWritten);
         }
+        logger.fine("All changes recorded successfully to goal save file");
 
     }
 
@@ -263,6 +260,7 @@ public class Storage {
                 if (fileLines.size() != 0) {
                     Goal prevGoal = new Goal(fileLines.get(0));
                     data.setGoal(prevGoal);
+                    logger.fine("Goal file loaded");
                 }
                 return;
             }
@@ -275,15 +273,18 @@ public class Storage {
                     continue;
                 }
                 data.addToEventList(fileType, activity);
+                logger.fine(fileType + " information and events successfully loaded");
             }
 
             //finally, store the information in the correct list
         } catch (IOException e) {
             //do nothing
             ui.printStorageLoadingErrorMessage();
+            logger.warning(fileType + " was not loaded completely successfully");
         } catch (InvalidListException e) {
             //do nothing for now
             System.out.println("Error, invalid list");
+            logger.warning(fileType + " is not a event type that exists");
         }
     }
 
@@ -326,8 +327,10 @@ public class Storage {
             while ((line = reader.readLine()) != null) {
                 resource.add(line);
             }
+            logger.fine(fileName + " could be read and has been loaded properly");
         } catch (IOException e) {
             ui.printErrorMessage("Resource file could not be loaded!");
+            logger.severe("There was an error when attempting to load" + fileName);
         }
     }
 

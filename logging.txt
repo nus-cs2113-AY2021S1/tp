@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-11-05T12:46:49.980500800Z</date>
+  <millis>1604580409980</millis>
+  <nanos>500800</nanos>
+  <sequence>0</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.EventLogger</class>
+  <method>initEventLogger</method>
+  <thread>1</thread>
+  <message>Logger created</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:50.001442100Z</date>
+  <millis>1604580410001</millis>
+  <nanos>442100</nanos>
+  <sequence>1</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>loadFile</method>
+  <thread>1</thread>
+  <message>Personal information and events successfully loaded</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:50.009420800Z</date>
+  <millis>1604580410009</millis>
+  <nanos>420800</nanos>
+  <sequence>2</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>loadFile</method>
+  <thread>1</thread>
+  <message>Zoom information and events successfully loaded</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:50.010419300Z</date>
+  <millis>1604580410010</millis>
+  <nanos>419300</nanos>
+  <sequence>3</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>loadFile</method>
+  <thread>1</thread>
+  <message>Timetable information and events successfully loaded</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:50.012413Z</date>
+  <millis>1604580410012</millis>
+  <nanos>413000</nanos>
+  <sequence>4</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>loadFile</method>
+  <thread>1</thread>
+  <message>Goal file loaded</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.669597600Z</date>
+  <millis>1604580419669</millis>
+  <nanos>597600</nanos>
+  <sequence>5</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>eventSave</method>
+  <thread>1</thread>
+  <message>"meeting 16/9/2020 18:89 PM | 0 | 0 | 0 | 0 |  | F" added to stuff to be written</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.670594500Z</date>
+  <millis>1604580419670</millis>
+  <nanos>594500</nanos>
+  <sequence>6</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>eventSave</method>
+  <thread>1</thread>
+  <message>All changes recorded successfully to Personal save file</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.670594500Z</date>
+  <millis>1604580419670</millis>
+  <nanos>594500</nanos>
+  <sequence>7</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveFile</method>
+  <thread>1</thread>
+  <message>Personal saved successfully</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.671626600Z</date>
+  <millis>1604580419671</millis>
+  <nanos>626600</nanos>
+  <sequence>8</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>eventSave</method>
+  <thread>1</thread>
+  <message>"Math class | 2000-10-17 | 1300 | 0 | 0 | math building |  | F" added to stuff to be written</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.671626600Z</date>
+  <millis>1604580419671</millis>
+  <nanos>626600</nanos>
+  <sequence>9</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>eventSave</method>
+  <thread>1</thread>
+  <message>All changes recorded successfully to Timetable save file</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.672589900Z</date>
+  <millis>1604580419672</millis>
+  <nanos>589900</nanos>
+  <sequence>10</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveFile</method>
+  <thread>1</thread>
+  <message>Timetable saved successfully</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.672589900Z</date>
+  <millis>1604580419672</millis>
+  <nanos>589900</nanos>
+  <sequence>11</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>eventSave</method>
+  <thread>1</thread>
+  <message>"Math class | 2000-10-09 | 1300 | 0 | 0 | zoom.com |  | F" added to stuff to be written</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.672589900Z</date>
+  <millis>1604580419672</millis>
+  <nanos>589900</nanos>
+  <sequence>12</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>eventSave</method>
+  <thread>1</thread>
+  <message>All changes recorded successfully to Zoom save file</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.673587600Z</date>
+  <millis>1604580419673</millis>
+  <nanos>587600</nanos>
+  <sequence>13</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveFile</method>
+  <thread>1</thread>
+  <message>Zoom saved successfully</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.673587600Z</date>
+  <millis>1604580419673</millis>
+  <nanos>587600</nanos>
+  <sequence>14</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>goalSave</method>
+  <thread>1</thread>
+  <message>"hello there" added to stuff to be written</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.674616600Z</date>
+  <millis>1604580419674</millis>
+  <nanos>616600</nanos>
+  <sequence>15</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>goalSave</method>
+  <thread>1</thread>
+  <message>All changes recorded successfully to goal save file</message>
+</record>
+<record>
+  <date>2020-11-05T12:46:59.674616600Z</date>
+  <millis>1604580419674</millis>
+  <nanos>616600</nanos>
+  <sequence>16</sequence>
+  <logger>allEventLog</logger>
+  <level>FINE</level>
+  <class>seedu.duke.storage.Storage</class>
+  <method>saveFile</method>
+  <thread>1</thread>
+  <message>Goal saved successfully</message>
+</record>
+</log>

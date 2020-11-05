@@ -40,6 +40,8 @@ public class Duke {
 
         currentParse = new Parser();
 
+        EventLogger.initEventLogger(ui);
+
     }
 
     /**
