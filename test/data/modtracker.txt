@@ -1,4 +1,4 @@
 John Doe
-addmod cs1000
-addmod ee2000
-addtask cs1000 revision
+addmod CS1000
+addmod EE2000
+addtask CS1000 revision

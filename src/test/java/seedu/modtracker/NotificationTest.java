@@ -23,13 +23,19 @@ class NotificationTest {
     ModuleList modules = new ModuleList();
     Notification notification = new Notification();
 
-    /*void insert() {
-        modules.addExp("addExp CS1010 8", true, storage);
-        modules.addTime("addtime cs1010 2 1", true, storage);
-    }*/
+    @Test
+    void start_noNotifications_noMessage() {
+        modules.clear();
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        notification.start();
+        String expected = "";
+        assertEquals(expected, outContent.toString());
+        modules.clear();
+    }
 
     @Test
-    void start_addOneModuleWithTooLittleTime_startMessage() {
+    void start_addOneModuleWithTooLittleTime_printStartMessage() {
         modules.clear();
         modules.addExp("addExp CS5555 3", true, storage);
         modules.addTime("addtime cs5555 1 1", true, storage);
@@ -44,7 +50,7 @@ class NotificationTest {
     }
 
     @Test
-    void getNumNotification_addModuleWithoutExp_NumOfNotification() {
+    void getNumNotification_addModuleWithoutExp_numOfNotification() {
         modules.addMod("addMod CS1000", true, storage);
         notification.printNotification(modules);
         assertEquals(0, notification.getNumNotification(modules));
@@ -53,29 +59,29 @@ class NotificationTest {
 
 
     @Test
-    void getNumNotification_addOneModuleWithOnlyExp_NumOfNotification() {
+    void getNumNotification_addOneModuleWithOnlyExp_numOfNotification() {
+        modules.clear();
         modules.addExp("addExp CS1000 8", true, storage);
-        notification.printNotification(modules);
         assertEquals(0, notification.getNumNotification(modules));
         modules.clear();
     }
 
     @Test
-    void getNumNotification_addOneModuleWithTooLittleTime_NumOfNotification() {
+    void getNumNotification_addOneModuleWithTooLittleTime_numOfNotification() {
         modules.clear();
         modules.addExp("addExp CS1010 8", true, storage);
         modules.addTime("addtime cs1010 2 1", true, storage);
-        notification.printNotification(modules);
         assertEquals(1, notification.getNumNotification(modules));
     }
 
     @Test
-    void printNotification_ModuleWithTooLittleTime_tooLittleTimeMessage() {
+    void printNotification_moduleWithTooLittleTime_tooLittleTimeMessage() {
         modules.clear();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modules.addExp("addExp CS2000 8", true, storage);
         modules.addTime("addtime cs2000 2 1", true, storage);
+        modules.addExp("addExp CS4000 2", true, storage);
         notification.printNotification(modules);
         boolean isPresent = false;
         boolean expIsPresent = false;
@@ -94,7 +100,7 @@ class NotificationTest {
     }
 
     @Test
-    void printNotification_ModuleWithJustRightTime_JustRightTimeMessage() {
+    void printNotification_moduleWithJustRightTime_justRightTimeMessage() {
         modules.clear();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -118,7 +124,7 @@ class NotificationTest {
     }
 
     @Test
-    void printNotification_ModuleWithTooMuchTime_tooLMuchTimeMessage() {
+    void printNotification_moduleWithTooMuchTime_tooMuchTimeMessage() {
         modules.clear();
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
