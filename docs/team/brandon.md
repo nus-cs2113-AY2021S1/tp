@@ -8,7 +8,7 @@ title : Brandon - Project Portfolio Page
 The overview below follows the following standards: 
 *Roles (short for ‘in charge of role’): Description*
 
-- Development and Maintenance of Timetable Scheduling
+- In-charge of Events and Timetable of the code: Handles area of events, reminders and timetable scheduling and reviews changes done in this area.
 
 ### Summary of Contributions
 - Set up and designed the architecture used for Event scheduling in the timetable
