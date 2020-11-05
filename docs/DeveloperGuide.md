@@ -886,7 +886,9 @@ Below is a list of bookmark operations:
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
 *Figure 33: Bookmark Entries with more Add*
 
-The following sequence diagram shows how the `Add Bookmark` operation works:
+The sequence diagram presented below depicts the interaction between the components for running the command, bookmark -a 430.
+
+> :memo: The other options follow a similar process, only the list and info bookmark commands does not interact with StorageManager.
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
 *Figure 34: Bookmark Add Command Sequence Diagram*
