@@ -32,7 +32,7 @@ public class DeleteSlotCommand extends Command {
         if (!details.startsWith(" ")) {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
-        String[] deleteCommands = details.trim().split(" ", 3);
+        String[] deleteCommands = details.trim().split("\\s+", 3);
         moduleCode = deleteCommands[0];
 
         try {
@@ -55,35 +55,36 @@ public class DeleteSlotCommand extends Command {
     }
 
     /**
-     * Deletes either module or slot depending on the deleteBookmarks flag.
+     * Deletes the module, slot or their bookmarks depending on user input.
      *
      * @param bookmarks The list of bookmarks.
      * @param timetable The timetable.
      * @param ui The user interface.
-     * @throws ZoomasterException if the slot number provide is invalid.
+     * @throws ZoomasterException if the module does not exist or the slot number provided is invalid.
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         String message = "";
         if (!timetable.moduleExists(moduleCode)) {
-            message += "module does not exists\n";
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
         } else {
             Module module = timetable.getModule(moduleCode);
 
             if (slotIndex == null && !deleteBookmarks) { // delete module
                 timetable.deleteModule(module);
-                message += "deleted module: " + moduleCode + "\n";
+                message += "deleted module: " + moduleCode + System.lineSeparator();
             } else if (slotIndex != null && !deleteBookmarks) { // delete slot
                 Slot slot = module.getSlot(slotIndex);
                 module.removeSlot(slot);
-                message += "deleted " + slot + " from " + moduleCode + "\n";
+                message += "deleted " + slot + " from " + moduleCode + System.lineSeparator();
             } else if (slotIndex == null && deleteBookmarks) { // delete module bookmark
                 module.removeAllBookmarks();
-                message += "deleted bookmarks from " + moduleCode + "\n";
-            } else if (slotIndex != null && deleteBookmarks) { // delete slot bookmark
+                message += "deleted bookmarks from " + moduleCode + System.lineSeparator();
+            } else if (slotIndex != null && deleteBookmarks) { // delete slot bookmarks
                 Slot slot = module.getSlot(slotIndex);
                 slot.removeAllBookmarks();
-                message += "deleted bookmarks from " + slot.getDay() + " " + slot + " from " + moduleCode + "\n";
+                message += "deleted bookmarks from " + slot.getDay() + " " + slot + " from "
+                        + moduleCode + System.lineSeparator();
             }
 
         }
