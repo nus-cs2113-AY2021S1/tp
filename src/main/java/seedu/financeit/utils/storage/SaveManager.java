@@ -71,6 +71,11 @@ public class SaveManager {
             prompt = "Invalid Command";
             return false;
         }
+
+        if (packet.getParam("/name").trim().equals("")) {
+            prompt = "Name cannot be empty!";
+            return false;
+        }
         return true;
     }
 
@@ -84,7 +89,7 @@ public class SaveManager {
         TablePrinter.addRow("[3]; Load save; load /name");
         TablePrinter.addRow("[4]; Delete save; delete /name");
         TablePrinter.addRow("[5]; Reset program; reset");
-        TablePrinter.addRow("[5]; Quit to main; exit");
+        TablePrinter.addRow("[6]; Quit to main; exit");
         TablePrinter.printList();
     }
 
