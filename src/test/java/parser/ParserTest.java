@@ -15,7 +15,6 @@ import commands.ListChaptersCommand;
 import commands.ListCommand;
 import commands.ListModulesCommand;
 import commands.RescheduleCommand;
-import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
@@ -145,21 +144,6 @@ public class ParserTest {
         }
     }
 
-
-    @Test
-    public void parse_listCommandWithArgs_expectException() {
-        Access access = new Access();
-        final String input = "list args";
-        assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-    }
-
-    @Test
-    public void parse_exitCommandWithArgs_expectException() {
-        Access access = new Access();
-        final String input = "exit args";
-        assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-    }
-
     @Test
     public void parse_removeCommandEmptyArgs_exception() {
         Parser parser = new Parser();
@@ -197,93 +181,6 @@ public class ParserTest {
         access.setChapterLevel("chapter");
         String input = "remove two";
         assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-    }
-
-
-
-    @Test
-    public void parse_editCommandEmptyArgs_expectException() {
-        Access access = new Access();
-        final String[] inputs = {"edit", "edit "};
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_editCardInvalidArgs_expectException() {
-        Access access = new Access();
-        access.setIsChapterLevel();
-        final String[] inputs = {
-            "edit wrong args format",
-            // card number is not integer
-            "edit two q:1*1 | a:",
-            // no card number
-            "edit q:1*1 | a:",
-            // no content for question and answer
-            "edit 1 q: | a:",
-            // no question and answer separator prefix
-            "edit 1 q:1*1 a:1",
-            // no question prefix
-            "edit 1 1+1 | a:",
-            // no answer prefix
-            "add q:1+1 | 2",
-        };
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_editModuleInvalidArgs_expectException() {
-        Access access = new Access();
-        access.setIsAdminLevel();
-        final String[] inputs = {
-            "edit wrong args format",
-            // module number is not integer
-            "edit two cs2113",
-            // no module number
-            "edit cs2113",
-            // no content for module name
-            "edit 1",
-        };
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_editModuleInvalidCommandFormat_expectException() {
-        Access access = new Access();
-        access.setIsAdminLevel();
-        String input = "edit 1 q:1+1 | a:";
-        assertThrows(IncorrectAccessLevelException.class, () -> Parser.parse(input, access));
-    }
-
-    @Test
-    public void parse_editChapterInvalidArgs_expectException() {
-        Access access = new Access();
-        access.setIsModuleLevel();
-        final String[] inputs = {
-            "edit wrong args format",
-            // chapter number is not integer
-            "edit two chapter 1",
-            // no chapter number
-            "edit chapter 1",
-            // no content for chapter name
-            "edit 1",
-        };
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_editChapterInvalidCommandFormat_expectException() {
-        Access access = new Access();
-        access.setIsModuleLevel();
-        String input = "edit 1 q:1+1 | a:";
-        assertThrows(IncorrectAccessLevelException.class, () -> Parser.parse(input, access));
     }
 
     @Test

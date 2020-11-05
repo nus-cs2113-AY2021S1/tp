@@ -61,4 +61,5 @@ public class ParserUtilTest {
     public void checkAlphanumericOnly_validInput_returnsTrue() {
         assertEquals(true, ParserUtil.checkAlphanumericOnly(VALID_NAME));
     }
+
 }
