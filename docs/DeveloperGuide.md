@@ -1,46 +1,46 @@
 # Developer Guide
 
 ## Table of Contents
-1. [Introduction](#introduction)
-    1. [Background](#background)
-    1. [Purpose](#purpose)
-    1. [Scope](#scope)
-1. [Getting Started](#getting-started)
-    1. [Prerequisites](#prerequisites)
-    1. [Setting Up](#setting-up)
-    1. [Running the Program](#running-the-program)
-1. [Design](#design)
-    1. [Architecture](#architecture)
-    1. [UI Component](#ui-component)
-    1. [Logic Component](#logic-component)
-    1. [Model Component](#model-component)
-    1. [Storage Component](#storage-component)
-1. [Implementation](#implementation)
-    1. [Project](#project)
-        1. [Create Project](#create-project)
-        1. [Select Project](#select-project)
-    1. [Task](#task)
-        1. [Add Task](#add-task)
-        1. [View Task](#view-task)
-        1. [Delete Task](#delete-task)
-        1. [Change Task Priority](#change-task-priority)
-        1. [Mark Task as Complete](#mark-task-as-complete)
-    1. [Sprint](#sprint)
-        1. [Create Sprint](#create-sprint)
-        1. [View Sprint](#view-sprint)
-        1. [Add Task to Sprint](#add-task-to-sprint)
-        1. [Remove Task from Sprint](#remove-task-from-sprint)
-        1. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        
-    1. [Storage](#storage)
-        1. [Location](#location)
-        1. [Loading Data](#loading-data)
-        1. [Converting and Mapping of JSON to Objects](#converting-and-mapping-of-json-to-objects)
-        1. [Saving Data](#saving-data)
-            1. [When the Program Exits](#when-the-program-exits)
-            1. [Changes Made to the Data](#changes-made-to-the-data)
-            1. [Serialising Objects to JSON](#serialising-objects-to-json)
-1. [Appendix: Requirements]()
-1. [Others](#target-user-profile)
+1. [Introduction](#introduction)<br>
+&nbsp;&nbsp;1.1. [Background](#background)<br>
+&nbsp;&nbsp;1.2. [Purpose](#purpose)<br>
+&nbsp;&nbsp;1.3. [Scope](#scope)<br>
+1. [Getting Started](#getting-started)<br>
+&nbsp;&nbsp;2.1. [Prerequisites](#prerequisites)<br>
+&nbsp;&nbsp;2.2. [Setting Up](#setting-up)<br>
+&nbsp;&nbsp;2.3. [Running the Program](#running-the-program)<br>
+1. [Design](#design)<br>
+&nbsp;&nbsp;3.1. [Architecture](#architecture)<br>
+&nbsp;&nbsp;3.2. [UI Component](#ui-component)<br>
+&nbsp;&nbsp;3.3. [Logic Component](#logic-component)<br>
+&nbsp;&nbsp;3,4. [Model Component](#model-component)<br>
+&nbsp;&nbsp;3.5. [Storage Component](#storage-component)<br>
+1. [Implementation](#implementation) <br>
+&nbsp;&nbsp;4.1. [Project](#project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.1. [Create Project](#create-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [Select Project](#select-project)<br>
+&nbsp;&nbsp;4.2. [Task](#task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.1. [Add Task](#add-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.2. [View Task](#view-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.3. [Delete Task](#delete-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Change Task Priority](#change-task-priority)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Mark Task as Complete](#mark-task-as-complete)<br>
+&nbsp;&nbsp;4.3. [Sprint](#sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Create Sprint](#create-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [View Sprint](#view-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.3. [Add Task to Sprint](#add-task-to-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.4. [Remove Task from Sprint](#remove-task-from-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.5. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        <br>
+&nbsp;&nbsp;4.4. [Storage](#storage)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Location](#location)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.2. [Loading Data](#loading-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.2.1. [Converting and Mapping of JSON to Objects](#converting-and-mapping-of-json-to-objects)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.3. [Saving Data](#saving-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.1. [When the Program Exits](#when-the-program-exits)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.2. [Changes Made to the Data](#changes-made-to-the-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.3. [Serialising Objects to JSON](#serialising-objects-to-json)<br>
+5. [Appendix: Requirements]()<br>
+6. [Others](#target-user-profile)<br>
 
 ## Introduction
 ### Background
@@ -206,6 +206,8 @@ This requires the model classes to implement two methods required for JSON seria
 
 ## Implementation
 ### Project
+![Figure X: Project Class Diagram](./image/developerguide/ProjectClassDiagram.png
+ "Project Class Diagram")
 #### Create Project
 ![Figure X: Sequence diagram of CreateProjectCommand](./image/developerguide/createProjectSequenceDiagram.png
  "Add Project Sequence Diagram") 
@@ -226,7 +228,7 @@ Before execution:
 Implementation:
 
 1. Prepare parameters
-    1. Extracts required arguements, to be passed as parameters for project creation.
+    1. Extracts required fields, to be passed as parameters for project creation.
         
 1. `projectManager.addProject()` adds a project using the parameters provided.
     
