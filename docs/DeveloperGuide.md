@@ -76,14 +76,14 @@ Step 3: The `Ui.printTopicList()` method then prints out the number of questions
 `NoteList` is also an `ArrayList` of type `Displayable`. As such, just like with `TopicList`, many of the commands 
 that manipulate the `NoteList` also make use of the package `java.util.ArrayList`. 
 
-Each topic has an attribute of type `NoteList`, which contains `Notes`.
+Each topic has an attribute of type `NoteList`, which contains `Note` objects.
 
 ![NoteListClass](images/NoteListClassDiagram.png)
 
 #### 2.2.4. Implementation of Notes
 
-There are 3 commands that involve the manipulation of `NoteList`. They are: `note add`, which adds a new note, 
-`note delete`, which deletes a note, and `note list`, which lists out all `Note` objects in a `NoteList` from a 
+There are 3 commands that involve the manipulation of `NoteList` objects. They are: `note add`, which adds a new `Note`
+object, `note delete`, which deletes a `Note` object, and `note list`, which lists out all `Note` objects in a `NoteList` from a 
 specified `Topic`. These commands are carried out by the instantiation of a `NoteCommand` object. The `NoteCommand` 
 object then performs a task based on the type of command from the user's input. This is reflected in the following 
 sequence diagram:
@@ -101,17 +101,17 @@ Step 2: The `Ui.addNoteInteractions()` method uses the user's input to create a 
 
 Step 3: The `Ui,addNoteInteractions()` method then calls the method `NoteList.add()`, passing the created `Note` object 
 into this method. `NoteList.add()` makes use of the package `java.util.ArrayList`, specifically the `ArrayList.add()` 
-method, to add the `Note` object into `NoteList`.
+method, to add the `Note` object into the specified `NoteList` object.
 
 **Listing out all notes in a topic:**
 
 This task is performed by the `Ui.printNoteList()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. The topic's `NoteList` is passed into this method.
+and calls the `Ui.listInteraction` method. The topic's `NoteList` object is passed into this method.
 
-Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
-this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList`.
+Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` object is passed into 
+this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` object.
 
 **Deleting a note:**
 
@@ -119,10 +119,10 @@ This task is performed by the `NoteList.delete()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.deleteNoteInteractions` method. 
 An integer provided by the user's input is passed into this method. This integer is interpreted as the index of the `Note` object to be deleted in the
-`NoteList`.
+specified `NoteList` object.
 
 Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the `ArrayList.remove()` method, to 
-delete the specified `Note` object in `NoteList`.
+delete the specified `Note` object in the specified `NoteList` object.
 
 #### 2.2.4. Design of Option and OptionList 
 
