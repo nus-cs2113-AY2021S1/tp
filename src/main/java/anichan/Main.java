@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 
 //@@author
 public class Main {
+    private static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
+    private static final int MAXIMUM_WORKSPACE_NAME_LENGTH = 30;
     private static final String ANICHAN_STORAGE_DIRECTORY = "data" + File.separator;
     private static final Logger LOGGER = AniLogger.getAniLogger(Main.class.getName());
     private static final String DEFAULT_NAME = "Default";
@@ -123,17 +125,21 @@ public class Main {
         ArrayList<Workspace> workspaceList = new ArrayList<>();
         String[] workspaceNameList = storageManager.retrieveWorkspaceList();
         for (String workspaceName : workspaceNameList) {
-            ui.printMessage("Workspace \"" + workspaceName + "\":");
+            boolean workspaceValid = workspaceName.matches(REGEX_ALPHANUMERIC_WITH_SPACE);
+            if (workspaceValid && workspaceName.length() <= MAXIMUM_WORKSPACE_NAME_LENGTH) {
+                ui.printMessage("Workspace \"" + workspaceName + "\":");
 
-            ArrayList<Watchlist> watchlistList = loadWatchlistData(workspaceName);
-            Bookmark bookmark = loadBookmarkData(workspaceName);
+                ArrayList<Watchlist> watchlistList = loadWatchlistData(workspaceName);
+                Bookmark bookmark = loadBookmarkData(workspaceName);
 
-            if (watchlistList.size() == 0) {
-                watchlistList.add(new Watchlist("Default"));
+                if (watchlistList.size() == 0) {
+                    watchlistList.add(new Watchlist("Default"));
+                }
+                Workspace workspace = new Workspace(workspaceName, watchlistList, bookmark);
+                workspaceList.add(workspace);
             }
-            Workspace workspace = new Workspace(workspaceName, watchlistList, bookmark);
-            workspaceList.add(workspace);
         }
+
         return workspaceList;
     }
 
