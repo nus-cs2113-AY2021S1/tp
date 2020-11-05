@@ -254,7 +254,7 @@ This section explains the implementations of Zoomaster's features. It goes throu
 expected outcomes of each feature and the design considerations.
 
 <a name="mode"></a>
-### Bookmark, Timetable and Planner modes feature (TYS)
+### Bookmark, Timetable and Planner modes feature (Tan Yu Shing)
 
 Zoomaster has three modes for users to interact in. First, bookmark mode has the list of bookmarks with links to online resources. 
 Secondly, timetable mode has a list of timetable slots. Lastly, planner mode which helps users plan their timetable. 
