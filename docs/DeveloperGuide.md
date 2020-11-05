@@ -135,7 +135,7 @@ Its main roles are:
 <a name="parser"></a>
 ### Parser component
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram%20new.png?raw=true)
 *<center/> Figure 1.3 Class diagram of Parser </center> <br/></br>*
 
 
@@ -254,12 +254,17 @@ This section explains the implementations of Zoomaster's features. It goes throu
 expected outcomes of each feature and the design considerations.
 
 <a name="mode"></a>
-### Bookmark, Timetable and Planner modes feature (TYS)
+### Bookmark, Timetable and Planner modes feature (Tan Yu Shing)
 
 Zoomaster has three modes for users to interact in. First, bookmark mode has the list of bookmarks with links to online resources. 
 Secondly, timetable mode has a list of timetable slots. Lastly, planner mode which helps users plan their timetable. 
 To simplify input commands for users, all lists has the same keywords for adding, deleting, and showing items in the lists. 
-Hence by having seperating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+Hence, by having separating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+
+In this section, I will refer to *input command* and *input parameter*. <br></br>
+*input command* refers to the string of characters the user has typed into the command line and entered into the program. Eg. "mode bookmark" is an *input command* <br></br>
+*input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
+Eg. "mode bookmark", "mode" is the identifier string of the command and "bookmark" is the *input parameter*.
 
 #### Implementation
 
@@ -273,9 +278,9 @@ Given below is a sequence diagram of how changing between modes occur.
 *<center/>Figure 2.01 sequence diagram for ChangeModeCommand</center> <br/></br>*
 
 
-1. When Zoomaster gets a command from the user to change modes, a new ChangeModeCommand object is created.
+1. When Zoomaster gets an input command from the user to change modes, a new ChangeModeCommand object is created.
 
-2. The ChangeModeCommand passes the command through getModeFromCommand() function to decode the mode the user wishes to change to.
+2. The ChangeModeCommand passes the input command through getModeFromCommand() function to decode the mode the user wishes to change to.
 
 3. Zoomaster now executes the command and changes to the respective mode. 
 
@@ -283,9 +288,24 @@ Given below is a sequence diagram of how changing between modes occur.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command.png?raw=true) 
-
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command%20new.png?raw=true)
 *<center/> Figure 2.02 Activity diagram for ChangeModeCommand </center> <br/></br>*
+
+1. First, the program checks if the length of the input command is more than 5. Any input command of length less than 5 is
+an invalid mode command. This is because mode command requires an input parameter separated by a space hence "mode " or "mode1"
+are examples of invalid mode commands with length of less than 5. If this is so, it throws an invalid mode message to tell the
+user the valid modes of Zoomaster. Else, it continues to the next step.
+
+2. Secondly, the program checks if the input parameter corresponds to a valid mode of Zoomaster.
+
+3. If the input parameter corresponds to "bookmark", the program changes the mode of Zoomaster to the bookmark mode.
+
+4. If the input parameter corresponds to "timetable", the program changes the mode of Zoomaster to the timetable mode.
+
+5. If the input parameter corresponds to "planner", the program changes the mode of Zoomaster to the planner mode.
+
+6. If the input parameter does not correspond to any of the valid modes of Zoomaster, it throws an invalid mode message to tell the
+user the valid modes of Zoomaster.
 
 #### Design consideration:
 
@@ -300,7 +320,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <a name="show-timetable"></a>
 ### Show timetable feature (Tan Yu Shing)
-Users can see the timetable they have created in the App using the **show** command. The can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. 
+Users can see the timetable they have created in the App using the **show** command. 
+The can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. 
+The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. <br></br>
+
+In this section, I will refer to *input command* and *input parameter*. <br></br>
+*input command* refers to the string of characters the user has typed into the command line and entered into the program. 
+Eg. "show today" is an *input command* <br></br>
+*input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
+Eg. "show sun", "show" is the identifier string of the command and "sun" is the *input parameter*.
 
 #### Implementation
 This feature extends the command class. It is a simple retrieval algorithm which firstly gets data from the Timetable class. Then sorts it by timing and add additional indicators for the users. And finally, prints it our using the User Interface. </br> It uses SlotContainer class sortSlotsByTime method to help sort the list of lessons and it's module code by timing. </br>
@@ -337,6 +365,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20show%20timetable%20command.png?raw=true)
 *<center/>Figure 2.06 Activity diagram for ShowTimetableCommand</center> <br/></br>*
 
+1. First, the program checks if the input command is just "show". This corresponds to the user requesting the full timetable.
+Hence, it sets **day** variable as "ALL" and moves on to the Execute step, step 6. Else it continues to decode the input command.
+
+2. Secondly, the program checks for spacing error in the command. Show command requires a spacing after "show" help decode the input command.
+Hence, if there is no space after "show", the program throws an Unknown Input ZoomasterException and shows the list of valid commands.
+
+3. Next, the program checks if the input parameter is "today". This corresponds to the user requesting the timetable on the day of the current system time.
+Hence, it sets **day** variable as the day of the current system time and moves on to the Execute step, step 6. Else it continues to further check the input command.
+
+4. Afterwards, the program checks if the input parameter corresponds to a valid day of the week in its three letter abbreviation.
+If so, it sets **day** variable as that of input parameter and moves on to the Execute step, step 6.
+
+5. Else, if the input parameter does not correspond to any of the valid inputs. The program sets **day** variable as "NULL".
+
+6. Now, the program executes. If the **day** variable is not "NULL", it prints the corresponding timetable the user wants.
+
+7. If the **day** variable is "NULL", the program moves on to the Show Lesson Bookmarks feature.
 
 #### Design consideration:
 
@@ -357,46 +402,50 @@ The following activity diagram summarizes what happens when a user executes a ne
     whom can memorise the command would not encounter the error message of Alternative 1, thus would find typing the
     additional keyword troublesome.
 
-
 <a name="add-module-slot"></a>
 ### Add Module and Slot feature (Xing Rong)
 This feature allows the user to add modules and lesson slots into the timetable.
 Users can also add bookmarks to specific modules and slots.
 Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
 
-Given below is a sequence diagram of how the feature works.
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)  
+Given below is a sequence diagram of how the feature works.  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram.png?raw=true)  
 *<center/> Figure 2.07 Sequence diagram for AddSlotCommand </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram2.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram2.png?raw=true)  
 *<center/> Figure 2.08 Sequence diagram for 
 "Get module if it exist, else create a new module" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram3.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram3.png?raw=true)  
 *<center/> Figure 2.09 Sequence diagram for 
 "Create bookmark for module" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram4.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram4.png?raw=true)  
 *<center/> Figure 2.10 Sequence diagram for 
 "Create bookmark for existing slot base on its index" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram5.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram5.png?raw=true)  
 *<center/> Figure 2.11 Sequence diagram for 
 "Get slot if it exist, else create a new slot" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram6.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram6.png?raw=true)  
 *<center/> Figure 2.12 Sequence diagram for 
 "Create bookmark for slot" Block </center> <br/></br>*
 <br></br>
-1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code entered by the user already exists in the timetable. If it does not exist, then the module will be created.
+
+1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code 
+entered by the user already exists in the timetable. If it does not exist, then the module will be created.
 
 2. There will then be a check for additional commands pertaining to the module entered by the user.
 
 3. The code will then check if the command is to add a module bookmark or a lesson slot, and do so accordingly.
 
-4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. If there is one, then the bookmark will be added to the lesson slot.
+4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. 
+If there is one, then the bookmark will be added to the lesson slot.
 
 5. Loop to step 3 if there are additional commands which have not been executed.
+
+6. Print the message of all commands executed and error messages.
 
 #### Design consideration:
 
@@ -408,6 +457,44 @@ Given below is a sequence diagram of how the feature works.
     * Pros: Easy to implement
     * Pros: Lower chance of error
     * Cons: User has to enter multiple commands each at a time to perform the functions, which takes up more time.
+
+
+<a name="add-module-slot"></a>
+### Delete Module and Slot feature (Xing Rong)
+This feature allows the user to delete the modules, slots and their bookmarks from the timetable.  
+
+Given below is a sequence diagram of how the feature works.  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram.png?raw=true)  
+*<center/> Figure 2.13 Sequence diagram for DeleteSlotCommand </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram2.png?raw=true)  
+*<center/> Figure 2.14 Sequence diagram for 
+"delete module" Block </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram3.png?raw=true)  
+*<center/> Figure 2.15 Sequence diagram for 
+"delete slot" Block </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram4.png?raw=true)  
+*<center/> Figure 2.16 Sequence diagram for 
+"delete module bookmarks" Block </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram5.png?raw=true)  
+*<center/> Figure 2.17 Sequence diagram for 
+"delete slot bookmarks" Block </center> <br/></br>*
+<br></br>
+
+1. There will be a check if the module associated with the deleted object exists. 
+If it does not exist, an exception will be thrown.
+
+2. If the module exists, it will then check what kind of object the user wants to delete.
+There are four options:
+    1. Delete the module (including everything contained in the module).
+    2. Delete a slot contained in the module.
+    3. Delete all bookmarks associated with the module.
+    4. Delete all bookmarks contained in a slot from the module.  
+    
+
 
 ### Edit Slot feature (Francisco)
 
@@ -426,7 +513,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.13 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.18 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 
 ### Planner feature (Jusuf)
