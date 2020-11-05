@@ -128,7 +128,7 @@ public class RecommendCommand extends Command {
             }
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
-        } catch (InvalidRecommendationException e){
+        } catch (InvalidRecommendationException e) {
             Ui.printCustomError("sorry that is an invalid recommendation type");
         }
 

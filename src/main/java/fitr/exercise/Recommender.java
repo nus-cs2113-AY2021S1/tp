@@ -31,7 +31,7 @@ public class Recommender {
     }
 
     public StandardExerciseList recommend(int recommendationType) {
-        assert recommendationType >=0 && recommendationType <5;
+        assert recommendationType >= 0 && recommendationType < 5;
         StandardExerciseList finalList = new StandardExerciseList();
         int firstIndex;
         int secondIndex;
@@ -63,7 +63,7 @@ public class Recommender {
             finalList.addExercise(aerobicList.getExercise(fourthIndex));
             break;
         case 2:
-            firstIndex = (int) (Math.random() * (upperBodyList.getSize()- 1));
+            firstIndex = (int) (Math.random() * (upperBodyList.getSize() - 1));
             secondIndex = (firstIndex + 1) % upperBodyList.getSize();
             thirdIndex = (secondIndex + 2) % upperBodyList.getSize();
             fourthIndex = (secondIndex + 3) % upperBodyList.getSize();
@@ -88,7 +88,7 @@ public class Recommender {
             finalList.addExercise(lowerBodyList.getExercise(thirdIndex));
             finalList.addExercise(lowerBodyList.getExercise(fourthIndex));
             break;
-        case 4:
+        default:
             firstIndex = (int) (Math.random() * (stretchingList.getSize() - 1));
             secondIndex = (firstIndex + 1) % stretchingList.getSize();
             thirdIndex = (secondIndex + 2) % stretchingList.getSize();
@@ -110,22 +110,22 @@ public class Recommender {
         if (command.length() == 0) {
             return 0;
         } else {
-                switch (command) {
-                case "aerobic":
-                    recommendationType = 1;
-                    break;
-                case "upperbody":
-                    recommendationType = 2;
-                    break;
-                case "lowerbody":
-                    recommendationType = 3;
-                    break;
-                case "stretch":
-                    recommendationType = 4;
-                    break;
-                default:
-                    recommendationType = 5;
-                }
+            switch (command) {
+            case "aerobic":
+                recommendationType = 1;
+                break;
+            case "upperbody":
+                recommendationType = 2;
+                break;
+            case "lowerbody":
+                recommendationType = 3;
+                break;
+            case "stretch":
+                recommendationType = 4;
+                break;
+            default:
+                recommendationType = 5;
+            }
         }
         return recommendationType;
 
