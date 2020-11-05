@@ -20,3 +20,5 @@ data
 text-ui-test/EXPECTED-UNIX.TXT
 
 logging.txt
+mainTest/personal.txt
+goalStoreTest/
