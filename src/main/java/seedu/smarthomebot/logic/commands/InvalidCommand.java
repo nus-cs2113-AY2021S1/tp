@@ -1,6 +1,5 @@
 package seedu.smarthomebot.logic.commands;
 
-import static seedu.smarthomebot.commons.Messages.LINE;
 
 //@@author Ang_Cheng_Jun
 /**
@@ -17,7 +16,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(LINE + this.feedbackToUser);
+        return new CommandResult(this.feedbackToUser);
     }
 
 }

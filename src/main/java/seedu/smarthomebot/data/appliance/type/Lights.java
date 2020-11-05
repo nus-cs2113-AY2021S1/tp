@@ -5,6 +5,8 @@ import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
 import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
+//@@author leonlowzd
+
 /**
  * Represents Lights type extended from Appliance.
  */

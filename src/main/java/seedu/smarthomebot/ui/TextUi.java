@@ -10,6 +10,7 @@ import java.util.Scanner;
 import static seedu.smarthomebot.commons.Messages.DIVIDER;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_GOODBYE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_WELCOME;
+import static seedu.smarthomebot.commons.Messages.LINE;
 
 //@@author Ang_Cheng_Jun
 /**
@@ -41,7 +42,7 @@ public class TextUi {
      * Prints result(s) of the command to the user
      */
     public void printResultToUser(CommandResult result) {
-        printToUser(result.feedbackToUser);
+        printToUser(LINE + result.feedbackToUser);
     }
 
     /**

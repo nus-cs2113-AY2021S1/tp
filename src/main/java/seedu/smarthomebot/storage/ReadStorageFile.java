@@ -94,7 +94,7 @@ public class ReadStorageFile extends StorageFile {
                 // when user exit, get the current system and save in datafile
                 applianceList.getAppliance(i).loadDataFromFile(powerConsumption);
                 i++;
-            } catch (IndexOutOfBoundsException | InvalidApplianceNameException | LocationNotFoundException e) {
+            } catch (Exception e) {
                 throw new FileCorruptedException();
             }
         }
@@ -103,7 +103,7 @@ public class ReadStorageFile extends StorageFile {
     private void readToLocationList(String location) throws FileCorruptedException {
         try {
             int openBracesIndex = location.indexOf("[") + 1;
-            int closeBracesIndex = location.indexOf("]");
+            int closeBracesIndex = location.lastIndexOf("]");
             String locations = location.substring(openBracesIndex, closeBracesIndex);
             String[] stringSplit = locations.split(",");
             for (String locationName : stringSplit) {

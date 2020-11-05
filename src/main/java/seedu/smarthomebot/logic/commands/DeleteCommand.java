@@ -3,7 +3,10 @@ package seedu.smarthomebot.logic.commands;
 import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 
+import static seedu.smarthomebot.commons.Messages.LINE;
+
 //@@author zongxian-ctrl
+
 /**
  * Represent the command for deleting an appliance in the ApplianceList.
  */

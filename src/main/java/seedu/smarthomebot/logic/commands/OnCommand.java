@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
-import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
@@ -71,7 +70,7 @@ public class OnCommand extends Command {
     private CommandResult onByAppliance() throws ApplianceNotFoundException, NoApplianceInLocationException {
         int toOnApplianceIndex = getApplianceToOnIndex();
         Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
-        String outputResult = onAppliance(toOnAppliance, "", false);
+        String outputResult = onAppliance(toOnAppliance, false);
         return new CommandResult(outputResult);
     }
 
@@ -112,23 +111,22 @@ public class OnCommand extends Command {
         if (!parameter.isEmpty()) {
             throw new NoParameterForLocationException();
         } else {
-            String outputResult = LINE;
-            outputResult = onApplianceByLoop(outputResult);
-            return new CommandResult(outputResult);
+            return new CommandResult(onApplianceByLoop());
         }
     }
 
-    private String onApplianceByLoop(String outputResult) {
+    private String onApplianceByLoop() {
         for (Appliance toOnAppliance : applianceList.getAllAppliance()) {
             if (toOnAppliance.getLocation().equals(argument)) {
-                outputResult = onAppliance(toOnAppliance, outputResult, true);
+                onAppliance(toOnAppliance, true);
             }
         }
-        outputResult = "All appliance in \"" + argument + "\" are turned on ";
+        String outputResult = "All appliance in \"" + argument + "\" are turned on ";
         return outputResult;
     }
 
-    private String onAppliance(Appliance toOnAppliance, String outputResult, boolean isList) {
+    private String onAppliance(Appliance toOnAppliance, boolean isList) {
+        String outputResult = "";
         boolean onResult = toOnAppliance.switchOn();
         assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
         String setParameterStatement = setParameter(parameter, toOnAppliance);
@@ -138,7 +136,7 @@ public class OnCommand extends Command {
 
             } else {
                 outputResult = setParameterStatement
-                        + MESSAGE_APPLIANCE_PREVIOUSLY_ON + toOnAppliance.toString();
+                        + toOnAppliance.getName() + MESSAGE_APPLIANCE_PREVIOUSLY_ON + toOnAppliance.toString();
             }
         }
         return outputResult;

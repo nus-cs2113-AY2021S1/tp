@@ -1,5 +1,5 @@
 ====================================================
-Welcome to your SmartHomeBot V2.0!
+Welcome to your SmartHomeBot V2.1!
 Load File does not exist. No contents will be loaded.
 ====================================================
 Enter command: ----------------------------------------------------
@@ -14,6 +14,7 @@ Invalid Command Format
 Enter command: ----------------------------------------------------
 Invalid Command Format
 ====================================================
-Enter command: Exiting SmartHomeBot as requested, all appliances are switched off.
+Enter command: ----------------------------------------------------
+Exiting SmartHomeBot as requested, all Appliances are switched off.
 Exporting data........Completed!
 Good bye!

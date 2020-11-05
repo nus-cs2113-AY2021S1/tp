@@ -5,6 +5,7 @@ import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.data.location.LocationList;
 
 //@@author zongxian-ctrl
+
 /**
  * Represent the parent of all command types.
  */
@@ -29,7 +30,7 @@ public abstract class Command {
         this.locationList = locationList;
     }
 
-    /*
+    /**
      * Gets the longest length of name and location in the appliance class.
      */
     protected void autoFormattingStringIndex() {
