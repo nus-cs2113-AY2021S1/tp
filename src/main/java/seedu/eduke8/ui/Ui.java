@@ -142,6 +142,8 @@ public class Ui {
     public static final String OS_NAME = "os.name";
     public static final String OS_LINUX = "nux";
     public static final String OS_MAC = "mac";
+    public static final String NUMBERS_ONLY = "[0-9]+";
+    public static final String EMPTY = "";
 
     private static String operatingSystem = null;
 
@@ -230,6 +232,10 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(message);
         System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void printWithoutLines(String message) {
+        System.out.println(message);
     }
 
     public void printGreetMessage() {
@@ -330,7 +336,7 @@ public class Ui {
         System.out.println(MESSAGE_PRINT_TOPIC_LIST);
         for (int i = 0; i < topics.getCount(); i++) {
             Topic topic = topics.get(i);
-            System.out.println(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
+            printMessage(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
                     + topic.getDescription());
         }
 
@@ -338,43 +344,37 @@ public class Ui {
     }
 
     public void addNoteInteractions(TopicList topicList) {
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(ADD_NOTE_PROMPT_FOR_TOPIC);
+        printMessage(ADD_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine().trim();
         Ui ui = new Ui();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
-                System.out.println(HORIZONTAL_LINE);
-                System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
+                printMessage(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
 
                 String noteName = SCANNER.nextLine().trim();
 
                 while (noteName.replace(" ", "").isEmpty()) {
-                    System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
+                    printMessage(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
                     noteName = SCANNER.nextLine();
                 }
-              
-                System.out.println(HORIZONTAL_LINE);
 
-                System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
+                printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                 String noteBody = SCANNER.nextLine().trim();
-                System.out.println(HORIZONTAL_LINE);
 
                 while (noteBody.replace(" ", "").isEmpty()) {
-                    System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
+                    printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                     noteBody = SCANNER.nextLine();
                 }
 
                 Note note = new Note(noteName, noteBody);
                 Topic topic = (Topic) topicList.find(topicName);
                 topic.getNoteList().add(note);
-                System.out.println(ADD_NOTE_SUCCESSFULLY);
-                System.out.println(HORIZONTAL_LINE);
+                printMessage(ADD_NOTE_SUCCESSFULLY);
             } else {
-                System.out.println(INVALID_TOPIC);
+                printMessage(INVALID_TOPIC);
                 ui.printTopicsError(topicList);
-                System.out.println(INPUT_ERROR + "\n" + ADD_NOTE_UNSUCCESSFULLY);
+                printMessage(INPUT_ERROR + "\n" + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -387,9 +387,7 @@ public class Ui {
         Topic topic = null;
         NoteList noteList = null;
 
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(DELETE_NOTE_PROMPT_FOR_TOPIC);
-
+        printMessage(DELETE_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine();
         
         try {
@@ -406,7 +404,7 @@ public class Ui {
             System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
             String input = SCANNER.nextLine();
 
-            if (input.matches("[0-9]+") && Integer.parseInt(input) > 0
+            if (input.matches(NUMBERS_ONLY) && Integer.parseInt(input) > 0
                     && Integer.parseInt(input) <= noteList.getCount()) {
                 int index = Integer.parseInt(input);
                 topic.getNoteList().delete(index - 1);
@@ -424,8 +422,7 @@ public class Ui {
     public void listInteraction(TopicList topicList) {
         Ui ui = new Ui();
 
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(LIST_NOTE_PROMPT);
+        printMessage(LIST_NOTE_PROMPT);
         String topicName = SCANNER.nextLine().trim();
 
         try {
@@ -434,9 +431,9 @@ public class Ui {
                 NoteList noteListTopic = topic.getNoteList();
                 ui.printNoteList(noteListTopic);
             } else {
-                System.out.println(INVALID_TOPIC);
+                printMessage(INVALID_TOPIC);
                 ui.printTopicsError(topicList);
-                System.out.println(INPUT_ERROR);
+                printMessage(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -446,18 +443,18 @@ public class Ui {
     public void printNoteList(NoteList notes) {
 
         if (notes.getCount() == 0) {
-            System.out.println(MESSAGE_PRINT_NOTE_LIST_NONE);
+            printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
-            System.out.println(MESSAGE_PRINT_NOTE_LIST);
+            printMessage(MESSAGE_PRINT_NOTE_LIST);
             for (int i = 0; i < notes.getCount(); i++) {
-                System.out.println(HORIZONTAL_LINE);
+                printWithoutLines(HORIZONTAL_LINE);
                 Note note = (Note) notes.get(i);
-                System.out.println((i + 1) + DOT + note.getDescription());
-                System.out.println(note.getNoteText());
+                printWithoutLines((i + 1) + DOT + note.getDescription());
+                printWithoutLines(note.getNoteText());
             }
         }
 
-        System.out.println(HORIZONTAL_LINE);
+        printWithoutLines(HORIZONTAL_LINE);
     }
 
     private void printStartQuizQuestions(int numberOfQuestionsChosen) {

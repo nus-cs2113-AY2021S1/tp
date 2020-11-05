@@ -164,8 +164,8 @@ public class MenuParser implements Parser {
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
         case COMMAND_NOTE:
             try {
-                if (commandArr[1].equalsIgnoreCase("add") || commandArr[1]
-                        .equalsIgnoreCase("delete") || commandArr[1].equals("list")) {
+                if (commandArr[1].equalsIgnoreCase(COMMAND_NOTE_ADD) || commandArr[1]
+                        .equalsIgnoreCase(COMMAND_NOTE_DELETE) || commandArr[1].equals(COMMAND_NOTE_LIST)) {
                     LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
                     return new NoteCommand(commandArr[1], (TopicList) topicList);
                 } else {
