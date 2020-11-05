@@ -13,16 +13,8 @@ public class ModuleList {
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
     private static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
-    private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
-                + "expected workload with a maximum of 1 decimal place.";
     private static final String NEGATIVE_TIME_ERROR = "Please input a positive number for time.";
     private static final String INVALID_TIME_ERROR = "Please input a number between 0 and 99 for time.";
-    private static final String ERROR_ADDMOD = "Please type addmod <module code>";
-    private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
-    private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
-            + "with a maximum of 1 decimal place.";
-    private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
-    private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
     private static final String NO_WORKLOAD_ERROR = "Cannot minus actual time as there is no actual time inputted.";
     private static final String HOURS_EXCEED_ERROR = "Sorry you are trying to remove too many hours.";
     private static final String HOURS_REMOVAL = " hours have been removed from ";
@@ -115,9 +107,7 @@ public class ModuleList {
         }
         String[] arrayOfExp = exp.split("\\.", 2);
         if (arrayOfExp[1].length() > 1) {
-            if (toPrint) {
-                System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
-            }
+            ui.printInvalidExpString(toPrint);
             return false;
         } else {
             return true;
@@ -133,9 +123,7 @@ public class ModuleList {
      */
     public boolean checkIfExpTimeValid(double hours, boolean toPrint) {
         if (hours < 1 || hours > MAX_EXP_HOURS) {
-            if (toPrint) {
-                System.out.println(INVALID_EXP_HOURS + System.lineSeparator());
-            }
+            ui.printInvalidExpTime(toPrint);
             return false;
         } else {
             return true;
@@ -186,9 +174,7 @@ public class ModuleList {
             assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
             assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
             if (checkIfModuleExist(modCode)) {
-                if (toPrint) {
-                    ui.printExist(modCode);
-                }
+                ui.printExist(modCode, toPrint);
             } else {
                 Module currentModule = new Module(modCode);
                 modList.add(currentModule);
@@ -198,9 +184,7 @@ public class ModuleList {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            if (toPrint) {
-                System.out.println(ERROR_ADDMOD + System.lineSeparator());
-            }
+            ui.printAddModError(toPrint);
         }
     }
 
@@ -253,13 +237,9 @@ public class ModuleList {
                 storage.appendToFile(input);
             }
         } catch (IndexOutOfBoundsException e) {
-            if (toPrint) {
-                System.out.println(ERROR_ADDEXP + System.lineSeparator());
-            }
+            ui.printAddExpError(toPrint);
         } catch (NumberFormatException nfe) {
-            if (toPrint) {
-                System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
-            }
+            ui.printAddExpNfe(toPrint);
         }
     }
 
@@ -282,14 +262,12 @@ public class ModuleList {
             if (checkIfModuleExist(modCode)) {
                 Module inputMod = new Module(modCode);
                 modList.remove(inputMod);
+                ui.printDelete(modCode, toPrint);
                 if (toPrint) {
-                    ui.printDelete(modCode);
                     storage.appendToFile(input);
                 }
             } else {
-                if (toPrint) {
-                    ui.printNotExist(modCode);
-                }
+                ui.printNotExist(modCode, toPrint);
             }
             TaskList taskList = new TaskList();
             ArrayList<Task> tasks = taskList.getTaskData();
@@ -302,9 +280,7 @@ public class ModuleList {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            if (toPrint) {
-                System.out.println(ERROR_DELETEMOD + System.lineSeparator());
-            }
+            ui.printDeleteModError(toPrint);
         }
     }
 
@@ -328,25 +304,19 @@ public class ModuleList {
                 Module inputMod = new Module(modCode);
                 int index = modList.indexOf(inputMod);
                 if (modList.get(index).getExpectedWorkload() == NO_INPUT) {
-                    if (toPrint) {
-                        System.out.println("There is no input in the expected workload." + System.lineSeparator());
-                    }
+                    ui.printEmptyExp(toPrint);
                     return;
                 }
                 modList.get(index).setExpectedWorkload(NO_INPUT);
+                ui.printDeleteExp(modCode, toPrint);
                 if (toPrint) {
-                    ui.printDeleteExp(modCode);
                     storage.appendToFile(input);
                 }
             } else {
-                if (toPrint) {
-                    ui.printNotExist(modCode);
-                }
+                ui.printNotExist(modCode, toPrint);
             }
         } catch (IndexOutOfBoundsException e) {
-            if (toPrint) {
-                System.out.println(ERROR_DELETEEXP + System.lineSeparator());
-            }
+            ui.printDeleteExpError(toPrint);
         }
     }
 
@@ -367,27 +337,22 @@ public class ModuleList {
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
         if (!checkIfModuleExist(modCode)) {
-            if (toPrint) {
-                ui.printNotExist(modCode);
-            }
+            ui.printNotExist(modCode, toPrint);
         } else {
             Module currentModule = new Module(modCode);
             int index = modList.indexOf(currentModule);
             int week = Integer.parseInt(commandInfo[2]);
             if (week < 1 || week > 13) {
-                System.out.println("The week number should be between 1 and 13." + System.lineSeparator());
+                ui.printWeekError(toPrint);
                 return;
             }
-            if (modList.get(index).getActualTimeInSpecificWeek(commandInfo[2]) == -1.0) {
-                if (toPrint) {
-                    System.out.println("There is no input in the actual time." + System.lineSeparator());
-                }
+            if (modList.get(index).getActualTimeInSpecificWeek(commandInfo[2]) == NO_INPUT) {
+                ui.printEmptyActual(toPrint);
                 return;
             }
             modList.get(index).deleteActualTime(week);
+            ui.removeActualTime(modCode, commandInfo[2], toPrint);
             if (toPrint) {
-                System.out.println("Actual time of " + modCode + " of week " + commandInfo[2] + " is removed.");
-                System.out.println();
                 storage.appendToFile(input);
             }
         }
@@ -417,9 +382,7 @@ public class ModuleList {
         }
 
         if (!checkIfModuleExist(modCode)) {
-            if (toPrint) {
-                ui.printNotExist(modCode);
-            }
+            ui.printNotExist(modCode, toPrint);
         } else {
             Module currentModule = new Module(modCode);
             int index = modList.indexOf(currentModule);
@@ -465,9 +428,7 @@ public class ModuleList {
         }
 
         if (!checkIfModuleExist(modCode)) {
-            if (toPrint) {
-                ui.printNotExist(modCode);
-            }
+            ui.printNotExist(modCode, toPrint);
         } else {
             Module currentModule = new Module(modCode);
             int index = modList.indexOf(currentModule);
@@ -529,9 +490,7 @@ public class ModuleList {
         }
 
         if (!checkIfModuleExist(modCode)) {
-            if (toPrint) {
-                ui.printNotExist(modCode);
-            }
+            ui.printNotExist(modCode, toPrint);
         } else {
             Module currentModule = new Module(modCode);
             int index = modList.indexOf(currentModule);
