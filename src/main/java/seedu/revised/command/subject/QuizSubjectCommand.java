@@ -3,7 +3,6 @@ package seedu.revised.command.subject;
 import seedu.revised.card.Subject;
 import seedu.revised.card.quiz.SubjectQuiz;
 import seedu.revised.exception.flashcard.NoFlashcardException;
-import seedu.revised.exception.subject.RepeatedSubjectException;
 import seedu.revised.exception.topic.NoTopicException;
 import seedu.revised.list.SubjectList;
 import seedu.revised.exception.subject.InvalidSubjectException;
@@ -47,7 +46,7 @@ public class QuizSubjectCommand extends SubjectCommand {
             }
         }
         if (quizSubject == null) {
-            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+            throw new NoSubjectException(Ui.SUBJECT_NOT_FOUND_EXCEPTION);
         }
         logger.info("Finished reading the command to find the subject for the quiz feature");
         logger.fine(String.format("The subject is %s", quizSubject.getTitle()));

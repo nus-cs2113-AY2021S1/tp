@@ -32,8 +32,10 @@ public class TopicParser {
      * @return returns a command instance to execute a command
      */
     public static Command parse(String fullCommand) {
+        fullCommand = fullCommand.trim();
         String[] message = fullCommand.split(" ");
-        switch (message[0]) {
+
+        switch (message[0].toLowerCase()) {
         case "exit":
             if (fullCommand.equals("exit")) {
                 return new ExitTopicCommand();
@@ -76,11 +78,7 @@ public class TopicParser {
         case "done":
             return new DoneTaskCommand(fullCommand);
         case "help":
-            if (fullCommand.equals("help")) {
-                return new HelpTopicCommand();
-            } else {
-                return new SorryTopicCommand();
-            }
+            return new HelpTopicCommand();
         default:
             return new SorryTopicCommand();
         }
