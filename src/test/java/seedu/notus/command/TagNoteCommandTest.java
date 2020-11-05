@@ -100,7 +100,7 @@ class TagNoteCommandTest {
         tags.add(tagRedRef);
         tags.add(tagBlueRef);
 
-        getCommandExecutionString(notebook, tagManager, storageManager, 1 , tags);
+        getCommandExecutionString(notebook, tagManager, storageManager, 1, tags);
 
         assertEquals(taggedNote.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 0);

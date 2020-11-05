@@ -101,7 +101,7 @@ class TagEventCommandTest {
         tags.add(tagRedRef);
         tags.add(tagBlueRef);
 
-        getCommandExecutionString(timetable, tagManager, storageManager, 1 , tags);
+        getCommandExecutionString(timetable, tagManager, storageManager, 1, tags);
 
         assertEquals(taggedEvent.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 0);
