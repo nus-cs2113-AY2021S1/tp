@@ -1,6 +1,8 @@
 package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
+import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
+import seedu.smarthomebot.logic.commands.exceptions.EmptyLocationListException;
 
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
@@ -16,13 +18,17 @@ public class ResetCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (applianceList.getAllAppliance().size() == 0) {
-            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
-        } else {
-            for (Appliance a : applianceList.getAllAppliance()) {
-                a.resetPowerUsage();
+        try {
+            if (applianceList.getAllAppliance().size() == 0) {
+                throw new EmptyApplianceListException();
+            } else {
+                for (Appliance a : applianceList.getAllAppliance()) {
+                    a.resetPowerUsage();
+                }
+                return new CommandResult(LINE + MESSAGE_USAGE_RESET);
             }
-            return new CommandResult(LINE + MESSAGE_USAGE_RESET);
+        } catch (EmptyApplianceListException e) {
+            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
         }
     }
 

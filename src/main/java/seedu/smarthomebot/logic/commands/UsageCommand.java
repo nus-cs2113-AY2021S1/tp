@@ -1,6 +1,8 @@
 package seedu.smarthomebot.logic.commands;
 
+import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
+import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
 
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
@@ -22,24 +24,27 @@ public class UsageCommand extends Command {
     public CommandResult execute() {
         double totalUsage = 0;
         int index = 1;
-
-        if (applianceList.getAllAppliance().size() == 0) {
-            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
-        } else {
-            autoFormattingStringIndex();
-            String formattedResult = (LINE + MESSAGE_POWER_USAGE);
-            String format = "%-2d. %-" + maxNameLength + "s"
-                    + DISPLAY_LOCATION + "%-" + maxLocationLength + "s"
-                    + DISPLAY_STATUS + "%-3s"
-                    + DISPLAY_USAGE + "%.2f kWh";
-            for (Appliance a : applianceList.getAllAppliance()) {
-                formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
-                        a.getName(), a.getLocation(), a.getStatus(), a.getPowerInDouble()));
-                totalUsage += a.getPowerInDouble();
-                index++;
+        try {
+            if (applianceList.getAllAppliance().size() == 0) {
+                throw new EmptyApplianceListException();
+            } else {
+                autoFormattingStringIndex();
+                String formattedResult = (LINE + MESSAGE_POWER_USAGE);
+                String format = "%-2d. %-" + maxNameLength + "s"
+                        + DISPLAY_LOCATION + "%-" + maxLocationLength + "s"
+                        + DISPLAY_STATUS + "%-3s"
+                        + DISPLAY_USAGE + "%.2f kWh";
+                for (Appliance a : applianceList.getAllAppliance()) {
+                    formattedResult = formattedResult.concat(System.lineSeparator() + String.format(format, index,
+                            a.getName(), a.getLocation(), a.getStatus(), a.getPowerInDouble()));
+                    totalUsage += a.getPowerInDouble();
+                    index++;
+                }
+                formattedResult = formattedResult.concat(MESSAGE_TOTAL_POWER_USAGE + String.format("%.2f kWh", totalUsage));
+                return new CommandResult(formattedResult);
             }
-            formattedResult = formattedResult.concat(MESSAGE_TOTAL_POWER_USAGE + String.format("%.2f kWh", totalUsage));
-            return new CommandResult(formattedResult);
+        } catch (EmptyApplianceListException e) {
+            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
         }
     }
 
