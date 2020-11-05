@@ -115,7 +115,7 @@ public class DietBook {
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
             } catch (Exception e) {
-                dietBook.ui.printErrorMessage("Wrong command format!");
+                dietBook.ui.printErrorMessage("Oops something went wrong!");
             }
         }
     }
