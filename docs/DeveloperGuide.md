@@ -408,39 +408,44 @@ This feature allows the user to add modules and lesson slots into the timetable.
 Users can also add bookmarks to specific modules and slots.
 Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
 
-Given below is a sequence diagram of how the feature works.
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)  
+Given below is a sequence diagram of how the feature works.  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram.png?raw=true)  
 *<center/> Figure 2.07 Sequence diagram for AddSlotCommand </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram2.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram2.png?raw=true)  
 *<center/> Figure 2.08 Sequence diagram for 
 "Get module if it exist, else create a new module" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram3.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram3.png?raw=true)  
 *<center/> Figure 2.09 Sequence diagram for 
 "Create bookmark for module" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram4.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram4.png?raw=true)  
 *<center/> Figure 2.10 Sequence diagram for 
 "Create bookmark for existing slot base on its index" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram5.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram5.png?raw=true)  
 *<center/> Figure 2.11 Sequence diagram for 
 "Get slot if it exist, else create a new slot" Block </center> <br/></br>*
 <br></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram6.png?raw=true)  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram6.png?raw=true)  
 *<center/> Figure 2.12 Sequence diagram for 
 "Create bookmark for slot" Block </center> <br/></br>*
 <br></br>
-1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code entered by the user already exists in the timetable. If it does not exist, then the module will be created.
+
+1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code 
+entered by the user already exists in the timetable. If it does not exist, then the module will be created.
 
 2. There will then be a check for additional commands pertaining to the module entered by the user.
 
 3. The code will then check if the command is to add a module bookmark or a lesson slot, and do so accordingly.
 
-4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. If there is one, then the bookmark will be added to the lesson slot.
+4. If the command is to add a lesson slot, then there will be check for a bookmark entry in the command. 
+If there is one, then the bookmark will be added to the lesson slot.
 
 5. Loop to step 3 if there are additional commands which have not been executed.
+
+6. Print the message of all commands executed and error messages.
 
 #### Design consideration:
 
@@ -452,6 +457,44 @@ Given below is a sequence diagram of how the feature works.
     * Pros: Easy to implement
     * Pros: Lower chance of error
     * Cons: User has to enter multiple commands each at a time to perform the functions, which takes up more time.
+
+
+<a name="add-module-slot"></a>
+### Delete Module and Slot feature (Xing Rong)
+This feature allows the user to delete the modules, slots and their bookmarks from the timetable.  
+
+Given below is a sequence diagram of how the feature works.  
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram.png?raw=true)  
+*<center/> Figure 2.13 Sequence diagram for DeleteSlotCommand </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram2.png?raw=true)  
+*<center/> Figure 2.14 Sequence diagram for 
+"delete module" Block </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram3.png?raw=true)  
+*<center/> Figure 2.15 Sequence diagram for 
+"delete slot" Block </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram4.png?raw=true)  
+*<center/> Figure 2.16 Sequence diagram for 
+"delete module bookmarks" Block </center> <br/></br>*
+<br></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram5.png?raw=true)  
+*<center/> Figure 2.17 Sequence diagram for 
+"delete slot bookmarks" Block </center> <br/></br>*
+<br></br>
+
+1. There will be a check if the module associated with the deleted object exists. 
+If it does not exist, an exception will be thrown.
+
+2. If the module exists, it will then check what kind of object the user wants to delete.
+There are four options:
+    1. Delete the module (including everything contained in the module).
+    2. Delete a slot contained in the module.
+    3. Delete all bookmarks associated with the module.
+    4. Delete all bookmarks contained in a slot from the module.  
+    
+
 
 ### Edit Slot feature (Francisco)
 
@@ -470,7 +513,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.13 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.18 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 
 ### Planner feature (Jusuf)

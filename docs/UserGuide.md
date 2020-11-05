@@ -466,8 +466,8 @@ More examples:
 
 <br/><br/> 
 <a name="deletetimeslot"></a>
-#### 5.3.4 Delete module, time slot and bookmarks: `delete`   (Xing Rong)
-Deletes module, time slot or bookmarks.
+#### 5.3.4 Delete module, time slot and bookmarks: `delete` (Xing Rong)
+Deletes module, time slot or their bookmarks.
 
 > <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
 >* You can only delete a module that is listed on the NUSMods website. 
