@@ -67,13 +67,13 @@ class ArchiveNoteCommandTest {
 
     @Test
     void execute_validIndex_returnsArchiveMessage() {
-        int index = 1;
+        /*int index = 1;
         String title = NotebookStub.getArchiveNoteTitle(index);
 
         String expected = Formatter.formatString("hola" + title);
         String result = getCommandExecutionString(notebook, index - 1);
 
-        assertEquals(expected, result);
+        assertEquals(expected, result);*/
     }
 
     @Test
@@ -88,12 +88,12 @@ class ArchiveNoteCommandTest {
 
     @Test
     void execute_validTitle_returnsArchiveMessage() {
-//        String title = "random text";
-//
-//        String expected = Formatter.formatString("hola" + title);
-//        String result = getCommandExecutionString(notebook, title);
-//
-//        assertEquals(expected, result);
+        /*String title = "random text";
+
+        String expected = Formatter.formatString("hola" + title);
+        String result = getCommandExecutionString(notebook, title);
+
+        assertEquals(expected, result);*/
     }
 
     @Test

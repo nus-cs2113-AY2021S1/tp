@@ -80,13 +80,13 @@ class UnarchiveNoteCommandTest {
 
     @Test
     void execute_validIndex_returnsUnarchiveMessage() {
-//        int index = 1;
-//        String title = NotebookStub.getUnarchiveNoteTitle(index);
-//
-//        String expected = Formatter.formatString("hola" + title);
-//        String result = getCommandExecutionString(notebook, index - 1);
-//
-//        assertEquals(expected, result);
+        /*int index = 1;
+        String title = NotebookStub.getUnarchiveNoteTitle(index);
+
+        String expected = Formatter.formatString("hola" + title);
+        String result = getCommandExecutionString(notebook, index - 1);
+
+        assertEquals(expected, result);*/
     }
 
     @Test
@@ -101,12 +101,12 @@ class UnarchiveNoteCommandTest {
 
     @Test
     void execute_validTitle_returnsUnarchiveMessage() {
-//        String title = "random text";
-//
-//        String expected = Formatter.formatString("hola" + title);
-//        String result = getCommandExecutionString(notebook, title);
-//
-//        assertEquals(expected, result);
+        /*String title = "random text";
+
+        String expected = Formatter.formatString("hola" + title);
+        String result = getCommandExecutionString(notebook, title);
+
+        assertEquals(expected, result);*/
     }
 
     @Test
