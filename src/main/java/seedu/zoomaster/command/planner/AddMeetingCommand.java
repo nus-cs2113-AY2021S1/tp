@@ -18,8 +18,6 @@ import java.util.List;
 
 public class AddMeetingCommand extends AddSlotCommand {
     public static final String ADD_KW = "add";
-    private Timetable localTimetable;
-    private List<Slot> slots;
 
     /**
      * Constructs a new AddSlotCommand instance and stores the information of the slot given by the input.
@@ -42,8 +40,7 @@ public class AddMeetingCommand extends AddSlotCommand {
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
-        localTimetable = timetable;
-        slots = timetable.getFullSlotList();
+
         super.execute(bookmarks, timetable, ui);
     }
 
@@ -66,7 +63,8 @@ public class AddMeetingCommand extends AddSlotCommand {
                         + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ") Please check format.");
             }
             Slot newSlot;
-            if (isAvailable(day, startTime, endTime)) {
+            List<Slot> slots = timetable.getFullSlotList();
+            if (isAvailable(day, startTime, endTime, slots, timetable)) {
                 newSlot = module.createSlotNew(lesson, day, startTime, endTime);
                 module.addSlot(newSlot);
                 message +=  "  " + lesson + " slot added\n";
@@ -78,18 +76,19 @@ public class AddMeetingCommand extends AddSlotCommand {
         return message;
     }
 
-    private boolean isAvailable(String day, LocalTime startTime, LocalTime endTime) {
+    private boolean isAvailable(String day, LocalTime startTime, LocalTime endTime,
+                                List<Slot> slots, Timetable localTimetable) {
         for (Slot s: slots) {
             if (s.getDay().equals(day) && s.getTitle().equals("<empty slot>")
                     && s.getStartTime().compareTo(startTime) <= 0 && s.getEndTime().compareTo(endTime) >= 0) {
-                updateEmptySlot(s, startTime, endTime);
+                updateEmptySlot(s, startTime, endTime, localTimetable);
                 return true;
             }
         }
         return false;
     }
 
-    private void updateEmptySlot(Slot slot, LocalTime startTime, LocalTime endTime) {
+    private void updateEmptySlot(Slot slot, LocalTime startTime, LocalTime endTime, Timetable localTimetable) {
         Slot slot1;
         Slot slot2;
         if (slot.getStartTime().compareTo(startTime) != 0) {

@@ -18,6 +18,8 @@ import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
 import seedu.zoomaster.command.planner.SavePlannerCommand;
 
+import seedu.zoomaster.command.settings.SetSettingsCommand;
+import seedu.zoomaster.command.settings.ShowSettingsCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.LaunchModuleAndSlotBookmark;
@@ -36,6 +38,7 @@ public class Parser {
      * programMode == 0: Main menu mode
      * programMode == 1: Bookmark mode
      * programMode == 2: Timetable mode
+     * programMode == 3: Planner mode
      */
     public static int programMode = 0;
 
@@ -64,6 +67,10 @@ public class Parser {
             command = new ClearCommand();
         } else if (input.startsWith(HelpCommand.HELP_KW)) {
             command = new HelpCommand(input);
+        } else if (input.startsWith(ShowSettingsCommand.SHOW_KW)) {
+            command = new ShowSettingsCommand();
+        } else if (input.startsWith(SetSettingsCommand.SET_KW)) {
+            command = new SetSettingsCommand(input);
         } else if (programMode == 1) {
             command = createBookmarkCommand(input);
         } else if (programMode == 2) {
