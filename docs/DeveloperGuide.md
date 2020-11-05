@@ -1533,7 +1533,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     
         1.  Other incorrect commands to try: 
             1.  `workspace`
-            2.  `workspace -d `
+            2.  `workspace -D`
             3.  `workspace -d`
             4.  `workspace -d ..`
 <br/>
