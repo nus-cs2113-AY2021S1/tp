@@ -24,6 +24,12 @@ public class ShowTimetableCommand extends Command {
 
     /**
      * Constructs a new ShowTimetableCommand instance.
+     * Decodes if the user is requesting to print out the timetable lesson or
+     * the details of a module or slot that has been added.
+     * Also decodes which mode the timetable is to be printed out in: entire timetable, timetable of a day
+     * or timetable today.
+     *
+     * @param command The command sent by the user.
      */
     public ShowTimetableCommand(String command) throws ZoomasterException {
         assert command.startsWith(SHOW_KW) : "command should start with show keyword";
@@ -53,6 +59,13 @@ public class ShowTimetableCommand extends Command {
         }
     }
 
+    /**
+     * Executes ShowTimetableCommand.
+     *
+     * @param bookmarks BookmarkList of the program.
+     * @param timetable Timetable containing the lesson slots of the program.
+     * @param ui The User Interface used to send messages to the user.
+     */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         String message = "";
@@ -76,6 +89,15 @@ public class ShowTimetableCommand extends Command {
         ui.print(message);
     }
 
+    /**
+     * Builds a message string containing information of lesson slot(s) in the input day.
+     * Lesson slot(s) are sorted by timing from 00:00 to 23:59
+     *
+     * @param modules List of modules codes stored in the program.
+     * @param slots List of lesson slots stored in the program.
+     * @param day The input day.
+     * @return message.toString()
+     */
     private String getMessageSlotsInADay(List<Module> modules, List<Slot> slots, String day) {
         StringBuilder message = new StringBuilder();
         boolean hasSlotOnDay = false;
@@ -132,6 +154,14 @@ public class ShowTimetableCommand extends Command {
         return message.toString();
     }
 
+    /**
+     * Builds a message string containing information of lesson slot(s) in the entire timetable.
+     * Lesson slot(s) are sorted by timing from 00:00 to 23:59
+     *
+     * @param modules List of modules codes stored in the program.
+     * @param slots List of lesson slots stored in the program.
+     * @return message.toString()
+     */
     private String getMessageTimetable(List<Module> modules, List<Slot> slots) {
         StringBuilder message = new StringBuilder();
         for (Day day: Day.values()) {
@@ -141,6 +171,16 @@ public class ShowTimetableCommand extends Command {
         return message.toString();
     }
 
+    /**
+     * Builds a message string of the timetable to be printed.
+     * Lesson slot(s) are sorted by timing from 00:00 to 23:59
+     *
+     * @param modules List of modules codes stored in the program.
+     * @param slots List of lesson slots stored in the program.
+     * @param dayInput The input day.
+     * @return message
+     * @throws ZoomasterException if an timetable is empty or an invalid day is submitted.
+     */
     private String getMessageLessonAtTime(List<Module> modules, List<Slot> slots,
                                           String dayInput) throws ZoomasterException {
         String message = "";
@@ -172,6 +212,12 @@ public class ShowTimetableCommand extends Command {
         return message;
     }
 
+    /**
+     * Checks if there is an overlap with the input slot timing and the current system time.
+     *
+     * @param slot The selected slots to be tested.
+     * @return isOverlap
+     */
     public static boolean hasLessonNow(Slot slot) {
         boolean isOverlap = false;
         LocalTime timeNow = LocalTime.now();
@@ -182,6 +228,11 @@ public class ShowTimetableCommand extends Command {
         return isOverlap;
     }
 
+    /**
+     * Returns an indicator with the current time.
+     *
+     * @return "\u001b[33m" + currentTimeMessage + "\u001b[0m"
+     */
     public static String getIndicatorMessage() {
         DateTimeFormatter hoursAndMinutes = DateTimeFormatter.ofPattern("HH:mm");
         String currentTimeMessage = "<----" + "Current Time: " + LocalTime.now().format(hoursAndMinutes)
@@ -190,12 +241,22 @@ public class ShowTimetableCommand extends Command {
         return "\u001b[33m" + currentTimeMessage + "\u001b[0m";
     }
 
+    /**
+     * Returns the upper highlighted box for lesson now indicator.
+     *
+     * @return "\u001b[32m" + message + "\u001b[0m"
+     */
     public static String getHighlighBoxUpperMessage() {
         String message = "[====" + "Lesson now" + "====]" + "\n";
 
         return "\u001b[32m" + message + "\u001b[0m";
     }
 
+    /**
+     * Returns the lower highlighted box for lesson now indicator.
+     *
+     * @return "\u001b[32m" + message + "\u001b[0m"
+     */
     public static String getHighlighBoxLowerMessage() {
         String message = "[==================]" + "\n";
 

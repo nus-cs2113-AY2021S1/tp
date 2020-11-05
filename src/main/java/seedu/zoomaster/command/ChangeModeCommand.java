@@ -29,9 +29,10 @@ public class ChangeModeCommand extends Command {
     /**
      * Executes ChangeModeCommand.
      *
-     * @param bookmarks BookmarkList of the program
-     * @param timetable Timetable containing the lesson slots of the program
+     * @param bookmarks BookmarkList of the program.
+     * @param timetable Timetable containing the lesson slots of the program.
      * @param ui The User Interface used to send messages to the user.
+     * @throws ZoomasterException if an invalid mode is submitted.
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui)

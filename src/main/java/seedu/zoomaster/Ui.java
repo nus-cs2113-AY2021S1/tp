@@ -36,25 +36,25 @@ import static org.fusesource.jansi.Ansi.ansi;
  * Represents the user interface on the command line and deals with interactions with the user.
  */
 public class Ui {
-    private static final String NEW_LINE = System.lineSeparator();
+    public static final String NEW_LINE = System.lineSeparator();
     private static final String LINE = "____________________________________________________________" + NEW_LINE;
     private Scanner scanner;
 
+
     private String logo2 =
-            "                                                                                                 \n"
-            + "                                            ███████                                              \n"
-            + "                                      ██████████████████                                         \n"
-            + "                                    ███████████████████████                                      \n"
-            + "                                  ███████████████████████████                                    \n"
-            + "                                 ████             █████  █████                                   \n"
-            + "                                █████              █     ██████                                  \n"
-            + "                                █████              █     ██████                                  \n"
-            + "                                █████              █     ██████                                  \n"
-            + "                                 █████             ████  █████                                   \n"
-            + "                                  ███████████████████████████                                    \n"
-            + "                                   █████████████████████████                                     \n"
-            + "                                      ███████████████████                                        \n"
-            + "                                          ███████████                                            \n"
+             "                                                                                                 \n"
+            + "                                  ████████████████████████████                                   \n"
+            + "                                ████████████████████████████████                                 \n"
+            + "                                ██████       ███████     █ █████                                 \n"
+            + "                                ███████    █ ██████     █ ██████                                 \n"
+            + "                                ███████  ▌  █ █████ █   █ ██████                                 \n"
+            + "                                ███████  ▌   █ ███ █    █ ██████                                 \n"
+            + "                                ███████  ▌█   █ █   █   █ ██████                                 \n"
+            + "                                ███████  ▌██   █   ██   █ ██████                                 \n"
+            + "                                ███████  ▌███     ███   █ ██████                                 \n"
+            + "                                ██████    ████   ███    █  █████                                 \n"
+            + "                                ████████████████████████████████                                 \n"
+            + "                                  ████████████████████████████                                   \n"
             + "                                                                         ██                      \n"
             + "█████████   ███████     ████████   ███████ ███████     █████     █████  █████   █████     █ ████ \n"
             + "     ███  ██      ███  ██      ███ ██     ██     ██         ██  ██       ██   ██      ██  ██   ██\n"
@@ -83,9 +83,11 @@ public class Ui {
         } else if (Parser.getProgramMode() == 1) {
             System.out.print(ansi().fg(CYAN).a("[Bookmark mode] Input: ").reset());
         } else if (Parser.getProgramMode() == 2) {
-            System.out.print(ansi().fg(YELLOW).a("[Timetable mode] Input: ").reset());
+            System.out.print("\u001b[31;1m[Timetable mode] Input: ");
+            System.out.print(ansi().reset());
         } else if (Parser.getProgramMode() == 3) {
-            System.out.print(ansi().fg(MAGENTA).a("[Planner mode] Input: ").reset());
+            System.out.print("\u001b[35;1m[Planner mode] Input: ");
+            System.out.print(ansi().reset());
         } else {
             System.out.print("[An error has occurred] ");
         }
@@ -143,7 +145,9 @@ public class Ui {
 
         System.out.println("\t\t\t\t  ++++{  WELCOME TO  }++++");
         System.out.println(ansi().bg(WHITE));
-        System.out.println(ansi().fg(CYAN).a(logo2).reset());
+        System.out.println("\u001b[31;1m" + logo2);
+
+        System.out.print(ansi().reset());
 
         System.out.println(ansi().bg(BLACK));
         System.out.println(LINE);
