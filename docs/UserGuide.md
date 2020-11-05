@@ -225,6 +225,10 @@ Example of usage:
 bookmark
 ```
 
+What you should see:
+
+![bookmark](./images/bookmark_store.jpg)
+
 ### 3.13. Listing out all bookmarked questions: `bookmark`
 
 Lists out all the bookmarked questions and each of their four options.
@@ -237,7 +241,27 @@ Example of usage:
 bookmark
 ```
 
-### 3.14. Displaying stats: `stats`
+What you should see:
+
+![data saving](./images/bookmark_list.jpg)
+
+### 3.14. Deleting a bookmark: `bookmark delete <index number>`
+
+Lists out all the bookmarked questions and each of their four options.
+
+Note:
+- Listing out all bookmarked questions can only be done in the main menu
+
+Example of usage:
+```
+bookmark delete 2
+```
+
+What you should see:
+
+![bookmark](./images/bookmark_delete.jpg)
+
+### 3.15. Displaying stats: `stats`
 
 Displays the points you have earned, and the accumulated statistics of your quiz attempts on E-Duke-8.
 
@@ -259,7 +283,7 @@ This is an example of what you should see:
 ![stats_with_progress](./images/stats_Some_Progress.png)
 
 
-### 3.15. Exiting the program: `exit`
+### 3.16. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -273,7 +297,7 @@ exit
 
 ![exit](./images/exit.png)
 
-### 3.16. Saving user data
+### 3.17. Saving user data
 
 User data will only be saved upon successful exit of the application through the `exit` command.
 You will see this message while the data saves:
