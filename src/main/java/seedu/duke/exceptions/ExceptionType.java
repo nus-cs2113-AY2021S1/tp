@@ -36,14 +36,17 @@ public enum ExceptionType {
     EXTRA_PARAMETERS("Hmm, this function should not be called with parameters."),
     INVALID_INDEX("Sorry, that isn't the index of any command in the list."),
     SAME_DESCRIPTION("No change needed! You already have that description for your favourite command."),
-    EMPTY_INDEX("Oh no! I cannot detect the input index.");
+    EMPTY_INDEX("Oh no! I cannot detect the input index."),
+    LIST_INDEX_CORRUPTED("Oh no! it seems that this command has been corrupted.\n"
+            + "Don't worry, I have deleted it from your favourites list!"),
+    POSSIBLE_LOCS("Possible Locs shown");
 
     private String message;
 
     ExceptionType(String message) {
         this.message = message;
     }
-
+    
     public String getMessage() {
         return message;
     }
