@@ -17,6 +17,7 @@ import fitr.user.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,7 +61,7 @@ public class EditEntryCommand extends Command {
                 Ui.printInvalidCommandError();
                 break;
             }
-        } catch (NumberFormatException | FitrException e) {
+        } catch (NumberFormatException | FitrException | DateTimeParseException e) {
             Ui.printCustomError("Invalid value entered!");
         }
 
