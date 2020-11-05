@@ -5,6 +5,7 @@ import location.Location;
 import location.OnlineLocation;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SelfStudy extends PersonalEvent {
     public SelfStudy(String description, Location location, LocalDateTime at) {
@@ -24,4 +25,6 @@ public class SelfStudy extends PersonalEvent {
             throws EndBeforeStartEventException {
         super(description, location, at, end);
     }
+
+
 }
