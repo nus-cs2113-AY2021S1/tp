@@ -8,6 +8,10 @@ public class Commands {
     public static final String COMMAND_EXERCISE = "exercise";
     public static final String COMMAND_VIEW = "view";
     public static final String COMMAND_RECOMMEND = "recommend";
+    public static final String WORD_AEROBIC = "aerobic";
+    public static final String WORD_UPPERBODY = "upperbody";
+    public static final String WORD_LOWERBODY = "lowerbody";
+    public static final String WORD_STRETCH = "stretch";
     public static final String COMMAND_VIEW_SUMMARY = "summary";
     public static final String COMMAND_VIEW_BMI = "bmi";
     public static final String COMMAND_VIEW_PROFILE = "profile";
