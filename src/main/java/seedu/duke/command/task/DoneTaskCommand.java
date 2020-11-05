@@ -34,17 +34,17 @@ public class DoneTaskCommand extends Command {
         for (int i = 0; i < parameters.size(); i++) {
             Task task;
             try {
-                int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
-                if (backlogId <= 0) {
-                    Ui.showError("The ID: " + backlogId + " is invalid. "
+                int taskId = Integer.parseInt(parameters.get(Integer.toString(i)));
+                if (taskId <= 0) {
+                    Ui.showError("The ID: " + taskId + " is invalid. "
                             + "Please enter a positive integer.");
-                } else if (backlogId <= proj.getProjectBacklog().getNextId()) {
-                    task = proj.getProjectBacklog().getTask(backlogId);
+                } else if (taskId <= proj.getTaskList().getNextId()) {
+                    task = proj.getTaskList().getTask(taskId);
                     task.setAsDone();
                     Ui.showToUserLn("The task ID: " + task.getId()
                             + " and title: " + task.getTitle() + " has been marked as done.");
                 } else {
-                    Ui.showError("The following task ID: " + backlogId
+                    Ui.showError("The following task ID: " + taskId
                             + " doesn't exist in backlog.\nPlease enter a"
                             + " valid ID.");
                 }

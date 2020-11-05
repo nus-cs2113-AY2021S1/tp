@@ -43,12 +43,12 @@ public class AddSprintTaskCommand extends SprintCommand {
             this.sprintOwner.addSprintTask(taskId);
 
             //Update Task
-            Task addedTask = this.projOwner.getProjectBacklog().getTask(taskId);
+            Task addedTask = this.projOwner.getTaskList().getTask(taskId);
             addedTask.allocateToSprint(this.sprintOwner.getId());
 
             //Output to user
             Ui.showToUserLn(String.format("\t%s added to sprint %s.",
-                    projOwner.getProjectBacklog().getTask(taskId).getTitle(),
+                    projOwner.getTaskList().getTask(taskId).getTitle(),
                     this.sprintOwner.getId()));
         }
     }

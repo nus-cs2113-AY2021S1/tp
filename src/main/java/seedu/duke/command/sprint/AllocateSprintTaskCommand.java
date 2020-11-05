@@ -51,9 +51,9 @@ public class AllocateSprintTaskCommand extends SprintCommand {
             for (String userId : userIds) {
                 Member mem = this.projOwner.getProjectMember().getMember(userId.trim());
                 mem.allocateTask(taskId);
-                this.projOwner.getProjectBacklog().getTask(taskId).allocateToMember(mem.getUserId());
+                this.projOwner.getTaskList().getTask(taskId).allocateToMember(mem.getUserId());
             }
-            Ui.showToUserLn(this.projOwner.getProjectBacklog().getTask(taskId).getTitle()
+            Ui.showToUserLn(this.projOwner.getTaskList().getTask(taskId).getTitle()
                     + " is assigned to "
                     + Arrays.toString(userIds));
         }
@@ -81,7 +81,7 @@ public class AllocateSprintTaskCommand extends SprintCommand {
      */
     private void checkAllocation() throws DukeException {
         for (int taskId : this.taskIds) {
-            Task task = this.projOwner.getBacklog().getTask(taskId);
+            Task task = this.projOwner.getTaskList().getTask(taskId);
             for (String member : this.userIds) {
                 if (task.getMemberList().contains(member)) {
                     throw new DukeException(member + " is already allocated with Task " + taskId);

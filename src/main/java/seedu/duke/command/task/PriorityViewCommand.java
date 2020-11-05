@@ -3,7 +3,6 @@ package seedu.duke.command.task;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
-import seedu.duke.ui.Messages;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class PriorityViewCommand extends TaskCommand {
 
         try {
             Project proj = projectListManager.getSelectedProject();
-            ArrayList<Task> tasks = proj.getBacklog().getTaskList();
+            ArrayList<Task> tasks = proj.getTaskList().getTaskList();
             ArrayList<Task> highPriorityTasks = new ArrayList<>();
             ArrayList<Task> mediumPriorityTasks = new ArrayList<>();
             ArrayList<Task> lowPriorityTasks = new ArrayList<>();
