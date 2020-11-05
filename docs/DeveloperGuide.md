@@ -568,9 +568,15 @@ bill payments
 |v1.0|user|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
 |v1.0|user|calculate cashback earned|know how much cashback I can earn|
 |v1.0|user|calculate miles credit earned|know how much miles credit I can earn|
+|v1.0|user|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
+|v1.0|user|set income goal for 1 year|know how much I have saved and did I reach my saving target|
 |v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
 |v2.0|user|store account or card information|refer to account features such as interest rate any time|
 |v2.0|user|compare my calculations with different interest rate|decide which account is better|
+|v2.0|user|set expense goal for specific month|manage my expenditure monthly instead of yearly|
+|v2.0|user|set income goal for specific month|know exactly which month I manage to saved up to my target goal|
+|v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
+|v2.0|user|display expense/income goal for specific month|keep track of my progress|
 
 ## 5. Non-Functional Requirements
 
@@ -644,7 +650,62 @@ You should see the following:
 
 ### 7.4 Testing RecurringTracker
 
-### 7.5 GoalTracker
+### 7.5 Testing GoalTracker
+#### 7.5.1 Testing Set Goal for Expense 
+##### Positive test
+1. Enter ``` expense 4000 for 01 ``` into the console.
+You should see the following: 
+![SetExpenseGoal](.DeveloperGuide_images/SetExpenseGoal.png)
+
+##### Negative test
+1. Again, enter ```expense 2000 for 01``` into the console.
+You should see the following:
+![NegativeSet](.DeveloperGuide_images/NegativeSetExpense.png)
+
+#### 7.5.2 Testing Set Goal for Income
+##### Positive test
+1. Enter ```income 2000 for 02``` into the console.
+You should see the following:
+![SetIncomeGoal](.DeveloperGuide_images/SetIncomeGoal.png)
+
+##### Negative test
+1. Again, enter ```income 7000 for 02``` into the console.
+You should see the following:
+![NegativeSetIncome](.DeveloperGuide_images/NegativeSetIncome.png)
+
+#### 7.5.3 Edit Goal for Expense
+##### Positive test 
+1. Enter ```edit expense 2000 for 01``` into the console.
+You should see the following:
+![EditExpenseGoal](.DeveloperGuide_images/EditExpenseGoal.png)
+
+##### Negative test
+1. Enter ```edit expense 4000 for 05``` into the console.
+You should see the following:
+![NegativeEditExpense](.DeveloperGuide_images/NegativeEditExpense.png)
+
+#### 7.5.4 Edit Goal for Income
+##### Positive test
+1. Enter ```edit income 5000 for 02``` into the console.
+You should see the following:
+![EditIncomeGoal](.DeveloperGuide_images/EditIncomeGoal.png)
+
+##### Negative test
+1. Enter ```edit income 1000 for 09``` into the console.
+You should see the following:
+![NegativeEditIncome](.DeveloperGuide_images/NegativeEditIncome.png)
+
+#### 7.5.5 Display Expense goal
+##### Positive test
+1. Enter ```display expense for 01``` into the console.
+You should see the following:
+![DisplayExpenseGoal](.DeveloperGuide_images/DisplayExpenseGoal.png)
+
+#### 7.5.6 Display Income Goal
+##### Positive test
+1. Enter ```display income for 02``` into the console.
+You should see the following:
+![DisplayIncomeGoal](.DeveloperGuide_images/DisplayIncomeGoal.png)
 
 ### 7.6 Testing SaveManager
 

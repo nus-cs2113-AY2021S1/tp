@@ -1381,6 +1381,16 @@ No. | Feature | Syntax |
 
 ## 4.4 Goal Tracker
 
+No. | Feature | Syntax |
+----|---------|---------|
+1.|Set Expense Goal|_expense {AMOUNT} for {MONTH IN INT VALUE}_|
+2.|Set Income Goal|_income {AMOUNT} for {MONTH IN INT VALUE}_|
+3.|Edit Expense Goal|_edit expense {AMOUNT} for {MONTH IN INT VALUE}_|
+4.|Edit Income Goal|_edit income {AMOUNT} for {MONTH IN INT VALUE}_|
+5.|Display Expense Goal|_display expense for {MONTH IN INT VALUE}_|
+6.|Display Income Goal|_display income for {MONTH IN INT VALUE}_|
+7.|Exit to Main Menu|_exit_|
+
 ## 4.5 Save Manager
 
 No. | Feature | Syntax |
