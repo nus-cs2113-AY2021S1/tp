@@ -54,7 +54,7 @@ public class Storage {
         try {
             return new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.log(Level.WARNING, e.getMessage());
             return null;
         }
     }
@@ -103,7 +103,8 @@ public class Storage {
             fw.write(input + System.lineSeparator());
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("An error occurred! Your data is not saved. Please restart the program.");
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -114,7 +115,8 @@ public class Storage {
             fw.write(name + System.lineSeparator());
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("An error occurred when clearing data. Please restart the program.");
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
@@ -124,21 +126,22 @@ public class Storage {
             fw.write("");
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("An error occurred when resetting data. Please restart the program.");
+            logger.log(Level.SEVERE, e.getMessage());
         }
     }
 
     public void unlockFile() {
         boolean unlock = file.setWritable(true);
         if (!unlock) {
-            System.out.println("Error setting file to be writable");
+            logger.log(Level.WARNING, "error setting file to be writable");
         }
     }
 
     public void lockFile() {
         boolean lock = file.setReadOnly();
         if (!lock) {
-            System.out.println("Error making data file read-only");
+            logger.log(Level.WARNING, "error making data file read-only");
         }
     }
 }

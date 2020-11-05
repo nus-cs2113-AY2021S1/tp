@@ -140,7 +140,6 @@ The `Storage` component,
 * Locks the file to read-only mode before the program ends.
 
 ## 4. Implementation <a name="4"></a>
-{Insert your own respective implementations here}
 This section describes some noteworthy details on how certain features are being implemented.
 
 ### 4.1 Store Data <a name="4.1"></a>
