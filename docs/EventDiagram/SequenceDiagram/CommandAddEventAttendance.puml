@@ -4,30 +4,33 @@
 activate ":CommandAddEventAttendance"
 ":CommandAddEventAttendance" -> ":EventList" : addAttendance()
 activate ":EventList"
-opt checkEventExistence()
+opt event does not exist
 ":EventList" -> ":EventList" : checkEventExistence()
 ":EventList" --> ":CommandAddEventAttendance" : output
+<-- ":CommandAddEventAttendance" : output
 end
 
-opt checkMemberExistence()
+opt member does not exist
 ":EventList" -> ":MemberList" : checkMemberExistence()
 activate ":MemberList"
-return output
+return
 ":EventList" --> ":CommandAddEventAttendance" : output
+<-- ":CommandAddEventAttendance" : output
 end
 
 activate ":EventList"
 ":EventList" -> ":Event" : findEventByName()
 activate ":Event"
-return e
+return
 
-opt checkMemberExistence()
+opt member exists in event
 ":EventList" -> ":MemberList" : checkEventExistence()
 ":MemberList" --> ":EventList"
 ":EventList" -> ":Event" : getEventParticipants()
 activate ":Event"
 return
 ":EventList" --> ":CommandAddEventAttendance" : output
+<-- ":CommandAddEventAttendance" : output
 end
 
 activate ":MemberList"
@@ -48,5 +51,6 @@ return output
 ":EventList" --> ":CommandAddEventAttendance" : output
 deactivate ":EventList"
 deactivate ":MemberList"
+<-- ":CommandAddEventAttendance" : output
 deactivate ":CommandAddEventAttendance"
 @enduml

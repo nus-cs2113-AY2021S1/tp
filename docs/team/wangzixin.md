@@ -41,7 +41,7 @@ Its lightweight Command Line Interface (CLI) allows administrators to breeze thr
     
     
 * **Review/mentoring contributions:**  
-    * Increased the code simplicity.  
+    Increased the code simplicity.  
     
     
 * **Contributions beyond the project team:**  
