@@ -397,7 +397,7 @@ Here are some various design considerations that was taken when implementing the
 
 Aspect: **How should the program handle the sorted list**
 
-The first design consideration was how the sorting should be carried out. The main issues here are the time and storage complexity.
+Since `browse` would require a sorted list, it is important to identify a suitable way to sort the list so that it does not affect the original list and have low complexity.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
@@ -405,29 +405,23 @@ The first design consideration was how the sorting should be carried out. The ma
 | Resorting the list again.         | - The list will be back into its original form before browsing.    | - May hinder performance as resorting could take time. <br/> - Requires altering of the main list. |
 | Cloning a duplicate list to sort. | - The list will be back to its original form. <br/> - The main list will not be affected at all. | - Expensive operation that will require large storage and time complexity. |
 
-While the first approach is the fastest, the consequence of leaving the main list unsorted is too great and may produce a 
-lot of uncertain results, which may confuse the user. Although the third approach provides the best benefit, 
-its complexity may end up violating the project’s memory limit constraint if the list is large. 
-
-Therefore, the second approach was adopted, as its performance cost outweighs the others.
+We have decided to implement the second approach of **resorting the list** because it is important to have the original order of the list to ensure that
+other operations will not be affected by `browse`. This approach also is the most cost-effective method that will not incur too many expensive operations and memory usage.
 
 <br/>
 
 Aspect: **Should the program use an interactive or static browsing approach**
 
-The second design consideration was how to carry out the page by page browsing as demonstrated above.
-The main concern here was cohesiveness and interactivity.
+Since `browse` will access anime series in pages, it is important to decide the way users can access or 'flip' through different pages.
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
 | Interactive browsing, users can `flip` pages and `pick` to view specific anime. | - Fluid and seamless browsing session. <br/>- Very good usability. | - Would require `BrowseCommand` to get user input. |
 | Static browsing, users specify the page they want to access. | - Completely decoupled from Ui component. <br/>- Allows for browse to be more precise in finding what the user wants. |  - Not as seamless as the first approach but still usable. |
 
-Though the first approach could have created a more authentic browsing feature, it is not a good fit of the OOP requirements.
-Meanwhile, the second approach allows for more precise browsing of pages, which means that more experienced users are able to utilise the 
-tool quicker and to the same effect as the first approach. 
-
-As a result, the second approach was adopted in favour of having an application that is highly object-oriented.
+We have decided to implement the second approach of having **static browsing** which users specify the page he wants to access. This is because it was important
+for the project to be OOP and this approach was a good fit for that requirement. This approach also allows for users to access different pages quickly,
+meaning more experienced users will be able to utilise it quicker than the first approach.
 
 <br/>
 
