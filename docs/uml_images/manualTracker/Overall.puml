@@ -33,7 +33,7 @@ rectangle FinanceIt {
         }
     }
 
-    rectangle Handler {
+    rectangle LogicManager {
         rectangle ManualTracker {
         }
         rectangle GoalTracker {
@@ -69,9 +69,9 @@ rectangle FinanceIt {
     ManualTracker --> DataList : Manages Data in DataList (Ledger)
     EntryTracker --> DataList : Manages Data in DataList (Entry)
     GoalTracker --> Data : Tracks entries against goals set (Entry)
-    Handler <.. InputManager : Receives processed input
+    LogicManager <.. InputManager : Receives processed input
     Parser ..> UiManager : Retrieves raw input from
-    Handler <.. Logic : Handles operation control flow and logic
+    LogicManager <.. Logic : Handles operation control flow and logic
     Storage --> StorageOutput : Saves program state into text files
 
 }
@@ -92,7 +92,7 @@ rectangle InputManager {
 
 
 
-rectangle Handler {
+rectangle LogicManager {
     class ManualTracker {
         ~ {static} handleCreateLedger() : State
         ~ {static} handleOpenLedger() : State

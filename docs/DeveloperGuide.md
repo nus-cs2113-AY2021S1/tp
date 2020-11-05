@@ -5,25 +5,25 @@
 ## 1.1 Overview of architecture
 __Architecture Diagram__
 
-![](.DeveloperGuide_images/Overall.png)
+![](developerGuide_images/Overall.png)
 
 There are 5 distinct features that exists within the FinanceIt application, all of which are accessed via the main menu 
 interface facilitated in FinanceIt.java.
 
 The design of the software can be split into 5 distinct components:
-* Handler component
+* Logic Manager component
 * Logic component
 * Input Manager component
 * Data component
 * Storage component
 
-### 1.2 Handler component
+### 1.2 Logic Manager component
 
-![](.DeveloperGuide_images/Handler.png)
+![](developerGuide_images/Handler.png)
 
 __Description__
 
-The Handler component serves as the bridge between user interface and program operations.
+The Logic Manager component serves as the bridge between user interface and program operations.
 It includes 4 classes: 
 * ```ManualTracker```
 * ```EntryTracker```
@@ -43,7 +43,7 @@ to perform the operation associated with the user input.
 
 ### 1.3 Logic component
 
-![](.DeveloperGuide_images/Logic.png)
+![](developerGuide_images/Logic.png)
 
 __Description__
 
@@ -53,7 +53,7 @@ __API__
 
 ### 1.4 Input Manager component
 
-![](.DeveloperGuide_images/InputManager.png)
+![](developerGuide_images/InputManager.png)
 
 __Description__
 
@@ -70,7 +70,7 @@ and produce an equivalent ```CommandPacket``` instance.
 
 ### 1.5 Model component
 
-![](.DeveloperGuide_images/Data.png)
+![](developerGuide_images/Data.png)
 
 __Description__
 
@@ -89,7 +89,7 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
 
 ### 1.6 Storage component
 
-![](.DeveloperGuide_images/Logic.png)
+![](developerGuide_images/Logic.png)
 
 __Description__
 
@@ -103,7 +103,7 @@ __API__
 
 ## 2. Implementation
 ## 2.1 Module-level implementation
-### 2.1.1 Handler Component
+### 2.1.1 Logic Manager Component
 ### 2.1.2 Logic Component
 ### 2.1.3 Input Manager Component
 ### 2.1.4 Model Component
@@ -116,7 +116,7 @@ __API__
 - Saving outstanding user data to respective save files
 
 ### 2.2.2 Feature 1: Manual Tracker & Entry Tracker
-#### Overview
+#### 2.2.2.1 Overview
 __Ledgers and Entries__
 
 In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
@@ -134,7 +134,7 @@ Instances of ```Entry``` class are categorised by the date of origin, which is r
 * Time of transaction
 * Collection of ```Entry```instances
 
-#### Manual Tracker
+#### 2.2.2.2 Manual Tracker
 
 The Manual Tracker is a feature that allows users to manage Ledgers with create, delete
 and open operations. Ledgers is a class that maintains a list of transactions that are 
@@ -156,9 +156,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
 |```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
 
-### Architecture
-
-#### Architecture Overview
+#### 2.2.2.3 Architecture in context
 
 ![](uml_images/manualTracker/images/Architecture_ManualTracker.png)
 
@@ -172,11 +170,7 @@ The Manual Tracker is capable of executing the following states of operation:
 | ```Commands``` |Processes information from ```CommandPacket``` and executes the appropriate process from recognised params.
 | ```Logic``` |Outlines the abstract behavior of commands, as well as handle verification of params with appropriate error handling.
 
-
-
-
-
-##### Handler and Parser
+#### 2.2.2.4 Logic Manager and Parser
 
 ![](uml_images/manualTracker/images/Handler_Parser.png)
 
@@ -187,7 +181,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ManualTracker```| [Refer to section above](#handlerAndCommand).
 |```EntryTracker```| Omitted for brevity.
 
-##### Handler and Data
+#### 2.2.2.5 Logic Manager and Data
 
 ![](uml_images/manualTracker/images/Handler_Data.png)
 
@@ -205,9 +199,9 @@ The Manual Tracker is capable of executing the following states of operation:
 
 
 
-#### Functions with Sequence Diagrams
+#### 2.2.2.6 Functions with Sequence Diagrams
 
-##### Creation of Ledger
+##### 2.2.2.6.1 Creation of Ledger
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
@@ -229,7 +223,7 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 ![](uml_images/manualTracker/images/manualTrackerCreateLedgerSeqDiagram.png)
 
 
-##### Deletion of Ledger
+##### 2.2.2.6.1 Deletion of Ledger
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
@@ -606,7 +600,7 @@ bill payments
 1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
 1. You should see the following output:
 
-![](.DeveloperGuide_images/main_menu.png)
+![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
 ### 7.1 Testing Main Menu
 1. Accessing a feature:
@@ -614,7 +608,7 @@ bill payments
         1. Enter ```manual``` into the console.
             You should see the following: 
             
-![](.DeveloperGuide_images/main_menu_manual.png)
+![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
 
     1. ```RecurringTracker```
     1. ```GoalTracker```
@@ -625,34 +619,34 @@ bill payments
     1. Enter ```exit``` into the console.
         You should see the following: 
         
-![](.DeveloperGuide_images/main_menu_exit.png)
+![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
 
 ###<a name = 7.2></a> 7.2 Testing ManualTracker
 #### 7.2.1 Testing Show Command List
 1. Enter ```commands``` into the console.
 You should see the following: 
 
-![](.DeveloperGuide_images/manual_commands.png)
+![](developerGuide_images/screenshots_manualtracker/manual_commands.png)
 
 ####<a name = 7.2.2></a> 7.2.2 Testing Create Ledger
 ##### Positive test
 1. Enter ```new /date 200505``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/manual_new.png)
+![](developerGuide_images/screenshots_manualtracker/manual_new.png)
 
 ##### Negative test: Duplicate inputs
 1. Again, enter ```new /date 200505``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/manual_new_dup.png)
+![](developerGuide_images/screenshots_manualtracker/manual_new_dup.png)
 
 #### 7.2.3 Testing Show Ledger List
 ##### Positive test
 1. Enter ```list``` into the console. 
 You should see the following: 
 
-![](.DeveloperGuide_images/manual_list.png)
+![](developerGuide_images/screenshots_manualtracker/manual_list.png)
 
     * Observe that there is currently one ledger in the list, of date 2020-05-05.
 1. Refer to [7.2.1](#7.2.1) to create another ledger of date 2020-06-06 using the command: 
@@ -661,7 +655,7 @@ You should see the following:
     * Observe that there are now two ledgers in the list.
 You should see the following: 
 
-![](.DeveloperGuide_images/manual_list2.png)
+![](developerGuide_images/screenshots_manualtracker/manual_list2.png)
 
 #### 7.2.4 Testing Delete Ledger
 ##### Positive test
@@ -670,7 +664,7 @@ You should see the following:
 1. Enter ```list``` into the consolde.
 You should see the following:
 
-![](.DeveloperGuide_images/manual_delete1.png)
+![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
 
     * Observe there is now one ledger on the list.
 
@@ -678,7 +672,7 @@ You should see the following:
 1. Enter ```open /date 200707``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/manual_open.png)
+![](developerGuide_images/screenshots_manualtracker/manual_open.png)
 
     * Note that the ledger of date 2020-07-07 was not created beforehand. 
     However, the ledger will be automatically created by the operation, and
@@ -690,28 +684,28 @@ You should see the following:
 1. Enter ```commands``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/entry_commands.png)
+![](developerGuide_images/screenshots_entrytracker/entry_commands.png)
 
 #### 7.3.2 Testing Show Category List
 1. Enter ```cat``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/entry_cat.png)
+![](developerGuide_images/screenshots_entrytracker/entry_cat.png)
 
 #### 7.3.2 Testing Create Entry
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -e``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/entry_create.png)
+![](developerGuide_images/screenshots_entrytracker/entry_create.png)
 1. Enter ```new /time 1500 /cat slr /amt $16.30 /desc Riding the bus back home -i``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/entry_create2.png)
+![](developerGuide_images/screenshots_entrytracker/entry_create2.png)
 
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -i``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/entry_create_err1.png)
+![](developerGuide_images/screenshots_entrytracker/entry_create_err1.png)
     * Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
     considered an expenditure, and `-e` should have been used instead.
 
@@ -719,16 +713,28 @@ You should see the following:
 1. Enter ```list``` into the console.
 You should see the following:
 
-![](.DeveloperGuide_images/entry_list.png)
+![](developerGuide_images/screenshots_entrytracker/entry_list.png)
     * Note that the number of entries is now two.
 
 #### 7.3.4 Testing Edit Entry
 
-![](.DeveloperGuide_images/entry_edit_list.png)
+1. Enter ```edit /id 1 /amt $0.50``` into the console.
+1. Enter ```list``` into the console.
+You should see the following:
+
+![](developerGuide_images/screenshots_entrytracker/entry_edit_list.png)
+
+* Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
 
 #### 7.3.5 Testing Delete Entry 
+1. Enter ```delete /id 2``` into the console.
+1. Enter ```list``` into the console.
+You should see the following:
 
-![](.DeveloperGuide_images/entry_delete_list.png)
+![](developerGuide_images/screenshots_entrytracker/entry_delete_list.png)
+
+* Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
+removed from the list.
 
 ### 7.4 Testing RecurringTracker
 

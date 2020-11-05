@@ -103,7 +103,7 @@ rectangle Data {
 
 }
 
-rectangle Handler {
+rectangle LogicManager {
     class GoalTracker {
     }
 

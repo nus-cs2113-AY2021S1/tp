@@ -1,4 +1,4 @@
-![](.DeveloperGuide_images/Overall%20Architecture.png)
+![](developerGuide_images/Overall%20Architecture.png)
 * __Feature modules__: Modules implementing the features of the application as follows:
 
     | Feature| Purpose|
