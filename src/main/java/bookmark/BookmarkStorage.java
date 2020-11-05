@@ -32,14 +32,14 @@ public class BookmarkStorage {
             ArrayList<BookmarkCategory> bookmarkCategories = new ArrayList<>();
             int i = 0;
             while (s.hasNext()) {
-                String[] parseCategory = s.nextLine().split("=");
+                String[] parseCategory = s.nextLine().split(" = ");
                 String categoryName = parseCategory[0];
                 bookmarkCategories.add(new BookmarkCategory(categoryName));
                 if (parseCategory.length < 2) {
                     i++;
                     continue;
                 }
-                String[] links = parseCategory[1].split(",");
+                String[] links = parseCategory[1].split(" , ");
                 String title;
                 int x = 0;
                 for (String link : links) {
@@ -82,7 +82,7 @@ public class BookmarkStorage {
         try {
             FileWriter fw = new FileWriter(filePath, false); //true append, false overwrite
             for (BookmarkCategory category : categories) {
-                fw.write(category.getName() + "=" + getCategoryLinks(category) + System.lineSeparator());
+                fw.write(category.getName() + " = " + getCategoryLinks(category) + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {
@@ -94,7 +94,7 @@ public class BookmarkStorage {
     private String getCategoryLinks(BookmarkCategory category) {
         String listOfLinks = "";
         for (BookmarkList link : category.getLinks()) {
-            listOfLinks += link.getPrintLink() + ",";
+            listOfLinks += link.getPrintLink() + " , ";
         }
         return listOfLinks;
     }
