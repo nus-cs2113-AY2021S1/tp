@@ -277,16 +277,16 @@ The sequence diagram presented below depicts the interaction between the compone
 #### 4.1.2 Design Considerations
 This section shows some design considerations taken when implementing the estimate feature.
 
-Aspect: **When should the program validate the script file**
+Aspect: **When should the application validate the script file**
 
-Since the script file specified by the user can be non-existent or empty, it is important to determine when the application should reject the user's command if the file happens to be invalid.
+Since the script file specified by the user can be non-existent or empty, it is important to determine when the application should validate the file to ensure efficient use of memory resource.
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution. | Easy to implement since `Command` already handle file matters. | Memory resources are wasted if the file fails validation during the execution. |
-| During parsing. | No memory resource wasted as it will not fail due to invalid file. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
+| During command execution. | Easy to implement since `Command` already handle file matters. | Memory resource are wasted if the file is invalid. |
+| During parsing. | No memory resource wasted since invalid file will be detected early. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
-Having considered both of the approaches, we have decided to implement the first approach, **validate and read script file content during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted in the process is a worthy exchange for the cohesion preserved.
+Having considered both of the approaches, we have decided to implement the first approach, **validate the script file during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted is a worthy exchange for the cohesion preserved.
 
 <br/>
 
@@ -721,7 +721,7 @@ Users would often name their watchlist based on the animes they have added to it
 | No restriction. | Users have more flexibility. | This may hinder user's vision of the input prompt and affects the usability. |
 | Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
 
-While both approaches are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
+While both approach are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
 
 <br/>
 
