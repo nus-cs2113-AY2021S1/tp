@@ -2,7 +2,7 @@ package seedu.smarthomebot.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeleteTest {
+public class DeleteCommandTest {
     /*
     @Test
     public void deleteApplianceTest() throws InvalidAdditionOfAppliance, InvalidAddtionOfLocation,

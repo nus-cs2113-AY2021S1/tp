@@ -8,7 +8,7 @@ import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RemoveTest {
+public class RemoveCommandTest {
 
     @Test
     public void removeLocationTest() throws DuplicateDataException {
