@@ -41,12 +41,15 @@ class ClearStorageCommandTest {
         String expected = "[!WARNING!] Are you sure? This command is irreversible! (y/N) All data has been cleared!"
                 + System.lineSeparator();
         assertEquals(expected, getOutput());
+        assertEquals(0, projectManager.size());
+        assertEquals(-1, projectManager.getSelectedProjectIndex());
     }
     
     @Test
     void execute_emptyInput() {
         String input = System.lineSeparator();
         ProjectManager projectManager = generateProjectManager();
+        final int oldSelectedProjectIndex = projectManager.getSelectedProjectIndex();
         assert projectManager.size() > 0 : "Project Manager is empty!";
         ClearStorageCommand csc = new ClearStorageCommand(null, projectManager);
 
@@ -56,12 +59,15 @@ class ClearStorageCommandTest {
         String expected = "[!WARNING!] Are you sure? This command is irreversible! (y/N) Data clear aborted."
                 + System.lineSeparator();
         assertEquals(expected, getOutput());
+        assertEquals(2, projectManager.size());
+        assertEquals(oldSelectedProjectIndex, projectManager.getSelectedProjectIndex());
     }
     
     @Test
     void execute_noInput() {
         String input = "N" + System.lineSeparator();
         ProjectManager projectManager = generateProjectManager();
+        final int oldSelectedProjectIndex = projectManager.getSelectedProjectIndex();
         assert projectManager.size() > 0 : "Project Manager is empty!";
         ClearStorageCommand csc = new ClearStorageCommand(null, projectManager);
 
@@ -71,6 +77,8 @@ class ClearStorageCommandTest {
         String expected = "[!WARNING!] Are you sure? This command is irreversible! (y/N) Data clear aborted."
                 + System.lineSeparator();
         assertEquals(expected, getOutput());
+        assertEquals(2, projectManager.size());
+        assertEquals(oldSelectedProjectIndex, projectManager.getSelectedProjectIndex());
     }
     
     @AfterEach
