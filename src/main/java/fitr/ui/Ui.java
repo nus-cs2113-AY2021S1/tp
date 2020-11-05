@@ -229,6 +229,7 @@ public class Ui {
         case COMMAND_COMPLETE:
             printCustomError(ERROR_FORMAT_MESSAGE);
             printCustomMessage(FORMAT + FORMAT_MARK_GOAL_AS_COMPLETE);
+            break;
         default:
             printInvalidCommandError();
             break;

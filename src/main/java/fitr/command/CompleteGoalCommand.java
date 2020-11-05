@@ -39,7 +39,7 @@ public class CompleteGoalCommand extends Command {
                 command = command.split(" ", 2)[1];
                 int completedGoalIndex = Integer.parseInt(command) - 1;
                 if (completedGoalIndex < -1) {
-                   throw new NumberFormatException();
+                    throw new NumberFormatException();
                 }
                 Goal completedGoal = listManager.getGoal(completedGoalIndex);
                 if (completedGoal.getStatus(completedGoal, listManager.getFoodList(),
