@@ -123,7 +123,7 @@ public class ViewCommand extends Command {
             }
         }
         System.out.println("-".repeat(136));
-        Ui.printCustomMessage(VIEW_FOOD_TIP);
+        Ui.printMessageInBlue(VIEW_FOOD_TIP);
     }
 
     //View exercise
@@ -152,7 +152,7 @@ public class ViewCommand extends Command {
             }
         }
         System.out.println("-".repeat(136));
-        Ui.printCustomMessage(VIEW_EXERCISE_TIP);
+        Ui.printMessageInBlue(VIEW_EXERCISE_TIP);
     }
 
     private void viewSummary(FoodList foodList, ExerciseList exerciseList, Boolean isDate) {
@@ -226,7 +226,7 @@ public class ViewCommand extends Command {
         }
         if (!isDate) {
             System.out.println("-".repeat(136));
-            Ui.printCustomMessage(VIEW_SUMMARY_TIP);
+            Ui.printMessageInBlue(VIEW_SUMMARY_TIP);
         }
     }
 

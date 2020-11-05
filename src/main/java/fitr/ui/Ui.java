@@ -70,8 +70,9 @@ public class Ui {
     private static final String DELETE_SPACER = "%-60s%s%n";
     private static final String GREEN_COLOUR = "\033[0;32m";
     private static final String RED_COLOUR = "\033[0;31m";
-    private static final String RESET_COLOUR = "\033[0m";
     public static final String YELLOW_COLOUR = "\033[0;93m";
+    public static final String BLUE_COLOUR = "\033[0;34m";
+    private static final String RESET_COLOUR = "\033[0m";
     private static final String FORMAT = GREEN_COLOUR + "Format: " + RESET_COLOUR;
 
     public static String read() {
@@ -91,6 +92,11 @@ public class Ui {
     //Prints message in yellow
     public static void printMessageInYellow(String message) {
         System.out.println(YELLOW_COLOUR + message + RESET_COLOUR);
+    }
+
+    //Prints message in yellow
+    public static void printMessageInBlue(String message) {
+        System.out.println(BLUE_COLOUR + message + RESET_COLOUR);
     }
 
     public static void printGreetingMessage() {
