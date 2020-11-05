@@ -4,6 +4,8 @@ import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidListException;
+import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.TryRegularParserException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
@@ -45,8 +47,25 @@ public class CheckCommand extends Command {
      * @param storage with the save file path to write to.
      * @throws DukeException if insufficient fields are given after the "check" keyword
      */
+    /**
+     * Execute function for the command to state user's availability in a given period.
+     *
+     * @param data    object of UserData class containing user's data.
+     * @param ui      containing the responses to print.
+     * @param storage with the save file path to write to.
+     * @throws MissingSemicolonException if the input does not contain any semicolons to separate input fields.
+     * @throws DateErrorException the date is not input in a valid format
+     * @throws TimeErrorException the time is not input in a valid format
+     * @throws InvalidListException the event list indicated is not valid
+     * @throws WrongNumberOfArgumentsException if insufficient fields are given after the "check" keyword
+     */
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
+    public void execute(UserData data, Ui ui, Storage storage) throws MissingSemicolonException,
+            DateErrorException, TimeErrorException, InvalidListException, WrongNumberOfArgumentsException {
+        if (!command.contains(";")) {
+            throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
+        }
+
         String[] datesAndTime = command.split(";");
 
         try {

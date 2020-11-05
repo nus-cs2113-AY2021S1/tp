@@ -4,39 +4,43 @@ CS2113T – T12 – 04 Scheduler--;
 Scheduler--; Does the job
 
 ## Table of Contents
-[1. About Scheduler--;](#1-about-scheduler--) <br>
-&nbsp;&nbsp;[1.1 What can it do?](#11-what-can-it-do) <br>
-&nbsp;&nbsp;[1.2 About this guide](#12-about-this-guide) <br>
-&nbsp;&nbsp;[1.3 How to use this document?](#13-how-to-use-this-document) <br>
-&nbsp;&nbsp;[1.4 Conventions used in this document](#14-conventions-used-in-this-document) <br>
-[2. Quick Start](#2-quick-start) <br>
-&nbsp;&nbsp;[2.1 System Requirements](#21-system-requirements) <br>
-&nbsp;&nbsp;[2.2 Setup Instructions](#22-setup-instructions) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 Windows](#221-windows) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2.2 Mac OS X](#222-mac-os-x) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2.3 Linux](#223-linux) <br>
-&nbsp;&nbsp;[2.3 Test run](#23-test-run) <br>
-[3. Features](#3-features) <br>
-&nbsp;&nbsp;[3.1 Viewing help: help](#31-viewing-help-help-colin-ng) <br>
-&nbsp;&nbsp;[3.2 Adding an event: add](#32-adding-an-event-add-matthew-gani) <br>
-&nbsp;&nbsp;[3.3 List events: list](#33-list-events-list-marcus-ng) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[3.3.1 List all events](#331-list-all-events-of-a-type) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[3.3.2 List all events of a type](#332-list-all-events) <br>
-&nbsp;&nbsp;[3.4 Calendar format list: calendar](#34-calendar-format-list-calendar-marcus-ng) <br>
-&nbsp;&nbsp;[3.5 Deadlines: deadline](#35-deadlines-deadline-qing-ning) <br>
-&nbsp;&nbsp;[3.6 Repeat on daily/weekly/monthly basis: repeat](#36-repeat-on-dailyweeklymonthly-basis-repeat-colin-ng) <br>
-&nbsp;&nbsp;[3.7 Check availability on a specific date and time: check](#37-check-availability-on-a-specific-date-and-time-check-marcus-tan) <br>
-&nbsp;&nbsp;[3.8 Goal setting and viewing: goal](#38-goal-setting-and-viewing-goal-marcus-ng) <br>
-&nbsp;&nbsp;[3.9 Mark events as done: done](#39-mark-events-as-done-done-marcus-tan) <br>
-&nbsp;&nbsp;[3.10 Mark events as not done: undone](#310-mark-events-as-not-done-undone-marcus-tan) <br>
-&nbsp;&nbsp;[3.11 Deleting an event: delete](#311-deleting-an-event-delete-marcus-tan) <br>
-&nbsp;&nbsp;[3.12 Note taking: note](#312-note-taking-note-qing-ning) <br>
-&nbsp;&nbsp;[3.13 Reminder: reminder](#313-reminder-reminder-qing-ning) <br>
-&nbsp;&nbsp;[3.14 Extracting events from texts: extract](#314-extracting-events-from-texts-extract-matthew-gani) <br>
-&nbsp;&nbsp;[3.15 Save events: save](#315-save-events-events-colin) <br>
-&nbsp;&nbsp;[3.16 Exiting the program: bye](#316-exiting-the-program-bye) <br>
-[4. FAQ](#4-faq) <br>
-[5. Command Summary](#5-command-summary)
+- [1. About Scheduler--;](#1-about-scheduler--) 
+    - [1.1 What can it do?](#11-what-can-it-do) 
+    - [1.2 About this guide](#12-about-this-guide) 
+    - [1.3 How to use this document?](#13-how-to-use-this-document) 
+    - [1.4 Conventions used in this document](#14-conventions-used-in-this-document) 
+
+- [2. Quick Start](#2-quick-start)
+    - [2.1 System Requirements](#21-system-requirements)
+    - [2.2 Setup Instructions](#22-setup-instructions)
+        - [2.2.1 Windows](#221-windows)
+        - [2.2.2 Mac OS X](#222-mac-os-x)
+        - [2.2.3 Linux](#223-linux)
+    - [2.3 Test run](#23-test-run)
+
+- [3. Features](#3-features)
+    - [3.1 Viewing help: help](#31-viewing-help-help-colin-ng)
+    - [3.2 Adding an event: add](#32-adding-an-event-add-matthew-gani)
+    - [3.3 List events: list](#33-list-events-list-marcus-ng)
+        - [3.3.1 List all events](#331-list-all-events-of-a-type)
+        - [3.3.2 List all events of a type](#332-list-all-events)
+    - [3.4 Calendar format list: calendar](#34-calendar-format-list-calendar-marcus-ng)
+    - [3.5 Deadlines: deadline](#35-deadlines-deadline-qing-ning)
+    - [3.6 Repeat on daily/weekly/monthly basis: repeat](#36-repeat-on-dailyweeklymonthly-basis-repeat-colin-ng)
+    - [3.7 Check availability on a specific date and time: check](#37-check-availability-on-a-specific-date-and-time-check-marcus-tan)
+    - [3.8 Goal setting and viewing: goal](#38-goal-setting-and-viewing-goal-marcus-ng)
+    - [3.9 Mark events as done: done](#39-mark-events-as-done-done-marcus-tan)
+    - [3.10 Mark events as not done: undone](#310-mark-events-as-not-done-undone-marcus-tan)
+    - [3.11 Deleting an event: delete](#311-deleting-an-event-delete-marcus-tan)
+    - [3.12 Note taking: note](#312-note-taking-note-qing-ning)
+    - [3.13 Reminder: reminder](#313-reminder-reminder-qing-ning)
+    - [3.14 Extracting events from texts: extract](#314-extracting-events-from-texts-extract-matthew-gani)
+    - [3.15 Save events: save](#315-save-events-events-colin)
+    - [3.16 Exiting the program: bye](#316-exiting-the-program-bye)
+
+- [4. FAQ](#4-faq)
+
+- [5. Command Summary](#5-command-summary)
 
 ## 1. About Scheduler--;
 Hello! Welcome to scheduler--;
@@ -537,7 +541,7 @@ _________________________________
 ### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
-Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_DATE]`
+Format: `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`
 
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY
 
@@ -610,20 +614,20 @@ _________________________________
 ### 3.9 Mark events as done: `done` (Marcus Tan)
 If you would like to mark an event as done, you can use the done command to do so. 
 
-Format: `done EVENT_TYPE EVENT_INDEX [EVENT_DATE]` 
+Format: `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]` 
 
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY 
 
 If you wish to mark a specific event in a repeated task as done, you may enter the date of that repeated event.
 
 Examples:
--	`done personal 1` marks the 1st Personal event as done.
--	`done personal 2 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as done 
+-	`done personal; 1` marks the 1st Personal event as done.
+-	`done personal; 2; 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as done 
 
 Expected output:
 ```
 _________________________________
-done personal 2 1/3/2020
+done personal; 2; 1/3/2020
 _________________________________
 You have successfully marked this event as done!
 [P][O] test 2 on 2020-03-01, 14:00
@@ -633,20 +637,20 @@ _________________________________
 ### 3.10 Mark events as not done: `undone` (Marcus Tan)
 Did you accidentally mark an event as done? Not to worry, just use the undone command to set the event status back to undone.
 
-Format: `undone EVENT_TYPE EVENT_INDEX [EVENT_DATE]`
+Format: `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 
 Acceptable date formats: DD/MM/YYYY or DD/MM/YY 
 
 If you wish to mark a specific event in a repeated task as undone, you may enter the date of that repeated event.
 
 Examples:
--	`undone zoom 3` marks the 3rd Zoom event as not done.
--	`undone personal 2 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as undone 
+-	`undone zoom; 3` marks the 3rd Zoom event as not done.
+-	`undone personal; 2; 1/3/2020` if the 2nd Personal event is a repeated event with a repetition occurring on 1st March 2020, that repetition will be marked as undone 
 
 Expected output:
 ```
 _________________________________
-undone personal 2 1/3/2020
+undone personal; 2; 1/3/2020
 _________________________________
 You have successfully marked this event as undone!
 [P][X] test 2 on 2020-03-01, 14:00
@@ -660,12 +664,12 @@ Want to remove an event from your schedule? Use the delete command to get rid of
 Format: `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`
 
 Examples:
--	`delete personal 3` deletes the 3rd Personal event from Scheduler.
+-	`delete personal; 3` deletes the 3rd Personal event from Scheduler.
 
 Expected output:
 ```
 _________________________________
-delete personal 3
+delete personal; 3
 _________________________________
 You have successfully deleted this event!
 [P][X] test 3 on 2020-01-01
