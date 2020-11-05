@@ -36,9 +36,7 @@ public class ViewCommandTest {
 
     @Nested
     class TestViewNote {
-        UserData data = new UserData();
-        Ui ui = new Ui();
-        Storage storage = new Storage("data", ui);
+
 
         @BeforeEach
         public void setUp() {
@@ -50,6 +48,9 @@ public class ViewCommandTest {
 
         @Test
         void execute_ViewNote_printSuccessfulView() throws DukeException {
+            UserData data = new UserData();
+            Ui ui = new Ui();
+            Storage storage = new Storage("data", ui);
             String input = "personal sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
@@ -63,11 +64,11 @@ public class ViewCommandTest {
             StringWriter expectedStringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(expectedStringWriter);
             printWriter.println("You have successfully added this event to your list!");
-            printWriter.println("[P][✕] sleep");
+            printWriter.println("[P][X] sleep");
             printWriter.println("Please type in your notes."
                     + " To stop note taking, ensure that you are in a new line and type 'noteend', and press enter");
             printWriter.println("You have successfully written the note for this event!");
-            printWriter.println("[P][✕] sleep");
+            printWriter.println("[P][X] sleep");
             printWriter.println("Meeting is held in NUS COM 2");
             printWriter.println("Attire is black t-shirt");
             printWriter.println("These are the notes that you have taken:");
@@ -102,7 +103,7 @@ public class ViewCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
-        printWriter.println("[P][✕] sleep");
+        printWriter.println("[P][X] sleep");
         printWriter.println("You have not written any notes for this event!");
         printWriter.close();
         String expected = expectedStringWriter.toString();

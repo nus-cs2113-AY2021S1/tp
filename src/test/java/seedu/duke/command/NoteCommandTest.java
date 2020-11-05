@@ -52,12 +52,12 @@ public class NoteCommandTest {
             StringWriter expectedStringWriter = new StringWriter();
             PrintWriter printWriter = new PrintWriter(expectedStringWriter);
             printWriter.println("You have successfully added this event to your list!");
-            printWriter.println("[P][✕] sleep");
+            printWriter.println("[P][X] sleep");
             printWriter.println("Please type in your notes."
                     + " To stop note taking, ensure that you are in a new line"
                     + " and type 'noteend', and press enter");
             printWriter.println("You have successfully written the note for this event!");
-            printWriter.println("[P][✕] sleep");
+            printWriter.println("[P][X] sleep");
             printWriter.println("Meeting is held in NUS COM 2");
             printWriter.println("Attire is black t-shirt");
             printWriter.close();
