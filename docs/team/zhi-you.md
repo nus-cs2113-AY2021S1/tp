@@ -5,7 +5,7 @@
 E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand software engineering and Object-Oriented Programming (OOP) principles through a gamified platform and enhances their learning experience. 
 
 
-### Summary of Contributions
+## Summary of Contributions
 
 - **New Feature:** Added the ability for users to earn points from answering questions in quizzes and view their quiz attempts' statistics.
   - What it does: Calculates user's aggregated quiz statistics using `UserStatsCalculator` and calculates their topic-level quiz statistics using `TopicalStatsCalculator`. Relevant statistics include how accurate they are and the points they have earned from answering questions in quizzes. When the user gives the command to show his or her statistics, the relevant data will be calculated and displayed clearly to him or her. 
@@ -24,7 +24,7 @@ Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dash
 
 - **Documentation:**
   - User Guide:
-    - Added documentation for quiz system and stats feature. [#130](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/130), [#146](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/146)
+    - Added documentation for `quiz` system and `stats` feature. [#130](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/130), [#146](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/146)
     - Did cosmetic tweaks and maintained existing overall documentation. [#103](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/103), [#140](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/140) 
   - Developer Guide:
     - Added design and implementation details of the `quiz` feature. [#124](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/124), [#167](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/167)
