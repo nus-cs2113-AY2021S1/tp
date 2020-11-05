@@ -73,7 +73,7 @@ public class FlashcardDeck {
                 Ui.printDivider();
                 System.out.println("Exiting test mode...\n"
                         + "You are now back in flashcard main.");
-            } else if (attempt.equalsIgnoreCase(SHOW_ANSWER)){
+            } else if (attempt.equalsIgnoreCase(SHOW_ANSWER)) {
                 Ui.printDivider();
                 System.out.println("The answer for this question is: " + flashcardDeck.get(randomIndex).answer);
             } else {
