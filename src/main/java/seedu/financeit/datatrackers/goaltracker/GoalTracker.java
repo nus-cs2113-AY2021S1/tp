@@ -408,7 +408,7 @@ public class GoalTracker {
             if (expenseGoal == 0 && ledgerMonth != null) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a expense "
                         + "goal for " + ledgerMonth);
-            } else {
+            } else if (expenseGoal == 0 && ledgerMonth == null) {
                 if (cmdPacket != null) {
                     month = Month.of(Integer.parseInt(cmdPacket[3]));
                 }
@@ -554,13 +554,13 @@ public class GoalTracker {
             }
 
             if (incomeGoal == 0 && ledgerMonth != null) {
-                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a expense "
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a income "
                         + "goal for " + ledgerMonth);
-            } else {
+            } else if (incomeGoal == 0 && ledgerMonth == null) {
                 if (cmdPacket != null) {
                     month = Month.of(Integer.parseInt(cmdPacket[3]));
                 }
-                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a expense "
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a income "
                         + "goal for " + month);
             }
 
