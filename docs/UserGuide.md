@@ -334,7 +334,7 @@ Create tags.
 Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
 
 - Creates a tag with the name TAG. TAG can only be a single word.
-- [TAG_COLOR] is an optional input to specify the tag color to display. The possible colors are red, green, blue, yellow, purple, cyan, white. Any other input will set the tag as white. If no color is specified, the color of the tag will be set to the default white color. This applies to other input that has `/tag TAG [TAG_COLOR]` as an optional field. 
+- [TAG_COLOR] is an optional input to specify the tag color to display. The possible colors are red, green, blue, yellow, purple, cyan, white. If no color is specified, or an invalid input is entered, the color of the tag will be set to the default white color. This applies to all other inputs that have `/tag TAG [TAG_COLOR]` as an optional field as well. 
 - The user can create multiple tags within a single line.
 
 💡 Creating a tag that already exists will override the tag color.
