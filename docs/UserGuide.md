@@ -1282,6 +1282,9 @@ You can enter "list" to list all backup saves.
 <br />
 To create a back up save
 <br />
+>Syntax
+
+    add /name {SAVE_NAME}
 >Example
 
     add /name save12345
@@ -1300,6 +1303,9 @@ In your names.txt file, an additional entry will be appended.
 <br />
 To load a back up save
 <br />
+>Syntax
+
+    load /name {SAVE_NAME}
 >Example
 
     load /name save12345
@@ -1311,6 +1317,9 @@ To load a back up save
 <br />
 To remove a back up save
 <br />
+>Syntax
+
+    delete /name {SAVE_NAME}
 >Example
 
     delete /name save123
