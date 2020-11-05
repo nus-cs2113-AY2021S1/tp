@@ -9,7 +9,6 @@ participant ":Slot" as Slot
 participant ":Bookmark" as Bookmark
 participant ":Ui" as Ui
 
-
 [-> DeleteSlotCommand : execute(bookmarks, timetable, ui)
 activate DeleteSlotCommand
 
@@ -18,6 +17,7 @@ alt module does not exist
     note right of DeleteSlotCommand : throws exception
 
 else module exists
+
     DeleteSlotCommand -> Timetable : getModule(moduleCode)
     activate Timetable
 
@@ -30,25 +30,11 @@ else module exists
             delete module
         end ref
 
-'        DeleteSlotCommand -> Timetable : deleteModule(module);
-'        activate Timetable
-'
-'        Timetable -> Module : remove(module)
-'        activate Module
-'
-'        Module --> Timetable
-'        deactivate Module
-'        destroy Module
-'
-'        Timetable --> DeleteSlotCommand
-'        deactivate Timetable
     else delete slot
 
         ref over DeleteSlotCommand, Slot
             delete slot
         end ref
-'        DeleteSlotCommand -> Module : getSlot(slotIndex)
-'        activate Module
 
     else delete module bookmarks
 
@@ -73,9 +59,5 @@ deactivate Ui
 
 DeleteSlotCommand -->[
 deactivate DeleteSlotCommand
-
-
-
-
 
 @enduml
