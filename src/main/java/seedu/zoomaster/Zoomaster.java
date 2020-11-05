@@ -97,7 +97,7 @@ public class Zoomaster {
                 "./data/settings.txt").run();
     }
 
-
+    //@@author Speedweener
     /**
      * Returns path of jar file during execution to allow
      * app to create txt file in the same location.
@@ -107,6 +107,7 @@ public class Zoomaster {
                 .getPath()).getParent().replace("%20", " ");
     }
 
+    //@@author fchensan
     private void applySettings() {
         try {
             String defaultMode;
