@@ -447,7 +447,7 @@ Below is the general flow on how the mechanism works:
 
 * NUS students
 * Students with fast typing skills 
-* Students comfortable using the command line interface
+* Students comfortable with using the command line interface
 
 ### Value proposition
 
