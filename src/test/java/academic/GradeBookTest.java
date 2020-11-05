@@ -1,5 +1,6 @@
 package academic;
 
+import exceptions.RepeatedGradeException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,14 +17,14 @@ class GradeBookTest {
 
 
     @Test
-    void evaluateInput_addGrade_success() {
+    void evaluateInput_addGrade_success() throws RepeatedGradeException {
         String[] inputVars = {"CS2101","4","A-","false","false"};
         gradeBook.addGrade(inputVars,currentGrade);
         assertEquals(Grade.printIndividualGrade(testGrade),Grade.printIndividualGrade(currentGrade.get(0)));
     }
 
     @Test
-    void evaluateInput_printCap_success() {
+    void evaluateInput_printCap_success() throws RepeatedGradeException {
         String[] inputVars = {"CS2101","4","A-","false","false"};
         gradeBook.addGrade(inputVars,currentGrade);
         String result = gradeBook.printCap(currentGrade);
@@ -31,7 +32,7 @@ class GradeBookTest {
     }
 
     @Test
-    void evaluateInput_printListOfGrades_success() {
+    void evaluateInput_printListOfGrades_success() throws RepeatedGradeException {
         String[] inputVars = {"CS2101","4","A-","false","false"};
         gradeBook.addGrade(inputVars,currentGrade);
         String result = gradeBook.printListOfGrades(currentGrade);
@@ -45,7 +46,7 @@ class GradeBookTest {
     }
 
     @Test
-    void evaluateInput_deleteGrade_success() {
+    void evaluateInput_deleteGrade_success() throws RepeatedGradeException {
         String[] inputVars = {"CS2101","4","A-","false","false"};
         gradeBook.addGrade(inputVars,currentGrade);
         gradeBook.deleteGrade(1,currentGrade);
