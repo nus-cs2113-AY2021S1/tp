@@ -97,6 +97,7 @@ public class Messages {
     public static final String EMPTY_GOAL_LIST = "The goal list is empty...";
     public static final String FOOD_LIST_HEADER = "Here is the list of your food:";
     public static final String EXERCISE_LIST_HEADER = "Here is the list of your exercises:";
+    public static final String GOAL_LIST_HEADER = "Here is the list of your goals:";
     public static final String CALORIE_CONSUMED_HEADER = "Total calorie consumed:";
     public static final String CALORIE_BURNT_HEADER = "Total calorie burnt:";
     public static final String NET_CALORIE_HEADER = "Net calorie:";
