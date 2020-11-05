@@ -636,9 +636,26 @@ You should see the following:
 ![](.DeveloperGuide_images/manual_list2.png)
 
 #### 7.2.2 Testing Delete Ledger
+##### Positive test
+1. Enter ```delete /id 1``` into the console.
+    * This will delete the first ledger on index, which is of date 2020-05-05
+1. Enter ```list``` into the consolde.
+You should see the following:
+![](.DeveloperGuide_images/manual_delete1.png)
+    * Observe there is now one ledger on the list.
 
 #### 7.2.3 Testing Open Ledger
+1. Enter ```open /date 200707``` into the console.
+You should see the following:
+![](.DeveloperGuide_images/manual_open.png)
+    * Note that the ledger of date 2020-07-07 was not created beforehand. 
+    However, the ledger will be automatically created by the operation, and
+    will resume as per normal. 
+
 #### 7.2.5 Testing Show Command List
+1. Enter ```commands``` into the console.
+You should see the following: 
+![](.DeveloperGuide_images/manual_commands.png)
 
 ### 7.3 Testing EntryTracker
 

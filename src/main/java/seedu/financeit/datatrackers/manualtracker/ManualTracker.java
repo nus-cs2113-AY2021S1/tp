@@ -162,6 +162,7 @@ public class ManualTracker {
 
             GoalTracker.storeLedgerDate(ledger);
 
+            EntryTracker.execute();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("%s opened!", ledger.getName()));
         } catch (InsufficientParamsException exception) {

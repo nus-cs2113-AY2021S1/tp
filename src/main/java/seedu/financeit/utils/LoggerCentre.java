@@ -5,7 +5,13 @@ import seedu.financeit.utils.storage.SaveHandler;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.logging.StreamHandler;
 
 public class LoggerCentre {
     private Level level;
@@ -42,6 +48,7 @@ public class LoggerCentre {
             // Setting file logger to log only warning messages
             FileHandler fileHandler = new FileHandler(paramLog);
             fileHandler.setLevel(Level.WARNING);
+
             SimpleFormatter formatter = new SimpleFormatter();
             fileHandler.setFormatter(formatter);
             addHandler(fileHandler);
@@ -49,6 +56,7 @@ public class LoggerCentre {
             e.printStackTrace();
         }
     }
+
     public static void addHandler(StreamHandler consoleHandler) {
         loggerParamChecker.addHandler(consoleHandler);
         loggerInputParser.addHandler(consoleHandler);

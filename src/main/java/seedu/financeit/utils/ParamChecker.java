@@ -76,7 +76,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        LoggerCentre.loggerParamChecker.info( "Checking date...");
+        LoggerCentre.loggerParamChecker.info("Checking date...");
         try {
             String rawDate = packet.getParam(paramType);
             if (rawDate.trim().length() == 0) {
@@ -117,7 +117,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        LoggerCentre.loggerParamChecker.info( "Checking time...");
+        LoggerCentre.loggerParamChecker.info("Checking time...");
         try {
             String rawTime = packet.getParam(paramType);
             if (rawTime.trim().length() == 0) {
@@ -166,7 +166,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        LoggerCentre.loggerParamChecker.info( "Checking index validity...");
+        LoggerCentre.loggerParamChecker.info("Checking index validity...");
 
         if (list.size() == 0) {
             message = getMessageNoItemsInList();
@@ -210,7 +210,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        LoggerCentre.loggerParamChecker.info( "Checking input Double...");
+        LoggerCentre.loggerParamChecker.info("Checking input Double...");
         input = input.replaceAll("[^\\w | .]", "");
         try {
             output = Double.parseDouble(input);
@@ -235,7 +235,7 @@ public class ParamChecker {
         double output = -1;
 
         clearErrorMessage();
-        LoggerCentre.loggerParamChecker.info( "Checking input Double...");
+        LoggerCentre.loggerParamChecker.info("Checking input Double...");
         try {
             if (RegexMatcher.alphabetMatcher(input).find()) {
                 throw new NumberFormatException();
@@ -284,7 +284,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        LoggerCentre.loggerParamChecker.info( "Checking input Integer...");
+        LoggerCentre.loggerParamChecker.info("Checking input Integer...");
         try {
             output = Integer.parseInt(input);
             parseSuccess = true;
@@ -319,7 +319,7 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        LoggerCentre.loggerParamChecker.info( "Checking input Integer...");
+        LoggerCentre.loggerParamChecker.info("Checking input Integer...");
         try {
             output = Integer.parseInt(input);
             if (output < 0) {
@@ -372,14 +372,14 @@ public class ParamChecker {
 
         clearErrorMessage();
 
-        LoggerCentre.loggerParamChecker.info( "Checking input Category...");
+        LoggerCentre.loggerParamChecker.info("Checking input Category...");
         try {
             if (! CategoryMap.inputToCategoryMap.containsKey(category)) {
                 throw new InvalidCategoryException(category);
             }
             parseSuccess = true;
         } catch (InvalidCategoryException exception) {
-            LoggerCentre.loggerParamChecker.warning( "Category not recognised...");
+            LoggerCentre.loggerParamChecker.warning("Category not recognised...");
 
             errorMessage = getErrorMessageInvalidCategoryException(exception);
         } finally {
