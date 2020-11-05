@@ -32,7 +32,6 @@ public class Delete extends ModificationCommand {
             throw new InvalidTaskNumberException();
         }
         Task taskDeleted = task;
-        task.offReminder();
         tasks.delete(key);
         model.pushAndUpdate(tasks);
         return new CommandResult(DELETE_MESSAGE,taskDeleted);

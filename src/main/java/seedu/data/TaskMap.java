@@ -77,6 +77,7 @@ public class TaskMap {
     }
 
     public void delete(Integer key) {
+        tasksMap.get(key).offReminder();
         tasksMap.remove(key);
     }
 

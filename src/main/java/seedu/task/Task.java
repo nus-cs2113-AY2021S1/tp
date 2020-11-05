@@ -73,18 +73,24 @@ public class Task {
         }
         switch(reminderString) {
             case "on":
-                    return new Reminder(time);
+                return new Reminder(time);
             case "off":
-                if(reminder != null) {
-                    offReminder();
-                }
+                offReminder();
                 return null;
             default:
                 throw new InvalidReminderException();
         }
     }
 
-    public void startReminder() {
+    public String checkReminderStatus() {
+        if (reminder == null) {
+            return "No";
+        } else {
+            return "Yes";
+        }
+    }
+
+    public void startReminder() throws InvalidReminderException {
         if(reminder == null) {
             return;
         }
@@ -93,9 +99,13 @@ public class Task {
             calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
                     getDate().getDayOfMonth(), (reminder.getTime().getHour()), (reminder.getTime().getMinute()),0);
         } else {
-            calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
-                    getDate().getDayOfMonth(), getStartTime().getHour() - 1,
-                    getStartTime().getMinute(),0);
+            if (getStartTime() == null) {
+                throw new InvalidReminderException();
+            } else {
+                calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
+                        getDate().getDayOfMonth(), getStartTime().getHour() - 1,
+                        getStartTime().getMinute(), 0);
+            }
         }
         Date date = calendar.getTime();
         reminder.getTimer().schedule(new TimerTask() {
@@ -103,23 +113,25 @@ public class Task {
             public void run() {
                 System.out.println("Reminder, you have an upcoming task: ");
                 Ui ui = new Ui();
-                ui.displaySingleTask(getDate(),getStartTime(),getEndTime(),getPriority(),getTaskID(),getDescription());
+                ui.displaySingleTask(getDate(),getStartTime(),getEndTime(),getPriority(),getTaskID(),getDescription(),
+                        checkReminderStatus());
                 reminder.getTimer().cancel();
-                reminder.setIsReminder(false);
                 reminder = null;
             }
         }, date);
     }
 
     public void offReminder() {
-        reminder.getTimer().cancel();
-        reminder.setIsReminder(false);
+        if (reminder != null) {
+            reminder.getTimer().cancel();
+        }
         reminder = null;
     }
 
     public Reminder getReminder() {
         return reminder;
     }
+
     public void setReminder(String reminderString, String reminderTime)
             throws InvalidReminderException, InvalidDatetimeException {
         reminder = initiateReminder(reminderString, reminderTime);
