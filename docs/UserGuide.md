@@ -520,7 +520,7 @@ Expected output:
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
 **Warning:**
-* Numbers should be fully numerical with 8 or fewer digits , and email should be in the form abc@xyz.
+* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
 
 ### 3.3 Listing all contacts: 
 `list contact`
@@ -586,6 +586,7 @@ Expected output:
 
 **Warning:**
 * Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+* This application is not synced to a module database, so any valid input will be accepted as a module name.
 
 ### 3.7 Listing all grades: 
 `list grade`
