@@ -58,7 +58,7 @@ public class Edit extends ModificationCommand {
         }
 
         Task editedTask = new Task(key, task.getDescription(), task.getDate(), task.getStartTime(),
-            task.getEndTime(), task.getPriority(), task.getReminder());
+            task.getEndTime(), task.getPriority(), task.newReminder());
 
         // Set field
         if (description != null) {

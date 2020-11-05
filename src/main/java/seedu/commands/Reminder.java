@@ -3,24 +3,25 @@ package seedu.commands;
 import java.time.LocalTime;
 import java.util.Timer;
 
-import seedu.data.Timers;
-
-
-
 public class Reminder {
-    private final LocalTime time;
-    private transient final Timer timer;
+    private LocalTime time;
+    private boolean isOn;
+    private transient Timer timer;
 
-    public Reminder(LocalTime time) {
-       timer = new Timer();
-       Timers.add(timer);
-       this.time = time;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
-    public Reminder() {
+    public void startTimer() {
         timer = new Timer();
-        Timers.add(timer);
-        this.time = null;
+    }
+
+    public void setIsOn(boolean reminderStatus) {
+        isOn = reminderStatus;
+    }
+
+    public boolean getIsOn() {
+        return isOn;
     }
 
     public LocalTime getTime() {

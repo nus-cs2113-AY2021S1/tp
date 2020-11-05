@@ -3,7 +3,6 @@ package seedu.storage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidReminderException;
 import seedu.task.Task;
 
 import java.io.File;
@@ -34,7 +33,7 @@ public class Storage {
     /**
      * Load data from file and add tasks to TaskList.
      */
-    public TaskMap loadTasks() throws IOException, InvalidReminderException {
+    public TaskMap loadTasks() throws IOException {
         // If both dir and file are newly created, return empty taskMap.
         if (!createDirectory()) {
             return readTasksFromFile();
@@ -63,7 +62,7 @@ public class Storage {
     /**
      * Read lines from file and process each line.
      */
-    private TaskMap readTasksFromFile() throws FileNotFoundException,InvalidReminderException {
+    private TaskMap readTasksFromFile() throws FileNotFoundException {
         TaskMap tasks = new TaskMap();
         File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         Scanner scanner = new Scanner(file);
@@ -75,9 +74,9 @@ public class Storage {
         return tasks;
     }
 
-    private void restartReminders(TaskMap tasks) throws InvalidReminderException {
+    private void restartReminders(TaskMap tasks) {
         for(Task t : tasks.getValues()) {
-            if (t.getReminder() != null) {
+            if (t.getReminder().getIsOn()) {
                     t.startReminder();
             }
         }

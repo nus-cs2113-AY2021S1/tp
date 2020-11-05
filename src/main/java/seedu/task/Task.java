@@ -1,5 +1,6 @@
 package seedu.task;
 
+import seedu.data.Timers;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;
@@ -38,7 +39,8 @@ public class Task {
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
         taskID = generateHashValue();
-        reminder = initiateReminder(reminderString, reminderTimeString);
+        reminder = new Reminder();
+        initiateReminder(reminderString, reminderTimeString);
     }
 
     public Task(Integer taskID, String description, LocalDate date,
@@ -62,10 +64,11 @@ public class Task {
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
         this.taskID = Integer.parseInt(taskID);
-        this.reminder = initiateReminder(reminderString, reminderTimeString);
+        this.reminder = new Reminder();
+        initiateReminder(reminderString, reminderTimeString);
     }
 
-    private Reminder initiateReminder(String reminderString, String remainderTimeString)
+    private void initiateReminder(String reminderString, String remainderTimeString)
             throws InvalidReminderException, InvalidDatetimeException {
         LocalTime time = timeStringToTime(remainderTimeString);
         if (reminderString == null) {
@@ -73,40 +76,41 @@ public class Task {
         }
         switch(reminderString) {
             case "on":
-                return new Reminder(time);
+                reminder.setIsOn(true);
+                if (time != null) {
+                    reminder.setTime(time);
+                } else if (startTime != null) {
+                    reminder.setTime(LocalTime.of(getStartTime().getHour() - 1,
+                            getStartTime().getMinute()));
+                } else {
+                    throw new InvalidReminderException();
+                }
+                break;
             case "off":
                 offReminder();
-                return null;
+                break;
             default:
                 throw new InvalidReminderException();
         }
     }
 
     public String checkReminderStatus() {
-        if (reminder == null) {
-            return "No";
-        } else {
+        if (reminder.getIsOn()) {
             return "Yes";
+        } else {
+            return "No";
         }
     }
 
-    public void startReminder() throws InvalidReminderException {
-        if(reminder == null) {
+    public void startReminder() {
+        if (!reminder.getIsOn()) {
             return;
         }
+        reminder.startTimer();
+        Timers.add(reminder.getTimer());
         Calendar calendar = Calendar.getInstance();
-        if (reminder.getTime() != null) {
-            calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
-                    getDate().getDayOfMonth(), (reminder.getTime().getHour()), (reminder.getTime().getMinute()),0);
-        } else {
-            if (getStartTime() == null) {
-                throw new InvalidReminderException();
-            } else {
-                calendar.set(getDate().getYear(), getDate().getMonthValue() - 1,
-                        getDate().getDayOfMonth(), getStartTime().getHour() - 1,
-                        getStartTime().getMinute(), 0);
-            }
-        }
+        calendar.set(getDate().getYear(), getDate().getMonthValue() - 1, getDate().getDayOfMonth(),
+                (reminder.getTime().getHour()), (reminder.getTime().getMinute()),0);
         Date date = calendar.getTime();
         reminder.getTimer().schedule(new TimerTask() {
             @Override
@@ -116,16 +120,20 @@ public class Task {
                 ui.displaySingleTask(getDate(),getStartTime(),getEndTime(),getPriority(),getTaskID(),getDescription(),
                         checkReminderStatus());
                 reminder.getTimer().cancel();
-                reminder = null;
+                reminder.setIsOn(false);
             }
         }, date);
     }
 
     public void offReminder() {
-        if (reminder != null) {
+        if (reminder.getIsOn()) {
             reminder.getTimer().cancel();
         }
-        reminder = null;
+        reminder.setIsOn(false);
+    }
+
+    public Reminder newReminder() {
+        return new Reminder();
     }
 
     public Reminder getReminder() {
@@ -134,7 +142,7 @@ public class Task {
 
     public void setReminder(String reminderString, String reminderTime)
             throws InvalidReminderException, InvalidDatetimeException {
-        reminder = initiateReminder(reminderString, reminderTime);
+        initiateReminder(reminderString, reminderTime);
     }
     private int generateHashValue() {
         return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);

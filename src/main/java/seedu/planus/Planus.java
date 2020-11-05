@@ -2,7 +2,6 @@ package seedu.planus;
 
 import seedu.commands.LogicManager;
 import seedu.data.Model;
-import seedu.exceptions.InvalidReminderException;
 import seedu.storage.Storage;
 import seedu.ui.Ui;
 
@@ -33,7 +32,7 @@ public class Planus {
         }
     }
 
-    private void initProgram() throws IOException, InvalidReminderException {
+    private void initProgram() throws IOException {
         storage = new Storage();
         model = new Model(storage.loadTasks());
         ui = new Ui();
