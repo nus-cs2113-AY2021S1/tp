@@ -19,7 +19,7 @@ public class RemoveCommand extends Command {
     private final String userEnteredLocation;
 
     public RemoveCommand(String location) {
-        assert location.isEmpty() != true : "RemoveCommand must not accept empty parameter";
+        assert location.isEmpty() != true : "RemoveCommand must not accept empty location";
         this.userEnteredLocation = location;
     }
 

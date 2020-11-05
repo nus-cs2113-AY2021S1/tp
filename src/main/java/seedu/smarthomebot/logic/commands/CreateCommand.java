@@ -16,7 +16,7 @@ public class CreateCommand extends Command {
     private final String userEnteredLocation;
 
     public CreateCommand(String location) {
-        assert location.isEmpty() != true : "CreateCommand must not accept empty parameter";
+        assert location.isEmpty() != true : "CreateCommand must not accept empty location";
         this.userEnteredLocation = location;
     }
 
