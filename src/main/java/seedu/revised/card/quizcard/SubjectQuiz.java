@@ -3,13 +3,8 @@ package seedu.revised.card.quizcard;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-<<<<<<< HEAD:src/main/java/seedu/revised/card/quizcard/SubjectQuiz.java
 import seedu.revised.exception.flashcardexception.NoFlashcardException;
 import seedu.revised.exception.topicexception.NoTopicException;
-=======
-import seedu.revised.exception.flashcard.NoFlashcardException;
-import seedu.revised.exception.topic.NoTopicException;
->>>>>>> 800bbe1462ea29173bc93af0aac56cd46c1217c6:src/main/java/seedu/revised/card/quiz/SubjectQuiz.java
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
@@ -23,8 +18,6 @@ public class SubjectQuiz extends Quiz {
     public SubjectQuiz(Subject subject) {
         this.subject = subject;
         this.flashcards = new ArrayList<>();
-
-
     }
 
     /**
