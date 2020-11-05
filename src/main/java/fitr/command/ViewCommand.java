@@ -31,6 +31,7 @@ import static fitr.common.Messages.CALORIE_CONSUMED_HEADER;
 import static fitr.common.Messages.CALORIE_BURNT_HEADER;
 import static fitr.common.Messages.NET_CALORIE_HEADER;
 import static fitr.common.Messages.BMI_HEADER;
+import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 import static fitr.common.Messages.USER_PROFILE_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
@@ -56,43 +57,43 @@ public class ViewCommand extends Command {
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         switch (command.split(" ")[0]) {
         case COMMAND_FOOD:
-            if (command.split(" ").length == 2) {
+            if (command.split(" ").length > 1) {
                 viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
             } else {
                 viewFood(listManager.getFoodList());
             }
             break;
         case COMMAND_EXERCISE:
-            if (command.split(" ").length == 2) {
+            if (command.split(" ").length > 1) {
                 viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
             } else {
                 viewExercise(listManager.getExerciseList());
             }
             break;
         case COMMAND_VIEW_SUMMARY:
-            if (command.split(" ").length == 2) {
+            if (command.split(" ").length > 1) {
                 viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(" ")[1]);
             } else {
                 viewSummary(listManager.getFoodList(), listManager.getExerciseList());
             }
             break;
         case COMMAND_VIEW_BMI:
-            if (command.split(" ").length == 2) {
-                Ui.printFormatError("Extra parameters");
+            if (command.split(" ").length > 1) {
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
             } else {
                 viewBmi(user);
             }
             break;
         case COMMAND_VIEW_PROFILE:
-            if (command.split(" ").length == 2) {
-                Ui.printFormatError("Extra parameters");
+            if (command.split(" ").length > 1) {
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
             } else {
                 viewProfile(user);
             }
             break;
         case COMMAND_GOAL:
-            if (command.split(" ").length == 2) {
-                Ui.printFormatError("Extra parameters");
+            if (command.split(" ").length > 1) {
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
             } else {
                 viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
             }
