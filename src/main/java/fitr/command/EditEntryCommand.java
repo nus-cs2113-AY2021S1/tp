@@ -106,6 +106,11 @@ public class EditEntryCommand extends Command {
         }
 
         String exerciseName = matcher.group("exerciseName").trim();
+        if (exerciseName.isBlank()) {
+            Ui.printCustomError("Name cannot be empty!");
+            return;
+        }
+
         int calories = Integer.parseInt(matcher.group("calories").trim());
 
         if (calories < 0) {
@@ -144,6 +149,11 @@ public class EditEntryCommand extends Command {
         }
 
         String foodName = matcher.group("foodName").trim();
+        if (foodName.isBlank()) {
+            Ui.printCustomError("Name cannot be empty!");
+            return;
+        }
+
         int calories = Integer.parseInt(matcher.group("calories").trim());
 
         if (calories < 0) {
