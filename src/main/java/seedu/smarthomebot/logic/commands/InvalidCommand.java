@@ -2,6 +2,7 @@ package seedu.smarthomebot.logic.commands;
 
 import static seedu.smarthomebot.commons.Messages.LINE;
 
+//@@author Ang_Cheng_Jun
 /**
  * Represent the command to print error notifications to user.
  */

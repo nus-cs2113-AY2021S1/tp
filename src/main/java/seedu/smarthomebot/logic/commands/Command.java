@@ -22,7 +22,7 @@ public abstract class Command {
      * Passes the ApplianceList and LocationList to allow Command classes to use.
      *
      * @param applianceList stores the appliances in SmartHomeBot
-     * @param locationList  stores the locations in SmartHomebot
+     * @param locationList  stores the locations in SmartHomeBot
      */
     public void setData(ApplianceList applianceList, LocationList locationList) {
         this.applianceList = applianceList;
