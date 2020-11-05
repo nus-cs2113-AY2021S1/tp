@@ -83,6 +83,5 @@ public class ViewCommand extends Command {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Index must be numerical format!");
         }
-
     }
 }
