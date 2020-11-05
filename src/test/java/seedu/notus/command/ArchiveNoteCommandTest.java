@@ -4,24 +4,30 @@ package seedu.notus.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.notebook.NotebookStub;
 import seedu.notus.data.tag.Tag;
+import seedu.notus.data.tag.TagManager;
+import seedu.notus.data.timetable.Timetable;
+import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.Formatter;
-import seedu.notus.ui.FormatterStub;
+import seedu.notus.util.parser.ParserManager;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
 import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 class ArchiveNoteCommandTest {
-    int maxRowLength = 100;
 
     Notebook notebook;
+    Timetable timetable;
+    TagManager tagManager;
+    ParserManager parserManager;
+    StorageManager storageManager;
+
     ArrayList<String> content;
 
     ArrayList<Tag> tag = new ArrayList<>();
@@ -33,6 +39,8 @@ class ArchiveNoteCommandTest {
     @BeforeEach
     void setup() {
         notebook = new Notebook();
+        storageManager = new StorageManager(timetable, parserManager, notebook, tagManager);
+
         content = new ArrayList<>();
         tagImpt = new Tag("Impt", Tag.COLOR_RED_STRING);
         tagCs2113 = new Tag("CEG", Tag.COLOR_YELLOW_STRING);
@@ -62,7 +70,7 @@ class ArchiveNoteCommandTest {
         /*int index = 1;
         String title = NotebookStub.getArchiveNoteTitle(index);
 
-        String expected = Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
+        String expected = Formatter.formatString("hola" + title);
         String result = getCommandExecutionString(notebook, index - 1);
 
         assertEquals(expected, result);*/
@@ -70,20 +78,19 @@ class ArchiveNoteCommandTest {
 
     @Test
     void execute_invalidIndex_returnsInvalidIndexMessage() {
-        /*int index = 50;
-        String title = NotebookStub.getArchiveNoteTitle(index);
+        int index = 50;
 
         String expected = Formatter.formatString(INDEX_OUT_OF_RANGE_MESSAGE);
         String result = getCommandExecutionString(notebook, index - 1);
 
-        assertEquals(expected, result);*/
+        assertEquals(expected, result);
     }
 
     @Test
     void execute_validTitle_returnsArchiveMessage() {
         /*String title = "random text";
 
-        String expected = Formatter.formatString(COMMAND_SUCCESSFUL_MESSAGE + title);
+        String expected = Formatter.formatString("hola" + title);
         String result = getCommandExecutionString(notebook, title);
 
         assertEquals(expected, result);*/
@@ -91,13 +98,13 @@ class ArchiveNoteCommandTest {
 
     @Test
     void execute_existingNoteTitle_returnsNoNoteMessage() {
-        /*String title = "random text";
+        String title = "random text";
         notebook.archiveNotes(title);
 
-        String expected = Formatter.formatString(COMMAND_UNSUCCESSFUL_MESSAGE);
+        String expected = Formatter.formatString(NOTE_DOES_NOT_EXIST_MESSAGE);
         String result = getCommandExecutionString(notebook, title);
 
-        assertEquals(expected, result);*/
+        assertEquals(expected, result);
     }
 
     @Test
@@ -112,13 +119,13 @@ class ArchiveNoteCommandTest {
 
     private String getCommandExecutionString(Notebook notebook, String keyword) {
         ArchiveNoteCommand archiveCommand = new ArchiveNoteCommand(keyword);
-        archiveCommand.setData(notebook, null, null, null);
+        archiveCommand.setData(notebook, null, null, storageManager);
         return archiveCommand.execute();
     }
 
     private String getCommandExecutionString(Notebook notebook, int index) {
         ArchiveNoteCommand archiveCommand = new ArchiveNoteCommand(index);
-        archiveCommand.setData(notebook, null, null, null);
+        archiveCommand.setData(notebook, null, null, storageManager);
         return archiveCommand.execute();
     }
 }

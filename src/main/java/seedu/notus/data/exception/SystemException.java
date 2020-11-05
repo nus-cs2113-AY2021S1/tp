@@ -30,8 +30,8 @@ public class SystemException extends Exception {
         EXCEPTION_MISSING_SORT("Missing sort order! Please specify how you would like to sort. "
                 + "up or down."),
         EXCEPTION_INVALID_SORT_TYPE("Invalid sort order command! "
-                + "Only \"up\" and \"down\" are recognized as valid commands." + Formatter.LS
-                + "Up for ascending and down for descending."),
+                + "Only \"up\" and \"down\" are recognized as valid commands. "
+                + "\"Up\" for ascending and \"down\" for descending."),
 
         EXCEPTION_MISSING_INDEX_PREFIX("Missing index prefix!"),
         EXCEPTION_MISSING_INDEX("Missing index!"),

@@ -84,6 +84,8 @@ The parameters for the following commands are **NOT** case-sensitive.
 ### <a id="help"><ins>3.1 View Command List:</ins> `help`</a>
 Shows a list of all the commands that the user can enter.
 
+💡 Even if you input anything beyond help, the program will understand the command. For example, `help me please` will still result in the program listing the available commands and its usages.
+
 Example of usage: 
 
 `help`
