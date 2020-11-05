@@ -35,7 +35,7 @@ public class FindQuoteCommand extends FindCommand {
     }
 
     /**
-     * Finds quotes that contains the specified keyword
+     * Finds quotes that contains the specified keyword.
      *
      * @param quoteList List of quotes.
      * @param ui Ui of the program.

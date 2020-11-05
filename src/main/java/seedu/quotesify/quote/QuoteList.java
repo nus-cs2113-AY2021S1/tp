@@ -147,7 +147,7 @@ public class QuoteList extends QuotesifyList<Quote> {
     }
 
     /**
-     * Gets a random quote
+     * Gets a random quote.
      *
      * @return Random quote.
      */

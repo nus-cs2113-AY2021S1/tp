@@ -7,7 +7,7 @@ import seedu.quotesify.parser.JsonSerializer;
 import java.util.ArrayList;
 
 /**
- * Represents a quote
+ * Represents a quote.
  */
 public class Quote implements JsonSerializer {
     private Author author;

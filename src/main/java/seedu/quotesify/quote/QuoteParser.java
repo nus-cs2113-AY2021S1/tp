@@ -272,9 +272,8 @@ public class QuoteParser {
      * @throws QuotesifyException If extra flag is found or information field is empty.
      */
     public static String parseListCommand(String userInput, String flag) throws QuotesifyException {
-        String[] FlagAndInformation = userInput.split(flag, 2);
         try {
-            String information = FlagAndInformation[1].trim();
+            String information = userInput.split(flag, 2)[1].trim();
             if (information.isEmpty() && flag.equals(FLAG_AUTHOR)) {
                 throw new QuotesifyException(ERROR_MISSING_AUTHOR);
             } else if (information.isEmpty() && flag.equals(FLAG_REFERENCE)) {
