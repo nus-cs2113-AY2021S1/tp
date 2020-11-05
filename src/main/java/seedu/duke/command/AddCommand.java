@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.DateTimeParser;
 import seedu.duke.CommandException;
+import seedu.duke.DateTimeParser;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;

@@ -85,6 +85,7 @@ public class Ui {
      */
     public String readCommand() {
         return in.nextLine().trim();
+
     }
 
     /**
@@ -132,7 +133,7 @@ public class Ui {
     }
 
     /**
-     *  Prints when user changes the content of the file.
+     * Prints when user changes the content of the file.
      */
     public static void printWrongStorageInput() {
         System.out.println("The content of the file is changed by user, cannot load");
@@ -539,6 +540,9 @@ public class Ui {
             break;
         case "storage":
             System.out.println("Content in the file is altered, could not read in the file normally");
+            break;
+        case "command not found":
+            System.out.println("Command not found. Please input a valid command.");
             break;
         case "invalid recurring number":
             System.out.println("The recurring number is in the range of 0 - 13 only.");

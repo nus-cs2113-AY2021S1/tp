@@ -40,9 +40,13 @@ public abstract class Event extends CalendarItem {
      */
     @Override
     public String toString() {
+        String additionalInformationIndicator = "";
+        if (additionalInformationCount != 0) {
+            additionalInformationIndicator = " #info";
+        }
         return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy E")) + " "
                 + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+                + " (" + venue + ")" + additionalInformationIndicator;
     }
 
     /**
