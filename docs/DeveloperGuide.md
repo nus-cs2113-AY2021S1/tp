@@ -135,7 +135,7 @@ Its main roles are:
 <a name="parser"></a>
 ### Parser component
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram%20new.png?raw=true)
 *<center/> Figure 1.3 Class diagram of Parser </center> <br/></br>*
 
 
@@ -254,12 +254,17 @@ This section explains the implementations of Zoomaster's features. It goes throu
 expected outcomes of each feature and the design considerations.
 
 <a name="mode"></a>
-### Bookmark, Timetable and Planner modes feature (TYS)
+### Bookmark, Timetable and Planner modes feature (Tan Yu Shing)
 
 Zoomaster has three modes for users to interact in. First, bookmark mode has the list of bookmarks with links to online resources. 
 Secondly, timetable mode has a list of timetable slots. Lastly, planner mode which helps users plan their timetable. 
 To simplify input commands for users, all lists has the same keywords for adding, deleting, and showing items in the lists. 
-Hence by having seperating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+Hence, by having separating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
+
+In this section, I will refer to *input command* and *input parameter*. <br></br>
+*input command* refers to the string of characters the user has typed into the command line and entered into the program. Eg. "mode bookmark" is an *input command* <br></br>
+*input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
+Eg. "mode bookmark", "mode" is the identifier string of the command and "bookmark" is the *input parameter*.
 
 #### Implementation
 
@@ -273,9 +278,9 @@ Given below is a sequence diagram of how changing between modes occur.
 *<center/>Figure 2.01 sequence diagram for ChangeModeCommand</center> <br/></br>*
 
 
-1. When Zoomaster gets a command from the user to change modes, a new ChangeModeCommand object is created.
+1. When Zoomaster gets an input command from the user to change modes, a new ChangeModeCommand object is created.
 
-2. The ChangeModeCommand passes the command through getModeFromCommand() function to decode the mode the user wishes to change to.
+2. The ChangeModeCommand passes the input command through getModeFromCommand() function to decode the mode the user wishes to change to.
 
 3. Zoomaster now executes the command and changes to the respective mode. 
 
@@ -283,9 +288,24 @@ Given below is a sequence diagram of how changing between modes occur.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command.png?raw=true) 
-
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command%20new.png?raw=true)
 *<center/> Figure 2.02 Activity diagram for ChangeModeCommand </center> <br/></br>*
+
+1. First, the program checks if the length of the input command is more than 5. Any input command of length less than 5 is
+an invalid mode command. This is because mode command requires an input parameter separated by a space hence "mode " or "mode1"
+are examples of invalid mode commands with length of less than 5. If this is so, it throws an invalid mode message to tell the
+user the valid modes of Zoomaster. Else, it continues to the next step.
+
+2. Secondly, the program checks if the input parameter corresponds to a valid mode of Zoomaster.
+
+3. If the input parameter corresponds to "bookmark", the program changes the mode of Zoomaster to the bookmark mode.
+
+4. If the input parameter corresponds to "timetable", the program changes the mode of Zoomaster to the timetable mode.
+
+5. If the input parameter corresponds to "planner", the program changes the mode of Zoomaster to the planner mode.
+
+6. If the input parameter does not correspond to any of the valid modes of Zoomaster, it throws an invalid mode message to tell the
+user the valid modes of Zoomaster.
 
 #### Design consideration:
 
@@ -300,7 +320,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <a name="show-timetable"></a>
 ### Show timetable feature (Tan Yu Shing)
-Users can see the timetable they have created in the App using the **show** command. The can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. 
+Users can see the timetable they have created in the App using the **show** command. 
+The can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. 
+The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. <br></br>
+
+In this section, I will refer to *input command* and *input parameter*. <br></br>
+*input command* refers to the string of characters the user has typed into the command line and entered into the program. 
+Eg. "show today" is an *input command* <br></br>
+*input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
+Eg. "show sun", "show" is the identifier string of the command and "sun" is the *input parameter*.
 
 #### Implementation
 This feature extends the command class. It is a simple retrieval algorithm which firstly gets data from the Timetable class. Then sorts it by timing and add additional indicators for the users. And finally, prints it our using the User Interface. </br> It uses SlotContainer class sortSlotsByTime method to help sort the list of lessons and it's module code by timing. </br>
@@ -337,6 +365,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20show%20timetable%20command.png?raw=true)
 *<center/>Figure 2.06 Activity diagram for ShowTimetableCommand</center> <br/></br>*
 
+1. First, the program checks if the input command is just "show". This corresponds to the user requesting the full timetable.
+Hence, it sets **day** variable as "ALL" and moves on to the Execute step, step 6. Else it continues to decode the input command.
+
+2. Secondly, the program checks for spacing error in the command. Show command requires a spacing after "show" help decode the input command.
+Hence, if there is no space after "show", the program throws an Unknown Input ZoomasterException and shows the list of valid commands.
+
+3. Next, the program checks if the input parameter is "today". This corresponds to the user requesting the timetable on the day of the current system time.
+Hence, it sets **day** variable as the day of the current system time and moves on to the Execute step, step 6. Else it continues to further check the input command.
+
+4. Afterwards, the program checks if the input parameter corresponds to a valid day of the week in its three letter abbreviation.
+If so, it sets **day** variable as that of input parameter and moves on to the Execute step, step 6.
+
+5. Else, if the input parameter does not correspond to any of the valid inputs. The program sets **day** variable as "NULL".
+
+6. Now, the program executes. If the **day** variable is not "NULL", it prints the corresponding timetable the user wants.
+
+7. If the **day** variable is "NULL", the program moves on to the Show Lesson Bookmarks feature.
 
 #### Design consideration:
 
@@ -356,7 +401,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Less user-friendly. Users have to type an additional phrase to show their timetable. Experienced users
     whom can memorise the command would not encounter the error message of Alternative 1, thus would find typing the
     additional keyword troublesome.
-
 
 <a name="add-module-slot"></a>
 ### Add Module and Slot feature (Xing Rong)
