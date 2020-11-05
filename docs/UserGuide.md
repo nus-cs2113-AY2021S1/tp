@@ -968,4 +968,5 @@ Example of ***`exclude chapter`***
 |--------|------------------|
 | List Due Chapters | `due` |
 | Preview | `preview` |
-| Exclude | `exclude PRIMARY_OPTION` <br> e.g. `exclude more` or `exclude less` |
+| Exclude | `exclude MODULE_OR_CHAPTER` <br> e.g. `exclude module` or `exclude chapter` |
+| Include | `include MODULE_OR_CHAPTER` <br> e.g. `include module` or `include chapter` |
