@@ -10,7 +10,7 @@ title : Developer Guide
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 ParserManager](#parserManager)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser and ParserManager](#parserManager)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
@@ -27,6 +27,9 @@ title : Developer Guide
 #### [5. Non-Functional Requirements](#nfr)
 #### [6. Glossary](#gloss)
 #### [7. Instructions for Manual Testing](#testinstr)
+#### [8. Appendix](#appendix)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 List of ParseCommand Classes](#parseXYZCommands)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 List of Command Classes](#XYZCommands)
 
 <br>
 
@@ -62,11 +65,11 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
 <p align="center">
-  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_Overview.png" />
+  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_OverviewV2.png" />
   <br><em>Figure 1</em>
 </p>
 
-The architecture design is given in the diagram above. The main components of NotUS are:
+Figure 1 depicts the architecture design of NotUS. The main components of NotUS are:
 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
 1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
@@ -78,14 +81,17 @@ The architecture design is given in the diagram above. The main components of No
 
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 
-NotUS manages the flow of the application. On launch, it will create the necessary components, as listed above and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret the user input and execute the commands accordingly. The diagram below depicts the main flow of the application.
+NotUS manages the flow of the application. On launch, it will create the necessary components, as listed above and then attempts to load any existing saved files into the application. Subsequently, it will accept and interpret the user input and execute the commands accordingly. Figure 2 below depicts the main flow of the application.
 
 <p align="center">
   <img alt="NotUS" src="diagrams/out/Notus.png" />
   <br><em>Figure 2</em>
 </p>
 
-#### <a id="parserManager"><ins>2.3 ParserManager</ins></a>
+💡 Due to the limitation of 
+💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document.
+
+#### <a id="parserManager"><ins>2.3 Parser and ParserManager</ins></a>
 
 The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action. The class diagram is as follows.
 
@@ -95,6 +101,7 @@ The ParserManager manages the creation of specific parser objects based on the t
 </p>
 
 💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
+💡 For a full list of ParseXYZCommand, see [Appendix 8.1 List of ParseCommand Classes](#parseXYZCommands)
 
 1. The ParserManager receives the user input message as a whole.
 1. Interprets the type of command and creates the respective parser for each command.
@@ -108,7 +115,7 @@ The sequence diagram is as follows.
   <br><em>Figure 4</em>
 </p>
 
-💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are various paths, they are omitted from the diagram. The Command objects in the diagram are used to represent a generic Command object that is created through the Parser. Refer to the next figure for more details.
+💡 Note that the alternate paths in the sequence diagram above are not exhaustive. There is an alternate path for each unique command. As there are various paths, they are omitted from the diagram. The Command object in the diagram is used to represent a generic Command object that is created through the Parser. Refer to Figure 5 for more details.
 
  <p align="center">
    <img alt="AddNoteParser" src="diagrams/out/AddNoteParser.png" />
@@ -119,8 +126,17 @@ Based on the user input, the Parser handles and creates the corresponding Comman
 
 #### <a id="commands"><ins>2.4 Commands</ins></a>
 
-Commands are used to give order to control the notebook. The majority of commands contain prefixes to distinguish between their various input forms.
+The Command classes update the Notebook and Timetable accordingly. The class diagram is as follows.
 
+<p align="center">
+  <img alt="CommandClass" src="diagrams/out/CommandClass.png" />
+  <br><em>Figure 6</em>
+</p>
+
+💡 Different XYZCommand has different additional variables which are omitted in Figure 6.
+💡 For a full list of XYZCommand classes, see [Appendix 8.2 List of Command Classes](#XYZCommands)
+
+<!--
 Command used:
 
 1. `help`: Shows a list of all the commands that the user can enter.
@@ -129,8 +145,9 @@ Command used:
 1. `view-n`: View selected note
 1. `edit-n`: Edits an existing note.
 1. `find-n`: Finds the notes and return a list of notes that contain the keyword(s) in the title.
+1. `pin-n`: Pins a note to the top of the list.
 1. `archive-n`: Archives a note.
-1. `unarchive-n`: Unarchives a note.
+1. `unarchive-n`: Unarchive a note.
 1. `delete-n`: Deletes an existing note.
 1. `create-t`: Create multiple tags.
 1. `list-t`: Shows a list of tags that have been created.
@@ -143,64 +160,64 @@ Command used:
 1. `remind-e`: Reminds the specified event from the timetable.
 1. `delete-e`: Adds a new item to the list of todo items.
 1. `exit`: Exits the program.
+-->
 
-The following are some examples of the different type of Command Objects and its flow.
+The following are some examples of the different type of Command Classes and its flow.
 
 **AddNoteCommand**
 
-Command used to add notes.
+Command used to add notes into the notebook.
 
-1. Created by the parserManager.
-1. Gets the note with all its variables prepared in ParseAddNoteCommand. 
+1. Created by the ParseAddNoteCommand with the note object and all the information.
 1. Obtain content input into note.
-1. Process and stores tags into TagManager.
-1. Handle saving of notes.
-1. Returns the title, tags as well as the contents of the note. 
+1. Add the note into the notebook.
+1. Save the note's tag(s) into TagManager.
+1. Save the data into a text file.
+1. Returns the formatted result string to be displayed.
 
 <p align="center">
    <img alt="AddNote_Sequence" src="diagrams/out/AddNote_Sequence.png"/>
-   <br><em>Figure 6</em>
+   <br><em>Figure 7</em>
 </p>
 
 **PinCommand**
 
 Command used to pin/unpin notes.
 
-1. Created by the parserManager.
+1. Created by the ParsePinCommand.
 1. Gets the note that is referenced either by title or index.
 1. Toggles the pinned status of the specified note. 
-1. Returns the title as well as the pinned status of the note. 
+1. Returns the formatted the title as well as the pinned status of the note to be displayed.
 
 <p align="center"> 
    <img alt="PinCommand" src="diagrams/out/PinCommand.png"/>
-   <br><em>Figure 7</em>
+   <br><em>Figure 8</em>
 </p>
 
 **AddEventCommand**
-1. Created by the parserManager.
-1. Gets the event with all it's variables from ParseAddEventCommand.
-1. Checks if the event is legitimate. If it is not, return the error.
+1. Created by the ParseAddEventCommand with the event object and all the information.
+1. Checks if the event's information is valid. If it is not, return the error.
 1. Gets all events that clashes with this.
-1. Saves the event.
+1. Saves the event into a text file.
 1. Returns the result of the operation including warnings like clashes and duplicates.
 
 <p align="center"> 
    <img alt="AddEventCommand" src="diagrams/out/AddEvent_Sequence.png"/>
-   <br><em>Figure 8</em>
+   <br><em>Figure 9</em>
 </p>
 
 **RemindCommand**
-1. Created by the parserManager.
+1. Created by the ParseRemindCommand.
 1. Calls the getReminders from Timetable.
 1. Timetable then gets all events that is occurring 1 month from now.
-1. Timetable then generates all reminders for all the events from the previous step
-1. Timetable returns all reminders that are to occur today
-1. Formatter formats the reminders
-1. Returns the result of the formatting
+1. Timetable then generates all reminders for all the events from the previous step.
+1. Timetable returns all reminders that are to occur today.
+1. Formatter formats the reminders.
+1. Returns the result of the formatting.
 
 <p align="center"> 
    <img alt="RemindCommand" src="diagrams/out/Remind_Sequence.png"/>
-   <br><em>Figure 9</em>
+   <br><em>Figure 10</em>
 </p>
 
 <br>
@@ -209,13 +226,13 @@ Command used to pin/unpin notes.
 
 The notebook component stores a catalogue of notes. On launch, an empty notebook will be created. The note will be created by the user.
 Notebook handles adding, deleting, editing, finding, sorting, pinning and archiving of notes.
-A single note holds information such as title, contents, tags, if its pinned and if its archived.
-Tagging will be handled by a separate class. Tag helps to sort user's notes as the program allows user to retrieve notes by tags.
-The diagram below is a class diagram of the relationship between the Notebook, Note and Tags.
+
+A single note holds information such as title, contents, tags, if its pinned and if its archived. Tag helps to sort user's notes as the program allows user to retrieve notes by tags.
+Figure 11 below is a class diagram of the relationship between the Notebook, Note and Tags.
 
 <p align="center">
    <img alt="NotebookObject" src="diagrams/out/NotebookObject.png"/>
-   <br><em>Figure 10</em>
+   <br><em>Figure 11</em>
 </p>
 
 There are multiple overloaded methods. The uses are given below:
@@ -286,10 +303,9 @@ Timetable handles adding, deleting and getting all instances of stored events in
 
 The timetable component stores an array of events. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
 
-
  <p align="center">
    <img alt="TimetableClassDiagram" src="diagrams/out/TimetableClass.png" />
-   <br><em>Figure 11</em>
+   <br><em>Figure 12</em>
  </p>
  
  Key Methods Provided:
@@ -304,40 +320,52 @@ The timetable component stores an array of events. On launch, an empty timetable
 
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
-The class diagram below denotes the relationship between the TagManager and the Taggable Objects (Notes and Events).
+Figure 13 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
 
 <p align="center">
    <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
-   <br><em>Figure 12</em>
+   <br><em>Figure 13</em>
 </p>
  
 💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
  
-Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
+Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager also handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
 
 #### <a id="storage"><ins>2.8 Storage</ins></a>
+
 The StorageManager saves and loads data to text files. On launch, the storage manager checks for existing directories that may contain previously saved data, otherwise it creates the necessary directories. Following that, it will load the previously saved notes and events from the text files into NotUS.Below is the class diagram representing the relationship between the StorageManager, Timetable, Notebook, TagManager and ParserManager.
 
 <p align="center">
    <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
-   <br><em>Figure 13</em>
+   <br><em>Figure 14</em>
 </p>
 
 While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
-   <br><em>Figure 14</em>
+   <br><em>Figure 15</em>
 </p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
 
-The Formatter class handles the formatting of the Note(s), Event(s) and message(s) which is then displayed to the user. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
+The InterfaceManger receives the input from the user which is then processed by ParserManager, as well as printing the output. The class diagram is as follow.
+
+<p align="center">
+   <img alt="InterfaceManager" src="diagrams/out/InterfaceManagerClass.png"/>
+   <br><em>Figure 16</em>
+</p>
+
+The Formatter class handles the formatting of the Note(s), Event(s) and message(s) into a String which is then passed to InterfaceManager to be printed out through NotUS. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 15</em>
+   <br><em>Figure 17</em>
 </p>
+
+There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.
+
+A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSCI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
 
@@ -346,10 +374,10 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure 16</em>
+   <br><em>Figure 18</em>
 </p>
 
-💡 As there are various types of exception, the class diagram is split into two.
+💡 As there are various types of exception, the diagram is split into two.
 
 #### <a id="color"><ins>2.11 Usage of External Libraries</ins></a>
 
@@ -361,11 +389,11 @@ IntelliJ's *'Dracula'* and *'High Contrast'* themes print white fonts as black a
 
 - Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black and White to the correct RGB value.
 
-The figure below illustrates what you should see on your screen.
+Figure 19 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 17</em>
+ <br><em>Figure 19</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>
@@ -465,3 +493,51 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 1. Enter the command `help` to get a list of all available commands and its usages.
 1. For a detailed list on the command features, refer to the [user guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md#features).
 1. Simply enter `exit` to terminate and exit the application.
+
+## <a id="appendix">8. Appendix</a>
+
+#### <a id="parseXYZCommands"><ins>8.1 List of ParseCommand Classes</ins></a>
+
+| ParseXYZCommands |  Functions  |
+|------------------|-------------|
+|ParseAddNoteCommand|Creates a AddNoteCommand|
+|ParseAddEventCommand|Creates a AddEventCommand|
+|ParseEditNoteCommand|Creates a EditNoteCommand|
+|ParseEditEventCommand|Creates a EditEventCommand|
+|ParseDeleteNoteCommand|Creates a DeleteNoteCommand|
+|ParseDeleteEventCommand|Creates a DeleteEventCommand|
+|ParseListNoteCommand|Creates a ListNoteCommand|
+|ParseListEventCommand|Creates a ListEventCommand|
+|ParseFindCommand|Creates a FindCommand|
+|ParsePinCommand|Creates a PinCommand|
+|ParseViewNoteCommand|Creates a ViewNoteCommand|
+|ParseArchiveOrUnarchiveNoteCommand|Creates either ArchiveNoteCommand or UnarchiveNoteCommand|
+|ParseCreateOrDeleteTagCommand|Creates a CreateTagCommand or DeleteTagCommand|
+|ParseTagCommand|Creates a TagNoteCommand or TagEventCommand|
+
+#### <a id="XYZCommands"><ins>8.2 List of Command Classes</ins></a>
+
+The list of Command classes is as follow:
+
+1. AddNoteCommand
+1. AddEventCommand
+1. EditNoteCommand
+1. EditEventCommand
+1. DeleteNoteCommand
+1. DeleteEventCommand
+1. ListNoteCommand
+1. ListEventCommand
+1. PinCommand
+1. FindCommand
+1. ArchiveNoteCommand
+1. UnarchiveNoteCommand
+1. ViewNoteCommand
+1. RemindCommand
+1. CreateTagCommand
+1. DeleteTagCommand
+1. ListTagCommand
+1. TagNoteCommand
+1. TagEventCommand
+1. HelpCommand
+1. ExitCommand
+1. IncorrectCommand
