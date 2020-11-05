@@ -344,9 +344,9 @@ class ViewTimeBreakdownAnalysisTest {
 
         String expected = ViewTimeBreakdownAnalysis.MODULE_WEEK + "2" + System.lineSeparator()
                 + System.lineSeparator() + "CS1231" + System.lineSeparator()
-                + ViewTimeBreakdownAnalysis.ACTUAL + "███▌ 3.4"
+                + ViewTimeBreakdownAnalysis.ACTUAL + "[][][][ 3.4"
                 + System.lineSeparator()
-                + ViewTimeBreakdownAnalysis.EXPECTED + "█████ 5.0" + System.lineSeparator()
+                + ViewTimeBreakdownAnalysis.EXPECTED + "[][][][][] 5.0" + System.lineSeparator()
                 + System.lineSeparator();
 
         assertEquals(expected, outContent.toString());
@@ -370,7 +370,7 @@ class ViewTimeBreakdownAnalysisTest {
                 + System.lineSeparator() + "CS1231" + System.lineSeparator()
                 + ViewTimeBreakdownAnalysis.ACTUAL + ViewTimeBreakdownAnalysis.NO_INPUT
                 + System.lineSeparator()
-                + ViewTimeBreakdownAnalysis.EXPECTED + "█████ 5.0" + System.lineSeparator()
+                + ViewTimeBreakdownAnalysis.EXPECTED + "[][][][][] 5.0" + System.lineSeparator()
                 + System.lineSeparator();
 
         assertEquals(expected, outContent.toString());
@@ -393,7 +393,7 @@ class ViewTimeBreakdownAnalysisTest {
 
         String expected = ViewTimeBreakdownAnalysis.MODULE_WEEK + "2" + System.lineSeparator()
                 + System.lineSeparator() + "CS1231" + System.lineSeparator()
-                + ViewTimeBreakdownAnalysis.ACTUAL + "███▌ 3.4"
+                + ViewTimeBreakdownAnalysis.ACTUAL + "[][][][ 3.4"
                 + System.lineSeparator()
                 + ViewTimeBreakdownAnalysis.EXPECTED + ViewTimeBreakdownAnalysis.NO_INPUT + System.lineSeparator()
                 + System.lineSeparator();
