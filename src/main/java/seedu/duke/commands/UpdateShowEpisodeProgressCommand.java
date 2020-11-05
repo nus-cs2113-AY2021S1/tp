@@ -24,8 +24,7 @@ public class UpdateShowEpisodeProgressCommand extends Command {
         try {
             Show show = ShowList.getShow(showName);
             int currentSeason = show.getCurrentSeason();
-            int[] episodesForSeasons = show.getNumEpisodesForSeasons();
-            if (episode > episodesForSeasons[currentSeason - 1] || episode <= 0) {
+            if (episode > show.getEpisodesForSeason(currentSeason) || episode <= 0) {
                 throw new RuntimeException();
             }
             show.setEpisodeWatched(episode);
