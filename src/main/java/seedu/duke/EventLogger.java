@@ -50,6 +50,7 @@ public class EventLogger {
             userInterface.printErrorMessage("log cannot be cleared");
         }
     }
+
     /**
      * Function accepts a string and creates a path object originating from the user directory.
      *
