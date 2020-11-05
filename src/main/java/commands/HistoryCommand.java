@@ -40,7 +40,7 @@ public class HistoryCommand extends Command {
         storage.createHistory(ui, date.toString());
         String moduleName = access.getModule().getModuleName();
         String chapterName = access.getModule().getChapters().getChapter(reviseIndex).getChapterName();
-        History history = new History(moduleName, chapterName, 100);
+        History history = new History(moduleName, chapterName);
         ArrayList<History> histories = storage.loadHistory(date.toString());;
         histories.add(history);
         storage.saveHistory(histories, date.toString());
