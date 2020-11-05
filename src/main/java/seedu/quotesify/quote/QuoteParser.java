@@ -6,6 +6,9 @@ import seedu.quotesify.exception.QuotesifyException;
 
 import java.util.HashMap;
 
+/**
+ * Represents a Quote Parser.
+ */
 public class QuoteParser {
     public static final String FLAG_DELIMITER = "/";
     public static final String FLAG_AUTHOR = "/by";
@@ -26,6 +29,13 @@ public class QuoteParser {
     public static final String ERROR_DUPLICATE_EDIT_FLAG = "Edit flag can only be used once!";
     public static final String ERROR_MISSING_REFLECTION_FIELD = "Please specify your reflection!";
 
+    /**
+     * Checks user input to determine which parser method to call to create the appropriate Quote object.
+     *
+     * @param userInput User specified input.
+     * @return Quote object from the result of the subsequent parser method being called.
+     * @throws QuotesifyException If invalid parameters are provided by user.
+     */
     public static Quote parseAddParameters(String userInput) throws QuotesifyException {
         assert !userInput.isEmpty() : "field should not be empty";
         if (userInput.contains(FLAG_REFERENCE) && userInput.contains(FLAG_AUTHOR)) {
@@ -39,12 +49,26 @@ public class QuoteParser {
         }
     }
 
+    /**
+     * Parses user input into a quote object with no author and reference information.
+     *
+     * @param userInput User specified input.
+     * @return Quote object.
+     * @throws QuotesifyException If an exception is thrown from trimAndCheckEmptyQuote method.
+     */
     public static Quote parseQuoteWithoutFlags(String userInput) throws QuotesifyException {
         // Throws exception if quote is empty
         String quote = trimAndCheckEmptyQuote(userInput);
         return new Quote(quote);
     }
 
+    /**
+     * Checks if quote String is empty.
+     *
+     * @param quote User specified quote String.
+     * @return Trimmed quote after being checked.
+     * @throws QuotesifyException If quote field is empty.
+     */
     public static String trimAndCheckEmptyQuote(String quote) throws QuotesifyException {
         assert !quote.isEmpty() : "quote field should not be empty";
         quote = quote.trim();
@@ -55,6 +79,13 @@ public class QuoteParser {
         }
     }
 
+    /**
+     * Parses user input into a Quote object with reference and author information.
+     *
+     * @param userInput User specified input.
+     * @return Quote object.
+     * @throws QuotesifyException If invalid parameters are provided by user.
+     */
     public static Quote parseQuoteWithReferenceAndAuthorInput(String userInput) throws QuotesifyException {
         // Throws exception if any fields are empty
         String[] quoteAndInformation = userInput.split(FLAG_DELIMITER, 2);
@@ -74,6 +105,13 @@ public class QuoteParser {
         }
     }
 
+    /**
+     * Gets reference title and author name.
+     *
+     * @param userInput User specified input.
+     * @return Hashmap containing  reference title and author name.
+     * @throws QuotesifyException If reference title or author name is empty.
+     */
     public static HashMap getReferenceAndAuthor(String userInput) throws QuotesifyException {
         String[] referenceAndAuthor = userInput.split(FLAG_DELIMITER,2);
         String reference = "";
@@ -101,6 +139,13 @@ public class QuoteParser {
         return referenceAndAuthorName;
     }
 
+    /**
+     * Checks author name and reference title for extra flags.
+     *
+     * @param authorName Author name String.
+     * @param reference Reference title String.
+     * @throws QuotesifyException If any of the extra flags are found.
+     */
     public static void checkExtraAuthorReferenceFlags(String authorName, String reference) throws QuotesifyException {
         if (authorName.contains(FLAG_AUTHOR) || authorName.contains(FLAG_REFERENCE)) {
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
@@ -109,15 +154,29 @@ public class QuoteParser {
         }
     }
 
+    /**
+     * Parses user input into a Quote object with reference title.
+     *
+     * @param userInput User specified input.
+     * @return Quote object.
+     * @throws QuotesifyException If invalid parameters are provided by user.
+     */
     public static Quote parseQuoteWithReferenceInput(String userInput) throws QuotesifyException {
         // Throws exception if quote of reference is empty
-        String[] quoteAndReference = trimAndCheckReferenceFlag(userInput);
+        String[] quoteAndReference = splitAndCheckReferenceFlag(userInput);
         String quote = trimAndCheckEmptyQuote(quoteAndReference[0]);
         String reference = trimAndCheckEmptyReference(quoteAndReference[1]);
         return new Quote(quote, reference);
     }
 
-    public static String[] trimAndCheckReferenceFlag(String userInput) throws QuotesifyException {
+    /**
+     * Splits user input to obtain quote and reference title.
+     *
+     * @param userInput User specified input.
+     * @return String array containing quote and reference title.
+     * @throws QuotesifyException If extra reference flag is found.
+     */
+    public static String[] splitAndCheckReferenceFlag(String userInput) throws QuotesifyException {
         String[] quoteAndReference = userInput.split(FLAG_REFERENCE, 2);
         if (hasExtraFlag(quoteAndReference[1], FLAG_REFERENCE)) {
             throw new QuotesifyException(ERROR_DUPLICATE_REFERENCE_FLAG);
@@ -125,6 +184,13 @@ public class QuoteParser {
         return quoteAndReference;
     }
 
+    /**
+     * General method that checks user input for a specified extra flag.
+     *
+     * @param userInput User specified input.
+     * @param flag Developer specified flag type to check.
+     * @return False if extra flag is not found, true otherwise.
+     */
     public static boolean hasExtraFlag(String userInput, String flag) {
         if (!userInput.contains(flag)) {
             return false;
@@ -133,6 +199,13 @@ public class QuoteParser {
         }
     }
 
+    /**
+     * Trim reference title and checks if empty.
+     *
+     * @param reference Reference title.
+     * @return Trimmed reference title.
+     * @throws QuotesifyException If reference title is empty.
+     */
     public static String trimAndCheckEmptyReference(String reference) throws QuotesifyException {
         assert !reference.isEmpty() : "reference field should not be empty";
         reference = reference.trim();
@@ -143,15 +216,29 @@ public class QuoteParser {
         }
     }
 
+    /**
+     * Parses user input into a Quote object with author name.
+     *
+     * @param userInput User specified input.
+     * @return Quote object.
+     * @throws QuotesifyException If invalid parameters are provided by user.
+     */
     public static Quote parseQuoteWithAuthorInput(String userInput) throws QuotesifyException {
         // Throws exception if quote of author name is empty
-        String[] quoteAndAuthor = trimAndCheckAuthorFlags(userInput);
+        String[] quoteAndAuthor = splitAndCheckAuthorFlags(userInput);
         String quote = trimAndCheckEmptyQuote(quoteAndAuthor[0]);
         Author author = trimAndCheckEmptyAuthor(quoteAndAuthor[1]);
         return new Quote(quote, author);
     }
 
-    public static String[] trimAndCheckAuthorFlags(String userInput) throws QuotesifyException {
+    /**
+     * Splits user input to obtain quote and author name.
+     *
+     * @param userInput User specified input.
+     * @return String array containing quote and author name.
+     * @throws QuotesifyException If extra author flag is found.
+     */
+    public static String[] splitAndCheckAuthorFlags(String userInput) throws QuotesifyException {
         String[] quoteAndAuthor = userInput.split(FLAG_AUTHOR, 2);
         if (hasExtraFlag(quoteAndAuthor[1], FLAG_AUTHOR)) {
             throw new QuotesifyException(ERROR_DUPLICATE_AUTHOR_FLAG);
@@ -159,6 +246,13 @@ public class QuoteParser {
         return quoteAndAuthor;
     }
 
+    /**
+     * Trim author name and check if empty.
+     *
+     * @param authorName Author name.
+     * @return Trimmed author name.
+     * @throws QuotesifyException If author name is empty.
+     */
     public static Author trimAndCheckEmptyAuthor(String authorName) throws QuotesifyException {
         assert !authorName.isEmpty() : "author field should not be empty";
         authorName = authorName.trim();
@@ -169,38 +263,50 @@ public class QuoteParser {
         }
     }
 
-    public static String parseListWithAuthor(String userInput) throws QuotesifyException {
-        String[] authorFlagAndName = userInput.split(FLAG_AUTHOR, 2);
+    /**
+     * Parses the user list command to identify author name or reference title depending on flag supplied.
+     *
+     * @param userInput User specified input.
+     * @param flag Developer supplied author flag or reference flag.
+     * @return String containing author name or reference title depending on the flag supplied.
+     * @throws QuotesifyException If extra flag is found or information field is empty.
+     */
+    public static String parseListCommand(String userInput, String flag) throws QuotesifyException {
+        String[] FlagAndInformation = userInput.split(flag, 2);
         try {
-            String authorName = authorFlagAndName[1].trim();
-            if (hasExtraFlag(authorName, FLAG_AUTHOR)) {
+            String information = FlagAndInformation[1].trim();
+            if (information.isEmpty() && flag.equals(FLAG_AUTHOR)) {
+                throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+            } else if (information.isEmpty() && flag.equals(FLAG_REFERENCE)) {
+                throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+            } else if (hasExtraFlag(information, flag)) {
                 throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
             }
-            return authorName;
+            return information;
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+            if (flag.equals(FLAG_AUTHOR)) {
+                throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+            } else {
+                throw new QuotesifyException(ERROR_MISSING_REFERENCE);
+            }
         }
     }
 
-    public static String parseListWithReference(String userInput) throws QuotesifyException {
-        String[] referenceFlagAndName = userInput.split(FLAG_REFERENCE, 2);
+    /**
+     * Gets quote number from user input.
+     *
+     * @param userInput User specified input.
+     * @param quoteListSize Size of quote list.
+     * @param flag Developer specified flag to check.
+     * @return Quote number
+     * @throws QuotesifyException If required flag is not found, quote number is invalid or invalid use of extra flags.
+     */
+    public static int getQuoteNumber(String userInput, int quoteListSize, String flag) throws QuotesifyException {
         try {
-            String reference = referenceFlagAndName[1].trim();
-            if (hasExtraFlag(reference, FLAG_REFERENCE)) {
-                throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+            if (!userInput.contains(flag)) {
+                throw new QuotesifyException("Invalid parameters, the \"" + flag + "\" flag is missing!");
             }
-            return reference;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new QuotesifyException(ERROR_MISSING_REFERENCE);
-        }
-    }
-
-    public static int getQuoteNumber(String userInput, int quoteListSize, String command) throws QuotesifyException {
-        try {
-            if (!userInput.contains(command)) {
-                throw new QuotesifyException("Invalid parameters, the \"" + command + "\" flag is missing!");
-            }
-            String[] quoteNumberAndInformation = userInput.split(command, 2);
+            String[] quoteNumberAndInformation = userInput.split(flag, 2);
             if (quoteNumberAndInformation[0].isEmpty()) {
                 throw new QuotesifyException(ERROR_MISSING_QUOTE_NUM);
             } else if (quoteNumberAndInformation[0].contains(FLAG_DELIMITER)) {
@@ -212,18 +318,32 @@ public class QuoteParser {
             }
             return quoteNumberToEdit - 1;
         } catch (NumberFormatException e) {
-            if (!userInput.contains(command)) {
-                throw new QuotesifyException("Invalid parameters, the \"" + command + "\" flag is missing!");
+            if (!userInput.contains(flag)) {
+                throw new QuotesifyException("Invalid parameters, the \"" + flag + "\" flag is missing!");
             }
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
         }
     }
 
+    /**
+     * Gets edited quote from user input.
+     *
+     * @param userInput User specified input.
+     * @return Edited Quote object.
+     * @throws QuotesifyException If invalid parameters are provided by user.
+     */
     public static Quote getEditedQuote(String userInput) throws QuotesifyException {
         String quoteAndInformation = userInput.split(Command.FLAG_EDIT, 2)[1];
         return parseAddParameters(quoteAndInformation);
     }
 
+    /**
+     * Gets reflection from user input.
+     *
+     * @param userInput User specified input.
+     * @return String containing reflection.
+     * @throws QuotesifyException If reflection is empty or extra reflect flag is found.
+     */
     public static String getReflectionToAdd(String userInput) throws QuotesifyException {
         try {
             String reflection = userInput.split(Command.FLAG_REFLECT, 2)[1].trim();
@@ -239,6 +359,13 @@ public class QuoteParser {
         }
     }
 
+    /**
+     * Gets edited reflection from user input.
+     *
+     * @param userInput User specifed input.
+     * @return String containing edited reflection.
+     * @throws QuotesifyException If extra edit flag is found or reflection is empty.
+     */
     public static String getEditedReflection(String userInput) throws QuotesifyException {
         String updatedReflection = userInput.split(FLAG_EDIT, 2)[1].trim();
         if (hasExtraFlag(updatedReflection, FLAG_EDIT)) {
