@@ -34,10 +34,10 @@ public class UpdateShowSeasonCommand extends Command {
             int season = Integer.parseInt(inputs.get(2));
             int episode = Integer.parseInt(inputs.get(3));
             Show show = ShowList.getShow(showName);
-            if (season > show.getNumSeasons()) {
+            if (season > show.getNumSeasons() || season <= 0) {
                 throw new IndexOutOfBoundsException();
             }
-            if (episode > show.getEpisodesForSeason(season)) {
+            if (episode > show.getEpisodesForSeason(season) || episode <= 0) {
                 throw new IndexOutOfBoundsException();
             }
             show.setCurrentSeason(season, episode);
@@ -58,7 +58,7 @@ public class UpdateShowSeasonCommand extends Command {
             String showName = inputs.get(1);
             int season = Integer.parseInt(inputs.get(2));
             Show show = ShowList.getShow(showName);
-            if (season > show.getNumSeasons()) {
+            if (season > show.getNumSeasons() || season <= 0) {
                 throw new IndexOutOfBoundsException();
             }
             show.setCurrentSeason(season);
