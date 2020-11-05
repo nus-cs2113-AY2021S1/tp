@@ -12,6 +12,8 @@ import java.util.Locale;
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_TIME_FORMAT_ERROR;
 
+//@@author fanceso
+
 /**
  * Class representing the power consumption of appliances.
  */

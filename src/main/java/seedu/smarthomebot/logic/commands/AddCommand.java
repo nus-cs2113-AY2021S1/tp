@@ -14,6 +14,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_LOCATION_CONFLICT;
 
 //@@author zongxian-ctrl
+
 /**
  * Represent the command for adding an appliance to the ApplianceList.
  */
