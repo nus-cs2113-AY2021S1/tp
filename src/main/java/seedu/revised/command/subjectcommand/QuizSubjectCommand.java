@@ -46,7 +46,7 @@ public class QuizSubjectCommand extends SubjectCommand {
             }
         }
         if (quizSubject == null) {
-            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+            throw new NoSubjectException(Ui.SUBJECT_NOT_FOUND_EXCEPTION);
         }
         logger.info("Finished reading the command to find the subject for the quiz feature");
         logger.fine(String.format("The subject is %s", quizSubject.getTitle()));

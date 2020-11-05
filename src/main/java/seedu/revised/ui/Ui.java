@@ -36,7 +36,8 @@ public class Ui {
 
     public static final String FAILED_PARSE_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I don't know what that means "
             + OOPS_SUFFIX;
-    public static final String NO_SUBJECT_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that subject "
+    public static final String NO_SUBJECT_EXCEPTION = "Please enter an existing subject.";
+    public static final String SUBJECT_NOT_FOUND_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that subject "
             + OOPS_SUFFIX;
     public static final String REPEATED_SUBJECT_EXCEPTION = OOPS_PREFIX + " I'm sorry, but subject is already "
             + "in the list " + OOPS_SUFFIX;
@@ -51,7 +52,8 @@ public class Ui {
     public static final String INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " Invalid index format entered.";
     public static final String INDEX_OUT_OF_BOUND_EXCEPTION = OOPS_PREFIX + " The index you entered does not exist.";
     public static final String NO_FLASHCARD_EXCEPTION = "There are no flashcards present yet!";
-    public static final String NO_TOPIC_EXCEPTION = "There are no topics present yet!";
+    public static final String NO_TOPIC_YET_EXCEPTION = "There are no topics present yet!";
+    public static final String NO_TOPIC_EXCEPTION = "Please enter an existing topic.";
     public static final String TOPIC_NOT_FOUND_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that topic "
             + OOPS_SUFFIX;
     public static final String INVALID_SUBJECT_EXCEPTION = "Please enter a subject!";
@@ -95,28 +97,36 @@ public class Ui {
 
     public static void printSubjectList(List<Subject> list) {
         System.out.println(DIVIDER);
-        System.out.println("Here are the subject(s) in your list:");
 
-        int num = 1;
-        for (Subject item : list) {
-            System.out.println(num + ". " + item);
-            num++;
+        if (list.size() == 0) {
+            System.out.println("There are no subjects in your list!");
+        } else {
+            System.out.println("Here are the subject(s) in your list:");
+            int num = 1;
+            for (Subject item : list) {
+                System.out.println(num + ". " + item);
+                num++;
+            }
         }
 
         System.out.println(DIVIDER);
     }
 
     public static void printTaskList(Subject subject) {
-        System.out.println("Here are the tasks(s) under " + subject.getTitle() + ": ");
-
-        int index = 1;
         TaskList taskList = subject.getTasks();
-        for (Task t : taskList.getList()) {
-            assert index > 0;
-            System.out.println(index + ". " + t);
-            index++;
-        }
+        List<Task> list = taskList.getList();
 
+        if (list.size() == 0) {
+            System.out.println("There are no tasks in your list!");
+        } else {
+            System.out.println("Here are the tasks(s) under " + subject.getTitle() + ": ");
+            int index = 1;
+            for (Task t : list) {
+                assert index > 0;
+                System.out.println(index + ". " + t);
+                index++;
+            }
+        }
         System.out.println(DIVIDER);
     }
 
@@ -230,16 +240,21 @@ public class Ui {
 
     public static void printTopicList(Subject subject) {
         System.out.println(DIVIDER);
-        System.out.println("Here are the topic(s) under " + subject.getTitle() + ": ");
 
-        int index = 1;
         TopicList topicList = subject.getTopics();
-        for (Topic t : topicList.getList()) {
-            assert index > 0;
-            System.out.println(index + ". " + t);
-            index++;
-        }
+        List<Topic> list = topicList.getList();
 
+        if (list.size() == 0) {
+            System.out.println("There are no topics in your list!");
+        } else {
+            System.out.println("Here are the topic(s) under " + subject.getTitle() + ": ");
+            int index = 1;
+            for (Topic t : list) {
+                assert index > 0;
+                System.out.println(index + ". " + t);
+                index++;
+            }
+        }
         System.out.println(DIVIDER);
     }
 
@@ -299,15 +314,19 @@ public class Ui {
 
     public static void printFlashcardList(Topic topic) {
         System.out.println(DIVIDER);
-        System.out.println("Here are the flashcard(s) under " + topic.getTitle() + ": ");
+        List<Flashcard> list = topic.getFlashcards();
 
-        int index = 1;
-        for (Flashcard t : topic.getFlashcards()) {
-            assert index > 0;
-            System.out.println(index + ". " + t.getQuestion() + "; " + t.getAnswer());
-            index++;
+        if (list.size() == 0) {
+            System.out.println("There are no flashcards in your list!");
+        } else {
+            System.out.println("Here are the flashcard(s) under " + topic.getTitle() + ": ");
+            int index = 1;
+            for (Flashcard t : list) {
+                assert index > 0;
+                System.out.println(index + ". " + t);
+                index++;
+            }
         }
-
         System.out.println(DIVIDER);
     }
 

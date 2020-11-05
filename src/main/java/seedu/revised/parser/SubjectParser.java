@@ -26,16 +26,18 @@ public class SubjectParser {
      * @return returns a command instance to execute a command
      */
     public static SubjectCommand parse(String fullCommand) {
+        fullCommand = fullCommand.trim();
         String[] tokens = fullCommand.split(" ");
-        String command = tokens[0];
+        String fullCommandLowerCase = fullCommand.toLowerCase();
+        String command = tokens[0].toLowerCase();
 
-        if (fullCommand.equals("bye")) {
+        if (fullCommandLowerCase.equals("bye")) {
             return new ExitSubjectCommand();
-        } else if (fullCommand.equals("list")) {
+        } else if (fullCommandLowerCase.equals("list")) {
             return new ListSubjectCommand();
-        } else if (fullCommand.equals("list all")) {
+        } else if (fullCommandLowerCase.equals("list all")) {
             return new ListAllSubjectCommand();
-        } else if (fullCommand.equals("export")) {
+        } else if (fullCommandLowerCase.equals("export")) {
             return new ExportSubjectCommand();
         } else if (command.equals("add")) {
             return new AddSubjectCommand(fullCommand);
@@ -43,7 +45,7 @@ public class SubjectParser {
             return new DeleteSubjectCommand(fullCommand);
         } else if (command.equals("find")) {
             return new FindSubjectCommand(fullCommand);
-        } else if (fullCommand.equals("help")) {
+        } else if (fullCommandLowerCase.equals("help")) {
             return new HelpSubjectCommand();
         } else if (command.equals("subject")) {
             return new AccessSubjectCommand(fullCommand);

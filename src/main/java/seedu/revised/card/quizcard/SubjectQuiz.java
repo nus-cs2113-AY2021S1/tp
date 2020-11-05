@@ -3,8 +3,13 @@ package seedu.revised.card.quizcard;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
+<<<<<<< HEAD:src/main/java/seedu/revised/card/quizcard/SubjectQuiz.java
 import seedu.revised.exception.flashcardexception.NoFlashcardException;
 import seedu.revised.exception.topicexception.NoTopicException;
+=======
+import seedu.revised.exception.flashcard.NoFlashcardException;
+import seedu.revised.exception.topic.NoTopicException;
+>>>>>>> 800bbe1462ea29173bc93af0aac56cd46c1217c6:src/main/java/seedu/revised/card/quiz/SubjectQuiz.java
 import seedu.revised.ui.Ui;
 
 import java.time.Instant;
@@ -32,7 +37,7 @@ public class SubjectQuiz extends Quiz {
     public void setUpQuiz() throws NoFlashcardException, NoTopicException {
         logger.info("Start setting up the quiz");
         if (subject.getTopics().getList().size() == 0) {
-            throw new NoTopicException(Ui.NO_TOPIC_EXCEPTION);
+            throw new NoTopicException(Ui.NO_TOPIC_YET_EXCEPTION);
         }
         int maxScore = 0;
         for (Topic topic : subject.getTopics().getList()) {

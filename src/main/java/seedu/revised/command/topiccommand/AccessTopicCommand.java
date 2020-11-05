@@ -21,7 +21,7 @@ public class AccessTopicCommand extends TopicCommand {
         String[] message = this.fullcommand.split(" ",2);
         Topic gotoTopic = null;
         if (message.length == 1 || message[1].isEmpty()) {
-            throw new NoTopicException(Ui.TOPIC_NOT_FOUND_EXCEPTION);
+            throw new NoTopicException(Ui.NO_TOPIC_EXCEPTION);
         }
         for (Topic topic : subject.getTopics().getList()) {
             if (topic.getTitle().equals(message[1].strip())) {

@@ -51,7 +51,7 @@ public class AccessSubjectCommand extends SubjectCommand {
         }
 
         if (gotoSubject == null) {
-            throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
+            throw new NoSubjectException(Ui.SUBJECT_NOT_FOUND_EXCEPTION);
         }
 
         goToSubject(gotoSubject);
