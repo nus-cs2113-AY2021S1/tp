@@ -29,8 +29,8 @@ rectangle Logic {
     }
 
 
-rectangle Commands {
-    abstract class ParamHandler {
+rectangle CommandHandlers {
+    abstract class "{abstract}\nParamHandler" {
         # paramChecker : ParamChecker
         # hasParsedAllParams : boolean
         + handleParams(packet : CommandPacket) : void
@@ -40,7 +40,7 @@ rectangle Commands {
         + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
     }
 
-    rectangle LedgerCommands {
+    rectangle "Ledger CommandHandlers" {
         class createLedgerCommand {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
@@ -58,7 +58,7 @@ rectangle Commands {
 
 
 
-    rectangle EntryCommands {
+    rectangle "Entry CommandHandlers" {
         class createEntryCommand {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
@@ -81,7 +81,7 @@ rectangle Commands {
         }
 
         p4 -[hidden]- p5
-        p5 -[hidden]- ParamHandler
+        p5 -[hidden]- "{abstract}\nParamHandler"
     }
 
 
@@ -93,12 +93,12 @@ rectangle Commands {
     ParamChecker "1" <.[norank]. editEntryHandler #line:blue;text:black
     ParamChecker "1" <.[norank]. retrieveEntryHandler #line:blue;text:black
     ParamChecker "1" <.[norank]. XYZCommands #line:blue;text:black
-    ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
-    ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
-    ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
-    ParamHandler <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
-    ParamHandler <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
-    ParamHandler <|-[norank]- XYZCommands #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- XYZCommands #line:purple;line.bold;text:red
 
     note bottom of XYZCommands: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
 }

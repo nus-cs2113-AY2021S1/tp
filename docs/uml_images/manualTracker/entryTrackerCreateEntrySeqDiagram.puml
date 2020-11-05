@@ -1,8 +1,18 @@
 @startuml
 autoactivate on
 actor User
+skinparam shadowing false
 
-User-> ":EntryTracker": Create Entry
+skinparam sequence {
+ActorBorderColor white
+
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
+
+User -> ":EntryTracker": Create Entry
 ":EntryTracker" ->":EntryTracker": handleCreateEntry()
     create "command:CreateEntryCommand"
    ":EntryTracker"-> "command:CreateEntryCommand" : CreateEntryCommand()
@@ -57,8 +67,9 @@ User-> ":EntryTracker": Create Entry
     return
 
 return state
+return
 
-box "Data Tracker handler" #LightYellow
+box "Data Tracker " #LightYellow
 participant ":EntryTracker"
 endBox
 

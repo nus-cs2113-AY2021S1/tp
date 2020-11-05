@@ -2,7 +2,15 @@
 autoactivate on
 
 actor User
+skinparam shadowing false
+skinparam sequence {
+ActorBorderColor white
 
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
 User-> ":ManualTracker": Delete Ledger
 
 ":ManualTracker" ->":ManualTracker": handleDeleteLedger()
@@ -43,8 +51,9 @@ User-> ":ManualTracker": Delete Ledger
    destroy "ledger:Ledger"
    return
 return state
+return
 
-box "Data Tracker handler" #LightYellow
+box "Data Tracker" #LightYellow
 participant ":ManualTracker"
 endBox
 
