@@ -37,7 +37,7 @@ public class CalendarCommandTest {
         String personalInput = "personal to finish project";
         new AddCommand(personalInput).execute(data, ui, storage);
         printWriter.println("You have successfully added this event to your list!");
-        printWriter.println("[P][✕] to finish project");
+        printWriter.println("[P][X] to finish project");
 
         // Execute calendar command
         CalendarCommand.parse("").execute(data, ui, storage);

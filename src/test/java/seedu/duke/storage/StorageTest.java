@@ -53,10 +53,10 @@ class StorageTest {
 
         assertEquals("The file has successfully been loaded!" + System.lineSeparator()
                         + "Here is a list of your Personal events:" + System.lineSeparator()
-                        + "1. [P][✕] stuff on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "1. [P][X] stuff on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated weekly for 4 times." + System.lineSeparator()
-                        + "2. [P][✓] birthday celebration on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "3. [P][✕] others" + System.lineSeparator()
+                        + "2. [P][O] birthday celebration on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "3. [P][X] others" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
@@ -67,9 +67,9 @@ class StorageTest {
         listCommand.execute(data, ui, store);
 
         assertEquals("Here is a list of your Zoom events:" + System.lineSeparator()
-                        + "1. [Z][✕] math, Link: www.zoom.com/blah on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "1. [Z][X] math, Link: www.zoom.com/blah on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated daily for 4 times." + System.lineSeparator()
-                        + "2. [Z][✓] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "2. [Z][O] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
@@ -80,9 +80,9 @@ class StorageTest {
         listCommand.execute(data, ui, store);
 
         assertEquals("Here is a list of your Timetable events:" + System.lineSeparator()
-                        + "1. [T][✕] math, Location: S17 on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "1. [T][X] math, Location: S17 on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated monthly for 4 times." + System.lineSeparator()
-                        + "2. [T][✓] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "2. [T][O] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 

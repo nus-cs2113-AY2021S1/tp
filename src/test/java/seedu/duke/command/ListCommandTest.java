@@ -63,10 +63,10 @@ class ListCommandTest {
         Command listCommand = ListCommand.parse(inputString);
         listCommand.execute(data, ui, storage);
         assertEquals("You have successfully added this event to your list!" + System.lineSeparator()
-                        + "[Z][✕] Math class, Link: "
+                        + "[Z][X] Math class, Link: "
                         + "zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
                         + "Here is a list of your Zoom events:" + System.lineSeparator()
-                        + "1. [Z][✕] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
+                        + "1. [Z][X] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }

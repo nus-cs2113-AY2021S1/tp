@@ -44,7 +44,7 @@ public class StorageParser {
     public static void handleRepeatSave(ArrayList<String> statuses, ArrayList<Event> activities, int repeatCount) {
 
         for (int i = 0; i < repeatCount; i++) {
-            Boolean repeatedActivityStatus = activities.get(i).getStatus().equals("✓");
+            Boolean repeatedActivityStatus = activities.get(i).getStatus().equals("O");
             statuses.add(Boolean.toString(repeatedActivityStatus));
         }
     }
@@ -65,7 +65,7 @@ public class StorageParser {
             time = activity.getTime().format(formatter);
         }
 
-        Boolean activityStatus = activity.getStatus().equals("✓");
+        Boolean activityStatus = activity.getStatus().equals("O");
         statuses.add(Boolean.toString(activityStatus));
         String repeatUnit = "0";
         String repeatNumber = "0";
@@ -114,7 +114,7 @@ public class StorageParser {
             time = activity.getTime().format(formatter);
         }
 
-        Boolean activityStatus = activity.getStatus().equals("✓");
+        Boolean activityStatus = activity.getStatus().equals("O");
         statuses.add(Boolean.toString(activityStatus));
         String repeatUnit = "0";
         String repeatNumber = "0";
@@ -165,7 +165,7 @@ public class StorageParser {
             time = activity.getTime().format(formatter);
         }
 
-        Boolean activityStatus = activity.getStatus().equals("✓");
+        Boolean activityStatus = activity.getStatus().equals("O");
         statuses.add(Boolean.toString(activityStatus));
         String repeatUnit = "0";
         String repeatNumber = "0";
