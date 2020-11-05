@@ -1,9 +1,11 @@
 package academic;
 
-import exceptions.InvalidCommandException;
 import exceptions.InvalidEmailException;
+import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
+import exceptions.RepeatedGradeException;
 import exceptions.InvalidMcException;
+
 import studyit.StudyItLog;
 import userinterface.ErrorMessage;
 import userinterface.Ui;
@@ -80,7 +82,11 @@ public class AcademicRun {
         } catch (InvalidEmailException e) {
             ErrorMessage.printInvalidEmail();
             StudyItLog.logger.warning("Invalid academic command: Invalid Email");
+        } catch (RepeatedGradeException e) {
+            ErrorMessage.printRepeatedGrade();
+            StudyItLog.logger.warning("Invalid academic command: Repeated Grade");
         }
+
 
         try {
             AcademicStorage.writeFile(listOfPerson, currentGrades);
