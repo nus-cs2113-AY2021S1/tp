@@ -342,7 +342,7 @@ public class GoalTracker {
                         expenses = entry.getAmount();
                         totalExpenses += expenses;
                     } else {
-                        totalExpenses += totalExpenses;
+                        totalExpenses += 0;
                     }
                 }
             }
@@ -371,7 +371,7 @@ public class GoalTracker {
                         expenses = entry.getAmount();
                         totalExpenses += expenses;  // For each expenses entry we sum up the total
                     } else {
-                        totalExpenses += totalExpenses;
+                        totalExpenses += 0;
                     }
                 }
             }
@@ -397,6 +397,7 @@ public class GoalTracker {
                     } else if (ledgerMonth != null) {
                         if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(ledgerMonth)) {
                             expenseGoal = totalGoalList.getGoal().get(i).getExpenseGoal();
+                            break;
                         } else {
                             expenseGoal = 0;
                         }
@@ -489,7 +490,7 @@ public class GoalTracker {
                         incomes = entry.getAmount();
                         totalIncomes += incomes;
                     } else {
-                        totalIncomes += totalIncomes;
+                        totalIncomes += 0;
                     }
                 }
             }
@@ -518,7 +519,7 @@ public class GoalTracker {
                         incomes = entry.getAmount();
                         totalIncomes += incomes;    // For each income entry we sum up the total
                     } else {
-                        totalIncomes += totalIncomes;
+                        totalIncomes += 0;
                     }
                 }
             }
@@ -544,6 +545,7 @@ public class GoalTracker {
                     } else {
                         if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(ledgerMonth)) {
                             incomeGoal = totalGoalList.getGoal().get(i).getIncomeGoal();
+                            break;
                         } else {
                             incomeGoal = 0;
                         }
