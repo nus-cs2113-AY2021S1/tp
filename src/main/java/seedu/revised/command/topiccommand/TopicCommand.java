@@ -12,7 +12,5 @@ public abstract class TopicCommand extends Command {
     public abstract void execute(Subject subject) throws NoTopicException, InvalidTopicException,
             FailedParseException, RepeatedTopicException, NoFlashcardException;
 
-    public boolean isExit() {
-        return false;
-    }
+    public abstract boolean isExit();
 }

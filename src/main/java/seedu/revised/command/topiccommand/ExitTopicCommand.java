@@ -10,7 +10,6 @@ public class ExitTopicCommand extends TopicCommand {
     @Override
     public void execute(Subject subject) throws NoTopicException, InvalidTopicException,
             FailedParseException, RepeatedTopicException {
-
     }
 
     /**

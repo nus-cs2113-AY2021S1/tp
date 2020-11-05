@@ -19,8 +19,5 @@ public abstract class SubjectCommand extends Command {
             NoFlashcardException;
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
+    public abstract boolean isExit();
 }
