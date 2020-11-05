@@ -8,6 +8,8 @@
 
 ## Table of Contents
 1.  [Introduction](#1-introduction)
+<br/>&nbsp;1.1 [Purpose](#11-purpose)
+<br/>&nbsp;1.2 [Using this guide](#12-using-this-guide)
 
 2.  [Quick Start](#2-quick-start)
 
