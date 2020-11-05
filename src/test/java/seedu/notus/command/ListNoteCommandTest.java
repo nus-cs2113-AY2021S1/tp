@@ -276,9 +276,9 @@
 //        ArrayList<String> tags = new ArrayList<>();
 //        tags.add("NUS");
 //        tags.add("CEG");
-//        tagManager.tagNote(songLyrics, tagCs2113);
-//        tagManager.tagNote(songLyrics, tagNus);
-//        tagManager.tagNote(testNote1, tagNus);
+//        tagManager.tagObject(songLyrics, tagCs2113);
+//        tagManager.tagObject(songLyrics, tagNus);
+//        tagManager.tagObject(testNote1, tagNus);
 //
 //        pinNotes.add(testNote1);
 //        unpinnedNotes.add(songLyrics);
@@ -302,8 +302,8 @@
 //        ArrayList<String> tags = new ArrayList<>();
 //        tags.add("NUS");
 //        tags.add("CEG");
-//        tagManager.tagNote(songLyrics, tagCs2113);
-//        tagManager.tagNote(songLyrics, tagNus);
+//        tagManager.tagObject(songLyrics, tagCs2113);
+//        tagManager.tagObject(songLyrics, tagNus);
 //
 //        unpinnedNotes.add(songLyrics);
 //

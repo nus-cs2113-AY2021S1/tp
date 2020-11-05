@@ -3,13 +3,14 @@ package seedu.notus.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.notus.data.notebook.Note;
-import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.tag.Tag;
+import seedu.notus.data.timetable.Timetable;
+import seedu.notus.data.timetable.Event;
 import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.Formatter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
 
 //@@author Chongjx
-class TagNoteCommandTest {
+class TagEventCommandTest {
 
     private Tag tagRed;
     private Tag tagBlue;
@@ -25,12 +26,12 @@ class TagNoteCommandTest {
     private Tag tagRedRef;
     private Tag tagBlueRef;
 
-    private Note noTagNote;
-    private Note taggedNote;
+    private Event noTagEvent;
+    private Event taggedEvent;
 
     private ArrayList<Tag> tags;
     private TagManager tagManager;
-    private Notebook notebook;
+    private Timetable timetable;
     private StorageManager storageManager;
 
     private ArrayList<String> content;
@@ -45,99 +46,99 @@ class TagNoteCommandTest {
         tagRedRef = new Tag("Red", Tag.COLOR_RED_STRING);
         tagBlueRef = new Tag("Blue", Tag.COLOR_BLUE_STRING);
 
-        noTagNote = new Note("Default", content, false, false);
-        taggedNote = new Note("TaggedNote", content, false, false);
+        noTagEvent = new Event("Default", LocalDateTime.of(2020, 1, 1, 0, 0), LocalDateTime.of(2020, 1, 1, 1, 0));
+        taggedEvent = new Event("TaggedEvent", LocalDateTime.of(2020, 1, 1, 0, 0), LocalDateTime.of(2020, 1, 1, 1, 0));
 
         tags = new ArrayList<>();
 
         tagManager = new TagManager();
-        notebook = new Notebook();
-        storageManager = new StorageManager(null, null, notebook, tagManager);
+        timetable = new Timetable();
+        storageManager = new StorageManager(timetable, null, null, tagManager);
     }
 
     @Test
     void tagCommand_invalidIndex_returnsUnsuccessfulMessage() {
-        notebook.addNote(noTagNote);
-        notebook.addNote(taggedNote);
+        timetable.addEvent(noTagEvent);
+        timetable.addEvent(taggedEvent);
 
         tags = new ArrayList<>();
 
-        String result = getCommandExecutionString(notebook, tagManager, storageManager, 3, tags);
+        String result = getCommandExecutionString(timetable, tagManager, storageManager, 3, tags);
         assertEquals(Formatter.formatString(INDEX_OUT_OF_RANGE_MESSAGE), result);
     }
 
     @Test
-    void tagCommand_tagNote_tagsNote() {
+    void tagCommand_tagEvent_tagsEvent() {
         tags.add(tagRed);
         tags.add(tagBlue);
 
-        taggedNote.setTags(tags);
-        tagManager.rebindTags(taggedNote);
+        taggedEvent.setTags(tags);
+        tagManager.rebindTags(taggedEvent);
 
-        notebook.addNote(noTagNote);
-        notebook.addNote(taggedNote);
+        timetable.addEvent(noTagEvent);
+        timetable.addEvent(taggedEvent);
 
-        getCommandExecutionString(notebook, tagManager, storageManager, 0, tags);
+        getCommandExecutionString(timetable, tagManager, storageManager, 0, tags);
 
-        assertEquals(noTagNote.getTags().size(), 2);
-        assertTrue(noTagNote.getTags().contains(tagRed));
+        assertEquals(noTagEvent.getTags().size(), 2);
+        assertTrue(noTagEvent.getTags().contains(tagRed));
         assertEquals(tagManager.getTagMap().size(), 2);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 2);
     }
 
     @Test
-    void tagCommand_untagNote_untagsNote() {
+    void tagCommand_untagEvent_untagsEvent() {
         tags.add(tagRed);
         tags.add(tagBlue);
 
-        taggedNote.setTags(tags);
-        tagManager.rebindTags(taggedNote);
+        taggedEvent.setTags(tags);
+        tagManager.rebindTags(taggedEvent);
 
-        notebook.addNote(noTagNote);
-        notebook.addNote(taggedNote);
+        timetable.addEvent(noTagEvent);
+        timetable.addEvent(taggedEvent);
 
         tags = new ArrayList<>();
         tags.add(tagRedRef);
         tags.add(tagBlueRef);
 
-        getCommandExecutionString(notebook, tagManager, storageManager, 1 , tags);
+        getCommandExecutionString(timetable, tagManager, storageManager, 1 , tags);
 
-        assertEquals(taggedNote.getTags().size(), 0);
+        assertEquals(taggedEvent.getTags().size(), 0);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 0);
         assertEquals(tagManager.getTagMap().get(tagBlue).size(), 0);
     }
 
     @Test
-    void tagCommand_tagAndUntagNote_tagsNoteAndUntagsNote() {
+    void tagCommand_tagAndUntagEvent_tagsEventAndUntagsEvent() {
         tags.add(tagRed);
         tags.add(tagBlue);
 
-        taggedNote.setTags(tags);
-        tagManager.rebindTags(taggedNote);
+        taggedEvent.setTags(tags);
+        tagManager.rebindTags(taggedEvent);
 
         tags = new ArrayList<>();
         tags.add(tagBlue);
 
-        noTagNote.setTags(tags);
+        noTagEvent.setTags(tags);
 
-        notebook.addNote(noTagNote);
-        notebook.addNote(taggedNote);
+        timetable.addEvent(noTagEvent);
+        timetable.addEvent(taggedEvent);
 
         tags = new ArrayList<>();
         tags.add(tagRedRef);
         tags.add(tagBlueRef);
 
-        getCommandExecutionString(notebook, tagManager, storageManager, 0, tags);
+        getCommandExecutionString(timetable, tagManager, storageManager, 0, tags);
 
-        assertEquals(noTagNote.getTags().size(), 1);
+        assertEquals(noTagEvent.getTags().size(), 1);
         assertEquals(tagManager.getTagMap().get(tagRed).size(), 2);
         assertEquals(tagManager.getTagMap().get(tagBlue).size(), 1);
     }
 
-    private String getCommandExecutionString(Notebook notebook, TagManager tagManager, StorageManager storageManager,
+    private String getCommandExecutionString(Timetable timetable, TagManager tagManager, StorageManager storageManager,
                                              int index, ArrayList<Tag> tags) {
-        TagNoteCommand tagNoteCommand = new TagNoteCommand(index, tags);
-        tagNoteCommand.setData(notebook, null, tagManager, storageManager);
-        return tagNoteCommand.execute();
+        TagEventCommand tagEventCommand = new TagEventCommand(index, tags);
+        tagEventCommand.setData(null, timetable, tagManager, storageManager);
+        return tagEventCommand.execute();
     }
 }
