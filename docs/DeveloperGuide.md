@@ -1138,7 +1138,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 1.  Download the jar file and copy it into an empty folder.
 2.  Open a new command prompt or terminal and navigate to the directory containing `AniChan.jar`.
 3.  Enter the command `java -jar AniChan.jar` to launch **AniChan**.
-4.  { user setup process to be added }.
+4.  Program will prompt for `Name` and `Gender` of user, thereafter **AniChan** will be ready for use.
 
 > :bulb: This is what the input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
@@ -1454,3 +1454,64 @@ If you wish to add new checks, simply add the check file with a filename `check-
         1.  `search`
         2.  `search -g musik` In this case it would attempt to search for `musik`, and return no results.
         3.  `search -g`
+<br/>
+  
+### D.x: Create a new Workspace
+1.  Create a new Workspace with `workspace` feature
+    1.  Prerequisite:  None.
+    
+    1.  Test case: `workspace -n Crunchyroll` <br/>
+    Expected: Workspace will be successfully created with success message.
+    
+    1. Test case: `workspace -n Crunchyroll__` <br/>
+    Expected: Workspace creation will fail with error message stating names must be alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            1.  `workspace -n `
+            1.  `workspace -N`
+<br/>
+            
+### D.x: Switch to a different Workspace
+1.  Switch to a different Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    1.  Test case: `workspace -s CrunchyOreo` <br/>
+    Expected: Workspace will be successfully switched from `Default` to `CrunchyOreo`.
+    
+    1. Test case: `workspace -s CrunchyOreo__` <br/>
+    Expected: Workspace switch will fail given how the name request does not meet requirement of being alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            1.  `workspace -s `
+            1.  `workspace -S`
+<br/>
+
+### D.x: List all Workspace
+1.  List all Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    1.  Test case: `workspace -l` <br/>
+    Expected: Workspace `Default` and `CrunchyOreo` will be listed.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+<br/>
+            
+### D.x: Delete a Workspace
+1.  Delete a Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
+    
+    1.  Test case: `workspace -d Default` <br/>
+    Expected: Workspace will be successfully deleted.
+    
+    1. Test case: `workspace -d default` <br/>
+    Expected: Workspace deletion will fail given default does not exists.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            1.  `workspace -d `
+            1.  `workspace -d`
+            1.  `workspace -d ..`
+<br/>
