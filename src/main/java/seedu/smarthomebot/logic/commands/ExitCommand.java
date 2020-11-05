@@ -10,7 +10,7 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
     public static final String MESSAGE_USAGE = "Exiting the application: " + COMMAND_WORD;
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
-            "Exiting SmartHomeBot as requested, all appliances are switched off.";
+            "Exiting SmartHomeBot as requested, all Appliances are switched off.";
 
     public static boolean isExit(Command command) {
         // instanceof returns false if it is null
