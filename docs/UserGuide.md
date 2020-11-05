@@ -67,6 +67,7 @@ has successfully executed.
 ### Notes:
 1. Items in <> are the parameters to be supplied by the user,
    e.g. in `addmod <module code>`, `module code` is a parameter which can be used as such: `addmod CS2113T`.
+1. All the module codes are case-insensitive. The app will convert the module codes to uppercase.
 1. The module code is valid if it starts with 2 - 3 characters, followed by 4 digits and an optional character without 
    any spacing.
 1. Definition of too much / too little time spent on a module: 
@@ -159,11 +160,11 @@ decimal place.
 
 Example of usage:
 
-`addexp cs2113t 10`
+`addexp cs2113t 10` 
 
-Expected output:
+Expected output(when CS2113T does not exist):
 ````
-CS2113T, Expected Workload: 10h is added.
+CS2113T, Expected Workload: 10.0h is added.
 ````
 
 ### 2.4 Add actual time spent on a module: `addtime` <a name="addtime"></a>
