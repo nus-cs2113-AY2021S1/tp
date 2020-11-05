@@ -192,9 +192,9 @@ Example: The Browse command would be represented by a `BrowseCommand`.
 The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects, providing **AniChan** with an interface for the program to retrieve the source data.
 
 The `AnimeData `component:
-*   can retrieve Anime objects using their index.
-*   can view detailed  information of each Anime object.
-*   can browse the Anime catalog with sorting algorithms.
+*   can retrieve `Anime` objects using their index.
+*   can view detailed  information of each `Anime` object.
+*   can browse the `Anime` catalog with sorting algorithms.
 
 <br/>
 
@@ -441,7 +441,7 @@ Given below is an example of the usage scenario of view information command and 
 
 **Step 1:** `Ui` would receive input in the form of `info <ANIME_ID>` in the `Main` class and pass it into `Parser` class.
 
-> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of Anime in the AnimeData. 
+> :bulb: The ANIME_ID specified has to be an integer value as specified by the index of nime in the AnimeData. 
 
 **Step 2:** The `Parser` class would then extract out `info` from the input given, which will instantiate a new `InfoParser` object.
 
@@ -475,7 +475,9 @@ Aspect: **Using anime title or Anime ID as the field for input**
 | Use anime title as input. | - Easier for users who know anime titles. | - Users will have to input the full anime title. <br/> - The program has to search through the whole list of anime data. |
 | Use anime ID as input. | - Users will only need to input one single integer. | - Users will have to search for the anime ID if they do not know the ID. |
 
-We decided to go with approach 2, as it would enhance the user experience of not having to key in the full anime title. At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a title to search against the whole data of anime to retrieve information.
+We decided to go with the second approach, as it would enhance the user experience of not having to key in the full anime title. It would be very frustrating for the user as well if he misspells the title.
+
+At the same time, using anime ID as input would allow the program to be able to retrieve the full anime information much quicker, instead of having a title to search against the whole data of anime to retrieve information.
 
 <br/>
 

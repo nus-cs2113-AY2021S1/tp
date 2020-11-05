@@ -267,7 +267,7 @@ The expected outcome:
 <br/>
 
 ### 3.5 View the information of an anime
-The `info` command allows you to view all the information regarding a specific anime.
+View all the information regarding a specific anime.
 
 Format: `info <ANIME_ID>`
 
