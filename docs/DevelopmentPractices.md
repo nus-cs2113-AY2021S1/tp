@@ -1,12 +1,17 @@
-### Table of Contents
-## [1. Introduction](#intro)<br>
-## [2. Scrum (Agile Model)](#scrum)<br>
-## [3. Kanban Boards](#kanban)<br>
-## [4. PERT & Gantt Charts](#pert)<br>
-## [5. UML Diagrams](#uml)<br>
-## [6. Code Review](#code)<br>
-## [7. Testing & Logging](#testing)<br>
-## [8. Error Handling](#errors)<br>
+---
+layout : page
+title : Development Practices
+---
+
+## Table of Contents
+#### [1. Introduction](#intro)<br>
+#### [2. Scrum (Agile Model)](#scrum)<br>
+#### [3. Kanban Boards](#kanban)<br>
+#### [4. PERT & Gantt Charts](#pert)<br>
+#### [5. UML Diagrams](#uml)<br>
+#### [6. Code Review](#code)<br>
+#### [7. Testing & Logging](#testing)<br>
+#### [8. Error Handling](#errors)<br>
 
 ## <a name="intro">1. Introduction</a>
 Software Development is a complex topic that has many models and frameworks. This section will explain the methodologies and frameworks used in this project by the development team.

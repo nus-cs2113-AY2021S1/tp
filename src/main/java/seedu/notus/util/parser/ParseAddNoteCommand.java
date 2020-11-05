@@ -77,7 +77,7 @@ public class ParseAddNoteCommand extends Parser {
 
             return new AddNoteCommand(note, isStored);
         } catch (ArrayIndexOutOfBoundsException exception) {
-            throw new SystemException(ExceptionType.EXCEPTION_MISSING_TITLE);
+            throw new SystemException(ExceptionType.EXCEPTION_MISSING_DESCRIPTION);
         }
     }
 }

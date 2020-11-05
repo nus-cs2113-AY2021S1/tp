@@ -172,7 +172,7 @@ public class Formatter {
             months.sort(Month::compareTo);
             for (Month currMonth : months) {
                 eventsStrings.addAll(formatMonthTimetable(currMonth.name(), timetable.get(currMonth)));
-                eventsStrings.add(" ");
+                eventsStrings.add(EMPTY_SPACE);
             }
             eventsStrings.remove(eventsStrings.size() - 1);
         }
@@ -268,7 +268,7 @@ public class Formatter {
         result.add(header);
         for (Reminder reminder : reminders) {
             result.addAll(formatReminder(reminder));
-            result.add(" ");
+            result.add(EMPTY_SPACE);
         }
         result.remove(result.size() - 1);
 
