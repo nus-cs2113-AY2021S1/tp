@@ -24,7 +24,7 @@ public class EditCommand extends Command {
     private final int index;
     private final String[] editInformation;
     private final LocalDateTime[] startEnd;
-    //private final Event event;
+    
     private final Location location;
     private final OnlineLocation onlineLocation;
 
@@ -63,7 +63,6 @@ public class EditCommand extends Command {
 
     public static String[] newEditInformation() {
         UI ui = new UI();
-        String[] editInformation = ui.readEditCommand();
-        return editInformation;
+        return ui.readEditCommand();
     }
 }

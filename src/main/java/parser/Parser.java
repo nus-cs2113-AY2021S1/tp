@@ -16,12 +16,14 @@ import command.PrintLocationCommand;
 import command.ReminderCommand;
 import command.SortCommand;
 
+import command.StudyTimeCommand;
 import command.UserInfoCommand;
 import event.Assignment;
 import event.PersonalEvent;
 import event.Assignment;
 import event.Class;
 import event.PersonalEvent;
+import event.SelfStudy;
 import exception.DateFormatException;
 import exception.DeleteNumberFormatException;
 import exception.DoneNumberFormatException;
@@ -32,6 +34,7 @@ import exception.EmptyEventException;
 import exception.EmptyEventIndexException;
 import exception.EmptyFindDateException;
 import exception.EmptyFindException;
+import exception.EmptyStudyTimeDateException;
 import exception.InvalidEditLocationException;
 import exception.InvalidEditTypeException;
 import exception.InvalidSortCriteriaException;
@@ -90,6 +93,8 @@ public abstract class Parser {
     public static final String ONLINE_LOCATION_MARKER = "/o";
     public static final String PASSWORD_MARKER = "/p";
     public static final String REMIND = "reminder";
+    public static final String STUDY_TIME = "studyTime";
+    public static final String SELF_STUDY = "selfStudy";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -115,6 +120,8 @@ public abstract class Parser {
             return new HelpCommand();
         case CLEAR:
             return new ClearCommand();
+        case REMIND:
+            return new ReminderCommand();
         default:
             break;
         }
@@ -155,8 +162,16 @@ public abstract class Parser {
             }
         }
 
-        if (words[0].equals(REMIND)) {
-            return new ReminderCommand();
+        //this block deals with study time command
+        if (words[0].equals(STUDY_TIME)) {
+            if (fullCommand.substring(9).isBlank()) {
+                throw new EmptyStudyTimeDateException();
+            }
+            try {
+                return new StudyTimeCommand(LocalDate.parse(fullCommand.substring(10)));
+            } catch (DateTimeParseException e) {
+                throw new DateFormatException();
+            }
         }
 
         int eventIndex;
@@ -196,6 +211,7 @@ public abstract class Parser {
             switch (type) {
             case "description":
             case "time":
+            case "location":
                 return new SortCommand(type);
             default:
                 throw new InvalidSortCriteriaException();
@@ -248,7 +264,7 @@ public abstract class Parser {
 
             if (!editInformation[0].isBlank()) {
                 if (!editInformation[0].equals(ASSIGNMENT) && !editInformation[0].equals(CLASS)
-                        && !editInformation[0].equals(PERSONAL_EVENT)) {
+                        && !editInformation[0].equals(PERSONAL_EVENT) && !editInformation[0].equals(SELF_STUDY)) {
                     throw new InvalidEditTypeException();
                 }
             }
@@ -291,15 +307,17 @@ public abstract class Parser {
             }
 
             if (!editInformation[4].isBlank()) {
-                if (editInformation[4].length() != 16) {
-                    throw new TimeFormatException();
-                }
-                startDateTime = editInformation[4].substring(0, 10) + "T" + editInformation[4].substring(11);
-                try {
-                    startEnd[1] = LocalDateTime.parse(startDateTime);
-                    //System.out.println(startEnd[1]);
-                } catch (DateTimeException e) {
-                    throw new TimeFormatException();
+                if (!editInformation[4].equals("nil")) {
+                    if (editInformation[4].length() != 16) {
+                        throw new TimeFormatException();
+                    }
+                    startDateTime = editInformation[4].substring(0, 10) + "T" + editInformation[4].substring(11);
+                    try {
+                        startEnd[1] = LocalDateTime.parse(startDateTime);
+                        //System.out.println(startEnd[1]);
+                    } catch (DateTimeException e) {
+                        throw new TimeFormatException();
+                    }
                 }
             }
 
@@ -311,7 +329,8 @@ public abstract class Parser {
         //we shall check that the user input is not meant for any other command beforehand
         //because the default block will throw an exception.
         // i.e. when this block is entered, the parser will not go to any other blocks
-        if (words[0].equals(ASSIGNMENT) || words[0].equals(CLASS) || words[0].equals(PERSONAL_EVENT)) {
+        if (words[0].equalsIgnoreCase(ASSIGNMENT) || words[0].equalsIgnoreCase(CLASS)
+                || words[0].equalsIgnoreCase(PERSONAL_EVENT) || words[0].equalsIgnoreCase(SELF_STUDY)) {
             if (fullCommand.substring(words[0].length()).isBlank()) {
                 throw new EmptyEventException();
             }
@@ -383,11 +402,17 @@ public abstract class Parser {
                                 startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
                                 LocalDateTime.parse(endDateTime)));
                     case PERSONAL_EVENT:
+                    case SELF_STUDY:
                         if (endTimeDividerPosition == -1) {
                             startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                     locationDividerPosition);
-                            return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
-                                    startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime)));
+                            if (words[0].equalsIgnoreCase(PERSONAL_EVENT)) {
+                                return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime)));
+                            } else {
+                                return new AddCommand(new SelfStudy(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime)));
+                            }
                         } else {
                             startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                     endTimeDividerPosition);
@@ -399,10 +424,15 @@ public abstract class Parser {
                             // day as the starting time
                             endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                     endTimeDividerPosition, locationDividerPosition, endingTimeDivider);
-
-                            return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
-                                    startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
-                                    LocalDateTime.parse(endDateTime)));
+                            if (words[0].equalsIgnoreCase(PERSONAL_EVENT)) {
+                                return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
+                                        LocalDateTime.parse(endDateTime)));
+                            } else {
+                                return new AddCommand(new SelfStudy(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), location, LocalDateTime.parse(startDateTime),
+                                        LocalDateTime.parse(endDateTime)));
+                            }
                         }
                     default:
                         break;
@@ -462,12 +492,19 @@ public abstract class Parser {
                                 startTimeDividerPosition - 1), virtualLocation, LocalDateTime.parse(startDateTime),
                                 LocalDateTime.parse(endDateTime)));
                     case PERSONAL_EVENT:
+                    case SELF_STUDY:
                         if (endTimeDividerPosition == -1) {
                             startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                     onlineLocationDividerPosition);
-                            return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
-                                    startTimeDividerPosition - 1), virtualLocation,
-                                    LocalDateTime.parse(startDateTime)));
+                            if (words[0].equalsIgnoreCase(PERSONAL_EVENT)) {
+                                return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), virtualLocation,
+                                        LocalDateTime.parse(startDateTime)));
+                            } else {
+                                return new AddCommand(new SelfStudy(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), virtualLocation,
+                                        LocalDateTime.parse(startDateTime)));
+                            }
                         } else {
                             startDateTime = getStartDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                     endTimeDividerPosition);
@@ -477,11 +514,17 @@ public abstract class Parser {
 
                             endDateTime = getEndDateTime(fullCommand, startTimeDividerPosition, timeDivider,
                                     endTimeDividerPosition, onlineLocationDividerPosition, endingTimeDivider);
-
-                            return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
-                                    startTimeDividerPosition - 1), virtualLocation,
-                                    LocalDateTime.parse(startDateTime),
-                                    LocalDateTime.parse(endDateTime)));
+                            if (words[0].equalsIgnoreCase(PERSONAL_EVENT)) {
+                                return new AddCommand(new PersonalEvent(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), virtualLocation,
+                                        LocalDateTime.parse(startDateTime),
+                                        LocalDateTime.parse(endDateTime)));
+                            } else {
+                                return new AddCommand(new SelfStudy(fullCommand.substring(words[0].length() + 1,
+                                        startTimeDividerPosition - 1), virtualLocation,
+                                        LocalDateTime.parse(startDateTime),
+                                        LocalDateTime.parse(endDateTime)));
+                            }
                         }
                     default:
                         break;

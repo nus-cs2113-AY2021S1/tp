@@ -5,6 +5,7 @@ import event.Assignment;
 import event.Class;
 import event.Event;
 import event.PersonalEvent;
+import event.SelfStudy;
 import exception.EditNoEndTimeException;
 import exception.EmptyEventListException;
 import exception.ExistingEventInListException;
@@ -85,8 +86,6 @@ public class EventList {
     public Event editEvent(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                            OnlineLocation onlineLocation) throws EndBeforeStartEventException, EditNoEndTimeException {
         assert events != null;
-
-
         // no change in event type
         if (editInformation[0].isBlank()) {
             editSameType(index, editInformation, startEnd, location, onlineLocation);
@@ -110,12 +109,12 @@ public class EventList {
     private void editNewType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                              OnlineLocation onlineLocation) throws EditNoEndTimeException,
             EndBeforeStartEventException {
-        Event newEvent = null;
+        Event newEvent;
         String newDescription;
         Location newLocation = null;
         OnlineLocation newOnlineLocation = null;
         LocalDateTime start;
-        LocalDateTime end;
+        LocalDateTime end = null;
 
         // newDescription is set to the user input if it is not null. Otherwise, set it to the original value.
         if (editInformation[1].isBlank()) {
@@ -142,7 +141,7 @@ public class EventList {
 
         // start and end are set to the user input if they are not null. Otherwise, set them to their original value.
         if (startEnd[0] == null) {
-            if (events.get(index) instanceof  Assignment) {
+            if (events.get(index) instanceof Assignment) {
                 start = events.get(index).getEndDateTime();
             } else {
                 start = events.get(index).getStartDateTime();
@@ -153,8 +152,11 @@ public class EventList {
 
         if (startEnd[1] == null) {
             end = events.get(index).getEndDateTime();
+            if (editInformation[4].equals("nil")) {
+                end = null;
+            }
             // conversion from an assignment to other type would result in an error if END date is not specified.
-            if (end == null && !editInformation[0].equals("assignment")) {
+            if (end == null && editInformation[0].equals("class")) {
                 throw new EditNoEndTimeException();
             }
         } else {
@@ -177,11 +179,34 @@ public class EventList {
                 newEvent = new Class(newDescription, newOnlineLocation, start, end);
             }
             break;
+        case "selfStudy":
+            if (newLocation != null) {
+                if (end == null) {
+                    newEvent = new SelfStudy(newDescription, newLocation, start);
+                } else {
+                    newEvent = new SelfStudy(newDescription, newLocation, start, end);
+                }
+            } else {
+                if (end == null) {
+                    newEvent = new SelfStudy(newDescription, newOnlineLocation, start);
+                } else {
+                    newEvent = new SelfStudy(newDescription, newOnlineLocation, start, end);
+                }
+            }
+            break;
         default:
             if (newLocation != null) {
-                newEvent = new PersonalEvent(newDescription, newLocation, start, end);
+                if (end == null) {
+                    newEvent = new PersonalEvent(newDescription, newLocation, start);
+                } else {
+                    newEvent = new PersonalEvent(newDescription, newLocation, start, end);
+                }
             } else {
-                newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
+                if (end == null) {
+                    newEvent = new PersonalEvent(newDescription, newOnlineLocation, start);
+                } else {
+                    newEvent = new PersonalEvent(newDescription, newOnlineLocation, start, end);
+                }
             }
             break;
         }
@@ -199,6 +224,7 @@ public class EventList {
      */
     private void editSameType(int index, String[] editInformation, LocalDateTime[] startEnd, Location location,
                               OnlineLocation onlineLocation) {
+        // set new description
         if (!editInformation[1].isBlank()) {
             events.get(index).setDescription(editInformation[1]);
         }
@@ -225,12 +251,25 @@ public class EventList {
             if (startEnd[1] != null) {
                 ((PersonalEvent) events.get(index)).setEnd(startEnd[1]);
             }
+            if (editInformation[4].equals("nil")) {
+                ((PersonalEvent) events.get(index)).setEnd(null);
+            }
         } else if (events.get(index) instanceof Class) {
             if (startEnd[0] != null) {
                 ((Class) events.get(index)).setAt(startEnd[0]);
             }
-            if (startEnd[0] != null) {
+            if (startEnd[1] != null) {
                 ((Class) events.get(index)).setEnd(startEnd[1]);
+            }
+        } else if (events.get(index) instanceof SelfStudy) {
+            if (startEnd[0] != null) {
+                ((SelfStudy) events.get(index)).setAt(startEnd[0]);
+            }
+            if (startEnd[1] != null) {
+                ((SelfStudy) events.get(index)).setEnd(startEnd[1]);
+            }
+            if (editInformation[4].equals("nil")) {
+                ((SelfStudy) events.get(index)).setEnd(null);
             }
         }
     }
@@ -246,6 +285,8 @@ public class EventList {
             events.sort(Event.descriptionComparator);
         } else if (type.equals("time")) {
             events.sort(Comparator.comparing(Event::getEndDateTime));
+        } else {
+            events.sort(Event.locationComparator);
         }
     }
 
@@ -307,9 +348,24 @@ public class EventList {
      */
     public ArrayList<Event> filterDateWith(LocalDate date) {
         ArrayList<Event> filteredEventList = (ArrayList<Event>) events.stream()
-                .filter(s -> s.getDate().isEqual(date))
+                .filter(s -> (s.getDate().isEqual(date)
+                        || (s.getDate().isBefore(date) && s.getEndDate().isAfter(date))))
                 .collect(toList());
 
+        return filteredEventList;
+    }
+
+    /**
+     * Filter the event list to find the academic related events happen on the date that have been done already.
+     *
+     * @param date the date that the user is looking for.
+     * @return he filtered list. this list contains only the events that satisfy the requirement.
+     */
+    public ArrayList<Event> filterDateDoneAcademicEventWith(LocalDate date) {
+        ArrayList<Event> filteredEventList = filterDateWith(date);
+        filteredEventList = (ArrayList<Event>) filteredEventList.stream()
+                .filter(s -> (s.isDone() && ((s instanceof Class) || (s instanceof SelfStudy))))
+                .collect(toList());
         return filteredEventList;
     }
 
@@ -375,6 +431,20 @@ public class EventList {
             filteredEventList.addAll(filteredEventList2);
             filteredEventList.remove(event);
         }
+        return filteredEventList;
+    }
+
+    /**
+     * Filter the event list to find the events happen on the date that have not been done yet.
+     *
+     * @param date the date that the user is looking for.
+     * @return he filtered list. this list contains only the events that satisfy the requirement.
+     */
+    public ArrayList<Event> filterDateNotDoneWith(LocalDate date) {
+        ArrayList<Event> filteredEventList = filterDateWith(date);
+        filteredEventList = (ArrayList<Event>) filteredEventList.stream()
+                .filter(s -> ((!s.isDone()) && (s.getEndDate().isEqual(date))))
+                .collect(toList());
         return filteredEventList;
     }
 }
