@@ -51,8 +51,9 @@ public class AddEventCommand extends Command {
             event.setEndDateTime(endDateTime);
         }
 
-        ArrayList<Event> clashes = timetable.getClashingEvents(event);
+        tagManager.rebindTags(event);
         timetable.addEvent(event);
+        ArrayList<Event> clashes = timetable.getClashingEvents(event);
 
         try {
             storageManager.saveTimetable();

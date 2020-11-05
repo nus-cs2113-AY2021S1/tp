@@ -88,7 +88,6 @@ NotUS manages the flow of the application. On launch, it will create the necessa
   <br><em>Figure 2</em>
 </p>
 
-💡 Due to the limitation of 
 💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document.
 
 #### <a id="parserManager"><ins>2.3 Parser and ParserManager</ins></a>
