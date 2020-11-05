@@ -5,11 +5,13 @@ import java.util.List;
 
 public class DateList {
     public List<EventList> dateList;
-    public List<Event> events;
+    public List<Event> lessons;
+    public List<Event> activities;
 
     public DateList() {
         dateList = new ArrayList<>();
-        events = new ArrayList<>();
+        lessons = new ArrayList<>();
+        activities = new ArrayList<>();
     }
 
     public void addEvent(Event event) throws ClashScheduleException {
@@ -31,7 +33,11 @@ public class DateList {
                 dateList.add(newList);
             }
         }
-        events.add(event);
+        if (event.eventType.equals(EventType.L)) {
+            lessons.add(event);
+        } else if (event.eventType.equals(EventType.A)) {
+            activities.add(event);
+        }
     }
 
     public boolean clashDetection(Duration duration, EventList eventList) {
