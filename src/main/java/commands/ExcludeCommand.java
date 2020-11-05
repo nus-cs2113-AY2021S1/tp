@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 public class ExcludeCommand extends Command {
     public static final String EXCLUDE_COMMAND_OPTION_MODULE = "module";
     public static final String EXCLUDE_COMMAND_OPTION_CHAPTER = "chapter";
+    public static final String EXCLUSION_SUCCESS_MESSAGE = "Success! The %s has been excluded from your schedule. "
+            + "Check out your updated due dates with the \"due\" command or \"preview\" command now.";
     String type;
     public static final String COMMAND_WORD = "exclude";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Excludes Modules and Chapters from your schedule.\n"

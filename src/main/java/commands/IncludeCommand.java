@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 public class IncludeCommand extends Command {
     public static final String INCLUDE_COMMAND_OPTION_MODULE = "module";
     public static final String INCLUDE_COMMAND_OPTION_CHAPTER = "chapter";
+    public static final String INCLUSION_SUCCESS_MESSAGE = "Success! The %s has been included back into your schedule. "
+            +  "Check out your updated due dates with the \"due\" command or \"preview\" command now.";
     String type;
     public static final String COMMAND_WORD = "include";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Includes excluded Modules and Chapters back into "
