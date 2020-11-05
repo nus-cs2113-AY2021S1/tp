@@ -94,7 +94,9 @@ If you plan to use Intellij IDEA:
     4.  Wait for the importing process to finish (could take a few minutes).
 
 3.  **Verify the setup**: 
-    1.  After the importing is complete, locate the `src/main/java/anichan/Main.java` file, right-click it, and choose `Run Main.main()`. If the setup is correct, you should see something like the below:
+    1.  After the importing is complete, locate the `src/main/java/anichan/Main.java` file, right-click it, and choose `Run Main.main()`. If the setup is correct, you should see the following:
+    
+    <br/> 
     
     ```text
     Welcome to AniChan!
