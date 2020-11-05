@@ -5,10 +5,7 @@ import seedu.financeit.utils.storage.SaveHandler;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 public class LoggerCentre {
     private Level level;
@@ -29,22 +26,32 @@ public class LoggerCentre {
 
     public static void createLog() {
         try {
+            // Setting name for the log file
+            LogManager.getLogManager().reset();
             LocalDateTime dateTime = RunHistory.getCurrentRunDateTime();
+
             DateTimeFormatter format = DateTimeFormatter.ofPattern("uuuu_MM_dd_HH_mm_ss");
-            String paramLog = "./log/" + dateTime.format(format) + "_param.txt";
-            String inputLog = "./log/" + dateTime.format(format) + "_input.txt";
-            SaveHandler.buildFile("./log", paramLog);
-            SaveHandler.buildFile("./log", inputLog);
-            FileHandler pm = new FileHandler(paramLog);
-            FileHandler in = new FileHandler(inputLog);
-            loggerParamChecker.addHandler(pm);
-            loggerInputParser.addHandler(in);
+            String paramLog = "./logs/" + dateTime.format(format) + ".log";
+            SaveHandler.buildFile("./logs", paramLog);
+
+            // Disabling console output
+            ConsoleHandler consoleHandler = new ConsoleHandler();
+            consoleHandler.setLevel(Level.OFF);
+            addHandler(consoleHandler);
+
+            // Setting file logger to log only warning messages
+            FileHandler fileHandler = new FileHandler(paramLog);
+            fileHandler.setLevel(Level.WARNING);
             SimpleFormatter formatter = new SimpleFormatter();
-            pm.setFormatter(formatter);
-            in.setFormatter(formatter);
+            fileHandler.setFormatter(formatter);
+            addHandler(fileHandler);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static void addHandler(StreamHandler consoleHandler) {
+        loggerParamChecker.addHandler(consoleHandler);
+        loggerInputParser.addHandler(consoleHandler);
     }
 
     public void setLevel(Level level) {

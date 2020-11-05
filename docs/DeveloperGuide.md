@@ -593,7 +593,7 @@ bill payments
 1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
 1. You should see the following output:
 
-![](.DeveloperGuide_images/main_menu1.png)
+![](.DeveloperGuide_images/main_menu.png)
 
 ### 7.1 Testing Main Menu
 1. Accessing a feature:
