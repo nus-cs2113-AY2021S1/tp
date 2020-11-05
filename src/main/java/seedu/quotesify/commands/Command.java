@@ -60,7 +60,6 @@ public abstract class Command {
 
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";
-    public static final String FLAG_DELIMITER = "/";
     public static final String FLAG_EDIT = "/to";
     public static final String FLAG_REFLECT = "/reflect";
     public static final String REFERENCE_KEYWORD = "reference";

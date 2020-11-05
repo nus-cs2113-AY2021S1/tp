@@ -32,7 +32,7 @@ public class AddQuoteCommand extends AddCommand {
             ui.printAddQuote(quote);
             quotesifyLogger.log(Level.INFO, "add quote to quote list success");
         } catch (QuotesifyException e) {
-            System.out.println(e.getMessage());
+            ui.printErrorMessage(e.getMessage());
             quotesifyLogger.log(Level.INFO, "add quote to quote list failed");
             quotesifyLogger.log(Level.WARNING, e.getMessage());
         }

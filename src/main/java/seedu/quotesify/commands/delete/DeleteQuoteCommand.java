@@ -29,7 +29,7 @@ public class DeleteQuoteCommand extends DeleteCommand {
             quoteList.delete(quoteNumber);
             ui.printDeleteQuote(quoteToBeDeleted.getQuote());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println(ERROR_INVALID_QUOTE_NUM);
+            ui.printErrorMessage(ERROR_INVALID_QUOTE_NUM);
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
         }

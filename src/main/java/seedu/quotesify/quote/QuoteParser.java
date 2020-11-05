@@ -7,6 +7,9 @@ import seedu.quotesify.exception.QuotesifyException;
 import java.util.HashMap;
 
 public class QuoteParser {
+    public static final String FLAG_DELIMITER = "/";
+    public static final String FLAG_AUTHOR = "/by";
+    public static final String FLAG_REFERENCE = "/from";
     public static final String ERROR_MISSING_QUOTE = "I don't see the quote anywhere";
     public static final String ERROR_MISSING_AUTHOR = "Author name cannot be empty if \"/by\" flag is present";
     public static final String ERROR_MISSING_REFERENCE = "Reference field cannot be empty if \"/from\" flag is present";
@@ -14,32 +17,44 @@ public class QuoteParser {
             + "\"/by\" flag and \"/from\" flag are present";
     public static final String ERROR_INVALID_QUOTE_NUM = "Quote number provided is invalid";
     public static final String ERROR_INVALID_PARAMETERS = "Invalid parameters!";
+    public static final String ERROR_DUPLICATE_REFERENCE_FLAG = "Reference flag can only be used once!";
+    public static final String ERROR_DUPLICATE_AUTHOR_FLAG = "Author flag can only be used once!";
 
     public static Quote parseAddParameters(String userInput) throws QuotesifyException {
         assert !userInput.isEmpty() : "field should not be empty";
-        if (userInput.contains(Command.FLAG_REFERENCE) && userInput.contains(Command.FLAG_AUTHOR)) {
-            return parseQuoteWithReferenceAndAuthor(userInput);
-        } else if (userInput.contains(Command.FLAG_REFERENCE)) {
-            return parseQuoteWithReference(userInput);
-        } else if (userInput.contains(Command.FLAG_AUTHOR)) {
-            return parseQuoteWithAuthor(userInput);
+        if (userInput.contains(FLAG_REFERENCE) && userInput.contains(FLAG_AUTHOR)) {
+            return parseQuoteWithReferenceAndAuthorInput(userInput);
+        } else if (userInput.contains(FLAG_REFERENCE)) {
+            return parseQuoteWithReferenceInput(userInput);
+        } else if (userInput.contains(FLAG_AUTHOR)) {
+            return parseQuoteWithAuthorInput(userInput);
         } else {
-            return parseQuoteWithoutAdditionalInfo(userInput);
+            return parseQuoteWithoutFlags(userInput);
         }
     }
 
-    public static Quote parseQuoteWithoutAdditionalInfo(String userInput) throws QuotesifyException {
+    public static Quote parseQuoteWithoutFlags(String userInput) throws QuotesifyException {
         // Throws exception if quote is empty
         String quote = trimAndCheckEmptyQuote(userInput);
         return new Quote(quote);
     }
 
-    public static Quote parseQuoteWithReferenceAndAuthor(String userInput) throws QuotesifyException {
+    public static String trimAndCheckEmptyQuote(String quote) throws QuotesifyException {
+        assert !quote.isEmpty() : "quote field should not be empty";
+        quote = quote.trim();
+        if (!quote.isEmpty()) {
+            return quote;
+        } else {
+            throw new QuotesifyException(ERROR_MISSING_QUOTE);
+        }
+    }
+
+    public static Quote parseQuoteWithReferenceAndAuthorInput(String userInput) throws QuotesifyException {
         // Throws exception if any fields are empty
-        String[]  quoteAndInformation = userInput.split(Command.FLAG_DELIMITER, 2);
+        String[] quoteAndInformation = userInput.split(FLAG_DELIMITER, 2);
         String quote = trimAndCheckEmptyQuote(quoteAndInformation[0]);
 
-        HashMap<String, String> referenceAndAuthorName = parseReferenceAndAuthor(quoteAndInformation[1]);
+        HashMap<String, String> referenceAndAuthorName = getReferenceAndAuthor(quoteAndInformation[1]);
         String reference = referenceAndAuthorName.get(Command.REFERENCE_KEYWORD);
         String authorName = referenceAndAuthorName.get(Command.AUTHORNAME_KEYWORD);
 
@@ -53,10 +68,8 @@ public class QuoteParser {
         }
     }
 
-    public static HashMap parseReferenceAndAuthor(String userInput) throws QuotesifyException {
-        HashMap<String, String> referenceAndAuthorName = new HashMap<String, String>();
-        String[] referenceAndAuthor = userInput.split(Command.FLAG_DELIMITER,2);
-
+    public static HashMap getReferenceAndAuthor(String userInput) throws QuotesifyException {
+        String[] referenceAndAuthor = userInput.split(FLAG_DELIMITER,2);
         String reference = "";
         String authorName = "";
         try {
@@ -71,90 +84,46 @@ public class QuoteParser {
                 assert !reference.isEmpty() : "reference field should not be empty";
                 assert !authorName.isEmpty() : "author field should not be empty";
             }
-            checkExtraAuthorReferenceFlags(authorName, reference);
-
         } catch (StringIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_MISSING_REFERENCE_OR_AUTHOR);
         }
-
+        // throws exception is duplicate flags found
+        checkExtraAuthorReferenceFlags(authorName, reference); // check this need catch or not
+        HashMap<String, String> referenceAndAuthorName = new HashMap<String, String>();
         referenceAndAuthorName.put("reference", reference);
         referenceAndAuthorName.put("authorName", authorName);
         return referenceAndAuthorName;
     }
 
     public static void checkExtraAuthorReferenceFlags(String authorName, String reference) throws QuotesifyException {
-        if (authorName.contains(Command.FLAG_AUTHOR) || authorName.contains(Command.FLAG_REFERENCE)) {
+        if (authorName.contains(FLAG_AUTHOR) || authorName.contains(FLAG_REFERENCE)) {
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
-        } else if (reference.contains(Command.FLAG_AUTHOR) || reference.contains(Command.FLAG_REFERENCE)) {
+        } else if (reference.contains(FLAG_AUTHOR) || reference.contains(FLAG_REFERENCE)) {
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
         }
     }
 
-    public static Quote parseQuoteWithReference(String userInput) throws QuotesifyException {
+    public static Quote parseQuoteWithReferenceInput(String userInput) throws QuotesifyException {
         // Throws exception if quote of reference is empty
-        String[] quoteAndReference = trimAndCheckReferenceFlags(userInput);
+        String[] quoteAndReference = trimAndCheckReferenceFlag(userInput);
         String quote = trimAndCheckEmptyQuote(quoteAndReference[0]);
         String reference = trimAndCheckEmptyReference(quoteAndReference[1]);
         return new Quote(quote, reference);
     }
 
-    public static Quote parseQuoteWithAuthor(String userInput) throws QuotesifyException {
-        // Throws exception if quote of author name is empty
-        String[] quoteAndAuthor = trimAndCheckAuthorFlags(userInput);
-        String quote = trimAndCheckEmptyQuote(quoteAndAuthor[0]);
-        Author author = trimAndCheckEmptyAuthor(quoteAndAuthor[1]);
-        return new Quote(quote, author);
-    }
-
-    public static String[] trimAndCheckAuthorFlags(String userInput) throws QuotesifyException {
-        String[] quoteAndAuthor = userInput.split(Command.FLAG_AUTHOR, 2);
-        if (hasExtraAuthorFlag(quoteAndAuthor[1])) {
-            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
-        }
-        return quoteAndAuthor;
-    }
-
-    public static boolean hasExtraReferenceFlag(String reference) {
-        if (!reference.contains(Command.FLAG_REFERENCE)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public static String[] trimAndCheckReferenceFlags(String userInput) throws QuotesifyException {
-        String[] quoteAndReference = userInput.split(Command.FLAG_REFERENCE, 2);
+    public static String[] trimAndCheckReferenceFlag(String userInput) throws QuotesifyException {
+        String[] quoteAndReference = userInput.split(FLAG_REFERENCE, 2);
         if (hasExtraReferenceFlag(quoteAndReference[1])) {
-            throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
+            throw new QuotesifyException(ERROR_DUPLICATE_REFERENCE_FLAG);
         }
         return quoteAndReference;
     }
 
-    public static boolean hasExtraAuthorFlag(String authorName) {
-        if (!authorName.contains(Command.FLAG_AUTHOR)) {
+    public static boolean hasExtraReferenceFlag(String reference) {
+        if (!reference.contains(FLAG_REFERENCE)) {
             return false;
         } else {
             return true;
-        }
-    }
-
-    public static String trimAndCheckEmptyQuote(String quote) throws QuotesifyException {
-        assert !quote.isEmpty() : "quote field should not be empty";
-        quote = quote.trim();
-        if (!quote.isEmpty()) {
-            return quote;
-        } else {
-            throw new QuotesifyException(ERROR_MISSING_QUOTE);
-        }
-    }
-
-    public static Author trimAndCheckEmptyAuthor(String authorName) throws QuotesifyException {
-        assert !authorName.isEmpty() : "author field should not be empty";
-        authorName = authorName.trim();
-        if (!authorName.isEmpty()) {
-            return new Author(authorName);
-        } else {
-            throw new QuotesifyException(ERROR_MISSING_AUTHOR);
         }
     }
 
@@ -168,8 +137,42 @@ public class QuoteParser {
         }
     }
 
+    public static Quote parseQuoteWithAuthorInput(String userInput) throws QuotesifyException {
+        // Throws exception if quote of author name is empty
+        String[] quoteAndAuthor = trimAndCheckAuthorFlags(userInput);
+        String quote = trimAndCheckEmptyQuote(quoteAndAuthor[0]);
+        Author author = trimAndCheckEmptyAuthor(quoteAndAuthor[1]);
+        return new Quote(quote, author);
+    }
+
+    public static String[] trimAndCheckAuthorFlags(String userInput) throws QuotesifyException {
+        String[] quoteAndAuthor = userInput.split(FLAG_AUTHOR, 2);
+        if (hasExtraAuthorFlag(quoteAndAuthor[1])) {
+            throw new QuotesifyException(ERROR_DUPLICATE_AUTHOR_FLAG);
+        }
+        return quoteAndAuthor;
+    }
+
+    public static boolean hasExtraAuthorFlag(String authorName) {
+        if (!authorName.contains(FLAG_AUTHOR)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static Author trimAndCheckEmptyAuthor(String authorName) throws QuotesifyException {
+        assert !authorName.isEmpty() : "author field should not be empty";
+        authorName = authorName.trim();
+        if (!authorName.isEmpty()) {
+            return new Author(authorName);
+        } else {
+            throw new QuotesifyException(ERROR_MISSING_AUTHOR);
+        }
+    }
+
     public static String parseListWithAuthor(String userInput) throws QuotesifyException {
-        String[] authorFlagAndName = userInput.split(Command.FLAG_AUTHOR, 2);
+        String[] authorFlagAndName = userInput.split(FLAG_AUTHOR, 2);
         try {
             String authorName = authorFlagAndName[1].trim();
             if (hasExtraAuthorFlag(authorName)) {
@@ -182,7 +185,7 @@ public class QuoteParser {
     }
 
     public static String parseListWithReference(String userInput) throws QuotesifyException {
-        String[] referenceFlagAndName = userInput.split(Command.FLAG_REFERENCE, 2);
+        String[] referenceFlagAndName = userInput.split(FLAG_REFERENCE, 2);
         try {
             String reference = referenceFlagAndName[1].trim();
             if (hasExtraReferenceFlag(reference)) {
