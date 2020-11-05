@@ -272,7 +272,7 @@ public class Timetable {
      *      in the arraylist as a Event, not as an extension of RecurringEvent.
      */
     @SafeVarargs
-    protected final ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
+    private ArrayList<Event> getAllRecurringEvents(LocalDate startDate, LocalDate endDate,
                                                   ArrayList<? extends RecurringEvent>... eventsSet) {
         ArrayList<Event> eventList = new ArrayList<>();
         for (ArrayList<? extends RecurringEvent> events : eventsSet) {
@@ -287,7 +287,7 @@ public class Timetable {
      * @param setOfEvents Set of Events to search from.
      * @return PriorityQueue of Reminder from all provided events.
      */
-    public PriorityQueue<Reminder> getEventSetReminder(ArrayList<Event> setOfEvents) {
+    private PriorityQueue<Reminder> getEventSetReminder(ArrayList<Event> setOfEvents) {
         PriorityQueue<Reminder> reminders = new PriorityQueue<>(Reminder::compareTo);
         for (Event event : setOfEvents) {
             for (LocalDate reminderDate : event.getReminderDates()) {

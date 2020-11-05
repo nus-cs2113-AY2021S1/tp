@@ -80,7 +80,6 @@ public class SystemException extends Exception {
                 + "daily, weekly, monthly or yearly"),
         EXCEPTION_INVALID_EDIT_RECURRING_TYPE("There are only the following recurring types: "
                 + "none, daily, weekly, monthly or yearly"),
-        EXCEPTION_INVALID_TIME_UNIT("That time unit is not accepted!"),
 
         // Storage related exceptions
         EXCEPTION_FILE_CREATION_ERROR("Unable to create a file!"),

@@ -224,7 +224,6 @@ public class CommandMessage {
     public static final String EDIT_EVENT_END_TIME_SHIFT_WARNING = colorize("However, event duration "
             + "is compressed and end time is set at 23:59!", YELLOW);
 
-
     public static final String DELETE_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Event failed to delete!", RED);
     public static final String ADD_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Failed to add event: "
             + "The event cannot end before it starts!", RED);
