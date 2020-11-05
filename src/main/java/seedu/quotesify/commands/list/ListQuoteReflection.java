@@ -46,7 +46,7 @@ public class ListQuoteReflection extends ListCommand {
             throw new QuotesifyException(LIST_NO_QUOTES_SAVED_MESSAGE);
         } else if (quoteNumber < 0 || quoteNumber >= quoteList.getSize()) {
             throw new QuotesifyException(ERROR_INVALID_QUOTE_NUM);
-        } else if (quoteList.getQuote(quoteNumber).getReflection()  ==  null){
+        } else if (quoteList.getQuote(quoteNumber).getReflection()  ==  null) {
             throw new QuotesifyException(ERROR_NO_REFLECTION);
         } else {
             return true;
