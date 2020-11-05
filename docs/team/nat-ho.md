@@ -58,6 +58,3 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
 
 ### Contributions to team-based tasks:
 * General formatting of UG and DG.
-
-### Contributions beyond the project team:
-* I recommended suggestions to other teams regarding their DG, and also tested another team's application to identify bugs.

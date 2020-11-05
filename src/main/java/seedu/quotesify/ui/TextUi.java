@@ -110,9 +110,10 @@ public class TextUi {
         String listToPrint = quoteList.getQuotesByAuthor(quoteList, authorName.toLowerCase());
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
+        } else {
+            System.out.printf((UiMessage.LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
+            System.out.println(listToPrint);
         }
-        System.out.printf((UiMessage.LIST_QUOTES_BY_AUTHOR_MESSAGE) + "\n", authorName);
-        System.out.println(listToPrint);
     }
 
     public void printAllQuotesByReference(QuoteList quoteList, String reference) {
@@ -122,9 +123,10 @@ public class TextUi {
         String listToPrint = quoteList.getQuotesByReference(quoteList, reference.toLowerCase());
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
+        } else {
+            System.out.printf((UiMessage.LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
+            System.out.println(listToPrint);
         }
-        System.out.printf((UiMessage.LIST_QUOTES_BY_REFERENCE_MESSAGE) + "\n", reference);
-        System.out.println(listToPrint);
     }
 
     public void printAllQuotesByReferenceAndAuthor(QuoteList quoteList, String reference, String authorName) {
@@ -135,9 +137,10 @@ public class TextUi {
                 authorName.toLowerCase());
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
+        } else {
+            System.out.printf(UiMessage.LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE + "\n", reference, authorName);
+            System.out.println(listToPrint);
         }
-        System.out.printf(UiMessage.LIST_QUOTES_BY_AUTHOR_AND_REFERENCE_MESSAGE + "\n", reference, authorName);
-        System.out.println(listToPrint);
     }
 
     public void printQuoteAndReflection(Quote quote) {
@@ -163,16 +166,16 @@ public class TextUi {
         System.out.printf(UiMessage.EDIT_QUOTE_MESSAGE + "\n", oldQuote.toString(), newQuote.toString());
     }
 
-    public void printAddReflection(Quote quote, String reflection) {
-        System.out.printf(UiMessage.ADD_QUOTE_REFLECTION + "\n", quote.toString(), reflection);
+    public void printAddReflection(Quote quote) {
+        System.out.printf(UiMessage.ADD_QUOTE_REFLECTION + "\n", quote.toString(), quote.getReflection());
     }
 
     public  void printDeleteQuoteReflection(String quote) {
         System.out.printf((UiMessage.DELETE_QUOTE_REFLECTION_MESSAGE) + "\n", quote);
     }
 
-    public  void printEditQuoteReflection(Quote quote, String updatedReflection) {
-        System.out.printf((UiMessage.EDIT_QUOTE_REFLECTION) + "\n", quote.toString(), updatedReflection);
+    public  void printEditQuoteReflection(Quote quote) {
+        System.out.printf((UiMessage.EDIT_QUOTE_REFLECTION) + "\n", quote.toString(), quote.getReflection());
     }
 
     public void printFindQuoteFail() {
