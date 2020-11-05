@@ -45,7 +45,7 @@ public class BookmarkUi {
     }
 
     public void showBookmarkList(ArrayList<BookmarkCategory> categories) {
-        System.out.println("Here is the list");
+        System.out.println("Here is the entire list");
         for (int i = 0; i < categories.size(); i++) {
             System.out.println((i + 1) + ". Category: " + categories.get(i).getName());
             showBookmarkLinkList(categories.get(i).getLinks());
@@ -71,7 +71,7 @@ public class BookmarkUi {
     }
 
     public void showInvalidNumberError() {
-        System.out.println("Sorry the format requires a number.");
+        System.out.println("Sorry the format requires a valid number.");
         System.out.println("Please enter a valid number!");
         System.out.println("You can input \"help\" to view the input format.");
     }
