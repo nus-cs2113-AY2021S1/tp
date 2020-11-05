@@ -163,12 +163,13 @@ The sequence diagram for deleting a finance log entry is shown below:
 ![](financeDiagramPic/CommandFinanceDel.png)  
 
 **3.3.1.2. Design Considerations**  
-Aspect: User input format for adding a finance log entry
+Aspect: User input format for adding a finance log entry  
 *Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
     *Pros: It is more convenient for the user to type commands and easier to memorize the command format.  
     *Cons: It takes longer time to execute the command for the program has to identify which part is ITEM_NAME and which part is
     ITEM_VALUE. If the user inputs a separate number for ITEM_NAME but forgets to type ITEM_VALUE, then the program will mistake 
-    the separate number in ITEM_NAME for its ITEM_VALUE.  
+    the separate number in ITEM_NAME for its ITEM_VALUE. For example, if the user just input `finance summary iphone 12` but forgot to
+    type the price, then the finance log entry will become `iphone $12`.    
 *Alternative 2: The user inputs command in format of "finance addLog /n ITEM_VALUE /v ITEM_VALUE".  
     *Pros: The program can easily detect if the input command is valid.  
     *Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
