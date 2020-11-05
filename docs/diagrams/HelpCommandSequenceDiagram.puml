@@ -6,10 +6,10 @@ participant "<<class>>\n:Parser"
 participant ":HelpCommand"
 
 activate ":Fitr"
-":Fitr" -> ":Ui" : read()
-activate ":Ui"
-":Fitr" <-- ":Ui"
-deactivate ":Ui"
+":Fitr" -> "<<class>>\n:Ui" : read()
+activate "<<class>>\n:Ui"
+":Fitr" <-- "<<class>>\n:Ui"
+deactivate "<<class>>\n:Ui"
 
 ":Fitr" -> "<<class>>\n:Parser" : parse("help")
 activate "<<class>>\n:Parser"
@@ -22,8 +22,8 @@ deactivate "<<class>>\n:Parser"
 
 ":Fitr" -> ":HelpCommand" : execute()
 activate ":HelpCommand"
-":HelpCommand" -> ":Ui" : printHelpMessage()
-activate ":Ui"
+":HelpCommand" -> "<<class>>\n:Ui" : printHelpMessage()
+activate "<<class>>\n:Ui"
 return
 
 ":HelpCommand" --> ":Fitr"

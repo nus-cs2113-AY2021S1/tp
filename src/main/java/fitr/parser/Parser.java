@@ -2,7 +2,6 @@ package fitr.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.text.SimpleDateFormat;
 
 import fitr.command.AddFoodCommand;
 import fitr.command.ClearCommand;
@@ -18,7 +17,7 @@ import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
 
-import static fitr.common.DateManager.getCurrentDate;
+import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 
 /**
  * Parses the user input.
@@ -50,19 +49,25 @@ public class Parser {
         case Commands.COMMAND_VIEW:
             return new ViewCommand(arguments);
         case Commands.COMMAND_RECOMMEND:
-            return new RecommendCommand();
+            return new RecommendCommand(arguments);
         case Commands.COMMAND_EDIT:
             return new EditCommandParser(arguments).editCommand();
         case Commands.COMMAND_HELP:
+            if (arguments.length() != 0) {
+                return new InvalidCommand(PHRASE_EXTRA_PARAMETERS);
+            }
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
             return new DeleteCommand(arguments);
         case Commands.COMMAND_CLEAR:
             return new ClearCommand(arguments);
         case Commands.COMMAND_BYE:
+            if (arguments.length() != 0) {
+                return new InvalidCommand(PHRASE_EXTRA_PARAMETERS);
+            }
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
-            return new AddGoalCommand(arguments, new SimpleDateFormat("dd/MM/yyyy").format(getCurrentDate()));
+            return new AddGoalCommand(arguments);
         case Commands.COMMAND_COMPLETE:
             return new CompleteGoalCommand(arguments);
         default:

@@ -13,6 +13,12 @@ import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.DateManager.getCurrentDate;
+import static fitr.common.Messages.ECHO_ADDED_FOOD;
+import static fitr.common.Messages.ERROR_INVALID_CALORIE;
+import static fitr.common.Messages.ERROR_IN_FILE;
+import static fitr.common.Messages.FOOD_NAME_HEADER;
+import static fitr.common.Messages.LINE_BREAK;
+import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {
@@ -34,34 +40,37 @@ public class AddFoodCommand extends Command {
                 }
                 listManager.addFood(new Food(nameOfFood, amountOfCalories, getCurrentDate()));
                 storageManager.writeFoodList(listManager.getFoodList());
-                Ui.printCustomMessage("The following food has been added:\n"
-                        + "Name of Food: " + nameOfFood + "\n"
+                Ui.printCustomMessage(ECHO_ADDED_FOOD
+                        + FOOD_NAME_HEADER + nameOfFood + LINE_BREAK
                         + "Calorie Consumed: " + amountOfCalories.get()
                 );
             } else if (command.split(" ").length == 2) {
-                Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0])
-                        * Integer.parseInt(command.split(" ")[1]));
-                int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
-                if (amountOfCalories.get() < 0) {
+                String individualCalorie = command.split(" ", 2)[0];
+                if (!individualCalorie.matches("\\d+")) {
                     throw new NumberFormatException();
                 }
-                if (amountOfFood < 0) {
+                if (!command.split(" ", 2)[1].matches("\\d+")) {
                     throw new FitrException();
                 }
+                int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
+                Calorie amountOfCalories = new Calorie(Integer.parseInt(individualCalorie)
+                        * amountOfFood);
                 listManager.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
                 storageManager.writeFoodList(listManager.getFoodList());
-                Ui.printCustomMessage("The following food has been added:\n"
-                        + "Name of Food: " + nameOfFood + "\n"
+                Ui.printCustomMessage(ECHO_ADDED_FOOD
+                        + FOOD_NAME_HEADER + nameOfFood + LINE_BREAK
                         + "Calorie Consumed: " + amountOfCalories.get());
+            } else {
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
             }
         } catch (NumberFormatException | NullPointerException e) {
-            Ui.printCustomError("Sorry, invalid calorie amount entered");
+            Ui.printCustomError(ERROR_INVALID_CALORIE);
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printFormatError(COMMAND_FOOD);
         } catch (FitrException e) {
-            Ui.printCustomError("Sorry, the amount of food has to be a positive number");
+            Ui.printCustomError("Sorry, quantity should be a positive integer!");
         } catch (IOException e) {
-            Ui.printCustomError("Sorry, there is an error in the file");
+            Ui.printCustomError(ERROR_IN_FILE);
         }
     }
 

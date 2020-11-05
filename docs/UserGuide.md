@@ -23,13 +23,15 @@ Note the formatting used in this guide:
 
 ## 1.3 Quick start
 This quick start section provides a step-by-step procedure to get you started with Fitr.
-1. Ensure that you have **Java 11** or above installed.
-2. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
-3. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
-4. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
-5. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
-6. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
-7. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
+1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
+2. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
+3. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
+4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
+
+> :bulb: Please resize your window to ensure that the separator lines are not wrapped.
+
+5. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
+6. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
 
 <p align="center"><img src="images/Figure1.png" width="350"></p>
 <p align="center">Figure 1: Welcome screen of Fitr for new users</p>
@@ -132,52 +134,51 @@ Do note that:
  * Items in square brackets are [optional]
  * Items in brackets are (additional information)
 
-------------------------------------------------------Profile-------------------------------------------------------
-view profile                                                          View your profile information
-view bmi                                                              View your BMI
-edit name                                                             Edit your profile name
-edit age                                                              Edit your profile age
-edit gender                                                           Edit your profile gender
-edit height                                                           Edit your profile height
-edit weight                                                           Edit your profile weight
-edit fitness                                                          Edit your profile fitness
+----------------------------------------------------------------Profile-----------------------------------------------------------------
+view profile                                                                              View your profile information
+view bmi                                                                                  View your BMI
+edit name NEW_NAME                                                                        Edit your profile name
+edit age NEW_AGE                                                                          Edit your profile age
+edit gender NEW_GENDER ('M' for Male or 'F' for Female)                                   Edit your profile gender
+edit height NEW_HEIGHT (in m)                                                             Edit your profile height
+edit weight NEW_WEIGHT (in kg)                                                            Edit your profile weight
+edit fitness NEW_FITNESS_LEVEL (0 for Unfit; 1 for Normal; 2 for Fit)                     Edit your profile fitness
 
---------------------------------------------------------Food--------------------------------------------------------
-food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                      Add a food entry
-view food                                                             View your food entries
-view food DATE/MONTH/YEAR (dd/MM/yyyy)                                View your food entries on a specified date
-edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY
-                                                                      Edit your previous food entry
-delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                        Delete a food entry
-clear food                                                            Clear all your food entries
+------------------------------------------------------------------Food------------------------------------------------------------------
+food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                                          Add a food entry
+view food                                                                                 View your food entries
+view food DATE/MONTH/YEAR (dd/MM/yyyy)                                                    View your food entries on a specified date
+edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY    Edit your previous food entry
+delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                            Delete a food entry
+clear food                                                                                Clear all your food entries
 
-------------------------------------------------------Exercise------------------------------------------------------
-recommend                                                             Get a recommended workout
-exercise NAME_OF_EXERCISE /CALORIES_BURNT                             Add an exercise entry
-view exercise                                                         View your exercise entries
-view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                            View your exercise entries on a specified date
-edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT
-                                                                      Edit your previous exercise entry
-delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                    Delete an exercise entry
-clear exercise                                                        Clear all your exercise entries
+----------------------------------------------------------------Exercise----------------------------------------------------------------
+recommend                                                                                 Get a recommended workout
+exercise NAME_OF_EXERCISE /CALORIES_BURNT                                                 Add an exercise entry
+view exercise                                                                             View your exercise entries
+view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                                                View your exercise entries on a specified date
+edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT         Edit your previous exercise entry
+delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                        Delete an exercise entry
+clear exercise                                                                            Clear all your exercise entries
 
---------------------------------------------------------Goal--------------------------------------------------------
-goal food GOAL_DESCRIPTION                                            Add a food goal
-goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES      Add a smart food goal
-goal exercise GOAL_DESCRIPTION                                        Add an exercise goal
-goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT      Add a smart exercise goal
-view goal                                                             View your goals
-edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                         Edit your previous goal entry
-complete goal INDEX                                                   Mark your goal entry as complete
-delete goal INDEX                                                     Delete a goal entry
-clear goal                                                            Clear all your goal entries
+------------------------------------------------------------------Goal------------------------------------------------------------------
+goal food GOAL_DESCRIPTION                                                                Add a food goal
+goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES                          Add a smart food goal
+goal exercise GOAL_DESCRIPTION                                                            Add an exercise goal
+goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT                          Add a smart exercise goal
+view goal                                                                                 View your goals
+edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                                             Edit your previous goal entry
+complete goal INDEX                                                                       Mark your goal entry as complete
+delete goal INDEX                                                                         Delete a goal entry
+clear goal                                                                                Clear all your goal entries
 
--------------------------------------------------------Other--------------------------------------------------------
-help                                                                  Display available commands
-view summary                                                          View calorie summary
-view summary DATE/MONTH/YEAR (dd/MM/yyyy)                             View calorie summary on a specified date
-clear                                                                 Clear all food, exercise and goal entries
-bye                                                                   Exit the application
+-----------------------------------------------------------------Other------------------------------------------------------------------
+help                                                                                      Display available commands
+view summary                                                                              View calorie summary
+view summary DATE/MONTH/YEAR (dd/MM/yyyy)                                                 View calorie summary on a specified date
+clear                                                                                     Clear all food, exercise and goal entries
+bye                                                                                       Exit the application
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.2.2 Viewing your profile
@@ -221,18 +222,16 @@ Date: 30/10/2020
 #### 2.2.4.1 Viewing food entries on a specific date
 To view food entries for a specific day, you may enter the date at the back of the `view food` command. 
 
-Format: `view food DATE/MONTH/YEAR (dd/MM/yyyy)`
+Format: `view food dd/MM/yyyy`
 
-For example, if you would like to view your exercises on 22/10/2020, you may key in `view food 23/10/2020`. The expected outcome should be similar to below:
+For example, if you would like to view your food entries on 22/10/2020, you may key in `view food 22/10/2020`. The expected outcome should be similar to below:
 
 ```
 Here is the list of your food:
-Date: 23/10/2020
+Date: 22/10/2020
 [1] Food: duck rice
     Cal: 500
 ```
-
-For example, if you would like to view your food entries on 26/10/2020, you may key in `view food 26/10/2020`.
 
 ### 2.2.5 Viewing exercise entries
 You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the exercise entries or only exercise entries for a specific date.
@@ -287,7 +286,7 @@ Format: `view summary`
 #### 2.2.7.1 Viewing calorie summary of a specific date
 You may also choose to view the summary for a specific day by specifying a date at the back of `view summary`.
 
-Format: `view summary DATE/MONTH/YEAR (dd/MM/yyyy)`
+Format: `view summary dd/MM/yyyy`
 
 For example, if you would like to view your caloric summary on 22/10/2020, you may key in `view summary 25/10/2020`, and you should get an output similar to below:
 ```
@@ -319,21 +318,21 @@ Height (in m) changed to: 1.95
 ### 2.3.2 Editing a food entry
 You can edit your previous food entries, for example, if you previously made a mistake when entering a food that you consumed.
 
-Format: `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
+Format: `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
 
 For example, you can enter `edit food 25/10/2020 1 apple /100 1`, and you should expect to see the following output:
 ```
-Successfully edited food to: apple
+Successfully edited food to: apple, calories: 100, amount: 1
 ```
 
 ### 2.3.3 Editing an exercise entry
 You can edit your previous exercise entries, for example, if you previously made a mistake when entering an exercise that you performed.
 
-Format: `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
+Format: `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
 
 For example, you can enter `edit exercise 25/10/2020 1 Push ups /500`, and you should expect to see the following output:
 ```
-Successfully edited exercise to: Push ups
+Successfully edited exercise to: Push ups, calories burnt: 500
 ```
 
 ### 2.3.4 Editing a goal entry
@@ -357,15 +356,31 @@ You can delete a food entry using this command. You would need to know the index
 
 Format: `delete food DATE_OF_ENTRY INDEX_OF_FOOD`
 
+For example, you can enter `delete food 4/11/2020 1`    , and you should expect to see the following:
+```
+The following food has been deleted for the 4/11/2020: apple
+```
+
 ### 2.4.2 Deleting an exercise entry
 You can delete an exercise entry using this command. You would need to know the index of that particular exercise entry as well as the date of its entry. You can try to use the view exercise command to find the index of the exercise before deleting.
 
 Format: `delete exercise DATE_OF_ENTRY INDEX_OF_EXERCISE`
 
+For example, you can enter `delete exercise 4/11/2020 1`, and you should expect to see the following:
+```
+The following exercise has been deleted for the 1/11/2020: Triceps dips
+```
+
 ### 2.4.3 Deleting a goal entry
 To delete a particular goal entry, you can use this command. However, you would need to know the index of that particular goal entry to utilise this command.
 
 Format: `delete goal INDEX`
+
+For example, you can enter `delete goal 1`, and you should expect to see the following:
+```
+The following has been deleted from the list of goals: Burn more than 30000 calories
+```
+
 
 ## 2.5 Clearing Commands
 Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
@@ -416,9 +431,77 @@ Food, exercise and goal lists are all cleared!
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
 
 ### 2.6.1 Getting a recommended workout
-If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. If you do accept it, It will automatically be added into your exercise entries.
+If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. 
+
+If you do accept it, It will automatically be added into your exercise entries, however you can just to add particular exercises from the recommended list by keying in the index separated by spaces
 
 Format: `recommend`
+
+For example, if you key in `recommend`, the expected outcome is as follows:
+```
+[1] Exercise: Triceps dips
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[2] Exercise: Side Lunges
+    Intensity: 3 sets of 1.0 minutes
+    Burnt Cal: 12
+[3] Exercise: Jumping rope
+    Intensity: 3 sets of 4.0 minutes
+    Burnt Cal: 167
+[4] Exercise: Mountain stretch
+    Intensity: 4 sets of 0.5 minutes
+    Burnt Cal: 5
+Will you be doing this workout?
+type y for yes to add all 4 to your exercise list
+or you can type in the index of the exercises you want added to you exercise list (separated by a space)
+Any other key will be taken as a no :D
+```
+
+If you follow this up with a `y`, you will then see the exercises added in as follows
+```
+The following exercise has been added:
+[1] Exercise: Triceps dips
+    Burnt Cal: 6
+[2] Exercise: Side Lunges
+    Burnt Cal: 12
+[3] Exercise: Jumping rope
+    Burnt Cal: 167
+[4] Exercise: Mountain stretch
+    Burnt Cal: 5
+```
+
+However, if you only decide to add certain indexes, then you can key in the exercise index separated by a space.
+
+For example if you recommended exercises are as follows:
+
+```
+[1] Exercise: Standard Pushups
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[2] Exercise: Cossack Squat
+    Intensity: 3 sets of 1.0 minutes
+    Burnt Cal: 17
+[3] Exercise: Sprints (in minutes)
+    Intensity: 3 sets of 1.0 minutes
+    Burnt Cal: 54
+[4] Exercise: Spinal rotations
+    Intensity: 4 sets of 0.5 minutes
+    Burnt Cal: 5
+Will you be doing this workout?
+type y for yes to add all 4 to your exercise list
+or you can type in the index of the exercises you want added to you exercise list (separated by a space)
+Any other key will be taken as a no :D
+
+```
+
+If you decide, you only want 2 and 4 to be added, you can key in `2 4` and you will see as follows:
+```
+The following exercise has been added:
+[1] Exercise: Cossack Squat
+    Burnt Cal: 17
+[2] Exercise: Spinal rotations
+    Burnt Cal: 5
+```
 
 ### 2.6.2 Marking a goal as complete
 After completing a goal, you can mark it as complete. However, if it is a smart goal, Fitr will mark it as complete according to your calorie intake or calorie burnt.
@@ -453,7 +536,7 @@ _Table 1: Commands supported in Fitr_
 
 Action | Format | Examples
 ------ | ------ | --------
-Add food entry | `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /CALORIES_OF_FOOD  AMOUNT_OF_FOOD` | `food apple /50 1` or `food pear /57`
+Add food entry | `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /CALORIES_OF_FOOD AMOUNT_OF_FOOD` | `food pear /57` or `food apple /50 1`
 Add exercise entry | `exercise NAME_OF_EXERCISE /CALORIES_BURNT` | `exercise run /360`
 Add food goal | `goal food GOAL_DESCRIPTION` | `goal food eat more`
 Add smart food goal | `goal food < NUMBER_OF_CALORIES` or `goal food > NUMBER_OF_CALORIES` | `goal food < 2000` or `goal food > 3800`
@@ -463,18 +546,18 @@ View Help | `help` |
 View User Profile | `view profile` |
 View User BMI | `view bmi` |
 View Food Entry | `view food` |
-View Food Entries on a Specified Date | `view food DATE/MONTH/YEAR` | `view food 26/20/2020`
+View Food Entries on a Specified Date | `view food dd/MM/yyyy` | `view food 26/10/2020`
 View Exercise Entry | `view exercise` | 
-View Exercise Entries on a Specified Date | `view exercise DATE/MONTH/YEAR` | `view exercise 26/20/2020`
+View Exercise Entries on a Specified Date | `view exercise dd/MM/yyyy` | `view exercise 26/10/2020`
 View Goal Entry | `view goal` | 
 View Calorie Summary | `view summary` |
-View Calorie Summary on a Specified Date | `view summary DATE/MONTH/YEAR` |
+View Calorie Summary on a Specified Date | `view summary dd/MM/yyyy` | `view summary 26/10/2020`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
-Edit Food Entry | `edit food DATE/MONTH/YEAR INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 1 green apple /50 1`
-Edit Exercise Entry | `edit exercise DATE/MONTH/YEAR INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 1 5km run /360`
+Edit Food Entry | `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 25/10/2020 1 green apple /50 1`
+Edit Exercise Entry | `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 25/10/2020 1 5km run /360`
 Edit Goal Entry | `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION` | `edit goal 1 food eat healthier`
-Delete a Food Entry | `delete food DATE INDEX` | `delete food 24/10/20 3`
-Delete an Exercise Entry | `delete exercise DATE INDEX` | `delete exercise 24/10/20 3`
+Delete a Food Entry | `delete food dd/MM/yyyy INDEX` | `delete food 24/10/2020 3`
+Delete an Exercise Entry | `delete exercise dd/MM/yyyy INDEX` | `delete exercise 24/10/2020 3`
 Delete a Goal Entry | `delete goal INDEX` | `delete goal 5`
 Clear All Food Entries | `clear food` |
 Clear All Exercise Entries | `clear exercise` | 

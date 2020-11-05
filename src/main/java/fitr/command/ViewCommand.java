@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.common.DateManager;
 import fitr.goal.Goal;
 import fitr.exercise.Recommender;
 import fitr.list.ExerciseList;
@@ -14,6 +15,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import static fitr.common.Commands.COMMAND_EXERCISE;
+import static fitr.common.Commands.COMMAND_FOOD;
+import static fitr.common.Commands.COMMAND_GOAL;
+import static fitr.common.Commands.COMMAND_VIEW;
+import static fitr.common.Commands.COMMAND_VIEW_BMI;
+import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
+import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 import static fitr.common.Messages.EMPTY_FOOD_LIST;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST;
 import static fitr.common.Messages.EMPTY_GOAL_LIST;
@@ -23,6 +31,7 @@ import static fitr.common.Messages.CALORIE_CONSUMED_HEADER;
 import static fitr.common.Messages.CALORIE_BURNT_HEADER;
 import static fitr.common.Messages.NET_CALORIE_HEADER;
 import static fitr.common.Messages.BMI_HEADER;
+import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 import static fitr.common.Messages.USER_PROFILE_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
@@ -38,13 +47,6 @@ import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
 import static fitr.common.Messages.EMPTY_FOOD_LIST_DATE;
 import static fitr.common.Messages.NO_RECORDS_FOUND;
 
-import static fitr.common.Commands.COMMAND_VIEW_FOOD;
-import static fitr.common.Commands.COMMAND_VIEW_EXERCISE;
-import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
-import static fitr.common.Commands.COMMAND_VIEW_BMI;
-import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
-import static fitr.common.Commands.COMMAND_GOAL;
-
 public class ViewCommand extends Command {
 
     public ViewCommand(String command) {
@@ -53,26 +55,52 @@ public class ViewCommand extends Command {
 
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
-        if (command.equalsIgnoreCase(COMMAND_VIEW_FOOD)) {
-            viewFood(listManager.getFoodList());
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
-            viewExercise(listManager.getExerciseList());
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummary(listManager.getFoodList(), listManager.getExerciseList());
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(" ")[1]);
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
-            viewBmi(user);
-        } else if (command.equalsIgnoreCase(COMMAND_VIEW_PROFILE)) {
-            viewProfile(user);
-        } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
-            viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_EXERCISE)) {
-            viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
-        } else if (command.split(" ")[0].equalsIgnoreCase((COMMAND_VIEW_FOOD))) {
-            viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
-        } else {
-            Ui.printFormatError("view");
+        switch (command.split(" ")[0]) {
+        case COMMAND_FOOD:
+            if (command.split(" ").length > 1) {
+                viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
+            } else {
+                viewFood(listManager.getFoodList());
+            }
+            break;
+        case COMMAND_EXERCISE:
+            if (command.split(" ").length > 1) {
+                viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
+            } else {
+                viewExercise(listManager.getExerciseList());
+            }
+            break;
+        case COMMAND_VIEW_SUMMARY:
+            if (command.split(" ").length > 1) {
+                viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(" ")[1]);
+            } else {
+                viewSummary(listManager.getFoodList(), listManager.getExerciseList());
+            }
+            break;
+        case COMMAND_VIEW_BMI:
+            if (command.split(" ").length > 1) {
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
+            } else {
+                viewBmi(user);
+            }
+            break;
+        case COMMAND_VIEW_PROFILE:
+            if (command.split(" ").length > 1) {
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
+            } else {
+                viewProfile(user);
+            }
+            break;
+        case COMMAND_GOAL:
+            if (command.split(" ").length > 1) {
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
+            } else {
+                viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
+            }
+            break;
+        default:
+            Ui.printFormatError(COMMAND_VIEW);
+            break;
         }
     }
 
@@ -201,23 +229,20 @@ public class ViewCommand extends Command {
 
     private void viewSummaryByDate(FoodList foodList, ExerciseList exerciseList, String date) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            LocalDate.parse(date, formatter);
+            LocalDate.parse(date, DateManager.formatter);
             ExerciseList exerciseListByDate = viewExerciseByDate(exerciseList, date, false);
             FoodList foodListByDate = viewFoodByDate(foodList, date, false);
             viewSummary(foodListByDate, exerciseListByDate);
         } catch (Exception ex) {
             Ui.printCustomError(ERROR_INVALID_DATE);
-            Ui.printCustomMessage(EMPTY_STRING);
         }
     }
 
     private String dateFormatter(String date) {
         //Convert date from DD/MM/YYYY to YYYYMMDD
         String newDateFormat;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyyMMdd");
-        newDateFormat = LocalDate.parse(date, formatter).format(formatter2);
+        newDateFormat = LocalDate.parse(date, DateManager.formatter).format(formatter2);
         return newDateFormat;
     }
 
@@ -246,16 +271,14 @@ public class ViewCommand extends Command {
 
     public static ExerciseList viewExerciseByDate(ExerciseList exerciseList, String date, Boolean isPrint) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            LocalDate.parse(date, formatter);
+            LocalDate.parse(date, DateManager.formatter);
         } catch (Exception ex) {
             if (isPrint) {
                 Ui.printCustomError(ERROR_INVALID_DATE);
             }
             return null;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        date = LocalDate.parse(date,formatter).format(formatter);
+        date = LocalDate.parse(date, DateManager.formatter).format(DateManager.formatter);
         ExerciseList exercisesOnThatDate = new ExerciseList();
         for (int i = 0; i < exerciseList.getSize(); i++) {
             if (date.equals(exerciseList.getExercise(i).getDate())) {
@@ -285,16 +308,14 @@ public class ViewCommand extends Command {
 
     public static FoodList viewFoodByDate(FoodList foodList, String date, Boolean isPrint) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            LocalDate.parse(date, formatter);
+            LocalDate.parse(date, DateManager.formatter);
         } catch (Exception ex) {
             if (isPrint) {
                 Ui.printCustomError(ERROR_INVALID_DATE);
             }
             return null;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        date = LocalDate.parse(date, formatter).format(formatter);
+        date = LocalDate.parse(date, DateManager.formatter).format(DateManager.formatter);
         FoodList foodOnThatDate = new FoodList();
         for (int i = 0; i < foodList.getSize(); i++) {
             if (date.equals(foodList.getFood(i).getDate())) {

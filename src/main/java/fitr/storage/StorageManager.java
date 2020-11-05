@@ -12,7 +12,7 @@ import fitr.user.User;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class StorageManager {
@@ -31,11 +31,12 @@ public class StorageManager {
         userStorage = new UserStorage();
     }
 
-    public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
+    public ArrayList<Exercise> loadExerciseList() throws IOException {
         try {
             return exerciseStorage.loadExerciseList();
-        } catch (InvalidFileFormatException e) {
+        } catch (InvalidFileFormatException | DateTimeParseException | NumberFormatException e) {
             Ui.printCustomError("Error: Invalid exercise file - new exercise list created!");
+            exerciseStorage.writeExerciseList(new ExerciseList());
             return new ArrayList<>();
         }
     }
@@ -44,11 +45,12 @@ public class StorageManager {
         exerciseStorage.writeExerciseList(exerciseList);
     }
 
-    public ArrayList<Food> loadFoodList() throws FileNotFoundException {
+    public ArrayList<Food> loadFoodList() throws IOException {
         try {
             return foodStorage.loadFoodList();
-        } catch (InvalidFileFormatException e) {
+        } catch (InvalidFileFormatException | DateTimeParseException | NumberFormatException e) {
             Ui.printCustomError("Error: Invalid food file - new food list created!");
+            foodStorage.writeFoodList(new FoodList());
             return new ArrayList<>();
         }
     }
@@ -60,7 +62,7 @@ public class StorageManager {
     public User loadUserProfile() throws FileNotFoundException {
         try {
             return userStorage.loadUserProfile();
-        } catch (InvalidFileFormatException e) {
+        } catch (InvalidFileFormatException | NumberFormatException e) {
             Ui.printCustomError("Error: Invalid user file - creating a new user!");
             return new User();
         }
@@ -73,7 +75,7 @@ public class StorageManager {
     public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
         try {
             return goalStorage.loadGoalList();
-        } catch (InvalidFileFormatException | ArrayIndexOutOfBoundsException e) {
+        } catch (InvalidFileFormatException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             Ui.printCustomError("Error: Invalid goal file - new goal list created!");
             return new ArrayList<>();
         }

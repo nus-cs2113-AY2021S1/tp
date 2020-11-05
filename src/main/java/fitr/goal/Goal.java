@@ -1,25 +1,30 @@
 package fitr.goal;
 
+import fitr.common.DateManager;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.user.User;
 
+import java.time.LocalDate;
+
+import static fitr.common.Messages.SYMBOL_NO;
+import static fitr.common.Messages.SYMBOL_YES;
 import static fitr.goal.CheckGoalStatus.checkGoalStatus;
 
 public class Goal {
-    protected String createdDate;
+    protected LocalDate createdDate;
     protected String goalType;
     protected String description;
     protected String goalStatus;
 
-    public Goal(String createdDate, String goalType, String description) {
+    public Goal(LocalDate createdDate, String goalType, String description) {
         this.createdDate = createdDate;
         this.goalType = goalType;
         this.description = description;
-        this.goalStatus = "0.0";
+        this.goalStatus = SYMBOL_NO;
     }
 
-    public Goal(String createdDate, String goalType, String goalStatus, String description) {
+    public Goal(LocalDate createdDate, String goalType, String goalStatus, String description) {
         this.createdDate = createdDate;
         this.goalType = goalType;
         this.description = description;
@@ -27,7 +32,7 @@ public class Goal {
     }
 
     public String getCreatedDate() {
-        return createdDate;
+        return createdDate.format(DateManager.formatter);
     }
 
     public String getDescription() {
@@ -40,20 +45,19 @@ public class Goal {
 
     public String getStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
         String rawStatus = checkGoalStatus(goalStatus, goal, foodList, exerciseList, user) + "%";
-        if (rawStatus.equals("0.0%") || rawStatus.equals("✘%")) {
-            return "✘";
-        } else if (rawStatus.equals("100.0%") || rawStatus.equals("✓%")) {
-            return "✓";
+        if (rawStatus.equals("0.0%") || rawStatus.equals(SYMBOL_NO + "%")) {
+            return SYMBOL_NO;
+        } else if (rawStatus.equals("100.0%") || rawStatus.equals(SYMBOL_YES + "%")) {
+            return SYMBOL_YES;
         }
         return rawStatus;
     }
 
     public void markAsCompleted() {
-        this.goalStatus = "✓";
+        this.goalStatus = "Y";
     }
 
     public void setGoal(Goal goal, String goalStatus) {
-        this.createdDate = goal.getCreatedDate();
         this.goalType = goal.getGoalType();
         this.goalStatus = goalStatus;
         this.description = goal.getDescription();

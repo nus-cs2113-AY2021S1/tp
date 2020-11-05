@@ -10,6 +10,8 @@ import fitr.common.Messages;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static fitr.common.Commands.COMMAND_EDIT;
+
 public class EditCommandParser {
     private static final Pattern ARGUMENT_FORMAT = Pattern.compile("(?<type>\\S+)(?<arguments>.*)");
     private final String fullArgument;
@@ -22,7 +24,7 @@ public class EditCommandParser {
         Matcher matcher = ARGUMENT_FORMAT.matcher(fullArgument);
 
         if (!matcher.matches()) {
-            return new InvalidCommand(fullArgument);
+            return new InvalidCommand(COMMAND_EDIT);
         }
 
         String editType = matcher.group("type").trim().toLowerCase();
@@ -35,13 +37,13 @@ public class EditCommandParser {
         case Messages.EDIT_HEIGHT:
         case Messages.EDIT_WEIGHT:
         case Messages.EDIT_FITNESS:
-            return new EditProfileCommand(editType);
+            return new EditProfileCommand(editType, arguments);
         case Commands.COMMAND_EXERCISE:
         case Commands.COMMAND_FOOD:
         case Commands.COMMAND_GOAL:
             return new EditEntryCommand(editType, arguments);
         default:
-            return new InvalidCommand(fullArgument);
+            return new InvalidCommand(COMMAND_EDIT);
         }
     }
 }

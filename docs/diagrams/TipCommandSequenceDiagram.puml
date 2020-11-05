@@ -1,4 +1,5 @@
 @startuml
+skinparam Shadowing false
 participant ":Fitr" as Fitr
 participant ":TipList" as TipList
 participant ":StorageManager" as StorageManager
@@ -25,5 +26,6 @@ return
 TipManager -[hidden]-> Fitr
 destroy TipManager
 destroy TipList
+deactivate Fitr
 hide footbox
 @enduml

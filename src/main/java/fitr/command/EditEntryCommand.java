@@ -1,6 +1,8 @@
 package fitr.command;
 
 import fitr.calorie.Calorie;
+import fitr.common.DateManager;
+import fitr.exception.FitrException;
 import fitr.goal.Goal;
 import fitr.exercise.Recommender;
 import fitr.common.Commands;
@@ -14,12 +16,19 @@ import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static fitr.common.Messages.SYMBOL_EXERCISE;
+import static fitr.common.Messages.SYMBOL_FOOD;
+import static fitr.common.Messages.SYMBOL_NO;
 import static fitr.goal.FormatGoal.formatGoal;
 
 public class EditEntryCommand extends Command {
+    private static final Logger LOGGER = Logger.getLogger(EditEntryCommand.class.getName());
     private static final String EXERCISE_FORMAT_REGEX =
             "(?<date>\\S+)\\s+(?<index>\\d+)\\s+(?<exerciseName>.*)\\s*/\\s*(?<calories>\\d+)";
     private static final String FOOD_FORMAT_REGEX =
@@ -52,15 +61,17 @@ public class EditEntryCommand extends Command {
                 Ui.printInvalidCommandError();
                 break;
             }
-        } catch (NumberFormatException e) {
-            Ui.printCustomError("Error: Invalid value entered!");
+        } catch (NumberFormatException | FitrException | DateTimeParseException e) {
+            Ui.printCustomError("Invalid value entered!");
         }
 
         try {
+            LOGGER.fine("Writing to exercise, food and goal lists to local storage...");
             storageManager.writeExerciseList(listManager.getExerciseList());
             storageManager.writeFoodList(listManager.getFoodList());
             storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
                     listManager.getExerciseList(), user);
+            LOGGER.fine("Exercise, food and goal lists successfully written to local storage.");
         } catch (IOException e) {
             Ui.printCustomError(Messages.MISSING_FILE);
         }
@@ -72,6 +83,7 @@ public class EditEntryCommand extends Command {
     }
 
     private void editExercise(ExerciseList exerciseList, String arguments) {
+        LOGGER.fine("Editing an exercise entry...");
         Matcher matcher = EXERCISE_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
@@ -80,34 +92,41 @@ public class EditEntryCommand extends Command {
         }
 
         if (exerciseList.getSize() == 0) {
-            Ui.printCustomError("Error: Exercise list is empty!");
+            Ui.printCustomError("Exercise list is empty!");
             return;
         }
 
-        String date = matcher.group("date").trim();
-        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(date));
+        LocalDate date = LocalDate.parse(matcher.group("date").trim(), DateManager.formatter);
+        String formattedDate = date.format(DateManager.formatter);
+        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(formattedDate));
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredExercises.getSize()) {
-            Ui.printCustomError("Error: Invalid index entered!");
+            Ui.printCustomError("Invalid index entered!");
             return;
         }
 
         String exerciseName = matcher.group("exerciseName").trim();
+        if (exerciseName.isBlank()) {
+            Ui.printCustomError("Name cannot be empty!");
+            return;
+        }
+
         int calories = Integer.parseInt(matcher.group("calories").trim());
 
         if (calories < 0) {
-            Ui.printCustomError("Error: Calories cannot be negative!");
+            Ui.printCustomError("Calories cannot be negative!");
             return;
         }
 
         filteredExercises.getExercise(index - 1).setNameOfExercise(exerciseName);
         filteredExercises.getExercise(index - 1).setCaloriesBurnt(new Calorie(calories));
 
-        Ui.printCustomMessage("Successfully edited exercise to: " + exerciseName);
+        Ui.printCustomMessage("Successfully edited exercise to: " + exerciseName + ", calories burnt: " + calories);
     }
 
     private void editFood(FoodList foodList, String arguments) {
+        LOGGER.fine("Editing a food entry...");
         Matcher matcher = FOOD_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
@@ -120,26 +139,32 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        String date = matcher.group("date").trim();
-        FoodList filteredFood = new FoodList(foodList.filterByDate(date));
+        LocalDate date = LocalDate.parse(matcher.group("date").trim(), DateManager.formatter);
+        String formattedDate = date.format(DateManager.formatter);
+        FoodList filteredFood = new FoodList(foodList.filterByDate(formattedDate));
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredFood.getSize()) {
-            Ui.printCustomError("Error: Invalid index entered!");
+            Ui.printCustomError("Invalid index entered!");
             return;
         }
 
         String foodName = matcher.group("foodName").trim();
+        if (foodName.isBlank()) {
+            Ui.printCustomError("Name cannot be empty!");
+            return;
+        }
+
         int calories = Integer.parseInt(matcher.group("calories").trim());
 
         if (calories < 0) {
-            Ui.printCustomError("Error: Calories cannot be negative!");
+            Ui.printCustomError("Calories cannot be negative!");
             return;
         }
 
         int quantity = Integer.parseInt(matcher.group("quantity").trim());
         if (quantity < 0) {
-            Ui.printCustomError("Error: Quantity cannot be negative!");
+            Ui.printCustomError("Quantity cannot be negative!");
             return;
         }
 
@@ -147,10 +172,12 @@ public class EditEntryCommand extends Command {
         filteredFood.getFood(index - 1).setCaloriesInFood(new Calorie(calories * quantity));
         filteredFood.getFood(index - 1).setAmountOfFood(quantity);
 
-        Ui.printCustomMessage("Successfully edited food to: " + foodName);
+        Ui.printCustomMessage("Successfully edited food to: " + foodName
+                + ", calories (per qty): " + calories + ", amount: " + quantity);
     }
 
-    private void editGoal(GoalList goalList, String arguments) {
+    private void editGoal(GoalList goalList, String arguments) throws FitrException {
+        LOGGER.fine("Editing a goal entry...");
         Matcher matcher = GOAL_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
@@ -165,7 +192,7 @@ public class EditEntryCommand extends Command {
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > goalList.getSize()) {
-            Ui.printCustomError("Error: Invalid index entered!");
+            Ui.printCustomError("Invalid index entered!");
             return;
         }
 
@@ -173,15 +200,15 @@ public class EditEntryCommand extends Command {
         String goalType = matcher.group("goalType").trim();
 
         if (!(goalType.equals(Commands.COMMAND_EXERCISE) || goalType.equals(Commands.COMMAND_FOOD))) {
-            Ui.printCustomError("Error: Invalid goal type!");
+            Ui.printCustomError("Invalid goal type!");
             return;
         }
 
         Goal goal = goalList.getGoal(index - 1);
         String createdDate = goal.getCreatedDate();
-        goalType = goalType.equals(Commands.COMMAND_EXERCISE) ? "E" : "F";
-        Goal editedGoal = formatGoal(createdDate, goalType, goalDescription);
-        goal.setGoal(editedGoal, "0.0");
+        goalType = goalType.equals(Commands.COMMAND_EXERCISE) ? SYMBOL_EXERCISE : SYMBOL_FOOD;
+        Goal editedGoal = formatGoal(LocalDate.parse(createdDate, DateManager.formatter), goalType, goalDescription);
+        goal.setGoal(editedGoal, SYMBOL_NO);
 
         Ui.printCustomMessage("Successfully edited goal to: [" + editedGoal.getGoalType()
                 + "] " + editedGoal.getDescription());

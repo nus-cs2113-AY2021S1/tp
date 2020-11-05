@@ -1,5 +1,6 @@
 package fitr.storage;
 
+import fitr.common.DateManager;
 import fitr.goal.Goal;
 import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -19,14 +21,20 @@ import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 public class GoalStorage {
     private static final Logger LOGGER = Logger.getLogger(GoalStorage.class.getName());
-    private static final String GOAL_LIST_PATH = "goals.txt";
+    private static final String DEFAULT_GOAL_LIST_PATH = "goals.txt";
+    private final String goalListPath;
 
     public GoalStorage() throws IOException {
-        File goalListFile = new File(GOAL_LIST_PATH);
+        this(DEFAULT_GOAL_LIST_PATH);
+    }
+
+    public GoalStorage(String goalListPath) throws IOException {
+        this.goalListPath = goalListPath;
+        File goalListFile = new File(goalListPath);
 
         if (!goalListFile.exists()) {
             boolean isFileExists = goalListFile.createNewFile();
-            LOGGER.fine("Goal list file created: " + GOAL_LIST_PATH);
+            LOGGER.fine("Goal list file created: " + goalListPath);
         }
     }
 
@@ -38,11 +46,11 @@ public class GoalStorage {
      */
     public ArrayList<Goal> loadGoalList() throws FileNotFoundException, ArrayIndexOutOfBoundsException,
             InvalidFileFormatException {
-        LOGGER.fine("Attempting to read file: " + GOAL_LIST_PATH);
+        LOGGER.fine("Attempting to read file: " + goalListPath);
         ArrayList<Goal> goalList = new ArrayList<>();
         String line;
         String[] arguments;
-        File goalListFile = new File(GOAL_LIST_PATH);
+        File goalListFile = new File(goalListPath);
         Scanner readFile = new Scanner(goalListFile);
 
         while (readFile.hasNext()) {
@@ -52,7 +60,8 @@ public class GoalStorage {
             if (arguments.length != 4) {
                 throw new InvalidFileFormatException();
             }
-            goalList.add(new Goal(arguments[0], arguments[1], arguments[2], arguments[3]));
+            goalList.add(new Goal(LocalDate.parse(arguments[0], DateManager.formatter),
+                    arguments[1], arguments[2], arguments[3]));
         }
 
         LOGGER.fine("Goal list file read successfully.");
@@ -67,8 +76,8 @@ public class GoalStorage {
      */
     public void writeGoalList(GoalList goalList, FoodList foodList, ExerciseList exerciseList,
                               User user) throws IOException {
-        LOGGER.fine("Attempting to write to file: " + GOAL_LIST_PATH);
-        FileWriter fileWriter = new FileWriter(GOAL_LIST_PATH);
+        LOGGER.fine("Attempting to write to file: " + goalListPath);
+        FileWriter fileWriter = new FileWriter(goalListPath);
         Goal goal;
 
         for (int i = 0; i < goalList.getSize(); i++) {
