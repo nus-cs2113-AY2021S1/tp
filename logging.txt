@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2020-11-05T14:15:35.279764700Z</date>
-  <millis>1604585735279</millis>
-  <nanos>764700</nanos>
+  <date>2020-11-05T14:33:59.760553600Z</date>
+  <millis>1604586839760</millis>
+  <nanos>553600</nanos>
   <sequence>0</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -14,9 +14,9 @@
   <message>Logger created</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:35.351575800Z</date>
-  <millis>1604585735351</millis>
-  <nanos>575800</nanos>
+  <date>2020-11-05T14:33:59.858870100Z</date>
+  <millis>1604586839858</millis>
+  <nanos>870100</nanos>
   <sequence>1</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -26,9 +26,9 @@
   <message>Personal information and events successfully loaded</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:35.375629500Z</date>
-  <millis>1604585735375</millis>
-  <nanos>629500</nanos>
+  <date>2020-11-05T14:33:59.887596400Z</date>
+  <millis>1604586839887</millis>
+  <nanos>596400</nanos>
   <sequence>2</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -38,9 +38,9 @@
   <message>Zoom information and events successfully loaded</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:35.380897500Z</date>
-  <millis>1604585735380</millis>
-  <nanos>897500</nanos>
+  <date>2020-11-05T14:33:59.892382200Z</date>
+  <millis>1604586839892</millis>
+  <nanos>382200</nanos>
   <sequence>3</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -50,9 +50,9 @@
   <message>Timetable information and events successfully loaded</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:35.386837500Z</date>
-  <millis>1604585735386</millis>
-  <nanos>837500</nanos>
+  <date>2020-11-05T14:33:59.898159500Z</date>
+  <millis>1604586839898</millis>
+  <nanos>159500</nanos>
   <sequence>4</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -62,9 +62,9 @@
   <message>Goal file loaded</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.650951800Z</date>
-  <millis>1604585743650</millis>
-  <nanos>951800</nanos>
+  <date>2020-11-05T14:34:21.323921300Z</date>
+  <millis>1604586861323</millis>
+  <nanos>921300</nanos>
   <sequence>5</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -74,9 +74,9 @@
   <message>"meeting 16/9/2020 18:89 PM | 0 | 0 | 0 | 0 |  | F" added to stuff to be written</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.655859900Z</date>
-  <millis>1604585743655</millis>
-  <nanos>859900</nanos>
+  <date>2020-11-05T14:34:21.325853100Z</date>
+  <millis>1604586861325</millis>
+  <nanos>853100</nanos>
   <sequence>6</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -86,9 +86,9 @@
   <message>All changes recorded successfully to Personal save file</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.657933300Z</date>
-  <millis>1604585743657</millis>
-  <nanos>933300</nanos>
+  <date>2020-11-05T14:34:21.325853100Z</date>
+  <millis>1604586861325</millis>
+  <nanos>853100</nanos>
   <sequence>7</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -98,9 +98,9 @@
   <message>Personal saved successfully</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.660016600Z</date>
-  <millis>1604585743660</millis>
-  <nanos>16600</nanos>
+  <date>2020-11-05T14:34:21.326853Z</date>
+  <millis>1604586861326</millis>
+  <nanos>853000</nanos>
   <sequence>8</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -110,9 +110,9 @@
   <message>"Math class | 2000-10-17 | 1300 | 0 | 0 | math building |  | F" added to stuff to be written</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.662964200Z</date>
-  <millis>1604585743662</millis>
-  <nanos>964200</nanos>
+  <date>2020-11-05T14:34:21.327849100Z</date>
+  <millis>1604586861327</millis>
+  <nanos>849100</nanos>
   <sequence>9</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -122,9 +122,9 @@
   <message>All changes recorded successfully to Timetable save file</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.663837400Z</date>
-  <millis>1604585743663</millis>
-  <nanos>837400</nanos>
+  <date>2020-11-05T14:34:21.328846Z</date>
+  <millis>1604586861328</millis>
+  <nanos>846000</nanos>
   <sequence>10</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -134,9 +134,9 @@
   <message>Timetable saved successfully</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.666953300Z</date>
-  <millis>1604585743666</millis>
-  <nanos>953300</nanos>
+  <date>2020-11-05T14:34:21.328846Z</date>
+  <millis>1604586861328</millis>
+  <nanos>846000</nanos>
   <sequence>11</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -146,9 +146,9 @@
   <message>"Math class | 2000-10-09 | 1300 | 0 | 0 | zoom.com |  | F" added to stuff to be written</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.671016200Z</date>
-  <millis>1604585743671</millis>
-  <nanos>16200</nanos>
+  <date>2020-11-05T14:34:21.330839600Z</date>
+  <millis>1604586861330</millis>
+  <nanos>839600</nanos>
   <sequence>12</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -158,9 +158,9 @@
   <message>All changes recorded successfully to Zoom save file</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.671817100Z</date>
-  <millis>1604585743671</millis>
-  <nanos>817100</nanos>
+  <date>2020-11-05T14:34:21.330839600Z</date>
+  <millis>1604586861330</millis>
+  <nanos>839600</nanos>
   <sequence>13</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -170,9 +170,9 @@
   <message>Zoom saved successfully</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.677143600Z</date>
-  <millis>1604585743677</millis>
-  <nanos>143600</nanos>
+  <date>2020-11-05T14:34:21.331838700Z</date>
+  <millis>1604586861331</millis>
+  <nanos>838700</nanos>
   <sequence>14</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -182,9 +182,9 @@
   <message>"hello there" added to stuff to be written</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.679974100Z</date>
-  <millis>1604585743679</millis>
-  <nanos>974100</nanos>
+  <date>2020-11-05T14:34:21.333834200Z</date>
+  <millis>1604586861333</millis>
+  <nanos>834200</nanos>
   <sequence>15</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
@@ -194,154 +194,10 @@
   <message>All changes recorded successfully to goal save file</message>
 </record>
 <record>
-  <date>2020-11-05T14:15:43.679974100Z</date>
-  <millis>1604585743679</millis>
-  <nanos>974100</nanos>
+  <date>2020-11-05T14:34:21.333834200Z</date>
+  <millis>1604586861333</millis>
+  <nanos>834200</nanos>
   <sequence>16</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>saveFile</method>
-  <thread>1</thread>
-  <message>Goal saved successfully</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.618287200Z</date>
-  <millis>1604585745618</millis>
-  <nanos>287200</nanos>
-  <sequence>17</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>eventSave</method>
-  <thread>1</thread>
-  <message>"meeting 16/9/2020 18:89 PM | 0 | 0 | 0 | 0 |  | F" added to stuff to be written</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.622122400Z</date>
-  <millis>1604585745622</millis>
-  <nanos>122400</nanos>
-  <sequence>18</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>eventSave</method>
-  <thread>1</thread>
-  <message>All changes recorded successfully to Personal save file</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.622227500Z</date>
-  <millis>1604585745622</millis>
-  <nanos>227500</nanos>
-  <sequence>19</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>saveFile</method>
-  <thread>1</thread>
-  <message>Personal saved successfully</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.623917300Z</date>
-  <millis>1604585745623</millis>
-  <nanos>917300</nanos>
-  <sequence>20</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>eventSave</method>
-  <thread>1</thread>
-  <message>"Math class | 2000-10-17 | 1300 | 0 | 0 | math building |  | F" added to stuff to be written</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.627025200Z</date>
-  <millis>1604585745627</millis>
-  <nanos>25200</nanos>
-  <sequence>21</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>eventSave</method>
-  <thread>1</thread>
-  <message>All changes recorded successfully to Timetable save file</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.627913900Z</date>
-  <millis>1604585745627</millis>
-  <nanos>913900</nanos>
-  <sequence>22</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>saveFile</method>
-  <thread>1</thread>
-  <message>Timetable saved successfully</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.627913900Z</date>
-  <millis>1604585745627</millis>
-  <nanos>913900</nanos>
-  <sequence>23</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>eventSave</method>
-  <thread>1</thread>
-  <message>"Math class | 2000-10-09 | 1300 | 0 | 0 | zoom.com |  | F" added to stuff to be written</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.630860200Z</date>
-  <millis>1604585745630</millis>
-  <nanos>860200</nanos>
-  <sequence>24</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>eventSave</method>
-  <thread>1</thread>
-  <message>All changes recorded successfully to Zoom save file</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.631965Z</date>
-  <millis>1604585745631</millis>
-  <nanos>965000</nanos>
-  <sequence>25</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>saveFile</method>
-  <thread>1</thread>
-  <message>Zoom saved successfully</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.632854700Z</date>
-  <millis>1604585745632</millis>
-  <nanos>854700</nanos>
-  <sequence>26</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>goalSave</method>
-  <thread>1</thread>
-  <message>"hello there" added to stuff to be written</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.634634700Z</date>
-  <millis>1604585745634</millis>
-  <nanos>634700</nanos>
-  <sequence>27</sequence>
-  <logger>allEventLog</logger>
-  <level>FINE</level>
-  <class>seedu.duke.storage.Storage</class>
-  <method>goalSave</method>
-  <thread>1</thread>
-  <message>All changes recorded successfully to goal save file</message>
-</record>
-<record>
-  <date>2020-11-05T14:15:45.635474900Z</date>
-  <millis>1604585745635</millis>
-  <nanos>474900</nanos>
-  <sequence>28</sequence>
   <logger>allEventLog</logger>
   <level>FINE</level>
   <class>seedu.duke.storage.Storage</class>
