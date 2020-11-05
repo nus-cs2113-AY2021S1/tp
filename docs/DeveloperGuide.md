@@ -314,8 +314,14 @@ Additionally, it implements the following operations:
 * getHighlighBoxLowerMessage() - Returns a **String** containing a indicator.
 
 Given below is a sequence diagram of how printing the timetable occurs.
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%201.png?raw=true)
 *<center/>Figure 2.03 sequence diagram for ShowTimetableCommand</center> <br/></br>*
+
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%202.png?raw=true)
+*<center/>Figure 2.04 sequence diagram for "Initialize ShowTimetableCommand" Block</center> <br/></br>*
+
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%203.png?raw=true)
+*<center/>Figure 2.05 sequence diagram for "Execute ShowTimetableCommand" Block</center> <br/></br>*
 
 1. When Zoomaster gets a command from the user to show the timetable, a new ShowTimetableCommand object is created.
 
@@ -329,7 +335,7 @@ Given below is a sequence diagram of how printing the timetable occurs.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20show%20timetable%20command.png?raw=true)
-*<center/>Figure 2.04 Activity diagram for ShowTimetableCommand</center> <br/></br>*
+*<center/>Figure 2.06 Activity diagram for ShowTimetableCommand</center> <br/></br>*
 
 
 #### Design consideration:
@@ -360,26 +366,26 @@ Users can enter one-shot-commands, adding multiple slots and bookmarks to a modu
 
 Given below is a sequence diagram of how the feature works.
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram.png?raw=true)  
-*<center/> Figure 2.05 Sequence diagram for AddSlotCommand </center> <br/></br>*
+*<center/> Figure 2.07 Sequence diagram for AddSlotCommand </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram2.png?raw=true)  
-*<center/> Figure 2.06 Sequence diagram for 
+*<center/> Figure 2.08 Sequence diagram for 
 "Get module if it exist, else create a new module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram3.png?raw=true)  
-*<center/> Figure 2.07 Sequence diagram for 
+*<center/> Figure 2.09 Sequence diagram for 
 "Create bookmark for module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram4.png?raw=true)  
-*<center/> Figure 2.08 Sequence diagram for 
+*<center/> Figure 2.10 Sequence diagram for 
 "Create bookmark for existing slot base on its index" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram5.png?raw=true)  
-*<center/> Figure 2.09 Sequence diagram for 
+*<center/> Figure 2.11 Sequence diagram for 
 "Get slot if it exist, else create a new slot" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotSequenceDiagram6.png?raw=true)  
-*<center/> Figure 2.10 Sequence diagram for 
+*<center/> Figure 2.12 Sequence diagram for 
 "Create bookmark for slot" Block </center> <br/></br>*
 <br></br>
 1. After calling execute() method of the AddSlotCommand object, there will be a check on whether the module code entered by the user already exists in the timetable. If it does not exist, then the module will be created.
@@ -420,7 +426,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.11 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.13 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 
 ### Planner feature (Jusuf)
