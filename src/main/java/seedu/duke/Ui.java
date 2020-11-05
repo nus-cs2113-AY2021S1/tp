@@ -69,6 +69,14 @@ public class Ui {
         System.out.println("Your total task(s): " + calendarList.getTotalTasks());
     }
 
+    /**
+     * Prints the file not found message.
+     */
+    public static void printFileNotFoundMessage() {
+        System.out.println("The file cannot be found: You should follow the UG's quick "
+                + "start to normally access the file");
+    }
+
 
     /**
      * Returns the input of the user.
@@ -121,6 +129,13 @@ public class Ui {
             System.out.println("...................................................."
                     + ".....................................");
         }
+    }
+
+    /**
+     *  Prints when user changes the content of the file.
+     */
+    public static void printWrongStorageInput() {
+        System.out.println("The content of the file is changed by user, cannot load");
     }
 
     /**
@@ -521,6 +536,9 @@ public class Ui {
                     "Error: invalid module code. The module code cannot be found in NUS module list.\n"
                             + "Please be reminded to key in the exam in this format: \n"
                             + "exam <module code> @<exam venue> /ddMMyy HHmm");
+            break;
+        case "storage":
+            System.out.println("Content in the file is altered, could not read in the file normally");
             break;
         default:
             System.out.println("Unknown Error.");
