@@ -10,6 +10,7 @@ import seedu.exceptions.MaxNumTaskException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
 import seedu.exceptions.EmptyDataStackException;
+import seedu.exceptions.InvalidReminderException;
 import seedu.task.Task;
 import seedu.parser.Parser;
 
@@ -29,11 +30,11 @@ class DeleteTest {
 
     void setup() {
         try {
-            t1 = new Task("meeting", "20-10-2020", null, null, null);
-            t2 = new Task("meeting", "20-10-2020", null, null, "2");
-            t3 = new Task("reading", "17-10-2020", null, null, "2");
-            t4 = new Task("reading", "24-10-2020", "2200", "2300", null);
-            t5 = new Task("random", "15-10-2020", null, null, "3");
+            t1 = new Task("meeting", "20-10-2020", null, null, null, null, null);
+            t2 = new Task("meeting", "20-10-2020", null, null, "2", null, null);
+            t3 = new Task("reading", "17-10-2020", null, null, "2", null, null);
+            t4 = new Task("reading", "24-10-2020", "2200", "2300", null, null, null);
+            t5 = new Task("random", "15-10-2020", null, null, "3", null, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,7 +58,7 @@ class DeleteTest {
     @Test
     public void deleteCommand_executeTest() throws InvalidTaskNumberException, InvalidCommandException,
             MaxNumTaskException, InvalidDatetimeException, InvalidPriorityException, EmptyDataStackException,
-            UnknowCommandException {
+            UnknowCommandException, InvalidReminderException {
         setup();
         TaskMap taskMap = new TaskMap();
         taskMap.addTask(t1);
