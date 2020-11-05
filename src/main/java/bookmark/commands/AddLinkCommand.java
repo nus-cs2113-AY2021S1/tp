@@ -33,7 +33,7 @@ public class AddLinkCommand extends BookmarkCommand {
                 evaluateLink();
                 checkLink(categories);
                 categories.get(categoryNumber - 1).addLink(link,title);
-                ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
+                ui.showBookmarkLinkList(categories.get(categoryNumber - 1));
                 storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {

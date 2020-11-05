@@ -11,6 +11,7 @@ public class BookmarkUi {
     public static void printWelcomeBookmarkMessage() {
         System.out.println("Welcome to bookmark mode!");
         System.out.println("You can use this mode to bookmark your links for easier access!");
+        System.out.println("View your list of links by typing \"list\"");
         System.out.println("\nChoose your category by typing \"bm <category index>!\"");
         System.out.println("Otherwise, insert \"help\" to find the list of commands available.");
     }
@@ -24,14 +25,13 @@ public class BookmarkUi {
         }
     }
 
-    public void showBookmarkLinkList(ArrayList<BookmarkList> links) {
-        System.out.println("The following are your current bookmarks in this category");
-        System.out.println("Bookmarks:");
-        if (links.size() == 0) {
+    public void showBookmarkLinkList(BookmarkCategory category) {
+        System.out.println("Bookmarks in " + category.getName() + ": ");
+        if (category.getLinks().size() == 0) {
             System.out.println("\t<empty>");
         } else {
             int i = 1;
-            for (BookmarkList link: links) {
+            for (BookmarkList link: category.getLinks()) {
                 System.out.println("\t" + i + "." + link);
                 i++;
             }
@@ -48,14 +48,14 @@ public class BookmarkUi {
         System.out.println("Here is the entire list");
         for (int i = 0; i < categories.size(); i++) {
             System.out.println((i + 1) + ". Category: " + categories.get(i).getName());
-            showBookmarkLinkList(categories.get(i).getLinks());
+            showBookmarkLinkList(categories.get(i));
         }
     }
 
     public void printChooseCategoryMessage() {
         System.out.println("You have not chosen a category.");
         System.out.println("Change category by using \"bm <CategoryNumber>\". ");
-        System.out.println("View the categories available by using \"list cat\". ");
+        System.out.println("View the categories available by using \"list -c\". ");
     }
 
     public void showEmptyError(String item) {
@@ -71,20 +71,21 @@ public class BookmarkUi {
     }
 
     public void showInvalidNumberError() {
-        System.out.println("Sorry the format requires a valid number.");
+        System.out.println("Sorry, the format requires a valid number.");
         System.out.println("Please enter a valid number!");
+        System.out.println("View the number available by using \"list\" or \"list -c\"");
         System.out.println("You can input \"help\" to view the input format.");
     }
 
     public void showModeChangeMessage(ArrayList<BookmarkCategory> categories, int categoryNumberInList) {
         System.out.println("You are now in " + categories.get(categoryNumberInList).getName() + " category");
-        showBookmarkLinkList(categories.get(categoryNumberInList).getLinks());
+        showBookmarkLinkList(categories.get(categoryNumberInList));
         System.out.println("Add new bookmarks by using \"add <link>\"");
     }
 
     public void showAlreadyInModeMessage(ArrayList<BookmarkCategory> categories, int categoryName) {
         System.out.println("You are already in chosen Category: " + categories.get(categoryName - 1).getName());
-        showBookmarkLinkList(categories.get(categoryName - 1).getLinks());
+        showBookmarkLinkList(categories.get(categoryName - 1));
     }
 
     public void showStarBookmarks(ArrayList<BookmarkCategory> categories) {

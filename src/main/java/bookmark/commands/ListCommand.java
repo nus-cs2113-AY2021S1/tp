@@ -37,7 +37,7 @@ public class ListCommand extends BookmarkCommand {
                     ui.showBookmarkList(categories);
                 } else {
                     assert categoryNumber > 0 : "Category number cannot be accessed";
-                    ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
+                    ui.showBookmarkLinkList(categories.get(categoryNumber - 1));
                 }
                 printCurrentMode(ui, categories);
             }
