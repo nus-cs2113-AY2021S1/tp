@@ -137,7 +137,7 @@ public abstract class SprintCommand extends Command {
         for (String id : taskIds) {
             int taskId = Integer.parseInt(id);
 
-            if (!this.projOwner.getBacklog().checkTaskExist(taskId)) {
+            if (!this.projOwner.getTaskList().checkTaskExist(taskId)) {
                 throw new DukeException("Task not found in backlog: " + taskId);
             }
 

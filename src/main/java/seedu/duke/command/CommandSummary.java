@@ -27,6 +27,7 @@ public class CommandSummary {
     public static final String DURATION = "dur";
     public static final String SELECT = "select";
     public static final String LIST = "list";
+    public static final String PRIORITYVIEW = "priorityview";
 
     /*
     Parameters

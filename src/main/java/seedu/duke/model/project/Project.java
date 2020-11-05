@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Project implements JsonableObject {
 
     private SprintManager sprintList;
-    private TaskManager backlog;
+    private TaskManager taskList;
     private ProjectMembers memberList;
     private int projectID;
     private String title;
@@ -38,7 +38,7 @@ public class Project implements JsonableObject {
         this.description = description;
         this.projectDuration = projectDuration;
         this.sprintLength = sprintLength;
-        backlog = new TaskManager(this);
+        taskList = new TaskManager(this);
         memberList = new ProjectMembers();
         sprintList = new SprintManager();
     }
@@ -65,8 +65,8 @@ public class Project implements JsonableObject {
             projectInString.append(String.format("[Project will start along with the first sprint]%n"));
         }
 
-        if (!this.backlog.backlogTasks.isEmpty()) {
-            projectInString.append(this.backlog.toString());
+        if (!this.taskList.taskList.isEmpty()) {
+            projectInString.append(this.taskList.toString());
         } else {
             projectInString.append(String.format("[Project backlog is empty]%n"));
         }
@@ -109,8 +109,8 @@ public class Project implements JsonableObject {
         return startDate;
     }
 
-    public TaskManager getBacklog() {
-        return backlog;
+    public TaskManager getTaskList() {
+        return taskList;
     }
 
     public ProjectMembers getMemberList() {
@@ -119,10 +119,6 @@ public class Project implements JsonableObject {
 
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public TaskManager getProjectBacklog() {
-        return backlog;
     }
 
     public String getDescription() {
@@ -160,13 +156,13 @@ public class Project implements JsonableObject {
         this.sprintLength = sprintLength;
     }
 
-    public void displayProjectBacklog() {
-        if (backlog.getNextId() == 0) {
+    public void displayTaskList() {
+        if (taskList.getNextId() == 0) {
             System.out.println("No tasks currently added to project backlog.");
         } else {
             System.out.println("Current tasks in your project backlog");
-            for (int i = 0; i < backlog.getNextId(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + backlog.getTask(i).getTitle());
+            for (int i = 0; i < taskList.getNextId(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + taskList.getTask(i).getTitle());
             }
         }
     }
@@ -193,7 +189,7 @@ public class Project implements JsonableObject {
         jObj.put("sprintLength", this.sprintLength);
         jObj.put("startDate", this.startDate == null ? null : this.startDate.toString());
         jObj.put("endDate", this.endDate == null ? null : this.endDate.toString());
-        jObj.put("backlog", backlog);
+        jObj.put("backlog", taskList);
         jObj.put("members", memberList);
         jObj.put("allSprints", sprintList);
         jObj.toJson(writer);
@@ -210,11 +206,11 @@ public class Project implements JsonableObject {
         this.startDate = JsonableObject.parseDate(jsonObj, "startDate");
         this.endDate = JsonableObject.parseDate(jsonObj, "endDate");
         this.sprintList = new SprintManager();
-        this.backlog = new TaskManager();
+        this.taskList = new TaskManager();
         this.memberList = new ProjectMembers();
 
         sprintList.fromJson((JsonObject) jsonObj.get("allSprints"), this);
-        backlog.fromJson((JsonObject) jsonObj.get("backlog"), this);
+        taskList.fromJson((JsonObject) jsonObj.get("backlog"), this);
         memberList.fromJson((JsonArray) jsonObj.get("members"));
         
     }

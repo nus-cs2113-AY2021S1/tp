@@ -18,6 +18,7 @@ public class ViewTaskCommand extends TaskCommand {
     }
 
     public void execute() {
+        boolean validTask = false;
         assert !projectListManager.isEmpty() : "No project found!\n";
         if (projectListManager.isEmpty()) {
             Ui.showError("Please create a project first.");
@@ -30,17 +31,21 @@ public class ViewTaskCommand extends TaskCommand {
                 Ui.showError("Missing parameters.");
                 return;
             }
-            Ui.showToUserLn("The details of the tasks are as follows: ");
+
             for (int i = 0; i < parameters.size(); i++) {
                 Task task;
-                int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
-                //if (backlogId <= proj.getProjectBacklog().backlogTasks.size()) {
-                //Change to getNextId because each task's ID does not decrease with deletion.
-                if (backlogId <= proj.getProjectBacklog().getNextId()) {
-                    task = proj.getProjectBacklog().getTask(backlogId);
+                int taskId = Integer.parseInt(parameters.get(Integer.toString(i)));
+
+                if (taskId <= proj.getTaskList().getNextId() && taskId > 0) {
+                    if (!validTask) {
+                        Ui.showToUserLn("The details of the tasks are as follows: ");
+                        validTask = true;
+                    }
+
+                    task = proj.getTaskList().getTask(taskId);
                     Ui.showToUserLn(task.toString());
                 } else {
-                    Ui.showError("The following task ID: " + backlogId
+                    Ui.showError("The following task ID: " + taskId
                             + " doesn't exist in backlog.\nPlease enter a"
                             + " valid ID.");
                 }
