@@ -1,6 +1,8 @@
 package seedu.duke.event;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.hr.Member;
+import seedu.duke.hr.MemberList;
 
 import java.time.LocalDate;
 
@@ -11,6 +13,8 @@ class EventListTest {
     Event event = new Event("PR meeting", "2030-06-30", "08-00");
     Event event2 = new Event("Autodesk course","2030-10-20","08-00");
     Event event1 = new Event("PR meeting", "2010-06-30", "08-00");
+    Member member1 = new Member("James Gosling", 11111111,
+            "111111@gmail.com", "member");
 
     @Test
     void testPrintEvent() {
@@ -90,9 +94,62 @@ class EventListTest {
 
         String expected9 = "OOPS!!! The event does not exist.\n";
         assertEquals(expected9,EventList.isCompleted(3));
-
     }
 
+    @Test
+    void test_EventAttendance_executesNormally() {
+        EventList.addEvent(event2);
+        MemberList.addToList(member1);
+        String expected1 = "Noted. I have added this participant to this event:\n"
+                + "James Gosling\n"
+                + "Now you have 1 member participated in Autodesk course.\n";
+        assertEquals(expected1, EventList.addAttendance(event2.getEventName(), member1.getMemberName()));
 
+        String expected2 = "The following member has participated in this event:\n"
+                + "1. James Gosling\n"
+                + "Now you have 1 member attended Autodesk course.\n";
+        assertEquals(expected2, EventList.listAttendance(event2.getEventName()));
+
+        String expected3 = "Got it! I'll remove this member from the event attendance:\n"
+                + "James Gosling\n"
+                + "Now you have 0 members attended Autodesk course.\n";
+        assertEquals(expected3, EventList.deleteAttendance(event2.getEventName(), member1.getMemberName()));
+        EventList.deleteEvent(0);
+        MemberList.deleteFromList(0);
+    }
+
+    @Test
+    void test_EventAttendance_executeUnsuccessfully() {
+        EventList.addEvent(event2);
+        MemberList.addToList(member1);
+
+        //member does not exist
+        String expected1 = "Member does not exist!\n";
+        assertEquals(expected1, EventList.addAttendance(event2.getEventName(),"Draco Malfoy"));
+
+        //event does not exist
+        String expected2 = "OOPS!!! The event does not exist.\n";
+        assertEquals(expected2, EventList.addAttendance("Arduino course", member1.getMemberName()));
+
+        EventList.addAttendance(event2.getEventName(), member1.getMemberName());
+        //member attendance already taken
+        String expected3 = "Member attendance had already been taken!\n";
+        assertEquals(expected3, EventList.addAttendance(event2.getEventName(),member1.getMemberName()));
+
+        //event does not exist
+        String expected4 = "OOPS!!! The event does not exist.\n";
+        assertEquals(expected4, EventList.listAttendance("Arduino course"));
+
+        //event does not exist
+        String expected5 = "OOPS!!! The event does not exist.\n";
+        assertEquals(expected5, EventList.deleteAttendance("Arduino course", member1.getMemberName()));
+
+        EventList.deleteAttendance(event2.getEventName(), member1.getMemberName());
+        //member attendance does not exist
+        String expected6 = "Member attendance for this event has not been taken!\n";
+        assertEquals(expected6, EventList.deleteAttendance(event2.getEventName(), "Draco Malfoy"));
+        EventList.deleteEvent(0);
+        MemberList.deleteFromList(0);
+    }
 
 }
