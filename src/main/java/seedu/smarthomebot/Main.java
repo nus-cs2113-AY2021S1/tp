@@ -71,7 +71,7 @@ public class Main {
     }
 
     /**
-     * Executes the user command and prints the result
+     * Executes the user command and prints the result.
      */
     private CommandResult executeCommand(Command command) {
         try {

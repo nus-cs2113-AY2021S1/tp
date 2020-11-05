@@ -39,7 +39,7 @@ public class TextUi {
     }
 
     /**
-     * Prints result(s) of the command to the user
+     * Prints result(s) of the command to the user.
      */
     public void printResultToUser(CommandResult result) {
         printToUser(LINE + result.feedbackToUser);

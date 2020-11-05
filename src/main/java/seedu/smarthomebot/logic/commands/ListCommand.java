@@ -67,7 +67,8 @@ public class ListCommand extends Command {
         }
     }
 
-    private CommandResult listAppliance() throws LocationNotFoundException, EmptyApplianceListException, NoApplianceInLocationException {
+    private CommandResult listAppliance() throws LocationNotFoundException, EmptyApplianceListException,
+            NoApplianceInLocationException {
         String outputResult;
         if (filteredLocation.equals("")) {
             if (applianceList.getAllAppliance().size() == 0) {
