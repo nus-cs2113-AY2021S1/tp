@@ -76,22 +76,22 @@ public class Task {
             reminderString = "off";
         }
         switch (reminderString) {
-            case "on":
-                reminder.setIsOn(true);
-                if (time != null) {
-                    reminder.setTime(time);
-                } else if (startTime != null) {
-                    reminder.setTime(LocalTime.of(getStartTime().getHour() - 1,
-                            getStartTime().getMinute()));
-                } else {
-                    throw new InvalidReminderException();
-                }
-                break;
-            case "off":
-                offReminder();
-                break;
-            default:
+        case "on":
+            reminder.setIsOn(true);
+            if (time != null) {
+                reminder.setTime(time);
+            } else if (startTime != null) {
+                reminder.setTime(LocalTime.of(getStartTime().getHour() - 1,
+                        getStartTime().getMinute()));
+            } else {
                 throw new InvalidReminderException();
+            }
+            break;
+        case "off":
+            offReminder();
+            break;
+        default:
+            throw new InvalidReminderException();
         }
     }
 
@@ -145,7 +145,7 @@ public class Task {
             throws InvalidReminderException, InvalidDatetimeException {
         initiateReminder(reminderString, reminderTime);
     }
-    
+
     private int generateHashValue() {
         return hashCode() % (int) pow(10, HASH_VALUE_DIGITS);
     }
