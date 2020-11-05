@@ -773,7 +773,7 @@ Instruction:
 2. Answer the questions as prompted
 3. `back`
 
-Expected ouput:
+Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
 ### 4.6 Finding relevant flashcards: `find`
@@ -786,20 +786,6 @@ Instruction:
 
 Expected output:
 ![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
-
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
 ## FAQ
 
