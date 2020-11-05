@@ -9,7 +9,9 @@ class ZoomasterTest {
 
     @Test
     public void defaultTest() {
-        test = new Zoomaster("./data/bookmarks.txt", "./data/timetable.txt");
+        test = new Zoomaster("./data/bookmarks.txt",
+                "./data/timetable.txt",
+                "./data/settings.txt");
 
         assertTrue(true);
     }
