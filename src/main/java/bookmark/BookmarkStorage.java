@@ -94,7 +94,7 @@ public class BookmarkStorage {
     private String getCategoryLinks(BookmarkCategory category) {
         String listOfLinks = "";
         for (BookmarkList link : category.getLinks()) {
-            listOfLinks += link.getLink() + ",";
+            listOfLinks += link.getPrintLink() + ",";
         }
         return listOfLinks;
     }
