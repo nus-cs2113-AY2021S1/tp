@@ -1,6 +1,7 @@
 package seedu.quotesify.commands.delete;
 
 import seedu.quotesify.book.Book;
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
@@ -37,31 +38,26 @@ public class DeleteRatingCommand extends DeleteCommand {
     }
 
     private void deleteRating(RatingList ratings, TextUi ui) {
-        boolean hasMissingInput = RatingParser.checkUserInput(information);
-        if (hasMissingInput) {
-            quotesifyLogger.log(Level.INFO, "user input is missing");
-            return;
-        }
+        try {
+            RatingParser.checkUserInput(information);
+            String bookIndex = information.trim();
+            Book bookToDeleteRating = RatingParser.checkBookExists(bookIndex);
 
-        String bookIndex = information.trim();
-        Book bookToDeleteRating = RatingParser.checkBookExists(bookIndex);
+            bookToDeleteRating.setRating(RatingParser.UNRATED);
+            String title = bookToDeleteRating.getTitle();
+            String author = bookToDeleteRating.getAuthor().getName();
 
-        if (bookToDeleteRating == null) {
-            return;
-        }
-
-        bookToDeleteRating.setRating(RatingParser.UNRATED);
-        String title = bookToDeleteRating.getTitle();
-        String author = bookToDeleteRating.getAuthor().getName();
-
-        for (Rating rating : ratings.getList()) {
-            if (rating.getTitle().equals(title) && rating.getAuthor().equals(author)) {
-                ratings.delete(ratings.getList().indexOf(rating));
-                ui.printDeleteRating(title, author);
-                return;
+            for (Rating rating : ratings.getList()) {
+                if (rating.getTitle().equals(title) && rating.getAuthor().equals(author)) {
+                    ratings.delete(ratings.getList().indexOf(rating));
+                    ui.printDeleteRating(title, author);
+                    return;
+                }
             }
+            quotesifyLogger.log(Level.INFO, "book has not been rated before");
+            throw new QuotesifyException(ERROR_RATING_DO_NOT_EXIST);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
         }
-        System.out.println(ERROR_RATING_DO_NOT_EXIST);
-        quotesifyLogger.log(Level.INFO, "book has not been rated before");
     }
 }

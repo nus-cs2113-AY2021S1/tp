@@ -95,6 +95,9 @@ ________                __                .__  _____
 Welcome to Quotesify v2.1!
 Before you continue, here's something:
 Better days are coming, they are called Saturday and Sunday.
+--------------------------------------------------------------
+
+What would you like to do with Quotesify?
 ```
 
 *Note: If you have added a quote before, the quote printed will be randomized.*

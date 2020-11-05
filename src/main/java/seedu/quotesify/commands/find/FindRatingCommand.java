@@ -1,5 +1,6 @@
 package seedu.quotesify.commands.find;
 
+import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;
 import seedu.quotesify.rating.RatingList;
@@ -32,13 +33,18 @@ public class FindRatingCommand extends FindCommand {
     @Override
     public void execute(TextUi ui, Storage storage) {
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
-        findRating(ratings, ui);
+        try {
+            findRating(ratings, ui);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
+        }
     }
 
-    private void findRating(RatingList ratings, TextUi ui) {
-        boolean hasMissingInput = RatingParser.checkUserInput(information);
-        if (hasMissingInput) {
-            quotesifyLogger.log(Level.INFO, "user input is missing");
+    private void findRating(RatingList ratings, TextUi ui) throws QuotesifyException {
+        try {
+            RatingParser.checkUserInput(information);
+        } catch (QuotesifyException e) {
+            ui.printErrorMessage(e.getMessage());
             return;
         }
 
@@ -53,9 +59,8 @@ public class FindRatingCommand extends FindCommand {
             }
         }
         if (!isFound) {
-            System.out.printf(ERROR_RATING_NOT_FOUND + "\n", keyword);
             quotesifyLogger.log(Level.INFO, "ratings not found");
-            return;
+            throw new QuotesifyException(ERROR_RATING_NOT_FOUND);
         }
         ui.printFoundRating(ratings, keyword);
     }
