@@ -28,4 +28,24 @@ public class ReviseCommandTest {
         Ui ui = new Ui();
         assertEquals(ReviseCommand.rateCard(ui, cards, card, "e").size(), 0);
     }
+
+    @Test
+    public void rateCard_medium_returnsSizeZero() {
+        String question = "1+1?";
+        String answer = "2";
+        ArrayList<Card> cards = new ArrayList<>();
+        Card card = new Card(question, answer);
+        Ui ui = new Ui();
+        assertEquals(ReviseCommand.rateCard(ui, cards, card, "m").size(), 0);
+    }
+
+    @Test
+    public void rateCard_hard_returnsSizeZero() {
+        String question = "1+1?";
+        String answer = "2";
+        ArrayList<Card> cards = new ArrayList<>();
+        Card card = new Card(question, answer);
+        Ui ui = new Ui();
+        assertEquals(ReviseCommand.rateCard(ui, cards, card, "h").size(), 0);
+    }
 }
