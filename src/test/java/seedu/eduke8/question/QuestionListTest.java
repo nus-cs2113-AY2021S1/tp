@@ -3,9 +3,9 @@ package seedu.eduke8.question;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.common.Displayable;
-import seedu.eduke8.exception.Eduke8Exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class QuestionListTest extends Eduke8Test {
@@ -30,14 +30,14 @@ class QuestionListTest extends Eduke8Test {
     }
 
     @Test
-    void find_questionListWithThreeQuestions_returnsFirstQuestion() throws Eduke8Exception {
+    void find_questionListWithThreeQuestions_returnsFirstQuestion() {
         Displayable firstQuestionOfQuestionList = questionList.find(PLACEHOLDER_QUESTION_ONE_DESCRIPTION);
 
         assertEquals(PLACEHOLDER_QUESTION_ONE_DESCRIPTION, firstQuestionOfQuestionList.getDescription());
     }
 
     @Test
-    void find_questionNotFound_expectEduke8Exception() {
-        assertThrows(Eduke8Exception.class, () -> questionList.find(NONSENSE_DESCRIPTION));
+    void find_questionNotFound_returnsNull() {
+        assertNull(questionList.find(NONSENSE_DESCRIPTION));
     }
 }

@@ -17,7 +17,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_FAIL;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_LOAD_FAIL;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_STORAGE_SAVE_FAIL;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_USER_JSON_LOAD;
 
 public class Eduke8 {
     private static final String DATA_PATH = "data/main/topics.json";
@@ -46,17 +48,27 @@ public class Eduke8 {
 
             logStorage.save();
             topicList = new TopicList(topicsStorage.load());
-
-            userStorage = new UserStorage(userPath, topicList, bookmarkList);
-            userStorage.load();
         } catch (ParseException | IOException | ClassCastException e) {
-            ui.printError(ERROR_STORAGE_FAIL);
-            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
+            ui.printError(ERROR_STORAGE_LOAD_FAIL);
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_LOAD_FAIL);
             System.exit(1);
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
             LOGGER.log(Level.INFO, e.getMessage());
+            System.exit(1);
         }
+
+        userStorage = new UserStorage(userPath, topicList, bookmarkList);
+        try {
+            userStorage.load();
+        } catch (IOException | ParseException e) {
+            ui.printError(ERROR_USER_JSON_LOAD);
+            LOGGER.log(Level.WARNING, ERROR_USER_JSON_LOAD);
+        } catch (Eduke8Exception e) {
+            ui.printError(e.getMessage());
+            LOGGER.log(Level.INFO, e.getMessage());
+        }
+
         ui.printDataLoaded();
 
         menuParser = new MenuParser(bookmarkList);
@@ -81,22 +93,27 @@ public class Eduke8 {
             Command command = menuParser.parseCommand(topicList, userInput);
             command.execute(topicList, ui);
             isExit = command.isExit();
+            saveUserData();
         }
     }
 
     private void exit() {
         ui.printDataSaving();
-        try {
-            userStorage.save();
-        } catch (IOException e) {
-            ui.printError(ERROR_STORAGE_FAIL);
-            LOGGER.log(Level.WARNING, ERROR_STORAGE_FAIL);
-            System.exit(1);
-        }
+        saveUserData();
         ui.printDataSaved();
 
         ui.printExitMessage();
         System.exit(0);
+    }
+
+    private void saveUserData() {
+        try {
+            userStorage.save();
+        } catch (IOException e) {
+            ui.printError(ERROR_STORAGE_SAVE_FAIL);
+            LOGGER.log(Level.WARNING, ERROR_STORAGE_SAVE_FAIL);
+            System.exit(1);
+        }
     }
 
     public static void main(String[] args) {

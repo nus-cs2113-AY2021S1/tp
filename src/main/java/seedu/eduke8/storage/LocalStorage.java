@@ -22,6 +22,7 @@ public abstract class LocalStorage implements Storage {
     protected static final String KEY_CORRECT = "correct";
     protected static final String KEY_NOTES = "notes";
     protected static final String KEY_BOOKMARKED = "bookmarked";
+    protected static final String KEY_TEXT = "text";
     protected static final String PATH_SEPARATOR = "/";
     protected String filePath = new File("").getAbsolutePath();
     protected static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
