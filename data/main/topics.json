@@ -240,7 +240,7 @@
     ]
   },
   {
-    "topic": "Code_Quality",
+    "topic": "Code Quality",
     "questions": [
       {
         "description": "What does SLAP stand for?",
@@ -360,7 +360,7 @@
     ]
   },
   {
-    "topic": "Revision_Control",
+    "topic": "Revision Control",
     "questions": [
       {
         "description": "Which of these is not considered a benefit of a typical RCS?",
@@ -480,7 +480,7 @@
     ]
   },
   {
-    "topic": "Java_Basics",
+    "topic": "Java Basics",
     "questions": [
       {
         "description": "What is the value of the following expression? \n 4 * 5 - 1",
