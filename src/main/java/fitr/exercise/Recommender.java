@@ -1,5 +1,6 @@
 package fitr.exercise;
 
+import fitr.exception.FitrException;
 import fitr.list.StandardExerciseList;
 import fitr.storage.StandardExerciseStorage;
 import fitr.ui.Ui;
@@ -29,24 +30,105 @@ public class Recommender {
         assert (isSuccessful);
     }
 
-    public StandardExerciseList recommend() {
+    public StandardExerciseList recommend(int recommendationType) {
+        assert recommendationType >=0 && recommendationType <5;
         StandardExerciseList finalList = new StandardExerciseList();
-        int firstIndex = (int) (Math.random() * (upperBodyList.getSize() - 1));
-        int secondIndex = (int) (Math.random() * (lowerBodyList.getSize() - 1));
-        int thirdIndex = (int) (Math.random() * (aerobicList.getSize() - 1));
-        int fourthIndex = (int) (Math.random() * (stretchingList.getSize() - 1));
-        finalList.addExercise(upperBodyList.getExercise(firstIndex));
-        finalList.addExercise(lowerBodyList.getExercise(secondIndex));
-        finalList.addExercise(aerobicList.getExercise(thirdIndex));
-        finalList.addExercise(stretchingList.getExercise(fourthIndex));
+        int firstIndex;
+        int secondIndex;
+        int thirdIndex;
+        int fourthIndex;
+        switch (recommendationType) {
+        case 0:
+            firstIndex = (int) (Math.random() * (upperBodyList.getSize() - 1));
+            secondIndex = (int) (Math.random() * (lowerBodyList.getSize() - 1));
+            thirdIndex = (int) (Math.random() * (aerobicList.getSize() - 1));
+            fourthIndex = (int) (Math.random() * (stretchingList.getSize() - 1));
+            finalList.addExercise(upperBodyList.getExercise(firstIndex));
+            finalList.addExercise(lowerBodyList.getExercise(secondIndex));
+            finalList.addExercise(aerobicList.getExercise(thirdIndex));
+            finalList.addExercise(stretchingList.getExercise(fourthIndex));
+            break;
+        case 1:
+
+            firstIndex = (int) (Math.random() * (aerobicList.getSize() - 1));
+            secondIndex = (firstIndex + 1) % aerobicList.getSize();
+            thirdIndex = (secondIndex + 2) % aerobicList.getSize();
+            fourthIndex = (secondIndex + 3) % aerobicList.getSize();
+            assert firstIndex < aerobicList.getSize() && secondIndex < aerobicList.getSize()
+                    && thirdIndex < aerobicList.getSize()
+                    && fourthIndex < aerobicList.getSize();
+            finalList.addExercise(aerobicList.getExercise(firstIndex));
+            finalList.addExercise(aerobicList.getExercise(secondIndex));
+            finalList.addExercise(aerobicList.getExercise(thirdIndex));
+            finalList.addExercise(aerobicList.getExercise(fourthIndex));
+            break;
+        case 2:
+            firstIndex = (int) (Math.random() * (upperBodyList.getSize()- 1));
+            secondIndex = (firstIndex + 1) % upperBodyList.getSize();
+            thirdIndex = (secondIndex + 2) % upperBodyList.getSize();
+            fourthIndex = (secondIndex + 3) % upperBodyList.getSize();
+            assert firstIndex < upperBodyList.getSize() && secondIndex < upperBodyList.getSize()
+                    && thirdIndex < upperBodyList.getSize()
+                    && fourthIndex < upperBodyList.getSize();
+            finalList.addExercise(upperBodyList.getExercise(firstIndex));
+            finalList.addExercise(upperBodyList.getExercise(secondIndex));
+            finalList.addExercise(upperBodyList.getExercise(thirdIndex));
+            finalList.addExercise(upperBodyList.getExercise(fourthIndex));
+            break;
+        case 3:
+            firstIndex = (int) (Math.random() * (lowerBodyList.getSize() - 1));
+            secondIndex = (firstIndex + 1) % lowerBodyList.getSize();
+            thirdIndex = (secondIndex + 2) % lowerBodyList.getSize();
+            fourthIndex = (secondIndex + 3) % lowerBodyList.getSize();
+            assert firstIndex < lowerBodyList.getSize() && secondIndex < lowerBodyList.getSize()
+                    && thirdIndex < lowerBodyList.getSize()
+                    && fourthIndex < lowerBodyList.getSize();
+            finalList.addExercise(lowerBodyList.getExercise(firstIndex));
+            finalList.addExercise(lowerBodyList.getExercise(secondIndex));
+            finalList.addExercise(lowerBodyList.getExercise(thirdIndex));
+            finalList.addExercise(lowerBodyList.getExercise(fourthIndex));
+            break;
+        case 4:
+            firstIndex = (int) (Math.random() * (stretchingList.getSize() - 1));
+            secondIndex = (firstIndex + 1) % stretchingList.getSize();
+            thirdIndex = (secondIndex + 2) % stretchingList.getSize();
+            fourthIndex = (secondIndex + 3) % stretchingList.getSize();
+            assert firstIndex < stretchingList.getSize() && secondIndex < stretchingList.getSize()
+                    && thirdIndex < stretchingList.getSize()
+                    && fourthIndex < stretchingList.getSize();
+            finalList.addExercise(stretchingList.getExercise(firstIndex));
+            finalList.addExercise(stretchingList.getExercise(secondIndex));
+            finalList.addExercise(stretchingList.getExercise(thirdIndex));
+            finalList.addExercise(stretchingList.getExercise(fourthIndex));
+            break;
+        }
         return finalList;
     }
 
-    public void printExercise() {
-        StandardExerciseList list = recommend();
-        for (int i = 0; i < list.getSize(); i++) {
-            Ui.printCustomMessage("Name of Exercise:");
-            Ui.printCustomMessage(list.getExercise(i).getName());
+    public int recommendParser(String command) {
+        int recommendationType = 0;
+        if (command.length() == 0) {
+            return 0;
+        } else {
+                switch (command) {
+                case "aerobic":
+                    recommendationType = 1;
+                    break;
+                case "upperbody":
+                    recommendationType = 2;
+                    break;
+                case "lowerbody":
+                    recommendationType = 3;
+                    break;
+                case "stretch":
+                    recommendationType = 4;
+                    break;
+                default:
+                    recommendationType = 5;
+                }
         }
+        return recommendationType;
+
     }
+
 }

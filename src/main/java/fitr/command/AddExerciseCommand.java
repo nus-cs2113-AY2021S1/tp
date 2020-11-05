@@ -33,7 +33,7 @@ public class AddExerciseCommand extends Command {
             command = command.split("/", 2)[1].trim();
             if (command.split(" ").length == 1) {
                 Calorie amountOfCaloriesBurnt = new Calorie(Integer.parseInt(command.split(" ")[0]));
-                if (amountOfCaloriesBurnt.get() < 0) {
+                if (amountOfCaloriesBurnt.get() < 1) {
                     throw new NumberFormatException();
                 }
                 listManager.addExercise(new Exercise(nameOfExercise, amountOfCaloriesBurnt, getCurrentDate()));
