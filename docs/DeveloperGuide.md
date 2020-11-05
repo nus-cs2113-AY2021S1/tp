@@ -449,11 +449,6 @@ Given below is an example of the usage scenario of view information command and 
 Once validated, a new `InfoCommand` object will be constructed with the ANIME_ID. 
 `InfoCommand` object will be returned back all the way to `Main`. `InfoParser` is then terminated.
 
-Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information feature.
-
-![Info Command Step 1 to 3 Sequence Diagram](images/InfoCommand-Step1-3-Sequence-Diagram.png) <br/>
-*Figure 15: Info feature steps 1 to 3 sequence diagram*
-
 **Step 4:** `Main` will then call `InfoCommand#execute()`. In here the ANIME_ID will be validated and `AnimeData#returnAnimeInfo()` method is invoked, returning a string containing information regarding that particular ANIME_ID.
 
 **Step 5:** The string is returned all the way back to `Main` and printed out by `Ui`.
@@ -463,12 +458,12 @@ Figure 14 below shows the sequence diagram for steps 1 to 3 of the Information f
 The diagram below is the sequence diagram from steps 4 onward.
 
 ![Info Command Step 4 to 6 Sequence Diagram](images/InfoCommand-Step4-6-Sequence-Diagram.png) <br/>
-*Figure 16: Info feature steps 4 to 6 sequence diagram*
+*Figure 15: Info feature steps 4 to 6 sequence diagram*
 
 #### 4.3.2 Design Consideration
 This section shows the considerations taken when designing this feature.
 
-Aspect: **Using anime title or Anime ID as the field for input**
+Aspect: **Using anime title or Anime ID**
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
@@ -516,7 +511,7 @@ to **create new** `Workspace`:
 **Step 1:** User launches the application for the first time. The `User` will be initialized with an initial `Workspace` named `Default`, and the `activeWorkspace` pointing to it and `workspaceList` `ArrayList` containing it.
 
 ![Workspace Command Initial State Diagram](images/WorkspaceCommand-Initial-State.png) <br/>
-*Figure 17: Workspace Command Initial State*
+*Figure 16: Workspace Command Initial State*
 
 <br/>
 
@@ -530,7 +525,7 @@ to **create new** `Workspace`:
 Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
 
 ![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
-*Figure 18: Workspace Command After New Workspace Creation*
+*Figure 17: Workspace Command After New Workspace Creation*
 
 <br/>
 
@@ -544,14 +539,14 @@ The following diagrams will continue **from step 6**, and will illustrate the ch
 **Step 7:** User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
 
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Switch.png) <br/>
-*Figure 19: Workspace Command After Workspace Switch*
+*Figure 18: Workspace Command After Workspace Switch*
 
 <br/>
 
 **Step 8:** User keys in `workspace -d Default` to delete the workspace named `Default`.
 
 ![Workspace Command After Switch Diagram](images/WorkspaceCommand-After-Delete.png) <br/>
-*Figure 20: Workspace Command After New Workspace Delete*
+*Figure 19: Workspace Command After New Workspace Delete*
 
 <br/>
 
@@ -560,7 +555,7 @@ The following sequence diagram illustrates how `Workspace` creation in the examp
 > :memo: The other options (`-s`, `-l`, `-d`) follows a similar process, only the list and switch option does not interact with `StorageManager` and `Watchlist`.
 
 ![Workspace Command Sequence Diagram](images/WorkspaceCommand-Sequence-Diagram.png) <br/>
-*Figure 21: Workspace Command After New Workspace Delete*
+*Figure 20: Workspace Command After New Workspace Delete*
 
 <br/>
 
@@ -637,7 +632,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand Initial State](images/WatchlistCommand-Initial-State.png)
 
-*Figure 22: WatchlistCommand Initial State*
+*Figure 21: WatchlistCommand Initial State*
 
 **Step 1:** User executes the command `watchlist -n NewAnime`. The application invokes `Parser#getCommand()` and because the command type is "watchlist", `WatchlistParser#parse()` is invoked to parse, validate, and construct `WatchlistCommand` with "-n" and "NewAnime". The created object is then returned to `Main`.
 
@@ -658,7 +653,7 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 
 ![WatchlistCommand After Create State](images/WatchlistCommand-After-Create-State.png)
 
-*Figure 23: WatchlistCommand After Create State*
+*Figure 22: WatchlistCommand After Create State*
 
 <br/>
 
@@ -669,7 +664,7 @@ All the other options in the watchlist command also follows a similar execution 
 
 ![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
-*Figure 24: WatchlistCommand After Select State*
+*Figure 23: WatchlistCommand After Select State*
 
 <br/>
 
@@ -677,7 +672,7 @@ All the other options in the watchlist command also follows a similar execution 
 
 ![WatchlistCommand After Delete State](images/WatchlistCommand-After-Delete-State.png)
 
-*Figure 25: WatchlistCommand After Delete State*
+*Figure 24: WatchlistCommand After Delete State*
 
 <br/>
 
@@ -688,7 +683,7 @@ The sequence diagram presented below depicts the interaction between the compone
 
 ![WatchlistCommand Create Watchlist Sequence Diagram](images/WatchlistCommand-CreateWatchlist-Sequence-Diagram.png)
 
-*Figure 26: Sequence Diagram for `watchlist -n NewAnime`*
+*Figure 25: Sequence Diagram for `watchlist -n NewAnime`*
 
 <br/>
 
@@ -738,11 +733,6 @@ Below is an example usage scenario of how add to watchlist command behaves at ea
 A new `AddToWatchlistCommand` object is instantiated with the specified ANIME_ID, and is returned back to `Main` class.
 At this point, `AddToWatchlistParser` is terminated.
 
-The figure below shows the sequence diagram of steps 1 to 3.
-
-![Add To Watchlist Command Step 1 to 3](images/AddToWatchlist-Step1-3-Sequence-Diagram.png) <br/>
-*Figure 27: Sequence diagram for Add To Watchlist feature steps 1 to 3*
-
 **Step 4:** `AddToWatchlistCommand#execute()` is then invoked in `Main`, which retrieve the active `workspace` through `AddToWatchlistCommand#getActiveWorkspace()`, 
 and `Watchlist` object from `ActiveWorkspace#getActiveWatchlist()`.
 
@@ -754,7 +744,7 @@ ArrayList of integers storing all the anime in that `Watchlist`.
 For better illustration, Figure 28 below shows the sequence diagram of steps 4 to 6.
 
 ![Add To Watchlist Command Step 4 to 6](images/AddToWatchlist-Step4-6-Sequence-Diagram.png) <br/>
-*Figure 28: Sequence diagram for Add To Watchlist feature steps 4 to 6*
+*Figure 26: Sequence diagram for Add To Watchlist feature steps 4 to 6*
 
 #### 4.6.2 Design consideration
 Below shows the considerations taken when implementing the `AddToWatchlist` feature. 
@@ -814,10 +804,6 @@ Otherwise, the parameter and field will be validated, and a constructor of `View
 
 **Step 4:** The `ViewWatchlistCommand` object is then returned back to `Parser`, and back to `Main`. `ViewWatchlistParser` is terminated.
 
-The sequence diagram for steps 1 to 4 is as shown in the figure below.
-![View Watchlist Command Step 1 to 4](images/ViewWatchlist-Step1-4-Sequence-Diagram.png) <br/>
-*Figure 29: Sequence diagram for View Watchlist feature steps 1 to 4*
-
 **Step 5:** The `ViewWatchlistCommand#execute()` would then be called by `Main`, in which the WATCHLIST_ID will be validated.
 
 **Step 6:** `ViewWatchlistCommand#buildAnimeInWatchlist()` will build a string containing all the anime name inside the seleceted `Watchlist`, and it will be returned to `Main`, where it will be printed out by `Ui`.
@@ -826,7 +812,7 @@ The sequence diagram for steps 1 to 4 is as shown in the figure below.
 
 The figure below is the sequence diagram for steps 5 to 7
 ![View Watchlist Command Step 5 to 7](images/ViewWatchlist-Step5-7-Sequence-Diagram.png) <br/>
-*Figure 30: Sequence diagram for View Watchlist feature steps 5 to 7*
+*Figure 27: Sequence diagram for View Watchlist feature steps 5 to 7*
 
 <br/>
 
@@ -883,19 +869,19 @@ Below is a list of bookmark operations:
 **Step 4:** The user executes `bookmark -a 430` command to add the anime ID: 430 into the bookmark. `Bookmark#addAnimeBookmark()` will then add the anime index to the ArrayList within the bookmark.
 
 ![Bookmark State After Add Diagram](images/Bookmark-After-Step4.png) <br/>
-*Figure 32: Bookmark Entry After Add*
+*Figure 28: Bookmark Entry After Add*
 
 > :memo: The table shows the three ArrayList objects in the column with the bookmark ID. When adding a new anime ID into the bookmark, the bookmark will initialise the anime episode to be 0 together with an empty note object.
 
 **Step 4.5:** The user executes `bookmark -a 1` and `bookmark -a 410` to add anime ID 1 and 410 to the bookmark.
 
 ![Bookmark State After More Add Diagram](images/Bookmark-After-Step4.5.png) <br/>
-*Figure 33: Bookmark Entries with more Add*
+*Figure 29: Bookmark Entries with more Add*
 
 The following sequence diagram shows how the `Add Bookmark` operation works:
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
-*Figure 34: Bookmark Add Command Sequence Diagram*
+*Figure 30: Bookmark Add Command Sequence Diagram*
 
 **Step 5:** The user executes `bookmark -l` command to list all anime within the bookmark. `Bookmark#getListInString()` will use the Anime index stored in the bookmark list and retrieve the anime name from AnimeData, the method then returns the bookmark index with the anime name.
 
@@ -909,19 +895,19 @@ Listing all anime in bookmark:
 **Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
-*Figure 35: Bookmark Entries After Delete*
+*Figure 31: Bookmark Entries After Delete*
 
 > :memo: The ArrayList comes with an inbuilt function to enable easy deletion at index, but the bookmark index of subsequent entries will decrease by 1.
 
 **Step 7:** The user executes `bookmark 1 -e 5` command to edit the episode for the first bookmark entry. `Bookmark#editBookmarkEpisode()` will change the episode field for that bookmark entry.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 36: Bookmark Entries After Edit Episode*
+*Figure 32: Bookmark Entries After Edit Episode*
 
 **Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID: 1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
-*Figure 37: Bookmark Entries After Add Note*
+*Figure 33: Bookmark Entries After Add Note*
 
 **Step 9:** The user executes `bookmark 1` command to view all information of the first bookmark entry. The command will use `Bookmark#getAnimeInfoFromBookmark()` to retrieve the detailed anime info for the anime ID at that bookmark, `Bookmark#getBookmarkEpisode()` for the tracked episode by the user and `Bookmark#getAnimeNotesFromBookmark()` will retrieve all notes in a list format. With all the relevant information on the bookmark entry, the result will be displayed to the user (Figure 26: Bookmark Entries After Edit Episode).
 
@@ -943,7 +929,7 @@ Notes for anime:
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note ID: 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 38: Bookmark Entries After Edit Episode*
+*Figure 34: Bookmark Entries After Edit Episode*
 
 <br/>
 
