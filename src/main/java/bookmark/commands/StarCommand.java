@@ -29,7 +29,7 @@ public class StarCommand extends BookmarkCommand {
                 assert chosenCategory > 0 : "Category number is not chosen";
                 evaluateStarNumber(categories);
                 categories.get(chosenCategory - 1).markLinkAsStar(starLinkNumber - 1);
-                ui.showBookmarkLinkList(categories.get(chosenCategory - 1).getLinks());
+                ui.showBookmarkLinkList(categories.get(chosenCategory - 1));
                 ui.showStarBookmarks(categories);
                 storage.saveLinksToFile(categories);
             }
