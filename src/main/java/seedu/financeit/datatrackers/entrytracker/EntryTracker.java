@@ -27,7 +27,6 @@ public class EntryTracker {
     private static GoalTracker goalTracker = new GoalTracker();
     private static boolean endTracker;
 
-
     public static void setTestPacket(CommandPacket inputPacket) {
         setCommandPacket(inputPacket);
         isUnderTest = true;
@@ -78,20 +77,28 @@ public class EntryTracker {
         switch (packet.getCommandString()) {
         case "edit":
             handleEditEntry();
+            break;
         case "new":
             handleCreateEntry();
+            break;
         case "list":
             handleShowEntry();
+            break;
         case "delete":
             handleDeleteEntry();
+            break;
         case "exit":
             endTracker = true;
+            break;
         case "commands":
             printCommandList();
+            break;
         case "cat":
             printValidCategories();
+            break;
         default:
             System.out.println("Command not recognised. Try again.");
+            break;
         }
     }
 

@@ -62,18 +62,25 @@ public class ManualTracker {
         switch (packet.getCommandString()) {
         case "open":
             handleOpenLedger();
+            break;
         case "new":
             handleCreateLedger();
+            break;
         case "list":
             handleShowLedger();
+            break;
         case "delete":
             handleDeleteLedger();
+            break;
         case "exit":
             endTracker = true;
+            break;
         case "commands":
             printCommandList();
+            break;
         default:
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Command failed. Try again.");
+            break;
         }
     }
 

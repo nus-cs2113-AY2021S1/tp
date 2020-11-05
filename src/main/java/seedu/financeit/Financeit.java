@@ -1,6 +1,7 @@
 package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.common.Common;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
@@ -74,6 +75,8 @@ public class Financeit {
                 break;
             case "exit":
                 save();
+                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
+                    "Exiting the program. Have a nice day!");
                 return;
             default:
                 prompt = "Invalid Command";

@@ -1,8 +1,8 @@
 # Developer Guide
-# Table of contents
-# Design
+## Table of contents
+## 1. Design
 
-# 1. Overview of architecture
+## 1.1 Overview of architecture
 __Architecture Diagram__
 ![](.DeveloperGuide_images/Overall.png)
 
@@ -16,7 +16,7 @@ The design of the software can be split into 5 distinct components:
 * Data component
 * Storage component
 
-## 1.1 Handler component
+### 1.2 Handler component
 ![](.DeveloperGuide_images/Handler.png)
 
 __Description__
@@ -39,7 +39,7 @@ finance calculator tools within it.
 * All ```Handler``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
 to perform the operation associated with the user input.
 
-## 1.2 Logic component
+### 1.3 Logic component
 ![](.DeveloperGuide_images/Logic.png)
 
 __Description__
@@ -48,7 +48,7 @@ __Description__
 __API__
 
 
-## 1.3 Input Manager component
+### 1.4 Input Manager component
 ![](.DeveloperGuide_images/InputManager.png)
 
 __Description__
@@ -64,7 +64,7 @@ and produce an equivalent ```CommandPacket``` instance.
 * ```Handler``` classes will use the ```CommandPacket``` instance to call the corresponding
 ```Command``` classes or perform the next operation.
 
-## 1.4 Model component
+### 1.5 Model component
 ![](.DeveloperGuide_images/Data.png)
 
 __Description__
@@ -82,7 +82,7 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
     * For load, ```Storage``` component writes data from the text files to ```EntryTracker``` and ```ManualTracker``` respectively.
      
 
-## 1.5 Storage component
+### 1.6 Storage component
 ![](.DeveloperGuide_images/Logic.png)
 
 __Description__
@@ -94,46 +94,23 @@ __API__
 
 
 
-## 1.1 Logic component
-##### <a name="commandAndLogic"></a> Command and Logic
 
-![](uml_images/manualTracker/images/Commands_Logic_edited.png)
+## 2. Implementation
+## 2.1 Module-level implementation
+### 2.1.1 Handler Component
+### 2.1.2 Logic Component
+### 2.1.3 Input Manager Component
+### 2.1.4 Model Component
+### 2.1.5 Storage Component
 
-|Class| Function |
-|--------|----------|
-|```retrieveLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
-|```createLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
-|```retrieveEntryHandler```| Omitted and left as exercise for reader. : ^ )
-|```createEntryCommand```| Omitted for brevity.
-|```editEntryHandler```| Omitted for brevity.
-|```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
-|```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
-
-##### <a name="handlerAndCommand"></a> Handler and Command
-
-![](uml_images/manualTracker/images/Handler_Commands.png)
-
-|Class| Function |
-|--------|----------|
-|```retrieveLedgerCommand```| [Refer to section above](#commandAndLogic).
-|```createLedgerCommand```| [Refer to section above](#commandAndLogic).
-|```retrieveEntryHandler```| Omitted for brevity.
-|```createEntryCommand```| Omitted for brevity.
-|```editEntryHandler```| Omitted for brevity.
-|```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
-|```EntryTracker```| Omitted for brevity.
-
-## Handler component
-
-## 1.1 Architecture
-### Features
-#### Main Menu
+## 2.2 Feature-level implementation
+### 2.2.1 Main Menu
 - Loading up user data
 - Access to various features
 - Saving outstanding user data to respective save files
 
-#### Feature 1: Manual Tracker & Entry Tracker
-##### Overview
+### 2.2.2 Feature 1: Manual Tracker & Entry Tracker
+#### Overview
 __Ledgers and Entries__
 
 In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
@@ -151,7 +128,7 @@ Instances of ```Entry``` class are categorised by the date of origin, which is r
 * Time of transaction
 * Collection of ```Entry```instances
 
-##### Manual Tracker
+#### Manual Tracker
 
 The Manual Tracker is a feature that allows users to manage Ledgers with create, delete
 and open operations. Ledgers is a class that maintains a list of transactions that are 
@@ -173,9 +150,9 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
 |```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
 
-#### Architecture
+### Architecture
 
-##### Architecture Overview
+#### Architecture Overview
 
 ![](uml_images/manualTracker/images/Architecture_ManualTracker.png)
 
@@ -219,6 +196,8 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ItemList```| Class with defined list behavior specified with helper methods such as retrieval, checking of Duplicates and deletion.
 |```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
 |```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
+
+
 
 #### Functions with Sequence Diagrams
 
@@ -266,7 +245,7 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 
 ![](uml_images/manualTracker/images/manualTrackerDeleteLedgerSeqDiagram.png)
 
-### Feature 2: Recurring Tracker
+### 2.2.3 Feature 2: Recurring Tracker
 ##### Overview
 ##### Recurring Tracker
 Recurring Tracker handles the creation, deletion and editing of recurring entries.
@@ -327,7 +306,7 @@ The sequence diagram below shows how it works:
 
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
 
-#### Feature 3: FinanceTools
+#### 2.2.4 Feature 3: FinanceTools
 ##### Overview
 FinanceTools consists of the following features
 1. Simple Interest Calculator
@@ -501,7 +480,7 @@ To store the commands inputted by user and results from calculations in FinanceT
 The commands are stored in the ```ArrayList``` before the params are handled and implementation is executed. 
 The results from calculation is stored in the ```ArrayList``` when the implementation has finished executed.
 
-#### Feature 4: Goal Tracker
+#### 2.2.5 Feature 4: Goal Tracker
 ##### Set Expense Goal Feature
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
@@ -531,7 +510,7 @@ This sequence diagram will show the flow of setting of expense goal:
 <br />
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-### Feature 5: Save Manager Utility
+### 2.2.6 Feature 5: Save Manager Utility
 #### What it does
 Save Manager utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It allows multiple saves to be created and loaded at will.
@@ -547,7 +526,7 @@ manualTrackerSaver saves manualTracker states. SaveManager class is the UI class
 #### Save Manager Sequence Diagram
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
 
-## Product scope
+## 3. Product scope
 ### Target user profile
 
 Fresh computing graduates who are just starting to enter the workforce.
@@ -581,7 +560,7 @@ bill payments
 * Calculate miles credit earned
 * Save account information for reference
 
-## User Stories
+## 4. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -593,7 +572,7 @@ bill payments
 |v2.0|user|store account or card information|refer to account features such as interest rate any time|
 |v2.0|user|compare my calculations with different interest rate|decide which account is better|
 
-## Non-Functional Requirements
+## 5. Non-Functional Requirements
 
 * _Constraint_ - Single User Product
 * _Performance_ - JAR file does not exceed 100Mb
@@ -601,14 +580,32 @@ bill payments
 * _Program_ - Platform independent (Windows/Mac/Linux)
 * _Program_ - Works without needing an installer
 
-## Glossary
+## 6. Glossary
 
 * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt.
 * _CLI_ - Command Line Interface
 * _UML_ - Unified Modeling Language
 
-## Instructions for Manual Testing
+## 7. Instructions for Manual Testing
 
 1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
 1. Save the executable file in your preferred folder.
 1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
+1. You should see the following output:
+
+![](.DeveloperGuide_images/main_menu.png)
+
+### 7.1 Testing Main Menu
+1. Accessing a feature:
+    1. ```ManualTracker```
+        1. Enter ```manual``` into the console.
+            You should see the following: 
+             ![](.DeveloperGuide_images/main_menu_manual.png)
+    1. ```RecurringTracker```
+    1. ```GoalTracker```
+    1. ```SaveManager```
+    1. ```FinanceTools```
+
+1. Exiting the main menu and quit the program: 
+    1. Enter exit 
+    

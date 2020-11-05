@@ -119,3 +119,36 @@ __ParamHandler Class__
 ## <a name="paramHandling"></a> 2.5 Data Component
 
 ## <a name="paramHandling"></a> 2.6 Handler Component
+
+
+
+### 1.1 Logic component
+##### <a name="commandAndLogic"></a> Command and Logic
+
+![](uml_images/manualTracker/images/Commands_Logic_edited.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
+|```createLedgerCommand```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
+|```retrieveEntryHandler```| Omitted and left as exercise for reader. : ^ )
+|```createEntryCommand```| Omitted for brevity.
+|```editEntryHandler```| Omitted for brevity.
+|```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
+|```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
+
+##### <a name="handlerAndCommand"></a> Handler and Command
+
+![](uml_images/manualTracker/images/Handler_Commands.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveLedgerCommand```| [Refer to section above](#commandAndLogic).
+|```createLedgerCommand```| [Refer to section above](#commandAndLogic).
+|```retrieveEntryHandler```| Omitted for brevity.
+|```createEntryCommand```| Omitted for brevity.
+|```editEntryHandler```| Omitted for brevity.
+|```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
+|```EntryTracker```| Omitted for brevity.
+
+## Handler component
