@@ -1,5 +1,6 @@
 package seedu.smarthomebot.ui;
 
+import seedu.smarthomebot.commons.Messages;
 import seedu.smarthomebot.logic.commands.CommandResult;
 
 import java.io.InputStream;
@@ -10,16 +11,12 @@ import static seedu.smarthomebot.commons.Messages.DIVIDER;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_GOODBYE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_WELCOME;
 
+//@@author Ang_Cheng_Jun
 /**
  * Text UI of the application.
  */
-
 public class TextUi {
 
-    /**
-     * Format of a comment input line. Comment lines are silently consumed when reading user input.
-     */
-    private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
     private static final String ENTER_COMMAND = "Enter command: ";
     private final Scanner in;
     private final PrintStream out;
@@ -34,18 +31,21 @@ public class TextUi {
     }
 
     /**
-     * Shows message(s) to the user.
+     * Prints message(s) to the user.
      */
     public void printToUser(String message) {
         out.println(message);
     }
 
+    /**
+     * Prints result(s) of the command to the user
+     */
     public void printResultToUser(CommandResult result) {
         printToUser(result.feedbackToUser);
     }
 
     /**
-     * Print a divider.
+     * Prints a divider.
      */
     private void printDivider() {
         printToUser(DIVIDER);
@@ -54,7 +54,6 @@ public class TextUi {
 
     /**
      * Prompts for the command and reads the text entered by the user.
-     *
      * @return command (full line) entered by the user.
      */
     public String getUserCommand() {
@@ -64,6 +63,9 @@ public class TextUi {
         return fullInputLine.trim();
     }
 
+    /**
+     * Generates and prints the Welcome message upon the end of the application.
+     */
     public void showWelcomeMessage() {
         printDivider();
         printToUser(MESSAGE_WELCOME);
@@ -73,6 +75,7 @@ public class TextUi {
      * Generates and prints the Goodbye message upon the end of the application.
      */
     public void showGoodByeMessage() {
+        printToUser(Messages.MESSAGE_EXPORT);
         printToUser(MESSAGE_GOODBYE);
     }
 }
