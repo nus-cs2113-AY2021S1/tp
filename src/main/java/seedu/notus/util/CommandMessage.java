@@ -51,6 +51,7 @@ public class CommandMessage {
     static final Attribute WHITE = Attribute.BRIGHT_WHITE_TEXT();
     static final Attribute GREEN = Attribute.GREEN_TEXT();
     static final Attribute RED = Attribute.RED_TEXT();
+    static final Attribute YELLOW = Attribute.YELLOW_TEXT();
 
     /** Command Usages. */
     public static final String ADD_E_COMMAND_USAGE = AddEventCommand.COMMAND_WORD
@@ -195,11 +196,6 @@ public class CommandMessage {
             + "in the specified time period: ";
 
     public static final String ADD_EVENT_SUCCESSFUL_MESSAGE = colorize("Added the following event:", GREEN);
-    public static final String ADD_EVENT_SUCCESSFUL_WARNING = colorize("Warning! "
-            + "The specified timing already has an event ongoing. The following event is still added:", GREEN);
-    public static final String ADD_EVENT_DUPLICATE_WARNING = colorize("Warning! "
-            + "The event is very similar to one already stored. Please ensure the input details are correct. "
-            + "The following event is still added:", GREEN);
     public static final String DELETE_EVENT_SUCCESSFUL_MESSAGE = colorize("Event deleted", GREEN);
     public static final String EDIT_TITLE_MESSAGE = colorize("Title edited!", GREEN);
     public static final String EDIT_START_DATE_MESSAGE = colorize("Start Date edited!", GREEN);
@@ -212,36 +208,41 @@ public class CommandMessage {
             + "successfully changed.", GREEN);
     public static final String EDIT_EVENT_END_TIME_SHIFT_SUCCESS_MESSAGE = colorize("Event end time shifted "
             + "to maintain event time duration.", GREEN);
+
+    public static final String ADD_EVENT_SUCCESSFUL_WARNING = colorize("Warning! "
+            + "The specified timing already has an event ongoing. The following event is still added:", YELLOW);
+    public static final String ADD_EVENT_DUPLICATE_WARNING = colorize("Warning! "
+            + "The event is very similar to one already stored. Please ensure the input details are correct. "
+            + "The following event is still added:", YELLOW);
     public static final String EDIT_EVENT_START_TIME_SUCCESS_WARNING = colorize("Event start time "
-            + "successfully changed. However, event duration is compressed and end time is set at 23:59.", GREEN);
+            + "successfully changed. However, event duration is compressed and end time is set at 23:59.", YELLOW);
     public static final String EDIT_EVENT_SUCCESSFUL_WARNING = colorize("Warning! "
-            + "The specified timing already has an event ongoing. The edited event is still stored.", GREEN);
+            + "The specified timing already has an event ongoing! The edited event is still stored!", YELLOW);
     public static final String EDIT_EVENT_DUPLICATE_WARNING = colorize("Warning! "
             + "The event is very similar to one already stored. Please ensure the input details are correct. "
-            + "The edited event is still stored.", GREEN);
+            + "The edited event is still stored!", YELLOW);
     public static final String EDIT_EVENT_END_TIME_SHIFT_WARNING = colorize("However, event duration "
-            + "is compressed and end time is set at 23:59.", GREEN);
+            + "is compressed and end time is set at 23:59!", YELLOW);
 
 
-    public static final String DELETE_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Event failed to delete", RED);
+    public static final String DELETE_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Event failed to delete!", RED);
     public static final String ADD_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Failed to add event: "
             + "The event cannot end before it starts!", RED);
     public static final String EDIT_EVENT_UNSUCCESSFUL_MESSAGE = colorize("Perhaps try editing something!", RED);
-    public static final String EDIT_WARNING_REMINDER_MESSAGE = colorize("There was no changes made. "
-            + "Perhaps you tried to add a reminder that already exists or delete reminders that do not exist.", RED);
+    public static final String EDIT_WARNING_REMINDER_MESSAGE = colorize("There was no changes made! "
+            + "Perhaps you tried to add a reminder that already exists or delete reminders that do not exist!", RED);
     public static final String EDIT_WARNING_RECURRENCE_MESSAGE = colorize("The event is of the same recurrence type. "
-            + "No changes are made to it's recurrence type.", RED);
+            + "No changes are made to it's recurrence type!", RED);
     public static final String EDIT_WARNING_RECURRENCE_ON_NON_RECURRENCE_MESSAGE = colorize("You attempted to put a "
-            + "recurrence date on a non-recurring event. No recurrence date was set.", RED);
+            + "recurrence date on a non-recurring event. No recurrence date was set!", RED);
     public static final String EDIT_EVENT_END_DATE_AFTER_START_DATE_WARNING = colorize("Event end date cannot be "
-            + "different from the start date in this version.", RED);
+            + "different from the start date in this version!", RED);
     public static final String EDIT_EVENT_END_TIME_AFTER_START_WARNING = colorize("Event end time cannot be before "
-            + "the start time.", RED);
-
+            + "the start time!", RED);
     public static final String LIST_EVENT_UNSUCCESSFUL_MESSAGE = colorize("There are no events in the timetable!",
             RED);
     public static final String LIST_EVENT_UNSUCCESSFUL_TIME_PERIOD_MESSAGE = colorize("Failed to find any events "
-            + "in the specified time period.", RED);
+            + "in the specified time period!", RED);
 
     /** Note related messages. */
     public static final String PINNED_NOTES_MESSAGE = "Here are the list of pinned notes:";
@@ -266,17 +267,17 @@ public class CommandMessage {
     public static final String NOTE_DOES_NOT_EXIST_MESSAGE =
             colorize("This note does not exist in the notebook! ", RED);
     public static final String FIND_NOTE_UNSUCCESSFUL_MESSAGE = colorize("There are no matching notes. "
-            + "Please try another search query.", RED);
+            + "Please try another search query!", RED);
     public static final String SAME_NOTE_TITLE_UNSUCCESSFUL_MESSAGE = colorize("This note has the same title"
             + " as the new title! ", RED);
     public static final String INVALID_LINE_UNSUCCESSFUL_MESSAGE = colorize("Invalid line! ", RED);
     public static final String INVALID_TAG_MESSAGE = colorize("Your tags return no result."
-            + " Please try an alternative tag or check your spellings", RED);
+            + " Please try an alternative tag or check your spellings!", RED);
     public static final String EMPTY_NOTEBOOK_MESSAGE = colorize("The notebook is empty!", RED);
 
 
     /** Storage related messages. */
-    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = colorize("Unable to write to file", RED);
+    public static final String FILE_WRITE_UNSUCCESSFUL_MESSAGE = colorize("Unable to write to file!", RED);
 
     /** Tag related messages. */
     public static final String HEADER_CREATE_TAG = "Creating tag...";
