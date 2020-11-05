@@ -3,6 +3,7 @@ package bookmark.commands;
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkStorage;
 import bookmark.BookmarkUi;
+
 import java.util.ArrayList;
 
 public class BackCommand extends BookmarkCommand {
@@ -18,16 +19,18 @@ public class BackCommand extends BookmarkCommand {
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         if (input.substring(BACK_LENGTH).length() > 0) {
-            System.out.println("I think you meant back...");
-            System.out.println("Executing back command...");
-        }
-        if (categoryNumber == 0) {
-            ui.printGoodbyeMessage();
+            ui.showCorrectCommand("back");
         } else {
-            ui.showBookmarkCategoryList(categories);
-            assert categoryNumber > 0 : "Category number more than 0";
-            categoryNumber = 0;
+            if (categoryNumber == 0) {
+                ui.printGoodbyeMessage();
+            } else {
+                ui.showCurrentMode("Bookmark Main");
+                ui.showBookmarkCategoryList(categories);
+                assert categoryNumber > 0 : "Category number more than 0";
+                categoryNumber = 0;
+            }
         }
+
     }
 
     public int getCategoryNumber() {

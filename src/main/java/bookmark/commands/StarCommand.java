@@ -37,9 +37,7 @@ public class StarCommand extends BookmarkCommand {
             ui.showEmptyError("Star Number");
         } catch (InvalidBookmarkException e) {
             ui.showInvalidError("Star Number");
-        } catch (NumberFormatException e) {
-            ui.showInvalidNumberError();
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             ui.showInvalidNumberError();
         }
     }

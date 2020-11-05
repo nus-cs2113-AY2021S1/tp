@@ -45,6 +45,7 @@ public class HelpMessage extends Ui {
             + "delete <CATEGORY_INDEX>      - remove a bookmark category\n"
             + "list                         - prints the list of categories and\n"
             + "                               respective list of links\n"
+            + "list star                    - prints the list of starred bookmarks\n"
             + "star <LINK_NUMBER>           - mark the bookmark link as star";
 
     private static final String timetableCommands =  "Here are the timetable commands available:\n"
