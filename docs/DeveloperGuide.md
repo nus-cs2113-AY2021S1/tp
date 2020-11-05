@@ -593,19 +593,61 @@ bill payments
 1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
 1. You should see the following output:
 
-![](.DeveloperGuide_images/main_menu.png)
+![](.DeveloperGuide_images/main_menu1.png)
 
 ### 7.1 Testing Main Menu
 1. Accessing a feature:
     1. ```ManualTracker```
         1. Enter ```manual``` into the console.
             You should see the following: 
-             ![](.DeveloperGuide_images/main_menu_manual.png)
+![](.DeveloperGuide_images/main_menu_manual.png)
     1. ```RecurringTracker```
     1. ```GoalTracker```
     1. ```SaveManager```
     1. ```FinanceTools```
 
 1. Exiting the main menu and quit the program: 
-    1. Enter exit 
+    1. Enter ```exit``` into the console.
+        You should see the following: 
+![](.DeveloperGuide_images/main_menu_exit.png)
+
+### 7.2 Testing ManualTracker
+#### 7.2.1 Testing Create Ledger
+##### Positive test
+1. Enter ```new /date 200505``` into the console.
+You should see the following:
+![](.DeveloperGuide_images/manual_new.png)
+##### Negative test: Duplicate inputs
+1. Again, enter ```new /date 200505``` into the console.
+You should see the following:
+![](.DeveloperGuide_images/manual_new_dup.png)
+
+#### <a name = 7.2.1></a>7.2.4 Testing Show Ledger List
+##### Positive test
+1. Enter ```list``` into the console. 
+You should see the following: 
+![](.DeveloperGuide_images/manual_list.png)
+    * Observe that there is currently one ledger in the list, of date 2020-05-05.
+1. Refer to [7.2.1](#7.2.1) to create another ledger of date 2020-06-06 using the command: 
+```new /date 200606```. 
+1. Enter ```list``` into the console. 
+    * Observe that there are now two ledgers in the list.
+You should see the following: 
+![](.DeveloperGuide_images/manual_list2.png)
+
+#### 7.2.2 Testing Delete Ledger
+
+#### 7.2.3 Testing Open Ledger
+#### 7.2.5 Testing Show Command List
+
+### 7.3 Testing EntryTracker
+
+### 7.4 Testing RecurringTracker
+
+### 7.5 GoalTracker
+
+### 7.6 Testing SaveManager
+
+### 7.7 Testing FinanceTools
+
     
