@@ -8,6 +8,7 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
+//@@author Speedweener
 public class DeleteBookmarkCommand extends Command {
     public static final String DEL_KW = "delete";
     private final int index;

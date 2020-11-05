@@ -1,3 +1,4 @@
+//@@author Speedweener
 package seedu.zoomaster;
 
 import org.junit.jupiter.api.Test;
@@ -17,22 +18,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class StorageTest {
 
     @Test
-    void loadTimetableWithInvalidFilePath() throws ZoomasterException, NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+    void loadTimetableWithInvalidFilePath() throws ZoomasterException {
         Storage test = new Storage("iNvAlIdPaThNaMe/data/timetable/", Timetable.class);
         assertTrue(test.load() instanceof Timetable);
     }
 
     @Test
-    void loadStorageWithInvalidFilePath() throws ZoomasterException, NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+    void loadStorageWithInvalidFilePath() throws ZoomasterException {
         Storage test = new Storage("iNvAlIdPaThNaMe/data/bookmark/", BookmarkList.class);
         assertTrue(test.load() instanceof BookmarkList);
     }
 
     @Test
-    void loadWithBaseClassThrowsErrorLoadingFileException() throws ZoomasterException,
-            NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    void loadWithBaseClassThrowsErrorLoadingFileException() {
         Storage test = new Storage("iNvAlIdPaThNaMe/data/timetable/", Bookmark.class);
         ZoomasterException e = assertThrows(ZoomasterException.class, () -> test.load());
         assertEquals(ZoomasterExceptionType.ERROR_LOADING_FILE, e.getError());

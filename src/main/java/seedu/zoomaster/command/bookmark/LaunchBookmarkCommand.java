@@ -1,3 +1,4 @@
+//@@author Speedweener
 package seedu.zoomaster.command.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -23,6 +24,7 @@ public class LaunchBookmarkCommand extends Command {
      * @param command The command input by the user.
      * @throws ZoomasterException if the input is unknown or if the bookmark number is invalid.
      */
+    //@@author Speedweener
     public LaunchBookmarkCommand(String command) throws ZoomasterException {
         String details = command.substring(LAUNCH_KW.length());
         if (details.isBlank()) {

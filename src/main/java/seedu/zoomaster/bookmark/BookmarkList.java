@@ -1,3 +1,4 @@
+//@@author xingrong123
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -111,6 +112,7 @@ public class BookmarkList {
      * @param bookmark The bookmark to be deleted.
      * @throws NullPointerException if the bookmark does not exist in the list.
      */
+    //@@author Speedweener
     public String deleteBookmark(Bookmark bookmark) {
         assert bookmarks.contains(bookmark) : "Bookmark to be"
                 + "deleted not in list!";
@@ -209,6 +211,7 @@ public class BookmarkList {
         return message + Ui.NEW_LINE;
     }
 
+   //@@author xingrong123
     public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {

@@ -203,7 +203,7 @@ public class Storage<T> {
      */
     // Solution below adapted from AY2021S1-CS2113T-T09-2
     // https://github.com/AY2021S1-CS2113T-T09-2/tp/../data/storage/Decoder.java
-    //@@ Speedweener
+    //@@author Speedweener
     private ArrayList<String> nusModuleListFromNusMods() throws ZoomasterException {
         String weblink = ""; // For exception messages
         try {
@@ -320,5 +320,4 @@ public class Storage<T> {
         }
         fw.close();
     }
-    //@@ Speedweener
 }
