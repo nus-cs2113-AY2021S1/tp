@@ -2,9 +2,7 @@ package seedu.duke.calendar.task;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * Represents a deadline task.
@@ -16,16 +14,15 @@ public class Deadline extends Task {
 
     private static final String DEADLINE_FILE_SYMBOL = "D";
     private static final String SEPARATOR = "|";
-    private static final LocalDate TODAY = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
         this.taskType = "D";
         this.isImportant = getIsImportant();
-        if (TODAY.isAfter(by)) {
-            super.markAsDone();
-            System.out.println("The deadline has already passed! Automatically marked as done!\n");
+        if (by.isBefore(LocalDate.now())) {
+            System.out.println("WARNING! The deadline has already passed! "
+                    + "May be you want to double confirm? Good Luck!\n");
         }
     }
 
