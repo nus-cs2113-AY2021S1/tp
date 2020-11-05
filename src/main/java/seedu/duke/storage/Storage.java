@@ -18,6 +18,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Saves and loads the events list to and from an external txt file.
@@ -31,6 +34,8 @@ public class Storage {
     private Path fileGoalPath;
 
     private Ui ui;
+    private static Logger logger = Logger.getLogger("storageLog");
+    private static FileHandler fh;
 
     /**
      * Returns the path to the file specified by the user.
@@ -65,6 +70,16 @@ public class Storage {
         //firstly, make string representation of storage files
         //Directory words only contain info on making the folder
         //File words contain the info on how to make the file itself
+
+        String logging = initPath + "logging.txt";
+        try {
+            fh = new FileHandler(logging);
+            logger.addHandler(fh);
+            logger.setLevel(Level.ALL);
+            logger.fine("Logger created");
+        } catch (IOException e) {
+            ui.printErrorMessage("log file was not created");
+        }
         String[] pathDirectoryWords = initPath.split(",");
         fileDirectoryPath = createPath(pathDirectoryWords);
 
@@ -128,9 +143,13 @@ public class Storage {
      */
     public void saveAll(UserData data) {
         saveFile(filePersonalPath, data, "Personal");
+        logger.fine("personal file saved");
         saveFile(fileTimeTablePath, data, "Timetable");
+        logger.fine("timetable file saved");
         saveFile(fileZoomPath, data, "Zoom");
+        logger.fine("zoom file saved");
         saveFile(fileGoalPath, data, "Goal");
+        logger.fine("goal file saved");
 
 
     }
