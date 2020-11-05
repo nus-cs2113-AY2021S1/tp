@@ -1262,7 +1262,8 @@ This utility feature helps to save multiple program states and load them at will
 ## 3.7.0 Save Manager Menu
 ![picture](uml_images/saveManager/Capture1.PNG)
 <br />
-Main menu shows all the available commands and how to use them
+Main menu shows all the available commands and how to use them.
+<br />
 You can enter "help" anytime to return to this main menu
 
 
@@ -1270,7 +1271,8 @@ You can enter "help" anytime to return to this main menu
 ![picture](uml_images/saveManager/Capture2.PNG)
 <br />
 You can enter "list" to list all backup saves.
->example
+<br />
+>Example
 
     list
 
@@ -1279,7 +1281,8 @@ You can enter "list" to list all backup saves.
 ![picture](uml_images/saveManager/Capture3.PNG)
 <br />
 To create a back up save
->example
+<br />
+>Example
 
     add /name save12345
 
@@ -1296,7 +1299,8 @@ In your names.txt file, an additional entry will be appended.
 ![picture](uml_images/saveManager/Capture6.PNG)
 <br />
 To load a back up save
->example
+<br />
+>Example
 
     load /name save12345
 
@@ -1306,13 +1310,15 @@ To load a back up save
 ![picture](uml_images/saveManager/Capture7.PNG)
 <br />
 To remove a back up save
->example
+<br />
+>Example
 
     delete /name save123
 
 ![picture](uml_images/saveManager/Capture8.PNG)
 <br />
 As you can see, the 3 text files you want to delete are gone.
+<br />
 names.txt file is also updated.
 
 
@@ -1320,7 +1326,8 @@ names.txt file is also updated.
 ![picture](uml_images/saveManager/Capture9.PNG)
 <br />
 To reset all data currently used by the program enter "reset"
->example
+<br />
+>Example
 
     reset
 
@@ -1362,4 +1369,17 @@ No. | Feature | Syntax |
 8.|Clear All Account Information|_clearinfo_|
 9.|Command and Calculation History|_history_|
 10.|Exit to Main Menu|_exit_|
+
+## 4.4 Goal Tracker
+
+## 4.5 Save Manager
+
+No. | Feature | Syntax |
+----|---------|---------|
+1.|List save|_list_|
+2.|Add save|_add /name {SAVE_NAME}_|
+3.|Load save|_load /name {SAVE_NAME}_|
+4.|Delete save|_delete /name {SAVE_NAME}_|
+5.|Reset program|_reset_|
+6.|Return to main menu|_exit_|
 
