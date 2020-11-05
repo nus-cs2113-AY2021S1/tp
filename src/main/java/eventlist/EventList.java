@@ -155,7 +155,7 @@ public class EventList {
         if (startEnd[1] == null) {
             end = events.get(index).getEndDateTime();
             // conversion from an assignment to other type would result in an error if END date is not specified.
-            if (end == null && !editInformation[0].equals("assignment")) {
+            if (end == null && !editInformation[0].equalsIgnoreCase("assignment")) {
                 throw new EditNoEndTimeException();
             }
         } else {
@@ -243,9 +243,9 @@ public class EventList {
      */
     public void sortEvent(String type) {
         assert events != null;
-        if (type.equals("description")) {
+        if (type.equalsIgnoreCase("description")) {
             events.sort(Event.descriptionComparator);
-        } else if (type.equals("time")) {
+        } else if (type.equalsIgnoreCase("time")) {
             events.sort(Comparator.comparing(Event::getEndDateTime));
         }
     }

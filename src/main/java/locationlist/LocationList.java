@@ -20,7 +20,7 @@ public class LocationList {
      */
     public boolean checkValidLocation(String name) {
         for (Location location : locationList) {
-            if (name.equals(location.getName())) {
+            if (name.equalsIgnoreCase(location.getName())) {
                 return true;
             }
         }
@@ -37,7 +37,7 @@ public class LocationList {
         Location locationReturned = null;
         int i = 0;
         for (Location location : locationList) {
-            if (name.equals(location.getName())) {
+            if (name.equalsIgnoreCase(location.getName())) {
                 locationReturned = locationList.get(i);
                 return locationReturned;
             }
