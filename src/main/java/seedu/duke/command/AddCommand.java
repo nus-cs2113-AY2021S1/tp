@@ -150,7 +150,7 @@ public class AddCommand extends Command {
         command = command[1].split("-r", 2);
         String[] temp = command[0].split("@");
         command = command[1].split("/", 2);
-        int recurringCount = Integer.parseInt(command[0].trim());
+        recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
@@ -219,7 +219,7 @@ public class AddCommand extends Command {
         command = command[1].split("-r", 2);
         String[] temp = command[0].split("@");
         command = command[1].split("/", 2);
-        int recurringCount = Integer.parseInt(command[0].trim());
+        recurringCount = Integer.parseInt(command[0].trim());
         venue = temp[1].trim();
         dateTime = command[1].trim().split(" ", 2);
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
