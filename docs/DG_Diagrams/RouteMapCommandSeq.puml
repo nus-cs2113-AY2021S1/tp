@@ -1,20 +1,22 @@
 @startuml
-actor user
+
+skinparam BoxPadding 20
 participant ":Duke"
 box logic #LightBlue
 participant ":Parser"
 participant ":RouteMapCommand"
 end box
 box model #A9DFDF
-participant ":BusData"
+participant "<<class>>\n:BusData"
 participant ":Bus"
 end box
 box Ui #A9D1D0
 participant ":Ui"
 end box
 
-user ->":Duke"
+
 ":Duke" -> ":Ui" : getUserInput()
+activate ":Duke"
 activate ":Ui"
 ":Ui" --> ":Parser": String userInput
 deactivate ":Ui"
@@ -27,20 +29,20 @@ activate ":RouteMapCommand"
 deactivate ":RouteMapCommand"
 ":Parser" -> ":RouteMapCommand" : executeCommand()
 activate ":RouteMapCommand"
-":RouteMapCommand" -> ":BusData" : selectBus();
-activate ":BusData"
+":RouteMapCommand" -> "<<class>>\n:BusData" : selectBus();
+activate "<<class>>\n:BusData"
 loop number of bus routes
-    ":BusData" -> ":Bus" : equals()
+    "<<class>>\n:BusData" -> ":Bus" : equals()
      activate ":Bus"
-    ":Bus" --> ":BusData" : Bus object
+    ":Bus" --> "<<class>>\n:BusData" : Bus object
     deactivate ":Bus"
 end
 
 alt Bus object found
-":BusData" --> ":RouteMapCommand" : Bus object
+"<<class>>\n:BusData" --> ":RouteMapCommand" : Bus object
 else Bus object not found
-":BusData" --> ":RouteMapCommand" : null
-deactivate ":BusData"
+"<<class>>\n:BusData" --> ":RouteMapCommand" : null
+deactivate "<<class>>\n:BusData"
 end
 ":RouteMapCommand" -> ":Ui" : printFullRoute()
 activate ":Ui"
