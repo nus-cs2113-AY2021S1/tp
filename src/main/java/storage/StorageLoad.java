@@ -263,10 +263,8 @@ public class StorageLoad {
             try {
                 String moduleName = StorageParser.parseTaskNameInFile(name[0]);
                 String chapterName = StorageParser.parseTaskNameInFile(name[1]);
-                String percent = StorageParser.parsePercentInFile(args[1]);
-                int percentage = Integer.parseInt(percent);
 
-                History history = new History(moduleName, chapterName, percentage);
+                History history = new History(moduleName, chapterName);
                 histories.add(history);
             } catch (InvalidFileFormatException e) {
                 return null;
