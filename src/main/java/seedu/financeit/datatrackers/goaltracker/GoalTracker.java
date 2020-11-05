@@ -46,7 +46,7 @@ public class GoalTracker {
      * to another method/function.
      */
 
-    public static void main() {
+    public static void execute() {
         exitTracker = false;
         while (!exitTracker) {
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Goals Tracker");
@@ -132,7 +132,7 @@ public class GoalTracker {
                             totalGoalList.getGoal().set(i, goalToSet);
                             UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have successfully"
                                     + " edited your income goal for " + month);
-                            main();
+                            execute();
                         }
                     } catch (NullPointerException e) {
                         continue;

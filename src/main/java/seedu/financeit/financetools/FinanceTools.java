@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public abstract class FinanceTools {
 
-    public static void main() {
+    public static void execute() {
         ArrayList<String> commands = new ArrayList<String>();
         ArrayList<String> infoText = new ArrayList<String>();
         String filePath = "./data/info.txt";

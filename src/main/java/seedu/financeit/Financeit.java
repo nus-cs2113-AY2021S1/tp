@@ -45,18 +45,18 @@ public class Financeit {
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
             case "manual":
-                ManualTracker.main();
+                ManualTracker.execute();
                 break;
             case "recur":
-                RecurringTracker.main();
+                RecurringTracker.execute();
                 break;
             case "acc": //AccSummary.main();
                 break;
             case "goal": //GoalTracker.main();
-                GoalTracker.main();
+                GoalTracker.execute();
                 break;
             case "financial": //FinancialCalculator.main();
-                FinanceTools.main();
+                FinanceTools.execute();
                 break;
             case "saver":
                 SaveManager.main();
