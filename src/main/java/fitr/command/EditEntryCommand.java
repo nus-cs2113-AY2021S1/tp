@@ -95,8 +95,9 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        String date = matcher.group("date").trim();
-        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(date));
+        LocalDate date = LocalDate.parse(matcher.group("date").trim(), DateManager.formatter);
+        String formattedDate = date.format(DateManager.formatter);
+        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(formattedDate));
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredExercises.getSize()) {
@@ -132,8 +133,9 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        String date = matcher.group("date").trim();
-        FoodList filteredFood = new FoodList(foodList.filterByDate(date));
+        LocalDate date = LocalDate.parse(matcher.group("date").trim(), DateManager.formatter);
+        String formattedDate = date.format(DateManager.formatter);
+        FoodList filteredFood = new FoodList(foodList.filterByDate(formattedDate));
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredFood.getSize()) {
@@ -160,7 +162,7 @@ public class EditEntryCommand extends Command {
         filteredFood.getFood(index - 1).setAmountOfFood(quantity);
 
         Ui.printCustomMessage("Successfully edited food to: " + foodName
-                + ", calories: " + calories + ", amount: " + quantity);
+                + ", calories (per qty): " + calories + ", amount: " + quantity);
     }
 
     private void editGoal(GoalList goalList, String arguments) throws FitrException {
