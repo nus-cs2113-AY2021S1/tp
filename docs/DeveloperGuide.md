@@ -295,12 +295,15 @@ and there must be one and only one option chosen as the correct answer by specif
 
 #### 2.4.2. Implementation of TopicsStorage
 
-When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method 
-which will return an `ArrayList` of  `Topic` objects. The following sequence diagram shows how the load operation works, focusing on how options are marked as correct:
+When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method which will return an `ArrayList` of  `Topic` objects.
+The following sequence diagram shows how the load operation works, focusing on how options are marked as correct:
 
 ![TopicsStorage::load Sequence Diagram](./images/TopicsStorage_load.png)
 
-As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level. In the diagram above, the `Option` objects within each `Topic` has to be constructed with a description from the file and then marked as the correct answer if `correct` was `true` in the given data.  More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
+As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level.
+In the diagram above, the `Option` objects within each `Topic` has to be constructed with a description from the file.
+They are then marked as the correct answer with `markAsCorrectAnswer` if the value of the key `correct` was `true` in the given data.
+More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
 
 #### 2.4.3. Design of UserStorage
 
@@ -354,8 +357,13 @@ The following sequence diagram shows an example of getting the topic description
 
 ![UserStorage::save Sequence Diagram](./images/UserStorage_save.png)
 
-A similar method is used to extract the attributes from each `Question` object inside the `Topic`.
-It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` as continues to persist until the program shuts down.
+It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` and continues to persist until the program shuts down.
+A similar method is used to extract the attributes from each `Question` object inside the `Topic` object.
+For example, the `wasAnsweredCorrectly` method is called on the `Question` object to check if it was answered
+correctly by the user or not.
+This value is then stored as an attribute of the question in the JSON file.
+Loading back the user data is done in reverse. If the boolean value of the key `correct` is true for a
+particular question, then the `markAsAnsweredCorrectly` method is called on the corresponding `Question` object.
 
 ### 2.5. UI Component
 
