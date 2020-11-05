@@ -235,12 +235,12 @@ Expected output:
 Module    Week 1
 
 CS2113T
-Actual   | ███ 3.0
-Expected | ██████████ 10.0
+Actual   | [][][] 3.0
+Expected | [][][][][][][][][][] 10.0
 
 CS1231
-Actual   | ███████ 7.0
-Expected | ████████ 8.0
+Actual   | [][][][][][][] 7.0
+Expected | [][][][][][][][] 8.0
 
 Total time spent: 10.0 H
 30% of time is spent on CS2113T
