@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 public class FlashcardDeck {
 
+    public static final String BACK = "back";
+    public static final String SHOW_ANSWER = "show answer";
     public ArrayList<Flashcard> flashcardDeck;
 
     public FlashcardDeck() {
@@ -22,8 +24,12 @@ public class FlashcardDeck {
         final String question = in.nextLine();
         System.out.println("Please enter answer: ");
         String answer = in.nextLine();
-        while (answer.equals("back")) {
+        while (answer.equalsIgnoreCase(BACK)) {
             System.out.println("The answer cannot be \"back\"! Please enter another answer: ");
+            answer = in.nextLine();
+        }
+        while (answer.equalsIgnoreCase(SHOW_ANSWER)) {
+            System.out.println("The answer cannot be \"show answer\"! Please enter another answer: ");
             answer = in.nextLine();
         }
         Ui.printDivider();
@@ -52,20 +58,24 @@ public class FlashcardDeck {
         System.out.println("You have entered the test mode.");
         Ui.printDivider();
         String attempt = "null";
-        while (!attempt.equals("back")) {
+        while (!attempt.equalsIgnoreCase(BACK)) {
             Random random = new Random();
             int randomIndex = random.nextInt(flashcardDeck.size());
             System.out.println("What is the answer to this question?");
             System.out.println(flashcardDeck.get(randomIndex).question);
             attempt = in.nextLine();
-            while (!attempt.equalsIgnoreCase(flashcardDeck.get(randomIndex).answer) && !attempt.equals("back")) {
+            while (!attempt.equalsIgnoreCase(flashcardDeck.get(randomIndex).answer)
+                    && !attempt.equalsIgnoreCase(BACK) && !attempt.equalsIgnoreCase(SHOW_ANSWER)) {
                 System.out.println("Incorrect! Try again?");
                 attempt = in.nextLine();
             }
-            if (attempt.equals("back")) {
+            if (attempt.equalsIgnoreCase(BACK)) {
                 Ui.printDivider();
                 System.out.println("Exiting test mode...\n"
                         + "You are now back in flashcard main.");
+            } else if (attempt.equalsIgnoreCase(SHOW_ANSWER)){
+                Ui.printDivider();
+                System.out.println("The answer for this question is: " + flashcardDeck.get(randomIndex).answer);
             } else {
                 score++;
                 System.out.print("This is the right answer! ");
