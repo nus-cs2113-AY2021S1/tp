@@ -31,8 +31,6 @@ import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
 public class Ui {
-    public static final String PRINT_FORMAT_MODULE = "Module: %s";
-    public static final String PRINT_FORMAT_CHAPTER = "Module: %s; Chapter: %s";
     private final Scanner in;
     private final PrintStream out;
 
@@ -227,45 +225,4 @@ public class Ui {
         showToUser("Which chapter in the Module: " + moduleName + " would you like to include?");
         return readCommand().toLowerCase();
     }
-
-    private void printInclusionSuccessMessage(String inclusionTarget) {
-        showToUser(String.format(IncludeCommand.INCLUSION_SUCCESS_MESSAGE, inclusionTarget));
-    }
-
-    private void printModuleInclusionSuccess(String moduleName) {
-        printInclusionSuccessMessage(String.format(PRINT_FORMAT_MODULE, moduleName));
-    }
-
-    private void printChapterInclusionSuccess(String moduleName, String chapterName) {
-        printInclusionSuccessMessage(String.format(PRINT_FORMAT_CHAPTER, moduleName, chapterName));
-    }
-
-    public void printInclusionSuccess(String type, String moduleName, String chapterName) {
-        if (type.equals(IncludeCommand.INCLUDE_COMMAND_OPTION_MODULE)) {
-            printModuleInclusionSuccess((moduleName));
-        } else {
-            printChapterInclusionSuccess(moduleName,chapterName);
-        }
-    }
-
-    private void printExclusionSuccessMessage(String inclusionTarget) {
-        showToUser(String.format(ExcludeCommand.EXCLUSION_SUCCESS_MESSAGE, inclusionTarget));
-    }
-
-    private void printModuleExclusionSuccess(String moduleName) {
-        printExclusionSuccessMessage(String.format(PRINT_FORMAT_MODULE, moduleName));
-    }
-
-    private void printChapterExclusionSuccess(String moduleName, String chapterName) {
-        printExclusionSuccessMessage(String.format(PRINT_FORMAT_CHAPTER, moduleName, chapterName));
-    }
-
-    public void printExclusionSuccess(String type, String moduleName, String chapterName) {
-        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MODULE)) {
-            printModuleExclusionSuccess((moduleName));
-        } else {
-            printChapterExclusionSuccess(moduleName,chapterName);
-        }
-    }
-
 }
