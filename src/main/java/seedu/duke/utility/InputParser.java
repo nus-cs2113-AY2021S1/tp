@@ -49,12 +49,17 @@ public class InputParser {
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
         String[] splitInput = input.toLowerCase().split(" ");
+        boolean commandFormatIsSingleInput = Arrays.asList(singleWordInputs).contains(splitInput[0]);
         if (splitInput.length < 2) {
-            if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
+            if (!commandFormatIsSingleInput) {
                 Ui.printInvalidFormatException();
                 return command;
             }
-
+        } else {
+            if (commandFormatIsSingleInput) {
+                Ui.printInvalidFormatException();
+                return command;
+            }
         }
         switch (command) {
 
@@ -152,8 +157,8 @@ public class InputParser {
     private static void parseEditCommand(String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
-            EditCommand edit = new EditCommand(tokenizedString.get(1));
-            edit.processCommand();
+            new EditCommand(tokenizedString.get(1));
+            EditCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
             Ui.printSpecifyShowName();
             return;
@@ -299,9 +304,9 @@ public class InputParser {
      * Parses command for adding a show into the watch list.
      *
      * @param input Command inputted by user in string format.
-     * @throws IndexOutOfBoundsException if input is empty or the format is invalid.
-     * @throws NullPointerException      if the format of episodes added is invalid.
-     * @throws NumberFormatException      if the format of show name added is invalid.
+     *      catches IndexOutOfBoundsException  if input is empty or the format is invalid.
+     *      catches  NullPointerException      if the format of episodes added is invalid.
+     *      catches  NumberFormatException     if the format of show name added is invalid.
      */
     private static void parseAddCommand(String input) {
         String[] tokenizedInput = input.split(" ");
@@ -311,14 +316,15 @@ public class InputParser {
         } catch (NullPointerException e) {
             Ui.printInvalidEpisodesInputException();
             return;
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             Ui.printInvalidFormatException();
             return;
         } catch (NumberFormatException e) {
-            Ui.printAddNameFormatException();
+            Ui.printInvalidFormatException();
             return;
+        } catch (RuntimeException e) {
+            Ui.printBadInputException();
         }
-
     }
 
     /**
