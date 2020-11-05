@@ -51,26 +51,6 @@ public class TextUi {
         printToUser(DIVIDER);
     }
 
-    /**
-     * Returns true if the user input line should be ignored.
-     * Input should be ignored if it is parsed as a comment, is only whitespace, or is empty.
-     *
-     * @param rawInputLine full raw user input line.
-     * @return true if the entire user input line should be ignored.
-     */
-    private boolean shouldIgnore(String rawInputLine) {
-        return rawInputLine.trim().isEmpty() || isCommentLine(rawInputLine);
-    }
-
-    /**
-     * Returns true if the user input line is a comment line.
-     *
-     * @param rawInputLine full raw user input line.
-     * @return true if input line is a comment.
-     */
-    private boolean isCommentLine(String rawInputLine) {
-        return rawInputLine.trim().matches(COMMENT_LINE_FORMAT_REGEX);
-    }
 
     /**
      * Prompts for the command and reads the text entered by the user.
@@ -81,9 +61,6 @@ public class TextUi {
         printDivider();
         out.print(ENTER_COMMAND);
         String fullInputLine = in.nextLine();
-        while (shouldIgnore(fullInputLine)) {
-            fullInputLine = in.nextLine();
-        }
         return fullInputLine.trim();
     }
 

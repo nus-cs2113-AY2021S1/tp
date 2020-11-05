@@ -33,6 +33,7 @@ public class ListCommand extends Command {
     private final String filteredLocation;
 
     public ListCommand(String arguments,String filteredLocation) {
+        assert arguments.isEmpty() != true : "InvalidCommand must not accept empty arguments";
         this.parameter = arguments;
         this.filteredLocation = filteredLocation;
     }

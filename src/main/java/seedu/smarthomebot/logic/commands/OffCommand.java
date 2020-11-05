@@ -19,15 +19,16 @@ public class OffCommand extends Command {
             + " [APPLIANCE_NAME] \n\t\t b. " + COMMAND_WORD + " [LOCATION_NAME]";
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
-    private final String key;
+    private final String argument;
 
-    public OffCommand(String key) {
-        this.key = key;
+    public OffCommand(String argument) {
+        assert argument.isEmpty() != true : "InvalidCommand must not accept empty arguments";
+        this.argument = argument;
     }
 
     private int getApplianceToOffIndex() {
         for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((this.key))) {
+            if (appliance.getName().equals((this.argument))) {
                 return applianceList.getAllAppliance().indexOf(appliance);
             }
         }
@@ -39,7 +40,7 @@ public class OffCommand extends Command {
         String type = APPLIANCE_TYPE;
         ArrayList<Appliance> filterApplianceList =
                 (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().equals(this.key))
+                        .filter((s) -> s.getLocation().equals(this.argument))
                         .collect(toList());
         if (!filterApplianceList.isEmpty()) {
             type = LOCATION_TYPE;
@@ -69,14 +70,14 @@ public class OffCommand extends Command {
 
     private CommandResult offByLocation() {
         String outputResults = offByApplianceLoop();
-        outputResults = outputResults.concat("All appliance in \"" + this.key + "\" are turned off ");
+        outputResults = outputResults.concat("All appliance in \"" + this.argument + "\" are turned off ");
         return new CommandResult(outputResults);
     }
 
     private String offByApplianceLoop() {
         String outputResults = LINE;
         for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
-            if (toOffAppliance.getLocation().equals(this.key)) {
+            if (toOffAppliance.getLocation().equals(this.argument)) {
                 outputResults = offAppliance(toOffAppliance, outputResults, true);
             }
         }
