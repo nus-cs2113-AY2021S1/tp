@@ -11,10 +11,9 @@ import seedu.duke.hr.MemberList;
 
 public class HrTest {
 
-    Member member1 = new Member("James Gosling", 11111111,
-            "111111@gmail.com", "member");
-    Member member2 = new Member("Harry Potter", 1234567890,
-            "harry_potter@gmail.com", "president");
+    //Member member1 = new Member("James Gosling", 11111111,
+    //        "111111@gmail.com", "member");
+    //Member member2 = new Member("Harry Potter", 1234567890, "harry_potter@gmail.com", "president");
     @Test
     public void addListDelChangeMember_executesNormally() {
         Member.numOfMembers = 0;
@@ -107,7 +106,7 @@ public class HrTest {
 
     @Test
     public void changeMemberInfo_PhoneNumberWrongFormat() {
-        MemberList.addToList(member2);
+        MemberList.addToList(new Member("Harry Potter", 1234567890, "harry_potter@gmail.com", "president"));
         String expected1 = "OOPS!!! The format of the phone number given is incorrect.\n"
                 + "The phone number should be a whole number less than 19 digits.\n";
         Member m = MemberList.findMemberByName("harry potter");
@@ -142,7 +141,7 @@ public class HrTest {
 
     @Test
     public void checkMemberExistence_executesNormally() {
-        MemberList.addToList(member2);
+        MemberList.addToList(new Member("Harry Potter", 1234567890, "harry_potter@gmail.com", "president"));
         boolean hasExist1 = MemberList.checkMemberExistence(MemberList.members, "Harry Potter");
         String actual1 = String.valueOf(hasExist1);
         String expected1 = "true";
@@ -196,7 +195,7 @@ public class HrTest {
     @Test
     public void findMemberIndex_executesNormally() {
         MemberList.deleteFromList(0);
-        MemberList.addToList(member2);
+        MemberList.addToList(new Member("Harry Potter", 1234567890, "harry_potter@gmail.com", "president"));
         int actual1 = MemberList.findMemberIndex(MemberList.members, "Harry Potter");
         int expected1 = 0;
         assertEquals(expected1, actual1);
