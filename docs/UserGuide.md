@@ -924,18 +924,48 @@ Example of ***`exclude chapter`***
 
 | Action | Format, Examples |
 |--------|------------------|
+| Add Module | `add MODULE_NAME` <br> e.g. `add CS2113` |
+| List Modules | `list` |
+| Edit Module Name | `edit INDEX MODULE_NAME` <br> e.g. `edit 1 CS2113` |
+| Remove Module | `remove MODULE_INDEX` <br> e.g. `remove 1` |
+| Access Module Level | `go MODULE_NAME` <br> e.g. `go CS2113` |
 
 ### 4.2. Module Level
 
 | Action | Format, Examples |
 |--------|------------------|
+| Add Chapter | `add CHAPTER_NAME` <br> e.g. `add Chapter 1` |
+| List Chapters | `list` |
+| Edit Chapter Name | `edit INDEX CHAPTER_NAME` <br> e.g. `edit 1 Chapter 1` |
+| Remove Chapter | `remove CHAPTER_INDEX` <br> e.g. `remove 1` |
+| Access Chapter Level | `go CHAPTER_NAME` <br> e.g. `go Chapter 1` |
+| Return Admin Level | `back` |
+| Revise | `revise CHAPTER_INDEX` <br> e.g. `revise Chapter 1` |
+| Reschedule | `reschedule CHAPTER_INDEX DATE` <br> e.g. `reschedule 1 2020-11-03` |
 
 ### 4.3. Chapter Level
 
 | Action | Format, Examples |
 |--------|------------------|
+| Add Flashcard | `add q:QUESTION I a:ANSWER` <br> e.g. `add q:1+1 I a:2` |
+| List Flashcards | `list` |
+| Edit Flashcard | `edit INDEX q:QUESTION I a:ANSWER` <br> e.g. `edit 1 q:2*1 I a:2` |
+| Remove Flashcard | `remove FLASHCARD_INDEX` <br> e.g. `remove 1` |
+| Return Module Level | `back` |
+| Show Rate | `showrate` |
 
 ### 4.4. General
 
 | Action | Format, Examples |
 |--------|------------------|
+| Help | `help` |
+| Show Revision History | `history` or `history DATE` <br> e.g. `history 2020-11-03` |
+| Exit | `exit` |
+
+### 4.5. Scheduling
+
+| Action | Format, Examples |
+|--------|------------------|
+| List Due Chapters | `due` |
+| Preview | `preview` |
+| Exclude | `exclude PRIMARY_OPTION` <br> e.g. `exclude more` or `exclude less` |

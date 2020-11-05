@@ -198,16 +198,6 @@ public class Ui {
 
     }
 
-    public boolean isValidExclusionChoice(String choice) {
-        switch (choice.toLowerCase()) {
-        case ExcludeCommand.EXCLUDE_COMMAND_OPTION_MODULE:
-        case ExcludeCommand.EXCLUDE_COMMAND_OPTION_CHAPTER:
-            return true;
-        default:
-            return false;
-        }
-    }
-
     public String getExcludedModuleName(String type) {
         if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MODULE)) {
             showToUser("Which module will you like to be excluded from your schedule?");
