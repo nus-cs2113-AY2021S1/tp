@@ -124,7 +124,7 @@ Example of usage: <br/>
  
  [Return to the top](#user-guide)
  
- #### Delete members: `delMember`
+#### Delete members: `delMember`
  Deletes a member from the list of members. <br/>
  Format: `hr delMember MEMBER_INDEX` <br/>
  Deletes the member at the specified MEMBER_INDEX.<br/>
