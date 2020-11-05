@@ -14,6 +14,7 @@ import commands.ListCardsCommand;
 import commands.ListChaptersCommand;
 import commands.ListCommand;
 import commands.ListModulesCommand;
+import commands.RescheduleCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
@@ -68,6 +69,15 @@ public class ParserTest {
 
         access.setIsChapterLevel();
         assertTrue(Parser.parse(ListCommand.COMMAND_WORD, access) instanceof ListCardsCommand);
+    }
+
+    @Test
+    public void parse_reschedule() throws Exception {
+        Access access = new Access();
+
+        access.setIsModuleLevel();
+        assertTrue(Parser.parse(RescheduleCommand.COMMAND_WORD + " 1 2020-11-05", access)
+                instanceof RescheduleCommand);
     }
 
     @Test
