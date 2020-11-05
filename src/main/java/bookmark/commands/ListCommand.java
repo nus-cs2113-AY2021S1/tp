@@ -21,17 +21,26 @@ public class ListCommand extends BookmarkCommand {
 
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         String line = input.substring(LIST_LENGTH).trim();
-        if (line.length() > 0) {
-            if (line.contains("star")) {
+        if (line.contains("-")) {
+            if (line.contains("-s")) {
                 executeListStarCommand(ui, categories, line);
-            } else if (line.contains("cat")) {
+            } else if (line.contains("-c")) {
                 executeListCatCommand(ui, categories, line);
-            } else {
-                ui.showCorrectCommand("list");
+            } else if (line.contains("-a")) {
+                executeListAllCommand(ui, categories, line);
             }
         } else {
-            ui.showBookmarkList(categories);
-            printCurrentMode(ui, categories);
+            if (line.length() > 0) {
+                ui.showCorrectCommand("list");
+            } else {
+                if (categoryNumber == 0) {
+                    ui.showBookmarkList(categories);
+                } else {
+                    assert categoryNumber > 0 : "Category number cannot be accessed";
+                    ui.showBookmarkLinkList(categories.get(categoryNumber - 1));
+                }
+                printCurrentMode(ui, categories);
+            }
         }
     }
 
@@ -40,13 +49,13 @@ public class ListCommand extends BookmarkCommand {
             ui.showCurrentMode("Bookmark Main");
         } else {
             ui.showCurrentMode(categories.get(categoryNumber - 1).getName() + " category");
-            assert categoryNumber > 0 : "print category name when it is not available";
+            assert categoryNumber > 0 : "Cannot print category name when it is not available";
         }
     }
 
     private void executeListCatCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, String line) {
-        if (line.substring(CAT_LENGTH).length() > 0) {
-            ui.showCorrectCommand("list cat");
+        if (line.substring(2).length() > 0) {
+            ui.showCorrectCommand("list -c");
         } else {
             ui.showBookmarkCategoryList(categories);
             printCurrentMode(ui, categories);
@@ -54,10 +63,19 @@ public class ListCommand extends BookmarkCommand {
     }
 
     private void executeListStarCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, String line) {
-        if (line.substring(STAR_LENGTH).length() > 0) {
-            ui.showCorrectCommand("list star");
+        if (line.substring(2).length() > 0) {
+            ui.showCorrectCommand("list -s");
         } else {
             ui.showStarBookmarks(categories);
+            printCurrentMode(ui, categories);
+        }
+    }
+
+    private void executeListAllCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, String line) {
+        if (line.substring(2).length() > 0) {
+            ui.showCorrectCommand("list -a");
+        } else {
+            ui.showBookmarkList(categories);
             printCurrentMode(ui, categories);
         }
     }
