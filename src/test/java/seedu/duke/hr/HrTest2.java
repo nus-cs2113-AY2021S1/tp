@@ -21,6 +21,9 @@ public class HrTest2 {
                 + "|role: vice-president |attendance rate: 0%\n";
         String actual = MemberList.search(true,false,false,false,false,"president",
                 "","","","");
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
+        non = MemberList.deleteFromList(1);
         assertEquals(expected,actual);
     }
 }

@@ -16,6 +16,9 @@ public class FinanceTest2 {
                 + "\t3.super chat $23.24\n"
                 + "Total budget: $1334.74\n";
         String actual = FinanceList.summary();
+        non = FinanceList.dellog(1);
+        non = FinanceList.dellog(1);
+        non = FinanceList.dellog(1);
         assertEquals(expected,actual);
     }
 }

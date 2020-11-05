@@ -23,6 +23,7 @@ class FinanceTest {
         assertEquals(expected3, actual3);
         String expected4 = "Your index input does not exist in the list";
         String actual4 = FinanceList.dellog(5);
+        String non = FinanceList.dellog(1);
         assertEquals(expected4,actual4);
     }
 
@@ -42,6 +43,7 @@ class FinanceTest {
         assertEquals(expected2,actual2);
         String expected3 = "Your input index does not exist in the list.";
         String actual3 = FinanceList.changeFinanceLog(2,"have McD",10);
+        String non = FinanceList.dellog(1);
         assertEquals(expected3,actual3);
     }
 }
