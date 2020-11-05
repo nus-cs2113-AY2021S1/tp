@@ -9,7 +9,6 @@ import bookmark.commands.ListCommand;
 import bookmark.commands.RemoveCategoryCommand;
 import bookmark.commands.RemoveLinkCommand;
 import bookmark.commands.StarCommand;
-import bookmark.commands.ListStarCommand;
 import exceptions.InvalidCommandException;
 import studyit.CommandParser;
 import studyit.StudyItLog;
@@ -31,11 +30,7 @@ public class BookmarkParser extends CommandParser {
         } else if (commandModified.startsWith("rm")) {
             return new RemoveLinkCommand(command, chosenCategory);
         } else if (commandModified.startsWith("list")) {
-            if (commandModified.contains("star")) {
-                return new ListStarCommand(command,chosenCategory);
-            } else {
-                return new ListCommand(command,chosenCategory);
-            }
+            return new ListCommand(command,chosenCategory);
         } else if (commandModified.startsWith("back")) {
             return new BackCommand(command,chosenCategory);
         } else if (commandModified.startsWith("cat")) {
