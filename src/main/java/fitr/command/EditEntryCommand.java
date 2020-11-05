@@ -115,7 +115,7 @@ public class EditEntryCommand extends Command {
         filteredExercises.getExercise(index - 1).setNameOfExercise(exerciseName);
         filteredExercises.getExercise(index - 1).setCaloriesBurnt(new Calorie(calories));
 
-        Ui.printCustomMessage("Successfully edited exercise to: " + exerciseName);
+        Ui.printCustomMessage("Successfully edited exercise to: " + exerciseName + ", calories burnt: " + calories);
     }
 
     private void editFood(FoodList foodList, String arguments) {
@@ -159,7 +159,8 @@ public class EditEntryCommand extends Command {
         filteredFood.getFood(index - 1).setCaloriesInFood(new Calorie(calories * quantity));
         filteredFood.getFood(index - 1).setAmountOfFood(quantity);
 
-        Ui.printCustomMessage("Successfully edited food to: " + foodName);
+        Ui.printCustomMessage("Successfully edited food to: " + foodName
+                + ", calories: " + calories + ", amount: " + quantity);
     }
 
     private void editGoal(GoalList goalList, String arguments) throws FitrException {
