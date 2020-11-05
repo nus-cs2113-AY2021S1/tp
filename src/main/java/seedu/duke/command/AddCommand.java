@@ -159,7 +159,7 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new CommandException("lab");
         }  else if (recurringCount < 0 || recurringCount > 13) {
-            System.out.println("Warning! The number of lab session can only be in the range of 0 to 13. \n");
+            System.out.println("Warning! The value for <number of lab session> can only be in the range of 0 to 13. \n");
             throw new CommandException("lab");
         } else {
             for (int i = 0; i < recurringCount; i++) {
@@ -196,7 +196,7 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new CommandException("tutorial");
         } else if (recurringCount < 0 || recurringCount > 13) {
-            System.out.println("Warning! The number of tutorial can only be in the range of 0 to 13. \n");
+            System.out.println("Warning! The value for <number of tutorial> can only be in the range of 0 to 13. \n");
             throw new CommandException("tutorial");
         } else {
             for (int i = 0; i < recurringCount; i++) {
@@ -228,7 +228,7 @@ public class AddCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new CommandException("lecture");
         }  else if (recurringCount < 0 || recurringCount > 13) {
-            System.out.println("Warning! The number of lecture can only be in the range of 0 to 13. \n");
+            System.out.println("Warning! The value for <number of lecture> can only be in the range of 0 to 13. \n");
             throw new CommandException("lecture");
         } else {
             for (int i = 0; i < recurringCount; i++) {
