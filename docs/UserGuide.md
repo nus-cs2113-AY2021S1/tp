@@ -17,7 +17,7 @@ You must have **Java 11** or above installed on your computer. You must also be 
 ## 1.2 How to use this guide
 Note the formatting used in this guide:
 - A command that you need to enter at the command line is formatted as `command`.
-- Important information is indicated with :bulb:.
+- Additional information is indicated with :bulb:.
 - Warnings are indicated with :warning:.
 - Words formatted as `UPPER_CASE` are to be supplied by you.
 
@@ -28,7 +28,7 @@ This quick start section provides a step-by-step procedure to get you started wi
 3. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
 4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
 
-> :bulb: Please resize your window to ensure that the separator lines are not wrapped.
+> :bulb: **Additional information:** Please resize your window to ensure that the separator lines are not wrapped.
 
 5. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
 6. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
@@ -69,6 +69,7 @@ Burnt Cal: 500
 ```
 
 ### 2.1.3 Adding a food goal
+
 You can add a food goal to the application to encourage yourself to eat more or less. 
 
 Format: `goal food GOAL_DESCRIPTION`
@@ -83,7 +84,12 @@ Okay! The following goal has been added:
 #### 2.1.3.1 Adding a smart food goal
 Fitr also understands particular keywords. If you would like to set a target for your calorie intake, you can key in your goal following the format below. By adding a smart food goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
-Format: `goal food > NUMBER_OF_CALORIES` or `goal food < NUMBER_OF_CALORIES`
+> :bulb: **Additional information:** Smart food goals are linked to the calorie intake of its created date
+
+Format: `goal food > NUMBER_OF_CALORIES`
+        or `goal food Eat more than NUMBER_OF_CALORIES calories`  
+        or `goal food < NUMBER_OF_CALORIES`
+        or `goal food Eat less than NUMBER_OF_CALORIES calories`  
 
 For example, if your goal is to consume less than 800 calories, you can enter `goal food <800` and the expected result after the application records the smart food goal entry should be as follows:
 
@@ -107,7 +113,12 @@ Okay! The following goal has been added:
 #### 2.1.4.1 Adding a smart exercise goal
 Fitr also understands particular keywords. If you would like to set a target for your calorie burnt, you can key in your goal following the format below. By adding a smart exercise goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
-Format: `goal exercise > NUMBER_OF_CALORIES` or `goal exercise < NUMBER_OF_CALORIES`
+> :bulb: **Additional information:** Smart exercise goals are linked to the calorie intake of its created date
+
+Format: `goal exercise > NUMBER_OF_CALORIES` 
+        or `goal exercise Burn more than NUMBER_OF_CALORIES calories` 
+        or `goal exercise < NUMBER_OF_CALORIES`
+        or `goal exercise Burn less than NUMBER_OF_CALORIES calories` 
 
 For example, you can enter `goal exercise >3800` and you should expect the following:
 
@@ -276,7 +287,21 @@ Date: 22/10/2020
 ### 2.2.6 Viewing goal entries
 You can view the goals you have previously set for yourself and track your progress using this command. 
 
+> :bulb: **Additional information:** The goal list is sorted by the progress of the goals, from the most incomplete to completed goals
+
+The letter in the first square bracket denotes the goal type, `[F]` for food goals and `[E]` for exercise goals.
+The second square bracket shows the status of that goal, `[Y]` for completed goals, `[N]` for incompleted goals and percentages indicate the completeness of that goal.
+ 
 Format: `view goal`
+
+Example of an expected outcome is as follows:
+```
+Here is the list of your goals:
+1. [E][N] run more (created on: 4/11/2020)
+2. [E][N] Burn more than 4000 calories (created on: 4/11/2020)
+3. [E][1.7%] Burn more than 3000 calories (created on: 6/11/2020)
+4. [F][Y] Eat less than 2000 calories (created on: 5/11/2020)
+```
 
 ### 2.2.7 Viewing calorie summary
 If you want to see the calories you consumed from food or burnt from exercise, you can use this command. Note that positive net calorie does not mean you are gaining weight. It does not take calories burnt from performing everyday tasks into account and you may actually burn much more calories from performing everyday tasks than doing a workout.
@@ -337,7 +362,9 @@ Successfully edited exercise to: Push ups, calories burnt: 500
 
 ### 2.3.4 Editing a goal entry
 You can edit your previous goal entries, for example, if you previously made a mistake when entering the type or description of a goal.
-By editing the goal entry, it will reset the status of the goal to zero unless it is a smart goal.
+> :bulb:  **Additional information:** 
+> * By editing the goal entry, it will reset the status of the goal
+> * Smart goals will be updated based on the created date's calorie intake and calories burnt
 
 Format: `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION`
 
@@ -433,7 +460,7 @@ Other than the commands mentioned above, Fitr is also able to give you a workout
 ### 2.6.1 Getting a recommended workout
 If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. 
 
-If you do accept it, It will automatically be added into your exercise entries, however you can just to add particular exercises from the recommended list by keying in the index separated by spaces
+If you do accept it, it will automatically be added into your exercise entries, however you can also choose which exercises you want to add to your exercise entries by keying in the index, separated by spaces.
 
 Format: `recommend`
 
@@ -454,10 +481,10 @@ For example, if you key in `recommend`, the expected outcome is as follows:
 Will you be doing this workout?
 type y for yes to add all 4 to your exercise list
 or you can type in the index of the exercises you want added to you exercise list (separated by a space)
-Any other key will be taken as a no :D
+Any other key will be taken as a no 
 ```
 
-If you follow this up with a `y`, you will then see the exercises added in as follows
+If you follow this up with a `y`, you will then see the exercises added in as follows:
 ```
 The following exercise has been added:
 [1] Exercise: Triceps dips
@@ -470,41 +497,21 @@ The following exercise has been added:
     Burnt Cal: 5
 ```
 
-However, if you only decide to add certain indexes, then you can key in the exercise index separated by a space.
-
-For example if you recommended exercises are as follows:
-
-```
-[1] Exercise: Standard Pushups
-    Intensity: 3 sets of 0.5 minutes
-    Burnt Cal: 6
-[2] Exercise: Cossack Squat
-    Intensity: 3 sets of 1.0 minutes
-    Burnt Cal: 17
-[3] Exercise: Sprints (in minutes)
-    Intensity: 3 sets of 1.0 minutes
-    Burnt Cal: 54
-[4] Exercise: Spinal rotations
-    Intensity: 4 sets of 0.5 minutes
-    Burnt Cal: 5
-Will you be doing this workout?
-type y for yes to add all 4 to your exercise list
-or you can type in the index of the exercises you want added to you exercise list (separated by a space)
-Any other key will be taken as a no :D
-
-```
-
-If you decide, you only want 2 and 4 to be added, you can key in `2 4` and you will see as follows:
+If you decide, you only want exercise 2 and 4 to be added, you can key in `2 4` and you will see as follows:
 ```
 The following exercise has been added:
-[1] Exercise: Cossack Squat
-    Burnt Cal: 17
-[2] Exercise: Spinal rotations
+[1] Exercise: Side Lunges
+    Burnt Cal: 12
+[2] Exercise: Mountain stretch
     Burnt Cal: 5
 ```
 
 ### 2.6.2 Marking a goal as complete
 After completing a goal, you can mark it as complete. However, if it is a smart goal, Fitr will mark it as complete according to your calorie intake or calorie burnt.
+
+> :bulb:  **Additional information:**
+> * You are able to override the smart goal to mark them as complete
+> * When you mark a goal as complete, it is moved to the bottom of the list
 
 Format: `complete goal INDEX`
 
