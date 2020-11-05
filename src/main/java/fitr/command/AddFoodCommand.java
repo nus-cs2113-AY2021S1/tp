@@ -18,6 +18,7 @@ import static fitr.common.Messages.ERROR_INVALID_CALORIE;
 import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.FOOD_NAME_HEADER;
 import static fitr.common.Messages.LINE_BREAK;
+import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 
 public class AddFoodCommand extends Command {
     public AddFoodCommand(String command) {
@@ -60,7 +61,7 @@ public class AddFoodCommand extends Command {
                         + FOOD_NAME_HEADER + nameOfFood + LINE_BREAK
                         + "Calorie Consumed: " + amountOfCalories.get());
             } else {
-                Ui.printFormatError("Extra parameters");
+                Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
             }
         } catch (NumberFormatException | NullPointerException e) {
             Ui.printCustomError(ERROR_INVALID_CALORIE);

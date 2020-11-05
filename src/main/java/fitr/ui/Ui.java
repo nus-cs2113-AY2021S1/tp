@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import static fitr.common.Commands.COMMAND_BYE;
 import static fitr.common.Commands.COMMAND_CLEAR;
+import static fitr.common.Commands.COMMAND_COMPLETE;
 import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_EDIT;
 import static fitr.common.Commands.COMMAND_EXERCISE;
@@ -16,6 +17,10 @@ import static fitr.common.Commands.COMMAND_VIEW_BMI;
 import static fitr.common.Commands.COMMAND_VIEW_PROFILE;
 import static fitr.common.Commands.COMMAND_VIEW_SUMMARY;
 
+import static fitr.common.Commands.WORD_AEROBIC;
+import static fitr.common.Commands.WORD_LOWERBODY;
+import static fitr.common.Commands.WORD_STRETCH;
+import static fitr.common.Commands.WORD_UPPERBODY;
 import static fitr.common.Messages.ERROR_FORMAT_MESSAGE;
 import static fitr.common.Messages.ERROR_INVALID_COMMAND;
 
@@ -53,6 +58,7 @@ import static fitr.common.Messages.FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE;
 import static fitr.common.Messages.MESSAGE_BYE;
 import static fitr.common.Messages.MESSAGE_GREET;
 import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
+import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 
 /**
  * Prints messages.
@@ -129,6 +135,10 @@ public class Ui {
 
         printCustomMessage("-".repeat(64) + "Exercise" + "-".repeat(64));
         System.out.printf(HELP_SPACER, COMMAND_RECOMMEND, "Get a recommended workout");
+        System.out.printf(HELP_SPACER, COMMAND_RECOMMEND + " " + WORD_AEROBIC, "Get a recommended aerobic workout");
+        System.out.printf(HELP_SPACER, COMMAND_RECOMMEND + " " + WORD_UPPERBODY, "Get a recommended upperbody workout");
+        System.out.printf(HELP_SPACER, COMMAND_RECOMMEND + " " + WORD_LOWERBODY, "Get a recommended lowerbody workout");
+        System.out.printf(HELP_SPACER, COMMAND_RECOMMEND + " " + WORD_STRETCH, "Get a recommended stretch workout");
         System.out.printf(HELP_SPACER, FORMAT_EXERCISE, "Add an exercise entry");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_EXERCISE, "View your exercise entries");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE,
@@ -185,7 +195,7 @@ public class Ui {
             System.out.printf(VIEW_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
             System.out.printf(VIEW_SPACER, COMMAND_GOAL, "View your food and exercise goals");
             break;
-        case "Extra parameters":
+        case PHRASE_EXTRA_PARAMETERS:
             Ui.printCustomError("Please remove the extra parameters!");
             break;
         case COMMAND_DELETE:
@@ -216,6 +226,9 @@ public class Ui {
             printCustomError(ERROR_FORMAT_MESSAGE);
             printCustomMessage(FORMAT + FORMAT_SMART_EXERCISE_GOAL);
             break;
+        case COMMAND_COMPLETE:
+            printCustomError(ERROR_FORMAT_MESSAGE);
+            printCustomMessage(FORMAT + FORMAT_MARK_GOAL_AS_COMPLETE);
         default:
             printInvalidCommandError();
             break;

@@ -11,7 +11,7 @@ public class Messages {
     public static final String MESSAGE_GREET = FITR_WORD + "Hello! Welcome to Fitr.";
     public static final String MESSAGE_SUGGEST_QUESTION = "What can I do for you?";
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
-
+    public static final String PHRASE_EXTRA_PARAMETERS = "Extra parameters";
     //Format messages
     public static final String FORMAT_FOOD = "food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]";
     public static final String FORMAT_EXERCISE = "exercise NAME_OF_EXERCISE /CALORIES_BURNT";

@@ -8,6 +8,11 @@ import fitr.ui.Ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static fitr.common.Commands.WORD_AEROBIC;
+import static fitr.common.Commands.WORD_LOWERBODY;
+import static fitr.common.Commands.WORD_STRETCH;
+import static fitr.common.Commands.WORD_UPPERBODY;
+
 public class Recommender {
     protected StandardExerciseList upperBodyList;
     protected StandardExerciseList lowerBodyList;
@@ -111,16 +116,16 @@ public class Recommender {
             return 0;
         } else {
             switch (command) {
-            case "aerobic":
+            case WORD_AEROBIC:
                 recommendationType = 1;
                 break;
-            case "upperbody":
+            case WORD_UPPERBODY:
                 recommendationType = 2;
                 break;
-            case "lowerbody":
+            case WORD_LOWERBODY:
                 recommendationType = 3;
                 break;
-            case "stretch":
+            case WORD_STRETCH:
                 recommendationType = 4;
                 break;
             default:
