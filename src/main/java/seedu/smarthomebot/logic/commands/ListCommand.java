@@ -1,6 +1,11 @@
 package seedu.smarthomebot.logic.commands;
 
+import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
+import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
+import seedu.smarthomebot.logic.commands.exceptions.EmptyLocationListException;
+import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
+import seedu.smarthomebot.logic.commands.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
 
@@ -11,6 +16,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
 
+//@@author Ang_Cheng_Jun
 /**
  * Represent the command to list LocationList or ApplianceList to the user.
  */
@@ -20,9 +26,9 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = "List: \n\t\t a. " + COMMAND_WORD
             + " appliance \n\t\t b. " + COMMAND_WORD + " location \n\t\t c. "
             + COMMAND_WORD + " appliance l/[LOCATION_NAME]";
+
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
-
     private static final String DISPLAY_LOCATION = " | Location: ";
     private static final String DISPLAY_STATUS = " | Status: ";
     private static final String DISPLAY_WATT = " | Watt: ";
@@ -40,25 +46,35 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        int index = 1;
-        switch (parameter) {
-        case LOCATION_TYPE:
-            return listLocation(index);
-        case APPLIANCE_TYPE:
-            return listAppliance();
-        default:
-            return new CommandResult("Error");
+        try {
+            int index = 1;
+            switch (parameter) {
+            case LOCATION_TYPE:
+                return listLocation(index);
+            case APPLIANCE_TYPE:
+                return listAppliance();
+            default:
+                return new CommandResult("Invalid Format");
+            }
+        } catch (EmptyApplianceListException e) {
+            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
+        } catch (LocationNotFoundException e) {
+            return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
+        } catch (NoApplianceInLocationException e) {
+            return new CommandResult("There is no appliance in \"" + filteredLocation + "\".");
+        } catch (EmptyLocationListException e) {
+            return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
         }
     }
 
-    private CommandResult listAppliance() {
+    private CommandResult listAppliance() throws LocationNotFoundException, EmptyApplianceListException, NoApplianceInLocationException {
+        String outputResults;
         if (filteredLocation.equals("")) {
             if (applianceList.getAllAppliance().size() == 0) {
-                return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
+                throw new EmptyApplianceListException();
             }
             String header = (LINE + MESSAGE_LIST_APPLIANCES);
-            String outputApplianceList = displayOutput(header, applianceList.getAllAppliance());
-            return new CommandResult(outputApplianceList);
+            outputResults = displayOutput(header, applianceList.getAllAppliance());
         } else {
             ArrayList<Appliance> filterApplianceList =
                     (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
@@ -67,32 +83,35 @@ public class ListCommand extends Command {
 
             if (filterApplianceList.isEmpty()) {
                 if (locationList.isLocationCreated(filteredLocation)) {
-                    return new CommandResult("There is no appliance in \"" + filteredLocation + "\".");
+                    throw new NoApplianceInLocationException();
                 }
-                return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
+                throw new LocationNotFoundException();
             }
             String header = (LINE + "Here are the appliances in \"" + filteredLocation + "\"");
-            String outputFilteredList = displayOutput(header, filterApplianceList);
-            return new CommandResult(outputFilteredList);
+            outputResults = displayOutput(header, filterApplianceList);
         }
+        return new CommandResult(outputResults);
     }
 
-    private CommandResult listLocation(int index) {
-        if (locationList.getAllLocations().size() == 0) {
-            return new CommandResult(LINE + MESSAGE_LIST_NO_LOCATIONS);
+    private CommandResult listLocation(int index) throws EmptyLocationListException {
+
+        ArrayList<String> listLocationList = locationList.getAllLocations();
+
+        if (listLocationList.size() == 0) {
+            throw new EmptyLocationListException();
         }
-        String outputLocationsList = LINE + MESSAGE_LIST_LOCATIONS;
-        for (String location : locationList.getAllLocations()) {
-            outputLocationsList = outputLocationsList.concat(System.lineSeparator() + index + ": " + location);
+        String outputResults = LINE + MESSAGE_LIST_LOCATIONS;
+        for (String location : listLocationList) {
+            outputResults = outputResults.concat(System.lineSeparator() + index + ": " + location);
             index++;
         }
-        return new CommandResult(outputLocationsList);
+        return new CommandResult(outputResults);
     }
 
     private String displayOutput(String header, ArrayList<Appliance> displayList) {
         autoFormattingStringIndex();
         int index = 1;
-        String outputList = header;
+        String outputResults = header;
         String format = "%-2d. %-" + maxNameLength + "s"
                 + DISPLAY_LOCATION + "%-" + maxLocationLength + "s"
                 + DISPLAY_STATUS + "%-3s"
@@ -101,12 +120,12 @@ public class ListCommand extends Command {
                 + DISPLAY_PARAMETER + "%s";
 
         for (Appliance a : displayList) {
-            outputList = outputList.concat(System.lineSeparator() + String.format(format, index,
+            outputResults = outputResults.concat(System.lineSeparator() + String.format(format, index,
                     a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
 
-        return outputList;
+        return outputResults;
     }
 
 }
