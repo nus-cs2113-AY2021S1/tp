@@ -267,7 +267,7 @@ The expected outcome:
 <br/>
 
 ### 3.5 View the information of an anime
-View all the information regarding a specific anime.
+The `info` feature allows you to view all the information regarding a specific anime.
 
 Format: `info <ANIME_ID>`
 
@@ -494,7 +494,7 @@ Trigun successfully removed from watchlist
 ### 3.7.7 View all anime in watchlist
 View all the anime that you have stored in your current watchlist, or in a specific watchlist
 
-Format: `view [-v <WATCHLIST_ID>]`
+Format: `view [-v WATCHLIST_ID]`
 *   If the parameter `-v` is not specified, the anime in the current watchlist you are using will be shown.
 
 <br/>
