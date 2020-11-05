@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class Eduke8Test {
-    protected static final String PLACEHOLDER_TOPIC_ONE_DESCRIPTION = "First Topic";
-    protected static final String PLACEHOLDER_TOPIC_TWO_DESCRIPTION = "Second Topic";
+    protected static final String PLACEHOLDER_TOPIC_ONE_DESCRIPTION = "First_Topic";
+    protected static final String PLACEHOLDER_TOPIC_TWO_DESCRIPTION = "Second_Topic";
     protected static final String PLACEHOLDER_QUESTION_ONE_DESCRIPTION = "First question description.";
     protected static final String PLACEHOLDER_QUESTION_TWO_DESCRIPTION = "Second question description.";
     protected static final String PLACEHOLDER_QUESTION_THREE_DESCRIPTION = "Third question description.";
