@@ -3,7 +3,10 @@ package seedu.smarthomebot.logic.commands;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
+import static seedu.smarthomebot.commons.Messages.LINE;
+
 //@@author zongxian-ctrl
+
 /**
  * Represent the command for creating a location in the LocationList.
  */
@@ -33,7 +36,7 @@ public class CreateCommand extends Command {
             return new CommandResult(MESSAGE_LOCATION_EXIST);
         } catch (InvalidLocationException e) {
             return new CommandResult(MESSAGE_LOCATION_EXIST
-                    + " as a Appliance, please choose another name.");
+                    + " as an Appliance, please choose another name.");
         }
     }
 }
