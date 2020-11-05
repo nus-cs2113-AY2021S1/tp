@@ -98,6 +98,8 @@ public class MemberList {
                 if (isSpace) {
                     charArray[i] = Character.toUpperCase(charArray[i]);
                     isSpace = false;
+                } else {
+                    charArray[i] = Character.toLowerCase(charArray[i]);
                 }
             } else {
                 isSpace = true;
@@ -378,6 +380,7 @@ public class MemberList {
         String attendanceRate = calculateAttendanceRate(attended, EventList.events.size());
         Member m = findMemberByName(memberName);
         m.setAttendanceRate(attendanceRate);
+
     }
 
     /**
