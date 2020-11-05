@@ -1,10 +1,10 @@
 package seedu.task;
 
-import seedu.data.Timers;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;
 
+import seedu.data.Timers;
 import seedu.commands.Reminder;
 import seedu.ui.Ui;
 
@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimerTask;
+
 
 import static java.lang.Math.pow;
 

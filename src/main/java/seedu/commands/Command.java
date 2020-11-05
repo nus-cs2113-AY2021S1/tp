@@ -2,7 +2,12 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.*;
+import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.MaxNumTaskException;
+import seedu.exceptions.InvalidTaskNumberException;
+import seedu.exceptions.EmptyDataStackException;
+import seedu.exceptions.InvalidReminderException;
 
 public class Command {
     public CommandResult execute() {
