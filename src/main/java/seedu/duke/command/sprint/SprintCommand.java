@@ -27,6 +27,8 @@ public abstract class SprintCommand extends Command {
 
     public abstract void execute();
 
+    public abstract void logExecution();
+
     /**
      * Choose the project to execute command.
      * Validation completed at SprintParser

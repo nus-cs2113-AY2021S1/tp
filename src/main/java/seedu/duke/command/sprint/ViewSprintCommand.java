@@ -1,9 +1,11 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
+import java.util.Arrays;
 import java.util.Hashtable;
 
 public class ViewSprintCommand extends SprintCommand {
@@ -22,8 +24,17 @@ public class ViewSprintCommand extends SprintCommand {
             //Valid Command
             Ui.showToUser(this.projOwner.toIdString());
             Ui.showToUser(this.sprintOwner.toString());
+            logExecution();
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
         }
     }
+
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Viewed Sprint");
+    }
+
+
 }

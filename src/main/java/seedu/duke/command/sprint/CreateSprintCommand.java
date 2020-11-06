@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
 import seedu.duke.parser.DateTimeParser;
@@ -8,6 +9,8 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static seedu.duke.parser.DateTimeParser.catchDateFormat;
 
@@ -42,9 +45,10 @@ public class CreateSprintCommand extends SprintCommand {
             updateProjectDates();
             sprintList.addSprint(this.projOwner, sprintGoal, sprintStart, sprintEnd);
             printCreatedSprint();
-
+            logExecution();
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
         }
     }
 
@@ -133,5 +137,15 @@ public class CreateSprintCommand extends SprintCommand {
      */
     private boolean checkIsFirstSprint() {
         return sprintList.size() == 0;
+    }
+
+    /**
+     * Add entry to logger that execution is successful.
+     */
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Created New Sprint - "
+                + this.sprintList.getSprint(this.sprintList.size()).getGoal()
+                + " for Project " + this.projOwner.toIdString());
     }
 }

@@ -1,11 +1,13 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 public class RemoveSprintTaskCommand extends SprintCommand {
@@ -30,8 +32,10 @@ public class RemoveSprintTaskCommand extends SprintCommand {
             //Valid Command
             Ui.showToUser(this.projOwner.toIdString());
             removeTasks();
+            logExecution();
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
         }
     }
 
@@ -80,5 +84,14 @@ public class RemoveSprintTaskCommand extends SprintCommand {
         for (String id : taskIds) {
             this.taskIds.add(Integer.parseInt(id));
         }
+    }
+
+    /**
+     * Add entry to logger that execution is successful.
+     */
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info(String.format("Removed task from Sprint - %s",
+                Arrays.toString(this.taskIds.toArray())));
     }
 }
