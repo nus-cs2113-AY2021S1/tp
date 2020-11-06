@@ -9,8 +9,8 @@ import static seedu.modtracker.Analysis.tooMuchTimeSpent;
 
 public class ViewTimeBreakdownAnalysis {
     private static final int LOWER_BOUND_OF_JUST_NICE = -30;
-    private static final String FULL_BAR = "█";
-    private static final String HALF_BAR = "▌";
+    private static final String FULL_BAR = "[]";
+    private static final String HALF_BAR = "[";
     public static final String NO_INPUT = "NO INPUT";
     public static final String ACTUAL = "Actual   | ";
     public static final String EXPECTED = "Expected | ";

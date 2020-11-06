@@ -8,10 +8,21 @@ import java.util.Scanner;
  */
 public class Ui {
     private static final Scanner in = new Scanner(System.in);
-    public static final String INVALID_MODULETYPE = "The module code should have 2 - 3 characters, followed by "
+    private static final String INVALID_MODULETYPE = "The module code should have 2 - 3 characters, followed by "
         + "4 digits, followed by an optional character without any spacing.";
-    public static final String MODULETYPE_EXAMPLE = "The accepted module code is of the following forms: CG1111, "
+    private static final String MODULETYPE_EXAMPLE = "The accepted module code is of the following forms: CG1111, "
         + "CS2113T, GER1000, GES1000T.";
+    private static final String ERROR_ADDMOD = "Please type addmod <module code>";
+    private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
+    private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
+    private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
+    private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
+            + "with a maximum of 1 decimal place.";
+    private static final String ERROR_WEEK = "The week number should be between 1 and 13.";
+    private static final String NO_EXPECTED_WORKLOAD = "There is no input in the expected workload.";
+    private static final String NO_ACTUAL_TIME = "There is no input in the actual time.";
+    private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
+            + "expected workload with a maximum of 1 decimal place.";
     public static final String INVALID_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String ENTER_HELP = "Enter <help> for a quick view of available commands.";
     public static final String HELP_LIST = "Available Commands:\n"
@@ -148,30 +159,119 @@ public class Ui {
     /**
      * Prints the message when module does not exist.
      */
-    public void printNotExist(String moduleCode) {
-        System.out.println(moduleCode + " does not exist." + System.lineSeparator());
+    public void printNotExist(String moduleCode, boolean toPrint) {
+        if (toPrint) {
+            System.out.println(moduleCode + " does not exist." + System.lineSeparator());
+        }
     }
 
     /**
      * Prints the message when module exists.
      */
-    public void printExist(String moduleCode) {
-        System.out.println(moduleCode + " already exists." + System.lineSeparator());
+    public void printExist(String moduleCode, boolean toPrint) {
+        if (toPrint) {
+            System.out.println(moduleCode + " already exists." + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when addmod command is wrong.
+     */
+    public void printAddModError(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_ADDMOD + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when deletemod command is wrong.
+     */
+    public void printDeleteModError(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_DELETEMOD + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when addexp command is wrong.
+     */
+    public void printAddExpError(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_ADDEXP + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when deleteexp command is wrong.
+     */
+    public void printDeleteExpError(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_DELETEEXP + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when expected workload has no input.
+     */
+    public void printEmptyExp(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(NO_EXPECTED_WORKLOAD + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when actual time has no input.
+     */
+    public void printEmptyActual(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(NO_ACTUAL_TIME + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when addexp command throws Number Format Exception.
+     */
+    public void printAddExpNfe(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
+        }
     }
 
     /**
      * Prints the message when module is deleted.
      */
-    public void printDelete(String moduleCode) {
-        System.out.println(moduleCode + " is removed.");
-        System.out.println("All tasks under " + moduleCode + " are deleted." + System.lineSeparator());
+    public void printDelete(String moduleCode, boolean toPrint) {
+        if (toPrint) {
+            System.out.println(moduleCode + " is removed.");
+            System.out.println("All tasks under " + moduleCode + " are deleted." + System.lineSeparator());
+        }
     }
 
     /**
-     * Prints the message when module is deleted.
+     * Prints the message when expected workload has more than 1 decimal place.
      */
-    public void printDeleteExp(String moduleCode) {
-        System.out.println("Expected Workload of " + moduleCode + " is removed." + System.lineSeparator());
+    public void printInvalidExpString(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_ADDEXP + ERROR_EXP + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when expected workload is invalid.
+     */
+    public void printInvalidExpTime(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(INVALID_EXP_HOURS + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when expected workload of module is deleted.
+     */
+    public void printDeleteExp(String moduleCode, boolean toPrint) {
+        if (toPrint) {
+            System.out.println("Expected Workload of " + moduleCode + " is removed." + System.lineSeparator());
+        }
     }
 
     /**
@@ -180,6 +280,16 @@ public class Ui {
     public void printAdd(Module moduleDetail, boolean toPrint) {
         if (toPrint) {
             System.out.println(moduleDetail + " is added." + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when actual time of module of the particular week is removed .
+     */
+    public void removeActualTime(String modCode, String week, boolean toPrint) {
+        if (toPrint) {
+            System.out.println("Actual time of " + modCode + " of week " + week + " is removed.");
+            System.out.println();
         }
     }
 
@@ -200,6 +310,15 @@ public class Ui {
         if (toPrint) {
             System.out.print("Expected workload of " + modCode + " is changed to " + exp + "h.");
             System.out.println(System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when the week number is not valid.
+     */
+    public void printWeekError(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_WEEK + System.lineSeparator());
         }
     }
 
@@ -308,6 +427,12 @@ public class Ui {
         return false;
     }
 
+    public void printDataError(String input) {
+        System.out.println("Unrecognised command in data file: " + input);
+        System.out.println("Please do not modify the file. Clear or reset the program to clean up the file!");
+        System.out.println();
+    }
+
     /**
      * Prints the given error message.
      */
@@ -328,9 +453,8 @@ public class Ui {
                     + System.lineSeparator());
             break;
         case Parser.COMMAND_DELETETIME:
-            System.out.println(WRONG_FORMAT);
-            System.out.println("Format: deletetime <module code> <week number>");
-            System.out.println("The week number should be a whole number between 1 and 13." + System.lineSeparator());
+            System.out.print("Please type deletetime <module code> <week number> ");
+            System.out.println("with week number as a whole number between 1 and 13." + System.lineSeparator());
             break;
         case Parser.COMMAND_LIST:
             System.out.println(WRONG_FORMAT);

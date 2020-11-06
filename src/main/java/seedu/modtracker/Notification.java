@@ -88,7 +88,6 @@ public class Notification {
         numOfNotification = getNumNotification(list);
         if (numOfNotification == 0 || currentWeek == 0) {
             System.out.println(String.format(ON_TRACK, currentWeek));
-            //System.out.println(ON_TRACK);
             randomise(lines);
             return;
         }

@@ -42,8 +42,8 @@ CS1000, Expected Workload: 18.0h is added.
 Module    Week 1
 
 CS1000
-Actual   | ███████ 7.0
-Expected | ██████████████████ 18.0
+Actual   | [][][][][][][] 7.0
+Expected | [][][][][][][][][][][][][][][][][][] 18.0
 
 CS2113T
 Actual   | NO INPUT
@@ -51,11 +51,11 @@ Expected | NO INPUT
 
 CS3000
 Actual   | NO INPUT
-Expected | ██████ 6.0
+Expected | [][][][][][] 6.0
 
 CS3200
 Actual   | NO INPUT
-Expected | ████████ 8.0
+Expected | [][][][][][][][] 8.0
 
 Total time spent: 7.0 H
 100% of time is spent on CS1000

@@ -138,10 +138,8 @@ public class ParserTest {
 
         String input = "deletetime";
         parser.parse(input, modList, null, null, true, null);
-        String expected = Ui.WRONG_FORMAT + System.lineSeparator()
-                + "Format: deletetime <module code> <week number>"
-                + System.lineSeparator()
-                + "The week number should be a whole number between 1 and 13."
+        String expected = "Please type deletetime <module code> <week number> "
+                + "with week number as a whole number between 1 and 13."
                 + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
