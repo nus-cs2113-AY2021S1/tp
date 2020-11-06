@@ -170,7 +170,7 @@ class StorageManagerTest {
     }
 
     @Test
-    void loadBookmark_invalidBookmarkFormat_throwsAniException() throws AniException {
+    void loadBookmark_invalidBookmarkFormat_outputUnsuccessful() throws AniException {
         Bookmark bookmark = new Bookmark();
         String loadBookmarkResult = invalidFileSM.loadBookmark(ALL_INVALID_WORKSPACE, bookmark);
         assertEquals(BOOKMARK_LOAD_FAIL_TEST, loadBookmarkResult);
