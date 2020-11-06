@@ -217,7 +217,7 @@ Sample output:
 You are about to begin the quiz for maths.You have 2 minutes.
 ```
 
-#### 3.1.8 `results`
+#### 3.1.8 Viewing results for quizzes on a subject - `results`
 
 This command allows you to look at the results for a subject. For more details, see <a href="#result">result</a>.
 
@@ -503,7 +503,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.2.12 Starting Topic Quiz - `quiz`
+#### 3.2.12 Starting Topic Quiz - `quiz` 
 
 This type of quiz helps you to prepare for a particular topic. For more details, see <a href =#takeQuiz>takeQuiz</a>.
 
@@ -518,7 +518,7 @@ Sample output:
 You are about to begin the quiz for Java.You have 1 minute.
 ```
 
-#### 3.2.13 `results`
+#### 3.2.13 Viewing results for quizzes on a topic - `results`
 
 This feature allows you to looks at the previous results that you obtained for a quiz for a particular
 topic. For more details, see <a href =#result>result</a>.
