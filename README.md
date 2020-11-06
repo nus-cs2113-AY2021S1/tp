@@ -52,31 +52,35 @@ What would you like to do with Quotesify?
 
 ## Documentation
 
-Documentation for Quotesify including User and Developer guide is stored in */docs* directory.
+Documentation for Quotesify including User and Developer Guide is stored in */docs* directory.
 
 Click [here](https://ay2021s1-cs2113t-t09-3.github.io/tp/) to access the documentation such as User Guide and Developer Guide.
-
-
-## Build automation using Gradle
-
-* This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
-* If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
 
 ## Testing
 
 ### I/O redirection tests
 
-* To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` and run the `runtest(.bat/.sh)` script.
+* To execute *I/O redirection tests*:
+  1. Navigate to the `text-ui-test` directory.
+  2. Enter the input commands into the `INPUT.TXT` file.
+  3. Run the runtest(.bat/.sh).
+  
+ * A comparison will be done between `EXPECTED.TXT` and `ACTUAL.TXT`
+ 
+### JUnit Tests
 
-### JUnit tests
-
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
-* If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
+* JUnit tests are stored in the `src/test/java` directory.
+* If you are new to JUnit, please refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
 
 ## Checkstyle
 
-* A sample CheckStyle rule configuration is provided in this project.
-* If you are new to Checkstyle, refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
+* CheckStyle rule is configured in this project.
+* If you are new to Checkstyle, please refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
+
+## Build automation using Gradle
+
+* This project uses Gradle for build automation and dependency management.
+* If you are new to Gradle, please refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
 
 ## CI using GitHub Actions
 
