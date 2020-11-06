@@ -114,6 +114,9 @@ and at the location bar type `cmd` and press `Enter`.
 
 - Task index is the number displayed between "#" and description of the task.
     - e.g. "#1029 meeting", 1029 is the index.
+
+- If only the index is entered for the edit command, command will still be valif.
+    - e.g. "edit 1028' is valid. 
 ```    
 
 ### Showing all commands : `help`
