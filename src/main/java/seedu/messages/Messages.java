@@ -13,8 +13,8 @@ public class Messages {
     public static final String WELCOME_BORDER = " " + padString('=', 58) + " ";
     public static final String WELCOME_BORDER_SPACE = "||" + padString(' ', 56) + "||";
     public static final String WELCOME_PREFIX = "||         ";
-    public static final String HELP_BORDER = " " + padString('=', 98) + " ";
-    public static final String HELP_BORDER_SPACE = "||" + padString(' ', 96) + "||";
+    public static final String HELP_BORDER = " " + padString('=', 120) + " ";
+    public static final String HELP_BORDER_SPACE = "||" + padString(' ', 118) + "||";
     public static final String HELP_PREFIX = "||       ";
     public static final String INVALID_PRIORITY = "Invalid priority!" + LS;
     public static final String INVALID_COMMAND = "Invalid command!" + LS;
@@ -38,33 +38,33 @@ public class Messages {
 
     public static final String HELP_MESSAGE = HELP_BORDER + LS
             + HELP_BORDER_SPACE + LS
-            + HELP_PREFIX + "List of available commands:" + padString(' ', 62) + "||" + LS
-            + HELP_PREFIX + "Note:" + padString(' ', 84) + "||" + LS
-            + HELP_PREFIX + "1. Square bracket input is optional." + padString(' ', 53) + "||" + LS
-            + HELP_PREFIX + "- help: show list of available commands" + padString(' ', 50) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "help" + ANSI_RESET + padString(' ', 77)
-            + "||" + LS + HELP_PREFIX + "- add: add a task" + padString(' ', 72) + "||" + LS
+            + HELP_PREFIX + "List of available commands:" + padString(' ', 84) + "||" + LS
+            + HELP_PREFIX + "Note:" + padString(' ', 106) + "||" + LS
+            + HELP_PREFIX + "1. Square bracket input is optional." + padString(' ', 75) + "||" + LS
+            + HELP_PREFIX + "- help: show list of available commands" + padString(' ', 72) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "help" + ANSI_RESET + padString(' ', 99)
+            + "||" + LS + HELP_PREFIX + "- add: add a task" + padString(' ', 94) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN
-            + "add DESCRIPTION [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]"
+            + "add DESCRIPTION [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER] [r/(ON/OFF)] [t-HHmm]"
             + ANSI_RESET + "                    ||" + LS
-            + HELP_PREFIX + "- edit: edit a task" + padString(' ', 70) + "||" + LS
+            + HELP_PREFIX + "- edit: edit a task" + padString(' ', 92) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN
-            + "edit INDEX [des/DESCRIPTION] [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]"
+            + "edit INDEX [des/DESCRIPTION] [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER] [r/(ON/OFF)] [t-HHmm]"
             + ANSI_RESET + "       ||" + LS
-            + HELP_PREFIX + "- list: show list of tasks" + padString(' ', 63) + "||" + LS
+            + HELP_PREFIX + "- list: show list of tasks" + padString(' ', 85) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "list [-d|-p|-w|-m|d/DATE]" + ANSI_RESET
-            + padString(' ', 56) + "||" + LS
+            + padString(' ', 78) + "||" + LS
             + HELP_PREFIX + "- search: find task(s) with keyword in description"
-            + padString(' ', 39) + "||" + LS
+            + padString(' ', 61) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "search KEYWORD(S)" + ANSI_RESET
-            + padString(' ', 64) + "||" + LS
-            + HELP_PREFIX + "- delete remove particular task by index" + padString(' ', 49) + "||" + LS
+            + padString(' ', 86) + "||" + LS
+            + HELP_PREFIX + "- delete remove particular task by index" + padString(' ', 71) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "delete INDEX" + ANSI_RESET
-            + padString(' ', 69) + "||" + LS
-            + HELP_PREFIX + "- clear: remove all tasks" + padString(' ', 64) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "clear" + ANSI_RESET + padString(' ', 76)
-            + "||" + LS + HELP_PREFIX + "- bye: exit the program" + padString(' ', 66) + "||" + LS
-            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "bye" + ANSI_RESET + padString(' ', 78)
+            + padString(' ', 91) + "||" + LS
+            + HELP_PREFIX + "- clear: remove all tasks" + padString(' ', 86) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "clear" + ANSI_RESET + padString(' ', 98)
+            + "||" + LS + HELP_PREFIX + "- bye: exit the program" + padString(' ', 88) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "bye" + ANSI_RESET + padString(' ', 100)
             + "||" + LS + HELP_BORDER_SPACE + LS
             + HELP_BORDER + LS;
 
