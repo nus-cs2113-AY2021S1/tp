@@ -10,6 +10,13 @@ import seedu.smarthomebot.storage.ReadStorageFile;
 import seedu.smarthomebot.storage.WriteStorageFile;
 import seedu.smarthomebot.ui.TextUi;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 //@@author Ang_Cheng_Jun
 /**
  * Entry point of the SmartHome application.
@@ -22,6 +29,7 @@ public class Main {
     private final LocationList locationList = new LocationList();
     private WriteStorageFile writeFile = new WriteStorageFile(applianceList, locationList);
     private ReadStorageFile readFile = new ReadStorageFile(applianceList, locationList);
+    private final Logger logger = Logger.getLogger("SmartHomeBotLogger");
 
     public static void main(String[] args) {
         new Main().run();
@@ -43,6 +51,7 @@ public class Main {
     private void start() {
         this.ui = new TextUi();
         ui.showWelcomeMessage();
+        setupLogger();
         readFile.execute();
     }
 
@@ -81,6 +90,26 @@ public class Main {
         } catch (Exception e) {
             ui.printToUser(e.getMessage());
             throw new RuntimeException(e);
+        }
+    }
+
+    //@@author zongxian-ctrl
+    /**
+     * Creates the default logger with level and initialise log file.
+     */
+    private void setupLogger() {
+        File myObj = new File("./log");
+        logger.setUseParentHandlers(false);
+        logger.setLevel(Level.INFO);
+        try {
+            if (!myObj.exists()) {
+                myObj.mkdir();
+            }
+            FileHandler fileHandler = new FileHandler("log/SmartHomeBotLog.txt", false);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
