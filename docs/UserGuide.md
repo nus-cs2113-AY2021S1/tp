@@ -504,7 +504,8 @@ Compound interest is based on the principal amount and the interest that accumul
 <br />
 ![Example](screenshots/financetools/MonthlyCompoundInterest(2).PNG)
 ## Cashback Calculator
-Calculate cashback earned.
+Calculate cashback earned with optional monthly cap. The monthly cap is the maximum amount of cashback
+a user can earn per month.
 
 **Parameters** <br />
 * ```/a``` - Amount (Mandatory)
