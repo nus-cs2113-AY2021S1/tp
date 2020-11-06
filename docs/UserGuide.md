@@ -157,12 +157,12 @@ Expected outcome:
 
 *Figure 5. After adding "borrow book" with no other inputs.*
 
-![remainder_set](images/reminder_set/png)
+![remainder_set](images/reminder_set.png)
 
 *Figure 6. After adding "Movie" with starting time at 05:00pm, end time at 07:00pm and priority HIGH with 
 a reminder set for 3:30pm*
 
-![remainder_prompt](images/reminder_prompt/png)
+![remainder_prompt](images/reminder_prompt.png)
 
 *Figure 7. After the reminder has reached the specified time*
 
@@ -180,7 +180,7 @@ Example of usage:
 
 Expected outcome:
 
-![edit_before](images/edit_initial_list.png)
+![edit_intial_list](images/edit_initial_list.png)
 
 *Figure 8. Initial list before edits.*
 
@@ -229,13 +229,13 @@ Expected outcome:
 
 `list -d`:
 
-![sort_by_date](images/list_date.PNG)
+![list_date](images/list_date.PNG)
 
 *Figure 13. List tasks by date, from oldest to newest.*
 
 `list -p`:
 
-![sort_by_priority](images/list_priority.PNG)
+![list_priority](images/list_priority.PNG)
 
 *Figure 14. List tasks by priority, from HIGH to LOW.*
 
@@ -265,7 +265,7 @@ Example of usage:
 
 Expected outcome:
 
-![search](images/search_meeting.PNG)
+![search_meeting](images/search_meeting.PNG)
 
 *Figure 17. A list of tasks containing the keyword will be displayed.*
 
