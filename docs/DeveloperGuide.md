@@ -1,6 +1,8 @@
+**Developer Guide for FinanceIt**
+
 * Table of Contents
 {:toc}
-#Design
+# Design
 
 ## Overview of Architecture
 __Architecture Diagram__
