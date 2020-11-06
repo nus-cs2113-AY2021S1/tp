@@ -110,7 +110,8 @@ public class ListCommand extends Command {
             throw new LocationNotFoundException();
         }
         String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
-        return displayOutput(header, filterApplianceList);
+        String outputResult = header + filterApplianceList;
+        return displayOutput(outputResult);
     }
 
     private CommandResult listLocation(int index) throws EmptyLocationListException {
