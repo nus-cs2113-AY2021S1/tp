@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.commons.Messages.*;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_APPLIANCES;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
 
 //@@author Ang_Cheng_Jun
 /**
