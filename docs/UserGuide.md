@@ -3,6 +3,8 @@ FinanceIt is an all-in-one desktop application that handles the finance tracking
 It includes 5 different finance tools, all of which take in typed commands from the users to execute their respective functions.
 
 # Table of Contents
+* Table of Contents
+{:toc}
 
 No. |Content|
 ----|------|
