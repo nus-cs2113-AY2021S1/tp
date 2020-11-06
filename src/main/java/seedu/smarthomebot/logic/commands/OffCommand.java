@@ -34,7 +34,7 @@ public class OffCommand extends Command {
     }
 
     /**
-     * Executing the Off Command.
+     * Executing the OffCommand.
      */
     @Override
     public CommandResult execute() {
@@ -57,17 +57,19 @@ public class OffCommand extends Command {
                 return new CommandResult("Invalid Format");
             }
         } catch (ApplianceNotFoundException e) {
-            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
-        } catch (NoApplianceInLocationException e) {
-            return new CommandResult("There is no appliance in \"" + argument + "\".");
+            if (locationList.isLocationCreated(argument)) {
+                return new CommandResult("There are no Appliances in \"" + argument + "\".");
+            } else {
+                return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            }
         }
     }
 
     /**
      * Method to off Appliance by the name.
      */
-    private CommandResult offByApplianceName() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        int toOffApplianceIndex = applianceList.getApplianceIndex(argument, locationList);
+    private CommandResult offByApplianceName() throws ApplianceNotFoundException {
+        int toOffApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, true);
         return new CommandResult(outputResult);

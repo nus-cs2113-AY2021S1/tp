@@ -3,6 +3,7 @@ package seedu.smarthomebot.logic.commands;
 import seedu.smarthomebot.data.appliance.Appliance;
 
 //@@author Ang_Cheng_Jun
+
 /**
  * Represent the command to terminate the program.
  */

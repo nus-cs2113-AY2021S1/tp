@@ -10,25 +10,25 @@ import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LightsTest {
+class SmartPlugTest {
 
-    private Appliance light;
+    private Appliance smartPlug;
 
     @BeforeEach
     void setUp() throws InvalidApplianceNameException, LocationNotFoundException, DuplicateDataException {
         String bedroom = "bedroom";
         LocationList locationList = new LocationList();
         locationList.addLocation(bedroom);
-        light = new Lights("pluggy", bedroom, "150", locationList);
+        smartPlug = new SmartPlug("pluggy", bedroom, "150", locationList);
     }
 
     @Test
-    void getTypeTest_returnsLight() {
-        assertEquals("light", light.getType());
+    void getTypeTest_returnsSmartPlug() {
+        assertEquals("smartplug", smartPlug.getType());
     }
 
     @Test
     void getParameterTest_returnsNone() {
-        assertEquals("None", light.getParameter(true));
+        assertEquals("None", smartPlug.getParameter(true));
     }
 }

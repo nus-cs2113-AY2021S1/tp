@@ -70,19 +70,21 @@ public class OnCommand extends Command {
                 return new CommandResult("Invalid Format");
             }
         } catch (ApplianceNotFoundException e) {
-            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            if (locationList.isLocationCreated(argument)) {
+                return new CommandResult("There are no Appliances in \"" + argument + "\".");
+            } else {
+                return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            }
         } catch (ParameterFoundException e) {
             return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
-        } catch (NoApplianceInLocationException e) {
-            return new CommandResult("There are no Appliances in \"" + argument + "\".");
         }
     }
 
     /**
      * Method to on Appliance by the name.
      */
-    private CommandResult onByApplianceName() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        int toOnApplianceIndex = applianceList.getApplianceIndex(argument, locationList);
+    private CommandResult onByApplianceName() throws ApplianceNotFoundException {
+        int toOnApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
         String outputResult = onAppliance(toOnAppliance, true);
         return new CommandResult(outputResult);

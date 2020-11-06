@@ -4,6 +4,8 @@ import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.data.location.LocationList;
 
+import java.util.logging.Logger;
+
 //@@author zongxian-ctrl
 
 /**
@@ -15,6 +17,7 @@ public abstract class Command {
     protected LocationList locationList;
     protected int maxNameLength = 0;
     protected int maxLocationLength = 0;
+    public static Logger commandLogger = Logger.getLogger("SmartHomeBotLogger");
 
     protected Command() {
     }
@@ -30,6 +33,7 @@ public abstract class Command {
         this.locationList = locationList;
     }
 
+    //@@author fanceso
     /**
      * Gets the longest length of name and location in the appliance class.
      */
@@ -44,6 +48,9 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Abstract Method for executing Command.
+     */
     public abstract CommandResult execute();
 
 }
