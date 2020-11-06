@@ -3,14 +3,15 @@
 - [About this document](#about-this-document)
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Showing commands](#span-stylecolorredshowing-all-commandsspan--help)
-    - [Adding task](#span-stylecolorredadding-a-taskspan--add)
-    - [Editing task](#span-stylecolorredediting-a-taskspan--edit)
-    - [Displaying tasks](#span-stylecolorreddisplaying-tasksspan--list)
-    - [Searching task](#span-stylecolorredsearching-relevant-tasksspan--search)
-    - [Removing task](#span-stylecolorredremoving-a-taskspan--delete)
-    - [Clearing task](#span-stylecolorredclearing-tasksspan--clear)
-    - [Exiting program](#span-stylecolorredexiting-programspan--bye)
+    - [Showing commands](#showing-all-commands--help)
+    - [Adding task](#adding-a-task--add)
+    - [Editing task](#editing-a-task--edit)
+    - [Displaying tasks](#displaying-tasks--list)
+    - [Searching task](#searching-relevant-tasks--search)
+    - [Removing task](#removing-a-task--delete)
+    - [Clearing task](#clearing-tasks--clear)
+    - [Setting reminder](#setting-a-reminder--reminder)
+    - [Exiting program](#exiting-program--bye)
 - [FAQ](#faq)
 - [Java 11 Installation Guide](#java-11-installation-guide)
 - [Command summary](#command-summary)
@@ -96,14 +97,14 @@ and at the location bar type `cmd` and press `Enter`.
 ```
 - Words in UPPER_CASE are the inputs to be supplied by the user while words in LOWER_CASE are the command words.
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
-    add is a command word while DESCRIPTION can be anything the user inputs.
+    add is a command word while DESCRIPTION is a description about the task.
       
 - Parameter in square bracket is optional. 
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
     DATE, START_TIME, END_TIME and PRIORITY are optional inputs which can be omitted.
     
 - Input date format is dd-MM-yyyy.
-    - e.g. 20/02/2020 means 20th February 2020
+    - e.g. 20-02-2020 means 20th February 2020
       
 - Input time format is HHmm in 24-hrs.
     - e.g. 1830 means 6.30pm
@@ -114,8 +115,8 @@ and at the location bar type `cmd` and press `Enter`.
 - Task index is the number displayed between "#" and description of the task.
     - e.g. "#1029 meeting", 1029 is the index.
 ```    
-    
-### <span style="color:red">Showing all commands</span> : `help`
+
+### Showing all commands : `help`
 
 Shows the commands available with the formats.
 
@@ -127,7 +128,7 @@ Expected outcome:
 
 *Figure 3. A list of available commands and their formats will be displayed.*
 
-### <span style="color:red">Adding a task</span> : `add`
+### Adding a task : `add`
 
 Add a task to the task list and display task that was added.
 
@@ -153,7 +154,7 @@ Expected outcome:
 *Figure 5. After adding "borrow book" with no other inputs.*
 
 
-### <span style="color:red">Editing a task</span> : `edit`
+### Editing a task : `edit`
 
 Edit a task in the task list using its index and display the task edited.
 
@@ -178,7 +179,7 @@ Expected outcome:
 
 *Figure 8. After editing the timings and priority of task #4893.*
 
-### <span style="color:red">Displaying tasks</span> : `list` 
+### Displaying tasks : `list` 
 
 Default/no suffix: display **all** tasks in the **order of their addition**.  
 `-d`: display **all** tasks by **date**, from oldest to newest.  
@@ -235,7 +236,7 @@ Expected outcome:
 
 
 
-### <span style="color:red">Searching relevant task(s)</span> : `search`
+### Searching relevant task(s) : `search`
 
 Search and display task(s) with given keyword, keywords do not have to be case-sensitive.
 
@@ -252,7 +253,7 @@ Expected outcome:
 *Figure 14. A list of tasks containing the keyword will be displayed.*
 
 
-### <span style="color:red">Removing a task</span> : `delete`
+### Removing a task : `delete`
 
 Delete a task from the task list using its index and display the task deleted.
 
@@ -269,7 +270,7 @@ Expected outcome:
 *Figure 15. The task that was deleted will be displayed.*
     
 
-### <span style="color:red">Clearing tasks</span> : `clear`
+### Clearing tasks : `clear`
 
 Delete all tasks in the list.
 
@@ -280,7 +281,7 @@ Expected outcome:
     All tasks cleared.
 
 
-### <span style="color:red">Setting a reminder for tasks</span> : `reminder`
+### Setting a reminder : `reminder`
 
 Allows you to set a reminder for any specific task on the list.
 You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
@@ -303,7 +304,7 @@ Expected outcome:
 *Figure 17. Once the specified time has arrived.*
 
 
-### <span style="color:red">Exiting program</span> : `bye`
+### Exiting program : `bye`
 
 Display a goodbye message and exits the program.
 

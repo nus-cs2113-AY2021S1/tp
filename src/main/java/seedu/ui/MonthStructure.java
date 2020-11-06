@@ -65,7 +65,7 @@ public class MonthStructure extends DisplayDateStructure {
                 // # + 4 digits + " " = 6
                 temp += Util.generatePadStringWithCharAndLength(' ', HASHCODE_STRING_LENGTH - temp.length());
                 temp += task.getDescription();
-                Util.limitStringWithDots(temp, DAY_COLUMN_WIDTH);
+                temp = Util.limitStringWithDots(temp, DAY_COLUMN_WIDTH - 1);
                 putsIntoArray(temp, screen[tempRowNum++], currentCol);
             }
 

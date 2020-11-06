@@ -41,6 +41,16 @@ public class Task {
         this.taskID = taskID;
     }
 
+    public Task(String description, LocalDate date,
+                LocalTime startTime, LocalTime endTime, Priority priority) {
+        this.description = description;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priority = priority;
+        this.taskID = generateHashValue();
+    }
+
     public Task(String taskID, String description, String dateString,
                 String startTime, String endTime, String priorityString)
         throws InvalidPriorityException, InvalidDatetimeException {
@@ -151,6 +161,10 @@ public class Task {
 
     public void setDate(String dateString) throws InvalidDatetimeException {
         date = dateStringToDate(dateString);
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getStartTime() {
