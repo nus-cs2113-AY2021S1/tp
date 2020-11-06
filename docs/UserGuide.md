@@ -36,11 +36,11 @@ Symbols / Formatting|Meaning
 To setup the application,
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `revised.jar` [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
-3. Transfer the jar file to the folder of your choice.
-4. Open a command prompt in the folder you just put the jar file in. Follow this [guide](https://www.groovypost.com/howto/open-command-window-terminal-window-specific-folder-windows-mac-linux/)
+1. Download the latest version of `revised.jar` [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
+1. Transfer the jar file to the folder of your choice.
+1. Open a command prompt in the folder you just put the jar file in. Follow this [guide](https://www.groovypost.com/howto/open-command-window-terminal-window-specific-folder-windows-mac-linux/)
 if you are unsure how.
-5. Run the command `java -jar revised.jar` to start the application.
+1. Run the command `java -jar revised.jar` to start the application.
 
 You will see the logo of the application, as shown below, once u run it.
 

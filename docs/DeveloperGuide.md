@@ -67,9 +67,9 @@ This section guides you through the steps to setup the project on your computer.
 
 1. Fork [this repo](https://github.com/AY2021S1-CS2113T-W13-1/tp) and clone the fork to your computer. Alternatively,
 download the source code from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
-2. Open a console in the folder where `build.gradle` resides, and run the command `gradlew.bat run` if you are using Windows 
+1. Open a console in the folder where `build.gradle` resides, and run the command `gradlew.bat run` if you are using Windows 
 or `./gradlew run` if you are using Mac/Linux.
-3. If the setup is successful, you should see the greeting screen:
+1. If the setup is successful, you should see the greeting screen:
 ```
 > Task :run
 Hello from
@@ -90,8 +90,8 @@ ____________________________________________________________
 Alternatively, if you are using [IntelliJ](https://www.jetbrains.com/idea/), follow the first step above, then:
 
 1. Configure the Intellij for JDK 11, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
-2. Import the project as a Gradle project, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-3. Locate and click the `run` task under `Tasks > application > run` in the [Gradle tool window](https://www.jetbrains.com/help/idea/jetgradle-tool-window.html).
+1. Import the project as a Gradle project, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
+1. Locate and click the `run` task under `Tasks > application > run` in the [Gradle tool window](https://www.jetbrains.com/help/idea/jetgradle-tool-window.html).
 
 
 ## 3. Design <a name="design"></a>
@@ -903,8 +903,8 @@ flashcards and an arraylist of results.
 Given below are instructions to test the app manually.
 
 1. Refer to the [UserGuide](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html) on how to download the application.
-2. Open the application in command prompt.
-3. Try out various commands in the userguide to check if it works.
-4. Try out invalid commands and check if the application responds correspondingly.
-5. Exit the application and check the data files to check if all the data has been saved.
-6. Open the application again and check if the data has been loaded correctly. Use the `list` command for this step.
+1. Open the application in command prompt.
+1. Try out various commands in the userguide to check if it works.
+1. Try out invalid commands and check if the application responds correspondingly.
+1. Exit the application and check the data files to check if all the data has been saved.
+1. Open the application again and check if the data has been loaded correctly. Use the `list` command for this step.
