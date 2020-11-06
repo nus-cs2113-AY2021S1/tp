@@ -539,7 +539,9 @@ public class GoalTracker {
     public static void printIncomeGoal() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
-                month = Month.of(Integer.parseInt(cmdPacket[3]));
+                if (cmdPacket != null) {
+                    month = Month.of(Integer.parseInt(cmdPacket[3]));
+                }
                 try {
                     if (ledgerMonth == null) {
                         if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
