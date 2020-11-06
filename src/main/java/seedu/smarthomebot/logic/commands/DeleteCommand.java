@@ -18,11 +18,19 @@ public class DeleteCommand extends Command {
             + " [APPLIANCE_NAME]";
     private final String userEnteredName;
 
+    /**
+     * Constructor for DeleteCommand.
+     *
+     * @param name Appliance name to be deleted.
+     */
     public DeleteCommand(String name) {
         assert name.isEmpty() != true : "DeleteCommand must not accept empty name";
         this.userEnteredName = name;
     }
 
+    /**
+     * Executing the DeleteCommand.
+     */
     @Override
     public CommandResult execute() {
         try {

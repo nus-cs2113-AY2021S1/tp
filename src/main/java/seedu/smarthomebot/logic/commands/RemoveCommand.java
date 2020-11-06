@@ -21,11 +21,19 @@ public class RemoveCommand extends Command {
             + " [LOCATION_NAME]";
     private final String userEnteredLocation;
 
+    /**
+     * Constructor for OnCommand.
+     *
+     * @param location name of Location to be removed from LocationList.
+     */
     public RemoveCommand(String location) {
         assert location.isEmpty() != true : "RemoveCommand must not accept empty location";
         this.userEnteredLocation = location;
     }
 
+    /**
+     * Executing the RemoveCommand.
+     */
     @Override
     public CommandResult execute() {
         try {

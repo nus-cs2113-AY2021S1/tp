@@ -32,16 +32,19 @@ public class AddCommand extends Command {
     private final String type;
 
     public AddCommand(String name, String location, String wattage, String type) {
-        assert name.isEmpty() != true : "AddCommand must not accept empty name";
-        assert location.isEmpty() != true : "AddCommand must not accept empty location";
-        assert wattage.isEmpty() != true : "AddCommand must not accept empty wattage";
-        assert type.isEmpty() != true : "AddCommand must not accept empty type";
+        assert !name.isEmpty() : "AddCommand must not accept empty name";
+        assert !location.isEmpty() : "AddCommand must not accept empty location";
+        assert !wattage.isEmpty() : "AddCommand must not accept empty wattage";
+        assert !type.isEmpty() : "AddCommand must not accept empty type";
         this.name = name;
         this.location = location;
         this.wattage = wattage;
         this.type = type.toLowerCase();
     }
 
+    /**
+     * Executing the AddCommand.
+     */
     @Override
     public CommandResult execute() {
         try {
