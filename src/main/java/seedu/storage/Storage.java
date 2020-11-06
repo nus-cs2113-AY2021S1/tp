@@ -93,6 +93,7 @@ public class Storage {
         }
     }
 
+
     private void readTasksFromTimetable(TaskMap taskMap) throws FileNotFoundException, ParseException {
         File file = new File(DIRECTORY_NAME + "/" + TIMETABLE);
         if (file.exists()) {
