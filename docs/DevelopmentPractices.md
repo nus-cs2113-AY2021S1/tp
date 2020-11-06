@@ -13,6 +13,8 @@ title : Development Practices
 #### [7. Testing & Logging](#testing)<br>
 #### [8. Error Handling](#errors)<br>
 
+<br>
+
 ## <a name="intro">1. Introduction</a>
 Software Development is a complex topic that has many models and frameworks. This section will explain the methodologies and frameworks used in this project by the development team.
 
