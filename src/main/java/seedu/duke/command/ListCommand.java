@@ -27,11 +27,20 @@ public class ListCommand extends Command {
         if (command == null) {
             ui.printAvailableList(eventLists);
         } else if (command.equals("All")) {
-            for (EventList list : eventLists) {
-                ui.printList(list);
-            }
+            listAll(ui, eventLists);
         } else {
             ui.printList(data.getEventList(command));
+        }
+    }
+
+    private void listAll(Ui ui, ArrayList<EventList> eventLists) {
+        int listNum = eventLists.size();
+        for (EventList list : eventLists) {
+            ui.printList(list);
+            if (listNum > 1) {
+                ui.printDividerLine();
+            }
+            listNum--;
         }
     }
 

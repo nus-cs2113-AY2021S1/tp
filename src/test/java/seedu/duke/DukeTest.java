@@ -76,7 +76,6 @@ class DukeTest {
                             + "Here is a list of your Personal events:" + System.lineSeparator()
                             + "1. [P][X] birthday on 2001-01-03, 00:00" + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
-                            + "_________________________________" + System.lineSeparator()
                             + "You have successfully deleted this event!" + System.lineSeparator()
                             + "[P][X] birthday on 2001-01-03, 00:00" + System.lineSeparator(),
                     outputStreamCaptor.toString());

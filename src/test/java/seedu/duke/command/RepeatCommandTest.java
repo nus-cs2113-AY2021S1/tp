@@ -75,8 +75,7 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("[P][X] party on 2000-10-09, 13:00" + System.lineSeparator()
-                        + "is now repeating monthly for 4 times." + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "is now repeating monthly for 4 times." + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
@@ -88,11 +87,10 @@ class RepeatCommandTest {
 
         assertEquals("[P][X] party on 2000-10-09, 13:00 is also on:"
                         + System.lineSeparator()
-                        + "09 Nov 2000 1:00 PM [X]" + System.lineSeparator()
-                        + "09 Dec 2000 1:00 PM [X]" + System.lineSeparator()
-                        + "09 Jan 2001 1:00 PM [X]" + System.lineSeparator()
-                        + "09 Feb 2001 1:00 PM [X]" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "    1. 09 Nov 2000 1:00 PM [X]" + System.lineSeparator()
+                        + "    2. 09 Dec 2000 1:00 PM [X]" + System.lineSeparator()
+                        + "    3. 09 Jan 2001 1:00 PM [X]" + System.lineSeparator()
+                        + "    4. 09 Feb 2001 1:00 PM [X]" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
@@ -107,8 +105,7 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("[P][X] hello on 2020-02-29" + System.lineSeparator()
-                        + "is now repeating monthly for 4 times." + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "is now repeating monthly for 4 times." + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
@@ -120,11 +117,10 @@ class RepeatCommandTest {
 
         assertEquals("[P][X] hello on 2020-02-29 is also on:"
                         + System.lineSeparator()
-                        + "29 Mar 2020 [X]" + System.lineSeparator()
-                        + "29 Apr 2020 [X]" + System.lineSeparator()
-                        + "29 May 2020 [X]" + System.lineSeparator()
-                        + "29 Jun 2020 [X]" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "    1. 29 Mar 2020 [X]" + System.lineSeparator()
+                        + "    2. 29 Apr 2020 [X]" + System.lineSeparator()
+                        + "    3. 29 May 2020 [X]" + System.lineSeparator()
+                        + "    4. 29 Jun 2020 [X]" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
@@ -139,8 +135,7 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("[P][X] leap ahead on 2019-01-31" + System.lineSeparator()
-                        + "is now repeating monthly for 24 times." + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "is now repeating monthly for 24 times." + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
@@ -152,31 +147,30 @@ class RepeatCommandTest {
 
         assertEquals("[P][X] leap ahead on 2019-01-31 is also on:"
                         + System.lineSeparator()
-                        + "28 Feb 2019 [X]" + System.lineSeparator()
-                        + "31 Mar 2019 [X]" + System.lineSeparator()
-                        + "30 Apr 2019 [X]" + System.lineSeparator()
-                        + "31 May 2019 [X]" + System.lineSeparator()
-                        + "30 Jun 2019 [X]" + System.lineSeparator()
-                        + "31 Jul 2019 [X]" + System.lineSeparator()
-                        + "31 Aug 2019 [X]" + System.lineSeparator()
-                        + "30 Sep 2019 [X]" + System.lineSeparator()
-                        + "31 Oct 2019 [X]" + System.lineSeparator()
-                        + "30 Nov 2019 [X]" + System.lineSeparator()
-                        + "31 Dec 2019 [X]" + System.lineSeparator()
-                        + "31 Jan 2020 [X]" + System.lineSeparator()
-                        + "29 Feb 2020 [X]" + System.lineSeparator()
-                        + "31 Mar 2020 [X]" + System.lineSeparator()
-                        + "30 Apr 2020 [X]" + System.lineSeparator()
-                        + "31 May 2020 [X]" + System.lineSeparator()
-                        + "30 Jun 2020 [X]" + System.lineSeparator()
-                        + "31 Jul 2020 [X]" + System.lineSeparator()
-                        + "31 Aug 2020 [X]" + System.lineSeparator()
-                        + "30 Sep 2020 [X]" + System.lineSeparator()
-                        + "31 Oct 2020 [X]" + System.lineSeparator()
-                        + "30 Nov 2020 [X]" + System.lineSeparator()
-                        + "31 Dec 2020 [X]" + System.lineSeparator()
-                        + "31 Jan 2021 [X]" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "    1. 28 Feb 2019 [X]" + System.lineSeparator()
+                        + "    2. 31 Mar 2019 [X]" + System.lineSeparator()
+                        + "    3. 30 Apr 2019 [X]" + System.lineSeparator()
+                        + "    4. 31 May 2019 [X]" + System.lineSeparator()
+                        + "    5. 30 Jun 2019 [X]" + System.lineSeparator()
+                        + "    6. 31 Jul 2019 [X]" + System.lineSeparator()
+                        + "    7. 31 Aug 2019 [X]" + System.lineSeparator()
+                        + "    8. 30 Sep 2019 [X]" + System.lineSeparator()
+                        + "    9. 31 Oct 2019 [X]" + System.lineSeparator()
+                        + "    10. 30 Nov 2019 [X]" + System.lineSeparator()
+                        + "    11. 31 Dec 2019 [X]" + System.lineSeparator()
+                        + "    12. 31 Jan 2020 [X]" + System.lineSeparator()
+                        + "    13. 29 Feb 2020 [X]" + System.lineSeparator()
+                        + "    14. 31 Mar 2020 [X]" + System.lineSeparator()
+                        + "    15. 30 Apr 2020 [X]" + System.lineSeparator()
+                        + "    16. 31 May 2020 [X]" + System.lineSeparator()
+                        + "    17. 30 Jun 2020 [X]" + System.lineSeparator()
+                        + "    18. 31 Jul 2020 [X]" + System.lineSeparator()
+                        + "    19. 31 Aug 2020 [X]" + System.lineSeparator()
+                        + "    20. 30 Sep 2020 [X]" + System.lineSeparator()
+                        + "    21. 31 Oct 2020 [X]" + System.lineSeparator()
+                        + "    22. 30 Nov 2020 [X]" + System.lineSeparator()
+                        + "    23. 31 Dec 2020 [X]" + System.lineSeparator()
+                        + "    24. 31 Jan 2021 [X]" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
@@ -210,8 +204,7 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("[Z][X] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
-                        + "is now repeating weekly for 3 times." + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "is now repeating weekly for 3 times." + System.lineSeparator(),
                 outputStreamCaptor.toString());
         //check the dates reported and erase previous output
         inputString = "zoom; 1;";
@@ -222,10 +215,9 @@ class RepeatCommandTest {
 
         assertEquals("[Z][X] Math class, Link: zoom.com on 2000-10-09, 13:00 is also on:"
                         + System.lineSeparator()
-                        + "16 Oct 2000 1:00 PM [X]" + System.lineSeparator()
-                        + "23 Oct 2000 1:00 PM [X]" + System.lineSeparator()
-                        + "30 Oct 2000 1:00 PM [X]" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "    1. 16 Oct 2000 1:00 PM [X]" + System.lineSeparator()
+                        + "    2. 23 Oct 2000 1:00 PM [X]" + System.lineSeparator()
+                        + "    3. 30 Oct 2000 1:00 PM [X]" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
     }
@@ -241,8 +233,7 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("[T][X] Science class, Location: S17 on 2000-10-17, 15:00" + System.lineSeparator()
-                        + "is now repeating daily for 3 times." + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "is now repeating daily for 3 times." + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         //check the dates reported and erase previous output
@@ -254,10 +245,9 @@ class RepeatCommandTest {
 
         assertEquals("[T][X] Science class, Location: S17 on 2000-10-17, 15:00 is also on:"
                         + System.lineSeparator()
-                        + "18 Oct 2000 3:00 PM [X]" + System.lineSeparator()
-                        + "19 Oct 2000 3:00 PM [X]" + System.lineSeparator()
-                        + "20 Oct 2000 3:00 PM [X]" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "    1. 18 Oct 2000 3:00 PM [X]" + System.lineSeparator()
+                        + "    2. 19 Oct 2000 3:00 PM [X]" + System.lineSeparator()
+                        + "    3. 20 Oct 2000 3:00 PM [X]" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
@@ -272,8 +262,7 @@ class RepeatCommandTest {
         Command repeatCommand = RepeatCommand.parse(inputString);
         repeatCommand.execute(data, ui, storage);
         assertEquals("[P][X] party on 2000-10-09, 13:00" + System.lineSeparator()
-                        + "is now repeating daily for 4 times." + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "is now repeating daily for 4 times." + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         //clear screen and now test changing repeat from daily 4 to monthly 2
@@ -284,8 +273,7 @@ class RepeatCommandTest {
         repeatCommand.execute(data, ui, storage);
 
         assertEquals("[P][X] party on 2000-10-09, 13:00" + System.lineSeparator()
-                        + "is now repeating monthly for 2 times." + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "is now repeating monthly for 2 times." + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         //clear screen and check if monthly repeats were successfully recorded
@@ -297,9 +285,8 @@ class RepeatCommandTest {
 
         assertEquals("[P][X] party on 2000-10-09, 13:00 is also on:"
                         + System.lineSeparator()
-                        + "09 Nov 2000 1:00 PM [X]" + System.lineSeparator()
-                        + "09 Dec 2000 1:00 PM [X]" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "    1. 09 Nov 2000 1:00 PM [X]" + System.lineSeparator()
+                        + "    2. 09 Dec 2000 1:00 PM [X]" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
 

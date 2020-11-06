@@ -45,7 +45,6 @@ public class CalendarCommandTest {
         printWriter.println("1 event not on the calendar because it has no date and time");
         printWriter.println("---------------------------------------------------------------------------------------");
         printWriter.println("End of calendar");
-        printWriter.println("_________________________________");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected, outputStreamCaptor.toString());

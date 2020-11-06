@@ -36,7 +36,6 @@ class GoalCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("Goal changed to: " + inputString);
-        printWriter.println("_________________________________");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected, outputStreamCaptor.toString());
@@ -52,7 +51,6 @@ class GoalCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have no goal! Why not set one now?");
-        printWriter.println("_________________________________");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected, outputStreamCaptor.toString());
@@ -74,11 +72,8 @@ class GoalCommandTest {
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("Goal changed to: " + inputString1);
-        printWriter.println("_________________________________");
         printWriter.println("Goal changed to: " + inputString2);
-        printWriter.println("_________________________________");
         printWriter.println("Goal: " + inputString2);
-        printWriter.println("_________________________________");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected, outputStreamCaptor.toString());

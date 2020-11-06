@@ -53,11 +53,13 @@ class StorageTest {
 
         assertEquals("The file has successfully been loaded!" + System.lineSeparator()
                         + "Here is a list of your Personal events:" + System.lineSeparator()
-                        + "1. [P][X] stuff on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "   Repeated weekly for 4 times." + System.lineSeparator()
+                        + "1. [P][X] stuff on 2010-01-01, 12:00 is also on:" + System.lineSeparator()
+                        + "    1. 08 Jan 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    2. 15 Jan 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    3. 22 Jan 2010 0:00 PM [O]" + System.lineSeparator()
+                        + "    4. 29 Jan 2010 0:00 PM [X]" + System.lineSeparator()
                         + "2. [P][O] birthday celebration on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "3. [P][X] others" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "3. [P][X] others" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         outputStreamCaptor.reset();
@@ -67,10 +69,13 @@ class StorageTest {
         listCommand.execute(data, ui, store);
 
         assertEquals("Here is a list of your Zoom events:" + System.lineSeparator()
-                        + "1. [Z][X] math, Link: www.zoom.com/blah on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "   Repeated daily for 4 times." + System.lineSeparator()
-                        + "2. [Z][O] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "1. [Z][X] math, Link: www.zoom.com/blah on 2010-01-01, 12:00 is also on:"
+                        + System.lineSeparator()
+                        + "    1. 02 Jan 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    2. 03 Jan 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    3. 04 Jan 2010 0:00 PM [O]" + System.lineSeparator()
+                        + "    4. 05 Jan 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "2. [Z][O] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         outputStreamCaptor.reset();
@@ -80,10 +85,12 @@ class StorageTest {
         listCommand.execute(data, ui, store);
 
         assertEquals("Here is a list of your Timetable events:" + System.lineSeparator()
-                        + "1. [T][X] math, Location: S17 on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "   Repeated monthly for 4 times." + System.lineSeparator()
-                        + "2. [T][O] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "1. [T][X] math, Location: S17 on 2010-01-01, 12:00 is also on:" + System.lineSeparator()
+                        + "    1. 01 Feb 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    2. 01 Mar 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    3. 01 Apr 2010 0:00 PM [O]" + System.lineSeparator()
+                        + "    4. 01 May 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "2. [T][O] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         outputStreamCaptor.reset();
@@ -91,8 +98,7 @@ class StorageTest {
         GoalCommand goalCheck = new GoalCommand("");
         goalCheck.execute(data, ui, store);
 
-        assertEquals("Goal: hello there" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+        assertEquals("Goal: hello there" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
 

@@ -28,12 +28,17 @@ public class CalendarCommand extends Command {
             ArrayList<Event> events = list.getEvents();
             addEventsToCalendar(events);
         }
-        ui.printCalendarStart(calendarMap.size(), eventsWithoutDateCount);
+        int calendarCount = calendarMap.size();
+        ui.printCalendarStart(calendarCount, eventsWithoutDateCount);
         for (Map.Entry<LocalDate, ArrayList<Event>> entry : calendarMap.entrySet()) {
             ui.printCalendar(entry);
-            if (ui.receiveCommand().toLowerCase().equals("q")) {
-                break;
+            if (calendarCount > 1) {
+                ui.printContinueQuery();
+                if (ui.receiveCommand().toLowerCase().equals("q")) {
+                    break;
+                }
             }
+            calendarCount--;
         }
         ui.printCalendarEnd();
     }

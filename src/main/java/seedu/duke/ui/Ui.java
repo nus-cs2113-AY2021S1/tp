@@ -32,7 +32,6 @@ public class Ui {
     }
 
     public void printByeMessage() {
-        printDividerLine();
         System.out.println("Thank you for using scheduler--;!");
         System.out.println("We hope to see you soon!");
         printDividerLine();
@@ -50,21 +49,22 @@ public class Ui {
     public void printRepeatAdd(Event event) {
         System.out.println(event);
         System.out.println("is now repeating " + event.getRepeatType() + " for " + event.getRepeatCount() + " times.");
-        printDividerLine();
     }
 
     public void printRepeatList(Event event) {
         System.out.println(event + " is also on:");
         ArrayList<Event> repeatEventList = event.getRepeatEventList();
+        int index = 1;
         for (Event e : repeatEventList) {
+            System.out.print("    " + index + ". ");
             System.out.printf("%s ", e.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
             if (e.getTime() != null) {
                 System.out.printf("%s ", e.getTime().format(DateTimeFormatter.ofPattern("K:mm a")));
             }
             System.out.printf("[%s]", e.getStatus());
             System.out.println();
+            index++;
         }
-        printDividerLine();
     }
 
     public void printGoalMessage(Goal goal) {
@@ -73,7 +73,6 @@ public class Ui {
         } else {
             System.out.println("You have no goal! Why not set one now?");
         }
-        printDividerLine();
     }
 
     public void printChangeGoalMessage(Goal goal) {
@@ -82,7 +81,6 @@ public class Ui {
         } else {
             System.out.println("No more goal!");
         }
-        printDividerLine();
     }
 
     private void printCalendarDivider() {
@@ -90,6 +88,7 @@ public class Ui {
     }
 
     public void printCalendar(Map.Entry<LocalDate, ArrayList<Event>> entry) {
+        printCalendarDivider();
         System.out.println(entry.getKey().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
         printCalendarDivider();
         ArrayList<Event> eventsOnDate;
@@ -98,7 +97,6 @@ public class Ui {
         for (Event e : eventsOnDate) {
             System.out.println(e.toCalendarString());
         }
-        printCalendarDivider();
     }
 
     public void printCalendarStart(int size, int count) {
@@ -108,12 +106,16 @@ public class Ui {
         } else if (count > 0) {
             System.out.println(count + " event not on the calendar because it has no date and time");
         }
-        printCalendarDivider();
     }
 
     public void printCalendarEnd() {
+        printCalendarDivider();
         System.out.println("End of calendar");
-        printDividerLine();
+    }
+
+    public void printContinueQuery() {
+        printCalendarDivider();
+        System.out.println("Enter 'q' to exit or enter to continue...");
     }
 
     public void printCheckMessage() {
@@ -131,7 +133,6 @@ public class Ui {
             System.out.println(list.getName());
         }
         System.out.println("'list All' will list all existing lists.");
-        printDividerLine();
     }
 
     /**
@@ -148,9 +149,11 @@ public class Ui {
             System.out.println("Here is a list of your " + eventListName + " events:");
             int index = 1;
             for (Event e : events) {
-                System.out.println(index + ". " + e);
+                System.out.print(index + ". ");
                 if (e.getRepeatEventList() != null) {
-                    System.out.println("   Repeated " + e.getRepeatType() + " for " + e.getRepeatCount() + " times.");
+                    printRepeatList(e);
+                } else {
+                    System.out.println(e);
                 }
                 if (e.getNotes().size() > 0) {
                     String indexWord = Integer.toString(index);
@@ -159,7 +162,6 @@ public class Ui {
                 index++;
             }
         }
-        printDividerLine();
     }
 
     public void printDeadlineChangedMessage(Event eventUpdated) {
