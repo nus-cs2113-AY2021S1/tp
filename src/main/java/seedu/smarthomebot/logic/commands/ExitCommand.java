@@ -3,6 +3,7 @@ package seedu.smarthomebot.logic.commands;
 import seedu.smarthomebot.data.appliance.Appliance;
 
 //@@author Ang_Cheng_Jun
+
 /**
  * Represent the command to terminate the program.
  */
@@ -17,6 +18,9 @@ public class ExitCommand extends Command {
         return command instanceof ExitCommand;
     }
 
+    /**
+     * Executing the ExitCommand.
+     */
     public CommandResult execute() {
         for (Appliance a : applianceList.getAllAppliance()) {
             a.switchOff();

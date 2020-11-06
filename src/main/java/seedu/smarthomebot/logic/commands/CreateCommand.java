@@ -18,11 +18,19 @@ public class CreateCommand extends Command {
     private static final String MESSAGE_LOCATION_EXIST = "Location already exist";
     private final String userEnteredLocation;
 
+    /**
+     * Constructor for CreateCommand.
+     *
+     * @param location Name of Location to be created.
+     */
     public CreateCommand(String location) {
         assert location.isEmpty() != true : "CreateCommand must not accept empty location";
         this.userEnteredLocation = location;
     }
 
+    /**
+     * Executing the CreateCommand.
+     */
     @Override
     public CommandResult execute() {
         try {

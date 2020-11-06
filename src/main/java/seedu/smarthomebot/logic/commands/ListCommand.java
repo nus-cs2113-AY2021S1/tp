@@ -1,6 +1,7 @@
 package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
+import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyLocationListException;
 import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
@@ -15,6 +16,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
 
 //@@author Ang_Cheng_Jun
+
 /**
  * Represent the command to list LocationList or ApplianceList to the user.
  */
@@ -36,12 +38,21 @@ public class ListCommand extends Command {
     private final String argument;
     private final String filteredLocation;
 
+    /**
+     * Constructor for List Command.
+     *
+     * @param argument         to determine ListLocation or ListAppliance.
+     * @param filteredLocation input location filter for ListAppliance.
+     */
     public ListCommand(String argument, String filteredLocation) {
         assert argument.isEmpty() != true : "InvalidCommand must not accept empty argument";
         this.argument = argument;
         this.filteredLocation = filteredLocation;
     }
 
+    /**
+     * Executing the ListCommand.
+     */
     @Override
     public CommandResult execute() {
         try {
@@ -69,29 +80,37 @@ public class ListCommand extends Command {
             NoApplianceInLocationException {
         String outputResult;
         ArrayList<Appliance> outputApplianceList = applianceList.getAllAppliance();
-
         if (filteredLocation.equals("")) {
-            if (outputApplianceList.size() == 0) {
-                throw new EmptyApplianceListException();
-            }
-            String header = MESSAGE_LIST_APPLIANCES;
-            outputResult = displayOutput(header, outputApplianceList);
+            outputResult = listAllAppliances(outputApplianceList);
         } else {
-            ArrayList<Appliance> filterApplianceList =
-                    (ArrayList<Appliance>) outputApplianceList.stream()
-                            .filter((s) -> s.getLocation().equals(filteredLocation))
-                            .collect(toList());
-
-            if (filterApplianceList.isEmpty()) {
-                if (locationList.isLocationCreated(filteredLocation)) {
-                    throw new NoApplianceInLocationException();
-                }
-                throw new LocationNotFoundException();
-            }
-            String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
-            outputResult = displayOutput(header, filterApplianceList);
+            outputResult = listApplianceByLocation(outputApplianceList);
         }
         return new CommandResult(outputResult);
+    }
+
+    private String listAllAppliances(ArrayList<Appliance> outputApplianceList) throws EmptyApplianceListException {
+        if (outputApplianceList.size() == 0) {
+            throw new EmptyApplianceListException();
+        }
+
+        return displayOutput(MESSAGE_LIST_APPLIANCES, outputApplianceList);
+    }
+
+    private String listApplianceByLocation(ArrayList<Appliance> outputApplianceList)
+            throws LocationNotFoundException, NoApplianceInLocationException {
+        ArrayList<Appliance> filterApplianceList =
+                (ArrayList<Appliance>) outputApplianceList.stream()
+                        .filter((s) -> s.getLocation().equals(filteredLocation))
+                        .collect(toList());
+
+        if (filterApplianceList.isEmpty()) {
+            if (locationList.isLocationCreated(filteredLocation)) {
+                throw new NoApplianceInLocationException();
+            }
+            throw new LocationNotFoundException();
+        }
+        String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
+        return displayOutput(header, filterApplianceList);
     }
 
     private CommandResult listLocation(int index) throws EmptyLocationListException {
@@ -125,8 +144,6 @@ public class ListCommand extends Command {
                     a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
-
         return outputResult;
     }
-
 }
