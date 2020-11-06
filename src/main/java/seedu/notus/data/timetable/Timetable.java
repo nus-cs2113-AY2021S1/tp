@@ -308,6 +308,12 @@ public class Timetable {
         return todayReminders;
     }
 
+    /**
+     * Compares this event to all other events stored in the timetable and get all events that clashes.
+     *
+     * @param event Event to be checked against the timetable
+     * @return ArrayList of Events that clashes.
+     */
     public ArrayList<Event> getClashingEvents(Event event) {
         ArrayList<Event> clashedEvents = new ArrayList<>();
         LocalDate eventDate = event.getStartDate();
