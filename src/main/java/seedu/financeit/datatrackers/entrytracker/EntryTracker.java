@@ -48,8 +48,8 @@ public class EntryTracker {
     }
 
     public static void execute() {
+        endTracker = false;
         while (!endTracker) {
-            endTracker = false;
             handleMainMenu();
         }
     }
