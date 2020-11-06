@@ -399,7 +399,8 @@ public class ModuleList {
         double hours;
         modCode = commandInfo[1].toUpperCase();
         week = commandInfo[3];
-        hours = Double.parseDouble(commandInfo[2]);
+        double initialHours = Double.parseDouble(commandInfo[2]);
+        hours = Math.round(initialHours * 10) / 10; // this rounds the hours to the nearest 1dp.
 
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
@@ -408,13 +409,11 @@ public class ModuleList {
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
 
-
         if (!checkIfTimeValid(hours, toPrint)) {
             return;
         } else if (!checkIfWeekValid(week, toPrint)) {
             return;
         }
-
 
 
         if (!checkIfModuleExist(modCode)) {
@@ -425,11 +424,11 @@ public class ModuleList {
             modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_ADD + modCode + FULL_STOP);
+                    System.out.println(hours + HOURS_ADD + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_ADD + modCode + FULL_STOP);
+                    System.out.println(hours + HOUR_ADD + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }
@@ -453,7 +452,8 @@ public class ModuleList {
         double hours;
         modCode = commandInfo[1].toUpperCase();
         weekNumber = commandInfo[3];
-        hours = Double.parseDouble(commandInfo[2]);
+        double initialHours = Double.parseDouble(commandInfo[2]);
+        hours = (Math.round(initialHours * 10)) / 10; // this rounds the hours to the nearest 1dp.
 
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
@@ -478,13 +478,13 @@ public class ModuleList {
                     modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
                     if (toPrint) {
                         if (hours > 1) {
-                            System.out.println(commandInfo[2] + HOURS_REMOVAL
+                            System.out.println(hours + HOURS_REMOVAL
                                     + modCode + FULL_STOP);
                             System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                                     + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
 
                         } else {
-                            System.out.println(commandInfo[2] + HOUR_REMOVAL
+                            System.out.println(hours + HOUR_REMOVAL
                                     + modCode + FULL_STOP);
                             System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                                     + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
@@ -518,9 +518,12 @@ public class ModuleList {
         String modCode;
         String week;
         double hours;
+        double initialHours = Double.parseDouble(commandInfo[2]);
+        hours = Math.round(initialHours * 10.0) / 10.0; // this rounds the hours to the nearest 1dp.
         modCode = commandInfo[1].toUpperCase();
         week = commandInfo[3];
-        hours = Double.parseDouble(commandInfo[2]);
+
+
 
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
@@ -542,11 +545,11 @@ public class ModuleList {
             modList.get(index).editsActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_EDIT + modCode + FULL_STOP);
+                    System.out.println(hours + HOURS_EDIT + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_EDIT + modCode + FULL_STOP);
+                    System.out.println(hours + HOUR_EDIT + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }
