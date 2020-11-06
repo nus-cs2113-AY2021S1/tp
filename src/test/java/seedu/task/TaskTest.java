@@ -29,7 +29,7 @@ class TaskTest {
     }
 
     @Test
-    void initialise_task_invalidPriorityExceptionThrown() throws InvalidDatetimeException, InvalidReminderException {
+    void initialiseTask_invalidPriorityExceptionThrown() throws InvalidDatetimeException, InvalidReminderException {
 
         try {
             new Task("p0",

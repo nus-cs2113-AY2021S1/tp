@@ -20,7 +20,6 @@ public class Util {
     }
 
     public static String limitStringWithDots(String string, int limit) {
-        // Could be changed to -4 to get an extra space
         if (limit <= 0) {
             return "";
         } else if (limit < 3) {
@@ -35,7 +34,7 @@ public class Util {
 
     public static void putsIntoArrayWithCentralise(String string, char[] arr, int start, int end) {
         // assert within range
-        assert (end - start) > string.length();
+        // assert (end - start + 1) >= string.length();
         int dstBegin = start + (end - start - string.length()) / 2;
         string.getChars(0, string.length(), arr, dstBegin);
     }
