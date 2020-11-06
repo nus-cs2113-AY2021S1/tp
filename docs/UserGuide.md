@@ -114,6 +114,9 @@ and at the location bar type `cmd` and press `Enter`.
 
 - Task index is the number displayed between "#" and description of the task.
     - e.g. "#1029 meeting", 1029 is the index.
+
+- Input reminder format is either on or off, with the time component having the same HHmm in 24-hrs.
+
 ```    
 
 ### Showing all commands : `help`
@@ -130,28 +133,38 @@ Expected outcome:
 
 ### Adding a task : `add`
 
-Add a task to the task list and display task that was added.
-
 If the date and priority are omitted,
 default date will be the day when the tasked is added and
 default priority will be low. If the timings are omitted, the time displayed will be empty.
+A reminder can be set for the task, which will be displayed at a given time. If no time is given for the reminder, it will
+be set to its default which is one hour before the start time of the task. If both are omitted, an error is given.
 
-Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]`
+Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]`
 
 Example of usage: 
 
 `add meeting st/1000`  
 `add borrow book`  
+`add Movie st/1700 et/1900 p/3 r/on t-1530`
 
 Expected outcome:
 
-![add_with_start_time](images/add_with_st.png)
+![add_with_start_time](images/task_add_st.png)
 
 *Figure 4. After adding "meeting" starting at 10.00am.*
 
-![add_without_optional_parameters](images/add_normal.png)
+![add_without_optional_parameters](images/task_add_normal.png)
 
 *Figure 5. After adding "borrow book" with no other inputs.*
+
+![add_remainder_set](images/reminder_set/png)
+
+*Figure 6. After adding "Movie" with starting time at 05:00pm, end time at 07:00pm and priority HIGH with 
+a reminder set for 3:30pm*
+
+![add_remainder_prompt](images/reminder_prompt/png)
+
+*Figure 7. After the reminder has reached the specified time*
 
 
 ### Editing a task : `edit`
@@ -167,17 +180,21 @@ Example of usage:
 
 Expected outcome:
 
-![edit_before](images/edit_before.png)
+![edit_before](images/edit_initial_list.png)
 
-*Figure 6. Initial list before edits.*
+*Figure 8. Initial list before edits.*
 
 ![edit_after_description](images/edit_after_des.png)
 
-*Figure 7. After editing the description of task #8833.*
+*Figure 9. After editing the description of task #9195.*
 
-![edit_after_start_end_priority](images/edit_after_st_et_p.png)
+![edit_after_start_end_priority](images/edit_after_else.png)
 
-*Figure 8. After editing the timings and priority of task #4893.*
+*Figure 10. After editing the timings and priority of task #8781.*
+
+![edit_after_reminder_off](images/edit_after_reminder.png)
+
+*Figure 11. After editing the reminder to off.*
 
 ### Displaying tasks : `list` 
 
@@ -206,33 +223,33 @@ Expected outcome:
 
 `list`:
 
-![list](images/list.PNG)
+![list](images/list_normal.PNG)
 
-*Figure 9. Default list, tasks are in order of their addition to the list.*
+*Figure 12. Default list, tasks are in order of their addition to the list.*
 
 `list -d`:
 
-![sort_by_date](images/list_sort_by_date.PNG)
+![sort_by_date](images/list_date.PNG)
 
-*Figure 10. List tasks by date, from oldest to newest.*
+*Figure 13. List tasks by date, from oldest to newest.*
 
 `list -p`:
 
-![sort_by_priority](images/list_sort_by_priority.PNG)
+![sort_by_priority](images/list_priority.PNG)
 
-*Figure 11. List tasks by priority, from HIGH to LOW.*
+*Figure 14. List tasks by priority, from HIGH to LOW.*
 
 `list -w`:
 
 ![weekly_view](images/list_week.PNG)
 
-*Figure 12. Display tasks in a weekly view for the current week.*
+*Figure 15. Display tasks in a weekly view for the current week.*
 
 `list -m`:
 
 ![monthly_view](images/list_month.PNG)
 
-*Figure 13. Display tasks in a monthly view for the current month.*
+*Figure 16. Display tasks in a monthly view for the current month.*
 
 
 
@@ -248,9 +265,9 @@ Example of usage:
 
 Expected outcome:
 
-![search](images/search.PNG)
+![search](images/search_meeting.PNG)
 
-*Figure 14. A list of tasks containing the keyword will be displayed.*
+*Figure 17. A list of tasks containing the keyword will be displayed.*
 
 
 ### Removing a task : `delete`
@@ -267,7 +284,7 @@ Expected outcome:
 
 ![delete](images/delete.png)
 
-*Figure 15. The task that was deleted will be displayed.*
+*Figure 18. The task that was deleted will be displayed.*
     
 
 ### Clearing tasks : `clear`
@@ -278,30 +295,9 @@ Format: `clear`
 
 Expected outcome:
 
-    All tasks cleared.
+![clear](images/Clear_tasks.png)
 
-
-### Setting a reminder : `reminder`
-
-Allows you to set a reminder for any specific task on the list.
-You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
-before the start time of the task.
-
-Format: `reminder INDEX [t/TIME]`
-
-Example of usage: 
-
-`reminder 8833 t/2305`
-
-Expected outcome:
-
-![reminder_set](images/reminder_set.png)
-
-*Figure 16. Setting a reminder for task #8833 at 11.05pm.*
-
-![reminder_popup](images/reminder_popup.png)
-
-*Figure 17. Once the specified time has arrived.*
+*Figure 19. The task that was deleted will be displayed.*
 
 
 ### Exiting program : `bye`
