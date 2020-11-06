@@ -129,6 +129,9 @@ public class Storage {
                 break;
             case "ACT":
                 if (num >= 7) {
+                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        break;
+                    }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
@@ -136,6 +139,9 @@ public class Storage {
                 break;
             case "LEC":
                 if (num >= 7) {
+                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        break;
+                    }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
@@ -143,6 +149,9 @@ public class Storage {
                 break;
             case "TUT":
                 if (num >= 7) {
+                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        break;
+                    }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
@@ -150,6 +159,9 @@ public class Storage {
                 break;
             case "LAB":
                 if (num >= 7) {
+                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        break;
+                    }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
@@ -157,6 +169,9 @@ public class Storage {
                 break;
             case "EXAM":
                 if (num >= 7) {
+                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        break;
+                    }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
                     time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
                     item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
@@ -244,12 +259,6 @@ public class Storage {
     private static void loadAdditionInformation(CalendarItem item, String[] taskInFile, int num) {
         if (item instanceof Event) {
             if (!taskInFile[EVENT_ADDITION_INFO].equals("0")) {
-                int numberInfo = 0;
-                try {
-                    numberInfo = Integer.parseInt(taskInFile[EVENT_ADDITION_INFO]);
-                } catch (NumberFormatException e) {
-                    System.out.println("numberInfo deleted.");
-                }
                 int i;
                 for (i = 1; i <= num - EVENT_ADDITION_INFO - 1; i++) {
                     ((Event) item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
