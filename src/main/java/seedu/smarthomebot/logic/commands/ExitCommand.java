@@ -14,6 +14,12 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
     public static final String MESSAGE_USAGE = "Exiting the application: " + COMMAND_WORD;
 
+    /**
+     * Method to check if ExitCommand class is created.
+     *
+     * @param command check for ExitCommand class.
+     * @return true if ExitCommand class is created
+     */
     public static boolean isExit(Command command) {
         return command instanceof ExitCommand;
     }

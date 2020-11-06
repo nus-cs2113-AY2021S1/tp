@@ -45,7 +45,7 @@ public class ListCommand extends Command {
      * @param filteredLocation input location filter for ListAppliance.
      */
     public ListCommand(String argument, String filteredLocation) {
-        assert argument.isEmpty() != true : "InvalidCommand must not accept empty argument";
+        assert argument.isEmpty() != true : "ListCommand must not accept empty argument";
         this.argument = argument;
         this.filteredLocation = filteredLocation;
     }
@@ -56,10 +56,9 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            int index = 1;
             switch (argument) {
             case LOCATION_TYPE:
-                return listLocation(index);
+                return listLocation();
             case APPLIANCE_TYPE:
                 return listAppliance();
             default:
@@ -76,6 +75,11 @@ public class ListCommand extends Command {
         }
     }
 
+    /**
+     * Method to list all the appliances or appliances in filteredLocation.
+     *
+     * @return the Appliance List in String.
+     */
     private CommandResult listAppliance() throws LocationNotFoundException, EmptyApplianceListException,
             NoApplianceInLocationException {
         String outputResult;
@@ -87,6 +91,7 @@ public class ListCommand extends Command {
         }
         return new CommandResult(outputResult);
     }
+
 
     private String listAllAppliances(ArrayList<Appliance> outputApplianceList) throws EmptyApplianceListException {
         if (outputApplianceList.size() == 0) {
@@ -113,8 +118,13 @@ public class ListCommand extends Command {
         return displayOutput(header, filterApplianceList);
     }
 
-    private CommandResult listLocation(int index) throws EmptyLocationListException {
-
+    /**
+     * Method to list all the locations.
+     *
+     * @return the Location List in String.
+     */
+    private CommandResult listLocation() throws EmptyLocationListException {
+        int index = 1;
         ArrayList<String> outputLocationList = locationList.getAllLocations();
 
         if (outputLocationList.size() == 0) {
@@ -128,6 +138,12 @@ public class ListCommand extends Command {
         return new CommandResult(outputResult);
     }
 
+    /**
+     * Method to format the displayList.
+     *
+     * @param displayList Appliance List to display.
+     * @return the formatted Appliance List in String.
+     */
     private String displayOutput(String header, ArrayList<Appliance> displayList) {
         autoFormattingStringIndex();
         int index = 1;
