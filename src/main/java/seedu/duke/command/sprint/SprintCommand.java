@@ -94,7 +94,7 @@ public abstract class SprintCommand extends Command {
     protected void checkProjectExist(int projId) throws DukeException {
         if (projId != -1) {
             if (!this.projectList.checkExist(projId)) {
-                throw new DukeException("Project do not exist:" + projId);
+                throw new DukeException("Project not found: " + projId);
             }
         } else {
             if (this.projectList.size() == 0) {

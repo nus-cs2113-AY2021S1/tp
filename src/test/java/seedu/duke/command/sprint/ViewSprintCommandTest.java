@@ -4,8 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.model.member.Member;
-import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
@@ -16,8 +16,7 @@ import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-class AddSprintTaskCommandTest {
+public class ViewSprintCommandTest {
     private final PrintStream systemOut = System.out;
     private ByteArrayOutputStream testOut;
 
@@ -75,127 +74,99 @@ class AddSprintTaskCommandTest {
     }
 
     @Test
-    void addSprintTaskCommand_validCommand() {
+    void viewSprintTaskCommand_validCommand() {
         ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
         generateDummySprint(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("0", "1");
-        parameters.put("1", "2");
-        parameters.put("2", "3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        ViewSprintCommand command = new ViewSprintCommand(parameters, projectManager);
 
         command.execute();
 
-        String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task3 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task2 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task1 added to sprint 1." + System.lineSeparator();
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
+                "========================= CURRENT SPRINT ========================" + System.lineSeparator() +
+                "[ID: 1]" + System.lineSeparator() +
+                "[Goal: project2Sprint1]" + System.lineSeparator() +
+                "[Period: " + LocalDate.now() + " - " + LocalDate.now().plusDays(9) + "]" + System.lineSeparator() +
+                "[Remaining: 9 days]" + System.lineSeparator() +
+                "[No allocated tasks]" + System.lineSeparator() +
+                "================================================================="
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(3,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
     @Test
-    void addSprintTaskCommand_validCommand_withTaskTag() {
+    void viewSprintTaskCommand_validCommand_specifySprint() {
         ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
         generateDummySprint(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        parameters.put("0", "2");
+        ViewSprintCommand command = new ViewSprintCommand(parameters, projectManager);
 
         command.execute();
 
-        String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task1 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task2 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task3 added to sprint 1." + System.lineSeparator();
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
+                "============================ SPRINT =============================" + System.lineSeparator() +
+                "[ID: 2]" + System.lineSeparator() +
+                "[Goal: project2Sprint2]" + System.lineSeparator() +
+                "[Period: " + LocalDate.now().plusDays(10) + " - " + LocalDate.now().plusDays(19) + "]" + System.lineSeparator() +
+                "[No allocated tasks]" + System.lineSeparator() +
+                "================================================================="
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(3,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
     @Test
-    void addSprintTaskCommand_validCommand_duplicateTask() {
+    void viewSprintTaskCommand_validCommand_specifyProject() {
         ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
         generateDummySprint(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("0", "1");
-        parameters.put("1", "1");
-        parameters.put("2", "1");
-        parameters.put("3", "2");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        parameters.put("project", "1");
+        parameters.put("sprint", "2");
+        ViewSprintCommand command = new ViewSprintCommand(parameters, projectManager);
 
         command.execute();
 
-        String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task2 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task1 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task1 is already added in sprint 1." + System.lineSeparator() +
-                "\tproject2task1 is already added in sprint 1." + System.lineSeparator();
+        String expected = "[Project ID: 1]" + System.lineSeparator() +
+                "============================ SPRINT =============================" + System.lineSeparator() +
+                "[ID: 2]" + System.lineSeparator() +
+                "[Goal: project1Sprint2]" + System.lineSeparator() +
+                "[Period: " + LocalDate.now().plusDays(10) + " - " + LocalDate.now().plusDays(19) + "]" + System.lineSeparator() +
+                "[No allocated tasks]" + System.lineSeparator() +
+                "================================================================="
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(2,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
     @Test
-    void addSprintTaskCommand_invalidCommand_nonExistentTask() {
+    void viewSprintTaskCommand_invalidCommand_lowerBoundSprint() {
         ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
         generateDummySprint(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("0", "99");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        parameters.put("0", "0");
+        ViewSprintCommand command = new ViewSprintCommand(parameters, projectManager);
 
         command.execute();
 
-        String expected =  "Task not found in backlog: 99";
+        String expected = "Sprint not found: 0";
         assertEquals(expected, getOutput());
-        assertEquals(0,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
     @Test
-    void addSprintTaskCommand_invalidCommand_nonExistentProject() {
+    void viewSprintTaskCommand_invalidCommand_upperBoundSprint() {
         ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
         generateDummySprint(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("project", "99");
-        parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        parameters.put("0", "6");
+        ViewSprintCommand command = new ViewSprintCommand(parameters, projectManager);
 
         command.execute();
 
-        String expected =  "Project not found: 99";
+        String expected = "Sprint not found: 6";
         assertEquals(expected, getOutput());
-        assertEquals(0,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
-    }
-
-    @Test
-    void addSprintTaskCommand_invalidCommand_nonExistentSprint() {
-        ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
-        generateDummySprint(projectManager);
-
-        Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("sprint", "99");
-        parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
-
-        command.execute();
-
-        String expected =  "Sprint not found: 99";
-        assertEquals(expected, getOutput());
-        assertEquals(0,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 }

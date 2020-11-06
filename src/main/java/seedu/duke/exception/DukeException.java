@@ -1,11 +1,13 @@
 package seedu.duke.exception;
 
+import seedu.duke.ui.Ui;
+
 public class DukeException extends Exception {
     public DukeException(String message) {
         super(message);
     }
 
     public void printExceptionMessage() {
-        System.out.println(this.getMessage());
+        Ui.showToUser(this.getMessage());
     }
 }

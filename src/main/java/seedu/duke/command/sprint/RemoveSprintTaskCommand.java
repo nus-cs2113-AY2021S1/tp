@@ -42,7 +42,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
         for (int taskId : taskIds) {
             if (!this.sprintOwner.checkTaskExist(taskId)) {
                 Ui.showToUserLn(String.format("\t%s is already removed from sprint %s.",
-                        projOwner.getProjectBacklog().getTask(taskId).getTitle(),
+                        projOwner.getBacklog().getTask(taskId).getTitle(),
                         this.sprintOwner.getId()));
                 continue;
             }
@@ -54,7 +54,7 @@ public class RemoveSprintTaskCommand extends SprintCommand {
             removedTask.removeFromSprint(this.sprintOwner.getId());
 
             //Output to user
-            Ui.showToUserLn(String.format("\t%s  removed from sprint %s.",
+            Ui.showToUserLn(String.format("\t%s removed from sprint %s.",
                     projOwner.getBacklog().getTask(taskId).getTitle(),
                     this.sprintOwner.getId()));
         }

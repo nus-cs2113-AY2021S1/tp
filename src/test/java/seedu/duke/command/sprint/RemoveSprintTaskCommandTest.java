@@ -4,8 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.model.member.Member;
-import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectManager;
+import seedu.duke.model.sprint.Sprint;
 import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
@@ -16,8 +17,7 @@ import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-class AddSprintTaskCommandTest {
+public class RemoveSprintTaskCommandTest {
     private final PrintStream systemOut = System.out;
     private ByteArrayOutputStream testOut;
 
@@ -74,47 +74,61 @@ class AddSprintTaskCommandTest {
         }
     }
 
+    private void generateDummySprintTask(ProjectManager projectManager) {
+        for (Project project : projectManager.getProjectList().values()) {
+            for (Sprint sprint : project.getSprintList().getSprintList()) {
+                sprint.addSprintTask(1);
+                sprint.addSprintTask(2);
+                sprint.addSprintTask(3);
+                assert sprint.getAllSprintTaskIds().size() == 3 : "Dummy sprint tasks for " + sprint.getGoal() + " not added!";
+            }
+        }
+
+    }
+
     @Test
-    void addSprintTaskCommand_validCommand() {
+    void removeSprintTaskCommand_validCommand() {
         ProjectManager projectManager = generateProject();
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put("0", "1");
         parameters.put("1", "2");
         parameters.put("2", "3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        RemoveSprintTaskCommand command = new RemoveSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task3 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task2 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task1 added to sprint 1." + System.lineSeparator();
+                "\tproject2task3 removed from sprint 1." + System.lineSeparator() +
+                "\tproject2task2 removed from sprint 1." + System.lineSeparator() +
+                "\tproject2task1 removed from sprint 1." + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(3,
+        assertEquals(0,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
     @Test
-    void addSprintTaskCommand_validCommand_withTaskTag() {
+    void removeSprintTaskCommand_validCommand_withTaskTag() {
         ProjectManager projectManager = generateProject();
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        RemoveSprintTaskCommand command = new RemoveSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task1 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task2 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task3 added to sprint 1." + System.lineSeparator();
+                "\tproject2task1 removed from sprint 1." + System.lineSeparator() +
+                "\tproject2task2 removed from sprint 1." + System.lineSeparator() +
+                "\tproject2task3 removed from sprint 1." + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(3,
+        assertEquals(0,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
@@ -123,23 +137,24 @@ class AddSprintTaskCommandTest {
         ProjectManager projectManager = generateProject();
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put("0", "1");
         parameters.put("1", "1");
         parameters.put("2", "1");
         parameters.put("3", "2");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        RemoveSprintTaskCommand command = new RemoveSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task2 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task1 added to sprint 1." + System.lineSeparator() +
-                "\tproject2task1 is already added in sprint 1." + System.lineSeparator() +
-                "\tproject2task1 is already added in sprint 1." + System.lineSeparator();
+                "\tproject2task2 removed from sprint 1." + System.lineSeparator() +
+                "\tproject2task1 removed from sprint 1." + System.lineSeparator() +
+                "\tproject2task1 is already removed from sprint 1." + System.lineSeparator() +
+                "\tproject2task1 is already removed from sprint 1." + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(2,
+        assertEquals(1,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
@@ -148,16 +163,17 @@ class AddSprintTaskCommandTest {
         ProjectManager projectManager = generateProject();
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put("0", "99");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        RemoveSprintTaskCommand command = new RemoveSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected =  "Task not found in backlog: 99";
         assertEquals(expected, getOutput());
-        assertEquals(0,
+        assertEquals(3,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
@@ -166,17 +182,18 @@ class AddSprintTaskCommandTest {
         ProjectManager projectManager = generateProject();
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put("project", "99");
         parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        RemoveSprintTaskCommand command = new RemoveSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected =  "Project not found: 99";
         assertEquals(expected, getOutput());
-        assertEquals(0,
+        assertEquals(3,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 
@@ -185,17 +202,18 @@ class AddSprintTaskCommandTest {
         ProjectManager projectManager = generateProject();
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put("sprint", "99");
         parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        RemoveSprintTaskCommand command = new RemoveSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected =  "Sprint not found: 99";
         assertEquals(expected, getOutput());
-        assertEquals(0,
+        assertEquals(3,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
     }
 }

@@ -97,7 +97,7 @@ public class CreateSprintCommand extends SprintCommand {
      */
     private void printCreatedSprint() {
         Sprint createdSprint = sprintList.getSprint(sprintList.size());
-        Ui.showToUserLn(createdSprint.toString());
+        Ui.showToUser(createdSprint.toString());
     }
 
     /**
