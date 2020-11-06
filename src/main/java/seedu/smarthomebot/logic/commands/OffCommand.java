@@ -2,9 +2,9 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
@@ -54,12 +54,15 @@ public class OffCommand extends Command {
             case (LOCATION_TYPE):
                 return offByLocation(filterApplianceList);
             default:
+                commandLogger.log(Level.WARNING, "Invalid Format");
                 return new CommandResult("Invalid Format");
             }
         } catch (ApplianceNotFoundException e) {
             if (locationList.isLocationCreated(argument)) {
+                commandLogger.log(Level.INFO, "There are no Appliances in \"" + argument + "\".");
                 return new CommandResult("There are no Appliances in \"" + argument + "\".");
             } else {
+                commandLogger.log(Level.INFO, MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
                 return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
             }
         }
@@ -72,6 +75,7 @@ public class OffCommand extends Command {
         int toOffApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, true);
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -81,6 +85,7 @@ public class OffCommand extends Command {
     private CommandResult offByLocation(ArrayList<Appliance> toOffAppliance) {
         offApplianceByLoop(toOffAppliance);
         String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -112,6 +117,7 @@ public class OffCommand extends Command {
                 outputResult = toOffAppliance.getName() + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
             }
         }
+        commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
 }

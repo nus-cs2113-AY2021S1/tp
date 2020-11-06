@@ -8,15 +8,12 @@ import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_APPLIANCES;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
+import static seedu.smarthomebot.commons.Messages.*;
 
 //@@author Ang_Cheng_Jun
-
 /**
  * Represent the command to list LocationList or ApplianceList to the user.
  */
@@ -62,15 +59,20 @@ public class ListCommand extends Command {
             case APPLIANCE_TYPE:
                 return listAppliance();
             default:
+                commandLogger.log(Level.WARNING, "Invalid Format");
                 return new CommandResult("Invalid Format");
             }
         } catch (EmptyApplianceListException e) {
+            commandLogger.log(Level.INFO, MESSAGE_LIST_NO_APPLIANCES);
             return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
         } catch (LocationNotFoundException e) {
+            commandLogger.log(Level.INFO, "Location: \"" + filteredLocation + "\" does not exist.");
             return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
         } catch (NoApplianceInLocationException e) {
+            commandLogger.log(Level.INFO, "There is no Appliance in \"" + filteredLocation + "\".");
             return new CommandResult("There is no Appliance in \"" + filteredLocation + "\".");
         } catch (EmptyLocationListException e) {
+            commandLogger.log(Level.INFO, MESSAGE_LIST_NO_LOCATIONS);
             return new CommandResult(MESSAGE_LIST_NO_LOCATIONS);
         }
     }
@@ -89,6 +91,7 @@ public class ListCommand extends Command {
         } else {
             outputResult = listApplianceByLocation(outputApplianceList);
         }
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -97,8 +100,9 @@ public class ListCommand extends Command {
         if (outputApplianceList.size() == 0) {
             throw new EmptyApplianceListException();
         }
-
-        return displayOutput(MESSAGE_LIST_APPLIANCES, outputApplianceList);
+        String outputResult = displayOutput(MESSAGE_LIST_APPLIANCES, outputApplianceList);
+        commandLogger.log(Level.INFO, outputResult);
+        return outputResult;
     }
 
     private String listApplianceByLocation(ArrayList<Appliance> outputApplianceList)
@@ -115,7 +119,9 @@ public class ListCommand extends Command {
             throw new LocationNotFoundException();
         }
         String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
-        return displayOutput(header, filterApplianceList);
+        String outputResult = displayOutput(header, filterApplianceList);
+        commandLogger.log(Level.INFO, outputResult);
+        return outputResult;
     }
 
     /**
@@ -135,6 +141,7 @@ public class ListCommand extends Command {
             outputResult = outputResult.concat(System.lineSeparator() + index + ": " + location);
             index++;
         }
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -160,6 +167,7 @@ public class ListCommand extends Command {
                     a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
+        commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
 }

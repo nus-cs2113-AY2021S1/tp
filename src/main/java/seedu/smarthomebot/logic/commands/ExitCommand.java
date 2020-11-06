@@ -2,6 +2,10 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
 
+import java.util.logging.Level;
+
+import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+
 //@@author Ang_Cheng_Jun
 
 /**
@@ -31,6 +35,7 @@ public class ExitCommand extends Command {
         for (Appliance a : applianceList.getAllAppliance()) {
             a.switchOff();
         }
+        commandLogger.log(Level.WARNING, MESSAGE_EXIT_ACKNOWLEDGEMENT);
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
     }
 }
