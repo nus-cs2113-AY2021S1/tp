@@ -630,6 +630,7 @@ The intended user of Quotesify is someone that meets the following criterias:
 #### Shutdown
    1. To terminate Quotesify, enter the `bye` command. You should see the following:
    2. Data will be automatically saved into a data file.
+   
 ```
 ---------------------------------------------------------------
 Before you continue, here's something:

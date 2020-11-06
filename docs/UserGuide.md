@@ -133,11 +133,11 @@ Progress Tracker in Quotesify allows you to add, update, list and delete bookmar
 It also allows you to add, mark as done, list and delete tasks in the todo list. 
 
 With the bookmarks you have created, you can record your reading progress and trace to the page you stopped at quickly. 
-WIth the tasks in your todo list, you can set reminders for various activities 
+With the tasks in your todo list, you can set reminders for various activities 
 and easily find the most urgent task in the list.
 
 If you hate flipping pages to find the page to continue reading, 
-or want to develop a reading habit by setting many goals of readling, this feature is prepared for you!
+or want to develop a reading habit by setting many goals of reading, this feature is prepared for you!
 
 ### 3.4 Category Management
 Category Management in Quotesify allows you to create, list, edit and delete categories at your free will.
@@ -294,8 +294,8 @@ You can list all books currently in your booklist with the same author.
 
 Format: `list -b /by AUTHOR`
 
-* You must specify an existing author name
-* You must put `/by` before the author name
+* You must specify an existing author name.
+* You must put `/by` before the author name.
 
 Example of usage:
 `list -b /by CS Lewis`
@@ -313,7 +313,7 @@ Here is a list of books by CS Lewis:
 
 Only want to see the books you have finished or not finished? You can do that using the command below.
 
-##### 4.1.7 List done books
+#### 4.1.7 List done books
 
 Format: `list -b done`
 
@@ -390,7 +390,7 @@ Format: `edit -b BOOK_NUMBER /to NEW_TITLE`
 
 * `BOOK_NUMBER` refers to the index you see when you list ALL books.
 * The book number must be an existing number in the list when you list ALL books.
-* `/to` flag must be typed before the new title
+* `/to` flag must be typed before the new title.
 
 Example of usage:
 `edit -b 2 /to Harry Potter 2`
@@ -606,7 +606,7 @@ Format: `list -qr QUOTE_NUMBER`
 
 * Quote number field should not be empty.
 * The specified quote should exist in Quotesify.
-* Quote should have a reflection added to it
+* Quote should have a reflection added to it.
 
 Example of usage: `list -qr 1`
 
@@ -627,7 +627,7 @@ Format: `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION`
 
 * Quote number field should not be empty.
 * The specified quote should exist in Quotesify.
-* Quote should have a reflection added to it
+* Quote should have a reflection added to it.
 
 Example of usage: `edit -qr 1 /to Who is Yoda’s daddy?`
 
@@ -648,7 +648,7 @@ Format: `delete -qr QUOTE_NUMBER`
 
 * Quote number field should not be empty.
 * The specified quote should exist in Quotesify.
-* Quote should have a reflection added to it
+* Quote should have a reflection added to it.
 
 Example of usage: `delete -qr 1`
 
@@ -666,12 +666,12 @@ Reflection for the quote ["No, I am your mummy" - by Darth Vader] has been delet
 If you want to save your reading progress, you can do so by adding bookmarks to the books you read.
 If you want to set a goal on reading, you can do so by adding tasks (with deadlines) to your todo list. 
 
-#### 4.3.1 Add bookmarks: `bookmark -b /pg`
+#### 4.3.1 Add bookmarks: `bookmark -b`
 
-Add the only one bookmark to any book that has been already added.
+Adds a bookmark to a book that has been already added.
 
 Format: `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER`
-* book number refers to the index of the book shown in the book list.
+* Book number refers to the index of the book shown in the book list.
 * You must specify both book number and page number.
 
 Example of usage: `bookmark -b 3 /pg 109`
