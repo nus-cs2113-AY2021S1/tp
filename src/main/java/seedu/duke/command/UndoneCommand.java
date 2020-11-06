@@ -4,6 +4,7 @@ import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
@@ -28,52 +29,96 @@ public class UndoneCommand extends Command {
         this.command = command;
     }
 
-    public static Command parse(String input) throws WrongNumberOfArgumentsException, WrongNumberFormatException {
-        String[] inputParameters = input.trim().split(" ", 2);
+    /**
+     * Parses the user input and returns the corresponding UndoneCommand.
+     *
+     * @param input the processed user input with the command keyword removed.
+     * @return the UndoneCommand corresponding to the list type and event indicated in the input.
+     * @throws MissingSemicolonException if the input does not contain any semicolons to separate input fields.
+     * @throws WrongNumberOfArgumentsException if the event type or event index is missing.
+     * @throws WrongNumberFormatException if the event index is not an integer.
+     */
+    public static Command parse(String input) throws MissingSemicolonException,
+            WrongNumberOfArgumentsException, WrongNumberFormatException {
+        if (!input.contains(";")) {
+            throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
+        }
+
+        String[] inputParameters = input.trim().split(";", 2);
 
         if (inputParameters.length < 2) {
             throw new WrongNumberOfArgumentsException("Event type or index not provided.");
         }
 
-        String listType = inputParameters[0];
-        String eventIndex = inputParameters[1].trim();
+        String listType = capitaliseFirstLetter(inputParameters[0].trim());
+        String eventIdentifier = inputParameters[1].trim();
 
         try {
-            String[] eventIndexArray = eventIndex.split(" ",2);
-            Integer.parseInt(eventIndexArray[0]);
+            String[] eventIdentifierArray = eventIdentifier.split(";",2);
+            Integer.parseInt(eventIdentifierArray[0]);
         } catch (NumberFormatException e) {
             throw new WrongNumberFormatException("Event index given is not an integer.");
         }
 
-        return new UndoneCommand(listType, eventIndex);
+        return new UndoneCommand(listType, eventIdentifier);
     }
 
+    /**
+     * Looks for the event indicated and marks it as undone.
+     *
+     * @param data    object of UserData class containing user's data.
+     * @param ui      containing the responses to print.
+     * @param storage with the save file path to write to.
+     * @throws DukeException if en error occurs during the execution of a method called in the command.
+     */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-        listType = capitaliseFirstLetter(listType);
         EventList eventList = data.getEventList(listType);
-        String[] eventIndexArray = command.split(" ",2);
+        String[] eventIdentifierArray = command.split(";",2);
         
-        int eventIndex = Integer.parseInt(eventIndexArray[0]) - 1;
+        int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event undoneEvent = eventList.getEventByIndex(eventIndex);
 
-        if (eventIndexArray.length == 1 || undoneEvent.getRepeatType() == null) {
+        if (eventIdentifierArray.length == 1 || undoneEvent.getRepeatType() == null) {
             undoneEvent.markAsUndone();
             ui.printEventMarkedUndoneMessage(undoneEvent);
-        } else if (eventIndexArray.length == 2 && undoneEvent.getRepeatType() != null) { // event is a repeat task
-            LocalDate undoneEventDate = dateParser(eventIndexArray[1]);
-            ArrayList<Event> repeatEventList = undoneEvent.getRepeatEventList();
-            for (Event e: repeatEventList) {
-                if (e.getDate().isEqual(undoneEventDate)) {
-                    e.markAsUndone();
-                    ui.printEventMarkedUndoneMessage(e);
-                }
+        } else if (eventIdentifierArray.length == 2 && undoneEvent.getRepeatType() != null) { // event is a repeat task
+            LocalDate undoneEventDate = dateParser(eventIdentifierArray[1].trim());
+
+            if (undoneEventDate.isEqual(undoneEvent.getDate())) {
+                undoneEvent.markAsUndone();
+                ui.printEventMarkedUndoneMessage(undoneEvent);
+            } else {
+                ArrayList<Event> repeatEventList = undoneEvent.getRepeatEventList();
+                scanRepeatList(repeatEventList, undoneEventDate, ui);
             }
         }
     }
 
-    private String capitaliseFirstLetter(String input) {
+    /**
+     * Capitalises the first letter of an input string.
+     *
+     * @param input the string to be capitalised.
+     * @return the capitalised string.
+     */
+    private static String capitaliseFirstLetter(String input) {
         input = input.toLowerCase();
         return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
+
+    /**
+     * Scans the repeat event array list of a repeat event for an event matching the given date and marks it undone.
+     *
+     * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
+     * @param undoneEventDate the date of the sub repeat event to be marked done.
+     * @param ui containing the responses to print.
+     */
+    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate undoneEventDate, Ui ui) {
+        for (Event e: repeatEventList) {
+            if (e.getDate().isEqual(undoneEventDate)) {
+                e.markAsUndone();
+                ui.printEventMarkedUndoneMessage(e);
+            }
+        }
     }
 }

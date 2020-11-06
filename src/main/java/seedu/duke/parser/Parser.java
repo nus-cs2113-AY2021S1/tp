@@ -18,12 +18,12 @@ import seedu.duke.command.ReminderCommand;
 import seedu.duke.command.RepeatCommand;
 import seedu.duke.command.SaveCommand;
 import seedu.duke.command.UndoneCommand;
+import seedu.duke.command.ViewCommand;
 import seedu.duke.exception.DukeException;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Parser {
 
@@ -102,6 +102,9 @@ public class Parser {
 
         case "save":
             return new SaveCommand();
+
+        case "view":
+            return new ViewCommand(argument);
 
         default:
             throw new DukeException("Invalid Command.");

@@ -18,3 +18,7 @@ data
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+
+logging.txt
+mainTest/personal.txt
+goalStoreTest/

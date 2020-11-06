@@ -84,7 +84,7 @@ public abstract class Event implements Cloneable {
      * @return string representation of event's done status.
      */
     public String getStatus() {
-        return (isDone) ? "✓" : "✕";
+        return (isDone) ? "O" : "X";
     }
 
 

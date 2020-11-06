@@ -32,7 +32,7 @@ class StorageTest {
     public void setUp() {
         ui = new Ui();
 
-        Storage store = new Storage("storagetester", ui);
+        Storage store = new Storage("src,test,storagetester", ui);
         UserData data = new UserData();
         store.loadAll(data);
         String inputString = "personal";
@@ -41,7 +41,7 @@ class StorageTest {
 
     @Test
     void storageLoadAll_LoadFilesFromDirectory_allFilesLoaded() throws DukeException {
-        Storage store = new Storage("storagetester", ui);
+        Storage store = new Storage("src,test,storagetester", ui);
         UserData data = new UserData();
         Ui ui = new Ui();
         store.loadAll(data);
@@ -53,10 +53,10 @@ class StorageTest {
 
         assertEquals("The file has successfully been loaded!" + System.lineSeparator()
                         + "Here is a list of your Personal events:" + System.lineSeparator()
-                        + "1. [P][✕] stuff on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "1. [P][X] stuff on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated weekly for 4 times." + System.lineSeparator()
-                        + "2. [P][✓] birthday celebration on 2010-01-01, 12:00" + System.lineSeparator()
-                        + "3. [P][✕] others" + System.lineSeparator()
+                        + "2. [P][O] birthday celebration on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "3. [P][X] others" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
@@ -67,9 +67,9 @@ class StorageTest {
         listCommand.execute(data, ui, store);
 
         assertEquals("Here is a list of your Zoom events:" + System.lineSeparator()
-                        + "1. [Z][✕] math, Link: www.zoom.com/blah on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "1. [Z][X] math, Link: www.zoom.com/blah on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated daily for 4 times." + System.lineSeparator()
-                        + "2. [Z][✓] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "2. [Z][O] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
@@ -80,9 +80,9 @@ class StorageTest {
         listCommand.execute(data, ui, store);
 
         assertEquals("Here is a list of your Timetable events:" + System.lineSeparator()
-                        + "1. [T][✕] math, Location: S17 on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "1. [T][X] math, Location: S17 on 2010-01-01, 12:00" + System.lineSeparator()
                         + "   Repeated monthly for 4 times." + System.lineSeparator()
-                        + "2. [T][✓] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "2. [T][O] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator()
                         + "_________________________________" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
@@ -102,10 +102,10 @@ class StorageTest {
     @Test
     void storageSaveAll_saveFilesIntoComputer_allFilesSaved() {
         try {
-            String[] modelPersonalLoc = {"storagetestermodelans", "personal.txt"};
-            String[] modelZoomLoc = {"storagetestermodelans", "zoom.txt"};
-            String[] modelTimetableLoc = {"storagetestermodelans", "timetable.txt"};
-            String[] modelGoalLoc = {"storagetestermodelans", "goal.txt"};
+            String[] modelPersonalLoc = {"src", "test", "storagetestermodelans", "personal.txt"};
+            String[] modelZoomLoc = {"src", "test", "storagetestermodelans", "zoom.txt"};
+            String[] modelTimetableLoc = {"src", "test", "storagetestermodelans", "timetable.txt"};
+            String[] modelGoalLoc = {"src", "test", "storagetestermodelans", "goal.txt"};
 
             Path personalPath = createPath(modelPersonalLoc);
             Path zoomPath = createPath(modelZoomLoc);
@@ -117,16 +117,16 @@ class StorageTest {
             final List<String> timetableModel = Files.readAllLines(timetablePath);
             final List<String> goalModel = Files.readAllLines(goalPath);
 
-            Storage store = new Storage("storagetester", ui);
+            Storage store = new Storage("src,test,storagetester", ui);
             UserData data = new UserData();
             Ui ui = new Ui();
             store.loadAll(data);
             store.saveAll(data);
 
-            String[] actualPersonalLoc = {"storagetester", "personal.txt"};
-            String[] actualZoomLoc = {"storagetester", "zoom.txt"};
-            String[] actualTimetableLoc = {"storagetester", "timetable.txt"};
-            String[] actualGoalLoc = {"storagetester", "goal.txt"};
+            String[] actualPersonalLoc = {"src", "test", "storagetester", "personal.txt"};
+            String[] actualZoomLoc = {"src", "test", "storagetester", "zoom.txt"};
+            String[] actualTimetableLoc = {"src", "test", "storagetester", "timetable.txt"};
+            String[] actualGoalLoc = {"src", "test", "storagetester", "goal.txt"};
 
             Path actualPersonalPath = createPath(actualPersonalLoc);
             Path actualZoomPath = createPath(actualZoomLoc);

@@ -104,7 +104,7 @@ class ExtractCommandTest {
                             + "Since no date was detected in the text body, "
                             + "the personal event will only contain the description." + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] Meeting" + System.lineSeparator(),
+                            + "[P][X] Meeting" + System.lineSeparator(),
                     outputStreamCaptor.toString());
         }
 
@@ -146,7 +146,7 @@ class ExtractCommandTest {
                             + "the personal event will only contain the description and the date."
                             + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] CS2113T Makeup Lesson on 2020-11-17" + System.lineSeparator(),
+                            + "[P][X] CS2113T Makeup Lesson on 2020-11-17" + System.lineSeparator(),
                     outputStreamCaptor.toString());
 
         }
@@ -184,7 +184,7 @@ class ExtractCommandTest {
                             + "One date detected and chosen: 2020-10-05" + System.lineSeparator()
                             + "One timing detected and chosen: 16:00" + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] CG2271 Quiz on 2020-10-05, 16:00" + System.lineSeparator(),
+                            + "[P][X] CG2271 Quiz on 2020-10-05, 16:00" + System.lineSeparator(),
                     outputStreamCaptor.toString());
         }
 
@@ -233,7 +233,7 @@ class ExtractCommandTest {
                             + "2. 19:00" + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[P][✕] GEH quiz on 2020-05-15, 19:00" + System.lineSeparator(),
+                            + "[P][X] GEH quiz on 2020-05-15, 19:00" + System.lineSeparator(),
                     outputStreamCaptor.toString());
         }
 
@@ -275,7 +275,7 @@ class ExtractCommandTest {
                             + " the zoom event will only contain the description and zoom link."
                             + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
-                            + "[Z][✕] Seminar, Link:"
+                            + "[Z][X] Seminar, Link:"
                             + " https://nus-sg.zoom.us/j/9290988107?pwd=dDZSQ0lTa0loaTRPc1F1d01hbWVFZz09"
                             + System.lineSeparator(),
                     outputStreamCaptor.toString());
