@@ -53,9 +53,9 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
             for (String userId : this.userIds) {
                 Member mem = this.projOwner.getProjectMember().getMember(userId.trim());
                 mem.deallocateTask(taskId);
-                this.projOwner.getProjectBacklog().getTask(taskId).removeFromMember(mem.getUserId());
+                this.projOwner.getBacklog().getTask(taskId).removeFromMember(mem.getUserId());
             }
-            Ui.showToUserLn(this.projOwner.getProjectBacklog().getTask(taskId).getTitle()
+            Ui.showToUserLn(this.projOwner.getBacklog().getTask(taskId).getTitle()
                     + " is removed from "
                     + Arrays.toString(this.userIds));
         }

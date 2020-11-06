@@ -51,9 +51,9 @@ public class AllocateSprintTaskCommand extends SprintCommand {
             for (String userId : userIds) {
                 Member mem = this.projOwner.getProjectMember().getMember(userId.trim());
                 mem.allocateTask(taskId);
-                this.projOwner.getProjectBacklog().getTask(taskId).allocateToMember(mem.getUserId());
+                this.projOwner.getBacklog().getTask(taskId).allocateToMember(mem.getUserId());
             }
-            Ui.showToUserLn(this.projOwner.getProjectBacklog().getTask(taskId).getTitle()
+            Ui.showToUserLn(this.projOwner.getBacklog().getTask(taskId).getTitle()
                     + " is assigned to "
                     + Arrays.toString(userIds));
         }

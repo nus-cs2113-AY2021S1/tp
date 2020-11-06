@@ -45,12 +45,12 @@ public class AddTaskCommand extends Command {
         priority = parameters.get(PRIORITY).toUpperCase();
 
         Project proj = projectManager.getSelectedProject();
-        if (!proj.getProjectBacklog().checkValidPriority(priority)) {
+        if (!proj.getBacklog().checkValidPriority(priority)) {
             Ui.showError("Invalid priority!");
             return;
         }
-        proj.getProjectBacklog().addTask(title, description, priority);
-        Task addedTask = proj.getProjectBacklog().getTask(proj.getProjectBacklog().getNextId() - 1);
+        proj.getBacklog().addTask(title, description, priority);
+        Task addedTask = proj.getBacklog().getTask(proj.getBacklog().getNextId() - 1);
         Ui.showToUserLn("Task successfully created.");
         Ui.showToUserLn(addedTask.toString());
     }
@@ -60,8 +60,8 @@ public class AddTaskCommand extends Command {
         if (projectManager.isEmpty()) {
             return false;
         }
-        for (int i = 1; i <= projectManager.getSelectedProject().getProjectBacklog().size(); i++) {
-            Task existingTask = projectManager.getSelectedProject().getProjectBacklog().getTask(i);
+        for (int i = 1; i <= projectManager.getSelectedProject().getBacklog().size(); i++) {
+            Task existingTask = projectManager.getSelectedProject().getBacklog().getTask(i);
             String existingTitle = existingTask.getTitle();
             titleAlreadyExist |= compareTitle(existingTitle, title);
         }

@@ -27,5 +27,7 @@ public class TaskHelpCommand extends Command {
         Ui.showToUserLn("5. Mark task as complete");
         Ui.showToUserLn("   Format: task /done <taskid>");
         Ui.showToUserLn("   Example: task /done 1");
+        Ui.showToUserLn("6. View tasks in descending priority");
+        Ui.showToUserLn("   Format: task /priorityview");
     }
 }

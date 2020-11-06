@@ -3,7 +3,6 @@ package seedu.duke.model.task;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import seedu.duke.model.project.Project;
-import seedu.duke.model.sprint.Sprint;
 import seedu.duke.storage.JsonableObject;
 import seedu.duke.ui.Ui;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 public class TaskManager implements JsonableObject {
 
     private Project proj;
-    public ArrayList<Task> backlogTasks;
+    public ArrayList<Task> taskList;
     int nextId;
 
     public TaskManager() {
@@ -23,16 +22,16 @@ public class TaskManager implements JsonableObject {
 
     public TaskManager(Project proj) {
         this.proj = proj;
-        backlogTasks = new ArrayList<>(100);
+        taskList = new ArrayList<>(100);
         nextId = 1;
     }
 
     public boolean isEmpty() {
-        return backlogTasks.isEmpty();
+        return taskList.isEmpty();
     }
 
     public int size() {
-        return backlogTasks.size();
+        return taskList.size();
     }
 
     public int getNextId() {
@@ -49,7 +48,7 @@ public class TaskManager implements JsonableObject {
     
     public void addTask(String title, String description, String priority) {
         int newTaskId = nextId++;
-        backlogTasks.add(new Task(newTaskId, title, description, priority));
+        taskList.add(new Task(newTaskId, title, description, priority));
     }
 
     public boolean checkValidPriority(String input) {
@@ -62,7 +61,7 @@ public class TaskManager implements JsonableObject {
     }
 
     public Task getTask(int id) {
-        for (Task task : backlogTasks) {
+        for (Task task : taskList) {
             if (task.getId() == id) {
                 return task;
             }
@@ -71,13 +70,13 @@ public class TaskManager implements JsonableObject {
     }
 
     public void removeTask(int taskId) {
-        for (Task task : backlogTasks) {
+        for (Task task : taskList) {
             if (task.getId() == taskId) {
                 ArrayList<Integer> allocatedSprint = task.getSprintList();
                 for (Integer sprintId : allocatedSprint) {
                     proj.getSprintList().getSprint(sprintId).removeSprintTask(taskId);
                 }
-                backlogTasks.remove(task);
+                taskList.remove(task);
                 return;
             }
         }
@@ -86,9 +85,9 @@ public class TaskManager implements JsonableObject {
     public void viewTask(String id, Ui ui) {
         Task task;
         try {
-            int backlogId = Integer.parseInt(id) - 1;
-            if (backlogId < nextId) {
-                task = backlogTasks.get(backlogId);
+            int taskId = Integer.parseInt(id) - 1;
+            if (taskId < nextId) {
+                task = taskList.get(taskId);
                 Ui.showToUserLn(task.toString());
             } else {
                 Ui.showToUserLn("The following task id doesn't exist in backlog.\n Please enter a valid id.");
@@ -99,11 +98,11 @@ public class TaskManager implements JsonableObject {
     }
 
     public ArrayList<Task> getTaskList() {
-        return backlogTasks;
+        return taskList;
     }
 
     public boolean checkTaskExist(int id) {
-        for (Task task : backlogTasks) {
+        for (Task task : taskList) {
             if (task.getId() == id) {
                 return true;
             }
@@ -113,13 +112,13 @@ public class TaskManager implements JsonableObject {
     
     @Override
     public String toString() {
-        StringBuilder backlogString = new StringBuilder();
-        backlogString.append(String.format("---------------------------- BACKLOG ----------------------------%n"));
-        for (Task task : backlogTasks) {
-            backlogString.append(task.toSimplifiedString());
+        StringBuilder taskString = new StringBuilder();
+        taskString.append(String.format("---------------------------- BACKLOG ----------------------------%n"));
+        for (Task task : taskList) {
+            taskString.append(task.toSimplifiedString());
         }
-        backlogString.append(String.format("-----------------------------------------------------------------%n"));
-        return backlogString.toString();
+        taskString.append(String.format("-----------------------------------------------------------------%n"));
+        return taskString.toString();
     }
 
     @Override
@@ -136,12 +135,12 @@ public class TaskManager implements JsonableObject {
 
     @Override
     public void toJson(Writer writer) throws IOException {
-        final JsonObject jsonBacklog = new JsonObject();
-        final JsonArray jsonTasks = new JsonArray(backlogTasks);
-        jsonBacklog.put("owner", proj.getProjectID());
-        jsonBacklog.put("backlogTasks", jsonTasks);
-        jsonBacklog.put("nextId", nextId);
-        jsonBacklog.toJson(writer);
+        final JsonObject jsonTaskManager = new JsonObject();
+        final JsonArray jsonTasks = new JsonArray(taskList);
+        jsonTaskManager.put("owner", proj.getProjectID());
+        jsonTaskManager.put("backlogTasks", jsonTasks);
+        jsonTaskManager.put("nextId", nextId);
+        jsonTaskManager.toJson(writer);
     }
 
     public void fromJson(JsonObject jsonObject, Project project) {
@@ -150,13 +149,13 @@ public class TaskManager implements JsonableObject {
                 : "Project Id does not corresponds to the project object which this backlog is stored under.";
         nextId = JsonableObject.parseInt(jsonObject, "nextId");
         proj = project;
-        backlogTasks = new ArrayList<>();
+        taskList = new ArrayList<>();
         JsonArray jsonTaskList = (JsonArray) jsonObject.get("backlogTasks");
 
         for (Object o : jsonTaskList) {
             Task task = new Task();
             task.fromJson((JsonObject) o);
-            backlogTasks.add(task);
+            taskList.add(task);
         }
     }
 

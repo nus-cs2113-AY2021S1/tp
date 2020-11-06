@@ -34,19 +34,18 @@ public class ViewTaskCommand extends TaskCommand {
 
             for (int i = 0; i < parameters.size(); i++) {
                 Task task;
-                int backlogId = Integer.parseInt(parameters.get(Integer.toString(i)));
+                int taskId = Integer.parseInt(parameters.get(Integer.toString(i)));
 
-
-                if (backlogId <= proj.getProjectBacklog().getNextId() && backlogId > 0) {
+                if (taskId <= proj.getBacklog().getNextId() && taskId > 0) {
                     if (!validTask) {
                         Ui.showToUserLn("The details of the tasks are as follows: ");
                         validTask = true;
                     }
 
-                    task = proj.getProjectBacklog().getTask(backlogId);
+                    task = proj.getBacklog().getTask(taskId);
                     Ui.showToUserLn(task.toString());
                 } else {
-                    Ui.showError("The following task ID: " + backlogId
+                    Ui.showError("The following task ID: " + taskId
                             + " doesn't exist in backlog.\nPlease enter a"
                             + " valid ID.");
                 }
