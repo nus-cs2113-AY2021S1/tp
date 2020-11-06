@@ -162,6 +162,7 @@ Format: `help [COMMAND]`
 
 When you type in `help`, a generic help screen will be printed as shown below 
 
+// everyone update this at the end + help.txt -matthew
 ```
 help
 _________________________________
@@ -188,7 +189,7 @@ If you want to get help for a specific command, type in `help [COMMAND]`. For ex
 help add
 _________________________________
 add - Records a personal, timetable or zoom event into the program
-Format: add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
+Format: add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
 
 EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom”
 EVENT_DESCRIPTION is the name of the event
@@ -224,11 +225,11 @@ The types of events available to be added include:
 - NUS timetable/lessons: Timetable
 - Personal Events: Personal
 
-Format: `add EVENT_TYPE EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
+Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
 - `EVENT_TYPE` specify the type of event you want to add. These include "zoom", "timetable" and "personal".
 - `EVENT_DESCRIPTION` is the description or name of the event.
-- `LINK/LOCATION` is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively.
+- `LINK/LOCATION` is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively. This field should always be after the event description if used.
 - `DD/MM/YY` is the date associated with the event in the format `DD/MM/YY`.
 - `HH:MM AM/PM` is the time of the event. It can be written in 12 or 24 hour format. 
 
@@ -248,11 +249,14 @@ Personal events can contain:
 - Description, date and time
 
 Examples: 
-- `add Zoom CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` <br>
-- `add personal Family Meeting; 18/09/20`  <br>
-- `add Timetable CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm`
+- `add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` <br>
+- `add personal; Family Meeting; 18/09/20`  <br>
+- `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm` <br>
+- `add zoom; Team meeting; nus.sg.zoom.sg` <br>
+- `add timetable; math class; 10/10/2020; 12pm`
 
 Expected Output:
+For the first 3 examples above,
 ```
 _________________________________
 You have successfully added this event to your list!
@@ -279,7 +283,6 @@ _________________________________
 - Only the full word will be recognized as the event type:
 `add z` will NOT add a zoom event
 
-- Remember to add the ':' for the time, this is because `4 PM` will not be valid but `4:00 PM` will be.
 {{box op="end"}}
 
 {{box op="start" cssClass="boxed warningBox"}}
@@ -841,7 +844,7 @@ In this section, you can find some frequently asked questions(FAQ).
 
 | Action | Format, Examples |
 |--------|------------------|
-|Add|add EVENT_TYPE EVENT_DESCRIPTION; DD/MM/YY <br> Eg: add personal Family Meeting; 18/09/20 <br> <br> add EVENT_TYPE EVENT_DESCRIPTION; LINK; DD/MM/YY; HH:MM <br> Eg: add Zoom CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> add EVENT_TYPE EVENT_DESCRIPTION; LOCATION; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
+|Add|add EVENT_TYPE; EVENT_DESCRIPTION; DD/MM/YY <br> Eg: add personal; Family Meeting; 18/09/20 <br> <br> add EVENT_TYPE; EVENT_DESCRIPTION; LINK; DD/MM/YY; HH:MM <br> Eg: add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> add EVENT_TYPE; EVENT_DESCRIPTION; LOCATION; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable; CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
 |List|list all <br> <br> list TYPE <br> Eg: list Zoom <br> <br> list from sd/DD/MM/YY to ed/DD/MM/YY <br> Eg: list from sd/12/04/20 to ed/19/04/20 <br>|
 |Check|check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME] <br> Eg: check 20/08/20; 15:05; 25/8/2020; 1 pm; <br>|
 |Repeat|repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT] <br> Eg: repeat timetable 2 weekly 4 <br>|
