@@ -27,5 +27,5 @@ A hospital appointment log application for admins. Relieves admins on mundane ta
   * Maintaining the issue tracker
   * Release management
 * Ability to retrieve patients information using NRIC
-* Add and remove doctor
-* JUnit, Logging and Assertions
+* Add and remove doctor function
+* Most of JUnit, Logging and Assertions
