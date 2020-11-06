@@ -50,21 +50,22 @@ public class Ui {
     public void printRepeatAdd(Event event) {
         System.out.println(event);
         System.out.println("is now repeating " + event.getRepeatType() + " for " + event.getRepeatCount() + " times.");
-        printDividerLine();
     }
 
     public void printRepeatList(Event event) {
         System.out.println(event + " is also on:");
         ArrayList<Event> repeatEventList = event.getRepeatEventList();
+        int index = 1;
         for (Event e : repeatEventList) {
+            System.out.print("    " + index + ". ");
             System.out.printf("%s ", e.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
             if (e.getTime() != null) {
                 System.out.printf("%s ", e.getTime().format(DateTimeFormatter.ofPattern("K:mm a")));
             }
             System.out.printf("[%s]", e.getStatus());
             System.out.println();
+            index++;
         }
-        printDividerLine();
     }
 
     public void printGoalMessage(Goal goal) {
@@ -73,7 +74,6 @@ public class Ui {
         } else {
             System.out.println("You have no goal! Why not set one now?");
         }
-        printDividerLine();
     }
 
     public void printChangeGoalMessage(Goal goal) {
@@ -82,7 +82,6 @@ public class Ui {
         } else {
             System.out.println("No more goal!");
         }
-        printDividerLine();
     }
 
     private void printCalendarDivider() {
@@ -113,7 +112,6 @@ public class Ui {
 
     public void printCalendarEnd() {
         System.out.println("End of calendar");
-        printDividerLine();
     }
 
     public void printCheckMessage() {
@@ -131,7 +129,6 @@ public class Ui {
             System.out.println(list.getName());
         }
         System.out.println("'list All' will list all existing lists.");
-        printDividerLine();
     }
 
     /**
@@ -148,9 +145,11 @@ public class Ui {
             System.out.println("Here is a list of your " + eventListName + " events:");
             int index = 1;
             for (Event e : events) {
-                System.out.println(index + ". " + e);
+                System.out.print(index + ". ");
                 if (e.getRepeatEventList() != null) {
-                    System.out.println("   Repeated " + e.getRepeatType() + " for " + e.getRepeatCount() + " times.");
+                    printRepeatList(e);
+                } else {
+                    System.out.println(e);
                 }
                 if (e.getNotes().size() > 0) {
                     String indexWord = Integer.toString(index);
@@ -159,7 +158,6 @@ public class Ui {
                 index++;
             }
         }
-        printDividerLine();
     }
 
     public void printDeadlineChangedMessage(Event eventUpdated) {
