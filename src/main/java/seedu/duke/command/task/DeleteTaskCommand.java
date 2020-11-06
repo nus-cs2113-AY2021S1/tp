@@ -36,12 +36,12 @@ public class DeleteTaskCommand extends Command {
                 if (taskId <= 0) {
                     Ui.showError("The ID: " + taskId + " is invalid. "
                             + "Please enter a positive integer.");
-                } else if (proj.getProjectBacklog().checkTaskExist(taskId)) {
-                    Task task = proj.getProjectBacklog().getTask(taskId);
+                } else if (proj.getBacklog().checkTaskExist(taskId)) {
+                    Task task = proj.getBacklog().getTask(taskId);
                     Ui.showToUserLn("The corresponding task "
                             + task.getTitle()
                             + " has been removed from project.");
-                    proj.getProjectBacklog().removeTask(taskId);
+                    proj.getBacklog().removeTask(taskId);
                     ArrayList<Sprint> allSprints = proj.getSprintList().getSprintList();
                     for (Sprint sprint : allSprints) {
                         if (sprint.checkTaskExist(taskId)) {

@@ -65,7 +65,7 @@ public class Project implements JsonableObject {
             projectInString.append(String.format("[Project will start along with the first sprint]%n"));
         }
 
-        if (!this.backlog.backlogTasks.isEmpty()) {
+        if (!this.backlog.taskList.isEmpty()) {
             projectInString.append(this.backlog.toString());
         } else {
             projectInString.append(String.format("[Project backlog is empty]%n"));
@@ -121,10 +121,6 @@ public class Project implements JsonableObject {
         return endDate;
     }
 
-    public TaskManager getProjectBacklog() {
-        return backlog;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -160,7 +156,7 @@ public class Project implements JsonableObject {
         this.sprintLength = sprintLength;
     }
 
-    public void displayProjectBacklog() {
+    public void displayTaskList() {
         if (backlog.getNextId() == 0) {
             System.out.println("No tasks currently added to project backlog.");
         } else {

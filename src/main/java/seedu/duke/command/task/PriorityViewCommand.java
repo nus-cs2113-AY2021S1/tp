@@ -3,7 +3,6 @@ package seedu.duke.command.task;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
-import seedu.duke.ui.Messages;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

@@ -43,12 +43,12 @@ public class RemoveSprintTaskCommand extends SprintCommand {
             this.sprintOwner.removeSprintTask(taskId);
 
             //Update Task
-            Task removedTask = this.projOwner.getProjectBacklog().getTask(taskId);
+            Task removedTask = this.projOwner.getBacklog().getTask(taskId);
             removedTask.removeFromSprint(this.sprintOwner.getId());
 
             //Output to user
             Ui.showToUserLn(String.format("\t%s  removed from sprint %s.",
-                    projOwner.getProjectBacklog().getTask(taskId).getTitle(),
+                    projOwner.getBacklog().getTask(taskId).getTitle(),
                     this.sprintOwner.getId()));
         }
     }
