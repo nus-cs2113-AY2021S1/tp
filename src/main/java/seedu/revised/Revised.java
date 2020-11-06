@@ -2,8 +2,8 @@ package seedu.revised;
 
 import seedu.revised.card.Subject;
 import seedu.revised.list.SubjectList;
-import seedu.revised.command.subject.SubjectCommand;
-import seedu.revised.exception.storage.DataLoadingException;
+import seedu.revised.command.subjectcommand.SubjectCommand;
+import seedu.revised.exception.storageexception.DataLoadingException;
 import seedu.revised.parser.SubjectParser;
 import seedu.revised.storage.Storage;
 import seedu.revised.ui.Ui;

@@ -1,13 +1,13 @@
 package seedu.revised.parser;
 
-import seedu.revised.command.flashcard.AddFlashcardCommand;
-import seedu.revised.command.flashcard.ExitFlashcardCommand;
-import seedu.revised.command.flashcard.FlashcardCommand;
-import seedu.revised.command.flashcard.ListAllFlashcardCommand;
-import seedu.revised.command.flashcard.ListFlashcardCommand;
-import seedu.revised.command.flashcard.DeleteFlashcardCommand;
-import seedu.revised.command.flashcard.SorryFlashcardCommand;
-import seedu.revised.command.flashcard.HelpFlashcardCommand;
+import seedu.revised.command.flashcardcommand.AddFlashcardCommand;
+import seedu.revised.command.flashcardcommand.ExitFlashcardCommand;
+import seedu.revised.command.flashcardcommand.FlashcardCommand;
+import seedu.revised.command.flashcardcommand.ListAllFlashcardCommand;
+import seedu.revised.command.flashcardcommand.ListFlashcardCommand;
+import seedu.revised.command.flashcardcommand.DeleteFlashcardCommand;
+import seedu.revised.command.flashcardcommand.SorryFlashcardCommand;
+import seedu.revised.command.flashcardcommand.HelpFlashcardCommand;
 
 public class FlashcardParser {
 

@@ -7,9 +7,9 @@ import seedu.revised.list.TopicList;
 
 import seedu.revised.card.Flashcard;
 
-import seedu.revised.card.quiz.Result;
+import seedu.revised.card.quizcard.Result;
 
-import seedu.revised.card.task.Task;
+import seedu.revised.card.taskcard.Task;
 import seedu.revised.list.TaskList;
 
 import java.io.File;
@@ -53,7 +53,7 @@ public class Ui {
     public static final String INDEX_OUT_OF_BOUND_EXCEPTION = OOPS_PREFIX + " The index you entered does not exist.";
     public static final String NO_FLASHCARD_EXCEPTION = "There are no flashcards present yet!";
     public static final String NO_TOPIC_YET_EXCEPTION = "There are no topics present yet!";
-    public static final String NO_TOPIC_EXCEPTION = "Please enter a topic.";
+    public static final String NO_TOPIC_EXCEPTION = "Please enter an existing topic.";
     public static final String TOPIC_NOT_FOUND_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I can't find that topic "
             + OOPS_SUFFIX;
     public static final String INVALID_SUBJECT_EXCEPTION = "Please enter a subject!";

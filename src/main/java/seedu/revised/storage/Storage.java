@@ -7,12 +7,12 @@ import com.google.gson.reflect.TypeToken;
 import seedu.revised.card.Flashcard;
 import seedu.revised.card.Subject;
 import seedu.revised.card.Topic;
-import seedu.revised.exception.storage.DataLoadingException;
-import seedu.revised.card.quiz.Result;
-import seedu.revised.card.task.Deadline;
-import seedu.revised.card.task.Event;
-import seedu.revised.card.task.Task;
-import seedu.revised.card.task.Todo;
+import seedu.revised.exception.storageexception.DataLoadingException;
+import seedu.revised.card.quizcard.Result;
+import seedu.revised.card.taskcard.Deadline;
+import seedu.revised.card.taskcard.Event;
+import seedu.revised.card.taskcard.Task;
+import seedu.revised.card.taskcard.Todo;
 import seedu.revised.ui.Ui;
 
 import java.io.File;

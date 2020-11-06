@@ -99,14 +99,18 @@ Alternatively, if you are using [IntelliJ](https://www.jetbrains.com/idea/), fol
 This section describes how **revisED** has been designed so that developers can better understand the 
 designing of the code, with the help of visual aids.
 
-The application has been broken down into different segments so that users would find it easy to navigate from one segment 
-to the next one. There are three segments within the application:
-* Main: This segment edits the list of all the subjects present within the application and takes care of relevant commands 
+The application has been broken down into different levels so that users would find it easy to navigate from one level 
+to the next one. There are three levels within the application, and their hierarchy is ranked as shown below:
+* Main: This level edits the list of all the subjects present within the application and takes care of relevant commands 
 such as add subject, delete subject or find subject.
-* Subject: This segment is accessed through the `subject NAMEOFSUBJECT` command. The user would then look at the individual 
+* Subject: This level is accessed through the `subject NAMEOFSUBJECT` command. The user would then look at the individual 
 subjects and then would be able to add, delete, list or find either tasks or topics.
-* Topic : This segment is accessed through the `topic NAMEOFTOPIC` command. The user can add, delete or list flashcards
-in this segment.
+* Topic : This level is accessed through the `topic NAMEOFTOPIC` command. The user can add, delete or list flashcards
+in this level.
+
+Exiting from the Topic level will result in the program running at the Subject level, while exiting from the Subject level 
+allows the program to run at the Main level. The program can also access the Subject level from the main level, or the Topic level
+from the Subject level via user input.
 
 The code contains the main class Revised, as well as different packages, which combine classes that perform a similar 
 functionality. Here are the list of packages:
@@ -139,14 +143,14 @@ and is split into 2 packages, quiz and task, as well as Subject, Topic and Flash
 
 Each of the classes in the card package contains:
 * Getters and Setters of its own attributes
-* methods that alter an instance of its own class
+* Methods that alter an instance of its own class
 
-#### Quiz package <a name="quiz"></a>
-The `Quiz` package holds the necessary classes for the quiz functionality of this application. The following are
+#### quizcard Package <a name="quiz"></a>
+The `quizcard` package holds the necessary classes for the quiz functionality of this application. The following are
 the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
 
-#### Quiz class <a name="Qclass"></a>
-`Quiz` class is an abstract class in the `Quiz` package. It is holds the result of a quiz class and the list of flashcards
+#### Quiz <a name="Qclass"></a>
+`Quiz` class is an abstract class in the `quizcard` package. It is holds the result of a quiz class and the list of flashcards
 from any subject or topic classes which the user calls the quiz for. Furthermore, it contains a checkAnswer() method the
 checks the answer that the user had given with the correct answer of the quiz. If the user enters the correct answer, the 
 existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
@@ -180,17 +184,17 @@ which tracks the score during the quiz, the  `maxScore` variable which is the ma
 quiz, while the  `description` variable will be a grade given to you depending on your performance.
 The  `UpdateResult` method  updates the score of the quiz during the quiz and changes the grade of the quiz. 
 
-#### Task Package <a name="task"></a>
-The `Task` package holds the necessary classes for the Task functionality of this application. The following are
+#### taskcard Package <a name="task"></a>
+The `taskcard` package holds the necessary classes for the Task functionality of this application. The following are
 the classes in the package. A `Task` class, a `Todo` class, a `Deadline` class and an `Event` class.
 
-##### Task class <a name="Ttask"></a>
+##### Task <a name="Ttask"></a>
 The `Task` class is the superclass of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
 and an attribute to check if the task is completed-`Boolean`. It holds basic getters for its attributes, getters such as getting the 
 status icon to check if a Task is done-`String`, and getters for the DateTime features of the Deadline and Event classes. It also has
  a toString methods to print the Task.
  
-###### Todo Class <a name="Ttodo"></a>
+###### Todo <a name="Ttodo"></a>
 The `Todo` class is the class to store information on basic tasks of the user. It contains methods and attributes similar to the
 ones found in its superclass `Task`. It has an additional Override toString method, to differentiate between itself and other
 tasks, such as Deadline and Event.
@@ -204,7 +208,7 @@ Now you have 1 task in the list.
 ____________________________________________________________
 ```
 
-###### Deadline Class <a name="Tdeadline"></a>
+###### Deadline <a name="Tdeadline"></a>
 The `Deadline` class is the class to store information on tasks of the user that has a deadline. It contains methods and attributes similar to the
 ones found in its superclass `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
 to keep track of the deadline of the task-`LocalDateTime`, an Override toString method, to differentiate between itself and other tasks, such as Deadline 
@@ -220,7 +224,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-###### Event Class <a name="Tevent"></a>
+###### Event <a name="Tevent"></a>
 The `Event` class is the class to store information of tasks of the user that is an event with a specific date and time occurrence. 
 It contains methods and attributes similar to the ones found in its superclass `Task`, and additional attributes to make it a `Deadline`
 Task, such as an additional dateTime attribute to keep track of the date and time of the event-`LocalDateTime`, an Override toString method,
@@ -236,18 +240,18 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-#### Flashcard Class <a name="flashcard"></a>
+#### Flashcard  <a name="flashcard"></a>
 The `Flashcard` class is a class to store information of flashcards. It has attributes such as the question
 and answer of each flashcard, a constructor, as well as getters for both question and answer of the flashcards.
 
 
-#### Subject Class <a name="subject"></a>
+#### Subject <a name="subject"></a>
 The `Subject` class is a class to store information of subjects. It has various attributes such as the title of the 
 subject-`String`, a list of various topics in a subject-`TopicList`, a list of various tasks present in a subject-`TaskList`
 and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
 attributes in the `Subject` class and a toString method to return the title of the subject.
 
-#### Topic Class <a name="topic"></a>
+#### Topic <a name="topic"></a>
 The `Topic` class is a class to store information of topics. It has various attributes such as the title of the subject-`String`,
 a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
 contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
@@ -255,16 +259,260 @@ contains various constructors, getters for all its attributes, and a toString me
 An example of how classes in the card package interact with each other is shown in the figure below. 
 In this example, a student has 2 main subjects, mainly Math and Science. Math has topics algebra and calculus, while science has topics speed and light. He also made flashcards the various topics.
 
-### 3.2 Command Package <a name="command"></a>
+### 3.2 command Package <a name="command"></a>
 The Command package consists of different classes that executes the various commands of the application due to user input,
-and is split into 4 packages, flashcard, subject, task and topic, as well as a abstract command class, that is a superclass of the various classes in the different packages.
+and is split into 4 packages, flashcard, subject, task and topic, as well as an abstract command class, that is a superclass of the various classes in the different packages.
+As mentioned in the introduction of the design segment of the developer guide, the program is split into 3 levels, namely the main level, the subject level, as well as the topic level.
+The `subjectcommand` package holds the information to allow the program to execute a user command at the main level, the `topiccommand` package holds the information
+to allow the program to execute a user command at the subject level, while the `taskcommand` and `flashcardcommand` packages holds the information to allow the program to execute a user command
 
 * Command: In charge of reading the command and calling the relevant methods. The package itself holds
-the following packages.
-    - Flashcard
-    - Subject
-    - Topic
-    - Task
+the following packages. The commands also have a method isExit to exit the current level the program is at. 
+Exiting from a level of the program will either up the program to run at a level of a higher level or end the program.
+The levels in the program are mentioned in the introduction of the design segment of the developer guide.
+    - flashcardcommand
+    - subjectcommand
+    - topiccommand
+    - taskcommand
+
+Each of the sub-packages hold multiple classes that are a subclass of the Command class, and contains:
+* An execute command to execute the respective commands in their respective levels of the program
+* An isExit method that checks if the command exits the level the program is currently running in
+AccessSubjectCommand and AccessTopicCommand both have an extra method goToSubject and goToTopic methods that 
+allows the program to enter Subject level from the Main level, and to the Topic level from the Subject level respectively.
+
+
+#### subjectcommand package
+The `subjectcommand` package holds all the necessary classes for executing methods at the main level. The Class that will be created and executed depends 
+on user input. A Class diagram of how the classes interact with each other in the classcommand package is shown below.
+![SubjectCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230549-3fbf7700-1f96-11eb-9b03-12ed2ed16ffb.png)
+
+The `subjectcommand` package holds the following classes.
+- AccessSubjectCommand
+- AddSubjectCommand
+- DeleteSubjectCommand
+- ExitSubjectCommand
+- ExportSubjectCommand
+- FindSubjectCommand
+- HelpSubjectCommand
+- ListAllSubjectCommand
+- ListSubjectCommand
+- QuizSubjectCommand
+- ResultSubjectCommand
+- SorrySubjectCommand
+- SubjectCommand
+
+#####AccessSubjectCommand
+The `AccessSubjectCommand` class has 3 methods:
+- execute()
+- goToSubject()
+- isExit()
+
+and is mainly used for entering the Subject level from the Main Level. This occurs when 
+the execute() method of the `AccessSubjectCommand` is first run. It first decodes the full command of the user input, then 
+accesses the subject level of the program. Different Subject class instances have different information contained in them, thus 
+there exists multiple subject levels of the program, each subject class having their own subject level in the program. 
+For example, if there are 2 subjects, like Maths and Science, then accessing the Subject level of the Maths instance is different from 
+accessing the Subject level of the Science Subject, since both subjects contain different information. Accessing the different subjects depend on user input, which 
+will be decoded in the execute() method in `AccessSubjectCommand`. The execute() method will then run the goToSubject() command, that will access the information 
+available in the subject that is selected via user input.
+
+The isExit() method determines whether the program exits. The `AccessSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+A sequence diagram of accessing a subject is shown below.
+![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
+
+#####AddSubjectCommand
+The execute() method of the `AddSubjectCommand` decodes the user input, then adds a subject into the SubjectList, which title depends on the user input. For example, if the 
+user input is `add Maths`, then the title of the Subject created in the SubjectList will be Maths. It also prints the title of the subject that 
+is added to the SubjectList.
+
+A sequence diagram of adding a Maths subject is shown below.
+![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98213500-1c89cd00-1f80-11eb-9b0c-9da37446b530.png)
+
+The isExit() method determines whether the program exits. The `AddSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+
+#####DeleteSubjectCommand
+The execute() method of the `DeleteSubjectCommand` decodes the user input, then deletes a subject based on the index the Subject currently in the SubjectList. 
+For example, when the user input is `delete 1`, the program decodes the input, and deletes the first Subject in the SubjectList, which is at index 0 of the SubjectList.
+
+The isExit() method determines whether the program exits. The `DeleteSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####ExitSubjectCommand
+The execute() method of the `ExitSubjectCommand` does nothing, but needed since this method was implemented from an abstract class.
+
+The isExit() method determines whether the program exits. The `ExitSubjectCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
+will exit.
+
+#####ExportSubjectCommand
+The execute() method of the `ExportSubjectCommand` 
+TODO: Add execute method documentation
+
+The isExit() method determines whether the program exits. The `ExportSubjectCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
+
+
+#####FindSubjectCommand
+The execute() method of the `FindSubjectCommand` decodes the user input, then find subjects whose title contains the keywords the user input into the program. 
+It then prints the title of the Subjects in the SubjectList whose title contains the keyword.
+
+The isExit() method determines whether the program exits. The `FindSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####HelpSubjectCommand
+The execute() method of the `HelpSubjectCommand` prints a list of available commands at the main level of the program, 
+for the user to understand the format of inputs, as well as types of input needed for execution.
+
+The isExit() method determines whether the program exits. The `HelpSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####ListAllSubjectCommand
+The execute() method of the `ListAllSubjectCommand` groups different tasks and flashcards under each topic, and different topics under each subject, then prints an organized list 
+of all the subjects, topics, tasks and flashcards.
+
+The isExit() method determines whether the program exits. The `ListAllSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####ListSubjectCommand
+The execute() method of the `ListAllSubjectCommand` prints a list of all subjects in the SubjectList instance.
+
+The isExit() method determines whether the program exits. The `ListSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####QuizSubjectCommand
+The execute() method of the `QuizSubjectCommand`
+TODO: Add execute method documentation
+
+The isExit() method determines whether the program exits. The `QuizSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####ResultSubjectCommand
+TODO: Add execute method documentation
+
+The isExit() method determines whether the program exits. The `ResultSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####SorrySubjectCommand
+The execute() method of the `SorrySubjectCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
+to the user.
+
+A sequence diagram of the SorrySubjectCommand can be seen below.
+![SorrySubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98226752-6a5b0100-1f91-11eb-8c11-7963c63dc69c.png)
+
+The isExit() method determines whether the program exits. The `SorrySubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
+
+#####SubjectCommand
+The `SubjectCommand` class is an abstract class that contains a abstract execute() method as well as a isExit() method, and is a super class for all the commands in the subjectcommand 
+package. This is to ensure that all other commands in the subjectcommand package can have the same method calls, and that execute() can be called on a SubjectCommand class, 
+even if they are a subclass of the SubjectCommand class.
+
+#### topiccommand package
+The `topiccommand` package holds all the necessary classes for executing methods at the subject level. The Class that will be created and executed depends 
+on user input. A Class diagram of how the classes interact with each other in the classcommand package is shown below.
+![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230523-39c99600-1f96-11eb-9eb2-693f4ab039a1.png)
+
+The `topiccommand` package holds the following classes.
+- AccessTopicCommand
+- AddTopicCommand
+- DeleteTopicCommand
+- ExitTopicCommand
+- ExportTopicCommand
+- FindTopicCommand
+- HelpTopicCommand
+- ListAllTopicCommand
+- ListTopicCommand
+- QuizTopicCommand
+- ResultTopicCommand
+- SorryTopicCommand
+- TopicCommand
+
+##### AccessTopicCommand
+The `AccessTopicCommand` class has 3 methods:
+- execute()
+- goToTopic()
+- isExit()
+
+and is mainly used for entering the Topic level from the Subject Level. This occurs when 
+the execute() method of the `AccessTopicCommand` is first run. It first decodes the full command of the user input, then 
+accesses the topic level of the program. Different Topic class instances have different information contained in them, thus 
+there exists multiple topic levels of the program, each topic class having their own topic level in the program. 
+For example, if there are 2 topics, like Speed and Time, then accessing the Topic level of the Speed instance is different from 
+accessing the Topic level of the Time Topic, since both topics contain different information. Accessing the different topics depend on user input, which 
+will be decoded in the execute() method in `AccessTopicCommand`. The execute() method will then run the goToSubject() command, that will access the information 
+available in the subject that is selected via user input.
+
+The isExit() method determines whether the program exits. The `AccessTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+A sequence diagram of accessing a Topic is shown below.
+TODO: Add sequence diagram
+
+#####AddTopicCommand
+The execute() method of the `AddTopicCommand` decodes the user input, then adds a Topic into the TopicList, which title depends on the user input. For example, if the 
+user input is `add Geometry`, then the title of the Topic created in the TopicList will be Geometry. It also prints the title of the Topic that 
+is added to the TopicList.
+
+A sequence diagram of adding a Geometry Topic is shown below.
+TODO: Add sequence diagram
+
+The isExit() method determines whether the program exits. The `AddTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####DeleteTopicCommand
+The execute() method of the `DeleteTopicCommand` decodes the user input, then deletes a Topic based on the index the Topic currently in the TopicList. 
+For example, when the user input is `delete 1`, the program decodes the input, and deletes the first Topic in the TopicList, which is at index 0 of the TopicList.
+
+The isExit() method determines whether the program exits. The `DeleteTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####ExitTopicCommand
+The execute() method of the `ExitTopicCommand` does nothing, but needed since this method was implemented from an abstract class.
+
+The isExit() method determines whether the program exits the subject. The `ExitTopicCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
+will exit the subject.
+
+#####FindTopicCommand
+The execute() method of the `FindTopicCommand` decodes the user input, then find Topics whose title contains the keywords the user input into the program. 
+It then prints the title of the Topics in the TopicList whose title contains the keyword.
+
+The isExit() method determines whether the program exits. The `FindTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####HelpTopicCommand
+The execute() method of the `HelpTopicCommand` prints a list of available commands at the subject level of the program, 
+for the user to understand the format of inputs, as well as types of input needed for execution.
+
+The isExit() method determines whether the program exits. The `HelpTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####ListAllTopicCommand
+The execute() method of the `ListAllTopicCommand` groups different tasks and flashcards under each topic, and different topics under each subject, then prints an organized list 
+of all the subjects, topics, tasks and flashcards.
+
+The isExit() method determines whether the program exits. The `ListAllTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####ListTopicCommand
+The execute() method of the `ListAllTopicCommand` prints a list of all Topics in the TopicList instance.
+
+The isExit() method determines whether the program exits. The `ListTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####QuizTopicCommand
+The execute() method of the `QuizTopicCommand`
+TODO: Add execute method documentation
+
+The isExit() method determines whether the program exits. The `QuizTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####ResultTopicCommand
+TODO: Add execute method documentation
+
+The isExit() method determines whether the program exits. The `ResultTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####SorryTopicCommand
+The execute() method of the `SorryTopicCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
+to the user.
+
+A sequence diagram of the SorryTopicCommand can be seen below.
+![SorryTopicSequenceDiagram](https://user-images.githubusercontent.com/47527482/98228071-105b3b00-1f93-11eb-827f-80723a24bfe9.png)
+
+The isExit() method determines whether the program exits. The `SorryTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
+
+#####TopicCommand
+The `TopicCommand` class is an abstract class that contains an abstract execute() method as well as an abstract isExit() method, and is a super class for all the commands in the topiccommand 
+package. This is to ensure that all other commands in the topiccommand package can have the same method calls, and that execute() can be called on a TopicCommand class, 
+even if they are a subclass of the TopicCommand class.
+
+#### taskcommand package
+
+#### flashcardcommand package
 
 ### 3.6 Storage Package <a name="storage"></a>
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
