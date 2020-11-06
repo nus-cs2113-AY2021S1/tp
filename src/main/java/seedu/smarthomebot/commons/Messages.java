@@ -9,7 +9,7 @@ public class Messages {
     public static final String MESSAGE_IMPORT = "Importing data........Completed!";
     public static final String MESSAGE_EXPORT = "Exporting data........Completed!";
     public static final String MESSAGE_APPLIANCE_TYPE_NOT_EXIST =
-            "Invalid type of appliance entered. Only aircon, fan, light and smartplug are currently accepted as type.";
+            "Invalid appliance type is detected. Only aircon, fan, light and smartplug are accepted as type.";
     public static final String MESSAGE_APPLIANCE_EXIST = "Appliance name already exists.";
     public static final String MESSAGE_LOCATION_NOT_EXIST = "Location does not exist.";
     public static final String MESSAGE_APPLIANCE_LOCATION_CONFLICT =
@@ -36,17 +36,17 @@ public class Messages {
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_ON = " is already ON. ";
     public static final String MESSAGE_APPLIANCE_PREVIOUSLY_OFF = " is already OFF. ";
     public static final String MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION =
-            "There should be no parameter for on by location.";
+            "There should be no parameter for this command, please refer to 'help' command.";
     public static final String MESSAGE_FILE_CORRUPTED = "Data file is corrupted, some data entry will not be entered.";
     public static final String MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST =
             "Appliance or Location does not exist in the list.";
     public static final String MESSAGE_INVALID_TEMPERATURE_AC =
-            "Invalid Temperature is inputted, ensure that it is within 16-30 degrees.\n"
+            "Invalid Temperature is detected, ensure that it is within 16-30 degrees.\n"
                     + "Previous set temperature will be set. ";
     public static final String MESSAGE_INVALID_FAN_SPEED =
-            "Invalid speed is inputted, ensure that it is within 1-3 speed.\n"
+            "Invalid speed is detected, ensure that it is within 1-3 speed.\n"
                     + "Previous set speed will be set.";
     public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or /  or | detected in";
     public static final String MESSAGE_EMPTY_PARAMETER =
-            "Empty Parameter detected! Please follow format and enter require parameters.";
+            "Empty Parameter detected! Please follow format and enter required parameters.";
 }
