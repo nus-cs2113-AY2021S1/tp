@@ -12,8 +12,10 @@ https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=dmbclu
 ### Enhancements implemented
 - give a tip to the user every time the user opens the app.
     - This feature gives a tip, advice or fun fact to the user to motivate the user to do exercise.
+    - Web crawling is used to gather the tips.
 - implement date attribute and allow the user to view food and exercise by date.
     - This feature allows the user to view the entries by date.
+    - Initially date is string type which causes lots of bugs. Now is local date type.
 - Junit test.
 
 ### Contributions to documentation
