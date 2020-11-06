@@ -58,7 +58,7 @@ public class Duke {
             ScrumLogger.setup();
         } catch (IOException e) {
             e.printStackTrace();
-            //Ui.showError("Unable to setup logger!");
+            Ui.showError("Unable to setup logger!");
         }
         Ui.showWelcomeScreen();
     }
@@ -69,7 +69,7 @@ public class Duke {
         } catch (IOException e) {
             Ui.showError("Unable to save data successfully, your data might be lost.");
         }
-        //ScrumLogger.destroy();
+        ScrumLogger.destroy();
     }
 
     /**
