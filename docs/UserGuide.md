@@ -798,8 +798,6 @@ Instruction:
 Expected output:
 ![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
 
-
-
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
