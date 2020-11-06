@@ -5,8 +5,10 @@ import seedu.dietbook.exception.DietException;
 import java.time.LocalDateTime;
 
 /**
- * Represents a manager that deals with user interaction and communicating with the logic component.
- * A <code>Ui</code> objects deals with user input, output and communication with the logic component.
+ * Represents a user interface manager that deals with user interaction and communicating with the logic
+ * component.
+ * A <code>Ui</code> objects deals with relaying user inputs, printing output messages and communicating with
+ * the logic component.
  */
 public class Ui {
 
@@ -24,11 +26,6 @@ public class Ui {
         uiOutput = new UiOutput();
         uiMessage = new UiMessage();
     }
-
-    // Methods in the Ui class are organised according to their function in the order of: system related,
-    // database related, person related, food list related, nutritional related and other helper methods.
-
-    // Methods required to print system related commands or messages.
 
     /**
      * Returns the non-empty user input that has been trimmed.
@@ -109,8 +106,6 @@ public class Ui {
         uiOutput.print(uiMessage.getHelpCommandMessage());
     }
 
-    // Methods required to print database related commands or messages.
-
     /**
      * Prints all the food in the database sorted by the canteen and then the store it is found.
      *
@@ -121,8 +116,6 @@ public class Ui {
 
         uiOutput.print(uiMessage.getDatabaseMessage(foodDatabase));
     }
-
-    // Methods required to print user information related commands and messages.
 
     /**
      * Prints all the information related to the user.
@@ -145,8 +138,6 @@ public class Ui {
 
         uiOutput.print(uiMessage.getEditedPersonInfoMessage(personInfo));
     }
-
-    // Methods required for printing FoodList related commands and messages.
 
     /**
      * Prints all the food items in the food list in the order that they were added or a message stating
@@ -231,8 +222,6 @@ public class Ui {
         uiOutput.print(uiMessage.getClearFoodListMessage());
     }
 
-    // Methods required to print nutritional intake and recommendation related commands and messages.
-
     /**
      * Prints the daily recommended calorie intake of the user based on the user's personal information.
      *
@@ -251,8 +240,7 @@ public class Ui {
      * @param carbIntake The total amount of carbohydrates of all the food in the food list.
      */
     public void printCarbIntake(int carbIntake) {
-        uiOutput.print(uiMessage.getOneIntakeMessage(carbIntake, "carbohydrate",
-                "g"));
+        uiOutput.print(uiMessage.getOneIntakeMessage(carbIntake, "carbohydrate","g"));
     }
 
     /**
@@ -297,8 +285,7 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     public void printCalorieIntake(int calorieIntake, LocalDateTime start, LocalDateTime end) {
-        String stringCalorieIntake = uiMessage.getOneIntakeMessage(calorieIntake,"calorie",
-                "kcal");
+        String stringCalorieIntake = uiMessage.getOneIntakeMessage(calorieIntake,"calorie", "kcal");
         uiOutput.print(uiMessage.getIntakeWithTimeMessage(stringCalorieIntake, start, end));
     }
 
@@ -392,8 +379,7 @@ public class Ui {
      */
     public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
                                int fatIntake) {
-        uiOutput.print(uiMessage.getAllIntakeMessage(calorieIntake, carbIntake, proteinIntake,
-                fatIntake));
+        uiOutput.print(uiMessage.getAllIntakeMessage(calorieIntake, carbIntake, proteinIntake, fatIntake));
     }
 
     /**
