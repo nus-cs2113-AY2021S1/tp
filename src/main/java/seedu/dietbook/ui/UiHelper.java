@@ -1,11 +1,9 @@
 package seedu.dietbook.ui;
 
+import seedu.dietbook.logger.MainLogger;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Represents a helper that provide methods utilised in the other Ui related classes.
@@ -15,21 +13,10 @@ public class UiHelper {
 
     static final String LINE_SEPARATOR = System.lineSeparator();
 
-    private final Logger logger;
+    private final MainLogger mainLogger;
 
-    public UiHelper() {
-        logger = Logger.getLogger(UiHelper.class.getName());
-        initialiseLogger();
-    }
-
-    /**
-     * Initialises the logger and sets the log level.
-     */
-    void initialiseLogger() {
-        Handler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.WARNING);
-        logger.addHandler(consoleHandler);
-        logger.setLevel(Level.WARNING);
+    UiHelper() {
+        mainLogger = new MainLogger(UiHelper.class.getName());
     }
 
     /**
@@ -41,7 +28,7 @@ public class UiHelper {
      *         spaces, false otherwise.
      */
     boolean isEmptyString(String string) {
-        logger.log(Level.FINE, "String to check if empty: " + string);
+        mainLogger.log(Level.FINE, "String to check if empty: " + string);
         performAssertionsForNullStringInputs(string, "String to be determined if empty");
 
         return trimString(string).length() == 0;
@@ -54,7 +41,7 @@ public class UiHelper {
      * @return A string that has been trimmed for leading and trailing spaces.
      */
     String trimString(String string) {
-        logger.log(Level.FINE, "String to trim: " + string);
+        mainLogger.log(Level.FINE, "String to trim: " + string);
         performAssertionsForNullStringInputs(string, "String to trim");
 
         return string.trim();
@@ -115,12 +102,12 @@ public class UiHelper {
      * @param calorieRecommendation The recommended daily calorie intake for the user.
      */
     void performAssertionsForCalorieRecommendation(int calorieRecommendation) {
-        // A minimum daily intake of 1200 calorie is required to stay healthy.
-        int minCalorie = 1200;
+        // A minimum daily intake of 1200 calorie is required.
+        int minCalorie = 1000;
         assert calorieRecommendation >= minCalorie : "Daily calorie recommendation should be equals to or "
                 + "greater than " + minCalorie;
-        // Highest calorie intake for an athlete currently stands at 12000.
-        int maxCalorie = 12000;
+        // Highest calorie intake recommendation allowed.
+        int maxCalorie = 20000;
         assert calorieRecommendation <= maxCalorie : "Daily calorie recommendation should be equals to or "
                 + "less than " + maxCalorie;
     }
