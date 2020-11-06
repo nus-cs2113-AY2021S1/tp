@@ -9,7 +9,7 @@ public class UiOutput {
 
     private final UiHelper uiHelper;
 
-    public UiOutput() {
+    UiOutput() {
         uiHelper = new UiHelper();
     }
 
