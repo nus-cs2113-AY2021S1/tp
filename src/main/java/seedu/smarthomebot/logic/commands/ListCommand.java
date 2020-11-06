@@ -59,7 +59,7 @@ public class ListCommand extends Command {
         } catch (LocationNotFoundException e) {
             return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
         } catch (NoApplianceInLocationException e) {
-            return new CommandResult("There is no appliance in \"" + filteredLocation + "\".");
+            return new CommandResult("There is no Appliance in \"" + filteredLocation + "\".");
         } catch (EmptyLocationListException e) {
             return new CommandResult(MESSAGE_LIST_NO_LOCATIONS);
         }
@@ -88,7 +88,7 @@ public class ListCommand extends Command {
                 }
                 throw new LocationNotFoundException();
             }
-            String header = ("Here are the appliances in \"" + filteredLocation + "\"");
+            String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
             outputResult = displayOutput(header, filterApplianceList);
         }
         return new CommandResult(outputResult);
