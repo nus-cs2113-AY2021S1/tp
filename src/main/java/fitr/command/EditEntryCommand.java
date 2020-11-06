@@ -23,6 +23,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static fitr.common.Messages.ERROR_FORMAT_MESSAGE;
+import static fitr.common.Messages.FORMAT_EDIT_EXERCISE;
+import static fitr.common.Messages.FORMAT_EDIT_FOOD;
 import static fitr.common.Messages.FORMAT_EDIT_GOAL;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
@@ -89,7 +91,8 @@ public class EditEntryCommand extends Command {
         Matcher matcher = EXERCISE_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
-            Ui.printFormatError(arguments);
+            Ui.printCustomError(ERROR_FORMAT_MESSAGE);
+            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_EXERCISE);
             return;
         }
 
@@ -132,7 +135,8 @@ public class EditEntryCommand extends Command {
         Matcher matcher = FOOD_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
-            Ui.printFormatError(arguments);
+            Ui.printCustomError(ERROR_FORMAT_MESSAGE);
+            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_FOOD);
             return;
         }
 
