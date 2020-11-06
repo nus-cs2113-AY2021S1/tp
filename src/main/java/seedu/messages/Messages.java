@@ -45,7 +45,7 @@ public class Messages {
             + HELP_PREFIX + "format: " + ANSI_PURPLE + "help" + ANSI_RESET + padString(' ', 77) + "||" + LS
             + HELP_PREFIX + "- add: add a task" + padString(' ', 71) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_PURPLE
-                    + "add DESCRIPTION [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER]"
+                    + "add DESCRIPTION [d/dd-MM-yyyy] [st/HHmm] [et/HHmm] [p/NUMBER] [r/ON/OFF] [t-HHmm]"
                     + ANSI_RESET + "                    ||" + LS
             + HELP_PREFIX + "- edit: edit a task" + padString(' ', 70) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_PURPLE
@@ -79,7 +79,7 @@ public class Messages {
             + " which contain the word/letters:";
     public static final String NO_PREV_MODIFICATION = "There's nothing to undo.";
     public static final String UNDO_MESSAGE = "Previous modification has been undone.";
-    public static final String REMINDER_MESSAGE = "A reminder has been set";
+    public static final String REMINDER_MESSAGE = "Reminder, you have an upcoming task: ";
 
     private static String padString(char letter, int length) {
         return Util.generatePadStringWithCharAndLength(letter, length);

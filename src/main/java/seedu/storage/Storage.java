@@ -77,7 +77,7 @@ public class Storage {
     private void restartReminders(TaskMap tasks) {
         for (Task t : tasks.getValues()) {
             if (t.getReminder().getIsOn()) {
-                t.startReminder();
+                t.reminder.startReminder(t);
             }
         }
     }

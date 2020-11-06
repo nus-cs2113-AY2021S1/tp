@@ -80,7 +80,7 @@ public class Edit extends ModificationCommand {
         if (reminder != null) {
             editedTask.setReminder(reminder, reminderTime);
         }
-        editedTask.startReminder();
+        editedTask.reminder.startReminder(editedTask);
         tasks.delete(key);
         tasks.addTask(editedTask);
         model.pushAndUpdate(tasks);

@@ -59,7 +59,7 @@ public class Add extends ModificationCommand {
         while (tasks.get(taskID) != null) {
             taskID = (taskID + 1) % TaskMap.MAX_NUM_TASKS;
         }
-        task.startReminder();
+        task.reminder.startReminder(task);
         task.setTaskID(taskID);
         tasks.addTask(task);
         // update stack

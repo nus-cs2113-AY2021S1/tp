@@ -4,17 +4,10 @@ import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;
 
-import seedu.data.Timers;
-import seedu.commands.Reminder;
-import seedu.ui.Ui;
-
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimerTask;
 
 
 import static java.lang.Math.pow;
@@ -29,7 +22,7 @@ public class Task {
     private LocalTime startTime;
     private LocalTime endTime;
     private Priority priority;
-    private Reminder reminder;
+    public Reminder reminder;
 
     public Task(String description, String dateString, String startTime, String endTime, String priorityString,
                 String reminderString, String reminderTimeString)
@@ -88,49 +81,19 @@ public class Task {
             }
             break;
         case "off":
-            offReminder();
+            reminder.offReminder();
             break;
         default:
             throw new InvalidReminderException();
         }
     }
 
-    public String checkReminderStatus() {
+    public String getReminderString() {
         if (reminder.getIsOn()) {
             return "Yes";
         } else {
             return "No";
         }
-    }
-
-    public void startReminder() {
-        if (!reminder.getIsOn()) {
-            return;
-        }
-        reminder.startTimer();
-        Timers.add(reminder.getTimer());
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(getDate().getYear(), getDate().getMonthValue() - 1, getDate().getDayOfMonth(),
-                (reminder.getTime().getHour()), (reminder.getTime().getMinute()),0);
-        Date date = calendar.getTime();
-        reminder.getTimer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println("Reminder, you have an upcoming task: ");
-                Ui ui = new Ui();
-                ui.displaySingleTask(getDate(),getStartTime(),getEndTime(),getPriority(),getTaskID(),getDescription(),
-                        checkReminderStatus());
-                reminder.getTimer().cancel();
-                reminder.setIsOn(false);
-            }
-        }, date);
-    }
-
-    public void offReminder() {
-        if (reminder.getIsOn()) {
-            reminder.getTimer().cancel();
-        }
-        reminder.setIsOn(false);
     }
 
     public Reminder newReminder() {
