@@ -23,7 +23,7 @@ public class ModuleChecker {
     }
 
     /**
-     * Check if a given module code is valid with reference to NUSMod API.
+     * Check if a given module code is valid with reference to the module list provided by NUSMod API.
      *
      * @param moduleCode the module code provided by the user.
      * @return isValid   true if it is valid, false otherwise.
@@ -37,6 +37,13 @@ public class ModuleChecker {
         return isValid;
     }
 
+    /**
+     * Generate the NUS module HashMap using 2 different methods.
+     * If there is internet connection, NUS module HashMap is generated from the NUSMod API directly.
+     * If there is no internet, NUS module HashMap is generated from the local data file.
+     *
+     * @return NUS module HashMap.
+     */
     private HashMap<String, NusModule> generateNusModsMap() {
         if (isOnWifi) {
             return generateNusModsMapFromOnlineApi();
@@ -45,6 +52,11 @@ public class ModuleChecker {
         }
     }
 
+    /**
+     * Checks if the user's computer is connected to wifi and make sure the HTTP request to NUSMod API is successful.
+     *
+     * @return TRUE if there is internet connect, FALSE otherwise.
+     */
     private boolean isConnectedToWifi() {
         int httpEcho;
         try {
@@ -111,7 +123,11 @@ public class ModuleChecker {
         return mappedNusModuleList;
     }
 
-
+    /**
+     * Generate a hashmap which maps the module code to a NusModule object/class.
+     *
+     * @return generatedNusModsList  a hash map containing the module code information only.
+     */
     private HashMap<String, NusModule> generateNusModsMapUsingLocalData() {
         HashMap<String, NusModule> mappedNusModuleListWithLocalData = new HashMap<>();
         String content = "";
