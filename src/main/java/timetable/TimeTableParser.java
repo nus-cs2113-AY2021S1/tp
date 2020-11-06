@@ -9,47 +9,54 @@ import java.util.Scanner;
 
 public class TimeTableParser {
     public static void commandParser(String command, DateList dateList, TimeTableStorage storage) {
-        if (command.equals("show schedule")) {
+        switch (command) {
+        case "show schedule":
             System.out.println(Message.printShowSchedule);
             TablePrinter.printTable(dateList.dateList);
             return;
-        } else if (command.equals("show link")) {
+        case "show link":
             System.out.println(Message.printShowLink);
             showLink(dateList);
             return;
-        }
-        try {
-            String[] words = command.split(" ");
-            String action = words[0];
-            String type = words[1];
-            if (action.equals("add")) {
-                switch (type) {
-                case "activity": {
-                    Activity activity = addActivity();
-                    dateList.addEvent(activity);
-                    storage.writeFile(activity);
-                    System.out.println(Message.printSuccessfulActivityAddition);
-                }
+        case "show activity":
+            showActivities(dateList);
+            return;
+        default:
+            try {
+                String[] words = command.split(" ");
+                String action = words[0];
+                String type = words[1];
+                if (action.equals("add")) {
+                    switch (type) {
+                    case "activity": {
+                        Activity activity = addActivity();
+                        dateList.addEvent(activity);
+                        storage.writeFile(activity);
+                        System.out.println(Message.printSuccessfulActivityAddition);
+                    }
                     break;
-                case "class": {
-                    Lesson lesson = addClass();
-                    dateList.addEvent(lesson);
-                    storage.writeFile(lesson);
-                    System.out.println(Message.printSuccessfulClassAddition);
+                    case "class": {
+                        Lesson lesson = addClass();
+                        dateList.addEvent(lesson);
+                        storage.writeFile(lesson);
+                        System.out.println(Message.printSuccessfulClassAddition);
+                    }
+                    break;
+                    default:
+                        System.out.println((Message.printInvalidEvent));
+                    }
+                } else {
+                    System.out.println(Message.printInvalidEvent);
                 }
-                break;
-                default:
-                    System.out.println((Message.printInvalidEvent));
-                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println(Message.printInvalidEvent);
+                StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
+            } catch (InvalidDayOfTheWeekException e) {
+                System.out.println("Day of the week input is invalid. Please add the class again.");
+                StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule!");
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(Message.printInvalidEvent);
-            StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
-        } catch (InvalidDayOfTheWeekException e) {
-            System.out.println("Day of the week input is invalid. Please add the class again.");
-            StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
-        } catch (ClashScheduleException e) {
-            System.out.println("There is a clash in schedule!");
         }
     }
 
@@ -82,17 +89,27 @@ public class TimeTableParser {
                 System.out.println("Invalid command command\n Is the class online? (yes/no)");
             }
         }
-        String linkOrVenue = in.nextLine();
+        final String linkOrVenue = in.nextLine();
         System.out.println("What are the days and time of the lesson?\n(e.g. Monday 5-8pm, Tuesday 6-9pm)");
-        String [] periods = in.nextLine().split(", ");
+        final String [] periods = in.nextLine().split(", ");
         System.out.println("How many weeks is the lesson?");
         int repeat = Integer.parseInt(in.nextLine());
-        System.out.println("Which date does the lesson start? (e.g. 26/10/2020)");
-        LocalDateTime startDay = getDateTime(in.nextLine());
+        isInvalid = true;
+        LocalDateTime startDay = null;
+        while (isInvalid) {
+            try {
+                System.out.println("Which date does the lesson start? (eg. 26/10/2020)");
+                startDay = getDate(in.nextLine());
+                isInvalid = false;
+            } catch (NumberFormatException e) {
+                System.out.println("You have entered an invalid date format. Please try again");
+            }
+        }
         Lesson lesson = new Lesson(moduleCode, linkOrVenue, isOnline, repeat);
         addClassPeriods(periods, repeat, startDay, lesson);
         return lesson;
     }
+
 
     public static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,
                                 Lesson lesson) throws InvalidDayOfTheWeekException {
@@ -148,7 +165,7 @@ public class TimeTableParser {
         }
         final String linkOrVenue = in.nextLine();
         System.out.println("Please enter the date of your activity (e.g. 28/10/2020): ");
-        LocalDateTime date = getDateTime(in.nextLine());
+        LocalDateTime date = getDate(in.nextLine());
         System.out.println("Please enter the time of your activity (e.g. 6-9pm): ");
         String time = in.nextLine();
         int startTime = Integer.parseInt(time.split("-")[0]);
@@ -183,6 +200,12 @@ public class TimeTableParser {
                     System.out.print(event.linkOrVenue + "|" + event.name + "\n");
                 }
             }
+        }
+    }
+
+    public static void showActivities(DateList dateList) {
+        for (Event event: dateList.activities) {
+            System.out.println(event.name + "|" + event.periods.get(0).startDateTime);
         }
     }
 
@@ -225,11 +248,22 @@ public class TimeTableParser {
     }
 
 
-    public static LocalDateTime getDateTime(String date)throws ArrayIndexOutOfBoundsException {
+    public static LocalDateTime getDate(String date)throws ArrayIndexOutOfBoundsException {
         String [] dateArray = date.split("/");
         int day = Integer.parseInt(dateArray[0]);
         int month = Integer.parseInt(dateArray[1]);
         int year = Integer.parseInt(dateArray[2]);
         return LocalDateTime.of(year, month, day, 0, 0);
     }
+
+    public static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
+        String[] dateTime;
+        String[] date;
+        int fromIndex = command.indexOf("from");
+        dateTime = command.substring(fromIndex + 5).split(" ");
+        date = dateTime[0].split("/");
+        return LocalDateTime.of(Integer.parseInt(date[2]),Integer.parseInt(date[1]), Integer.parseInt(date[0]),
+                0,0);
+    }
+
 }

@@ -473,7 +473,18 @@ Instruction:
 Expected output:
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
 
-### 2.5 Showing schedule: `show schedule`
+### 2.5 Showing Activities list: 'show activity'
+
+If you wish to see all activities you have input into the system, 
+this command will present all the activities happening chronological order with their starting date and time.
+
+Instruction:
+1. `show activity`
+
+Expected output:
+![To be added]
+
+### 2.6 Showing schedule: `show schedule`
 
 If you wish to view your schedule for the next seven days with all the activities, use this command.
 
@@ -773,7 +784,7 @@ Instruction:
 2. Answer the questions as prompted
 3. `back`
 
-Expected ouput:
+Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
 ### 4.6 Finding relevant flashcards: `find`
