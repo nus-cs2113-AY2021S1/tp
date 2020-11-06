@@ -716,19 +716,30 @@ This sequence diagram will show the flow of setting of expense goal:
 
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
-### 2.2.6 Feature 5: Save Manager Utility
+### 2.2.6 Feature 5: Storage Utility
 #### What it does
-Save Manager utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
-It allows multiple saves to be created and loaded at will.
+Storage utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
+It performs auto loading and saving of data upon entry and exit of the program as well as allowing multiple saves to be
+created and loaded at will.
 
 #### Overview
-Save Manager utility contains 5 classes. SaveHandler class contains some commonly used functions such as buildFile that is inherited to the 3
+Storage utility contains 5 classes. SaveHandler class contains some commonly used functions such as buildFile that is inherited to the 3
 saver child classes. goalTrackerSaver produce text file to save goalTracker states, autoTrackerSaver saves recurringTracker states and
-manualTrackerSaver saves manualTracker states. SaveManager class is the UI class that uses the 3 saver classes to do load and save operations.
+manualTrackerSaver saves manualTracker states.
 
 #### Save Manager Class Diagram
 
 ![SaveManagerClassDiagram](uml_images/saveManager/SaveManagerClass.png)
+Saver classes alone can handle autosave of data during entry and when exiting the program. This is done by calling load and save functions
+in the Financit main. saveManager class adds additional features that performs adding and loading of backup saves. addSave function is done
+by calling save function in each respective saver class with 2 parameters attached. Since save function is implemented as variable argument
+function, it is designed to accept no argument or two arguments. For the case with no argument the function will save to the default
+location given during initilization of the program and used for loading during startup and saving upon exit. For the case with two argument,
+new directory location is specified that is used for saving of backup data.
+
+saveManager loadSave function was implemented by calling first the clear function in each respective saver classes, then the load functions.
+FileChannel is also used to copy contents of the backup save file into the default initilzation save file in case program was unexpectedly
+terminated.
 
 #### Save Manager Sequence Diagram
 
