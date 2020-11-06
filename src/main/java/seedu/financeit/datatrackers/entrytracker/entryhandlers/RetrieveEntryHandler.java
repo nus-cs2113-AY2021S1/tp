@@ -54,7 +54,7 @@ public class RetrieveEntryHandler extends ParamHandler {
         //RetrieveEntryHandler is only concerned with index of entry.
         case ParamChecker.PARAM_INDEX:
             int index = ParamChecker.getInstance().checkAndReturnIndex(paramType, this.entryList.getItems());
-            this.entryList.setIndexToModify(index);
+            this.entryList.setIndexToModify(index, paramType);
             return;
         default:
             //Ignore other params, as those will be handled by EditEntryHandler

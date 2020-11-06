@@ -18,7 +18,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 /**
  * Class that handles error handling of params
@@ -360,8 +359,15 @@ public class ParamChecker {
         return output;
     }
 
-    public String checkAndReturnDescription(String paramType) {
-        return packet.getParam(paramType).replaceAll(";", " ");
+    public String checkAndReturnDescription(String paramType) throws ParseFailParamException{
+        String input = packet.getParam(paramType);
+        if (input.contains(";")) {
+            errorMessage = "\n\"; is an illegal character in this program. Try again without the character.\"\n";
+            LoggerCentre.loggerParamChecker.warning(
+                errorMessage);
+            throw new ParseFailParamException(paramType);
+        }
+        return input;
     }
 
     public int checkAndReturnIntSigned(String paramType) throws ParseFailParamException {

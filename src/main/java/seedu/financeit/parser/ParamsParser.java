@@ -22,14 +22,14 @@ public class ParamsParser {
         return paramsParser;
     }
 
-    public String getSeparator(String input) {
+    public String getNextParamType(String input) {
         //Matcher gives index of space before the param, so (matched index + 1) gives the separator
-        int separatorIndex = matcher.start() + 1;
-        return " " + String.valueOf(input.charAt(separatorIndex));
-    }
-
-    String prependAppendSpaces(String str) {
-        return " " + str + " ";
+        input = input.trim();
+        int separatorIndex = input.indexOf(" ");
+        if (separatorIndex == -1) {
+            return input;
+        }
+        return input.substring(separatorIndex) + " ";
     }
 
     /**
@@ -56,28 +56,29 @@ public class ParamsParser {
 
             //Separate into [paramType, rest of string]
             buffer = paramSubstring.split(" ", 2);
-            String paramType = buffer[0];
-            buffer[1] = buffer[1].trim();
 
+            String paramType = buffer[0].trim();
+            paramSubstring = buffer[1].trim();
             /*
             * Process param argument and check whether more params exist
             */
 
-            boolean isRestOfStringEmpty = buffer[1].length() == 0;
+            boolean isRestOfStringEmpty = paramSubstring == null;
             if (isRestOfStringEmpty) {
                 //No param argument, no further params
-                putParamIntoParamMap(paramType, buffer[1], paramMap);
+                putParamIntoParamMap(paramType, paramSubstring, paramMap);
                 break;
             }
 
             //Matcher requires a leading and trailing blank space to successfully match a param
-            paramSubstring = " " + buffer[1] + " ";
+            paramSubstring = " " + paramSubstring + " ";
+
             matcher = RegexMatcher.paramMatcher(paramSubstring);
 
             try {
                 //Attempts to look for the start of the next param. If found, everything before start of next
                 //param is the paramArgument belonging to the current param.
-                paramArgumentExist = matcher.start() > 0;
+                paramArgumentExist = matcher.start() >= 0;
             } catch (java.lang.IllegalStateException e) {
                 //If no more params are present after current param
                 //Only thing in paramSubstring is the paramArgument
@@ -89,7 +90,8 @@ public class ParamsParser {
             if (paramArgumentExist) {
                 //Split into [paramArgument, rest of string]
                 //Separator character = '/' or '-'
-                String separator = getSeparator(paramSubstring);
+                //String separator = getSeparator(paramSubstring);
+                String separator = getNextParamType(paramSubstring);
                 buffer = paramSubstring.split(separator, 2);
                 buffer[1] = separator + buffer[1];
                 paramArgument = buffer[0].trim();
