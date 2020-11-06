@@ -34,7 +34,7 @@ class StorageManagerTest {
     private static final String INVALID_FILE_DIRECTORY = VALID_TEST_DIRECTORY + "DirectoryWithInvalidFile"
             + File.separator;
     private static final String BOOKMARK_LOAD_TEST = "Loaded successfully.";
-
+    private static final String BOOKMARK_LOAD_FAIL_TEST = "Not loaded successfully.";
     private StorageManager validFileSM;
     private StorageManager invalidFileSM;
     private StorageManager emptySM;
@@ -168,6 +168,14 @@ class StorageManagerTest {
         String loadBookmarkResult = validFileSM.loadBookmark(VALID_WORKSPACE, bookmark);
         assertEquals(BOOKMARK_LOAD_TEST, loadBookmarkResult);
     }
+
+    @Test
+    void loadBookmark_invalidBookmarkFormat_throwsAniException() throws AniException {
+        Bookmark bookmark = new Bookmark();
+        String loadBookmarkResult = invalidFileSM.loadBookmark(ALL_INVALID_WORKSPACE, bookmark);
+        assertEquals(BOOKMARK_LOAD_FAIL_TEST, loadBookmarkResult);
+    }
+
 
     @Test
     void loadBookmark_invalidDirectorySM_throwsAniException() throws AniException {
