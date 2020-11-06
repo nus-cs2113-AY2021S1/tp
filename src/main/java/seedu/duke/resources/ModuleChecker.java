@@ -2,8 +2,16 @@ package seedu.duke.resources;
 
 import com.alibaba.fastjson.JSON;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.NoRouteToHostException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
 
