@@ -44,6 +44,9 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Abstract Method for executing Command.
+     */
     public abstract CommandResult execute();
 
 }

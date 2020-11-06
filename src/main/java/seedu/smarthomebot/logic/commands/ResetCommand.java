@@ -18,6 +18,9 @@ public class ResetCommand extends Command {
     public static final String COMMAND_WORD = "p_reset";
     public static final String MESSAGE_USAGE = "Resetting previous recorded usage: " + COMMAND_WORD;
 
+    /**
+     * Executing the ResetCommand.
+     */
     @Override
     public CommandResult execute() {
         try {

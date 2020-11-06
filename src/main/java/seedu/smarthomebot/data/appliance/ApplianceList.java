@@ -2,8 +2,6 @@ package seedu.smarthomebot.data.appliance;
 
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
-import seedu.smarthomebot.data.location.LocationList;
-import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
 
@@ -20,7 +18,7 @@ public class ApplianceList {
      * Constructor of ApplianceList.
      */
     public ApplianceList() {
-        this.applianceList = new ArrayList<>();
+        applianceList = new ArrayList<>();
     }
 
     /**
@@ -30,7 +28,7 @@ public class ApplianceList {
      */
     public void addAppliance(Appliance appliance) throws DuplicateDataException {
         if (!isApplianceExist(appliance.getName())) {
-            this.applianceList.add(appliance);
+            applianceList.add(appliance);
         } else {
             throw new DuplicateDataException();
         }
@@ -44,7 +42,7 @@ public class ApplianceList {
     public Appliance deleteAppliance(String userEnteredName) throws ApplianceNotFoundException {
         for (Appliance appliance : this.getAllAppliance()) {
             if (appliance.getName().equals(userEnteredName)) {
-                this.applianceList.remove(appliance);
+                applianceList.remove(appliance);
                 return appliance;
             }
         }
@@ -98,15 +96,12 @@ public class ApplianceList {
         }
     }
 
-    public int getApplianceIndex(String argument, LocationList locationList)
-            throws ApplianceNotFoundException, NoApplianceInLocationException {
+    public int getApplianceIndex(String argument)
+            throws ApplianceNotFoundException {
         for (Appliance appliance : applianceList) {
             if (appliance.getName().equals((argument))) {
                 return applianceList.indexOf(appliance);
             }
-        }
-        if (locationList.isLocationCreated(argument)) {
-            throw new NoApplianceInLocationException();
         }
         throw new ApplianceNotFoundException();
     }

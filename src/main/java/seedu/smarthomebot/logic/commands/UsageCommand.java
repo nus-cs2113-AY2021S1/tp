@@ -22,6 +22,9 @@ public class UsageCommand extends Command {
     public static final String DISPLAY_STATUS = " | Status: ";
     public static final String DISPLAY_USAGE = " | Usage: ";
 
+    /**
+     * Executing the UsageCommand.
+     */
     @Override
     public CommandResult execute() {
         double totalUsage = 0;
