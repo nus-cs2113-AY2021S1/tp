@@ -111,26 +111,26 @@ from ```saveHandler```. The saver classes are primarily used by ```saveManager``
 ### Logic Manager Component
 ![](uml_images/images_updated/Handler.png)
 
-#### Execution
+**Execution** <br />
 1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
 to maintain a cycle of 2 processes: User input processing and Command handling.
-#### User Input Processing
+**User Input Processing** <br />
 1. Logic Managers depend on InputManager module to read user input, parse user input and produce a 
 meaningful ```CommandPacket``` instance.
 1. The ```CommandPacket``` instance can then be used by the next step of the cycle.
-#### Command Handling
+**Command Handling** <br />
 1. Each Logic Manager will have several methods that are dedicated to handle a single operation. They can
 typically be identified by a specific naming convention: `"handle.....()"`.
 1. These methods use ```CommandHandler``` classes to perform `param` dependent operations, which involves evaluation
 of `paramMap` in the provided `CommandPacket` instance to decide the operation to perform, be it on `Data` or `DataList`.
-#### Error Reporting
+**Error Reporting** <br />
 1. While error handling from `param` parsing is handled by `ParamChecker` singleton class, there is a need
 to identify from the execution methods at Logic Managers, whether an exception has been thrown. 
 1. This is handled by a `try-catch block` within the  `"handle.....()"` methods, whereby an exception caught
 will result in an error message printed. The error message will not be specific to the exact error; rather it 
 generally indicates whether an operation has failed.
 
-#### Example
+**Example** <br />
 * Execute Method
 
 ```
@@ -174,7 +174,7 @@ generally indicates whether an operation has failed.
 
 ### Logic Component
 ![](uml_images/images_updated/Logic.png)
-#### ParamChecker
+**ParamChecker** <br />
 1. Contains a set of public static methods which are used to verify the correctness of `param` in the 
 ```CommandPacket``` instance.
 1. If there is nothing wrong with the ```param```, the method will typically return the `param` supplied without modification.
@@ -232,7 +232,7 @@ generally indicates whether an operation has failed.
     }
 ```
 
-#### ParamHandler
+**ParamHandler** <br />
 1. After parsing from user input to produce a ```commandPacket``` instance, the instance needs to be handled by a particular ```ParamHandler``` children class,
 which processes the ```commandPacket``` attributes to perform a specific function. 
 
@@ -254,7 +254,7 @@ which processes the ```commandPacket``` attributes to perform a specific functio
         That is, all `param` in ```createLedgerCommand.requiredParams``` is also in ```paramsSuccessfullyParsed```.
     1. If parse is successful, the process ends gracefully. Else, throw ```InsufficientParamsException()```.
 
-#### CommandHandler
+**CommandHandler** <br />
 1. Extends `ParamHandler` class. Implements ```handleSingleParams()``` fully, depending on the interactions
 between the operation and the `param` that it accepts. 
 1. Typically used within Logic Managers to handle processing of `CommandPacket` instances to decide sub-operations
