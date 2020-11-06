@@ -22,17 +22,12 @@ class UiHelperTest {
     }
 
     @Test
-    void isEmptyString_stringWithNoLeadingOrTrailingSpaces_returnsFalse() {
+    void isEmptyString_stringWithoutLeadingOrTrailingSpaces_returnsFalse() {
         assertFalse(uiHelper.isEmptyString("food"));
     }
 
     @Test
-    void isEmptyString_StringWithLeadingSpaces_returnsTrue() {
-        assertTrue(uiHelper.isEmptyString(""));
-    }
-
-    @Test
-    void isEmptyString_StringWithTrailingSpaces_returnsTrue() {
+    void isEmptyString_emptyString_returnsTrue() {
         assertTrue(uiHelper.isEmptyString("   "));
     }
 
