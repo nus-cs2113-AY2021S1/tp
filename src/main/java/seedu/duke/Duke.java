@@ -57,6 +57,7 @@ public class Duke {
         try {
             ScrumLogger.setup();
         } catch (IOException e) {
+            e.getStackTrace();
             Ui.showError("Unable to setup logger!");
         }
         Ui.showWelcomeScreen();
