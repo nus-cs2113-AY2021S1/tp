@@ -175,8 +175,9 @@ Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/
 
 Example of usage: 
 
-`edit 8833 des/reading`  
-`edit 4893 st/1400 et/1600 p/3`
+`edit 875 des/reading`  
+`edit 4075 st/1400 et/1600 p/3`
+`edit 875 r/off`
 
 Expected outcome:
 
@@ -186,15 +187,15 @@ Expected outcome:
 
 ![edit_after_description](images/edit_after_des.png)
 
-*Figure 9. After editing the description of task #9195.*
+*Figure 9. After editing the description of task #875.*
 
 ![edit_after_start_end_priority](images/edit_after_else.png)
 
-*Figure 10. After editing the timings and priority of task #8781.*
+*Figure 10. After editing the timings and priority of task #4075.*
 
 ![edit_after_reminder_off](images/edit_after_reminder.png)
 
-*Figure 11. After editing the reminder to off.*
+*Figure 11. After editing the reminder of task #875 to off.*
 
 ### Displaying tasks : `list` 
 
@@ -278,7 +279,7 @@ Format: `delete INDEX`
 
 Example of usage: 
 
-`delete 8833`
+`delete 7369`
 
 Expected outcome:
 
@@ -308,7 +309,7 @@ Format: `bye`
 
 Expected outcome:
 
-    Bye! See you again!
+![bye](images/bye.png)
 
 
 ### Saving data to file
