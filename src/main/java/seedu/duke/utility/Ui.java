@@ -386,5 +386,9 @@ public class Ui {
         System.out.println(ExceptionResponse.EXCEPTION_INPUT_LARGER_THAN_EXPECTED);
     }
 
+    public static void printExtraWhiteSpace() {
+        System.out.println(ExceptionResponse.EXCEPTION_EXTRA_WHITE_SPACE);
+    }
+
 }
 
