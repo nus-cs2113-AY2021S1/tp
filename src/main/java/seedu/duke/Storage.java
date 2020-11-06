@@ -169,38 +169,92 @@ public class Storage {
 
             countFileTasks++;
 
-            if (item instanceof Task) {
-                if (taskInFile[TASK_IS_DONE].equals("true")) {
-                    ((Task) item).markAsDone();
-                }
-            }
-            if (item instanceof Event) {
-                if (taskInFile[EVENT_IS_OVER].equals("true")) {
-                    ((Event) item).markAsOver();
-                }
-            }
-            if (item instanceof Task) {
-                if (taskInFile[TASK_IMPORTANT].equals("true")) {
-                    ((Task) item).markAsImportant();
-                }
-            }
+            markTaskAsDone(item, taskInFile);
+            markEventAsOver(item, taskInFile);
+            markTaskAsImportant(item, taskInFile);
+            addItemToCalendarList(calendarList, item);
+            loadAdditionInformation(item, taskInFile, num);
 
-            if (item instanceof Task) {
-                calendarList.addTask((Task) item);
-            } else if (item instanceof Event) {
-                calendarList.addEvent((Event) item);
-            }
+        }
+    }
 
-            if (item instanceof Event) {
-                if (!taskInFile[EVENT_ADDITION_INFO].equals("0")) {
-                    int numberInfo = Integer.parseInt(taskInFile[EVENT_ADDITION_INFO]);
-                    int i;
-                    for (i = 1; i <= numberInfo; i++) {
-                        ((Event) item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
-                    }
+    /**
+     * Adds an item into the calendar list.
+     *
+     * @param calendarList the calendar list we want to add our item to.
+     * @param item the item we want to add to the calendar list.
+     */
+    private static void addItemToCalendarList(CalendarList calendarList, CalendarItem item) {
+        if (item instanceof Task) {
+            calendarList.addTask((Task) item);
+        } else if (item instanceof Event) {
+            calendarList.addEvent((Event) item);
+        }
+    }
+
+    /**
+     * Marks a task as important.
+     *
+     * @param item the task we need to mark as important.
+     * @param taskInFile the data stored in the local file.
+     */
+    private static void markTaskAsImportant(CalendarItem item, String[] taskInFile) {
+        if (item instanceof Task) {
+            if (taskInFile[TASK_IMPORTANT].equals("true")) {
+                ((Task) item).markAsImportant();
+            }
+        }
+    }
+
+    /**
+     * Marks an event as over.
+     *
+     * @param item the event we need to mark as over.
+     * @param taskInFile the data stored in the local file.
+     */
+    private static void markEventAsOver(CalendarItem item, String[] taskInFile) {
+        if (item instanceof Event) {
+            if (taskInFile[EVENT_IS_OVER].equals("true")) {
+                ((Event) item).markAsOver();
+            }
+        }
+    }
+
+    /**
+     * Marks a task as done.
+     *
+     * @param item the task that we need to mark as done.
+     * @param taskInFile the data stored in local file.
+     */
+    private static void markTaskAsDone(CalendarItem item, String[] taskInFile) {
+        if (item instanceof Task) {
+            if (taskInFile[TASK_IS_DONE].equals("true")) {
+                ((Task) item).markAsDone();
+            }
+        }
+    }
+
+    /**
+     * Loads the additional information stored in the local file.
+     *
+     * @param item the event we need to add the additional information.
+     * @param taskInFile the data in the local file.
+     * @param num the total splitting number.
+     */
+    private static void loadAdditionInformation(CalendarItem item, String[] taskInFile, int num) {
+        if (item instanceof Event) {
+            if (!taskInFile[EVENT_ADDITION_INFO].equals("0")) {
+                int numberInfo = 0;
+                try {
+                    numberInfo = Integer.parseInt(taskInFile[EVENT_ADDITION_INFO]);
+                } catch (NumberFormatException e) {
+                    System.out.println("numberInfo deleted.");
+                }
+                int i;
+                for (i = 1; i <= num - EVENT_ADDITION_INFO - 1; i++) {
+                    ((Event) item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
                 }
             }
-
         }
     }
 }
