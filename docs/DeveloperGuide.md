@@ -44,7 +44,7 @@ and Implementation.
 
 The architecture diagram given in the figure below explains the high-level design of the App. 
 
-![Architecture Diagram](DG_Diagrams/Architecture.png)
+![Architecture Diagram](DG_Diagrams/Architecture/Architecture.png)
 
 Given below is a quick overview of each component.
 
@@ -66,7 +66,7 @@ The Ui component is responsible for getting the user input and for displaying ap
 to commands executed by the logic component. The following class diagram gives a brief overview of the Ui component 
 and it's interaction with other components.
 
-![uicomponent](DG_Diagrams/UiComponent.png)
+![uicomponent](DG_Diagrams/Components/UiComponent.png)
 
 #### 2.1.2. Logic Component
 The Logic component is responsible for the following tasks:
@@ -85,7 +85,7 @@ The Model component is responsible for the following tasks:
 
 The following class diagram briefly explains how different classes in the Model component interact with each other.
 
-![modelcomponent](DG_Diagrams/ModelComponent.png)
+![modelcomponent](DG_Diagrams/Components/ModelComponent.png)
 
 #### 2.1.4. Storage Component
 The Storage component is responsible for the following tasks:
@@ -99,20 +99,19 @@ retrieves it everytime the user enters the application.
 
 The following class diagram briefly explains how different classes in the Storage component interact with each other.
 
-![StorageComponent](DG_Diagrams/StorageComponent.png)
+![StorageComponent](DG_Diagrams/Components/StorageComponent.png)
 
 ## 3. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
 
-### 3.1. Direct Route Finder (`/route` Feature)
-
+### 3.1. Finding a direct route (`/route` Feature)
 `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
 available from **location1** to **location2**.
 
 The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
 are linked to each other. 
 
-![RouteCommandClass](DG_Diagrams/RouteCommandClass.png)
+![RouteCommandClass](DG_Diagrams/RouteCommand/RouteCommandClass.png)
 
 The `RouteCommand#executeCommand()` method of RouteCommand Class executes the command in the following steps:
 1. Calls `RouteParser#getLocations()` to get the locations entered by the user in the order of starting location and 
@@ -133,13 +132,15 @@ the destination.
 
 The following sequence diagram explains the above steps when the user enters `/route loc1 /to loc2`.
 
-![Overview](DG_Diagrams/RouteCommand.png)
+![Overview](DG_Diagrams/RouteCommand/RouteCommand.png)
 
 The following sequence diagrams explain the interactions omitted in the main diagram.
 
-![executing command](DG_Diagrams/RouteCommandInternal.png)
+![executing command](DG_Diagrams/RouteCommand/RouteCommandInternal.png)
 
-![bus data](DG_Diagrams/BusData.png)
+![bus data](DG_Diagrams/RouteCommand/BusData.png)
+
+#### Design Considerations
 
 ### 3.2. Full Route Display (`/routemap` Feature)
 
@@ -199,8 +200,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 
 
-### 3.5. Favourite command description modifier (`/descfav` Feature)
-
+### 3.5. Modifying a favourite command's description (`/descfav` Feature)
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -210,7 +210,7 @@ at location **index** in the list to **newDescription**.
 The class diagram in the figure below shows how different classes used for implementation of the `/descfav` command 
 are linked to each other. 
 
-![DescFav class diagram](DG_Diagrams/descFavClass.png)
+![DescFav class diagram](DG_Diagrams/DescFavCommand/descFavClass.png)
 
 The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes the command in the following steps:
 1. Calls `DescFavParser#parseInput()` to check if the command message input by the user is valid.
@@ -230,12 +230,13 @@ The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes th
     
 The following sequence diagram explains the above steps when the user enters `/descfav 1 /to hello`.
 
-![Overview](DG_Diagrams/descFav.png)
+![Overview](DG_Diagrams/DescFavCommand/descFav.png)
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 
-![executing command](DG_Diagrams/descFavInternal.png)
+![executing command](DG_Diagrams/DescFavCommand/descFavInternal.png)
 
+#### Design Considerations
 
 ### 3.6. Find dining options within a faculty (`/dine` Feature)
 
