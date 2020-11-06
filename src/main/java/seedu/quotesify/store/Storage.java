@@ -108,7 +108,6 @@ public class Storage {
             fileReader.close();
         } catch (ParseException | IOException e) {
             // e.printStackTrace();
-            System.out.println("Save data is corrupted! Re-initialising all lists.");
             ListManager.initialiseAllLists();
         }
     }
