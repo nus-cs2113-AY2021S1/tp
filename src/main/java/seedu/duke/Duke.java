@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import com.github.cliftonlabs.json_simple.JsonException;
 import seedu.duke.command.Command;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.parser.ParserManager;
@@ -49,7 +50,7 @@ public class Duke {
         } catch (IOException e) {
             Ui.showError("Unable to load the data file properly, "
                     + "proceeding in empty state.");
-        } catch (ClassCastException e) {
+        } catch (ClassCastException | NullPointerException | JsonException e) {
             Ui.showError("Data file is corrupted, "
                     + "proceeding in empty state. Old data.json will be cleared when the next save happens.");
         }
