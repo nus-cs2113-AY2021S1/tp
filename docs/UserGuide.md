@@ -55,7 +55,7 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 &nbsp;  
 
-If you are unfamilar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
+If you are unfamiliar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
 
 ## 3. Command Format
 
@@ -189,11 +189,11 @@ Format:
 Example of usage:
      `name F.r.i.e.n.d.s` 
      
-* A new season of F.r.i.e.n.d.s just started airing and you would like to update your show details from 1 season to 2.
+* A new season of F.r.i.e.n.d.s just started airing, and you would like to update your show details from 1 season to 2.
 Example of usage:
      `season 2`
      
-* Suppose the first season has 10 episodes and the new season of F.r.i.e.n.d.s has 11 episodes.
+* Suppose the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
 Example of usage:
      `episode 10,11`
      
