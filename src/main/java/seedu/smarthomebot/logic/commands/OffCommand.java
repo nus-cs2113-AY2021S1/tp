@@ -60,8 +60,10 @@ public class OffCommand extends Command {
             }
         } catch (ApplianceNotFoundException e) {
             if (locationList.isLocationCreated(argument)) {
+                commandLogger.log(Level.WARNING, "Unable to Off: There are no Appliances in \"" + argument + "\".");
                 return new CommandResult("There are no Appliances in \"" + argument + "\".");
             } else {
+                commandLogger.log(Level.WARNING, "Unable to Off: " + MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
                 return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
             }
         }
@@ -101,7 +103,7 @@ public class OffCommand extends Command {
      * Method to switch off Appliance.
      *
      * @param toOffAppliance Appliance to switch off in Appliance.
-     * @param isList        flag to return its corresponding output message.
+     * @param isList         flag to return its corresponding output message.
      * @return the corresponding output Message in String if isList is true.
      */
     private String offAppliance(Appliance toOffAppliance, boolean isList) {
