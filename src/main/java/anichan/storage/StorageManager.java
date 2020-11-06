@@ -21,6 +21,8 @@ import java.util.logging.Logger;
  * Represents the class to manage all of AniChan's data.
  */
 public class StorageManager {
+    private static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
+    private static final int MAXIMUM_WORKSPACE_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
     public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder, try deleting manually.";
 
@@ -51,7 +53,14 @@ public class StorageManager {
      */
     public String[] retrieveWorkspaceList() {
         File file = new File(storageDirectory);
-        String[] workspaceList = file.list((current, name) -> new File(current, name).isDirectory());
+        String[] workspaceList = file.list((current, name) -> {
+            boolean workspaceValid = name.matches(REGEX_ALPHANUMERIC_WITH_SPACE);
+            if (name.length() <= MAXIMUM_WORKSPACE_NAME_LENGTH && workspaceValid) {
+                return new File(current, name).isDirectory();
+            }
+
+            return false;
+        });
         if (workspaceList == null) {
             LOGGER.log(Level.INFO, "Found 0 workspace.");
             return new String[0];
