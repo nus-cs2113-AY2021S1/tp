@@ -1,3 +1,0 @@
-LEC|true|cs1010|2010-10-10|12:30|nus|0
-T|false|hi|false
-D|false|hi|false|2020-11-05
