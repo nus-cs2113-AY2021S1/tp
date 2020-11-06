@@ -41,7 +41,7 @@ public abstract class CommandParser {
      * @return parameters in parts
      */
     protected String[] parameterSplitter(String parameter) {
-        return parameter.split("-");
+        return parameter.split(DASH);
     }
 
     /**
