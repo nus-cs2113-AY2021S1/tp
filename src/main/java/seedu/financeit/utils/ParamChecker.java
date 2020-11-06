@@ -162,7 +162,7 @@ public class ParamChecker {
         LoggerCentre.loggerParamChecker.info("Checking day of month...");
         try {
             dayOfMonth = checkAndReturnInt(paramType);
-            if(dayOfMonth < 1 || dayOfMonth > 31) {
+            if (dayOfMonth < 1 || dayOfMonth > 31) {
                 throw new NumberFormatException();
             }
 
@@ -172,7 +172,7 @@ public class ParamChecker {
              */
             String[] monthsWithoutDay = DateTimeHelper.monthsWithoutDayOfMonth(dayOfMonth);
 
-            if(monthsWithoutDay.length >= 1) {
+            if (monthsWithoutDay.length >= 1) {
                 String monthMaxDayReminder = String.format("The following month(s) do not have day %s: "
                         + Arrays.toString(monthsWithoutDay), dayOfMonth);
                 String noReminderMessage = "There will NOT be any reminder for this entry during these month(s).";
@@ -505,7 +505,7 @@ public class ParamChecker {
     }
 
     /**
-     * Error message for invalid double inputs
+     * Error message for invalid double inputs.
      * @param input Raw input
      * @param message Pre-existing error messages to print. Pass in empty string if none.
      * @return Error message in a formatted string for printing
@@ -517,7 +517,7 @@ public class ParamChecker {
     }
 
     /**
-     * Error message for invalid integer inputs
+     * Error message for invalid integer inputs.
      * @param input Raw input
      * @param message Pre-existing error messages to print. Pass in empty string if none.
      * @return Error message in a formatted string for printing

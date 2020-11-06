@@ -137,7 +137,7 @@ public class RecurringEntry extends Item {
         incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
         String[] monthsWithoutDay = DateTimeHelper.monthsWithoutDayOfMonth(day);
         duration = "Every month";
-        if(monthsWithoutDay.length >= 1) {
+        if (monthsWithoutDay.length >= 1) {
             duration += " except " + String.join(",", monthsWithoutDay);
         }
         payment = this.isAuto ? "Auto deduction" : "Manual payment";
@@ -145,7 +145,7 @@ public class RecurringEntry extends Item {
 
     @Override
     public String toString() {
-        if(expenditureAmount == null) {
+        if (expenditureAmount == null) {
             convertAttributesToString();
         }
 
@@ -154,7 +154,7 @@ public class RecurringEntry extends Item {
     }
 
     public String toSave() {
-        if(expenditureAmount == null) {
+        if (expenditureAmount == null) {
             convertAttributesToString();
         }
 

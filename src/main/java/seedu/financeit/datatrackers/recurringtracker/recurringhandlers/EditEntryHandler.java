@@ -42,7 +42,7 @@ public class EditEntryHandler extends ParamHandler {
         handleParams(packet);
 
         //If only param provided is /id
-        if(packet.getParamTypes().size() == 1) {
+        if (packet.getParamTypes().size() == 1) {
             assert packet.getParam("/id") != null;
             throw new InsufficientParamsException("At least 1 param required for edit!");
         }
