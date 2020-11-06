@@ -2,6 +2,9 @@ package seedu.financeit.utils.storage;
 
 import seedu.financeit.Financeit;
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.datatrackers.entrytracker.EntryTracker;
+import seedu.financeit.datatrackers.manualtracker.ManualTracker;
+import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
@@ -28,7 +31,7 @@ public class SaveManager {
                 helpMenu();
             }
             InputParser parser = InputParser.getInstance();
-            CommandPacket packet = parser.parseInput(UiManager.handleInput("Please no echo"));
+            CommandPacket packet = parser.parseInput(UiManager.handleInput());
             menu = true;
             switch (packet.getCommandString()) {
             case "list":
@@ -43,6 +46,9 @@ public class SaveManager {
                 if (checkValidity(packet) == true) {
                     loadSave(packet);
                 }
+                break;
+            case "reset":
+                resetSave();
                 break;
             case "delete":
                 if (checkValidity(packet) == true) {
@@ -65,6 +71,11 @@ public class SaveManager {
             prompt = "Invalid Command";
             return false;
         }
+
+        if (packet.getParam("/name").trim().equals("")) {
+            prompt = "Name cannot be empty!";
+            return false;
+        }
         return true;
     }
 
@@ -77,7 +88,8 @@ public class SaveManager {
         TablePrinter.addRow("[2]; Add/Overwrite save; add /name");
         TablePrinter.addRow("[3]; Load save; load /name");
         TablePrinter.addRow("[4]; Delete save; delete /name");
-        TablePrinter.addRow("[5]; Quit to main; exit");
+        TablePrinter.addRow("[5]; Reset program; reset");
+        TablePrinter.addRow("[6]; Quit to main; exit");
         TablePrinter.printList();
     }
 
@@ -88,6 +100,20 @@ public class SaveManager {
 
     private static void helpMsg() {
         System.out.println("Enter <help> for a list of commands");
+    }
+
+    private static void resetSave() {
+        GoalTrackerSaver.clear();
+        AutoTrackerSaver.clear();
+        ManualTrackerSaver.clear();
+        prompt = "Program has been reset";
+    }
+
+    public static void resetAllLists() {
+        System.out.println(ManualTracker.getLedgerList());
+        ManualTracker.getLedgerList().removeAllItems();
+        EntryTracker.getEntryList().removeAllItems();
+        RecurringTracker.getRecurringEntryList().removeAllItems();
     }
 
     private static void listSaves(CommandPacket packet) {
@@ -156,20 +182,30 @@ public class SaveManager {
             while (scanner.hasNext()) {
                 String saveString = scanner.nextLine();
                 if (saveString.equals(name)) {
-                    FileChannel sourceChannel = new FileInputStream(path + "_gt.txt").getChannel();
-                    FileChannel destChannel = new FileOutputStream(desGoal).getChannel();
+                    FileInputStream inGt = new FileInputStream(path + "_gt.txt");
+                    FileOutputStream outGt = new FileOutputStream(desGoal);
+                    FileChannel sourceChannel = inGt.getChannel();
+                    FileChannel destChannel = outGt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
-                    sourceChannel = new FileInputStream(path + "_mt.txt").getChannel();
-                    destChannel = new FileOutputStream(desManual).getChannel();
+                    FileInputStream inMt = new FileInputStream(path + "_mt.txt");
+                    FileOutputStream outMt = new FileOutputStream(desManual);
+                    sourceChannel = inMt.getChannel();
+                    destChannel = outMt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
-                    sourceChannel = new FileInputStream(path + "_at.txt").getChannel();
-                    destChannel = new FileOutputStream(desAuto).getChannel();
+                    FileInputStream inAt = new FileInputStream(path + "_at.txt");
+                    FileOutputStream outAt = new FileOutputStream(desAuto);
+                    sourceChannel = inAt.getChannel();
+                    destChannel = outAt.getChannel();
                     destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
 
-                    sourceChannel.close();
-                    destChannel.close();
+                    inGt.close();
+                    inMt.close();
+                    inAt.close();
+                    outMt.close();
+                    outGt.close();
+                    outAt.close();
                     clear();
                     Financeit.load();
                     prompt = name + " has been loaded!";

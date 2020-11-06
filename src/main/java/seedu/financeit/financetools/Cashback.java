@@ -9,16 +9,28 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
+/**
+ * Represents all operations for Cashback Calculator feature.
+ */
 public class Cashback extends ParamHandler {
 
     private double amount = -1;
     private double cashbackRate = -1;
     private double monthlyCap = -1;
 
+    /**
+     * Constructor for Cashback object.
+     */
     public Cashback() {
         super();
     }
 
+    /**
+     * Handles parameters inputted by user.
+     *
+     * @param packet each packet contains different inputs from user.
+     * @throws InsufficientParamsException if there are missing params.
+     */
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         try {
             this.handleParams(packet);
@@ -27,14 +39,11 @@ public class Cashback extends ParamHandler {
         }
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public void setCashbackRate(Double cashbackRate) {
-        this.cashbackRate = cashbackRate;
-    }
-
+    /**
+     * Calculates cashback interest earned.
+     *
+     * @return cashback interest earned.
+     */
     public double calculateCashback() {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.cashbackRate >= 0 : "Cashback rate should not be a negative number";
@@ -47,6 +56,13 @@ public class Cashback extends ParamHandler {
         return cashbackEarned;
     }
 
+    /**
+     * Handles user inputted param.
+     *
+     * @param packet    input CommandPacket obtained from parsing user input.
+     * @param paramType paramType of param that is currently being validated and processed.
+     * @throws ParseFailParamException if param does not fulfil conditions for a proper input param.
+     */
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {

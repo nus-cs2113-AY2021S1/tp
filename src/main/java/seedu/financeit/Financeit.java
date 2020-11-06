@@ -1,6 +1,7 @@
 package seedu.financeit;
 
 import seedu.financeit.common.CommandPacket;
+import seedu.financeit.common.Common;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.manualtracker.ManualTracker;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
@@ -14,8 +15,8 @@ import seedu.financeit.utils.RunHistory;
 import seedu.financeit.utils.storage.AutoTrackerSaver;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
-import seedu.financeit.utils.storage.SaveManager;
 import seedu.financeit.utils.storage.SaveHandler;
+import seedu.financeit.utils.storage.SaveManager;
 
 import java.util.logging.Level;
 
@@ -26,9 +27,11 @@ public class Financeit {
     public static void main(String[] args) {
         String input = "";
         CommandPacket packet = null;
-        Level mode = Level.OFF;
+        Level mode = Level.WARNING;
         LoggerCentre.getInstance().setLevel(mode);
-        RunHistory.setCurrentRunDateTime();    //Grabs the System DateTime and stores it. Used for reminders
+        setLog();
+        RunHistory.setCurrentRunDateTime();
+        //Grabs the System DateTime and stores it. Used for reminders
         ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
         GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
         AutoTrackerSaver.getInstance("./data", "./data/saveAt.txt");
@@ -45,36 +48,37 @@ public class Financeit {
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
             case "manual":
-                ManualTracker.main();
+                ManualTracker.execute();
                 break;
             case "recur":
-                RecurringTracker.main();
+                RecurringTracker.execute();
                 break;
-            case "acc": //AccSummary.main();
+            case "goal":
+                GoalTracker.execute();
                 break;
-            case "goal": //GoalTracker.main();
-                GoalTracker.main();
-                break;
-            case "financial": //FinancialCalculator.main();
-                FinanceTools.main();
+            case "financial":
+                FinanceTools.execute();
                 break;
             case "saver":
                 SaveManager.main();
                 break;
-            case "logger":
-                mode = (mode == Level.OFF) ? Level.ALL : Level.OFF;
-                prompt = (mode == Level.OFF)
-                        ? "Logger is off."
-                        : "Logger is on.";
-                LoggerCentre.getInstance().setLevel(mode);
-                break;
             case "exit":
                 save();
+                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
+                    "Exiting the program. Have a nice day!");
                 return;
             default:
                 prompt = "Invalid Command";
                 break;
             }
+        }
+    }
+
+
+    public static void setLog() {
+        if (LoggerCentre.logCreated == false) {
+            LoggerCentre.createLog();
+            LoggerCentre.logCreated = true;
         }
     }
 
@@ -89,12 +93,10 @@ public class Financeit {
         TablePrinter.addRow("No.; Feature                                           ; Commands                    ");
         TablePrinter.addRow("[1]; Manual Income/Expense Tracker; manual");
         TablePrinter.addRow("[2]; Recurring Income/Expense Tracker; recur");
-        TablePrinter.addRow("[3]; Account Summary; acc");
-        TablePrinter.addRow("[4]; Goals Tracker; goal");
-        TablePrinter.addRow("[5]; Financial Calculator; financial");
-        TablePrinter.addRow("[6]; Save Manager; saver");
-        TablePrinter.addRow("[7]; Toggle Log On or Off; logger");
-        TablePrinter.addRow("[8]; Quit The Program; exit");
+        TablePrinter.addRow("[3]; Goals Tracker; goal");
+        TablePrinter.addRow("[4]; Financial Calculator; financial");
+        TablePrinter.addRow("[5]; Save Manager; saver");
+        TablePrinter.addRow("[6]; Quit The Program; exit");
         TablePrinter.printList();
     }
 

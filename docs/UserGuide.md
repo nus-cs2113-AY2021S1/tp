@@ -15,7 +15,7 @@ No. |Content|
 3.4|    &emsp;[Recurring Tracker](#recurringTracker)
 3.5|    &emsp;[Finance Tools](#financeTools)
 3.6|    &emsp;[Goal Tracker](#goalTracker)
-3.7|    &emsp;[Save Manager]()
+3.7|    &emsp;[Save Manager](#saveManager)
 4.|[Features Summary](#featuresSummary)
 
 # 1. <a name = setUp> </a> Set-up
@@ -98,7 +98,7 @@ Manual Tracker|```manual```| Manual entry of transactions. In Manual Tracker, th
 Entry Tracker|```entry```| Subsidiary subroutine of Manual Tracker. In Entry Tracker, the user manages ledger entries, which represents a unit of transaction for a particular day.
 Recurring Tracker|```recur```| In recurring Tracker, the user manages special recurring entries that are deducted on a regular basis, which are too cumbersome to record regularly with Entry Tracker.
 Goal Tracker|```goal```| fillme
-Save Manager|```saver```| fillme
+Save Manager|```saver```| Allows save of multiple program running states and load them anytime you want. May also delete and reset running state.
 Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
 
 ## 2.2 Auxillary features
@@ -1255,6 +1255,91 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 
     exit
     
+# 3.7  <a name = saveManager> </a>Feature: Save Manager
+This utility feature helps to save multiple program states and load them at will.
+
+
+## 3.7.0 Save Manager Menu
+![picture](uml_images/saveManager/Capture1.PNG)
+<br />
+Main menu shows all the available commands and how to use them.
+<br />
+You can enter "help" anytime to return to this main menu
+
+
+## 3.7.1 Save Manager List Save
+![picture](uml_images/saveManager/Capture2.PNG)
+<br />
+You can enter "list" to list all backup saves.
+<br />
+>Example
+
+    list
+
+
+## 3.7.2 Save Manager Add Save
+![picture](uml_images/saveManager/Capture3.PNG)
+<br />
+To create a back up save
+<br />
+>Syntax
+
+    add /name {SAVE_NAME}
+>Example
+
+    add /name save12345
+
+![picture](uml_images/saveManager/Capture4.PNG)
+<br />
+In your data/backup directory, you can see 3 text files created.
+
+![picture](uml_images/saveManager/Capture5.PNG)
+<br />
+In your names.txt file, an additional entry will be appended.
+
+
+## 3.7.3 Save Manager Load Save
+![picture](uml_images/saveManager/Capture6.PNG)
+<br />
+To load a back up save
+<br />
+>Syntax
+
+    load /name {SAVE_NAME}
+>Example
+
+    load /name save12345
+
+
+
+## 3.7.4 Save Manager Delete Save
+![picture](uml_images/saveManager/Capture7.PNG)
+<br />
+To remove a back up save
+<br />
+>Syntax
+
+    delete /name {SAVE_NAME}
+>Example
+
+    delete /name save123
+
+![picture](uml_images/saveManager/Capture8.PNG)
+<br />
+As you can see, the 3 text files you want to delete are gone.
+<br />
+names.txt file is also updated.
+
+
+## 3.7.4 Save Manager Reset
+![picture](uml_images/saveManager/Capture9.PNG)
+<br />
+To reset all data currently used by the program enter "reset"
+<br />
+>Example
+
+    reset
+
 
 # 4. <a name = featuresSummary> </a>Summary of Features 
 
@@ -1293,4 +1378,27 @@ No. | Feature | Syntax |
 8.|Clear All Account Information|_clearinfo_|
 9.|Command and Calculation History|_history_|
 10.|Exit to Main Menu|_exit_|
+
+## 4.4 Goal Tracker
+
+No. | Feature | Syntax |
+----|---------|---------|
+1.|Set Expense Goal|_expense {AMOUNT} for {MONTH IN INT VALUE}_|
+2.|Set Income Goal|_income {AMOUNT} for {MONTH IN INT VALUE}_|
+3.|Edit Expense Goal|_edit expense {AMOUNT} for {MONTH IN INT VALUE}_|
+4.|Edit Income Goal|_edit income {AMOUNT} for {MONTH IN INT VALUE}_|
+5.|Display Expense Goal|_display expense for {MONTH IN INT VALUE}_|
+6.|Display Income Goal|_display income for {MONTH IN INT VALUE}_|
+7.|Exit to Main Menu|_exit_|
+
+## 4.5 Save Manager
+
+No. | Feature | Syntax |
+----|---------|---------|
+1.|List save|_list_|
+2.|Add save|_add /name {SAVE_NAME}_|
+3.|Load save|_load /name {SAVE_NAME}_|
+4.|Delete save|_delete /name {SAVE_NAME}_|
+5.|Reset program|_reset_|
+6.|Return to main menu|_exit_|
 

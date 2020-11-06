@@ -17,7 +17,11 @@ public class RecurringTracker {
     static String DirectoryMainMenu = "[ MAIN_MENU -> RECURRING_TRACKER ]";
     static RecurringEntryList entries = new RecurringEntryList();
 
-    public static void main() {
+    public static RecurringEntryList getRecurringEntryList() {
+        return entries;
+    }
+
+    public static void execute() {
         boolean endTracker = false;
         UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, WelcomeMessage);
         do {

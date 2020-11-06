@@ -1,0 +1,50 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+skinparam linetype ortho
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Logic {
+
+
+    class ParamChecker <<Singleton>>{
+        + checkAndReturnDate(paramType : String) : LocalDate
+        + checkAndReturnTime(paramType : String) : LocalTime
+        + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+        + checkAndReturnDouble(paramType : String) : Double
+        + checkAndReturnInt(paramType : String) : Integer
+        + checkAndReturnCategory(paramType : String) : String
+    }
+
+
+rectangle CommandHandlers {
+    abstract class ParamHandler {
+
+    }
+
+    class XYZCommandHandlers {
+    }
+
+
+    XYZCommandHandlers -|> ParamHandler
+
+    ParamChecker "1" <.[norank]. XYZCommandHandlers #line:blue;text:black
+
+    note top of XYZCommandHandlers: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
+}
+
+note top of ParamChecker: Contains methods that \ncheck validity of params supplied
+
+
+
+
+
+@enduml

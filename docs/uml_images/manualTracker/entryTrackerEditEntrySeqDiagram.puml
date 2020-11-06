@@ -1,8 +1,22 @@
 @startuml
 autoactivate on
 
+skinparam shadowing false
+skinparam sequence {
+ActorBorderColor white
+
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
+
+actor User
+
+User -> ":EntryTracker": Edit Entry
+
 ":EntryTracker" ->":EntryTracker": handleCreateEntry()
-    == Command 1: Retrieve Entry ==
+    == Phase 1: Retrieve Entry ==
     create "retrieveEntryHandler:RetrieveEntryCommand"
    ":EntryTracker"-> "retrieveEntryHandler:RetrieveEntryCommand" : "retrieveEntryHandler:RetrieveEntryCommand"()
     return
@@ -35,7 +49,7 @@ autoactivate on
     ":EntryTracker" -> "entryList:EntryList" : getItemAtCurrIndex()
     return entry
 
-    == Command 2: Edit Entry ==
+    == Phase 2: Edit Entry ==
     create "editEntryHandler:EditEntryCommand"
        ":EntryTracker"-> "editEntryHandler:EditEntryCommand" : "EditEntryCommand"(entry)
         return
@@ -83,8 +97,8 @@ autoactivate on
    return
    == Edit successful ==
 return state
-
-box "Data Tracker handler" #LightYellow
+return
+box "Data Tracker" #LightYellow
 participant ":EntryTracker"
 endBox
 

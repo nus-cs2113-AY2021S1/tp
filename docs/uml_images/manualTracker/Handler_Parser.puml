@@ -12,7 +12,7 @@ skinparam package<<Layout>> {
   stereotypeFontColor Transparent
 }
 
-rectangle Handler {
+rectangle LogicManagers {
     class ManualTracker {
         ~ {static} handleCreateLedger() : State
         ~ {static} handleOpenLedger() : State

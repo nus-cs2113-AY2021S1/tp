@@ -95,7 +95,7 @@ rectangle Data {
 
 }
 
-rectangle Handler {
+rectangle LogicManagers {
     class ManualTracker {
         ~ {static} handleCreateLedger() : State
         ~ {static} handleOpenLedger() : State

@@ -9,6 +9,9 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
+/**
+ * Represents all operations for Monthly Compound Interest Calculator feature.
+ */
 public class MonthlyCompoundInterest extends ParamHandler {
 
     private double amount = 0;
@@ -16,10 +19,19 @@ public class MonthlyCompoundInterest extends ParamHandler {
     private int calculationPeriod = 0;
     private double monthlyDeposit = 0;
 
+    /**
+     * Constructor for Monthly Compound Interest object.
+     */
     public MonthlyCompoundInterest() {
         super();
     }
 
+    /**
+     * Handles parameters inputted by user.
+     *
+     * @param packet each packet contains different inputs from user.
+     * @throws InsufficientParamsException if there are missing params.
+     */
     public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
         try {
             handleParams(packet);
@@ -28,10 +40,11 @@ public class MonthlyCompoundInterest extends ParamHandler {
         }
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
+    /**
+     * Calculates compound interest earned.
+     *
+     * @return compound interest earned.
+     */
     public double calculateCompoundInterest() {
         assert this.amount >= 0 : "Amount should not be a negative number";
         assert this.interestRate >= 0 : "Interest rate should not be a negative number";
@@ -64,9 +77,15 @@ public class MonthlyCompoundInterest extends ParamHandler {
         return Math.round(totalInterestEarned * 100.00) / 100.00;
     }
 
+    /**
+     * Handles user inputted param.
+     *
+     * @param packet    input CommandPacket obtained from parsing user input.
+     * @param paramType paramType of param that is currently being validated and processed.
+     * @throws ParseFailParamException if param does not fulfil conditions for a proper input param.
+     */
     @Override
-    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException,
-            ItemNotFoundException {
+    public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/a":
             this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);

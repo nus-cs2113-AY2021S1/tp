@@ -69,13 +69,16 @@ public class ManualTrackerSaver extends SaveHandler {
     }
 
     public void load(String... paths) throws IOException {
+        Scanner scanner = null;
+
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);
         } else {
             buildFile();
         }
         File file = new File(paths.length == 2 ? paths[1] : fullPath);
-        Scanner scanner = new Scanner(file);
+        scanner = new Scanner(file);
+
         String[] classContents;
         String inputString = "";
         int ledgerIndex = -1;

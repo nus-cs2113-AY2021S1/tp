@@ -7,15 +7,14 @@ import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.IncompatibleParamsException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
-import seedu.financeit.datatrackers.goaltracker.GoalTracker;
-import seedu.financeit.datatrackers.manualtracker.Ledger;
 import seedu.financeit.datatrackers.entrytracker.entryhandlers.CreateEntryHandler;
 import seedu.financeit.datatrackers.entrytracker.entryhandlers.EditEntryHandler;
 import seedu.financeit.datatrackers.entrytracker.entryhandlers.RetrieveEntryHandler;
+import seedu.financeit.datatrackers.goaltracker.GoalTracker;
+import seedu.financeit.datatrackers.manualtracker.Ledger;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
-import seedu.financeit.utils.FiniteStateMachine;
 
 /**
  * Class to handle routine for manual entry management.
@@ -25,6 +24,8 @@ public class EntryTracker {
     static EntryList entryList;
     private static CommandPacket packet;
     private static boolean isUnderTest = false;
+    private static GoalTracker goalTracker = new GoalTracker();
+    private static boolean endTracker;
 
     public static void setTestPacket(CommandPacket inputPacket) {
         setCommandPacket(inputPacket);
@@ -39,57 +40,25 @@ public class EntryTracker {
         handleCreateEntry();
     }
 
-    private static GoalTracker goalTracker = new GoalTracker();
+
 
     public static void setCurrLedger(Ledger ledger) {
         currLedger = ledger;
         entryList = ledger.entryList;
     }
 
-    public static FiniteStateMachine.State main() {
-        boolean endTracker = false;
-        FiniteStateMachine fsm = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);
+    public static void execute() {
+        endTracker = false;
         while (!endTracker) {
-            switch (fsm.getCurrState()) {
-            case MAIN_MENU:
-                fsm.setNextState(handleMainMenu());
-                break;
-            case CREATE_ENTRY:
-                fsm.setNextState(handleCreateEntry());
-                break;
-            case EDIT_ENTRY:
-                fsm.setNextState(handleEditEntry());
-                break;
-            case DELETE_ENTRY:
-                fsm.setNextState(handleDeleteEntry());
-                break;
-            case SHOW_ENTRY:
-                fsm.setNextState(handleShowEntry());
-                break;
-            case INVALID_STATE:
-                fsm.setNextState(handleInvalidState());
-                break;
-            case EXIT:
-                System.out.println("Exiting subroutine...");
-                endTracker = true;
-                break;
-            case END_TRACKER:
-                endTracker = true;
-                break;
-            default:
-                // Fall through
-                break;
-            }
-            fsm.transitionState();
+            handleMainMenu();
         }
-        return FiniteStateMachine.State.MAIN_MENU;
     }
 
     public static EntryList getEntryList() {
         return entryList;
     }
 
-    private static FiniteStateMachine.State handleMainMenu() {
+    private static void handleMainMenu() {
         String input;
 
         UiManager.printWithStatusIcon(Common.PrintType.DIRECTORY,
@@ -106,39 +75,35 @@ public class EntryTracker {
             packet = InputParser.getInstance().parseInput(input);
         }
         switch (packet.getCommandString()) {
-        case "entry edit":
-            // Fall through
         case "edit":
-            return FiniteStateMachine.State.EDIT_ENTRY;
-        case "entry new":
-            // Fall through
+            handleEditEntry();
+            break;
         case "new":
-            return FiniteStateMachine.State.CREATE_ENTRY;
-        case "entry list":
-            // Fall through
+            handleCreateEntry();
+            break;
         case "list":
-            return FiniteStateMachine.State.SHOW_ENTRY;
-        case "entry delete":
-            // Fall through
+            handleShowEntry();
+            break;
         case "delete":
-            return FiniteStateMachine.State.DELETE_ENTRY;
+            handleDeleteEntry();
+            break;
         case "exit":
-            return FiniteStateMachine.State.EXIT;
+            endTracker = true;
+            break;
         case "commands":
             printCommandList();
-            return FiniteStateMachine.State.MAIN_MENU;
+            break;
         case "cat":
             printValidCategories();
-            return FiniteStateMachine.State.MAIN_MENU;
+            break;
         default:
             System.out.println("Command not recognised. Try again.");
-            return FiniteStateMachine.State.MAIN_MENU;
+            break;
         }
     }
 
-    static FiniteStateMachine.State handleDeleteEntry() {
+    static void handleDeleteEntry() {
         RetrieveEntryHandler retrieveEntryHandler = RetrieveEntryHandler.getInstance();
-        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry deletedEntry;
         try {
             // RetrieveEntryCommand instance retrieves the corresponding entry instance
@@ -160,21 +125,18 @@ public class EntryTracker {
                     "Input failed due to param error.");
             }
         }
-        return state;
     }
 
-    static FiniteStateMachine.State handleShowEntry() {
+    static void handleShowEntry() {
         entryList.printList();
-        return FiniteStateMachine.State.MAIN_MENU;
     }
 
-    static FiniteStateMachine.State handleCreateEntry(Boolean... isPrintGoalInput) {
+    static void handleCreateEntry(Boolean... isPrintGoalInput) {
         boolean isPrintGoal = (isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false)
             ? false
             : true;
         CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
 
-        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
         Entry entry;
         try {
             // CreateLedgerCommand instance generates a new Ledger instance
@@ -209,13 +171,12 @@ public class EntryTracker {
                     "Input failed due to param error.");
             }
         }
-        return state;
     }
 
-    static FiniteStateMachine.State handleEditEntry() {
+    static void handleEditEntry() {
         RetrieveEntryHandler retrieveEntryHandler = RetrieveEntryHandler.getInstance();
         EditEntryHandler editEntryHandler = EditEntryHandler.getInstance();
-        FiniteStateMachine.State state = FiniteStateMachine.State.MAIN_MENU;
+
         Entry entry;
         try {
             // RetrieveEntryCommand instance retrieves the corresponding entry instance
@@ -238,17 +199,16 @@ public class EntryTracker {
                     "Input failed due to param error.");
             }
         }
-        return state;
     }
 
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command                 ;Input Format                                               ");
-        TablePrinter.addRow("1.;New entry;entry new /time {HHMM} /desc {string} /cat {category} -[i/e] "
+        TablePrinter.addRow("1.;New entry;new /time {HHMM} /desc {string} /cat {category} -[i/e] "
             + "/amt {Double, 2 decimal places}");
-        TablePrinter.addRow("2.;Edit entry;entry edit /id {integer} {param-type/parameter to edit}");
-        TablePrinter.addRow("3.;list entries;entry list");
-        TablePrinter.addRow("4.;delete entry;entry delete /id {integer}");
+        TablePrinter.addRow("2.;Edit entry;edit /id {integer} {param-type/parameter to edit}");
+        TablePrinter.addRow("3.;list entries;list");
+        TablePrinter.addRow("4.;delete entry;delete /id {integer}");
         TablePrinter.addRow("5.;list transaction categories;cat");
         TablePrinter.addRow("6.;exit to manual tracker;exit");
         TablePrinter.printList();
@@ -262,11 +222,4 @@ public class EntryTracker {
         }
         TablePrinter.printList();
     }
-
-    private static FiniteStateMachine.State handleInvalidState() {
-        System.out.println("You dun goof bro uwuuuuuuu");
-        return FiniteStateMachine.State.MAIN_MENU;
-    }
-
-
 }

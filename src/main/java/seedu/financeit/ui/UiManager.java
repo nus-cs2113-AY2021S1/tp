@@ -45,15 +45,8 @@ public class UiManager {
     }
 
     public static String handleInput() {
-        return handleInput("echo");
-    }
-
-    public static String handleInput(String mode) {
         UiManager.printInputPrompt();
         String input = scanner.nextLine();
-        if (mode.equals("echo")) {
-            System.out.println(input);
-        }
         return input;
     }
 
@@ -87,7 +80,7 @@ public class UiManager {
     }
 
     public static void refreshPage() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             System.out.println();
         }
     }

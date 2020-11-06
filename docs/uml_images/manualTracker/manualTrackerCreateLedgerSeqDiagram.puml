@@ -1,7 +1,15 @@
 @startuml
 autoactivate on
 actor User
+skinparam shadowing false
+skinparam sequence {
+ActorBorderColor white
 
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
 User-> ":ManualTracker": Create Ledger
 
 ":ManualTracker" ->":ManualTracker": handleCreateLedger()
@@ -38,8 +46,9 @@ User-> ":ManualTracker": Create Ledger
    ":ManualTracker"-> "ledger:LedgerList" : addItem(ledger)
     return
 return state
+return
 
-box "Data Tracker handler" #LightYellow
+box "Data Tracker" #LightYellow
 participant ":ManualTracker"
 endBox
 

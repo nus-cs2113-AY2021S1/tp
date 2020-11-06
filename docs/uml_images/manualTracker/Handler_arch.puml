@@ -1,0 +1,55 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+
+
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+
+
+
+rectangle Model {
+    class Entry {
+    }
+}
+
+rectangle InputManager {
+}
+
+
+
+rectangle LogicManagers {
+    class ManualTracker {
+    }
+
+    class EntryTracker {
+    }
+
+    class GoalTracker {
+    }
+
+    class FinanceTools{
+    }
+
+    EntryTracker --> Model : stores entries with >
+    ManualTracker --> Model : stores ledgers with >
+}
+
+ManualTracker --> InputManager : Handles input <
+EntryTracker --> InputManager : Handles input <
+
+GoalTracker --> Entry : Tracks against \ninput goal >
+GoalTracker ..> EntryTracker : Displays \ngoal \nprogress >
+
+
+
+
+@enduml

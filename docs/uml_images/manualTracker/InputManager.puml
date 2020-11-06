@@ -32,12 +32,12 @@ rectangle InputManager {
 }
 
 UiManager ..> InputParser : Supply input String >
-Handler ..> UiManager : Outsource handling of \nuser inputs to >
+LogicManagers ..> UiManager : Outsource handling of \nuser inputs to >
 InputParser --> "1" CommandPacket : Generates from input string >
-Handler o-> "1" CommandPacket : Use in operations >
+LogicManagers o-> "1" CommandPacket : Use in operations >
 
 
-rectangle Handler {
+rectangle LogicManagers {
 
 }
 
