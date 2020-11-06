@@ -22,7 +22,7 @@ class FanTest {
     }
 
     @Test
-    void getParameterTest_returnsNone() {
+    void getParameterTest_returnsSpeed() {
         assertEquals("Speed 1", fan.getParameter(true));
     }
 
@@ -37,7 +37,8 @@ class FanTest {
     }
 
     @Test
-    void testToString() {
-        assertEquals("fanny(150W), located at bedroom ",fan.toString());
+    void testToString_returnsNameLocationPower() {
+        assertEquals("fanny(150W), located at bedroom ", fan.toString());
     }
+
 }
