@@ -157,6 +157,9 @@ public class InputParser {
     private static void parseEditCommand(String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
+            if (tokenizedString.size() > 2) {
+                throw new IllegalArgumentException();
+            }
             new EditCommand(tokenizedString.get(1));
             EditCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
@@ -165,6 +168,8 @@ public class InputParser {
         } catch (NullPointerException e) {
             Ui.printInvalidEpisodesInputException();
             return;
+        } catch (IllegalArgumentException e) {
+            Ui.printBadInputException();
         }
     }
 
@@ -228,6 +233,7 @@ public class InputParser {
         UpdateShowEpisodeProgressCommand updateShowProgress;
         try {
             updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
+            updateShowProgress.processCommand();
         } catch (NullPointerException e) {
             Ui.printBadInputException();
             return;
@@ -235,7 +241,7 @@ public class InputParser {
             Ui.printInvalidFormatException();
             return;
         }
-        updateShowProgress.processCommand();
+
 
     }
 

@@ -20,11 +20,16 @@ public class UpdateTimeLimitCommand extends Command {
 
     //INPUT : updatetimelimit <new time>
     public void processCommand() {
-        int newTimeLimit = TimeParser.parseTime(inputs.get(1));
         try {
+            int newTimeLimit = TimeParser.parseTime(inputs.get(1));
+            if (newTimeLimit == -1) {
+                throw new IllegalArgumentException();
+            }
             WatchTime.watchLimitUpdate(newTimeLimit);
         } catch (NullPointerException e) {
             printBadInputException();
+        } catch (IllegalArgumentException e) {
+            return;
         }
     }
 

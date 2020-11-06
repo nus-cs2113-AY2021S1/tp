@@ -22,14 +22,22 @@ public class TimeParser {
             String[] splitHours = input.split("h");
             String[] splitMinutes = splitHours[1].split("m");
             int hours = Integer.parseInt(splitHours[0].strip());
+            //set bounds for hours and minutes.  NOTE: 24 hours as the maximum limit sounds reasonable
+            if (hours > 24 || hours < 0) {
+                Ui.printInvalidTimeInput();
+            }
             int minutes = Integer.parseInt(splitMinutes[0].strip());
-            if (minutes > 59) {
+            if (minutes > 59 || minutes < 0) {
                 Ui.printInvalidTimeInput();
             }
             return hours * 60 + minutes;
         } catch (ArrayIndexOutOfBoundsException e) {
             String[] inputTime = input.split("m");
             int result = Integer.parseInt(inputTime[0]);
+            if (result < 0) {
+                Ui.printInvalidTimeInput();
+                return -1;
+            }
             return result;
 
         } catch (NumberFormatException e) {
