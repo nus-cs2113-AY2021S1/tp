@@ -29,6 +29,12 @@ public class BusData {
         return busOptions;
     }
 
+    /**
+     * Searches and select bus that matches name.
+     *
+     * @param busCode bus code input to search with
+     * @return bus Bus object, if found
+     */
     public static Bus selectBus(String busCode) {
         if (buses.size() > 0) {
             for (Bus bus : buses) {
@@ -40,7 +46,7 @@ public class BusData {
         return null;
     }
 
-    public static ArrayList<Bus> busAtStop(String busStop) {
+    public static ArrayList<Bus> getBusAtStop(String busStop) {
         ArrayList<Bus> busList = new ArrayList<>();
         for (Bus bus : buses) {
             ArrayList<String> stopNames = bus.getStopNames();
