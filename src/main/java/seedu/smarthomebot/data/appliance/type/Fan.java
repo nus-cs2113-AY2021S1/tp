@@ -5,8 +5,6 @@ import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
 import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
-import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
-
 //@@author leonlowzd
 
 /**
@@ -46,7 +44,7 @@ public class Fan extends Appliance {
         if (isList) {
             return "Speed " + getParameter(false);
         } else {
-            return this.speed;
+            return speed;
         }
     }
 
@@ -63,7 +61,7 @@ public class Fan extends Appliance {
      * Method to set the temperature of appliance from user input.
      *
      * @param speed speed to set.
-     * @return the reciprocal printout message after setting speed in String.
+     * @return the corresponding printout message after setting speed in String.
      */
     public boolean setSpeed(String speed) {
         boolean isSuccess = true;
@@ -97,7 +95,7 @@ public class Fan extends Appliance {
     public String toString() {
         String speedStatement;
         if (appliancePower.getStatus()) {
-            speedStatement = "@" + getParameter(true);
+            speedStatement = "@ " + getParameter(true);
         } else {
             speedStatement = "";
         }

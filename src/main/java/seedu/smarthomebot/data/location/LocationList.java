@@ -15,7 +15,7 @@ public class LocationList {
     private static ArrayList<String> locationList;
 
     public LocationList() {
-        this.locationList = new ArrayList<>();
+        locationList = new ArrayList<>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class LocationList {
     public void addLocation(String location) throws DuplicateDataException {
         // create location from Appliance
         if (!isLocationCreated(location)) {
-            this.locationList.add(location);
+            locationList.add(location);
         } else {
             throw new DuplicateDataException();
         }
@@ -42,7 +42,7 @@ public class LocationList {
             throw new InvalidLocationException();
         } else {
             int removeIndex = getRemoveLocationIndex(location);
-            this.locationList.remove(removeIndex);
+            locationList.remove(removeIndex);
         }
     }
 
@@ -54,7 +54,7 @@ public class LocationList {
      */
     public boolean isLocationCreated(String toCheckLocation) {
         boolean isValid = false;
-        for (String location : this.locationList) {
+        for (String location : locationList) {
             if (location.equals(toCheckLocation)) {
                 isValid = true;
                 break;
@@ -69,7 +69,7 @@ public class LocationList {
      * @return list of Location in SmartHomeBot in ArrayList String.
      */
     public ArrayList<String> getAllLocations() {
-        return this.locationList;
+        return locationList;
     }
 
     /**
@@ -79,7 +79,7 @@ public class LocationList {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (String location : this.locationList) {
+        for (String location : locationList) {
             sb.append(location);
             sb.append("\n");
         }
@@ -95,7 +95,7 @@ public class LocationList {
     private int getRemoveLocationIndex(String toRemoveLocation) {
         int removeIndex = -1;
         int locationIndex = 0;
-        for (String location : this.locationList) {
+        for (String location : locationList) {
             if (location.equals(toRemoveLocation)) {
                 removeIndex = locationIndex;
                 break;

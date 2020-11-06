@@ -126,7 +126,7 @@ public abstract class Appliance {
      * @return the power rating of the appliance in String.
      */
     public String getWattage() {
-        return this.wattage;
+        return wattage;
     }
 
     /**
@@ -135,7 +135,7 @@ public abstract class Appliance {
      * @return the type of the appliance in String.
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class Appliance {
      * @return the location of the appliance in String.
      */
     public String getLocation() {
-        return this.location;
+        return location;
     }
 
     /**
@@ -167,7 +167,7 @@ public abstract class Appliance {
      * @return the printout for appliance.
      */
     public String toString() {
-        return this.getName() + "(" + this.getWattage() + "W)" + " located at " + this.getLocation() + " ";
+        return getName() + "(" + getWattage() + "W)" + ", located at " + getLocation() + " ";
     }
 
     /**
@@ -176,15 +176,15 @@ public abstract class Appliance {
      * @return the printout for appliance.
      */
     public String writeFileFormat() {
-        return this.location + "|" + this.name + "|" + this.wattage + "|" + this.getType()
-                + "|" + this.getPowerInString() + "|" + this.getParameter(false);
+        return location + "|" + name + "|" + wattage + "|" + getType()
+                + "|" + getPowerInString() + "|" + getParameter(false);
     }
 
     /**
      * Method to check validity of inputted parameter.
      *
-     * @param lowerBound parameter must be larger than this.
-     * @param upperBound parameter must be smaller than this.
+     * @param lowerBound parameter must be larger than lowerBound.
+     * @param upperBound parameter must be smaller than upperBound.
      * @return true if parameter is valid.
      */
     protected boolean isParameterValid(String parameter, int lowerBound, int upperBound) {

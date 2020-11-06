@@ -5,7 +5,7 @@ import seedu.smarthomebot.data.location.LocationList;
 import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
 import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
-import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
+//@@author leonlowzd
 
 /**
  * Represents Air Conditioner type extended from Appliance.
@@ -44,7 +44,7 @@ public class AirConditioner extends Appliance {
         if (isList) {
             return String.format("%s Degrees", getParameter(false));
         } else {
-            return this.temperature;
+            return temperature;
         }
     }
 
@@ -62,7 +62,7 @@ public class AirConditioner extends Appliance {
      * Method to set the temperature of appliance from user input.
      *
      * @param temperature temperature to set.
-     * @return the reciprocal printout message after setting temperature in String.
+     * @return the corresponding printout message after setting temperature in String.
      */
     public boolean setTemperature(String temperature) {
         boolean isSuccess = true;
@@ -95,7 +95,7 @@ public class AirConditioner extends Appliance {
     public String toString() {
         String temperatureStatement;
         if (appliancePower.getStatus()) {
-            temperatureStatement = "@" + getParameter(true);
+            temperatureStatement = "@ " + getParameter(true);
         } else {
             temperatureStatement = "";
         }
