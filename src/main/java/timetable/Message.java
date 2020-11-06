@@ -13,5 +13,5 @@ public class Message {
 
     public static final String printInvalidEvent =
             "Sorry you have entered an invalid Timetable Command or your input is in the wrong format!\n"
-                    + "Please enter a valid Timetable Commaand or input \"help\" to find out the correct format!\n";
+                    + "Please enter a valid Timetable Command or input \"help\" to find out the correct format!\n";
 }

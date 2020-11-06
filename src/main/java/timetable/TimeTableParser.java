@@ -19,40 +19,44 @@ public class TimeTableParser {
             TimeTableCommand.showActivities(dateList);
             return;
         default:
-            try {
-                String[] words = command.split(" ");
-                String action = words[0];
-                String type = words[1];
-                if (action.equals("add")) {
-                    switch (type) {
-                    case "activity": {
-                        Activity activity = TimeTableCommand.addActivity();
-                        dateList.addEvent(activity);
-                        storage.writeFile(activity);
-                        System.out.println(Message.printSuccessfulActivityAddition);
+            String[] words = command.split(" ");
+            if (words.length == 2) {
+                try {
+                    String action = words[0];
+                    String type = words[1];
+                    if (action.equals("add")) {
+                        switch (type) {
+                        case "activity": {
+                            Activity activity = TimeTableCommand.addActivity();
+                            dateList.addEvent(activity);
+                            storage.writeFile(activity);
+                            System.out.println(Message.printSuccessfulActivityAddition);
+                        }
+                        break;
+                        case "class": {
+                            Lesson lesson = TimeTableCommand.addClass();
+                            dateList.addEvent(lesson);
+                            storage.writeFile(lesson);
+                            System.out.println(Message.printSuccessfulClassAddition);
+                        }
+                        break;
+                        default:
+                            System.out.print((Message.printInvalidEvent));
+                        }
+                    } else {
+                        System.out.print(Message.printInvalidEvent);
                     }
-                    break;
-                    case "class": {
-                        Lesson lesson = TimeTableCommand.addClass();
-                        dateList.addEvent(lesson);
-                        storage.writeFile(lesson);
-                        System.out.println(Message.printSuccessfulClassAddition);
-                    }
-                    break;
-                    default:
-                        System.out.println((Message.printInvalidEvent));
-                    }
-                } else {
-                    System.out.println(Message.printInvalidEvent);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Input for days and time of the lesson is invalid Please add class again");
+                    StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
+                } catch (InvalidDayOfTheWeekException e) {
+                    System.out.println("Day of the week input is invalid. Please add the class again.");
+                    StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
+                } catch (ClashScheduleException e) {
+                    System.out.println("There is a clash in schedule!");
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Input for days and time of the lesson is invalid Please add class again");
-                StudyItLog.logger.warning("Invalid timetable command: Invalid event input");
-            } catch (InvalidDayOfTheWeekException e) {
-                System.out.println("Day of the week input is invalid. Please add the class again.");
-                StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
-            } catch (ClashScheduleException e) {
-                System.out.println("There is a clash in schedule!");
+            } else {
+                System.out.print(Message.printInvalidEvent);
             }
         }
     }
