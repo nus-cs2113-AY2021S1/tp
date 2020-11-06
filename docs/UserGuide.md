@@ -195,8 +195,8 @@ User profile:
 Name: Tom
 Age: 20
 Gender: Male
-Height (in m): 2.0
-Weight (in kg): 60.0
+Height (in m): 2.00
+Weight (in kg): 60.00
 Your fitness level: Fit
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
@@ -435,11 +435,11 @@ Format: `edit height NEW_HEIGHT(in m)`
 For example, you can enter the following input `edit height 1.7`, and expect the following output:
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
-Your current height (in m) is: 1.7
+Your current height (in m) is: 1.70
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 Note: Inputs given for NEW_HEIGHT is in meters, and can only be given as an integer or decimal number ranging from 0.50
- to 4.00.
+ to 4.00. Inputs will be rounded up to 2 decimal places.
 
 
 #### 2.3.1.5 Edit profile weight
@@ -448,11 +448,11 @@ Format: `edit height NEW_WEIGHT(in kg)`
 For example, you can enter the following input `edit weight 60`, and expect the following output:
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
-Your current weight (in kg) is: 60.0
+Your current weight (in kg) is: 60.00
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 Note: Inputs given for NEW_WEIGHT is in kilograms, and can only be given as an integer or decimal number ranging from
- 2.00 to 1000.00.
+ 2.00 to 1000.00. Inputs will be rounded up to 2 decimal places.
 
 #### 2.3.1.6 Edit profile fitness
 Format: `edit fitness NEW_FITNESS_LEVEL(0 for Unfit; 1 for Normal; 2 for Fit)`
