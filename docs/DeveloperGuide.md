@@ -26,14 +26,16 @@
        * <a href="#Sbuilder">Storage Builder</a> 
        * <a href="#Sstorage">Storage</a> 
 * <a href="#implementation">4. Implementation</a>
-* <a href="#documentation">5. Documentation</a>
-* <a href="#testing">6. Testing</a>
-* <a href ="#product-scope">7. Product Scope</a> 
+* <a href="#logging">5. Logging</a>
+* <a href="#documentation">6. Documentation</a>
+* <a href="#testing">7. Testing</a>
+* <a href ="#product-scope">Appendix A: Product Scope</a> 
    - <a href ="#Ptarget">Target User Profile</a> 
    - <a href ="#Pvalue">Value Proposition</a> 
-* <a href ="#user-story">8. User Stories</a> 
-* <a href ="#nfr">9. Non functional Requirements</a> 
-* <a href ="#glossary">10. Glossary</a> 
+* <a href ="#user-story">Appendix B: User Stories</a> 
+* <a href ="#nfr">Appendix C: Non functional Requirements</a> 
+* <a href ="#glossary">Appendix D: Glossary</a> 
+* <a href ="#manual-testing">Appendix E: Instructions for Manual Testing</a> 
 
 ## 1. Introduction <a name="introduction"></a>
 
@@ -728,7 +730,7 @@ This content format is a result of converting a list of `Subject` objects with p
 > right types 
 > (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
 
-### 4.4 Logging <a name = "logging"> </a>
+## 5. Logging <a name = "logging"> </a>
 Whenever you need to use logging in a class, add this line 
 
 ```java
@@ -745,18 +747,18 @@ in `src/main/resources/logging.properties`.
 For consistency, you should only change the behavior of logging via this file.
 
 
-## 5. Documentation <a name="documentation"></a>
+## 6. Documentation <a name="documentation"></a>
 
 `/docs` folder contains the project documentation.It contains the following pages:
 
 * Individual contributions under the  `team` folder
 * The .md files for the UserGuide, README, and the DeveloperGuide
 
-## 6. Testing <a name="testing"></a>
+## 7. Testing <a name="testing"></a>
 
 This section describes different types of tests used in the application and the ways to carry them out. 
 
-### 6.1 JUnit Tests
+### 7.1 JUnit Tests
 We use JUnit to write all unit tests and integration tests for the project. If you are new to JUnit, 
 refer to the [JUnit Tutorial](https://se-education.org/guides/tutorials/junit.html).
 
@@ -767,7 +769,7 @@ you are using Mac/Linux.
 Alternatively, you can run the `test` task under `Tasks > verification > test` in the Gradle tool window if 
 you are using IntelliJ.
 
-### 6.2 I/O Redirection Tests
+### 7.2 I/O Redirection Tests
 We use I/O redirection to test the actual output of the application against the expected output using a set of different
 inputs.
 
@@ -788,7 +790,7 @@ application given the inputs.
 > ℹ️ **_NOTE:_** You can change the inputs in `input.txt` and the expected output in `EXPECTED.txt` if you would like to
 > test more aspects of the application or if the input/expected output changes due to code modification.
 
-### 6.3 Checkstyle
+### 7.3 Checkstyle
 We use [Checkstyle](https://checkstyle.sourceforge.io/) 
 to check if all the developers comply to the coding standards. The rules and configurations can be found
 in `checkstyle.xml` under `config/checkstyle` folder in the project root. Refer to the official documentation
@@ -800,18 +802,18 @@ or `./gradlew checkstyleMain` if you are using Mac/Linux.
 Alternatively, you can run the `checkstyleMain` task under `Tasks > other > checkstyleMain` in the Gradle tool window if 
 you are using IntelliJ.
 
-## 7. Product scope <a name="product-scope"></a>
+## Appendix A: Product scope <a name="product-scope"></a>
 
 This section describes the scope of the application. To be specific, the target audience and 
 the uses and benefits of this application.
 
-### 7.1 Target user profile <a name="Ptarget"></a>
+### Target user profile <a name="Ptarget"></a>
 
 The targeted audience are university students , aged 18 - 25 who have access to a computer. The students must be familiar
 with applications that run on the command-line interface. Currently, this application is created for students who study in 
 Singaporean universities.
 
-### 7.2 Value proposition <a name="Pvalue"></a>
+### Value proposition <a name="Pvalue"></a>
 
 This application aims to help students to keep track of their revision. Students should be
 able to revise their subjects effectively through this application by adding various questions
@@ -826,7 +828,7 @@ regarding the upcoming tasks, which would prompt the students to prepare them.
 Students who find it difficult to organise would find this app useful since it
 offers a one stop solution to manage both their revision and their upcoming tasks .
 
-## 8. User Stories <a name="user-story"></a>
+## Appendix B: User Stories <a name="user-story"></a>
 
 This section summarises various user stories of this application in the table below.
 
@@ -845,7 +847,7 @@ This section summarises various user stories of this application in the table be
 |v2.0|normal user| be able to view my data saved on the disk easily| can do modify the data without launching the app|
 |v2.0|long time user| see all the subjects, topics, and number of flashcards I have added| know what I have added|
 
-## 9. Non-Functional Requirements <a name="nfr"></a>
+## Appendix C: Non-Functional Requirements <a name="nfr"></a>
 
 The application satisfies the following requirements:
  * Portability: Users can transfer their data from the application since all the data is stored in a txt file.
@@ -858,7 +860,7 @@ The application satisfies the following requirements:
  developers could also modify the input.txt file to provide a set of inputs and test if the application returns the 
  expected output.
 
-## 10. Glossary <a name="glossary"></a>
+## Appendix D: Glossary <a name="glossary"></a>
 
 * `Revised` - The main class which initiates the whole application.
 * `ui` - Package which contains the Ui class, in charge of user interactions.
@@ -890,3 +892,14 @@ results and topics.
 * `Topic` - A class which is instantiated when the user creates the topic. Holds the title of the topic, an arraylist of
 flashcards and an arraylist of results.
 * `TopicList` - A class which holds an ArrayList of Topics.
+
+## Appendix E: Instructions for Manual Testing
+
+Given below are instructions to test the app manually.
+
+1. Refer to the [UserGuide](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html) on how to download the application.
+2. Open the application in command prompt.
+3. Try out various commands in the userguide to check if it works.
+4. Try out invalid commands and check if the application responds correspondingly.
+5. Exit the application and check the data files to check if all the data has been saved.
+6. Open the application again and check if the data has been loaded correctly. Use the `list` command for this step.
