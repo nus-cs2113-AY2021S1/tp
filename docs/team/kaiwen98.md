@@ -1,3 +1,5 @@
+:mainRepoPRURL: https://github.com/CS2113-AY2021S1-T16-1/main/pull
+:mainRepoIssueURL: https://github.com/CS2113-AY2021S1-T16-1/main/issue
 # Looi Kai Wen's Project Portfolio Page
 
 ## Project: FinanceIt
@@ -15,12 +17,12 @@ their finance. <br/>
     
 1. Contributions to TP repository 
     1. Report and maintenance of [project issues and milestones](https://github.com/AY2021S1-CS2113-T16-1/tp/issues?q=+is%3Aissue+author%3Akaiwen98+)
-        1. Bug reporting: #16, #19. #3
+        1. Bug reporting: [#16](https://github.com/CS2113-AY2021S1-T16-1/main/issue/16), {mainRepoIssueURL}/19[#19], {mainRepoIssueURL}/3[#3]
         1. Features (ManualTracker): #24
 
     1. [Pull Requests](https://github.com/AY2021S1-CS2113-T16-1/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Akaiwen98) to TP for code contribution 
         1. Functional code contributions:
-            1. Dynamic Table Printer to be used for output throughout the software: #7
+            1. Dynamic Table Printer to be used for output throughout the software: [#7](https://github.com/CS2113-AY2021S1-T16-1/main/pull/7)
             1. Contributions to ManualTracker feature: #28, #1
             1. Contributions to code quality and organisation: #99, #105, #70, #50   
         1. Error Handling contributions: #14
