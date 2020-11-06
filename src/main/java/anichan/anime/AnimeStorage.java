@@ -40,6 +40,8 @@ public class AnimeStorage {
     private static final String ANIME_STORAGE_PARSING_FAILED = "Parsing file failed!";
     private static final String ANIME_STORAGE_RETRIEVE_MESSAGE = "Retrieving information from DataSource.";
     private static final String ANIME_STORAGE_CURRENT_HEADER = "Currently extracting from " + ANIME_STORAGE_FILE_HEADER;
+    public static final String ANIME_STORAGE_SUCCESSFUL_MESSAGE = "Retrieval and Parsing for anime object"
+            + " in DataSource Successful.";
 
     //JSON field title
     private static final String DATA_JSON_FIELD = "data";
@@ -65,6 +67,7 @@ public class AnimeStorage {
 
     private static final Logger LOGGER = getAniLogger(Anime.class.getName());
 
+
     /**
      * Read anime data from offline database.
      *
@@ -82,7 +85,7 @@ public class AnimeStorage {
             parseJson(animeDataList, fileData);
             LOGGER.log(Level.INFO, ANIME_STORAGE_PARSE_SUCCESSFUL);
         }
-        LOGGER.log(Level.INFO, "Retrieval and Parsing for anime object in DataSource Successful.");
+        LOGGER.log(Level.INFO, ANIME_STORAGE_SUCCESSFUL_MESSAGE);
         return animeDataList;
     }
 
