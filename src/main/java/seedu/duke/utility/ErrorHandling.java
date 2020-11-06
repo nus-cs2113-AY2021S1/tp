@@ -27,6 +27,7 @@ public class ErrorHandling extends Exception {
         EXCEPTION_INVALID_RATING_INPUT("\tSorry! This is an invalid rating! Try again!"),
         EXCEPTION_INPUT_LARGER_THAN_EXPECTED("\tSorry! It seems like you have entered the wrong number! Try again!"),
         EXCEPTION_EXTRA_WHITE_SPACE("\tSorry! It seems like you input an extra white space in your command"),
+        EXCEPTION_INVALID_TIME_INPUT("\tSorry! It seems like you have entered the wrong time format."),
         EXCEPTION_EMPTY_REVIEW("\tThere is no review for this show!");
 
 
