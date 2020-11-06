@@ -431,6 +431,10 @@ public class Ui {
         System.out.println(ExceptionResponse.EXCEPTION_UNIDENTIFIED_INPUT);
     }
 
+    public static void printNoReview() {
+        System.out.println(ExceptionResponse.EXCEPTION_EMPTY_REVIEW);
+    }
+
     public static void printInvalidDateException() {
         System.out.println(ExceptionResponse.EXCEPTION_INVALID_SEARCH_DATE);
     }

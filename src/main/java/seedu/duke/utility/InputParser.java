@@ -407,6 +407,8 @@ public class InputParser {
             Ui.printDeleteReview(input);
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printNoReview();
         }
     }
 }
