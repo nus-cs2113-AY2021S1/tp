@@ -33,7 +33,7 @@ public class UpdateShowSeasonCommand extends Command {
         try {
             String showName = inputs.get(1);
             for (int i = 1; i < 4;i++) {
-                if(inputs.get(i).equals("")) {
+                if (inputs.get(i).equals("")) {
                     throw new ErrorHandling(ErrorHandling.ExceptionResponse.EXCEPTION_EXTRA_WHITE_SPACE);
                 }
             }
@@ -54,9 +54,9 @@ public class UpdateShowSeasonCommand extends Command {
             Ui.printBadInputException();
         } catch (IndexOutOfBoundsException e) {
             Ui.printInputLargerThanExpected();
-        }catch (ErrorHandling e) {
+        } catch (ErrorHandling e) {
             Ui.printExtraWhiteSpace();
-        }
+        } 
     }
 
     /**
@@ -65,7 +65,7 @@ public class UpdateShowSeasonCommand extends Command {
     public void updateSeasonOnly() {
         try {
             for (int i = 1; i < 3;i++) {
-                if(inputs.get(i).equals("")) {
+                if (inputs.get(i).equals("")) {
                     throw new ErrorHandling(ErrorHandling.ExceptionResponse.EXCEPTION_EXTRA_WHITE_SPACE);
                 }
             }
