@@ -1,5 +1,6 @@
 package seedu.rex.data;
 
+import seedu.rex.data.exception.RexException;
 import seedu.rex.data.hospital.Patient;
 
 import java.time.LocalDate;
@@ -75,11 +76,11 @@ public class PatientList {
      * @param dateOfBirth Patient's date of birth.
      */
     public int editExistingPatient(String name, String nric, LocalDate dateOfBirth) {
-        int idx = getExistingPatient(nric);
-        patients.remove(idx);
+        int index = getExistingPatient(nric);
+        patients.remove(index);
         Patient patient = (new Patient(name, nric, dateOfBirth));
-        patients.add(idx, patient);
-        return idx;
+        patients.add(index, patient);
+        return index;
     }
 
 
@@ -132,14 +133,17 @@ public class PatientList {
      * @param nric NRIC entered by the user
      * @return the deleted <code>Patient</code> Object
      */
-    public Patient deletePatient(String nric) {
+    public Patient deletePatient(String nric) throws RexException {
+        if (patients.size() == 0) {
+            throw new RexException("No patients!");
+        }
         int i;
         for (i = 0; i < getSize(); i++) {
             if (getPatientUsingIndex(i).getNric().equals(nric)) {
-                break;
+                return patients.remove(i);
             }
         }
-        return patients.remove(i);
+        throw new RexException("Patient not found!");
     }
 
     /**

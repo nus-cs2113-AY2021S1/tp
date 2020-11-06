@@ -205,10 +205,12 @@ public class Ui {
      *
      * @return User input string.
      */
-    public String getNewAppointmentDate() {
+    public String getNewAppointmentDate() throws RexException {
         printWithIndent("Please enter the date of appointment in YYYY-MM-DD.");
         showLine();
-        return in.nextLine();
+        String userInput = in.nextLine();
+        checkInputNotBlank(userInput);
+        return userInput;
     }
 
     /**
@@ -240,7 +242,9 @@ public class Ui {
         }
         printWithIndent("Please enter the index of appointment to change to");
         showLine();
-        return in.nextLine();
+        String userInput = in.nextLine();
+        checkInputNotBlank(userInput);
+        return userInput;
     }
 
     /**
@@ -300,9 +304,11 @@ public class Ui {
      *
      * @return Doctor's name.
      */
-    public String getDoctorName() {
+    public String getDoctorName() throws RexException {
         printWithIndent("Enter doctor name: ");
-        return in.nextLine().toUpperCase().trim();
+        String userInput = in.nextLine().toUpperCase().trim();
+        checkInputNotBlank(userInput);
+        return userInput;
     }
 
     /**
@@ -330,7 +336,7 @@ public class Ui {
      * @param doctorName Name of doctor.
      */
     public void printDoctorNotFound(String doctorName) {
-        printWithIndent("Patient " + doctorName + " not found in database!");
+        printWithIndent("Doctor " + doctorName + " not found in database!");
     }
 
     /**
@@ -372,6 +378,7 @@ public class Ui {
         }
         printWithIndent("Enter the index: ");
         String inputString = in.nextLine();
+        checkInputNotBlank(inputString);
         int input = Integer.parseInt(inputString);
         try {
             return list.get(input - 1);

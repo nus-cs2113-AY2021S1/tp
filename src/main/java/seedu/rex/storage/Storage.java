@@ -207,7 +207,6 @@ public class Storage {
         StringBuilder doctorsFileContent = new StringBuilder();
 
         for (int i = 0; i < doctors.getSize(); i++) {
-            // Need to format tasks
             doctorsFileContent.append(doctors.getDoctorUsingIndex(i));
             doctorsFileContent.append(System.lineSeparator());
         }

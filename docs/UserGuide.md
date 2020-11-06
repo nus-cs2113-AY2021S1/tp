@@ -156,6 +156,17 @@ Example of usage:
 
 `editappt S9900299D`
 
+### Exit program: `bye`
+Exit the program
+
+Format: `bye`
+
+* The program will miss you.
+
+Example of usage:
+
+`bye`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -183,3 +194,4 @@ Example of usage:
 * View appointments of a patient `appointments NRIC`
 * List patients `list`
 * Edit patient's appointment `editappt`
+* Exit `bye`

@@ -62,13 +62,6 @@ public class BookApptCommand extends Command {
         try {
             ui.showAvailableAppointmentsMessage();
             Rex.logger.log(Level.INFO, "booking appointment for patient and doctor...");
-            ArrayList<Integer> indicesToShow = new ArrayList<>();
-            for (int i = 0; i < appointments.getSize(); i++) {
-                Appointment appointment = appointments.getAppointments().get(i);
-                if (!appointment.isBooked()) {
-                    indicesToShow.add(i);
-                }
-            }
             Appointment chosenAppointment = ui.getItemOfArrayList(appointments.getAvailableAppointments());
             chosenAppointment.bookPatient(patients.getPatientFromNric(nric));
             chosenAppointment.bookDoctor(doctors.getDoctorFromName(doctorName));
