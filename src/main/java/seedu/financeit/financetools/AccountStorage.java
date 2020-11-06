@@ -120,16 +120,16 @@ public class AccountStorage extends ParamHandler {
             this.nameLabel = packet.getParam(paramType);
             break;
         case "/ir":
-            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/r":
-            this.cashbackRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.cashbackRate = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/c":
-            this.monthlyCap = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.monthlyCap = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/rm":
-            this.deleteIndex = ParamChecker.getInstance().checkAndReturnInt(paramType);
+            this.deleteIndex = ParamChecker.getInstance().checkAndReturnIntSigned(paramType);
             this.activateDelete = true;
             break;
         case "/o":

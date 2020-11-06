@@ -61,10 +61,10 @@ public class MilesCredit extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/a":
-            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.amount = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/r":
-            this.milesRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.milesRate = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
