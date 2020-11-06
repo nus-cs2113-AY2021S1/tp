@@ -1,32 +1,19 @@
-# FinanceIt: A finance management application with a CLI Interface.
+# FinanceIt: A Finance Management Application with a CLI Interface
 FinanceIt is an all-in-one desktop application that handles the finance tracking needs of university students who are comfortable with a CLI interface.
 It includes 5 different finance tools, all of which take in typed commands from the users to execute their respective functions.
 
-# Table of Contents
+* Table of Contents
+{:toc}
 
-No. |Content|
-----|------|
-1.|[Set-up](#setUp)
-2.|[Features Overview](#featuresOverview)
-3.|[Features Documentation](featuresDoc)
-3.1|    &emsp;[Main Menu](#mainMenu)
-3.2|    &emsp;[Manual Tracker](#manualTracker)
-3.3|    &emsp;[Entry Tracker](#entryTracker)
-3.4|    &emsp;[Recurring Tracker](#recurringTracker)
-3.5|    &emsp;[Finance Tools](#financeTools)
-3.6|    &emsp;[Goal Tracker](#goalTracker)
-3.7|    &emsp;[Save Manager](#saveManager)
-4.|[Features Summary](#featuresSummary)
-
-# 1. <a name = setUp> </a> Set-up
-## 1.1 Setting up for Testers (IMPORTANT)
+# Set-up
+## Setting up for Testers (IMPORTANT)
 
 Prerequisites: A computer
 1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
 1. Save the executable file in your preferred folder.
 1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
 
-## 1.2 Setting up in Intellij
+## Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
 1. Download the latest release from the release page.
@@ -45,8 +32,8 @@ __Output:__
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
-# 2. <a name = featuresOverview> </a>Features overview
-## <a name = mainFeatures> </a>2.1 Main features
+# Overview
+## Main Features
 
 Feature|Command|Description|
 -------|-------|-----------|
@@ -57,16 +44,14 @@ Goal Tracker|```goal```| fillme
 Save Manager|```saver```| Allows save of multiple program running states and load them anytime you want. May also delete and reset running state.
 Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
 
-## 2.2 Auxillary features
-
+## Auxillary Features
 These commands are not part of the main features, but are helpful for other functions of the program:
 
 Feature|Command|Description|
 -------|-------|-----------|
 Logger|```logger```| Toggles logger visibility. If toggled on, log information will be displayed on the console.
   
-# 3. <a name = featuresDoc> </a>Features Documentation
-# 3.1 Features: Main Menu
+# Main Menu
 Gateway to the various other features of the application. 
 Upon running the application, you should be greeted by the main menu. Enter the corresponsing commands shown on the table to visit the desired feature!
 
@@ -82,7 +67,7 @@ Logger|```logger```|
 Quit|```quit```|
 
 
-## <a name = mainMenu> </a>3.1.1 Main Menu 1: Exit
+**Main Menu: Exit** <br />
 Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
 the saveStates folder. This folder will be automatically created when you first run the program.
 
@@ -94,7 +79,7 @@ the saveStates folder. This folder will be automatically created when you first 
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
     
-# <a name = manualTracker> </a> 3.2 Features : Manual Tracker
+# Manual Tracker
 Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
 > Example
     If I wish to record my income and expenditures on 30 October 2020, I will use the program as follows:
@@ -112,7 +97,7 @@ No. |Content|
 3.2.5|[Show commands](#manualTracker5)
 3.2.6|[Exit](#manualTracker6)
 
-## <a name = manualTracker1> </a> 3.2.1 Manual Tracker 1: Add ledger
+## Add ledger
 Add a ledger to the record, representing a date.
 
 >Syntax
@@ -127,7 +112,7 @@ Param Type| Param | Param Format
 
 ![](developerGuide_images/screenshots_manualtracker/manual_new.png)
     
-## 3.2.2 <a name = manualTracker2> </a> Manual Tracker 2: Remove ledger
+## Remove ledger
 Remove a specified ledger from the record, referenced by date or id on the list.
 This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
 
@@ -144,7 +129,7 @@ Param Type| Param | Param Format
 
 ![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
     
-##  3.2.3 <a name = manualTracker3> </a> Manual Tracker 3: Open ledger
+## Open ledger
 Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
 This means that the user only need to specify one of the two param types, either ```/date``` or ```/id```.
 
@@ -170,7 +155,7 @@ Param Type| Param | Param Format
 
 ![](developerGuide_images/screenshots_manualtracker/manual_open.png)
     
-## 3.2.4 <a name = manualTracker4> </a> Manual Tracker 4: Show ledger list
+## Show ledger list
 Shows the record of ledgers that has been added.
 
 >Syntax
@@ -181,7 +166,7 @@ Shows the record of ledgers that has been added.
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list.png)
 
-## 3.2.5 <a name = manualTracker5> </a> Manual Tracker 5: Print command list
+## Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -192,7 +177,7 @@ Prints available commands that users can enter in for manualTracker.
 
 ![](developerGuide_images/screenshots_manualtracker/manual_commands.png)
     
-## 3.2.6 <a name = manualTracker6> </a> Manual Tracker 6: Exit to Main Menu
+## Exit to Main Menu
 Exit to main menu where users can choose another feature to use.
 
 >Syntax
@@ -205,7 +190,7 @@ Exit to main menu where users can choose another feature to use.
 
 
     
-# 3.3 <a name = entryTracker> </a> Main Feature : Entry Tracker
+# Entry Tracker
 Subroutine that is subsidiary off the ManualTracker. 
 Users can manage entries associated with the ledger they have opened.
 Entries are specified by the following parameters:
@@ -242,7 +227,7 @@ No. |Content|
 3.3.6|[Show Categories](#entryTracker6)
 3.3.7|[Exit](#entryTracker7)
 
-## 3.3.1 <a name = entryTracker1> </a> Entry Tracker 1: Add entry
+## Add entry
 Add an entry to the ledger record.
 
 __Note:__
@@ -275,7 +260,7 @@ Param Type| Param | Param Format
 ![](developerGuide_images/screenshots_entrytracker/entry_create.png)
 
 
-## <a name = entryTracker2> </a> 3.3.2 Entry Tracker 2: Edit entry
+## Edit entry
 Add an entry to the ledger record.
 Users only need specify the param to edit, there is no need to fill out all params.
 
@@ -301,7 +286,7 @@ Param Type| Param | Param Format
 ![](developerGuide_images/screenshots_entrytracker/entry_edit_list.png)
 
     
-## <a name = entryTracker3> </a> 3.3.3 Entry Tracker 3: Remove entry
+## Remove entry
 Remove a specified entry from the record, referenced by id on the list.
 
 >Syntax
@@ -318,7 +303,7 @@ Param Type| Param | Param Format
 ![](developerGuide_images/screenshots_entrytracker/entry_delete_list.png)
 
     
-## <a name = entryTracker4> </a> 3.3.4 Entry Tracker 4: Show entry list
+## Show entry list
 Shows the record of entries that has been added.
 
 >Syntax
@@ -329,7 +314,7 @@ Shows the record of entries that has been added.
 
 ![](developerGuide_images/screenshots_entrytracker/entry_list.png)
 
-## <a name = entryTracker5> </a> 3.3.5 Entry Tracker 5: Print command list
+## Print command list
 Prints available commands that users can enter in for manualTracker.
 
 >Syntax
@@ -340,7 +325,7 @@ Prints available commands that users can enter in for manualTracker.
 
 ![](developerGuide_images/screenshots_entrytracker/entry_commands.png)
 
-## <a name = entryTracker6> </a> 3.3.6 Entry Tracker 6: Print categories
+## Print categories
 Prints expenditure category shortcuts that the user can input in entry creation/ edit commands.
 
 >Syntax
@@ -352,7 +337,7 @@ Prints expenditure category shortcuts that the user can input in entry creation/
 ![](developerGuide_images/screenshots_entrytracker/entry_cat.png)
 
     
-## <a name = entryTracker7> </a> 3.3.7 Entry Tracker 7: Exit to Manual Tracker main routine
+## Exit to Manual Tracker Main Routine
 Exit to Manual tracker where users can choose another ledger.
 
 >Syntax
@@ -363,10 +348,10 @@ Exit to Manual tracker where users can choose another ledger.
 
 ![](developerGuide_images/screenshot_entrytracker/entry_exit.png)
     
-# 3.3 <a name = recurringTracker> </a> Features : Recurring Tracker
+# Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
 
-## 3.3.1 Recurring Tracker 1: Add entry
+## Add entry
 Creates a recurring entry. Entries can either be income or expense. If income, entries
 can be set to "auto" which indicates that the income is automatically credited to the user's
 bank account e.g. Salary which is transferred into bank account by company. 
@@ -380,7 +365,7 @@ Vice versa for expense entries.
 
     add {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
     
-## Parameters
+**Parameters** <br />
 * `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2)
 * `-auto` - Whether entry is auto or manual (only serves as a reminder for user, 
 is not linked to any functionality)
@@ -399,17 +384,17 @@ is not linked to any functionality)
     //Redeem air miles for vouchers, $50 per month, user has to take manual action 
     on or by 27th of every month.
     
-## 3.3.2 Recurring Tracker 2: List all entries
+## List all entries
 Displays a list of all recurring entries.
 
 >Syntax
 
     list
     
-## Parameters
+**Parameters** <br />
 None
  3  
-## 3.3.3 Recurring Tracker 3: Delete entry
+## Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
 associated index in the leftmost column
 
@@ -417,14 +402,14 @@ associated index in the leftmost column
 
     delete /id <INDEX>
     
-## Parameters
+**Parameters** <br />
 * `/id` - Index of item to be deleted. 1-based indexing (Mandatory)
 
 >Example
     
     delete /id 15
     
-## 3.3.4 Recurring Tracker 4: Edit entry
+## Edit entry
 Update one or more fields of an existing entry. Overwrites any existing value corresponding to the 
 field(s) being modified.
 
@@ -432,7 +417,7 @@ field(s) being modified.
 
     edit /id <INDEX> [field(s) to edit]
     
-##Parameters
+**Parameters** <br />
 * `/id` - Index of entry to edit. 1-based indexing (Mandatory)
 * `field(s) to edit` - Follows the same format as add entry E.g. to edit amount, use `/amt <NEW_AMT>`
 
@@ -441,7 +426,7 @@ field(s) being modified.
     edit /id 2 /desc Updated name!! /day 23
     //Overwrites existing description and day. Other fields are untouched.
     
-## 3.3.5 Recurring Tracker 5: Exit tracker
+## Exit tracker
 Exits to main menu.
 
 >Syntax
@@ -449,15 +434,15 @@ Exits to main menu.
     exit
 
     
-# 3.4 <a name = financeTools> </a> Features : FinanceTools
+# FinanceTools
 FinanceTools contains tools related to financial calculations.
 
-## 3.4.1 FinanceTools 1: Simple Interest Calculator
+## Simple Interest Calculator
 Calculate simple interest earned.
 <br />
 Simple interest is based on the principal amount of a deposit.
 
-## Parameters
+**Parameters** <br />
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
 
@@ -470,12 +455,12 @@ Simple interest is based on the principal amount of a deposit.
     simple /a 1000 /r 5
 
 ![Example](screenshots/financetools/SimpleInterest(1).PNG)
-## 3.4.2 FinanceTools 2: Yearly Compound Interest Calculator
+## Yearly Compound Interest Calculator
 Calculate yearly compound interest earned with optional yearly deposit.
 <br />
 Compound interest is based on the principal amount and the interest that accumulates on it every period.
 
-### Parameters
+**Parameters** <br />
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
 * ```/p``` - Number of Years (Mandatory)
@@ -494,12 +479,12 @@ Compound interest is based on the principal amount and the interest that accumul
 <br />
 <br />
 ![Example](screenshots/financetools/YearlyCompoundInterest(2).PNG)
-## 3.4.3 FinanceTools 3: Monthly Compound Interest Calculator
+## Monthly Compound Interest Calculator
 Calculate monthly compound interest earned with optional monthly deposit.
 <br />
 Compound interest is based on the principal amount and the interest that accumulates on it every period.
 
-### Parameters
+**Parameters** <br />
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Interest Rate (Mandatory)
 * ```/p``` - Number of Months (Mandatory)
@@ -518,10 +503,11 @@ Compound interest is based on the principal amount and the interest that accumul
 <br />
 <br />
 ![Example](screenshots/financetools/MonthlyCompoundInterest(2).PNG)
-## 3.4.4 FinanceTools 4: Cashback Calculator
-Calculate cashback earned.
+## Cashback Calculator
+Calculate cashback earned with optional monthly cap. The monthly cap is the maximum amount of cashback
+a user can earn per month.
 
-### Parameters
+**Parameters** <br />
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Cashback Rate (Mandatory)
 * ```/c``` - Cashback Cap (Mandatory)
@@ -539,10 +525,11 @@ Calculate cashback earned.
 <br />
 <br />
 ![Example](screenshots/financetools/Cashback(2).PNG)
-## 3.4.5 FinanceTools 5: Miles Credit Calculator
+
+## Miles Credit Calculator
 Calculate cashback earned.
 
-## Parameters
+**Parameters** <br />
 * ```/a``` - Amount (Mandatory)
 * ```/r``` - Miles Rate (Mandatory)
 
@@ -555,7 +542,7 @@ Calculate cashback earned.
     miles /a 1000 /r 5
 
 ![Example](screenshots/financetools/Miles(1).PNG)
-## 3.4.6 FinanceTools 6: Account Storage
+## Account Storage
 Store account information.
 <br />
 
@@ -564,7 +551,7 @@ Additionally, it implements the following operations:
 * ```clearinfo``` - clear all information
 * ```store /rm <ACCOUNT_NO>``` - delete corresponding account number in list
 
-### Parameters
+**Parameters** <br />
 * ```/n``` - Account Name (Optional)
 * ```/ir``` - Interest Rate (Optional)
 * ```/r``` - Cashback Rate (Optional)
@@ -606,7 +593,7 @@ Additionally, it implements the following operations:
 <br />
 ![Example](screenshots/financetools/AccountStorage(7).PNG)
 
-## 3.4.7 FinanceTools 7: Command and Calculation History
+## Command and Calculation History
 Store the commands inputted and results from calculations in FinanceTools.
 
 >Syntax:
@@ -618,7 +605,7 @@ Store the commands inputted and results from calculations in FinanceTools.
     history
 
 ![Example](screenshots/financetools/History(1).PNG)
-## 3.4.8 FinanceTools 8: Exit FinanceTools
+## Exit FinanceTools
 Exit FinanceTools to Main Menu.
 
 >Syntax:
@@ -631,11 +618,11 @@ Exit FinanceTools to Main Menu.
 
 ![Example](screenshots/financetools/Exit(1).PNG)
 
-# 3.5 <a name = goalTracker> </a> Features : Goal Tracker
+# Goal Tracker
 Goal Tracker that helps user to track their monthly incomes and expenses goal.
 
-## 3.5.1 Goal Tracker 1 : Set Goal
-### 3.5.1.1 Set Income Goal
+## Set Goal
+**Set Income Goal** <br />
 Setting of income goal for respective months.
 
 >syntax
@@ -649,7 +636,7 @@ Setting of income goal for respective months.
 
 ![Example](screenshots/goaltracker/setincomegoal.png)
 
-### 3.5.1.2 Set Expense Goal
+**Set Expense Goal** <br />
 Setting of expense goal for respective months.
 
 >syntax
@@ -662,7 +649,7 @@ Setting of expense goal for respective months.
 
 ![Example](screenshots/goaltracker/setexpensegoal.png)
 
-## 3.5.2 Goal Tracker 2 : Display Goal
+## Display Goal
 Display income and expense goal for the individual month.
 
 >syntax
@@ -677,7 +664,7 @@ Display income and expense goal for the individual month.
 ![IncomeExample](screenshots/goaltracker/displayincome.png)
 ![ExpenseExample](screenshots/goaltracker/displayexpense.png)
 
-## 3.5.3 Goal Tracker 3 : Exit Display Goal 
+## Exit Display Goal 
 The system will auto prompt the user whether they want to exit DisplayGoal and return to Goal tracker main menu.
 
 >syntax 
@@ -691,7 +678,7 @@ The system will auto prompt the user whether they want to exit DisplayGoal and r
 ![PromptExitDisplay](screenshots/goaltracker/PromptExitDisplay.png)
 ![ReturnMain](screenshots/goaltracker/returnmainmenu.png)
 
-## 3.5.4 Goal Tracker 4 : Edit Goal
+## Edit Goal
 Edit income and expense goal for the individual month.
 
 >syntax
@@ -706,7 +693,7 @@ Edit income and expense goal for the individual month.
 ![EditIncome](screenshots/goaltracker/editincome.png)
 ![EditExpense](screenshots/goaltracker/editexpense.png)
 
-## 3.5.5 Goal Tracker 5 : Exit Goal Tracker
+## Exit Goal Tracker
 Exit Goal Tracker program and return to FinanceIt main UI.
 
 >syntax
@@ -717,11 +704,11 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 
     exit
     
-# 3.7  <a name = saveManager> </a>Feature: Save Manager
+# Save Manager
 This utility feature helps to save multiple program states and load them at will.
 
 
-## 3.7.0 Save Manager Menu
+## Menu
 ![picture](uml_images/saveManager/Capture1.PNG)
 <br />
 Main menu shows all the available commands and how to use them.
@@ -729,7 +716,7 @@ Main menu shows all the available commands and how to use them.
 You can enter "help" anytime to return to this main menu
 
 
-## 3.7.1 Save Manager List Save
+## List Save
 ![picture](uml_images/saveManager/Capture2.PNG)
 <br />
 You can enter "list" to list all backup saves.
@@ -739,7 +726,7 @@ You can enter "list" to list all backup saves.
     list
 
 
-## 3.7.2 Save Manager Add Save
+## Add Save
 ![picture](uml_images/saveManager/Capture3.PNG)
 <br />
 To create a back up save
@@ -760,7 +747,7 @@ In your data/backup directory, you can see 3 text files created.
 In your names.txt file, an additional entry will be appended.
 
 
-## 3.7.3 Save Manager Load Save
+## Load Save
 ![picture](uml_images/saveManager/Capture6.PNG)
 <br />
 To load a back up save
@@ -774,7 +761,7 @@ To load a back up save
 
 
 
-## 3.7.4 Save Manager Delete Save
+## Delete Save
 ![picture](uml_images/saveManager/Capture7.PNG)
 <br />
 To remove a back up save
@@ -793,7 +780,7 @@ As you can see, the 3 text files you want to delete are gone.
 names.txt file is also updated.
 
 
-## 3.7.4 Save Manager Reset
+## Reset
 ![picture](uml_images/saveManager/Capture9.PNG)
 <br />
 To reset all data currently used by the program enter "reset"
@@ -803,9 +790,9 @@ To reset all data currently used by the program enter "reset"
     reset
 
 
-# 4. <a name = featuresSummary> </a>Summary of Features 
+# Summary of Features 
 
-## 4.1 Manual Tracker
+## Manual Tracker
 
 No. | Feature | Syntax |
 ----|---------|---------|
@@ -815,7 +802,7 @@ No. | Feature | Syntax |
 4.|Delete Ledgers|_ledger delete /date {YYMMDD}_|;
 5.|Exit to Main Menu|_exit_|
 
-## 4.2 Entry tracker
+## Entry tracker
 
 No. | Feature | Syntax |
 ----|---------|---------|
@@ -826,7 +813,7 @@ No. | Feature | Syntax |
 5.|List Transaction Categories|_cat_|
 6.|Exit to Manual Tracker|_exit_|
 
-## 4.3 FinanceTools
+## FinanceTools
 
 No. | Feature | Syntax |
 ----|---------|---------|
@@ -841,7 +828,7 @@ No. | Feature | Syntax |
 9.|Command and Calculation History|_history_|
 10.|Exit to Main Menu|_exit_|
 
-## 4.4 Goal Tracker
+## Goal Tracker
 
 No. | Feature | Syntax |
 ----|---------|---------|
@@ -853,7 +840,7 @@ No. | Feature | Syntax |
 6.|Display Income Goal|_display income for {MONTH IN INT VALUE}_|
 7.|Exit to Main Menu|_exit_|
 
-## 4.5 Save Manager
+## Save Manager
 
 No. | Feature | Syntax |
 ----|---------|---------|
