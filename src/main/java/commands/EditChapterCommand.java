@@ -15,6 +15,10 @@ import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MESSAGE_ITEM_EXISTED;
 
+
+/**
+ * Edits the chapter name.
+ */
 public class EditChapterCommand extends EditCommand {
     private static Logger logger = KajiLog.getLogger(EditChapterCommand.class.getName());
 
@@ -27,6 +31,12 @@ public class EditChapterCommand extends EditCommand {
     private final int editIndex;
     private String chapter;
 
+    /**
+     * Creates an EditChapterCommand to edit to the specified {@code chapter}.
+     *
+     * @param editIndex of the chapter in the list of chapters to edit
+     * @param chapter name to edit the chapter to
+     */
     public EditChapterCommand(int editIndex, String chapter) {
         this.editIndex = editIndex;
         this.chapter = chapter;
@@ -38,6 +48,15 @@ public class EditChapterCommand extends EditCommand {
         ui.showToUser(result);
     }
 
+    /**
+     * Edits the name of the chapter.
+     *
+     * @param access to get the list of chapters
+     * @param storage to rename the storage file
+     * @return result to be displayed
+     * @throws InvalidInputException if the index is invalid
+     * @throws StorageDataException if there is an error renaming the storage file
+     */
     private String editChapter(Access access, Storage storage) throws InvalidInputException, StorageDataException {
         assert access.isModuleLevel() : "Not module level";
         assert !chapter.isEmpty() : "The chapter name is missing.";

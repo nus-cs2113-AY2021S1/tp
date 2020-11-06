@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 import static common.Messages.CARD;
 
+/**
+ * Lists all the flashcards in a chapter.
+ */
 public class ListCardsCommand extends ListCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of flashcards available. \n"
             + "Example: " + COMMAND_WORD + "\n";
@@ -20,6 +23,12 @@ public class ListCardsCommand extends ListCommand {
         ui.showToUser(result);
     }
 
+    /**
+     * Lists all of the flashcards.
+     *
+     * @param access to get the list of cards
+     * @return result to be displayed
+     */
     private String listCards(Access access) {
         assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
