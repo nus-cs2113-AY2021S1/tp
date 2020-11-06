@@ -394,20 +394,28 @@ public class ModuleList {
      */
     public void addTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
-        String week = commandInfo[3];
-        String modCode = commandInfo[1].toUpperCase();
-        double hours = Double.parseDouble(commandInfo[2]);
+        String modCode;
+        String week;
+        double hours;
+        modCode = commandInfo[1].toUpperCase();
+        week = commandInfo[3];
+        hours = Double.parseDouble(commandInfo[2]);
+
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
+
+
         if (!checkIfTimeValid(hours, toPrint)) {
             return;
         } else if (!checkIfWeekValid(week, toPrint)) {
             return;
         }
+
+
 
         if (!checkIfModuleExist(modCode)) {
             ui.printNotExist(modCode, toPrint);
@@ -440,9 +448,12 @@ public class ModuleList {
      */
     public void minusTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
-        String modCode = commandInfo[1].toUpperCase();
-        String weekNumber = commandInfo[3];
-        double hours = Double.parseDouble(commandInfo[2]);
+        String modCode;
+        String weekNumber;
+        double hours;
+        modCode = commandInfo[1].toUpperCase();
+        weekNumber = commandInfo[3];
+        hours = Double.parseDouble(commandInfo[2]);
 
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
@@ -504,9 +515,13 @@ public class ModuleList {
      */
     public void editTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
-        String week = commandInfo[3];
-        String modCode = commandInfo[1].toUpperCase();
-        double hours = Double.parseDouble(commandInfo[2]);
+        String modCode;
+        String week;
+        double hours;
+        modCode = commandInfo[1].toUpperCase();
+        week = commandInfo[3];
+        hours = Double.parseDouble(commandInfo[2]);
+        
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
         }
