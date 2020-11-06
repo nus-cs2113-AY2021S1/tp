@@ -47,7 +47,7 @@ public class LoggerCentre {
 
             // Setting file logger to log only warning messages
             FileHandler fileHandler = new FileHandler(paramLog);
-            fileHandler.setLevel(Level.WARNING);
+            fileHandler.setLevel(Level.ALL);
 
             SimpleFormatter formatter = new SimpleFormatter();
             fileHandler.setFormatter(formatter);

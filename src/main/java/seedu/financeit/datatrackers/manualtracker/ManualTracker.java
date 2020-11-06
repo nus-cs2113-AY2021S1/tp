@@ -21,7 +21,7 @@ public class ManualTracker {
     private static CommandPacket packet;
     private static boolean isUnderTest = false;
     private static boolean endTracker;
-    GoalTracker goalTracker = new GoalTracker();
+    private static GoalTracker goalTrack = new GoalTracker();
 
     public static void setTestPacket(CommandPacket inputPacket) {
         packet = inputPacket;

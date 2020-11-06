@@ -21,7 +21,7 @@ import java.util.Scanner;
  */
 
 public class GoalTracker {
-    private static String[] cmdPacket;
+    private static String[] cmdPacket = null;
     private static String[] editPacket;
     private static Goal goalToSet;
     private static Scanner scanner = new Scanner(System.in);
@@ -387,7 +387,9 @@ public class GoalTracker {
     public static void printExpenseGoal() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
-                month = Month.of(Integer.parseInt(cmdPacket[3]));
+                if (cmdPacket != null) {
+                    month = Month.of(Integer.parseInt(cmdPacket[3]));
+                }
                 try {
                     if (ledgerMonth == null) {
                         if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
