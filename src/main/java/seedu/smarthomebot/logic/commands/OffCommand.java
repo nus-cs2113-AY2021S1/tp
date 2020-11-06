@@ -5,6 +5,7 @@ import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
@@ -73,6 +74,7 @@ public class OffCommand extends Command {
         int toOffApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, true);
+        commandLogger.log(Level.INFO, "Appliance Off with output message: " + outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -82,6 +84,7 @@ public class OffCommand extends Command {
     private CommandResult offByLocation(ArrayList<Appliance> toOffAppliance) {
         offApplianceByLoop(toOffAppliance);
         String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
+        commandLogger.log(Level.INFO, "Location Off with output message: " + outputResult);
         return new CommandResult(outputResult);
     }
 
