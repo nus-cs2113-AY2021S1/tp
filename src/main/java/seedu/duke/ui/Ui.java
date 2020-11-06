@@ -89,6 +89,7 @@ public class Ui {
     }
 
     public void printCalendar(Map.Entry<LocalDate, ArrayList<Event>> entry) {
+        printCalendarDivider();
         System.out.println(entry.getKey().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
         printCalendarDivider();
         ArrayList<Event> eventsOnDate;
@@ -97,7 +98,6 @@ public class Ui {
         for (Event e : eventsOnDate) {
             System.out.println(e.toCalendarString());
         }
-        printCalendarDivider();
     }
 
     public void printCalendarStart(int size, int count) {
@@ -107,11 +107,16 @@ public class Ui {
         } else if (count > 0) {
             System.out.println(count + " event not on the calendar because it has no date and time");
         }
-        printCalendarDivider();
     }
 
     public void printCalendarEnd() {
+        printCalendarDivider();
         System.out.println("End of calendar");
+    }
+
+    public void printContinueQuery() {
+        printCalendarDivider();
+        System.out.println("Enter 'q' to exit or enter to continue...");
     }
 
     public void printCheckMessage() {
