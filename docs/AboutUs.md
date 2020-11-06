@@ -8,4 +8,4 @@ Display | Name | GitHub Profile | Portfolio
 ![](https://via.placeholder.com/100.png?text=Photo) | Eyo Wei Chin | [Github](https://github.com/EyoWeiChin) | [Portfolio](team/eyoweichin.md)
 <img src="https://avatars1.githubusercontent.com/u/39303087?s=400&v=4" width="150"/> | Ong De Zhi | [Github](https://github.com/OngDeZhi) | [Portfolio](team/ongdezhi.md)  
 <img src="https://i.pinimg.com/564x/c4/0d/7a/c40d7a7060fb74926c257db982b6ddaf--funny-stuff-funny-things.jpg" width="150"/> | Chan Jian Hao | [Github](https://github.com/ChanJianHao) | [Portfolio](team/chanjianhao.md)  
-![](https://via.placeholder.com/100.png?text=Photo) | Xin Bin | [Github](https://github.com/n3wsoldier) | [Portfolio](team/xinbin.md)
+![](https://via.placeholder.com/100.png?text=Photo) | Ong Xin Bin | [Github](https://github.com/n3wsoldier) | [Portfolio](team/n3wsoldier.md)

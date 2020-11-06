@@ -9,8 +9,8 @@
 *   **Application setup**: Loading of anime information from JSON data file
     *   What it does: Setting up the anime information from offline data sources, the data sources are stored as JSON files embed within our program. The file data requires a parser to properly extract anime information and convert it into an anime object, which will be used by many features to query anime information.   
     *   Justification: By extracting anime data, the program can easily use anime-related functions. As a translator, it is crucial to have anime information that is required by the translator.
-    *   Highlights: The implementation was challenging as the JSON parser library I was familiar with was rejected, this means I have to use a new JSON library. JSON simple which was the library approved, could not read our entire JSON file and our data files have to be divided into smaller JSON files. In addition, the need to embed our data file into our release file took us a while to figure the mechanism out. 
-
+    *   Highlights: Using an unfamiliar JSON library made the implementation of the JSON parser challenging, the simple JSON library also limit the reading of file to the size of string which required the source file to divide it into smaller JSON files. In addition, the need to embed the data files into the release file took some time to figure out the mechanism.
+    
 *   **New Feature**: Added the ability to add, list, delete a bookmark. With extended features to view, edit the episode, add a note and remove a note for a bookmark entry.
     *   What it does: Allows the user to track the anime of their interest, with additional personalisation like specifying the current episode or adding notes to the bookmark entry.
     *   Justification: This bookmarking feature was designed to be a shortcut to the anime information they require, then extended features then allow the bookmark to keep additional information for particular anime that is useful to the translators.
