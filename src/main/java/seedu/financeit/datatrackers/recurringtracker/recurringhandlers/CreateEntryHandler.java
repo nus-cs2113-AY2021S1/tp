@@ -56,7 +56,7 @@ public class CreateEntryHandler extends ParamHandler {
             recurringEntry.setDay(day);
             break;
         case ParamChecker.PARAM_AMOUNT:
-            double amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            double amount = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             recurringEntry.setAmount(amount);
             break;
         case ParamChecker.PARAM_INC:

@@ -23,13 +23,25 @@ public class ParamsParser {
     }
 
     public String getSeparator(String input) {
-        //Matcher gives index of space before the param, so (matched index + 1) gives the separator
+        //Matcher matches <space><separator><paramType><space>, so (matched index + 1) gives the separator
         int separatorIndex = matcher.start() + 1;
-        return " " + String.valueOf(input.charAt(separatorIndex));
+        System.out.println(input.charAt(separatorIndex));
+        return String.valueOf(input.charAt(separatorIndex));
     }
 
-    String prependAppendSpaces(String str) {
-        return " " + str + " ";
+    public String getNextParamType(String input) {
+        System.out.println("input1: " + input);
+        //Matcher gives index of space before the param, so (matched index + 1) gives the separator
+        int separatorIndex = -1;
+        try {
+            separatorIndex = RegexMatcher.paramMatcher(input).start();
+            System.out.println("proces: " + input + ", " + separatorIndex);
+        } catch (IllegalStateException e) {
+            return input;
+        }
+        int nextSpaceIndex = input.indexOf(" ", separatorIndex + 1);
+        System.out.println("output: " + input.substring(separatorIndex, nextSpaceIndex));
+        return input.substring(separatorIndex, nextSpaceIndex);
     }
 
     /**
@@ -49,35 +61,36 @@ public class ParamsParser {
         String[] buffer;
         String paramArgument = "";
         boolean paramArgumentExist;
-
+        System.out.println("input: " + paramSubstring);
         do {
             paramSubstring += " ";
             paramArgument = "";
-
+            System.out.println("paramsubs: " + paramSubstring);
             //Separate into [paramType, rest of string]
             buffer = paramSubstring.split(" ", 2);
-            String paramType = buffer[0];
-            buffer[1] = buffer[1].trim();
 
+            String paramType = buffer[0].trim();
+            paramSubstring = buffer[1].trim();
             /*
             * Process param argument and check whether more params exist
             */
 
-            boolean isRestOfStringEmpty = buffer[1].length() == 0;
+            boolean isRestOfStringEmpty = paramSubstring.length() == 0;
             if (isRestOfStringEmpty) {
                 //No param argument, no further params
-                putParamIntoParamMap(paramType, buffer[1], paramMap);
+                putParamIntoParamMap(paramType, paramSubstring, paramMap);
                 break;
             }
 
             //Matcher requires a leading and trailing blank space to successfully match a param
-            paramSubstring = " " + buffer[1] + " ";
+            paramSubstring = " " + paramSubstring + " ";
+
             matcher = RegexMatcher.paramMatcher(paramSubstring);
 
             try {
                 //Attempts to look for the start of the next param. If found, everything before start of next
                 //param is the paramArgument belonging to the current param.
-                paramArgumentExist = matcher.start() > 0;
+                paramArgumentExist = matcher.start() >= 0;
             } catch (java.lang.IllegalStateException e) {
                 //If no more params are present after current param
                 //Only thing in paramSubstring is the paramArgument
@@ -89,9 +102,13 @@ public class ParamsParser {
             if (paramArgumentExist) {
                 //Split into [paramArgument, rest of string]
                 //Separator character = '/' or '-'
-                String separator = getSeparator(paramSubstring);
+                //String separator = getSeparator(paramSubstring);
+                String separator = getNextParamType(paramSubstring);
                 buffer = paramSubstring.split(separator, 2);
                 buffer[1] = separator + buffer[1];
+                System.out.println("buffer0: " + buffer[0]);
+                System.out.println("buffer1: " + buffer[1]);
+
                 paramArgument = buffer[0].trim();
                 paramSubstring = buffer[1].trim();
             } else {

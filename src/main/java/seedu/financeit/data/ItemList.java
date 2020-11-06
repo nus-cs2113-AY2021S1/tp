@@ -1,5 +1,9 @@
 package seedu.financeit.data;
 
+import seedu.financeit.common.Common;
+import seedu.financeit.common.exceptions.ParseFailParamException;
+import seedu.financeit.ui.UiManager;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -10,7 +14,9 @@ import java.util.Comparator;
 public abstract class ItemList {
     protected Item currItem;
     protected ArrayList<Item> items = new ArrayList<>();
-    protected int indexToModify = -1;
+    protected int indexToModify;
+    protected boolean isIndexToModifySet;
+    protected String paramTypeFirst;
 
     public ItemList() {
     }
@@ -21,7 +27,21 @@ public abstract class ItemList {
         this.items.add(item);
     }
 
-    public void setIndexToModify(int index) {
+    public void setIndexToModify(int index, String paramType) throws ParseFailParamException {
+        if (index != indexToModify && isIndexToModifySet) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                "Conflicting reference from two separate params!",
+                "Please reference to item with one param only.",
+                // Add 1 to account for list index offset
+                String.format("[%s]: %s", paramTypeFirst, indexToModify + 1),
+                String.format("[%s]: %s", paramType, index + 1));
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
+                String.format("The first param, [%s] will be used instead.", paramTypeFirst));
+            isIndexToModifySet = false;
+            throw new ParseFailParamException(paramType);
+        }
+        isIndexToModifySet = true;
+        paramTypeFirst = paramType;
         this.indexToModify = index;
     }
 
@@ -82,13 +102,16 @@ public abstract class ItemList {
     public Item getItemAtCurrIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         int index = this.indexToModify;
+        this.isIndexToModifySet = false;
         return this.items.get(index);
     }
 
     //Manually specify index in the code, if necessary
     public Item getItemAtCurrIndex(int index) throws IndexOutOfBoundsException {
         assert index < items.size();
-        return this.items.get(index);
+        Item item =  this.items.get(index);
+        this.isIndexToModifySet = false;
+        return item;
     }
 
     public void removeAllItems() {

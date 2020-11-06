@@ -1,9 +1,9 @@
 @startuml
 hide circle
 skinparam classAttributeIconSize 0
-skinparam BoxPadding 50
+skinparam BoxPadding 100
 skinparam shadowing false
-
+left to right direction
 
 
 skinparam package<<Layout>> {
@@ -17,8 +17,7 @@ skinparam package<<Layout>> {
 
 
 rectangle Model {
-    class Entry {
-    }
+
 }
 
 rectangle InputManager {
@@ -28,6 +27,9 @@ rectangle InputManager {
 
 rectangle LogicManagers {
     class ManualTracker {
+    }
+    
+    class "       RecurringTracker         " {
     }
 
     class EntryTracker {
@@ -41,13 +43,15 @@ rectangle LogicManagers {
 
     EntryTracker --> Model : stores entries with >
     ManualTracker --> Model : stores ledgers with >
+    "       RecurringTracker         " ---> Model : stores RecurringEntries with >
 }
 
-ManualTracker --> InputManager : Handles input <
-EntryTracker --> InputManager : Handles input <
+ManualTracker --> InputManager : > Handles input 
+EntryTracker --> InputManager : > Handles input 
+"       RecurringTracker         " --> InputManager : > Handles input 
 
-GoalTracker --> Entry : Tracks against \ninput goal >
-GoalTracker ..> EntryTracker : Displays \ngoal \nprogress >
+GoalTracker --> Model : Tracks against input goal >
+GoalTracker <. EntryTracker :   \n         Provides\n      Entry \n             Information\n             to generate\n           Goal data >
 
 
 

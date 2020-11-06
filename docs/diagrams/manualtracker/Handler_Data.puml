@@ -88,9 +88,9 @@ rectangle Data {
     Entry --|> DateTimeItem
     LedgerList --|> ItemList
     EntryList --|> ItemList
-    Ledger "1" -- "1" EntryList
+    Ledger "1" --> "1" EntryList : Maintains
     LedgerList --> "*" Ledger : contains >
-    EntryList --> "*" Entry : contains >
+    EntryList ---> "*" Entry : contains >
     EntryList -[hidden]- Entry
 
 }

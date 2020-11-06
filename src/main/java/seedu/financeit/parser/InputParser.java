@@ -73,23 +73,27 @@ public class InputParser {
         //Check for existence of command title
 
         try {
-            input = " " + input + " ";
+            input = input.trim();
+            input = input + " ";
+            // If no param is found, an exception will be thrown.
             matcher = RegexMatcher.paramMatcher(input);
             separator = getSeparator(input);
         } catch (java.lang.IllegalStateException exception) {
             //No params provided
-            commandString = input.toLowerCase();
+            commandString = input.toLowerCase().trim();
             return new CommandPacket(commandString, params);
         }
 
+        // Param substring is found, need to parse.
         try {
             //Split into [<command>, <params string>]
             buffer = input.split(separator, 2);
             if (buffer[0].equals(" ")) {
                 throw new EmptyCommandStringException();
             }
-            commandString = buffer[0].toLowerCase();
+            commandString = buffer[0].toLowerCase().trim();
             String paramSubstring = separator + buffer[1];
+            paramSubstring = paramSubstring.trim();
             params = ParamsParser.getInstance().parseParams(paramSubstring);
         } catch (EmptyCommandStringException e) {
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, e.getMessage());

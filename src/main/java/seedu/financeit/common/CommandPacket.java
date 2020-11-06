@@ -8,7 +8,7 @@ import java.util.Set;
  * Organises data from input string into distinct data types and structure.
  * For scalability purposes, a hashmap is implemented to map param type to its corresponding params.
  */
-public class   CommandPacket {
+public class  CommandPacket {
     private String commandString;
     private HashMap paramMap;
 

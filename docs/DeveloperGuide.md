@@ -34,13 +34,13 @@ It includes 4 classes:
 * ```FinanceTools```
 
 __API__
-* ```ManualTracker``` and ```EntryTracker``` maintains an instance of a ```DataList``` (```LedgerList``` and ```EntryList```) in ```Model``` respectively, 
+* ```ManualTracker```, `RecurringTracker` and ```EntryTracker``` maintains an instance of a ```DataList``` (```LedgerList``` and ```EntryList```) in ```Model``` respectively, 
  and provides an interface for the user can append, remove or perform other ```Data``` operations with the contents of the ```Datalist```.
 * ```GoalTracker``` maintains a list of income or expense ```Goals``` to track against entries in the ```EntryList```, 
 and provides an interface for the user to append or remove ```Goals```.
 * ```Finance Tools``` class provides an interface for users to utilize an array of 
 finance calculator tools within it.
-* All ```Handler``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
+* All ```LogicManager``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
 to perform the operation associated with the user input.
 
 ## Logic Component
@@ -49,8 +49,18 @@ to perform the operation associated with the user input.
 
 __Description__
 
+The Logic Component abstracts logic operations that are dependent on `params` passed via a `CommandPacket` instance.
 
 __API__
+
+* `CommandHandler` classes are used in `LogicManager` classes to handle parts of the operations which are dependent on
+the `params` supplied.
+* If `CommandHandler` classes recognises a `param` from the `CommandPacket` instance, it performs a sub-operation
+associated with the `param`. For instance, `/date` will cause `CreateLedgerCommand` instance to set the date of the
+new instantiated ledger.  
+* `ParamChecker` verifies correctness of `params` before it is processed further by a `CommandHandler` class.
+
+
 
 
 ## Input Manager Component
@@ -151,7 +161,7 @@ generally indicates whether an operation has failed.
         Ledger deletedLedger;
         RetrieveLedgerHandler retrieveLedgerHandler = RetrieveLedgerHandler.getInstance();
         try {
-            // RetrieveLedgerCommand instance retrieves the corresponding ledger instance
+            // RetrieveledgerHandler instance retrieves the corresponding ledger instance
             // from the ledgerList instance.
             retrieveLedgerHandler.handlePacket(packet, ledgerList);
             deletedLedger = (Ledger) ledgerList.getItemAtCurrIndex();
@@ -187,7 +197,7 @@ generally indicates whether an operation has failed.
         The class that uses ParamChecker is only concerned with whether the ```param``` is valid or not.
 1. Example:
     * The following method checks validity of dates supplied from user input.
-    * It is used by `createLedgerCommand` class. 
+    * It is used by `createledgerHandler` class. 
 
 ```
     public LocalDate checkAndReturnDate(String paramType)
@@ -250,8 +260,8 @@ which processes the ```commandPacket``` attributes to perform a specific functio
         The error message from `ParamChecker` will be printed.
         1. Else if the `param` parses successfully, it will be added to ```paramsSuccessfullyParsed```
     1. Check if the parse was successful. The condition below that define a successful parse is:
-        1. All ```param``` in ```createLedgerCommand.requiredParams``` string array are parsed with no exceptions thrown.
-        That is, all `param` in ```createLedgerCommand.requiredParams``` is also in ```paramsSuccessfullyParsed```.
+        1. All ```param``` in ```createledgerHandler.requiredParams``` string array are parsed with no exceptions thrown.
+        That is, all `param` in ```createledgerHandler.requiredParams``` is also in ```paramsSuccessfullyParsed```.
     1. If parse is successful, the process ends gracefully. Else, throw ```InsufficientParamsException()```.
 
 **CommandHandler** <br />
@@ -260,7 +270,7 @@ between the operation and the `param` that it accepts.
 1. Typically used within Logic Managers to handle processing of `CommandPacket` instances to decide sub-operations
 to perform to achieve full operation specified by the user. 
 1. Example:`handleDeleteLedger()`
-    1. Uses `retrieveLedgerCommand` to interpret the `ledger` instance to deleted, as specified by the user
+    1. Uses `retrieveledgerHandler` to interpret the `ledger` instance to deleted, as specified by the user
     1. Retrieves the `ledger` instance and performs delete within the method.   
 
 
@@ -332,7 +342,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |--------|----------|
 |```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.
 |```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.
-|```ManualTracker```| [Refer to section above](#handlerAndCommand).
+|```ManualTracker```| [Refer to section above](#LogicManagerAndHandler).
 |```EntryTracker```| Omitted for brevity.
 
 **Logic Manager and Data** <br />
@@ -341,7 +351,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 |Class| Function |
 |--------|--------|
-|```ManualTracker```| [Refer to section above](#handlerAndCommand).
+|```ManualTracker```| [Refer to section above](#LogicManagerAndHandler).
 |```EntryTracker```| Omitted for brevity.
 |```EntryList```| Omitted for brevity.
 |```Entry```| Omitted for brevity.
@@ -351,6 +361,33 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
 |```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
 
+##### <a name="handlerAndLogic"></a> Handler and Logic
+
+![](uml_images/images_updated/Commands_Logic.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
+|```createledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
+|```retrieveEntryHandler```| Omitted and left as exercise for reader. : ^ )
+|```createentryHandler```| Omitted for brevity.
+|```editEntryHandler```| Omitted for brevity.
+|```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
+|```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
+
+##### <a name="LogicManagerAndHandler"></a> Logic Manager and Handler
+
+![](uml_images/images_updated/Handler_Commands.png)
+
+|Class| Function |
+|--------|----------|
+|```retrieveledgerHandler```| [Refer to section above](#handlerAndLogic).
+|```createledgerHandler```| [Refer to section above](#handlerAndLogic).
+|```retrieveEntryHandler```| Omitted for brevity.
+|```createentryHandler```| Omitted for brevity.
+|```editEntryHandler```| Omitted for brevity.
+|```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
+|```EntryTracker```| Omitted for brevity.
 
 
 **Functions with Sequence Diagrams** <br />
@@ -361,17 +398,17 @@ The Manual Tracker is capable of executing the following states of operation:
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
 In this case, ```handleCreateLedger()``` will be called.
 1. At ```handleCreateLedger()```, the following processes will be executed:
-    1. A new instance of ```createLedgerCommand``` is created. The input String array will be passed into 
-    ```createLedgerCommand.setRequiredParams()``` to set required params for a successful parse.
-    1. A new instance of ```Ledger``` will be instantiated and set to ```createLedgerCommand.currLedger```.
-    1. ```createLedgerCommand.handlePacket(packet)``` is called to handle params in the packet.
+    1. A new instance of ```createledgerHandler``` is created. The input String array will be passed into 
+    ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
+    1. A new instance of ```Ledger``` will be instantiated and set to ```createledgerHandler.currLedger```.
+    1. ```createledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
         1. Refer to the [section on Param Handling](#paramHandling) for more details pertaining to general param handling. 
-        1. For ```createLedgerCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
+        1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
         
-            |ParamType|ParamType String| Expected Param | Operation | Verification method |
-            |---------|----------------|----------------|-----------|---------------------|
-            |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
-1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createLedgerCommand``` instance
+|ParamType|ParamType String| Expected Param | Operation | Verification method |
+|---------|----------------|----------------|-----------|---------------------|
+|```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
+1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createledgerHandler``` instance
 and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
   
 ![](uml_images/images_updated/manualTrackerCreateLedgerSeqDiagram.png)
@@ -386,17 +423,17 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
     In this case, ```handleDeleteLedger()``` will be called.
 1. __Phase 1: Ledger retrieval__
     1. At ```handleDeleteLedger()```, the following processes will be executed:
-        1. A new instance of ```retrieveLedgerCommand``` is created. The input String array will be passed into 
-        ```createLedgerCommand.setRequiredParams()``` to set required params for a successful parse.
-        1. ```deleteLedgerCommand.handlePacket(packet)``` is called to handle params in the packet.
+        1. A new instance of ```retrieveledgerHandler``` is created. The input String array will be passed into 
+        ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
+        1. ```deleteledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
             1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
-            1. For ```createLedgerCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
+            1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
                 * Note that only one of the two params need to be invoked from the input. 
             
-        |ParamType|ParamType String| Expected Param | Operation | Verification method |
-                |---------|----------------|----------------|-----------|---------------------|
-                |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDate(packet)```|
-                |```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
+|ParamType|ParamType String| Expected Param | Operation | Verification method |
+|---------|----------------|----------------|-----------|---------------------|
+|```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDate(packet)```|
+|```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
 1. __Phase 2: Ledger Deletion__
     1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
@@ -413,35 +450,35 @@ The editing of details within the entry is performed in two phases: Entry Retrie
     In this case, ```handleEditEntry()``` will be called.
 1. __Phase 1: Entry retrieval__
     1. At ```handleEditEntry()```, the following processes will be executed:
-        1. A new instance of ```retrieveEntryCommand``` is created. The input String array will be passed into 
-        ```retrieveEntryCommand.setRequiredParams()``` to set required params for a successful parse.
-        1. ```retrieveEntryCommand.handlePacket(packet)``` is called to handle params in the packet.
+        1. A singleton instance of ```retrieveentryHandler``` is retrieved. The input String array will be passed into 
+        ```retrieveentryHandler.setRequiredParams()``` to set required params for a successful parse.
+        1. ```retrieveentryHandler.handlePacket(packet)``` is called to handle params in the packet.
             1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
-            1. For ```retrieveEntryCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
+            1. For ```retrieveentryHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
             
-        |ParamType|ParamType String| Expected Param | Operation | Verification method |
-                |---------|----------------|----------------|-----------|---------------------|
-                |```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```entryList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
+|ParamType|ParamType String| Expected Param | Operation | Verification method |
+|---------|----------------|----------------|-----------|---------------------|
+|```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```entryList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
         
         1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
 1. __Phase 2: Entry edit__
     1. Following Phase 1, the following processes will be executed:
-        1. A new instance of ```editEntryCommand``` is created. There is no need to call ```editEntryCommand.setRequiredParams()```
+        1. The singleton instance of ```editentryHandler``` is retrieved. There is no need to call ```editentryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
-        1. ```editEntryCommand.handlePacket(packet)``` is called to handle params in the packet.
-    1. ```editEntryCommand.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
-            1. For ```editEntryCommand```, the ```handleSingleParam``` abstract method will be implemented as follows:
+        1. `editeEntryHandler.setPacket(packet)` is called to set packet.
+    1. ```editentryHandler.handlePacket()``` is called to handle params in the packet.
+        1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
+        1. For ```editentryHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
             
-        |ParamType|ParamType String| Expected Param | Operation | Verification method |
-                |---------|----------------|----------------|-----------|---------------------|
-                |```PARAM.AMOUNT```|"/amt"|Double in 2 decimal places|Call ```entryList.setAmount()``` to set amount | ```ParamChecker.checkAndReturnDoubleSigned(packet)```|
-                |```PARAM.TIME```|"/time"|Various format of time in string, eg. "15:00"|Call ```entryList.setTime()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnTime(packet)```|
-                |```PARAM.INC```|"-i"|Income entry type flag|Call ```entryList.setEntryType(EntryType.INC)``` to set index of retrieved item. | ```nil```|
-                |```PARAM.EXP```|"-e"|Expense entry type flag|Call ```entryList.setEntryType(EntryType.EXP)``` to set index of retrieved item. | ```nil```|
-                |```PARAM.DESCRIPTION```|"/desc"|Description in string, ';' character is illegal.|Call ```entryList.setDescription()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDescription(packet)```|
-                |```PARAM.CATEGORY```|"/cat"|A set of strings that corresponds with entry type|Call ```entryList.setCategory()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnCategories(packet)```|
+|ParamType|ParamType String| Expected Param | Operation | Verification method |
+|---------|----------------|----------------|-----------|---------------------|
+|```PARAM.AMOUNT```|"/amt"|Double in 2 decimal places|Call ```entryList.setAmount()``` to set amount | ```ParamChecker.checkAndReturnDoubleSigned(packet)```|
+|```PARAM.TIME```|"/time"|Various format of time in string, eg. "15:00"|Call ```entryList.setTime()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnTime(packet)```|
+|```PARAM.INC```|"-i"|Income entry type flag|Call ```entryList.setEntryType(EntryType.INC)``` to set index of retrieved item. | ```nil```|
+|```PARAM.EXP```|"-e"|Expense entry type flag|Call ```entryList.setEntryType(EntryType.EXP)``` to set index of retrieved item. | ```nil```|
+|```PARAM.DESCRIPTION```|"/desc"|Description in string, ';' character is illegal.|Call ```entryList.setDescription()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDescription(packet)```|
+|```PARAM.CATEGORY```|"/cat"|A set of strings that corresponds with entry type|Call ```entryList.setCategory()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnCategories(packet)```|
             
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram.png)
 

@@ -41,12 +41,12 @@ rectangle CommandHandlers {
     }
 
     rectangle "Ledger CommandHandlers" {
-        class createLedgerCommand {
+        class createLedgerHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveLedgerCommand {
+        class retrieveLedgerHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
@@ -59,17 +59,17 @@ rectangle CommandHandlers {
 
 
     rectangle "Entry CommandHandlers" {
-        class createEntryCommand {
+        class createEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class editEntryHandler {
+        class editEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveEntryHandler {
+        class retrieveEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
@@ -87,15 +87,15 @@ rectangle CommandHandlers {
 
 
 
-    ParamChecker "1" <.[norank]. createLedgerCommand #line:blue;text:black
-    ParamChecker "1" <.[norank]. retrieveLedgerCommand #line:blue;text:black
-    ParamChecker "1" <.[norank]. createEntryCommand #line:blue;text:black
+    ParamChecker "1" <.[norank]. createLedgerHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. retrieveLedgerHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. createEntryHandler #line:blue;text:black
     ParamChecker "1" <.[norank]. editEntryHandler #line:blue;text:black
     ParamChecker "1" <.[norank]. retrieveEntryHandler #line:blue;text:black
     ParamChecker "1" <.[norank]. XYZCommands #line:blue;text:black
-    "{abstract}\nParamHandler" <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
-    "{abstract}\nParamHandler" <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
-    "{abstract}\nParamHandler" <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- createLedgerHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- retrieveLedgerHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- createEntryHandler #line:purple;line.bold;text:red
     "{abstract}\nParamHandler" <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
     "{abstract}\nParamHandler" <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
     "{abstract}\nParamHandler" <|-[norank]- XYZCommands #line:purple;line.bold;text:red

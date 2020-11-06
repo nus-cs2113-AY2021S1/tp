@@ -17,8 +17,14 @@ rectangle "Storage Output" {
     }
 }
 
-
+note as N1
+    Arrow direction: 
+    A ----> B
+    A uses B
+end note
 rectangle FinanceIt {
+    rectangle ReminderGenerator {
+    }
 
     rectangle InputManager {
     }
@@ -35,17 +41,18 @@ rectangle FinanceIt {
     rectangle Model {
     }
 
-    LogicManager <-- Model: Manipulates data \nrepresented in Model
-    Storage <--- Model: Performs save and \nload operations
-    LogicManager <... InputManager : Receives processed input
-    LogicManager ...> Logic : Handles operation \ncontrol flow and logic
+    ReminderGenerator --> Model : Generates recurring entry\n reminders with
+    LogicManager --> Model: Manipulates data \nrepresented in Model
+    Storage <--- Model #blue :  Performs save and \nload operations
+    LogicManager ...> InputManager : Receives processed input
+    LogicManager ...> Logic : Handles logic of \nparam-dependent operations
     Storage <.. "Storage Output" : Handles saving of \nprogram state \ninto text files
 
 }
-rectangle Person {
+rectangle User {
 }
 
-Person -> InputManager : Supply \ninput \nstring
-FinanceIt -[hidden]right Person
+User -> InputManager : Supply \ninput \nstring
+FinanceIt -[hidden]right User
 
 @enduml

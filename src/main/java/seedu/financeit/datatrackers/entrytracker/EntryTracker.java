@@ -97,7 +97,7 @@ public class EntryTracker {
             printValidCategories();
             break;
         default:
-            System.out.println("Command not recognised. Try again.");
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,"Command not recognised. Try again.");
             break;
         }
     }
