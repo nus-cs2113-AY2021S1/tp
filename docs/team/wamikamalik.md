@@ -60,3 +60,21 @@ requests [#111](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/111),
 * Set up the GitHub team organisation and repo
 * Added details about the different components in DG.
 * Maintained the issue tracker for specific features and some common tasks.
+
+#### Review/mentoring contributions
+* PRs reviewed (with non-trivial review comments): [#19](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/19), 
+[#28](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/28), 
+[#29](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/29), 
+[#31](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/31), 
+[#37](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/37), 
+[#59](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/59), 
+[#74](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/74), 
+[#78](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/78), 
+[#100](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/100), 
+[#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142)
+
+#### Contributions beyond the project team
+* Reported bugs and suggestions for other teams in the class (example: 
+[these issues](https://github.com/wamikamalik/ped/issues))
+* Provided suggestions for the developer guide of another team (
+[this PR](https://github.com/nus-cs2113-AY2021S1/tp/pull/3#pullrequestreview-520397387))
