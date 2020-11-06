@@ -32,7 +32,6 @@ public class Ui {
     }
 
     public void printByeMessage() {
-        printDividerLine();
         System.out.println("Thank you for using scheduler--;!");
         System.out.println("We hope to see you soon!");
         printDividerLine();
