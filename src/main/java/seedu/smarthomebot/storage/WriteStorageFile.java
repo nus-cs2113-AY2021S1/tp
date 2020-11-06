@@ -12,11 +12,12 @@ import java.io.PrintWriter;
 
 public class WriteStorageFile extends StorageFile {
 
-    private static final String FILE_PATH = "data/SmartHomeBot.txt";
+    private static String FILE_PATH;
     private final TextUi ui = new TextUi();
 
-    public WriteStorageFile(ApplianceList applianceList, LocationList locationList) {
+    public WriteStorageFile(String filePath, ApplianceList applianceList, LocationList locationList) {
         super(applianceList, locationList);
+        this.FILE_PATH = filePath;
     }
 
     @Override
