@@ -40,6 +40,86 @@ public class Parser {
     private static final String LOCATION_TYPE = "location";
 
     //@@author zongxian-ctrl
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput full user input string.
+     * @return command based on the user input.
+     */
+    public Command parseCommand(String userInput) {
+        String[] words = userInput.trim().split(" ", 2);
+        final String commandWord = words[0];
+        final String arguments = StringUtils.replaceOnce(userInput, commandWord, "").trim();
+
+        switch (commandWord) {
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+        case CreateCommand.COMMAND_WORD:
+            return prepareCreateCommand(arguments);
+        case RemoveCommand.COMMAND_WORD:
+            return prepareRemoveCommand(arguments);
+        case AddCommand.COMMAND_WORD:
+            return prepareAddCommand(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDeleteCommand(arguments);
+        case OnCommand.COMMAND_WORD:
+            return prepareOnCommand(arguments);
+        case OffCommand.COMMAND_WORD:
+            return prepareOffCommand(arguments);
+        case ListCommand.COMMAND_WORD:
+            return prepareListCommand(arguments);
+        case UsageCommand.COMMAND_WORD:
+            return new UsageCommand();
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        default:
+            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+
+    }
+
+    /**
+     * Parses arguments for CreateCommand by checking if arguments is valid.
+     *
+     * @param arguments parameter of CreateCommand.
+     * @return the prepared CreateCommand.
+     */
+    private Command prepareCreateCommand(String arguments) {
+        try {
+            if (isEmptyInput(arguments)) {
+                throw new EmptyParameterException();
+            }
+            if (hasIllegalCharacter(arguments)) {
+                throw new IllegalCharacterException();
+            }
+            return new CreateCommand(arguments);
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
+        } catch (IllegalCharacterException e) {
+            return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [LOCATION_NAME].");
+        }
+
+    }
+
+    /**
+     * Parses arguments for RemoveCommand by checking if arguments is valid.
+     *
+     * @param arguments parameter of RemoveCommand.
+     * @return the prepared RemoveCommand.
+     */
+    private Command prepareRemoveCommand(String arguments) {
+        try {
+            if (isEmptyInput(arguments)) {
+                throw new EmptyParameterException();
+            }
+            return new RemoveCommand(arguments);
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
+        }
+
+    }
 
     /**
      * Parses arguments into AddCommand format.
@@ -89,6 +169,25 @@ public class Parser {
         }
 
     }
+
+    /**
+     * Parses arguments for DeleteCommand by checking if arguments is valid.
+     *
+     * @param arguments parameter of DeleteCommand.
+     * @return the prepared DeleteCommand.
+     */
+    private Command prepareDeleteCommand(String arguments) {
+        try {
+            if (isEmptyInput(arguments)) {
+                throw new EmptyParameterException();
+            }
+            return new DeleteCommand(arguments);
+        } catch (EmptyParameterException e) {
+            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
+        }
+
+    }
+
     //@@author leonlowzd
 
     /**
@@ -174,6 +273,7 @@ public class Parser {
         }
     }
 
+    //@@author fanceso
     /**
      * Checks if the parameter is numerical value.
      *
@@ -188,8 +288,6 @@ public class Parser {
         }
 
     }
-
-    //@@author
 
     /**
      * Checks if the wattage entered by the user is valid.
@@ -211,7 +309,7 @@ public class Parser {
         }
     }
 
-    //@@author
+    //@@author zongxian-ctrl
 
     /**
      * Checks if the input is empty.
@@ -223,7 +321,6 @@ public class Parser {
         return (input.isEmpty());
     }
 
-    //@@author
 
     /**
      * Check if the input contains illegal character.
@@ -233,111 +330,6 @@ public class Parser {
      */
     private static boolean hasIllegalCharacter(String input) {
         return (input.contains(" ") || input.contains("/") || input.contains("|"));
-    }
-
-    //@@author
-
-    /**
-     * Parses user input into command for execution.
-     *
-     * @param userInput full user input string.
-     * @return command based on the user input.
-     */
-    public Command parseCommand(String userInput) {
-        String[] words = userInput.trim().split(" ", 2);
-        final String commandWord = words[0];
-        final String arguments = StringUtils.replaceOnce(userInput, commandWord, "").trim();
-
-        switch (commandWord) {
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        case CreateCommand.COMMAND_WORD:
-            return prepareCreateCommand(arguments);
-        case RemoveCommand.COMMAND_WORD:
-            return prepareRemoveCommand(arguments);
-        case AddCommand.COMMAND_WORD:
-            return prepareAddCommand(arguments);
-        case DeleteCommand.COMMAND_WORD:
-            return prepareDeleteCommand(arguments);
-        case OnCommand.COMMAND_WORD:
-            return prepareOnCommand(arguments);
-        case OffCommand.COMMAND_WORD:
-            return prepareOffCommand(arguments);
-        case ListCommand.COMMAND_WORD:
-            return prepareListCommand(arguments);
-        case UsageCommand.COMMAND_WORD:
-            return new UsageCommand();
-        case ResetCommand.COMMAND_WORD:
-            return new ResetCommand();
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-        default:
-            return new InvalidCommand(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-    }
-
-    //@@author
-
-    /**
-     * Parses arguments for CreateCommand by checking if arguments is valid.
-     *
-     * @param arguments parameter of CreateCommand.
-     * @return the prepared CreateCommand.
-     */
-    private Command prepareCreateCommand(String arguments) {
-        try {
-            if (isEmptyInput(arguments)) {
-                throw new EmptyParameterException();
-            }
-            if (hasIllegalCharacter(arguments)) {
-                throw new IllegalCharacterException();
-            }
-            return new CreateCommand(arguments);
-        } catch (EmptyParameterException e) {
-            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
-        } catch (IllegalCharacterException e) {
-            return new InvalidCommand(MESSAGE_ILLEGAL_CHARACTER + " [LOCATION_NAME].");
-        }
-
-    }
-
-    //@@author zongxian-ctrl
-
-    /**
-     * Parses arguments for RemoveCommand by checking if arguments is valid.
-     *
-     * @param arguments parameter of RemoveCommand.
-     * @return the prepared RemoveCommand.
-     */
-    private Command prepareRemoveCommand(String arguments) {
-        try {
-            if (isEmptyInput(arguments)) {
-                throw new EmptyParameterException();
-            }
-            return new RemoveCommand(arguments);
-        } catch (EmptyParameterException e) {
-            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
-        }
-
-    }
-
-    /**
-     * Parses arguments for DeleteCommand by checking if arguments is valid.
-     *
-     * @param arguments parameter of DeleteCommand.
-     * @return the prepared DeleteCommand.
-     */
-    private Command prepareDeleteCommand(String arguments) {
-        try {
-            if (isEmptyInput(arguments)) {
-                throw new EmptyParameterException();
-            }
-            return new DeleteCommand(arguments);
-        } catch (EmptyParameterException e) {
-            return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
-        }
-
     }
 
 }
