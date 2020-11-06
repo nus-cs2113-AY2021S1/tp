@@ -65,26 +65,26 @@ This guide provides you with in-depth information on setting up AniChan and how 
 
 ### 1.2 Using this guide
 
-Along the way you might encounter several icons. These icons can help provide several types of information that may be useful to you. 
+Along the way you might encounter several icons. These icons will provide you with different types of information that you may find useful.
 
 > :bulb: Take note when you see this icon, as it might tell you something important.
 
 > :memo: This icon represents a friendly tip that might be useful when using our application.
 
-> :warning: A caution that you have to keep in mind when using the command
+> :warning: A caution that you have to keep in mind when using the command.
 
-Lastly, text that are blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this user guide. 
+Lastly, text that is blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this user guide. 
 
 <br/>
 
 ## 2. Quick Start
-1.  Ensure that you have Java 11 or above installed.
+1.  Ensure that you have Java `11` or above installed.
 2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
 4.  Open **command prompt** or **terminal** and change directory into the folder. Run `java -jar AniChan.jar`.
 5.  You will be first greeted by the **command prompt** for your name and gender as shown below.
-6.  Upon completing these 2 prompts, you can begin using **AniChan**!
-7.  Type a command into the **command prompt** and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
+6.  Upon completing them, you will be able to start using **AniChan**!
+7.  Type in a command into the **command prompt** and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
 
 ![First Time Setup](images/User-Guide-Setting-Up.png)
 
@@ -108,15 +108,15 @@ E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.
 E.g. `estimate <SCRIPT_NAME> [-wph WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
 *   Order of parameters (`-n`, `-l`, etc.) are not important, but they have to be defined after the non-parameter fields. <br/>
-E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not an parameter.
+E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not a parameter.
 
 > :bulb: This is what the input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
 <br/>
 
 ### 3.1 View the help
-This command will provide the details of all available commands and their usage. 
-This is done by displaying the ‘Command Summary’ as listed below to you. 
+This command will provide the details of all available commands and their usage.
+This is done by displaying the ‘Command Summary’ as listed on the last page of the user guide [here](#5-command-summary).
 
 You can also view details of specific commands by specifying the optional command type in the input.
 
@@ -157,14 +157,14 @@ You would need 2 hour(s) 58 minute(s).
 <br/>
 
 ### 3.3 Browse through anime
-This command will provide a realistic **browsing** experience as you are able to ‘flip’ through pages of different anime series. This is a useful way to get a quick overview of all available anime series.
+This command provides a realistic **browsing** experience as it first splits the list of all available anime series into pages. You will then be able to ‘flip’ through these pages providing a useful way to get a quick overview of all the different anime and find interesting ones.
 
-`browse` will also has various parameters to customise each browsing session by being able to sort the anime list.
+`browse` will also have various parameters to customise each browsing session by being able to sort and change the order of the anime list.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
-*   `-s` will indicate how the list is sorted and will accept the values `name` or `rating` 
-*   `-o` will arrange the list in descending or ascending order by using the values `asc` or `dsc`
-*   The order of the parameters does not matter
+*   `-s` indicates how the list will be sorted by and accepts the values `name` or `rating`.
+*   `-o` will arrange the list in descending or ascending order by using the values `asc` or `dsc`.
+*   The order of the parameters does not matter.
 *   If no parameter or only `-o` is specified then it will display anime in no particular order.
 
 > :memo: It will actually be sorted according to its ID which is assigned randomly by our data source.
@@ -172,12 +172,12 @@ Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
 <br/>
 
 Here are some commonly used `browse` commands to get you started. Feel free to experiment with different combinations!
-*   `browse -s name` browse alphabetically from A - Z
-*   `browse -s rating -o dsc` browse starting from the most highly rated anime
+*   `browse -s name` browse alphabetically from A - Z.
+*   `browse -s rating -o dsc` browse starting from the most highly rated anime.
 
 <br/>
 
-Example of usage: `browse -s name -o asc`
+Example of usage: `browse -s name -o asc`.
 
 The expected outcome:
 ```text
@@ -207,14 +207,13 @@ Browsing Page: 1
 <br/>
 
 ### 3.4 Search for anime
-Search is a versatile tool that will allow you to search through all available anime for a specific anime, anime belonging to a certain genre, or all anime that has a keyword.
+Search is a versatile tool that will allow you to search for a specific anime series or an anime belonging to a genre. Search can also find anime with just a keyword, which would be useful for long or hard to remove anime titles.
 
-The following subsections below describes the various search-relation operations.
-
+The following subsections below will describe the various search-related operations.
 <br/>
 
 ### 3.4.1 Search by anime title
-Search for all anime titles that contain or match precisely the search term.
+Search for all anime titles that **contains** or **matches** the search term precisely.
 
 Format: `search -n <SEARCH_TERM>` 
 
@@ -234,18 +233,13 @@ The expected outcome:
 <br/>
 
 ### 3.4.2 Search by genre
-Search for anime that has the genre matching the search term.
+Search for all anime series that has the genre matching the search term.
 
 Format: `search -g <SEARCH_TERM>`
 
 <br/>
 
-Here are some popular anime genres that you can try out!
-*   Action
-*   Adventure
-*   Music
-*   Mecha
-*   Sci-Fi
+> :bulb: Here are some popular genres that you may wish try out: Action, Adventure, Music, Mecha, Sci-Fi.
 
 <br/>
 

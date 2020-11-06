@@ -59,17 +59,17 @@
 
 ### 1.1 Purpose
 
-This document is meant for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan**, and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that would continue to be edited and updated with each major release. The current edition of this document is intended for the release v2.1.
+This document is for new and current developers of **AniChan**. It describes the overall architecture design of **AniChan** and lays out the current implementation details of our notable features with the rationale and considerations behind each one. It is a living document that will continue to be edited and updated with each major release. The current edition of this document is intended for the `v2.1` release.
 
 ### 1.2 Using this Guide
 
-Along the way you might encounter several icons. These icons can help provide several types of information that may be useful to you. 
+Along the way you might encounter several icons. These icons will provide you with different types of information that you may find useful.
 
 > :bulb: Take note when you see this icon, as it might tell you something important.
 
 > :memo: This icon represents a friendly tip that might be useful when using our application.
 
-Lastly, text that are blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this developer guide.
+Lastly, text that is blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this developer guide.
 
 <br/>
 
@@ -121,15 +121,15 @@ If you are using IDEA, follow this guide [IDEA: Configuring the code style](http
     
 #### 2.2.2 Set up CI
     
-There is no set up required as the project comes with a GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
+There is no set up required as the project comes with GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
     
 #### 2.2.3 Learn the Design
     
-Before starting to write any code, we recommend that you have a look at **AniChan**'s overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
+Before starting to write any code, we recommend that you have a look at **AniChan**’s overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
     
 <br/>
 
-## 3. Design 
+## 3. Design
 
 The following section describes the architecture design of **AniChan**. This section starts off by looking at the overall architecture design in a general view, before going into the specific implementation details of the individual features.
 
@@ -159,12 +159,12 @@ The rest of **AniChan** consists of 6 components:
 *   `Parser`: Parses the user input.
 *   `Command`: Executes the command.
 *   `User`: Manages the workspace(s) and user data.
-*   `AnimeData`: Provides data from the anime source file.
+*   `AnimeData`: Provides data from the anime source files.
 *   `StorageManager`: Reads data from, and writes data to, the hard disk.
 
 <br/>
 
-Below are some example sequence diagram to help illustrate the general program flow and how the different objects interact with each other.
+Below are some example sequence diagrams to help illustrate the general program flow and how the different objects interact with each other.
 
 The first sequence diagram below shows the program flow of starting AniChan as an existing user.
 ![Starting Sequence Diagram](images/Starting-Sequence-Diagram.png) <br/>
@@ -181,13 +181,13 @@ The next sequence diagram shows an instance of command execution.
 
 ### 3.2 UI Component
 ![UI Class Diagram](images/Ui-Class-Diagram.png) <br/>
-*Figure 4: UI Class Diagram*
+*Figure 4: Ui Class Diagram*
 
-The UI component consists of a `UI` class that handles all user input and system output. The UI is only dependent on the `Main` class and does not interact directly with other classes, ensuring high cohesiveness and separation of roles.
+The Ui component consists of a `Ui` class which handles all user input and system output. The Ui is only dependent on the `Main` class and does not interact directly with other classes, ensuring a high level of cohesiveness and separation of roles.
 
-The `Ui` component listens for: 
-*   the execution of commands to print the result of the Command.
-*   any exceptions thrown to show an error message to the user, instead of a program termination.
+The `Ui` component actively listens for: 
+*   the execution of commands to print the result of a `Command`.
+*   any exceptions thrown to show an error message to the user, instead of an unexpected program termination.
 
 <br/>
 
@@ -199,9 +199,9 @@ The `Parser` component consists of a `Parser` class and multiple `XYZParser`, ea
 
 Once the command type is known, it will then create the respective `XYZParser` class.
 
-Example: If Browse command was parsed, `Parser` will create a new instance of `BrowseParser`.
+> :memo: XYZ here is used generally to represent any command parser. E.g. If a `browse` input was parsed, `Parser` will create a new instance of `BrowseParser`.
 
-`XYZParser` will then parse the parameter and perform input validation, before creating the Command object to return to `Main`.
+The created `XYZParser` will then parse the parameter and perform input validations, before creating a `Command` object to return to `Main`.
 
 <br/>
 
@@ -209,11 +209,11 @@ Example: If Browse command was parsed, `Parser` will create a new instance of `B
 ![Command Class Diagram](images/Command-Class-Diagram.png) <br/>
 *Figure 6: Command Class Diagram*
 
-The `Command` component consists of different commands, each represented by `XYZCommand` which inherits from the abstract `Command` class. 
+The `Command` component consists of different commands, each represented by `XYZCommand` which inherits from the abstract `Command` class.
 
-Example: The Browse command would be represented by a `BrowseCommand`.
+> :memo: This is similar to the parser above. E.g. A `browse` command would be represented by a `BrowseCommand`.
 
-`Main` would utilise the `Command#execute()` operation to carry out the execution of the `Command` and retrieve a String output that will contain the successful result of the `Command`. If the `Command` was not successful, an exception will be thrown with details of the failure.
+`Main` would utilise the `Command#execute()` operation to carry out the execution of the `Command` which will return a String output that will contain the successful result of the `Command`. If the `Command` was not successful, an exception will be thrown with details of the failure.
 
 <br/>
 
@@ -334,9 +334,7 @@ We have decided to the implement the first approach, **users should specify the 
 <br/>
 
 ### 4.2 Browse Feature
-The browse feature is a useful feature that will allow users to quickly look through all 
-the different anime series available in a browsing fashion. The feature will have several enhancements such 
-as sorted browsing to browse in alphabetical or by the rating of the anime.
+The browse feature is a useful feature that will allow users to quickly look through all the different anime series available in a browsing fashion.`browse` is also able to sort the order of how anime are displayed either in alphabetical order or by the anime's rating.
 
 <br/>
 
@@ -346,13 +344,11 @@ The `BrowseCommand` is executed by `BrowseCommandParser` after parsing the user 
 *   `BrowseCommand#buildBrowseOutput()` - Creates the output string to be printed to users.
 <br/>
 
-Given above are the two fundamental operations that will carry out the execution of the browse command.
+Given above are the two fundamental operations that will carry out the execution of a `browse` command.
 
-`BrowseCommand` will be constructed with default values. This ensures that even when there is no input provided, 
-it can still perform a default browse and return relevant useful information.
+If no additional parameters is provided, `BrowseCommand` will be constructed with default values. This ensures it will still perform the default `browse` and return a page of anime series that may be useful.
 
-Before going any further, please refer to this helpful table of the `BrowseCommand` parameters for reference.
-These are the attributes that will define the scope of a browse command.
+Before going any further, please refer to this helpful table of the `BrowseCommand` parameters for reference. These are the attributes that will define the scope of a `browse` command.
 
 | Attribute | Value  | Function          |
 | ---       | ---    | ---               |
@@ -364,25 +360,21 @@ These are the attributes that will define the scope of a browse command.
 | sortType  | 3      | back to original  |
 | page      | \>= 1  | page number       |
 
-> :bulb: The magic values have already been refactored out into constant variables.
+> :bulb: The values which are magic literals here, have already been refactored out into constant variables within the code.
 
-Given below is an example usage scenario to showcase how a `BrowseCommand` will behave at each step. 
-This example will utilise a small sample list of `AnimeData` and a page size of `3`.
+Given below is an example usage scenario to showcase how a `BrowseCommand` will behave at each step. This example will utilise a small sample list of `AnimeData` and a page size of `3`.
 
-> :memo: The page size is set to `20` as default in actual execution. 
+> :memo: The page size is set to `20` as the default in the actual program.
 
-**Step 1:** When the user enters the command for `Browse`, the input will be processed and parsed by `Parser` and 
-then further parsed by `BrowseParser`.
+**Step 1:** When the user enters the command for `browse`, the input will be processed and parsed by `Parser` before being further parsed by `BrowseParser`.
 
-**Step 2:** Upon completion of parsing and input validation, `BrowseParser` will create an executable `BrowseCommand` 
-object and return it to `Main`.
+**Step 2:** Upon completion of parsing and input validation, `BrowseParser` will create an executable `BrowseCommand` object and return it to `Main`.
 
-**Step 3:** Once the `BrowseCommand` object is executed, it will firstly process the `AnimeData` by calling on its `BrowseCommand#sortBrowseList()` operation to identify the order that the list will need to be in (if any).
+**Step 3:** Once the `BrowseCommand` object finishes its execution, it will first process the `AnimeData` by calling on its `BrowseCommand#sortBrowseList()` operation to identify the order that the list will need to be in (if any).
 
-For this case since it is a default browse operation, there is no sorting performed.
+For this case, since it is a default browse operation, there will be no sorting performed.
 
-**Step 4:** Now `BrowseCommand` will utilise its `BrowseCommand#buildBrowseOutput()` operation to access all 
-`Anime` objects within the page window, as shown in the diagram below.
+**Step 4:** Now `BrowseCommand` will utilise its `BrowseCommand#buildBrowseOutput()` operation to access all `Anime` objects within the page window, as shown in the diagram below.
 
 ![Browse Object Diagram 1](images/Browse-Default-State.png) <br/>
 *Figure 11: Browse Default State Object Diagram*
@@ -394,32 +386,31 @@ Echo
 Gamma
 ```
 
-If the 2nd page of the list was requested instead with the command `browse -p 2`. 
-`BrowseCommand#buildBrowseOutput()` will shift its page window down by 1 page as depicted in the diagram below.
+If the 2nd page of the list was requested instead using the input `browse -p 2`. `BrowseCommand#buildBrowseOutput()` will shift its page window down by 1 page as depicted in the diagram below.
 
 ![Browse Object Diagram 2](images/Browse-Default-State2.png) <br/>
 *Figure 12: Browse Next Page Object Diagram*
 
-**Step 5:** For each `Anime` object, it will access its methods to get the relevant information about that anime series and construct a printable result for the user to view.
+**Step 5:** For each `Anime` object, it will access the `Anime` object's methods to get the relevant information about that anime series and construct a printable result for the user to view.
 
-**Step 6:** After all `Anime` objects in the page window have been retrieved, it will return the printable result back to `BrowseCommand#execute()`. At this point it will utilise `BrowseCommand#sortBrowseList()` again to reset the `AnimeData` list to its original form if it has been altered.
+**Step 6:** After all `Anime` objects in the page window have been retrieved, it will return the printable result back to `BrowseCommand#execute()`. At this point, it will utilise `BrowseCommand#sortBrowseList()` again to reset the `AnimeData` list to its original form if it has been altered.
 
 **Step 7:** Once `AnimeData` has been sorted, it will return the result back to `Main` for printing.
 
-Currently, this result is not very exciting as it is just based on the Anime ID which is assigned randomly by our data source, AniList.
+Currently, this result is not very exciting as it is just based on the `Anime` object ID which is assigned randomly by our data source, AniList.
 
-An example scenario would be browsing the 2nd page of a **sorted** list in ascending order.
-The only step that would change would be at Step 3, where it will perform sorting of `AnimeData` list. 
+A more interesting example scenario would be browsing the 2nd page of a **sorted** list in ascending order. The only step that would change would be at Step 3, where it will perform sorting of `AnimeData` list. 
 
 ![Browse Object Diagram 3](images/Browse-Sorted-State.png) <br/>
 *Figure 13: Browse Sorted State Object Diagram*
 
-As you can see, even though the page window is at the same position as the previous command, 
-the list is different as it has been sorted.
+As you can see, even though the page window is at the same position as the previous command, the list is now different as it has been sorted.
 
-From this point onwards, the operation will continue as per the steps above, but during the final `BrowseCommand#sortBrowseList()` call in step 6. It will perform a sort to reset the list.
+From this point on, the operation will continue as per the steps above, but during the final `BrowseCommand#sortBrowseList()` call in step 6. It will perform a sort to reset the list.
 
-Here is the sequence diagram to better illustrate the lifecycle of a browse command.
+> :bulb: The reason for why a reset sort is needed is further elaborated in the design consideration.
+
+Here is the sequence diagram to better illustrate the lifecycle of a `browse` command upon its execute() call.
 
 ![Browse Sequence Diagram](images/Browse-SequenceDiagram.png) <br/>
 *Figure 14: Browse Sorted Sequence Diagram*
@@ -435,12 +426,11 @@ Since `browse` would require a sorted list, it is important to identify a suitab
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Leaving the list unsorted.        | - No complexity and fastest approach.  | - List will be unsorted and may cause confusion to users. |
+| Leaving the list unsorted.        | - No complexity at all and is the fastest approach.  | - List will be unsorted and may cause confusion to users and other operations. |
 | Resorting the list again.         | - The list will be back into its original form before browsing.    | - May hinder performance as resorting could take time. <br/> - Requires altering of the main list. |
 | Cloning a duplicate list to sort. | - The list will be back to its original form. <br/> - The main list will not be affected at all. | - Expensive operation that will require large storage and time complexity. |
 
-We have decided to implement the second approach of **resorting the list** because it is important to have the original order of the list to ensure that
-other operations will not be affected by `browse`. This approach also is the most cost-effective method that will not incur too many expensive operations and memory usage.
+We have decided to implement the second approach of **resorting the list** because it is important to have the original order of the list to ensure that other operations will not be affected by `browse`. This approach also is the most cost-effective method that will not incur too many expensive memory usage and complex operations.
 
 <br/>
 
@@ -450,12 +440,10 @@ Since `browse` will access anime series in pages, it is important to decide the 
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Interactive browsing, users can `flip` pages and `pick` to view specific anime. | - Fluid and seamless browsing session. <br/>- Very good usability. | - Would require `BrowseCommand` to get user input. |
+| Interactive browsing, users can `flip` pages and `pick` to view specific anime. | - Fluid and seamless browsing session. <br/>- Very good usability and interactivity. | - Would require `BrowseCommand` to constantly get user input. |
 | Static browsing, users specify the page they want to access. | - Completely decoupled from Ui component. <br/>- Allows for browse to be more precise in finding what the user wants. |  - Not as seamless as the first approach but still usable. |
 
-We have decided to implement the second approach of having **static browsing** which users specify the page he wants to access. This is because it was important
-for the project to be OOP and this approach was a good fit for that requirement. This approach also allows for users to access different pages quickly,
-meaning more experienced users will be able to utilise it quicker than the first approach.
+We have decided to implement the second approach of having **static browsing** which users specify the page he wants to access. This is because it was important for the project to be OOP and this approach was a good fit for that requirement. This approach also allows for users to access different pages quickly, meaning more experienced users will be able to utilise it quicker than the first approach.
 
 <br/>
 
@@ -1252,7 +1240,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.X: Adding an anime to active watchlist
+### D.7: Adding an anime to active watchlist
 1.  Adding an anime to active watchlist.
     1.  Prerequisite: The active watchlist does not contain the anime to be added.
     
@@ -1268,7 +1256,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.X: Removing an anime from active watchlist
+### D.8: Removing an anime from active watchlist
 1.  Removing an anime from active watchlist.
     1.  Prerequisite: The active watchlist must contain at least one anime.
     
@@ -1284,7 +1272,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.X: Viewing all anime in a specific or active watchlist
+### D.9: Viewing all anime in a specific or active watchlist
 1.  Viewing all anime in a specific or active watchlist.
     1.  Prerequisite: The watchlist must contain at least one anime.
     
@@ -1299,7 +1287,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.X: Viewing the information of a specific anime
+### D.10: Viewing the information of a specific anime
 1.  Viewing the information of a specific anime.
     1.  Prerequisite: None.
     
@@ -1315,7 +1303,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: Listing bookmark entries
+### D.11: Listing bookmark entries
 1.  Listing bookmark entries.
     1.  Prerequisite: None.
 
@@ -1324,7 +1312,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: Adding a bookmark entry
+### D.12: Adding a bookmark entry
 1.  Adding a bookmark entry.
     1.  Prerequisite: Look up the anime ID using the `info` command. The anime ID is in `AnimeData` source.
 
@@ -1340,7 +1328,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: Deleting a bookmark entry
+### D.13: Deleting a bookmark entry
 1.  Deleting a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
@@ -1356,7 +1344,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: View information of a bookmark entry
+### D.14: View information of a bookmark entry
 1.  View information of a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
@@ -1371,7 +1359,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: Editing a bookmark entry episode
+### D.15: Editing a bookmark entry episode
 1.  Editing a bookmark entry episode.
     1.  Prerequisite: 
         1.  List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
@@ -1391,7 +1379,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: Adding a note to a bookmark entry
+### D.16: Adding a note to a bookmark entry
 1.  Adding a note to a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
          
@@ -1409,7 +1397,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: Removing a note from a bookmark entry
+### D.17: Removing a note from a bookmark entry
 1.  Removing a note from a bookmark entry.
     1.  Prerequisite:  View the information on bookmark entry using 'bookmark <BOOKMARK_ID>'. Multiple notes for that bookmarked anime.
 
@@ -1427,8 +1415,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
 
-### D.x: Browse 
-1.  Utilising the `browse` feature
+### D.18: Browse 
+1.  Utilising the `browse` feature.
     1.  Prerequisite:  None.
 
     2.  Test case: `browse` <br/>
@@ -1438,25 +1426,25 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: Will list 20 anime series according to the most popular anime ratings.
     
     4.  Test case: `browse -s rating -o asc` <br/>
-    Expected: Will list 20 anime series from the lowest rated anime series.
+    Expected: Will list 20 anime series from the lowest rated anime series (Ascending order).
     
     5.  Other incorrect commands to try: 
         1.  `browse -s alpha`
-        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter)
+        2.  `browse -p x` (where x is a negative number, a word, or an additional parameter.)
         3.  `browse -s name -s rating`
         4.  `browse ---`
         5.  `browse -s rating-o asc`
 <br/>
 
-### D.x: Search by name
-1.  Finding an anime series with `search` feature
+### D.19: Search by name
+1.  Finding an anime series with `search` feature.
     1.  Prerequisite:  None.
 
     2.  Test case: `search -n Mushi` <br/>
-    Expected: Will return anime with the keyword 'Mushi'. In this case it would return MUSHI-SHI.
+    Expected: Will return anime with the keyword 'Mushi'. In this case it would return 'MUSHI-SHI'.
     
     3.  Test case: `search -n MUSHI-` <br/>
-    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return MUSHI-SHI.
+    Expected: Will return anime with the keyword 'MUSHI-'. In this case it would return 'MUSHI-SHI'.
     
     4.  Other incorrect commands to try: 
         1.  `search`
@@ -1464,15 +1452,15 @@ If you wish to add new checks, simply add the check file with a filename `check-
         3.  `search -n`
 <br/>
 
-### D.x: Search by genre
-1.  Finding all anime series that has a specific genre with `search` feature
+### D.20: Search by genre
+1.  Finding all anime series that has a specific genre with `search` feature.
     1.  Prerequisite:  None.
 
     2.  Test case: `search -g Music` <br/>
-    Expected: Will return all anime that has 'Music' as its genre
+    Expected: Will return all anime that has 'Music' as its genre.
     
     3.  Test case: `search -n slice of life` <br/>
-    Expected: Will return anime that has 'Slice of Life' as its genre
+    Expected: Will return anime that has 'Slice of Life' as its genre.
     
     4.  Other incorrect commands to try: 
         1.  `search`
@@ -1480,7 +1468,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
         3.  `search -g`
 <br/>
   
-### D.x: Create a new Workspace
+### D.21: Create a new Workspace
 1.  Create a new Workspace with `workspace` feature
     1.  Prerequisite:  None.
     
@@ -1496,7 +1484,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
             3.  `workspace -N`
 <br/>
             
-### D.x: Switch to a different Workspace
+### D.22: Switch to a different Workspace
 1.  Switch to a different Workspace with `workspace` feature
     1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
     
@@ -1512,7 +1500,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
             3.  `workspace -S`
 <br/>
 
-### D.x: List all Workspace
+### D.23: List all Workspace
 1.  List all Workspace with `workspace` feature
     1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
     
@@ -1523,7 +1511,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
             1.  `workspace`
 <br/>
             
-### D.x: Delete a Workspace
+### D.24: Delete a Workspace
 1.  Delete a Workspace with `workspace` feature
     1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
     
