@@ -50,17 +50,17 @@ public class RemoveCommandParserTest {
     }
 
     @Test
-    public void parse_validInput_returnsRemoveModuleCommand() throws Exception {
+    public void parse_validInputAdmin_returnsRemoveModuleCommand() throws Exception {
         assertTrue(parser.parse("1", ADMIN) instanceof RemoveModuleCommand);
     }
 
     @Test
-    public void parse_validInput_returnsRemoveChapterCommand() throws Exception {
+    public void parse_validInputModule_returnsRemoveChapterCommand() throws Exception {
         assertTrue(parser.parse("1", MODULE) instanceof RemoveChapterCommand);
     }
 
     @Test
-    public void parse_validInput_returnsRemoveCardCommand() throws Exception {
+    public void parse_validInputChapter_returnsRemoveCardCommand() throws Exception {
         assertTrue(parser.parse("1", CHAPTER) instanceof RemoveCardCommand);
     }
 
