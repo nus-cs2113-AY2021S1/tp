@@ -6,6 +6,9 @@ import ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents an AddCommand which contains methods used in the various AddCommand classes.
+ */
 public abstract class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
@@ -29,6 +32,14 @@ public abstract class AddCommand extends Command {
     @Override
     public abstract void execute(Ui ui, Access access, Storage storage) throws IOException;
 
+    /**
+     * Constructs the result of the command execution.
+     *
+     * @param type module, chapter or card type
+     * @param content content that is added
+     * @param count total number of modules, chapters or flashcards
+     * @return result to be displayed
+     */
     public String prepareResult(String type, String content, int count) {
         StringBuilder result = new StringBuilder();
         result.append(String.format(MESSAGE_SUCCESS, type));
