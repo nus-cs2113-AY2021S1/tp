@@ -127,7 +127,7 @@ Format: `help`
 
 Expected outcome:
 
-![help](images/Help_command.PNG)
+![help_command](images/Help_command.png)
 
 *Figure 3. A list of available commands and their formats will be displayed.*
 
@@ -180,7 +180,7 @@ Example of usage:
 
 Expected outcome:
 
-![edit_intial_list](images/edit_initial_list.png)
+![edit_intial_list](images/edit_Initial_list.png)
 
 *Figure 8. Initial list before edits.*
 
@@ -223,19 +223,19 @@ Expected outcome:
 
 `list`:
 
-![list](images/list_normal.PNG)
+![list](images/list_normal.png)
 
 *Figure 12. Default list, tasks are in order of their addition to the list.*
 
 `list -d`:
 
-![list_date](images/list_date.PNG)
+![list_date](images/list_date.png)
 
 *Figure 13. List tasks by date, from oldest to newest.*
 
 `list -p`:
 
-![list_priority](images/list_priority.PNG)
+![list_priority](images/list_priority.png)
 
 *Figure 14. List tasks by priority, from HIGH to LOW.*
 
@@ -265,7 +265,7 @@ Example of usage:
 
 Expected outcome:
 
-![search_meeting](images/search_meeting.PNG)
+![search_meeting](images/search_meeting.png)
 
 *Figure 17. A list of tasks containing the keyword will be displayed.*
 
