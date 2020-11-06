@@ -23,8 +23,20 @@ import exception.InvalidInputException;
 
 import static common.Messages.MESSAGE_INVALID_COMMAND_TYPE;
 
+/**
+ * Parses user input.
+ */
 public class Parser {
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param fullCommand full command input string
+     * @param access access level of the user
+     * @return the command based on the user input
+     * @throws InvalidInputException if the user input is not of the expected format
+     * @throws IncorrectAccessLevelException if the user input a command that cannot be executed at a access level
+     */
     public static Command parse(String fullCommand, Access access)
             throws InvalidInputException, IncorrectAccessLevelException {
         String[] commandTypeAndArgs = splitCommandTypeAndArgs(fullCommand);
@@ -88,6 +100,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Separates the command type and args.
+     *
+     * @param userCommand full user command input string
+     * @return the command type and args
+     */
     private static String[] splitCommandTypeAndArgs(String userCommand) {
         String[] commandTypeAndParams = userCommand.trim().split(" ", 2);
         if (commandTypeAndParams.length != 2) {

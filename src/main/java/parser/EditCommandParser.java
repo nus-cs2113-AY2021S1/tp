@@ -18,10 +18,22 @@ import static common.Messages.MESSAGE_NO_QUESTION_AND_ANSWER;
 import static common.Messages.MODULE;
 
 //@@author Jane-Ng
+/**
+ * Parses input arguments and creates a new EditModuleCommand, EditChapterCommand or EditCardCommand object.
+ */
 public class EditCommandParser {
 
     private static final String QUESTION_ANSWER_DIVIDER = " \\| ";
 
+    /**
+     * Parses the given arguments in the context of the EditCommand.
+     *
+     * @param commandArgs input arguments of the command
+     * @param accessLevel access level of the user
+     * @return an EditModuleCommand, EditChapterCommand or EditCardCommand object based on the access level
+     * @throws InvalidInputException if the user input is not of the expected format
+     * @throws IncorrectAccessLevelException if the command cannot be executed at the access level
+     */
     public Command parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
         switch (accessLevel) {
@@ -46,6 +58,13 @@ public class EditCommandParser {
         }
     }
 
+    /**
+     * Parses arguments in the context of the edit module command.
+     *
+     * @param commandArgs full command args string
+     * @return an EditModuleCommand object for execution
+     * @throws InvalidInputException if the user input is not of the expected format
+     */
     private static Command prepareEditModule(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);
@@ -62,6 +81,13 @@ public class EditCommandParser {
         }
     }
 
+    /**
+     * Parses arguments in the context of the edit chapter command.
+     *
+     * @param commandArgs full command args string
+     * @return an EditChapterCommand object for execution
+     * @throws InvalidInputException if the user input is not of the expected format
+     */
     private static Command prepareEditChapter(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);
@@ -79,6 +105,13 @@ public class EditCommandParser {
         }
     }
 
+    /**
+     * Parses arguments in the context of the edit card command.
+     *
+     * @param commandArgs full command args string
+     * @return an EditCardCommand object for execution
+     * @throws InvalidInputException if the user input is not of the expected format
+     */
     private static Command prepareEditCard(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);
