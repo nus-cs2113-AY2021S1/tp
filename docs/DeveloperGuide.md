@@ -833,10 +833,8 @@ Expected: An error message indicating that the input supplied was in a wrong for
 1. Test case: `list`<br>
 Expected: A list of the shows you have added will be displayed into the terminal. If no shows have been added, the list wil be empty.
 
-2. Test case: `List`<br>
+2. Test case: `list a`<br>
 Expected: An error message indicating that the input supplied was in a wrong format.
-
-> **[NOTE]** The command input is case-sensitive.
 
 #### Finding a show in your watch list
 
