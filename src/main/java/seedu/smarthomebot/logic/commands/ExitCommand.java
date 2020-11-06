@@ -4,7 +4,8 @@ import seedu.smarthomebot.data.appliance.Appliance;
 
 import java.util.logging.Level;
 
-import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+
 
 //@@author Ang_Cheng_Jun
 
@@ -15,8 +16,6 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
     public static final String MESSAGE_USAGE = "Exiting the application: " + COMMAND_WORD;
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
-            "Exiting SmartHomeBot as requested, all Appliances are switched off.";
 
     /**
      * Method to check if ExitCommand class is created.

@@ -51,4 +51,11 @@ public class Messages {
             "Empty Parameter detected! Please follow format and enter required parameters.";
 
     public static final String MESSAGE_LOCATION_EXIST = "Location already exist";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
+            "Exiting SmartHomeBot as requested, all Appliances are switched off.";
+    public static final String MESSAGE_FILE_DOES_NOT_EXIST = "Load File does not exist. No contents will be loaded.";
+    public static final String MESSAGE_WRITE_FILE_ERROR = "An error occurred while writing storage file.";
+    public static final String MESSAGE_FILE_CREATION_ERROR = "Something went wrong. Unable to create file.";
+    public static final String MESSAGE_CLEAR_FILE_ERROR = "Storage file does not exist";
+    public static final String MESSAGE_EMPTY_FILE = "The storage file is empty. No contents will be loaded.";
 }
