@@ -1019,6 +1019,7 @@ You should see the following:
 #### 7.6.1 Add Save
 ##### Positive test
 1. Enter ```add /name save123``` into the console.
+<br />
 You should see the following:
 <br />
 ![capture](uml_images/saveManager/puml/Capture.PNG)
@@ -1026,7 +1027,8 @@ You should see the following:
 ![capture2](uml_images/saveManager/puml/Capture2.PNG)
 
 ##### Negative test
-1. Enter ```add /name``` into the console
+1. Enter ```add /name``` into the console.
+<br />
 You should see the following:
 <br />
 ![capture1](uml_images/saveManager/puml/Capture1.PNG)
@@ -1034,12 +1036,14 @@ You should see the following:
 #### 7.6.2 Load Save
 ##### Positive test
 1. Enter ```load /name save123``` into the console.
+<br />
 You should see the following:
 <br />
 ![capture3](uml_images/saveManager/puml/Capture3.PNG)
 
 ##### Negative test
 1. Enter ```load /name wrongName``` into the console.
+<br />
 You should see the following:
 <br />
 ![capture4](uml_images/saveManager/puml/Capture4.PNG)
@@ -1047,6 +1051,7 @@ You should see the following:
 #### 7.6.3 Delete Save
 ##### Positive test
 1. Enter ```delete /name save123``` into the console.
+<br />
 You should see the following:
 <br />
 ![capture5](uml_images/saveManager/puml/Capture5.PNG)
@@ -1055,6 +1060,7 @@ You should see the following:
 
 ##### Negative test
 1. Enter ```delete /name wrongName``` into the console.
+<br />
 You should see the following:
 <br />
 ![capture6](uml_images/saveManager/puml/Capture6.PNG)
