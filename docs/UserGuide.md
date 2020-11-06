@@ -36,11 +36,11 @@ Symbols / Formatting|Meaning
 To setup the application,
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `revised.jar` [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
-3. Transfer the jar file to the folder of your choice.
-4. Open a command prompt in the folder you just put the jar file in. Follow this [guide](https://www.groovypost.com/howto/open-command-window-terminal-window-specific-folder-windows-mac-linux/)
+1. Download the latest version of `revised.jar` [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
+1. Transfer the jar file to the folder of your choice.
+1. Open a command prompt in the folder you just put the jar file in. Follow this [guide](https://www.groovypost.com/howto/open-command-window-terminal-window-specific-folder-windows-mac-linux/)
 if you are unsure how.
-5. Run the command `java -jar revised.jar` to start the application.
+1. Run the command `java -jar revised.jar` to start the application.
 
 You will see the logo of the application, as shown below, once u run it.
 
@@ -423,7 +423,7 @@ Format:
 
 `deadline [DESCRIPTION] /by [TIME]`
 
-> ℹ️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
+> 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 >
 
 Example of usage: 
@@ -733,15 +733,15 @@ The data is stored under the `data/` folder in the same folder where you run the
 > (i.e. not via `bye` command).
 
 Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
-subjects and topics added. For example, if you add a `Maths` subject and a `Algebra` topic under it, a
-`Maths/` folder will be created under the `data/` folder and an `Algebra` folder will be created under the `Maths/`
+subjects and topics added. For example, if you add a `CS2113T` subject and a `Java` topic under it, a
+`CS2113T/` folder will be created under the `data/` folder and an `Java` folder will be created under the `Maths/`
 folder, as shown in figure 3.4.1 below. 
 
 <pre>
 revised.jar                     <em>--> <b>revisED</b> Application</em>
 data                            <em>--> Data main folder</em>
-└── Maths                       <em>--> Maths subject folder</em>
-    ├── Algebra                 <em>--> Algebra topic folder under Maths subject</em>
+└── CS2113T                     <em>--> CS2113T subject folder</em>
+    ├── Java                    <em>--> Java topic folder under CS2113T subject</em>
     │   ├── topicResults.json
     │   └── flashcards.json
     ├── subjectResults.json
@@ -846,20 +846,20 @@ below.
 <pre>
 [
   {                                                                  <em>--> Subject 1</em>
-    "title": "Maths",                                                
+    "title": "CS2113T",                                                
     "topics": {
-      "topics": [                                                    <em>--> Topics under Maths subject</em>
+      "topics": [                                                    <em>--> Topics under CS2113T subject</em>
         {                                                            <em>--> Topic 1</em>
-          "title": "Algebra",                                        
-          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Algebra topic</em>
+          "title": "Java",                                        
+          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Java topic</em>
           "results": {
-            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Algebra topic</em>
+            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Java topic</em>
           }
         },
         ...
       ]
     },
-    "tasks": {                                                       <em>--> Tasks under Maths subject</em>
+    "tasks": {                                                       <em>--> Tasks under CS2113T subject</em>
       "taskList": [
         {                                                            <em>--> Task 1</em>
           "description": "someTodoTask",
@@ -886,7 +886,7 @@ below.
       ]
     },                            
     "results": {
-      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under Maths subject</em>
+      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under CS2113T subject</em>
     }
   },
   ...                                                               <em>--> More subjects</em>

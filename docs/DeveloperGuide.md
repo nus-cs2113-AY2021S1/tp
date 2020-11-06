@@ -39,22 +39,20 @@
 
 ## 1. Introduction <a name="introduction"></a>
 
-RevisED is a command line application to help students revise by creating flashcards and taking quizzes, 
-and keeping track of their deadlines, tasks and any other important dates. This application allows users to add subjects, 
-their different topics and create different flashcards in form of question and answers on each topic. Students can also 
-take quizzes which asks them the questions that they added in form of flashcards and prompted to answer them. 
-The student can view results of these quizzes immediately and are stored so that students can view them later. 
-Additionally, students can delete, and list subjects, topics, and flashcards and find and enter subjects and topics.   
+**revisED** is a CLI application that helps students to revise by allowing them to create flashcards, take quizzes, 
+and keep track of their deadlines, tasks and any other important dates. The users can create different subjects, 
+add different topics under a subject, and create different flashcards in the form of questions and answers under a topic. They can also 
+take quizzes for the flashcards they have added and view the results. 
 
-This developer guide is for developers who wish to understand and/or develop ReviseED further. 
-This guide includes design, implementation, product scope, user stories, non-functional requirements, glossary, 
-testing and development sections to help developers better understand the application.
+This developer guide is for developers who wish to understand and/or develop **reviseED** further. 
+This guide includes design, implementation, logging, testing, product scope, and other
+sections to help developers better understand the application.
 
 Note the following symbols and formatting used in this document:
 
 Symbols / Formatting|Meaning
 ------|------
-ℹ️ **_NOTE:_** | Important or additional information
+📝️️ **_NOTE:_** | Important or additional information
 ⚠️ **_WARNING:_** | Things to avoid or pay extra attention to
 ✔️ **_TODO:_** | Things that should be but have not been done
 `Grey highlight` | Code or terms related to the code/application
@@ -63,15 +61,15 @@ Symbols / Formatting|Meaning
 
 This section guides you through the steps to setup the project on your computer.
 
-> ℹ️ **_NOTE:_** This guide assumes you already have [Java 11](https://openjdk.java.net/projects/jdk/11/) or above
+> 📝️️ **_NOTE:_** This guide assumes you already have [Java 11](https://openjdk.java.net/projects/jdk/11/) or above
 > installed on your computer. If you do not have it yet, follow the link
 > to download and install it. 
 
 1. Fork [this repo](https://github.com/AY2021S1-CS2113T-W13-1/tp) and clone the fork to your computer. Alternatively,
 download the source code from [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/releases).
-2. Open a console in the folder where `build.gradle` resides, and run the command `gradlew.bat run` if you are using Windows 
+1. Open a console in the folder where `build.gradle` resides, and run the command `gradlew.bat run` if you are using Windows 
 or `./gradlew run` if you are using Mac/Linux.
-3. If the setup is successful, you should see the greeting screen:
+1. If the setup is successful, you should see the greeting screen:
 ```
 > Task :run
 Hello from
@@ -92,8 +90,8 @@ ____________________________________________________________
 Alternatively, if you are using [IntelliJ](https://www.jetbrains.com/idea/), follow the first step above, then:
 
 1. Configure the Intellij for JDK 11, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
-2. Import the project as a Gradle project, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-3. Locate and click the `run` task under `Tasks > application > run` in the [Gradle tool window](https://www.jetbrains.com/help/idea/jetgradle-tool-window.html).
+1. Import the project as a Gradle project, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
+1. Locate and click the `run` task under `Tasks > application > run` in the [Gradle tool window](https://www.jetbrains.com/help/idea/jetgradle-tool-window.html).
 
 
 ## 3. Design <a name="design"></a>
@@ -526,7 +524,7 @@ when the application launches. On the other hand, exporting of data happens when
 ## 4. Implementation <a name="implementation"></a>
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Storing data 
+### 4.1 Storing data <a name="store-imp"></a>
 
 `Storage` class stores the data following the same logical structure (subject -> topic) of the application to 
 make the stored data more presentable to the user. `Subject` and `Topic` data are stored as nested directories, while 
@@ -536,15 +534,15 @@ to the users and allows them to change the saved data manually.
 `Task` data are stored differently as text files due to 
 legacy reason, but they are also readable and can be changed manually as well. 
 
-> ℹ️ **_NOTE:_** If the users modify the file contents with wrong syntax, the data in the affected files will
+> 📝️️ **_NOTE:_** If the users modify the file contents with wrong syntax, the data in the affected files will
 > not be loaded and empty data will be returned instead so that the application can still run.
 
 An example of the structure mentioned is shown in the figure below.
 
 <pre>
 data                            <em>--> Data main folder</em>
-└── Maths                       <em>--> Maths subject folder</em>
-    ├── Algebra                 <em>--> Algebra topic folder under Maths subject</em>
+└── CS2113T                     <em>--> CS2113T subject folder</em>
+    ├── Java                    <em>--> Java topic folder under CS2113T subject</em>
     │   ├── topicResults.json
     │   └── flashcards.json
     ├── subjectResults.json
@@ -660,20 +658,20 @@ the application runs. An example of the file content is shown below.
 <pre>
 [
   {                                                                  <em>--> Subject 1</em>
-    "title": "Maths",                                                
+    "title": "CS2113T",                                                
     "topics": {
-      "topics": [                                                    <em>--> Topics under Maths subject</em>
+      "topics": [                                                    <em>--> Topics under CS2113T subject</em>
         {                                                            <em>--> Topic 1</em>
-          "title": "Algebra",                                        
-          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Algebra topic</em>
+          "title": "Java",                                        
+          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Java topic</em>
           "results": {
-            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Algebra topic</em>
+            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Java topic</em>
           }
         },
         ...
       ]
     },
-    "tasks": {                                                       <em>--> Tasks under Maths subject</em>
+    "tasks": {                                                       <em>--> Tasks under CS2113T subject</em>
       "taskList": [
         {                                                            <em>--> Task 1</em>
           "description": "someTodoTask",
@@ -700,7 +698,7 @@ the application runs. An example of the file content is shown below.
       ]
     },                            
     "results": {
-      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under Maths subject</em>
+      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under CS2113T subject</em>
     }
   },
   ...                                                               <em>--> More subjects</em>
@@ -747,7 +745,7 @@ to that of the SubjectQuiz class.
 The following diagram shows how you can initiate the quiz for a topic.
 ![topic](https://user-images.githubusercontent.com/46095141/98371459-2b06e000-2077-11eb-85dd-4850dbe7bba8.png)
 
-> ℹ️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
+> 📝️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
 >show the score obtained by the user.
 
@@ -762,7 +760,8 @@ There are three categories of descriptions: `Fail` for getting a score which is 
 for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
 
 ## 5. Logging <a name = "logging"> </a>
-Whenever you need to use logging in a class, add this line 
+We use [java.util.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/package-summary.html) 
+package for logging. Whenever you need to use logging in a class, add this line 
 
 ```
 java
@@ -770,10 +769,11 @@ private static final Logger logger = Logger.getLogger(CurrentClass.class.getName
 ```
 
 to the start of the class to get a logger instance,
-where `CurrentClass` is replaced by the class name you are adding the logger to. To learn more about
+where `CurrentClass` is replaced by the class name you are adding the logger to. 
+Subsequently, you can use the logger instance created to start logging. To learn more about
 how logging works, read the [official logging documentation](https://docs.oracle.com/javase/7/docs/technotes/guides/logging/overview.html).
 
-The current configuration logs all the messages with log levels above `FINE` into a file (`revisED%u.log`) in the same
+The current configuration logs all the messages with log levels above `FINE` into a file (`revisED.log`) in the same
 directory where the application is run. You can find more details about the logging configurations (and change them or add more)
 in `src/main/resources/logging.properties`. 
 For consistency, you should only change the behavior of logging via this file.
@@ -781,10 +781,15 @@ For consistency, you should only change the behavior of logging via this file.
 
 ## 6. Documentation <a name="documentation"></a>
 
-`/docs` folder contains the project documentation.It contains the following pages:
+All project documentations are put under the `/docs` folder. The following tools are used to write the documentations:
+ 
+* [Jekyll](https://jekyllrb.com/) to manage documentation
+* [Markdown](https://guides.github.com/features/mastering-markdown/) syntax for formatting
+* [PlantUML](https://plantuml.com/) for drawing diagrams
 
-* Individual contributions under the  `team` folder
-* The .md files for the UserGuide, README, and the DeveloperGuide
+To learn how set the documentation website up and maintain it, follow the guide [Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
+
+To convert the documents to PDF files for distribution, follow the guide [Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html).
 
 ## 7. Testing <a name="testing"></a>
 
@@ -819,7 +824,7 @@ To see what goes wrong, you can compare the content of `ACTUAL.txt` and the cont
 where `ACTUAL.txt` contains the actual output of the application and `EXPECTED.txt` shows the expected output of the 
 application given the inputs.
 
-> ℹ️ **_NOTE:_** You can change the inputs in `input.txt` and the expected output in `EXPECTED.txt` if you would like to
+> 📝️️ **_NOTE:_** You can change the inputs in `input.txt` and the expected output in `EXPECTED.txt` if you would like to
 > test more aspects of the application or if the input/expected output changes due to code modification.
 
 ### 7.3 Checkstyle
@@ -881,16 +886,15 @@ This section summarises various user stories of this application in the table be
 
 ## Appendix C: Non-Functional Requirements <a name="nfr"></a>
 
-The application satisfies the following requirements:
- * Portability: Users can transfer their data from the application since all the data is stored in a txt file.
- * Modifiability: Since the code is broken down into different packages and classes, developers would
- be able to modify the application with ease.
- * Simplicity: The application comes with a detailed user guide along with the help commands. Hence, users can always 
- refer to these to understand how to use the application.
- * Compatibility: The application runs on various operating systems: Windows, Linux etc
- * Testability: The application is built using Gradle, a tool that offers various testing capabilities. Furthermore,
- developers could also modify the input.txt file to provide a set of inputs and test if the application returns the 
- expected output.
+The following are the requirements that the application should satisfy:
+
+1. The application should be easily maintainable when bugs and errors occur. 
+1. The application should be scalable for possible future expansion of the project.
+1. The application should run on any mainstream OS as long as it has Java 11 or above installed.
+1. Application data should be portable so that it can be transferred between devices.
+1. The application should be easy to use or come with a detailed user guide/help for better user experience.
+1. The application should not crash when invalid or malicious user input is received.
+1. Users should be allowed to modify the saved data manually without causing disruption to the application operations.
 
 ## Appendix D: Glossary <a name="glossary"></a>
 
@@ -927,11 +931,55 @@ flashcards and an arraylist of results.
 
 ## Appendix E: Instructions for Manual Testing
 
-Given below are instructions to test the app manually.
+Given below are the instructions to test the app manually.
 
-1. Refer to the [UserGuide](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html) on how to download the application.
-2. Open the application in command prompt.
-3. Try out various commands in the userguide to check if it works.
-4. Try out invalid commands and check if the application responds correspondingly.
-5. Exit the application and check the data files to check if all the data has been saved.
-6. Open the application again and check if the data has been loaded correctly. Use the `list` command for this step.
+> 📝️️ **_NOTE:_** These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
+
+### Launching
+
+1. Refer to the [Quick Start](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html#start) to download and launch the application.
+1. **Expected:** The application should show the greeting screen as illustrated in the quick start section.
+
+### Testing features
+
+1. Run each command as demonstrated in the example of usage in the [Features](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html#features) section
+of the user guide.
+1. **Expected:** The output should match the sample output given.
+
+### Shutdown
+
+1. Run `exit` command until you reach the main level of the application (or until an error message saying the command is not recognized is displayed).
+1. Run `bye` command.
+1. **Expected:** A bye message should be displayed and the application should exit.
+
+### Saving data
+
+#### When shutdown normally  <a name="man-save-normal"></a>
+1. Create a new folder and copy the jar file used in the above steps to the new folder. 
+1. Navigate to the new folder and launch the application.
+1. Run `add CS2113T` then `subject CS2113T`.
+1. Run `add Java`.
+1. Run `exit` then `bye`.
+1. **Expected:** A `data/` folder containing the same structure as mentioned <a href="#store-imp">here</a> should be created
+in the new folder.
+
+#### When shutdown abruptly
+1. Follow steps 1 to 4 <a href="#man-save-normal">above</a> to add data.
+1. Close the console running the application, then navigate to the new folder via file explorer.
+1. **Expected:** No folder is found created in the new folder.
+
+### Loading data
+
+#### When data is not modified externally
+1. Follow all the steps <a href="#man-save-normal">above</a> to create saved data.
+1. Launch the application again.
+1. **Expected:** CS2113T subject and Java topic persist in the application.
+
+#### When data is modified externally
+1. Follow all the steps <a href="#man-save-normal">above</a> to create saved data.
+1. Go into the `data/` folder in the new folder.
+1. Rename the `CS2113T/` folder to `CS2040/`.
+1. Go back to the new folder and launch the application.
+1. **Expected:** CS2113T subject is changed to CS2040, and Java topic remains the same in the application.
+
+
