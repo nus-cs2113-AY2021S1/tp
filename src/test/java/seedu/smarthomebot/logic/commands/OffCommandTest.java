@@ -8,7 +8,8 @@ import seedu.smarthomebot.data.location.LocationList;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 
 public class OffCommandTest {
@@ -16,12 +17,10 @@ public class OffCommandTest {
     private LocationList myHome;
     private ArrayList<String> expectedOutput;
     private ApplianceList applianceList;
-    private ArrayList<String> emptyList;
 
     @BeforeEach
     public void setUp() throws Exception {
         applianceList = new ApplianceList();
-        emptyList = new ArrayList<>();
         expectedOutput = new ArrayList<>();
         myHome = new LocationList();
         myHome.addLocation("MasterRoom");
