@@ -14,6 +14,7 @@ import seedu.commands.Reminder;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
+
 import java.util.regex.Matcher;
 
 public class Parser {
@@ -35,7 +36,7 @@ public class Parser {
             } else {
                 throw new InvalidCommandException();
             }
-        }else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
+        } else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
             return new Bye();
         } else if (rawInput.startsWith(Clear.COMMAND_WORD)) {
             return new Clear();
