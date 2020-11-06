@@ -11,7 +11,7 @@ import java.util.Scanner;
 //@@author BenardoTang
 
 /**
- * Represents a Ui class that is responsible for Input/Output operations.
+ * Represents a Ui class that is responsible for Output operations.
  */
 public class Ui {
 
