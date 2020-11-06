@@ -115,25 +115,25 @@ class ModuleListTest {
     public void addModule_invalidModuleSpacing_printErrorMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String expectedStart = "The module code should have 2 - 3 characters, followed by "
-                + "4 digits, followed by an optional character without any spacing." + System.lineSeparator();
+        String expectedStart = "Please type addmod <module code>, with the module code having 2 - 3 characters, "
+                + "followed by 4 digits, followed by an optional character without any spacing.";
         String expectedEnd = "The accepted module code is of the following forms: CG1111, "
-                + "CS2113T, GER1000, GES1000T." + System.lineSeparator();
+                + "CS2113T, GER1000, GES1000T." + System.lineSeparator() + System.lineSeparator();
         modulesTest.addMod("addmod cs 1010", true, storage);
-        assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
+        assertEquals(expectedStart + System.lineSeparator() + expectedEnd, outContent.toString());
     }
 
     @Test
     public void addModule_invalidModuleChar_printErrorMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String expectedStart = "The module code should have 2 - 3 characters, followed by "
-                + "4 digits, followed by an optional character without any spacing." + System.lineSeparator();
+        String expectedStart = "Please type addmod <module code>, with the module code having 2 - 3 characters, "
+                + "followed by 4 digits, followed by an optional character without any spacing.";
         String expectedEnd = "The accepted module code is of the following forms: CG1111, "
-                + "CS2113T, GER1000, GES1000T." + System.lineSeparator();
+                + "CS2113T, GER1000, GES1000T." + System.lineSeparator() + System.lineSeparator();
 
         modulesTest.addMod("addmod cs1234567", true, storage);
-        assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
+        assertEquals(expectedStart + System.lineSeparator() + expectedEnd, outContent.toString());
     }
 
     @Test
@@ -246,11 +246,12 @@ class ModuleListTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.deleteTime("deleteTime CS123 5", true, storage);
-        String expectedStart = "The module code should have 2 - 3 characters, followed by "
-                + "4 digits, followed by an optional character without any spacing." + System.lineSeparator();
+        String expectedStart = "Please type deletetime <module code> <week number>, with the module code "
+                + "having 2 - 3 characters, followed by 4 digits, ";
+        String expectedMid = "followed by an optional character without any spacing." + System.lineSeparator();
         String expectedEnd = "The accepted module code is of the following forms: CG1111, "
                 + "CS2113T, GER1000, GES1000T." + System.lineSeparator();
-        assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
+        assertEquals(expectedStart + expectedMid + expectedEnd + System.lineSeparator(), outContent.toString());
     }
 
     @Test
@@ -258,9 +259,11 @@ class ModuleListTest {
         modulesTest.deleteMod("deleteMod CS1234", false, storage);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        String expected = "CS1234 does not exist." + System.lineSeparator();
+        String expectedStart = "Please type deletetime <module code> <week number> with an existing "
+                + "module code." + System.lineSeparator();
+        String expectedEnd = "CS1234 does not exist." + System.lineSeparator();
         modulesTest.deleteTime("deleteTime CS1234 4 1", true, storage);
-        assertEquals(expected + System.lineSeparator(), outContent.toString());
+        assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
     }
 
     @Test

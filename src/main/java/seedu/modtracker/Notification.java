@@ -122,7 +122,11 @@ public class Notification {
         ModuleList list = new ModuleList();
         numOfNotification = getNumNotification(list);
         if (numOfNotification > 0) {
-            System.out.println("You have " + numOfNotification + " notifications.");
+            if (numOfNotification == 1) {
+                System.out.println("You have 1 notification.");
+            } else {
+                System.out.println("You have " + numOfNotification + " notifications.");
+            }
             System.out.println(OPEN + System.lineSeparator());
         }
     }

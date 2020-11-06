@@ -29,6 +29,7 @@ public class ModuleList {
     private static final int MAX_TIME_HOURS = 99;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
+    private static final int EMPTY = 0;
     public static double NO_INPUT = -1.0;
 
 
@@ -90,7 +91,6 @@ public class ModuleList {
                 return true;
             }
         }
-        ui.printInvalidModuleType(toPrint);
         return false;
     }
 
@@ -196,6 +196,8 @@ public class ModuleList {
             modCode = modCode.toUpperCase();
 
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printAddModError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
@@ -212,6 +214,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printAddModError(toPrint);
+            ui.printEmptyline(toPrint);
         }
     }
 
@@ -231,6 +234,8 @@ public class ModuleList {
             String expTime = modInfo[2];
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printAddExpError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             if (!checkIfExpStringValid(expTime, toPrint)) {
@@ -265,6 +270,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printAddExpError(toPrint);
+            ui.printEmptyline(toPrint);
         } catch (NumberFormatException nfe) {
             ui.printAddExpNfe(toPrint);
         }
@@ -284,6 +290,8 @@ public class ModuleList {
             modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printDeleteModError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             if (checkIfModuleExist(modCode)) {
@@ -308,6 +316,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printDeleteModError(toPrint);
+            ui.printEmptyline(toPrint);
         }
     }
 
@@ -325,6 +334,8 @@ public class ModuleList {
             modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printDeleteExpError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             if (checkIfModuleExist(modCode)) {
@@ -344,6 +355,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printDeleteExpError(toPrint);
+            ui.printEmptyline(toPrint);
         }
     }
 
@@ -359,11 +371,14 @@ public class ModuleList {
         String modCode;
         modCode = commandInfo[1].toUpperCase();
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printDeleteTimeError(toPrint);
+            ui.printInvalidModuleType(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
         if (!checkIfModuleExist(modCode)) {
+            ui.printDeleteTimeNotExist(toPrint);
             ui.printNotExist(modCode, toPrint);
         } else {
             Module currentModule = new Module(modCode);
@@ -402,6 +417,7 @@ public class ModuleList {
         hours = Double.parseDouble(commandInfo[2]);
 
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printInvalidModule(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
@@ -456,6 +472,7 @@ public class ModuleList {
         hours = Double.parseDouble(commandInfo[2]);
 
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printInvalidModule(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
@@ -523,6 +540,7 @@ public class ModuleList {
         hours = Double.parseDouble(commandInfo[2]);
 
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printInvalidModule(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;

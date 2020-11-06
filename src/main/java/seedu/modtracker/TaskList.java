@@ -94,6 +94,7 @@ public class TaskList {
             String modCode = split[1];
             modCode = modCode.toUpperCase();
             if (!modList.checkIfModuleValid(modCode, true)) {
+                ui.printInvalidModule(toPrint);
                 return;
             }
             if (!modList.checkIfModuleExist(modCode)) {
