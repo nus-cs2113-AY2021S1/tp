@@ -30,6 +30,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_POWER_EXCEEDED;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_VALUE_NOT_NUMBER;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_PARAMETER_INVALID;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION;
+
 /**
  * Parses user input.
  */
