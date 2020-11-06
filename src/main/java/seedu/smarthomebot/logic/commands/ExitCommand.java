@@ -2,6 +2,7 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
 
+
 import java.util.logging.Level;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_EXIT_ACKNOWLEDGEMENT;

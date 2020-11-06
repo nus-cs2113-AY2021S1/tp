@@ -13,7 +13,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
 public class ListCommandTest {
 
     @Test
-    void listLocation_EmptyLocationList_catch_EmptyLocationListException() {
+    void listLocation_EmptyLocationList_EmptyLocationListException() {
         LocationList locationList = new LocationList();
         ApplianceList applianceList = new ApplianceList();
         Command listLocation = new ListCommand("location", "");
@@ -23,7 +23,7 @@ public class ListCommandTest {
     }
 
     @Test
-    void listAppliance_EmptyApplianceList_catch_EmptyApplianceListException() {
+    void listAppliance_EmptyApplianceList_EmptyApplianceListException() {
         LocationList locationList = new LocationList();
         ApplianceList applianceList = new ApplianceList();
         Command listAppliance = new ListCommand("appliance", "");
@@ -33,7 +33,7 @@ public class ListCommandTest {
     }
 
     @Test
-    void listApplianceByFilteredLocation_NoApplianceInFilteredLocation_catch_NoApplianceInLocationException() throws
+    void listApplianceByFilteredLocation_NoApplianceInFilteredLocation_NoApplianceInLocationException() throws
             DuplicateDataException {
         LocationList locationList = new LocationList();
         ApplianceList applianceList = new ApplianceList();
@@ -45,7 +45,7 @@ public class ListCommandTest {
     }
 
     @Test
-    void listApplianceByFilteredLocation_FilteredLocationNotFound_catch_LocationNotFoundException() throws
+    void listApplianceByFilteredLocation_FilteredLocationNotFound_LocationNotFoundException() throws
             DuplicateDataException {
         LocationList locationList = new LocationList();
         ApplianceList applianceList = new ApplianceList();

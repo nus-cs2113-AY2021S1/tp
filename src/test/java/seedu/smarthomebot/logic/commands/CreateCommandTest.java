@@ -34,7 +34,7 @@ public class CreateCommandTest {
     }
 
     @Test
-    void createLocationTest_DuplicateLocation_catch_DuplicateDataException() {
+    void createLocationTest_DuplicateLocation_DuplicateDataException() {
         Command createLocation = new CreateCommand("BedRoom1");
         createLocation.setData(applianceList, locationList);
         CommandResult actualCommandResult = createLocation.execute();
@@ -42,7 +42,7 @@ public class CreateCommandTest {
     }
 
     @Test
-    void createLocationTest_DuplicateNameAsAppliance_catch_InvalidLocationException() {
+    void createLocationTest_DuplicateNameAsAppliance_InvalidLocationException() {
         Command createLocation = new CreateCommand("l1");
         createLocation.setData(applianceList, locationList);
         CommandResult actualCommandResult = createLocation.execute();

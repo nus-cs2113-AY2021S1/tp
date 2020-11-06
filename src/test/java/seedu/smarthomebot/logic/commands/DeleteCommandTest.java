@@ -36,7 +36,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    void deleteApplianceTest_ApplianceNotIsList_catch_ApplianceNotFoundException() {
+    void deleteApplianceTest_ApplianceNotIsList_ApplianceNotFoundException() {
         Command deleteAppliance = new DeleteCommand("l3");
         deleteAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = deleteAppliance.execute();
