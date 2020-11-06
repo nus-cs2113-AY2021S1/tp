@@ -57,7 +57,7 @@ public class ApplianceList {
      * @param index Appliance to retrieve.
      */
     public Appliance getAppliance(int index) {
-        return this.applianceList.get(index);
+        return applianceList.get(index);
     }
 
     /**
@@ -66,7 +66,7 @@ public class ApplianceList {
      * @return the full list of the Appliances.
      */
     public ArrayList<Appliance> getAllAppliance() {
-        return this.applianceList;
+        return applianceList;
     }
 
     /**
@@ -76,7 +76,7 @@ public class ApplianceList {
      */
     public Boolean isApplianceExist(String toAddApplianceName) {
         boolean isExist = false;
-        for (Appliance a : this.applianceList) {
+        for (Appliance a : applianceList) {
             if (a.getName().equals(toAddApplianceName)) {
                 isExist = true;
                 break;
@@ -91,7 +91,7 @@ public class ApplianceList {
      * @param usersEnteredLocation Appliance to check.
      */
     public void deleteByLocation(String usersEnteredLocation) throws ApplianceNotFoundException {
-        for (int x = this.getAllAppliance().size() - 1; x >= 0; x--) {
+        for (int x = getAllAppliance().size() - 1; x >= 0; x--) {
             if (this.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
                 this.deleteAppliance((this.getAppliance(x).getName()));
             }
