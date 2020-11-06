@@ -17,14 +17,23 @@ class UpdateTimeLimitCommandTest {
     public static void main() {
         WatchTime limitation = new WatchTime(java.time.LocalDate.of(2020,10,19),60,120);
         assertEquals(WatchTime.getDailyWatchLimit(), 120);
-        ArrayList<String> inputExample = new ArrayList<>(Arrays.asList("updatetimelimit", "420"));
-        updateObject = new UpdateTimeLimitCommand("updatetimelimit", inputExample);
+
     }
 
 
     @Test
-    void processCommand() {
+    void minutesTest() {
+        ArrayList<String> inputExample = new ArrayList<>(Arrays.asList("updatetimelimit", "420"));
+        updateObject = new UpdateTimeLimitCommand("updatetimelimit", inputExample);
         updateObject.processCommand();
-        assertEquals(WatchTime.getDailyWatchLimit(), 420);
+        assertEquals(420,WatchTime.getDailyWatchLimit());
+    }
+
+    @Test
+    void hoursAndMinutesTest() {
+        ArrayList<String> inputExample = new ArrayList<>(Arrays.asList("updatetimelimit", "2h30m"));
+        updateObject = new UpdateTimeLimitCommand("updatetimelimit", inputExample);
+        updateObject.processCommand();
+        assertEquals(150,WatchTime.getDailyWatchLimit());
     }
 }

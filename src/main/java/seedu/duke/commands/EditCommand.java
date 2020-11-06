@@ -21,7 +21,8 @@ public class EditCommand {
      * Edits the number of seasons for a particular show.
      * @param editCommand number of seasons
      * @throws ArithmeticException when the input is negative
-     * @throws NumberFormatException when input is not int
+     * @throws NumberFormatException when input is not int or
+     *      when current season is set more than the new number of seasons
      */
     public static void editSeasons(String editCommand) throws ArithmeticException, NumberFormatException {
         int numSeasons = Integer.parseInt(editCommand.substring(7));
@@ -42,8 +43,11 @@ public class EditCommand {
                 episodes[i] = 1;
             }
         } else {
+            if (show.getCurrentSeason() > numSeasons) {
+                throw new NumberFormatException();
+            }
             episodes = new int[numSeasons];
-            //Started for 1 to reference the correct season number
+            //Started from 1 to reference the correct season number
             for (int i = 0; i < numSeasons; i++) {
                 episodes[i] = show.getRawEpisodesForSeason(i);
             }
@@ -59,9 +63,14 @@ public class EditCommand {
         String[] tokenizedInput = input.split(" ",2);
         try {
             int duration = TimeParser.parseTime(tokenizedInput[1]);
+            if (duration < 0) {
+                throw new RuntimeException();
+            }
             show.setEpisodeDuration(duration);
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printBadInputException();
+        } catch (RuntimeException e) {
+            return;
         }
     }
 
