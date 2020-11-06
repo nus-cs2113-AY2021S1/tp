@@ -24,6 +24,7 @@ public class Messages {
     public static final String MAX_NUM_TASK = "Max number of tasks reached!" + LS;
     public static final String EMPTY_DATA_STACK = "Empty data stack!" + LS;
     public static final String INVALID_REMINDER = "Invalid reminder command!" + LS;
+    public static final String IO_EXCEPTION = "Check data file!" + LS;
 
     public static final String WELCOME_MESSAGE = WELCOME_BORDER + LS
             + WELCOME_BORDER_SPACE + LS

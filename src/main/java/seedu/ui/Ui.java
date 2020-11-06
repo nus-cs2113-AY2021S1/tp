@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import static seedu.messages.Messages.IO_EXCEPTION;
 import static seedu.messages.Messages.LS;
 import static seedu.messages.Messages.WELCOME_MESSAGE;
 
@@ -181,5 +182,9 @@ public class Ui {
         } else if (result.getTask() != null) {
             displaySingleTask(result.getTask());
         }
+    }
+
+    public void showIoException() {
+        showMessage(IO_EXCEPTION);
     }
 }

@@ -44,7 +44,7 @@ public class Storage {
      */
     public TaskMap loadTasks() throws IOException, ParseException {
         // If both dir and file are newly created, return empty taskMap.
-        if (!createDirectory()) {
+        if (!createFile()) {
             TaskMap taskMap = readTasksFromFile();
             readTasksFromTimetable(taskMap);
             return taskMap;
@@ -57,16 +57,19 @@ public class Storage {
      *
      * @return true if directory is created at the point of execution.
      */
-    private boolean createDirectory() throws IOException {
+    private boolean createFile() throws IOException {
         File directory = new File(DIRECTORY_NAME);
-
+        File data = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         if (!directory.exists()) {
             boolean directoryCreated = directory.mkdir();
             assert directoryCreated;
-            boolean fileCreated = new File(DIRECTORY_NAME + "/" + FILE_NAME).createNewFile();
-            assert fileCreated;
-            return true;
+            return data.createNewFile();
         }
+
+        if (!data.exists()) {
+            return data.createNewFile();
+        }
+
         return false;
     }
 
