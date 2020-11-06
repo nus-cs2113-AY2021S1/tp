@@ -18,10 +18,11 @@ import seedu.smarthomebot.ui.TextUi;
 public class Main {
 
     private TextUi ui = new TextUi();
+    private static final String FILE_PATH = "data/SmartHomeBot.txt";
     private final ApplianceList applianceList = new ApplianceList();
     private final LocationList locationList = new LocationList();
-    private WriteStorageFile writeFile = new WriteStorageFile(applianceList, locationList);
-    private ReadStorageFile readFile = new ReadStorageFile(applianceList, locationList);
+    private WriteStorageFile writeFile = new WriteStorageFile(FILE_PATH, applianceList, locationList);
+    private ReadStorageFile readFile = new ReadStorageFile(FILE_PATH, applianceList, locationList);
 
     public static void main(String[] args) {
         new Main().run();
