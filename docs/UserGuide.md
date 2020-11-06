@@ -593,7 +593,7 @@ Example of usage: `bookmark 2 -e 5`
 
 The expected outcome:
 ```text
-Editing Trigun to have 5 episode(s).
+Editing the current episode for Trigun to episode(s) 5.
 ```
 
 <br/>
