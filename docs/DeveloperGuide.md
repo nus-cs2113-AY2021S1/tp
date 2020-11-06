@@ -749,10 +749,15 @@ For consistency, you should only change the behavior of logging via this file.
 
 ## 6. Documentation <a name="documentation"></a>
 
-`/docs` folder contains the project documentation.It contains the following pages:
+All project documentations are put under the `/docs` folder. The following tools are used to write the documentations:
+ 
+* [Jekyll](https://jekyllrb.com/) to manage documentation
+* [Markdown](https://guides.github.com/features/mastering-markdown/) syntax for formatting
+* [PlantUML](https://plantuml.com/) for drawing diagrams
 
-* Individual contributions under the  `team` folder
-* The .md files for the UserGuide, README, and the DeveloperGuide
+To learn how set the documentation website up and maintain it, follow the guide [Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
+
+To convert the documents to PDF files for distribution, follow the guide [Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html).
 
 ## 7. Testing <a name="testing"></a>
 
