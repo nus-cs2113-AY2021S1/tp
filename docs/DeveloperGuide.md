@@ -854,16 +854,15 @@ This section summarises various user stories of this application in the table be
 
 ## Appendix C: Non-Functional Requirements <a name="nfr"></a>
 
-The application satisfies the following requirements:
- * Portability: Users can transfer their data from the application since all the data is stored in a txt file.
- * Modifiability: Since the code is broken down into different packages and classes, developers would
- be able to modify the application with ease.
- * Simplicity: The application comes with a detailed user guide along with the help commands. Hence, users can always 
- refer to these to understand how to use the application.
- * Compatibility: The application runs on various operating systems: Windows, Linux etc
- * Testability: The application is built using Gradle, a tool that offers various testing capabilities. Furthermore,
- developers could also modify the input.txt file to provide a set of inputs and test if the application returns the 
- expected output.
+The following are the requirements that the application should satisfy:
+
+1. The application should be easily maintainable when bugs and errors occur. 
+1. The application should be scalable for possible future expansion of the project.
+1. The application should run on any mainstream OS as long as it has Java 11 or above installed.
+1. Application data should be portable so that it can be transferred between devices.
+1. The application should be easy to use or come with a detailed user guide/help for better user experience.
+1. The application should not crash when invalid or malicious user input is received.
+1. Users should be allowed to modify the saved data manually without causing disruption to the application operations.
 
 ## Appendix D: Glossary <a name="glossary"></a>
 
