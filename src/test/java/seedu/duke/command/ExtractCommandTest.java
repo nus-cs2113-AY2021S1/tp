@@ -285,8 +285,5 @@ class ExtractCommandTest {
         public void tearDown() {
             System.setOut(standardOut);
         }
-
-
-
     }
 }
