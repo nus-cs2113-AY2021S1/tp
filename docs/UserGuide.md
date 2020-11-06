@@ -145,53 +145,55 @@ Do note that:
  * Items in square brackets are [optional]
  * Items in brackets are (additional information)
 
-------------------------------------------------------Profile-------------------------------------------------------
-view profile                                                          View your profile information
-view bmi                                                              View your BMI
-edit name                                                             Edit your profile name
-edit age                                                              Edit your profile age
-edit gender                                                           Edit your profile gender
-edit height                                                           Edit your profile height
-edit weight                                                           Edit your profile weight
-edit fitness                                                          Edit your profile fitness
+----------------------------------------------------------------Profile-----------------------------------------------------------------
+view profile                                                                              View your profile information
+view bmi                                                                                  View your BMI
+edit name NEW_NAME                                                                        Edit your profile name
+edit age NEW_AGE                                                                          Edit your profile age
+edit gender NEW_GENDER ('M' for Male or 'F' for Female)                                   Edit your profile gender
+edit height NEW_HEIGHT (in m)                                                             Edit your profile height
+edit weight NEW_WEIGHT (in kg)                                                            Edit your profile weight
+edit fitness NEW_FITNESS_LEVEL (0 for Unfit; 1 for Normal; 2 for Fit)                     Edit your profile fitness
 
---------------------------------------------------------Food--------------------------------------------------------
-food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                      Add a food entry
-view food                                                             View your food entries
-view food DATE/MONTH/YEAR (dd/MM/yyyy)                                View your food entries on a specified date
-edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY
-                                                                      Edit your previous food entry
-delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                        Delete a food entry
-clear food                                                            Clear all your food entries
+------------------------------------------------------------------Food------------------------------------------------------------------
+food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                                          Add a food entry
+view food                                                                                 View your food entries
+view food DATE/MONTH/YEAR (dd/MM/yyyy)                                                    View your food entries on a specified date
+edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY    Edit your previous food entry
+delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                            Delete a food entry
+clear food                                                                                Clear all your food entries
 
-------------------------------------------------------Exercise------------------------------------------------------
-recommend                                                             Get a recommended workout
-reccomend WORKOUT_CATEGORY                                            Get a workout for a specific category or body part
-exercise NAME_OF_EXERCISE /CALORIES_BURNT                             Add an exercise entry
-view exercise                                                         View your exercise entries
-view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                            View your exercise entries on a specified date
-edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT
-                                                                      Edit your previous exercise entry
-delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                    Delete an exercise entry
-clear exercise                                                        Clear all your exercise entries
+----------------------------------------------------------------Exercise----------------------------------------------------------------
+recommend                                                                                 Get a recommended workout
+recommend aerobic                                                                         Get a recommended aerobic workout
+recommend upperbody                                                                       Get a recommended upperbody workout
+recommend lowerbody                                                                       Get a recommended lowerbody workout
+recommend stretch                                                                         Get a recommended stretch workout
+exercise NAME_OF_EXERCISE /CALORIES_BURNT                                                 Add an exercise entry
+view exercise                                                                             View your exercise entries
+view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                                                View your exercise entries on a specified date
+edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT         Edit your previous exercise entry
+delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                        Delete an exercise entry
+clear exercise                                                                            Clear all your exercise entries
 
---------------------------------------------------------Goal--------------------------------------------------------
-goal food GOAL_DESCRIPTION                                            Add a food goal
-goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES      Add a smart food goal
-goal exercise GOAL_DESCRIPTION                                        Add an exercise goal
-goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT      Add a smart exercise goal
-view goal                                                             View your goals
-edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                         Edit your previous goal entry
-complete goal INDEX                                                   Mark your goal entry as complete
-delete goal INDEX                                                     Delete a goal entry
-clear goal                                                            Clear all your goal entries
+------------------------------------------------------------------Goal------------------------------------------------------------------
+goal food GOAL_DESCRIPTION                                                                Add a food goal
+goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES                          Add a smart food goal
+goal exercise GOAL_DESCRIPTION                                                            Add an exercise goal
+goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT                          Add a smart exercise goal
+view goal                                                                                 View your goals
+edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                                             Edit your previous goal entry
+complete goal INDEX                                                                       Mark your goal entry as complete
+delete goal INDEX                                                                         Delete a goal entry
+clear goal                                                                                Clear all your goal entries
 
--------------------------------------------------------Other--------------------------------------------------------
-help                                                                  Display available commands
-view summary                                                          View calorie summary
-view summary DATE/MONTH/YEAR (dd/MM/yyyy)                             View calorie summary on a specified date
-clear                                                                 Clear all food, exercise and goal entries
-bye                                                                   Exit the application
+-----------------------------------------------------------------Other------------------------------------------------------------------
+help                                                                                      Display available commands
+view summary                                                                              View calorie summary
+view summary DATE/MONTH/YEAR (dd/MM/yyyy)                                                 View calorie summary on a specified date
+clear                                                                                     Clear all food, exercise and goal entries
+bye                                                                                       Exit the application
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.2.2 Viewing your profile	
@@ -365,6 +367,7 @@ Successfully edited exercise to: Push ups, calories burnt: 500
 
 ### 2.3.4 Editing a goal entry
 You can edit your previous goal entries, for example, if you previously made a mistake when entering the type or description of a goal.
+
 > :bulb:  **Additional information:** 
 > * By editing the goal entry, it will reset the status of the goal
 > * Smart goals will be updated based on the created date's calorie intake and calories burnt
