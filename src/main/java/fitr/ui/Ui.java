@@ -94,7 +94,7 @@ public class Ui {
         System.out.println(YELLOW_COLOUR + message + RESET_COLOUR);
     }
 
-    //Prints message in yellow
+    //Prints message in blue
     public static void printMessageInBlue(String message) {
         System.out.println(BLUE_COLOUR + message + RESET_COLOUR);
     }
