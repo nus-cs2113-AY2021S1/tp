@@ -21,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_FILE_DOES_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_EMPTY_FILE;
 
 public class ReadStorageFile extends StorageFile {
 
@@ -43,16 +45,20 @@ public class ReadStorageFile extends StorageFile {
             try {
                 readToLocationList(locationList);
                 readToApplianceList(i, myReader);
-                ui.printToUser(Messages.MESSAGE_IMPORT);
+                if (locationList.equals("[]")) {
+                    ui.printToUser(MESSAGE_EMPTY_FILE);
+                } else {
+                    ui.printToUser(Messages.MESSAGE_IMPORT);
+                }
             } catch (FileCorruptedException e) {
                 ui.printToUser(Messages.MESSAGE_FILE_CORRUPTED);
             }
             storageLogger.log(Level.INFO, "Successfully loaded Save File");
             myReader.close();
         } catch (FileNotFoundException | DuplicateDataException e) {
-            ui.printToUser("Load File does not exist. No contents will be loaded.");
+            ui.printToUser(MESSAGE_FILE_DOES_NOT_EXIST);
         } catch (NoSuchElementException e) {
-            ui.printToUser("Load File is corrupted.");
+            ui.printToUser(Messages.MESSAGE_FILE_CORRUPTED);
         }
     }
 
