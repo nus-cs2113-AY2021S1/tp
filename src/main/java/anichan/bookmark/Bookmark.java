@@ -140,6 +140,7 @@ public class Bookmark {
         for (Integer animeID : animeBookmarkList) {
             if (animeID.equals(animeIndex)) {
                 alreadyExist = true;
+                break;
             }
         }
         return alreadyExist;
