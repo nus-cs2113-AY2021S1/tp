@@ -16,8 +16,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ### Features implemented
 - Set up and designed the architecture used for Event scheduling in the timetable
     - Handled `Event`, `RecurringEvent`, `Timetable`, `Reminder` and other relevant `Command` subclasses for Event scheduling functionality.
-    - Event functionality was designed with scalability in mind. Immutability was largely enforced to ensure consistency of Events even across re-occurrences.
-    - Designed to reduce circular dependencies to reduce coupling. 
+    - Event functionality was designed with scalability in mind. Immutability was largely enforced to ensure consistency of Events even across re-occurrences. Implemented Single-Responsibility-Principle, Tell-Don't-Ask and Liskov Substitution Principle in Designs.
+    - Designed to reduce circular dependencies to reduce couplin.
 - Assisted in development of two common `Parser` methods
 
 ### Code contributed
