@@ -1,5 +1,9 @@
 # **WatchNext** User Guide
 
+* Table of Contents
+{:toc}
+
+
 - [**WatchNext** User Guide](#watchnext-user-guide)
   - [1. Introduction](#1-introduction)
     - [1.a. What is **WatchNext**?](#1a-what-is-watchnext)
