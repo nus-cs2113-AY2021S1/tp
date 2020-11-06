@@ -139,7 +139,8 @@ public class AnimeStorage {
             JSONObject jsonDate = (JSONObject) jsonObject.get(START_DATE_JSON_FIELD);
             String[] animeReleaseDate;
             animeReleaseDate = new String[]{String.valueOf((long) jsonDate.get(YEAR_JSON_FIELD)),
-                    String.valueOf((long) jsonDate.get(MONTH_JSON_FIELD)), String.valueOf((long) jsonDate.get(DAY_JSON_FIELD))};
+                    String.valueOf((long) jsonDate.get(MONTH_JSON_FIELD)),
+                    String.valueOf((long) jsonDate.get(DAY_JSON_FIELD))};
             assert animeReleaseDate != null : RELEASE_DATE_NULL_ERROR;
 
             //getting rating

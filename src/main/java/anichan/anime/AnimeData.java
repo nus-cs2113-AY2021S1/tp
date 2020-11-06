@@ -39,11 +39,6 @@ public class AnimeData {
         return animeDataList;
     }
 
-    /**
-     *
-     * @param animeIndex
-     * @return
-     */
     public String returnAnimeInfo(int animeIndex) {
         Anime anime = animeDataList.get(animeIndex);
         StringBuilder result = new StringBuilder();
