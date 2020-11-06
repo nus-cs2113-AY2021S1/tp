@@ -27,17 +27,17 @@ public class UsageCommand extends Command {
         double totalUsage = 0;
         int index = 1;
         try {
-            ArrayList<Appliance> usageApplianceList = applianceList.getAllAppliance();
-            if (usageApplianceList.size() == 0) {
+            ArrayList<Appliance> outputApplianceList = applianceList.getAllAppliance();
+            if (outputApplianceList.size() == 0) {
                 throw new EmptyApplianceListException();
             } else {
                 autoFormattingStringIndex();
-                String outputResult = (LINE + MESSAGE_POWER_USAGE);
+                String outputResult = MESSAGE_POWER_USAGE;
                 String format = "%-2d. %-" + maxNameLength + "s"
                         + DISPLAY_LOCATION + "%-" + maxLocationLength + "s"
                         + DISPLAY_STATUS + "%-3s"
                         + DISPLAY_USAGE + "%.2f kWh";
-                for (Appliance a : usageApplianceList) {
+                for (Appliance a : outputApplianceList) {
                     outputResult = outputResult.concat(System.lineSeparator() + String.format(format, index,
                             a.getName(), a.getLocation(), a.getStatus(), a.getPowerInDouble()));
                     totalUsage += a.getPowerInDouble();
@@ -47,7 +47,7 @@ public class UsageCommand extends Command {
                 return new CommandResult(outputResult);
             }
         } catch (EmptyApplianceListException e) {
-            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
+            return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
         }
     }
 

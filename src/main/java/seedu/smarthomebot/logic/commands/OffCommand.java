@@ -2,8 +2,7 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
-import seedu.smarthomebot.logic.commands.exceptions.NoApplianceInLocationException;
+import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
 
@@ -35,7 +34,7 @@ public class OffCommand extends Command {
             String type = APPLIANCE_TYPE;
             ArrayList<Appliance> filterApplianceList =
                     (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                            .filter((s) -> s.getLocation().equals(this.argument))
+                            .filter((s) -> s.getLocation().equals(argument))
                             .collect(toList());
             if (!filterApplianceList.isEmpty()) {
                 type = LOCATION_TYPE;
@@ -57,33 +56,22 @@ public class OffCommand extends Command {
     }
 
     private CommandResult offByAppliance() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        int toOffApplianceIndex = getApplianceToOffIndex();
+        int toOffApplianceIndex = applianceList.getApplianceIndex(argument, locationList);
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, false);
         return new CommandResult(outputResult);
     }
 
-    private int getApplianceToOffIndex() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((argument))) {
-                return applianceList.getAllAppliance().indexOf(appliance);
-            }
-        }
-        if (locationList.isLocationCreated(argument)) {
-            throw new NoApplianceInLocationException();
-        }
-        throw new ApplianceNotFoundException();
-    }
 
     private CommandResult offByLocation() {
-        offByApplianceLoop();
-        String outputResult = "All Appliances in \"" + this.argument + "\" are turned off ";
+        offApplianceByLoop();
+        String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
         return new CommandResult(outputResult);
     }
 
-    private void offByApplianceLoop() {
+    private void offApplianceByLoop() {
         for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
-            if (toOffAppliance.getLocation().equals(this.argument)) {
+            if (toOffAppliance.getLocation().equals(argument)) {
                 offAppliance(toOffAppliance, true);
             }
         }

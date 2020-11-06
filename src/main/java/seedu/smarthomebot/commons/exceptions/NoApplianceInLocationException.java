@@ -1,4 +1,4 @@
-package seedu.smarthomebot.logic.commands.exceptions;
+package seedu.smarthomebot.commons.exceptions;
 
 public class NoApplianceInLocationException extends Exception {
 }

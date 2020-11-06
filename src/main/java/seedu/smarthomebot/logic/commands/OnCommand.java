@@ -4,7 +4,7 @@ import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.type.AirConditioner;
 import seedu.smarthomebot.data.appliance.type.Fan;
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.logic.commands.exceptions.NoApplianceInLocationException;
+import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 import seedu.smarthomebot.logic.commands.exceptions.NoParameterForLocationException;
 
 import java.util.ArrayList;
@@ -68,23 +68,12 @@ public class OnCommand extends Command {
 
 
     private CommandResult onByAppliance() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        int toOnApplianceIndex = getApplianceToOnIndex();
+        int toOnApplianceIndex = applianceList.getApplianceIndex(argument, locationList);
         Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
         String outputResult = onAppliance(toOnAppliance, false);
         return new CommandResult(outputResult);
     }
 
-    private int getApplianceToOnIndex() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((argument))) {
-                return applianceList.getAllAppliance().indexOf(appliance);
-            }
-        }
-        if (locationList.isLocationCreated(argument)) {
-            throw new NoApplianceInLocationException();
-        }
-        throw new ApplianceNotFoundException();
-    }
 
     private String setParameter(String parameter, Appliance appliance) {
         String setParameterStatement = "";
@@ -111,18 +100,18 @@ public class OnCommand extends Command {
         if (!parameter.isEmpty()) {
             throw new NoParameterForLocationException();
         } else {
-            return new CommandResult(onApplianceByLoop());
+            onApplianceByLoop();
+            String outputResult = "All Appliances in \"" + argument + "\" are turned on ";
+            return new CommandResult(outputResult);
         }
     }
 
-    private String onApplianceByLoop() {
+    private void onApplianceByLoop() {
         for (Appliance toOnAppliance : applianceList.getAllAppliance()) {
             if (toOnAppliance.getLocation().equals(argument)) {
                 onAppliance(toOnAppliance, true);
             }
         }
-        String outputResult = "All appliance in \"" + argument + "\" are turned on ";
-        return outputResult;
     }
 
     private String onAppliance(Appliance toOnAppliance, boolean isList) {

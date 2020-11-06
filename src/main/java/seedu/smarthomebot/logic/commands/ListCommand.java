@@ -1,16 +1,14 @@
 package seedu.smarthomebot.logic.commands;
 
-import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyLocationListException;
 import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
-import seedu.smarthomebot.logic.commands.exceptions.NoApplianceInLocationException;
+import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
-import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
@@ -70,15 +68,17 @@ public class ListCommand extends Command {
     private CommandResult listAppliance() throws LocationNotFoundException, EmptyApplianceListException,
             NoApplianceInLocationException {
         String outputResult;
+        ArrayList<Appliance> outputApplianceList = applianceList.getAllAppliance();
+
         if (filteredLocation.equals("")) {
-            if (applianceList.getAllAppliance().size() == 0) {
+            if (outputApplianceList.size() == 0) {
                 throw new EmptyApplianceListException();
             }
             String header = MESSAGE_LIST_APPLIANCES;
-            outputResult = displayOutput(header, applianceList.getAllAppliance());
+            outputResult = displayOutput(header, outputApplianceList);
         } else {
             ArrayList<Appliance> filterApplianceList =
-                    (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
+                    (ArrayList<Appliance>) outputApplianceList.stream()
                             .filter((s) -> s.getLocation().equals(filteredLocation))
                             .collect(toList());
 
@@ -96,13 +96,13 @@ public class ListCommand extends Command {
 
     private CommandResult listLocation(int index) throws EmptyLocationListException {
 
-        ArrayList<String> listLocationList = locationList.getAllLocations();
+        ArrayList<String> outputLocationList = locationList.getAllLocations();
 
-        if (listLocationList.size() == 0) {
+        if (outputLocationList.size() == 0) {
             throw new EmptyLocationListException();
         }
         String outputResult = MESSAGE_LIST_LOCATIONS;
-        for (String location : listLocationList) {
+        for (String location : outputLocationList) {
             outputResult = outputResult.concat(System.lineSeparator() + index + ": " + location);
             index++;
         }

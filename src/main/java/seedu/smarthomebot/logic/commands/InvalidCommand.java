@@ -16,7 +16,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(this.feedbackToUser);
+        return new CommandResult(feedbackToUser);
     }
 
 }
