@@ -21,6 +21,7 @@ public class ManualTracker {
     private static CommandPacket packet;
     private static boolean isUnderTest = false;
     private static boolean endTracker;
+    GoalTracker goalTracker = new GoalTracker();
 
     public static void setTestPacket(CommandPacket inputPacket) {
         packet = inputPacket;
@@ -31,7 +32,6 @@ public class ManualTracker {
         endTracker = false;
         UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
         while (!endTracker) {
-            endTracker = false;
             handleMainMenu();
         }
     }
@@ -162,9 +162,10 @@ public class ManualTracker {
 
             GoalTracker.storeLedgerDate(ledger);
 
-            EntryTracker.execute();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("%s opened!", ledger.getName()));
+
+            EntryTracker.execute();
         } catch (InsufficientParamsException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
