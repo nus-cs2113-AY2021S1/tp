@@ -152,6 +152,7 @@ clear food                                                            Clear all 
 
 ------------------------------------------------------Exercise------------------------------------------------------
 recommend                                                             Get a recommended workout
+reccomend WORKOUT_CATEGORY                                            Get a workout for a specific category or body part
 exercise NAME_OF_EXERCISE /CALORIES_BURNT                             Add an exercise entry
 view exercise                                                         View your exercise entries
 view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                            View your exercise entries on a specified date
@@ -429,11 +430,14 @@ Food, exercise and goal lists are all cleared!
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
 
 ### 2.6.1 Getting a recommended workout
-If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. 
+If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it.
+
+You can either just type in `recommend`, or you can follow recommend with one of the specified exercise categories. 
+The four categories are upperbody, lowebody, aerobic and stretch. For example, you can key in `recommend upperbody` and a workout that is just for your upperbody will be recommended
 
 If you do accept it, It will automatically be added into your exercise entries, however you can just to add particular exercises from the recommended list by keying in the index separated by spaces
 
-Format: `recommend`
+Format: `recommend` or `recommend WORKOUT_CATEGORY`
 
 For example, if you key in `recommend`, the expected outcome is as follows:
 ```
@@ -450,9 +454,29 @@ For example, if you key in `recommend`, the expected outcome is as follows:
     Intensity: 4 sets of 0.5 minutes
     Burnt Cal: 5
 Will you be doing this workout?
-type y for yes to add all 4 to your exercise list
-or you can type in the index of the exercises you want added to you exercise list (separated by a space)
-Any other key will be taken as a no :D
+type y for yes to add all 4 to your exercise list.
+or you can type in the index of the exercises you want added to you exercise list (separated by a space).
+Any other key will be taken as a no.
+```
+
+or if you key in `recommend upperbody`, the expected output is as follows:
+```
+1] Exercise: Planks to Pushup
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 8
+[2] Exercise: Plank Rotations
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[3] Exercise: Inclined Pullups
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[4] Exercise: Pullups
+    Intensity: 2 sets of 0.5 minutes
+    Burnt Cal: 4
+Will you be doing this workout?
+type y for yes to add all 4 to your exercise list.
+or you can type in the index of the exercises you want added to you exercise list (separated by a space).
+Any other key will be taken as a no.
 ```
 
 If you follow this up with a `y`, you will then see the exercises added in as follows
@@ -486,9 +510,9 @@ For example if you recommended exercises are as follows:
     Intensity: 4 sets of 0.5 minutes
     Burnt Cal: 5
 Will you be doing this workout?
-type y for yes to add all 4 to your exercise list
-or you can type in the index of the exercises you want added to you exercise list (separated by a space)
-Any other key will be taken as a no :D
+type y for yes to add all 4 to your exercise list.
+or you can type in the index of the exercises you want added to you exercise list (separated by a space).
+Any other key will be taken as a no.
 
 ```
 
@@ -550,6 +574,8 @@ View Exercise Entries on a Specified Date | `view exercise dd/MM/yyyy` | `view e
 View Goal Entry | `view goal` | 
 View Calorie Summary | `view summary` |
 View Calorie Summary on a Specified Date | `view summary dd/MM/yyyy` | `view summary 26/10/2020`
+Get a recommended general workout | `recommed` | 
+Get a recommended specific workout| `recommend WORKOUT_CATEGORY` | `recommend aerobic`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
 Edit Food Entry | `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 25/10/2020 1 green apple /50 1`
 Edit Exercise Entry | `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 25/10/2020 1 5km run /360`
@@ -561,6 +587,5 @@ Clear All Food Entries | `clear food` |
 Clear All Exercise Entries | `clear exercise` | 
 Clear All Goal Entries | `clear goal` | 
 Clear All Entries | `clear` |
-Get a Recommended Workout | `recommend` |
 Mark a Goal Entry as Completed | `complete goal INDEX` | `complete goal 4`
 Exit Fitr | `bye` | 

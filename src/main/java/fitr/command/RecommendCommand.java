@@ -59,9 +59,9 @@ public class RecommendCommand extends Command {
             }
 
             Ui.printCustomMessage("Will you be doing this workout?\n"
-                    + "type y for yes to add all 4 to your exercise list\n"
+                    + "type y for yes to add all 4 to your exercise list.\n"
                     + "or you can type in the index of the exercises you want added to you exercise list "
-                    + "(separated by a space)\nAny other key will be taken as a no");
+                    + "(separated by a space).\nAny other key will be taken as a no.");
 
             String checker = Ui.read();
 
