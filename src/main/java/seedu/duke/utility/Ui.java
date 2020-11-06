@@ -47,7 +47,7 @@ public class Ui {
     }
 
     /**
-     * Prints a line in the terminal and line break to enhance readability
+     * Prints a line in the terminal and line break to enhance readability.
      */
     public static void printLine() {
         System.out.println("________________________________________________________________________________");
@@ -167,7 +167,7 @@ public class Ui {
     }
 
     /**
-     * Removes empty/whitespace lines when user copy-pastes input that may result in unknown errors
+     * Removes empty/whitespace lines when user copy-pastes input that may result in unknown errors.
      * @return valid input by user.
      */
     public String getUserCommand() {
@@ -390,6 +390,7 @@ public class Ui {
         System.out.println("Your watch time limit has been updated to " + newTime + " minutes."
             + "\n" + WatchTime.userReportString());
     }
+
     /**
      * Prints search results of shows that contain the keyword requested by the user.
      * @param name the name of the keyword that the user has requested for a search.
