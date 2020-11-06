@@ -281,7 +281,7 @@ to perform to achieve full operation specified by the user.
 - Saving outstanding user data to respective save files
 
 ### Manual Tracker & Entry Tracker
-#### Overview
+**Overview** <br />
 __Ledgers and Entries__
 
 In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
@@ -299,7 +299,7 @@ Instances of ```Entry``` class are categorised by the date of origin, which is r
 * Time of transaction
 * Collection of ```Entry```instances
 
-#### Manual Tracker
+**Manual Tracker** <br />
 
 The Manual Tracker is a feature that allows users to manage Ledgers with create, delete
 and open operations. Ledgers is a class that maintains a list of transactions that are 
@@ -322,9 +322,9 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
 |```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
 
-#### Architecture in Context
+**Architecture in Context** <br />
 
-#### Logic Manager and Parser
+**Logic Manager and Parser** <br />
 
 ![](uml_images/images_updated/Handler_Parser.png)
 
@@ -335,7 +335,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ManualTracker```| [Refer to section above](#handlerAndCommand).
 |```EntryTracker```| Omitted for brevity.
 
-#### Logic Manager and Data
+**Logic Manager and Data** <br />
 
 ![](uml_images/images_updated/Handler_Data.png)
 
@@ -353,9 +353,9 @@ The Manual Tracker is capable of executing the following states of operation:
 
 
 
-#### Functions with Sequence Diagrams
+**Functions with Sequence Diagrams** <br />
 
-##### Creation of Ledger
+**Creation of Ledger** <br />
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
@@ -377,7 +377,7 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 ![](uml_images/images_updated/manualTrackerCreateLedgerSeqDiagram.png)
 
 
-##### Deletion of Ledger
+**Deletion of Ledger** <br />
 The deletion of a specified ledger is performed in two phases: Ledger Retrieval and Ledger Delete.
 1. __Phase 0: Instruction retrieval__ 
     1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
@@ -404,7 +404,7 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
 
 ![](uml_images/images_updated/manualTrackerDeleteLedgerSeqDiagram.png)
 
-#### Entry Tracker: Edit of entries
+**Entry Tracker: Edit of entries** <br />
 The editing of details within the entry is performed in two phases: Entry Retrieval and Entry Edit.
 1. __Phase 0: Instruction retrieval__ 
     1. At ```EntryTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
@@ -449,8 +449,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 
 
 ### Recurring Tracker
-##### Overview
-##### Recurring Tracker
+**Overview** <br />
 Recurring Tracker handles the creation, deletion and editing of recurring entries.
 
 Entries use the class ```RecurringEntry```, and are stored in the ```RecurringEntryList``` class.
@@ -472,7 +471,7 @@ or manually deducted/credited from/to account
 * `getEntriesFromDayXtoY` - Returns an ArrayList of all entries that fall between day X and Y 
 (provided by developer in the code, not by user). Mainly used for reminders
 
-##### Reminders
+**Reminders** <br />
 Upon launching the program, the system date and time is recorded in `RunHistory`.
 
 The program then checks if there are any entries upcoming within 5 days from the current date, and prints the entries out
@@ -509,8 +508,8 @@ The sequence diagram below shows how it works:
 
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
 
-#### FinanceTools
-##### Overview
+### FinanceTools
+**Overview** <br />
 FinanceTools consists of the following features
 1. Simple Interest Calculator
 2. Yearly/Monthly Compound Interest Calculator
@@ -519,7 +518,7 @@ FinanceTools consists of the following features
 6. Account Storage
 7. Command and Calculation History
 
-##### Simple Interest Calculator
+**Simple Interest Calculator** <br />
 Simple Interest Calculator is facilitated by ```SimpleInterest``` class. It allows user to calculate interest earned.
 When user inputs ```simple``` as a command, ```handleSimpleInterest``` from ```Handler``` class will handle user
 inputted parameters. The calculation is done by ```SimpleInterest``` class. The result is outputted in
@@ -543,7 +542,7 @@ The following sequence diagram shows how the Simple Interest Calculator feature 
 <br />
 ![SequenceDiagram2](uml_images/financetools/SimpleInterest/SimpleInterestSequenceDiagram(2).png)
 
-##### Yearly/Monthly Compound Interest Calculator
+**Yearly/Monthly Compound Interest Calculator** <br />
 Yearly/Monthly Compound Interest Calculator is facilitated by ```YearlyCompoundInterest``` /
 ```MonthlyCompoundInterest``` class. It allows user to calculate interest earned.
 When user inputs ```cyearly``` / ```cmonthly``` as a command, ```handleYearlyCompoundInterest``` /
@@ -579,7 +578,7 @@ The following sequence diagram shows how the Yearly/Monthly Compound Interest Ca
 <br />
 ![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/MonthlyCompoundInterestSequenceDiagram(2).png)
 
-##### Cashback Calculator
+**Cashback Calculator** <br />
 Cashback Calculator is facilitated by ```Cashback``` class. It allows user to calculate cashback earned.
 When user inputs ```cashb``` as a command, ```handleCashback``` from ```Handler``` class will handle user
 inputted parameters. The calculation is done by ```Cashback``` class. The result is outputted in
@@ -604,7 +603,7 @@ The following sequence diagram shows how the Cashback Calculator feature works:
 <br />
 ![SequenceDiagram2](uml_images/financetools/Cashback/CashbackSequenceDiagram(2).png)
 
-##### Miles Credit Calculator
+**Miles Credit Calculator** <br />
 Miles Credit Calculator is facilitated by ```MilesCredit``` class. It allows user to calculate miles credit earned.
 When user inputs ```miles``` as a command, ```handleMilesCredit``` from ```Handler``` class will handle user
 inputted parameters. The calculation is done by ```MilesCredit``` class. The result is outputted in
@@ -628,7 +627,7 @@ The following sequence diagram shows how the Miles Creidt Calculator feature wor
 <br />
 ![SequenceDiagram2](uml_images/financetools/MilesCredit/MilesCreditSequenceDiagram(2).png)
 
-##### Account Storage 
+**Account Storage** <br />
 Account Storage feature is facilitated by ```AccountStorage``` class. It allows user to store account
 information such as name of account, interest rate, cashback rate, etc. When user inputs ```store``` as command,
 ```handleAccountStorage``` from ```Handler``` class will handle user inputted parameters and store information 
@@ -649,7 +648,7 @@ Additionally, it implements the following operations:
 * ```/o``` - Other Notes (Optional)
 * ```/rm``` - Account Number (Optional)
 
-##### Details
+**Details** <br />
 ```handleInfoStorage``` stores the user inputted information into an ```ArrayList``` which is then passed into
 ```updateFile``` to update the txt file. The purpose of using txt file is so that when the user exits and enters the
 program again, the information is retained, and the user does not have to re-enter the account information(s) again.
@@ -681,13 +680,13 @@ The following sequence diagram shows how the Account Storage feature works:
 
 ![SequenceDiagram3](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(3).png)
  
-#### Command and Calculation History
+**Command and Calculation History** <br />
 To store the commands inputted by user and results from calculations in FinanceTools, an ```ArrayList``` is used.
 The commands are stored in the ```ArrayList``` before the params are handled and implementation is executed. 
 The results from calculation is stored in the ```ArrayList``` when the implementation has finished executed.
 
-#### Goal Tracker
-##### Set Expense Goal Feature
+### Goal Tracker
+**Set Expense Goal Feature** <br />
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
 When user enter ```expense 2000 for 08```, the command will be sent to InputParser and parse it into String[].
@@ -701,7 +700,7 @@ set expense goal feature with just slight command difference.
 * setExpenseGoal: expense 5000 for 08
 * setIncomeGoal: income 5000 for 08
  
-##### Details
+**Details** <br />
 Firstly, user will input the command based on the `Format`.
 Secondly, the input command will be sent to InputParser to parse.
 Thirdly, the parsed information will be sent to class `Goal` to store the individual information
@@ -719,17 +718,17 @@ This sequence diagram will show the flow of setting of expense goal:
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
 ### Storage Utility
-#### What it does
+**What it does** <br />
 Storage utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It performs auto loading and saving of data upon entry and exit of the program as well as allowing multiple saves to be created and loaded
 at will.
 
-#### Overview
+**Overview** <br />
 Storage utility contains 5 classes. SaveHandler class contains some commonly used functions such as buildFile that is inherited to the 3
 saver child classes. goalTrackerSaver produce text file to save goalTracker states, autoTrackerSaver saves recurringTracker states and
 manualTrackerSaver saves manualTracker states.
 
-#### Save Manager Class Diagram
+**Save Manager Class Diagram** <br />
 
 ![SaveManagerClassDiagram](uml_images/saveManager/SaveManagerClass.png)
 <br />
@@ -744,7 +743,7 @@ saveManager loadSave function was implemented by calling first the clear functio
 FileChannel is also used to copy contents of the backup save file into the default initilzation save file in case program was unexpectedly
 terminated.
 
-#### Save Manager Sequence Diagram
+**Save Manager Sequence Diagram** <br />
 
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
 
