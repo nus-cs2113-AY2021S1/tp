@@ -10,7 +10,7 @@ title : Developer Guide
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser and ParserManager](#parserManager)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser & ParserManager](#parserManager)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
@@ -90,7 +90,7 @@ NotUS manages the flow of the application. On launch, it will create the necessa
 
 💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document.
 
-#### <a id="parserManager"><ins>2.3 Parser and ParserManager</ins></a>
+#### <a id="parserManager"><ins>2.3 Parser & ParserManager</ins></a>
 
 The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action. The class diagram is as follows.
 
@@ -99,7 +99,7 @@ The ParserManager manages the creation of specific parser objects based on the t
   <br><em>Figure 3</em>
 </p>
 
-💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
+💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands). <br>
 💡 For a full list of ParseXYZCommand, see [Appendix 8.1 List of ParseCommand Classes](#parseXYZCommands)
 
 1. The ParserManager receives the user input message as a whole.
@@ -132,7 +132,7 @@ The Command classes update the Notebook and Timetable accordingly. The class dia
   <br><em>Figure 6</em>
 </p>
 
-💡 Different XYZCommand has different additional variables which are omitted in Figure 6.
+💡 Different XYZCommand has different additional variables which are omitted in Figure 6. <br>
 💡 For a full list of XYZCommand classes, see [Appendix 8.2 List of Command Classes](#XYZCommands)
 
 <!--
@@ -364,7 +364,7 @@ The Formatter class handles the formatting of the Note(s), Event(s) and message(
 
 There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.
 
-A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSCI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
+A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
 
