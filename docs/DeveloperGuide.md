@@ -747,8 +747,8 @@ terminated.
 
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
 
-## Product scope
-### Target user profile
+# Product scope
+## Target user profile
 
 Fresh computing graduates who are just starting to enter the workforce.
 * Have limited income/budget
@@ -757,7 +757,7 @@ Fresh computing graduates who are just starting to enter the workforce.
 bill payments
 * First time drawing salary and lack experience in income tax filling
 
-### Value proposition
+## Value proposition
  
 **Expenditure Tracker**
 * Input itemised spending on a daily basis
@@ -781,7 +781,7 @@ bill payments
 * Calculate miles credit earned
 * Save account information for reference
 
-## User Stories
+# User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -799,7 +799,7 @@ bill payments
 |v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
 |v2.0|user|display expense/income goal for specific month|keep track of my progress|
 
-## Non-Functional Requirements
+# Non-Functional Requirements
 
 * _Constraint_ - Single User Product
 * _Performance_ - JAR file does not exceed 100Mb
@@ -807,13 +807,13 @@ bill payments
 * _Program_ - Platform independent (Windows/Mac/Linux)
 * _Program_ - Works without needing an installer
 
-## Glossary
+# Glossary
 
 * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt.
 * _CLI_ - Command Line Interface
 * _UML_ - Unified Modeling Language
 
-## Instructions for Manual Testing
+# Instructions for Manual Testing
 
 1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
 1. Save the executable file in your preferred folder.
@@ -822,7 +822,7 @@ bill payments
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
-### Testing Main Menu
+## Main Menu
 1. Accessing a feature:
     1. ```ManualTracker```
         1. Enter ```manual``` into the console.
@@ -841,28 +841,28 @@ bill payments
         
 ![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
 
-### Testing ManualTracker
-#### Show Command List
+## ManualTracker
+**Show Command List** <br />
 1. Enter ```commands``` into the console.
 You should see the following: 
 
 ![](developerGuide_images/screenshots_manualtracker/manual_commands.png)
 
-#### Create Ledger
-##### Positive test
+**Create Ledger** <br />
+**Positive test** <br />
 1. Enter ```new /date 200505``` into the console.
 You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_new.png)
 
-##### Negative test: Duplicate inputs
+**Negative test: Duplicate inputs** <br />
 1. Again, enter ```new /date 200505``` into the console.
 You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_new_dup.png)
 
-#### Testing Show Ledger List
-##### Positive test
+**Testing Show Ledger List** <br />
+**Positive test** <br />
 1. Enter ```list``` into the console. 
 You should see the following: 
 
@@ -877,8 +877,8 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list2.png)
 
-#### Testing Delete Ledger
-##### Positive test
+**Testing Delete Ledger** <br />
+**Positive test** <br />
 1. Enter ```delete /id 1``` into the console.
     * This will delete the first ledger on index, which is of date 2020-05-05
 1. Enter ```list``` into the consolde.
@@ -888,7 +888,7 @@ You should see the following:
 
     * Observe there is now one ledger on the list.
 
-#### Open Ledger
+**Open Ledger** <br />
 1. Enter ```open /date 200707``` into the console.
 You should see the following:
 
@@ -898,21 +898,21 @@ You should see the following:
     However, the ledger will be automatically created by the operation, and
     will resume as per normal. 
 
-### Testing EntryTracker
+## EntryTracker
 1. The following testing guide assumes that testing at [7.2](#7.2) is completed.
-#### Show Command List
+**Show Command List** <br />
 1. Enter ```commands``` into the console.
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_commands.png)
 
-#### Show Category List
+**Show Category List** <br />
 1. Enter ```cat``` into the console.
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_cat.png)
 
-#### Create Entry
+**Create Entry** <br />
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -e``` into the console.
 You should see the following:
 
@@ -929,14 +929,14 @@ You should see the following:
     * Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
     considered an expenditure, and `-e` should have been used instead.
 
-#### Testing Show Entry List
+**Testing Show Entry List** <br />
 1. Enter ```list``` into the console.
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_list.png)
     * Note that the number of entries is now __2__.
 
-#### Testing Edit Entry
+**Testing Edit Entry** <br />
 
 1. Enter ```edit /id 1 /amt $0.50``` into the console.
 1. Enter ```list``` into the console.
@@ -946,7 +946,7 @@ You should see the following:
 
 * Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
 
-#### Testing Delete Entry 
+**Testing Delete Entry** <br />
 1. Enter ```delete /id 2``` into the console.
 1. Enter ```list``` into the console.
 You should see the following:
@@ -956,54 +956,54 @@ You should see the following:
 * Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
 removed from the list.
 
-### Testing RecurringTracker
+## RecurringTracker
 1. Enter `recur` in the Main Menu. You should see the following:
 ![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
-#### Testing Show Command List
+**Show Command List** <br />
 1. Enter `commands`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/commands.png)
-#### Testing Add Entry
-##### Positive test 1: Normal Entry.
+**Testing Add Entry** <br />
+**Positive test 1: Normal Entry** <br />
 1. Enter `add -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_all_months.png)
 
-##### Entry with special day of month
+**Entry with special day of month** <br />
 1. Enter `add -e /desc Drinks /amt 58.45 /day 31`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_day_31.png)
 
-##### Negative test
+**Negative test** <br />
 1. Enter `add /desc OIH()(&%* /amt 343243`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_no_day_i&e.png)
 
-### Testing List Entries
+**Testing List Entries** <br />
 * The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
 Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/list.png)
 
-### Testing Edit Entry
+**Testing Edit Entry** <br />
 * The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
-##### Positive Test
+**Positive Test** <br />
 1. Enter `edit /id 1 /day 29 -i`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
 1. Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
 
-##### Negative Test: No Params to Edit
+**Negative Test: No Params to Edit** <br />
 1. Enter `edit /id 1`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
-##### Negative Test: No Such Index
+**Negative Test: No Such Index** <br />
 1. Enter `edit /id 4 /desc Hello Bubble`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
 
-### Testing Delete Entry
+**Testing Delete Entry** <br />
 * The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
 1. Enter `delete /id 2`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/delete_entry.png)
 1. Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
 
-### Testing Reminders
+**Testing Reminders** <br />
 * The following testing guide assumes that all previous entries have been deleted. This can be achieved by running `delete /id 1` repeatedly until list is empty.
 * As reminders are based on system date at time of running, the `/day` param of the below examples will have to be modified accordingly. Simply copy-pasting the commands will not create the expected output.
 1. Enter `add -e /desc SingTel bill /amt 120.50 /day {CURRENT_DAY}`
@@ -1024,66 +1024,66 @@ Enter `list`. Output:
 1. Enter `exit` to quit the program. Run the .jar file again. Reminders are printed below the logo and above the Main Menu prompt.
 ![](developerGuide_images/screenshots_recurringtracker/reminders_launch.png)
 
-### Testing GoalTracker
-#### Set Goal for Expense 
-##### Positive test
+## GoalTracker
+**Set Goal for Expense** <br />
+**Positive Test** <br />
 1. Enter ``` expense 4000 for 01 ``` into the console.
 You should see the following: 
 ![SetExpenseGoal](.DeveloperGuide_images/SetExpenseGoal.png)
 
-##### Negative test
+**Negative Test** <br />
 1. Again, enter ```expense 2000 for 01``` into the console.
 You should see the following:
 ![NegativeSet](.DeveloperGuide_images/NegativeSetExpense.png)
 
-#### Testing Set Goal for Income
-##### Positive test
+**Testing Set Goal for Income** <br />
+**Positive Test** <br />
 1. Enter ```income 2000 for 02``` into the console.
 You should see the following:
 ![SetIncomeGoal](.DeveloperGuide_images/SetIncomeGoal.png)
 
-##### Negative test
+**Negative Test** <br />
 1. Again, enter ```income 7000 for 02``` into the console.
 You should see the following:
 ![NegativeSetIncome](.DeveloperGuide_images/NegativeSetIncome.png)
 
-#### Edit Goal for Expense
-##### Positive test 
+**Edit Goal for Expense** <br />
+**Positive Test** <br />
 1. Enter ```edit expense 2000 for 01``` into the console.
 You should see the following:
 ![EditExpenseGoal](.DeveloperGuide_images/EditExpenseGoal.png)
 
-##### Negative test
+**Negative Test** <br />
 1. Enter ```edit expense 4000 for 05``` into the console.
 You should see the following:
 ![NegativeEditExpense](.DeveloperGuide_images/NegativeEditExpense.png)
 
-#### Edit Goal for Income
-##### Positive test
+**Edit Goal for Income** <br />
+**Positive Test** <br />
 1. Enter ```edit income 5000 for 02``` into the console.
 You should see the following:
 ![EditIncomeGoal](.DeveloperGuide_images/EditIncomeGoal.png)
 
-##### Negative test
+**Negative Test** <br />
 1. Enter ```edit income 1000 for 09``` into the console.
 You should see the following:
 ![NegativeEditIncome](.DeveloperGuide_images/NegativeEditIncome.png)
 
-#### Display Expense goal
-##### Positive test
+**Display Expense goal** <br />
+**Positive Test** <br />
 1. Enter ```display expense for 01``` into the console.
 You should see the following:
 ![DisplayExpenseGoal](.DeveloperGuide_images/DisplayExpenseGoal.png)
 
-#### Display Income Goal
-##### Positive test
+**Display Income Goal** <br />
+**Positive Test** <br />
 1. Enter ```display income for 02``` into the console.
 You should see the following:
 ![DisplayIncomeGoal](.DeveloperGuide_images/DisplayIncomeGoal.png)
 
-### SaveManager
-#### Add Save
-##### Positive test
+## SaveManager
+**Add Save** <br />
+**Positive Test** <br />
 1. Enter ```add /name save123``` into the console.
 <br />
 You should see the following:
@@ -1092,30 +1092,30 @@ You should see the following:
 
 ![capture2](uml_images/saveManager/puml/Capture2.PNG)
 
-##### Negative test
+**Negative Test** <br />
 1. Enter ```add /name``` into the console.
 <br />
 You should see the following:
 
 ![capture1](uml_images/saveManager/puml/Capture1.PNG)
 
-#### Load Save
-##### Positive test
+**Load Save** <br />
+**Positive Test** <br />
 1. Enter ```load /name save123``` into the console.
 <br />
 You should see the following:
 
 ![capture3](uml_images/saveManager/puml/Capture3.PNG)
 
-##### Negative test
+**Negative Test** <br />
 1. Enter ```load /name wrongName``` into the console.
 <br />
 You should see the following:
 
 ![capture4](uml_images/saveManager/puml/Capture4.PNG)
 
-#### Delete Save
-##### Positive test
+**Delete Save** <br />
+**Positive Test** <br />
 1. Enter ```delete /name save123``` into the console.
 <br />
 You should see the following:
@@ -1124,13 +1124,13 @@ You should see the following:
 
 ![capture7](uml_images/saveManager/puml/Capture7.PNG)
 
-##### Negative test
+**Negative Test** <br />
 1. Enter ```delete /name wrongName``` into the console.
 <br />
 You should see the following:
 
 ![capture6](uml_images/saveManager/puml/Capture6.PNG)
 
-### Testing FinanceTools
+## FinanceTools
 
     
