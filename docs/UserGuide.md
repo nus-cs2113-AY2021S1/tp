@@ -41,53 +41,9 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    1. If there are any further prompts, accept the defaults.
 1. After the importing is complete, locate the `src/main/java/seedu.financeit/Financeit.java` file, right-click it, and choose `Run Financeit.main()`. If the setup is correct, you should see something like the below:
 
-> Output:
+__Output:__
 
-       ||====================================================================||
-       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
-       ||(100)==================|     Welcome to       |================(100)||
-       ||||$||        ~         '------========--------'                ||$||||
-       ||<< |        |$|              || ____ ||                         | >>||
-       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
-       ||<<|        || ||           || <||  >)  ||                        |>>||
-       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||====================================================================||>||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
-    ||(100)==================|     FinanceIt!       |================(100)||>||
-    ||||$||        ~         '------========--------'                ||$||||>||
-    ||<< |        |$|              || ____ ||                         | >>||)||
-    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
-    ||<<|        || ||           || <||  >)  ||                        |>>||=||
-    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
-    ||>>|  12                     *||(___)_||*   1989                  |<<||
-    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
-    ||||$|                 ~| A finanace tracking app |~               |$||||
-    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
-    ||====================================================================||
-    Status: 
-    =====================================================================================================
-    = Welcome to Main Menu                                                                              =
-    =====================================================================================================
-    | No.            |  Feature                                           |  Commands                    |
-    -----------------------------------------------------------------------------------------------------
-    | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [3]            |  Account Summary                                   |  acc                         |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [4]            |  Goals Tracker                                     |  goal                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [5]            |  Financial Calculator                              |  financial                   |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [6]            |  Toggle Log On or Off                              |  logger                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [7]            |  Quit The Program                                  |  exit                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    ____________________________________________________________
-    >>> 
+![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
 # 2. <a name = featuresOverview> </a>Features overview
 ## <a name = mainFeatures> </a>2.1 Main features
@@ -136,145 +92,7 @@ the saveStates folder. This folder will be automatically created when you first 
 
 > Example: 
 
-       ||====================================================================||
-       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
-       ||(100)==================|     Welcome to       |================(100)||
-       ||||$||        ~         '------========--------'                ||$||||
-       ||<< |        |$|              || ____ ||                         | >>||
-       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
-       ||<<|        || ||           || <||  >)  ||                        |>>||
-       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||====================================================================||>||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
-    ||(100)==================|     FinanceIt!       |================(100)||>||
-    ||||$||        ~         '------========--------'                ||$||||>||
-    ||<< |        |$|              || ____ ||                         | >>||)||
-    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
-    ||<<|        || ||           || <||  >)  ||                        |>>||=||
-    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
-    ||>>|  12                     *||(___)_||*   1989                  |<<||
-    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
-    ||||$|                 ~| A finanace tracking app |~               |$||||
-    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
-    ||====================================================================||
-    Status: 
-    =====================================================================================================
-    = Welcome to Main Menu                                                                              =
-    =====================================================================================================
-    | No.            |  Feature                                           |  Commands                    |
-    -----------------------------------------------------------------------------------------------------
-    | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [3]            |  Account Summary                                   |  acc                         |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [4]            |  Goals Tracker                                     |  goal                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [5]            |  Financial Calculator                              |  financial                   |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [6]            |  Save Manager                                      |  saver                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [7]            |  Toggle Log On or Off                              |  logger                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [8]            |  Quit The Program                                  |  exit                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    ____________________________________________________________
-    >>> exit
-    exit
-
-## 3.1.2 <a name = menu> </a> Main Menu 2: Logger
-Toggle Logger mode. Developers can toggle it, and more system messages and logs will be printed onto the console.
-
->Syntax
-
-    logger
-
-> Example (Logger on): 
-
-    ____________________________________________________________
-    >>> logger
-
-
-
-
-       ||====================================================================||
-       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
-       ||(100)==================|     Welcome to       |================(100)||
-       ||||$||        ~         '------========--------'                ||$||||
-       ||<< |        |$|              || ____ ||                         | >>||
-       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
-       ||<<|        || ||           || <||  >)  ||                        |>>||
-       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||====================================================================||>||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
-    ||(100)==================|     FinanceIt!       |================(100)||>||
-    ||||$||        ~         '------========--------'                ||$||||>||
-    ||<< |        |$|              || ____ ||                         | >>||)||
-    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
-    ||<<|        || ||           || <||  >)  ||                        |>>||=||
-    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
-    ||>>|  12                     *||(___)_||*   1989                  |<<||
-    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
-    ||||$|                 ~| A finanace tracking app |~               |$||||
-    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
-    ||====================================================================||
-    Status: Logger is on.
-    =====================================================================================================
-    = Welcome to Main Menu                                                                              =
-    =====================================================================================================
-    | No.            |  Feature                                           |  Commands                    |
-    -----------------------------------------------------------------------------------------------------
-    | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [3]            |  Account Summary                                   |  acc                         |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [4]            |  Goals Tracker                                     |  goal                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [5]            |  Financial Calculator                              |  financial                   |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [6]            |  Save Manager                                      |  saver                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [7]            |  Toggle Log On or Off                              |  logger                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [8]            |  Quit The Program                                  |  exit                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    ____________________________________________________________
-    >>>
-    
-> Example (Logger in action):
-
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> ledger open /date 200404
-    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDuplicateParamTypes
-    INFO: Params: {}
-    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDuplicateParamTypes
-    INFO: ParamType: /date
-    Nov 01, 2020 5:43:12 AM seedu.financeit.parser.InputParser parseInput
-    INFO:  ledger open , {/date=200404}
-
-
-
-    Nov 01, 2020 5:43:12 AM seedu.financeit.utils.ParamChecker checkAndReturnDate
-    INFO: Checking date...
-
-    [ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> 
-   
+![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
     
 # <a name = manualTracker> </a> 3.2 Features : Manual Tracker
 Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
@@ -299,42 +117,15 @@ Add a ledger to the record, representing a date.
 
 >Syntax
 
-    ledger new <param type> <parameter> 
+    new {PARAM_TYPE} {PARAM} 
     
 Param Type| Param | Param Format
 ----------|-------|------------|
-/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
+`/date`|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
 
 > Example: 
 
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> ledger new /date 200504
-
-
-
-    [ SYSTEM MESSAGE ]: Ledger 1 : [ May 4 2020 ] created!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> ledger list
-
-
-    ==================================
-    = List of Ledgers                =
-    ==================================
-    | Ledger Number  | Ledger Date    |
-    ----------------------------------
-    | 1              | 2020-05-04     |
-     - - - - - - - - - - - - - - - - -
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>>
+![](developerGuide_images/screenshots_manualtracker/manual_new.png)
     
 ## 3.2.2 <a name = manualTracker2> </a> Manual Tracker 2: Remove ledger
 Remove a specified ledger from the record, referenced by date or id on the list.
@@ -342,52 +133,16 @@ This means that the user only need to specify one of the two param types, either
 
 >Syntax
  
-    ledger delete <param type> <parameter> 
+    delete {PARAM_TYPE} {PARAM}
     
 Param Type| Param | Param Format
 ----------|-------|------------|
-/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
-/id|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
+`/date`|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
+`/id`|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
 
 > Example: 
 
-    ==================================
-    = List of Ledgers                =
-    ==================================
-    | Ledger Number  | Ledger Date    |
-    ----------------------------------
-    | 1              | 2020-04-04     |
-     - - - - - - - - - - - - - - - - -
-    | 2              | 2020-05-04     |
-     - - - - - - - - - - - - - - - - -
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> ledger delete /id 2
-
-
-
-    [ SYSTEM MESSAGE ]: Ledger 2 : [ May 4 2020 ] deleted!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> ledger list
-
-
-    ==================================
-    = List of Ledgers                =
-    ==================================
-    | Ledger Number  | Ledger Date    |
-    ----------------------------------
-    | 1              | 2020-04-04     |
-     - - - - - - - - - - - - - - - - -
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>>
+![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
     
 ##  3.2.3 <a name = manualTracker3> </a> Manual Tracker 3: Open ledger
 Users will gain access into the entries associated with the specified ledger, referenced by date or id on the list.
@@ -403,58 +158,28 @@ Refer to Feature Entry Tracker onwards for further instructions.
 
 >Syntax
 
-    ledger open <param type> <parameter> 
+    open {PARAM_TYPE} {PARAM}
 
 
 Param Type| Param | Param Format
 ----------|-------|------------|
-/date|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
-/id|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
+`/date`|Date of the ledger, and all the entries under that ledger.| Input string of the date in YYMMDD, YY-MM-DD or YY-M-D
+`/id`|Index of the ledger in the list, where the first ledger is of index 1. | Input positive integer 
 
 > Example: 
 
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> ledger open /date 200404
-
-
-
-    [ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>>
+![](developerGuide_images/screenshots_manualtracker/manual_open.png)
     
 ## 3.2.4 <a name = manualTracker4> </a> Manual Tracker 4: Show ledger list
 Shows the record of ledgers that has been added.
 
 >Syntax
 
-    ledger list
+    list
 
 > Example: 
 
-    [ SYSTEM MESSAGE ]: Ledger 2 : [ May 4 2020 ] created!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> ledger list
-
-
-    ==================================
-    = List of Ledgers                =
-    ==================================
-    | Ledger Number  | Ledger Date    |
-    ----------------------------------
-    | 1              | 2020-04-04     |
-    - - - - - - - - - - - - - - - - -
-    | 2              | 2020-05-04     |
-    - - - - - - - - - - - - - - - - -
+![](developerGuide_images/screenshots_manualtracker/manual_list.png)
 
 ## 3.2.5 <a name = manualTracker5> </a> Manual Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
@@ -465,29 +190,7 @@ Prints available commands that users can enter in for manualTracker.
 
 > Example: 
 
-    [ SYSTEM MESSAGE ]: Welcome to Manual Tracker!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> commands
-
-
-    ======================================================================
-    = List of Commands                                                   =
-    ======================================================================
-    | No.            | Command            | Input Format                  |
-    ----------------------------------------------------------------------
-    | 1.             | Open ledger        | ledger open /date {YYMMDD}    |
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 2.             | New ledger         | ledger new /date {YYMMDD}     |
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 3.             | list ledgers       | ledger list                   |
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 4.             | delete ledgers     | ledger delete /date {YYMMDD}  |
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 5.             | exit to main menu  | exit                          |
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+![](developerGuide_images/screenshots_manualtracker/manual_commands.png)
     
 ## 3.2.6 <a name = manualTracker6> </a> Manual Tracker 6: Exit to Main Menu
 Exit to main menu where users can choose another feature to use.
@@ -498,63 +201,7 @@ Exit to main menu where users can choose another feature to use.
 
 > Example: 
     
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> exit
-
-
-    [ SYSTEM MESSAGE ]: Exiting from ManualTracker
-
-
-       ||====================================================================||
-       ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
-       ||(100)==================|     Welcome to       |================(100)||
-       ||||$||        ~         '------========--------'                ||$||||
-       ||<< |        |$|              || ____ ||                         | >>||
-       ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
-       ||<<|        || ||           || <||  >)  ||                        |>>||
-       ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||====================================================================||>||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
-    ||(100)==================|     FinanceIt!       |================(100)||>||
-    ||||$||        ~         '------========--------'                ||$||||>||
-    ||<< |        |$|              || ____ ||                         | >>||)||
-    ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
-    ||<<|        || ||           || <||  >)  ||                        |>>||=||
-    ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
-    ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
-    ||>>|  12                     *||(___)_||*   1989                  |<<||
-    ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
-    ||||$|                 ~| A finanace tracking app |~               |$||||
-    ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
-    ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
-    ||====================================================================||
-    Status: 
-    =====================================================================================================
-    = Welcome to Main Menu                                                                              =
-    =====================================================================================================
-    | No.            |  Feature                                           |  Commands                    |
-    -----------------------------------------------------------------------------------------------------
-    | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [3]            |  Account Summary                                   |  acc                         |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [4]            |  Goals Tracker                                     |  goal                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [5]            |  Financial Calculator                              |  financial                   |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [6]            |  Save Manager                                      |  saver                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [7]            |  Toggle Log On or Off                              |  logger                      |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | [8]            |  Quit The Program                                  |  exit                        |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    ____________________________________________________________
-    >>>
+![](developerGuide_images/screenshots_manualtracker/manual_exit.png)
 
 
     
@@ -613,37 +260,20 @@ OTHERS|oth|Income
 
 >Syntax
 
-    entry add <param type> <parameter> 
+    add {PARAM_TYPE} {PARAM}
 
         
 Param Type| Param | Param Format
 ----------|-------|------------|
-/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
-/amt|Amount involved in the transaction.| Input floating point number in 2 d.p
-/cat|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
--i or -e|Type of transaction. | No parameter required. 
+`/time`|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+`/amt`|Amount involved in the transaction.| Input floating point number in 2 d.p
+`/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
+`-i or -e`|Type of transaction. | No parameter required. 
 
 > Example: 
 
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> entry new /time 1500 /desc Go to the poll -i /cat tpt /amt 1501
+![](developerGuide_images/screenshots_entrytracker/entry_create.png)
 
-
-
-
-
-
-    [ SYSTEM MESSAGE ]: Entry 2 : [ 15:00 ] [ Go to the poll ] created!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>>
 
 ## <a name = entryTracker2> </a> 3.3.2 Entry Tracker 2: Edit entry
 Add an entry to the ledger record.
@@ -656,52 +286,19 @@ The users will include the params that they wish to modify.
 
 >Syntax
 
-    entry edit /id <parameter> <param type> <parameter> 
+    edit /id {PARAM_INDEX} {PARAM_TYPE} {PARAM} ... 
         
 Param Type| Param | Param Format
 ----------|-------|------------|
-/id|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
-/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
-/amt|Amount involved in the transaction.| Input floating point number in 2 d.p
-/cat|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
--i or -e|Type of transaction. | No parameter required. 
+`/id`|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
+`/time`|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+`/amt`|Amount involved in the transaction.| Input floating point number in 2 d.p
+`/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
+`-i or -e`|Type of transaction. | No parameter required. 
         
 > Example: 
 
-    ======================================================================================================================
-    = List of Entries for Ledger [2020-04-04]                                                                            =
-    ======================================================================================================================
-    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
-    ----------------------------------------------------------------------------------------------------------------------
-    | 1              | Income         | TRANSPORT      | $1500.00       | 15:00          | Go to the poll                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> entry edit /id 1 /time 1600
-
-
-
-
-    [ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ Go to the poll ] edited!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> entry list
-    
-    ======================================================================================================================
-    = List of Entries for Ledger [2020-04-04]                                                                            =
-    ======================================================================================================================
-    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
-    ----------------------------------------------------------------------------------------------------------------------
-    | 1              | Income         | TRANSPORT      | $1500.00       | 16:00          | Go to the poll                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+![](developerGuide_images/screenshots_entrytracker/entry_edit_list.png)
 
     
 ## <a name = entryTracker3> </a> 3.3.3 Entry Tracker 3: Remove entry
@@ -709,63 +306,16 @@ Remove a specified entry from the record, referenced by id on the list.
 
 >Syntax
 
-    entry delete <param type> <parameter> 
-        <param type> @ /id: Index of the ledger in the entry list.
-            <parameter:Integer>: Input number that is between 1 and the last index in the entry list.
+    delete {PARAM_TYPE} {PARAM} 
             
 Param Type| Param | Param Format
 ----------|-------|------------|
-/time|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
-/id|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
+`/time`|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
+`/id`|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
 
 > Example: 
 
-    ======================================================================================================================
-    = List of Entries for Ledger [2020-04-04]                                                                            =
-    ======================================================================================================================
-    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
-    ----------------------------------------------------------------------------------------------------------------------
-    | 1              | Income         | TRANSPORT      | $1500.00       | 16:00          | Go to the poll                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 2              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the poll                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 3              | Income         | TRANSPORT      | $1503.00       | 15:00          | Go to the poll where           |
-    |                |                |                |                |                | 1.the rainbow used to be nice  |
-    |                |                |                |                |                | 2. and colorful, haha          |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 4              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> entry delete /id 1
-
-
-
-    [ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ Go to the poll ] deleted!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> entry list
-
-
-    ======================================================================================================================
-    = List of Entries for Ledger [2020-04-04]                                                                            =
-    ======================================================================================================================
-    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
-    ----------------------------------------------------------------------------------------------------------------------
-    | 1              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the poll                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 2              | Income         | TRANSPORT      | $1503.00       | 15:00          | Go to the poll where           |
-    |                |                |                |                |                | 1.the rainbow used to be nice  |
-    |                |                |                |                |                | 2. and colorful, haha          |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 3              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+![](developerGuide_images/screenshots_entrytracker/entry_delete_list.png)
 
     
 ## <a name = entryTracker4> </a> 3.3.4 Entry Tracker 4: Show entry list
@@ -773,32 +323,11 @@ Shows the record of entries that has been added.
 
 >Syntax
 
-    entry list
+    list
 
 > Example: 
 
-    [ SYSTEM MESSAGE ]: Entry 1 : [ 16:00 ] [ Go to the poll ] deleted!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> entry list
-
-
-    ======================================================================================================================
-    = List of Entries for Ledger [2020-04-04]                                                                            =
-    ======================================================================================================================
-    | Entry Number   | Entry Type     | Category       | Amount         | Time           | Description                    |
-    ----------------------------------------------------------------------------------------------------------------------
-    | 1              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the poll                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 2              | Income         | TRANSPORT      | $1503.00       | 15:00          | Go to the poll where           |
-    |                |                |                |                |                | 1.the rainbow used to be nice  |
-    |                |                |                |                |                | 2. and colorful, haha          |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 3              | Income         | TRANSPORT      | $1501.00       | 15:00          | Go to the pole                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+![](developerGuide_images/screenshots_entrytracker/entry_list.png)
 
 ## <a name = entryTracker5> </a> 3.3.5 Entry Tracker 5: Print command list
 Prints available commands that users can enter in for manualTracker.
@@ -809,34 +338,7 @@ Prints available commands that users can enter in for manualTracker.
 
 > Example: 
 
-    [ SYSTEM MESSAGE ]: Ledger 1 : [ Apr 4 2020 ] opened!
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> commands
-
-
-    ========================================================================================================
-    = List of Commands                                                                                     =
-    ========================================================================================================
-    | No.            | Command                 | Input Format                                               |
-    --------------------------------------------------------------------------------------------------------
-    | 1.             | New entry               | entry new /time {HHMM} /desc {string} /cat {category}      |
-    |                |                         | -[i/e] /amt {Double, 2 decimal places}                                                    |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 2.             | Edit entry              | entry edit /id {integer} {param-type/parameter to edit}    |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 3.             | list entries            | entry list                                                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 4.             | delete entry            | entry delete /id {integer}                                 |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 5.             | list transaction        | cat                                                        |
-    |                | categories              |                                                            |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    | 6.             | exit to manual tracker  | exit                                                       |
-     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+![](developerGuide_images/screenshots_entrytracker/entry_commands.png)
 
 ## <a name = entryTracker6> </a> 3.3.6 Entry Tracker 6: Print categories
 Prints expenditure category shortcuts that the user can input in entry creation/ edit commands.
@@ -847,35 +349,8 @@ Prints expenditure category shortcuts that the user can input in entry creation/
 
 > Example: 
 
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> cat
+![](developerGuide_images/screenshots_entrytracker/entry_cat.png)
 
-
-    ==================================
-    = List of Valid Categories       =
-    ==================================
-    | Category       | Input          |
-    ----------------------------------
-    | bll            | BILLS          |
-     - - - - - - - - - - - - - - - - -
-    | slr            | SALARY         |
-     - - - - - - - - - - - - - - - - -
-    | tpt            | TRANSPORT      |
-     - - - - - - - - - - - - - - - - -
-    | shp            | SHOPPING       |
-     - - - - - - - - - - - - - - - - -
-    | tvl            | TRAVEL         |
-     - - - - - - - - - - - - - - - - -
-    | alw            | ALLOWANCE      |
-     - - - - - - - - - - - - - - - - -
-    | fd             | FOOD           |
-     - - - - - - - - - - - - - - - - -
-    | oth            | OTHERS         |
-     - - - - - - - - - - - - - - - - -
     
 ## <a name = entryTracker7> </a> 3.3.7 Entry Tracker 7: Exit to Manual Tracker main routine
 Exit to Manual tracker where users can choose another ledger.
@@ -886,20 +361,7 @@ Exit to Manual tracker where users can choose another ledger.
 
 > Example: 
 
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU -> ENTRY_TRACKER (LEDGER 2020-04-04)
-    [ SYSTEM MESSAGE ]: You are now in entry tracker for ledger [2020-04-04]!
-                        Enter command!
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>> exit
-
-
-    Exiting subroutine...
-    [ DIR            ]: [ MAIN_MENU -> MANUAL_TRACKER_MENU ]
-    [ TODO           ]: Enter a command! 
-                        Input "commands" for list of commands.
-    ____________________________________________________________
-    >>>
+![](developerGuide_images/screenshot_entrytracker/entry_exit.png)
     
 # 3.3 <a name = recurringTracker> </a> Features : Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
