@@ -32,7 +32,7 @@ public class AddCommandTest {
         Command addAppliance = new AddCommand("Fan1", "BedRoom1", "50", "Fan");
         addAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = addAppliance.execute();
-        assertEquals("ADDING Fan1(50W), located at BedRoom1 ......ADDED", actualCommandResult.feedbackToUser);
+        assertEquals("ADDING Fan1(50W), located at BedRoom1 ......ADDED!", actualCommandResult.feedbackToUser);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class AddCommandTest {
         Command addAppliance = new AddCommand("l2", "BedRoom1", "50", "light");
         addAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = addAppliance.execute();
-        assertEquals("ADDING l2(50W), located at BedRoom1 ......ADDED", actualCommandResult.feedbackToUser);
+        assertEquals("ADDING l2(50W), located at BedRoom1 ......ADDED!", actualCommandResult.feedbackToUser);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class AddCommandTest {
         Command addAppliance = new AddCommand("AC1", "BedRoom1", "500", "aircon");
         addAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = addAppliance.execute();
-        assertEquals("ADDING AC1(500W), located at BedRoom1 ......ADDED", actualCommandResult.feedbackToUser);
+        assertEquals("ADDING AC1(500W), located at BedRoom1 ......ADDED!", actualCommandResult.feedbackToUser);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class AddCommandTest {
         Command addAppliance = new AddCommand("Plug1", "BedRoom1", "500", "smartplug");
         addAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = addAppliance.execute();
-        assertEquals("ADDING Plug1(500W), located at BedRoom1 ......ADDED", actualCommandResult.feedbackToUser);
+        assertEquals("ADDING Plug1(500W), located at BedRoom1 ......ADDED!", actualCommandResult.feedbackToUser);
     }
 
     @Test
