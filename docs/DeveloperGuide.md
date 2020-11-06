@@ -9,7 +9,7 @@
 ## Table of Content
 1.  [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
-<br/>&nbsp;1.2 [Using This Guide](#12-using-this-guide)
+<br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
 2.  [Setting up](#2-setting-up)
 
