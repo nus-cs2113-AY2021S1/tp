@@ -77,10 +77,10 @@ public class AddCommand extends Command {
             commandLogger.log(Level.WARNING, MESSAGE_APPLIANCE_EXIST);
             return new CommandResult(MESSAGE_APPLIANCE_EXIST);
         } catch (LocationNotFoundException e) {
-            commandLogger.log(Level.INFO, MESSAGE_LOCATION_NOT_EXIST);
+            commandLogger.log(Level.WARNING, MESSAGE_LOCATION_NOT_EXIST);
             return new CommandResult(MESSAGE_LOCATION_NOT_EXIST);
         } catch (InvalidApplianceNameException e) {
-            commandLogger.log(Level.INFO, MESSAGE_APPLIANCE_LOCATION_CONFLICT);
+            commandLogger.log(Level.WARNING, MESSAGE_APPLIANCE_LOCATION_CONFLICT);
             return new CommandResult(MESSAGE_APPLIANCE_LOCATION_CONFLICT);
         }
     }

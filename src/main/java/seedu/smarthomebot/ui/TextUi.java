@@ -8,9 +8,10 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static seedu.smarthomebot.commons.Messages.DIVIDER;
+import static seedu.smarthomebot.commons.Messages.LINE;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_EXPORT;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_GOODBYE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_WELCOME;
-import static seedu.smarthomebot.commons.Messages.LINE;
 
 //@@author Ang_Cheng_Jun
 /**
@@ -76,7 +77,7 @@ public class TextUi {
      * Generates and prints the Goodbye message upon the end of the application.
      */
     public void showGoodByeMessage() {
-        printToUser(Messages.MESSAGE_EXPORT);
+        printToUser(MESSAGE_EXPORT);
         printToUser(MESSAGE_GOODBYE);
     }
 }
