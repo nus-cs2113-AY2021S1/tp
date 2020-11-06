@@ -1,14 +1,14 @@
 package seedu.financeit.datatrackers.entrytracker;
 
 import seedu.financeit.common.CategoryMap;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.data.DateTimeItem;
 import seedu.financeit.datatrackers.manualtracker.Ledger;
 
 public class Entry extends DateTimeItem {
     private String description = " ";
     private String category = null;
-    private Constants.EntryType entryType = null;
+    private Common.EntryType entryType = null;
     private double amount = -1;
     // Allows the entry to be have access to the date of its conception from its "parent" ledger.
     private Ledger ledger = null;
@@ -46,11 +46,11 @@ public class Entry extends DateTimeItem {
         return this.category;
     }
 
-    public void setEntryType(Constants.EntryType entryType) {
+    public void setEntryType(Common.EntryType entryType) {
         this.entryType = entryType;
     }
 
-    public Constants.EntryType getEntryType() {
+    public Common.EntryType getEntryType() {
         return this.entryType;
     }
 

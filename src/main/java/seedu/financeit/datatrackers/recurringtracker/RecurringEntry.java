@@ -1,6 +1,6 @@
 package seedu.financeit.datatrackers.recurringtracker;
 
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.data.Item;
 import seedu.financeit.utils.ParamChecker;
 
@@ -11,10 +11,10 @@ import java.util.HashMap;
 public class RecurringEntry extends Item {
     int day;
     String description = "";
-    Constants.EntryType entryType;
+    Common.EntryType entryType;
     double amount;
     Month start = Month.of(1);
-    Month end  = Month.of(12);
+    Month end = Month.of(12);
     boolean isAuto = false;
     String notes = "";
 
@@ -23,15 +23,11 @@ public class RecurringEntry extends Item {
         super();
     }
 
-    public void setDay(int day) {
-        this.day = day;
-    }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public void setEntryType(Constants.EntryType entryType) {
+    public void setEntryType(Common.EntryType entryType) {
         this.entryType = entryType;
     }
 
@@ -57,6 +53,10 @@ public class RecurringEntry extends Item {
         return day;
     }
 
+    public void setDay(int day) {
+        this.day = day;
+    }
+
     public boolean equals(RecurringEntry entry) {
         if (entry == this) {
             return true;
@@ -77,8 +77,8 @@ public class RecurringEntry extends Item {
      * @return HashMap of details, with key being the attribute name and value
      *         being the attribute itself, upcasted to Object.
      */
-    public HashMap<String,Object> getDetailsForReminder() {
-        HashMap<String,Object> details = new HashMap<>();
+    public HashMap<String, Object> getDetailsForReminder() {
+        HashMap<String, Object> details = new HashMap<>();
         details.put("day", day);
         details.put("description", description);
         details.put("entryType", entryType);
@@ -90,14 +90,15 @@ public class RecurringEntry extends Item {
     /**
      * Gets all entry details as paramMap format.
      * Used for JUnit testing
+     *
      * @return HashMap of all attributes, with key being the paramType that
      *         would have added that attribute and value being the attribute value in String form.
      */
     public HashMap<String, Object> getAllDetailsAsParamMap() {
-        HashMap<String,Object> details = getDetailsForReminder();
+        HashMap<String, Object> details = getDetailsForReminder();
         details.put(ParamChecker.PARAM_DAY, String.valueOf(day));
         details.put(ParamChecker.PARAM_DESCRIPTION, description);
-        if (entryType == Constants.EntryType.EXP) {
+        if (entryType == Common.EntryType.EXP) {
             details.put(ParamChecker.PARAM_EXP, "");
         } else {
             details.put(ParamChecker.PARAM_INC, "");
@@ -110,13 +111,28 @@ public class RecurringEntry extends Item {
         return details;
     }
 
+    public String toSave() {
+
+        //One string is filled and the other is left blank, based on whether the entry is income or expenditure
+        String expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
+        String incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
+        String duration;
+        if (this.start.getValue() == 1 && this.end.getValue() == 12) {
+            duration = "Every month";
+        } else {
+            duration = start + " to " + end;
+        }
+        String payment = this.isAuto ? "Auto deduction" : "Manual payment";
+        return String.format("%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s", this.day, this.description,
+                expenditureAmount, incomeAmount, duration, payment, this.notes);
+    }
 
     @Override
     public String toString() {
 
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
-        String expenditureAmount = this.entryType == Constants.EntryType.EXP ? "-$" + this.amount : "";
-        String incomeAmount = this.entryType == Constants.EntryType.INC ? "+$" + this.amount : "";
+        String expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
+        String incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
         String duration;
         if (this.start.getValue() == 1 && this.end.getValue() == 12) {
             duration = "Every month";

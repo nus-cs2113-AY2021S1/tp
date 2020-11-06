@@ -2,11 +2,8 @@
 autoactivate on
 
 ":Handler" ->":Handler": handleMilesCredit(packet)
-    create ":MilesCredit"
-   ":Handler"-> ":MilesCredit" : calculateMiles()
-    return
 
-   ":Handler"-> ":MilesCredit" : handlePacket
+   ":Handler"-> ":MilesCredit" : handlePacket(packet)
 
         == Handling of Params in packet ==
         ":MilesCredit" -> ":MilesCredit" : handleParams

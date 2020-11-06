@@ -1,7 +1,7 @@
 package seedu.financeit.datatrackers.manualtracker;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
@@ -31,7 +31,7 @@ public class ManualTracker {
     public static void main() {
         boolean endTracker = false;
         FiniteStateMachine fsm = new FiniteStateMachine(FiniteStateMachine.State.MAIN_MENU);
-        UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
+        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
         while (!endTracker) {
             switch (fsm.getCurrState()) {
             case MAIN_MENU:
@@ -53,7 +53,7 @@ public class ManualTracker {
                 fsm.setNextState(handleInvalidState());
                 break;
             case EXIT:
-                UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, "Exiting from ManualTracker");
+                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Exiting from ManualTracker");
                 endTracker = true;
                 break;
             case END_TRACKER:
@@ -80,7 +80,7 @@ public class ManualTracker {
     }
 
     private static FiniteStateMachine.State handleMainMenu() {
-        UiManager.printWithStatusIcon(Constants.PrintType.DIRECTORY, "[ MAIN_MENU -> MANUAL_TRACKER_MENU ]");
+        UiManager.printWithStatusIcon(Common.PrintType.DIRECTORY, "[ MAIN_MENU -> MANUAL_TRACKER_MENU ]");
         UiManager.printInputPromptMessage();
         String input;
 
@@ -113,7 +113,7 @@ public class ManualTracker {
             printCommandList();
             return FiniteStateMachine.State.MAIN_MENU;
         default:
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE, "Command failed. Try again.");
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Command failed. Try again.");
             return FiniteStateMachine.State.MAIN_MENU;
         }
     }
@@ -139,17 +139,17 @@ public class ManualTracker {
 
             GoalTracker.storeLedgerDate(ledger);
 
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("%s created!", ledger.getName()));
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
         } catch (DuplicateInputException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 "Duplicate item already exists in the list; not added!");
         } finally {
             if (!command.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -168,14 +168,14 @@ public class ManualTracker {
 
             // Deletion of ledger.
             ledgerList.removeItemAtCurrIndex();
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("%s deleted!", deletedLedger.getName()));
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
         } finally {
             if (!command.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }
@@ -207,25 +207,25 @@ public class ManualTracker {
 
             GoalTracker.storeLedgerDate(ledger);
 
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("%s opened!", ledger.getName()));
         } catch (InsufficientParamsException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
             return state;
         } catch (ItemNotFoundException exception) {
-            UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
 
             // If the ledger specified does not exist, a new ledger instance with the corresponding
             // date will be generated and "opened".
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG,
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 "Generating new ledger...");
             handleCreateLedger();
             return handleOpenLedger();
         } finally {
             if (!command.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Input failed due to param error.");
             }
         }

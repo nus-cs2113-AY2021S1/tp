@@ -1,0 +1,132 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Storage {
+}
+
+
+
+
+
+rectangle Model {
+rectangle Data {
+
+    class Ledger {
+        # date : LocalDate = null
+        + entryList : EntryList
+        + Ledger()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setDate() : void
+        + getDate() : LocalDate
+    }
+
+    class Entry {
+        # date : LocalDate = null
+        + Entry()
+        + handlePacket(packet : CommandPacket) : void
+        + getName() : String
+        + handleSingleParam(packet : CommandPacket, paramType : String)
+        + setTime() : void
+        + getTime() : LocalTime
+    }
+        class DateTimeItem {
+            + setDate() : void
+            + getDate() : LocalDate
+            + setTime() : void
+            + getTime() : LocalTime
+        }
+
+        abstract class Item {
+        }
+
+
+    }
+    rectangle DataList {
+        abstract class ItemList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + {abstract} printList()
+        }
+
+        class LedgerList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
+        }
+
+        class EntryList {
+            # currItem : Item
+            # items : ArrayList<Item>
+            # indexToModify : int
+
+            + addItemAndSort(item : Item, comparator : Comparator)
+            + getItemSize() : int
+            + getItemAtIndex() : Item
+            + getItemAtIndex(index : int) : Item
+            + printList()
+        }
+    }
+
+
+
+    DateTimeItem --|> Item
+    Ledger --|> DateTimeItem
+    Entry --|> DateTimeItem
+    LedgerList --|> ItemList
+    EntryList --|> ItemList
+    LedgerList --> "*" Ledger : contains >
+    EntryList --> "*" Entry : contains >
+
+}
+
+rectangle Handler {
+    class GoalTracker {
+    }
+
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+
+    EntryTracker --> EntryList : stores entries with >
+    ManualTracker -right-> LedgerList : stores ledgers with >
+}
+
+GoalTracker --> Entry : Tracks against \n input goal >
+GoalTracker ..> EntryTracker : Displays\ngoal\nprogress >
+
+Storage ..> LedgerList : Saves and \nLoads DataList >
+Storage ..> EntryList : Saves and \nLoads DataList >
+
+@enduml

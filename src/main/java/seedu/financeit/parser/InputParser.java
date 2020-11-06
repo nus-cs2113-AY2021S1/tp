@@ -1,7 +1,7 @@
 package seedu.financeit.parser;
 
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.exceptions.EmptyCommandStringException;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
@@ -93,7 +93,7 @@ public class InputParser {
             String paramSubstring = separator + buffer[1];
             params = ParamsParser.getInstance().parseParams(paramSubstring);
         } catch (EmptyCommandStringException e) {
-            UiManager.printWithStatusIcon(Constants.PrintType.SYS_MSG, e.getMessage());
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, e.getMessage());
         }
         CommandPacket packet = new CommandPacket(commandString, params);
         LoggerCentre.loggerInputParser.log(Level.INFO, packet.toString());

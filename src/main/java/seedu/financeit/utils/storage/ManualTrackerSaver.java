@@ -1,7 +1,7 @@
 package seedu.financeit.utils.storage;
 
 import seedu.financeit.common.CategoryMap;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.datatrackers.entrytracker.Entry;
 import seedu.financeit.datatrackers.entrytracker.EntryList;
 import seedu.financeit.datatrackers.entrytracker.EntryTracker;
@@ -38,6 +38,10 @@ public class ManualTrackerSaver extends SaveHandler {
             }
         }
         return saver;
+    }
+
+    public static void clear() {
+        ManualTracker.getLedgerList().removeAllItems();
     }
 
     public void save(String... paths) throws IOException {
@@ -100,7 +104,7 @@ public class ManualTrackerSaver extends SaveHandler {
                 ledgerIndex++;
                 break;
             default:
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                         "Class is not recognised to load.");
                 break;
             }

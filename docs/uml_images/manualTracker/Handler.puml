@@ -1,0 +1,61 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+left to right direction
+
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+
+
+
+rectangle Model {
+    class Entry {
+    }
+}
+
+rectangle InputManager {
+}
+
+
+
+rectangle Handler {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+
+    class GoalTracker {
+    }
+
+    class FinanceTools{
+    }
+
+    EntryTracker --> Model : stores entries with >
+    ManualTracker --> Model : stores ledgers with >
+}
+
+ManualTracker --> InputManager : Handles input <
+EntryTracker --> InputManager : Handles input <
+
+GoalTracker --> Entry : Tracks against \n input goal >
+GoalTracker ..> EntryTracker : Displays goal progress >
+
+
+Handler -[hidden]- Model
+
+@enduml

@@ -1,8 +1,10 @@
 package seedu.financeit.datatrackers.entrytracker.commands;
 
+import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 import seedu.financeit.common.ParamHandler;
+import seedu.financeit.common.exceptions.IncompatibleParamsException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.common.exceptions.ParseFailParamException;
@@ -38,36 +40,66 @@ public class CreateEntryCommand extends ParamHandler {
         );
     }
 
-    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
+    public void handlePacket(CommandPacket packet)
+        throws InsufficientParamsException, IncompatibleParamsException {
         try {
             this.entry = new Entry();
             this.handleParams(packet);
+            checkCatAndEntryType();
         } catch (ItemNotFoundException exception) {
             // Fall-through
+        }
+    }
+
+    public void checkCatAndEntryType() throws InsufficientParamsException, IncompatibleParamsException {
+        switch (this.entry.getEntryType()) {
+        case EXP:
+            if (!CategoryMap.expenseCategories.contains(this.entry.getCategory())) {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Category is not compatible with entry type!",
+                    "-e : {fd, tpt, tvl, shp, bll, oth}"
+                );
+                throw new IncompatibleParamsException(PARAM_EXP, PARAM_CATEGORY);
+            }
+            break;
+        case INC:
+            if (!CategoryMap.incomeCategories.contains(this.entry.getCategory())) {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Category is not compatible with entry type!",
+                    "-i : {slr, alw, oth}"
+                );
+                throw new IncompatibleParamsException(PARAM_INC, PARAM_CATEGORY);
+            }
+            break;
+
+        default:
+            // Fall through
+            break;
         }
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
-        case ParamChecker.PARAM_TIME:
+        case PARAM_TIME:
             LocalTime time = ParamChecker.getInstance().checkAndReturnTime(paramType);
             this.entry.setTime(time);
             break;
-        case ParamChecker.PARAM_AMOUNT:
+        case PARAM_AMOUNT:
             Double amount = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             this.entry.setAmount(amount);
             break;
-        case ParamChecker.PARAM_INC:
-            this.entry.setEntryType(Constants.EntryType.INC);
+        case PARAM_INC:
+            this.entry.setEntryType(Common.EntryType.INC);
             break;
-        case ParamChecker.PARAM_EXP:
-            this.entry.setEntryType(Constants.EntryType.EXP);
+        case PARAM_EXP:
+            this.entry.setEntryType(Common.EntryType.EXP);
             break;
-        case ParamChecker.PARAM_DESCRIPTION:
-            this.entry.setDescription(packet.getParam(paramType));
+        case PARAM_DESCRIPTION:
+            String description = ParamChecker.getInstance().checkAndReturnDescription(paramType);
+            this.entry.setDescription(description);
             break;
-        case ParamChecker.PARAM_CATEGORY:
+        case PARAM_CATEGORY:
             String category = ParamChecker.getInstance().checkAndReturnCategory(paramType);
             this.entry.setCategory(category);
             break;
@@ -76,7 +108,7 @@ public class CreateEntryCommand extends ParamHandler {
                 "/id"
             };
             if (! Arrays.asList(ignoreParams).contains(paramType)) {
-                UiManager.printWithStatusIcon(Constants.PrintType.ERROR_MESSAGE,
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }
             break;

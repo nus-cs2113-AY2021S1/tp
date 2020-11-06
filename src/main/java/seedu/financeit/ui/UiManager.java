@@ -1,6 +1,6 @@
 package seedu.financeit.ui;
 
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class UiManager {
     }
 
     public static void drawPartition() {
-        printLineWithSymbol(Constants.MAX_PARTITION_LINE_LEN, "_");
+        printLineWithSymbol(Common.MAX_PARTITION_LINE_LEN, "_");
     }
 
     public static String getPrintListRow(String[] input) {
@@ -57,7 +57,7 @@ public class UiManager {
         return input;
     }
 
-    public static void printWithStatusIcon(Constants.PrintType printType, String... messages) {
+    public static void printWithStatusIcon(Common.PrintType printType, String... messages) {
         for (int i = 0; i < messages.length; i++) {
             if (i == 0) {
                 System.out.println(String.format("[ %-15s]: %s", printType, messages[i]));
@@ -67,7 +67,7 @@ public class UiManager {
         }
     }
 
-    public static String getStringPrintWithStatusIcon(Constants.PrintType printType, String... messages) {
+    public static String getStringPrintWithStatusIcon(Common.PrintType printType, String... messages) {
         String message = "";
         for (int i = 0; i < messages.length; i++) {
             if (i == 0) {
@@ -80,14 +80,14 @@ public class UiManager {
     }
 
     public static void printInputPromptMessage() {
-        printWithStatusIcon(Constants.PrintType.INSTRUCTION,
+        printWithStatusIcon(Common.PrintType.INSTRUCTION,
                 "Enter a command! ",
                 "Input \"commands\" for list of commands."
         );
     }
 
     public static void refreshPage() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 2; i++) {
             System.out.println();
         }
     }

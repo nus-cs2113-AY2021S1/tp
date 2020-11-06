@@ -2,11 +2,8 @@
 autoactivate on
 
 ":Handler" ->":Handler": handleAccountStorage(packet, filePath, infoText)
-    create ":AccountStorage"
-   ":Handler"-> ":AccountStorage" : handleInfoStorage(filePath, infoText)
-    return
 
-   ":Handler"-> ":AccountStorage" : handlePacket
+   ":Handler"-> ":AccountStorage" : handlePacket(packet)
 
         == Handling of Params in packet ==
         ":AccountStorage" -> ":AccountStorage" : handleParams

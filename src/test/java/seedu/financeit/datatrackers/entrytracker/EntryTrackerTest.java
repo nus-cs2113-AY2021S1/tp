@@ -14,7 +14,7 @@ import static seedu.financeit.datatrackers.entrytracker.TestCommands.generateEdi
 
 public class EntryTrackerTest {
     private static final int FREQUENCY_ERROR_ENTRY = 3;
-    private static final int NUM_ENTRIES = 20;
+    private static final int NUM_ENTRIES = 50;
 
     /**
      * Function sets up the "opened" ledger whereby entry operations will be performed upon.
@@ -65,17 +65,17 @@ public class EntryTrackerTest {
             EntryTracker.handleCreateEntry(false);
         }
         int actualListNum = EntryTracker.entryList.getItemsSize();
-        for (int i = 1; i <= 4; i++) {
-            switch (i) {
-            case 1:
+        for (int i = 1; i <= 20; i++) {
+            switch (i % 4) {
+            case 0:
                 //Fall through
-            case 3:
+            case 1:
                 testPacket = generateDeleteEntryByIdCorrectCommand();
                 actualListNum -= 1;
                 break;
             case 2:
                 //Fall through
-            case 4:
+            case 3:
                 testPacket = generateDeleteEntryByIdErrorCommand();
                 break;
             default:

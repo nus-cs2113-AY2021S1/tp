@@ -1,6 +1,6 @@
-# Duke project template
+# FinanceIt
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+FinanceIt is a greenfield Java project. Given below are instructions on how to use it.
 
 ## Setting up in Intellij
 
@@ -8,23 +8,63 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 
 1. **Configure Intellij for JDK 11**, as described [here](https://se-education.org/guides/tutorials/intellijJdk.html).
 1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
+1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu.financeit/Financeit.java` file, right-click it, and choose `Run Financeit.main()`. If the setup is correct, you should see something like the below:
    ```
    > Task :compileJava
    > Task :processResources NO-SOURCE
    > Task :classes
    
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
+   > Task :run
    
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
+   
+      ||====================================================================||
+      ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||
+      ||(100)==================|     Welcome to       |================(100)||
+      ||||$||        ~         '------========--------'                ||$||||
+      ||<< |        |$|              || ____ ||                         | >>||
+      ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||
+      ||<<|        || ||           || <||  >)  ||                        |>>||
+      ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+   ||====================================================================||>||
+   ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$||||>||
+   ||(100)==================|     FinanceIt!       |================(100)||>||
+   ||||$||        ~         '------========--------'                ||$||||>||
+   ||<< |        |$|              || ____ ||                         | >>||)||
+   ||>>|  12    ||L||            || ///..) ||         L38036133B   12 |<<||/||
+   ||<<|        || ||           || <||  >)  ||                        |>>||=||
+   ||>>|         |$|            ||  $$ --)  ||        One Hundred     |<<||
+   ||<<|      L38036133B        *||  |(_)  ||* series                 |>>||
+   ||>>|  12                     *||(___)_||*   1989                  |<<||
+   ||<<|      Treasurer     ______(  V2.0   )________     Secretary 12 |>>||
+   ||||$|                 ~| A finanace tracking app |~               |$||||
+   ||(100)===================  ONE HUNDRED DOLLARS =================(100)||
+   ||||$||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||$//||
+   ||====================================================================||
+   
+   Status: 
+   =====================================================================================================
+   = Welcome to Main Menu                                                                              =
+   =====================================================================================================
+   | No.            |  Feature                                           |  Commands                    |
+   -----------------------------------------------------------------------------------------------------
+   | [1]            |  Manual Income/Expense Tracker                     |  manual                      |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   | [2]            |  Recurring Income/Expense Tracker                  |  recur                       |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   | [3]            |  Account Summary                                   |  acc                         |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   | [4]            |  Goals Tracker                                     |  goal                        |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   | [5]            |  Financial Calculator                              |  financial                   |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   | [6]            |  Save Manager                                      |  saver                       |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   | [7]            |  Toggle Log On or Off                              |  logger                      |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   | [8]            |  Quit The Program                                  |  exit                        |
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   ____________________________________________________________
+   >>> 
 
 ## Build automation using Gradle
 

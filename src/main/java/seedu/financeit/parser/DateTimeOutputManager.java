@@ -1,6 +1,6 @@
 package seedu.financeit.parser;
 
-import seedu.financeit.common.Constants;
+import seedu.financeit.common.Common;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -75,7 +75,7 @@ public class DateTimeOutputManager {
             break;
         default:
             // Show all information
-            output = this.time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+            output = this.time.format(DateTimeFormatter.ofPattern("HH:mm"));
             break;
         }
         return output;
@@ -88,7 +88,7 @@ public class DateTimeOutputManager {
      * @return Formatted dateTime string
      */
     public String getDateTimeFormatted(String[] whichFormat) {
-        String[] token = new String[Constants.MAX_ARRAY_LEN];
+        String[] token = new String[Common.MAX_ARRAY_LEN];
         String outputDate;
         String outputTime;
         String output = "";
