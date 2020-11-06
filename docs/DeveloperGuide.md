@@ -1,20 +1,20 @@
 # Developer Guide
 
 ## Table of Contents
-- [Introduction](#10-introduction)
-- [Setting up](#20-setting-up)
-- [Design](#30-design)
-  * [Architecture](#31-architecture)
-  * [UI component](#32-ui-component)
-  * [Logic component](#33-logic-component)
-  * [Model component](#34-model-component)
-  * [Storage component](#35-storage-component)
-- [Implementation](#40-implementation)
-  * [Book Management](#41-feature-book-management)
-  * [Quote Management](#42-feature-quote-management)
-  * [Progress Tracker](#43-feature-progress-tracker)
-  * [Category Management](#44-feature-category-management)
-  * [Rating System for books](#45-feature-rating-system-for-books)
+- [1.0 Introduction](#10-introduction)
+- [2.0 Setting up](#20-setting-up)
+- [3.0 Design](#30-design)
+  * [3.1 Architecture](#31-architecture)
+  * [3.2 UI component](#32-ui-component)
+  * [3.3 Logic component](#33-logic-component)
+  * [3.4 Model component](#34-model-component)
+  * [3.5 Storage component](#35-storage-component)
+- [4.0 Implementation](#40-implementation)
+  * [4.1 Book Management](#41-feature-book-management)
+  * [4.2 Quote Management](#42-feature-quote-management)
+  * [4.3 Progress Tracker](#43-feature-progress-tracker)
+  * [4.4 Category Management](#44-feature-category-management)
+  * [4.5 Rating System for books](#45-feature-rating-system-for-books)
 - [Appendix A: Product Scope](#appendix-a-product-scope)
 - [Appendix B: User Stories](#appendix-b-user-stories)
 - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
@@ -76,11 +76,11 @@
 **Welcome to Quotesify!**
 
 Quotesify is a free desktop application to help you in your reading activities. With Quotesify, you can add
-books and the related quotes that you wish to remember. You can categorize your books and quotes by author,
-customized categories, and even rate your books. Quotesify also comes with a progress tracker just to improve
+books and its related quotes that you wish to remember. You can categorize your books and quotes by an author,
+customize categories, and even rate your books. Quotesify also comes with a progress tracker which improves
 your reading experience.
 
-This guide will provide information on the design and implementation of Quotesify. It will help you get started
+This guide will provide information on the design and implementation of Quotesify. It will help you to get started
 on your journey of being a contributor to Quotesify. This guide will also explain the steps to test out the program,
 so that you will have a better understanding of the current status of Quotesify.
 
@@ -157,22 +157,22 @@ passed into the Logic component for parsing and execution of the command.
 
 ### 3.2 UI Component
 
-The class diagram below shows the association between classes that make up the UI component.
+The class diagram below shows the associations between classes that make up the UI component.
 
 ![Class Diagram for UI Component](images/ClassDiagram_UI.png)
 
-The UI component is made up of main 2 classes:
-* `TextUi`: Responsible for the majority display of Quotesify’s messages. 
+The UI component is made up of mainly 2 classes:
+* `TextUi`: Responsible for the majority of the display of Quotesify’s messages. 
 * `UiMessage`: Holds all messages required for TextUI to print to the program console.
 
-In essence, the UI is responsible for the majority display of all successful command executions, error messages
-, as well as user interaction by prompting for the next command.
+In essence, the UI is responsible for the majority of the display of all successful command executions, error messages
+, as well as user interactions by prompting for the next command.
 
 ---
 
 ### 3.3 Logic Component
 
-The class diagram below shows the association between classes that make up the Logic component.
+The class diagram below shows the associations between classes that make up the Logic component.
 
 Note: **Model** and **Storage** in this diagram represent components, not classes.
 
@@ -181,13 +181,13 @@ Note: **Model** and **Storage** in this diagram represent components, not classe
 The Logic component is made up of 2 sub-components, namely the `Parser` and `Command`. Below describes the sequence
 flow from the time a user input is read till command execution ends.
 
-1. User input is fetched from the UI and passed into the Parser for parsing.
-2. A Command object is returned and subsequently executed.
+1. UI fetches the User input, which is passed into the Parser for parsing.
+2. Parser returns a Command object, which is then executed.
 3. The command execution outcome may affect Quotesify’s model objects. (e.g. adding a book)
 4. Command instructs the UI component to print out relevant output messages depending on command type.
 Also, Command may invoke saving of data via Storage at a given point in time.
 5. Finally, Command will then inspect the exit status after command execution to verify if the program should exit.
-6. Control is handed back over to the UI, either for processing of program exit or the next user input command.
+6. Control is handed back over to the UI, either for processing of program exit, or the next user input command.
 
 * `X` represents the execution type such as `Add`, `Delete`, `Edit`, etc.
 * `Y` represents the model type such as `Book`, `Quote`, `Category`, etc.
@@ -201,7 +201,7 @@ Therefore,
 
 ### 3.4 Model Component
 
-The class diagram below shows the association between classes that make up the Model component.
+The class diagram below shows the associations between classes that make up the Model component.
 
 ![Class Diagram for Model Component](images/ClassDiagram_Model.png)
 
@@ -236,6 +236,8 @@ Given below is the class diagram for classes related to Book Management in Quote
 
 ![Class Diagram for Book Management](images/ClassDiagram_Book.png)
 
+* The `XBookCommand` class represents `AddBookCommand`, `ListBookCommand`, `EditBookCommand`, `DeleteBookCommand`,
+`FindBookCommand` and `DoneBookCommand`.
 #### 4.1.1 Add Books
 
 The sequence diagram below demonstrates the command execution process when adding a book to the booklist.
@@ -243,8 +245,8 @@ The sequence diagram below demonstrates the command execution process when addin
 ![Sequence Diagram for Add Books](images/SeqDiagram_AddBook.png)
 
 * To reduce complexity and increase readability, the sequence diagram excludes error handling.
-* Parsing of user input is done in the Parser and AddCommand classes, which is also not shown in the diagram.
-* `checkMissingInformation()` method is also not included in the sequence diagram as it merely checks for possible
+* The Parser and AddCommand classes parses the user input, which is also not shown in the diagram.
+* We did not include the `checkMissingInformation()` method in the sequence diagram as it merely checks for possible
 missing information given in the user input and throws exceptions.
 * Upon ensuring there are no mistakes in the user input, `createNewBook()` will be called, which essentially creates a 
 new book after ensuring there are no identical books already in the BookList.
@@ -257,7 +259,7 @@ alphabetical order.
     * Pros: Allows users to specify different books with the same title but different author.
     * Cons: Need to check for both title and author to prevent duplicates.
 * BookList is always sorted in alphabetical order 
-    * Alternative 1: Sort after adding the book
+    * Alternative 1 (current choice): Sort after adding the book
         * Pros: Only need to sort after every addition, listing is as per normal
         * Cons: Adding books may take longer if size of BookList is too large
     * Alternative 2: Sort before listing the books
@@ -286,7 +288,7 @@ The sequence diagram below demonstrates the command execution process when findi
     * Alternative 1: Let users find by multiple space-separated keywords
         * Pros: Users can find books if they can only remember part of the book title.
         * Cons: Search list may not be narrowed as much. 
-    * Alternative 2: Let users find by exact phrase
+    * Alternative 2 (current choice): Let users find by exact phrase
         * Pros: Users can narrow down the search using an exact phrase instead of just one word.
         * Cons: The exact phrase must be typed out for the correct result to show.
 
@@ -331,23 +333,23 @@ not be added and an error message will be displayed.
     * Pros: Provides categorization and allows for the implementation of other useful features such as search and list
     * Cons: Increased memory overhead for each quote and implementation complexity
 * Allowing users to add quotes of different formats with single command
-    * Pros: Users will not be restricted to a single format or be required to use a different commands for each format.
+    * Pros: Users will not be restricted to a single format or be required to use different commands for each format.
     * Cons: Increased implementation complexity due to parsing different formats.
     
 #### 4.2.2 Edit Quote Reflection
 
-The edit quote reflection feature updates current reflection of a quote into a new one, keeping the remainding 
+The edit quote reflection feature updates current reflection of a quote into a new one, keeping the remaining 
 information such as quote, author name and reference the same.
 
 The sequence diagram below reflects the command execution when a user edits the reflection of a quote.
 
 ![Sequence Diagram for Edit Quotes Reflection](images/SeqDiagram_EditQuoteReflection.png)
 
-* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
+* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class, which creates an
 `EditCommand` object which subsequently creates the `EditQuoteReflectionCommand` as seen in the diagram, and then 
 calling it's `execute()` method.
 * Appropriate validation checks will be conducted to determine if the edit tag `/to` is present, and the updated 
-reflection is not empty. If the following conditions are not met, the reflection will not be updated and an error 
+reflection is not empty. If the following conditions are not met, the reflection will not be updated, and an error 
 message will be displayed.
 
 #### Design Considerations
@@ -384,22 +386,22 @@ The sequence diagram below demonstrates the command execution process when addin
 ![Sequence Diagram for Add Bookmark](images/SeqDiagram_AddBookmark.png)
 
 * To reduce complexity and increase readability, the sequence diagram excludes error handling.
-* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
+* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class which creates an
 `BookmarkCommand` object as seen in the diagram, and then calling it's `execute()` method.
 
 #### Design Considerations
 
 * BookmarkList is always sorted in order of creation time
-    * Pros: Allow user to easily find the earliest and the latest book they started to read.
-    * Cons: Make user hard to find the bookmark they recently updated.
+    * Pros: Allow users to easily find the earliest and the latest book that they read.
+    * Cons: More difficult for users to find the bookmark that they recently updated.
 
 #### 4.3.2 Add task
 
 The add task feature allows users to add tasks with a deadline to Quotesify. Tasks added can be of the following format:
 
-* Task without any deadline
-* Task with an unformatted deadline
-* Task with a formatted deadline 
+* Tasks without any deadline
+* Tasks with an unformatted deadline
+* Tasks with a formatted deadline 
  
 * The `ToDo` object (we mentioned as 'task' before) will be made up of a name and a deadline, which is stored in a list of 
 tasks named `ToDoList`.
@@ -409,7 +411,7 @@ The sequence diagram below demonstrates the command execution process when addin
 ![Sequence Diagram for Add ToDo](images/SeqDiagram_AddToDo.png)
 
 * To reduce complexity and increase readability, the sequence diagram excludes error handling.
-* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class that creates an
+* Not shown in the sequence diagram is the parsing of user input by Quotesify's main parser class, which creates an
 `AddCommand` object which subsequently creates the `AddToDoCommand` as seen in the diagram, and then calling it's 
 `execute()` method.
 
@@ -418,11 +420,11 @@ The sequence diagram below demonstrates the command execution process when addin
 * ToDoList is sorted in two ways:
     * Tasks with formatted deadline will be sorted in ascending order of time. (The one with an earlier deadline 
     is displayed ahead of the one with a later deadline)
-    * Task with unformatted deadline and without specified deadline will be arranged in order of creation time.
+    * Tasks with unformatted deadline and without specified deadline will be arranged in order of creation time.
     * Tasks with formatted deadline will be listed ahead of all other tasks.
     
-        * Pros: User can view the most urgent task easily
-        * Cons: It is hard for user to find a task with an unformatted deadline 
+        * Pros: Users can view the most urgent task easily
+        * Cons: It is harder for users to find a task with an unformatted deadline 
         even though the text in the deadline represents a high urgency.
     
 ---
@@ -441,7 +443,7 @@ A `Category` object holds the following attributes:
 
 #### 4.4.1 Add Categories
 
-The proposed add categories feature allows a user to add multiple categories to an existing book, quote, or both. 
+The proposed add categories feature allows users to add multiple categories to an existing book, quote, or both. 
 
 The sequence diagram below demonstrates the command execution process when adding a category to an existing book.
 
@@ -552,7 +554,7 @@ to inform the user and the method is returned.
 
 ### Target user profile
 
-The intended user of Quotesify is someone that meets the following criterias:
+The intended user of Quotesify is someone who meets the following criteria:
 * reads a lot
 * has difficulty remembering content after reading them
 * can type fast
@@ -567,7 +569,7 @@ The intended user of Quotesify is someone that meets the following criterias:
 * Timely quote reminders to resurface previously saved quotes
 * Personalised categories created to only suit what the user needs
 * Find books, quotes and categories with a single command
-* Works offline and data is only stored locally
+* Works offline and stores data locally
 * Portable
 
 ---
@@ -649,7 +651,7 @@ Alright, have a nice day!
 
 1. Test case: `add -b Harry Potter /by JK Rowling`
     
-   Expected: Book is added to Quotesify. A message will be prompted to indicate that
+   Expected: Book is added to Quotesify's booklist. A message will be prompted to indicate that
    the book has been successfully added.
    
 2. Other incorrect commands to try:
@@ -658,7 +660,7 @@ Alright, have a nice day!
     * `add -b title`: Author name left empty
     * `add -b title /by`: Author name left empty with author tag specified
     
-    Expected: Book will not be added. An error message will by printed.
+    Expected: Book will not be added. An error message will be printed.
     
 #### List all existing books
 
@@ -676,7 +678,7 @@ Alright, have a nice day!
    * `list -b Harry Potter /by JK Rowling`: Wrong format. 
    * `list -b 10000`: Index out of range of booklist.
    
-   Expected: Book details will not be printed. An error message will be printed instead.
+   Expected: Book details will not be printed. An error message will be printed.
    
 #### List books by author
 
@@ -705,7 +707,7 @@ Alright, have a nice day!
 1. Test case: `delete -b 3`
 
    Expected: Book with the book index of 3 in booklist will be deleted from list.
-   Successful message will be printed.
+   A successful message will be printed.
    
 2. Other incorrect commands to try:
    * `delete -b Harry Potter`: Wrong format
@@ -756,7 +758,7 @@ Alright, have a nice day!
     
     Expected: Quote is added to Quotesify. message will be prompted to indicate that the quote has been successfully edited. 
    
-5. Incorrect commands to try:
+5. Other incorrect commands to try:
    * `add -q` : quote field left empty
    * `add -q ` : empty space entered for quote field  
    * `add -q you can't see me /by` : author tag with missing author name
@@ -791,7 +793,7 @@ Alright, have a nice day!
 2. Other incorrect commands to try:
    * `list -q /from` : reference tag with missing reference title
    
-   Expected: No quotes are listed. A message with error details will be shown.
+   Expected: Quotes will not be listed. A message with error details will be shown.
    
 #### Listing quotes from a specific reference and by a specific author
 
@@ -804,7 +806,7 @@ Alright, have a nice day!
    * `list -q /from /by rick` : reference and author tag with missing reference title
    * `list -q /from /by` : missing reference title and author name
    
-   Expected: No quotes are listed. A message with error details will be shown.
+   Expected: Quotes will not be listed. A message with error details will be shown.
    
 #### Editing a quote
 
@@ -832,7 +834,7 @@ Alright, have a nice day!
    * `delete -q X`: non integer input
    * `delete -q 9999999`: non existent quote number
    
-   Expected: No quote is deleted. A message with error details will be shown.
+   Expected: Quote will not be deleted. A message with error details will be shown.
    
 #### Finding a quote
 
@@ -870,7 +872,7 @@ Alright, have a nice day!
    * `list -qr` : missing quote number
    * `list -qr 9999` : non-existent quote
    
-   Expected: Reflection is not listed. A message with error details will be shown.
+   Expected: Reflection will not be listed. A message with error details will be shown.
    
 #### Editing reflection of a quote
 
@@ -879,9 +881,9 @@ Alright, have a nice day!
    Expected: Reflection will be updated, a prompt displaying updated reflection will be shown.
    
 2. Other incorrect commands to try:
-   * `edit -qr` : missing quote number, to tag and updated reflection
+   * `edit -qr` : missing quote number, `/to` tag and updated reflection
    * `edit -qr 1 /to`: missing updated reflection
-   * `edit -qr 1 nothing to reflect` : missing to flag
+   * `edit -qr 1 nothing to reflect` : missing `/to` flag
    * `edit -qr 9999999 /to updated reflection here!` : non-existent quote number
    
    Expected: Reflection will not be updated. A message with error details will be shown.
@@ -1025,7 +1027,7 @@ Alright, have a nice day!
      
      Expected: A message will be prompted to indicate that categories have been tagged to both book and quote successfully.
 
-4. Incorrect commands to try
+4. Other incorrect commands to try
    - `add -c` missing category name, book or quote
    - `add -c action` missing a book or quote
    - `add -c action -b 0 -q 0` invalid book and quote index
@@ -1092,7 +1094,7 @@ Alright, have a nice day!
    
    Expected: A message will be prompted to indicate that categories has been removed from all book and quotes.
    
-5. Incorrect commands to try
+5. Other incorrect commands to try
    - `delete -c` missing category name, book or quote
    - `delete -c action -b 0 -q 0` invalid book and quote index
    - `delete -c -b 1 -q 1` missing category name
@@ -1106,7 +1108,7 @@ Alright, have a nice day!
      
      Expected: A message will be prompted indicating that category has been changed successfully. All books and quotes tagged under the old category will be changed as well.
 
-2. Incorrect commands to try
+2. Other incorrect commands to try
    - `edit -c` missing existing and new category name
    - `edit -c love` missing new category name
    
@@ -1119,7 +1121,7 @@ Alright, have a nice day!
    
      Expected: Quotesify will list all categories containing the keyword "man".
      
-2. Incorrect commands to try
+2. Other incorrect commands to try
    - `find -c` missing keyword
    - `find -c 123` invalid category name
    
