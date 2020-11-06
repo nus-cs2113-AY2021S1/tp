@@ -97,7 +97,7 @@ public class ModuleList {
     /**
      * Checks if the expected workload has less than or equal to 1 decimal place.
      *
-     * @param exp   expected workload typed in by user.
+     * @param exp     expected workload typed in by user.
      * @param toPrint whether the UI should print the output.
      * @return true if expected workload is valid, false otherwise.
      */
@@ -128,6 +128,33 @@ public class ModuleList {
         } else {
             return true;
         }
+    }
+
+    /**
+     * Checks if the week is valid.
+     *
+     * @param week    number of weeks typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @return true if week number is valid, false otherwise.
+     */
+    public boolean checkIfWeekValid(String week, boolean toPrint) {
+        char c = week.charAt(0);
+        boolean integerCheck = Character.isDigit(c);
+
+
+        if (integerCheck) {
+            int weekNumber = Integer.parseInt(week);
+            if (weekNumber < 1 || weekNumber > 13) {
+                ui.printWeekError(toPrint);
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            ui.printWeekAlphabetError(toPrint);
+            return false;
+        }
+
     }
 
     /**
@@ -367,10 +394,9 @@ public class ModuleList {
      */
     public void addTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
-        String modCode;
-        double hours;
-        modCode = commandInfo[1].toUpperCase();
-        hours = Double.parseDouble(commandInfo[2]);
+        String week = commandInfo[3];
+        String modCode = commandInfo[1].toUpperCase();
+        double hours = Double.parseDouble(commandInfo[2]);
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
         }
@@ -378,6 +404,8 @@ public class ModuleList {
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
         if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        } else if (!checkIfWeekValid(week, toPrint)) {
             return;
         }
 
@@ -411,11 +439,10 @@ public class ModuleList {
      * @param storage storage object where data is stored.
      */
     public void minusTime(String input, boolean toPrint, Storage storage) {
-        String modCode;
-        double hours;
         String[] commandInfo = input.trim().split(" ", 4);
-        modCode = commandInfo[1].toUpperCase();
-        hours = Double.parseDouble(commandInfo[2]);
+        String modCode = commandInfo[1].toUpperCase();
+        String weekNumber = commandInfo[3];
+        double hours = Double.parseDouble(commandInfo[2]);
 
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
@@ -424,6 +451,8 @@ public class ModuleList {
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
         if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        } else if (!checkIfWeekValid(weekNumber, toPrint)) {
             return;
         }
 
@@ -475,10 +504,9 @@ public class ModuleList {
      */
     public void editTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
-        String modCode;
-        double hours;
-        modCode = commandInfo[1].toUpperCase();
-        hours = Double.parseDouble(commandInfo[2]);
+        String week = commandInfo[3];
+        String modCode = commandInfo[1].toUpperCase();
+        double hours = Double.parseDouble(commandInfo[2]);
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
         }
@@ -486,6 +514,8 @@ public class ModuleList {
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
         if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        } else if (!checkIfWeekValid(week, toPrint)) {
             return;
         }
 
