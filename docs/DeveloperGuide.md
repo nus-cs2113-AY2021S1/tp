@@ -1016,6 +1016,42 @@ You should see the following:
 ![DisplayIncomeGoal](.DeveloperGuide_images/DisplayIncomeGoal.png)
 
 ### 7.6 Testing SaveManager
+#### 7.6.1 Add Save
+##### Positive test
+1. Enter ```add /name save123``` into the console.
+You should see the following:
+![capture]
+<br />
+![capture2]
+
+##### Negative test
+1. Enter ```add /name``` into the console
+You should see the following:
+![capture1]
+
+#### 7.6.2 Load Save
+##### Positive test
+1. Enter ```load /name save123``` into the console.
+You should see the following:
+![capture3]
+
+##### Negative test
+1. Enter ```load /name wrongName``` into the console.
+You should see the following:
+![capture4]
+
+#### 7.6.3 Delete Save
+##### Positive test
+1. Enter ```delete /name save123``` into the console.
+You should see the following:
+![capture5]
+<br />
+![capture7]
+
+##### Negative test
+1. Enter ```delete /name wrongName``` into the console.
+You should see the following:
+![capture6]
 
 ### 7.7 Testing FinanceTools
 
