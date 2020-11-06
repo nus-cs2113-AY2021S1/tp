@@ -539,7 +539,7 @@ when the application launches. On the other hand, exporting of data happens when
 ## 4. Implementation <a name="implementation"></a>
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Storing data 
+### 4.1 Storing data <a name="store-imp"></a>
 
 `Storage` class stores the data following the same logical structure (subject -> topic) of the application to 
 make the stored data more presentable to the user. `Subject` and `Topic` data are stored as nested directories, while 
@@ -899,11 +899,55 @@ flashcards and an arraylist of results.
 
 ## Appendix E: Instructions for Manual Testing
 
-Given below are instructions to test the app manually.
+Given below are the instructions to test the app manually.
 
-1. Refer to the [UserGuide](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html) on how to download the application.
-1. Open the application in command prompt.
-1. Try out various commands in the userguide to check if it works.
-1. Try out invalid commands and check if the application responds correspondingly.
-1. Exit the application and check the data files to check if all the data has been saved.
-1. Open the application again and check if the data has been loaded correctly. Use the `list` command for this step.
+> ℹ️ **_NOTE:_** These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
+
+### Launching
+
+1. Refer to the [Quick Start](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html#start) to download and launch the application.
+1. **Expected:** The application should show the greeting screen as illustrated in the quick start section.
+
+### Testing features
+
+1. Run each command as demonstrated in the example of usage in the [Features](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html#features) section
+of the user guide.
+1. **Expected:** The output should match the sample output given.
+
+### Shutdown
+
+1. Run `exit` command until you reach the main level of the application (or until an error message saying the command is not recognized is displayed).
+1. Run `bye` command.
+1. **Expected:** A bye message should be displayed and the application should exit.
+
+### Saving data
+
+#### When shutdown normally  <a name="man-save-normal"></a>
+1. Create a new folder and copy the jar file used in the above steps to the new folder. 
+1. Navigate to the new folder and launch the application.
+1. Run `add CS2113T` then `subject CS2113T`.
+1. Run `add Java`.
+1. Run `exit` then `bye`.
+1. **Expected:** A `data/` folder containing the same structure as mentioned <a href="#store-imp">here</a> should be created
+in the new folder.
+
+#### When shutdown abruptly
+1. Follow steps 1 to 4 <a href="#man-save-normal">above</a> to add data.
+1. Close the console running the application, then navigate to the new folder via file explorer.
+1. **Expected:** No folder is found created in the new folder.
+
+### Loading data
+
+#### When data is not modified externally
+1. Follow all the steps <a href="#man-save-normal">above</a> to create saved data.
+1. Launch the application again.
+1. **Expected:** CS2113T subject and Java topic persist in the application.
+
+#### When data is modified externally
+1. Follow all the steps <a href="#man-save-normal">above</a> to create saved data.
+1. Go into the `data/` folder in the new folder.
+1. Rename the `CS2113T/` folder to `CS2040/`.
+1. Go back to the new folder and launch the application.
+1. **Expected:** CS2113T subject is changed to CS2040, and Java topic remains the same in the application.
+
+
