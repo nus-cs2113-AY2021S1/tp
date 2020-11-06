@@ -748,8 +748,8 @@ The following diagram shows how you can initiate the quiz for a topic.
 ![topic](https://user-images.githubusercontent.com/46095141/98371459-2b06e000-2077-11eb-85dd-4850dbe7bba8.png)
 
 > ℹ️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
->if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
->show the score obtained by the user.
+>if you have completed the quiz. If you the quiz without completing it, then the application will only
+>show the score obtained by the you.
 
 ### 4.5 Sorting tasks
 The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
