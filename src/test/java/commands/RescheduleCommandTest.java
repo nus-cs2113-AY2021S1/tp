@@ -58,6 +58,11 @@ public class RescheduleCommandTest {
 
     @AfterEach
     public void cleanUp() {
+        storageStub.deleteDirectory("/CS2113/dues/Chapter1due.txt");
+        storageStub.deleteDirectory("/CS2113/dues/Chapter2due.txt");
+        storageStub.deleteDirectory("/CS2113/Chapter1.txt");
+        storageStub.deleteDirectory("/CS2113/Chapter2.txt");
+        storageStub.deleteDirectory("/CS2113/dues");
         storageStub.deleteDirectory("/CS2113");
         System.setOut(standardOut);
     }
@@ -118,28 +123,16 @@ public class RescheduleCommandTest {
 
         public void createDirectory(String path) {
             File f = new File(filePath + path);
-            boolean dirExists = f.exists();
-            if (!dirExists) {
-                f.mkdir();
-            }
+            f.mkdir();
         }
 
         public void createFile(String path) throws IOException {
             File f = new File(filePath + path);
-            boolean fileExists = f.exists();
-            if (!fileExists) {
-                f.createNewFile();
-            }
+            f.createNewFile();
         }
 
         public void deleteDirectory(String path) {
             File directory = new File(filePath + path);
-            File[] allContents = directory.listFiles();
-            if (allContents != null) {
-                for (File file : allContents) {
-                    deleteDirectory(file);
-                }
-            }
             directory.delete();
         }
 

@@ -93,11 +93,8 @@ public class AddCardCommandTest {
     }
 
     public class StorageStub extends Storage {
-        private String filePath;
-
         public StorageStub(String filePath) {
             super(filePath);
-            this.filePath = filePath;
         }
 
         public void createDirectory(String path) {

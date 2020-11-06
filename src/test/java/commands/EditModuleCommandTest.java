@@ -121,20 +121,11 @@ public class EditModuleCommandTest {
 
         public void createDirectory(String path) {
             File f = new File(filePath + path);
-            boolean dirExists = f.exists();
-            if (!dirExists) {
-                f.mkdir();
-            }
+            f.mkdir();
         }
 
         public void deleteDirectory(String path) {
             File directory = new File(filePath + path);
-            File[] allContents = directory.listFiles();
-            if (allContents != null) {
-                for (File file : allContents) {
-                    deleteDirectory(file);
-                }
-            }
             directory.delete();
         }
     }
