@@ -14,7 +14,7 @@ import java.util.Comparator;
 public abstract class ItemList {
     protected Item currItem;
     protected ArrayList<Item> items = new ArrayList<>();
-    protected int indexToModify = -1;
+    protected int indexToModify;
     protected boolean isIndexToModifySet;
     protected String paramTypeFirst;
 
@@ -102,6 +102,7 @@ public abstract class ItemList {
     public Item getItemAtCurrIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         int index = this.indexToModify;
+        this.isIndexToModifySet = false;
         return this.items.get(index);
     }
 

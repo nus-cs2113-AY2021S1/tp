@@ -359,7 +359,7 @@ public class ParamChecker {
         return output;
     }
 
-    public String checkAndReturnDescription(String paramType) throws ParseFailParamException{
+    public String checkAndReturnDescription(String paramType) throws ParseFailParamException {
         String input = packet.getParam(paramType);
         if (input.contains(";")) {
             errorMessage = "\n\"; is an illegal character in this program. Try again without the character.\"\n";

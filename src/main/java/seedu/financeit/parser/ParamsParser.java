@@ -22,14 +22,26 @@ public class ParamsParser {
         return paramsParser;
     }
 
+    public String getSeparator(String input) {
+        //Matcher matches <space><separator><paramType><space>, so (matched index + 1) gives the separator
+        int separatorIndex = matcher.start() + 1;
+        System.out.println(input.charAt(separatorIndex));
+        return String.valueOf(input.charAt(separatorIndex));
+    }
+
     public String getNextParamType(String input) {
+        System.out.println("input1: " + input);
         //Matcher gives index of space before the param, so (matched index + 1) gives the separator
-        input = input.trim();
-        int separatorIndex = input.indexOf(" ");
-        if (separatorIndex == -1) {
+        int separatorIndex = -1;
+        try {
+            separatorIndex = RegexMatcher.paramMatcher(input).start();
+            System.out.println("proces: " + input + ", " + separatorIndex);
+        } catch (IllegalStateException e) {
             return input;
         }
-        return input.substring(separatorIndex) + " ";
+        int nextSpaceIndex = input.indexOf(" ", separatorIndex + 1);
+        System.out.println("output: " + input.substring(separatorIndex, nextSpaceIndex));
+        return input.substring(separatorIndex, nextSpaceIndex);
     }
 
     /**
@@ -49,11 +61,11 @@ public class ParamsParser {
         String[] buffer;
         String paramArgument = "";
         boolean paramArgumentExist;
-
+        System.out.println("input: " + paramSubstring);
         do {
             paramSubstring += " ";
             paramArgument = "";
-
+            System.out.println("paramsubs: " + paramSubstring);
             //Separate into [paramType, rest of string]
             buffer = paramSubstring.split(" ", 2);
 
@@ -63,7 +75,7 @@ public class ParamsParser {
             * Process param argument and check whether more params exist
             */
 
-            boolean isRestOfStringEmpty = paramSubstring == null;
+            boolean isRestOfStringEmpty = paramSubstring.length() == 0;
             if (isRestOfStringEmpty) {
                 //No param argument, no further params
                 putParamIntoParamMap(paramType, paramSubstring, paramMap);
@@ -94,6 +106,9 @@ public class ParamsParser {
                 String separator = getNextParamType(paramSubstring);
                 buffer = paramSubstring.split(separator, 2);
                 buffer[1] = separator + buffer[1];
+                System.out.println("buffer0: " + buffer[0]);
+                System.out.println("buffer1: " + buffer[1]);
+
                 paramArgument = buffer[0].trim();
                 paramSubstring = buffer[1].trim();
             } else {
