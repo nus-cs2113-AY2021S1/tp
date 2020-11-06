@@ -426,7 +426,7 @@ public class UiMessage {
      * @param end Ending date time of the time period given.
      * @return The string representation of time period with date time in the format dd MMM yyyy HHmm.
      */
-    public String stringDateTimePeriod(LocalDateTime start, LocalDateTime end) {
+    String stringDateTimePeriod(LocalDateTime start, LocalDateTime end) {
         mainLogger.log(Level.FINE, "Start: " + start);
         mainLogger.log(Level.FINE, "End: " + end);
         uiHelper.performAssertionsForTimePeriod(start, end);
