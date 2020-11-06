@@ -65,7 +65,8 @@ public class Ui {
             + System.lineSeparator() + "9) exit (saves your data too!)";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
-            + System.lineSeparator() + "Hope you have learnt something new!";
+            + System.lineSeparator() + "Hope you have learnt something new!"
+            + System.lineSeparator() + "You can view how well you have done using the 'stats' command!";
     private static final String MESSAGE_ANSWER_WRONG = "Oops! The correct answer is ";
     private static final String MESSAGE_ANSWER_WRONG_SECOND = "! Do visit the textbook to read up more.";
     private static final String MESSAGE_ANSWER_CORRECT = "Great Job! That is the correct answer! Keep it up!";
@@ -94,13 +95,14 @@ public class Ui {
     private static final String DOT = ".";
     private static final String DOT_SPACE = ". ";
     private static final String DOT_PLURAL = "s.";
+    private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to:";
     private static final String SPACE = " ";
-    private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to: ";
-    private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note: ";
-    private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note: ";
+    private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note";
+    private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note:";
     private static final String ADD_NOTE_SUCCESSFULLY = "Your note has been added!";
     private static final String ADD_NOTE_UNSUCCESSFULLY = "Your note was not added successfully."
             + " Please try again!";
+    private static final String INVALID_TOPIC_NAME = "Please enter a valid topic name";
     private static final String DELETE_NOTE_PROMPT_FOR_TOPIC = "Which topic does the note you would like to delete"
             + " belong to?";
     private static final String DELETE_NOTE_PROMPT_FOR_INDEX = "What is the index of the note that you would like"
@@ -246,6 +248,7 @@ public class Ui {
     }
 
     public void printQuestion(Question question, int questionNumber) {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(questionNumber + DOT_SPACE + question.getDescription() + System.lineSeparator());
     }
 
@@ -286,7 +289,7 @@ public class Ui {
         System.out.println();
         printMessage(MESSAGE_INCOMPLETE_ANSWER_TIMER + userTimer + MESSAGE_INCOMPLETE_ANSWER_TIMER_SECOND
                 + MESSAGE_ANSWER_INCOMPLETE + correctAnswer + MESSAGE_ANSWER_WRONG_SECOND + System.lineSeparator()
-                + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
+                + System.lineSeparator() + MESSAGE_EXPLANATION + System.lineSeparator() + explanation);
         System.out.println(HORIZONTAL_LINE);
     }
 
@@ -409,7 +412,7 @@ public class Ui {
             System.out.println(MESSAGE_PRINT_NOTE_LIST);
             for (int i = 0; i < notes.getCount(); i++) {
                 System.out.println(HORIZONTAL_LINE);
-                Note note = (Note) notes.get(i);
+                Note note = notes.get(i);
                 System.out.println((i + 1) + DOT + note.getDescription());
                 System.out.println(note.getNoteText());
             }

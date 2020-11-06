@@ -36,76 +36,93 @@ The high-level design of our program is based on a 3-tier architecture which con
 
 ### 2.2. Model Component
 
-The data model is centered around `DisplayableList` objects which hold `Displayable` objects. This implementation allows us to create various topics with questions, options, hints and explanations. This was also extended to creating bookmarks and notes.
+The data model is centered around `DisplayableList` objects which hold `Displayable` objects. This implementation 
+allows us to create various topics with questions, options, hints and explanations. This was also extended to creating bookmarks and notes.
 
 ####  2.2.1. Design of TopicList
 
-TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
-in the code for E-Duke-8. As such, many of the commands that manipulate the TopicList make 
-use of the package java.util.ArrayList. The TopicList is used to store Topics. Additionally,
-each topic stores a NoteList, which contains Notes.
+`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 3 interfaces implemented 
+in the code for EDuke8. As such, many of the commands that manipulate the `TopicList` make 
+use of the package `java.util.ArrayList`. 
 
-1. Listing topics in TopicList
-2. Adding a new note
-3. Deleting an existing note
-4. Listing out all notes in a topic
+The `TopicList` is used to store `Topics`. `Topics` themselves implement the interface `Displayable`. 
 
-![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
+![TopicList](images/TopicListClassDiagram.png)
+
+There is just 1 command that manipulates the `TopicList`, which is `topics`. The `topics` command shows all the 
+`Topic` objects in the current `TopicList`.
+
 
 #### 2.2.2. Implementation of TopicList
 
 **Listing topics in TopicList:**
 
-![TopicListSampleSequence](./images/TopicListSampleSequence.png)
-
 This task is performed by the `TopicList.showTopics()` method.
 
-Step 1. The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
+![topicsSequence](images/topiclistsequence.png)
+
+Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
         `TopicList.showTopics()` method.
         
 Step 2. The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
         current `TopicList` is passed into the called method.
-        
-Step 3. The `Ui.printTopicList()` method then prints out the description of each topic in the 
-        `TopicList`. 
 
-`NoteList` is also an `ArrayList` of type `Displayable`, which is one of two interfaces implemented in the code for 
-E-Duke-8. As such, many of the commands that manipulate the `TopicList` make use of the package `java.util.ArrayList`. 
-The `NoteList` stores `Note` objects. Each topic has 1 `NoteList`. 
+Step 3: The `Ui.printTopicList()` method then prints out the number of questions in each topic,
+        along with the description of each topic in the `TopicList`. 
 
-#### 2.2.3. Implementation of Notes
+
+#### 2.2.3. Design of NoteList
+
+`NoteList` is also an `ArrayList` of type `Displayable`. As such, just like with `TopicList`, many of the commands 
+that manipulate the `NoteList` also make use of the package `java.util.ArrayList`. 
+
+Each topic has an attribute of type `NoteList`, which contains `Note` objects.
+
+![NoteListClass](images/NoteListClassDiagram.png)
+
+#### 2.2.4. Implementation of Notes
+
+There are 3 commands that involve the manipulation of `NoteList` objects. They are: `note add`, which adds a new `Note`
+object, `note delete`, which deletes a `Note` object, and `note list`, which lists out all `Note` objects in a `NoteList` from a 
+specified `Topic`. These commands are carried out by the instantiation of a `NoteCommand` object. The `NoteCommand` 
+object then performs a task based on the type of command from the user's input. This is reflected in the following 
+sequence diagram:
+
+![NoteCommandSequence](images/NoteCommandSequence.png)
 
 **Adding a new note:**
 
 This task is performed by the `NoteList.add()` method.
 
-Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
-        A new `Note` object is passed into its parameter.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.addNoteInteractions()` 
+method. 
 
-Step 2. The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
-        the `Note` object into `NoteList`.
+Step 2: The `Ui.addNoteInteractions()` method uses the user's input to create a `Note` object. 
+
+Step 3: The `Ui,addNoteInteractions()` method then calls the method `NoteList.add()`, passing the created `Note` object 
+into this method. `NoteList.add()` makes use of the package `java.util.ArrayList`, specifically the `ArrayList.add()` 
+method, to add the `Note` object into the specified `NoteList` object.
+
+**Listing out all notes in a topic:**
+
+This task is performed by the `Ui.printNoteList()` method.
+
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
+and calls the `Ui.listInteraction` method. The topic's `NoteList` object is passed into this method.
+
+Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` object is passed into 
+this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` object.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
-        An integer that represents the index of the `Note` object to be deleted within the `NoteList` is passed into 
-        this method.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.deleteNoteInteractions` method. 
+An integer provided by the user's input is passed into this method. This integer is interpreted as the index of the `Note` object to be deleted in the
+specified `NoteList` object.
 
-Step 2. The `NoteList.delete()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
-        delete the `Note` object in `NoteList`.
-
-**Listing out all notes in a topic**
-
-This task is performed by the `Ui.printNoteList()` method.
-
-Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. 
-
-Step 2. The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
-this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the 
-topic's `NoteList`.
+Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the `ArrayList.remove()` method, to 
+delete the specified `Note` object in the specified `NoteList` object.
 
 #### 2.2.4. Design of Option and OptionList 
 
@@ -182,7 +199,7 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         
 #### 2.3.3. Design of QuizQuestionsManager
 
-To start a quiz in E-Duke-8, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
+To start a quiz in E-Duke-8, apart from the time limit for each question, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
 
 The class diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
 
@@ -190,7 +207,7 @@ The class diagram given below explains the high-level design of the Quiz system 
 
 An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duke-8. Its `numberOfQuestions` attribute and `Topic` object correspond to the user's specified number of questions and topic for the quiz respectively.
 
-The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager` by passing into it `numberOfQuestions`, as well as an ArrayList of questions from the `Topic` object. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method. 
+The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager`, by passing into its constructor `QuizQuestionsManager(:int, :ArrayList<Displayable>)`, `numberOfQuestions` for its first parameter and an ArrayList of questions from the `Topic` object for its second parameter. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method, where the first parameter will take in `numberOfQuestions` and its second parameter will take in the ArrayList of questions from the `Topic` object passed into the `QuizQuestionsManager` object. 
 
 Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
 
@@ -203,9 +220,11 @@ The sequence diagram below shows how `QuizQuestionsManager` is implemented to ac
 
 ![QuizQuestionsManager::setQuizQuestions_Sequence_Diagram](./images/QuizQuestionsManager_setQuizQuestions.png)
 
-`nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
+`nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer `randomQuestionIndex` where its value is between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
 
-To ensure that no two of the same question is selected, the selected randomQuestionIndex is checked to see if it is repeated. To determine if randomQuestionIndex is not selected before, an integer ArrayList is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
+Using the `Arraylist`'s method of `get(randomQuestionIndex)`, a random question will be selected from the list of questions in the `Topic` object.
+
+To ensure that no two of the same question is selected, the selected `randomQuestionIndex` is checked to see if it is repeated. To determine if `randomQuestionIndex` is not selected before, an integer `ArrayList` is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
 
 An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
 
@@ -221,7 +240,7 @@ The class diagram given below showcases the high-level design of the stats featu
 
 Results of the quiz attempts can be calculated using the information stored in a `Question` object, because of its methods, namely `wasShown()`,  `wasHintShown()` and `wasAnsweredCorrectly()`, that indicate if it has been attempted before, whether hint was used when user attempted the question and if the question was answered correctly respectively. 
 
-The current design of the stats feature is such that a correct answer without hint being used would award the user with 2 points, while a correct answer with hint used would award the user with 1 point. No point is awarded to the user if they chose the wrong answer. `calculatePointsEarnedForQuestion( :Question)` in `StatsCalculator` class and its subclasses, is the method that contains the logic for this calculation.
+The current design of the stats feature is such that a correct answer without hint being used would award the user with 2 points, while a correct answer with hint used would award the user with 1 point. No point is awarded to the user if they chose the wrong answer. `calculatePointsEarnedForQuestion(:Question)` in `StatsCalculator` class and its subclasses, is the method that contains the logic for this calculation.
 
 An object of `UserStatsCalculator` class is responsible for calculating the aggregate results from the user’s previous quiz results. For instance, its `calculateTotalPointsEarned()` method will iterate through the multiple topics stored in E-Duke-8 and calculate the total sum of the user’s past results of the quizzes done for those topics.
 
@@ -392,8 +411,12 @@ CS2113/T Students
 
 ### 3.2. Value proposition
 
-Help CS2113/T students learn and understand software engineering and OOP principles through a gamified platform and 
-enhance their learning experience. Consolidate key concepts for easy revision.
+To help CS2113/T students learn and understand software engineering and Object-oriented Programming (OOP) principles through a gamified
+platform and enhances their learning experience. 
+
+It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the Command Line Interface (CLI), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+
+Students can earn points for themselves as they answer questions in the quizzes, and they can view their quizzes' statistics to gauge their level of mastery of the topics in CS2113/T.
 
 ## 4. User Stories
 
