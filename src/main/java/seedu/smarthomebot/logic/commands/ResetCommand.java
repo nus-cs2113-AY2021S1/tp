@@ -2,11 +2,9 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
-import seedu.smarthomebot.logic.commands.exceptions.EmptyLocationListException;
 
 import java.util.ArrayList;
 
-import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_USAGE_RESET;
 

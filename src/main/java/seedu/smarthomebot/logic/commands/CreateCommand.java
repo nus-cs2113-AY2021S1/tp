@@ -6,6 +6,7 @@ import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 import java.util.logging.Level;
 
 import static seedu.smarthomebot.commons.Messages.LINE;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_LOCATION_EXIST;
 
 //@@author zongxian-ctrl
 
@@ -17,7 +18,6 @@ public class CreateCommand extends Command {
     public static final String COMMAND_WORD = "create";
     public static final String MESSAGE_USAGE = "Create location: " + COMMAND_WORD
             + " [LOCATION_NAME]";
-    private static final String MESSAGE_LOCATION_EXIST = "Location already exist";
     private final String userEnteredLocation;
 
     /**
