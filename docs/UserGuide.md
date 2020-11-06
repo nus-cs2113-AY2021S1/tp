@@ -423,7 +423,7 @@ Format:
 
 `deadline [DESCRIPTION] /by [TIME]`
 
-> ℹ️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
+> 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 >
 
 Example of usage: 

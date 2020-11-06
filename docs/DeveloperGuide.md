@@ -52,7 +52,7 @@ Note the following symbols and formatting used in this document:
 
 Symbols / Formatting|Meaning
 ------|------
-ℹ️ **_NOTE:_** | Important or additional information
+📝️️ **_NOTE:_** | Important or additional information
 ⚠️ **_WARNING:_** | Things to avoid or pay extra attention to
 ✔️ **_TODO:_** | Things that should be but have not been done
 `Grey highlight` | Code or terms related to the code/application
@@ -61,7 +61,7 @@ Symbols / Formatting|Meaning
 
 This section guides you through the steps to setup the project on your computer.
 
-> ℹ️ **_NOTE:_** This guide assumes you already have [Java 11](https://openjdk.java.net/projects/jdk/11/) or above
+> 📝️️ **_NOTE:_** This guide assumes you already have [Java 11](https://openjdk.java.net/projects/jdk/11/) or above
 > installed on your computer. If you do not have it yet, follow the link
 > to download and install it. 
 
@@ -534,7 +534,7 @@ to the users and allows them to change the saved data manually.
 `Task` data are stored differently as text files due to 
 legacy reason, but they are also readable and can be changed manually as well. 
 
-> ℹ️ **_NOTE:_** If the users modify the file contents with wrong syntax, the data in the affected files will
+> 📝️️ **_NOTE:_** If the users modify the file contents with wrong syntax, the data in the affected files will
 > not be loaded and empty data will be returned instead so that the application can still run.
 
 An example of the structure mentioned is shown in the figure below.
@@ -745,7 +745,7 @@ to that of the SubjectQuiz class.
 The following diagram shows how you can initiate the quiz for a topic.
 ![topic](https://user-images.githubusercontent.com/46095141/98371459-2b06e000-2077-11eb-85dd-4850dbe7bba8.png)
 
-> ℹ️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
+> 📝️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
 >show the score obtained by the user.
 
@@ -824,7 +824,7 @@ To see what goes wrong, you can compare the content of `ACTUAL.txt` and the cont
 where `ACTUAL.txt` contains the actual output of the application and `EXPECTED.txt` shows the expected output of the 
 application given the inputs.
 
-> ℹ️ **_NOTE:_** You can change the inputs in `input.txt` and the expected output in `EXPECTED.txt` if you would like to
+> 📝️️ **_NOTE:_** You can change the inputs in `input.txt` and the expected output in `EXPECTED.txt` if you would like to
 > test more aspects of the application or if the input/expected output changes due to code modification.
 
 ### 7.3 Checkstyle
@@ -933,7 +933,7 @@ flashcards and an arraylist of results.
 
 Given below are the instructions to test the app manually.
 
-> ℹ️ **_NOTE:_** These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
+> 📝️️ **_NOTE:_** These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
 
 ### Launching
 
