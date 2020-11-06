@@ -15,7 +15,6 @@ import seedu.smarthomebot.ui.TextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -25,11 +24,12 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXI
 
 public class ReadStorageFile extends StorageFile {
 
-    private static final String FILE_PATH = "data/SmartHomeBot.txt";
+    private static String FILE_PATH;
     private final TextUi ui = new TextUi();
 
-    public ReadStorageFile(ApplianceList applianceList, LocationList locationList) {
+    public ReadStorageFile(String filePath, ApplianceList applianceList, LocationList locationList) {
         super(applianceList, locationList);
+        this.FILE_PATH = filePath;
     }
 
     @Override
