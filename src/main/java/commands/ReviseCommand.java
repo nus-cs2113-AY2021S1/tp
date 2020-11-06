@@ -30,13 +30,14 @@ public class ReviseCommand extends Command {
             + "Parameters: INDEX_OF_CHAPTER\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_SUCCESS = "You have completed revision for <%1$s>.";
-    public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
+    public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in <%1$s>.";
     public static final String MESSAGE_CHAPTER_NOT_DUE = "The chapter <%1$s> is not due for revision today.\n";
     public static final String MESSAGE_SHOW_ANSWER_PROMPT = "\n[enter s to show answer]";
     public static final String MESSAGE_SHOW_RATING_PROMPT = "How well did you do for this card?\n"
             + "[enter e(easy), m(medium), h(hard), c(cannot answer)]";
     public static final String MESSAGE_SHOW_REVISE_PROMPT = "Are you sure you want to revise this? (Y/N)";
     public static final String MESSAGE_START_REVISION = "The revision for %s will start now:";
+    public static final String MESSAGE_NOT_REVISING = "You have chosen to not revise the chapter <%1s>.";
     public static final String EASY = "e";
     public static final String MEDIUM = "m";
     public static final String HARD = "h";
@@ -83,6 +84,7 @@ public class ReviseCommand extends Command {
         Chapter toRevise = getChapter(reviseIndex, access);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
             if (promptNotDue(ui, toRevise)) {
+                ui.showToUser(String.format(MESSAGE_NOT_REVISING, toRevise));
                 return;
             }
         }
