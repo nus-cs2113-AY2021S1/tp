@@ -25,8 +25,8 @@ public class ScrumLogger {
         logger.setLevel(Level.INFO);
         File file = new File("logs/logs.txt");
         String parentPath = file.getAbsoluteFile().getParent();
-        System.out.println(parentPath + "\\logs.txt");
-        FileHandler fileHandler = new FileHandler(parentPath + "\\logs.txt");
+        System.out.println(parentPath + "/logs.txt");
+        FileHandler fileHandler = new FileHandler(parentPath + "/logs.txt");
 
         SimpleFormatter formatter = new SimpleFormatter();
         fileHandler.setFormatter(formatter);

@@ -8,6 +8,6 @@ public class DukeException extends Exception {
     }
 
     public void printExceptionMessage() {
-        Ui.showToUser(this.getMessage());
+        Ui.showToUserLn(this.getMessage());
     }
 }
