@@ -315,7 +315,7 @@ public class Ui {
     }
 
     /**
-     * Prints the message when the week number is not valid
+     * Prints the message when the week number is not valid.
      */
     public void printWeekError(boolean toPrint) {
         if (toPrint) {

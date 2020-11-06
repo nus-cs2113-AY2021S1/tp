@@ -521,7 +521,7 @@ public class ModuleList {
         modCode = commandInfo[1].toUpperCase();
         week = commandInfo[3];
         hours = Double.parseDouble(commandInfo[2]);
-        
+
         if (!checkIfModuleValid(modCode, toPrint)) {
             return;
         }
