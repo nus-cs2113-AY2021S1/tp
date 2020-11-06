@@ -107,7 +107,7 @@ public class TextUi {
         if (quoteList.getSize() == 0) {
             System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
-        String listToPrint = quoteList.getQuotesByAuthor(quoteList, authorName.toLowerCase());
+        String listToPrint = quoteList.getQuotesByAuthor(authorName.toLowerCase());
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
         } else {
@@ -120,7 +120,7 @@ public class TextUi {
         if (quoteList.getSize() == 0) {
             System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
-        String listToPrint = quoteList.getQuotesByReference(quoteList, reference.toLowerCase());
+        String listToPrint = quoteList.getQuotesByReference(reference.toLowerCase());
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
         } else {
@@ -133,8 +133,7 @@ public class TextUi {
         if (quoteList.getSize() == 0) {
             System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
-        String listToPrint = quoteList.getQuotesByReferenceAndAuthor(quoteList, reference.toLowerCase(),
-                authorName.toLowerCase());
+        String listToPrint = quoteList.getQuotesByReferenceAndAuthor(reference.toLowerCase(), authorName.toLowerCase());
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
         } else {

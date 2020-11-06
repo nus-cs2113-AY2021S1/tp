@@ -7,29 +7,60 @@ import seedu.quotesify.quote.QuoteList;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+import java.util.logging.Level;
+
+/**
+ * Represents the list quote reflection command.
+ */
 public class ListQuoteReflection extends ListCommand {
 
-    public ListQuoteReflection(String arguements) {
-        super(arguements);
+    /**
+     * Constructor for the list quote reflection command.
+     *
+     * @param arguments User input argument.
+     */
+    public ListQuoteReflection(String arguments) {
+        super(arguments);
     }
 
+    /**
+     * Executes the list quote reflection command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         QuoteList quoteList = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
         listQuoteReflection(quoteList, ui);
     }
 
+    /**
+     * List reflection for the user specified quote.
+     *
+     * @param quoteList List of quotes.
+     * @param ui Ui of the program.
+     */
     private void listQuoteReflection(QuoteList quoteList, TextUi ui) {
         try {
             int quoteNumber = getQuoteNumber(information);
+
             if (isValidQuoteNumber(quoteNumber, quoteList)) {
                 Quote quote = quoteList.getQuote(quoteNumber);
                 ui.printQuoteAndReflection(quote);
             }
         } catch (QuotesifyException e) {
             ui.printErrorMessage(e.getMessage());
+            quotesifyLogger.log(Level.WARNING, e.getMessage());
         }
     }
 
+    /**
+     * Gets quote number from the user input.
+     *
+     * @param userInput User input argument.
+     * @return Quote number of the reflection to be listed.
+     * @throws QuotesifyException If missing quote number or non-integer.
+     */
     private int getQuoteNumber(String userInput) throws QuotesifyException {
         try {
             if (userInput.isEmpty()) {
@@ -41,6 +72,14 @@ public class ListQuoteReflection extends ListCommand {
         }
     }
 
+    /**
+     * Checks if the quote number is valid and has a reflection.
+     *
+     * @param quoteNumber Quote to be checked
+     * @param quoteList List of quotes.
+     * @return True if valid quote number and quote has a reflection.
+     * @throws QuotesifyException If invalid quote number or quote has no reflection.
+     */
     private boolean isValidQuoteNumber(int quoteNumber, QuoteList quoteList) throws QuotesifyException {
         if (quoteList.getSize() == 0) {
             throw new QuotesifyException(LIST_NO_QUOTES_SAVED_MESSAGE);
