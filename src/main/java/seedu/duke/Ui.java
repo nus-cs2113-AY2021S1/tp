@@ -38,7 +38,7 @@ public class Ui {
                 + "4. exam <module code> @<venue> /ddMMyy HHmm\n"
                 + "5. lect <module code> @<venue> -r <number of lecture> /ddMMyy HHmm\n"
                 + "6. tut <module code> @<venue> -r <number of tutorial> /ddMMyy HHmm\n"
-                + "7. lab <module code> @<venue> -r <number of lab> /ddMMyy HHmm\n"
+                + "7. lab <module code> @<venue> -r <number of lab session> /ddMMyy HHmm\n"
                 + "8. done <task number>\n"
                 + "9. -t <task number>\n"
                 + "10. -e <event number>\n"
