@@ -22,6 +22,8 @@ The complete class diagram is shown below.
 ![image info](./pictures/classDiagram.PNG)
 
 ### Implementation
+The commands are implemented in such a way as we are able to have one class for every command, which allows for more extendability and less coupling, since we are likely to add more commands over time. We considered other alternatives such as putting all commands in one command class, however there are way too many methods and coupling.
+
 #### Retrieve Command
 The flow for the retrieve command is as follows:
 ![image info](./pictures/retrieveCommandSD.png)
