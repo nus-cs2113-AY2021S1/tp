@@ -8,12 +8,13 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
 /**
- * Manages the storage of AniChan's user data.
+ * Represents the class to manage user data.
  */
 public class UserStorage extends Storage {
     private static final String USER_FILE_NAME = "user.txt";
-    private static final String USER_LINE_DELIMITER_FOR_DECODE = " \\| ";
+    private static final String USER_LINE_DELIMITER_FOR_DECODE = "\\|";
     private static final String USER_LINE_DELIMITER_FOR_ENCODE = " | ";
 
     private static final String EMPTY_USER_FILE = "Empty user file.";
@@ -65,7 +66,7 @@ public class UserStorage extends Storage {
 
         String[] fileContentSplit = fileContent.split(USER_LINE_DELIMITER_FOR_DECODE, 2);
         LOGGER.log(Level.FINE, "Processing: " + System.lineSeparator() + fileContent);
-        if (!isValidUserString(fileContentSplit)) {
+        if (fileContentSplit.length != 2) {
             LOGGER.log(Level.WARNING, "Invalid user file: " + userFilePath);
             throw new AniException(NO_USER_LOADED);
         }
@@ -100,18 +101,12 @@ public class UserStorage extends Storage {
     private User decode(String[] fileContentSplit) throws AniException {
         String userName = fileContentSplit[0].trim();
         String userGender = fileContentSplit[1].trim();
-        return new User(userName, userGender);
-    }
 
-    // ========================== Validation ==========================
-
-    /**
-     * Validates the string representation read from the user data file.
-     *
-     * @param fileContentSplit encoded string representation of the usr object
-     * @return {@code true} if the string representation is valid; false otherwise
-     */
-    private boolean isValidUserString(String[] fileContentSplit) {
-        return (fileContentSplit.length == 2);
+        try {
+            return new User(userName, userGender);
+        } catch (AniException exception) {
+            LOGGER.log(Level.WARNING, "Invalid user details: " + userName + ", " + userGender);
+            throw new AniException(NO_USER_LOADED);
+        }
     }
 }

@@ -12,26 +12,40 @@ import anichan.parser.RemoveCommandParser;
 import anichan.storage.StorageManager;
 import anichan.watchlist.Watchlist;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author michaeldinata
 class RemoveCommandTest {
-    AnimeData animeData;
-    User user;
-    StorageManager storageManager;
-    Bookmark bookmark;
-    Workspace workspace;
-
-    protected static final String ZERO_WATCHLIST_INDEX = "-d 0";
-    protected static final String LARGE_WATCHLIST_INDEX = "-d 3";
-    protected static final String EMPTY_WATCHLIST_INDEX = "-d 1";
+    private static AnimeData animeData;
+    private static User user;
+    private static StorageManager storageManager;
+    private static Bookmark bookmark;
+    private static Workspace workspace;
+    
+    private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
+            + File.separator + "data" + File.separator;
+    private static final String ZERO_WATCHLIST_INDEX = "0";
+    private static final String LARGE_WATCHLIST_INDEX = "3";
+    private static final String EMPTY_WATCHLIST_INDEX = "1";
+    private static final String VALID_WATCHLIST_INDEX = "1";
 
     @BeforeEach
     void setUp() throws AniException {
         ArrayList<Anime> testList = new ArrayList<>();
-        Anime testAnime1 = new Anime();
-        Anime testAnime2 = new Anime();
+        String[] testAnime1ReleaseDate = {"2000", "12", "12"};
+        String[] testAnime1Genre = {"Action", "Drama"};
+        String[] testAnime2ReleaseDate = {"2020", "1", "1"};
+        String[] testAnime2Genre = {"Thriller"};
+
+        Anime testAnime1 = new Anime("testAnime1", testAnime1ReleaseDate, 80,
+                testAnime1Genre, 20, 20);
+        Anime testAnime2 = new Anime("testAnime2", testAnime2ReleaseDate, 65,
+                testAnime2Genre, 45, 60);
+
         testList.add(testAnime1);
         testList.add(testAnime2);
 
@@ -43,11 +57,11 @@ class RemoveCommandTest {
         watchlistList.add(watchlist);
 
         bookmark = new Bookmark();
-        workspace = new Workspace("TestWorkspace", watchlistList, bookmark);
+        workspace = new Workspace("AddRemoveAnimeTest", watchlistList, bookmark);
         user = new User("TestUser", "Male");
         user.setActiveWorkspace(workspace);
         animeData = new AnimeData(testList);
-        storageManager = new StorageManager("test");
+        storageManager = new StorageManager(STORAGE_DIRECTORY);
     }
 
     @Test
@@ -79,5 +93,14 @@ class RemoveCommandTest {
         assertThrows(AniException.class, () -> {
             testRemove.execute(animeData, storageManager, user);
         });
+    }
+    
+    @Test
+    void execute_validWatchlistIndex_removeAnimeSuccessful() throws AniException {
+        String expectedOutput = "testAnime1 successfully removed from watchlist!";
+        RemoveCommandParser testParser = new RemoveCommandParser();
+        RemoveCommand testRemove = testParser.parse(VALID_WATCHLIST_INDEX);
+        String actualOutput = testRemove.execute(animeData, storageManager, user);
+        assertEquals(expectedOutput, actualOutput);
     }
 }

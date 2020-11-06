@@ -57,17 +57,17 @@ public class WorkspaceCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert (commandOption != null) : "Option should not be null.";
+        assert commandOption != null : "Option should not be null.";
 
         switch (commandOption) {
         case CREATE_OPTION:
-            return createWorkspace(user, storageManager);
+            return createWorkspace(storageManager, user);
         case SWITCH_OPTION:
             return switchWorkspace(user);
         case LIST_OPTION:
             return listWorkspace(user);
         case DELETE_OPTION:
-            return deleteWorkspace(user, storageManager);
+            return deleteWorkspace(storageManager, user);
         default:
             LOGGER.log(Level.WARNING, "Invalid workspace command provided.");
             throw new AniException(EXPECTED_PARAMETERS_MESSAGE);
@@ -82,7 +82,7 @@ public class WorkspaceCommand extends Command {
      * @return result after executing the command
      * @throws AniException when an error occurred while executing the command
      */
-    private String createWorkspace(User user, StorageManager storageManager) throws AniException {
+    private String createWorkspace(StorageManager storageManager, User user) throws AniException {
         Workspace newWorkspace = user.addWorkspace(workspaceName);
 
         Watchlist newWatchlist = new Watchlist("Default");
@@ -119,7 +119,7 @@ public class WorkspaceCommand extends Command {
      * @return result after executing the command
      * @throws AniException when an error occurred while executing the command
      */
-    private String deleteWorkspace(User user, StorageManager storageManager) throws AniException {
+    private String deleteWorkspace(StorageManager storageManager, User user) throws AniException {
         if (user.getActiveWorkspace().toString().equals(workspaceName)) {
             throw new AniException(EXCEPTION_WORKSPACE_IN_USE);
         }
