@@ -22,9 +22,9 @@ public class EditCardCommand extends EditCommand {
             + "Parameters:" + CARD_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
 
-    private static final String MESSAGE_SAME_QUESTION = "%1$s has the same question as what you entered: %2$s\n";
-    private static final String MESSAGE_SAME_ANSWER = "%1$s has the same answer as what you entered: %2$s\n";
-    private static final String MESSAGE_SAME_CONTENT = "%1$s has the same content as what you entered: "
+    public static final String MESSAGE_SAME_QUESTION = "%1$s has the same question as what you entered: %2$s\n";
+    public static final String MESSAGE_SAME_ANSWER = "%1$s has the same answer as what you entered: %2$s\n";
+    public static final String MESSAGE_SAME_CONTENT = "%1$s has the same content as what you entered: "
             + "[Q] %2$s | [A] %3$s\n";
 
     private final int editIndex;
