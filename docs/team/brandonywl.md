@@ -16,6 +16,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ### Features implemented
 - Set up and designed the architecture used for Event scheduling in the timetable
     - Handled `Event`, `RecurringEvent`, `Timetable`, `Reminder` and other relevant `Command` subclasses for Event scheduling functionality.
+    - Event functionality was designed with scalability in mind. Immutability was largely enforced to ensure consistency of Events even across re-occurrences.
+    - Designed to reduce circular dependencies to reduce coupling. 
 - Assisted in development of two common `Parser` methods
 
 ### Code contributed
@@ -31,7 +33,14 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ### Contributions to Developer Guide
 1. AddEventCommand Sequence Diagram
 1. RemindCommand Sequence Diagram
-1. Timetable and Event Class Diagram
+1. Timetable Class Diagram
+1. Event and RecurringEvent Class Diagram
+
+### Review Contributions:
+1. [Code Review](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47)
+1. [Code Cleanup](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/66)
+1. [Assist in Standardization](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/71)
+1. [Provided Assistance in Event Functionality Saving & Edge Case](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/122)
 
 ### Community
 (https://nus-cs2113-ay2021s1.github.io/addressbook-level3/team/johndoe.html)
