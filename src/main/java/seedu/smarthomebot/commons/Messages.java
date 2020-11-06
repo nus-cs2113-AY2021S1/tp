@@ -49,4 +49,6 @@ public class Messages {
     public static final String MESSAGE_ILLEGAL_CHARACTER = "Illegal Character space or /  or | detected in";
     public static final String MESSAGE_EMPTY_PARAMETER =
             "Empty Parameter detected! Please follow format and enter required parameters.";
+
+    public static final String MESSAGE_LOCATION_EXIST = "Location already exist";
 }

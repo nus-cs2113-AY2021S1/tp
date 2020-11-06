@@ -12,4 +12,11 @@ class ExitCommandTest {
         Command c = new ExitCommand();
         assertEquals(true, isExit(c));
     }
+
+    @Test
+    void isExit_returnFalse() {
+        Command c = new ListCommand("appliance", "");
+        assertEquals(false, isExit(c));
+    }
+
 }
