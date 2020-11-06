@@ -1,14 +1,12 @@
 package seedu.dietbook.ui;
 
+import seedu.dietbook.logger.MainLogger;
 import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Gender;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Represents a storage that stores all the messages that Ui can utilise and print out.
@@ -19,22 +17,11 @@ public class UiMessage {
 
     private final UiHelper uiHelper;
 
-    private final Logger logger;
+    private final MainLogger mainLogger;
 
-    public UiMessage() {
+    UiMessage() {
         uiHelper = new UiHelper();
-        logger = Logger.getLogger(UiMessage.class.getName());
-        initialiseLogger();
-    }
-
-    /**
-     * Initialises the logger and sets the log level.
-     */
-    void initialiseLogger() {
-        Handler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.WARNING);
-        logger.addHandler(consoleHandler);
-        logger.setLevel(Level.WARNING);
+        mainLogger = new MainLogger(UiMessage.class.getName());
     }
 
     String getWelcomeMessage() {
@@ -124,6 +111,10 @@ public class UiMessage {
     }
 
     String getFoodListMessage(String foods, LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Foods: " + foods);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         return "Here are the food items recorded in DietBook" + stringDateTimePeriod(start, end)
                 + ":" + UiHelper.LINE_SEPARATOR + foods;
     }
@@ -133,6 +124,9 @@ public class UiMessage {
     }
 
     String getEmptyFoodListMessage(LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         return "No food item was recorded in DietBook" + stringDateTimePeriod(start, end) + ".";
     }
 
@@ -224,6 +218,10 @@ public class UiMessage {
      * @return A string representation of the the total amount of a nutrient consumed by the user.
      */
     String getOneIntakeMessage(int nutrientIntake, String nutrientType, String nutrientUnit) {
+        mainLogger.log(Level.FINE, "Nutrient intake: " + nutrientIntake);
+        mainLogger.log(Level.FINE, "Nutrient type: " + nutrientType);
+        mainLogger.log(Level.FINE, "Nutrient unit: " + nutrientUnit);
+
         uiHelper.performAssertionsForStringInputs(nutrientType, "Nutrient Type");
         uiHelper.performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
         uiHelper.performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
@@ -243,8 +241,9 @@ public class UiMessage {
      *         user during a given time period.
      */
     String getIntakeWithTimeMessage(String intakeWithoutTime, LocalDateTime start, LocalDateTime end) {
-        logger.log(Level.FINE, "Start: " + start);
-        logger.log(Level.FINE, "End: " + end);
+        mainLogger.log(Level.FINE, "Intake without time: " + intakeWithoutTime);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
         uiHelper.performAssertionsForTimePeriod(start, end);
 
         String timePeriod = "Time period:" + stringDateTimePeriod(start, end);
@@ -262,6 +261,11 @@ public class UiMessage {
      * @return A string representation of the total amount of each of the nutrients consumed by the user.
      */
     String getAllIntakeMessage(int calorieIntake, int carbIntake, int proteinIntake, int fatIntake) {
+        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
+        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
+        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
+        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
+
         uiHelper.performAssertionsForNutritionalIntake(calorieIntake, "calorie");
         uiHelper.performAssertionsForNutritionalIntake(carbIntake, "carb");
         uiHelper.performAssertionsForNutritionalIntake(proteinIntake, "protein");
@@ -290,6 +294,9 @@ public class UiMessage {
     String getRecalculatedFoodsMessage(String recalculatedFoods) {
         String message = "No food items had their nutritional information recalculated by DietBook.";
         if (!uiHelper.isEmptyString(recalculatedFoods)) {
+            mainLogger.log(Level.FINE, "There are food with their nutritional information"
+                    + " being recalculated");
+
             message = "Food items which had their nutritional information recalculated by DietBook: "
                     + UiHelper.LINE_SEPARATOR + recalculatedFoods;
         }
@@ -307,6 +314,10 @@ public class UiMessage {
      *         or amount consumed in a given time period.
      */
     String getNutritionalIntakeMessage(int nutrientIntake, String nutrientType, String nutrientUnit) {
+        mainLogger.log(Level.FINE, "Nutrient intake: " + nutrientIntake);
+        mainLogger.log(Level.FINE, "Nutrient type: " + nutrientType);
+        mainLogger.log(Level.FINE, "Nutrient unit: " + nutrientUnit);
+
         return "Total " + nutrientType + " intake: " + nutrientIntake + nutrientUnit;
     }
 
@@ -324,6 +335,11 @@ public class UiMessage {
      */
     String getOneIntakeAndFoodsMessage(int nutrientIntake, String nutrientType,
                                        String nutrientUnit, String recalculatedFoods) {
+        mainLogger.log(Level.FINE, "Nutrient intake: " + nutrientIntake);
+        mainLogger.log(Level.FINE, "Nutrient type: " + nutrientType);
+        mainLogger.log(Level.FINE, "Nutrient unit: " + nutrientUnit);
+        mainLogger.log(Level.FINE, "Recalculated food: " + recalculatedFoods);
+
         uiHelper.performAssertionsForStringInputs(nutrientType, "Nutrient Type");
         uiHelper.performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
         uiHelper.performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
@@ -351,8 +367,10 @@ public class UiMessage {
      */
     String getIntakeAndFoodsWithTimeMessage(String intakeAndFoodsWithoutTime,
                                             LocalDateTime start, LocalDateTime end) {
-        logger.log(Level.FINE, "Start: " + start);
-        logger.log(Level.FINE, "End: " + end);
+        mainLogger.log(Level.FINE, "Intake and foods without time: " + intakeAndFoodsWithoutTime);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         uiHelper.performAssertionsForTimePeriod(start, end);
 
         String timePeriod = "Time period:" + stringDateTimePeriod(start, end);
@@ -374,6 +392,12 @@ public class UiMessage {
      */
     String getAllIntakeAndFoodsMessage(int calorieIntake, int carbIntake, int proteinIntake,
                                        int fatIntake, String recalculatedFoods) {
+        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
+        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
+        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
+        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
+        mainLogger.log(Level.FINE, "Recalculated food: " + recalculatedFoods);
+
         uiHelper.performAssertionsForNutritionalIntake(carbIntake, "carbohydrate");
         uiHelper.performAssertionsForNutritionalIntake(calorieIntake, "calorie");
         uiHelper.performAssertionsForNutritionalIntake(proteinIntake, "protein");
@@ -403,8 +427,8 @@ public class UiMessage {
      * @return The string representation of time period with date time in the format dd MMM yyyy HHmm.
      */
     public String stringDateTimePeriod(LocalDateTime start, LocalDateTime end) {
-        logger.log(Level.FINE, "Start: " + start);
-        logger.log(Level.FINE, "End: " + end);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
         uiHelper.performAssertionsForTimePeriod(start, end);
 
         String stringStart = start.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
