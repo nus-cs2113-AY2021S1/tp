@@ -1,14 +1,14 @@
 package fitr.list;
 
-import fitr.exercise.StandardExercise;
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
+
+import fitr.exercise.StandardExercise;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StandardExerciseListTest {
-
     @Test
     public void addExerciseToEmptyList_validExercise_success() {
         ArrayList<Double> duration = new ArrayList<>();
