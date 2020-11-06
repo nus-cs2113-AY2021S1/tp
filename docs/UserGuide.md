@@ -145,73 +145,56 @@ Do note that:
  * Items in square brackets are [optional]
  * Items in brackets are (additional information)
 
-----------------------------------------------------------------Profile-----------------------------------------------------------------
-view profile                                                                              View your profile information
-view bmi                                                                                  View your BMI
-edit name NEW_NAME                                                                        Edit your profile name
-edit age NEW_AGE                                                                          Edit your profile age
-edit gender NEW_GENDER ('M' for Male or 'F' for Female)                                   Edit your profile gender
-edit height NEW_HEIGHT (in m)                                                             Edit your profile height
-edit weight NEW_WEIGHT (in kg)                                                            Edit your profile weight
-edit fitness NEW_FITNESS_LEVEL (0 for Unfit; 1 for Normal; 2 for Fit)                     Edit your profile fitness
+------------------------------------------------------Profile-------------------------------------------------------
+view profile                                                          View your profile information
+view bmi                                                              View your BMI
+edit name                                                             Edit your profile name
+edit age                                                              Edit your profile age
+edit gender                                                           Edit your profile gender
+edit height                                                           Edit your profile height
+edit weight                                                           Edit your profile weight
+edit fitness                                                          Edit your profile fitness
 
-------------------------------------------------------------------Food------------------------------------------------------------------
-food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                                          Add a food entry
-view food                                                                                 View your food entries
-view food DATE/MONTH/YEAR (dd/MM/yyyy)                                                    View your food entries on a specified date
-edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY    Edit your previous food entry
-delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                            Delete a food entry
-clear food                                                                                Clear all your food entries
+--------------------------------------------------------Food--------------------------------------------------------
+food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]                      Add a food entry
+view food                                                             View your food entries
+view food DATE/MONTH/YEAR (dd/MM/yyyy)                                View your food entries on a specified date
+edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY
+                                                                      Edit your previous food entry
+delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                        Delete a food entry
+clear food                                                            Clear all your food entries
 
-----------------------------------------------------------------Exercise----------------------------------------------------------------
-recommend                                                                                 Get a recommended workout
-exercise NAME_OF_EXERCISE /CALORIES_BURNT                                                 Add an exercise entry
-view exercise                                                                             View your exercise entries
-view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                                                View your exercise entries on a specified date
-edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT         Edit your previous exercise entry
-delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                                        Delete an exercise entry
-clear exercise                                                                            Clear all your exercise entries
+------------------------------------------------------Exercise------------------------------------------------------
+recommend                                                             Get a recommended workout
+reccomend WORKOUT_CATEGORY                                            Get a workout for a specific category or body part
+exercise NAME_OF_EXERCISE /CALORIES_BURNT                             Add an exercise entry
+view exercise                                                         View your exercise entries
+view exercise DATE/MONTH/YEAR (dd/MM/yyyy)                            View your exercise entries on a specified date
+edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT
+                                                                      Edit your previous exercise entry
+delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX                    Delete an exercise entry
+clear exercise                                                        Clear all your exercise entries
 
-------------------------------------------------------------------Goal------------------------------------------------------------------
-goal food GOAL_DESCRIPTION                                                                Add a food goal
-goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES                          Add a smart food goal
-goal exercise GOAL_DESCRIPTION                                                            Add an exercise goal
-goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT                          Add a smart exercise goal
-view goal                                                                                 View your goals
-edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                                             Edit your previous goal entry
-complete goal INDEX                                                                       Mark your goal entry as complete
-delete goal INDEX                                                                         Delete a goal entry
-clear goal                                                                                Clear all your goal entries
+--------------------------------------------------------Goal--------------------------------------------------------
+goal food GOAL_DESCRIPTION                                            Add a food goal
+goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES      Add a smart food goal
+goal exercise GOAL_DESCRIPTION                                        Add an exercise goal
+goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT      Add a smart exercise goal
+view goal                                                             View your goals
+edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION                         Edit your previous goal entry
+complete goal INDEX                                                   Mark your goal entry as complete
+delete goal INDEX                                                     Delete a goal entry
+clear goal                                                            Clear all your goal entries
 
------------------------------------------------------------------Other------------------------------------------------------------------
-help                                                                                      Display available commands
-view summary                                                                              View calorie summary
-view summary DATE/MONTH/YEAR (dd/MM/yyyy)                                                 View calorie summary on a specified date
-clear                                                                                     Clear all food, exercise and goal entries
-bye                                                                                       Exit the application
-----------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------Other--------------------------------------------------------
+help                                                                  Display available commands
+view summary                                                          View calorie summary
+view summary DATE/MONTH/YEAR (dd/MM/yyyy)                             View calorie summary on a specified date
+clear                                                                 Clear all food, exercise and goal entries
+bye                                                                   Exit the application
 ```
 
-### 2.2.2 Viewing your profile
-If you want to check your profile, you can use this command. The profile includes your name, age, gender, height, weight, and your fitness level.
 
-Format: `view profile`
-
-### 2.2.3 Viewing your BMI
-Body mass index (BMI) is a value derived from the mass and height of a person (BMI = mass (kg) / height^2 (m^2)). The BMI is a convenient rule of thumb used to broadly categorize a person as underweight, normal weight, overweight, or obese. You can view your BMI using this command.
-
-Format: `view bmi`
-
-### 2.2.4 Viewing food entries
-You can view the past food entries you have previously added to Fitr. All food entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the food entries or only food entries for a specific date.
-
-To view all food entries, you may use the `view food` command.
-
-Format: `view food`
-
-Example of an expected outcome is as follows:
-
-```
 Here is the list of your food:
 Date: 21/10/2020
 [1] Food: chicken rice
@@ -458,11 +441,14 @@ Food, exercise and goal lists are all cleared!
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
 
 ### 2.6.1 Getting a recommended workout
-If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it. 
+If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it.
+
+You can either just type in `recommend`, or you can follow recommend with one of the specified exercise categories. 
+The four categories are upperbody, lowebody, aerobic and stretch. For example, you can key in `recommend upperbody` and a workout that is just for your upperbody will be recommended
 
 If you do accept it, it will automatically be added into your exercise entries, however you can also choose which exercises you want to add to your exercise entries by keying in the index, separated by spaces.
 
-Format: `recommend`
+Format: `recommend` or `recommend WORKOUT_CATEGORY`
 
 For example, if you key in `recommend`, the expected outcome is as follows:
 ```
@@ -479,9 +465,29 @@ For example, if you key in `recommend`, the expected outcome is as follows:
     Intensity: 4 sets of 0.5 minutes
     Burnt Cal: 5
 Will you be doing this workout?
-type y for yes to add all 4 to your exercise list
-or you can type in the index of the exercises you want added to you exercise list (separated by a space)
-Any other key will be taken as a no 
+type y for yes to add all 4 to your exercise list.
+or you can type in the index of the exercises you want added to you exercise list (separated by a space).
+Any other key will be taken as a no.
+```
+
+or if you key in `recommend upperbody`, the expected output is as follows:
+```
+[1] Exercise: Planks to Pushup
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 8
+[2] Exercise: Plank Rotations
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[3] Exercise: Inclined Pullups
+    Intensity: 3 sets of 0.5 minutes
+    Burnt Cal: 6
+[4] Exercise: Pullups
+    Intensity: 2 sets of 0.5 minutes
+    Burnt Cal: 4
+Will you be doing this workout?
+type y for yes to add all 4 to your exercise list.
+or you can type in the index of the exercises you want added to you exercise list (separated by a space).
+Any other key will be taken as a no.
 ```
 
 If you follow this up with a `y`, you will then see the exercises added in as follows:
@@ -498,6 +504,7 @@ The following exercise has been added:
 ```
 
 If you decide, you only want exercise 2 and 4 to be added, you can key in `2 4` and you will see as follows:
+
 ```
 The following exercise has been added:
 [1] Exercise: Side Lunges
@@ -559,6 +566,8 @@ View Exercise Entries on a Specified Date | `view exercise dd/MM/yyyy` | `view e
 View Goal Entry | `view goal` | 
 View Calorie Summary | `view summary` |
 View Calorie Summary on a Specified Date | `view summary dd/MM/yyyy` | `view summary 26/10/2020`
+Get a recommended general workout | `recommed` | 
+Get a recommended specific workout| `recommend WORKOUT_CATEGORY` | `recommend aerobic`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
 Edit Food Entry | `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 25/10/2020 1 green apple /50 1`
 Edit Exercise Entry | `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 25/10/2020 1 5km run /360`
@@ -570,6 +579,5 @@ Clear All Food Entries | `clear food` |
 Clear All Exercise Entries | `clear exercise` | 
 Clear All Goal Entries | `clear goal` | 
 Clear All Entries | `clear` |
-Get a Recommended Workout | `recommend` |
 Mark a Goal Entry as Completed | `complete goal INDEX` | `complete goal 4`
 Exit Fitr | `bye` | 
