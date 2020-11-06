@@ -28,8 +28,8 @@ public class Parser {
     /**
      * Returns a command type based on user input.
      *
-     * @param input user input command
-     * @return command object
+     * @param input User input command.
+     * @return Command object.
      */
     public Command parseUserCommand(String input) {
         String[] tokens = input.split(" ", 2);

@@ -19,7 +19,7 @@ public class EditCategoryCommand extends EditCommand {
     /**
      * Constructor for edit category command with user specified arguments.
      *
-     * @param arguments user specified arguments
+     * @param arguments User specified arguments.
      */
     public EditCategoryCommand(String arguments) {
         super(arguments);
@@ -39,8 +39,8 @@ public class EditCategoryCommand extends EditCommand {
     /**
      * Edits the specified category.
      *
-     * @param categoryList list of categories
-     * @param ui Ui of the program
+     * @param categoryList List of categories.
+     * @param ui Ui of the program.
      */
     private void editCategory(CategoryList categoryList, TextUi ui) {
         quotesifyLogger.log(Level.INFO, "editing category.");
@@ -67,8 +67,8 @@ public class EditCategoryCommand extends EditCommand {
     /**
      * Updates the edited category to all books and quotes tagged.
      *
-     * @param oldCategory old category name
-     * @param newCategory new category name
+     * @param oldCategory Old category name.
+     * @param newCategory New category name.
      */
     public void editCategoryInBooksAndQuotes(String oldCategory, String newCategory) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);

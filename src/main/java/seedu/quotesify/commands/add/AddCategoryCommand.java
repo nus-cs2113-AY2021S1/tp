@@ -21,9 +21,9 @@ import java.util.logging.Level;
 public class AddCategoryCommand extends AddCommand {
 
     /**
-     * Constructor for add cateogry command with user input arguments.
+     * Constructor for add category command with user input arguments.
      *
-     * @param arguments user input arguments
+     * @param arguments User input arguments.
      */
     public AddCategoryCommand(String arguments) {
         super(arguments);
@@ -42,13 +42,13 @@ public class AddCategoryCommand extends AddCommand {
 
     /**
      * Prepares to addition of category to a book, quote, or both.
-     * @param categories list of categories
-     * @param ui Ui of the program
+     *
+     * @param categories List of categories.
+     * @param ui Ui of the program.
      */
     private void addCategoryToBookOrQuote(CategoryList categories, TextUi ui) {
         try {
-            String[] tokens = information.split(" ");
-            String[] parameters = CategoryParser.getRequiredParameters(tokens);
+            String[] parameters = CategoryParser.getRequiredParameters(information);
             int result = CategoryParser.validateParametersResult(parameters);
             if (result == 1) {
                 executeParameters(categories, parameters, ui);
@@ -65,25 +65,24 @@ public class AddCategoryCommand extends AddCommand {
     /**
      * Executes user specified parameters for add category.
      *
-     * @param categoryList list of categories
-     * @param parameters user specified parameters
-     * @param ui Ui of the program
+     * @param categoryList List of categories.
+     * @param parameters User specified parameters.
+     * @param ui Ui of the program.
      */
     private void executeParameters(CategoryList categoryList, String[] parameters, TextUi ui) {
         try {
             String categoryNames = parameters[0];
             assert !categoryNames.isEmpty() : "category name should not be empty";
+            String bookNum = parameters[1];
+            String quoteNum = parameters[2];
+            int bookTagCount = Integer.parseInt(parameters[3]);
+            int quoteTagCount = Integer.parseInt(parameters[4]);
 
             List<String> categories = CategoryParser.parseCategoriesToList(categoryNames);
             for (String categoryName : categories) {
                 categoryName = categoryName.toLowerCase();
                 addCategoryToList(categoryList, categoryName);
                 Category category = categoryList.getCategoryByName(categoryName);
-
-                String bookNum = parameters[1];
-                String quoteNum = parameters[2];
-                int bookTagCount = Integer.parseInt(parameters[3]);
-                int quoteTagCount = Integer.parseInt(parameters[4]);
 
                 if (bookTagCount == 1) {
                     addCategoryToBook(category, bookNum, ui);
@@ -103,8 +102,8 @@ public class AddCategoryCommand extends AddCommand {
     /**
      * Adds a category to the list of categories if it does not exist.
      *
-     * @param categories list of categories
-     * @param categoryName category name
+     * @param categories List of categories.
+     * @param categoryName Category name.
      */
     private void addCategoryToList(CategoryList categories, String categoryName) {
         if (!categories.isExistingCategory(categoryName)) {
@@ -115,9 +114,9 @@ public class AddCategoryCommand extends AddCommand {
     /**
      * Adds a category to a book.
      *
-     * @param category category object
-     * @param bookNum book number
-     * @param ui Ui of the program
+     * @param category Category object.
+     * @param bookNum Book number.
+     * @param ui Ui of the program.
      */
     private void addCategoryToBook(Category category, String bookNum, TextUi ui) {
         // ignore this action if user did not provide book title
@@ -155,9 +154,9 @@ public class AddCategoryCommand extends AddCommand {
     /**
      * Adds a category to a quote.
      *
-     * @param category category object
-     * @param quoteNum quote number
-     * @param ui Ui of the program
+     * @param category Category object.
+     * @param quoteNum Quote number.
+     * @param ui Ui of the program.
      */
     private void addCategoryToQuote(Category category, String quoteNum, TextUi ui) {
         // ignore this action if user did not provide quote number
