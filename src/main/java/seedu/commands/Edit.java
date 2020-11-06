@@ -2,10 +2,7 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidDatetimeException;
-import seedu.exceptions.InvalidReminderException;
+import seedu.exceptions.*;
 import seedu.task.Task;
 
 import java.util.regex.Pattern;
@@ -34,7 +31,7 @@ public class Edit extends ModificationCommand {
 
     public Edit(String keyString, String description, String date, String startTime, String endTime, String priority,
                 String reminder, String reminderTime)
-            throws InvalidTaskNumberException {
+            throws InvalidTaskNumberException, InvalidCommandException {
         try {
             key = Integer.parseInt(keyString);
         } catch (NumberFormatException e) {
@@ -47,10 +44,16 @@ public class Edit extends ModificationCommand {
         this.priority = priority;
         this.reminder = reminder;
         this.reminderTime = reminderTime;
+
+        if (startTime != null && endTime != null) {
+            if (Integer.parseInt(startTime) >= Integer.parseInt(endTime)) {
+                throw new InvalidCommandException();
+            }
+        }
     }
 
     public CommandResult execute(Model model)
-        throws InvalidTaskNumberException, InvalidPriorityException,
+            throws InvalidTaskNumberException, InvalidPriorityException,
             InvalidDatetimeException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
         Task task = tasks.get(key);
@@ -59,7 +62,7 @@ public class Edit extends ModificationCommand {
         }
 
         Task editedTask = new Task(key, task.getDescription(), task.getDate(), task.getStartTime(),
-            task.getEndTime(), task.getPriority(), task.newReminder());
+                task.getEndTime(), task.getPriority(), task.newReminder());
 
         // Set field
         if (description != null) {
@@ -84,6 +87,6 @@ public class Edit extends ModificationCommand {
         tasks.delete(key);
         tasks.addTask(editedTask);
         model.pushAndUpdate(tasks);
-        return new CommandResult(EDIT_MESSAGE,editedTask);
+        return new CommandResult(EDIT_MESSAGE, editedTask);
     }
 }
