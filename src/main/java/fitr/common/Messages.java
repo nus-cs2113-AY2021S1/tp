@@ -105,9 +105,10 @@ public class Messages {
     public static final String OPEN_SQUARE_BRACKET = "[";
     public static final String CLOSE_SQUARE_BRACKET = "] ";
     public static final String FOOD_HEADER = "Food: ";
+    public static final String QUANTITY_HEADER = "Quantity: ";
     public static final String EXERCISE_HEADER = "Exercise: ";
     public static final String SPACE_FORMATTING = "\n    ";
-    public static final String CAL_HEADER = "Cal: ";
+    public static final String CAL_HEADER = "Total Calorie(s): ";
     public static final String DATE_HEADER = "Date: ";
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
@@ -146,4 +147,10 @@ public class Messages {
     public static final String ECHO_ADDED_FOOD = "The following food has been added:\n";
     public static final String EXERCISE_NAME_HEADER = "Name of Exercise: ";
     public static final String FOOD_NAME_HEADER = "Name of Food: ";
+    public static final String VIEW_FOOD_TIP = "Tip: You may also view food entries by day using the format "
+            + "\"view food DATE(dd/MM/yyyy)\"";
+    public static final String VIEW_EXERCISE_TIP = "Tip: You may also view exercise entries by day using the format "
+            + "\"view exercise DATE(dd/MM/yyyy)\"";
+    public static final String VIEW_SUMMARY_TIP = "Tip: You may also view summary by day using the format "
+            + "\"view summary DATE(dd/MM/yyyy)\"";
 }
