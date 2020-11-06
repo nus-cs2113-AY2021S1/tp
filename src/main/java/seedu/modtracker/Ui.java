@@ -19,6 +19,7 @@ public class Ui {
     private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
             + "with a maximum of 1 decimal place.";
     private static final String ERROR_WEEK = "The week number should be between 1 and 13.";
+    private static final String ERROR_ALPHABET_WEEK = "The week input should be a positive number.";
     private static final String NO_EXPECTED_WORKLOAD = "There is no input in the expected workload.";
     private static final String NO_ACTUAL_TIME = "There is no input in the actual time.";
     private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
@@ -319,6 +320,15 @@ public class Ui {
     public void printWeekError(boolean toPrint) {
         if (toPrint) {
             System.out.println(ERROR_WEEK + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when the week number is an alphabet instead of integer.
+     */
+    public void printWeekAlphabetError(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_ALPHABET_WEEK + System.lineSeparator());
         }
     }
 
