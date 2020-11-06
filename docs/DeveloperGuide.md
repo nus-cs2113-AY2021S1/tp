@@ -535,7 +535,7 @@ The following class diagram shows how the Simple Interest Calculator feature wor
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
-For more information on parameters handling. Refer to the [Logic Component](# logic-component)
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/SimpleInterest/SimpleInterestSequenceDiagram(1).png)
 <br />
 <br />
@@ -566,7 +566,7 @@ The following class diagram shows how the Yearly/Monthly Compound Interest Calcu
 <br />
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
-For more information on parameters handling. Refer to the [Logic Component](# logic-component)
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/YearlyCompoundInterestSequenceDiagram(1).png)
 <br />
 <br />
@@ -598,7 +598,7 @@ The following class diagram shows how the Cashback Calculator feature works:
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
-For more information on parameters handling. Refer to the [Logic Component](# logic-component)
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/Cashback/CashbackSequenceDiagram(1).png)
 <br />
 <br />
@@ -623,7 +623,7 @@ The following class diagram shows how the Miles Credit Calculator feature works:
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
-For more information on parameters handling. Refer to the [Logic Component](# logic-component)
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/MilesCredit/MilesCreditSequenceDiagram(1).png)
 <br />
 <br />
@@ -671,7 +671,7 @@ The following class diagram shows how the Account Storage feature works:
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
-For more information on parameters handling. Refer to the [Logic Component](# logic-component)
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(1).png)
 <br />
 <br />
@@ -992,10 +992,11 @@ Enter `list`. Output:
 1. Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
 
-<br/ >**Negative Test: No Params to Edit** <br />
+**Negative Test: No Params to Edit** <br />
 1. Enter `edit /id 1`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
+<br />
 **Negative Test: No Such Index** <br />
 1. Enter `edit /id 4 /desc Hello Bubble`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
