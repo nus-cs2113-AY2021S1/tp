@@ -1,5 +1,7 @@
 package seedu.duke.logger;
 
+import seedu.duke.ui.Ui;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -37,8 +39,12 @@ public class ScrumLogger {
 
     public static void destroy() {
         if (!fileHandler.equals(null)) {
-            logger.removeHandler(fileHandler);
-            fileHandler.close();
+            try {
+                logger.removeHandler(fileHandler);
+                fileHandler.close();
+            } catch (NullPointerException e) {
+                Ui.showToUserLn("Destroyed before init.");
+            }
         }
     }
 }
