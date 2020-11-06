@@ -1,6 +1,7 @@
 package seedu.duke.logger;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ public class ScrumLogger {
         }
 
         logger.setLevel(Level.INFO);
-        FileHandler file = new FileHandler("logs/logs.txt");
+        FileHandler file = new FileHandler(Paths.get("logs/logs.txt").toString());
 
         SimpleFormatter formatter = new SimpleFormatter();
         file.setFormatter(formatter);
