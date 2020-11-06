@@ -43,7 +43,7 @@ public class AddGoalCommand extends Command {
                     listManager.addGoal(newGoal);
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
                     if (newGoal.getDescription().equals(command)) {
-                        System.out.println("-".repeat(136));
+                        Ui.printCustomMessage("-".repeat(136));
                         Ui.printMessageInBlue(ADD_SMART_FOOD_GOAL_TIP);
                     }
                 } catch (FitrException e) {
@@ -58,7 +58,7 @@ public class AddGoalCommand extends Command {
                     listManager.addGoal(newGoal);
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
                     if (newGoal.getDescription().equals(command)) {
-                        System.out.println("-".repeat(136));
+                        Ui.printCustomMessage("-".repeat(136));
                         Ui.printMessageInBlue(ADD_SMART_EXERCISE_GOAL_TIP);
                     }
                 } catch (FitrException e) {

@@ -122,7 +122,7 @@ public class ViewCommand extends Command {
                 printIndex++;
             }
         }
-        System.out.println("-".repeat(136));
+        Ui.printCustomMessage("-".repeat(136));
         Ui.printMessageInBlue(VIEW_FOOD_TIP);
     }
 
@@ -151,7 +151,7 @@ public class ViewCommand extends Command {
                 printIndex++;
             }
         }
-        System.out.println("-".repeat(136));
+        Ui.printCustomMessage("-".repeat(136));
         Ui.printMessageInBlue(VIEW_EXERCISE_TIP);
     }
 
@@ -225,7 +225,7 @@ public class ViewCommand extends Command {
             }
         }
         if (!isDate) {
-            System.out.println("-".repeat(136));
+            Ui.printCustomMessage("-".repeat(136));
             Ui.printMessageInBlue(VIEW_SUMMARY_TIP);
         }
     }
