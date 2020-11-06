@@ -729,17 +729,19 @@ This content format is a result of converting a list of `Subject` objects with p
 > (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
 
 ## 5. Logging <a name = "logging"> </a>
-Whenever you need to use logging in a class, add this line 
+We use [java.util.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/package-summary.html) 
+package for logging. Whenever you need to use logging in a class, add this line 
 
 ```java
 private static final Logger logger = Logger.getLogger(CurrentClass.class.getName());
 ```
 
 to the start of the class to get a logger instance,
-where `CurrentClass` is replaced by the class name you are adding the logger to. To learn more about
+where `CurrentClass` is replaced by the class name you are adding the logger to. 
+Subsequently, you can use the logger instance created to start logging. To learn more about
 how logging works, read the [official logging documentation](https://docs.oracle.com/javase/7/docs/technotes/guides/logging/overview.html).
 
-The current configuration logs all the messages with log levels above `FINE` into a file (`revisED%u.log`) in the same
+The current configuration logs all the messages with log levels above `FINE` into a file (`revisED.log`) in the same
 directory where the application is run. You can find more details about the logging configurations (and change them or add more)
 in `src/main/resources/logging.properties`. 
 For consistency, you should only change the behavior of logging via this file.
