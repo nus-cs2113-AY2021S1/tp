@@ -827,7 +827,7 @@ bill payments
         1. Enter ```manual``` into the console.
             You should see the following: 
             
-![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
+    ![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
 
     1. ```RecurringTracker```
     1. ```GoalTracker```
@@ -956,7 +956,72 @@ You should see the following:
 removed from the list.
 
 ### 7.4 Testing RecurringTracker
+1. Enter `recur` in the Main Menu. You should see the following:
+![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
+#### 7.4.1 Testing Show Command List
+1. Enter `commands`. Output:
+![](developerGuide_images/screenshots_recurringtracker/commands.png)
+#### 7.4.2 Testing Add Entry
+##### Positive test 1: Normal entry.
+1. Enter `add -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
+![](developerGuide_images/screenshots_recurringtracker/add_entry_all_months.png)
 
+##### Positive test 2: Entry with special day of month
+1. Enter `add -e /desc Drinks /amt 58.45 /day 31`. Output:
+![](developerGuide_images/screenshots_recurringtracker/add_entry_day_31.png)
+
+##### Negative test
+1. Enter `add /desc OIH()(&%* /amt 343243`. Output:
+![](developerGuide_images/screenshots_recurringtracker/add_entry_no_day_i&e.png)
+
+### 7.4.3 Testing List Entries
+* The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
+Enter `list`. Output:
+![](developerGuide_images/screenshots_recurringtracker/list.png)
+
+### 7.4.4 Testing Edit Entry
+* The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
+##### Positive test
+1. Enter `edit /id 1 /day 29 -i`. Output:
+![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
+1. Enter `list`. Output:
+![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
+
+##### Negative test: No params to edit
+1. Enter `edit /id 1`. Output:
+
+![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
+##### Negative test: No such index
+1. Enter `edit /id 4 /desc Hello Bubble`. Output:
+![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
+
+### 7.4.5 Testing Delete Entry
+* The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
+1. Enter `delete /id 2`. Output:
+![](developerGuide_images/screenshots_recurringtracker/delete_entry.png)
+1. Enter `list`. Output:
+![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
+
+###7.4.6 Testing Reminders
+* The following testing guide assumes that all previous entries have been deleted. This can be achieved by running `delete /id 1` repeatedly until list is empty.
+* As reminders are based on system date at time of running, the `/day` param of the below examples will have to be modified accordingly. Simply copy-pasting the commands will not create the expected output.
+1. Enter `add -e /desc SingTel bill /amt 120.50 /day {CURRENT_DAY}`
+    * E.g. if today is 15th, input will be `/day 15`
+    
+1. Enter `add -e -auto /desc Spotify subscription /amt 9.99 /day {CURRENT_DAY + 2}`
+    * E.g. if today is 15th, input will be `/day 17`
+    
+1. Enter `add -i /desc Collect cash from Sonia /amt 500 /day {CURRENT_DAY + 7}`
+    * E.g. if today is 15th, input will be `/day 22`
+    * E.g. if today is 28th, input will be `/day 5` OR `day 4` depending on whether the current month has 30 or 31 days respectively.
+
+1. Enter `exit` to quit to main menu. Reminders are printed above the Main Menu prompt. Note: Screenshot was taken on 6th, hence entries entered above are on the 6th, 8th and 13th respective.
+
+    Output:
+![](developerGuide_images/screenshots_recurringtracker/reminders.png)
+
+1. Enter `exit` to quit the program. Run the .jar file again. Reminders are printed below the logo and above the Main Menu prompt.
+![](developerGuide_images/screenshots_recurringtracker/reminders_launch.png)
 
 ### 7.5 Testing GoalTracker
 #### 7.5.1 Testing Set Goal for Expense 

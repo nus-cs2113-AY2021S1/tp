@@ -482,7 +482,7 @@ public class ParamChecker {
     }
 
     public static String getMessageListRangeIndex(int size) {
-        return String.format("The range is from 1 to %d", size);
+        return String.format("Valid range is from 1 to %d", size);
     }
 
     public String getMessageOneItemInList() {
