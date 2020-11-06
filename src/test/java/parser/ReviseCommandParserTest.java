@@ -5,8 +5,9 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
-import static common.Messages.*;
+import static common.Messages.ADMIN;
 import static common.Messages.CHAPTER;
+import static common.Messages.MODULE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,7 +36,7 @@ public class ReviseCommandParserTest {
     @Test
     public void parse_emptyArgs_throwsInvalidInputException() {
         final String[] inputs = {
-                "revise ",
+            "revise ",
         };
         for (String input : inputs) {
             assertThrows(InvalidInputException.class, () -> parser.parse(input, MODULE));
