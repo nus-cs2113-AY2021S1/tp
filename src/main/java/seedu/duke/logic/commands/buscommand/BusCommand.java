@@ -12,8 +12,6 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
-import static seedu.duke.ui.Ui.printLine;
-
 public class BusCommand extends Command {
 
     private String busStop;
@@ -27,7 +25,7 @@ public class BusCommand extends Command {
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
             super.isValid = false;
-            throw new CustomException(ExceptionType.POSSIBLE_LOCS);
+            throw new CustomException(ExceptionType.POSSIBLE_LOCS_DUMMY);
         }
     }
 

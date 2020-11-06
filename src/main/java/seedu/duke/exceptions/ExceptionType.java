@@ -39,14 +39,14 @@ public enum ExceptionType {
     EMPTY_INDEX("Oh no! I cannot detect the input index."),
     LIST_INDEX_CORRUPTED("Oh no! it seems that this command has been corrupted.\n"
             + "Don't worry, I have deleted it from your favourites list!"),
-    POSSIBLE_LOCS("Possible Locs shown");
+    POSSIBLE_LOCS_DUMMY("Possible Locs shown");
 
     private String message;
 
     ExceptionType(String message) {
         this.message = message;
     }
-    
+
     public String getMessage() {
         return message;
     }
