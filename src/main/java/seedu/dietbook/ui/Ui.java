@@ -1,8 +1,10 @@
 package seedu.dietbook.ui;
 
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.logger.MainLogger;
 
 import java.time.LocalDateTime;
+import java.util.logging.Level;
 
 /**
  * Represents a user interface manager that deals with user interaction and communicating with the logic
@@ -16,6 +18,7 @@ public class Ui {
     private final UiHelper uiHelper;
     private final UiOutput uiOutput;
     private final UiMessage uiMessage;
+    private final MainLogger mainLogger;
 
     /**
      * Constructs a <code>Ui</code> object.
@@ -25,6 +28,7 @@ public class Ui {
         uiHelper = new UiHelper();
         uiOutput = new UiOutput();
         uiMessage = new UiMessage();
+        mainLogger = new MainLogger(Ui.class.getName());
     }
 
     /**
@@ -166,6 +170,10 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     public void printFoodList(String foods, LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Foods: " + foods);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         uiHelper.performAssertionsForNullStringInputs(foods,
                 "String representation of food items in the food list recorded during the "
                         + "time period given");
@@ -187,6 +195,9 @@ public class Ui {
      * @param start Starting date time of the time period till now.
      */
     public void printFoodList(String foods, LocalDateTime start) {
+        mainLogger.log(Level.FINE, "Foods: " + foods);
+        mainLogger.log(Level.FINE, "Start: " + start);
+
         LocalDateTime end = LocalDateTime.now();
         printFoodList(foods, start, end);
     }
@@ -251,6 +262,10 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     public void printCarbIntake(int carbIntake, LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         String stringCarbIntake = uiMessage.getOneIntakeMessage(carbIntake,"carbohydrate", "g");
         uiOutput.print(uiMessage.getIntakeWithTimeMessage(stringCarbIntake, start, end));
     }
@@ -263,6 +278,9 @@ public class Ui {
      * @param start Starting date time to calculate from.
      */
     public void printCarbIntake(int carbIntake, LocalDateTime start) {
+        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+
         LocalDateTime end = LocalDateTime.now();
         printCarbIntake(carbIntake, start, end);
     }
@@ -285,6 +303,10 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     public void printCalorieIntake(int calorieIntake, LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         String stringCalorieIntake = uiMessage.getOneIntakeMessage(calorieIntake,"calorie", "kcal");
         uiOutput.print(uiMessage.getIntakeWithTimeMessage(stringCalorieIntake, start, end));
     }
@@ -297,6 +319,9 @@ public class Ui {
      * @param start Starting date time to calculate from.
      */
     public void printCalorieIntake(int calorieIntake, LocalDateTime start) {
+        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+
         LocalDateTime end = LocalDateTime.now();
         printCalorieIntake(calorieIntake, start, end);
     }
@@ -319,6 +344,10 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     public void printProteinIntake(int proteinIntake, LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         String stringProteinIntake = uiMessage.getOneIntakeMessage(proteinIntake, "protein", "g");
         uiOutput.print(uiMessage.getIntakeWithTimeMessage(stringProteinIntake, start, end));
     }
@@ -331,6 +360,9 @@ public class Ui {
      * @param start Starting date time to calculate from.
      */
     public void printProteinIntake(int proteinIntake, LocalDateTime start) {
+        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+
         LocalDateTime end = LocalDateTime.now();
         printProteinIntake(proteinIntake, start, end);
     }
@@ -353,6 +385,10 @@ public class Ui {
      * @param end Ending date time of the time period given.
      */
     public void printFatIntake(int fatIntake, LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         String stringFatIntake = uiMessage.getOneIntakeMessage(fatIntake,"fat", "g");
         uiOutput.print(uiMessage.getIntakeWithTimeMessage(stringFatIntake, start, end));
     }
@@ -365,6 +401,9 @@ public class Ui {
      * @param start Starting date time to calculate from.
      */
     public void printFatIntake(int fatIntake, LocalDateTime start) {
+        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+
         LocalDateTime end = LocalDateTime.now();
         printFatIntake(fatIntake, start, end);
     }
@@ -377,8 +416,12 @@ public class Ui {
      * @param proteinIntake The total amount of proteins of all the food in the food list.
      * @param fatIntake The total amount of fats of all the food in the food list.
      */
-    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
-                               int fatIntake) {
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake, int fatIntake) {
+        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
+        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
+        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
+        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
+
         uiOutput.print(uiMessage.getAllIntakeMessage(calorieIntake, carbIntake, proteinIntake, fatIntake));
     }
 
@@ -397,8 +440,15 @@ public class Ui {
      * @param start Starting date time of the time period given.
      * @param end Ending date time of the time period given.
      */
-    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake,
-                               int fatIntake, LocalDateTime start, LocalDateTime end) {
+    public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake, int fatIntake,
+                               LocalDateTime start, LocalDateTime end) {
+        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
+        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
+        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
+        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+        mainLogger.log(Level.FINE, "End: " + end);
+
         String allIntake = uiMessage.getAllIntakeMessage(calorieIntake, carbIntake, proteinIntake, fatIntake);
         uiOutput.print(uiMessage.getIntakeWithTimeMessage(allIntake, start, end));
     }
@@ -419,6 +469,12 @@ public class Ui {
      */
     public void printAllIntake(int calorieIntake, int carbIntake, int proteinIntake, int fatIntake,
                                LocalDateTime start) {
+        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
+        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
+        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
+        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
+        mainLogger.log(Level.FINE, "Start: " + start);
+
         LocalDateTime end = LocalDateTime.now();
         printAllIntake(calorieIntake, carbIntake, proteinIntake, fatIntake, start, end);
     }
