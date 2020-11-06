@@ -91,6 +91,8 @@ Zoomaster has three different modes you can use to interact with different featu
 >eg. `CS2113`, `CS2101`  
 >* Parameters `START TIME` and `END TIME` requires input to be in the format `HH:mm` and in 24 Hours.
 >eg. `12:00`, `14:00`, `00:00`
+>* Parameter `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-"") to string
+ >multiple words together. Eg. "github_team_repo" or "cs2113t-website".
 
 <a name="global"></a> 
 ### 5.1 Global Commands
@@ -115,7 +117,7 @@ Format: help {COMMAND(optional)}
 
 <br/><br/> 
 >Typing `help` in bookmark mode will show these commands.
-
+>
 >![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
 >
 <br/><br/> 
@@ -128,18 +130,7 @@ Format: help {COMMAND(optional)}
 >
 >![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplannermode.PNG)
 >
->Then you should see the following message to guide you with the relevant commands.
->
->![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helptimetable.PNG)
 
->Else, you require help to see the commands you can access in the planner mode. 
->You will first enter `help` into the console.
->
->![]()
->
->Then you should see the following message to guide you with the relevant commands.
->
->![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplanner.PNG)
 
 <br/><br/> 
 
@@ -161,7 +152,7 @@ Example of usage:
 <br/><br/> 
 <a name="mode"></a>  
 #### 5.1.2 Switch mode: `mode` (Yu Shing)
-You can switches between the “bookmark” and “timetable” modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
+You can switch between “bookmark”, “timetable” and "planner" modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
 
 There are three modes for Zoomaster, Bookmark, Timetable and Planner modes.
 
@@ -176,17 +167,18 @@ Example of usage:
 
 >Here are some examples of switching from the main menu of Zoomaster to the various modes.
 >* When you are switching to the bookmark mode you would see the message shown below.<br/>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true)<br/><br/> 
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true) <br/><br/> 
 >* When you are switching to the timetable mode you would see the message shown below.<br/>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true)<br/><br/> 
+>![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true) <br/><br/> 
 >* When you are switching to the planner mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
 
 <br/><br/> 
 <a name="clear"></a>  
 #### 5.1.3 Clear screen: `clear` (Zhan Hao)
-This feature helps you clear the screen in the command prompt. 
-It is useful if the screen gets too cluttered with past commands. <br></br>
+You can clear the command prompt screen using this command. 
+It is useful when your screen gets cluttered with prior commands. For example, when you have added a whole bunch
+of modules and timeslots to your timetable. Then you can use `clear` command to remove those commands. <br></br>
 Note that if your monitor screen has high dimensions, you might need multiple calls of this command to fully
 clear your screen.
 ```
@@ -205,6 +197,10 @@ allowing you to launch your zoom session ahead of time.
 Format: launch now    
 ```
 
+You should expect to see the urls of the current or 5 minutes advance lesson slot launching
+in your native browser. Else you should see a message "no lesson now" like the screenshot below.
+
+![]()
 
 <br/><br/> 
 <a name="exit"></a>  
@@ -227,25 +223,38 @@ Format: exit
 
 <a name="showbookmark"></a>  
 #### 5.2.1 Show bookmarks: `show`  
-It prints all bookmark in your bookmark list  
+This feature helps you print out all bookmark in your bookmark list.
 ```
 Format: show
 ```
+Example of a printed out bookmark list.
+
+![]()
+
+If your bookmark list is empty you will get message ""
+
 <br/><br/> 
 <a name="addbookmark"></a>  
 #### 5.2.2 Add bookmark: `add`  
-Adds a URL bookmark with a description.  
+You can add bookmarks to your bookmark list. A bookmark contains its description and URL.
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* That validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
+>* Your `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-"") to string
+>multiple words together. Eg. "github_team_repo" or "cs2113t-website".
+>* Your input `URL` has to start with `www.`, `http://` or `https://`.
+
 ```
 Format: add {DESCRIPTON} {URL}
 ``` 
-* The `DESCRIPTION` must only contain one word (no whitespace inside).  
-* The `URL` has to start with `www.`, `http://` or `https://`.  
-* Note that validity of the `URL` cannot be checked. Please ensure that you enter the correct link.  
-  
+
 Example of usage:
 * `add google www.google.com/`  
+![]()
 * `add example http://example.com`  
+![]()
 * `add cs2113t-website https://nus-cs2113-ay2021s1.github.io/website/`  
+![]()
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
@@ -262,40 +271,65 @@ Example of usage:
 * `delete 2`  
 * `delete 4`  
 
+You should see a message similar to the screenshot below.
+![]()
+
 <br/><br/> 
 <a name="findbookmark"></a>  
 #### 5.2.4 Find bookmarks: `find`  
-Finds bookmarks with matching description and prints them.
+You can use this command to find bookmarks with matching description.
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
+>See the [command format](#command_format) for more details.
+
 ```
 Format: find {DESCRIPTION}
 ```
-  
-* The `DESCRIPTION` can only contain one word.  
 
 Example of usage: 
 * `find cs2113t-website`
 * `find notes`  
 
+You should see a message similar to the screenshot below when a successful match is found.
+![]()
+
+Else you should see "No bookmarks contain the specified keyword!" like the screenshot below.
+![]()
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
 #### 5.2.5 Launch bookmarks: `launch`  
-Launches bookmarks in the default browser using either:
+You can use this feature to launch bookmarks in your native browser. <br></br>
+Your selection of bookmark(s) can be via:
 * Index
 * Matching description
 
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
+
+> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+>* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
+>See the [command format](#command_format) for more details.
+>
 ```
 Format: launch {INDEX/DESCRIPTION}
-```
-
-* The `DESCRIPTION` can only contain one word.   
+``` 
 
 Example of usage:  
 * `launch 1`
+![]()
 * `launch cs2113t-website`  
+![]()
+* `launch abc`
+![]()
   
+Else you should see a message "No bookmarks contain the specified keyword!" like the screenshot below.
+![]()
+
+
+
+
 <br/>
 ---
 <br/> 
@@ -331,7 +365,7 @@ Example of usage:
 >You will see an empty list message if your timetable is empty. <br></br>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true) <br></br><br></br>
 >You will see your entire timetable if you use `show` input. <br></br>
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/addslotbookmark.png) <br></br><br></br>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/show%20all%20list.png?raw=true) <br></br><br></br>
 >You will see the timetable of your selected day if you use `show {day}` input. 
 >This example uses wednesday as its selected day input. <br></br>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true) <br></br><br></br>
@@ -364,9 +398,17 @@ Format (show slot details): show {MODULE} {INDEX} bookmarks(optional)
 
 Example of usage:   
 * `show cs2113t`
+![]()
+
 * `show cs2113t bookmarks`
+![]()
+
 * `show cs2113t 1`
+![]()
+
 * `show cs2113t 1 bookmarks`
+![]()
+
 
 <br/><br/> 
 <a name="addtimeslot"></a>
@@ -380,7 +422,14 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 >* You can only add a module that is listed on the NUSMods website. 
 >* You have to format your commands as shown below for Zoomaster to read it properly. <br></br>
 >You can see the [command format](#command_format) for more information.
-  
+>* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
+>See the [command format](#command_format) for more details.
+>* Your input `URL` has to start with `www.`, `http://` or `https://`.
+>* That validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
+>* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
+>The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
+>You can see the [command format](#command_format) for more information.
+
 ```
 Format (adding a module): add {MODULE}
 
@@ -405,13 +454,6 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
   * In the command `add cs2113t lecture fri 16:00 18:00`, if `cs2113t` module already exists, 
     then it will not be added into the timetable. The slot `lecture fri 16:00 18:00` 
     which is valid and not a duplicate will then be added to the existing `cs2113t` module.
-* The chaining of commands only performs on one module which is {MODULE}.    
-* The `DESCRIPTION` must only contain one word (no whitespace inside).  
-* The `URL` has to start with `www.`, `http://` or `https://`.  
- 
-* Note that validity of the `URL` cannot be checked. Please ensure that you enter the correct link. 
-* Parameter `DAY` takes three letter abbreviations of days in a week
-  * The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**
 
 
 Example of usage:   
@@ -488,9 +530,14 @@ Format (deleting bookmarks of a slot of a module): delete {MODULE} {INDEX} bookm
 
 Example of usage:   
 * `delete cs2113t`  
-* `delete cs2113t 1`
-* `delete cs2113t bookmarks`
-* `delete cs2113t 1 bookmarks`
+![]()
+* `delete cs2113t 1` 
+![]()
+* `delete cs2113t bookmarks` 
+![]()
+* `delete cs2113t 1 bookmarks` 
+![]()
+
 <br/><br/> 
 
 <a name="edittimeslot"></a>
@@ -608,7 +655,7 @@ Format: save
   
 **Q**: How do I transfer my data to another computer?   
   
-**A**: Copy the `data/bookmarks.txt` and `data/slots.txt` file to the **data** directory where the `jar` file is at.
+**A**: Copy the `data/bookmarks.txt` and `data/slots.txt` file to the **data** directory where the `jar` file is at. <br></br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/directory.png)
 
 Start the application and all the data should be loaded.
