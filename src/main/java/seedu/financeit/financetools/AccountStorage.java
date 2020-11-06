@@ -13,6 +13,7 @@ import seedu.financeit.utils.storage.AccountSaver;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 /**
  * Represents all operations for Account Storage feature.
@@ -60,10 +61,22 @@ public class AccountStorage extends ParamHandler {
      */
     public String formatText(String nameLabel, double interestRate, double cashbackRate, double monthlyCap,
                              String otherLabel) {
+
+        DecimalFormat df = new DecimalFormat("#");
+        df.setMaximumFractionDigits(8);
+
+        if (nameLabel == null) {
+            nameLabel = "BLANK_NAME";
+        }
+
+        if (otherLabel == null) {
+            otherLabel = "BLANK_NOTES";
+        }
+
         String nameInfo = "Name: " + nameLabel + "\n";
-        String interestRateInfo = "Interest: " + interestRate + "%\n";
-        String cashbackRateInfo = "Cashback: " + cashbackRate + "%\n";
-        String monthlyCapInfo = "Cashback Cap: $" + monthlyCap + "\n";
+        String interestRateInfo = "Interest: " + df.format(interestRate) + "%\n";
+        String cashbackRateInfo = "Cashback: " + df.format(cashbackRate) + "%\n";
+        String monthlyCapInfo = "Cashback Cap: $" + df.format(monthlyCap) + "\n";
         String otherInfo = "Notes: " + otherLabel + "\n";
         String textToAdd = nameInfo + interestRateInfo + cashbackRateInfo + monthlyCapInfo + otherInfo;
 
@@ -120,16 +133,16 @@ public class AccountStorage extends ParamHandler {
             this.nameLabel = packet.getParam(paramType);
             break;
         case "/ir":
-            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/r":
-            this.cashbackRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.cashbackRate = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/c":
-            this.monthlyCap = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.monthlyCap = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/rm":
-            this.deleteIndex = ParamChecker.getInstance().checkAndReturnInt(paramType);
+            this.deleteIndex = ParamChecker.getInstance().checkAndReturnIntSigned(paramType);
             this.activateDelete = true;
             break;
         case "/o":

@@ -147,6 +147,7 @@ public class RecurringTracker {
                             + "account/credit card");
         TablePrinter.addRow("2.;Edit entry;edit /id {INDEX} {parameter to edit};At least 1 param to edit required. "
                             + "Will overwrite previous value");
+
         TablePrinter.addRow("3.;List entries;list; ");
         TablePrinter.addRow("4.;Delete entry;delete /id {INDEX}; ");
         TablePrinter.addRow("5.;Exit to main menu;exit; ");
