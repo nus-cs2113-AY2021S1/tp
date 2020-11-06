@@ -437,7 +437,7 @@ The `episode` command updates the current episode of an existing show in your wa
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.m.a. `watch` - Watch a show in your watchlist
+### 4.m.a. `watch` - Watch a show in your list
 
 The `watch` command updates the watching progress for your show, and automatically updates your watch time limit.
 
@@ -457,8 +457,9 @@ The `watch` command updates the watching progress for your show, and automatical
  
  <img src = "images/watch_before.PNG" width = "800">
  &nbsp;
+ 
  To illustrate the change in your watch time limit, we have added the time limit to 120 minutes.
- The duration of the show friends is 60 minutes. the change in time limit can be seen in the expected outcome below. 
+ The duration of `friends` is 60 minutes. the change in time limit can be seen in the expected outcome below. 
  
  
  Expected outcome:
