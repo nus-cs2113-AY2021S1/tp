@@ -35,17 +35,17 @@ Given below are my contributions to the project.
     + Allows the user to clear his list of favorite commands.
 
 #### Code contribution
-* [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=F14-3&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=mrwsy1&tabRepo=AY2021S1-CS2113T-F14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+* RepoSense [link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=F14-3&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=mrwsy1&tabRepo=AY2021S1-CS2113T-F14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 #### Contributions to documentation
 * User guide:
     + Added the documentation for the following features: `/dine`, `/dineinfo`, `/faculty`, `/allbus`, `/listfav`, 
-    `/clearfav`.
+    `/clearfav`. ([#85](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/85), [#145](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/145))
     + Helped to fix formatting issues and typos.
 * Developer guide:
     + Added implementation details and UML diagrams for the following features: `/dine`, `/dineinfo`, `/faculty`, 
-    `/allbus`, `/listfav`, `/clearfav`.
+    `/allbus`, `/listfav`, `/clearfav`. ([#114](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/114), [#186](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/186))
 
 #### Contributions beyond the project team
-* [Reported bugs for another team's project](https://github.com/mrwsy1/ped/issues)
-* [Provided suggestions for another team's developer guide](https://github.com/nus-cs2113-AY2021S1/tp/pull/50/files/8633eb176251c1920fbfc15b46c51d59c7ef1e4d)
+* Reported bugs for another team's [project](https://github.com/mrwsy1/ped/issues)
+* Provided suggestions for another team's [developer guide](https://github.com/nus-cs2113-AY2021S1/tp/pull/50/files/8633eb176251c1920fbfc15b46c51d59c7ef1e4d)
