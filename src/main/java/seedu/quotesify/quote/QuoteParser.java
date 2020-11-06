@@ -10,11 +10,14 @@ import java.util.HashMap;
  * Represents a Quote Parser.
  */
 public class QuoteParser {
+    /** Flags. */
     public static final String FLAG_DELIMITER = "/";
     public static final String FLAG_AUTHOR = "/by";
     public static final String FLAG_REFERENCE = "/from";
     public static final String FLAG_REFLECT = "/reflect";
     public static final String FLAG_EDIT = "/to";
+
+    /** Error messages for quote parser to return. */
     public static final String ERROR_MISSING_QUOTE = "I don't see the quote anywhere";
     public static final String ERROR_MISSING_AUTHOR = "Author name cannot be empty if \"/by\" flag is present";
     public static final String ERROR_MISSING_REFERENCE = "Reference field cannot be empty if \"/from\" flag is present";
@@ -59,6 +62,7 @@ public class QuoteParser {
     public static Quote parseQuoteWithoutFlags(String userInput) throws QuotesifyException {
         // Throws exception if quote is empty
         String quote = trimAndCheckEmptyQuote(userInput);
+        assert !quote.isEmpty() : "quote should not be empty";
         return new Quote(quote);
     }
 
@@ -120,22 +124,22 @@ public class QuoteParser {
             if (referenceAndAuthor[0].startsWith("from")) {
                 reference = referenceAndAuthor[0].substring(5).trim();
                 authorName = referenceAndAuthor[1].substring(3).trim();
-                assert !reference.isEmpty() : "reference field should not be empty";
-                assert !authorName.isEmpty() : "author field should not be empty";
             } else {
                 reference = referenceAndAuthor[1].substring(5).trim();
                 authorName = referenceAndAuthor[0].substring(3).trim();
-                assert !reference.isEmpty() : "reference field should not be empty";
-                assert !authorName.isEmpty() : "author field should not be empty";
             }
         } catch (StringIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_MISSING_REFERENCE_OR_AUTHOR);
         }
         // throws exception is duplicate flags found
         checkExtraAuthorReferenceFlags(authorName, reference);
+        assert !reference.isEmpty() : "reference field should not be empty";
+        assert !authorName.isEmpty() : "author field should not be empty";
+
         HashMap<String, String> referenceAndAuthorName = new HashMap<String, String>();
         referenceAndAuthorName.put("reference", reference);
         referenceAndAuthorName.put("authorName", authorName);
+
         return referenceAndAuthorName;
     }
 
@@ -166,6 +170,7 @@ public class QuoteParser {
         String[] quoteAndReference = splitAndCheckReferenceFlag(userInput);
         String quote = trimAndCheckEmptyQuote(quoteAndReference[0]);
         String reference = trimAndCheckEmptyReference(quoteAndReference[1]);
+        assert !quote.isEmpty() && !reference.isEmpty() : "quote and reference should not be empty";
         return new Quote(quote, reference);
     }
 
@@ -228,6 +233,7 @@ public class QuoteParser {
         String[] quoteAndAuthor = splitAndCheckAuthorFlags(userInput);
         String quote = trimAndCheckEmptyQuote(quoteAndAuthor[0]);
         Author author = trimAndCheckEmptyAuthor(quoteAndAuthor[1]);
+        assert !quote.isEmpty() && !author.getName().isEmpty() : "quote and author name should not be empty";
         return new Quote(quote, author);
     }
 
@@ -281,6 +287,7 @@ public class QuoteParser {
             } else if (hasExtraFlag(information, flag)) {
                 throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
             }
+            assert !information.isEmpty();
             return information;
         } catch (ArrayIndexOutOfBoundsException e) {
             if (flag.equals(FLAG_AUTHOR)) {
@@ -352,6 +359,7 @@ public class QuoteParser {
             if (hasExtraFlag(reflection, FLAG_REFLECT)) {
                 throw new QuotesifyException(ERROR_DUPLICATE_REFLECT_FLAG);
             }
+            assert !reflection.isEmpty();
             return reflection;
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_INVALID_PARAMETERS);
@@ -373,6 +381,7 @@ public class QuoteParser {
         if (updatedReflection.isEmpty()) {
             throw new QuotesifyException(ERROR_MISSING_REFLECTION_FIELD);
         }
+        assert !updatedReflection.isEmpty();
         return updatedReflection;
     }
 }

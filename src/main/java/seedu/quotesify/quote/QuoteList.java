@@ -38,6 +38,7 @@ public class QuoteList extends QuotesifyList<Quote> {
      * @return Quote object.
      */
     public Quote getQuote(int index) {
+        assert index >= 0 && index < getSize();
         return quotes.get(index);
     }
 
@@ -57,6 +58,7 @@ public class QuoteList extends QuotesifyList<Quote> {
      * @return Index of the quote in the quote list.
      */
     public int getIndex(Quote quote) {
+        assert quote != null;
         return quotes.indexOf(quote);
     }
 
@@ -64,29 +66,33 @@ public class QuoteList extends QuotesifyList<Quote> {
      * Updates a specified quote with a new quote.
      *
      * @param updatedQuote New quote object that will replace an existing quote.
-     * @param quoteNumber Index of the quote in the list to be replaced.
+     * @param index Index of the quote in the list to be replaced.
      */
-    public void updateQuote(Quote updatedQuote, int quoteNumber) {
-        if (quotes.get(quoteNumber).getReflection() != null)  {
-            updatedQuote.setReflection(quotes.get(quoteNumber).getReflection());
+    public void updateQuote(Quote updatedQuote, int index) {
+        assert updatedQuote != null;
+        assert index >= 0 && index < getSize();
+        if (quotes.get(index).getReflection() != null)  {
+            updatedQuote.setReflection(quotes.get(index).getReflection());
         }
-        quotes.set(quoteNumber, updatedQuote);
+        quotes.set(index, updatedQuote);
     }
 
     /**
      * Adds a reflection to an existing quote.
      *
      * @param reflection Reflection to be added to the quote.
-     * @param quoteNumber Index of the quote in the list where reflection will be added.
+     * @param index Index of the quote in the list where reflection will be added.
      * @throws QuotesifyException If quote already has a reflection.
      */
-    public void addReflection(String reflection, int quoteNumber) throws QuotesifyException {
-        Quote quote = quotes.get(quoteNumber);
+    public void addReflection(String reflection, int index) throws QuotesifyException {
+        assert !reflection.isEmpty();
+        assert getQuote(index).getReflection() == null;
+        Quote quote = quotes.get(index);
         if (quote.getReflection() != null) {
             throw new QuotesifyException("Quote already has a reflection. Please use the edit command instead.");
         }
         quote.setReflection(reflection);
-        quotes.set(quoteNumber, quote);
+        quotes.set(index, quote);
     }
 
     /**
@@ -95,6 +101,7 @@ public class QuoteList extends QuotesifyList<Quote> {
      * @param index Index of the quote where its reflection will be deleted.
      */
     public void deleteReflection(int index) {
+        assert getQuote(index).getReflection() != null;
         quotes.get(index).setReflectionNull();
     }
 
@@ -102,10 +109,12 @@ public class QuoteList extends QuotesifyList<Quote> {
      * Updates the reflection of a quote with a new reflection.
      *
      * @param editedReflection New reflection that will replace an existing reflection.
-     * @param quoteNumber Index of the quote in the list where its reflection will be replaced.
+     * @param index Index of the quote in the list where its reflection will be replaced.
      */
-    public void updateReflection(String editedReflection, int quoteNumber) {
-        quotes.get(quoteNumber).setReflection(editedReflection);
+    public void updateReflection(String editedReflection, int index) {
+        assert !editedReflection.isEmpty();
+        assert getQuote(index).getReflection() != null;
+        quotes.get(index).setReflection(editedReflection);
     }
 
     /**
