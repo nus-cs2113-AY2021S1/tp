@@ -23,47 +23,50 @@ import static anichan.logger.AniLogger.getAniLogger;
 public class AnimeStorage {
 
     //Constant Param
-    public static final int FIRST_FILE_INDEX = 1;
-    public static final int LAST_FILE_INDEX = 6;
-    public static final String EMPTY_STRING = "";
-    public static final int DEFAULT_PARAM = 0;
+    private static final int FIRST_FILE_INDEX = 1;
+    private static final int LAST_FILE_INDEX = 6;
+    private static final String EMPTY_STRING = "";
+    private static final int DEFAULT_PARAM = 0;
 
     //Resource stream folder and extension
-    public static final String ANIME_STORAGE_FILE_EXTENSION = ".json";
-    public static final String ANIME_STORAGE_FILE_HEADER = "/AniListData/AniList-Data";
+    private static final String ANIME_STORAGE_FILE_EXTENSION = ".json";
+    private static final String ANIME_STORAGE_FILE_HEADER = "/AniListData/AniList-Data";
 
     //Logger messages
-    public static final String ANIME_STORAGE_EXTRACTION_HEADER = "Extraction of " + ANIME_STORAGE_FILE_HEADER;
-    public static final String ANIME_STORAGE_EXTRACTION_TRAILER = ANIME_STORAGE_FILE_EXTENSION + " successful";
-    public static final String ANIME_STORAGE_PARSE_MESSAGE = "Parsing Json data.";
-    public static final String ANIME_STORAGE_PARSE_SUCCESSFUL = "Parse Successful.";
-    public static final String ANIME_STORAGE_PARSING_FAILED = "Parsing file failed!";
-    public static final String ANIME_STORAGE_RETRIEVE_MESSAGE = "Retrieving information from DataSource.";
-    public static final String ANIME_STORAGE_CURRENT_HEADER = "Currently extracting from " + ANIME_STORAGE_FILE_HEADER;
+    private static final String ANIME_STORAGE_EXTRACTION_HEADER = "Extraction of " + ANIME_STORAGE_FILE_HEADER;
+    private static final String ANIME_STORAGE_EXTRACTION_TRAILER = ANIME_STORAGE_FILE_EXTENSION + " successful";
+    private static final String ANIME_STORAGE_PARSE_MESSAGE = "Parsing Json data.";
+    private static final String ANIME_STORAGE_PARSE_SUCCESSFUL = "Parse Successful.";
+    private static final String ANIME_STORAGE_PARSING_FAILED = "Parsing file failed!";
+    private static final String ANIME_STORAGE_RETRIEVE_MESSAGE = "Retrieving information from DataSource.";
+    private static final String ANIME_STORAGE_CURRENT_HEADER = "Currently extracting from " + ANIME_STORAGE_FILE_HEADER;
+    public static final String ANIME_STORAGE_SUCCESSFUL_MESSAGE = "Retrieval and Parsing for anime object"
+            + " in DataSource Successful.";
 
     //JSON field title
-    public static final String DATA_JSON_FIELD = "data";
-    public static final String MEDIA_JSON_FIELD = "Media";
-    public static final String ENGLISH_JSON_FIELD = "english";
-    public static final String ROMAJI_JSON_FIELD = "romaji";
-    public static final String EPISODES_JSON_FIELD = "episodes";
-    public static final String START_DATE_JSON_FIELD = "startDate";
-    public static final String YEAR_JSON_FIELD = "year";
-    public static final String MONTH_JSON_FIELD = "month";
-    public static final String DAY_JSON_FIELD = "day";
-    public static final String AVERAGE_SCORE_JSON_FIELD = "averageScore";
-    public static final String GENRES_JSON_FIELD = "genres";
-    public static final String DURATION_JSON_FIELD = "duration";
-    public static final String TITLE_JSON_FIELD = "title";
+    private static final String DATA_JSON_FIELD = "data";
+    private static final String MEDIA_JSON_FIELD = "Media";
+    private static final String ENGLISH_JSON_FIELD = "english";
+    private static final String ROMAJI_JSON_FIELD = "romaji";
+    private static final String EPISODES_JSON_FIELD = "episodes";
+    private static final String START_DATE_JSON_FIELD = "startDate";
+    private static final String YEAR_JSON_FIELD = "year";
+    private static final String MONTH_JSON_FIELD = "month";
+    private static final String DAY_JSON_FIELD = "day";
+    private static final String AVERAGE_SCORE_JSON_FIELD = "averageScore";
+    private static final String GENRES_JSON_FIELD = "genres";
+    private static final String DURATION_JSON_FIELD = "duration";
+    private static final String TITLE_JSON_FIELD = "title";
 
     //Error messages
-    public static final String GENRE_NULL_ERROR = "Genre should not be null.";
-    public static final String RELEASE_DATE_NULL_ERROR = "Release date should not be null.";
-    public static final String ANIME_NAME_NULL_ERROR = "Anime Name should not be null.";
-    public static final String FILENAME_NULL_ERROR = "Filename should not be null.";
+    private static final String GENRE_NULL_ERROR = "Genre should not be null.";
+    private static final String RELEASE_DATE_NULL_ERROR = "Release date should not be null.";
+    private static final String ANIME_NAME_NULL_ERROR = "Anime Name should not be null.";
+    private static final String FILENAME_NULL_ERROR = "Filename should not be null.";
     private static final String FILE_RESOURCE_NULL_ERROR = "File within resource stream could not be found!";
 
     private static final Logger LOGGER = getAniLogger(Anime.class.getName());
+
 
     /**
      * Read anime data from offline database.
@@ -82,7 +85,7 @@ public class AnimeStorage {
             parseJson(animeDataList, fileData);
             LOGGER.log(Level.INFO, ANIME_STORAGE_PARSE_SUCCESSFUL);
         }
-        LOGGER.log(Level.INFO, "Retrieval and Parsing for anime object in DataSource Successful.");
+        LOGGER.log(Level.INFO, ANIME_STORAGE_SUCCESSFUL_MESSAGE);
         return animeDataList;
     }
 
@@ -136,7 +139,8 @@ public class AnimeStorage {
             JSONObject jsonDate = (JSONObject) jsonObject.get(START_DATE_JSON_FIELD);
             String[] animeReleaseDate;
             animeReleaseDate = new String[]{String.valueOf((long) jsonDate.get(YEAR_JSON_FIELD)),
-                    String.valueOf((long) jsonDate.get(MONTH_JSON_FIELD)), String.valueOf((long) jsonDate.get(DAY_JSON_FIELD))};
+                    String.valueOf((long) jsonDate.get(MONTH_JSON_FIELD)),
+                    String.valueOf((long) jsonDate.get(DAY_JSON_FIELD))};
             assert animeReleaseDate != null : RELEASE_DATE_NULL_ERROR;
 
             //getting rating
