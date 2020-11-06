@@ -73,7 +73,7 @@ public class RecurringTracker {
             String entryName = entry.getName();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entryName));
-        } catch (InsufficientParamsException exception) {
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {

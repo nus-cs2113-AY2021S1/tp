@@ -2,9 +2,12 @@ package seedu.financeit.datatrackers.recurringtracker;
 
 import seedu.financeit.common.Common;
 import seedu.financeit.data.Item;
+import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.DateTimeHelper;
 import seedu.financeit.utils.ParamChecker;
 
 import java.time.Month;
+import java.util.Arrays;
 import java.util.HashMap;
 
 //@@author Artemis-Hunt
@@ -18,12 +21,19 @@ public class RecurringEntry extends Item {
     boolean isAuto = false;
     String notes = "";
 
+    //Attributes in String form, for table printing
+    String expenditureAmount = null;
+    String incomeAmount;
+    String duration;
+    String payment;
+
 
     public RecurringEntry() {
         super();
     }
 
     public void setAmount(double amount) {
+        assert amount > 0;
         this.amount = amount;
     }
 
@@ -41,6 +51,16 @@ public class RecurringEntry extends Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setStartMonth(int month) {
+        assert month <= 12 && month >= 1;
+        start = Month.of(month);
+    }
+
+    public void setEndMonth(int month) {
+        assert month <= 12 && month >= 1;
+        end = Month.of(month);
     }
 
     @Override
@@ -111,37 +131,35 @@ public class RecurringEntry extends Item {
         return details;
     }
 
-    public String toSave() {
-
+    private void convertAttributesToString() {
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
-        String expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
-        String incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
-        String duration;
-        if (this.start.getValue() == 1 && this.end.getValue() == 12) {
-            duration = "Every month";
-        } else {
-            duration = start + " to " + end;
+        expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
+        incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
+        String[] monthsWithoutDay = DateTimeHelper.monthsWithoutDayOfMonth(day);
+        duration = "Every month";
+        if(monthsWithoutDay.length >= 1) {
+            duration += " except " + String.join(",", monthsWithoutDay);
         }
-        String payment = this.isAuto ? "Auto deduction" : "Manual payment";
-        return String.format("%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s", this.day, this.description,
-                expenditureAmount, incomeAmount, duration, payment, this.notes);
+        payment = this.isAuto ? "Auto deduction" : "Manual payment";
     }
 
     @Override
     public String toString() {
-
-        //One string is filled and the other is left blank, based on whether the entry is income or expenditure
-        String expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
-        String incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
-        String duration;
-        if (this.start.getValue() == 1 && this.end.getValue() == 12) {
-            duration = "Every month";
-        } else {
-            duration = start + " to " + end;
+        if(expenditureAmount == null) {
+            convertAttributesToString();
         }
-        String payment = this.isAuto ? "Auto deduction" : "Manual payment";
-        return String.format("%s;%s;%s;%s;%s;%s;%s", this.day, this.description, expenditureAmount, incomeAmount,
-                duration, payment, this.notes);
+
+        return String.format("%s;%s;%s;%s;%s;%s;%s", day, description, expenditureAmount, incomeAmount,
+                duration, payment, notes);
+    }
+
+    public String toSave() {
+        if(expenditureAmount == null) {
+            convertAttributesToString();
+        }
+
+        return String.format("%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s", this.day, this.description,
+                expenditureAmount, incomeAmount, duration, payment, this.notes);
     }
 
 }
