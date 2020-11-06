@@ -36,3 +36,27 @@ errors. (Pull request [#73](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/73
 [#11](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/11), 
 [#33](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/33), 
 [#104](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/104))    
+
+#### Contributions to documentation
+* Added documentation for features `/route`and `/descfav`. (Pull request 
+[#75](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/75), 
+[#136](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/136))
+* Added documentation for `similarity check`. (Pull request [#80](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/80))
+* Did cosmetic tweaks to images used. (Pull request [#90](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/90))
+
+#### Contributions to the DG
+* Added implementation details, class diagrams and sequence diagrams for `/route` and `/descfav` features. (Pull 
+requests [#111](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/111), 
+[#112](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/112), 
+[#119](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/119)
+) 
+* Added details for architecture, architecture diagram and class diagrams for all components. (Pull requests 
+[#68](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/68), 
+[#195](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/195)
+)
+
+#### Contributions to team-based tasks 
+* Managed releases v1.0 and v2.0
+* Set up the GitHub team organisation and repo
+* Added details about the different components in DG.
+* Maintained the issue tracker for specific features and some common tasks.
