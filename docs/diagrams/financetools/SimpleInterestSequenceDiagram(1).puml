@@ -1,7 +1,8 @@
 @startuml
-hide footbox
 autoactivate on
+actor User
 
+"User" -> ":Handler": Input command in FinanceTools.main()
 ":Handler" ->":Handler": handleSimpleInterest(packet)
 
    ":Handler"-> ":SimpleInterest" : handlePacket(packet)
@@ -14,12 +15,12 @@ autoactivate on
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
                 ":SimpleInterest" -> ":SimpleInterest" : handleSingleParam
                     alt "paramType = /a"
-                        ":SimpleInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":SimpleInterest" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":SimpleInterest" -> ":SimpleInterest" : getParam(paramType)
                         return
                     else "paramType = /r"
-                        ":SimpleInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":SimpleInterest" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":SimpleInterest" -> ":SimpleInterest" : getParam(paramType)
                         return

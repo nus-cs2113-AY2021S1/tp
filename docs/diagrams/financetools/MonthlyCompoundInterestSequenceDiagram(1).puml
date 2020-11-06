@@ -1,8 +1,10 @@
 @startuml
 title Monthly Compound Interest Calculator
 autoactivate on
+actor User
 
-":Handler" ->":Handler": handleMonthlyCommpoundInterest(packet)
+"User" ->  ":Handler": Input command in FinanceTools.main()
+":Handler" -> ":Handler": handleMonthlyCommpoundInterest(packet)
 
    ":Handler"-> ":MonthlyCompoundInterest" : handlePacket(packet)
 
@@ -14,22 +16,22 @@ autoactivate on
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
                 ":MonthlyCompoundInterest" -> ":MonthlyCompoundInterest" : handleSingleParam
                     alt "paramType = /a"
-                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":MonthlyCompoundInterest" -> ":MonthlyCompoundInterest" : getParam(paramType)
                         return
                     else "paramType = /r"
-                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":MonthlyCompoundInterest" -> ":MonthlyCompoundInterest" : getParam(paramType)
                         return
                     else "paramType = /p"
-                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnIntSigned(paramType)
                         return amount
                         ":MonthlyCompoundInterest" -> ":MonthlyCompoundInterest" : getParam(paramType)
                         return
                     else "paramType = /d"
-                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":MonthlyCompoundInterest" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":MonthlyCompoundInterest" -> ":MonthlyCompoundInterest" : getParam(paramType)
                         return
@@ -39,6 +41,8 @@ autoactivate on
         return
 
 return state
+
+deactivate User
 
 
 box "Logic" #LightBlue
