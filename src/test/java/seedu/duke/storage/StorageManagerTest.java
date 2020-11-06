@@ -22,14 +22,14 @@ class StorageManagerTest {
 
     @Test
     void load() {
-        //        assertDoesNotThrow(() -> {
-        //            ProjectManager projMgr = new ProjectManager();
-        //            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
-        //            String expectedStr = Files.readString(Paths.get("test-data/LOAD_1.json"));
-        //            JsonObject expected = Jsoner.deserialize(expectedStr, new JsonObject());
-        //            initTestFile(expected);
-        //            sm.load();
-        //        });
+        assertDoesNotThrow(() -> {
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            String expectedStr = Files.readString(Paths.get("test-data/LOAD_1.json"));
+            JsonObject expected = Jsoner.deserialize(expectedStr, new JsonObject());
+            initTestFile(expected);
+            sm.load();
+        });
     }
 
     @Test
@@ -44,25 +44,25 @@ class StorageManagerTest {
     @Test
     void load_incorrectData_exceptionThrown() {
         // JSON file should be loaded successfully if data file is valid
-        //        assertThrows(ClassCastException.class, () -> {
-        //            ProjectManager projMgr = new ProjectManager();
-        //            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
-        //            String expectedStr = Files.readString(Paths.get("test-data/LOAD_2.json"));
-        //            JsonObject expected = Jsoner.deserialize(expectedStr, new JsonObject());
-        //            initTestFile(expected);
-        //            sm.load();
-        //        });
+        assertThrows(ClassCastException.class, () -> {
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            String expectedStr = Files.readString(Paths.get("test-data/LOAD_2.json"));
+            JsonObject expected = Jsoner.deserialize(expectedStr, new JsonObject());
+            initTestFile(expected);
+            sm.load();
+        });
     }
 
     @Test
     void save() {
-        //        assertDoesNotThrow(() -> {
-        //            ProjectManager projMgr = new ProjectManager();
-        //            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
-        //            String expectedStr = Files.readString(Paths.get("test-data/SAVE_1.json"));
-        //            projMgr.fromJson((JsonObject) Jsoner.deserialize(expectedStr));
-        //            sm.save();
-        //        });
+        assertDoesNotThrow(() -> {
+            ProjectManager projMgr = new ProjectManager();
+            StorageManager sm = new StorageManager(TEST_FILENAME, projMgr);
+            String expectedStr = Files.readString(Paths.get("test-data/SAVE_1.json"));
+            projMgr.fromJson((JsonObject) Jsoner.deserialize(expectedStr));
+            sm.save();
+        });
     }
 
     @Test
