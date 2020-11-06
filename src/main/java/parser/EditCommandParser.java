@@ -9,14 +9,11 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 
 import static common.Messages.ADMIN;
-import static common.Messages.CARD;
 import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_ALPHANUMERIC_CHARACTERS;
 import static common.Messages.MESSAGE_INCORRECT_ACCESS;
 import static common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static common.Messages.MESSAGE_MISSING_ARGS;
-import static common.Messages.MESSAGE_MISSING_INDEX;
-import static common.Messages.MESSAGE_NON_INTEGER;
 import static common.Messages.MESSAGE_NO_QUESTION_AND_ANSWER;
 import static common.Messages.MODULE;
 
