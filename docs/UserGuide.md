@@ -378,6 +378,7 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 >* You are required to insert **a space** between each parameter.
 >* The chaining of commands only performs on **one module** which is `{MODULE}`.    
 >* You can only add a module that is listed on the NUSMods website. 
+>* You have to format your commands as shown below for Zoomaster to read it properly. <br></br>
 >You can see the [command format](#command_format) for more information.
   
 ```
