@@ -485,7 +485,7 @@
       {
         "description": "What is the value of the following expression? \n 4 * 5 - 1",
         "hint": "* has higher precedence than -",
-        "explanation": "",
+        "explanation": "Since there are no parentheses, '4 * 5' is computed before '- 1'. The result is thus 19",
         "options": [
           {
             "description": "19",
@@ -508,30 +508,7 @@
       {
         "description": "What is the value of the following expression? \n 4 * (5 - 1)",
         "hint": "Parentheses ( ) have higher precedence than *",
-        "explanation": "",
-        "options": [
-          {
-            "description": "19",
-            "correct": false
-          },
-          {
-            "description": "16",
-            "correct": true
-          },
-          {
-            "description": "15",
-            "correct": false
-          },
-          {
-            "description": "4",
-            "correct": false
-          }
-        ]
-      },
-      {
-        "description": "What is the value of the following expression? \n 4 * (5 - 1)",
-        "hint": "Parentheses ( ) have higher precedence than *",
-        "explanation": "",
+        "explanation": "Since there are parentheses, '5 - 1' is computed before '4 *'. The result is thus 16",
         "options": [
           {
             "description": "19",
@@ -554,7 +531,7 @@
       {
         "description": "Which of the following expressions gives a boolean value of false?",
         "hint": "What are the precedences of parentheses and conditional operators?",
-        "explanation": "",
+        "explanation": "Conditional operators are read from left to right. Additionally, parentheses have precedence",
         "options": [
           {
             "description": "true && true",
@@ -577,7 +554,7 @@
       {
         "description": "Consider\nint[] scores = new int[4]\nscores[5] = 0\nWhat is the error here?",
         "hint": "The int array in the question has the size of 4",
-        "explanation": "",
+        "explanation": "Since the array has a size of 4, its indexes range from 0-3. 5 is not within this bound",
         "options": [
           {
             "description": "There is no error here",

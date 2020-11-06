@@ -95,13 +95,14 @@ public class Ui {
     private static final String DOT = ".";
     private static final String DOT_SPACE = ". ";
     private static final String DOT_PLURAL = "s.";
+    private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to:";
     private static final String SPACE = " ";
-    private static final String ADD_NOTE_PROMPT_FOR_TOPIC = "Enter the topic you would like to add a note to: ";
-    private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note: ";
-    private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note: ";
+    private static final String ADD_NOTE_PROMPT_FOR_NOTE_TITLE = "Enter a suitable title for your note";
+    private static final String ADD_NOTE_PROMPT_FOR_NOTE_BODY = "Enter the contents of your note:";
     private static final String ADD_NOTE_SUCCESSFULLY = "Your note has been added!";
     private static final String ADD_NOTE_UNSUCCESSFULLY = "Your note was not added successfully."
             + " Please try again!";
+    private static final String INVALID_TOPIC_NAME = "Please enter a valid topic name";
     private static final String DELETE_NOTE_PROMPT_FOR_TOPIC = "Which topic does the note you would like to delete"
             + " belong to?";
     private static final String DELETE_NOTE_PROMPT_FOR_INDEX = "What is the index of the note that you would like"
@@ -411,7 +412,7 @@ public class Ui {
             System.out.println(MESSAGE_PRINT_NOTE_LIST);
             for (int i = 0; i < notes.getCount(); i++) {
                 System.out.println(HORIZONTAL_LINE);
-                Note note = (Note) notes.get(i);
+                Note note = notes.get(i);
                 System.out.println((i + 1) + DOT + note.getDescription());
                 System.out.println(note.getNoteText());
             }
