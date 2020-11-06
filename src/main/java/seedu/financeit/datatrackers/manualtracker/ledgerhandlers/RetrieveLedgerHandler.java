@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.manualtracker.commands;
+package seedu.financeit.datatrackers.manualtracker.ledgerhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -20,13 +20,21 @@ import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
  * The populated entry will be stored within the class, and can be retrieved by calling a
  * corresponding getter method.
  */
-public class RetrieveLedgerCommand extends ParamHandler {
+public class RetrieveLedgerHandler extends ParamHandler {
     LedgerList ledgerList;
+    private static RetrieveLedgerHandler handler = null;
 
-    public RetrieveLedgerCommand() {
+    private RetrieveLedgerHandler() {
         this.setRequiredParams(
             PARAM_DATE + " or " + PARAM_INDEX
         );
+    }
+
+    public static RetrieveLedgerHandler getInstance() {
+        if (handler == null) {
+            handler = new RetrieveLedgerHandler();
+        }
+        return handler;
     }
 
     public void handlePacket(CommandPacket packet, LedgerList ledgerList)

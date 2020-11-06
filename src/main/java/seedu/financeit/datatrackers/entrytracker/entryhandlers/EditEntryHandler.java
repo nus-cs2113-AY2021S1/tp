@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.entrytracker.commands;
+package seedu.financeit.datatrackers.entrytracker.entryhandlers;
 
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
@@ -18,17 +18,28 @@ import static seedu.financeit.utils.ParamChecker.PARAM_CATEGORY;
 import static seedu.financeit.utils.ParamChecker.PARAM_DESCRIPTION;
 import static seedu.financeit.utils.ParamChecker.PARAM_EXP;
 import static seedu.financeit.utils.ParamChecker.PARAM_INC;
-import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
+import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
 /**
  * Command class to edit an existing entry instance with specified parameter values.
  * Entry to be edited must be referenced via the constructor argument.
  */
-public class EditEntryCommand extends ParamHandler {
+public class EditEntryHandler extends ParamHandler {
     Entry entry;
+    private static EditEntryHandler handler = null;
 
-    public EditEntryCommand(Entry entry) {
+    // Function of constructor is to set required params
+    // No constructor needed as there are no required params for edit entry
+
+    public static EditEntryHandler getInstance() {
+        if (handler == null) {
+            handler = new EditEntryHandler();
+        }
+        return handler;
+    }
+
+    public void setEntry(Entry entry) {
         this.entry = entry;
     }
 

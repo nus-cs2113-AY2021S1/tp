@@ -135,19 +135,19 @@ rectangle Commands {
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class editEntryCommand {
+        class editEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveEntryCommand {
+        class retrieveEntryHandler {
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
         EntryTracker --> createEntryCommand
-        EntryTracker --> retrieveEntryCommand
-        EntryTracker --> editEntryCommand
+        EntryTracker --> retrieveEntryHandler
+        EntryTracker --> editEntryHandler
 
     }
 }
@@ -209,14 +209,14 @@ Commands -[hidden]down- Logic
 ParamChecker <-[norank]- createLedgerCommand #line:blue;line.bold;text:red
 ParamChecker <-[norank]- retrieveLedgerCommand #line:blue;line.bold;text:red
 ParamChecker <-[norank]- createEntryCommand #line:blue;line.bold;text:red
-ParamChecker <-[norank]- editEntryCommand #line:blue;line.bold;text:red
-ParamChecker <-[norank]- retrieveEntryCommand #line:blue;line.bold;text:red
+ParamChecker <-[norank]- editEntryHandler #line:blue;line.bold;text:red
+ParamChecker <-[norank]- retrieveEntryHandler #line:blue;line.bold;text:red
 
 ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red
-ParamHandler <|-[norank]- retrieveEntryCommand #line:purple;line.bold;text:red
-ParamHandler <|-[norank]- editEntryCommand #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
+ParamHandler <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
 
 
 @enduml

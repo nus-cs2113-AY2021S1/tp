@@ -1,4 +1,4 @@
-package seedu.financeit.datatrackers.entrytracker.commands;
+package seedu.financeit.datatrackers.entrytracker.entryhandlers;
 
 import seedu.financeit.common.CategoryMap;
 import seedu.financeit.common.CommandPacket;
@@ -27,10 +27,11 @@ import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
  * The populated entry will be stored within the class, and can be retrieved by calling a
  * corresponding getter method.
  */
-public class CreateEntryCommand extends ParamHandler {
+public class CreateEntryHandler extends ParamHandler {
     Entry entry;
+    private static CreateEntryHandler handler = null;
 
-    public CreateEntryCommand() {
+    private CreateEntryHandler() {
         this.setRequiredParams(
             PARAM_TIME,
             PARAM_DESCRIPTION,
@@ -38,6 +39,13 @@ public class CreateEntryCommand extends ParamHandler {
             PARAM_AMOUNT,
             PARAM_INC + " or " + PARAM_EXP
         );
+    }
+
+    public static CreateEntryHandler getInstance() {
+        if (handler == null) {
+            handler = new CreateEntryHandler();
+        }
+        return handler;
     }
 
     public void handlePacket(CommandPacket packet)
@@ -111,7 +119,6 @@ public class CreateEntryCommand extends ParamHandler {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     ParamChecker.getInstance().getUnrecognizedParamMessage(paramType));
             }
-            break;
         }
     }
 
