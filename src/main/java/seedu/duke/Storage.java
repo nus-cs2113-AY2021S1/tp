@@ -129,7 +129,7 @@ public class Storage {
                 break;
             case "ACT":
                 if (num >= 7) {
-                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                    if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
@@ -139,7 +139,7 @@ public class Storage {
                 break;
             case "LEC":
                 if (num >= 7) {
-                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                    if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
@@ -149,7 +149,7 @@ public class Storage {
                 break;
             case "TUT":
                 if (num >= 7) {
-                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                    if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
@@ -159,7 +159,7 @@ public class Storage {
                 break;
             case "LAB":
                 if (num >= 7) {
-                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                    if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
@@ -169,7 +169,7 @@ public class Storage {
                 break;
             case "EXAM":
                 if (num >= 7) {
-                    if(taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                    if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
                     date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
