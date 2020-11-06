@@ -4,6 +4,8 @@ import seedu.duke.ui.Ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -29,7 +31,12 @@ public class ScrumLogger {
         String currentPath = System.getProperty("user.dir");
         int index = currentPath.indexOf("tp");
         String pathToTP = currentPath.substring(0, index + 2);
-        fileHandler = new FileHandler(pathToTP + File.separator + "logs" + File.separator + "scrum.log");
+
+        Path path = Paths.get(pathToTP + File.separator + "logs" + File.separator + "scrum.log");
+        if (!Files.exists(path.getParent())) {
+            Files.createDirectory(path.getParent());
+        }
+        fileHandler = new FileHandler(path.toString(), false);
 
         SimpleFormatter formatter = new SimpleFormatter();
         fileHandler.setFormatter(formatter);
