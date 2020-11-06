@@ -35,8 +35,10 @@ public class ScrumLogger {
 
     }
 
-    public static void destroy() throws IOException {
-        logger.removeHandler(fileHandler);
-        fileHandler.close();
+    public static void destroy() {
+        if (!fileHandler.equals(null)) {
+            logger.removeHandler(fileHandler);
+            fileHandler.close();
+        }
     }
 }
