@@ -89,14 +89,18 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
 
 ### 1.6 Storage component
 
-(FILLME)
+![](uml_images/saveManager/SaveManagerClassSimpilfied.png)
 
 __Description__
 
+Storage component performs storage of data from Goal Tracker, Manual Tracker and Recurring Tracker. It loads
+the data upon entry into the program and performs auto save upon exiting the program. Save Manager also added
+a feature that allow multiple copies of backup data to be saved and loaded.
+
 __API__
 
-
-
+* ```manualTrackerSaver```, ```goalTrackerSaver``` and ```autoTrackerSaver``` inherits some common methods
+from ```saveHandler```. The saver classes are primarily used by ```saveManager``` for file input output operations.
 
 
 
