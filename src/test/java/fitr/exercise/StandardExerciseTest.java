@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StandardExerciseTest {
     ArrayList<Double> duration = new ArrayList<>();
     ArrayList<Integer> sets = new ArrayList<>();
+
     @Test
     public void getName_validName_success() {
         StandardExercise standardExercise = new StandardExercise("Thigh stretch", 2.4, duration, sets);
