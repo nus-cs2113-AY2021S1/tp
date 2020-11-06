@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class CreateCommandTest {
 
     @Test
-    public void addApplianceTest_doesNotThrowException() {
+    public void createLocationTest_doesNotThrowException() {
 
         LocationList locationList = new LocationList();
         ApplianceList applianceList = new ApplianceList();

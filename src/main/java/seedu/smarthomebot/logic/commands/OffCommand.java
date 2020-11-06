@@ -10,8 +10,7 @@ import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 
-//@@Ang_Cheng_Jun
-
+//@@author Ang_Cheng_Jun
 /**
  * Represent the Command to turn off Appliance(s).
  */
@@ -25,7 +24,7 @@ public class OffCommand extends Command {
     private final String argument;
 
     /**
-     * Constructor for Off Command.
+     * Constructor for OffCommand.
      *
      * @param argument Appliance or Location 's name to be off.
      */

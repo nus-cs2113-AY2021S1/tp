@@ -16,8 +16,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 
-//@@author Ang_Cheng_Jun
-
+//@@author leonlowzd
 /**
  * Represent the Command to turn on Appliance(s).
  */
@@ -34,7 +33,7 @@ public class OnCommand extends Command {
     private final String parameter;
 
     /**
-     * Constructor for On Command.
+     * Constructor for OnCommand.
      *
      * @param argument  Appliance or Location 's name to be on.
      * @param parameter To set Appliance's parameter: only valid for fan and aircon.
@@ -45,7 +44,7 @@ public class OnCommand extends Command {
     }
 
     /**
-     * Executing the On Command.
+     * Executing the OnCommand.
      */
     @Override
     public CommandResult execute() {

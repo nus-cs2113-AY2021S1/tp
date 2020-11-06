@@ -13,10 +13,19 @@ public class ExitCommand extends Command {
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
             "Exiting SmartHomeBot as requested, all Appliances are switched off.";
 
+    /**
+     * Method to check if ExitCommand class is created.
+     *
+     * @param command check for ExitCommand class.
+     * @return true if ExitCommand class is created
+     */
     public static boolean isExit(Command command) {
         return command instanceof ExitCommand;
     }
 
+    /**
+     * Executing the ExitCommand.
+     */
     public CommandResult execute() {
         for (Appliance a : applianceList.getAllAppliance()) {
             a.switchOff();
