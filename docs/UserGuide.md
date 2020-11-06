@@ -707,7 +707,7 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 This utility feature helps to save multiple program states and load them at will.
 
 
-## Save Manager Menu
+## Menu
 ![picture](uml_images/saveManager/Capture1.PNG)
 <br />
 Main menu shows all the available commands and how to use them.
@@ -715,7 +715,7 @@ Main menu shows all the available commands and how to use them.
 You can enter "help" anytime to return to this main menu
 
 
-## Save Manager List Save
+## List Save
 ![picture](uml_images/saveManager/Capture2.PNG)
 <br />
 You can enter "list" to list all backup saves.
@@ -725,7 +725,7 @@ You can enter "list" to list all backup saves.
     list
 
 
-## Save Manager Add Save
+## Add Save
 ![picture](uml_images/saveManager/Capture3.PNG)
 <br />
 To create a back up save
@@ -746,7 +746,7 @@ In your data/backup directory, you can see 3 text files created.
 In your names.txt file, an additional entry will be appended.
 
 
-## Save Manager Load Save
+## Load Save
 ![picture](uml_images/saveManager/Capture6.PNG)
 <br />
 To load a back up save
@@ -760,7 +760,7 @@ To load a back up save
 
 
 
-## Save Manager Delete Save
+## Delete Save
 ![picture](uml_images/saveManager/Capture7.PNG)
 <br />
 To remove a back up save
@@ -779,7 +779,7 @@ As you can see, the 3 text files you want to delete are gone.
 names.txt file is also updated.
 
 
-## Save Manager Reset
+## Reset
 ![picture](uml_images/saveManager/Capture9.PNG)
 <br />
 To reset all data currently used by the program enter "reset"
