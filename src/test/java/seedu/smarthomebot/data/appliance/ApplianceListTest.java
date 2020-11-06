@@ -57,7 +57,7 @@ public class ApplianceListTest {
     }
 
     @Test
-    void deleteAppliance_ApplianceInList_ApplianceDeleteNotFound() {
+    void deleteAppliance_ApplianceInList_ExceptionThrown() {
         assertThrows(ApplianceNotFoundException.class, () ->
                 applianceList.deleteAppliance("Fan3"));
 
@@ -79,7 +79,7 @@ public class ApplianceListTest {
     }
 
     @Test
-    void getApplianceIndex_ApplianceNotInList_GetNormally() {
+    void getApplianceIndex_ApplianceNotInList_exceptionThrown() {
         assertThrows(ApplianceNotFoundException.class, () ->
                 applianceList.getApplianceIndex("Fan3"));
     }

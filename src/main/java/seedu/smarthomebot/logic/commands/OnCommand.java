@@ -4,7 +4,6 @@ import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.type.AirConditioner;
 import seedu.smarthomebot.data.appliance.type.Fan;
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 import seedu.smarthomebot.logic.commands.exceptions.ParameterFoundException;
 
 import java.util.ArrayList;
