@@ -34,7 +34,7 @@ public class OnCommand extends Command {
     private final String parameter;
 
     /**
-     * Constructor for On Command.
+     * Constructor for OnCommand.
      *
      * @param argument  Appliance or Location 's name to be on.
      * @param parameter To set Appliance's parameter: only valid for fan and aircon.
@@ -45,7 +45,7 @@ public class OnCommand extends Command {
     }
 
     /**
-     * Executing the On Command.
+     * Executing the OnCommand.
      */
     @Override
     public CommandResult execute() {
@@ -71,19 +71,21 @@ public class OnCommand extends Command {
                 return new CommandResult("Invalid Format");
             }
         } catch (ApplianceNotFoundException e) {
-            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            if (locationList.isLocationCreated(argument)) {
+                return new CommandResult("There are no Appliances in \"" + argument + "\".");
+            } else {
+                return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            }
         } catch (ParameterFoundException e) {
             return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
-        } catch (NoApplianceInLocationException e) {
-            return new CommandResult("There are no Appliances in \"" + argument + "\".");
         }
     }
 
     /**
      * Method to on Appliance by the name.
      */
-    private CommandResult onByApplianceName() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        int toOnApplianceIndex = applianceList.getApplianceIndex(argument, locationList);
+    private CommandResult onByApplianceName() throws ApplianceNotFoundException {
+        int toOnApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
         String outputResult = onAppliance(toOnAppliance, true);
         return new CommandResult(outputResult);
