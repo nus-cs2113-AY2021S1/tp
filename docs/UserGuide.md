@@ -84,9 +84,9 @@ The following table displays the list of terminologies used in this document:
 
 ## Quick Start
 
-1. Ensure you have Java 11 or above installed.
-1. Down the latest version of the project file **_25HoursADay.jar_** from [here](https://github.com/AY2021S1-CS2113T-T12-2/tp/releases/tag/V1.0).
-1. Copy the file to the folder you want to use as the _home folder_ for the project file.
+1. Ensure you have Java 11.0.8 or above installed.
+1. Download the latest version of the project file **_25HoursADay.jar_** and the JSON data file **_NUS_Mod_info.json_** from [here](https://github.com/AY2021S1-CS2113T-T12-2/tp/releases/tag/V1.0).
+1. Copy the JAR file and the JSON data file to the same folder that you want to use as the _home folder_ for the project file.
 1. In the _Command Prompt_, navigate to the working directory of the _home folder_.
 1. type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to strat the programme.
 1. The _Command Prompt_ should display similar output as shown in the figure below:
