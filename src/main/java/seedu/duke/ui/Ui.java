@@ -43,9 +43,11 @@ public class Ui {
     }
 
     public static void showError(Exception error) {
-        printLine();
-        System.out.println(error);
-        printLine();
+        if (error.toString() != "Possible Locs shown") {
+            printLine();
+            System.out.println(error);
+            printLine();
+        }
     }
 
     public static void printHelp() {
@@ -223,6 +225,7 @@ public class Ui {
     }
 
     public static void printBusAtBusStop(ArrayList<Bus> busList, String busStop) {
+        printLine();
         System.out.print(busStop + ":  ");
         for (Bus bus : busList) {
             System.out.print(bus.getBusNumber() + "   ");
