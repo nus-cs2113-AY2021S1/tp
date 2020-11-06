@@ -40,6 +40,13 @@ public class RemoveSprintTaskCommand extends SprintCommand {
      */
     private void removeTasks() {
         for (int taskId : taskIds) {
+            if (!this.sprintOwner.checkTaskExist(taskId)) {
+                Ui.showToUserLn(String.format("\t%s is already removed from sprint %s.",
+                        projOwner.getProjectBacklog().getTask(taskId).getTitle(),
+                        this.sprintOwner.getId()));
+                continue;
+            }
+
             this.sprintOwner.removeSprintTask(taskId);
 
             //Update Task

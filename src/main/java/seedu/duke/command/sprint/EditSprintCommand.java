@@ -50,8 +50,19 @@ public class EditSprintCommand extends SprintCommand {
      * Update goal of selected Sprint.
      */
     private void editSprint() {
+        printEditMessage();
         this.sprintOwner.setGoal(sprintGoal);
-        Ui.showToUserLn(this.projOwner.toIdString());
         Ui.showToUser(this.sprintOwner.toString());
+    }
+
+    /**
+     * Print message if provided goal is the same as current goal.
+     */
+    private void printEditMessage() {
+        if (this.sprintOwner.getGoal().equals(sprintGoal)) {
+            Ui.showToUserLn("Provided goal is the same as current goal.");
+        } else {
+            Ui.showToUserLn("Goal updated.");
+        }
     }
 }

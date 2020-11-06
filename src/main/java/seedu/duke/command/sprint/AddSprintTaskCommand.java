@@ -40,6 +40,12 @@ public class AddSprintTaskCommand extends SprintCommand {
      */
     private void addTasks() {
         for (int taskId : taskIds) {
+            if (this.sprintOwner.checkTaskExist(taskId)) {
+                Ui.showToUserLn(String.format("\t%s is already added in sprint %s.",
+                        projOwner.getProjectBacklog().getTask(taskId).getTitle(),
+                        this.sprintOwner.getId()));
+                continue;
+            }
             this.sprintOwner.addSprintTask(taskId);
 
             //Update Task

@@ -20,7 +20,7 @@ public class ViewSprintCommand extends SprintCommand {
             chooseSprint();
 
             //Valid Command
-            Ui.showToUserLn(this.projOwner.toIdString());
+            Ui.showToUser(this.projOwner.toIdString());
             Ui.showToUser(this.sprintOwner.toString());
         } catch (DukeException e) {
             e.printExceptionMessage();

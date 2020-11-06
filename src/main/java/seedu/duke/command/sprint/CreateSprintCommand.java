@@ -85,8 +85,10 @@ public class CreateSprintCommand extends SprintCommand {
             LocalDate projEndDate = this.sprintStart.plusDays(this.projOwner.getProjectDuration() - 1);
             this.projOwner.setStartDate(this.sprintStart);
             this.projOwner.setEndDate(projEndDate);
-            Ui.showToUserLn("Project will start along with the newly created sprint");
+            Ui.showToUserLn("First Sprint: Project will start along with the newly created sprint");
             Ui.showToUserLn("Project period: " + this.sprintStart + " to " + projEndDate);
+        } else {
+            printRedundantStart();
         }
     }
 
@@ -96,6 +98,18 @@ public class CreateSprintCommand extends SprintCommand {
     private void printCreatedSprint() {
         Sprint createdSprint = sprintList.getSprint(sprintList.size());
         Ui.showToUserLn(createdSprint.toString());
+    }
+
+    /**
+     * Print message if -start tag is specified for subsequent sprint.
+     */
+    private void printRedundantStart() {
+        if (this.parameters.containsKey("start")) {
+            Ui.showToUserLn("Not first sprint: Start tag will be ignored and "
+                    + "new sprint will start right after previous sprint ends.");
+        } else {
+            Ui.showToUserLn("Not first sprint: New sprint will start right after previous sprint ends.");
+        }
     }
 
     /**
