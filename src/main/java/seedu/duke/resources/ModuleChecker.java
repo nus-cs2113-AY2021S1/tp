@@ -79,7 +79,7 @@ public class ModuleChecker {
         } catch (UnknownHostException e) {
             System.out.println("No internet connection! Verifying module code using local data....\n");
             isOnWifi = false;
-        } catch (NoRouteToHostException e){
+        } catch (NoRouteToHostException e) {
             System.out.println("No internet connection! Verifying module code using local data....\n");
             isOnWifi = false;
         } catch (IOException e) {
