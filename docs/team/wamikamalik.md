@@ -20,3 +20,19 @@ buses that go from one bus stop to another. It further eases the user's travel b
  * What it does: it allows the user to change the description for an existing command in the list of favourite commands.
  * Justification: This feature improves the ease of usability of the product as it allows the user to change description
  in one step rather than deleting the command from the list and adding it again with the new description.
+
+#### Code Contributed
+* [This is the RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=wamikamalik) to 
+my code.
+
+#### Enhancements implemented
+* Added food places data classes. (Pull request [#57](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/57))
+* Added a similarity check to existing features. This check recommends possible locations based on potential spelling 
+errors. (Pull request [#73](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/73))
+    + Credits: The edit distance algorithm used was taken from 
+    [http://rosettacode.org/wiki/Levenshtein_distance#Java](http://rosettacode.org/wiki/Levenshtein_distance#Java).
+* Refactored classes into packages. (Pull request [#96](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/96))
+* Wrote tests for existing route and description change features and a few tests for Parser. (Pull requests 
+[#11](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/11), 
+[#33](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/33), 
+[#104](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/104))    
