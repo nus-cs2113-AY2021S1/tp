@@ -139,16 +139,17 @@ To run Scheduler--;, your computer must meet these minimum system requirements
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
 1. The welcome message for the program should appear. 
 
-### 2.3 Test run
-1. Type the command in the command box and press Enter to execute. 
+### 2.3 Test run 
+// this may need updating
+
+Type the command in the command box and press Enter to execute. 
+Refer to the [Features](#3-features) section for details of each command. 
 
 Some examples you can try: 
-    - `list`: List all events 
-    - `add EVENT_TYPE EVENT_NAME at DD/MM/YY HHMM`: Add an event to the scheduler 
-    - `bye`: exit the program 
+- `list`: List all events
+- `add EVENT_TYPE; EVENT_DESCRIPTION; DD/MM/YY; HHMM`: Add an event to the scheduler 
+- `bye`: exit the program 
     
-1. Refer to Features section for details of each command 
-
 Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
 ## 3. Features
 This section introduces and explains the features of Scheduler--;!
