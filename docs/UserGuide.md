@@ -132,6 +132,7 @@ Example:
 
 #### Adding a deadline task:
 
+update this section with 2 different date input examples!....
 This function allows you to add a deadline task, such as project submission or assignment submission and the program 
 will keep track of the due date which will definitely make your study life more manageable!
 
