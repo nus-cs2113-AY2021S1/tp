@@ -491,13 +491,9 @@ The sequence diagram for listing participants in an event is as shown below:
 [Return to top](#CCA-manager-developer-guide)
 
 ### 3.5. HR
-The diagram below shows the architecture for HR feature.<br/>
+The diagram below shows the overall architecture for HR feature.<br/>
 
-Diagram 1: HR Architecture<br/>
-![](hrDiagramPic/HrArchitecture1.png)
-
-Diagram 1: HR Commands<br/>
-![](hrDiagramPic/HrArchitecture2.png)
+![](hrDiagramPic/HrArchi.png)
 
 There are a total of 7 commands under HR feature:
  `CommandAddMember`, `CommandDelMember`, `CommandViewMember`  ,`CommandListConnection`, `CommandSearchMember` , `CommandListProfAdmin` and `CommandChangeMemberInfo`. 

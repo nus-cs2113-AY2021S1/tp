@@ -109,6 +109,8 @@ Format: `bye`
 
 ### 4.3 HR features `HR` 
 #### Add members: `addMember`
+(By:Ye Yutong)  
+
 Adds a member to the list of members.<br/>
 
 Format: `hr addMember /n NAME /p PHONE_NUMBER /e EMAIL /r ROLE`<br/>
@@ -125,6 +127,8 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
  
 #### Delete members: `delMember`
+(By:Ye Yutong)  
+
  Deletes a member from the list of members. <br/>
  Format: `hr delMember MEMBER_INDEX` <br/>
  Deletes the member at the specified MEMBER_INDEX.<br/>
@@ -144,6 +148,8 @@ Example of usage: <br/>
   [Return to the top](#user-guide)
 
 #### list members: `listMember`
+(By:Ye Yutong)  
+
 Prints the list of members, based on the order in which they are added into the list. 
 Format: `hr listMember` <br/>
 
@@ -159,6 +165,8 @@ Example of usage: <br/>
  [Return to the top](#user-guide)
 
 #### change member information: `changeInfo`
+(By:Ye Yutong)  
+
 Changes contacts and role of member in the list, based on the given member name. 
 Format: `hr changeInfo /n MEMBER_NAME (/p PHONE_NUMBER) (/e EMAIL) (/r MEMBER_ROLE)` <br/>
 
@@ -402,6 +410,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Add a participant to an event: `addAttendance`
+(By:Ye Yutong)  
+
 Adds an event to the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
  
@@ -419,6 +429,8 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete a participant from an event: `delAttendance`
+(By:Ye Yutong)  
+
  Deletes a participant from an event in the list of events. <br/>
  Format: `event delAttendance /n EVENT_NAME /m MEMBER_NAME` <br/>
  
@@ -434,6 +446,8 @@ Expected Outcome:
  [Return to the top](#user-guide)
 
 #### List participants in an event: `listAttendance`
+(By:Ye Yutong)  
+
 Prints the list of participants in an event, based on the order in which they are added into the list. 
 Format: `event listAttendance /n EVENT_NAME` <br/>
 
