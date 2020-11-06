@@ -8,8 +8,8 @@ import seedu.smarthomebot.data.location.LocationList;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 
 public class OffCommandTest {
 
@@ -32,15 +32,21 @@ public class OffCommandTest {
     }
 
     @Test
-    void switchOff_Appliance_switchOffNormally() {
+    void offCommandTest_OffNormally() {
         applianceList.getAppliance(0).switchOn();
-        assertTrue(applianceList.getAppliance(0).switchOff());
+        Command offCommand = new OffCommand("Fan");
+        offCommand.setData(applianceList, myHome);
+        assertDoesNotThrow(() -> offCommand.execute());
     }
 
     @Test
-    void switchOff_Appliance_switchOffPreviously() {
-        assertFalse(applianceList.getAppliance(0).switchOff());
+    void offCommandTest_ApplianceNotFoundException() {
+        Command offCommand = new OffCommand("Fan1");
+        offCommand.setData(applianceList, myHome);
+        CommandResult actualCommandResult = offCommand.execute();
+        assertEquals(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST, actualCommandResult.feedbackToUser);
     }
+
 }
 
 
