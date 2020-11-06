@@ -18,4 +18,5 @@ bin/
 
 # Data file
 /data/SmartHomeBot.txt
-
+/log/SmartHomeBotLog.txt
+/log/SmartHomeBotLog.txt.lck
