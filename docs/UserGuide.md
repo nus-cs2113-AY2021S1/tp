@@ -26,7 +26,7 @@ Note the following symbols and formatting used in this document:
 
 Symbols / Formatting|Meaning
 ------|------
-ℹ️ **_NOTE:_** | Important or additional information
+📝️   **_NOTE:_** | Important or additional information
 ⚠️ **_WARNING:_** | Things to avoid or pay extra attention to
 `Grey highlight` | Code or terms related to the code/application
 
@@ -71,7 +71,7 @@ you can add/configure different subjects; in the subject level, you can add/conf
 level, you can add/configure different flashcards (under a topic & subject). Continue reading to learn more about the features
 in each level.
 
-> ℹ️ **_NOTE:_** The format of the command, an example of usage, and a sample output will be presented in `grey boxes` 
+> 📝️️  **_NOTE:_** The format of the command, an example of usage, and a sample output will be presented in `grey boxes` 
 > for each feature that involves the use of a command.
 
 
@@ -209,7 +209,7 @@ This type of quiz helps you prepare for a particular subject. For more details, 
 Format: `quiz NAMEOFSUBJECT`<br>
 Example of usage: 
 ```
-quiz Maths
+quiz CS2113T
 ```
 
 Sample output: 
@@ -228,7 +228,8 @@ results CS2113T
 ```
 Sample output: 
 ```
-You are about to begin the quiz for CS2113T.You have 2 minutes.
+Quiz 1: 1.0/2.0 -- Pass
+Quiz 2: 2.0/2.0 -- Excellent
 ```
 
 #### 3.1.9 Exporting data - `export` <a name="export-command"></a>
@@ -545,7 +546,7 @@ These flashcards can also be used to take quizzes, which is described in the nex
 This section describes the usage of commands that can be used to list all the available commands, 
 and add, delete and list flashcards. 
 
-> ℹ️ **_NOTE:_** Flashcard commands can only be used when looking at a topic.
+> 📝️  **_NOTE:_** Flashcard commands can only be used when looking at a topic.
 
 #### 3.3.1 `help` - Displaying all commands
 
@@ -569,7 +570,7 @@ delete 1:          deletes the 1st flashcard in the list
 exit:              exits the topic to return to the subject level, where you can work with tasks and topics
 ________________________________________________________________________________________________________________________
 ```
-> ℹ️ **_NOTE:_** Do not add extra spaces after or before help.
+> 📝️ ️  **_NOTE:_** Do not add extra spaces after or before help.
 
 #### 3.3.2 `add` - Adding a flashcard
 
@@ -595,7 +596,7 @@ Got it. I've added this flashcard:
 Now you have 3 flashcard in the list.
 ____________________________________________________________
 ```
-> ℹ️ **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
+> 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
 
 #### 3.3.3 `delete` - Deleting a flashcard
 
@@ -638,7 +639,7 @@ Here are the flashcard(s) under speed:
 1.What is the formula for time?; Time = Distance/Speed.
 2.What is the difference between speed and velocity? Speed, being a scalar quantity, is the rate at which an object covers distance. On the other hand, velocity being a vector quantity, is the rate at which the position changes.
 ```
-> ℹ️ **_NOTE:_** Do not add extra spaces after or before list.
+> 📝️ ️️ **_NOTE:_** Do not add extra spaces after or before list.
 
 #### 3.3.5 `exit`
 
@@ -669,12 +670,7 @@ Output: `You are about to begin the quiz for maths.You have 2 minutes.`
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
 You have 1 minute to complete the quiz.
 
-Format: `quiz NAMEOFTOPIC`<br>
-Example: `quiz speed`
-
-Output: `You are about to begin the quiz for speed.You have 1 minute.`
-
-> ℹ️ **_NOTE:_** Ensure that you start a quiz for a subject/topic that has been added to the application 
+> 📝️ ️  **_NOTE:_** Ensure that you start a quiz for a subject/topic that has been added to the application 
 > and has a flashcard. Else, the application will not start the quiz.
 
 Once you have entered the type of quiz you want to begin, the application starts the quiz. You
@@ -723,15 +719,9 @@ After completing a few number of quizzes, you would want to look at the results 
 you have improved over the time. You can use the `results` functionality to check your results.
 This can be done for the subjects or for the topics.
 
-Format: `results NAMEOFTOPIC` or `results NAMEOFSUBJECT`
-Example:`results maths` or `results speed`
+> 📝️ ️  **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
 
-<pre><code>
-Quiz 1: 1/1 -- Excellent
-Quiz 2: 0/1 -- Fail
-</code></pre>
->️ ℹ️ **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
->️ ℹ️ **_NOTE:_** The results for a subject is different from the results for a topic. The application only shows
+> 📝️ ️  **_NOTE:_** The results for a subject is different from the results for a topic. The application only shows
 >the result of a subject or topic that you requested for. Entering `results CS2113T` will not show you the results
 >that you obtained for the topics in the CS2113T subject and vice-versa.  
 
@@ -762,7 +752,7 @@ data                            <em>--> Data main folder</em>
 
 The details of the files that are created under each subject and topic folder will be explained below.
 
-> ℹ️ **_NOTE:_**  The name of the subject and topic folders can be changed manually, and the changes will be reflected
+> 📝️️   **_NOTE:_**  The name of the subject and topic folders can be changed manually, and the changes will be reflected
 > in the application the next time you launch it.
 
 ##### tasks.txt
@@ -837,7 +827,7 @@ Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 Similar to <a href =#store>storing data</a>,
 when you launch the application, the saved data is automatically loaded from the disk.
 
-> ℹ️ **_NOTE:_** Loaded subjects and topics will be sorted in alphabetical order, which can be seen when running
+> 📝️   **_NOTE:_** Loaded subjects and topics will be sorted in alphabetical order, which can be seen when running
 > <a href=#list>list</a> command. Flashcards, tasks, and results data, on the other hand, are not sorted and instead
 > follow the added order.
 
@@ -907,7 +897,7 @@ below.
 Note that the content of the file follows the same logical structure as that
 in the `data/` folder.
 
-> ℹ️ **_NOTE:_** **Importing** of the exported file is **currently not supported** as it is meant to be read by other 
+> 📝️ ️ **_NOTE:_** **Importing** of the exported file is **currently not supported** as it is meant to be read by other 
 > applications. Nevertheless, the feature may be implemented in the future versions if it is highly requested.
 
 #### 3.4.6 Sorting tasks  <a name= "sort"> </a>
