@@ -79,7 +79,8 @@ public class OnCommand extends Command {
                 return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
             }
         } catch (ParameterFoundException e) {
-            commandLogger.log(Level.WARNING, "Unable to On : " + "There should be no parameter when you ON by location.");
+            commandLogger.log(Level.WARNING, "Unable to On : "
+                    + "There should be no parameter when you ON by location.");
             return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
         }
     }
