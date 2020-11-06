@@ -33,7 +33,7 @@ public class AddCardCommand extends AddCommand {
         ui.showToUser(result);
     }
 
-    protected String addCard(Access access, Storage storage) throws IOException {
+    private String addCard(Access access, Storage storage) throws IOException {
         assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
         if (cards.checkCardExistence(card.getQuestion().toLowerCase(), card.getAnswer().toLowerCase())) {
