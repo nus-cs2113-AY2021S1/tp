@@ -40,8 +40,7 @@ class CheckCommandTest {
 
         EventList personalList =  data.getEventList("Personal");
         String expectedString = "Here is a list of your coinciding events:" + System.lineSeparator()
-                + "1. [P][X] Go out for dinner on 2020-05-05, 12:00" + System.lineSeparator()
-                + "_________________________________";
+                + "1. [P][X] Go out for dinner on 2020-05-05, 12:00";
         assertEquals(expectedString, outputStreamCaptor.toString().trim());
     }
 
@@ -63,8 +62,7 @@ class CheckCommandTest {
         Command checkCommand  = new CheckCommand(inputString);
         checkCommand.execute(data, ui, storage);
 
-        String expectedString = "You have no coinciding events!" + System.lineSeparator()
-                + "_________________________________";
+        String expectedString = "You have no coinciding events!";
         assertEquals(expectedString, outputStreamCaptor.toString().trim());
     }
 

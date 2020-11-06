@@ -85,7 +85,6 @@ public class ReminderCommandTest {
         printWriter.println("[T][X] wakeup on " + printLastDate + ", 10:00");
         printWriter.println("[T][X] wakeup on " + printLastDate + ", 10:00");
         printWriter.println("is now repeating weekly for 1 times.");
-        printWriter.println("_________________________________");
         printWriter.println("You have the following events today: ");
         printWriter.println("[T][X] wakeup on " + printDate + ", 10:00");
         printWriter.close();

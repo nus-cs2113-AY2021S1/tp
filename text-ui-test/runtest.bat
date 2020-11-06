@@ -11,10 +11,9 @@ for /f "tokens=*" %%a in (
 ) do (
     set jarloc=%%a
 )
-del "..\..\text-ui-test\data\*.*" /f /q
+
 java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
 
 cd ..\..\text-ui-test
-del ".\data\*.*" /f /q
 
 FC ACTUAL.TXT EXPECTED.TXT >NUL && ECHO Test passed! || Echo Test failed!

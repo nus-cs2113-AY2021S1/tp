@@ -23,28 +23,6 @@ class ListCommandTest {
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
-    //    @Test
-    //    void execute_noEvent_printNoEventsInLists() {
-    //        UserData data = new UserData();
-    //        Ui ui = new Ui();
-    //        Storage storage = new Storage("data");
-    //
-    //        // Execute list command
-    //        String inputString = "";
-    //        // if the user enters "list" to list all events, the input string will be an empty string
-    //        System.setOut(new PrintStream(outputStreamCaptor));
-    //
-    //        Command listCommand = ListCommand.parse(inputString);
-    //        listCommand.execute(data, ui, storage);
-    //
-    //        assertEquals("Here is a list of all your events!" + System.lineSeparator()
-    //                        + "You have no events under Personal." + System.lineSeparator()
-    //                        + "You have no events under Timetable." + System.lineSeparator()
-    //                        + "You have no events under Zoom." + System.lineSeparator()
-    //                        + "_________________________________" + System.lineSeparator(),
-    //                outputStreamCaptor.toString());
-    //    }
-
     @Test
     void execute_zoomEvent_listZoomEvents() throws DukeException {
         UserData data = new UserData();
@@ -66,8 +44,7 @@ class ListCommandTest {
                         + "[Z][X] Math class, Link: "
                         + "zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
                         + "Here is a list of your Zoom events:" + System.lineSeparator()
-                        + "1. [Z][X] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator()
-                        + "_________________________________" + System.lineSeparator(),
+                        + "1. [Z][X] Math class, Link: zoom.com on 2000-10-09, 13:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
     }
 
