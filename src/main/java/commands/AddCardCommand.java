@@ -33,7 +33,7 @@ public class AddCardCommand extends AddCommand {
         ui.showToUser(result);
     }
 
-    private String addCard(Access access, Storage storage) throws IOException {
+    protected String addCard(Access access, Storage storage) throws IOException {
         assert access.isChapterLevel() : "Not chapter level";
         CardList cards = access.getChapter().getCards();
         if (cards.checkCardExistence(card.getQuestion().toLowerCase(), card.getAnswer().toLowerCase())) {
@@ -48,4 +48,5 @@ public class AddCardCommand extends AddCommand {
         logger.info("Successfully saved the flashcards.");
         return prepareResult(CARD, card.toString(), cardCount);
     }
+
 }
