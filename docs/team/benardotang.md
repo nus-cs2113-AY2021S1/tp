@@ -22,11 +22,14 @@ This section shows a summary of my coding, documentation, and other helpful cont
     * Added overall structure for implementation of InputParser
     * Sections of InputParser which some Command functionalities were reliant on
     * Management of output messages to the user through UI class 
+    * Added functionality in SearchCommand, that was initially implemented by teammate [Jiqing](https://github.com/judowha), to be able to recognise case-insensitive or incomplete inputs as keywords.
 
 * Contributions to documentation:
     * Added table of contents and overall structure for user guide.
     * Added documentation for `watch` command, `updatetimelimit` command and Command Summary.
     * General formatting updates and fixes in user guide each time a new feature was added into the guide.
+    * Added documentation to some methods in the InputParser Class. Added full documentation to UI Class
+
 
 * Contributions to DG:
     * Added table of contents and overall structure for developer guide.
