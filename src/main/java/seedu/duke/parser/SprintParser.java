@@ -191,8 +191,7 @@ public class SprintParser implements ExceptionsParser {
                 String correctDate = catchDateFormat(date);
                 DateTimeParser.parseDate(correctDate);
             } catch (DukeException e) {
-                throw new DukeException("Please indicate your start date in this following format: YYYYMMDD.\n "
-                        + "Please check if you have entered an invalid date e.g. 20201131.");
+                throw new DukeException(e.getMessage());
             }
         }
     }
