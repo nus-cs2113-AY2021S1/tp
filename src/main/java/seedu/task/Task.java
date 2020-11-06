@@ -2,11 +2,13 @@ package seedu.task;
 
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidReminderException;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 
 import static java.lang.Math.pow;
 
@@ -20,26 +22,101 @@ public class Task {
     private LocalTime startTime;
     private LocalTime endTime;
     private Priority priority;
+    public Reminder reminder;
 
-    public Task(String description, String dateString, String startTime, String endTime, String priorityString)
-        throws InvalidPriorityException, InvalidDatetimeException {
+    public Task(String description, String dateString, String startTime, String endTime, String priorityString,
+                String reminderString, String reminderTimeString)
+        throws InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
         this.description = description;
         date = dateStringToDate(dateString);
         this.startTime = timeStringToTime(startTime);
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
         taskID = generateHashValue();
+        reminder = new Reminder();
+        initiateReminder(reminderString, reminderTimeString);
+    }
+
+    public Task(Integer taskID, String description, LocalDate date,
+                LocalTime startTime, LocalTime endTime, Priority priority, Reminder reminder) {
+        this.description = description;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priority = priority;
+        this.taskID = taskID;
+        this.reminder = reminder;
+    }
+
+    public Task(String description, LocalDate date,
+                LocalTime startTime, LocalTime endTime, Priority priority) {
+        this.description = description;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priority = priority;
+        this.taskID = generateHashValue();
     }
 
     public Task(String taskID, String description, String dateString,
-                String startTime, String endTime, String priorityString)
-        throws InvalidPriorityException, InvalidDatetimeException {
+                String startTime, String endTime, String priorityString, String reminderString,
+                String reminderTimeString)
+        throws InvalidPriorityException, InvalidDatetimeException, InvalidReminderException {
         this.description = description;
         date = dateStringToDate(dateString);
         this.startTime = timeStringToTime(startTime);
         this.endTime = timeStringToTime(endTime);
         priority = priorityStringToPriority(priorityString);
         this.taskID = Integer.parseInt(taskID);
+        this.reminder = new Reminder();
+        initiateReminder(reminderString, reminderTimeString);
+    }
+
+    private void initiateReminder(String reminderString, String remainderTimeString)
+            throws InvalidReminderException, InvalidDatetimeException {
+        LocalTime time = timeStringToTime(remainderTimeString);
+        if (reminderString == null) {
+            reminderString = "off";
+        }
+        switch (reminderString) {
+        case "on":
+            reminder.setIsOn(true);
+            if (time != null) {
+                reminder.setTime(time);
+            } else if (startTime != null) {
+                reminder.setTime(LocalTime.of(getStartTime().getHour() - 1,
+                        getStartTime().getMinute()));
+            } else {
+                throw new InvalidReminderException();
+            }
+            break;
+        case "off":
+            reminder.offReminder();
+            break;
+        default:
+            throw new InvalidReminderException();
+        }
+    }
+
+    public String getReminderString() {
+        if (reminder.getIsOn()) {
+            return "Yes";
+        } else {
+            return "No";
+        }
+    }
+
+    public Reminder newReminder() {
+        return new Reminder();
+    }
+
+    public Reminder getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(String reminderString, String reminderTime)
+            throws InvalidReminderException, InvalidDatetimeException {
+        initiateReminder(reminderString, reminderTime);
     }
 
     private int generateHashValue() {
@@ -141,6 +218,10 @@ public class Task {
 
     public void setDate(String dateString) throws InvalidDatetimeException {
         date = dateStringToDate(dateString);
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getStartTime() {

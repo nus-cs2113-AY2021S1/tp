@@ -1,14 +1,25 @@
 package seedu.commands;
 
+import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidTaskNumberException;
+import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.MaxNumTaskException;
+import seedu.exceptions.InvalidTaskNumberException;
+import seedu.exceptions.EmptyDataStackException;
+import seedu.exceptions.InvalidReminderException;
 
-public abstract class Command {
+public class Command {
+    public CommandResult execute() {
+        return new CommandResult("");
+    }
 
-    public abstract CommandResult execute(TaskMap tasks)
-        throws InvalidPriorityException, InvalidTaskNumberException, InvalidDatetimeException, MaxNumTaskException;
+    public CommandResult execute(TaskMap taskMap) throws InvalidTaskNumberException {
+        return new CommandResult("");
+    }
 
+    public CommandResult execute(Model model) throws InvalidPriorityException, InvalidDatetimeException,
+        MaxNumTaskException, InvalidTaskNumberException, EmptyDataStackException, InvalidReminderException {
+        return new CommandResult("");
+    }
 }

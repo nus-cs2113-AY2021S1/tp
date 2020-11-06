@@ -1,14 +1,16 @@
 package seedu.commands;
 
-import seedu.data.TaskMap;
+import seedu.data.Timers;
 
 import static seedu.messages.Messages.BYE_MESSAGE;
 
-public class Bye extends Command {
+public class Bye extends GeneralCommand {
     public static final String COMMAND_WORD = "bye";
 
-    @Override
-    public CommandResult execute(TaskMap tasks) {
-        return new CommandResult(BYE_MESSAGE);
+    public CommandResult execute() {
+        CommandResult result = new CommandResult(BYE_MESSAGE);
+        Timers.cancel();
+        result.setExit(true);
+        return result;
     }
 }

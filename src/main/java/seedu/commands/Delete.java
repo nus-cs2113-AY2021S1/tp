@@ -1,5 +1,6 @@
 package seedu.commands;
 
+import seedu.data.Model;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidTaskNumberException;
@@ -10,32 +11,29 @@ import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.DELETE_MESSAGE;
 
-public class Delete extends Command {
+public class Delete extends ModificationCommand {
     public static final String COMMAND_WORD = "delete";
     private final Integer key;
-    private static final Pattern COMMAND_PATTERN = Pattern.compile(
+    public static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^delete (?<key>\\d+)$");
 
-    public Delete(String rawInput) throws InvalidCommandException, InvalidTaskNumberException {
-        Matcher matcher = COMMAND_PATTERN.matcher(rawInput);
-        if (matcher.find()) {
-            try {
-                key = Integer.parseInt(matcher.group("key"));
-            } catch (NumberFormatException e) {
-                throw new InvalidTaskNumberException();
-            }
-        } else {
-            throw new InvalidCommandException();
+    public Delete(String keyString) throws InvalidTaskNumberException {
+        try {
+            key = Integer.parseInt(keyString);
+        } catch (NumberFormatException e) {
+            throw new InvalidTaskNumberException();
         }
     }
 
-    @Override
-    public CommandResult execute(TaskMap tasks) throws InvalidTaskNumberException {
+    public CommandResult execute(Model model) throws InvalidTaskNumberException {
+        TaskMap tasks = model.getTaskMap();
         Task task = tasks.get(key);
         if (task == null) {
             throw new InvalidTaskNumberException();
         }
+        Task taskDeleted = task;
         tasks.delete(key);
-        return new CommandResult(DELETE_MESSAGE);
+        model.pushAndUpdate(tasks);
+        return new CommandResult(DELETE_MESSAGE,taskDeleted);
     }
 }
