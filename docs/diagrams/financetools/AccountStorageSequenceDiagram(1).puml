@@ -1,6 +1,8 @@
 @startuml
 autoactivate on
+actor User
 
+"User" -> ":Handler": Input command in FinanceTools.main()
 ":Handler" ->":Handler": handleAccountStorage(packet, filePath, infoText)
 
    ":Handler"-> ":AccountStorage" : handlePacket(packet)
@@ -16,17 +18,17 @@ autoactivate on
                         ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
                         return
                     else "paramType = /ir"
-                        ":AccountStorage" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnDoubleSignedSigned(paramType)
                         return amount
                         ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
                         return
                     else "paramType = /r"
-                        ":AccountStorage" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
                         return
                     else "paramType = /c"
-                        ":AccountStorage" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
                         return
@@ -34,7 +36,7 @@ autoactivate on
                         ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
                         return
                     else "paramType = /rm"
-                        ":AccountStorage" ->":ParamChecker": checkAndReturnInt(paramType)
+                        ":AccountStorage" ->":ParamChecker": checkAndReturnIntSigned(paramType)
                         return amount
                         ":AccountStorage" -> ":AccountStorage" : getParam(paramType)
                         return

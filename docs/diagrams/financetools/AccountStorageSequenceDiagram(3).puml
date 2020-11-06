@@ -10,6 +10,4 @@ activate ":AccountSaver"
 
 ":AccountSaver" --> ":FinanceTools" : ArrayList Updated
 deactivate ":AccountSaver"
-
-":FinanceTools" --> User : Information Up-to-date
 @enduml

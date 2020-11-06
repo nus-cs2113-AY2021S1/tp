@@ -1,6 +1,8 @@
 @startuml
 autoactivate on
+actor User
 
+"User" -> ":Handler": Input command in FinanceTools.main()
 ":Handler" ->":Handler": handleCashback(packet)
 
    ":Handler"-> ":Cashback" : handlePacket(packet)
@@ -13,17 +15,17 @@ autoactivate on
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
                 ":Cashback" -> ":Cashback" : handleSingleParam
                     alt "paramType = /a"
-                        ":Cashback" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":Cashback" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":Cashback" -> ":Cashback" : getParam(paramType)
                         return
                     else "paramType = /r"
-                        ":Cashback" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":Cashback" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":Cashback" -> ":Cashback" : getParam(paramType)
                         return
                     else "paramType = /c"
-                        ":Cashback" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":Cashback" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":Cashback" -> ":Cashback" : getParam(paramType)
                         return

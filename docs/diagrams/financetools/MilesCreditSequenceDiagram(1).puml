@@ -1,6 +1,8 @@
 @startuml
 autoactivate on
+actor User
 
+"User" -> ":Handler": Input command in FinanceTools.main()
 ":Handler" ->":Handler": handleMilesCredit(packet)
 
    ":Handler"-> ":MilesCredit" : handlePacket(packet)
@@ -13,12 +15,12 @@ autoactivate on
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
                 ":MilesCredit" -> ":MilesCredit" : handleSingleParam
                     alt "paramType = /a"
-                        ":MilesCredit" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":MilesCredit" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":MilesCredit" -> ":MilesCredit" : getParam(paramType)
                         return
                     else "paramType = /r"
-                        ":MilesCredit" ->":ParamChecker": checkAndReturnDouble(paramType)
+                        ":MilesCredit" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
                         return amount
                         ":MilesCredit" -> ":MilesCredit" : getParam(paramType)
                         return
