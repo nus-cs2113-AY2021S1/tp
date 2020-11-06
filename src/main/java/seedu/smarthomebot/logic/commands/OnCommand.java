@@ -4,10 +4,10 @@ import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.type.AirConditioner;
 import seedu.smarthomebot.data.appliance.type.Fan;
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 import seedu.smarthomebot.logic.commands.exceptions.ParameterFoundException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
@@ -71,11 +71,15 @@ public class OnCommand extends Command {
             }
         } catch (ApplianceNotFoundException e) {
             if (locationList.isLocationCreated(argument)) {
+                commandLogger.log(Level.WARNING, "Unable to On : There are no Appliances in \"" + argument + "\".");
                 return new CommandResult("There are no Appliances in \"" + argument + "\".");
             } else {
+                commandLogger.log(Level.WARNING, "Unable to On : " + MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
                 return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
             }
         } catch (ParameterFoundException e) {
+            commandLogger.log(Level.WARNING, "Unable to On : "
+                    + "There should be no parameter when you ON by location.");
             return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
         }
     }
@@ -87,6 +91,7 @@ public class OnCommand extends Command {
         int toOnApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
         String outputResult = onAppliance(toOnAppliance, true);
+        commandLogger.log(Level.INFO, "Appliance On with output message: " + outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -125,6 +130,7 @@ public class OnCommand extends Command {
         } else {
             onApplianceByLoop(toOnAppliance);
             String outputResult = "All Appliances in \"" + argument + "\" are turned on ";
+            commandLogger.log(Level.INFO, "Location On with output message: " + outputResult);
             return new CommandResult(outputResult);
         }
     }

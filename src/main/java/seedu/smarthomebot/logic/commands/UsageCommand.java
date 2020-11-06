@@ -1,12 +1,10 @@
 package seedu.smarthomebot.logic.commands;
 
-import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
 
 import java.util.ArrayList;
 
-import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_POWER_USAGE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_TOTAL_POWER_USAGE;
