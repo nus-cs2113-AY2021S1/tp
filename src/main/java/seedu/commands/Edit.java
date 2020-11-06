@@ -15,7 +15,7 @@ import static seedu.messages.Messages.EDIT_MESSAGE;
 public class Edit extends ModificationCommand {
     public static final String COMMAND_WORD = "edit";
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-            "^edit (?<key>\\d+)"
+            "^(?<key>\\d+)"
                     + "( des/(?<description>(\\w+\\s*)+\\w*))?"
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( st/(?<st>\\d{4}))?"

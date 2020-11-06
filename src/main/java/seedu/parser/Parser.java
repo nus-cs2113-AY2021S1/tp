@@ -22,10 +22,13 @@ public class Parser {
     public Command processRaw(String rawInput) throws
             UnknowCommandException, InvalidCommandException, InvalidTaskNumberException {
         Matcher matcher;
-        if (rawInput.startsWith(Help.COMMAND_WORD)) {
+        String commandWord = getCommandWord(rawInput);
+        String commandArgs = getCommandArgs(rawInput);
+        switch (commandWord) {
+        case Help.COMMAND_WORD:
             return new Help();
-        } else if (rawInput.startsWith(List.COMMAND_WORD)) {
-            matcher = List.COMMAND_PATTERN.matcher(rawInput);
+        case List.COMMAND_WORD:
+            matcher = List.COMMAND_PATTERN.matcher(commandArgs);
             if (matcher.find()) {
                 return new List(" -d".equals(matcher.group("dateFlag")),
                         " -p".equals(matcher.group("priorityFlag")),
@@ -35,12 +38,12 @@ public class Parser {
             } else {
                 throw new InvalidCommandException();
             }
-        } else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
+        case Bye.COMMAND_WORD:
             return new Bye();
-        } else if (rawInput.startsWith(Clear.COMMAND_WORD)) {
+        case Clear.COMMAND_WORD:
             return new Clear();
-        } else if (rawInput.startsWith(Add.COMMAND_WORD)) {
-            matcher = Add.COMMAND_PATTERN.matcher(rawInput);
+        case Add.COMMAND_WORD:
+            matcher = Add.COMMAND_PATTERN.matcher(commandArgs);
             if (matcher.find()) {
                 return new Add(matcher.group("description"), matcher.group("date"), matcher.group("st"),
                         matcher.group("et"), matcher.group("priority"), matcher.group("reminder"),
@@ -48,8 +51,8 @@ public class Parser {
             } else {
                 throw new InvalidCommandException();
             }
-        } else if (rawInput.startsWith(Edit.COMMAND_WORD)) {
-            matcher = Edit.COMMAND_PATTERN.matcher(rawInput);
+        case Edit.COMMAND_WORD:
+            matcher = Edit.COMMAND_PATTERN.matcher(commandArgs);
             if (matcher.find()) {
                 return new Edit(matcher.group("key"), matcher.group("description"),
                         matcher.group("date"), matcher.group("st"), matcher.group("et"),
@@ -57,24 +60,96 @@ public class Parser {
             } else {
                 throw new InvalidCommandException();
             }
-        } else if (rawInput.startsWith(Search.COMMAND_WORD)) {
-            matcher = Search.COMMAND_PATTERN.matcher(rawInput);
+        case Search.COMMAND_WORD:
+            matcher = Search.COMMAND_PATTERN.matcher(commandArgs);
             if (matcher.find()) {
                 return new Search(matcher.group("toSearch"));
             } else {
                 throw new InvalidCommandException();
             }
-        } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
-            matcher = Delete.COMMAND_PATTERN.matcher(rawInput);
+        case Delete.COMMAND_WORD:
+            matcher = Delete.COMMAND_PATTERN.matcher(commandArgs);
             if (matcher.find()) {
                 return new Delete(matcher.group("key"));
             } else {
                 throw new InvalidCommandException();
             }
-        } else if (rawInput.startsWith(Undo.COMMAND_WORD)) {
+        case Undo.COMMAND_WORD:
             return new Undo();
-        } else {
+        default:
             throw new UnknowCommandException();
         }
+//        if (rawInput.startsWith(Help.COMMAND_WORD)) {
+//            return new Help();
+//        } else if (rawInput.startsWith(List.COMMAND_WORD)) {
+//            matcher = List.COMMAND_PATTERN.matcher(rawInput);
+//            if (matcher.find()) {
+//                return new List(" -d".equals(matcher.group("dateFlag")),
+//                        " -p".equals(matcher.group("priorityFlag")),
+//                        " -w".equals(matcher.group("displayByWeek")),
+//                        " -m".equals(matcher.group("displayByMonth")),
+//                        matcher.group("date"));
+//            } else {
+//                throw new InvalidCommandException();
+//            }
+//        } else if (rawInput.startsWith(Bye.COMMAND_WORD)) {
+//            return new Bye();
+//        } else if (rawInput.startsWith(Clear.COMMAND_WORD)) {
+//            return new Clear();
+//        } else if (rawInput.startsWith(Add.COMMAND_WORD)) {
+//            matcher = Add.COMMAND_PATTERN.matcher(rawInput);
+//            if (matcher.find()) {
+//                return new Add(matcher.group("description"), matcher.group("date"), matcher.group("st"),
+//                        matcher.group("et"), matcher.group("priority"), matcher.group("reminder"),
+//                        matcher.group("t"));
+//            } else {
+//                throw new InvalidCommandException();
+//            }
+//        } else if (rawInput.startsWith(Edit.COMMAND_WORD)) {
+//            matcher = Edit.COMMAND_PATTERN.matcher(rawInput);
+//            if (matcher.find()) {
+//                return new Edit(matcher.group("key"), matcher.group("description"),
+//                        matcher.group("date"), matcher.group("st"), matcher.group("et"),
+//                        matcher.group("priority"), matcher.group("reminder"), matcher.group("t"));
+//            } else {
+//                throw new InvalidCommandException();
+//            }
+//        } else if (rawInput.startsWith(Search.COMMAND_WORD)) {
+//            matcher = Search.COMMAND_PATTERN.matcher(rawInput);
+//            if (matcher.find()) {
+//                return new Search(matcher.group("toSearch"));
+//            } else {
+//                throw new InvalidCommandException();
+//            }
+//        } else if (rawInput.startsWith(Delete.COMMAND_WORD)) {
+//            matcher = Delete.COMMAND_PATTERN.matcher(rawInput);
+//            if (matcher.find()) {
+//                return new Delete(matcher.group("key"));
+//            } else {
+//                throw new InvalidCommandException();
+//            }
+//        } else if (rawInput.startsWith(Undo.COMMAND_WORD)) {
+//            return new Undo();
+//        } else {
+//            throw new UnknowCommandException();
+//        }
+    }
+
+    public String getCommandWord(String rawInput) {
+        String commandWord = rawInput;
+        if (rawInput.contains(" ")) {
+            String[] split = rawInput.split(" ", 2);
+            commandWord = split[0];
+        }
+        return commandWord.trim();
+    }
+
+    public String getCommandArgs(String rawInput) {
+        String commandArgs = null;
+        if (rawInput.contains(" ")) {
+            String[] split = rawInput.split(" ", 2);
+            commandArgs = split[1];
+        }
+        return commandArgs.trim();
     }
 }
