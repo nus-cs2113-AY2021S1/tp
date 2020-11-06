@@ -91,7 +91,7 @@ public class Parser {
     }
 
     public String getCommandArgs(String rawInput) {
-        String commandArgs = null;
+        String commandArgs = "";
         if (rawInput.contains(" ")) {
             String[] split = rawInput.split(" ", 2);
             commandArgs = split[1];
