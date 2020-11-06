@@ -75,12 +75,15 @@ If you plan to use IntelliJ IDEA (highly recommended):
 
 ## 3. Design <a name="3"></a>
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 ### 3.1 Architecture <a name="3.1"></a>
-![Architecture](diagrams/Architecture.png)
+![Architecture](diagrams/Architecture.png) 
+<br/> Figure 1. Architecture Diagram
 
-`Main` has a `ModTracker` class. It is the main entry point for the ModTracker application. It contains the main, loadData, run, 
+
+The **Architecture Diagram** given above explains the high-level design of the App. 
+Given below is a quick overview of each component.
+
+The `Main` component is the main entry point for the ModTracker application. It contains the main, loadData, run, 
 startAndGetName and runCommandLoopUntilExitCommand methods. The methods are responsible for:
 * At app launch:
     * Creation of a ModTracker object.
@@ -92,7 +95,7 @@ startAndGetName and runCommandLoopUntilExitCommand methods. The methods are resp
     * Save user data into a text file.
     * Invoke clean up methods where necessary.
     
-The rest of the app consists of 4 packages:
+The rest of the app consists of 4 components:
 * `Ui` : The user interface of the app.
 * `Parser` : Parses the user input and calls the corresponding methods.
 * `Model` : Holds the data of the app in-memory, containing the classes: ModuleList, Module, TaskList and Task.
@@ -104,6 +107,7 @@ The Sequence Diagram below shows how the components interact with each other for
 the command `addmod CS2113T`.  
 
 ![highlevelsequencediagram](diagrams/highlevelsequencediagram.png)
+<br/> Figure 2. Component interactions for `addmod CS2113T` command
 
 ### 3.2 UI component <a name="3.2"></a>
 
@@ -124,6 +128,8 @@ to execute the command.
 ### 3.4 Model component <a name="3.4"></a>
 
 ![modelcomponent](diagrams/modelcomponent.png)
+<br/> Figure 3. Structure of the Model Component
+
 
 The `Model`,
 * Consists of ModuleList class that supports functions to execute module-related commands, 
@@ -219,6 +225,7 @@ The following sequence diagram shows how the storage feature works,
 with a focus on how it obtains the username:
 
 ![Storage Sequence Diagram](diagrams/Storage%20Sequence%20Diagram.svg)
+<br/> Figure 4. Sequence Diagram of Storage feature
 
 #### Design Considerations
 
@@ -252,6 +259,8 @@ the list of modules.
 The following activity diagram summarizes what happens when a user executes `addmod CS2113T` command for the first time.  
 
 ![addmod](diagrams/addmod%20activity%20diagram.png)
+<br/> Figure 5. Activity Diagram of Add Module feature
+
 
 Given below is a detailed explanation on how the add module mechanism behaves at each step.
 
@@ -281,6 +290,8 @@ Step 8. The newly created module is saved to storage.
 The following sequence diagram shows how the `addmod CS2113T` command works.
 
 ![Addmodseq](diagrams/Addmodseq.png)  
+<br/> Figure 6. Sequence Diagram of Add Module feature
+
 
 
 #### Design Considerations
@@ -454,6 +465,8 @@ to be printed.
 The following sequence diagram shows how the view module command works. 
 
 ![view-module](diagrams/ModViewSequence.png)
+<br/> Figure 7. Sequence Diagram of View Module feature
+
 
 
 ### 4.6 Breakdown and Analysis <a name="4.6"></a>
@@ -492,6 +505,8 @@ of the analysis.
 The following sequence diagram shows how the analysis command works. 
 
 ![analysis](diagrams/AnalysisSequence.png)
+<br/> Figure 8. Sequence Diagram of Analysis feature
+
 
 #### Design Considerations
 
@@ -530,6 +545,8 @@ valid module code.
 1. The `addTask` method adds the `Task` object to the array list `tasks`.
 
 ![addtask](diagrams/addtask.png)
+<br/> Figure 9. Sequence Diagram of Add Task feature
+
 
 #### Future Implementation
 A future implementation requires user to enter the expected time required to complete the task. The `addTask` method will split the 
@@ -561,6 +578,8 @@ Given below is an example usage scenario.
 `Section 2` (task number) as done. 
     
 ![markdone](diagrams/markdone.png)  
+<br/> Figure 10. Sequence Diagram of Complete Task feature
+
    
 #### Future Implementation
 1. When the `Task` is set as done, the `setDone` method will call the `addTime` method in `ModuleList` class
