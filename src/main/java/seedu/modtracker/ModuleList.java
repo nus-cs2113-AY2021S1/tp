@@ -138,11 +138,22 @@ public class ModuleList {
      * @return true if week number is valid, false otherwise.
      */
     public boolean checkIfWeekValid(String week, boolean toPrint) {
-        char c = week.charAt(0);
-        boolean integerCheck = Character.isDigit(c);
 
 
-        if (integerCheck) {
+        if (week.length() == 2) {
+            char firstCharacter = week.charAt(0);
+            boolean firstIntegerCheck = Character.isDigit(firstCharacter);
+            char secondCharacter = week.charAt(1);
+            boolean secondIntegerCheck = Character.isDigit(secondCharacter);
+
+            if (!firstIntegerCheck) {
+                ui.printWeekAlphabetError(toPrint);
+                return false;
+            } else if (!secondIntegerCheck) {
+                ui.printWeekAlphabetError(toPrint);
+                return false;
+            }
+
             int weekNumber = Integer.parseInt(week);
             if (weekNumber < 1 || weekNumber > 13) {
                 ui.printWeekError(toPrint);
@@ -150,8 +161,24 @@ public class ModuleList {
             } else {
                 return true;
             }
+        } else if (week.length() == 1) {
+            char firstCharacter = week.charAt(0);
+            boolean firstIntegerCheck = Character.isDigit(firstCharacter);
+            if (firstIntegerCheck) {
+                int weekNumber = Integer.parseInt(week);
+                if (weekNumber < 1 || weekNumber > 13) {
+                    ui.printWeekError(toPrint);
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                ui.printWeekAlphabetError(toPrint);
+                return false;
+            }
+
         } else {
-            ui.printWeekAlphabetError(toPrint);
+            ui.printWeekError(toPrint);
             return false;
         }
 
@@ -522,7 +549,6 @@ public class ModuleList {
         hours = Math.round(initialHours * 10.0) / 10.0; // this rounds the hours to the nearest 1dp.
         modCode = commandInfo[1].toUpperCase();
         week = commandInfo[3];
-
 
 
         if (!checkIfModuleValid(modCode, toPrint)) {

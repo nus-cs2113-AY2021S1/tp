@@ -128,7 +128,7 @@ class ModuleListMinusAddTest {
     public void minusTime_checkIfWeekInputIsValid() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        modulesTest.addTime("minustime CS3030 4 14", true, storage);
+        modulesTest.minusTime("minustime CS3030 4 14", true, storage);
         String expected = "The week number should be between 1 and 13." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
@@ -138,7 +138,7 @@ class ModuleListMinusAddTest {
     public void minusTime_checkIfWeekInputIsAlphabet() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        modulesTest.addTime("minustime CS3030 4 a", true, storage);
+        modulesTest.minusTime("minustime CS3030 4 a", true, storage);
         String expected = "The week input should be a positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
@@ -148,7 +148,7 @@ class ModuleListMinusAddTest {
     public void editTime_checkIfWeekInputIsValid() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        modulesTest.addTime("edittime CS3030 4 0", true, storage);
+        modulesTest.editTime("edittime CS3030 4 0", true, storage);
         String expected = "The week number should be between 1 and 13." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
@@ -158,7 +158,7 @@ class ModuleListMinusAddTest {
     public void editTime_checkIfWeekInputIsAlphabet() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        modulesTest.addTime("edittime CS3030 4 a", true, storage);
+        modulesTest.editTime("edittime CS3030 4 a", true, storage);
         String expected = "The week input should be a positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
@@ -168,7 +168,7 @@ class ModuleListMinusAddTest {
     public void editTime_checkIfTimeExceeds99() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        modulesTest.addTime("edittime CS3030 100 4", true, storage);
+        modulesTest.editTime("edittime CS3030 100 4", true, storage);
         String expected = "Please input a number between 0 and 99 for time." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
@@ -181,6 +181,36 @@ class ModuleListMinusAddTest {
         modulesTest.editTime("edittime CS3030 4.04 4", true, storage);
         String expected = "4.0 hours is the new actual workload for the module CS3030." + System.lineSeparator()
                 + "4.0 hours have been spent on this module in week 4." + System.lineSeparator();
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
+    @Order(16)
+    public void editTime_checkIfWeekCanBeHalfNumberHalfAlphabet() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.editTime("edittime CS3030 4 4i", true, storage);
+        String expected = "The week input should be a positive number." + System.lineSeparator();
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
+    @Order(17)
+    public void addTime_checkIfWeekCanBeHalfNumberHalfAlphabet() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.addTime("addtime CS3030 4 4i", true, storage);
+        String expected = "The week input should be a positive number." + System.lineSeparator();
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
+    @Order(18)
+    public void minusTime_checkIfWeekCanBeHalfNumberHalfAlphabet() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.minusTime("minustime CS3030 4 4i", true, storage);
+        String expected = "The week input should be a positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
