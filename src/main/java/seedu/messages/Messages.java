@@ -23,6 +23,7 @@ public class Messages {
     public static final String INVALID_DATETIME = "Invalid datetime!" + LS;
     public static final String MAX_NUM_TASK = "Max number of tasks reached!" + LS;
     public static final String EMPTY_DATA_STACK = "Empty data stack!" + LS;
+    public static final String INVALID_REMINDER = "Invalid reminder command!" + LS;
 
     public static final String WELCOME_MESSAGE = WELCOME_BORDER + LS
             + WELCOME_BORDER_SPACE + LS
@@ -78,7 +79,7 @@ public class Messages {
             + " which contain the word/letters:";
     public static final String NO_PREV_MODIFICATION = "There's nothing to undo.";
     public static final String UNDO_MESSAGE = "Previous modification has been undone.";
-    public static final String REMINDER_MESSAGE = "A reminder has been set";
+    public static final String REMINDER_MESSAGE = "Reminder, you have an upcoming task: ";
 
     private static String padString(char letter, int length) {
         return Util.generatePadStringWithCharAndLength(letter, length);

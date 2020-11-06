@@ -81,7 +81,16 @@ public class Storage {
         while (scanner.hasNextLine()) {
             tasks.addTask(gson.fromJson(scanner.nextLine(), type));
         }
+        restartReminders(tasks);
         return tasks;
+    }
+
+    private void restartReminders(TaskMap tasks) {
+        for (Task t : tasks.getValues()) {
+            if (t.getReminder().getIsOn()) {
+                t.reminder.startReminder(t);
+            }
+        }
     }
 
 

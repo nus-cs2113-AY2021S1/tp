@@ -7,7 +7,6 @@ import seedu.task.Task;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -67,26 +66,27 @@ public class Ui {
     }
 
     public void printHeader() {
-        String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s |" + LS;
-        out.println("   " + Util.generatePadStringWithCharAndLength('_', 93));
-        out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority");
-        out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
+        String headerFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-11s | %-12s |" + LS;
+        out.println("   " + Util.generatePadStringWithCharAndLength('_', 108));
+        out.format(headerFormat, "Index", "Description", "Date", "Start", "End", "Priority", "Reminder");
+        out.println("   " + Util.generatePadStringWithCharAndLength('-', 108));
     }
 
     public void printContentFormat(Task task) {
-        String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s |" + LS;
+        String contentFormat = "  | %-10s | %-20s | %-15s | %-10s | %-10s | %-20s | %-12s |" + LS;
         out.format(contentFormat,"#" + task.getTaskID(),
                 Util.limitStringWithDots(task.getDescription(), 20),
                 task.getDate(),
                 task.getStartTime() == null ? "" : task.getStartTime(),
                 task.getEndTime() == null ? "" : task.getEndTime(),
-                task.getPriority());
+                task.getPriority(),
+                task.getReminderString());
     }
 
     public void displaySingleTask(Task task) {
         printHeader();
         printContentFormat(task);
-        out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
+        out.println("   " + Util.generatePadStringWithCharAndLength('-', 108));
         out.println();
     }
 
@@ -94,13 +94,13 @@ public class Ui {
         printHeader();
 
         if (tasks.size() == 0) {
-            out.println("  |" + Util.generatePadStringWithCharAndLength(' ', 93) + "|");
+            out.println("  |" + Util.generatePadStringWithCharAndLength(' ', 108) + "|");
         } else {
             for (Task task : tasks.getValues()) {
                 printContentFormat(task);
             }
         }
-        out.println("   " + Util.generatePadStringWithCharAndLength('-', 93));
+        out.println("   " + Util.generatePadStringWithCharAndLength('-', 108));
         out.println();
     }
 
