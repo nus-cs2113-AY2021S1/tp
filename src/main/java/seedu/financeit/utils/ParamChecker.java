@@ -16,7 +16,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 /**
  * Class that handles error handling of params
@@ -58,7 +60,7 @@ public class ParamChecker {
     }
 
     private void printErrorMessage() {
-        System.out.println(errorMessage);
+        System.out.print(errorMessage);
     }
 
     public String getErrorMessage() {
@@ -151,6 +153,53 @@ public class ParamChecker {
         return time;
     }
 
+    public int checkAndReturnDayOfMonth(String paramType) throws ParseFailParamException {
+        int dayOfMonth = -1;
+        boolean parseSuccess = false;
+
+        clearErrorMessage();
+
+        LoggerCentre.loggerParamChecker.info("Checking day of month...");
+        try {
+            dayOfMonth = checkAndReturnInt(paramType);
+            if (dayOfMonth < 1 || dayOfMonth > 31) {
+                throw new NumberFormatException();
+            }
+
+            /*
+            Checks if there are any months that do not have the specified dayOfMonth
+            e.g. Feb does not have day 29, 30 or 31.
+             */
+            String[] monthsWithoutDay = DateTimeHelper.monthsWithoutDayOfMonth(dayOfMonth);
+
+            if (monthsWithoutDay.length >= 1) {
+                String monthMaxDayReminder = String.format("The following month(s) do not have day %s: "
+                        + Arrays.toString(monthsWithoutDay), dayOfMonth);
+                String noReminderMessage = "There will NOT be any reminder for this entry during these month(s).";
+                UiManager.printWithStatusIcon(Common.PrintType.REMINDER,
+                        monthMaxDayReminder, noReminderMessage);
+            }
+
+            parseSuccess = true;
+        } catch (NumberFormatException exception) {
+            LoggerCentre.loggerParamChecker.warning("Day of month supplied is not between 1 and 31!");
+
+            errorMessage = getErrorMessageDayOfMonthOutOfBounds();
+
+            /*
+            Print error message here instead of in a finally block.
+            This is to prevent double printing of error message,
+            in case checkAndReturnInt encounters an error.
+             */
+            printErrorMessage();
+        }
+
+        if (!parseSuccess) {
+            throw new ParseFailParamException(paramType);
+        }
+        return dayOfMonth;
+    }
+
     /**
      * Checks if user-inputted index is valid, and converts it to zero-based index form.
      * @param paramType - paramType that has index as paramArgument
@@ -218,7 +267,7 @@ public class ParamChecker {
         } catch (NumberFormatException | NullPointerException exception) {
             LoggerCentre.loggerParamChecker.warning(
                 String.format("Double not recognised... Err: %s", exception.getMessage()));
-            errorMessage = getErrorMessageDoubleNumberFormatException();
+            errorMessage = getErrorMessageDoubleNumberFormatException(input, errorMessage);
         } finally {
             printErrorMessage();
         }
@@ -244,10 +293,13 @@ public class ParamChecker {
             if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
                 throw new NumberFormatException();
             }
+            output = Double.parseDouble(input);
+
+            //Truncate double to 2 d.p.
             DecimalFormat bd = new DecimalFormat("#.##");
             bd.setRoundingMode(RoundingMode.CEILING);
-            input = bd.format(Double.parseDouble(input));
-            output = Double.parseDouble(input);
+            output = Double.parseDouble(bd.format(output));
+
             if (output < 0) {
                 throw new NumberFormatException();
             }
@@ -257,16 +309,16 @@ public class ParamChecker {
                 LoggerCentre.loggerParamChecker.warning(
                     String.format("Expected input out of bounds... Err: %s", exception.getMessage()));
                 errorMessage = "Amount provided is too long in length! "
-                    + "Maximum amount is of 100 digits long.\n";
+                    + "Maximum amount is of 100 digits long.";
             } else if (output < 0) {
                 LoggerCentre.loggerParamChecker.warning(
                     String.format("Expected positive double... Err: %s", exception.getMessage()));
-                errorMessage = "Expected Positive decimal value with at most 2 d.p!\n";
+                errorMessage = "Expected a positive number.";
             } else {
                 LoggerCentre.loggerParamChecker.warning(
                     String.format("Double not recognised... Err: %s", exception.getMessage()));
             }
-            errorMessage = getErrorMessageNumberFormatException();
+            errorMessage = getErrorMessageDoubleNumberFormatException(input, errorMessage);
         } finally {
             printErrorMessage();
         }
@@ -292,12 +344,12 @@ public class ParamChecker {
             if (paramType.length() > (int)Math.log(Long.MAX_VALUE) + 1) {
                 LoggerCentre.loggerParamChecker.warning(
                     String.format("Int format is too long... Err: %s", exception.getMessage()));
-                errorMessage = "\nInput value is too out of range: 9,223,372,036,854,775,807\n";
+                errorMessage = "Input value is too out of range: 9,223,372,036,854,775,807";
             } else {
                 LoggerCentre.loggerParamChecker.warning(
                     String.format("Int not recognised... Err: %s", exception.getMessage()));
             }
-            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
+            errorMessage = getErrorMessageNumberFormatException(input, errorMessage);
         } finally {
             printErrorMessage();
         }
@@ -340,7 +392,7 @@ public class ParamChecker {
                     String.format("Int not recognised... Err: %s", exception.getMessage()));
 
             }
-            errorMessage = getErrorMessageNumberFormatException() + errorMessage;
+            errorMessage = getErrorMessageNumberFormatException(input, errorMessage);
         } finally {
             printErrorMessage();
         }
@@ -424,6 +476,11 @@ public class ParamChecker {
             "Time format: HHMM");
     }
 
+    public static String getErrorMessageDayOfMonthOutOfBounds() {
+        return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                "Day of month is out of range! Please enter an integer between 1 and 31");
+    }
+
     public static String getMessageListRangeIndex(int size) {
         return String.format("The range is from 1 to %d", size);
     }
@@ -447,15 +504,28 @@ public class ParamChecker {
             message);
     }
 
-    public static String getErrorMessageDoubleNumberFormatException() {
+    /**
+     * Error message for invalid double inputs.
+     * @param input Raw input
+     * @param message Pre-existing error messages to print. Pass in empty string if none.
+     * @return Error message in a formatted string for printing
+     */
+    public static String getErrorMessageDoubleNumberFormatException(String input, String message) {
+        String errorToPrint = String.format("Invalid input: \"%s\". Please enter a valid number!", input);
         return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
-            "Cannot parse your input. Please enter valid 2 d.p input!");
+            errorToPrint, message);
     }
 
-    public static String getErrorMessageNumberFormatException() {
+    /**
+     * Error message for invalid integer inputs.
+     * @param input Raw input
+     * @param message Pre-existing error messages to print. Pass in empty string if none.
+     * @return Error message in a formatted string for printing
+     */
+    public static String getErrorMessageNumberFormatException(String input, String message) {
+        String errorToPrint = String.format("Invalid input: \"%s\". Please enter a valid integer!", input);
         return UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
-            "Cannot parse your input. Please enter valid integer input!",
-            errorMessage);
+            errorToPrint, message);
     }
 
     public static String getErrorMessageInvalidCategoryException(InvalidCategoryException exception) {

@@ -42,23 +42,22 @@ public class CreateEntryHandler extends ParamHandler {
         return handler;
     }
 
-    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        try {
-            recurringEntry = new RecurringEntry();
-            handleParams(packet);
-        } catch (ItemNotFoundException exception) {
-            // Fall-through
-        }
+    public void handlePacket(CommandPacket packet)
+            throws InsufficientParamsException, ItemNotFoundException {
+        recurringEntry = new RecurringEntry();
+        handleParams(packet);
     }
 
     @Override
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DAY:
-            recurringEntry.setDay(ParamChecker.getInstance().checkAndReturnInt(paramType));
+            int day = ParamChecker.getInstance().checkAndReturnDayOfMonth(paramType);
+            recurringEntry.setDay(day);
             break;
         case ParamChecker.PARAM_AMOUNT:
-            recurringEntry.setAmount(ParamChecker.getInstance().checkAndReturnDouble(paramType));
+            double amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            recurringEntry.setAmount(amount);
             break;
         case ParamChecker.PARAM_INC:
             recurringEntry.setEntryType(Common.EntryType.INC);

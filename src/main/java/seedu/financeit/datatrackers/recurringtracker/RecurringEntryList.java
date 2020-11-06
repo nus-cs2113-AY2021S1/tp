@@ -25,7 +25,7 @@ public class RecurringEntryList extends ItemList {
         } else {
             for (int i = 0; i < super.items.size(); i++) {
                 RecurringEntry entry = (RecurringEntry) super.items.get(i);
-                TablePrinter.addRow(String.format("%s;%s", i + 1, entry));
+                TablePrinter.addRow(String.format("%s;%s", i + 1, entry.toString()));
             }
         }
         TablePrinter.printList();
