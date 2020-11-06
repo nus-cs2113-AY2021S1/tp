@@ -1,4 +1,4 @@
-**Developer Guide for FinanceIt**
+# Developer Guide for FinanceIt
 
 * Table of Contents
 {:toc}
@@ -535,6 +535,7 @@ The following class diagram shows how the Simple Interest Calculator feature wor
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/SimpleInterest/SimpleInterestSequenceDiagram(1).png)
 <br />
 <br />
@@ -565,6 +566,7 @@ The following class diagram shows how the Yearly/Monthly Compound Interest Calcu
 <br />
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/YearlyMonthlyCompoundInterest/YearlyCompoundInterestSequenceDiagram(1).png)
 <br />
 <br />
@@ -596,6 +598,7 @@ The following class diagram shows how the Cashback Calculator feature works:
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/Cashback/CashbackSequenceDiagram(1).png)
 <br />
 <br />
@@ -620,6 +623,7 @@ The following class diagram shows how the Miles Credit Calculator feature works:
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/MilesCredit/MilesCreditSequenceDiagram(1).png)
 <br />
 <br />
@@ -667,7 +671,7 @@ The following class diagram shows how the Account Storage feature works:
 
 The following sequence diagram shows how the params are handled before the implementation is carried out:
 <br />
-
+For more information on parameters handling. Refer [here](#implementation)
 ![SequenceDiagram1](uml_images/financetools/AccountStorage/AccountStorageSequenceDiagram(1).png)
 <br />
 <br />
@@ -809,15 +813,15 @@ bill payments
 
 # Glossary
 
-* _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt.
+* _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
 * _CLI_ - Command Line Interface
 * _UML_ - Unified Modeling Language
 
 # Instructions for Manual Testing
 
-1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/) .
-1. Save the executable file in your preferred folder.
-1. Run the program via the command line. The command is: ```java -jar financeit.jar```.
+1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/)
+1. Save the executable file in your preferred folder
+1. Run the program via the command line. The command is: ```java -jar financeit.jar```
 1. You should see the following output:
 
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
@@ -849,7 +853,7 @@ You should see the following:
 ![](developerGuide_images/screenshots_manualtracker/manual_commands.png)
 
 **Create Ledger** <br />
-**Positive test** <br />
+**Positive Test** <br />
 1. Enter ```new /date 200505``` into the console.
 You should see the following:
 
@@ -862,7 +866,7 @@ You should see the following:
 ![](developerGuide_images/screenshots_manualtracker/manual_new_dup.png)
 
 **Testing Show Ledger List** <br />
-**Positive test** <br />
+**Positive Test** <br />
 1. Enter ```list``` into the console. 
 You should see the following: 
 
@@ -878,7 +882,7 @@ You should see the following:
 ![](developerGuide_images/screenshots_manualtracker/manual_list2.png)
 
 **Testing Delete Ledger** <br />
-**Positive test** <br />
+**Positive Test** <br />
 1. Enter ```delete /id 1``` into the console.
     * This will delete the first ledger on index, which is of date 2020-05-05
 1. Enter ```list``` into the consolde.
@@ -963,7 +967,7 @@ removed from the list.
 1. Enter `commands`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/commands.png)
 **Testing Add Entry** <br />
-**Positive test 1: Normal Entry** <br />
+**Positive Test 1: Normal Entry** <br />
 1. Enter `add -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_all_months.png)
 
@@ -971,17 +975,17 @@ removed from the list.
 1. Enter `add -e /desc Drinks /amt 58.45 /day 31`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_day_31.png)
 
-**Negative test** <br />
+**Negative Test** <br />
 1. Enter `add /desc OIH()(&%* /amt 343243`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_no_day_i&e.png)
 
 **Testing List Entries** <br />
-* The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
+* The following testing guide assumes that the testing of show command list is completed. <br />
 Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/list.png)
 
 **Testing Edit Entry** <br />
-* The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
+* The following testing guide assumes that the testing of show command list is completed. <br />
 **Positive Test** <br />
 1. Enter `edit /id 1 /day 29 -i`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
@@ -992,12 +996,13 @@ Enter `list`. Output:
 1. Enter `edit /id 1`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
+<br />
 **Negative Test: No Such Index** <br />
 1. Enter `edit /id 4 /desc Hello Bubble`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
 
 **Testing Delete Entry** <br />
-* The following testing guide assumes that testing at [7.4.1](#7.4.1-testing-show-command-list) is completed.
+* The following testing guide assumes that the testing of show command list is completed. <br />
 1. Enter `delete /id 2`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/delete_entry.png)
 1. Enter `list`. Output:
@@ -1027,64 +1032,64 @@ Enter `list`. Output:
 ## GoalTracker
 **Set Goal for Expense** <br />
 **Positive Test** <br />
-1. Enter ``` expense 4000 for 01 ``` into the console.
+Enter ``` expense 4000 for 01 ``` into the console.
 You should see the following: 
 ![SetExpenseGoal](.DeveloperGuide_images/SetExpenseGoal.png)
 
 **Negative Test** <br />
-1. Again, enter ```expense 2000 for 01``` into the console.
+Again, enter ```expense 2000 for 01``` into the console.
 You should see the following:
 ![NegativeSet](.DeveloperGuide_images/NegativeSetExpense.png)
 
 **Testing Set Goal for Income** <br />
 **Positive Test** <br />
-1. Enter ```income 2000 for 02``` into the console.
+Enter ```income 2000 for 02``` into the console.
 You should see the following:
 ![SetIncomeGoal](.DeveloperGuide_images/SetIncomeGoal.png)
 
 **Negative Test** <br />
-1. Again, enter ```income 7000 for 02``` into the console.
+Again, enter ```income 7000 for 02``` into the console.
 You should see the following:
 ![NegativeSetIncome](.DeveloperGuide_images/NegativeSetIncome.png)
 
 **Edit Goal for Expense** <br />
 **Positive Test** <br />
-1. Enter ```edit expense 2000 for 01``` into the console.
+Enter ```edit expense 2000 for 01``` into the console.
 You should see the following:
 ![EditExpenseGoal](.DeveloperGuide_images/EditExpenseGoal.png)
 
 **Negative Test** <br />
-1. Enter ```edit expense 4000 for 05``` into the console.
+Enter ```edit expense 4000 for 05``` into the console.
 You should see the following:
 ![NegativeEditExpense](.DeveloperGuide_images/NegativeEditExpense.png)
 
 **Edit Goal for Income** <br />
 **Positive Test** <br />
-1. Enter ```edit income 5000 for 02``` into the console.
+Enter ```edit income 5000 for 02``` into the console.
 You should see the following:
 ![EditIncomeGoal](.DeveloperGuide_images/EditIncomeGoal.png)
 
 **Negative Test** <br />
-1. Enter ```edit income 1000 for 09``` into the console.
+Enter ```edit income 1000 for 09``` into the console.
 You should see the following:
 ![NegativeEditIncome](.DeveloperGuide_images/NegativeEditIncome.png)
 
 **Display Expense goal** <br />
 **Positive Test** <br />
-1. Enter ```display expense for 01``` into the console.
+Enter ```display expense for 01``` into the console.
 You should see the following:
 ![DisplayExpenseGoal](.DeveloperGuide_images/DisplayExpenseGoal.png)
 
 **Display Income Goal** <br />
 **Positive Test** <br />
-1. Enter ```display income for 02``` into the console.
+Enter ```display income for 02``` into the console.
 You should see the following:
 ![DisplayIncomeGoal](.DeveloperGuide_images/DisplayIncomeGoal.png)
 
 ## SaveManager
 **Add Save** <br />
 **Positive Test** <br />
-1. Enter ```add /name save123``` into the console.
+Enter ```add /name save123``` into the console.
 <br />
 You should see the following:
 
@@ -1093,7 +1098,7 @@ You should see the following:
 ![capture2](uml_images/saveManager/puml/Capture2.PNG)
 
 **Negative Test** <br />
-1. Enter ```add /name``` into the console.
+Enter ```add /name``` into the console.
 <br />
 You should see the following:
 
@@ -1101,14 +1106,14 @@ You should see the following:
 
 **Load Save** <br />
 **Positive Test** <br />
-1. Enter ```load /name save123``` into the console.
+Enter ```load /name save123``` into the console.
 <br />
 You should see the following:
 
 ![capture3](uml_images/saveManager/puml/Capture3.PNG)
 
 **Negative Test** <br />
-1. Enter ```load /name wrongName``` into the console.
+Enter ```load /name wrongName``` into the console.
 <br />
 You should see the following:
 
@@ -1116,7 +1121,7 @@ You should see the following:
 
 **Delete Save** <br />
 **Positive Test** <br />
-1. Enter ```delete /name save123``` into the console.
+Enter ```delete /name save123``` into the console.
 <br />
 You should see the following:
 
@@ -1125,12 +1130,43 @@ You should see the following:
 ![capture7](uml_images/saveManager/puml/Capture7.PNG)
 
 **Negative Test** <br />
-1. Enter ```delete /name wrongName``` into the console.
+Enter ```delete /name wrongName``` into the console.
 <br />
 You should see the following:
 
 ![capture6](uml_images/saveManager/puml/Capture6.PNG)
 
 ## FinanceTools
+**Simple Interest Calculator** <br />
+Enter ```simple /a 1000 /r 5``` into the console. <br />
+You should see the following:
+![Example](screenshots/financetools/SimpleInterest(1).PNG)
 
+**Yearly Compound Interest Calculator** <br />
+Enter ```cyearly /a 1000 /r 3 /p 2``` into the console. <br />
+You should see the following:
+![Example](screenshots/financetools/YearlyCompoundInterest(1).PNG) <br />
+
+**Monthly Compound Interest Calculator** <br />
+Enter ```cmonthly /a 1000 /r 3 /p 2``` into the console. <br />
+You should see the following:
+![Example](screenshots/financetools/MonthlyCompoundInterest(1).PNG) <br />
+
+**Cashback Calculator** <br />
+Enter ```cashb /a 1000 /r 5 /c 1000``` into the console. <br />
+You should see the following:
+![Example](screenshots/financetools/Cashback(1).PNG) <br />
+
+**Miles Credit Calculator** <br />
+Enter ```miles /a 1000 /r 5``` into the console. <br />
+You should see the following:
+![Example](screenshots/financetools/Miles(1).PNG) <br />
+
+**Account Storage** <br />
+Enter ```store /n myaccount /ir 2 /r 2 /c 100 /o main account``` followed by ```info``` into the console. <br />
+You should see the following:
+![Example](screenshots/financetools/AccountStorage(1).PNG)
+<br />
+<br />
+![Example](screenshots/financetools/AccountStorage(2).PNG) <br />
     
