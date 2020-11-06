@@ -23,8 +23,8 @@ public abstract class AddCommand extends Command {
             + "         " + COMMAND_WORD + " Chapter 1\n"
             + "         " + COMMAND_WORD + " q:What is the result of one plus one | a:two\n";
 
-    private static final String MESSAGE_SUCCESS = "Got it. I've added this %1$s:\n";
-    private static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
+    public static final String MESSAGE_SUCCESS = "Got it. I've added this %1$s:\n";
+    public static final String MESSAGE_COUNT = "Now you have %1$d %2$s(s) in the list.";
 
     @Override
     public abstract void execute(Ui ui, Access access, Storage storage) throws IOException;

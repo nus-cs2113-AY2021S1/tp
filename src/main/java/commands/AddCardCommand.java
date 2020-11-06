@@ -48,4 +48,5 @@ public class AddCardCommand extends AddCommand {
         logger.info("Successfully saved the flashcards.");
         return prepareResult(CARD, card.toString(), cardCount);
     }
+
 }

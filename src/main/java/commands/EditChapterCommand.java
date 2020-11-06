@@ -22,7 +22,7 @@ public class EditChapterCommand extends EditCommand {
             + "Parameters:" + CHAPTER_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 2 Chapter 2\n";
 
-    private static final String MESSAGE_SAME_NAME = "%1$s has the same chapter name as what you entered: %2$s\n";
+    public static final String MESSAGE_SAME_NAME = "%1$s has the same chapter name as what you entered: %2$s\n";
 
     private final int editIndex;
     private String chapter;

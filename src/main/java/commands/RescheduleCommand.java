@@ -21,9 +21,9 @@ public class RescheduleCommand extends Command {
             + "Parameters:" + PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 1 2020-12-12\n";
 
-    private static final String MESSAGE_SAME_DATE = "%1$s has the same due date as what you entered: %2$s\n";
-    private static final String MESSAGE_BEFORE_RESCHEDULE = "%1$s has the following due date: %2$s\n";
-    private static final String MESSAGE_AFTER_RESCHEDULE = "It has been rescheduled to: %1$s\n";
+    public static final String MESSAGE_SAME_DATE = "%1$s has the same due date as what you entered: %2$s\n";
+    public static final String MESSAGE_BEFORE_RESCHEDULE = "%1$s has the following due date: %2$s\n";
+    public static final String MESSAGE_AFTER_RESCHEDULE = "It has been rescheduled to: %1$s\n";
     private static final String MESSAGE_NO_DUE_DATE = "No due date";
 
     private final int index;
