@@ -6,6 +6,7 @@ import seedu.storage.Storage;
 import seedu.ui.Ui;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 
 public class Planus {
@@ -32,7 +33,7 @@ public class Planus {
         }
     }
 
-    private void initProgram() throws IOException {
+    private void initProgram() throws IOException, ParseException {
         storage = new Storage();
         model = new Model(storage.loadTasks());
         ui = new Ui();

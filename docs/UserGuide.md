@@ -1,10 +1,6 @@
 # User Guide
-PlaNUS is a desktop application for NUS students to manage their tasks and schedule,
-optimized for use via Command Line Interface (CLI).
-
-This user guide is a document aiming to help users in understanding the features
-provided by PlaNUS and the instructions required for each step.
-
+- [What is PlaNUS](#what-is-planus)
+- [About this document](#about-this-document)
 - [Quick start](#quick-start)
 - [Features](#features)
     - [Showing commands](#showing-all-commands--help)
@@ -14,8 +10,10 @@ provided by PlaNUS and the instructions required for each step.
     - [Searching task](#searching-relevant-tasks--search)
     - [Removing task](#removing-a-task--delete)
     - [Clearing task](#clearing-tasks--clear)
+    - [Setting reminder](#setting-a-reminder--reminder)
     - [Exiting program](#exiting-program--bye)
 - [FAQ](#faq)
+- [Java 11 Installation Guide](#java-11-installation-guide)
 - [Command summary](#command-summary)
 
 
@@ -23,31 +21,68 @@ provided by PlaNUS and the instructions required for each step.
 \pagebreak 
 </div>
 
+## What is PlaNUS
+PlaNUS is a desktop application for NUS students to manage their tasks and schedule.
+With this system, you can add your upcoming tasks into the list, and then display
+them in a table view or in a calendar view, so that you may easily see and plan your
+schedule ahead. This application is optimized for use via Command Line Interface (CLI),
+this means that you operate the application by typing commands into the command box.
+
+This is what **PlaNUS** looks like: 
+
+![layout_labelled](images/layout_labelled.png)
+
+*Figure 1. The user interface for PlaNUS.*
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
+## About this document
+This user guide is a document aiming to help users in understanding the features
+provided by PlaNUS and the instructions required for each step.
+
+Included is a quick start guide, a brief explanation of each features available,
+as well as a summary of commands for quick reference at the bottom of the document.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
+
 ## Quick start
 
+1. Ensure that you have Java 11 or above installed. To check that if you have Java 11 installed for Windows user,
+open command prompt by pressing `Windows key + R` and type `cmd`, then type `java -version` in the command prompt
+and press `Enter`.
 
-1. Ensure that you have Java 11 or above installed.
-
-2. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/download/v1.0/planus.jar).
+2. If you do not have Java 11 installed, go [here](#java-11-installation-guide).
 
 3. For first time Windows user, open command prompt and run the following line to enable color display of command prompt:
 
     `reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1`
     
-4. Open a **new** command prompt/terminal and run "planus.jar" with following command:
+4. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/tag/v2.0).
+    
+5. Open a **new** command prompt in the folder where "planus.jar" is located at.
+For Windows user, you can do so by going to the folder in file explorer,
+and at the location bar type `cmd` and press `Enter`.
+
+6. Run "planus.jar" with the following command:
 
     `java -jar planus.jar`
     
-    Following content is display if there's no existing data file:
+    The following content will be displayed if there's no existing data file:
     
     ![initial display](images/init.PNG)
     
+    *Figure 2. The first thing you will see upon opening the application.*
     
-5. **Maximise** the command prompt/terminal window to get a full display of the contents.
+    
+7. **Maximise** the command prompt window to get a full display of the contents.
 
-6. Type a command in command prompt/terminal and press Enter to execute it.
+8. Type a command in command prompt and press `Enter` to execute it.
 
-7. Refer to the [Features](#features) below for details of each command.
+9. Refer to the [Features](#features) below for details of each command.
 
 
 <div style="page-break-after: always; visibility: hidden"> 
@@ -60,51 +95,46 @@ provided by PlaNUS and the instructions required for each step.
 
 ### Notes about command format:
 ```
-- Words in UPPER_CASE are the parameters to be supplied by the user. 
+- Words in UPPER_CASE are the inputs to be supplied by the user while words in LOWER_CASE are the command words.
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
-    DESCRIPTION is a parameter which can be used as "add user guide".
+    add is a command word while DESCRIPTION is a description about the task.
       
 - Parameter in square bracket is optional. 
     - e.g. in "add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]", 
-    DATE, START_TIME, END_TIME and PRIORITY are optional parameters which can be omitted.
-    
-- Within square bracket, optional flags could be enabled, flags are separated by '|'.
-    - e.g. in "list [-d|-p|-w|-m]",
-    The flag parameter is an optional parameter. When it is used, any one of the flags
-    like -d or -p or -w or -m could be enabled. 
+    DATE, START_TIME, END_TIME and PRIORITY are optional inputs which can be omitted.
     
 - Input date format is dd-MM-yyyy.
-    - e.g. 20/02/2020
+    - e.g. 20-02-2020 means 20th February 2020
       
 - Input time format is HHmm in 24-hrs.
-    - e.g. 1830
+    - e.g. 1830 means 6.30pm
     
-- Input priority format is 1, 2 or 3 represents LOW, MEDIUM and HIGH respectively.
+- Input priority format is 1, 2 or 3 which represents LOW, MEDIUM and HIGH respectively.
     - e.g. 1
 
-- Index of a task is the number displayed after "#" and before description of the task.
+- Task index is the number displayed between "#" and description of the task.
     - e.g. "#1029 meeting", 1029 is the index.
 ```    
-    
-### <span style="color:red">Showing all commands</span> : `help`
+
+### Showing all commands : `help`
 
 Shows the commands available with the formats.
 
 Format: `help`
 
-Example of usage: 
-
-`help`
-
 Expected outcome:
 
 ![help](images/help.PNG)
 
-### <span style="color:red">Adding a task</span> : `add`
+*Figure 3. A list of available commands and their formats will be displayed.*
 
-Add a task to the task list and display a message.
-Default date will be the day when the tasked is added.
-Default priority is low.
+### Adding a task : `add`
+
+Add a task to the task list and display task that was added.
+
+If the date and priority are omitted,
+default date will be the day when the tasked is added and
+default priority will be low. If the timings are omitted, the time displayed will be empty.
 
 Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]`
 
@@ -116,12 +146,17 @@ Example of usage:
 Expected outcome:
 
 ![add_with_start_time](images/add_with_st.png)
+
+*Figure 4. After adding "meeting" starting at 10.00am.*
+
 ![add_without_optional_parameters](images/add_normal.png)
 
+*Figure 5. After adding "borrow book" with no other inputs.*
 
-### <span style="color:red">Editing a task</span> : `edit`
 
-Edit a task in the task list using index and display a message.
+### Editing a task : `edit`
+
+Edit a task in the task list using its index and display the task edited.
 
 Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]`
 
@@ -132,26 +167,33 @@ Example of usage:
 
 Expected outcome:
 
-Initial list:
-
 ![edit_before](images/edit_before.png)
 
-After edits:
+*Figure 6. Initial list before edits.*
 
 ![edit_after_description](images/edit_after_des.png)
+
+*Figure 7. After editing the description of task #8833.*
+
 ![edit_after_start_end_priority](images/edit_after_st_et_p.png)
 
+*Figure 8. After editing the timings and priority of task #4893.*
 
-### <span style="color:red">Displaying tasks</span> : `list` 
+### Displaying tasks : `list` 
 
-Default display mode: display **all** tasks in the **order of their addition** to the list.  
+Default/no suffix: display **all** tasks in the **order of their addition**.  
 `-d`: display **all** tasks by **date**, from oldest to newest.  
 `-p`: display **all** tasks by **priority**, from HIGH to LOW.  
-`-w`: display **only tasks in current week** in the **order of their addition** to the list.    
-`-m`: display **only tasks in current month** in the **order of their addition** to the list.   
-`d/DATE`: display **all tasks of a date provided** in **order of their addition** to the list.  
+`-w`: display **only tasks in current week** in a weekly view.   
+`-m`: display **only tasks in current month** in a monthly view.  
+`d/DATE`: display **all tasks under a specified date** in **order of their addition**.  
 
 Format: `list [-d|-p|-w|-m|d/DATE]`
+
+Regarding the format, '|' means "or", thus the suffix can either be `-d`, `-p`, `-w`, `-m`, or `d/DATE`.
+It can also be nothing since square brackets denote optional.  
+Under partial display modes like daily, weekly and monthly view, 
+you could enter `q`, `w` and `e` to quit, view previous and next period respectively.
 
 Example of usage: 
 
@@ -162,31 +204,41 @@ Example of usage:
 
 Expected outcome:
 
-list:
+`list`:
 
 ![list](images/list.PNG)
 
-list -d:
+*Figure 9. Default list, tasks are in order of their addition to the list.*
+
+`list -d`:
 
 ![sort_by_date](images/list_sort_by_date.PNG)
 
-list -p:
+*Figure 10. List tasks by date, from oldest to newest.*
+
+`list -p`:
 
 ![sort_by_priority](images/list_sort_by_priority.PNG)
 
-list -w:
+*Figure 11. List tasks by priority, from HIGH to LOW.*
+
+`list -w`:
 
 ![weekly_view](images/list_week.PNG)
 
-list -m:
+*Figure 12. Display tasks in a weekly view for the current week.*
+
+`list -m`:
 
 ![monthly_view](images/list_month.PNG)
 
+*Figure 13. Display tasks in a monthly view for the current month.*
 
 
-### <span style="color:red">Searching relevant task(s)</span> : `search`
 
-Search and display task(s) with given keyword, this feature is case-insensitive.
+### Searching relevant task(s) : `search`
+
+Search and display task(s) with given keyword, keywords do not have to be case-sensitive.
 
 Format: `search KEYWORD`
 
@@ -198,10 +250,12 @@ Expected outcome:
 
 ![search](images/search.PNG)
 
+*Figure 14. A list of tasks containing the keyword will be displayed.*
 
-### <span style="color:red">Removing a task</span> : `delete`
 
-Delete a task from the task list us an index.
+### Removing a task : `delete`
+
+Delete a task from the task list using its index and display the task deleted.
 
 Format: `delete INDEX`
 
@@ -212,24 +266,22 @@ Example of usage:
 Expected outcome:
 
 ![delete](images/delete.png)
+
+*Figure 15. The task that was deleted will be displayed.*
     
 
-### <span style="color:red">Clearing tasks</span> : `clear`
+### Clearing tasks : `clear`
 
 Delete all tasks in the list.
 
 Format: `clear`
-
-Example of usage: 
-
-`clear`
 
 Expected outcome:
 
     All tasks cleared.
 
 
-### <span style="color:red">Setting a reminder for tasks</span> : `reminder`
+### Setting a reminder : `reminder`
 
 Allows you to set a reminder for any specific task on the list.
 You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
@@ -239,26 +291,24 @@ Format: `reminder INDEX [t/TIME]`
 
 Example of usage: 
 
-`reminder 5349 t/2305`
+`reminder 8833 t/2305`
 
 Expected outcome:
 
 ![reminder_set](images/reminder_set.png)
 
-Once the specified time is reached:
+*Figure 16. Setting a reminder for task #8833 at 11.05pm.*
 
 ![reminder_popup](images/reminder_popup.png)
 
+*Figure 17. Once the specified time has arrived.*
 
-### <span style="color:red">Exiting program</span> : `bye`
 
-Display a message and exits the program.
+### Exiting program : `bye`
+
+Display a goodbye message and exits the program.
 
 Format: `bye`
-
-Example of usage: 
-
-`bye`
 
 Expected outcome:
 
@@ -283,11 +333,31 @@ Data will be automatically saved after modification commands like
 **A**: Copy the existing data file to the computer, then create a "data" folder under the 
 same folder as "planus.jar". Lastly, copy the data file to "data" folder and name it "data.json".
 
+**Q**: There is an error and I cannot open the application.
 
+**A**: Check that your Java version is 11. Press `Windows key + R`, type `cmd` and press `Enter`.
+In the command prompt, type `java -version` and press `Enter` to see your Java version.
+If the version is not correct, go [here](#java-11-installation-guide).
 <div style="page-break-after: always; visibility: hidden"> 
 \pagebreak 
 </div>
 
+## Java 11 Installation Guide
+
+1. Click [here](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html) to go to the
+download page for Java 11 JDK. Click on the download link with **zip file** corresponding to your operating system.
+
+2. Create a new folder named "Java" in your C drive and extract the contents of the zip file there.
+
+3. Go to [LumiNUS](https://luminus.nus.edu.sg/) under the CS2113T module, go to "Files", in the "Resources" folder,
+download SwitchJava.bat and SwitchJava.sh and move them to your created "Java" folder.
+
+4. For Windows user, open command prompt in the "Java" folder by typing `cmd` at the location bar of the file explorer,
+and run the batch file by typing `SwitchJava.bat` and press `Enter`.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 ## Command Summary
 

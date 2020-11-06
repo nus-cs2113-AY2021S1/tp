@@ -47,6 +47,7 @@ public class Ui {
             String input = in.next();
             if (input.length() != 1 && !"qwe".contains(input.toLowerCase())) {
                 out.println("Invalid input.");
+                continue;
             }
             char charIn = input.toLowerCase().charAt(0);
             if (charIn == 'q') {
@@ -62,7 +63,7 @@ public class Ui {
             }
             displayDateStructure.generateContent(tasks);
             out.println(displayDateStructure.getContent());
-            out.println("q:Quit, w:previous, e:next");
+            out.println("q:quit, w:previous, e:next");
         }
     }
 
