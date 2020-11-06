@@ -81,7 +81,7 @@ class ParseArchiveOrUnarchiveNoteCommandTest {
     }
 
     @Test
-    void parseCommand_missingTagPrefix_throwException() {
+    void parseCommand_invalidInput_throwException() {
         inputString = "";
 
         parser = new ParseArchiveOrUnarchiveNoteCommand(inputString, true);

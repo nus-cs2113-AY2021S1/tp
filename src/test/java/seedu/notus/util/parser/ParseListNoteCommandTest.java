@@ -34,25 +34,7 @@ class ParseListNoteCommandTest {
             exception.printStackTrace();
         }
 
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
-
         inputString = " /sort up";
-
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
 
         parser = new ParseListNoteCommand(inputString);
 
@@ -74,25 +56,7 @@ class ParseListNoteCommandTest {
             exception.printStackTrace();
         }
 
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
-
         inputString = "/tag cs2113/sort down";
-
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
 
         parser = new ParseListNoteCommand(inputString);
 
@@ -114,25 +78,7 @@ class ParseListNoteCommandTest {
             exception.printStackTrace();
         }
 
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
-
         inputString = "/tag cs2113 /archive";
-
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
 
         parser = new ParseListNoteCommand(inputString);
 
@@ -154,25 +100,7 @@ class ParseListNoteCommandTest {
             exception.printStackTrace();
         }
 
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
-
         inputString = "";
-
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
 
         parser = new ParseListNoteCommand(inputString);
 
@@ -194,25 +122,7 @@ class ParseListNoteCommandTest {
             exception.printStackTrace();
         }
 
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
-
         inputString = " random input ";
-
-        parser = new ParseListNoteCommand(inputString);
-
-        try {
-            command = parser.parse();
-            assertTrue(command instanceof ListNoteCommand);
-        } catch (SystemException exception) {
-            exception.printStackTrace();
-        }
 
         parser = new ParseListNoteCommand(inputString);
 
