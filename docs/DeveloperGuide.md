@@ -1021,16 +1021,16 @@ You should see the following:
 1. Enter ```add /name save123``` into the console.
 <br />
 You should see the following:
-<br />
+
 ![capture](uml_images/saveManager/puml/Capture.PNG)
-<br />
+
 ![capture2](uml_images/saveManager/puml/Capture2.PNG)
 
 ##### Negative test
 1. Enter ```add /name``` into the console.
 <br />
 You should see the following:
-<br />
+
 ![capture1](uml_images/saveManager/puml/Capture1.PNG)
 
 #### 7.6.2 Load Save
@@ -1038,14 +1038,14 @@ You should see the following:
 1. Enter ```load /name save123``` into the console.
 <br />
 You should see the following:
-<br />
+
 ![capture3](uml_images/saveManager/puml/Capture3.PNG)
 
 ##### Negative test
 1. Enter ```load /name wrongName``` into the console.
 <br />
 You should see the following:
-<br />
+
 ![capture4](uml_images/saveManager/puml/Capture4.PNG)
 
 #### 7.6.3 Delete Save
@@ -1053,16 +1053,16 @@ You should see the following:
 1. Enter ```delete /name save123``` into the console.
 <br />
 You should see the following:
-<br />
+
 ![capture5](uml_images/saveManager/puml/Capture5.PNG)
-<br />
+
 ![capture7](uml_images/saveManager/puml/Capture7.PNG)
 
 ##### Negative test
 1. Enter ```delete /name wrongName``` into the console.
 <br />
 You should see the following:
-<br />
+
 ![capture6](uml_images/saveManager/puml/Capture6.PNG)
 
 ### 7.7 Testing FinanceTools
