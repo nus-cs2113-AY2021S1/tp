@@ -221,7 +221,7 @@ public class DeallocateSprintTaskCommandTest {
         DeallocateSprintTaskCommand command = new DeallocateSprintTaskCommand(parameters, projectManager);
         command.execute();
 
-        String expected = "User not found: fakeuser1";
+        String expected = "User not found: fakeuser1" + System.lineSeparator();
         assertEquals(expected, getOutput());
         for (Task task : projectManager.getProject(1).getBacklog().getTaskList()) {
             assertEquals(3, task.getMemberList().size());
@@ -245,7 +245,7 @@ public class DeallocateSprintTaskCommandTest {
         DeallocateSprintTaskCommand command = new DeallocateSprintTaskCommand(parameters, projectManager);
         command.execute();
 
-        String expected = "Task not found in backlog: 0";
+        String expected = "Task not found in backlog: 0" + System.lineSeparator();
         assertEquals(expected, getOutput());
         for (Task task : projectManager.getProject(1).getBacklog().getTaskList()) {
             assertEquals(3, task.getMemberList().size());

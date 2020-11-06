@@ -160,7 +160,7 @@ class AddSprintTaskCommandTest {
 
         command.execute();
 
-        String expected = "Task not found in backlog: 99";
+        String expected = "Task not found in backlog: 99" + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals(0,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
@@ -179,7 +179,7 @@ class AddSprintTaskCommandTest {
 
         command.execute();
 
-        String expected = "Project not found: 99";
+        String expected = "Project not found: 99" + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals(0,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
@@ -198,7 +198,7 @@ class AddSprintTaskCommandTest {
 
         command.execute();
 
-        String expected = "Sprint not found: 99";
+        String expected = "Sprint not found: 99" + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals(0,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());

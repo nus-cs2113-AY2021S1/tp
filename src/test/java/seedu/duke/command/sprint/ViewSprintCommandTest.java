@@ -158,7 +158,7 @@ public class ViewSprintCommandTest {
 
         command.execute();
 
-        String expected = "Sprint not found: 0";
+        String expected = "Sprint not found: 0" + System.lineSeparator();
         assertEquals(expected, getOutput());
     }
 
@@ -173,7 +173,7 @@ public class ViewSprintCommandTest {
 
         command.execute();
 
-        String expected = "Sprint not found: 6";
+        String expected = "Sprint not found: 6" + System.lineSeparator();
         assertEquals(expected, getOutput());
     }
 }

@@ -213,7 +213,7 @@ public class CreateSprintCommandTest {
         CreateSprintCommand command = new CreateSprintCommand(parameters, projectManager);
         command.execute();
 
-        String expected = "Project not found: 99";
+        String expected = "Project not found: 99" + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals(0, projectManager.getProject(2).getSprintList().size());
     }
