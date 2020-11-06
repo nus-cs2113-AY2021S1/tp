@@ -9,7 +9,7 @@
 ## Table of Content
 1.  [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
-<br/>&nbsp;1.2 [Using This Guide](#12-using-this-guide)
+<br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
 2.  [Setting up](#2-setting-up)
 
@@ -546,7 +546,7 @@ to **create new** `Workspace`:
 
 <br/>
 
-**Step 2:** User enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser` and then further parsed by `WorkspaceParser`.
+**Step 2:** `User` enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser` and then further parsed by `WorkspaceParser`.
 
 **Step 3:** Upon completion of parsing and input validation, `WorkspaceParser` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
 
@@ -631,7 +631,7 @@ As there needs to be an `activeWorkspace` set at all times for operations such a
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Scan from data folder and pick first result.  | Able to adapt to changes even if malicious edits were made to file system. | User may need to switch to his favourite `Workspace` on each startup, if any. |
+| Scan from data folder and pick first result.  | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favourite `Workspace` on each startup, if any. |
 | Store last used `Workspace`.                  | `User` might gain some convenience of not needing to switch to his favourite `Workspace`. | Prone to potential issues from the file system. |
 
 We picked the first approach as it is the safer option. By allowing **AniChan** to scan and adapt to file system changes (e.g. `User` accidentally moves/renames/deletes `Workspace` on his hard drive), we avoid potential issues of relying on old information created in previous runtime which may hinder user experience.
@@ -1162,7 +1162,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 1.  Download the jar file and copy it into an empty folder.
 2.  Open a new command prompt or terminal and navigate to the directory containing `AniChan.jar`.
 3.  Enter the command `java -jar AniChan.jar` to launch **AniChan**.
-4.  { user setup process to be added }.
+4.  Program will prompt for `Name` and `Gender` of user, thereafter **AniChan** will be ready for use.
 
 > :bulb: This is what the input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
@@ -1478,3 +1478,64 @@ If you wish to add new checks, simply add the check file with a filename `check-
         1.  `search`
         2.  `search -g musik` In this case it would attempt to search for `musik`, and return no results.
         3.  `search -g`
+<br/>
+  
+### D.x: Create a new Workspace
+1.  Create a new Workspace with `workspace` feature
+    1.  Prerequisite:  None.
+    
+    2.  Test case: `workspace -n Crunchyroll` <br/>
+    Expected: Workspace will be successfully created with success message.
+    
+    3.  Test case: `workspace -n Crunchyroll__` <br/>
+    Expected: Workspace creation will fail with error message stating names must be alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -n `
+            3.  `workspace -N`
+<br/>
+            
+### D.x: Switch to a different Workspace
+1.  Switch to a different Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    2.  Test case: `workspace -s CrunchyOreo` <br/>
+    Expected: Workspace will be successfully switched from `Default` to `CrunchyOreo`.
+    
+    3.  Test case: `workspace -s CrunchyOreo__` <br/>
+    Expected: Workspace switch will fail given how the name request does not meet requirement of being alphanumeric and spaces only.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -s `
+            3.  `workspace -S`
+<br/>
+
+### D.x: List all Workspace
+1.  List all Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
+    
+    2.  Test case: `workspace -l` <br/>
+    Expected: Workspace `Default` and `CrunchyOreo` will be listed.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+<br/>
+            
+### D.x: Delete a Workspace
+1.  Delete a Workspace with `workspace` feature
+    1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
+    
+    2.  Test case: `workspace -d Default` <br/>
+    Expected: Workspace will be successfully deleted.
+    
+    3.  Test case: `workspace -d default` <br/>
+    Expected: Workspace deletion will fail given default does not exists.
+    
+        1.  Other incorrect commands to try: 
+            1.  `workspace`
+            2.  `workspace -D`
+            3.  `workspace -d`
+            4.  `workspace -d ..`
+<br/>
