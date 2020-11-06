@@ -189,9 +189,12 @@ Example of usage:
 #### Adding recurring laboratory session events:
 
 When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
+
 Note: Only valid modules provided by NUS are allowed to be added! 
 
-Format: `lab <module_name> @<venue> -r <recurring_number> / <date> <time>`
+Note: The value for `<number of lab session>` is in the range of 1 to 13 only!
+
+Format: `lab <module_name> @<venue> -r <number of lab session> / <date> <time>`
 
 Example of usage:
 
@@ -202,9 +205,12 @@ Example of usage:
 #### Adding recurring lecture events:
 
 When you have new recurring lecture events and want to add them to the calendar list, you can use `lect` command.
+
 Note: Only valid modules provided by NUS are allowed to be added! 
 
-Format: `lect <module_name> @<venue> -r <recurring_number> / <date> <time>`
+Note: The value for `<number of lecutre>` is in the range of 1 to 13 only!
+
+Format: `lect <module_name> @<venue> -r <number of lecutre> / <date> <time>`
 
 Example of usage:
 
@@ -215,9 +221,12 @@ Example of usage:
 #### Adding recurring tutorial events:
 
 When you have new recurring tutorial events and want to add them to the calendar list, you can use `tut` command.
+
 Note: Only valid modules provided by NUS are allowed to be added! 
 
-Format: `tut <module_name> @<venue> -r <recurring_number> / <date> <time>`
+Note: The value for `<number of tutorial>` is in the range of 1 to 13 only!
+
+Format: `tut <module_name> @<venue> -r <number of tutorial> / <date> <time>`
 
 Example of usage:
 
