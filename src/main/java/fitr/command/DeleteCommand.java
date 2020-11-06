@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.common.DateManager;
 import fitr.exercise.Recommender;
 import fitr.exception.FitrException;
 
@@ -11,6 +12,7 @@ import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_EXERCISE;
@@ -36,6 +38,7 @@ public class DeleteCommand extends Command {
             switch (type) {
             case COMMAND_EXERCISE: {
                 String deletionDate = command.split(" ")[1];
+                deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 ExerciseList exerciseList = listManager.getExerciseList();
                 boolean isValidDate = false;
                 int deletionIndex = Integer.parseInt(command.split(" ")[2]);
@@ -62,6 +65,7 @@ public class DeleteCommand extends Command {
             }
             case COMMAND_FOOD: {
                 String deletionDate = command.split(" ")[1];
+                deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 FoodList foodList = listManager.getFoodList();
                 boolean isValidDate = false;
                 int deletionIndex = Integer.parseInt(command.split(" ")[2]);
