@@ -46,9 +46,9 @@ public class EditSprintCommandTest {
 
     private void generateDummyTask(ProjectManager projectManager) {
         for (Project project : projectManager.getProjectList().values()) {
-            project.getBacklog().addTask(project.getTitle() +"task1", "task1", "HIGH");
-            project.getBacklog().addTask(project.getTitle() +"task2", "task2", "MEDIUM");
-            project.getBacklog().addTask(project.getTitle() +"task3", "task3", "LOW");
+            project.getBacklog().addTask(project.getTitle() + "task1", "task1", "HIGH");
+            project.getBacklog().addTask(project.getTitle() + "task2", "task2", "MEDIUM");
+            project.getBacklog().addTask(project.getTitle() + "task3", "task3", "LOW");
             assert project.getBacklog().size() == 3 : "Dummy tasks for " + project.getTitle() + " not added!";
         }
     }
@@ -64,11 +64,16 @@ public class EditSprintCommandTest {
 
     private void generateDummySprint(ProjectManager projectManager) {
         for (Project project : projectManager.getProjectList().values()) {
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint1", LocalDate.now(), LocalDate.now().plusDays(9));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint2", LocalDate.now().plusDays(10), LocalDate.now().plusDays(19));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint3", LocalDate.now().plusDays(20), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint4", LocalDate.now().plusDays(30), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint5", LocalDate.now().plusDays(40), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint1",
+                    LocalDate.now(), LocalDate.now().plusDays(9));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint2",
+                    LocalDate.now().plusDays(10), LocalDate.now().plusDays(19));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint3",
+                    LocalDate.now().plusDays(20), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint4",
+                    LocalDate.now().plusDays(30), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint5",
+                    LocalDate.now().plusDays(40), LocalDate.now().plusDays(49));
             assert project.getSprintList().size() == 5 : "Dummy sprints for " + project.getTitle() + " not added!";
         }
     }
@@ -84,15 +89,15 @@ public class EditSprintCommandTest {
 
         command.execute();
 
-        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "Goal updated." + System.lineSeparator() +
-                "========================= CURRENT SPRINT ========================" + System.lineSeparator() +
-                "[ID: 1]" + System.lineSeparator() +
-                "[Goal: New goal]" + System.lineSeparator() +
-                "[Period: " + LocalDate.now() + " - " + LocalDate.now().plusDays(9) + "]" + System.lineSeparator() +
-                "[Remaining: 9 days]" + System.lineSeparator() +
-                "[No allocated tasks]" + System.lineSeparator() +
-                "================================================================="
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
+                + "Goal updated." + System.lineSeparator()
+                + "========================= CURRENT SPRINT ========================" + System.lineSeparator()
+                + "[ID: 1]" + System.lineSeparator()
+                + "[Goal: New goal]" + System.lineSeparator()
+                + "[Period: " + LocalDate.now() + " - " + LocalDate.now().plusDays(9) + "]" + System.lineSeparator()
+                + "[Remaining: 9 days]" + System.lineSeparator()
+                + "[No allocated tasks]" + System.lineSeparator()
+                + "================================================================="
                 + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals("New goal",
@@ -110,15 +115,15 @@ public class EditSprintCommandTest {
 
         command.execute();
 
-        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "Provided goal is the same as current goal." + System.lineSeparator() +
-                "========================= CURRENT SPRINT ========================" + System.lineSeparator() +
-                "[ID: 1]" + System.lineSeparator() +
-                "[Goal: project2Sprint1]" + System.lineSeparator() +
-                "[Period: " + LocalDate.now() + " - " + LocalDate.now().plusDays(9) + "]" + System.lineSeparator() +
-                "[Remaining: 9 days]" + System.lineSeparator() +
-                "[No allocated tasks]" + System.lineSeparator() +
-                "================================================================="
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
+                + "Provided goal is the same as current goal." + System.lineSeparator()
+                + "========================= CURRENT SPRINT ========================" + System.lineSeparator()
+                + "[ID: 1]" + System.lineSeparator()
+                + "[Goal: project2Sprint1]" + System.lineSeparator()
+                + "[Period: " + LocalDate.now() + " - " + LocalDate.now().plusDays(9) + "]" + System.lineSeparator()
+                + "[Remaining: 9 days]" + System.lineSeparator()
+                + "[No allocated tasks]" + System.lineSeparator()
+                + "================================================================="
                 + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals("project2Sprint1",

@@ -67,11 +67,16 @@ public class DeallocateSprintTaskCommandTest {
 
     private void generateDummySprint(ProjectManager projectManager) {
         for (Project project : projectManager.getProjectList().values()) {
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint1", LocalDate.now(), LocalDate.now().plusDays(9));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint2", LocalDate.now().plusDays(10), LocalDate.now().plusDays(19));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint3", LocalDate.now().plusDays(20), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint4", LocalDate.now().plusDays(30), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint5", LocalDate.now().plusDays(40), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint1",
+                    LocalDate.now(), LocalDate.now().plusDays(9));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint2",
+                    LocalDate.now().plusDays(10), LocalDate.now().plusDays(19));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint3",
+                    LocalDate.now().plusDays(20), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint4",
+                    LocalDate.now().plusDays(30), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint5",
+                    LocalDate.now().plusDays(40), LocalDate.now().plusDays(49));
             assert project.getSprintList().size() == 5 : "Dummy sprints for " + project.getTitle() + " not added!";
         }
     }
@@ -82,7 +87,8 @@ public class DeallocateSprintTaskCommandTest {
                 sprint.addSprintTask(1);
                 sprint.addSprintTask(2);
                 sprint.addSprintTask(3);
-                assert sprint.getAllSprintTaskIds().size() == 3 : "Dummy sprint tasks for " + sprint.getGoal() + " not added!";
+                assert sprint.getAllSprintTaskIds().size() == 3 : "Dummy sprint tasks for "
+                        + sprint.getGoal() + " not added!";
             }
         }
     }
@@ -122,11 +128,14 @@ public class DeallocateSprintTaskCommandTest {
 
         command.execute();
 
-        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "[Sprint ID: 1]" + System.lineSeparator() +
-                "project2task1 is removed from [project2member1, project2member2, project2member3]" + System.lineSeparator() +
-                "project2task2 is removed from [project2member1, project2member2, project2member3]" + System.lineSeparator() +
-                "project2task3 is removed from [project2member1, project2member2, project2member3]" + System.lineSeparator();
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
+                + "[Sprint ID: 1]" + System.lineSeparator()
+                + "project2task1 is removed from [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task2 is removed from [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task3 is removed from [project2member1, project2member2, project2member3]"
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
         for (Member mem : projectManager.getProject(2).getMemberList().getAllMembers()) {
             assertEquals(0, mem.getTaskList().size());
@@ -150,11 +159,14 @@ public class DeallocateSprintTaskCommandTest {
 
         command.execute();
 
-        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "[Sprint ID: 3]" + System.lineSeparator() +
-                "project2task1 is removed from [project2member1, project2member2, project2member3]" + System.lineSeparator() +
-                "project2task2 is removed from [project2member1, project2member2, project2member3]" + System.lineSeparator() +
-                "project2task3 is removed from [project2member1, project2member2, project2member3]" + System.lineSeparator();
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
+                + "[Sprint ID: 3]" + System.lineSeparator()
+                + "project2task1 is removed from [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task2 is removed from [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task3 is removed from [project2member1, project2member2, project2member3]"
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
         for (Member mem : projectManager.getProject(2).getMemberList().getAllMembers()) {
             assertEquals(0, mem.getTaskList().size());
@@ -178,11 +190,14 @@ public class DeallocateSprintTaskCommandTest {
         DeallocateSprintTaskCommand command = new DeallocateSprintTaskCommand(parameters, projectManager);
         command.execute();
 
-        String expected = "[Project ID: 1]" + System.lineSeparator() +
-                "[Sprint ID: 3]" + System.lineSeparator() +
-                "project1task1 is removed from [project1member1, project1member2, project1member3]" + System.lineSeparator() +
-                "project1task2 is removed from [project1member1, project1member2, project1member3]" + System.lineSeparator() +
-                "project1task3 is removed from [project1member1, project1member2, project1member3]" + System.lineSeparator();
+        String expected = "[Project ID: 1]" + System.lineSeparator()
+                + "[Sprint ID: 3]" + System.lineSeparator()
+                + "project1task1 is removed from [project1member1, project1member2, project1member3]"
+                + System.lineSeparator()
+                + "project1task2 is removed from [project1member1, project1member2, project1member3]"
+                + System.lineSeparator()
+                + "project1task3 is removed from [project1member1, project1member2, project1member3]"
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
         for (Member mem : projectManager.getProject(1).getMemberList().getAllMembers()) {
             assertEquals(0, mem.getTaskList().size());

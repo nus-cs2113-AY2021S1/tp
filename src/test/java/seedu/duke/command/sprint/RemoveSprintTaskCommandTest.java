@@ -47,9 +47,9 @@ public class RemoveSprintTaskCommandTest {
 
     private void generateDummyTask(ProjectManager projectManager) {
         for (Project project : projectManager.getProjectList().values()) {
-            project.getBacklog().addTask(project.getTitle() +"task1", "task1", "HIGH");
-            project.getBacklog().addTask(project.getTitle() +"task2", "task2", "MEDIUM");
-            project.getBacklog().addTask(project.getTitle() +"task3", "task3", "LOW");
+            project.getBacklog().addTask(project.getTitle() + "task1", "task1", "HIGH");
+            project.getBacklog().addTask(project.getTitle() + "task2", "task2", "MEDIUM");
+            project.getBacklog().addTask(project.getTitle() + "task3", "task3", "LOW");
             assert project.getBacklog().size() == 3 : "Dummy tasks for " + project.getTitle() + " not added!";
         }
     }
@@ -65,11 +65,16 @@ public class RemoveSprintTaskCommandTest {
 
     private void generateDummySprint(ProjectManager projectManager) {
         for (Project project : projectManager.getProjectList().values()) {
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint1", LocalDate.now(), LocalDate.now().plusDays(9));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint2", LocalDate.now().plusDays(10), LocalDate.now().plusDays(19));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint3", LocalDate.now().plusDays(20), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint4", LocalDate.now().plusDays(30), LocalDate.now().plusDays(49));
-            project.getSprintList().addSprint(project, project.getTitle() + "Sprint5", LocalDate.now().plusDays(40), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint1",
+                    LocalDate.now(), LocalDate.now().plusDays(9));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint2",
+                    LocalDate.now().plusDays(10), LocalDate.now().plusDays(19));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint3",
+                    LocalDate.now().plusDays(20), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint4",
+                    LocalDate.now().plusDays(30), LocalDate.now().plusDays(49));
+            project.getSprintList().addSprint(project, project.getTitle() + "Sprint5",
+                    LocalDate.now().plusDays(40), LocalDate.now().plusDays(49));
             assert project.getSprintList().size() == 5 : "Dummy sprints for " + project.getTitle() + " not added!";
         }
     }
@@ -80,7 +85,8 @@ public class RemoveSprintTaskCommandTest {
                 sprint.addSprintTask(1);
                 sprint.addSprintTask(2);
                 sprint.addSprintTask(3);
-                assert sprint.getAllSprintTaskIds().size() == 3 : "Dummy sprint tasks for " + sprint.getGoal() + " not added!";
+                assert sprint.getAllSprintTaskIds().size() == 3 : "Dummy sprint tasks for "
+                        + sprint.getGoal() + " not added!";
             }
         }
 
@@ -101,10 +107,10 @@ public class RemoveSprintTaskCommandTest {
 
         command.execute();
 
-        String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task3 removed from sprint 1." + System.lineSeparator() +
-                "\tproject2task2 removed from sprint 1." + System.lineSeparator() +
-                "\tproject2task1 removed from sprint 1." + System.lineSeparator();
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
+                + "\tproject2task3 removed from sprint 1." + System.lineSeparator()
+                + "\tproject2task2 removed from sprint 1." + System.lineSeparator()
+                + "\tproject2task1 removed from sprint 1." + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals(0,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
@@ -123,10 +129,10 @@ public class RemoveSprintTaskCommandTest {
 
         command.execute();
 
-        String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task1 removed from sprint 1." + System.lineSeparator() +
-                "\tproject2task2 removed from sprint 1." + System.lineSeparator() +
-                "\tproject2task3 removed from sprint 1." + System.lineSeparator();
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
+                + "\tproject2task1 removed from sprint 1." + System.lineSeparator()
+                + "\tproject2task2 removed from sprint 1." + System.lineSeparator()
+                + "\tproject2task3 removed from sprint 1." + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals(0,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
@@ -148,11 +154,11 @@ public class RemoveSprintTaskCommandTest {
 
         command.execute();
 
-        String expected =  "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator() +
-                "\tproject2task2 removed from sprint 1." + System.lineSeparator() +
-                "\tproject2task1 removed from sprint 1." + System.lineSeparator() +
-                "\tproject2task1 is already removed from sprint 1." + System.lineSeparator() +
-                "\tproject2task1 is already removed from sprint 1." + System.lineSeparator();
+        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
+                + "\tproject2task2 removed from sprint 1." + System.lineSeparator()
+                + "\tproject2task1 removed from sprint 1." + System.lineSeparator()
+                + "\tproject2task1 is already removed from sprint 1." + System.lineSeparator()
+                + "\tproject2task1 is already removed from sprint 1." + System.lineSeparator();
         assertEquals(expected, getOutput());
         assertEquals(1,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
@@ -171,7 +177,7 @@ public class RemoveSprintTaskCommandTest {
 
         command.execute();
 
-        String expected =  "Task not found in backlog: 99";
+        String expected = "Task not found in backlog: 99";
         assertEquals(expected, getOutput());
         assertEquals(3,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
@@ -191,7 +197,7 @@ public class RemoveSprintTaskCommandTest {
 
         command.execute();
 
-        String expected =  "Project not found: 99";
+        String expected = "Project not found: 99";
         assertEquals(expected, getOutput());
         assertEquals(3,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
@@ -211,7 +217,7 @@ public class RemoveSprintTaskCommandTest {
 
         command.execute();
 
-        String expected =  "Sprint not found: 99";
+        String expected = "Sprint not found: 99";
         assertEquals(expected, getOutput());
         assertEquals(3,
                 projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
