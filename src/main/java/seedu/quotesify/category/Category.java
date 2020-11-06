@@ -17,7 +17,7 @@ public class Category implements JsonSerializer {
     /**
      * Constructor for category.
      *
-     * @param category category name.
+     * @param category Category name.
      */
     public Category(String category) {
         this.category = category;
@@ -29,7 +29,7 @@ public class Category implements JsonSerializer {
     /**
      * Returns the category name.
      *
-     * @return category name
+     * @return Category name.
      */
     public String getCategoryName() {
         return category;
@@ -38,7 +38,7 @@ public class Category implements JsonSerializer {
     /**
      * Sets the category name.
      *
-     * @param category category name.
+     * @param category Category name.
      */
     public void setCategoryName(String category) {
         this.category = category;
@@ -47,7 +47,7 @@ public class Category implements JsonSerializer {
     /**
      * Returns the number of items tagged with the category.
      *
-     * @return number of items under the category
+     * @return Number of items under the category.
      */
     public int getSize() {
         return bookList.getList().size() + quoteList.getList().size();
@@ -56,7 +56,7 @@ public class Category implements JsonSerializer {
     /**
      * Set the size of the category.
      *
-     * @param size any integer value
+     * @param size Any integer value.
      */
     public void setSize(int size) {
         this.size = size;
@@ -65,7 +65,7 @@ public class Category implements JsonSerializer {
     /**
      * Returns the list of books tagged with the category.
      *
-     * @return a list of books
+     * @return A list of books.
      */
     public BookList getBookList() {
         return bookList;
@@ -74,7 +74,7 @@ public class Category implements JsonSerializer {
     /**
      * Set the list of books for the category.
      *
-     * @param books list of books tagged with the category.
+     * @param books List of books tagged with the category.
      */
     public void setBookList(BookList books) {
         this.bookList = books;
@@ -83,7 +83,7 @@ public class Category implements JsonSerializer {
     /**
      * Returns a list of quotes tagged under the category.
      *
-     * @return a list of quotes
+     * @return A list of quotes.
      */
     public QuoteList getQuoteList() {
         return quoteList;
@@ -92,7 +92,7 @@ public class Category implements JsonSerializer {
     /**
      * Set a list of quotes for the category.
      *
-     * @param quoteList a list of quotes tagged under the category.
+     * @param quoteList A list of quotes tagged under the category.
      */
     public void setQuoteList(QuoteList quoteList) {
         this.quoteList = quoteList;
@@ -101,7 +101,7 @@ public class Category implements JsonSerializer {
     /**
      * Returns category details.
      *
-     * @return Category details
+     * @return Category details.
      */
     @Override
     public String toString() {
@@ -111,7 +111,7 @@ public class Category implements JsonSerializer {
     /**
      * Returns a JSON object of the category.
      *
-     * @return JSON object
+     * @return JSON object.
      */
     @Override
     public JSONObject toJson() {

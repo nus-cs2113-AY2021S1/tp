@@ -18,8 +18,8 @@ public class CategoryParser {
     /**
      * Converts a string array to a stack.
      *
-     * @param tokens array of string
-     * @return a stack of string
+     * @param tokens Array of string arguments.
+     * @return A stack of string arguments.
      */
     private static Stack<String> convertStringArrayToStack(String[] tokens) {
         Stack<String> parameters = new Stack<>();
@@ -32,18 +32,18 @@ public class CategoryParser {
     /**
      * Fetches the essential parameters from a string array.
      *
-     * @param tokens array of string
-     * @return parameters in {categories, book-number, quote-number, book-tag-count, quote-tag-count} format
-     * @throws QuotesifyException if invalid parameters are specified
+     * @param information User input arguments.
+     * @return Parameters in {categories, book-number, quote-number, book-tag-count, quote-tag-count} format.
+     * @throws QuotesifyException If invalid parameters are specified.
      */
-    public static String[] getRequiredParameters(String[] tokens) throws QuotesifyException {
+    public static String[] getRequiredParameters(String information) throws QuotesifyException {
         String categories;
         String bookTitle = "";
         String quoteNum = "";
         int bookTagCount = 0;
         int quoteTagCount = 0;
 
-        Stack<String> parameters = convertStringArrayToStack(tokens);
+        Stack<String> parameters = convertStringArrayToStack(information.split(" "));
         String line = "";
 
         while (!parameters.empty()) {
@@ -73,8 +73,8 @@ public class CategoryParser {
     /**
      * Returns an integer result after validation of parameters.
      *
-     * @param parameters array of string in {categories, book number, quote number} format
-     * @return -1 if categories is empty, 0 if book number or quote number is empty, 1 if both are specified
+     * @param parameters Parameters from getRequiredParameters().
+     * @return -1 If categories is empty, 0 if books and quotes are not specified, 1 if both are specified.
      */
     public static int validateParametersResult(String[] parameters) {
         String categoryName = parameters[0];
@@ -95,9 +95,9 @@ public class CategoryParser {
     /**
      * Parses the user input for edit category command into a string array of parameters.
      *
-     * @param information user specified input
-     * @return an array of parameters
-     * @throws QuotesifyException if invalid parameters are specified
+     * @param information User specified input.
+     * @return An array of parameters.
+     * @throws QuotesifyException If invalid parameters are specified.
      */
     public static String[] getEditParameters(String information) throws QuotesifyException {
         try {
@@ -112,8 +112,8 @@ public class CategoryParser {
     /**
      * Parses a string of space delimited category names into a list.
      *
-     * @param categories user specified categories
-     * @return a list of category names
+     * @param categories User specified categories.
+     * @return A list of category names.
      */
     public static List<String> parseCategoriesToList(String categories) {
         return Arrays.asList(categories.split(" "));

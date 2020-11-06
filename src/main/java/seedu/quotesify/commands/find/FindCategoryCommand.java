@@ -14,7 +14,7 @@ import java.util.logging.Level;
 public class FindCategoryCommand extends FindCommand {
     /**
      * Constructor for find category command with user specified arguments.
-     * @param arguments user specified arguments
+     * @param arguments User specified arguments.
      */
     public FindCategoryCommand(String arguments) {
         super(arguments);
@@ -34,8 +34,8 @@ public class FindCategoryCommand extends FindCommand {
     /**
      * Find categories by keyword.
      *
-     * @param categoryList list of categories
-     * @param ui Ui of the program
+     * @param categoryList List of categories.
+     * @param ui Ui of the program.
      */
     private void findCategories(CategoryList categoryList, TextUi ui) {
         quotesifyLogger.log(Level.INFO, "finding categories by keyword.");

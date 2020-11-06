@@ -25,7 +25,7 @@ public class CategoryList extends QuotesifyList<Category> {
 
     /**
      * Constructor for category list with existing list of categories.
-     * @param categories array list of categories
+     * @param categories Array list of categories.
      */
     public CategoryList(ArrayList<Category> categories) {
         super(categories);
@@ -35,7 +35,7 @@ public class CategoryList extends QuotesifyList<Category> {
      * Checks if a given category exists in the list.
      *
      * @param name category name
-     * @return true if it exists, false otherwise
+     * @return True if it exists, false otherwise.
      */
     public boolean isExistingCategory(String name) {
         assert name != null;
@@ -50,9 +50,9 @@ public class CategoryList extends QuotesifyList<Category> {
     /**
      * Returns a category if it exists.
      *
-     * @param name category name
-     * @return category object
-     * @throws QuotesifyException if category does not exist
+     * @param name Category name.
+     * @return Category object.
+     * @throws QuotesifyException If category does not exist.
      */
     public Category getCategoryByName(String name) throws QuotesifyException {
         assert name != null;
@@ -80,7 +80,7 @@ public class CategoryList extends QuotesifyList<Category> {
     /**
      * Updates the book list and quote list of a specified category.
      *
-     * @param category existing category object
+     * @param category Existing category object.
      */
     public void updateListsInCategory(Category category) {
         assert category != null;
@@ -101,7 +101,7 @@ public class CategoryList extends QuotesifyList<Category> {
      * Finds a category by keyword.
      *
      * @param keyword user specified keyword.
-     * @return a list of categories matching the specified keyword.
+     * @return A list of categories matching the specified keyword.
      */
     public CategoryList findByKeyword(String keyword) {
         ArrayList<Category> list = (ArrayList<Category>) categories.stream()
@@ -113,7 +113,7 @@ public class CategoryList extends QuotesifyList<Category> {
     /**
      * Removes a specified category.
      *
-     * @param category existing category object.
+     * @param category Existing category object.
      */
     public void remove(Category category) {
         assert category != null;

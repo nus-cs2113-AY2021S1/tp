@@ -13,7 +13,7 @@ public class ListCategoryCommand extends ListCommand {
     /**
      * Constructor for list category with user specified arguments.
      *
-     * @param arguments user specified arguments.
+     * @param arguments User specified arguments.
      */
     public ListCategoryCommand(String arguments) {
         super(arguments);
@@ -33,7 +33,7 @@ public class ListCategoryCommand extends ListCommand {
     /**
      * Prepares to list categories.
      *
-     * @param categoryList list of categories.
+     * @param categoryList List of categories.
      * @param ui Ui of the program.
      */
     private void listCategories(CategoryList categoryList, TextUi ui) {
@@ -49,8 +49,8 @@ public class ListCategoryCommand extends ListCommand {
     /**
      * List all existing categories.
      *
-     * @param categoryList list of categories
-     * @param ui Ui of the program
+     * @param categoryList List of categories.
+     * @param ui Ui of the program.
      */
     private void listAllCategories(CategoryList categoryList, TextUi ui) {
         ui.printAllCategories(categoryList);
@@ -59,8 +59,8 @@ public class ListCategoryCommand extends ListCommand {
     /**
      * List all items in the specified category.
      *
-     * @param categoryList list of categories
-     * @param ui Ui of the program
+     * @param categoryList List of categories.
+     * @param ui Ui of the program.
      */
     private void listAllInCategory(CategoryList categoryList, TextUi ui) {
         try {

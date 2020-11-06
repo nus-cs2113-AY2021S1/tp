@@ -86,7 +86,7 @@ public class Quotesify {
     /**
      * Program main method.
      *
-     * @param args user specified arguments
+     * @param args User specified arguments.
      */
     public static void main(String[] args) {
         new Quotesify().run();
