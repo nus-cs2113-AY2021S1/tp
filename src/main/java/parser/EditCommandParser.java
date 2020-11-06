@@ -17,7 +17,6 @@ import static common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static common.Messages.MESSAGE_MISSING_ARGS;
 import static common.Messages.MESSAGE_MISSING_INDEX;
 import static common.Messages.MESSAGE_NON_INTEGER;
-import static common.Messages.MESSAGE_NO_NAME;
 import static common.Messages.MESSAGE_NO_QUESTION_AND_ANSWER;
 import static common.Messages.MODULE;
 
@@ -50,59 +49,34 @@ public class EditCommandParser {
         }
     }
 
-    private static Command prepareEditModule(String commandArgs)
-            throws InvalidInputException, IncorrectAccessLevelException {
+    private static Command prepareEditModule(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);
-            if (args[0].trim().isEmpty()) {
-                throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, MODULE)
-                        + EditModuleCommand.MESSAGE_USAGE);
-            }
-
-            if (args[1].trim().isEmpty()) {
-                throw new InvalidInputException(String.format(MESSAGE_NO_NAME, MODULE)
-                        + EditModuleCommand.MESSAGE_USAGE);
-            }
+            int editIndex = Integer.parseInt(args[0].trim()) - 1;
 
             if (!ParserUtil.checkAlphanumericOnly(args[1].trim().toLowerCase())) {
                 throw new InvalidInputException(String.format(MESSAGE_ALPHANUMERIC_CHARACTERS, MODULE));
             }
 
-            int editIndex = Integer.parseInt(args[0].trim()) - 1;
             return new EditModuleCommand(editIndex, args[1].trim());
-        } catch (NumberFormatException e) {
-            throw new InvalidInputException(String.format(MESSAGE_NON_INTEGER, MODULE)
-                    + EditModuleCommand.MESSAGE_USAGE);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD)
                     + EditModuleCommand.MESSAGE_USAGE);
         }
     }
 
-    private static Command prepareEditChapter(String commandArgs)
-            throws InvalidInputException, IncorrectAccessLevelException {
+    private static Command prepareEditChapter(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);
-            if (args[0].trim().isEmpty()) {
-                throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, CHAPTER)
-                        + EditChapterCommand.MESSAGE_USAGE);
-            }
 
-            if (args[1].trim().isEmpty()) {
-                throw new InvalidInputException(String.format(MESSAGE_NO_NAME, CHAPTER)
-                        + EditChapterCommand.MESSAGE_USAGE);
-            }
+            int editIndex = Integer.parseInt(args[0].trim()) - 1;
 
             if (!ParserUtil.checkAlphanumericOnly(args[1].trim().toLowerCase())) {
                 throw new InvalidInputException(String.format(MESSAGE_ALPHANUMERIC_CHARACTERS, CHAPTER));
             }
 
-            int editIndex = Integer.parseInt(args[0].trim()) - 1;
             return new EditChapterCommand(editIndex, args[1].trim());
-        } catch (NumberFormatException e) {
-            throw new InvalidInputException(String.format(MESSAGE_NON_INTEGER, CHAPTER)
-                    + EditChapterCommand.MESSAGE_USAGE);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD)
                     + EditChapterCommand.MESSAGE_USAGE);
         }
@@ -111,10 +85,6 @@ public class EditCommandParser {
     private static Command prepareEditCard(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(" ", 2);
-            if (args[0].trim().isEmpty()) {
-                throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, CARD)
-                        + EditCardCommand.MESSAGE_USAGE);
-            }
 
             int editIndex = Integer.parseInt(args[0].trim()) - 1;
 
@@ -127,10 +97,7 @@ public class EditCommandParser {
             }
 
             return new EditCardCommand(editIndex, question, answer);
-        } catch (NumberFormatException e) {
-            throw new InvalidInputException(String.format(MESSAGE_NON_INTEGER, CARD)
-                    + EditCardCommand.MESSAGE_USAGE);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new InvalidInputException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD)
                     + EditCardCommand.MESSAGE_USAGE);
         }
