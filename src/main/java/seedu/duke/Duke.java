@@ -68,7 +68,7 @@ public class Duke {
         } catch (IOException e) {
             Ui.showError("Unable to save data successfully, your data might be lost.");
         }
-        ScrumLogger.destroy();
+        //ScrumLogger.destroy();
     }
 
     /**
