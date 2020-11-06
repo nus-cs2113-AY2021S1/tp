@@ -40,7 +40,7 @@ public class ApplianceList {
      * @param userEnteredName Appliance to remove.
      */
     public Appliance deleteAppliance(String userEnteredName) throws ApplianceNotFoundException {
-        for (Appliance appliance : this.getAllAppliance()) {
+        for (Appliance appliance : getAllAppliance()) {
             if (appliance.getName().equals(userEnteredName)) {
                 applianceList.remove(appliance);
                 return appliance;
@@ -90,8 +90,8 @@ public class ApplianceList {
      */
     public void deleteByLocation(String usersEnteredLocation) throws ApplianceNotFoundException {
         for (int x = getAllAppliance().size() - 1; x >= 0; x--) {
-            if (this.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
-                this.deleteAppliance((this.getAppliance(x).getName()));
+            if (getAppliance(x).getLocation().equals(usersEnteredLocation)) {
+                deleteAppliance((getAppliance(x).getName()));
             }
         }
     }
