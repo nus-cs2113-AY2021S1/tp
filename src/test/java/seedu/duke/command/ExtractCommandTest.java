@@ -22,7 +22,7 @@ class ExtractCommandTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @Nested
-    class Test1 {
+    class TestEmptyTextSubject {
         public void setUp() {
             String extractInput = "  \r\n extractend \r\n";
             ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
@@ -49,7 +49,7 @@ class ExtractCommandTest {
     }
 
     @Nested
-    class Test2 {
+    class TestEmptyTextBody {
         @BeforeEach
         public void setUp() {
             String extractInput = "  \r\n extractend \r\n";
@@ -77,7 +77,7 @@ class ExtractCommandTest {
     }
 
     @Nested
-    class Test3 {
+    class TestPersonalEventNoDateNoTime {
         @BeforeEach
         public void setUp() {
             String extractInput = "Hi class, please note there will be a meeting soon \r\n extractend \r\n";
@@ -116,7 +116,7 @@ class ExtractCommandTest {
 
 
     @Nested
-    class Test4 {
+    class TestPersonalEventDateOnly {
         @BeforeEach
         public void setUp() {
             String extractInput = "Hi class, please note there will be a makeup lesson on 17th nov"
@@ -159,7 +159,7 @@ class ExtractCommandTest {
 
 
     @Nested
-    class Test5 {
+    class TestPersonalEventOneDateAndTime {
         @BeforeEach
         public void setUp() {
             String extractInput = "Hi class, please note there will be a quiz \r\n on oct 5 2020 "
@@ -196,7 +196,7 @@ class ExtractCommandTest {
 
 
     @Nested
-    class Test6 {
+    class TestPersonalEventMultipleDateAndTime {
         @BeforeEach
         public void setUp() {
             String extractInput = "Hi class, please note there will be a quiz \r\n "
@@ -244,7 +244,7 @@ class ExtractCommandTest {
     }
 
     @Nested
-    class Test7 {
+    class TestZoomEventLinkOnly {
         @BeforeEach
         public void setUp() {
             String extractInput = "The seminar will be held via Zoom. You may tune in using this link:\n"
