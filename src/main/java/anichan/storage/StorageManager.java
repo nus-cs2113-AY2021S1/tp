@@ -33,6 +33,7 @@ public class StorageManager {
     private final ScriptStorage scriptStorage;
 
     //@@author OngDeZhi
+
     /**
      * Creates a new instance of StorageManager with the specified storage directory.
      *
@@ -47,7 +48,7 @@ public class StorageManager {
     }
 
     /**
-     * Retrieves the list of workspace found in the storage directory.
+     * Retrieves and validates the list of workspace found in the storage directory.
      *
      * @return the list of workspace found in the storage directory
      */
@@ -86,6 +87,7 @@ public class StorageManager {
     // ========================== Workspace Deletion ==========================
 
     //@@author
+
     /**
      * Deletes directory containing specified workspace.
      *
@@ -113,6 +115,7 @@ public class StorageManager {
     // ========================== User Saving and Loading ==========================
 
     //@@author OngDeZhi
+
     /**
      * Invokes the save method in UserStorage to save the user data.
      *
@@ -161,11 +164,12 @@ public class StorageManager {
     // ========================== Bookmark Saving and Loading ==========================
 
     //@@author OngXinBin
+
     /**
      * Invokes the save method in bookmarkStorage to save the bookmark data.
      *
      * @param workspaceName the name of the workspace to load the list from
-     * @param bookmark the bookmark list to save
+     * @param bookmark      the bookmark list to save
      * @throws AniException when an error occurred while saving the watchlist list data
      */
     public void saveBookmark(String workspaceName, Bookmark bookmark) throws AniException {
@@ -176,7 +180,7 @@ public class StorageManager {
      * Invokes the load method in bookmarkStorage to load the bookmark data.
      *
      * @param workspaceName the name of the workspace to load the list from
-     * @param bookmark the bookmark list to save
+     * @param bookmark      the bookmark list to save
      * @return the load result message
      * @throws AniException when an error occurred while saving the watchlist list data
      */
@@ -187,6 +191,7 @@ public class StorageManager {
     // ========================== Script Loading ==========================
 
     //@@author OngDeZhi
+
     /**
      * Loads the script file.
      *
