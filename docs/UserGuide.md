@@ -186,16 +186,36 @@ bye                                                                   Exit the a
 ### 2.2.2 Viewing your profile	
 If you want to check your profile, you can use this command. The profile includes your name, age, gender, height, weight, and your fitness level.	
 
-Format: `view profile`	
+Format: `view profile`
+
+Example of an expected outcome is as follows:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+User profile:
+Name: Tom
+Age: 20
+Gender: Male
+Height (in m): 2.0
+Weight (in kg): 60.0
+Your fitness level: Fit
+----------------------------------------------------------------------------------------------------------------------------------------
+```
 
 ### 2.2.3 Viewing your BMI	
-Body mass index (BMI) is a value derived from the mass and height of a person (BMI = mass (kg) / height^2 (m^2)). The BMI is a convenient rule of thumb used to broadly categorize a person as underweight, normal weight, overweight, or obese. You can view your BMI using this command.	
+Body mass index (BMI) is a value derived from the mass and height of a person (BMI = mass (kg) / height (m) ^2). The BMI
+is a convenient rule of thumb used to broadly categorize a person as underweight, normal weight, overweight, or obese. 
+You can view your BMI using this command.	
 
 Format: `view bmi`	
 
+Example of an expected outcome is as follows:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+Your BMI is: 15.00
+----------------------------------------------------------------------------------------------------------------------------------------
+```
 ### 2.2.4 Viewing food entries	
-You can view the past food entries you have previously added to Fitr. All food entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the food entries or only food entries for a specific date.	
-
+You can view the past food entries you have previously added to Fitr. All food entries will be grouped by their dates and displayed in a list form within their groups.	
 
 To view all food entries, you may use the `view food` command.	
 
@@ -205,21 +225,34 @@ Example of an expected outcome is as follows:
 
 ```
 Here is the list of your food:
-Date: 21/10/2020
-[1] Food: chicken rice
-    Cal: 807
-
 Date: 23/10/2020
-[1] Food: duck rice
-    Cal: 500
+[1] Food: Apple
+    Quantity: 1
+    Total Calorie(s): 52
 
-Date: 25/10/2020
-[1] Food: ice chendol
-    Cal: 302
+Date: 1/11/2020
+[1] Food: Fish
+    Quantity: 1
+    Total Calorie(s): 300
 
-Date: 30/10/2020
-[1] Food: apple
-    Cal: 50
+Date: 3/11/2020
+[1] Food: Orange
+    Quantity: 1
+    Total Calorie(s): 52
+[2] Food: Sandwich
+    Quantity: 1
+    Total Calorie(s): 78
+
+Date: 5/11/2020
+[1] Food: salad
+    Quantity: 1
+    Total Calorie(s): 600
+[2] Food: chicken
+    Quantity: 5
+    Total Calorie(s): 150
+----------------------------------------------------------------------------------------------------------------------------------------
+Tip: You may also view food entries by day using the format "view food DATE(dd/MM/yyyy)"
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 #### 2.2.4.1 Viewing food entries on a specific date
@@ -227,17 +260,21 @@ To view food entries for a specific day, you may enter the date at the back of t
 
 Format: `view food dd/MM/yyyy`
 
-For example, if you would like to view your food entries on 22/10/2020, you may key in `view food 22/10/2020`. The expected outcome should be similar to below:
+For example, if you would like to view your food entries on 3/11/2020, you may key in `view food 3/11/2020`. The
+ expected outcome should be similar to below:
 
 ```
 Here is the list of your food:
-Date: 22/10/2020
-[1] Food: duck rice
-    Cal: 500
+Date: 3/11/2020
+[1] Food: Orange
+    Burnt Cal: 52
+[2] Food: Sandwich
+    Burnt Cal: 78
 ```
 
 ### 2.2.5 Viewing exercise entries
-You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the exercise entries or only exercise entries for a specific date.
+You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their 
+dates and displayed in a list form within their groups.
 
 To view all exercise entries, you may use the `view exercise` command.
 
@@ -246,21 +283,38 @@ Format: `view exercise`
 Example of an expected outcome is as follows:
 ```
 Here is the list of your exercises:
-Date: 21/10/2020
-[1] Exercise: Standard Pushups
-    Burnt Cal: 17
-
 Date: 22/10/2020
-[1] Exercise: Side Lying Leg lifts
-    Burnt Cal: 23
+[1] Exercise: Planks to Pushup
+    Burnt Cal: 46
+[2] Exercise: Side Lying Leg lifts
+    Burnt Cal: 62
+[3] Exercise: Planks to Pushup
+    Burnt Cal: 46
 
 Date: 23/10/2020
-[1] Exercise: Bicycle crunches
-    Burnt Cal: 17
+[1] Exercise: Step ups
+    Burnt Cal: 50
+[2] Exercise: Russian Twists
+    Burnt Cal: 23
+[3] Exercise: Spinal rotations
+    Burnt Cal: 6
 
-Date: 24/10/2020
-[1] Exercise: Mountain stretch
-    Burnt Cal: 5
+Date: 27/10/2020
+[1] Exercise: Triceps dips
+    Burnt Cal: 7
+[2] Exercise: Side Lunges
+    Burnt Cal: 14
+[3] Exercise: Russian Twists
+    Burnt Cal: 14
+[4] Exercise: Cobra stretch
+    Burnt Cal: 6
+
+Date: 5/11/2020
+[1] Exercise: jumping rope
+    Burnt Cal: 30
+----------------------------------------------------------------------------------------------------------------------------------------
+Tip: You may also view exercise entries by day using the format "view exercise DATE(dd/MM/yyyy)"
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 #### 2.2.5.1 Viewing exercise entries on a specific date
@@ -282,10 +336,43 @@ You can view the goals you have previously set for yourself and track your progr
 Format: `view goal`
 
 ### 2.2.7 Viewing calorie summary
-If you want to see the calories you consumed from food or burnt from exercise, you can use this command. Note that positive net calorie does not mean you are gaining weight. It does not take calories burnt from performing everyday tasks into account and you may actually burn much more calories from performing everyday tasks than doing a workout.
+If you want to see the calories you consumed from food or burnt from exercise, you can use this command. 
+Note that positive net calorie does not mean you are gaining weight. It does not take calories burnt from performing 
+everyday tasks into account, and you may actually burn much more calories from performing everyday tasks than doing a
+workout.
 
 Format: `view summary`
 
+Example of an expected outcome is as follows:
+```
+Date: 22/10/2020
+Total calorie consumed:
+0
+Total calorie burnt:
+154
+Net calorie:
+-154
+
+Date: 23/10/2020
+Total calorie consumed:
+52
+Total calorie burnt:
+79
+Net calorie:
+-27
+
+Date: 27/10/2020
+Total calorie consumed:
+0
+Total calorie burnt:
+41
+Net calorie:
+-41
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Tip: You may also view summary by day using the format "view summary DATE(dd/MM/yyyy)"
+----------------------------------------------------------------------------------------------------------------------------------------
+```
 #### 2.2.7.1 Viewing calorie summary of a specific date
 You may also choose to view the summary for a specific day by specifying a date at the back of `view summary`.
 
@@ -306,17 +393,78 @@ Net calorie:
 You can edit various aspects of Fitr, such as your profile, previous food and exercise entries, and your goals. These features are documented below.
 
 ### 2.3.1 Editing your profile
-You can edit your name, age, gender, height, weight, and fitness level in your profile by using this command.
+You can edit your name, age, gender, height, weight, and fitness level in your profile using commands within
+ section 2.3.1.1 to 2.3.1.6.
 
-Format: `edit name` or `edit age` or `edit gender` or `edit height` or `edit weight` or `edit fitness`
+#### 2.3.1.1 Edit profile name
+Format: `edit name NEW_NAME`
 
-For example, if you want to change your height to be 1.95 m. You can use `edit height` command and type `1.95` as shown below.
-
+For example, you can enter the following input `edit name Tom`, and expect the following output:
 ```
-Change your height (in m) to:
-1.95
-Height (in m) changed to: 1.95
+----------------------------------------------------------------------------------------------------------------------------------------
+Your current name is: Tom
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
+Note: Inputs given for NEW_NAME can only contain alphabets with or without spaces.
+
+#### 2.3.1.2 Edit profile age
+Format: `edit age NEW_AGE`
+
+For example, you can enter the following input `edit age 20`, and expect the following output:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+Your current age is: 20
+----------------------------------------------------------------------------------------------------------------------------------------
+```
+Note: Inputs given for NEW_AGE can only be integers ranging from 1 to 130.
+
+#### 2.3.1.3 Edit profile gender
+Format: `edit gender NEW_GENDER(M for male; F for female)`
+
+For example, you can enter the following input `edit gender m`, and expect the following output:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+Your current gender is: Male
+----------------------------------------------------------------------------------------------------------------------------------------
+```
+Note: Inputs given for NEW_GENDER can only be alphabetical M or F. Inputs given are not case-sensitive.
+
+#### 2.3.1.4 Edit profile height
+Format: `edit height NEW_HEIGHT(in m)`
+
+For example, you can enter the following input `edit height 1.7`, and expect the following output:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+Your current height (in m) is: 1.7
+----------------------------------------------------------------------------------------------------------------------------------------
+```
+Note: Inputs given for NEW_HEIGHT is in meters, and can only be given as an integer or decimal number ranging from 0.50
+ to 4.00.
+
+
+#### 2.3.1.5 Edit profile weight
+Format: `edit height NEW_WEIGHT(in kg)`
+
+For example, you can enter the following input `edit weight 60`, and expect the following output:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+Your current weight (in kg) is: 60.0
+----------------------------------------------------------------------------------------------------------------------------------------
+```
+Note: Inputs given for NEW_WEIGHT is in kilograms, and can only be given as an integer or decimal number ranging from
+ 2.00 to 1000.00.
+
+#### 2.3.1.6 Edit profile fitness
+Format: `edit fitness NEW_FITNESS_LEVEL(0 for Unfit; 1 for Normal; 2 for Fit)`
+
+For example, you can enter the following input `edit fitness 2`, and expect the following output:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+Your current fitness level is: Fit
+----------------------------------------------------------------------------------------------------------------------------------------
+```
+Note: Inputs given for NEW_FITNESS can only be integers `0`, `1`, or `2`. The fitness level you set will change the
+ intensity of the exercises recommended by the `recommend` command.
 
 ### 2.3.2 Editing a food entry
 You can edit your previous food entries, for example, if you previously made a mistake when entering a food that you consumed.
