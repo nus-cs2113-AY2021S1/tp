@@ -19,7 +19,7 @@ public class RecurringEntry extends Item {
     Month start = Month.of(1);
     Month end = Month.of(12);
     boolean isAuto = false;
-    String notes = "";
+    String notes = " ";
 
     //Attributes in String form, for table printing
     String expenditureAmount = null;
@@ -131,7 +131,7 @@ public class RecurringEntry extends Item {
         return details;
     }
 
-    private void convertAttributesToString() {
+    public void convertAttributesToString() {
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
         expenditureAmount = this.entryType == Common.EntryType.EXP ? "-$" + this.amount : "";
         incomeAmount = this.entryType == Common.EntryType.INC ? "+$" + this.amount : "";
@@ -158,8 +158,8 @@ public class RecurringEntry extends Item {
             convertAttributesToString();
         }
 
-        return String.format("%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s", this.day, this.description,
-                expenditureAmount, incomeAmount, duration, payment, this.notes);
+        return String.format("%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s>&@#<%s", day, description,
+                expenditureAmount, incomeAmount, duration, payment, notes);
     }
 
 }

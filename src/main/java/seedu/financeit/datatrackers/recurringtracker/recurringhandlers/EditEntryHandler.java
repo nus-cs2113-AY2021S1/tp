@@ -61,9 +61,13 @@ public class EditEntryHandler extends ParamHandler {
             break;
         case ParamChecker.PARAM_INC:
             recurringEntry.setEntryType(Common.EntryType.INC);
+            //Need to update expenditureAmount and incomeAmount, since type has changed.
+            recurringEntry.convertAttributesToString();
             break;
         case ParamChecker.PARAM_EXP:
             recurringEntry.setEntryType(Common.EntryType.EXP);
+            //Need to update expenditureAmount and incomeAmount, since type has changed.
+            recurringEntry.convertAttributesToString();
             break;
         case ParamChecker.PARAM_DESCRIPTION:
             String description = ParamChecker.getInstance().checkAndReturnDescription(paramType);

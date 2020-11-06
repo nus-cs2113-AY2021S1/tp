@@ -21,7 +21,7 @@ public class RecurringEntryList extends ItemList {
         TablePrinter.addRow("No.;Day;Description;Expenditure amount;Income amount;"
                 + "Duration;Payment type;Notes                    ");
         if (super.items.isEmpty()) {
-            TablePrinter.addRow("No entries created");
+            TablePrinter.addRow("No entries created; ");
         } else {
             for (int i = 0; i < super.items.size(); i++) {
                 RecurringEntry entry = (RecurringEntry) super.items.get(i);
