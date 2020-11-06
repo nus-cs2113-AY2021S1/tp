@@ -27,9 +27,9 @@ public class RemoveCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            locationList.removeLocation(this.userEnteredLocation);
-            applianceList.deleteByLocation(this.userEnteredLocation);
-            return new CommandResult("Removing LOCATION \"" + this.userEnteredLocation + "\"......REMOVED!");
+            locationList.removeLocation(userEnteredLocation);
+            applianceList.deleteByLocation(userEnteredLocation);
+            return new CommandResult("Removing LOCATION \"" + userEnteredLocation + "\"......REMOVED!");
         } catch (InvalidLocationException e) {
             return new CommandResult(MESSAGE_LOCATION_NOT_EXIST + " Nothing will be deleted.");
         } catch (ApplianceNotFoundException e) {

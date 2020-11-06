@@ -1,5 +1,7 @@
 package seedu.smarthomebot.logic.commands;
 
+
+//@@author Ang_Cheng_Jun
 /**
  * Represent the command to print error notifications to user.
  */
@@ -14,7 +16,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(this.feedbackToUser);
+        return new CommandResult(feedbackToUser);
     }
 
 }

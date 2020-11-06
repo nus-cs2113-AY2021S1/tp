@@ -2,6 +2,8 @@ package seedu.smarthomebot.data.appliance;
 
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
+import seedu.smarthomebot.data.location.LocationList;
+import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
 
@@ -96,4 +98,16 @@ public class ApplianceList {
         }
     }
 
+    public int getApplianceIndex(String argument, LocationList locationList)
+            throws ApplianceNotFoundException, NoApplianceInLocationException {
+        for (Appliance appliance : applianceList) {
+            if (appliance.getName().equals((argument))) {
+                return applianceList.indexOf(appliance);
+            }
+        }
+        if (locationList.isLocationCreated(argument)) {
+            throw new NoApplianceInLocationException();
+        }
+        throw new ApplianceNotFoundException();
+    }
 }

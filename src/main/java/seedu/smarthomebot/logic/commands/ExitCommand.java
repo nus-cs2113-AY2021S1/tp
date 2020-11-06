@@ -2,6 +2,7 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
 
+//@@author Ang_Cheng_Jun
 /**
  * Represent the command to terminate the program.
  */
@@ -13,7 +14,6 @@ public class ExitCommand extends Command {
             "Exiting SmartHomeBot as requested, all Appliances are switched off.";
 
     public static boolean isExit(Command command) {
-        // instanceof returns false if it is null
         return command instanceof ExitCommand;
     }
 

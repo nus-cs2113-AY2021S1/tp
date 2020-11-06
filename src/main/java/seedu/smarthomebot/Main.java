@@ -3,7 +3,6 @@ package seedu.smarthomebot;
 import seedu.smarthomebot.logic.commands.Command;
 import seedu.smarthomebot.logic.commands.CommandResult;
 import seedu.smarthomebot.logic.commands.ExitCommand;
-import seedu.smarthomebot.commons.Messages;
 import seedu.smarthomebot.logic.parser.Parser;
 import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.data.location.LocationList;
@@ -11,12 +10,11 @@ import seedu.smarthomebot.storage.ReadStorageFile;
 import seedu.smarthomebot.storage.WriteStorageFile;
 import seedu.smarthomebot.ui.TextUi;
 
-
+//@@author Ang_Cheng_Jun
 /**
  * Entry point of the SmartHome application.
  * Initializes the application and starts the interaction with the user.
  */
-
 public class Main {
 
     private TextUi ui = new TextUi();
@@ -39,8 +37,8 @@ public class Main {
     }
 
     /**
-     * Initialise the import of data from the text file,
-     * and prints the welcome message.
+     * Initialises the import of data from the text file,
+     * and prints the Welcome message.
      */
     private void start() {
         this.ui = new TextUi();
@@ -52,7 +50,6 @@ public class Main {
      * Prints the Goodbye message and exits.
      */
     private void exit() {
-        ui.printToUser(Messages.MESSAGE_EXPORT);
         ui.showGoodByeMessage();
         System.exit(0);
     }
@@ -73,6 +70,9 @@ public class Main {
         } while (!ExitCommand.isExit(command));
     }
 
+    /**
+     * Executes the user command and prints the result.
+     */
     private CommandResult executeCommand(Command command) {
         try {
             command.setData(applianceList, locationList);

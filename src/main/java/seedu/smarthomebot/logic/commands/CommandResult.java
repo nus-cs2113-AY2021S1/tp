@@ -1,5 +1,6 @@
 package seedu.smarthomebot.logic.commands;
 
+//@@author Ang_Cheng_Jun
 /**
  * Represents the result of a command execution.
  */
