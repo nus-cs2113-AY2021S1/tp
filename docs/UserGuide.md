@@ -204,7 +204,7 @@ ____________________________________________________________
 
 #### 3.1.7 Starting Subject Quiz - `quiz`
 
-This type of quiz helps you prepare for a particular subject. For more details, 
+This type of quiz helps you prepare for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>
 
 Format: `quiz NAMEOFSUBJECT`<br>
 Example of usage: 
@@ -217,7 +217,19 @@ Sample output:
 You are about to begin the quiz for maths.You have 2 minutes.
 ```
 
-#### 3.1.8 `results`
+#### 3.1.8 Viewing results for quizzes on a subject - `results`
+
+This command allows you to look at the results for a subject. For more details, see <a href="#result">result</a>.
+
+Format: `results NAMEOFSUBJECT`<br>
+Example of usage: 
+```
+results CS2113T
+```
+Sample output: 
+```
+You are about to begin the quiz for CS2113T.You have 2 minutes.
+```
 
 #### 3.1.9 Exporting data - `export` <a name="export-command"></a>
 This command exports all the data of the application to an external file. For more details, see <a href="#export">Exporting Data section</a>.
@@ -491,22 +503,38 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.2.12 Starting Topic Quiz - `quiz`
+#### 3.2.12 Starting Topic Quiz - `quiz` 
 
-This type of quiz helps you to prepare for a particular topic. For more details, 
+This type of quiz helps you to prepare for a particular topic. For more details, see <a href =#takeQuiz>takeQuiz</a>.
 
 Format: `quiz NAMEOFTOPIC`<br>
 Example of usage: 
 ```
-quiz speed
+quiz Java
 ```
 
 Sample output: 
 ```
-You are about to begin the quiz for speed.You have 1 minute.
+You are about to begin the quiz for Java.You have 1 minute.
 ```
 
-#### 3.2.13 `results`
+#### 3.2.13 Viewing results for quizzes on a topic - `results`
+
+This feature allows you to looks at the previous results that you obtained for a quiz for a particular
+topic. For more details, see <a href =#result>result</a>.
+
+Format: `results NAMEOFTOPIC`<br>
+Example of usage: 
+```
+quiz Java
+```
+
+Sample output: 
+```
+Quiz 1: 1.0/2.0 -- Pass
+Quiz 2: 2.0/2.0 -- Excellent
+
+```
 
 #### 3.2.14 `exit`
 
@@ -703,6 +731,9 @@ Quiz 1: 1/1 -- Excellent
 Quiz 2: 0/1 -- Fail
 </code></pre>
 >️ ℹ️ **_NOTE:_** Ensure that at least one quiz has been attempted under the subject or topic.
+>️ ℹ️ **_NOTE:_** The results for a subject is different from the results for a topic. The application only shows
+>the result of a subject or topic that you requested for. Entering `results CS2113T` will not show you the results
+>that you obtained for the topics in the CS2113T subject and vice-versa.  
 
 #### 3.4.3 Storing data <a name="store"> </a>
 When you exit the application, the data you have added to the program is automatically saved to the disk. 
@@ -878,6 +909,27 @@ in the `data/` folder.
 
 > ℹ️ **_NOTE:_** **Importing** of the exported file is **currently not supported** as it is meant to be read by other 
 > applications. Nevertheless, the feature may be implemented in the future versions if it is highly requested.
+
+#### 3.4.6 Sorting tasks  <a name= "sort"> </a>
+The tasks in the application are sorted according to their deadlines. Tasks which are due soon are placed at the front
+of the list, while tasks which are due later are placed at the rear. `Todo` tasks are placed at the end of the list since
+they do not have any deadlines.
+
+Suppose you use the `list` command and get this output:
+<pre><code>
+Here are the tasks(s) under maths: 
+1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
+2. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+</code></pre>
+
+Adding the following deadline by `deadline project /by 18:00 07-11-2020` and using the `list` command would yield this output.
+<pre><code>
+Here are the tasks(s) under maths: 
+1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
+2. [D][✘] run again (by: 6:00 PM 7 Nov 2020)
+3. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+</code></pre>
+
 
 ## 4. FAQ <a name = "faq"> </a>
 This section answers some common questions that you may have about **revisED**.
