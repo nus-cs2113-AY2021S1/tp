@@ -1,4 +1,4 @@
-# Slightlyharp's Project Portgolio Page
+# Slightlyharp's Project Portfolio Page
 
 ##Project: Study it
 
