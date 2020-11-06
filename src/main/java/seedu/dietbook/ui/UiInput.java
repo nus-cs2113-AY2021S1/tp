@@ -1,12 +1,10 @@
 package seedu.dietbook.ui;
 
+import seedu.dietbook.logger.MainLogger;
 import seedu.dietbook.exception.DietException;
 
 import java.util.Scanner;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Represents a text user interface that deals with taking in user commands.
@@ -16,17 +14,16 @@ public class UiInput {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    private final Logger logger;
+    private final MainLogger mainLogger;
 
     private final UiHelper uiHelper;
 
     /**
      * Constructs a <code>UiInput</code> object.
      */
-    public UiInput() {
+    UiInput() {
         uiHelper = new UiHelper();
-        logger = Logger.getLogger(UiInput.class.getName());
-        initialiseLogger();
+        mainLogger = new MainLogger(UiInput.class.getName());
     }
 
     /**
@@ -37,7 +34,7 @@ public class UiInput {
     String getCommand() throws DietException {
         String command = readCommand();
         String processedCommand = processCommand(command);
-        logger.log(Level.FINE, "Processed user command: " + processedCommand);
+        mainLogger.log(Level.FINE, "Processed user command: " + processedCommand);
         return processedCommand;
     }
 
@@ -58,21 +55,11 @@ public class UiInput {
      * @throws DietException If the the user command is empty after trimming.
      */
     String processCommand(String command) throws DietException {
-        logger.log(Level.FINE, "User command to process: " + command);
+        mainLogger.log(Level.FINE, "User command to process: " + command);
         if (uiHelper.isEmptyString(command)) {
-            logger.log(Level.WARNING, "Command is empty!");
+            mainLogger.log(Level.WARNING, "Command is empty!");
             throw new DietException("Command is empty!");
         }
         return uiHelper.trimString(command);
-    }
-
-    /**
-     * Initialises the logger and sets the log level.
-     */
-    void initialiseLogger() {
-        Handler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.SEVERE);
-        logger.addHandler(consoleHandler);
-        logger.setLevel(Level.SEVERE);
     }
 }
