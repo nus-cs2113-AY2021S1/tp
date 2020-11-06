@@ -1,9 +1,14 @@
 # Wamika Malik - Project Portfolio Page
 
 ## Overview
+#### Project: Nav@NUS
+Nav@NUS is a desktop application that aids users in getting around NUS. The user interacts with it using a CLI and thus,
+ this application is appropriate for users who can type fast.
 
+## Summary of Contributions
+Given below are my contributions to the project.
 
-### Summary of Contributions#### New Feature: Find a bus route between 2 locations 
+#### New Feature: Find a bus route between 2 locations 
 * What it does: it allows the user to find all direct bus routes between 2 locations.
 * Justification: This is one of the main features of the product as it aids navigation by allowing the user to find all 
 buses that go from one bus stop to another. It further eases the user's travel by displaying intermediate stops for each
