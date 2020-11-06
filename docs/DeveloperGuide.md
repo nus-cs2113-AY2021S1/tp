@@ -372,17 +372,21 @@ program will continue to run.
 #### 2.4.4. Implementation of UserStorage
 
 Unlike `TopicsStorage` which constructs objects, `UserStorage` accesses existing objects in order to extract their attributes.
-The following sequence diagram shows an example of getting the topic description from a `Topic` object within the `TopicList`.
+The following sequence diagram shows an example of getting the topic description from a `Topic` object within the `TopicList` in order to save attributes for that particular `Topic` object.
 
 ![UserStorage::save Sequence Diagram](./images/UserStorage_save.png)
 
 It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` and continues to persist until the program shuts down.
+
 A similar method is used to extract the attributes from each `Question` object inside the `Topic` object.
 For example, the `wasAnsweredCorrectly` method is called on the `Question` object to check if it was answered
 correctly by the user or not.
 This value is then stored as an attribute of the question in the JSON file.
+
 Loading back the user data is done in reverse. If the boolean value of the key `correct` is true for a
-particular question, then the `markAsAnsweredCorrectly` method is called on the corresponding `Question` object.
+particular question, then the `markAsAnsweredCorrectly` method is called on the corresponding `Question` object. This is depicted below.
+
+![UserStorage::load Sequence Diagram](./images/UserStorage_load.png)
 
 ### 2.5. UI Component
 
