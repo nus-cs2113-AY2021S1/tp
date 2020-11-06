@@ -9,7 +9,7 @@
 ## Table of Content
 1.  [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
-<br/>&nbsp;1.2 [Using This Guide](#12-using-this-guide)
+<br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
 2.  [Setting up](#2-setting-up)
 
@@ -546,7 +546,7 @@ to **create new** `Workspace`:
 
 <br/>
 
-**Step 2:** User enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser` and then further parsed by `WorkspaceParser`.
+**Step 2:** `User` enters the command `workspace -n Netflix Animation Studio`, the input will be processed and parsed by `Parser` and then further parsed by `WorkspaceParser`.
 
 **Step 3:** Upon completion of parsing and input validation, `WorkspaceParser` will create a `WorkspaceCommand` object with the extracted `commandOption` and `workspaceName` parameter and return it to `Main`.
 
@@ -631,7 +631,7 @@ As there needs to be an `activeWorkspace` set at all times for operations such a
 
 | Approach | Pros | Cons  |
 | --- | --- | --- |
-| Scan from data folder and pick first result.  | Able to adapt to changes even if malicious edits were made to file system. | User may need to switch to his favourite `Workspace` on each startup, if any. |
+| Scan from data folder and pick first result.  | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favourite `Workspace` on each startup, if any. |
 | Store last used `Workspace`.                  | `User` might gain some convenience of not needing to switch to his favourite `Workspace`. | Prone to potential issues from the file system. |
 
 We picked the first approach as it is the safer option. By allowing **AniChan** to scan and adapt to file system changes (e.g. `User` accidentally moves/renames/deletes `Workspace` on his hard drive), we avoid potential issues of relying on old information created in previous runtime which may hinder user experience.
