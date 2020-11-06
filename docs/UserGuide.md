@@ -127,7 +127,7 @@ Format: `help`
 
 Expected outcome:
 
-![help](images/help.PNG)
+![help](images/Help_command.PNG)
 
 *Figure 3. A list of available commands and their formats will be displayed.*
 
@@ -157,12 +157,12 @@ Expected outcome:
 
 *Figure 5. After adding "borrow book" with no other inputs.*
 
-![add_remainder_set](images/reminder_set/png)
+![remainder_set](images/reminder_set/png)
 
 *Figure 6. After adding "Movie" with starting time at 05:00pm, end time at 07:00pm and priority HIGH with 
 a reminder set for 3:30pm*
 
-![add_remainder_prompt](images/reminder_prompt/png)
+![remainder_prompt](images/reminder_prompt/png)
 
 *Figure 7. After the reminder has reached the specified time*
 
