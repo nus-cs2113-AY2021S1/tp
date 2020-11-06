@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StandardExerciseListTest {
+
     ArrayList<Double> duration = new ArrayList<>();
     ArrayList<Integer> sets = new ArrayList<>();
 
