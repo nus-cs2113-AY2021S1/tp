@@ -26,7 +26,8 @@ public class ErrorHandling extends Exception {
                 + "'Running Man' try `RunningMan` or `Running_Man`."),
         EXCEPTION_INVALID_RATING_INPUT("\tSorry! This is an invalid rating! Try again!"),
         EXCEPTION_INPUT_LARGER_THAN_EXPECTED("\tSorry! It seems like you have entered the wrong number! Try again!"),
-        EXCEPTION_INVALID_TIME_INPUT("\tSorry! It seems like you have entered the wrong time format.");
+        EXCEPTION_INVALID_TIME_INPUT("\tSorry! It seems like you have entered the wrong time format."),
+        EXCEPTION_EMPTY_REVIEW("\tThere is no review for this show!");
 
 
         private String exception;
