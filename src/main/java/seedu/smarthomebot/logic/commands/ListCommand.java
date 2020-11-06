@@ -66,16 +66,16 @@ public class ListCommand extends Command {
                 return new CommandResult("Invalid Format");
             }
         } catch (EmptyApplianceListException e) {
-            commandLogger.log(Level.INFO, MESSAGE_LIST_NO_APPLIANCES);
+            commandLogger.log(Level.WARNING, MESSAGE_LIST_NO_APPLIANCES);
             return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
         } catch (LocationNotFoundException e) {
-            commandLogger.log(Level.INFO, "Location: \"" + filteredLocation + "\" does not exist.");
+            commandLogger.log(Level.WARNING, "Location: \"" + filteredLocation + "\" does not exist.");
             return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
         } catch (NoApplianceInLocationException e) {
-            commandLogger.log(Level.INFO, "There is no Appliance in \"" + filteredLocation + "\".");
+            commandLogger.log(Level.WARNING, "There is no Appliance in \"" + filteredLocation + "\".");
             return new CommandResult("There is no Appliance in \"" + filteredLocation + "\".");
         } catch (EmptyLocationListException e) {
-            commandLogger.log(Level.INFO, MESSAGE_LIST_NO_LOCATIONS);
+            commandLogger.log(Level.WARNING, MESSAGE_LIST_NO_LOCATIONS);
             return new CommandResult(MESSAGE_LIST_NO_LOCATIONS);
         }
     }

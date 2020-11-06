@@ -29,7 +29,7 @@ public class InvalidCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        commandLogger.log(Level.INFO, feedbackToUser);
+        commandLogger.log(Level.WARNING, feedbackToUser);
         return new CommandResult(feedbackToUser);
     }
 

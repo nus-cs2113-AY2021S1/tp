@@ -35,7 +35,7 @@ public class ExitCommand extends Command {
         for (Appliance a : applianceList.getAllAppliance()) {
             a.switchOff();
         }
-        commandLogger.log(Level.WARNING, MESSAGE_EXIT_ACKNOWLEDGEMENT);
+        commandLogger.log(Level.INFO, MESSAGE_EXIT_ACKNOWLEDGEMENT);
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
     }
 }
