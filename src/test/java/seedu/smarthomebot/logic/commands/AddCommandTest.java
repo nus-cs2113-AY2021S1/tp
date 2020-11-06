@@ -68,7 +68,7 @@ public class AddCommandTest {
     }
 
     @Test
-    void addApplianceTest_DuplicateAppliance_catch_DuplicateDataException() {
+    void addApplianceTest_DuplicateAppliance_DuplicateDataException() {
         Command addAppliance = new AddCommand("l1", "BedRoom1", "500", "light");
         addAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = addAppliance.execute();
@@ -76,7 +76,7 @@ public class AddCommandTest {
     }
 
     @Test
-    void addApplianceTest_LocationNotCreated_catch_LocationNotFoundException() {
+    void addApplianceTest_LocationNotCreated_LocationNotFoundException() {
         Command addAppliance = new AddCommand("l1", "BedRoom2", "500", "light");
         addAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = addAppliance.execute();
@@ -84,7 +84,7 @@ public class AddCommandTest {
     }
 
     @Test
-    void addApplianceTest_DuplicateNameAsLocation_catch_InvalidApplianceNameException() {
+    void addApplianceTest_DuplicateNameAsLocation_InvalidApplianceNameException() {
         Command addAppliance = new AddCommand("BedRoom1", "BedRoom1", "500", "light");
         addAppliance.setData(applianceList, locationList);
         CommandResult actualCommandResult = addAppliance.execute();
