@@ -1,0 +1,103 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+"{abstract} \n RecurringEvent" --left|> Event
+DailyEvent -left|> "{abstract} \n RecurringEvent"
+WeeklyEvent -left|> "{abstract} \n RecurringEvent"
+MonthlyEvent -left|> "{abstract} \n RecurringEvent"
+YearlyEvent -left|> "{abstract} \n RecurringEvent"
+'Force DailyEvent WeeklyEvent MonthlyEvent YearlyEvent
+DailyEvent -up[hidden]- WeeklyEvent
+WeeklyEvent -up[hidden]- MonthlyEvent
+DailyEvent -up[hidden]- YearlyEvent
+
+
+class Event {
++REMINDER_DAY: String
++REMINDER_WEEK: String
+-title: String
+-startDateTime: LocalDateTime
+-endDateTime: LocalDateTime
+-isToRemind: Boolean
+-isRecurring: boolean
+-reminderPeriods: HashMap<String, ArrayList<Integer>>
++getTitle(): String
++setTitle(String): void
++getStartDateTime(): LocalDateTime
++setStartDateTime(LocalDateTime): void
++getStartDate(): LocalDate
++getStartTime(): LocalTime
++getEndDateTime(): LocalDateTime
++setEndDateTime(LocalDateTime): void
++getEndDate(): LocalDate
++getEndTime(): LocalTime
+-getLocalDateTimeStringRep(LocalDateTime): String
++getStartDateTimeString(): String
++getEndDateTimeString(): String
++getIsToRemind(): boolean
++setIsToRemind(boolean): void
++getReminderPeriods(): HashMap<String, ArrayList<Integer>>
++setReminderPeriods(HashMap<String, ArrayList<Integer>>): void
++getReminderPeriodsString(): ArrayList<String>
++getRecurring(): boolean
++hasSameStartEndDateDate(): boolean
++getEventLengthInMinutes(): int
++getReminderDates(): ArrayList<LocalDate>
++occursDuringEvent(Event): boolean
+-checkClash(LocalDateTime, LocalDateTime, LocalDateTime)
++toReminderString(): String
++toString(): String
++compareTo(Event): int
++equals(Object): boolean
+}
+
+class "{abstract} \n RecurringEvent" {
++DEFAULT_END_RECURRENCE: LocalDate
++DEFAULT_END_RECURRENCE_TIME: LocalTime
++NO_RECURRENCE_TYPE: String
++DAILY_RECURRENCE_TYPE: String
++WEEKLY_RECURRENCE_TYPE: String
++MONTHLY_RECURRENCE_TYPE: String
++YEARLY_RECURRENCE_TYPE: String
+-endRecurrenceDate: LocalDate
+-endRecurrenceTime: LocalTime
+-recurrenceType: String
++getRecurrenceType(): String
++getEndRecurrenceDate(): LocalDate
++setEndRecurrenceDate(LocalDate): void
++getEndRecurrenceDateTime(): String
++checkAfterEndRecurrence(LocalDate): boolean
++getRecurrences(LocalDate, LocalDate): ArrayList<Event>
++toReoccur(LocalDate): boolean
++getEndRecurrenceString(): String
++timeStep(LocalDate): LocalDate {abstract}
++timeStep(LocalDate, int): LocalDate {abstract}
+}
+
+class DailyEvent {
+-TIME_STEP:int
++timeStep(LocalDate): LocalDate
++timeStep(LocalDate, int): LocalDate
+}
+
+class WeeklyEvent {
+-TIME_STEP:int
++timeStep(LocalDate): LocalDate
++timeStep(LocalDate, int): LocalDate
+}
+
+class MonthlyEvent {
+-TIME_STEP:int
++timeStep(LocalDate): LocalDate
++timeStep(LocalDate, int): LocalDate
+}
+
+class YearlyEvent {
+-TIME_STEP:int
++timeStep(LocalDate): LocalDate
++timeStep(LocalDate, int): LocalDate
+}
+
+@enduml
