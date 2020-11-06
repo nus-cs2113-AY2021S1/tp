@@ -5,7 +5,7 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import exception.ExclusionFileException;
-import exception.DuplicateDataException;
+import exception.StorageDataException;
 
 import manager.admin.Admin;
 import parser.Parser;
@@ -52,7 +52,7 @@ public class Kaji {
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException
                     | IndexOutOfBoundsException | InvalidFileFormatException | ExclusionFileException
-                    | DuplicateDataException e) {
+                    | StorageDataException e) {
                 logger.warning("An error occured: " + e.getMessage());
                 ui.showError(e.getMessage());
                 ui.printLine();

@@ -109,7 +109,7 @@ public class ReviseCommand extends Command {
         toRevise.setDueBy(Scheduler.computeChapterDeadline(toRevise.getCards()), storage, access);
         CardList newCards = new CardList(allCards);
         storage.saveCards(newCards, access.getModuleLevel(), toRevise.getChapterName());
-        HistoryCommand.addHistory(ui, access, storage, reviseIndex);
+        HistoryCommand.addHistory(access, storage, reviseIndex);
     }
 
     private boolean promptNotDue(Ui ui, Chapter toRevise) {

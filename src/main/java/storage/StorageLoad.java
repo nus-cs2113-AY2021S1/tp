@@ -195,7 +195,7 @@ public class StorageLoad {
                 String duePath = filePath + "/" + module + "/" + "dues" + "/" + target + "due" + ".txt";
                 boolean success = StorageWrite.createChapterDue(duePath, dirPath);
                 if (!success) {
-                    throw new IOException("Error creating chapter due file");
+                    throw new IOException("Error creating chapter due file.");
                 }
                 chapters.add(new Chapter(target));
                 continue;

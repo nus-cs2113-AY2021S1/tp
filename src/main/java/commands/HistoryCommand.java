@@ -35,9 +35,9 @@ public class HistoryCommand extends Command {
         ui.showToUser(result);
     }
 
-    public static void addHistory(Ui ui, Access access, Storage storage, int reviseIndex) throws IOException {
+    public static void addHistory(Access access, Storage storage, int reviseIndex) throws IOException {
         LocalDate date = java.time.LocalDate.now();
-        storage.createHistory(ui, date.toString());
+        storage.createHistory(date.toString());
         String moduleName = access.getModule().getModuleName();
         String chapterName = access.getModule().getChapters().getChapter(reviseIndex).getChapterName();
         History history = new History(moduleName, chapterName);

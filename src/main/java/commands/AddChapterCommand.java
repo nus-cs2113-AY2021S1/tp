@@ -33,7 +33,7 @@ public class AddChapterCommand extends AddCommand {
     private String addChapter(Access access, Storage storage, Chapter chapter) throws IOException {
         Module newModule = access.getModule();
         ChapterList chapters = newModule.getChapters();
-        boolean isChapterExist = chapters.checkChapterExistence(chapter);
+        boolean isChapterExist = chapters.checkChapterExistence(chapter.getChapterName().toLowerCase());
         if (isChapterExist) {
             String result = String.format(MESSAGE_ITEM_EXISTED, CHAPTER, chapter.getChapterName(), CHAPTER);
             return result;

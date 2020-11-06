@@ -1,13 +1,12 @@
 package storage;
 
 import common.KajiLog;
-import exception.DuplicateDataException;
+import exception.StorageDataException;
 import exception.ExclusionFileException;
 import manager.chapter.CardList;
 import manager.chapter.Chapter;
 import manager.history.History;
 import manager.module.Module;
-import ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,8 +20,8 @@ import static storage.StorageLoad.checkExists;
 public class StorageWrite {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
-    public static final String MESSAGE_CREATED = "Successfully created new %1$s %2$s\n";
-    public static final String MESSAGE_EXISTS = "%1$s %2$s already exists\n";
+    private static final String MESSAGE_CREATED = "Successfully created new %1$s %2$s\n";
+    private static final String MESSAGE_EXISTS = "%1$s %2$s already exists\n";
 
     public static final String FILE = "file";
     public static final String DIR = "directory";
@@ -192,7 +191,7 @@ public class StorageWrite {
 
     //@@author Jane-Ng
     protected static void renameChapter(String newChapterName, Module module, Chapter chapter, String filePath)
-            throws DuplicateDataException {
+            throws StorageDataException {
         File chapterFile = new File(filePath
                 + "/" + module.getModuleName()
                 + "/" + chapter.getChapterName() + ".txt");
@@ -208,27 +207,27 @@ public class StorageWrite {
                 + "/dues"
                 + "/" + newChapterName + "due.txt"));
         if (!chapterSuccess || !dueSuccess) {
-            throw new DuplicateDataException("A chapter with this name already exists.");
+            throw new StorageDataException("Error renaming the chapter. Please check your directory.");
         }
     }
 
     //@@author Jane-Ng
     protected static void renameModule(String newModuleName, Module module, String filePath)
-            throws DuplicateDataException {
+            throws StorageDataException {
         File file = new File(filePath + "/" + module.getModuleName());
         boolean success = file.renameTo(new File(filePath + "/" + newModuleName));
         if (!success) {
-            throw new DuplicateDataException("A module with this name already exists.");
+            throw new StorageDataException("Error renaming the module. Please check your directory.");
         }
     }
 
     //@@author Zhu-Ze-Yu
-    protected static void createHistory(Ui ui, String date) {
+    protected static void createHistory(String date) throws IOException {
         try {
             File f = new File("data/history/" + date + ".txt");
             createFile(f);
         } catch (IOException e) {
-            ui.showError("Error creating the data/history file.");
+            throw new IOException("Error creating the data/history file.");
         }
     }
 

@@ -39,10 +39,18 @@ public class Card {
     }
 
     public String getQuestion() {
-        return "[Q] " + question;
+        return question;
     }
 
     public String getAnswer() {
+        return answer;
+    }
+
+    public String getRevisionQuestion() {
+        return "[Q] " + question;
+    }
+
+    public String getRevisionAnswer() {
         return "[A] " + answer;
     }
 

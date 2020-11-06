@@ -34,4 +34,15 @@ public class CardList {
     public ArrayList<Card> getAllCards() {
         return cards;
     }
+
+    public boolean checkCardExistence(String newQuestion, String newAnswer) {
+        for (Card card : cards) {
+            String question = card.getQuestion().toLowerCase();
+            String answer = card.getAnswer().toLowerCase();
+            if (question.equals(newQuestion) && answer.equals(newAnswer)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -33,7 +33,7 @@ public class AddModuleCommand extends AddCommand {
     private String addModule(Access access, Storage storage, Module module) {
         Admin newAdmin = access.getAdmin();
         ModuleList modules = newAdmin.getModules();
-        boolean isModuleExist = modules.checkModuleExistence(module);
+        boolean isModuleExist = modules.checkModuleExistence(module.getModuleName().toLowerCase());
         if (isModuleExist) {
             String result = String.format(MESSAGE_ITEM_EXISTED, MODULE, module.getModuleName(), MODULE);
             return result;

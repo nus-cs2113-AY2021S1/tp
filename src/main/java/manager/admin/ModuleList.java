@@ -31,8 +31,7 @@ public class ModuleList {
         return modules.get(moduleIndex);
     }
 
-    public boolean checkModuleExistence(Module newModule) {
-        String newModuleName = newModule.getModuleName().toLowerCase();
+    public boolean checkModuleExistence(String newModuleName) {
         for (Module module : modules) {
             String moduleName = module.getModuleName().toLowerCase();
             if (moduleName.equals(newModuleName)) {
