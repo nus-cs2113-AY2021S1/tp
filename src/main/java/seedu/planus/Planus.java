@@ -4,8 +4,10 @@ import seedu.commands.LogicManager;
 import seedu.data.Model;
 import seedu.storage.Storage;
 import seedu.ui.Ui;
-import java.text.ParseException;
+
 import java.io.IOException;
+import java.text.ParseException;
+
 public class Planus {
     /**
      * Main entry-point for the java.duke.Duke application.

@@ -7,7 +7,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 
@@ -23,7 +22,7 @@ public class Task {
     private Priority priority;
 
     public Task(String description, String dateString, String startTime, String endTime, String priorityString)
-        throws InvalidPriorityException, InvalidDatetimeException {
+            throws InvalidPriorityException, InvalidDatetimeException {
         this.description = description;
         date = dateStringToDate(dateString);
         this.startTime = timeStringToTime(startTime);
@@ -41,6 +40,7 @@ public class Task {
         this.priority = priority;
         this.taskID = taskID;
     }
+
     public Task(LocalDate date, LocalTime startTime, LocalTime endTime, String description, Priority priority) {
         this.description = description;
         this.date = date;
@@ -52,7 +52,7 @@ public class Task {
 
     public Task(String taskID, String description, String dateString,
                 String startTime, String endTime, String priorityString)
-        throws InvalidPriorityException, InvalidDatetimeException {
+            throws InvalidPriorityException, InvalidDatetimeException {
         this.description = description;
         date = dateStringToDate(dateString);
         this.startTime = timeStringToTime(startTime);
@@ -111,17 +111,17 @@ public class Task {
         }
         Priority priority;
         switch (priorityString) {
-        case "1":
-            priority = Priority.LOW;
-            break;
-        case "2":
-            priority = Priority.MEDIUM;
-            break;
-        case "3":
-            priority = Priority.HIGH;
-            break;
-        default:
-            throw new InvalidPriorityException();
+            case "1":
+                priority = Priority.LOW;
+                break;
+            case "2":
+                priority = Priority.MEDIUM;
+                break;
+            case "3":
+                priority = Priority.HIGH;
+                break;
+            default:
+                throw new InvalidPriorityException();
         }
         return priority;
     }

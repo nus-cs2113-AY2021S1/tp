@@ -3,6 +3,7 @@ package seedu.storage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import seedu.data.TaskMap;
+import seedu.parser.CalParser;
 import seedu.task.Priority;
 import seedu.task.Task;
 
@@ -11,14 +12,11 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Scanner;
-
-import seedu.parser.calParser;
-
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static seedu.messages.Messages.NO_SUCH_FILE;
 
@@ -101,7 +99,7 @@ public class Storage {
         Priority priority;
         if (dirFile.isDirectory()) {
             File calfile = new File(pathName + "/" + inputPathName);
-            String output = calParser.lineExtractor(calfile);
+            String output = CalParser.lineExtractor(calfile);
             String[] splitInputs = output.split("UID:");
             LocalTime startTime;
             LocalTime endTime;
@@ -113,7 +111,7 @@ public class Storage {
             String taskDescription;
             for (int i = 1; i < splitInputs.length; i++) {
                 if (splitInputs[i].contains("RRULE:")) {
-                    repeatCount = calParser.countExtractor(splitInputs[i]);
+                    repeatCount = CalParser.countExtractor(splitInputs[i]);
                 } else {
                     repeatCount = 1;
                 }
@@ -122,10 +120,10 @@ public class Storage {
                 } else {
                     priority = Priority.MEDIUM;
                 }
-                taskDescription = calParser.descriptionExtractor(splitInputs[i]);
-                exceptionDates = calParser.exceptionExtractor(splitInputs[i]);
-                dates = calParser.dateExtractor(splitInputs[i], repeatCount);
-                taskDuration = calParser.timeExtractor(splitInputs[i]);
+                taskDescription = CalParser.descriptionExtractor(splitInputs[i]);
+                exceptionDates = CalParser.exceptionExtractor(splitInputs[i]);
+                dates = CalParser.dateExtractor(splitInputs[i], repeatCount);
+                taskDuration = CalParser.timeExtractor(splitInputs[i]);
                 startTime = taskDuration[0];
                 endTime = taskDuration[1];
                 taskPrinter(taskMap, dates, startTime, endTime, taskDescription, repeatCount, priority);
@@ -135,10 +133,13 @@ public class Storage {
         }
     }
 
-    public void taskPrinter(TaskMap taskMap, ArrayList<LocalDate> Dates, LocalTime startTime, LocalTime endTime, String description, int repeatCount, Priority priority) {
+    public void taskPrinter(TaskMap taskMap, ArrayList<LocalDate> dates,
+                            LocalTime startTime, LocalTime endTime,
+                            String description, int repeatCount,
+                            Priority priority) {
         Task task;
         for (int i = 0; i < repeatCount; i++) {
-            task = new Task(Dates.get(i), startTime, endTime, description, priority);
+            task = new Task(dates.get(i), startTime, endTime, description, priority);
             taskMap.addTask(task);
         }
     }

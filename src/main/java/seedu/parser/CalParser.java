@@ -9,28 +9,28 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class calParser {
+public class CalParser {
     public static int countExtractor(String splitted) {
-        String[] splittedcount = splitted.split("COUNT=");
-        String[] moreSplitted = splittedcount[1].split(";");
-        int count = Integer.parseInt(moreSplitted[0]);
+        String[] splitCount = splitted.split("COUNT=");
+        String[] lineSplit = splitCount[1].split(";");
+        int count = Integer.parseInt(lineSplit[0]);
         return count;
     }
 
     public static String descriptionExtractor(String splitted) {
-        String[] splittedcount = splitted.split("SUMMARY:");
-        String[] moreSplitted = splittedcount[1].split("\n");
-        return moreSplitted[0];
+        String[] splitCount = splitted.split("SUMMARY:");
+        String[] lineSplit = splitCount[1].split("\n");
+        return lineSplit[0];
     }
 
     public static ArrayList<LocalDate> exceptionExtractor(String splitted) throws ParseException {
         ArrayList<LocalDate> exceptionDates = new ArrayList<LocalDate>();
-        String[] splittedcount = splitted.split("\n");
-        for (String i : splittedcount) {
+        String[] splitCount = splitted.split("\n");
+        for (String i : splitCount) {
             if (i.contains("EXDATE:")) {
-                String ExDate;
-                ExDate = i.split("EXDATE:")[1];
-                LocalDate startDate = LocalDate.parse(ExDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                String exDate;
+                exDate = i.split("EXDATE:")[1];
+                LocalDate startDate = LocalDate.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
                 exceptionDates.add(startDate);
             }
         }
@@ -38,28 +38,28 @@ public class calParser {
     }
 
     public static ArrayList<LocalDate> dateExtractor(String splitString, int count) throws ParseException {
-        String[] splittedcount = splitString.split("\n");
-        ArrayList<LocalDate> Dates = new ArrayList<LocalDate>();
+        String[] splitCount = splitString.split("\n");
+        ArrayList<LocalDate> dates = new ArrayList<LocalDate>();
         int tempIndex = 0;
         LocalDate startDate;
-        for (String i : splittedcount) {
+        for (String i : splitCount) {
             if (i.contains("DTSTART:")) {
-                String ExDate;
-                ExDate = i.split("DTSTART:")[1];
-                startDate = LocalDate.parse(ExDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
-                Dates.add(startDate);
+                String exDate;
+                exDate = i.split("DTSTART:")[1];
+                startDate = LocalDate.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                dates.add(startDate);
                 tempIndex++;
             }
         }
         for (int i = 1; i < count; i++) {
-            LocalDate nextWeekDate = Dates.get(i - 1).plusDays(7);
-            boolean isNotException = exceptionChecker(Dates, nextWeekDate);
+            LocalDate nextWeekDate = dates.get(i - 1).plusDays(7);
+            boolean isNotException = exceptionChecker(dates, nextWeekDate);
             if (isNotException) {
-                Dates.add(nextWeekDate);
+                dates.add(nextWeekDate);
                 tempIndex++;
             }
         }
-        return Dates;
+        return dates;
     }
 
     public static boolean exceptionChecker(ArrayList<LocalDate> exceptionDates, LocalDate nextWeekDate)
@@ -76,19 +76,19 @@ public class calParser {
         LocalTime startTime;
         LocalTime endTime;
         LocalTime[] taskDuration = new LocalTime[2];
-        String[] splittedcount = splitted.split("\n");
-        for (String i : splittedcount) {
+        String[] splitCount = splitted.split("\n");
+        for (String i : splitCount) {
             if (i.contains("DTSTART:")) {
-                String ExDate;
-                ExDate = i.split("DTSTART:")[1];
-                LocalTime gmtTime = LocalTime.parse(ExDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                String exDate;
+                exDate = i.split("DTSTART:")[1];
+                LocalTime gmtTime = LocalTime.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
                 startTime = (gmtTime).plusHours(8);
                 taskDuration[0] = startTime;
             }
             if (i.contains("DTEND:")) {
-                String ExDate;
-                ExDate = i.split("DTEND:")[1];
-                LocalTime gmtTime = LocalTime.parse(ExDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                String exDate;
+                exDate = i.split("DTEND:")[1];
+                LocalTime gmtTime = LocalTime.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
                 endTime = (gmtTime).plusHours(8);
                 taskDuration[1] = endTime;
             }
