@@ -556,8 +556,8 @@ An example of the structure mentioned is shown in the figure below.
 
 <pre>
 data                            <em>--> Data main folder</em>
-└── Maths                       <em>--> Maths subject folder</em>
-    ├── Algebra                 <em>--> Algebra topic folder under Maths subject</em>
+└── CS2113T                     <em>--> CS2113T subject folder</em>
+    ├── Java                    <em>--> Java topic folder under CS2113T subject</em>
     │   ├── topicResults.json
     │   └── flashcards.json
     ├── subjectResults.json
@@ -673,20 +673,20 @@ the application runs. An example of the file content is shown below.
 <pre>
 [
   {                                                                  <em>--> Subject 1</em>
-    "title": "Maths",                                                
+    "title": "CS2113T",                                                
     "topics": {
-      "topics": [                                                    <em>--> Topics under Maths subject</em>
+      "topics": [                                                    <em>--> Topics under CS2113T subject</em>
         {                                                            <em>--> Topic 1</em>
-          "title": "Algebra",                                        
-          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Algebra topic</em>
+          "title": "Java",                                        
+          "flashcards": <em>[same as the content of flashcards.json]</em>,    <em>--> Flashcards under Java topic</em>
           "results": {
-            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Algebra topic</em>
+            "resultList": <em>[same as the content of topicResults.json]</em> <em>--> Results under Java topic</em>
           }
         },
         ...
       ]
     },
-    "tasks": {                                                       <em>--> Tasks under Maths subject</em>
+    "tasks": {                                                       <em>--> Tasks under CS2113T subject</em>
       "taskList": [
         {                                                            <em>--> Task 1</em>
           "description": "someTodoTask",
@@ -713,7 +713,7 @@ the application runs. An example of the file content is shown below.
       ]
     },                            
     "results": {
-      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under Maths subject</em>
+      "resultList": <em>[same as the content of subjectResults.json]</em>    <em>--> Results under CS2113T subject</em>
     }
   },
   ...                                                               <em>--> More subjects</em>
