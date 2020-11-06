@@ -12,10 +12,10 @@ import java.util.logging.ConsoleHandler;
 
 public class ScrumLogger {
     public static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static FileHandler fileHandler;
+    private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static void setup() throws IOException {
-        Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
         Logger rootLogger = Logger.getLogger("");
         Handler[] handlers = rootLogger.getHandlers();
         if (handlers[0] instanceof ConsoleHandler) {
@@ -23,14 +23,20 @@ public class ScrumLogger {
         }
 
         logger.setLevel(Level.INFO);
-        File file = new File("logs/logs.txt");
-        String parentPath = file.getAbsoluteFile().getParent();
-        System.out.println(parentPath + "/logs.txt");
-        FileHandler fileHandler = new FileHandler(parentPath + File.separator + "logs.txt");
+
+        String currentPath = System.getProperty("user.dir");
+        int index = currentPath.indexOf("tp");
+        String pathToTP = currentPath.substring(0, index + 2);
+        fileHandler = new FileHandler(pathToTP + File.separator + "logs" + File.separator + "scrum.log");
 
         SimpleFormatter formatter = new SimpleFormatter();
         fileHandler.setFormatter(formatter);
         logger.addHandler(fileHandler);
 
+    }
+
+    public static void destroy() throws IOException {
+        logger.removeHandler(fileHandler);
+        fileHandler.close();
     }
 }
