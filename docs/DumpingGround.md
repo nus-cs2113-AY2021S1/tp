@@ -125,7 +125,7 @@ __ParamHandler Class__
 ### 1.1 Logic component
 ##### <a name="commandAndLogic"></a> Command and Logic
 
-![](uml_images/manualTracker/images/Commands_Logic_edited.png)
+![](uml_images/images_updated/Commands_Logic.png)
 
 |Class| Function |
 |--------|----------|

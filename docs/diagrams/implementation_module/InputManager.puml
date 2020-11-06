@@ -18,7 +18,7 @@ rectangle InputManager {
         class ParamParser <<Singleton>> {
             + parseParams(inputString:String):HashMap
         }
-        InputParser "1" *-> "1"ParamParser : Parse param substring with >
+        InputParser "1" .> "1"ParamParser : Parse param substring with >
 
         class CommandPacket {
             - commandString : String
@@ -31,8 +31,8 @@ rectangle InputManager {
     }
 }
 
-UiManager ..> InputParser : Supply input String >
-LogicManagers ..> UiManager : Outsource handling of \nuser inputs to >
+UiManager "1" ..> "1" InputParser : Supply input String >
+LogicManagers ..> "1" UiManager : Outsource handling of \nuser inputs to >
 InputParser --> "1" CommandPacket : Generates from input string >
 LogicManagers o-> "1" CommandPacket : Use in operations >
 

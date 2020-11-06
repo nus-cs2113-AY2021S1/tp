@@ -13,20 +13,6 @@ skinparam package<<Layout>> {
 }
 
 rectangle Logic {
-    abstract class ParamHandler {
-        # requiredParams : HashSet<String>
-        # paramsSuccessfullyParsed : HashSet<String>
-        # missingRequiredParams : HashSet<String>
-        # paramChecker : ParamChecker
-        # hasParsedAllParams : boolean
-        + handleParams(packet : CommandPacket) : void
-        + getHasParsedAllRequiredParams() : boolean
-        + setRequiredParams(paramTypes : String...) : void
-        + resetAllParamCollections() : void
-        # checkParseFailedParams() : boolean
-        # checkParamRequirementSatisfied(param : String) : boolean
-        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
-    }
 
     package p1 <<Layout>> {
     }
@@ -51,17 +37,31 @@ rectangle Logic {
     p1 -[hidden] p2
     p2 -[hidden] p3
     p2 -[hidden] ParamChecker
-    p3 -[hidden] ParamHandler
 }
 
 rectangle "CommandHandlers"    {
+    abstract class ParamHandler {
+        # requiredParams : HashSet<String>
+        # paramsSuccessfullyParsed : HashSet<String>
+        # missingRequiredParams : HashSet<String>
+        # paramChecker : ParamChecker
+        # hasParsedAllParams : boolean
+        + handleParams(packet : CommandPacket) : void
+        + getHasParsedAllRequiredParams() : boolean
+        + setRequiredParams(paramTypes : String...) : void
+        + resetAllParamCollections() : void
+        # checkParseFailedParams() : boolean
+        # checkParamRequirementSatisfied(param : String) : boolean
+        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
     rectangle "Ledger CommandHandlers"    {
-        class createLedgerCommand {
+        class createLedgerCommand <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveLedgerCommand {
+        class retrieveLedgerCommand <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
@@ -72,17 +72,17 @@ rectangle "CommandHandlers"    {
     }
 
     rectangle "Entry CommandHandlers"    {
-        class createEntryCommand {
+        class createEntryCommand <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class editEntryHandler {
+        class editEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
         }
-        class retrieveEntryHandler {
+        class retrieveEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void

@@ -17,7 +17,7 @@ skinparam package<<Layout>> {
 
 
 rectangle Model {
-    class Entry {
+    class LedgerList {
     }
 }
 
@@ -31,18 +31,22 @@ rectangle LogicManagers {
         ~ {static} handleCreateLedger() : State
         ~ {static} handleOpenLedger() : State
         ~ {static} handleDeleteLedger() : State
+        + {static} execute()
     }
 
     class EntryTracker {
         ~ {static} handleCreateEntry() : State
         ~ {static} handleEditEntry() : State
         ~ {static} handleDeleteEntry() : State
+        + {static} execute()
     }
 
     class GoalTracker {
+        + {static} execute()
     }
 
     class FinanceTools{
+        + {static} execute()
     }
 
     EntryTracker --> Model : stores entries with >
@@ -52,10 +56,10 @@ rectangle LogicManagers {
 ManualTracker --> InputManager : Handles input <
 EntryTracker --> InputManager : Handles input <
 
-GoalTracker --> Entry : Tracks against \n input goal >
-GoalTracker ..> EntryTracker : Displays goal progress >
+GoalTracker --> LedgerList : Compares ledger entries \nagainst input goal >
+GoalTracker <-- EntryTracker : < Provides entry updates to
 
 
-Handler -[hidden]- Model
+
 
 @enduml

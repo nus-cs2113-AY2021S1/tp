@@ -13,8 +13,8 @@ ActorFontName ""
 User-> ":ManualTracker": Create Ledger
 
 ":ManualTracker" ->":ManualTracker": handleCreateLedger()
-    create "command:CreateLedgerCommand"
-   ":ManualTracker"-> "command:CreateLedgerCommand" : CreateLedgerCommand()
+
+   ":ManualTracker"-> "command:CreateLedgerCommand" : CreateLedgerCommand.getInstance()
     return
 
    ":ManualTracker"-> "command:CreateLedgerCommand" : handlePacket(packet)

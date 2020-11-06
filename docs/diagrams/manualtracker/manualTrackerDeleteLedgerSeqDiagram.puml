@@ -15,30 +15,29 @@ User-> ":ManualTracker": Delete Ledger
 
 ":ManualTracker" ->":ManualTracker": handleDeleteLedger()
    note left "ledger:Ledger" : "Note: Suppose this ledger instance\n will be referenced then removed."
-   create "retrieveLedgerCommand:RetrieveLedgerCommand"
-   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : RetrieveLedgerCommand()
-   return
+   ":ManualTracker"-> "retrieveLedgerHandler:retrieveLedgerHandler" : retrieveLedgerHandler.getInstance()
+   return retrieveLedgerHandler.handler
 
-   ":ManualTracker"-> "retrieveLedgerCommand:RetrieveLedgerCommand" : handlePacket(packet)
+   ":ManualTracker"-> "retrieveLedgerHandler:retrieveLedgerHandler" : handlePacket(packet)
         == Handling of Params in packet for retrieval ==
-        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "retrieveLedgerCommand:RetrieveLedgerCommand" : handleParams(packet)
-            "retrieveLedgerCommand:RetrieveLedgerCommand" -> ":ParamChecker" : setPacket(packet)
+        "retrieveLedgerHandler:retrieveLedgerHandler" -> "retrieveLedgerHandler:retrieveLedgerHandler" : handleParams(packet)
+            "retrieveLedgerHandler:retrieveLedgerHandler" -> ":ParamChecker" : setPacket(packet)
             return
             loop For all paramType in the command packet
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
-                "retrieveLedgerCommand:RetrieveLedgerCommand" -> "retrieveLedgerCommand:RetrieveLedgerCommand" : handleSingleParam
+                "retrieveLedgerHandler:retrieveLedgerHandler" -> "retrieveLedgerHandler:retrieveLedgerHandler" : handleSingleParam
                     alt "paramType = PARAM_DATE"
-                        "retrieveLedgerCommand:RetrieveLedgerCommand" ->":ParamChecker": checkAndReturnDate(paramType)
+                        "retrieveLedgerHandler:retrieveLedgerHandler" ->":ParamChecker": checkAndReturnDate(paramType)
                         return date
-                        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "ledgerList:LedgerList" : getIndexFromDate(date)
+                        "retrieveLedgerHandler:retrieveLedgerHandler" -> "ledgerList:LedgerList" : getIndexFromDate(date)
                         return index
                         note left: "Note: Set index to modify at entry list\nso that the entry of interest can be retrieved via regular\ngetter methods from entrylist"
-                        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "ledgerList:LedgerList" : setIndexToModify(index)
+                        "retrieveLedgerHandler:retrieveLedgerHandler" -> "ledgerList:LedgerList" : setIndexToModify(index)
                         return
                     else "paramType = PARAM_INDEX"
-                        "retrieveLedgerCommand:RetrieveLedgerCommand" ->":ParamChecker": checkAndReturnIndex(paramType, entryList)
+                        "retrieveLedgerHandler:retrieveLedgerHandler" ->":ParamChecker": checkAndReturnIndex(paramType, entryList)
                         return index
-                        "retrieveLedgerCommand:RetrieveLedgerCommand" -> "ledgerList:LedgerList" : setIndexToModify(index)
+                        "retrieveLedgerHandler:retrieveLedgerHandler" -> "ledgerList:LedgerList" : setIndexToModify(index)
                         return
                     end
                 return
@@ -58,7 +57,7 @@ participant ":ManualTracker"
 endBox
 
 box "Logic" #LightBlue
-participant "retrieveLedgerCommand:RetrieveLedgerCommand"
+participant "retrieveLedgerHandler:retrieveLedgerHandler"
 participant ":ParamChecker"
 endBox
 

@@ -1,0 +1,60 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+left to right direction
+
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Storage {
+}
+
+rectangle Model {
+        rectangle Data {
+
+        class Item {
+        }
+
+        class XYZItem {
+        }
+
+        class AccountStorage {
+        }
+
+        class Goal {
+        }
+    }
+    rectangle DataList {
+
+        class XYZItemList{
+        }
+
+        class ItemList{
+        }
+
+    }
+
+}
+ItemList -|> XYZItemList
+XYZItem --|> Item
+XYZItemList --> "*" XYZItem #line:red;text:red : contains >
+
+rectangle "       \nLogicManagers\n         " {
+}
+
+
+"       \nLogicManagers\n         " --> "1" XYZItemList #line:red;text:red : keeps track \nof items with >
+"       \nLogicManagers\n         " --> "*" AccountStorage : Manages >
+"       \nLogicManagers\n         " --> "*" Goal : Manages >
+
+Storage ..> XYZItemList #line:green;text:green : < Saves and Loads LedgerList
+Storage ..> Goal #line:green;text:green : < Saves and Loads Goal
+
+@enduml

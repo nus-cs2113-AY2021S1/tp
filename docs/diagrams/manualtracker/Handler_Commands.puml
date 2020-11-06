@@ -26,40 +26,40 @@ rectangle "LogicManagers" {
 }
 
 rectangle "CommandHandlers" {
-    rectangle LedgerHandlers {
-        class createLedgerHandler {
+    rectangle "Ledger CommandHandlers" {
+        class createLedgerHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : HandlerPacket) : void
         }
-        class retrieveLedgerHandler {
+        class retrieveLedgerHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : HandlerPacket) : void
         }
-        ManualTracker --> createLedgerHandler
-        ManualTracker --> retrieveLedgerHandler
+        ManualTracker ..> "1" createLedgerHandler
+        ManualTracker ..> "1" retrieveLedgerHandler
     }
 
-    rectangle EntryHandlers {
-        class createEntryHandler {
+    rectangle "Entry CommandHandlers" {
+        class createEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : HandlerPacket) : void
         }
-        class editEntryHandler {
+        class editEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : HandlerPacket) : void
         }
-        class retrieveEntryHandler {
+        class retrieveEntryHandler <<Singleton>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : HandlerPacket) : void
         }
-        EntryTracker --> createEntryHandler
-        EntryTracker --> retrieveEntryHandler
-        EntryTracker --> editEntryHandler
+        EntryTracker ..> "1" createEntryHandler
+        EntryTracker ..> "1" retrieveEntryHandler
+        EntryTracker ..> "1" editEntryHandler
 
     }
 }
