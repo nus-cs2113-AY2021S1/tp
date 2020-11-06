@@ -16,7 +16,8 @@ import fitr.command.DeleteCommand;
 import fitr.command.ExitCommand;
 import fitr.command.AddGoalCommand;
 import fitr.common.Commands;
-import fitr.ui.Ui;
+
+import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 
 /**
  * Parses the user input.
@@ -53,7 +54,7 @@ public class Parser {
             return new EditCommandParser(arguments).editCommand();
         case Commands.COMMAND_HELP:
             if (arguments.length() != 0) {
-                return new InvalidCommand("Extra parameters");
+                return new InvalidCommand(PHRASE_EXTRA_PARAMETERS);
             }
             return new HelpCommand(arguments);
         case Commands.COMMAND_DELETE:
@@ -61,6 +62,9 @@ public class Parser {
         case Commands.COMMAND_CLEAR:
             return new ClearCommand(arguments);
         case Commands.COMMAND_BYE:
+            if (arguments.length() != 0) {
+                return new InvalidCommand(PHRASE_EXTRA_PARAMETERS);
+            }
             return new ExitCommand(arguments);
         case Commands.COMMAND_GOAL:
             return new AddGoalCommand(arguments);

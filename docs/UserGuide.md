@@ -27,6 +27,9 @@ This quick start section provides a step-by-step procedure to get you started wi
 2. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
 3. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
 4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
+
+> :bulb: Please resize your window to ensure that the separator lines are not wrapped.
+
 5. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
 6. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
 
@@ -180,26 +183,7 @@ clear                                                                 Clear all 
 bye                                                                   Exit the application
 ```
 
-### 2.2.2 Viewing your profile
-If you want to check your profile, you can use this command. The profile includes your name, age, gender, height, weight, and your fitness level.
 
-Format: `view profile`
-
-### 2.2.3 Viewing your BMI
-Body mass index (BMI) is a value derived from the mass and height of a person (BMI = mass (kg) / height^2 (m^2)). The BMI is a convenient rule of thumb used to broadly categorize a person as underweight, normal weight, overweight, or obese. You can view your BMI using this command.
-
-Format: `view bmi`
-
-### 2.2.4 Viewing food entries
-You can view the past food entries you have previously added to Fitr. All food entries will be grouped by their dates and displayed in a list form within their groups. You may choose to view all the food entries or only food entries for a specific date.
-
-To view all food entries, you may use the `view food` command.
-
-Format: `view food`
-
-Example of an expected outcome is as follows:
-
-```
 Here is the list of your food:
 Date: 21/10/2020
 [1] Food: chicken rice

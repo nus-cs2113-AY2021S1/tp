@@ -1,6 +1,7 @@
 package fitr.command;
 
 import fitr.common.DateManager;
+import fitr.common.Messages;
 import fitr.goal.Goal;
 import fitr.exercise.Recommender;
 import fitr.list.ExerciseList;
@@ -35,6 +36,7 @@ import static fitr.common.Messages.USER_PROFILE_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
 import static fitr.common.Messages.FOOD_HEADER;
+import static fitr.common.Messages.QUANTITY_HEADER;
 import static fitr.common.Messages.SPACE_FORMATTING;
 import static fitr.common.Messages.CAL_HEADER;
 import static fitr.common.Messages.EXERCISE_HEADER;
@@ -45,6 +47,9 @@ import static fitr.common.Messages.ERROR_INVALID_DATE;
 import static fitr.common.Messages.EMPTY_EXERCISE_LIST_DATE;
 import static fitr.common.Messages.EMPTY_FOOD_LIST_DATE;
 import static fitr.common.Messages.NO_RECORDS_FOUND;
+import static fitr.common.Messages.VIEW_FOOD_TIP;
+import static fitr.common.Messages.VIEW_EXERCISE_TIP;
+import static fitr.common.Messages.VIEW_SUMMARY_TIP;
 
 public class ViewCommand extends Command {
 
@@ -59,8 +64,9 @@ public class ViewCommand extends Command {
         } else if (command.equalsIgnoreCase(COMMAND_EXERCISE)) {
             viewExercise(listManager.getExerciseList());
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
-            viewSummary(listManager.getFoodList(), listManager.getExerciseList());
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_SUMMARY)) {
+            viewSummary(listManager.getFoodList(), listManager.getExerciseList(), false);
+        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_VIEW_SUMMARY)
+                && command.split(" ").length == 2) {
             viewSummaryByDate(listManager.getFoodList(), listManager.getExerciseList(), command.split(" ")[1]);
         } else if (command.equalsIgnoreCase(COMMAND_VIEW_BMI)) {
             viewBmi(user);
@@ -68,9 +74,11 @@ public class ViewCommand extends Command {
             viewProfile(user);
         } else if (command.equalsIgnoreCase(COMMAND_GOAL)) {
             viewGoal(listManager.getFoodList(), listManager.getExerciseList(), listManager.getGoalList(), user);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_EXERCISE)) {
+        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_EXERCISE)
+                && command.split(" ").length == 2) {
             viewExerciseByDate(listManager.getExerciseList(), command.split(" ")[1], true);
-        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_FOOD)) {
+        } else if (command.split(" ")[0].equalsIgnoreCase(COMMAND_FOOD)
+                && command.split(" ").length == 2) {
             viewFoodByDate(listManager.getFoodList(), command.split(" ")[1], true);
         } else {
             Ui.printFormatError(COMMAND_VIEW);
@@ -97,11 +105,14 @@ public class ViewCommand extends Command {
                 }
                 Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
                         + FOOD_HEADER + foodList.getFood(index).getFoodName()
+                        + SPACE_FORMATTING + QUANTITY_HEADER + foodList.getFood(index).getAmountOfFood()
                         + SPACE_FORMATTING + CAL_HEADER + foodList.getFood(index).getCalories());
                 index++;
                 printIndex++;
             }
         }
+        System.out.println("-".repeat(136));
+        Ui.printCustomMessage(VIEW_FOOD_TIP);
     }
 
     //View exercise
@@ -129,9 +140,11 @@ public class ViewCommand extends Command {
                 printIndex++;
             }
         }
+        System.out.println("-".repeat(136));
+        Ui.printCustomMessage(VIEW_EXERCISE_TIP);
     }
 
-    private void viewSummary(FoodList foodList, ExerciseList exerciseList) {
+    private void viewSummary(FoodList foodList, ExerciseList exerciseList, Boolean isDate) {
         int foodIndex = 0;
         int exerciseIndex = 0;
         int totalCalorieConsumed = 0;
@@ -196,8 +209,12 @@ public class ViewCommand extends Command {
             Ui.printCustomMessage(String.valueOf(totalCalorieBurnt + totalCalorieConsumed));
             totalCalorieBurnt = 0;
             totalCalorieConsumed = 0;
+            Ui.printCustomMessage("");
         }
-
+        if (!isDate) {
+            System.out.println("-".repeat(136));
+            Ui.printCustomMessage(VIEW_SUMMARY_TIP);
+        }
     }
 
     private void viewSummaryByDate(FoodList foodList, ExerciseList exerciseList, String date) {
@@ -205,7 +222,7 @@ public class ViewCommand extends Command {
             LocalDate.parse(date, DateManager.formatter);
             ExerciseList exerciseListByDate = viewExerciseByDate(exerciseList, date, false);
             FoodList foodListByDate = viewFoodByDate(foodList, date, false);
-            viewSummary(foodListByDate, exerciseListByDate);
+            viewSummary(foodListByDate, exerciseListByDate, true);
         } catch (Exception ex) {
             Ui.printCustomError(ERROR_INVALID_DATE);
         }

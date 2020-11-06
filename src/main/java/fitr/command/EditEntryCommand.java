@@ -17,6 +17,7 @@ import fitr.user.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,7 +61,7 @@ public class EditEntryCommand extends Command {
                 Ui.printInvalidCommandError();
                 break;
             }
-        } catch (NumberFormatException | FitrException e) {
+        } catch (NumberFormatException | FitrException | DateTimeParseException e) {
             Ui.printCustomError("Invalid value entered!");
         }
 
@@ -95,8 +96,9 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        String date = matcher.group("date").trim();
-        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(date));
+        LocalDate date = LocalDate.parse(matcher.group("date").trim(), DateManager.formatter);
+        String formattedDate = date.format(DateManager.formatter);
+        ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(formattedDate));
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredExercises.getSize()) {
@@ -105,6 +107,11 @@ public class EditEntryCommand extends Command {
         }
 
         String exerciseName = matcher.group("exerciseName").trim();
+        if (exerciseName.isBlank()) {
+            Ui.printCustomError("Name cannot be empty!");
+            return;
+        }
+
         int calories = Integer.parseInt(matcher.group("calories").trim());
 
         if (calories < 0) {
@@ -132,8 +139,9 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        String date = matcher.group("date").trim();
-        FoodList filteredFood = new FoodList(foodList.filterByDate(date));
+        LocalDate date = LocalDate.parse(matcher.group("date").trim(), DateManager.formatter);
+        String formattedDate = date.format(DateManager.formatter);
+        FoodList filteredFood = new FoodList(foodList.filterByDate(formattedDate));
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredFood.getSize()) {
@@ -142,6 +150,11 @@ public class EditEntryCommand extends Command {
         }
 
         String foodName = matcher.group("foodName").trim();
+        if (foodName.isBlank()) {
+            Ui.printCustomError("Name cannot be empty!");
+            return;
+        }
+
         int calories = Integer.parseInt(matcher.group("calories").trim());
 
         if (calories < 0) {
@@ -160,7 +173,7 @@ public class EditEntryCommand extends Command {
         filteredFood.getFood(index - 1).setAmountOfFood(quantity);
 
         Ui.printCustomMessage("Successfully edited food to: " + foodName
-                + ", calories: " + calories + ", amount: " + quantity);
+                + ", calories (per qty): " + calories + ", amount: " + quantity);
     }
 
     private void editGoal(GoalList goalList, String arguments) throws FitrException {

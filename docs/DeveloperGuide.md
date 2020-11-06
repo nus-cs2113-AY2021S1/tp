@@ -119,9 +119,9 @@ On startup, the `Fitr` class instantiates a `Storage` object and calls its `load
 returns a `User` type object and is referenced by a pre-declared `User` type variable, which is used throughout the
 running session. 
 
-#### 3.2.5 Storage component
+#### 3.2.5 StorageManager component
 
-Under the storage component, the `StorageManager` class handles the read and write operations of the various list classes available, such as `ExerciseList` and `FoodList`, through classes such as `ExerciseStorage` and `FoodStorage`.
+Under the `StorageManager` component, the `StorageManager` class handles the read and write operations of the various list classes available, such as `ExerciseList` and `FoodList`, through classes such as `ExerciseStorage` and `FoodStorage`.
 
 <p align="center"><img src="images/StorageClassDiagram.png"></p>
 <p align="center">Figure 3: <code>StorageManager</code> class diagram</p>
@@ -135,7 +135,16 @@ If the files do not exist, the various storage objects will create the files. Fo
 Each time there is a change in the `FoodList`, `ExerciseList` or `User` objects, or when the program is exiting, `writeExerciseList()`, `writeFoodList()` and `writeUserProfile()` methods in `StorageManager` are invoked. 
 This will save the data onto the respective text files on the hard disk.
 
-#### 3.2.6 Common classes
+#### 3.2.6 ListManager component
+
+Under the `ListManager` component, the `ListManager` class handles operations on the exercise, food and goal lists, such as adding or deleting an item and clearing the lists. Figure 4 below shows the associations and dependencies present with the `ListManager` class.
+
+<p align="center"><img src="images/ListManagerClassDiagram.png"></p>
+<p align="center">Figure 4: <code>ListManager</code> class diagram</p>
+
+On startup, the `Fitr` class creates a new `ListManager` object, with `StorageManager` as its parameter. The `ListManager` object then creates `ExerciseList`, `FoodList` and `GoalList` objects, and attempt to load the data into the lists through the `StorageManager` object. If no data is found, then an empty list will be created.
+
+#### 3.2.7 Common classes
 
 Classes used by multiple components are in the `fitr.common` package.
 
@@ -146,25 +155,25 @@ This section describes how some of the features in Fitr are implemented.
 ### 4.1 Edit command
 
 When the user enters an edit command, it first passes through `Parser`. Once the input is parsed as an edit command, it is then passed to `EditCommandParser`, where it further parses the user's input. As the user is able to edit either the individual profile characteristics, food or exercise entries, the `EditCommandParser` is able parse what the user intends to edit. For example, if the user intends to edit a food entry, the input is then passed to `EditEntryCommand`, which parses the remaining arguments, and performs the required edit.
-Figure 4 below shows the sequence diagram when the user enters `edit exercise 25/10/2020 1 push ups /100`.
+Figure 5 below shows the sequence diagram when the user enters `edit exercise 25/10/2020 1 push ups /100`.
 
 <p align="center"><img src="images/EditExerciseSequenceDiagram.png"></p>
-<p align="center">Figure 4: Sequence diagram for <code>edit</code> command</p>
+<p align="center">Figure 5: Sequence diagram for <code>edit</code> command</p>
 
 ### 4.2 Help command
 
 When the user enters 'help', the `Ui` class reads it and passes it through `Parser`.  Once the input is parsed as a help command, the user input is passed to `HelpCommand`, which calls `Ui` to print the help message.
-Figure 5 below shows the sequence diagram when the user enters `help`.
+Figure 6 below shows the sequence diagram when the user enters `help`.
 
 <p align="center"><img src="images/HelpCommandSequenceDiagram.png"></p>
-<p align="center">Figure 5: Sequence diagram for <code>help</code> command</p>
+<p align="center">Figure 6: Sequence diagram for <code>help</code> command</p>
 
 ### 4.3 View command
 
 When the user enters a view command, the `Ui` class reads it and passes it through `Parser`. Once the input is parsed as a view command, it is then passed to `ViewCommand`, where it is handled based on the type of view command. Then the respective view method is called to output the messages via the `Ui` class. For example, if you intend to view your goal entry, the input is passed to `ViewCommand`, which checks the arguments after 'view' and calls the `viewGoal()` method. It then performs the required steps to retrieve the goal status for each entry and prints the results using the `printCustomMessage()` method in the `Ui` class.
 
 <p align="center"><img src="images/ViewGoalSequenceDiagram.png"></p>
-<p align="center">Figure 6: Sequence diagram for <code>view goal</code> command</p>
+<p align="center">Figure 7: Sequence diagram for <code>view goal</code> command</p>
 
 ### 4.4 Clear command
 
@@ -172,10 +181,10 @@ The `clear` command allows the user to clear either the exercise list, food list
 
 The user's input is first parsed by the `Parser` class. It is then passed to the `ClearCommand` class, which is then executed. The arguments are parsed in the `ClearCommand` class, and the required list(s) is then cleared. After clearing, it then writes the new empty list(s) to local storage.
 
-Figure 7 below shows the sequence diagram when the user inputs the `clear` command.
+Figure 8 below shows the sequence diagram when the user inputs the `clear` command.
 
 <p align="center"><img src="images/ClearCommandSequenceDiagram.png"></p>
-<p align="center">Figure 7: Sequence diagram for <code>clear</code> command</p>
+<p align="center">Figure 8: Sequence diagram for <code>clear</code> command</p>
 
 ### 4.5 Delete command
 
@@ -183,10 +192,10 @@ The `delete` command allows the user to delete an entry from either the exercise
 
 The user's input is first parsed by the `Parser` class, which returns a `DeleteCommand` to `Fitr`. Then `DeleteCommand` is executed to delete the entry in the list (i.e. food list, exercise list or goal list) by calling `ListManager` and update the corresponding local data file by calling `StorageManager`.
 
-Figure 8 below shows the sequence diagram when the user inputs the `delete` command.
+Figure 9 below shows the sequence diagram when the user inputs the `delete` command.
 
 <p align="center"><img src="images/DeleteCommandSequenceDiagram.png"></p>
-<p align="center">Figure 8: Sequence diagram for <code>delete</code> command</p>
+<p align="center">Figure 9: Sequence diagram for <code>delete</code> command</p>
 
 ### 4.6 Tip of the day
 
@@ -194,10 +203,10 @@ Fitr can give an interesting fact or a tip of exercise every time the user opens
 
 When the user opens the program, a `TipList` is automatically created by `Fitr`, which loads the tipList from `StorageManger` and passes it to `Fitr`. Then `Fitr` creates a `TipManager` and passes the tipList to `TipManager` to generate a random tip. Finally, the tip is passed to `Ui` and printed in yellow using `printMessageInYellow()`.
 
-Figure 9 below shows the sequence diagram for giving a tip.
+Figure 10 below shows the sequence diagram for giving a tip.
 
 <p align="center"><img src="images/TipCommandSequenceDiagram.png"></p>
-<p align="center">Figure 9: Sequence diagram for giving a tip</p>
+<p align="center">Figure 10: Sequence diagram for giving a tip</p>
 
 ## Appendix A: Product Scope
 ### Target user profile

@@ -16,8 +16,6 @@ import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.DateManager.getCurrentDate;
 import static fitr.common.Messages.ECHO_ADDED_GOAL;
 import static fitr.common.Messages.ERROR_IN_FILE;
-import static fitr.common.Messages.FORMAT_EXERCISE_GOAL;
-import static fitr.common.Messages.FORMAT_FOOD_GOAL;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
 import static fitr.goal.FormatGoal.formatGoal;
