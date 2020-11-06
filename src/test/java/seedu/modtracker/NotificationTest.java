@@ -43,7 +43,7 @@ class NotificationTest {
         System.setOut(new PrintStream(outContent));
         notification.start();
         String commandMsg = "Please type `open` to view the notification and an encouraging message.";
-        String notification = "You have 1 notifications." + System.lineSeparator();
+        String notification = "You have 1 notification." + System.lineSeparator();
         String expected = notification + commandMsg + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
         modules.clear();
@@ -121,6 +121,7 @@ class NotificationTest {
         }
         assertTrue(msgIsPresent);
         assertTrue(expIsPresent);
+        modules.clear();
     }
 
     @Test
