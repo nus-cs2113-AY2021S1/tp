@@ -34,6 +34,7 @@ public class Main {
         ui = new Ui();
         parser = new Parser();
         storageManager = new StorageManager(ANICHAN_STORAGE_DIRECTORY);
+
         displayWelcome();
         userSetup();
         animeDataSetup();
