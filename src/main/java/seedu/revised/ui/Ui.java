@@ -469,7 +469,7 @@ public class Ui {
 
                 if (task.getDateTime() != null) {
                     if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())
-                    & !task.getIsDone()) {
+                            & !task.getIsDone()) {
                         taskList.add(task);
                         if (firstTask == 0) {
                             System.out.println("Here are the upcoming tasks for next week!");

@@ -152,33 +152,18 @@ The `quizcard` package holds the necessary classes for the quiz functionality of
 the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
 
 #### Quiz <a name="Qclass"></a>
-`Quiz` class is an abstract class in the `quizcard` package. It is holds the result of a quiz class and the list of flashcards
-from any subject or topic classes which the user calls the quiz for. Furthermore, it contains a checkAnswer() method the
-checks the answer that the user had given with the correct answer of the quiz. If the user enters the correct answer, the 
-existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
-the user are transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
-questions that the users did not answer correctly, along the the answer that was provided by the user. 
+`Quiz` class is an abstract class in the `quizcard` package. It holds the `result ` variable to track the result of the quiz,
+the  `flashcards ` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
+The list stores the questions which the user did not answer correctly, along with the correct answer for the question and the answer
+provided by the user. The Quiz class also contains a `startQuiz` method and a `checkAnswer` method.
+ 
+ 
 
 #### SubjectQuiz <a name="Qsubject"></a>
-`SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz. The `startQuiz` method calls for the  `setupQuiz` method checks for the presence
-of topics or flashcards. Else, the application throws the `NoTopicException` for the former, and the 
-`NoFlashcardException` for the latter. If the topics have flashcards, then these are transferred to the 
-`SubjectQuiz` class, while the maximum score of the quiz is set to be the total number of flashcards in the list of flashcards
-present in the `SubjectQuiz` class . 
-
-The application now returns to the `startQuiz` method and the current score of the quiz is set to zero. Subsequently, the
-application begins printing the questions from the flashcards and checks the answer that you provide. If you want to stop the 
-quiz, use the `stop` command. The application will then print out the score that you obtain. If you complete the quiz
-then the application not only prints the score, but it also prints the incorrect answers from the quiz.
-
-The following diagram shows how you can initiate the quiz for a subject.
-![first](https://user-images.githubusercontent.com/46095141/97313097-3866e200-18a1-11eb-9525-73e38ceb7cbe.png)
+`SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz for a subject.It also contains a `setupQuiz`method.
 
 #### TopicQuiz <a name="Qtopic"></a>
-`TopicQuiz` class is similar to the `SubjectQuiz` class, except for the fact that it initiates the quiz
-only for the specific topic. Furthermore, this class only throws the `NoFlashcardException` for when the topic does not 
-have any flashcards, which is detected by the `setupQuiz` method. The implementation of the `startQuiz` method is similar
-to that of the SubjectQuiz class.
+`TopicQuiz` class inherits from the `Quiz` class and initiates the quiz for a topic.It also contains a `setupQuiz`method.
 
 ##### Result <a name="Qresult"></a>
 `Result` class  stores the result of a quiz . It has three instance variables, namely the `score` variable
@@ -729,11 +714,58 @@ This content format is a result of converting a list of `Subject` objects with p
 > future versions. However, it may not be straightforward as type conversion is needed to convert the data into the
 > right types 
 > (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
+### 4.4 Implementation of the Quiz class
+The abstract quiz class  contains a checkAnswer() method that checks the answer that the user had given with the correct answer of the quiz. 
+If the user enters the correct answer, the existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
+the user are transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
+questions that the users did not answer correctly, along the the answer that was provided by the user.
+
+####4.4.1 Initiating a subject quiz
+You can start a subject quiz by entering `quiz NAMEOFSUBJECT`. Subsequently, the application retrieves the QuizSubjectCommand
+after parsing the command and calls for the `startQuiz` method.
+The `startQuiz` method calls for the  `setupQuiz` method checks for the presence of topics or flashcards. Else, the application throws the `NoTopicException` for the former, and the 
+`NoFlashcardException` for the latter. If the topics have flashcards, then these are transferred to the 
+`SubjectQuiz` class, while the maximum score of the quiz is set to be the total number of flashcards in the list of flashcards
+present in the `SubjectQuiz` class . 
+
+The application now returns to the `startQuiz` method and the current score of the quiz is set to zero. Subsequently, the
+application begins printing the questions from the flashcards and checks the answer that you provide. If you want to stop the 
+quiz, use the `stop` command. The application will then print out the score that you obtain. If you complete the quiz
+then the application not only prints the score, but it also prints the incorrect answers from the quiz.
+
+
+The following diagram shows how you can initiate the quiz for a subject.
+![first](https://user-images.githubusercontent.com/46095141/98369799-7ec3fa00-2074-11eb-9f01-e656fcebc227.png)
+
+
+#### 4.4.2 Initiating a topic quiz
+Provided that you have used the `subject NAMEOFSUBJECT` command to access a subject,you can start a subject quiz by entering `quiz NAMEOFTOPIC`. Subsequently, the application retrieves the QuizTopicCommand
+after parsing the command and calls for the `startQuiz` method. This method class for the `setupQuiz`method, which  throws the `NoFlashcardException` for when the topic does not 
+have any flashcards. The application then returns back to the `startQuiz` method. The implementation of the `startQuiz` method is similar
+to that of the SubjectQuiz class.
+
+The following diagram shows how you can initiate the quiz for a topic.
+![topic](https://user-images.githubusercontent.com/46095141/98371459-2b06e000-2077-11eb-85dd-4850dbe7bba8.png)
+
+> ℹ️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
+>if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
+>show the score obtained by the user.
+
+### 4.5 Sorting tasks
+The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
+while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist
+by assigning the `LocalDateTime` variable to be `LocalDateTimeMax`.
+
+### 4.6 Implementation of Results
+The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.
+There are three categories of descriptions: `Fail` for getting a score which is lesser than half of the maximum score, `Pass`
+for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
 
 ## 5. Logging <a name = "logging"> </a>
 Whenever you need to use logging in a class, add this line 
 
-```java
+```
+java
 private static final Logger logger = Logger.getLogger(CurrentClass.class.getName());
 ```
 
