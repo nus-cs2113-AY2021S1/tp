@@ -21,8 +21,6 @@ public class BrowseParser extends CommandParser {
     private static final String RATING_FIELD = "rating";
 
     private static final String PARAMETER_ERROR_HEADER = "Parameter : -";
-    private static final String INVALID_OPTION = " is not a valid option";
-    private static final String NOT_RECOGNISED = " is not recognised!";
     private static final String BROWSE_SETTINGS_CHANGED_INFO = "Default values modified";
     private static final String NO_PARAMETER_SPECIFIED_ERROR = "Seems like you did not specify a parameter type";
     private static final String INVALID_INPUT_ERROR = "This input is not accepted, please try again!";
@@ -101,7 +99,7 @@ public class BrowseParser extends CommandParser {
         for (String param : paramGiven) {
             paramLoops++;
             //Skip first empty field which is a blank
-            if (paramLoops == FIRST_LOOP) {
+            if (firstSplitHandler(paramLoops, param)) {
                 continue;
             }
             String[] paramParts = param.split(WHITESPACE, FIELD_SPLIT_LIMIT);
@@ -121,6 +119,25 @@ public class BrowseParser extends CommandParser {
             }
             checkForParamStacking(paramGiven.length, paramLoops, paramParts[1]);
         }
+    }
+
+    /**
+     * Checks if it is the first string after split which should be blank.
+     * Possible vector of entering invalid input, example "browse invalidInput -s rating"
+     *
+     * @param paramLoops is the current loop.
+     * @param param the param string to check.
+     * @return true if first loop, false if not first loop.
+     * @throws AniException if not blank to prevent input injection.
+     */
+    protected boolean firstSplitHandler(int paramLoops, String param) throws AniException {
+        if (paramLoops == FIRST_LOOP) {
+            if (!param.isBlank()) {
+                throw new AniException(param + INVALID_OPTION);
+            }
+            return true;
+        }
+        return false;
     }
 
     /**

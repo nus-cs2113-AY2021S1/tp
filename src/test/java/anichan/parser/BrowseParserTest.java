@@ -25,6 +25,15 @@ class BrowseParserTest {
     private static final String DUPLICATE_SORT_INPUT = "-s rating -s name";
     private static final String DUPLICATE_ORDER_INPUT = "-o asc -o dsc";
     private static final String DUPLICATE_PAGE_INPUT = "-p 3 -p 5";
+    private static final String PREPEND_INVALID_INPUT = "browse invalidInput -s rating";
+
+    @Test
+    void parse_prependingInvalidInput_throwsAniException() {
+        BrowseParser testParse = new BrowseParser();
+        assertThrows(AniException.class, () -> {
+            testParse.parse(PREPEND_INVALID_INPUT);
+        });
+    }
 
     @Test
     void parse_invalidDashParameters_throwAniException() {
