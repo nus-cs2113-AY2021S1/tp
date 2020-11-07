@@ -68,6 +68,7 @@ Before you start: Please ensure you have Java 11 installed in you computer.
 ### 3.1 Architecture
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/arch%20dia.png)
 Figure 1. Architecture Diagram
+
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
 Main:  Our main class has one class called Main.java. It is responsible for,
 At app launch, the Main.java will initialize the UI to start waiting for the input from the users.
@@ -90,6 +91,7 @@ The CanteenHelper consists of six classes:
 #### 3.2.1 Main class
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
 Figure 2. Main Logic Diagram
+
 Main logic of the whole app.
 
 #### 3.2.2 UI class
