@@ -22,10 +22,10 @@ class ExtractCommandTest {
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @Nested
-    class Test1 {
+    class TestEmptyTextSubject {
         public void setUp() {
-            String extractInput = "  \r\n extractend \r\n";
-            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            String userInput = "  \r\n extractend \r\n";
+            ByteArrayInputStream inStream = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(inStream);
             System.setOut(new PrintStream(outputStreamCaptor));
         }
@@ -49,11 +49,11 @@ class ExtractCommandTest {
     }
 
     @Nested
-    class Test2 {
+    class TestEmptyTextBody {
         @BeforeEach
         public void setUp() {
-            String extractInput = "  \r\n extractend \r\n";
-            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            String userInput = "  \r\n extractend \r\n";
+            ByteArrayInputStream inStream = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(inStream);
             System.setOut(new PrintStream(outputStreamCaptor));
         }
@@ -77,11 +77,11 @@ class ExtractCommandTest {
     }
 
     @Nested
-    class Test3 {
+    class TestPersonalEventNoDateNoTime {
         @BeforeEach
         public void setUp() {
-            String extractInput = "Hi class, please note there will be a meeting soon \r\n extractend \r\n";
-            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            String userInput = "Hi class, please note there will be a meeting soon \r\n extractend \r\n";
+            ByteArrayInputStream inStream = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(inStream);
             System.setOut(new PrintStream(outputStreamCaptor));
         }
@@ -116,12 +116,12 @@ class ExtractCommandTest {
 
 
     @Nested
-    class Test4 {
+    class TestPersonalEventDateOnly {
         @BeforeEach
         public void setUp() {
-            String extractInput = "Hi class, please note there will be a makeup lesson on 17th nov"
+            String userInput = "Hi class, please note there will be a makeup lesson on 17th nov"
                     + " and 32 jan \r\n extractend \r\n";
-            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            ByteArrayInputStream inStream = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(inStream);
             System.setOut(new PrintStream(outputStreamCaptor));
         }
@@ -159,12 +159,12 @@ class ExtractCommandTest {
 
 
     @Nested
-    class Test5 {
+    class TestPersonalEventOneDateAndTime {
         @BeforeEach
         public void setUp() {
-            String extractInput = "Hi class, please note there will be a quiz \r\n on oct 5 2020 "
+            String userInput = "Hi class, please note there will be a quiz \r\n on oct 5 2020 "
                     + "at 4pm \r\n extractend \r\n";
-            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            ByteArrayInputStream inStream = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(inStream);
             System.setOut(new PrintStream(outputStreamCaptor));
         }
@@ -196,12 +196,12 @@ class ExtractCommandTest {
 
 
     @Nested
-    class Test6 {
+    class TestPersonalEventMultipleDateAndTime {
         @BeforeEach
         public void setUp() {
-            String extractInput = "Hi class, please note there will be a quiz \r\n "
+            String userInput = "Hi class, please note there will be a quiz \r\n "
                     + "on jan 30 or may 15 at 06:00 am or 7pm \r\n extractend \r\n 2 \r\n 2 \r\n";
-            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            ByteArrayInputStream inStream = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(inStream);
             System.setOut(new PrintStream(outputStreamCaptor));
         }
@@ -244,13 +244,13 @@ class ExtractCommandTest {
     }
 
     @Nested
-    class Test7 {
+    class TestZoomEventLinkOnly {
         @BeforeEach
         public void setUp() {
-            String extractInput = "The seminar will be held via Zoom. You may tune in using this link:\n"
+            String userInput = "The seminar will be held via Zoom. You may tune in using this link:\n"
                     + "\n" + "https://nus-sg.zoom.us/j/9290988107?pwd=dDZSQ0lTa0loaTRPc1F1d01hbWVFZz09"
                     + " \r\n extractend \r\n";
-            ByteArrayInputStream inStream = new ByteArrayInputStream(extractInput.getBytes());
+            ByteArrayInputStream inStream = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(inStream);
             System.setOut(new PrintStream(outputStreamCaptor));
         }
@@ -285,8 +285,5 @@ class ExtractCommandTest {
         public void tearDown() {
             System.setOut(standardOut);
         }
-
-
-
     }
 }

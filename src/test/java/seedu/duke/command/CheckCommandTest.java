@@ -27,7 +27,7 @@ class CheckCommandTest {
         Storage storage = new Storage("data", ui);
 
         // Add events to data
-        String personalInput = "personal Go out for dinner; 05/05/20; 12:00";
+        String personalInput = "personal; Go out for dinner; 05/05/20; 12:00";
         Command addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
@@ -51,7 +51,7 @@ class CheckCommandTest {
         Storage storage = new Storage("data", ui);
 
         // Add events to data
-        String personalInput = "personal Go out for dinner; 05/05/20; 12:00";
+        String personalInput = "personal; Go out for dinner; 05/05/20; 12:00";
         Command addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 

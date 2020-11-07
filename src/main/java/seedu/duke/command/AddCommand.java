@@ -37,8 +37,8 @@ public class AddCommand extends Command {
         if (command == null || command.equals("") || command.equals(" ")) {
             isInvalidEventType = true;
         } else {
-            String[] commandWords = command.split(" ");
-            String tempEventType = commandWords[0].toLowerCase();
+            String[] commandWords = command.split(";");
+            String tempEventType = commandWords[0].toLowerCase().trim();
             switch (tempEventType) {
             case "zoom":
                 eventType = "Zoom";
@@ -54,7 +54,7 @@ public class AddCommand extends Command {
                 break;
             }
             String[] argumentWords = Arrays.copyOfRange(commandWords, 1, commandWords.length);
-            argument = String.join(" ", argumentWords);
+            argument = String.join(";", argumentWords);
         }
     }
 

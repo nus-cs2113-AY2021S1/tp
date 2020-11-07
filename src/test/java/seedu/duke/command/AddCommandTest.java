@@ -41,7 +41,7 @@ class AddCommandTest {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
-        String addInput = "zoom   ; ";
+        String addInput = "zoom;   ; 16/10/20; 4pm";
 
         Command addCommand = new AddCommand(addInput);
         addCommand.execute(data, ui, storage);
@@ -58,8 +58,8 @@ class AddCommandTest {
         Storage storage = new Storage("data", ui);
 
         // Add timetable event to data
-        String timetableInput = "timetable Math class; math building; 17/10/2000; 1300";
-        Command addCommand = new AddCommand(timetableInput);
+        String addInput = "timetable; Math class; math building; 17/10/2000; 1300";
+        Command addCommand = new AddCommand(addInput);
         addCommand.execute(data, ui, storage);
 
         assertEquals("You have successfully added this event to your list!" + System.lineSeparator()
@@ -69,14 +69,14 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_invalidPersonalEvent_printZoomEventError() throws DukeException {
+    void execute_invalidZoomEvent_printZoomEventError() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
 
         // Add zoom event with incorrect number of parameters to data
-        String zoomInput = "zoom class meeting; zoom.sg; 17/10/2000";
-        Command addCommand = new AddCommand(zoomInput);
+        String addInput = "zoom; class meeting; zoom.sg; 17/10/2000";
+        Command addCommand = new AddCommand(addInput);
         addCommand.execute(data, ui, storage);
 
         assertEquals("Incorrect number of parameters for Zoom event!" + System.lineSeparator(),
@@ -89,9 +89,8 @@ class AddCommandTest {
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
 
-        // Add personal event with invalid time
-        String zoomInput = "personal meeting; 16/9/2020; 18:89 PM";
-        Command addCommand = new AddCommand(zoomInput);
+        String addInput = "personal; meeting; 16/9/2020; 18:89 PM";
+        Command addCommand = new AddCommand(addInput);
         addCommand.execute(data, ui, storage);
 
         assertEquals("Something is wrong with the time!" + System.lineSeparator(),
@@ -99,14 +98,13 @@ class AddCommandTest {
     }
 
     @Test
-    void execute_invalidZoomEventDate_printDateParseError() throws DukeException {
+    void execute_invalidPersonalEventDate_printDateParseError() throws DukeException {
         UserData data = new UserData();
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
 
-        // Add zoom event with invalid date
-        String zoomInput = "personal meeting; 35/9/2020; 4 PM";
-        Command addCommand = new AddCommand(zoomInput);
+        String addInput = "personal; meeting; 35/9/2020; 4 PM";
+        Command addCommand = new AddCommand(addInput);
         addCommand.execute(data, ui, storage);
 
         assertEquals("Something is wrong with the date!" + System.lineSeparator(),
