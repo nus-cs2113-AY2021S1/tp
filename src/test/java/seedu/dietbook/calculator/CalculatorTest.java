@@ -61,8 +61,8 @@ class CalculatorTest {
 
     @Test
     void calculateRecomendedCalorieIntake_aPerson_recomendationOfCalorieIntake() {
-        Person harry = new Person("Harry", Gender.MALE, 19, 182, 66, 69, 75, ActivityLevel.LOW);
-        Person erica = new Person("Erica", Gender.FEMALE, 20, 168, 52, 50, 45, ActivityLevel.MEDIUM);
+        Person harry = new Person("Harry", Gender.MALE, 19, 182, 66, 69, 75, FitnessLevel.LOW);
+        Person erica = new Person("Erica", Gender.FEMALE, 20, 168, 52, 50, 45, FitnessLevel.MEDIUM);
         Calculator calculator = new Calculator(new CalculatorData());
         assertEquals(2728, calculator.calculateRecomendation(harry));
         assertEquals(1752, calculator.calculateRecomendation(erica));
