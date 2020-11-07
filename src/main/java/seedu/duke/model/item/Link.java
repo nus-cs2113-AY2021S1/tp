@@ -2,6 +2,10 @@
 
 package seedu.duke.model.item;
 
+import seedu.duke.DukeException;
+
+import java.util.regex.Matcher;
+
 public class Link extends Item {
     protected String module;
     protected String type;
@@ -14,8 +18,8 @@ public class Link extends Item {
      * @param type the type of the zoom link.
      * @param url the Zoom link.
      */
-    public Link(String module, String type, String url) {
-        super(url);//this is weird
+    public Link(String module, String type, String url) throws DukeException {
+        super(url);
         this.module = module;
         this.type = type;
         this.url = url;
