@@ -1,3 +1,6 @@
+import exception.ArriveTimeException;
+import exception.DayOfWeekException;
+
 /**
  *
  * a class used to parser user input
