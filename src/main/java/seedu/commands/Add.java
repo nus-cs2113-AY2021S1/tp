@@ -2,10 +2,11 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.MaxNumTaskException;
-import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;
+import seedu.exceptions.MaxNumTaskException;
 import seedu.task.Task;
 
 import java.util.regex.Pattern;
@@ -34,7 +35,7 @@ public class Add extends ModificationCommand {
 
 
     public Add(String description, String date, String startTime, String endTime, String priority,
-               String reminder, String reminderTime) {
+               String reminder, String reminderTime) throws InvalidCommandException {
         this.description = description;
         this.date = date;
         this.startTime = startTime;
@@ -42,10 +43,16 @@ public class Add extends ModificationCommand {
         this.priority = priority;
         this.reminder = reminder;
         this.reminderTime = reminderTime;
+
+        if (startTime != null && endTime != null) {
+            if (Integer.parseInt(startTime) >= Integer.parseInt(endTime)) {
+                throw new InvalidCommandException();
+            }
+        }
     }
 
     public CommandResult execute(Model model)
-        throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidReminderException {
+            throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
         assert description != null;
         // Handle collision by generating new taskID if the value is in use.
@@ -64,6 +71,6 @@ public class Add extends ModificationCommand {
         tasks.addTask(task);
         // update stack
         model.pushAndUpdate(tasks);
-        return new CommandResult(ADD_MESSAGE,task);
+        return new CommandResult(ADD_MESSAGE, task);
     }
 }
