@@ -10,7 +10,6 @@ import seedu.duke.model.favorite.FavList;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ExecFavCommandTest {
 
@@ -36,7 +35,7 @@ public class ExecFavCommandTest {
     }
 
     @Test
-    void executeCommand_inputWords_expectException() throws CustomException {
+    void execFavCommandConstructor_inputWords_expectException() throws CustomException {
         String input = "random words";
         try {
             ExecFavCommand command = new ExecFavCommand(input);
@@ -46,7 +45,7 @@ public class ExecFavCommandTest {
     }
 
     @Test
-    void executeCommand_inputBlank_expectException() {
+    void execFavCommandConstructor_inputBlank_expectException() {
         String input = " ";
         try {
             ExecFavCommand command = new ExecFavCommand(input);
@@ -56,7 +55,7 @@ public class ExecFavCommandTest {
     }
 
     @Test
-    void executeCommand_inputNumberAndWords_expectException() {
+    void execFavCommandConstructor_inputNumberAndWords_expectException() {
         String input = "1 random words";
         try {
             ExecFavCommand command = new ExecFavCommand(input);
@@ -83,7 +82,7 @@ public class ExecFavCommandTest {
     As size task in index 2 will be deleted from test of invalid command, valid index boundary is 3
      */
     @Test
-    void executeCommand_inputValidIndex_TaskRuns() throws CustomException {
+    void executeCommand_inputValidIndex_success() throws CustomException {
         String input = "3";
         ExecFavCommand command = new ExecFavCommand(input);
         assertDoesNotThrow(()->command.executeCommand());
