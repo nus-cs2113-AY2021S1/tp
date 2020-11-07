@@ -1,9 +1,7 @@
-import exception.WrongNumberException;
-import exception.ArriveTimeException;
-import exception.DayOfWeekException;
-import exception.YNException;
+import exception.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,7 +20,7 @@ public class UI {
      * @param sc
      * @param Order
      */
-    public static void order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order){
+    public static void order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order) throws NoStallException {
 
         Canteen canteenChoosed = getCanteen(canteens, customer,sc);
 
@@ -226,7 +224,7 @@ public class UI {
      * @param sc
      * @return
      */
-    private static Stall getStall(Customer customer, Canteen canteenChoosed, Scanner sc) {
+    private static Stall getStall(Customer customer, Canteen canteenChoosed, Scanner sc) throws NoStallException{
         try{
             System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
             int stallCount;
@@ -235,6 +233,9 @@ public class UI {
             for (Stall stall : openStall) {
                 stallCount++;
                 System.out.println(stallCount + ". " + stall);
+            }
+            if(stallCount == 0){
+                throw new NoStallException();
             }
             System.out.println("Please choose a stall:");
             int stallIdChoosed = sc.nextInt();
@@ -248,10 +249,10 @@ public class UI {
             System.out.println("  OOPS!!! Wrong stall number! Please enter again. :-(\n");
             System.out.println("____________________________________________________________\n");
             return getStall(customer,canteenChoosed,sc);
-        }catch(Exception e){
+        }catch(InputMismatchException e){
             sc.nextLine();
             System.out.println("____________________________________________________________\n");
-            System.out.println("  OOPS!!! Wrong stall number! Please enter again. :-(\n");
+            System.out.println("  OOPS!!! Not number! Please enter again. :-(\n");
             System.out.println("____________________________________________________________\n");
             return getStall(customer,canteenChoosed,sc);
         }
@@ -264,7 +265,7 @@ public class UI {
      * @param sc
      * @return
      */
-    private static Canteen getCanteen(List<Canteen> canteens, Customer customer, Scanner sc) {
+    private static Canteen getCanteen(List<Canteen> canteens, Customer customer, Scanner sc) throws NoStallException{
         try{
             System.out.println("Dear " + customer.name + ",");
             System.out.println("Please choose a canteen from the list:");
@@ -273,6 +274,9 @@ public class UI {
             for(Canteen canteen:openCanteens) {
                 canteenCount++;
                 System.out.println(canteenCount +". " + canteen);
+            }
+            if(canteenCount == 0){
+                throw new NoStallException();
             }
             System.out.println("Enter the number in front to choose:");
             int canteenIdChoosed = sc.nextInt();
@@ -286,10 +290,10 @@ public class UI {
             System.out.println("  OOPS!!! Wrong canteen number! Please enter again. :-(\n");
             System.out.println("____________________________________________________________\n");
             return getCanteen(canteens, customer,sc);
-        }catch(Exception e){
+        }catch(InputMismatchException e){
             sc.nextLine();
             System.out.println("____________________________________________________________\n");
-            System.out.println("  OOPS!!! Wrong canteen number! Please enter again. :-(\n");
+            System.out.println("  OOPS!!! Not number! Please enter again. :-(\n");
             System.out.println("____________________________________________________________\n");
             return getCanteen(canteens, customer,sc);
         }
