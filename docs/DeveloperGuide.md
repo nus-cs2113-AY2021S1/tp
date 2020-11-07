@@ -27,7 +27,7 @@ The commands are implemented in such a way as we are able to have one class for 
 #### Retrieve Command
 The flow for the retrieve command is as follows:
 ![image info](./pictures/retrieveCommandSD.png)
-1. Retrieve command extracts NRIC using parser, 
+1. Retrieve command extracts NRIC using parser. 
 2. Retrieve command searches through the patients list and obtains the patient's index.
 3. Patients list returns the patient.
 4. Ui object prints the patient.
@@ -47,6 +47,13 @@ The flow for add command is as follows:
 #### Book Command
 The flow for the book command is shown in the sequence diagram below:
 ![image info](./pictures/bookApptSequenceDiagram.PNG)
+1. Book command checks if there are available appointments.
+2. Book command extracts NRIC by calling its own method.
+3. Book command calls Ui to get the corresponding doctor name for the appointment.
+4. Book command calls Ui to get the selected appointment.
+5. The appointment is updated with the patient and doctor.
+6. Ui prints the booked appointment message.
+7. The updated appointments list is saved by Storage.
 
 #### Edit Command
 The flow for the edit command is shown in the sequence diagram below:

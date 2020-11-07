@@ -9,7 +9,8 @@ A hospital appointment log application for admins. Relieves admins on mundane ta
   * Ability to create appointments
   * Ability to book appointments
   * Improved code quality
+  * Some JUnit tests
 * Contributions to the DG:
   * Complete class diagram
-  * Book command sequence diagram
+  * Book command sequence diagram and flow
 
