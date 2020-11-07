@@ -121,14 +121,9 @@ public class DataBase {
         System.out.println("Finished Printing out all data");
     }
 
-    // -------- Search functions --------
-
-    /**
-     * This method returns the ith food item from the entire list of food from the data base
-     * @param index entry number of the food
-     * @return food object
-     */
-    public Food searchFoodByIndex(int index){
+    // ----- Food search functions -------
+    
+    public Food searchFoodByIndex(int index) {
         return foodStream().skip(index - 1).findFirst().orElseThrow();
     }
 
