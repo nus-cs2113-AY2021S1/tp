@@ -23,8 +23,10 @@ public class Messages {
     public static final String INVALID_DATETIME = "Invalid datetime!" + LS;
     public static final String MAX_NUM_TASK = "Max number of tasks reached!" + LS;
     public static final String EMPTY_DATA_STACK = "Empty data stack!" + LS;
+    public static final String NO_SUCH_FILE = "This ics file does not exist" + LS;
     public static final String INVALID_REMINDER = "Invalid reminder command!" + LS;
     public static final String IO_EXCEPTION = "Check data file!" + LS;
+
 
     public static final String WELCOME_MESSAGE = WELCOME_BORDER + LS
             + WELCOME_BORDER_SPACE + LS
@@ -72,6 +74,7 @@ public class Messages {
     public static final String BYE_MESSAGE = "Bye! See you again!";
     public static final String LIST_MESSAGE = "Here is your list of tasks:";
     public static final String ADD_MESSAGE = "Task added.";
+    public static final String IMPORT_MESSAGE = "Imported Calender.";
     public static final String EDIT_MESSAGE = "Task edited.";
     public static final String CLEAR_MESSAGE = "All tasks cleared." + LS;
     public static final String DELETE_MESSAGE = "Task deleted." + LS;
