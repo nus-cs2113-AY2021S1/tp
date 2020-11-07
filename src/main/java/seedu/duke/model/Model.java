@@ -17,7 +17,7 @@ import java.util.Map;
  * An object representing program state stored in memory.
  */
 public class Model {
-    private final Map<ListType, ItemList> listMap = new EnumMap<>(ListType.class);
+    private final Map<ListType, ItemList<?>> listMap = new EnumMap<>(ListType.class);
     private final Storage storage;
 
     public Model() {
@@ -28,7 +28,7 @@ public class Model {
         listMap.put(ListType.LINK_LIST, new LinkList());
     }
 
-    public ItemList getList(ListType listType) {
+    public ItemList<?> getList(ListType listType) {
         assert listMap.get(listType) != null;
         return listMap.get(listType);
     }
