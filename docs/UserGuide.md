@@ -72,30 +72,26 @@ Words that are highlighted in grey, for instance, list, indicate that the words 
 
 - Words that are highlighted in grey and are in upper case indicates command arguments or parameters that are to be provided by the user. For instance, if the usage instruction informs you to type `delete EVENT_INDEX` and you know that the EVENT_INDEX is 2, type into the computer program “delete 2”. 
 
-{{box op="start" cssClass="boxed noteBox"}}
-**Note!**
 
-This is a note textbox. Additional information about the command will be written in boxes such as this one. 
-{{box op="end"}}
+>**Note!**
+>
+>This is a note section. Additional information about the command will be written in sections such as this one. 
 
 Words that are highlighted in grey, in upper case and are surrounded by square brackets indicates command arguments or parameters that the user can choose to provide or not to provide. For instance, if the command instruction informs you to type `goal [NEW_GOAL]`, you can choose to omit the argument for NEW_GOAL and instead just simply type “goal”.
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
+>**Warning!**
+>
+>This is a warning section. Any user interaction with the program that may result in issues or unintended results will be written in sections such as this one. 
 
-This is a warning textbox. Any user interaction with the program that may result in issues or unintended results will be written in boxes such as this one. 
-{{box op="end"}}
 
-{{box op="start" cssClass="boxed noteBox"}}
-**Notes about the command format**
-
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-- Items in square brackets are optional
-  e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-- Items with ... after them can be used multiple times including zero times.
-  e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-{{box op="end"}}
+>**Notes about the command format**
+>
+> - Words in `UPPER_CASE` are the parameters to be supplied by the user.
+> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+> - Items in square brackets are optional
+> e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+> - Items with ... after them can be used multiple times including zero times.
+> e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 ## 2. Quick Start
 
@@ -277,21 +273,22 @@ You have successfully added this event to your list!
 [T][X] CS2101 Lecture, Location: NUS Computing on 2020-09-18, 15:30
 _________________________________
 ```
-{{box op="start" cssClass="boxed noteBox"}}
-**Note!**
-- When giving the event type, take note that it is case-insensitive:
-`add Zoom` is the same as `add zoom`
 
-- Only the full word will be recognized as the event type:
-`add z` will NOT add a zoom event
+> **Note!**
+>
+> * When giving the event type, take note that it is case-insensitive:
+> `add Zoom` is the same as `add zoom`
+>
+> * Only the full word will be recognized as the event type:
+>   add z` will NOT add a zoom event
+>
+> * Remember to add the ':' for the time, this is because `4 PM` will not be valid but `4:00 PM` will be.
 
-{{box op="end"}}
+> **Warning!**
+>
+> * Typing in the wrong format for date or time will cause the event to not be made. 
+> * Events cannot contain an empty description.
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
-- Typing in the wrong format for date or time will cause the event to not be made. 
-- Events cannot contain an empty description.
-{{box op="end"}}
 
 ### 3.3 List events: `list` (Marcus Ng)
 
@@ -320,24 +317,22 @@ Here is a list of your Zoom events:
 _________________________________
 ```
 
-{{box op="start" cssClass="boxed noteBox"}}
-**Note!**
 
-* You do not need to type the exact event type, it is case-insensitive. In other words,
-`list Zoom` is the same as `list zoom`
+> **Note!**
+>
+> * You do not need to type the exact event type, it is case-insensitive. In other words,
+> `list Zoom` is the same as `list zoom`
 
-{{box op="end"}}
 
 #### 3.3.2 List all events
 
 You can print a list of all events by executing the following command: ```list all```
 
 {{box op="start" cssClass="boxed noteBox"}}
-**Note!**
+> **Note!**
+> 
+> * Events will be listed in the order: Personal, Timetable, Zoom.
 
-* Events will be listed in the order: Personal, Timetable, Zoom.
-
-{{box op="end"}}
 
 ### 3.4 Calendar format list: `calendar` (Marcus Ng)
 
@@ -352,13 +347,12 @@ This brings you into calendar printing mode.
 - This mode is exited once you see ```End of calendar``` on pressing enter.
 
 {{box op="start" cssClass="boxed noteBox"}}
-**Note!**
+> **Note!**
 
-* Events without date or time are not printed in the calendar
-* In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until
-you exit this mode
+> * Events without date or time are not printed in the calendar
+>
+> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode
 
-{{box op="end"}}
 
 Expected output:
 
@@ -436,22 +430,18 @@ You have successfully updated the deadline for this event!
 [P][X] sleep on 2020-08-29, 23:20
 ```
 
-{{box op="start" cssClass="boxed noteBox"}}
-**Note!**
+> **Note!**
+>
+> * Deadline can only be used to set/update for Personal events
+> * The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
+> * You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
+> * AM/PM is required for 12 hour format
 
-* Deadline can only be used to set/update for Personal events
-* The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
-* You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
-* AM/PM is required for 12 hour format
 
-{{box op="end"}}
+> **Warning!**
+>
+> The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
-
-The event index keyed in have to be valid so that deadline can be created for the specified event index.
-
-{{box op="end"}}
 
 
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
@@ -521,11 +511,10 @@ _________________________________
 _________________________________
 ```
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
+>**Warning!**
+>
+>When setting personal events to repeat, do take note that the personal event needs to contain a deadline before it cn be repeated. Use the dateline command to provide a deadline to personal events that you want to repeat, but does not have a deadline. 
 
-When setting personal events to repeat, do take note that the personal event needs to contain a deadline before it cn be repeated. Use the dateline command to provide a deadline to personal events that you want to repeat, but does not have a deadline. 
-{{box op="end"}}
 
 Examples:
 
@@ -566,21 +555,18 @@ _________________________________
 You have no coinciding events!
 _________________________________
 ```
-{{box op="start" cssClass="boxed noteBox"}}
-**Note!**
 
--	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
--	The date can also be omitted entirely. If you leave a date field as blank, the command takes the current date for that field by default.
--	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
--	The time can also be omitted entirely. If you leave a time field as blank, the command takes the current time by default.
+> **Note!**
 
-{{box op="end"}}
+> *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
+> *	The date can also be omitted entirely. If you leave a date field as blank, the command takes the current date for that field by default.
+> *	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
+> *	The time can also be omitted entirely. If you leave a time field as blank, the command takes the current time by default.
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
 
-- Even when you leave a time field (e.g. `[START_DATE]`) as blank, a semicolon (;) should still be used to denote the blank field (e.g. `check ; 2:00 pm; 25/12/2020; 2359`)
-{{box op="end"}}
+> **Warning!**
+>
+> * Even when you leave a time field (e.g. `[START_DATE]`) as blank, a semicolon (;) should still be used to denote the blank field (e.g. `check ; 2:00 pm; 25/12/2020; 2359`)
 
 
 ### 3.8 Goal setting and viewing: `goal` (Marcus Ng)
@@ -596,12 +582,10 @@ When the optional argument `[GOAL]` is omitted, the current goal will be display
 
 When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
-{{box op="start" cssClass="boxed noteBox"}}
-**Note!**
+> **Note!**
+> 
+> * You can use `na` or `nil` instead of `delete` to remove goal.
 
-* You can use `na` or `nil` instead of `delete` to remove goal.
-
-{{box op="end"}}
 
 Examples:
 - ```goal get cap 5.0``` will set your current goal as “get cap 5.0”. 
@@ -728,12 +712,12 @@ _________________________________
 ``` 
 
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
 
-The event index keyed in have to be valid so that deadline can be created for the specified event index.
+> **Warning!**
+>
+> The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-{{box op="end"}}
+
 
 ### 3.13 Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
@@ -806,14 +790,13 @@ As shown above, the user can choose the date/time they want for the event as lon
  
  
 {{box op="start" cssClass="boxed noteBox"}}
-**Note!**
-- It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
-- The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
-- It is also able to attach the current year to the date if it is not specified in the text.
-- The text body can include multiple paragraphs that are copy and pasted from emails.
-- The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected.
-- The date/time/link has to be in the same line to be detected properly. For example, if the date/time/link is separated in a paragraph/by a new line it may not be detected properly. 
-{{box op="end"}}
+> **Note!**
+> * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
+> * The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
+> * It is also able to attach the current year to the date if it is not specified in the text.
+> * The text body can include multiple paragraphs that are copy and pasted from emails.
+> * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected.
+> * The date/time/link has to be in the same line to be detected properly. For example, if the date/time/link is separated in a paragraph/by a new line it may not be detected properly. 
 
 
 
