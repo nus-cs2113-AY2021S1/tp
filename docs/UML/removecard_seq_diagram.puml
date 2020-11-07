@@ -36,7 +36,7 @@ deactivate Chapter
 destroy Chapter
 RemoveCardCommand -> CardList : getAllCards()
 activate CardList
-RemoveCardCommand <-- CardList : allCards
+RemoveCardCommand <-- CardList : cards
 deactivate CardList
 [<-[hidden]- CardList
 destroy CardList
@@ -44,7 +44,7 @@ RemoveCardCommand -> Storage : saveCards(cards, module, chapter)
 activate Storage
 RemoveCardCommand <-- Storage
 deactivate Storage
-RemoveCardCommand -> RemoveCommand : prepareResult(type, card, count)
+RemoveCardCommand -> RemoveCommand : prepareResult(type, content, count)
 activate RemoveCommand
 RemoveCardCommand <-- RemoveCommand : result
 deactivate RemoveCommand
