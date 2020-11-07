@@ -45,7 +45,8 @@ Given below are my contributions to the project. <br/>
                  delete account stored in the program.
   
   * Added ability to store commands inputted by user and results of calculations. 
-    ([\#108](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/108))
+    ([\#108](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/108),
+     [\#253](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/253))
     * What it does: allows the user to store the commands inputted and results from calculations
     * Justification: This feature allows user to compare interest computations from different input values so that
                      they can decide which inputs has the best interest they can potentially accrue.
@@ -58,26 +59,31 @@ Given below are my contributions to the project. <br/>
   * User Guide
     * Added documentation for the features ```simple```, ```cyearly```, ```cmonthly```, ```cashb```, ```miles```, 
       ```store```, ```info```, ```clearinfo```, and ```exit```. 
-      ([\#115](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/115))
+      ([\#115](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/115),
+       [\#254](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/254))
     * Comestic tweaks to existing documentation 
       ([\#207](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/207),
        [\#208](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/208),
        [\#221](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/221),
        [\#223](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/223),
        [\#224](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/224),
-       [\#225](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/225))
+       [\#225](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/225)
+       [\#251](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/251))
     
    * Developer Guide
      * Added implementation details for the features ```simple```, ```cyearly```, ```cmonthly```, ```cashb```, 
        ```miles```, ```store```, ```info```, ```clearinfo```, and ```exit```. 
        ([\#85](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/85),
         [\#86](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/86),
-        [\#110](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/110))
+        [\#110](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/110),
+        [\#255](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/255),
+        [\#258](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/258))
      * Comestic tweaks to existing documentation 
        ([\#84](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/84),
         [\#126](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/126),
         [\#217](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/217),
-        [\#220](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/220))
+        [\#220](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/220)
+        [\#252](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/252))
    
 * **Community**
   * Reported bugs and suggestions for other teams 
