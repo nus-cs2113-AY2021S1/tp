@@ -8,6 +8,8 @@ package Logic {
 
 package Parser {
 Class Parser
+Class XYZCommandParser
+Class ParserUtil
 }
 
 package Command {
@@ -31,7 +33,11 @@ Class HiddenModel #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside .right.> Parser
 
-Parser .right.> XYZCommand : creates >
+Parser .right.> XYZCommandParser : creates >
+
+XYZCommandParser .down.> ParserUtil
+
+XYZCommandParser .right.> XYZCommand : creates >
 
 HiddenOutside .right.> Command : executes >
 
