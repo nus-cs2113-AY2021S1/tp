@@ -1,19 +1,24 @@
 package timetable;
 
+import exceptions.InvalidBookmarkException;
+import exceptions.InvalidDayOfTheWeekException;
+import exceptions.InvalidTimeException;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class TimeTableCommand {
-    public static Lesson addClass() throws InvalidDayOfTheWeekException {
+    public static Lesson addClass() throws InvalidDayOfTheWeekException, InvalidTimeException {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter module code: ");
         boolean isInvalid = true;
         String moduleCode = null;
         while (isInvalid) {
             moduleCode = in.nextLine();
-            if (moduleCode.length() > 7) {
+            if (moduleCode.length() > 8) {
                 System.out.println("The code exceeded the maximum number of characters allowed. Please enter again: ");
             } else {
                 isInvalid = false;
@@ -57,7 +62,7 @@ public class TimeTableCommand {
     }
 
     public static void addClassPeriods(String[] periods, int repeat, LocalDateTime startDay,
-                                       Lesson lesson) throws InvalidDayOfTheWeekException {
+                                       Lesson lesson) throws InvalidDayOfTheWeekException, InvalidTimeException {
         int startDayNum = startDay.getDayOfWeek().getValue();
         for (int i = 0; i < repeat; i++) {
             for (String period : periods) {
@@ -70,11 +75,39 @@ public class TimeTableCommand {
                 } catch (IllegalArgumentException e) {
                     throw new InvalidDayOfTheWeekException();
                 }
-                int startTime = Integer.parseInt(time.split("-")[0]);
-                int endTime = Integer.parseInt(time.split("-")[1].replaceAll("[^0-9]", ""));
-                if (time.contains("pm")) {
-                    startTime += 12;
-                    endTime += 12;
+                String start;
+                String end;
+                int startTime;
+                int endTime;
+                try {
+                    start = time.split("-")[0];
+                    end = time.split("-")[1];
+                    startTime = Integer.parseInt(start.replaceAll("[^0-9]", ""));
+                    endTime = Integer.parseInt(end.replaceAll("[^0-9]", ""));
+                    if (start.contains("am") || start.contains("pm")) {
+                        if (start.contains("pm") && startTime != 12) {
+                            startTime += 12;
+                        } else if (start.contains("am") && startTime == 12) {
+                            startTime = 0;
+                        }
+                        if (end.contains("pm") && startTime != 12) {
+                            endTime += 12;
+                        } else if (end.contains("am") && startTime == 12) {
+                            startTime = 0;
+                        }
+                    } else if (end.contains("pm")) {
+                        endTime += 12;
+                        if (startTime != 12) {
+                            startTime += 12;
+                        }
+                    } else if (end.contains("am") && startTime == 12) {
+                        startTime = 0;
+                    }
+                    if (startTime >= endTime) {
+                        throw new InvalidTimeException();
+                    }
+                } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+                    throw new InvalidTimeException();
                 }
                 int daysDifference = dayNum - startDayNum;
                 if (daysDifference < 0) {
@@ -108,7 +141,16 @@ public class TimeTableCommand {
                 System.out.println("Invalid command!\n Is the class online? (yes/no)");
             }
         }
-        final String linkOrVenue = in.nextLine();
+        isInvalid = true;
+        String linkOrVenue = null;
+        while (isInvalid) {
+            linkOrVenue = in.nextLine();
+            if (isOnline && (!linkOrVenue.contains(".") || linkOrVenue.contains(" "))) {
+                System.out.println("The link you have entered is invalid. Please enter again");
+            } else {
+                isInvalid = false;
+            }
+        }
         isInvalid = true;
         LocalDateTime date = null;
         while (isInvalid) {
@@ -149,8 +191,12 @@ public class TimeTableCommand {
                     if (startTime != 12) {
                         startTime += 12;
                     }
+                } else if (end.contains("am") && startTime == 12) {
+                    startTime = 0;
                 }
                 if (startTime < endTime) {
+                    System.out.println("You have entered an ending time that is not later than the starting time."
+                            + " Please try again ");
                     isInvalid = false;
                 }
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
@@ -187,8 +233,31 @@ public class TimeTableCommand {
     }
 
     public static void showActivities(DateList dateList) {
-        for (Event event: dateList.activities) {
-            System.out.println(event.name + "|" + event.periods.get(0).startDateTime);
+        int index = 0;
+        for (Activity activity: dateList.activities) {
+            index++;
+            System.out.println(index + ". " + activity.name + " "
+                    + activity.periods.get(0).startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        }
+    }
+
+    public static void showClass(DateList dateList) {
+        int index = 0;
+        for (Lesson lesson: dateList.lessons) {
+            index++;
+            System.out.print(index + ". " + lesson.name + " ");
+            DayOfWeek first = lesson.periods.get(0).startDateTime.getDayOfWeek();
+            int num = 1;
+            System.out.print(first);
+            try {
+                while (first != lesson.periods.get(num).startDateTime.getDayOfWeek()) {
+                    System.out.print(", " + lesson.periods.get(num).startDateTime.getDayOfWeek());
+                    num++;
+                }
+                System.out.print("\n");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.print("\n");
+            }
         }
     }
 
@@ -200,7 +269,7 @@ public class TimeTableCommand {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
 
-    public static LocalDateTime getDateTime(String command)throws ArrayIndexOutOfBoundsException {
+    public static LocalDateTime getDateTime(String command) {
         String[] dateTime;
         String[] date;
         int fromIndex = command.indexOf("from");
@@ -209,4 +278,5 @@ public class TimeTableCommand {
         return LocalDateTime.of(Integer.parseInt(date[2]),Integer.parseInt(date[1]), Integer.parseInt(date[0]),
                 0,0);
     }
+
 }

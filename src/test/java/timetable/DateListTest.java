@@ -1,5 +1,6 @@
 package timetable;
 
+import exceptions.ClashScheduleException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

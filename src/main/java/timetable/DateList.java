@@ -1,12 +1,14 @@
 package timetable;
 
+import exceptions.ClashScheduleException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DateList {
     public List<EventList> dateList;
-    public List<Event> lessons;
-    public List<Event> activities;
+    public List<Lesson> lessons;
+    public List<Activity> activities;
 
     public DateList() {
         dateList = new ArrayList<>();
@@ -33,11 +35,6 @@ public class DateList {
                 dateList.add(newList);
             }
         }
-        if (event.eventType.equals(EventType.L)) {
-            lessons.add(event);
-        } else if (event.eventType.equals(EventType.A)) {
-            activities.add(event);
-        }
     }
 
     public boolean clashDetection(Duration duration, EventList eventList) {
@@ -55,4 +52,47 @@ public class DateList {
 
     }
 
+    public void deleteActivity(int index, TimeTableStorage storage) {
+        activities.remove(index - 1);
+        dateList.clear();
+        storage.wipeFile();
+        for (Lesson lesson: lessons) {
+            try {
+                addEvent(lesson);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(lesson);
+        }
+        for (Activity activity: activities) {
+            try {
+                addEvent(activity);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(activity);
+        }
+    }
+
+    public void deleteLesson(int index, TimeTableStorage storage) {
+        lessons.remove(index - 1);
+        dateList.clear();
+        storage.wipeFile();
+        for (Lesson lesson: lessons) {
+            try {
+                addEvent(lesson);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(lesson);
+        }
+        for (Activity activity: activities) {
+            try {
+                addEvent(activity);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(activity);
+        }
+    }
 }
