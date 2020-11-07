@@ -136,7 +136,7 @@ public class WordList {
         } else {
             UI.listWordsMessage();
             for (int i = 0; i < wordList.size(); i++) {
-                System.out.println("   " + (i + 1) + "." + wordList.get(i).getDescription());
+                System.out.println("   " + (i + 1) + ". " + wordList.get(i).getDescription());
             }
         }
     }
