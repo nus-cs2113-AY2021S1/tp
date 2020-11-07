@@ -32,7 +32,8 @@ public class DineInfoCommand extends Command {
         printLine();
     }
 
-    public void checkFoodPlace(ArrayList<FoodPlace> foodPlaceList) {
+    private void checkFoodPlace(ArrayList<FoodPlace> foodPlaceList) {
+        assert foodPlaceList != null : "Data not available.";
         ArrayList<DiningOptions> searchList = new ArrayList<>();
         for (FoodPlace foodPlace : foodPlaceList) {
             ArrayList<DiningOptions> dineInfoList = foodPlace.getInfo();
