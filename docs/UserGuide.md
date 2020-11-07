@@ -117,6 +117,8 @@ and at the location bar type `cmd` and press `Enter`.
 
 - Input reminder format is either on or off, with the time component having the same HHmm in 24-hrs.
 
+- If only the index is entered for the edit command, command will still be valid.
+    - e.g. "edit 1028' is valid. 
 ```    
 
 ### Showing all commands : `help`
