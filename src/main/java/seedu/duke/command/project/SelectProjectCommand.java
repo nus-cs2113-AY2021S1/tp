@@ -1,5 +1,6 @@
 package seedu.duke.command.project;
 
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
@@ -17,6 +18,13 @@ public class SelectProjectCommand extends ProjectCommand {
     public void execute() {
         projectManager.selectProject(Integer.parseInt(parameters.get("0")));
         Ui.showToUserLn("Project " + parameters.get("0") + " has been selected.");
+        logExecution();
     }
+
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Project" + projectManager.getSelectedProject().getTitle() + "selected by user.");
+    }
+
 
 }

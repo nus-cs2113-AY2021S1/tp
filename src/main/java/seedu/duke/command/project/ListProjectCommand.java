@@ -1,5 +1,6 @@
 package seedu.duke.command.project;
 
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
@@ -25,6 +26,12 @@ public class ListProjectCommand extends ProjectCommand {
         for (Map.Entry<Integer, Project> entry: sortedProject.entrySet()) {
             displayToUser(entry.getValue(), entry.getKey());
         }
+        logExecution();
+    }
+
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Projects added shown in ascending order.");
     }
 
     /**

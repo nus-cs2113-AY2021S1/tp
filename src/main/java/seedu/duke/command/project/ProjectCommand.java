@@ -26,4 +26,7 @@ public abstract class ProjectCommand extends Command {
                 + "View projects added using \'project/list\'.");
         ScrumLogger.LOGGER.warning(message);
     }
+
+    public abstract void logExecution();
+
 }

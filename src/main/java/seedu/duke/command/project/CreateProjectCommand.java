@@ -3,7 +3,7 @@ package seedu.duke.command.project;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
-import seedu.duke.model.sprint.Sprint;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
@@ -24,6 +24,7 @@ public class CreateProjectCommand extends ProjectCommand {
         this.projectManager = projectManager;
     }
 
+    @Override
     public void execute() {
 
         boolean projectExists;
@@ -54,10 +55,12 @@ public class CreateProjectCommand extends ProjectCommand {
             }
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
             return;
         }
         projectManager.addProject(title, description, duration, sd);
         Ui.showToUserLn("Project successfully created.");
+        logExecution();
         Project addedProj = projectManager.getSelectedProject();
         printCreatedProject(addedProj);
 
@@ -67,6 +70,7 @@ public class CreateProjectCommand extends ProjectCommand {
         Ui.showToUserLn("\tTitle: " + addProj.getTitle());
     }
 
+
     public boolean checkTitleExist(String title) {
 
         Project proj;
@@ -74,7 +78,7 @@ public class CreateProjectCommand extends ProjectCommand {
             return false;
         }
 
-        for (Map.Entry<Integer, Project> entry: projectManager.getProjectList().entrySet()) {
+        for (Map.Entry<Integer, Project> entry : projectManager.getProjectList().entrySet()) {
             proj = entry.getValue();
             if (proj.getTitle().equalsIgnoreCase(title)) {
                 return true;
@@ -82,5 +86,10 @@ public class CreateProjectCommand extends ProjectCommand {
         }
         return false;
     }
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Project" + projectManager.getSelectedProject().getTitle() + "successfully added to "
+                + "ProjectManager.");
 
+    }
 }
