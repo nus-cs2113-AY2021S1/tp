@@ -43,19 +43,19 @@ public class CheckGoalStatus {
             }
 
             targetCalorie = Integer.parseInt(goalWords[3]);
-            if(targetCalorie <= 0 || targetCalorie >= 100000) {
+            if (targetCalorie <= 0 || targetCalorie >= 100000) {
                 return status;
             }
-            if (goalWords[0].equals(KEYWORD_BURN) && goalWords[1].equals(KEYWORD_LESS) &&
-                    goalWords[2].equals(KEYWORD_THAN)) {
+            if (goalWords[0].equals(KEYWORD_BURN) && goalWords[1].equals(KEYWORD_LESS)
+                    && goalWords[2].equals(KEYWORD_THAN)) {
                 if ((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
                         && !goalWords[4].equals(KEYWORD_CALORIES)) {
                     return status;
                 }
                 calorieDifference = targetCalorie - userBurntCalorie;
                 status = (calorieDifference < 0) ? SYMBOL_NO : SYMBOL_YES;
-            } else if (goalWords[0].equals(KEYWORD_BURN) && goalWords[1].equals(KEYWORD_MORE) &&
-                    goalWords[2].equals(KEYWORD_THAN)) {
+            } else if (goalWords[0].equals(KEYWORD_BURN) && goalWords[1].equals(KEYWORD_MORE)
+                    && goalWords[2].equals(KEYWORD_THAN)) {
                 if ((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
                         && !goalWords[4].equals(KEYWORD_CALORIES)) {
                     return status;
@@ -63,8 +63,8 @@ public class CheckGoalStatus {
                 calorieDifference = targetCalorie - userBurntCalorie;
                 status = String.valueOf((calorieDifference < 0) ? SYMBOL_YES :
                         formatter.format((double) userBurntCalorie / (double) targetCalorie * 100));
-            } else if (goalWords[0].equals(KEYWORD_EAT) && goalWords[1].equals(KEYWORD_MORE) &&
-                    goalWords[2].equals(KEYWORD_THAN)) {
+            } else if (goalWords[0].equals(KEYWORD_EAT) && goalWords[1].equals(KEYWORD_MORE)
+                    && goalWords[2].equals(KEYWORD_THAN)) {
                 if ((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
                         && !goalWords[4].equals(KEYWORD_CALORIES)) {
                     return status;
@@ -72,8 +72,8 @@ public class CheckGoalStatus {
                 calorieDifference = targetCalorie - userConsumedCalorie;
                 status = String.valueOf((calorieDifference < 0) ? SYMBOL_YES :
                         formatter.format((double) userConsumedCalorie / (double) targetCalorie * 100));
-            } else if (goalWords[0].equals(KEYWORD_EAT) && goalWords[1].equals(KEYWORD_LESS) &&
-                    goalWords[2].equals(KEYWORD_THAN)) {
+            } else if (goalWords[0].equals(KEYWORD_EAT) && goalWords[1].equals(KEYWORD_LESS)
+                    && goalWords[2].equals(KEYWORD_THAN)) {
                 if ((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
                         && !goalWords[4].equals(KEYWORD_CALORIES)) {
                     return status;

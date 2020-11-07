@@ -38,8 +38,8 @@ public class FormatGoal {
                 }
                 String wordCalorie = (Integer.parseInt(targetCalories) == 1) ? (SPACE_STRING + KEYWORD_CALORIE)
                         : (SPACE_STRING + KEYWORD_CALORIES);
-                newGoal = new Goal(createdDate, goalType, descriptionPart + SPACE_STRING + PHRASE_MORE_THAN + SPACE_STRING
-                        + targetCalories + wordCalorie);
+                newGoal = new Goal(createdDate, goalType, descriptionPart + SPACE_STRING
+                        + PHRASE_MORE_THAN + SPACE_STRING + targetCalories + wordCalorie);
             } else {
                 throw new ArrayIndexOutOfBoundsException();
             }
@@ -54,8 +54,8 @@ public class FormatGoal {
                 }
                 String wordCalorie = (Integer.parseInt(targetCalories) == 1) ? (SPACE_STRING + KEYWORD_CALORIE)
                         : (SPACE_STRING + KEYWORD_CALORIES);
-                newGoal = new Goal(createdDate, goalType, descriptionPart + SPACE_STRING + PHRASE_LESS_THAN + SPACE_STRING
-                        + targetCalories + wordCalorie);
+                newGoal = new Goal(createdDate, goalType, descriptionPart + SPACE_STRING
+                        + PHRASE_LESS_THAN + SPACE_STRING + targetCalories + wordCalorie);
             } else {
                 throw new ArrayIndexOutOfBoundsException();
             }

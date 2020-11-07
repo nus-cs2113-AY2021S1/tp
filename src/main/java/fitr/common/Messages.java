@@ -18,7 +18,7 @@ public class Messages {
     public static final String SPACE_STRING = " ";
     public static final String EMPTY_STRING = "";
     public static final String OPEN_SQUARE_BRACKET = "[";
-    public static final String CLOSE_SQUARE_BRACKET = "] ";
+    public static final String CLOSE_SQUARE_BRACKET = "]";
     public static final String DASH = "-";
     public static final String COLOURED_FORMAT_STRING = "\033[0;32mFormat: \033[0m";
 
@@ -100,8 +100,10 @@ public class Messages {
     public static final String ERROR_INDEX_DOES_NOT_EXIST = "Sorry, that index does not exist in the list";
     public static final String ERROR_INVALID_INDEX = "Invalid index entered!";
     public static final String ERROR_INVALID_GOAL_TYPE = "Invalid goal type!";
-    public static final String ERROR_GOAL_LESS_THAN_UPPERBOUND = "Invalid value for target calories. Please enter an amount between 0 and 100000.";
-    public static final String ERROR_GOAL_MORE_THAN_UPPERBOUND = "Invalid value for target calories. Please enter an amount between 0 (inclusive) and 100000.";
+    public static final String ERROR_GOAL_LESS_THAN_UPPERBOUND = "Invalid value for target calories. "
+            + "Please enter an amount between 0 and 100000.";
+    public static final String ERROR_GOAL_MORE_THAN_UPPERBOUND = "Invalid value for target calories. "
+            + "Please enter an amount between 0 (inclusive) and 100000.";
 
     //ViewCommand class messages
     public static final String EMPTY_FOOD_LIST = "The food list is empty...";
@@ -185,6 +187,6 @@ public class Messages {
             + "\"view summary DATE(dd/MM/yyyy)\"";
     public static final String ADD_SMART_FOOD_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
             + "\"" + FORMAT_SMART_FOOD_GOAL + "\"";
-    public static final String ADD_SMART_EXERCISE_GOAL_TIP = "Tip: You may also add a smart exercise goal using the format "
-            + "\"" + FORMAT_SMART_EXERCISE_GOAL + "\"";
+    public static final String ADD_SMART_EXERCISE_GOAL_TIP = "Tip: You may also add a smart exercise goal using "
+            + "the format \"" + FORMAT_SMART_EXERCISE_GOAL + "\"";
 }

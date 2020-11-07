@@ -28,10 +28,9 @@ public class Fitr {
             Ui.printGreetingMessage();
 
             storageManager = new StorageManager();
-            listManager = new ListManager(storageManager);
-
             user = storageManager.loadUserProfile();
             storageManager.writeUserProfile(user);
+            listManager = new ListManager(storageManager, user);
 
             TipList tipList = new TipList(storageManager.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);

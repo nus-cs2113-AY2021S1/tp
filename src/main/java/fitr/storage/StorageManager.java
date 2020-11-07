@@ -72,14 +72,14 @@ public class StorageManager {
         userStorage.writeUserProfile(user);
     }
 
-    public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
+    public ArrayList<Goal> loadGoalList(FoodList foodList, ExerciseList exerciseList,
+                                        User user) throws IOException {
         try {
-            for (Goal goal : goalStorage.loadGoalList()) {
-                Ui.printMessageInBlue(goal.getDescription());
-            }
+            goalStorage.writeGoalList(new GoalList(goalStorage.loadGoalList()), foodList, exerciseList, user);
             return goalStorage.loadGoalList();
         } catch (InvalidFileFormatException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             Ui.printCustomError("Error: Invalid goal file - new goal list created!");
+            goalStorage.writeGoalList(new GoalList(), foodList, exerciseList, user);
             return new ArrayList<>();
         }
     }

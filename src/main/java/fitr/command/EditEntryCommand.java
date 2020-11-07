@@ -196,7 +196,8 @@ public class EditEntryCommand extends Command {
                 + ", calories (per qty): " + calories + ", amount: " + quantity);
     }
 
-    private void editGoal(GoalList goalList, String arguments) throws FitrException, UpperBoundLessThanException, UpperBoundMoreThanException {
+    private void editGoal(GoalList goalList, String arguments) throws FitrException,
+            UpperBoundLessThanException, UpperBoundMoreThanException {
         LOGGER.fine("Editing a goal entry...");
         Matcher matcher = GOAL_FORMAT.matcher(arguments);
 
