@@ -279,6 +279,7 @@ The sorting of tasks by date is done using this code, which is also called on a 
 ```
     .sorted(Comparator.comparing(Task::getDate))
 ```
+
 This sorts the stream using a `Comparator` which is defined inline. The `Comparator` makes use of the `Task.getDate()` method to do the comparisons.
 This is done instead of defining a new `Comparator` class as `toCompare` is already implemented in the `LocaDate` API, and doing this simplifies the code.
 
