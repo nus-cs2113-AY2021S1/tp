@@ -146,8 +146,9 @@ The following sequence diagrams explain the interactions omitted in the main dia
 
 #### Design Considerations
 The main aim here is to find if the starting location and destination exist in a particular list of bus stops in 
-that order.<br>
-_Aspect: How bus data should be stored and retrieved._
+that order.
+
+##### Aspect: How bus data should be stored and retrieved.
 * **Alternative 1 (current choice):** Each bus is an object that contains the bus number and full route as an ArrayList.
     + Pros: Makes it easier to integrate with other functions of the app such as displaying bus route of a particular 
     bus.  
@@ -159,6 +160,9 @@ bus object contains the list of remaining stops in the route of that bus.
     the data itself has filtered out the buses that stop at the starting location.
     + Cons: A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
     that stops there. 
+    
+Given the above alternatives, alternative 1 was used considering the implementation of other features of the 
+application.
 
 ### 3.2. Full Route Display (`/routemap` Feature)
 
@@ -278,8 +282,9 @@ The following sequence diagram explains the interactions omitted in the main dia
 ![executing command](DG_Diagrams/DescFavCommand/descFavInternal.png)
 
 #### Design Considerations
-The main aim here is to change the description of a particular command in the list of favourites.<br>
-Aspect: How index and description are verified.
+The main aim here is to change the description of a particular command in the list of favourites.
+
+#####Aspect: How index and description are verified.
 * **Alternative 1 (current choice):** Perform checks on the validity of index and description at intermediate steps
     + Pros: The checks specific to `FavList` and `Fav` will be performed in those classes and all these methods 
     will be called in the main `DescFavCommand#executeCommand()` thus reducing coupling.
@@ -289,6 +294,9 @@ Aspect: How index and description are verified.
 the description is different from what is already stored.
     + Pros: It is quicker to determine that the command is invalid.
     + Cons: Requires calling functions from `FavList` and `Fav` in the parser which would increase coupling.
+    
+While alternative 2 would place all checks in one place, it can be tedious to test or debug. Therefore, alternative 1 
+was chosen. It also made the code look neater and more readable. 
     
 ### 3.7. Dining options finder (/dine Feature)
 
