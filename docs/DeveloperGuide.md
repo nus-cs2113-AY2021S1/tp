@@ -175,7 +175,7 @@ The user enters the command: checkcanteen to check the operating time of an open
 
 User can type the number before the canteen name to check its operating time.
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/icheckopencanteen.JPG)
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopencanteen.png)
 
 Figure . Sequence diagram for checkCanteenOperatingTime()
 
@@ -188,7 +188,7 @@ User can type the number before the canteen name to display the stalls inside th
  
 User can type the number before the stall name to check its operating time.
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/icheckopenstall.JPG)
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopenstall.png)
 
 Figure . Sequence diagram for checkStallOperatingTime()
 
