@@ -20,7 +20,14 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static commands.ReviseCommand.*;
+import static commands.ReviseCommand.MESSAGE_CHAPTER_NOT_DUE;
+import static commands.ReviseCommand.MESSAGE_NOT_REVISING;
+import static commands.ReviseCommand.MESSAGE_NO_CARDS_IN_CHAPTER;
+import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
+import static commands.ReviseCommand.MESSAGE_SHOW_RATING_PROMPT;
+import static commands.ReviseCommand.MESSAGE_SHOW_REVISE_PROMPT;
+import static commands.ReviseCommand.MESSAGE_START_REVISION;
+import static commands.ReviseCommand.MESSAGE_SUCCESS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -45,14 +52,14 @@ public class ReviseCommandTest {
         ui = new Ui();
         String filePath = "src/test/data/admin";
         storage = new Storage(filePath);
-        ArrayList<Chapter> chapters = new ArrayList<>();
-        ArrayList<Card> cards = new ArrayList<>();
-        Chapter chapter = new Chapter("chapter1");
-        Chapter chapter2 = new Chapter("chapter2");
         card = new Card("1+1", "2", 4, 1);
+        ArrayList<Card> cards = new ArrayList<>();
         cards.add(card);
+        Chapter chapter = new Chapter("chapter1");
         chapter.setCards(cards);
+        ArrayList<Chapter> chapters = new ArrayList<>();
         chapters.add(chapter);
+        Chapter chapter2 = new Chapter("chapter2");
         chapters.add(chapter2);
         Module module = new Module("CS2113T");
         module.setChapters(chapters);
