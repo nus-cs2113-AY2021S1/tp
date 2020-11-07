@@ -7,6 +7,8 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_POWER_USAGE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_TOTAL_POWER_USAGE;
 
+//@@author fanceso
+
 /**
  * Represent the command to display power usage of the application to the user.
  */

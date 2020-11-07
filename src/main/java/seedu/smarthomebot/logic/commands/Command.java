@@ -29,6 +29,7 @@ public abstract class Command {
         this.locationList = locationList;
     }
 
+    //@@author fanceso
     /*
      * Gets the longest length of name and location in the appliance class.
      */

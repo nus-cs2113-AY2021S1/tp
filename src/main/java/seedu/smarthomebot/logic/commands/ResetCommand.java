@@ -2,6 +2,8 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
 
+//@@author fanceso
+
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_USAGE_RESET;
@@ -17,12 +19,12 @@ public class ResetCommand extends Command {
     @Override
     public CommandResult execute() {
         if (applianceList.getAllAppliance().size() == 0) {
-            return new CommandResult(LINE + MESSAGE_LIST_NO_APPLIANCES);
+            return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
         } else {
             for (Appliance a : applianceList.getAllAppliance()) {
                 a.resetPowerUsage();
             }
-            return new CommandResult(LINE + MESSAGE_USAGE_RESET);
+            return new CommandResult(MESSAGE_USAGE_RESET);
         }
     }
 

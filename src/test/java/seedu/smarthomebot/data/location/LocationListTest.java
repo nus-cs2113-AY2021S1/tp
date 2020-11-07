@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@@author fanceso
+
 class LocationListTest {
 
     private LocationList myHome;
@@ -56,12 +58,12 @@ class LocationListTest {
 
     @Test
     void testToString() {
-        assertEquals("Living Room\n", myHome.toString());
+        assertEquals("LivingRoom\n", myHome.toString());
     }
 
     @Test
     void isLocationCreated_locationInList_returnTrue() {
-        assertTrue(myHome.isLocationCreated("Living Room"));
+        assertTrue(myHome.isLocationCreated("LivingRoom"));
     }
 
 }
