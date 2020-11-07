@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.InvalidFileFormatException;
 import manager.admin.Admin;
 import manager.chapter.Chapter;
 import manager.history.History;
@@ -9,9 +10,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.Storage;
+import storage.StorageParser;
 import ui.Ui;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -34,8 +38,6 @@ public class HistoryCommandTest {
         storageStub.createFile("/history/2020-11-01.txt");
         storageStub.saveHistory("/history/2020-11-01.txt"
                 , new History("CS2113", "chapter 1"));
-        storageStub.saveHistory("/history/2020-11-01.txt"
-                , new History("CS2101", "chapter 2"));
 
         accessStub = new AccessStub();
     }
@@ -63,8 +65,7 @@ public class HistoryCommandTest {
         historyCommand = new HistoryCommand(date);
         historyCommand.execute(ui, accessStub, storageStub);
         String expectedResult = String.format(HistoryCommand.MESSAGE_EXIST)
-                + "\n1.CS2113/chapter 1"
-                + "\n2.CS2101/chapter 2";
+                + "\n1.CS2113/chapter 1";
         assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
     }
 

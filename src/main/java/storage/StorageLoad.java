@@ -285,8 +285,7 @@ public class StorageLoad {
         while (s.hasNext()) {
             //to read the history
             String revision = s.nextLine();
-            String[] args = revision.split("\\(", 2);
-            String[] name = args[0].split("/", 2);
+            String[] name = revision.split("/", 2);
             try {
                 String moduleName = StorageParser.parseTaskNameInFile(name[0]);
                 String chapterName = StorageParser.parseTaskNameInFile(name[1]);
