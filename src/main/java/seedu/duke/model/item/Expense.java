@@ -1,11 +1,9 @@
 package seedu.duke.model.item;
 
-import seedu.duke.DukeException;
-import seedu.duke.common.Messages;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
+// @@author GuoAi
 
 /**
  * Represents an expense item.
@@ -51,11 +49,7 @@ public class Expense extends Item {
         this.currency = currency;
     }
 
-    public void setDate(String date) throws DukeException {
-        try {
-            this.date = LocalDate.parse(date, dateTimeFormatter);
-        } catch (DateTimeParseException e) {
-            throw new DukeException(Messages.EXCEPTION_WRONG_DATE_FORMAT);
-        }
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
