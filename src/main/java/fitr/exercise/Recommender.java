@@ -38,7 +38,7 @@ public class Recommender {
 
     public StandardExerciseList recommend(String command) throws InvalidRecommendationException {
         int recommendationType = this.recommendParser(command);
-        if(recommendationType == 5){
+        if (recommendationType == 5) {
             throw new InvalidRecommendationException();
         }
         assert recommendationType >= 0 && recommendationType < 5;
