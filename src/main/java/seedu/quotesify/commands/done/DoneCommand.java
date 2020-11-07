@@ -24,9 +24,11 @@ public class DoneCommand extends Command {
     @Override
     public void execute(TextUi ui, Storage storage) {
         switch (type) {
+        //@@author lunzard
         case TAG_TODO:
             new DoneToDoCommand(arguments).execute(ui, storage);
             break;
+        //@@author
         case TAG_BOOK:
             new DoneBookCommand(arguments).execute(ui, storage);
             break;

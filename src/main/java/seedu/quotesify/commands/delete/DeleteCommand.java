@@ -53,12 +53,14 @@ public class DeleteCommand extends Command {
             quotesifyLogger.log(Level.INFO, "going to delete rating from book");
             new DeleteRatingCommand(arguments).execute(ui, storage);
             break;
+        //@@author lunard
         case TAG_TODO:
             new DeleteToDoCommand(arguments).execute(ui, storage);
             break;
         case TAG_BOOKMARK:
             new DeleteBookmarkCommand(arguments).execute(ui, storage);
             break;
+        //@@author
         case TAG_QUOTE:
             new DeleteQuoteCommand(arguments).execute(ui, storage);
             break;

@@ -53,9 +53,11 @@ public class ListCommand extends Command {
         case TAG_TODO:
             new ListToDoCommand(arguments).execute(ui, storage);
             break;
+        //@@author lunzard
         case TAG_BOOKMARK:
             new ListBookmarkCommand(arguments).execute(ui, storage);
             break;
+        //@@author
         case TAG_QUOTE:
             new ListQuoteCommand(arguments).execute(ui, storage);
             break;

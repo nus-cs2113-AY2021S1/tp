@@ -283,7 +283,7 @@ The sequence diagram below demonstrates the command execution process when findi
     * Cons: Need to check for both title and author for the list of results.
 * Case insensitive
     * Pros: Users do not have to bother about the exact letter case when typing the keyword.
-    * Cons: Need to ensure all title or author are converted to the same case before searching.
+    * Cons: Need to ensure all titles or authors are converted to the same case before searching.
 * Keyword or phrase
     * Alternative 1: Let users find by multiple space-separated keywords
         * Pros: Users can find books if they can only remember part of the book title.
@@ -362,7 +362,7 @@ message will be displayed.
     * Cons: Additional methods and passing of data required
     
 ---
-    
+<!-- @@author lunzard -->
 ### 4.3 Feature: Progress Tracker
 
 Progress Tracker consists of two parts: Bookmark Management and Task Management.
@@ -426,7 +426,8 @@ The sequence diagram below demonstrates the command execution process when addin
         * Pros: Users can view the most urgent task easily
         * Cons: It is harder for users to find a task with an unformatted deadline 
         even though the text in the deadline represents a high urgency.
-    
+<!-- @@author -->
+
 ---
 <!-- @@author dozenmatter -->
 ### 4.4 Feature: Category Management
@@ -903,7 +904,7 @@ Alright, have a nice day!
    Expected: Quote reflection will not be deleted. A message with error details will be shown.
    
 ---
-   
+<!-- @@author lunzard --> 
 ### Testing for Progress Tracker
    
 #### Adding a bookmark to book
@@ -990,7 +991,8 @@ Alright, have a nice day!
 1. Test case: `delete -t 1`
 
    Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
-   
+<!-- @@author -->
+
 ---
 <!-- @@author dozenmatter -->   
 ### Testing for Category Management
