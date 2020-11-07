@@ -30,8 +30,9 @@ public class BusCommand extends Command {
     }
 
     private void setBusStop(String busStopName) throws CustomException {
+        assert ! (busStopName == null) : "busStopName not declared";
         busStop = BusStops.findBusStop(busStopName.trim());
-        if(busStop == null){
+        if (busStop == null) {
             throw new CustomException(ExceptionType.INVALID_BUS_STOP);
         }
         this.busStopName = busStop.getName();
