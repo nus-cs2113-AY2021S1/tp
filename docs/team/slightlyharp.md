@@ -1,4 +1,4 @@
-# Slightlyharp - Project Portfolio Page
+# Lin Yuheng - Project Portfolio Page
 
 ## Project: Study it
 

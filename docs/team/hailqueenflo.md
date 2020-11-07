@@ -41,7 +41,7 @@ The following are my contributions to the project.
     * Highlights: This feature is user-friendly as it is not case sensitive, effectively returning all the flashcards
     that the user wishes to find.
 
-### Code Contributed: 
+### Code Contributed:
 
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=hailqueenflo&tabRepo=AY2021S1-CS2113T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
