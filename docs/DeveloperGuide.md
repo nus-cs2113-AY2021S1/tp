@@ -93,11 +93,34 @@ Aim: To facilitate the role of the administrative staff and help them automate m
 1. Download the jar file and copy it into an empty directory
 2. Open command prompt, and point it to that directory
 3. Type in `java -jar Rex.jar` to run the file
-### Deleting a patient
-There must a patient in the list.
-1. `delete 1` - Deletes the patient at the first index
-2. `delete 0` - It should throw error and not delete a patient.
 ### Adding a patient
 1. `add S9999999D` - Adds a patient with NRIC `S9999999D` to the list.
 2. `add S9999999D` - It should not add a patient and throw error as patient already exists.
 3. `add cat` - It should throw error and not add patients as it is invalid NRIC.
+### Edit a patient
+1. `edit S9999999D` - Edits a patient with NRIC `S9999999D`. More prompts will show to edit details
+2. `edit S9999998D` - It should not edit a patient and throw error as patient does not exist.
+### Retrieving a patient
+1. `retrieve S9999999D` - Retireve a patient's details with NRIC `S9999999D`.
+### Deleting a patient
+There must a patient in the list.
+1. `delete 1` - Deletes the patient at the first index
+2. `delete 0` - It should throw error and not delete a patient, since it is a invalid index.
+### Create appointment
+1. `create` - Creates an appointment. More prompts will show to prompt user about appointment.
+### Book appointment
+1. `book S9999999D` - Books an appointment for patient with NRIC `S9999999D`. More prompts will show to prompt user which appointment to book.
+### Adding a doctor
+1. `doctor tan` - Adds a doctor with name `tan` to the list.
+2. `doctor tan` - It should not add a doctor and throw error as doctor already exists.
+### Removing a doctor
+1. `nodoctor tan` - Removes doctor with name `tan` to the list.
+2. `nodoctor asd` - It should throw error and not delete a doctor since doctor does not exist.
+### View appointments of patient
+1. `appointments S9999999D` - Shows appointments for patient with NRIC `S9999999D`.
+### List patients
+1. `list` - Lists all patients.
+### Edit appointment
+1. `editappt S9999999D` - Edit appointment with NRIC `S9999999D`.
+### Exit program
+1. `bye` - Exits program.

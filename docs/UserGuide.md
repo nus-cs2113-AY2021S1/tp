@@ -193,5 +193,5 @@ Example of usage:
 * Remove doctor `nodoctor NAME`
 * View appointments of a patient `appointments NRIC`
 * List patients `list`
-* Edit patient's appointment `editappt`
+* Edit patient's appointment `editappt NRIC`
 * Exit `bye`
