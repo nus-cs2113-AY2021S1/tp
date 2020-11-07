@@ -121,6 +121,7 @@ Shows a list of commands you can use and what the commands do. Print the instruc
 Output:  
 ```
 Type 'help <function name here>' to view help for each command.
+Available commands:
 - help
 - divider
 - bunny
