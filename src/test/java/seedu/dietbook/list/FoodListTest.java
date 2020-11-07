@@ -79,22 +79,13 @@ class FoodListTest {
 
         LocalDateTime timeNow = LocalDateTime.now();
         
-        assertTrue(list.getFoodsAfterDateTime(timeNow).size() == 0);
+        assertTrue(datedList.getFoodsAfterDateTime(timeNow).size() == 0);
+        
         assertEquals(list.getFoods().toString(),
                 list.getFoodsAfterDateTime(LocalDateTime.MIN).toString());
 
-
-        // add new entries:
-        if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                System.out.println("Unexpected Interruption");
-            }
-        }
-        list.addFood(1, food);
-        assertEquals(food.toString(), list.getFoodsAfterDateTime(timeNow).get(0).toString());
-        
+        datedList.addFood(1, food);
+        assertEquals(food.toString(), datedList.getFoodsAfterDateTime(end).get(1).toString());
 
     }
 
