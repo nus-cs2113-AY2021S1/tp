@@ -20,8 +20,13 @@ This is a summary of the enhancements I implemented:
 - Bug Fixes for UpdateShowSeasonCommand
 
 # Contributions to documentation
-Which sections did you contribute to the UG?
-# Contributions to the DG: Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
+## Contributions to the User Guide
+As the lead developer for the Add and Edit Commands, I wrote the user guide sections for Add and Edit. In addition,
+ I helped to edit and review other parts such as the Introduction section and Features section.
+## Contributions to the Developer Guide 
+For the Developer Guide, I wrote the sections for AddCommand, EditCommand, UpdateShowEpisodeProgressCommand and 
+UpdateShowSeasonCommand. I also cowrote the manual testing portion and DevOps section.
+
 # Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways
-# Contributions to the User Guide
-# Contributions to the Developer Guide 
+I actively tested the code and found many issues. Apart from, that I also reviewed code from my fellow members and gave
+suggestions to improve code quality.
