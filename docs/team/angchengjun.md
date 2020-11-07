@@ -16,12 +16,12 @@ Below is the link to view all the codes that I contributed to SmartHomeBot Proje
 
 #### Enhancements implemented
 I created a ListCommand filter which allows the users to list all the appliances in that particular location. 
+* Implementation of ListCommand filter
+    * I used stream method to store all the Appliance Class which stores the filtered location into a new ArrayList and display the list to user. 
+
 In addition, to add ease to the typing of command, I design a logic function in OnCommand which allows users to key you `on [APPLIANCE_NAME]` or 
 `on [APPLIANCE_NAME]` which allows user to switch on an appliance or a group of appliance in the location.This logic function is
 also implement in the OffCommand.  
-
-* Implementation of ListCommand filter
-    * I used stream method to store all the Appliance Class which stores the filtered location into a new ArrayList and display the list to user. 
 * Implementation of logic function which ease the typing of command for OnCommand and OffCommand 
      * For the logic function, I assume that argument that the user typed is an appliance initially. In the function, it will check if any of the Appliance Class in
      the ApplianceList has the location similar to the argument that user typed.
