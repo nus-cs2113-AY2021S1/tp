@@ -9,7 +9,6 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 *Roles (short for ‘in charge of role’): Description*
 
 - Co-team lead: Responsible for overall project coordination alongside Ramana.
-- Architecture: Worked with Nazryl on setting up the project, planned on the basic flow of the project and provided coding standards for programmers to follow.
 - Code quality: Looks after code quality, ensures adherence to coding standards, etc.
 - Documentation: Responsible for the quality of various project documents.
 - Integration: Worked with Ramana for the versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.

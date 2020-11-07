@@ -8,7 +8,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 *Roles (short for ‘in charge of role’): Description*
 
-- Architecture: Worked with Jun Xiang on setting up the project, planned on the basic flow of the project and provided coding standards for programmers to follow.
+- Architecture: Worked with Jun Xiang on setting up the project, planned on logic of the project structure. Provides coding standards for programmers to follow.
 - In charge of `add-n`,`delete-n`, `edit-n` of the code.
 
 ## Summary of Contributions
@@ -71,3 +71,6 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 ### Community
 (https://nus-cs2113-ay2021s1.github.io/addressbook-level3/team/johndoe.html)
+
+Reviewed some of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.
+#29, #47, #51, #57, #63, #74, #78, #125, #126, #201
