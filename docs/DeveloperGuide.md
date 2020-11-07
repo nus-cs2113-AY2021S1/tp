@@ -70,11 +70,12 @@ Before you start: Please ensure you have Java 11 installed in you computer.
 Figure 1. Architecture Diagram
 
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
-Main:  Our main class has one class called Main.java. It is responsible for,
-At app launch, the Main.java will initialize the UI to start waiting for the input from the users.
+Main(Logic): The main logic flow of our whole App.
+Initializer: Initialize the whole app to start waiting for the input from the users.
 UI: The user interface of our App.
-Logic: The logic flow of our whole App.
-Model: Holds the data of our App in memory.
+Parser: Change the user input to something meaningful to the app.
+Exception: Throw different kinds of exception that user may make.
+
 The following section is a more detailed description of these four components.
 
 ### 3.2 Classes
@@ -213,10 +214,10 @@ All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens
 |Version| As a/an ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|user|view which canteens are open now|decide which canteen to go to now|
-|v2.0|user|check the operating time of canteens|I can go to the canteen which is currently open|
 |v1.0|user|view which stalls are available currently|make my order|
 |v1.0|hungry person who wants to dine now|check the menus of some stalls at the current time|I can order my preferred meal in the menus|
 |v1.0|user who is deciding what to have for the next meal|view the menus of the stalls in advance|I can know what to eat for that meal in the future|
+|v2.0|user|check the operating time of canteens|I can go to the canteen which is currently open|
 |v2.0|user who wants to try a new dish|check the comments made by others|I can have a brief idea about it|
 |v2.0|user who is not familiar with the campus|check the location and recommended route to a canteen|get my food as soon as possible|
 
