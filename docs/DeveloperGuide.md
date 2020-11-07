@@ -18,11 +18,17 @@ The rest are just objects that the app requires.
 The diagram below shows the basic design.
 ![image info](./pictures/UML.png)
 
+<br><br><br>
+<div style="page-break-after: always;"></div>
+
 The complete class diagram is shown below.
 ![image info](./pictures/classDiagram.PNG)
 
 ### Implementation
 The commands are implemented in such a way as we are able to have one class for every command, which allows for more extendability and less coupling, since we are likely to add more commands over time. We considered other alternatives such as putting all commands in one command class, however there are way too many methods and coupling.
+
+<br><br><br>
+<div style="page-break-after: always;"></div>
 
 #### Retrieve Command
 The flow for the retrieve command is as follows:
@@ -31,6 +37,9 @@ The flow for the retrieve command is as follows:
 2. Retrieve command searches through the patients list and obtains the patient's index.
 3. Patients list returns the patient.
 4. Ui object prints the patient.
+
+<br><br><br>
+<div style="page-break-after: always;"></div>
 
 #### Add Command
 The flow for add command is as follows:
@@ -43,6 +52,8 @@ The flow for add command is as follows:
 6. Ui receives the call to print the patient.
 7. The updated patients list is saved by the Storage object.
 
+<br><br><br>
+<div style="page-break-after: always;"></div>
 
 #### Book Command
 The flow for the book command is shown in the sequence diagram below:
@@ -55,10 +66,15 @@ The flow for the book command is shown in the sequence diagram below:
 6. Ui prints the booked appointment message.
 7. The updated appointments list is saved by Storage.
 
+<br><br><br>
+<div style="page-break-after: always;"></div>
+
 #### Edit Command
 The flow for the edit command is shown in the sequence diagram below:
 ![image info](./pictures/UMLEdit.png)
 
+<br><br><br>
+<div style="page-break-after: always;"></div>
 
 ## Product scope
 ### Target user profile
@@ -93,6 +109,9 @@ Aim: To facilitate the role of the administrative staff and help them automate m
 ## Glossary
 
 * *Hospitalsarus Rex* - The name of the program
+
+<br><br><br>
+<div style="page-break-after: always;"></div>
 
 ## Instructions for manual testing
 
@@ -135,6 +154,8 @@ There must a patient in the list.
 1. `doctor tan` - Adds a doctor with name `tan` to the list.
 2. `doctor tan` - It should not add a doctor and throw error as doctor already exists.
 
+<br><br><br>
+<div style="page-break-after: always;"></div>
 
 ### Removing a doctor
 1. `nodoctor tan` - Removes doctor with name `tan` to the list.
