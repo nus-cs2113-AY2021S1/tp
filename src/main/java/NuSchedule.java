@@ -27,8 +27,6 @@ public class NuSchedule {
 
         busStops = new BusStopList();
         locations = new LocationList();
-        storage.loadBusStopData(busStops.getBusStopList());
-        storage.loadLocationData(locations.getLocationList());
 
         try {
             storage = new Storage(filePaths);
@@ -43,8 +41,8 @@ public class NuSchedule {
             events = new EventList();
         }
 
-
-
+        storage.loadBusStopData(busStops.getBusStopList());
+        storage.loadLocationData(locations.getLocationList());
         // ui.printBusStopList(busStops.getBusStopList());
         // ui.printLocationList(locations.getLocationList());
 
