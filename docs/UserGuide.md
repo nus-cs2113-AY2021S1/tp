@@ -19,8 +19,8 @@ to be completed. The users can store the tasks under different subjects and flas
 subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
 
-This user guide provides an in-depth documentation on the installation process, the appplication features, and
-the appplication usage to get you started.
+This user guide provides an in-depth documentation on the installation process, the application features, and
+the application usage to get you started.
 
 Note the following symbols and formatting used in this document:
 
@@ -83,7 +83,7 @@ Displays all available commands on the main level.
 Format: `help`  
 
 - Use this command whenever you get confused or need help to navigate the application 
-- The appplication will print a list of all the functions available to you at the current level(main) on the command line
+- The application will print a list of all the functions available to you at the current level(main) on the command line
 
 Example of usage:
 ```
@@ -116,7 +116,7 @@ Prints a list of all subjects in the main list.
 Format: `list`
 
 - Use this command whenever you need to see a list of all the subjects you have keyed into the application
-- The appplication will print the title of all the subjects in your list on the command line
+- The application will print the title of all the subjects in your list on the command line
 
 Example of usage:
 ```
@@ -137,12 +137,12 @@ ____________________________________________________________
 
 #### 3.1.3 Listing all items: `list all` <a name="list"></a>
 
-Prints a list of all items stored in the appplication.
+Prints a list of all items stored in the application.
 
 Format: `list all`
 
 - Use this command if you want to have a look at all the subjects, topics and tasks you have keyed into the application
-- The appplication will print a tree on the command line, and will also show you that you are accessing the main level
+- The application will print a tree on the command line, and will also show you that you are accessing the main level
 
 Expected output:
 
@@ -178,7 +178,7 @@ Adds a subject to the main list.
 Format: `add [SUBJECT_NAME]`
 
 - Use this command if you want to add a subject into your list
-- The appplication will print the title of the subject you have added into the list, as well as the amount of subjects you 
+- The application will print the title of the subject you have added into the list, as well as the amount of subjects you 
 have in the list on the command line
 
 > ⚠️ **_WARNING:_** `SUBJECT_NAME` is case-sensitive. Beware not to add 2 different subjects with the
@@ -205,7 +205,7 @@ Deletes the specified subject.
 Format: `delete [SUBJECT_NUMBER]`
 
 - Use this command if you want to delete an existing subject from the list
-- The appplication will print the title of the subject you have deleted from the list, as well as the amount of subjects you 
+- The application will print the title of the subject you have deleted from the list, as well as the amount of subjects you 
 have in the list on the command line
 
 Example of usage:
@@ -237,7 +237,7 @@ Searches the list of subject names for all subjects that contains the query.
 Format: `find [QUERY]`
 
 - Use this command if you want to find subjects with titles that contain the query
-- The appplication will print the title of all subjects with titles that contain `QUERY` on the command line
+- The application will print the title of all subjects with titles that contain `QUERY` on the command line
 
 > ⚠️ **_WARNING:_** QUERY is case-sensitive. Subjects that contain the same letters as the query but with different case
 > will not be printed.
@@ -264,7 +264,7 @@ Allows the user to access a pre-existing subject.
 Format: `subject [SUBJECT_NAME]`
 
 - Use this command if you want to access the subject level of a subject in the list
-- The appplication will print the subject level of the subject specified in `SUBJECT_NAME` on the command line
+- The application will print the subject level of the subject specified in `SUBJECT_NAME` on the command line
 
 > ⚠️ **_WARNING:_** SUBJECT_NAME is case-sensitive. Subjects with title that has the same letters as the SUBJECT_NAME but 
 >with different case will not be accessed.
@@ -280,14 +280,14 @@ You are currently looking at the subject: CS2113T
 ____________________________________________________________
 ```
 
-#### 3.1.8 Starting Subject Quiz: `quiz`
+#### 3.1.8 Starting Subject Quiz: `quiz` (Muthu)
 
 Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>
 
 Format: `quiz [SUBJECT_NAME]`
 
 - Use this command if you want to initiate a quiz of a specified subject
-- The appplication will quiz you on the subject specified in `SUBJECT_NAME` on the command line
+- The lication will quiz you on the subject specified in `SUBJECT_NAME` on the command line
 
 Example of usage: 
 ```
@@ -296,7 +296,7 @@ quiz CS2113T
 
 Sample output: 
 ```
-You are about to begin the quiz for maths.You have 2 minutes.
+You are about to begin the quiz for CS2113T.You have 2 minutes.
 ```
 
 #### 3.1.8 Viewing results for quizzes on a subject: `results`
@@ -305,8 +305,8 @@ This command allows you to look at the results for a subject. For more details, 
 
 Format: `results [SUBJECT_NAME]`
 
-- Use this command if you want to show the results of all the quizzes you have taken in the appplication
-- The appplication will print all the results of the quizzes of the subject specified in `SUBJECT_NAME` in the command line
+- Use this command if you want to show the results of all the quizzes you have taken in the application
+- The application will print all the results of the quizzes of the subject specified in `SUBJECT_NAME` in the command line
 
 Example of usage: 
 ```
@@ -324,8 +324,8 @@ This command exports all the data of the application to an external file. For mo
 
 Format: `export`
 
-- Use this command if you want to save all the data in the appplication on an external file
-- The appplication will print the file location of the file the data is being saved to on the command line
+- Use this command if you want to save all the data in the application on an external file
+- The application will print the file location of the file the data is being saved to on the command line
 
 Example of usage:
 ```
@@ -341,15 +341,15 @@ ____________________________________________________________
 
 #### 3.1.10 Saving and exiting: `bye` <a name="bye"></a>
 
-This command will save all the appplications
+This command will save all the applications
 
 Format: `bye`
 
-- Use this command if you want to save and exit the appplication
-- The appplication will save all the updated details and exit
+- Use this command if you want to save and exit the application
+- The application will save all the updated details and exit
 
 > ⚠️ **_WARNING:_** Use this command before closing the command line as this command is vital to 
->ensure all your data updated is saved. Failure to use this method to exit the appplication will 
+>ensure all your data updated is saved. Failure to use this method to exit the application will 
 >result in all work updated in the session being lost.
 
 Example of usage:
@@ -423,12 +423,12 @@ Here are the topic(s) under CS2101:
 2. Project Demo
 ____________________________________________________________
 Here are the tasks(s) under CS2101: 
-1. [E][?] Project Demo (at: 2:00 PM 5 Nov 2020)
+1. [E][✘] Project Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 #### 3.2.3 Listing all items: `list all`
 
-Prints a list of all items stored in the appplication.
+Prints a list of all items stored in the application.
 
 Format: `list all`
 + The tree will show you which subject you are currently accessing.
@@ -547,7 +547,7 @@ Format: `topic [TOPIC_NAME]`
 
 Example of usage:
 ```
-Topic Oral Presentation
+topic Oral Presentation
 ```
 
 Expected output:
@@ -690,7 +690,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.2.13 Starting Topic Quiz - `quiz` 
+#### 3.2.13 Starting Topic Quiz - `quiz` (Muthu)
 
 This type of quiz helps you to prepare for a particular topic. For more details, see section <a href =#takeQuiz>3.4.1 Taking quizzes</a>.
 
@@ -710,7 +710,7 @@ Expected output:
 You are about to begin the quiz for Java. You have 1 minute.
 ```
 
-#### 3.2.14 Viewing results for quizzes on a topic: `results`
+#### 3.2.14 Viewing results for quizzes on a topic: `results` (Muthu)
 
 Prints the previous results that you obtained for a quiz for a particular
 topic. For more details, see <a href =#result>result</a>.
@@ -804,7 +804,7 @@ Here are the flashcard(s) under speed:
 
 #### 3.3.3 Listing all items: `list all`
 
-Prints a list of all items stored in the appplication.
+Prints a list of all items stored in the application.
 
 Format: `list all`
 + The tree will show you which topic you are currently accessing.
@@ -894,7 +894,7 @@ ____________________________________________________________```
 This section expands on the features that are not specific to any part of the previous sections and features that
 require further explanations.
 
-#### 3.4.1 Taking quizzes <a name = "takeQuiz"> </a>
+#### 3.4.1 Taking quizzes <a name = "takeQuiz"> </a> (Muthu)
 Once you have added the necessary flashcards, you can use the Quiz functionality to test yourself. This would
 let you gauge how much you understand from the material. This will be beneficial if you are running out of time
 to revise your own notes.
@@ -908,11 +908,6 @@ certain time limit. There are two types of quizzes :
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
 You have 2 minutes to complete the quiz.
 
-Format: `quiz NAMEOFSUBJECT`<br>
-Example: `quiz Maths`
-
-Output: `You are about to begin the quiz for maths.You have 2 minutes.`
-
 ##### Topic quiz
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
 You have 1 minute to complete the quiz.
@@ -924,7 +919,7 @@ Once you have entered the type of quiz you want to begin, the application starts
 are expected to answer these questions.
 
 Format: `Question NAMEOFQUESTION`<br>
-Example: `Question: What is distance` <br>
+Example: `Question: What is the version of Java used in CS2113T?` <br>
 
 Once the quiz has been completed, the application prints out the scores that you obtained.
 You will also be notified about the questions that you did not answer correctly. 
@@ -941,13 +936,13 @@ Result:2/4 -- Pass
 ____________________________________________________________
 Here are the questions which you got wrong.
            
-Question:distance 
-Correct Answer: speed x time 
-Your Answer: speed x time x time
+Question:What is the version of Java used in CS2113T?
+Correct Answer: 11.0 
+Your Answer: 11.1
 ____________________________________________________________
-Question:velocity 
-Correct Answer: displacement / time
-Your Answer: none
+Question:What is the ide used for the project? 
+Correct Answer: Intellij
+Your Answer: Vim
 ____________________________________________________________</code></pre>
 
 You can stop the quiz by entering `stop`. The application then prints the score.<br>
@@ -961,7 +956,13 @@ Result:1/2 -- Pass
 ____________________________________________________________
 </code></pre>
 
-#### 3.4.2 Viewing quiz results <a name ="result"> </a>
+> 📝️ ️  **_NOTE:_** If you stop the quiz, the application will only print the score for the particular quiz. It does not
+>print the list of incorrect answers.
+
+> ⚠️ **_WARNING:_** If you stop the quiz or if the timer ends for the quiz,you cannot go back to the same quiz to continue it. You will
+> have to restart another quiz.
+
+#### 3.4.2 Viewing quiz results <a name ="result"> </a> (Muthu)
 After completing a few number of quizzes, you would want to look at the results of the previous quizzes to see if
 you have improved over the time. You can use the `results` functionality to check your results.
 This can be done for the subjects or for the topics.
@@ -972,8 +973,8 @@ This can be done for the subjects or for the topics.
 >the result of a subject or topic that you requested for. Entering `results CS2113T` will not show you the results
 >that you obtained for the topics in the CS2113T subject and vice-versa.  
 
-#### 3.4.3 Storing data <a name="store"> </a>
-When you exit the application, the data you have added to the appplication is automatically saved to the disk. 
+#### 3.4.3 Storing data <a name="store"> </a> (Chin Hang)
+When you exit the application, the data you have added to the application is automatically saved to the disk. 
 The data is stored under the `data/` folder in the same folder where you run the application. 
 
 > ⚠️ **_WARNING:_** The data (or any changes to the data) are not saved if the application is closed abnormally 
@@ -1070,7 +1071,7 @@ Each entry enclosed with the curly braces ({}) corresponds to one flashcard.
 > a mismatch in the format will corrupt the data. **If the data is corrupted, it will not be loaded by the application.** 
 > Therefore, make a copy of the file before making changes if you have to do so.
 
-#### 3.4.4 Loading data <a name="load"> </a>
+#### 3.4.4 Loading data <a name="load"> </a> (Chin Hang)
 Similar to <a href =#store>storing data</a>,
 when you launch the application, the saved data is automatically loaded from the disk.
 
@@ -1081,7 +1082,7 @@ when you launch the application, the saved data is automatically loaded from the
 > ⚠️ **_WARNING:_** If you have manually modified the contents of the files stored with wrong syntax, the files affected 
 > will not be loaded (and, instead, empty data will be loaded) when the application launches. 
 
-#### 3.4.5 Exporting data <a name= "export"> </a>
+#### 3.4.5 Exporting data <a name= "export"> </a> (Chin Hang)
 You can export all the data, including the quiz results and tasks, to a `json` file so that it can be imported into
 other applications that understand the data. To export the data, run the <a href="#export-command">export command</a> 
 when you are in the main level of the application. 
@@ -1147,24 +1148,28 @@ in the `data/` folder.
 > 📝️ ️ **_NOTE:_** **Importing** of the exported file is **currently not supported** as it is meant to be read by other 
 > applications. Nevertheless, the feature may be implemented in the future versions if it is highly requested.
 
-#### 3.4.6 Sorting tasks  <a name= "sort"> </a>
+#### 3.4.6 Sorting tasks  <a name= "sort"> </a> (Muthu)
 The tasks in the application are sorted according to their deadlines. Tasks which are due soon are placed at the front
 of the list, while tasks which are due later are placed at the rear. `Todo` tasks are placed at the end of the list since
 they do not have any deadlines.
 
 Suppose you use the `list` command and get this output:
 <pre><code>
-Here are the tasks(s) under maths: 
+____________________________________________________________
+Here are the tasks(s) under CS2113T: 
 1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
 2. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+____________________________________________________________
 </code></pre>
 
 Adding the following deadline by `deadline project /by 18:00 07-11-2020` and using the `list` command would yield this output.
 <pre><code>
+____________________________________________________________
 Here are the tasks(s) under maths: 
 1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
 2. [D][✘] project (by: 6:00 PM 7 Nov 2020)
 3. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+____________________________________________________________
 </code></pre>
 
 
@@ -1178,8 +1183,8 @@ This section answers some common questions that you may have about **revisED**.
 **_A:_** Unfortunately, no. You will have to delete the event using the `delete task [TASK_INDEX]`to delete the task, and then 
 add the task back using the `deadline [DESCRIPTION] /by [TIME]` command.
 
-**_Q:_ I stopped a quiz without completing it. Can I resume it?**<br>
-**_A:_** No. You will have to start a new quiz.
+**_Q:_ Isit possible to change the timing of the quizzes?**<br>
+**_A:_** No. This feature is not available in the current implementation.
 
 **_Q:_ Is there any limit to the number of topics/subjects that I can store in my application?**<br>
 **_A:_** No. You can store unlimited number of topics/subjects.   
@@ -1190,26 +1195,40 @@ you find any bugs or the application crashes, you can send us a bug report
 [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues) along with the log file to help us with solving the bugs. 
 Nevertheless, you can delete it if you want to, and it does not affect the behavior of the application in any way.
 
-## 5. Command Summary <a name="summary"></a>
+## 5. Command Summary <a name="summary"></a> (Muthu)
 A summary of all the commands available is shown in the table below.
 
 Action|Examples
 ------|------
-Add subject|`add math` (while in main menu)
-Add topic|`add speed` (while looking at a subject)
+SUBJECT COMMANDS(MAIN LEVEL)|
+Add subject|`add CS2113T` 
+Change to the specific subject |`subject CS2113T`
+Start a quiz for a subject| `quiz CS2113T`
+View results for a subject | `results CS2113T`
+Find Subject | `find CS2113T`
+Delete Subject | `delete 1`
+List all subjects| `list`
+Export data | `export`
+Exit application|`bye`
+TOPIC AND TASK COMMANDS(SUBJECT LEVEL)| 
+Add topic|`add Java` 
+Delete topic| `delete topic 4`
+Change to the specific topic |`topic Java`
+Start a quiz for a topic| `quiz Java`
+View results for a topic | `results Java`
 Add todo|`todo revise for test` 
 Add deadline| `deadline assignment /by 23:59 21-10-2020`
 Add an event| `event tutorial /at 16:00 21-10-2020`
-Find tasks| `find math`
+Find tasks| `find assignment`
 Complete task|`done 4`
 Delete task|`delete task 4`
-Delete topic| `delete topic 4`
-Change to the specific subject |`subject maths`
-Change to the specific topic |`topic speed `
-Start a quiz for a subject| `quiz maths`
-Start a quiz for a topic| `quiz speed`
-View results for a subject | `results maths`
-View results for a topic | `results speed`
-Export data | `export`
-Exit a topic or subject | `exit`
-Exit application|`bye`
+List topics and tasks | `list`
+Exit subject | `exit`
+FLASHCARD COMMANDS(TOPIC LEVEL)|
+Add flashcard|`add What version of Java are you using; 11.0`
+Delete flashcard| `delete 1`
+List flashcards|`list`
+Exit topic | `exit`
+OTHER COMMANDS(All LEVELS)|
+List all the items in the application|`list all`
+List all the commands|`help`
