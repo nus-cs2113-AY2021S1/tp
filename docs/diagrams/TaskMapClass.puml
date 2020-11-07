@@ -5,19 +5,16 @@ class TaskMap {
     +{static}{field} MAX_NUM_TASKS: int=10000
     +{method} addTask(Task)
     +{method} get(Integer): Task
-    +{method} getValues(): Collection<Task>
     +{method} delete(Integer)
     +{method} clear()
-    +{method} sortByDate(): TaskMap
-    +{method} sortByPriority(): TaskMap
-    +{method} searchByDescription(String): TaskMap
-    +{method} searchByDate(LocalDate): TaskMap
+    +{method} sortListByDate(): TaskMap
+    +{method} sortListByPriority(): TaskMap
 }
 
 class LinkedHashMap<Integer, Task>
 
 LinkedHashMap "1"-"1" TaskMap
-TaskMap o--"0..*" Task
+TaskMap o--"*" Task
 TaskMap -[dashed]-> Comparator
 
 
@@ -39,7 +36,7 @@ class LocalTime
 
 LocalDate "1"--"1" Task: date
 Task "1"-"1" Priority: priority
-Task --"0..2" LocalTime: startTime/endTime
+Task --"0..2" LocalTime
 
 
 

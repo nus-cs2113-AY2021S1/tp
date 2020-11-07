@@ -19,10 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Scanner;
@@ -34,7 +31,6 @@ public class Storage {
     private static final String FILE_NAME = "data.json";
     private static final String TIMETABLE = "nusmods_calendar.ics";
     private final Gson gson = new Gson();
-    private final String pathName = "./data";
 
     /**
      * Write to file the latest data of tasks.
@@ -52,7 +48,7 @@ public class Storage {
     /**
      * Load data from file and add tasks to TaskList.
      */
-    public TaskMap loadTasks() throws IOException, ParseException {
+    public TaskMap loadTasks() throws IOException {
         // If both dir and file are newly created, return empty taskMap.
         if (!createFile()) {
             TaskMap taskMap = readTasksFromFile();
@@ -112,11 +108,10 @@ public class Storage {
 
     public void calenderChecker(TaskMap taskMap)
         throws IOException, ParseException, InvalidDatetimeException, InvalidReminderException {
-        String inputPathName = "nusmods_calendar.ics";
-        File dirFile = new File(this.pathName);
+        File dirFile = new File(DIRECTORY_NAME);
         Priority priority;
         if (dirFile.isDirectory()) {
-            File calfile = new File(pathName + "/" + inputPathName);
+            File calfile = new File(DIRECTORY_NAME + "/" + TIMETABLE);
             String output = CalParser.lineExtractor(calfile);
             String[] splitInputs = output.split("UID:");
             LocalTime startTime;

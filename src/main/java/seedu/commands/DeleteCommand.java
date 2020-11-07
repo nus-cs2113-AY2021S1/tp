@@ -11,13 +11,13 @@ import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.DELETE_MESSAGE;
 
-public class Delete extends ModificationCommand {
+public class DeleteCommand extends ModificationCommand {
     public static final String COMMAND_WORD = "delete";
     private final Integer key;
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^(?<key>\\d+)$");
 
-    public Delete(String keyString) throws InvalidTaskNumberException {
+    public DeleteCommand(String keyString) throws InvalidTaskNumberException {
         try {
             key = Integer.parseInt(keyString);
         } catch (NumberFormatException e) {

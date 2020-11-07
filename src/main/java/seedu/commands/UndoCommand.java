@@ -7,7 +7,7 @@ import seedu.messages.Messages;
 import seedu.ui.Ui;
 
 
-public class Undo extends ModificationCommand {
+public class UndoCommand extends ModificationCommand {
     // Currently unable to redo undo
     public static final String COMMAND_WORD = "undo";
 
