@@ -379,6 +379,8 @@ Else if you have a lesson ongoing currently, it will instead show a "lesson now"
 > * You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
+> * Zoomaster will interpret you command as the Show module and slot feature if you do not enter the correct DAY input. 
+> As such, you would see an error message saying you have entered an invalid module.
 
 ```
 Format: show {DAY(optional)}
