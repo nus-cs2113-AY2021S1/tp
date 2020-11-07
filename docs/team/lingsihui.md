@@ -1,11 +1,15 @@
 # Ling Si Hui, Shiho - Project Portfolio Page
 
 ## Overview
+
 Our product Study It provides an interactive desktop app to help manage your study related matters.
 It can keep track of your various study matters, present them in an organized and thoughtful manner to 
 help you organize your study life. It is written in Java and includes 4 features: bookmark, timetable, academic, and flashcard. 
 
 Given below are my contributions to the project.
+
+### Features added:
+
 * **New Feature** : Added the ability to  add link t-> title/ remove link / add category / delete category / star bookmark
     * What it does: allows the user to add bookmark link to bookmark list. Links added can be removed by using the remove command. Added links that are important can be starred.
     * Justification: This feature serves as the basic command for the bookmark feature so that the user can customise the list of links, categories and their starred links.
@@ -30,17 +34,25 @@ Given below are my contributions to the project.
     * Highlights: The most challenging part of the feature was to decide on how to separate out the category, title and the links as links can contain many symbols. 
     * Credits: The program was coded from scratch.
    
-* **Code Contributed**: [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=lingsihui&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-* **Project Management**:
-    * Logging [#76](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/76)
-    * Maintaining the issue tracker
-    * Update developer guide documenting the target user profile, user stories, and the documentation section [#118](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/118/files)
-* **Documentation**: 
-    * User Guide:
-        * Added documentation for bookmark features [#137](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/137)
-    * Developer Guide: 
-        * Added documentation for bookmark feature: included UML diagram of the bookmark feature class diagram, bookmark feature sequence diagram and add command sequence diagram [#102](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/102)
-* **Community:**
-    * PR Reviewed (with non-trivial comments): [#103](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/103), [#92](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/92)
-    * Reported bugs and suggestions for other teams in the class [#2](https://github.com/lingsihui/ped/issues/2), [#3](https://github.com/lingsihui/ped/issues/3), [#4](https://github.com/lingsihui/ped/issues/4), [#5](https://github.com/lingsihui/ped/issues/5), [#6](https://github.com/lingsihui/ped/issues/6), [#7](https://github.com/lingsihui/ped/issues/7)
+### Code Contributed: 
+
+[RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=lingsihui&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
+### Project Management:
+
+* Logging [#76](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/76)
+* Maintaining the issue tracker
+* Update developer guide documenting the target user profile, user stories, and the documentation section [#118](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/118/files)
+
+### Documentation: 
+
+* User Guide:
+    * Added documentation for bookmark features [#137](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/137)
+* Developer Guide: 
+    * Added documentation for bookmark feature: included UML diagram of the bookmark feature class diagram, bookmark feature sequence diagram and add command sequence diagram [#102](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/102)
+
+### Community:
+
+* PR Reviewed (with non-trivial comments): [#103](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/103), [#92](https://github.com/AY2021S1-CS2113T-T12-1/tp/pull/92)
+* Reported bugs and suggestions for other teams in the class [#2](https://github.com/lingsihui/ped/issues/2), [#3](https://github.com/lingsihui/ped/issues/3), [#4](https://github.com/lingsihui/ped/issues/4), [#5](https://github.com/lingsihui/ped/issues/5), [#6](https://github.com/lingsihui/ped/issues/6), [#7](https://github.com/lingsihui/ped/issues/7)
   
