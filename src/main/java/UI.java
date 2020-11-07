@@ -45,7 +45,8 @@ public class UI {
         }
     }
 
-    private static Order getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes,Scanner sc, ArrayList<Order> Order) {
+    private static Order getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed,
+                                  List<Dish> orderedDishes,Scanner sc, ArrayList<Order> Order) {
         try{
             System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
             int typeChoosed = sc.nextInt();

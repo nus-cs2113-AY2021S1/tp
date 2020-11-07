@@ -16,7 +16,7 @@ public class Canteen {
     public int getOpenTime(int dayOfWeek){
         return openTime.get(dayOfWeek-1);
     }
-    int getCloseTime(int dayOfWeek) {
+    public int getCloseTime(int dayOfWeek) {
         return closeTime.get(dayOfWeek-1);
     }
 
