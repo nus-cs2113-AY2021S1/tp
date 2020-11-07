@@ -83,15 +83,15 @@ Words that are highlighted in grey, in upper case and are surrounded by square b
 >
 >This is a warning section. Any user interaction with the program that may result in issues or unintended results will be written in sections such as this one. 
 
-**Notes about the command format**
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-- Items in square brackets are optional
-  e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-- Items with ... after them can be used multiple times including zero times.
-  e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-{{box op="end"}}
+>**Notes about the command format**
+>
+> - Words in `UPPER_CASE` are the parameters to be supplied by the user.
+> e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+> - Items in square brackets are optional
+> e.g. `n/Name [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+> - Items with ... after them can be used multiple times including zero times.
+> e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 ## 2. Quick Start
 
@@ -279,11 +279,12 @@ _________________________________
 > * Remember to add the ':' for the time, this is because `4 PM` will not be valid but `4:00 PM` will be.
 
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
-- Typing in the wrong format for date or time will cause the event to not be made. 
-- Events cannot contain an empty description.
-{{box op="end"}}
+
+> **Warning!**
+>
+> * Typing in the wrong format for date or time will cause the event to not be made. 
+> * Events cannot contain an empty description.
+
 
 ### 3.3 List events: `list` (Marcus Ng)
 
@@ -433,12 +434,10 @@ You have successfully updated the deadline for this event!
 > * AM/PM is required for 12 hour format
 
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
+> **Warning!**
+>
+> The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-The event index keyed in have to be valid so that deadline can be created for the specified event index.
-
-{{box op="end"}}
 
 
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
@@ -508,11 +507,10 @@ _________________________________
 _________________________________
 ```
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
+>**Warning!**
+>
+>When setting personal events to repeat, do take note that the personal event needs to contain a deadline before it cn be repeated. Use the dateline command to provide a deadline to personal events that you want to repeat, but does not have a deadline. 
 
-When setting personal events to repeat, do take note that the personal event needs to contain a deadline before it cn be repeated. Use the dateline command to provide a deadline to personal events that you want to repeat, but does not have a deadline. 
-{{box op="end"}}
 
 Examples:
 
@@ -553,7 +551,7 @@ _________________________________
 You have no coinciding events!
 _________________________________
 ```
-{{box op="start" cssClass="boxed noteBox"}}
+
 > **Note!**
 
 > *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
@@ -561,13 +559,10 @@ _________________________________
 > *	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 > *	The time can also be omitted entirely. If you leave a time field as blank, the command takes the current time by default.
 
-{{box op="end"}}
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
-
-- Even when you leave a time field (e.g. `[START_DATE]`) as blank, a semicolon (;) should still be used to denote the blank field (e.g. `check ; 2:00 pm; 25/12/2020; 2359`)
-{{box op="end"}}
+> **Warning!**
+>
+> * Even when you leave a time field (e.g. `[START_DATE]`) as blank, a semicolon (;) should still be used to denote the blank field (e.g. `check ; 2:00 pm; 25/12/2020; 2359`)
 
 
 ### 3.8 Goal setting and viewing: `goal` (Marcus Ng)
@@ -713,12 +708,12 @@ _________________________________
 ``` 
 
 
-{{box op="start" cssClass="boxed warningBox"}}
-**Warning!**
 
-The event index keyed in have to be valid so that deadline can be created for the specified event index.
+> **Warning!**
+>
+> The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-{{box op="end"}}
+
 
 ### 3.13 Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
