@@ -88,3 +88,9 @@ https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiawen
   ([\#179](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/179))
 #### Contributions beyond the project team:
 * Reported bugs in other team's project during PE.
+  ([\#1](https://github.com/JiawenLyu/ped/issues/1),
+   [\#2](https://github.com/JiawenLyu/ped/issues/2),
+   [\#3](https://github.com/JiawenLyu/ped/issues/3),
+   [\#4](https://github.com/JiawenLyu/ped/issues/4),
+   [\#5](https://github.com/JiawenLyu/ped/issues/5),
+   [\#6](https://github.com/JiawenLyu/ped/issues/6))
