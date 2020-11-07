@@ -107,6 +107,8 @@ class ParserTest {
         Parser p = new Parser(fav);
         p.extractType();
         p.setUserInput("/addfav");
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
     }
 
     @Test
@@ -126,6 +128,8 @@ class ParserTest {
         p.setUserInput("/addfav");
         p.extractType();
         p.setUserInput("/listfav");
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
     }
 
     @Test
@@ -146,6 +150,8 @@ class ParserTest {
         p.setUserInput("/addfav");
         p.extractType();
         p.setUserInput("/deletefav 1");
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
     }
 
     @Test
