@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DeleteReviewCommandTest {
 
