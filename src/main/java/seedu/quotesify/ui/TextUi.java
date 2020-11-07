@@ -394,6 +394,7 @@ public class TextUi {
         }
     }
 
+    //@@author lunzard
     public void printAddToDo(ToDo toDo) {
         if (toDo != null) {
             System.out.printf(UiMessage.ADD_TODO_MESSAGE + "\n", toDo.toString());
@@ -442,6 +443,7 @@ public class TextUi {
         }
     }
 
+    //@@author
     public void printInvalidQuotesifyCommand() {
         System.out.println(UiMessage.INVALID_QUOTESIFY_COMMAND);
     }

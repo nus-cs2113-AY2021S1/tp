@@ -64,10 +64,12 @@ public class AddCommand extends Command {
             quotesifyLogger.log(Level.INFO, "going to add rating to book");
             new AddRatingCommand(arguments).execute(ui, storage);
             break;
+        //@@author lunzard
         case TAG_TODO:
             quotesifyLogger.log(Level.INFO, "going to add task to ToDoList");
             new AddToDoCommand(arguments).execute(ui, storage);
             break;
+        //@@author
         default:
             ui.printListOfAddCommands();
             break;
