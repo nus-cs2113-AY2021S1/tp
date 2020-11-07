@@ -594,7 +594,7 @@ Expected outcome:
  
 &nbsp;
 
-### 5. FAQ 
+## 5. FAQ 
 <br>
 
 **Q**: Is my watchlist saved after I exit the program?  
@@ -619,7 +619,7 @@ Expected outcome:
 
 <br>
 
-### 6. Command Summary
+## 6. Command Summary
 
 This section showcases the list of available features and usage examples for your reference.
              
