@@ -55,13 +55,12 @@ Format: `name YOUR_NAME_OR_NICKNAME`
 
 Example of usage:
 
-* `name Tom and Jerry`<br/>
 * `name Jack`
 
-Output example for usage example 2:
+Output example:
 ```
 Hi Jack!
-Before we get started, I would like to know about about you so that I can make more 
+Before we get started, I would like to know about about you so that I can make more
 accurate calculations for you :). Therefore, could you please share with me the following:
 - Your gender either F for female or M for male or O for others.
 - Your age which is a positive integer.
