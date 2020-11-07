@@ -477,8 +477,10 @@ The sequence diagram below demonstrates the command execution process when addin
 With the addition of new categories, users can perform several commands that makes use of them. Such as editing of category name, finding a category, deleting a category,
 listing all categories, or adding the same category to other books and quotes.
 <!-- @@author -->
+
 ---
 
+<!-- @@author yuen-sihao -->
 ### 4.5 Feature: Rating system for books
 
 Given below is the class diagram for classes related to the Rating System in Quotesify:
@@ -547,6 +549,7 @@ user is finding is not shown in the diagram.
 to inform the user and the method is returned.
 * The list of ratings will be looped to see if ratings exists for books with title containing the specified keyword.
 * The details of the ratings found will be printed to the user.
+<!-- @@author -->
 
 ---
 
@@ -1127,8 +1130,9 @@ Alright, have a nice day!
    
    Expected: An error message will be prompted. No categories will be listed.
 <!-- @@author -->
----
 
+---
+<!-- @@author yuen-sihao -->
 ### Testing for Rating System for books
 
 #### Adding a book rating
@@ -1209,5 +1213,6 @@ Use `list -b` to list all existing books and get book number.
    * `find -r`: keyword field left empty
    
    Expected: No rating is found and listed. A message with error details will be prompted.
+<!-- @@author -->
 
 ---
