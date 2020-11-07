@@ -8,6 +8,7 @@ import seedu.notus.data.exception.SystemException;
 
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
+import seedu.notus.data.tag.Tag;
 import seedu.notus.data.tag.TagManager;
 
 import seedu.notus.data.timetable.Event;
@@ -31,9 +32,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import static seedu.notus.ui.Formatter.LS;
-import static seedu.notus.util.PrefixSyntax.PREFIX_ARCHIVE;
-import static seedu.notus.util.PrefixSyntax.PREFIX_LOAD;
-import static seedu.notus.util.PrefixSyntax.PREFIX_DELIMITER;
+import static seedu.notus.util.PrefixSyntax.*;
 
 
 //@@author prachi2023
@@ -365,13 +364,17 @@ public class StorageManager {
     }
 
     private static String getEventDetailsSaveFormat(Event event) {
-        String eventDetails;
+        String eventDetails, tagDetails = null;
 
         eventDetails = PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TITLE + " " + event.getTitle() + " "
                 + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_TIMING + " "
                 + event.getStartDateTimeString() + " "
                 + PrefixSyntax.PREFIX_DELIMITER + PrefixSyntax.PREFIX_END_TIMING + " "
                 + event.getEndDateTimeString() + " ";
+
+        for (Tag tag: event.getTags()) {
+            tagDetails += PREFIX_DELIMITER + PREFIX_TAG + " " + tag.toSaveString() + " ";
+        }
 
         ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
 
