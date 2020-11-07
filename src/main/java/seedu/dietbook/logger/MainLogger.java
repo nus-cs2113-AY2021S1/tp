@@ -12,6 +12,9 @@ public class MainLogger {
     //@@author HengFuYuen-reused
     //Reused from https://stackoverflow.com/a/6315736 with minor modifications
     public MainLogger(String className) {
+        assert className != null : "Class name cannot be null";
+        assert className.trim().length() > 0 : "Class name cannot be an empty string";
+
         logger = Logger.getLogger(className);
         Handler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.SEVERE);
@@ -20,6 +23,10 @@ public class MainLogger {
     }
 
     public void log(Level level, String message) {
+        assert level != null : "Logging level should not be null";
+        assert message != null : "Log message should not be null";
+        assert message.trim().length() > 0 : "Log message should not be an empty string";
+
         logger.log(level, message);
     }
 }
