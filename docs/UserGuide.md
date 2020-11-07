@@ -52,7 +52,9 @@ Stores the user's name or nickname into DietBook during the initial setup.
 
 Format: `name YOUR_NAME_OR_NICKNAME`
 
-* The name given must not be empty.
+* The name given **must not be empty**.
+* The name **can contain any numbers and characters except for `/`**, the forward slash.
+    * FYI: DietBook accepts all characters from Dec 33 - 126 of the [ASCII table](http://www.asciitable.com/), **except Dec 47**, the forward slash `/`.
 * This command is **only used when setting up DietBook for the first time**. Any subsequent editing of the name can be done using the [editinfo](#editing-user-information-editinfo) command.
 
 Example of usage:
@@ -137,7 +139,9 @@ Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/
 
 * Although all parameters are listed as optional, **at least one of the optional fields needs to be provided**. In this case, any one of the parameters would work.
 * Existing values will be updated to the input values, even if the new value given is the same as the existing value.
-* The name must not be empty.
+* The name given **must not be empty**.
+* The name **can contain any numbers and characters except for `/`**, the forward slash.
+    * FYI: DietBook accepts all characters from Dec 33 - 126 of the [ASCII table](http://www.asciitable.com/), **except Dec 47**, the forward slash `/`.
 * The gender must be either **`M` for male, `F` for female or `O` for others**.
 * The age must be a positive **integer from 0 to 150, inclusive**.
 * The height must be a positive **integer from 1 to 300, inclusive**.
