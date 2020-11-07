@@ -1,10 +1,10 @@
 package seedu.dietbook.list;
 
 import seedu.dietbook.food.Food;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.time.LocalDateTime;
 
 /**
  * Class with static methods to execute "complex commands" on FoodList.
@@ -18,7 +18,7 @@ public class FoodListManager {
      * Internal helper method to convert the items in the arraylist into enumed strings.
      * Primarily used to obtain String representations of the entire list.
      */
-    protected static String listToString(ArrayList<FoodEntry> list) {
+    protected static String convertListToString(List<FoodEntry> list) {
         String listString = "";
 
         for (int i = 1; i <= list.size(); i++) {
@@ -27,6 +27,20 @@ public class FoodListManager {
                     + entry.toString() + "\n";
         }
         return listString;
+    }
+
+    protected static String convertListToDatedString(List<FoodEntry> list) {
+        String datedListString = "";
+        Function<FoodEntry, String> function = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            DatedFoodEntry datedEntry = (DatedFoodEntry) x;
+            return datedEntry.toDatedString();
+        };
+        List<String> strings = ListFunction.applyFunctionToList(list, function);
+        for (int i = 1; i <= strings.size(); i++) {
+            datedListString += String.format("  %d. %s\n", i, strings.get(i - 1));
+        }
+        return datedListString;
     }
 
     protected static FoodEntry deleteEntry(List<FoodEntry> list, int index) throws IndexOutOfBoundsException {
@@ -44,28 +58,28 @@ public class FoodListManager {
      * @param list The foodList arrayList
      * @return List of foodEntries in their String rep.
      */
-    protected static List<String> listToStrings(List<FoodEntry> list) {
+    protected static List<String> convertListToStrings(List<FoodEntry> list) {
         Function<FoodEntry, String> function = x -> x.toString();
-        return applyFunctionToList(list, function);
+        return ListFunction.applyFunctionToList(list, function);
     }
 
     /**
      * Extracts the list of foods from the foodentries list.
      * @param list list of foodEntries
-     * @return arraylist of Food objects.
+     * @return list of Food objects.
      */
-    protected static ArrayList<Food> listToFoods(List<FoodEntry> list) {
+    protected static List<Food> convertListToFoods(List<FoodEntry> list) {
         Function<FoodEntry, Food> function = x -> x.getFood();
-        return applyFunctionToList(list, function);
+        return ListFunction.applyFunctionToList(list, function);
     }
 
     /**
      * Creates a list of foods that have their nutritional values scaled by portion size.
      * This is based on the FoodEntries in the list provided.
      * @param list list of FoodEntries
-     * @return arraylist of Food objects
+     * @return list of Food objects
      */
-    protected static ArrayList<Food> listToPortionedFoods(List<FoodEntry> list) {
+    protected static List<Food> convertListToPortionedFoods(List<FoodEntry> list) {
         Function<FoodEntry, Food> function = x -> {
             Food baseFood = x.getFood();
             /**  Explicitly getting return type of getPortionSize() is avoided.
@@ -78,21 +92,61 @@ public class FoodListManager {
                     baseFood.getProtein() * x.getPortionSize(),
                     baseFood.getFat() * x.getPortionSize());
         };
-        return applyFunctionToList(list, function);
+        return ListFunction.applyFunctionToList(list, function);
     }
 
     /**
-     * Generic method to map a function across a list.
-     * @param list list to operate on
-     * @param function function to be mapped across list
-     * @return list of mapped items under provided function
+     * Obtain the LocalDateTime objects associated with each entry.
      */
-    protected static <T, E> ArrayList<E> applyFunctionToList(List<T> list, Function<T, E> function) {
-        ArrayList<E> appliedList = new ArrayList<>();
-        Consumer<T> addResultToAppliedList = x -> appliedList.add(function.apply(x));
-        list.forEach(addResultToAppliedList);
-        return appliedList;
+    protected static List<LocalDateTime> convertListToLocalDateTimes(List<FoodEntry> list) {
+        Function<FoodEntry, LocalDateTime> function = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            DatedFoodEntry datedEntry = (DatedFoodEntry) x;
+            return datedEntry.getDateTime();
+        };
+        return ListFunction.applyFunctionToList(list, function);
     }
+
+    /**
+     * Obtain the portion sizes associated with each food entry.
+     */
+    protected static List<Integer> convertListToPortionSizes(List<FoodEntry> list) {
+        Function<FoodEntry, Integer> function = x -> x.getPortionSize();
+        return ListFunction.applyFunctionToList(list, function);
+    }
+
+    /**
+     * Obtain only food entries after a specified dateTime.
+     * @param dateTime the start/"before" datetime for filtering.
+     */
+    protected static List<FoodEntry> filterListByDate(List<FoodEntry> list, LocalDateTime dateTime) {
+        Predicate<FoodEntry> predicate = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            DatedFoodEntry datedEntry = (DatedFoodEntry) x;
+            return dateTime.isBefore(datedEntry.getDateTime()) || dateTime.isEqual(datedEntry.getDateTime());
+        };
+        return ListFunction.filterList(list, predicate);
+    }
+
+    /**
+     * Obtain only food entries within a specified range of dateTimes.
+     */
+    protected static List<FoodEntry> filterListByDate(List<FoodEntry> list, LocalDateTime start, LocalDateTime end) {
+        assert (start.isBefore(end)) : "End time should be later than start time.";
+        Predicate<FoodEntry> predicate = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            DatedFoodEntry datedEntry = (DatedFoodEntry) x;
+            LocalDateTime entryDateTime = datedEntry.getDateTime();
+            return ((start.isBefore(entryDateTime) || start.isEqual(entryDateTime))
+                    && (end.isAfter(datedEntry.getDateTime()) || end.isEqual(entryDateTime)));
+        };
+        return ListFunction.filterList(list, predicate);
+    }
+
+    /**
+     * Sort a list of entries by date.
+     */
+
 
 }
 

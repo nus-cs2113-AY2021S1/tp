@@ -2,9 +2,9 @@ package seedu.dietbook.person;
 
 /**
  * Represents the physical activity level of a person or the amount of exercise a person engages in.
- * An <code>ActivityLevel</code> has a description.
+ * An <code>FitnessLevel</code> has a description.
  */
-public enum ActivityLevel {
+public enum FitnessLevel {
     NONE("You hardly engage in any exercise or have a job that requires little to no physical "
             + "activity."),
     LOW("You engage in some form of light exercise or have a job that requires some "
@@ -18,18 +18,18 @@ public enum ActivityLevel {
     private final String description;
 
     /**
-     * Constructs an <code>ActivityLevel</code> given the description.
+     * Constructs an <code>FitnessLevel</code> given the description.
      *
-     * @param description The description of the activity level.
+     * @param description The description of the fitness level.
      */
-    ActivityLevel(String description) {
+    FitnessLevel(String description) {
         this.description = description;
     }
 
     /**
-     * Returns the description of the activity level.
+     * Returns the description of the fitness level.
      *
-     * @return The description of the activity level.
+     * @return The description of the fitness level.
      */
     public String getDescription() {
         return description;
