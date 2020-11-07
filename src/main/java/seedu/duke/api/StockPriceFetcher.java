@@ -7,7 +7,7 @@ import org.patriques.input.timeseries.OutputSize;
 import org.patriques.output.AlphaVantageException;
 import org.patriques.output.timeseries.IntraDay;
 import org.patriques.output.timeseries.data.StockData;
-import seedu.duke.exception.DukeException;
+import seedu.duke.exception.PaperTradeException;
 
 import java.util.List;
 import java.util.Random;
@@ -25,14 +25,14 @@ public class StockPriceFetcher {
         timeout = 3000;
     }
 
-    public double fetchLatestPrice(String symbol) throws DukeException {
+    public double fetchLatestPrice(String symbol) throws PaperTradeException {
         logger.log(Level.INFO, "fetching latest stock data for " + symbol);
         StockData stockData = fetchLatestStockData(symbol);
 
         return (stockData.getHigh() + stockData.getLow()) / 2;
     }
 
-    public StockData fetchLatestStockData(String symbol) throws DukeException {
+    public StockData fetchLatestStockData(String symbol) throws PaperTradeException {
         Random random = new Random();
         String randomApiKey = apiKeys[random.nextInt(apiKeys.length)];
         AlphaVantageConnector apiConnector = new AlphaVantageConnector(randomApiKey, timeout);
@@ -45,7 +45,7 @@ public class StockPriceFetcher {
             return stockData.get(0);
         } catch (AlphaVantageException e) {
             logger.log(Level.INFO, "failed to fetch price from API");
-            throw new DukeException("API limit has reached. Take a chill pill and test again a moment later :)");
+            throw new PaperTradeException("API limit has reached. Take a chill pill and test again a moment later :)");
         }
     }
 

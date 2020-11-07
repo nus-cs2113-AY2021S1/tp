@@ -14,10 +14,10 @@ import seedu.duke.command.ViewBookmarkedStocksCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
 import seedu.duke.exception.DoNotOwnStockException;
-import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InsufficientFundException;
-import seedu.duke.exception.NegativeQtyException;
 import seedu.duke.exception.InsufficientQtyException;
+import seedu.duke.exception.NegativeQtyException;
+import seedu.duke.exception.PaperTradeException;
 import seedu.duke.model.BookmarksManager;
 import seedu.duke.model.PortfolioManager;
 import seedu.duke.model.Stock;
@@ -46,7 +46,7 @@ public class Controller {
                     + quantity + " of " + symbol + " at " + price + ".");
             ui.printWithDivider("You currently have $"
                     + String.format("%.02f", portfolioManager.getWalletCurrentAmount()) + " in your wallet.");
-        } catch (DukeException | InsufficientFundException | NegativeQtyException e) {
+        } catch (PaperTradeException | InsufficientFundException | NegativeQtyException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
@@ -60,7 +60,7 @@ public class Controller {
                     + quantity + " of " + symbol + " at " + price + ".");
             ui.printWithDivider("You currently have $"
                     + String.format("%.02f", portfolioManager.getWalletCurrentAmount()) + " in your wallet.");
-        } catch (DoNotOwnStockException | InsufficientQtyException | DukeException | NegativeQtyException e) {
+        } catch (DoNotOwnStockException | InsufficientQtyException | PaperTradeException | NegativeQtyException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
@@ -80,14 +80,14 @@ public class Controller {
     public void addBookmark(String symbol) {
         try {
             stockPriceFetcher.fetchLatestPrice(symbol);
-        } catch (DukeException e) {
+        } catch (PaperTradeException e) {
             ui.printWithDivider("Error validating stock, might be an invalid stock!");
             return;
         }
         try {
             bookmarksManager.addToBookmarks(symbol);
             ui.printWithDivider("You have added " + symbol + " to bookmarks.");
-        } catch (DukeException e) {
+        } catch (PaperTradeException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
@@ -96,7 +96,7 @@ public class Controller {
         try {
             bookmarksManager.removeBookmark(symbol);
             ui.printWithDivider("You have removed " + symbol + " from bookmarks.");
-        } catch (DukeException e) {
+        } catch (PaperTradeException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
@@ -152,7 +152,7 @@ public class Controller {
         for (Stock stock : portfolioManager.getAllStocks()) {
             try {
                 amount += (stockPriceFetcher.fetchLatestPrice(stock.getSymbol())) * stock.getTotalQuantity();
-            } catch (DukeException e) {
+            } catch (PaperTradeException e) {
                 ui.printWithDivider(e.getMessage());
             }
         }
@@ -172,7 +172,7 @@ public class Controller {
                     "close:  " + stockData.getClose(),
                     "volume: " + stockData.getVolume()
             );
-        } catch (DukeException e) {
+        } catch (PaperTradeException e) {
             ui.printWithDivider(e.getMessage());
         }
     }
