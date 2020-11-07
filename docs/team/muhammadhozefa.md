@@ -1,4 +1,4 @@
-# Muhammad Hozefa - Project Portfolio 
+# Muhammad Hozefa Zumkhawala - Project Portfolio 
 
 
 ## Overview
@@ -12,7 +12,7 @@ This section gives a summary of my contributions towards our project.
 
 **Code contributed** [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=muhammadhoze&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=MuhammadHoze&tabRepo=AY2021S1-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) 
 
-##### Enhancement implemented:
+#### Enhancement implemented:
 1. Added the loan system (BookList and Book class)
     * *what it does*: Allow students to keep track of their loan items from the library which will reduce overdue cases.  
     [BorrowCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/BorrowCommand.java)
@@ -30,7 +30,7 @@ This section gives a summary of my contributions towards our project.
     * *what it does*: Allow students to clear everything and start afresh every new semester.
     [ClearCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/blob/master/src/main/java/seedu/duke/commands/ClearCommand.java)
 
-##### Contributions to User Guide:
+#### Contributions to User Guide:
 These are the following sections I contributed to which will be elaborated in the User Guide (Extracts).
 
 1. Table of Contents
@@ -43,26 +43,26 @@ These are the following sections I contributed to which will be elaborated in th
 8. Clearing all data 
 9. Quick Command Summary
 
-##### Contributions to Developer Guide:
+#### Contributions to Developer Guide:
 These are the following sections I contributed to:
 
 1. Product Scope
 2. User stories
 
-##### Contributions to Team-based tasks:
+#### Contributions to Team-based tasks:
 These are the following team-tasks done by me:
 1. Did smoke-tests on our program to ensure all commands were working as expected and the intended messages printed were correct. 
 2. Added and assigned issues to my teammates.
 3. Added non-feature related details such as Quick start, FAQ and a brief introduction of our program.
 
 
-##### Review/mentoring contributions: 
+#### Review/mentoring contributions: 
 1. Instances of reviewing my teammates PR and commenting appropriately.
 [#95](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/95) [#160](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/160)
 2. Ensure PRs are created with detailed description of the changes made so that the team is aware and updated.
 [#40](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/40) [#60](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/60) [#93](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/93) [#155](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/155)              [#158](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/158)
 
-##### Contributions beyond the project team:
+#### Contributions beyond the project team:
 Beyond the scope of my team, I believe I reported several legitimate bugs as well as suggested solutions to fix those bugs to the team which was given to me during the dry run Pratical Exam.  
 
 ### Contributions to the User Guide (Extracts)
