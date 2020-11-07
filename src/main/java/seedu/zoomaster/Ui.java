@@ -316,11 +316,13 @@ public class Ui {
         printRedWithBorder("Unknown mode input" + NEW_LINE + "Valid modes: bookmark, timetable, planner" + NEW_LINE);
     }
 
+    //@@author TYS0n1
     private void printUnknownDayMessage() {
         printRedWithBorder("Unknown day input" + NEW_LINE
                 + "Valid days: mon, tue, wed, thu, fri, sat, sun" + NEW_LINE);
     }
 
+    //@@author TYS0n1
     private void printEmptyTimetableMessage() {
         printRedWithBorder("Timetable is empty" + NEW_LINE);
     }

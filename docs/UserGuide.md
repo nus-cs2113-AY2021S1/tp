@@ -150,6 +150,8 @@ Example of usage:
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/help%20add%20msg.png?raw=true)
 
 <br/><br/> 
+
+<!-- @@author TYS0n1 -->
 <a name="mode"></a>  
 #### 5.1.2 Switch mode: `mode` (Yu Shing)
 You can switch between “bookmark”, “timetable” and "planner" modes. Depending on the mode you select the behaviour of the commands below changes. <br/><br/> 
@@ -172,6 +174,8 @@ Example of usage:
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true) <br/><br/> 
 >* When you are switching to the planner mode you would see the message shown below.<br/>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
+
+<!-- @@author -->
 
 <br/><br/> 
 <a name="clear"></a>  
@@ -337,6 +341,7 @@ Else you should see a message "No bookmarks contain the specified keyword!" like
 <a name="timetablemode"></a>  
 ### 5.3 Timetable mode    
 
+<!-- @@author TYS0n1 -->
 <a name="showtimetable"></a>
 #### 5.3.1 Show timetable: `show` (Yu Shing)
 You will be able to see the timetable for a certain day or the whole week.  
@@ -377,7 +382,7 @@ Example of usage:
 >Example of "lesson now" indicator hightlighting the current lesson <br></br>
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true) <br></br><br></br>
 
-
+<!-- @@author -->
 
 <br/><br/>
 <a name="showmoduledetails"></a>
@@ -547,16 +552,22 @@ Edits the module, title or time for a specific slot.
 > <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
 >* You can only edit a module that is listed on the NUSMods website. 
 >You can see the [command format](#command_format) for more information.
+>* You cannot change the time of a slot to a period which is currently occupied in the timetable. <br></br>
+>Eg. You wish to change a timeslot from friday 16:00 to 18:00 into friday 17:00 to 18:00, you cannot change it directly 
+>using the edit command. <br></br> We recommend you to either change the timeslot to a period which is unoccupied then to your 
+>desired period or deleting the current timeslot and adding a new timeslot in your desired period. 
 
 ```
 Format (editing the module of a slot): edit module {DAY} {INDEX} {new MODULE}
 
 Format (editing the title of a slot): edit title {DAY} {INDEX} {new TITLE}
 
-Format (editing the time of a slot): edit time {DAY} {INDEX} {new START_TIME} {new END_TIME}
+Format (editing the time of a slot): edit time {DAY} {INDEX} {DAY} {new START_TIME} {new END_TIME}
 ```
 
 * Obtain the `DAY` and `INDEX` of the slot to be edited using the `show` command.
+* For editing the time of a slot, the first `DAY` parameter is to choose the slot you wish to edit.
+The second `DAY` parameter is for the new day of the week you wish to set your slot.
 
 Example of usage:   
 * `edit module mon 1 CS1010`  
