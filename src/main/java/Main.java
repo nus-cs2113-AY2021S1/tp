@@ -224,7 +224,7 @@ public class Main {
         Dish watermelon = new Dish("Watermelon Drink", 1.8,
                 "Really like this since eat watermelon is quite mafan.");
         Dish milkshade = new Dish("Milk shade",1.8,
-                "A bit too sweet for me.")
+                "A bit too sweet for me.");
         Stall drinks = new Stall("Drinks",12,"Jurong West Ave 5",
                 1100,2200,Arrays.asList(3,4,5,6),
                 Arrays.asList(milo,watermelon,milkshade),4);
@@ -235,6 +235,8 @@ public class Main {
         List<Canteen> canteens = new ArrayList<Canteen>();
         canteens.add(canteen1);
         canteens.add(canteen2);
+        canteens.add(canteen3);
+        canteens.add(canteen4);
         return canteens;
     }
     public static void checkCanteenOperatingTime(List<Canteen> canteens,Customer customer){
