@@ -14,7 +14,7 @@ public class List extends ReadOnlyCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-        "^list(?<dateFlag> -d)?"
+        "^(?<dateFlag> -d)?"
                 + "(?<priorityFlag> -p)?"
                 + "(?<displayByWeek> -w)?"
                 + "(?<displayByMonth> -m)?"

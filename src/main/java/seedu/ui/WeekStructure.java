@@ -50,7 +50,7 @@ public class WeekStructure extends DisplayDateStructure {
                 // # + 4 digits + " " = 6
                 temp += Util.generatePadStringWithCharAndLength(' ', HASHCODE_STRING_LENGTH - temp.length());
                 temp += task.getDescription();
-                Util.limitStringWithDots(temp, 20);
+                temp = Util.limitStringWithDots(temp, 19);
                 Util.putsIntoArray(temp, screen[currentRow++], currentCol);
             }
 

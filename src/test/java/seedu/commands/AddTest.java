@@ -10,6 +10,7 @@ import seedu.exceptions.MaxNumTaskException;
 import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
 import seedu.exceptions.EmptyDataStackException;
+import seedu.exceptions.InvalidReminderException;
 import seedu.parser.Parser;
 import seedu.task.Task;
 
@@ -69,7 +70,7 @@ class AddTest {
     @Test
     public void addCommand_executeSuccess() throws InvalidCommandException, InvalidDatetimeException,
             InvalidPriorityException, MaxNumTaskException, InvalidTaskNumberException,
-            UnknowCommandException,EmptyDataStackException {
+            UnknowCommandException,EmptyDataStackException, InvalidReminderException {
         TaskMap taskMap = new TaskMap();
         Model model = new Model(taskMap);
         Command add = parser.processRaw("add newTask");
