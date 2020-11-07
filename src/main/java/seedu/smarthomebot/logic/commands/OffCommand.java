@@ -70,6 +70,8 @@ public class OffCommand extends Command {
 
     /**
      * Method to off Appliance by the name.
+     *
+     * @throws ApplianceNotFoundException when keyed Appliance is not found in ApplianceList.
      */
     private CommandResult offByApplianceName() throws ApplianceNotFoundException {
         int toOffApplianceIndex = applianceList.getApplianceIndex(argument);

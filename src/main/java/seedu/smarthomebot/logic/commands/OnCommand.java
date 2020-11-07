@@ -17,6 +17,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 
 //@@author leonlowzd
+
 /**
  * Represent the Command to turn on Appliance(s).
  */
@@ -87,6 +88,8 @@ public class OnCommand extends Command {
 
     /**
      * Method to on Appliance by the name.
+     *
+     * @throws ApplianceNotFoundException when keyed Appliance is not found in ApplianceList.
      */
     private CommandResult onByApplianceName() throws ApplianceNotFoundException {
         int toOnApplianceIndex = applianceList.getApplianceIndex(argument);
@@ -124,6 +127,8 @@ public class OnCommand extends Command {
 
     /**
      * Method to On Appliance by the Location.
+     *
+     * @throws ParameterFoundException When entered Parameter is Invalid.
      */
     private CommandResult onByLocation(ArrayList<Appliance> toOnAppliance) throws ParameterFoundException {
         if (!parameter.isEmpty()) {

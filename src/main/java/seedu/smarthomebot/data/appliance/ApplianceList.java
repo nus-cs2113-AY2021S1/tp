@@ -25,6 +25,7 @@ public class ApplianceList {
      * Method to add a new Appliance to the ApplianceList.
      *
      * @param appliance Appliance to add.
+     * @throws DuplicateDataException Appliance name is already in the List.
      */
     public void addAppliance(Appliance appliance) throws DuplicateDataException {
         if (!isApplianceExist(appliance.getName())) {
@@ -38,6 +39,7 @@ public class ApplianceList {
      * Method to delete a Appliance from the ApplianceList.
      *
      * @param userEnteredName Appliance to remove.
+     * @throws ApplianceNotFoundException When keyed name is not found in ApplianceList.
      */
     public Appliance deleteAppliance(String userEnteredName) throws ApplianceNotFoundException {
         for (Appliance appliance : getAllAppliance()) {
@@ -87,6 +89,7 @@ public class ApplianceList {
      * Method to remove Appliances located in the user selected location in the ApplianceList.
      *
      * @param usersEnteredLocation Appliance to check.
+     * @throws ApplianceNotFoundException When keyed name is not found in ApplianceList.
      */
     public void deleteByLocation(String usersEnteredLocation) throws ApplianceNotFoundException {
         for (int x = getAllAppliance().size() - 1; x >= 0; x--) {
@@ -96,6 +99,12 @@ public class ApplianceList {
         }
     }
 
+    /**
+     * Method to return the index of the Appliance from the input argument.
+     *
+     * @param argument Name of Appliance to find in the List.
+     * @throws ApplianceNotFoundException When keyed name is not found in ApplianceList.
+     */
     public int getApplianceIndex(String argument)
             throws ApplianceNotFoundException {
         for (Appliance appliance : applianceList) {
