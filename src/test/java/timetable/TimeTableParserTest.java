@@ -3,9 +3,7 @@ package timetable;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,7 @@ class TimeTableParserTest {
                 + "Wednesday 2-4pm\n" + "1\n" + "20/10/2020\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        Lesson lesson = TimeTableParser.addClass();
+        Lesson lesson = TimeTableCommand.addClass();
         Duration duration = new Duration(LocalDateTime.of(2020,10,21,14,0),
                 LocalDateTime.of(2020,10,21,16,0));
         List<Duration> expectedPeriod = new ArrayList<>();
@@ -38,7 +36,7 @@ class TimeTableParserTest {
                 + "Wednfesday 2-4pm\n" + "1\n" + "20/10/2020\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThrows(InvalidDayOfTheWeekException.class, TimeTableParser::addClass);
+        assertThrows(InvalidDayOfTheWeekException.class, TimeTableCommand::addClass);
     }
 
 

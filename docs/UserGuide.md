@@ -194,54 +194,86 @@ want to save your time finding your zoom links in your email inbox and save all 
 links in the bookmark feature to access them easily! The bookmark mode enables you to 
 compile all your links in one destination and even categorise them into different groups. 
 After entering the bookmark mode (refer to General Command 2), use the following commands to 
-navigate around bookmark mode. This section contains 8 commands: 1.1, 1.2, 1.3, 1.4, 1.5, 
-1.6, 1.7 and 1.8. 
+navigate around bookmark mode. 
 
-### 1.1 Viewing bookmarks in each category: 
+This section contains 8 commands: 
+* 1.1 : [Viewing all bookmark links / starred links / category]()
+* 1.2 : [Going into each category]()
+* 1.3 : [Adding a category]()
+* 1.4 : [Deleting a category]()
+* 1.5 : [Going back to Bookmark main ]()
+* 1.6 : [Adding a link ]()
+* 1.7 : [Deleting a link]()
+* 1.8 : [Starring / Unstarring a link]()
+
+### 1.1 Viewing all the bookmarks links: 
+`list`,`list -s`, `list -c`, `list -a`
+
+Are you trying to find your links by entering into each category to view your links?
+You might want to have an easy way to view the overview of your links. 
+You can now either view the entire list of links in the category you are in, 
+the starred links, the list of categories available, 
+or the entire list of links in every category using the following commands. 
+
+Instructions:
+1. If you want to view the list of links in the category you are in  = `list`  
+2. If you want to view the entire list of starred links = `list -s`
+3. If you want to view the entire list of category available = `list -c`
+4. if you want to view the entire list of links in every category = `list -a`
+
+Expected output:
+![Bookmark_List](Images/BookmarkUG/Figure1.png)
+![Bookmark_List_1Star_Cat](Images/BookmarkUG/Figure2.png)
+
+**Useful Information:**
+* You can only use this command anywhere after entering the bookmark mode. (Refer to General Command 2)
+* If your category does not have any links, it will indicate that the list is empty.
+* If you are in bookmark main, and you input `list`, it will show you the entire list of links in every category. (Same command as `list -a`)
+* To star / unstar a link refer to 1.8
+* To add a category refer to 1.3, to delete a category refer to 1.4 
+
+**Warning**
+* Follow the format `list`, `list -s`, `list -c`, `list -a` without adding additional inputs. 
+If additional input is detected, the program will prompt you to input the correct format. 
+
+### 1.2 Going into each category: 
 `bm NUMBER`   
 
 Managing so many links can be a hassle! However, categorising the links into different 
 groups can make it even more efficient to find your links! After entering bookmark mode 
-(refer to General Command 2), you can view the list of links in each category using the 
-following commands. This command allows you to change the bookmark category within the
- bookmark mode. 
- 
+(refer to General Command 2), you can enter each category using the following commands. 
+This command allows you to change the bookmark category within the bookmark mode. 
  
 Instruction:
 1. `bm NUMBER `
 
 E.g. `bm 2`  
 Expected output: 
-![Bookmark_1.1](Images/BookmarkUG/Figure1.png)
-
+![Bookmark_bm_cat](Images/BookmarkUG/Figure3.png)
 
 **Useful Information:**
 * You can only use this command anywhere after entering the bookmark mode. ( Refer to General Command 2)
 * Zoom, Nus, Internship, Hackathon, Career Talks categories are included in the default.
+* If you are already in the chosen category, the program will inform you as shown in the figure below. 
+![Bookmark_bm_already in cat](Images/BookmarkUG/Figure4.png)
 
-If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
+If you encounter any errors, take note of the following warnings and 
+if problems still persist, refer to FAQ at the end of the user guide. 
 
 **Warning:**
-* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, go back to bookmark main. (Refer to 1.6)
-
-### 1.2 Viewing all the bookmarks links: 
-`list`   
-
-Are you trying to find your links by entering into each category to view the links? You might want to have an easy way to view the overview of the entire list of links in each category. You can now view the entire list of links using the following commands. 
-Instructions:
-1. `list`  
-
-Expected output:
-![Bookmark_1.2](Images/BookmarkUG/Figure2.png)
-
-**Useful Information:**
-* You can only use this command anywhere after entering the bookmark mode.  (Refer to General Command 2)
-* If your category does not have any links, it will indicate that the list is empty.
+* Ensure that the category NUMBER that you have chosen is valid. 
+Error will be shown if the category NUMBER does not exist, or the NUMBER you 
+have entered is not a number. To find out the valid category NUMBER, 
+view the list of categories (Refer to 1.1)
 
 ### 1.3 Adding category:  
 `cat CATEGORY_NAME `
 
-If you cannot find the perfect category to place your bookmark, why not create your own category! In addition to the default categories that are added (Zoom, NUS, Internship, Hackathon, Career Talks), create your own category to add your bookmark links. Use the following commands to add a category and navigate it (Refer to 1.1) the same way as the rest of your categories.
+If you cannot find the perfect category to place your bookmark, 
+why not create your own category! In addition to the default categories 
+that are added (Zoom, NUS, Internship, Hackathon, Career Talks), create your 
+own category to add your bookmark links. Use the following commands to add a category 
+and navigate it (Refer to 1.2) the same way as the rest of your categories.
 
 Instruction: 
 1. `cat CATEGORY_NAME`   
@@ -249,7 +281,8 @@ Instruction:
 e.g. `cat entertainment`, `cat stocks`
 
 Expected output:   
-![Bookmark_1.3](Images/BookmarkUG/Figure3.png)
+![Bookmark_Add Category](Images/BookmarkUG/Figure5.png)
+
 
 **Useful Information:** 
 * You can only use this command anywhere after entering the bookmark mode.  (Refer to General Command 2)
@@ -267,11 +300,11 @@ When you have a category, but you have no important links related to the categor
 
 Instruction:  
 
-1. delete CATEGORY_NUMBER  
+1. `delete CATEGORY_NUMBER1`  
 
-e.g. delete 6  
+e.g. `delete 6`  
 Expected output:  
-![Bookmark_1.4](Images/BookmarkUG/Figure4.png)
+![Bookmark_1.4](Images/BookmarkUG/Figure6.png)
 
 **Useful Information:**
 * You can only use this command in bookmark main.  (Refer to 1.5 to go back to the bookmark main)
@@ -279,76 +312,85 @@ Expected output:
 Before deleting a category, take note of the following warnings. If you encounter any problems, refer to FAQ at the end of the user guide. 
 
 **Warning:**
-* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, go back to bookmark main. (Refer to 1.5)
+* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to 1.1)
 * CAUTION: Deleting a category will delete all the bookmarks in the category! 
 
 ### 1.5 Going back to bookmark main: 
 `back` 
-There are two modes in bookmark feature: the main bookmark mode (refer to General Command 2) and the category mode (refer to 1.1). To navigate freely from mode to mode, use the following command. This command goes back to the previous mode depending on which mode you are in. 
+There are two modes in bookmark feature: the main bookmark mode (refer to General Command 2) and the category mode (refer to 1.2). To navigate freely from mode to mode, use the following command. This command goes back to the previous mode depending on which mode you are in. 
  
 Instruction: 
-1. back 
+1. `back` 
 
 Expected output:   
-![Bookmark_1.5](Images/BookmarkUG/Figure5.png)
-![Bookmark_1.6](Images/BookmarkUG/Figure6.png)
+![Bookmark_back command](Images/BookmarkUG/Figure7.png)
 
 **Useful Information:**
 * When you input back in any bookmark category, you are brought back to the bookmark main. 
 * When you input back in the bookmark main, you will be prompted to type “exit” to exit bookmark mode. 
 
+**Warning:**
+* Follow the format `back` without adding additional inputs. 
+If additional input is detected, the program will prompt you to input the correct format. 
+
 ### 1.6 Adding a link to your chosen category: 
 `add LINK` / `add LINK t->TITLE`
 If you have a link to add to your bookmark category, follow these commands. 
-Make sure that you have chosen your category (Refer to 1.1) 
+Make sure you have chosen your category (Refer to 1.2) 
 and ensure that you do not add an invalid link or an empty link to your bookmark.
+If you are afraid that you will forget what the bookmark link is for, you can 
+add a title to your bookmark link just by including a `t->` after you entered your link 
+and before entering your title. 
+In addition, if you forget what links you have already bookmarked, you can always 
+add the same link, and the program will tell you whether you the link in your list.
 
 Instruction: 
-1. `add LINK` e.g. `add https://nus-cs2113-ay2021s1.github.io/website/index.html`
-1. `add LINK t->TITLE` e.g. `add https://nus-cs2113-ay2021s1.github.io/website/index.html t->Cs2113T`
+1. `add LINK` e.g. `add google.com`
+2. `add LINK t->TITLE` e.g. `add https://nus-cs2113-ay2021s1.github.io/website/index.html t->Cs2113T`
 
-e.g. add https://nus-cs2113-ay2021s1.github.io/website/index.html
 Expected output:   
-![Bookmark_1.7](Images/BookmarkUG/Figure7.png)
+![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
 **Useful Information:**
-* You can only use this command after choosing your category. (Refer to 1.1)
+* You can only use this command after choosing your category. (Refer to 1.2)
+* You can only bookmark unique links within your category. Refer to the following figure.
+![Bookmark_not unique link](Images/BookmarkUG/Figure10.png)
 
 If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
 
 **Warning:** 
-* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to 1.1) 
-* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (does not contain “https://” and a “.”). 
+* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to 1.2) 
+* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " " or does not contain “.”). 
 
 ### 1.7 Deleting a link: 
 `rm LINK_NUMBER `
-If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked it, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to 1.1)  and ensure that you do not add input an empty or a invalid link number
+If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked it, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to 1.2)  and ensure that you do not remove an empty, or an invalid link number.
 
 Instruction: 
-1. rm LINK_NUMBER  
+1. `rm LINK_NUMBER`
 
 e.g. rm 1
 Expected output:   
-![Bookmark_1.8](Images/BookmarkUG/Figure8.png)
+![Bookmark_1.8](Images/BookmarkUG/Figure10.png)
 
 **Useful Information:**
-* You can only use this command after choosing your category. (Refer to 1.1)
+* You can only use this command after choosing your category. (Refer to 1.2)
 
 If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
 
 **Warning:**
-* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to remove your links. (Refer to 1.1) 
+* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to remove your links. (Refer to 1.2) 
 * Ensure that the link number that you want to remove is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.2 to find out the correct link number. 
 
 ### 1.8 Marking/ Unmarking a link as a starred link: star LINK_NUMBER 
-You might have many links that you need to manage, however, some of the links might be more important than others. If you have such links, you can easily mark them up by following these few commands. Make sure that you have chosen your category (Refer to 1.1)  and ensure that you do not have an empty or invalid link number.
+You might have many links that you need to manage, however, some of the links might be more important than others. If you have such links, you can easily mark them up by following these few commands. Make sure that you have chosen your category (Refer to 1.2)  and ensure that you do not input an empty or invalid link number.
 
 Instruction: 
 1. `star LINK_NUMBER`  
 
 e.g. `star 1`
 Expected output:   
-![Bookmark_1.9](Images/BookmarkUG/Figure9.png)
+![Bookmark_star](Images/BookmarkUG/Figure10.png)
 
 **Useful Information:** 
 * It is the same command for marking and unmarking any links. For example, if link 1 is not starred, star 1  will mark the link as starred. And if link 1 is starred, star 1 will unmark link 1. 
@@ -356,8 +398,8 @@ Expected output:
 If you encounter any errors, take note of the following warnings. If problems still persist, refer to FAQ at the end of the user guide. 
 
 **Warning:**
-* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to mark your links as starred. (Refer to 1.1) 
-* Ensure that the link number that you want to mark as star is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.2 to find out the correct link number. 
+* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to mark your links as starred. (Refer to 1.2) 
+* Ensure that the link number that you want to mark as star is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.1 to find out the correct link number. 
 
 ## 2. Timetable
 Do you find it a hassle to keep track of all your activities and Zoom links for online classes?
@@ -431,7 +473,18 @@ Instruction:
 Expected output:
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
 
-### 2.5 Showing schedule: `show schedule`
+### 2.5 Showing Activities list: 'show activity'
+
+If you wish to see all activities you have input into the system, 
+this command will present all the activities happening chronological order with their starting date and time.
+
+Instruction:
+1. `show activity`
+
+Expected output:
+![To be added]
+
+### 2.6 Showing schedule: `show schedule`
 
 If you wish to view your schedule for the next seven days with all the activities, use this command.
 
@@ -461,13 +514,16 @@ Instruction:
 Expected output:
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
+**Useful information:**
+* You can use this command from any mode to access the academic mode easily and quickly!
+
 ### 3.2 Adding a contact: 
-`add contact c/CONTACT DETAILS m/MOBILE NUMBER  e/EMAIL`
+`add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
 In academic mode, you can add a contact to the current list of contacts, following the instructions below. 
 
 Instruction: 
-1. `add contact c/CONTACT DETAILS  m/MOBILE NUMBER  e/EMAIL`
+1. `add contact c/CONTACT_DETAILS  m/MOBILE_NUMBER  e/EMAIL`
 
 Example of usage: 
 
@@ -477,7 +533,8 @@ will add a contact with the name Prof Lim, mobile number 81234567, and email E76
 Expected output:  
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
-*Note that contacts must be fully numerical and emails must contain an @.
+**Warning:**
+* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
 
 ### 3.3 Listing all contacts: 
 `list contact`
@@ -526,12 +583,12 @@ Expected output:
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
 
 ### 3.6 Adding a grade: 
-`add grade n/MODULE NAME  m/MC  g/GRADE`
+`add grade n/MODULE_NAME  m/MC  g/GRADE`
 
 In academic mode, you can add a grade to the current list of grades, following the instructions below. 
 
 Instruction: 
-1. `add grade n/MODULE NAME  m/MC  g/GRADE`
+1. `add grade n/MODULE_NAME  m/MC  g/GRADE`
 
 Example of usage: 
 
@@ -541,7 +598,9 @@ will add a grade with the title CS2101 that has 4 credits and scored an A-.
 Expected output:  
 ![Academic_3_6](Images/AcademicUG/Academic_3_6.png)
 
-*Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+**Warning:**
+* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+* This application is not synced to a module database, so any valid input will be accepted as a module name.
 
 ### 3.7 Listing all grades: 
 `list grade`
@@ -725,7 +784,7 @@ Instruction:
 2. Answer the questions as prompted
 3. `back`
 
-Expected ouput:
+Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
 ### 4.6 Finding relevant flashcards: `find`
@@ -739,25 +798,24 @@ Instruction:
 Expected output:
 ![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
-
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: All of Study It's data are stored under the `ROOT_FOLDER/data` folder.
+To transfer these data to another computer, please back up the `data` folder 
+and copy it over to the directory in the new computer accordingly after installing the app.
+
+**Q**: Why is my application not starting up properly?
+
+**A**: Please refer to the "Getting Started" section and ensure that 
+the correct version of java is installed on your computer. If you face any further difficulties, 
+feel free to refer to the About Us page and contact any of the developers.
+
+**Q**: Why is XXX feature not supported?
+
+**A**: As this app is still under development, there are many features we would like to add in the future.
+Do feedback to us what features you would like to see in Study It!
 
 ## Command Summary
 

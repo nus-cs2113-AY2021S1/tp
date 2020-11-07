@@ -48,7 +48,11 @@ public class AcademicCommandParser extends CommandParser {
         String number = command.substring(command.indexOf("m/") + 2,
                 command.indexOf("e/")).trim();
         String email = command.substring(command.indexOf("e/") + 2);
-        int numberFormatTest = Integer.parseInt(number);
+        int numberAsInteger = Integer.parseInt(number);
+        if (numberAsInteger >= 100000000 || numberAsInteger < 0) {
+            throw new NumberFormatException();
+        }
+
         return new String[]{name, number, email};
     }
 

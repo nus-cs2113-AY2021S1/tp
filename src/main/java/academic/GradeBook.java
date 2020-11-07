@@ -1,12 +1,20 @@
 package academic;
 
+import exceptions.RepeatedGradeException;
+
 import java.util.ArrayList;
 
 /**
  * Represents a grade book in study-it.
  */
 public class GradeBook {
-    public static void addGrade(String[] args, ArrayList<Grade> currentGrades) {
+    public static void addGrade(String[] args, ArrayList<Grade> currentGrades) throws RepeatedGradeException {
+
+        for (Grade grade : currentGrades) {
+            if (args[0].equals(grade.moduleName)) {
+                throw new RepeatedGradeException();
+            }
+        }
         currentGrades.add(new Grade(args[0], Integer.parseInt(args[1]), args[2].toUpperCase()));
         if (args.length == 5) {
             if (args[3].equals("true")) {
@@ -47,7 +55,7 @@ public class GradeBook {
         if (indexToBeStar > 0 && indexToBeStar <= currentGrades.size()) {
             Grade.changeStarGrade(currentGrades.get(indexToBeStar - 1));
         } else {
-            System.out.println("Invalid star index! Please try again!");
+            throw new NumberFormatException();
         }
     }
 

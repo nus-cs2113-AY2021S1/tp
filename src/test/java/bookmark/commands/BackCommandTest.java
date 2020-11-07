@@ -18,7 +18,8 @@ class BackCommandTest {
     @Test
     void executeCommand_backCommandInMain_showByeMessage() {
         int categoryNumber = 0;
-        BackCommand command = new BackCommand(categoryNumber);
+        String input = "back";
+        BackCommand command = new BackCommand(input, categoryNumber);
         command.executeCommand(ui,categories,storage);
         assertEquals(0,command.getCategoryNumber());
     }
@@ -26,7 +27,8 @@ class BackCommandTest {
     @Test
     void executeCommand_backCommandInCategory_returnToBookmarkMain() {
         int categoryNumber = 1;
-        BackCommand command = new BackCommand(categoryNumber);
+        String input = "back";
+        BackCommand command = new BackCommand(input,categoryNumber);
         command.executeCommand(ui,categories,storage);
         assertEquals(0,command.getCategoryNumber());
     }
