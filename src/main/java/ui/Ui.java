@@ -126,24 +126,24 @@ public class Ui {
         out.println(message);
     }
 
-    public void showCardRevision(Card c) {
+    public void showCardRevision(Card c, Scanner scanner) {
         out.println(c.getRevisionQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
-        getAnswerInput(c);
+        getAnswerInput(c, scanner);
     }
 
-    public void getAnswerInput(Card c) {
-        String input = in.nextLine();
+    public void getAnswerInput(Card c, Scanner scanner) {
+        String input = scanner.nextLine();
         while (!input.trim().equalsIgnoreCase("s")) {
             out.println("You have entered an invalid input, please try again.");
-
-            input = in.nextLine();
+            input = scanner.nextLine();
         }
         out.println(c.getRevisionAnswer());
     }
 
-    public String getInput(String prompt) {
+
+    public String getInput(String prompt, Scanner scanner) {
         out.println(prompt);
-        return in.nextLine();
+        return scanner.nextLine();
     }
 
     /**

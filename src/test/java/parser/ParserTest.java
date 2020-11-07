@@ -114,45 +114,6 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_removeCommandEmptyArgs_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        final String[] inputs = {
-            "remove",
-            "remove ",
-        };
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_removeCommandNonIntegerArgsAdmin_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        String input = "remove two";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-    }
-
-    @Test
-    public void parse_removeCommandNonIntegerArgsModule_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        access.setModuleLevel("module");
-        String input = "remove two";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-    }
-
-    @Test
-    public void parse_removeCommandNonIntegerArgsChapter_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        access.setChapterLevel("chapter");
-        String input = "remove two";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-    }
-
-    @Test
     public void parse_editHistoryInvalidCommandFormat_expectException() {
         Access access = new Access();
         final String[] inputs = {
