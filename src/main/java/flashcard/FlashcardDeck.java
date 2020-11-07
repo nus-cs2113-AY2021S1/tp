@@ -149,7 +149,7 @@ public class FlashcardDeck {
         System.out.println("Please enter a search term: ");
         String searchItem = in.nextLine();
         ArrayList<Flashcard> cardsFound = (ArrayList<Flashcard>) flashcardDeck.stream()
-                .filter((flashcard) -> flashcard.question.contains(searchItem))
+                .filter((flashcard) -> flashcard.question.toLowerCase().contains(searchItem.toLowerCase()))
                 .collect((Collectors.toList()));
         if (cardsFound.size() == 0) {
             Ui.printDivider();
