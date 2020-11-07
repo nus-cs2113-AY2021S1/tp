@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import exception.InvalidInputException;
 import manager.history.History;
 import storage.Storage;
 import ui.Ui;
@@ -12,6 +13,9 @@ import java.util.ArrayList;
 
 import static common.Messages.CARD;
 
+/**
+ * Lists all the revision history in a day.
+ */
 public class HistoryCommand extends Command {
     public static final String COMMAND_WORD = "history";
     public static final String DATE_PARAMETER = " DATE";
@@ -25,6 +29,11 @@ public class HistoryCommand extends Command {
             + "Parameters:" + DATE_PARAMETER + "\n"
             + "Example: " + COMMAND_WORD + " 2020-10-10\n";
 
+    /**
+     * Creates a HistoryCommand to list the revision completed in the {@code date}.
+     *
+     * @param date the date of the revision history the user want to list
+     */
     public HistoryCommand(String date) {
         this.date = date;
     }
@@ -35,6 +44,14 @@ public class HistoryCommand extends Command {
         ui.showToUser(result);
     }
 
+    /**
+     * Add module and chapter name revised into history.
+     *
+     * @param access to get the module and chapter name
+     * @param storage to save the history content to the storage file
+     * @param reviseIndex to get which chapter have revised
+     * @throws IOException if there is an error writing to the storage file
+     */
     public static void addHistory(Access access, Storage storage, int reviseIndex) throws IOException {
         LocalDate date = java.time.LocalDate.now();
         storage.createHistory(date.toString());
@@ -46,6 +63,12 @@ public class HistoryCommand extends Command {
         storage.saveHistory(histories, date.toString());
     }
 
+    /**
+     * list the revision history.
+     *
+     * @param storage to get the history content in the storage file
+     * @return result to be displayed
+     */
     private String listHistory(Storage storage) {
         try {
             ArrayList<History> histories = storage.loadHistory(date);;

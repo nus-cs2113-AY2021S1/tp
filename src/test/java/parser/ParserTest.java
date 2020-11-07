@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class ParserTest {
+public class  ParserTest {
 
     @Test
     public void parse_add() throws Exception {
@@ -108,23 +108,6 @@ public class ParserTest {
         Access access = new Access();
         access.setIsModuleLevel();
         final String[] inputs = {"back args"};
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_editHistoryInvalidCommandFormat_expectException() {
-        Access access = new Access();
-        final String[] inputs = {
-            "history wrong args format",
-            // not date format
-            "history 20-10-2020",
-            // not yyyy-mm-dd but dd-mm-yyyy
-            "history 10-20-2020",
-            // not yyyy-mm-dd but mm-dd-yyyy
-            "history 1",
-        };
         for (String input : inputs) {
             assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }
