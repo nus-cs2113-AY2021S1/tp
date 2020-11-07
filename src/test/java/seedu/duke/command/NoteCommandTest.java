@@ -43,7 +43,7 @@ public class NoteCommandTest {
             UserData data = new UserData();
             Ui ui = new Ui();
             Storage storage = new Storage("data", ui);
-            String input = "personal sleep";
+            String input = "personal; sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
 
@@ -96,7 +96,7 @@ public class NoteCommandTest {
 
         @Test
         public void execute_withWrongIndex_invalidIndexException() throws DukeException {
-            String input = "personal sleep";
+            String input = "personal; sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
 
@@ -128,7 +128,7 @@ public class NoteCommandTest {
 
         @Test
         public void execute_withWrongList_invalidListException() throws DukeException {
-            String input = "personal sleep";
+            String input = "personal; sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
 
@@ -160,7 +160,7 @@ public class NoteCommandTest {
 
         @Test
         public void execute_withoutListTypeorIndex_wrongNumberOfArgumentsException() throws DukeException {
-            String input = "personal sleep";
+            String input = "personal; sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
 
@@ -193,7 +193,7 @@ public class NoteCommandTest {
 
         @Test
         public void execute_withIndexIsNotaNumber_wrongNumberFormatException() throws DukeException {
-            String input = "personal sleep";
+            String input = "personal; sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
 

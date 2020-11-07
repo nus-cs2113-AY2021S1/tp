@@ -34,7 +34,7 @@ public class CalendarCommandTest {
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
 
         // Add personal event without date
-        String personalInput = "personal to finish project";
+        String personalInput = "personal; to finish project";
         new AddCommand(personalInput).execute(data, ui, storage);
         printWriter.println("You have successfully added this event to your list!");
         printWriter.println("[P][X] to finish project");

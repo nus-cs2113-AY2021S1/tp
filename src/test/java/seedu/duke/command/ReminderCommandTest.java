@@ -46,7 +46,7 @@ public class ReminderCommandTest {
     public void execute_withEvents_printEventsToday() throws DukeException {
         LocalDate current = LocalDate.now();
 
-        String input = "timetable wakeup; " + current.toString() + "; 1000";
+        String input = "timetable; wakeup; " + current.toString() + "; 1000";
         Command addTimetableEvent = new AddCommand(input);
         addTimetableEvent.execute(data, ui, storage);
 
@@ -69,7 +69,7 @@ public class ReminderCommandTest {
         LocalDate current = LocalDate.now();
         LocalDate last = current.minusWeeks(1);
 
-        String input = "timetable wakeup; " + last.toString() + "; 1000";
+        String input = "timetable; wakeup; " + last.toString() + "; 1000";
         Command addTimetableEvent = new AddCommand(input);
         addTimetableEvent.execute(data, ui, storage);
         String repeatInput = "timetable; 1; weekly; 1";

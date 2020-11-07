@@ -57,7 +57,7 @@ class DukeTest {
     public void multiParser_multipleValidCommands_allCommandsRun() {
 
         System.setOut(new PrintStream(outputStreamCaptor));
-        String inputString = "add personal birthday; 03/01/2001; 0000; | list personal | delete personal; 1\r\n";
+        String inputString = "add personal; birthday; 03/01/2001; 0000; | list personal | delete personal; 1\r\n";
 
         try {
             setupComponents(inputString);
@@ -91,7 +91,7 @@ class DukeTest {
     public void multiParser_singleValidCommand_singleCommandsRun() {
 
         System.setOut(new PrintStream(outputStreamCaptor));
-        String inputString = "add personal birthday; 03/01/2001; 0000;\r\n";
+        String inputString = "add personal; birthday; 03/01/2001; 0000;\r\n";
 
         try {
             setupComponents(inputString);
@@ -119,7 +119,7 @@ class DukeTest {
     public void multiParser_singleErrorCommand_singleCommandsRunWithException() {
 
         System.setOut(new PrintStream(outputStreamCaptor));
-        String inputString = "add personal birthday; 03/01/2001; 0000; | delete 1\r\n";
+        String inputString = "add personal; birthday; 03/01/2001; 0000; | delete 1\r\n";
 
         try {
             setupComponents(inputString);

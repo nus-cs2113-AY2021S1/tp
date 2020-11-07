@@ -51,7 +51,7 @@ public class ViewCommandTest {
             UserData data = new UserData();
             Ui ui = new Ui();
             Storage storage = new Storage("data", ui);
-            String input = "personal sleep";
+            String input = "personal; sleep";
             Command addPersonalEvent = new AddCommand(input);
             addPersonalEvent.execute(data, ui, storage);
 
@@ -94,7 +94,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_validEventWithoutNotes_printDeadline() throws DukeException {
-        String input = "personal sleep";
+        String input = "personal; sleep";
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
@@ -113,7 +113,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_withoutIndex_wrongNumberOfArgumentsException() throws DukeException {
-        String input = "personal sleep";
+        String input = "personal; sleep";
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
@@ -129,7 +129,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_withInvalidIndex_invalidIndexException() throws DukeException {
-        String input = "personal sleep";
+        String input = "personal; sleep";
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
@@ -145,7 +145,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_withIndexIsNotaNumber_wrongNumberFormatException() throws DukeException {
-        String input = "personal sleep";
+        String input = "personal; sleep";
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 

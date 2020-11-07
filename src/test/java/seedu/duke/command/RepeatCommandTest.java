@@ -34,29 +34,29 @@ class RepeatCommandTest {
     @BeforeEach
     void setupEventLists() throws DukeException {
         // Add Personal event to data
-        String personalInput = "personal party; 09/10/2000; 1300";
+        String personalInput = "personal; party; 09/10/2000; 1300";
         Command addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
-        personalInput = "personal surprise";
+        personalInput = "personal; surprise";
         addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
-        personalInput = "personal hello; 29/02/2020";
+        personalInput = "personal; hello; 29/02/2020";
         addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
-        personalInput = "personal leap ahead; 31/01/2019";
+        personalInput = "personal; leap ahead; 31/01/2019";
         addCommand = new AddCommand(personalInput);
         addCommand.execute(data, ui, storage);
 
         // Add zoom event to data
-        String zoomInput = "zoom Math class; zoom.com; 09/10/2000; 1300";
+        String zoomInput = "zoom; Math class; zoom.com; 09/10/2000; 1300";
         addCommand = new AddCommand(zoomInput);
         addCommand.execute(data, ui, storage);
 
         //Add Timetable Event to Data
-        String timeTableInput = "timetable Science class; S17; 17/10/2000; 1500";
+        String timeTableInput = "timetable; Science class; S17; 17/10/2000; 1500";
         addCommand = new AddCommand(timeTableInput);
         addCommand.execute(data, ui, storage);
 
