@@ -3,7 +3,11 @@ package seedu.duke.command;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.exception.*;
+import seedu.duke.exception.DateErrorException;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.MissingSemicolonException;
+import seedu.duke.exception.WrongNumberFormatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -13,7 +17,7 @@ import java.util.ArrayList;
 import static seedu.duke.parser.DateTimeParser.dateParser;
 
 public class UndoneCommand extends Command {
-    private String listType;
+    private final String listType;
 
     /**
      * Constructor for setting event to undone.
@@ -111,10 +115,11 @@ public class UndoneCommand extends Command {
 
     /**
      * Scans the repeat event array list of a repeat event for an event matching the given date and marks it undone.
-     *  @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
+     *
+     * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
      * @param undoneEventDate the date of the sub repeat event to be marked done.
      * @param ui containing the responses to print.
-     * @return
+     * @return boolean stating if an event matching the date given was found
      */
     private boolean scanRepeatList(ArrayList<Event> repeatEventList, LocalDate undoneEventDate, Ui ui) {
         boolean isDateFound = false;

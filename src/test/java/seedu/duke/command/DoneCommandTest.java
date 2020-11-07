@@ -68,9 +68,9 @@ class DoneCommandTest {
         Command doneCommand  = DoneCommand.parse(inputStringOne);
         doneCommand.execute(data, ui, storage);
 
-        String expectedStringOne = "You have successfully marked this event as done!" + System.lineSeparator()
+        String expectedString = "You have successfully marked this event as done!" + System.lineSeparator()
                 + "[P][O] Go out for dinner on 2020-05-05, 12:00";
-        assertEquals(expectedStringOne, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         String actualStatus = data.getEventList("Personal").getEventByIndex(0).getStatus();
         assertEquals("O", actualStatus);
 
@@ -79,10 +79,10 @@ class DoneCommandTest {
         doneCommand  = DoneCommand.parse(inputStringTwo);
         doneCommand.execute(data, ui, storage);
 
-        String expectedStringTwo = "You have successfully marked this event as done!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully marked this event as done!" + System.lineSeparator()
                 + "[Z][O] CS2113T tutorial, Link: zoom.com/blahblah on 2020-10-10, 13:30";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         actualStatus = data.getEventList("Zoom").getEventByIndex(0).getRepeatEventList().get(0).getStatus();
         assertEquals("O", actualStatus);
 
@@ -91,11 +91,10 @@ class DoneCommandTest {
         doneCommand  = DoneCommand.parse(inputStringThree);
         doneCommand.execute(data, ui, storage);
 
-        String expectedStringThree = "You have successfully marked this event as done!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully marked this event as done!" + System.lineSeparator()
                 + "[T][O] Science class, Location: S17 on 2020-05-04, 15:00";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo + System.lineSeparator()
-                + expectedStringThree, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         actualStatus = data.getEventList("Timetable").getEventByIndex(0).getStatus();
         assertEquals("O", actualStatus);
 
@@ -104,18 +103,16 @@ class DoneCommandTest {
         doneCommand  = DoneCommand.parse(inputStringFour);
         doneCommand.execute(data, ui, storage);
 
-        String expectedStringFour = "You have successfully marked this event as done!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully marked this event as done!" + System.lineSeparator()
                 + "[Z][O] CS2113T tutorial, Link: zoom.com/blahblah on 2020-10-03, 13:30";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo + System.lineSeparator()
-                + expectedStringThree + System.lineSeparator()
-                + expectedStringFour, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         actualStatus = data.getEventList("Zoom").getEventByIndex(0).getStatus();
         assertEquals("O", actualStatus);
     }
 
     @Test
-    void execute_markInvalidEventsAsDone_correspondingExceptionThrown() throws DukeException {
+    void execute_markInvalidEventsAsDone_correspondingExceptionThrown() {
         // Event index exceeds max event index
         String inputStringOne = "personal; 3";
         Exception firstE = assertThrows(InvalidIndexException.class, () -> {
@@ -124,8 +121,8 @@ class DoneCommandTest {
         });
 
         String expectedStringOne = "Error, no such index is available!";
-        String actualStringOne = firstE.getMessage();
-        assertEquals(expectedStringOne, actualStringOne);
+        String actualString = firstE.getMessage();
+        assertEquals(expectedStringOne, actualString);
 
         // Event does not fall on the provided date
         String inputStringTwo = "zoom; 1; 5/10/2020";

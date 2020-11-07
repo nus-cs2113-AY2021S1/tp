@@ -69,29 +69,98 @@ class DeleteCommandTest {
         Command deleteCommand  = DeleteCommand.parse(inputStringOne);
         deleteCommand.execute(data, ui, storage);
 
-        String expectedStringOne = "You have successfully deleted this event!" + System.lineSeparator()
+        String expectedString = "You have successfully deleted this event!" + System.lineSeparator()
                 + "[P][X] Go out for dinner on 2020-05-05, 12:00";
-        assertEquals(expectedStringOne, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
 
         // Second valid event
         String inputStringTwo = "zoom; 1; 10/10/2020";
         deleteCommand  = DeleteCommand.parse(inputStringTwo);
         deleteCommand.execute(data, ui, storage);
 
-        String expectedStringTwo = "You have successfully deleted this event!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully deleted this event!" + System.lineSeparator()
                 + "[Z][X] CS2113T tutorial, Link: zoom.com/blahblah on 2020-10-10, 13:30";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
 
         // Third valid event
         String inputStringThree = "timetable; 1; extra accidental entries";
         deleteCommand  = DeleteCommand.parse(inputStringThree);
         deleteCommand.execute(data, ui, storage);
 
-        String expectedStringThree = "You have successfully deleted this event!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully deleted this event!" + System.lineSeparator()
                 + "[T][X] Science class, Location: S17 on 2020-05-04, 15:00";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo + System.lineSeparator()
-                + expectedStringThree, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
+
+        expectedString = expectedString + System.lineSeparator()
+                + "Here is a list of your Personal events:" + System.lineSeparator()
+                + "1. [P][X] Stay at home on 2020-05-04" + System.lineSeparator()
+                + "_________________________________" + System.lineSeparator()
+                + "You have no Timetable events!" + System.lineSeparator()
+                + "_________________________________" + System.lineSeparator()
+                + "Here is a list of your Zoom events:" + System.lineSeparator()
+                + "1. [Z][X] CS2113T tutorial, Link: zoom.com/blahblah on 2020-10-03, 13:30";
+        ListCommand.parse("all").execute(data, ui, storage);
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
+
+    }
+
+    @Test
+    void execute_deleteInvalidEvents_correspondingExceptionThrown() {
+        // Event index exceeds max event index
+        String inputStringOne = "personal; 3";
+        Exception firstE = assertThrows(InvalidIndexException.class, () -> {
+            Command deleteCommand  = DeleteCommand.parse(inputStringOne);
+            deleteCommand.execute(data, ui, storage);
+        });
+
+        String expectedStringOne = "Error, no such index is available!";
+        String actualStringOne = firstE.getMessage();
+        assertEquals(expectedStringOne, actualStringOne);
+
+        // Event does not fall on the provided date
+        String inputStringTwo = "zoom; 1; 5/10/2020";
+        Exception secondE = assertThrows(DateErrorException.class, () -> {
+            Command deleteCommand  = DeleteCommand.parse(inputStringTwo);
+            deleteCommand.execute(data, ui, storage);
+        });
+
+        String expectedStringTwo = "This event does not occur on this date.";
+        String actualStringTwo = secondE.getMessage();
+        assertEquals(expectedStringTwo, actualStringTwo);
+
+        // Semicolons not used to separate fields
+        String inputStringThree = "personal 1";
+        Exception thirdE = assertThrows(MissingSemicolonException.class, () -> {
+            Command deleteCommand  = DeleteCommand.parse(inputStringThree);
+            deleteCommand.execute(data, ui, storage);
+        });
+
+        String expectedStringThree = "Remember to separate input fields with a ';'.";
+        String actualStringThree = thirdE.getMessage();
+        assertEquals(expectedStringThree, actualStringThree);
+
+        // Event index not given
+        String inputStringFour = "zoom;";
+        Exception fourthE = assertThrows(WrongNumberOfArgumentsException.class, () -> {
+            Command deleteCommand  = DeleteCommand.parse(inputStringFour);
+            deleteCommand.execute(data, ui, storage);
+        });
+
+        String expectedStringFour = "Event type or index is missing.";
+        String actualStringFour = fourthE.getMessage();
+        assertEquals(expectedStringFour, actualStringFour);
+
+        // Event index is not an integer
+        String inputStringFive = "zoom; a";
+        Exception fifthE = assertThrows(WrongNumberFormatException.class, () -> {
+            Command deleteCommand  = DeleteCommand.parse(inputStringFive);
+            deleteCommand.execute(data, ui, storage);
+        });
+
+        String expectedStringFive = "Event index given is not an integer.";
+        String actualStringFive = fifthE.getMessage();
+        assertEquals(expectedStringFive, actualStringFive);
     }
 }

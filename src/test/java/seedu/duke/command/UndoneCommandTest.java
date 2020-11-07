@@ -73,9 +73,9 @@ class UndoneCommandTest {
         Command undoneCommand  = UndoneCommand.parse(inputStringOne);
         undoneCommand.execute(data, ui, storage);
 
-        String expectedStringOne = "You have successfully marked this event as undone!" + System.lineSeparator()
+        String expectedString = "You have successfully marked this event as undone!" + System.lineSeparator()
                 + "[P][X] Go out for dinner on 2020-05-05, 12:00";
-        assertEquals(expectedStringOne, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         String actualStatus = data.getEventList("Personal").getEventByIndex(0).getStatus();
         assertEquals("X", actualStatus);
 
@@ -84,10 +84,10 @@ class UndoneCommandTest {
         undoneCommand  = UndoneCommand.parse(inputStringTwo);
         undoneCommand.execute(data, ui, storage);
 
-        String expectedStringTwo = "You have successfully marked this event as undone!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully marked this event as undone!" + System.lineSeparator()
                 + "[Z][X] CS2113T tutorial, Link: zoom.com/blahblah on 2020-10-10, 13:30";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         actualStatus = data.getEventList("Zoom").getEventByIndex(0).getRepeatEventList().get(0).getStatus();
         assertEquals("X", actualStatus);
 
@@ -96,11 +96,10 @@ class UndoneCommandTest {
         undoneCommand  = UndoneCommand.parse(inputStringThree);
         undoneCommand.execute(data, ui, storage);
 
-        String expectedStringThree = "You have successfully marked this event as undone!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully marked this event as undone!" + System.lineSeparator()
                 + "[T][X] Science class, Location: S17 on 2020-05-04, 15:00";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo + System.lineSeparator()
-                + expectedStringThree, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         actualStatus = data.getEventList("Timetable").getEventByIndex(0).getStatus();
         assertEquals("X", actualStatus);
 
@@ -109,18 +108,16 @@ class UndoneCommandTest {
         undoneCommand  = UndoneCommand.parse(inputStringFour);
         undoneCommand.execute(data, ui, storage);
 
-        String expectedStringFour = "You have successfully marked this event as undone!" + System.lineSeparator()
+        expectedString = expectedString + System.lineSeparator()
+                + "You have successfully marked this event as undone!" + System.lineSeparator()
                 + "[Z][X] CS2113T tutorial, Link: zoom.com/blahblah on 2020-10-03, 13:30";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo + System.lineSeparator()
-                + expectedStringThree + System.lineSeparator()
-                + expectedStringFour, outputStreamCaptor.toString().trim());
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
         actualStatus = data.getEventList("Zoom").getEventByIndex(0).getStatus();
         assertEquals("X", actualStatus);
     }
 
     @Test
-    void execute_markInvalidEventsAsUndone_correspondingExceptionThrown() throws DukeException {
+    void execute_markInvalidEventsAsUndone_correspondingExceptionThrown() {
         // Event index exceeds max event index
         String inputStringOne = "personal; 3";
         Exception firstE = assertThrows(InvalidIndexException.class, () -> {

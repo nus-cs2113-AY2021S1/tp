@@ -119,6 +119,7 @@ public class DoneCommand extends Command {
      * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
      * @param doneEventDate the date of the sub repeat event to be marked done.
      * @param ui containing the responses to print.
+     * @return boolean stating if an event matching the date given was found
      */
     private boolean scanRepeatList(ArrayList<Event> repeatEventList, LocalDate doneEventDate, Ui ui) {
         boolean isDateFound = false;
