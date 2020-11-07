@@ -162,7 +162,7 @@ public class CommandCreator {
             throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
         }
         try {
-            value = commandString.split(" ")[1];
+            value = commandString.split(" ", 2)[1].trim();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
         }
@@ -191,6 +191,10 @@ public class CommandCreator {
                 return new DeleteCommand(Integer.parseInt(value));
             case "module":
                 return new DeleteCommand(Integer.parseInt(value), ListType.MODULE_LIST);
+            case "expense":
+                return new DeleteExpenseCommand(Integer.parseInt(value));
+            case "expenses":
+                return new DeleteExpenseCommand(value);
             default:
                 throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
 

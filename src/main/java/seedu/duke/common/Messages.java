@@ -56,6 +56,8 @@ public class Messages {
     public static final String MESSAGE_DELETE_TASK_WITH_CATEGORY = "Noted. I've removed all these task(s) "
             + "with the same category:";
     public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
+    public static final String MESSAGE_DELETE_EXPENSE = "Noted. I've removed all these expense item(s)\n";
+    public static final String MESSAGE_NO_EXPENSE_DELETED = "There is no expense item deleted.\n";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared everything.";
     public static final String MESSAGE_CLEARED = "~Info~ Everything has already been cleared.";
     public static final String MESSAGE_DELETE_MODULE = "Noted. I've removed this module:\n       ";
@@ -147,7 +149,11 @@ public class Messages {
             + "     \"delete tasks c/CATEGORY\"\n"
             + "     \"delete task <index number>\"\n"
             + "     \"delete link <index number>\"\n"
-            + "     \"delete module <index number>\"";
+            + "     \"delete module <index number>\"\n"
+            + "     \"delete expense <index number>\"\n"
+            + "     \"delete expenses currency/CURRENCY\"\n"
+            + "     \"delete expenses date/yyyy-MM-dd\"\n"
+            + "     \"delete expenses currency/CURRENCY date/yyy-MM-dd\"";
     public static final String EXCEPTION_INVALID_DONE_COMMAND = "~Error~ Please input a valid done command "
             + "using the format: \n\n"
             + "     \"done task <index number>\"\n"

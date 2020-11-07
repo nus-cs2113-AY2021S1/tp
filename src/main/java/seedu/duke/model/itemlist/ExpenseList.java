@@ -9,6 +9,7 @@ import seedu.duke.ui.Ui;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.SUNDAY;
@@ -42,6 +43,25 @@ public class ExpenseList extends ItemList<Expense> {
                 + items.size() + Messages.MESSAGE_EXPENSE_STATUS_LAST);
     }
 
+    /**
+     * Deletes all the expense items in {@code expensesDeleted} from the expense list and print out the expense items
+     * deleted.
+     *
+     * @param expensesDeleted expense items to be deleted from the expense list
+     */
+    public void deleteExpenses(HashSet<Expense> expensesDeleted) {
+        Ui.showLine();
+        Ui.dukePrintMultiple(Messages.MESSAGE_DELETE_EXPENSE);
+        for (Expense expense : expensesDeleted) {
+            items.remove(expense);
+            Ui.dukePrintMultiple(expense.toString());
+        }
+        Ui.showLine();
+    }
+
+    /**
+     * Lists all the expense items in the list and summary values for today, this week, this month, and this year.
+     */
     @Override
     public void listTask() {
         if (items.size() == 0) {
