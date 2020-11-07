@@ -72,8 +72,6 @@ List of `<optional arguments>`:
 🚩: Duplicate entry of tasks are **allowed**. 
 
 
-🚩: Duplicate task descriptions are allowed. 
-
 Example of usage: 
 
 `add task tP meeting`
@@ -113,8 +111,6 @@ List of `<compulsory arguments>`:
 
 🚩: Duplicate entry of recurring tasks are **allowed**. 
 
-
-🚩: Duplicate task descriptions are **allowed**. 
 
 Example of usage:
 
