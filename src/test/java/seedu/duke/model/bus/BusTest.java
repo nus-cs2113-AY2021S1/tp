@@ -33,6 +33,15 @@ class BusTest {
     }
 
     @Test
+    void getPossibleRoute_routeExistsNoIntermediateStops_returnRouteArrayList() {
+        String startingLoc = "Museum";
+        String destination = "University town";
+        Bus newBus = new Bus("AA1", AA1);
+        ArrayList<BusStops> route = new ArrayList<>(Arrays.asList(AA1).subList(6, 8));
+        assertEquals(route, newBus.getPossibleRoute(startingLoc, destination));
+    }
+
+    @Test
     void getPossibleRoute_noRoute_destinationNotInList_returnEmptyRouteArrayList() {
         String startingLoc = "centrAL LibraRy";
         String destination = "Pgp";

@@ -107,6 +107,12 @@ class ParserTest {
         Parser p = new Parser(fav);
         p.extractType();
         p.setUserInput("/addfav");
+    }
+
+    @Test
+    void extractType_dineCommand_returnsTrue() throws CustomException {
+        String command = "/dine science";
+        Parser p = new Parser(command);
         boolean isOngoing = p.extractType();
         assertTrue(isOngoing);
     }
@@ -120,6 +126,13 @@ class ParserTest {
         p.setUserInput("/addfav");
         p.extractType();
         p.setUserInput("/listfav");
+    }
+
+    @Test
+    void extractType_dineInfoCommand_returnsTrue() throws CustomException {
+        String command = "/dineinfo arise";
+        Parser p = new Parser(command);
+
         boolean isOngoing = p.extractType();
         assertTrue(isOngoing);
     }
@@ -133,6 +146,12 @@ class ParserTest {
         p.setUserInput("/addfav");
         p.extractType();
         p.setUserInput("/deletefav 1");
+    }
+
+    @Test
+    void extractType_facultyCommand_returnsTrue() throws CustomException {
+        String command = "/faculty";
+        Parser p = new Parser(command);
         boolean isOngoing = p.extractType();
         assertTrue(isOngoing);
     }
@@ -178,6 +197,4 @@ class ParserTest {
         boolean isOngoing = p.extractType();
         assertTrue(isOngoing);
     }
-
-
 }

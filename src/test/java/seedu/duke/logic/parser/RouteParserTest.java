@@ -1,33 +1,57 @@
 package seedu.duke.logic.parser;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.CustomException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 class RouteParserTest {
+
+    @BeforeAll
+    static void initLogger() {
+        RouteParser.initLogger();
+    }
 
     @Test
     void getLocations_noLocation_expectException() {
         String locations = "   ";
         RouteParser p = new RouteParser(locations);
-        assertThrows(CustomException.class, p::getLocations);
-    }
-
-    @Test
-    void getLocations_oneLocation_expectException() {
-        String locations = "PGP";
-        RouteParser p = new RouteParser(locations);
-        assertThrows(CustomException.class, p::getLocations);
+        try {
+            p.getLocations();
+        } catch (CustomException error) {
+            assertEquals("Oh dear! I don't have all locations.", error.toString());
+        }
     }
 
     @Test
     void getLocations_noDelimiter_expectException() {
-        String locations = "PGP PGPR";
+        String locations = "University Hall";
         RouteParser p = new RouteParser(locations);
-        assertThrows(CustomException.class, p::getLocations);
+        try {
+            p.getLocations();
+        } catch (CustomException error) {
+            assertEquals("Oops! You are missing the delimiter /to.\n"
+                    + "The format for this command is as follows:\n"
+                    + "/route <starting loc> /to <destination>\n"
+                    + "where starting location and destination must be the names of bus stops in NUS.",
+                    error.toString());
+        }
+    }
+
+    @Test
+    void getLocations_tooManyDelimiters_expectException() {
+        String locations = "University Hall /to PGP /to PGPR";
+        RouteParser p = new RouteParser(locations);
+        try {
+            p.getLocations();
+        } catch (CustomException error) {
+            assertEquals("Oops! You have too many delimiters!\n"
+                    + "The format for this command is as follows:\n"
+                    + "/route <starting loc> /to <destination>\n"
+                    + "where starting location and destination must be the names of bus stops in NUS.",
+                    error.toString());
+        }
     }
 
     @Test
