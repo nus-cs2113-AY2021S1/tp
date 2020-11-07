@@ -6,13 +6,28 @@
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
 Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
-
+This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
 <br/><br/> 
-## 2.0 Preface
-This user guide would walk you through the features of Zoomaster and ways to input commands to it to 
-access these features.
+## 2.0 About this Document
 
+Please take note of the symbols used throughout the document:
+
+| Icon | Meaning |
+| --- | --- |
+| :bangbang: | Alert on important thing to take note of |
+|:information_source: | Useful tip to know |
+
+Please also take note of the labels on command formatting:
+
+| Label | Meaning |
+| --- | --- |
+| `{curly brackets}` | Words contained in `{curly brackets}` are parameters to be supplied by the user. <br> eg. in `delete {BOOKMARK_NUMBER}`, `BOOKMARK_NUMBER` is a parameter which can be used as `delete 1`.
+| `{PARAM1/PARAM2}` | Parameters with `/` inside are parameters which accept different types of inputs. <br> eg. `launch {INDEX/DESCRIPTION}` shows that either `INDEX` or `DESCRIPTION` can be used.
+|`(optional)`| Parameters with `(optional)` are optional inputs. <br> eg. `show {DAY(optional)}` can be used as `show` or as `show mon`.
+| `DAY` | Parameter `DAY` takes three letter abbreviations of days in a week <br> The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**.<br> Your inputs need not be case sensitive. <br> eg. `show {DAY(optional)}` can be used as `show mon`, `show tue` etc.|
+|`MODULE`|Parameter `MODULE` has to be an NUS module recognised by NUSMods.<br> You can go to https://nusmods.com/ to get the full list of NUS modules available. <br> eg. `CS2113`, `CS2101`  |
+|`START TIME`,<br> `END TIME`| Parameters `START TIME` and `END TIME` requires input to be in the format `HH:mm` and in 24 Hours. <br> eg. `12:00`, `14:00`, `00:00`|
 
 <br/><br/> 
 ## 3.0 Table of contents
@@ -72,27 +87,16 @@ The app should print out a list of different commands. <br/><br/>
 ## 5.0 Features   
 
 This section will explain to you the different features of Zoomaster and how you can interact with it. 
-Zoomaster has three different modes you can use to interact with different features in each mode.
 
-<a name="command_format"></a>
->[i] Notes on command format:
->* Word contained in `{curly brackets}` are parameters to be supplied by the user. 
->eg. in `delete {BOOKMARK_NUMBER}`, `BOOKMARK_NUMBER` is a parameter which can be used as `delete 1`.
-> * Parameters with `/` inside are parameters which accept different types of inputs. 
-> eg. `launch {INDEX/DESCRIPTION}` shows that either `INDEX` or `DESCRIPTION` can be used.
->* Parameters with `(optional)` are optional inputs. 
->eg. `show {DAY(optional)}` can be used as `show` or as `show mon`.
->* Parameter `DAY` takes three letter abbreviations of days in a week
->The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**.
->Your inputs need not be case sensitive.
->eg. `show {DAY(optional)}` can be used as `show mon`, `show tue` etc.
->* Parameter `MODULE` has to be an NUS module recognised by NUSMods. 
->You can go to https://nusmods.com/ to get the full list of NUS modules available.
->eg. `CS2113`, `CS2101`  
->* Parameters `START TIME` and `END TIME` requires input to be in the format `HH:mm` and in 24 Hours.
->eg. `12:00`, `14:00`, `00:00`
->* Parameter `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-"") to string
- >multiple words together. Eg. "github_team_repo" or "cs2113t-website".
+Zoomaster has three different modes:
+* **Bookmark mode**
+    In this mode, Zoomaster stores all of your bookmarks that are not related to any modules.
+* **Timetable mode**
+    Here, you can create a timetable of all of your classes, and assign a bookmark or Zoom link on each of the time slots.
+* **Planner mode**
+    Have you ever had diffulties deciding when to have a meeting as all of your groupmates have different classes? In Planner mode, Zoomaster can help you find common free timings by allowing you to import your teammates' timetables.
+
+Each mode has its own different sets of features and commands, which will be explained in sections 5.2, 5.3, and 5.4.
 
 <a name="global"></a> 
 ### 5.1 Global Commands
@@ -203,8 +207,32 @@ in your native browser. Else you should see a message "no lesson now" like the s
 ![]()
 
 <br/><br/> 
+<a name="showsettings"></a>  
+#### 5.1.5. Show settings: `showsettings` (Francisco)
+Once you are comfortable using Zoomaster, this command, along with the `set` command, helps you customise Zoomaster's behaviour.
+```
+Format: showsettings
+```
+When you type in this command, you will see two settings that you can adjust:
+
+The two settings are:
+* Default mode on start-up.
+    You can choose between `mainmenu`, `timetable`, or `bookmark` as the first mode you will enter when you start Zoomaster.
+* Autosave.
+    By default, this is turned on and Zoomaster will save files every time you make changes. You might want to turn this off if you prefer to save only when you exit. 
+
+<br/><br/> 
+<a name="set"></a>  
+#### 5.1.6. Set a setting: `set {SETTING_NAME} {NEW_OPTION}` (Francisco)
+While `showsettings` shows you the settings, this command lets you change one of the settings.
+* `{SETTING_NAME}` is the name of the setting as shown when you type in the `showsettings` command.
+* `{NEW_OPTION}` is the new setting option that you would like to select. This needs to be typed in exactly as show from the `showsettings` command.
+
+For example, let's say that you want Zoomaster to enter `bookmark` mode when you start it. You can type in `set def_mode bookmark` and Zoomaster will change your settings. The next time you run Zoomaster, you will automatically enter bookmark mode.
+
+<br/><br/> 
 <a name="exit"></a>  
-#### 5.1.5 Exit the app: `exit`  
+#### 5.1.7 Exit the app: `exit`  
 You can exit the application by using the exit command.
   
 ```
@@ -238,8 +266,8 @@ If your bookmark list is empty you will get message ""
 #### 5.2.2 Add bookmark: `add`  
 You can add bookmarks to your bookmark list. A bookmark contains its description and URL.
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
->* That validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
+> :bangbang:
+>* The validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-"") to string
 >multiple words together. Eg. "github_team_repo" or "cs2113t-website".
 >* Your input `URL` has to start with `www.`, `http://` or `https://`.
@@ -279,7 +307,7 @@ You should see a message similar to the screenshot below.
 #### 5.2.4 Find bookmarks: `find`  
 You can use this command to find bookmarks with matching description.
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
 >See the [command format](#command_format) for more details.
 
@@ -308,7 +336,7 @@ Your selection of bookmark(s) can be via:
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
 >See the [command format](#command_format) for more details.
 >
@@ -346,12 +374,11 @@ If your selected timetable is the current day, you should be able to see a
 Else if you have a lesson ongoing currently, it will instead show a "lesson now" indicator.
 *around* your current lesson.
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
->* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
+>  
+>:bangbang: 
+> * You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
->* Zoomaster will interpret you command as the [Show module and slot feature](#showmoduledetails) 
->if you do not enter the correct `DAY` input. As such, you would see an error message saying you have entered an invalid module.
 
 ```
 Format: show {DAY(optional)}
@@ -386,9 +413,9 @@ Shows the details of a module or slot that has been added.
 You can see the respective indexes of each of the slots from the module 
 and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
->* You can only see modules that are listed on the NUSMods website. 
->You can see the [command format](#command_format) for more information.
+> :bangbang:
+> * You can only see modules that are listed on the NUSMods website. 
+> You can see the [command format](#command_format) for more information.
 >
 ```
 Format (show module details): show {MODULE} bookmarks(optional)
@@ -416,7 +443,7 @@ Example of usage:
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 >* You are required to insert **a space** between each parameter.
 >* The chaining of commands only performs on **one module** which is `{MODULE}`.    
 >* You can only add a module that is listed on the NUSMods website. 
@@ -512,7 +539,7 @@ More examples:
 #### 5.3.4 Delete module, time slot and bookmarks: `delete` (Xing Rong)
 Deletes module, time slot or their bookmarks.
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 >* You can only delete a module that is listed on the NUSMods website. 
 >You can see the [command format](#command_format) for more information.
 
@@ -544,7 +571,7 @@ Example of usage:
 #### 5.3.5 Edit slot's module, title, time: `edit`  (Francisco) 
 Edits the module, title or time for a specific slot.
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 >* You can only edit a module that is listed on the NUSMods website. 
 >You can see the [command format](#command_format) for more information.
 
@@ -568,7 +595,7 @@ Example of usage:
 #### 5.3.6 Launch bookmarks from module, slot: `launch`  
 Launches the bookmarks of slots or the bookmarks of a module
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 >* You can only launch a module that is listed on the NUSMods website. 
 >You can see the [command format](#command_format) for more information.
 
@@ -596,7 +623,7 @@ Example of usage:
 <a name="loadplanner"></a>  
 #### 5.4.1. Load planner: `load`  
 Loads all the timetables from the `planner` folder and helps you find some common empty slots.
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 > * You need to copy the different .txt files manually to the planner folder.
 
 ```
@@ -629,7 +656,7 @@ If your selected timetable is the current day, you should be able to see a
 Else, if you have a lesson ongoing currently, it will instead show a "lesson now" indicator
 *around* your current lesson.  
 
-> <a name = "alert" style="color:ORANGE; font-size:17px">ALERT!</a>
+> :bangbang:
 >* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
@@ -676,6 +703,8 @@ and save the txt file. You can now add the module in Zoomaster.
 **mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
 **clear**|`launch now`
 **launch now**|`clear`
+**show settings**|`showsettings`
+**set a setting**|`set {SETTING_NAME} {NEW_OPTION}`
 **exit**|`exit`
 **Bookmark Mode**|
 **show**|`show`
