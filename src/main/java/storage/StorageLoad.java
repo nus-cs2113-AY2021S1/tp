@@ -230,6 +230,15 @@ public class StorageLoad {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Loads all the cards of the specified {@code chapter}.
+     *
+     * @param module module name of the chapters
+     * @param chapter chapter name of the cards
+     * @param filePath of the storage file
+     * @return list of cards
+     * @throws FileNotFoundException if there is not any cards in the storage file
+     */
     protected static ArrayList<Card> loadCard(String module, String chapter, String filePath)
             throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
@@ -260,6 +269,13 @@ public class StorageLoad {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Loads the revision history.
+     *
+     * @param date the date for the revision
+     * @return list of revision history
+     * @throws FileNotFoundException if there is not any revision in the storage file
+     */
     protected static ArrayList<History> loadHistory(String date) throws FileNotFoundException {
         File f = new File("data/history/" + date + ".txt");
         checkExists(f);

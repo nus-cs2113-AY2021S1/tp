@@ -1,7 +1,6 @@
 package commands;
 
 import access.Access;
-import exception.InvalidInputException;
 import manager.admin.Admin;
 import manager.chapter.Chapter;
 import manager.history.History;
@@ -12,14 +11,9 @@ import org.junit.jupiter.api.Test;
 import storage.Storage;
 import ui.Ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class HistoryCommandTest {
     private final PrintStream standardOut = System.out;
@@ -38,6 +32,10 @@ public class HistoryCommandTest {
         storageStub = new StorageStub("src/test/data");
         storageStub.createDirectory("/history");
         storageStub.createFile("/history/2020-11-01.txt");
+        storageStub.saveHistory("/history/2020-11-01.txt"
+                , new History("CS2113", "chapter 1"));
+        storageStub.saveHistory("/history/2020-11-01.txt"
+                , new History("CS2101", "chapter 2"));
 
         accessStub = new AccessStub();
     }
@@ -47,17 +45,6 @@ public class HistoryCommandTest {
         storageStub.deleteDirectory("/history/2020-11-01.txt");
         storageStub.deleteDirectory("/history");
         System.setOut(standardOut);
-    }
-
-    @Test
-    public void execute_invalidDate_throwsInvalidInputException() {
-        String date = "11-15-2020";
-        historyCommand = new HistoryCommand(date);
-        assertThrows(InvalidInputException.class, () -> historyCommand.execute(ui, accessStub, storageStub));
-
-        date = "15-11-2020";
-        historyCommand = new HistoryCommand(date);
-        assertThrows(InvalidInputException.class, () -> historyCommand.execute(ui, accessStub, storageStub));
     }
 
     @Test
@@ -72,9 +59,6 @@ public class HistoryCommandTest {
     @Test
     public void execute_withHistory_listHistoryMessage() {
         String date = "2020-11-01";
-        ArrayList<History> histories = new ArrayList<>();
-        histories.add(new History("CS2113", "chapter 1"));
-        histories.add(new History("CS2101", "chapter 2"));
 
         historyCommand = new HistoryCommand(date);
         historyCommand.execute(ui, accessStub, storageStub);
@@ -114,6 +98,11 @@ public class HistoryCommandTest {
             f.createNewFile();
         }
 
+        public void saveHistory(String path, History history) throws IOException{
+            FileWriter f = new FileWriter(filePath + path);
+            f.write(history.toString() + "\n");
+        }
+        
         public void deleteDirectory(String path) {
             File directory = new File(filePath + path);
             directory.delete();

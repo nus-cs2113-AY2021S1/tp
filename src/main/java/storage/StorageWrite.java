@@ -242,6 +242,12 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Create a txt file to store history.
+     *
+     * @param date the date of the revision
+     * @throws IOException if there is an error creating the storage file
+     */
     protected static void createHistory(String date) throws IOException {
         try {
             File f = new File("data/history/" + date + ".txt");
@@ -252,6 +258,13 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Save revision history into file.
+     *
+     * @param date the date of the revision
+     * @param histories all chapters revised in the date
+     * @throws IOException if there is an error creating the storage file
+     */
     protected static void saveHistory(ArrayList<History> histories, String date) throws IOException {
         FileWriter fw = new FileWriter("data/history/" + date + ".txt");
         for (History h : histories) {
