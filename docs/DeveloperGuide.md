@@ -195,6 +195,13 @@ Dishes that can be ordered by the user.
 #### 3.2.9 Exception class
 Exceptions that can catch user unexpected input.
 
+### 3.3 Overall Sequence Diagram
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/overall.png)
+
+Figure 3. Sequence diagram for deleteOrder()
+
+
 ## 4. Implementation
 #### Feature: order
 The user types command “order” to make an order from a stall in a canteen. The order method will be activated and print open stalls through checkOpenCanteens method in Customer class in this manner:
@@ -217,7 +224,7 @@ e.g. delete 1 means delete the first order in the order list.
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/delete.png)
 
-Figure . Sequence diagram for deleteOrder()
+Figure 4. Sequence diagram for deleteOrder()
 
 #### Feature: find order
 The user enters the command: find [dish name] to find the order contains this dish in the order list. The main will enable the findDishinOrder() method. The Parser will make sense of the command and iterate the order list and dish list to print the order containing this dish. 
@@ -225,14 +232,14 @@ e.g. find chicken rice means find all orders containing chicken rice in the orde
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/find.png)
 
-Figure . Sequence diagram for findDishinOrder()
+Figure 5. Sequence diagram for findDishinOrder()
 
 #### Feature: list order
 The user enters the command: list to print all the orders in the order list . The main will enable the printOrder() method. The printOrder() method will iterate the whole order list and print all the orders
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/print.png)
 
-Figure . Sequence diagram for printOrder()
+Figure 6. Sequence diagram for printOrder()
 
 #### Feature: change order (change dine in, take away or delivery)
 The user enters the command: change/number/type to change the order type of one order in the order list. The main will enable the changeOrder() method. The Parser will make sense of the command and change the corresponding order’s order type. 
@@ -240,7 +247,7 @@ e.g. change/1/Dine in: change order 1 to dine in
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/changeorder.png)
 
-Figure . Sequence diagram for changeOrder()
+Figure 7. Sequence diagram for changeOrder()
 
 #### Feature: check Canteen Operating Time
 The user enters the command: checkcanteen to check the operating time of an open canteen. The main will enable the checkCanteenOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
@@ -251,7 +258,7 @@ User can type the number before the canteen name to check its operating time.
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopencanteen.png)
 
-Figure . Sequence diagram for checkCanteenOperatingTime()
+Figure 8. Sequence diagram for checkCanteenOperatingTime()
 
 #### Feature: check Stall Operating Time
 The user enters the command: checkstall to check the operating time of an open stall. The main will enable the checkStallOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
@@ -264,7 +271,7 @@ User can type the number before the stall name to check its operating time.
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopenstall.png)
 
-Figure . Sequence diagram for checkStallOperatingTime()
+Figure 9. Sequence diagram for checkStallOperatingTime()
 
 #### Feature: help
 The user enters the command: help to view all commands that are available. The main will enable the help() method. It prints all available commands.
