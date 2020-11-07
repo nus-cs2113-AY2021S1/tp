@@ -29,18 +29,20 @@ e.g. For `name YOUR_NAME_OR_NICKNAME`, `name Jack` would be a valid command.
 e.g. For `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]`, `editinfo a/31` and `editinfo h/173 o/87` are valid commands but `editinfo
 ` is not.
  
-* For commands with multiple parameters, the parameters can be in any order **only if there is more than one parameter labelled with parameter tags** like `n/`, `a/`, etc. Otherwise, they **must be entered in  the sequence as shown** in this guide, the [Help Command](#to-view-a-list-of-valid-commands-help) or the [Summary Command](#command-summary).<br/>
+* For commands with multiple parameters, the parameters can be in any order **only if the parameters are attached to a parameter tag** like `n/`, `a/`, etc. Otherwise, they **must be entered in the sequence as shown** in this guide, the [Help Command](#to-view-a-list-of-valid-commands-help) or the [Summary Command](#command-summary).<br/>
 e.g. For `calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]`,`calculate fat 2020-07-03T23:59 2020-09-03T23:59` is valid but `calculate 2020-07-03T23:59 fat 2020-09-03T23:59` is not.<br/>
-e.g. For `add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]`, `add n/bao x/1 p/5 k/157 f/5 c/23 2020-09-03T23:59` is valid but `add n/bao x/1 p/5 2020-09-03T23:59 k/157 f/5 c/23` is not as the time needs to be entered as the last parameter. 
+e.g. For `add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]`, `add x/1 i/1 2020-09-03T23:59` is valid but `add i/1 2020-09-03T23:59 x/1 ` is not as time needs to be entered as the last parameter. 
 
 **:warning: Please take note of the following:**
 
 * Command words and parameter indicators are case-sensitive.<br/>
 e.g. `help` is a valid command but `Help` is not.<br/>
-e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` is valid but `add N/mee x/1` is not.
+e.g. For `add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]`, `add i/1 x/1 2020-07-03T23:59` is valid but `add I/1 x/1 2020-07-03T23:59` is not.
 
 * Spacing to separate command word and parameters is required.<br/> 
 e.g. For `calculate NUTRIENT_TYPE`, `calculate all` is valid but `calculateall` is not.
+
+* Inappropriate usage of `/`, the forward slash, may lead to invalid commands. Only use **one** `/` in parameter tags like `n/`, `a/`, etc and avoid using `/` otherwise.
 
 ### Features related to user information
 
