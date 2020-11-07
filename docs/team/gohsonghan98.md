@@ -17,7 +17,7 @@ Fitr is a command-line application, helping you keep track of your food intake a
     - A note-worthy design is with the view summary command. In this method, both exercise and food list have to be
      compared together,entry by entry, and sorted into a new combined ArrayList according to the dates of the entry
      . A separate date formatter is created to facilitate the sorting process. Upon successful sorting, the program
-     finally outputs a list of caloric summary in ascending date.  
+     finally outputs a list of caloric summary in ascending order of the date.  
 
 - Implemented User Class: 
     - This class stores all the user profile information (i.e. name, age, gender, height, weight
@@ -26,7 +26,7 @@ Fitr is a command-line application, helping you keep track of your food intake a
     - Ensured that there is sufficient OOP here to support more diverse implementations and scalability of Fitr.
  
 - User Experience improvement:
-    - Added tips and error messages (for edit profile and view command) to give users convenience and improve
+    - For edit profile and view command: Added helpful tips and error messages to give users convenience and improve
      self-sufficiency of the Fitr program.
 
 - JUnit tests:
