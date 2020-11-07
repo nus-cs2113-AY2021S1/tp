@@ -54,10 +54,10 @@ class StorageTest {
         assertEquals("The file has successfully been loaded!" + System.lineSeparator()
                         + "Here is a list of your Personal events:" + System.lineSeparator()
                         + "1. [P][X] stuff on 2010-01-01, 12:00 is also on:" + System.lineSeparator()
-                        + "    1. 08 Jan 2010 0:00 PM [X]" + System.lineSeparator()
-                        + "    2. 15 Jan 2010 0:00 PM [X]" + System.lineSeparator()
-                        + "    3. 22 Jan 2010 0:00 PM [O]" + System.lineSeparator()
-                        + "    4. 29 Jan 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    1. 2010-01-08 12:00 [X]" + System.lineSeparator()
+                        + "    2. 2010-01-15 12:00 [X]" + System.lineSeparator()
+                        + "    3. 2010-01-22 12:00 [O]" + System.lineSeparator()
+                        + "    4. 2010-01-29 12:00 [X]" + System.lineSeparator()
                         + "2. [P][O] birthday celebration on 2010-01-01, 12:00" + System.lineSeparator()
                         + "3. [P][X] others" + System.lineSeparator(),
                 outputStreamCaptor.toString());
@@ -71,10 +71,10 @@ class StorageTest {
         assertEquals("Here is a list of your Zoom events:" + System.lineSeparator()
                         + "1. [Z][X] math, Link: www.zoom.com/blah on 2010-01-01, 12:00 is also on:"
                         + System.lineSeparator()
-                        + "    1. 02 Jan 2010 0:00 PM [X]" + System.lineSeparator()
-                        + "    2. 03 Jan 2010 0:00 PM [X]" + System.lineSeparator()
-                        + "    3. 04 Jan 2010 0:00 PM [O]" + System.lineSeparator()
-                        + "    4. 05 Jan 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    1. 2010-01-02 12:00 [X]" + System.lineSeparator()
+                        + "    2. 2010-01-03 12:00 [X]" + System.lineSeparator()
+                        + "    3. 2010-01-04 12:00 [O]" + System.lineSeparator()
+                        + "    4. 2010-01-05 12:00 [X]" + System.lineSeparator()
                         + "2. [Z][O] computing, Link: www.zoom.com/hello on 2010-01-01, 12:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
@@ -86,10 +86,10 @@ class StorageTest {
 
         assertEquals("Here is a list of your Timetable events:" + System.lineSeparator()
                         + "1. [T][X] math, Location: S17 on 2010-01-01, 12:00 is also on:" + System.lineSeparator()
-                        + "    1. 01 Feb 2010 0:00 PM [X]" + System.lineSeparator()
-                        + "    2. 01 Mar 2010 0:00 PM [X]" + System.lineSeparator()
-                        + "    3. 01 Apr 2010 0:00 PM [O]" + System.lineSeparator()
-                        + "    4. 01 May 2010 0:00 PM [X]" + System.lineSeparator()
+                        + "    1. 2010-02-01 12:00 [X]" + System.lineSeparator()
+                        + "    2. 2010-03-01 12:00 [X]" + System.lineSeparator()
+                        + "    3. 2010-04-01 12:00 [O]" + System.lineSeparator()
+                        + "    4. 2010-05-01 12:00 [X]" + System.lineSeparator()
                         + "2. [T][O] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
