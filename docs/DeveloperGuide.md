@@ -469,9 +469,6 @@ The following sequence diagram summarises what happens when a user executes a `W
 
 ### UpdateShowEpisodeProgressCommand
 
-<<<<<<< HEAD
-The UpdateShowEpisodeProgressCommand extends by providing 
-=======
 The `UpdateShowEpisodeProgressCommand` class extends `Command` by providing methods to change
  the current episode in the persistent watch history of the user. 
 
@@ -483,7 +480,7 @@ The `UpdateShowEpisodeProgressCommand` class extends `Command` by providing meth
 **Step 2**
 
 *  `processCommand()` is called and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command.
->>>>>>> 1659e4e7ad715166549f0ff6f5731cc78300cda4
+
 
 ### UpdateShowSeasonCommand
 

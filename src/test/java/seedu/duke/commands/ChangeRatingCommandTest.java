@@ -17,8 +17,8 @@ class ChangeRatingCommandTest {
         Show show = new Show("friends", 3, episodes,20);
         ShowList.setShow("friends",show);
         ShowList.getShow("friends").setRating(5);
-        ChangeRatingCommand update = new ChangeRatingCommand("friends");
-        update.changeRating("friends", 10);
+        ChangeRatingCommand updateRating = new ChangeRatingCommand("friends");
+        updateRating.changeRating("friends", 10);
         assertEquals(10,ShowList.getShow("friends").getRating());
     }
 }
