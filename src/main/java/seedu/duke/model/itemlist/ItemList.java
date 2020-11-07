@@ -167,7 +167,7 @@ public abstract class ItemList<T extends Item> {
      *
      * @param keyword the keyword to be searched in the task list
      */
-    public void findTask(String keyword) {
+    public void findItem(String keyword) {
         ArrayList<T> matchingTasks = new ArrayList<>();
         int count = 0;
         String message = "";
