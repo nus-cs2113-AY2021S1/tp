@@ -234,6 +234,8 @@ public class Main {
         List<Canteen> canteens = new ArrayList<Canteen>();
         canteens.add(canteen1);
         canteens.add(canteen2);
+        canteens.add(canteen3);
+        canteens.add(canteen4);
         return canteens;
     }
     public static void checkCanteenOperatingTime(List<Canteen> canteens,Customer customer){

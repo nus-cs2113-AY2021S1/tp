@@ -118,6 +118,54 @@ Dishes that can be ordered by the user.
 
 
 ## 4. Implementation
+#### Feature: order
+The user types command “order” to make an order from a stall in a canteen. The order method will be activated and print open stalls through checkOpenCanteens method in Customer class in this manner:
+
+ ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image1.png)
+ 
+User just type the corresponding index before the canteen to select canteen. Then the open stalls in this canteen will be printed through checkOpenStalls method in Customer class in this manner:
+
+ ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image2.png)
+ 
+User just type the corresponding index before the stall to select stall. Then the available dishes and price in this stall will be printed through getDish() method in Stall class in this manner:
+
+ ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image3.png)
+ 
+User just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. Finally, after choosing dine in, take away or delivery, an order object will be created and added into the order list.
+
+#### Feature: delete order
+The user enters the command: delete [number] to delete an order in the order list. The main will enable the deleteOrder () method. The Parser will make sense of the command and delete the corresponding order from the order list. 
+e.g. delete 1 means delete the first order in the order list.
+
+#### Feature: find order
+The user enters the command: find [dish name] to find the order contains this dish in the order list. The main will enable the findDishinOrder() method. The Parser will make sense of the command and iterate the order list and dish list to print the order containing this dish. 
+e.g. find chicken rice means find all orders containing chicken rice in the order list.
+
+#### Feature: List order
+The user enters the command: list to print all the orders in the order list . The main will enable the printOrder() method. The printOrder() method will iterate the whole order list and print all the orders
+
+#### Feature: change order (change dine in, take away or delivery)
+The user enters the command: change/number/type to change the order type of one order in the order list. The main will enable the changeOrder() method. The Parser will make sense of the command and change the corresponding order’s order type. 
+e.g. change/1/Dine in: change order 1 to dine in
+
+#### Feature: check Canteen Operating Time
+The user enters the command: checkcanteen to check the operating time of an open canteen. The main will enable the checkCanteenOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image1.png)
+
+ 
+User can type the number before the canteen name to check its operating time.
+
+#### Feature: check Stall Operating Time
+The user enters the command: checkstall to check the operating time of an open stall. The main will enable the checkStallOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image1.png)
+
+ 
+User can type the number before the canteen name to display the stalls inside the canteen in this manner.
+ 
+User can type the number before the stall name to check its operating time.
+
 
 ## 5. Testing
 
