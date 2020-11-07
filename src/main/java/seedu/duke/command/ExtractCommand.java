@@ -175,15 +175,6 @@ public class ExtractCommand extends Command {
             if (time.contains(".")) {
                 time = time.replaceAll("\\.", ":");
             }
-            if (time.contains("PM") || time.contains("AM")) {
-                if (!time.contains(" ")) {
-                    // adds space between AM/PM for it to work with parser later
-                    time = time.substring(0, time.length() - 2) + " " + time.substring(time.length() - 2);
-                }
-                if (!time.contains(":")) {
-                    time = time.substring(0, time.length() - 3) + ":00 " + time.substring(time.length() - 2);
-                }
-            }
             time = time.toLowerCase();
             timeListInString.add(time);
         }

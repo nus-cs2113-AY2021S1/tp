@@ -171,9 +171,10 @@ Firstly, to begin, the user needs to key in the add command with the general for
 The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. For example,
 `add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`
 
-When a command like this is called, the constructor to `addCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
+When a command like this is called, the constructor to `AddCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
 
-Next, when `addCommand#execute` is called from the main, this method will call the respective method to create one of the three events. These methods are `addCommand#addPersonal`, `addCommand#addZoom`, and `addCommand#addTimetable`.
+Next, when `AddCommand#execute()` is called from the main, this method will call the respective method to create one of the three events. These methods are `AddCommand#addPersonal()`, `AddCommand#addZoom()`, and `AddCommand#addTimetable()`.
+These methods are then used to create events based on the number of fields/parameters entered by the user. Each event has multiple constructors and can contain different combinations of fields which will be stated below.
 
 The personal event can contain the following fields: 
 - Description 
@@ -210,9 +211,9 @@ Step 1. The user launches the application for the first time. There will be no e
  
 Step 2. The user inputs `add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`. The `addCommand` instance is created and detects that the event is of Zoom type.
  
-Step 3. `addCommand#execute` is called. The class knows the current addCommand is of Zoom type so it calls `addCommand#addZoom`.
+Step 3. `addCommand#execute()` is called. The class knows the current addCommand is of Zoom type so it calls `addCommand#addZoom()`.
  
-Step 4. `addCommand#addZoom` detects there are 4 fields in the command, separated by semicolons, and uses this to create a new Zoom event.
+Step 4. `addCommand#addZoom()` detects there are 4 fields in the command, separated by semicolons, and uses this to create a new Zoom event.
  
 Step 5. The Zoom event is then added to the user's `UserData` for further use.
  
@@ -407,7 +408,33 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 (WIP)
 
 #### Extract feature
-(WIP)
+The extract feature allows users to copy and paste a body of text like emails and it will help users create either
+a Zoom or a Personal event. It utilizes Regular Expressions (Regex) patterns in order to match dates, times and zoom links
+in the text entered. 
+
+Given below is an example usage scenario to explain how the extract feature works.
+
+Step 1. To begin, the user enters `extract CS2113T Quiz;`. 
+The constructor for `ExtractCommand` will then be called and the `TEXT_SUBJECT` which is `CS2113T Quiz` will be stored in that instance of ExtractCommand.
+
+Step 2. Next, `ExtractCommand#execute()` is called from the main. This method will call `ExtractCommand#receiveTextBody()` which will let the user enter any text and only ends once the user types `extractend` on a new line.
+The user may then input a text copied from email, for example `The quiz will be on October 8 2020 or 9th October at 4pm or 5pm. The zoom link is at nus-sg.zoom.com`. After going to the next line, the user has to type `extractend`.
+This is saved as the `textBody` in this instance of `ExtractCommand`. 
+
+Step 3. The `textBody` is then used in multiple methods. These include `ExtractCommand#detectZoomLink()`, `ExtractCommand#detectDate()` and `ExtractCommand#detectTime()` which will use Regex patterns to find and match dates, times and zoom links.
+
+Step 4. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be called which will return dates and times that are valid.
+
+Step 5. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it.
+
+Step 6. If the event has a zoom link, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
+
+The following sequence diagram shows how the Extract Feature works in general:
+
+![Sequence Diagram for Extract Command](./diagrams/extractCommand.jpg)
+
+
+
 
 
  
