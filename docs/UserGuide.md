@@ -20,26 +20,27 @@ A CLI, similar to the one shown below, should appear within a few seconds. Follo
 
 ## Features 
 
-Notes about the command format:
+**:information_source: Notes about the command format:**
 
-* Words in `UPPER_CASE` are parameters to be supplied by the user.<br/> 
-e.g. For `delete INDEX`, `delete 1` would be a valid command.
+* Words in `UPPER_CASE` are **parameters to be supplied** by the user.<br/> 
+e.g. For `name YOUR_NAME_OR_NICKNAME`, `name Jack` would be a valid command.
   
-* Parameters in square brackets are optional. However, if all parameters are optional, at least one parameter needs to be given. In such cases, any one of the parameters would be valid.<br/>
-e.g. For `add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]`, `add x/1 n/Toast k/120`, `add x/1 n/Toast k/120 c/18`,  `add x/1 n/Toast k/120 c/18 p/3`, `add x/1 n/Toast k/120
- c/18 p/3 f/4` are all valid commands.
+* Parameters in **square brackets are optional**. However, if all parameters are optional, **at least one parameter needs to be given**. In such cases, any one of the parameters would be valid.<br/>
+e.g. For `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]`, `editinfo a/31` and `editinfo h/173 o/87` are valid commands but `editinfo
+` is not.
  
-* For commands with multiple parameters, the parameters can be in any order.<br/>
-e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` and `add x/1 n/mee` are both valid.
+* For commands with multiple parameters, the parameters can be in any order **only if there is more than one parameter labelled with parameter tags** like `n/`, `a/`, etc. Otherwise, they **must be entered in the sequence as shown** on this guide, the [Help Command](#to-view-a-list-of-valid-commands-help) or the [Summary Command](#command-summary).<br/>
+e.g. For `calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]`,`calculate fat 2020-07-03T23:59 2020-09-03T23:59` is valid but `calculate 2020-07-03T23:59 fat 2020-09-03T23:59` is not.<br/>
+e.g. For `add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]`, `add n/bao x/1 p/5 k/157 f/5 c/23 2020-09-03T23:59` is valid but `add n/bao x/1 p/5 2020-09-03T23:59 k/157 f/5 c/23` is not as the time needs to be entered as the last parameter. 
+
+**:warning: Please take note of the following:**
 
 * Command words and parameter indicators are case-sensitive.<br/>
 e.g. `help` is a valid command but `Help` is not.<br/>
 e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` is valid but `add N/mee x/1` is not.
 
-* A single spacing to separate command words, parameters, command word and parameters is required.<br/>
-e.g. For `calculate all`, `calculate all` is valid but `calculateall` and `calculate` &nbsp; &nbsp; &nbsp; &nbsp; `all` is not.<br/>
-e.g. For `delete INDEX`, `delete 1` is valid if there is a food item with index 1 but`delete1` is not.<br/>
-e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` is valid but `add n/meex/1` is not.<br/>
+* Spacing to separate command word and parameters is required.<br/> 
+e.g. For `calculate NUTRIENT_TYPE`, `calculate all` is valid but `calculateall` is not.
 
 ### Features related to user information
 
