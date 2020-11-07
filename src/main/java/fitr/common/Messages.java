@@ -149,11 +149,11 @@ public class Messages {
     public static final String EXERCISE_NAME_HEADER = "Name of Exercise: ";
     public static final String FOOD_NAME_HEADER = "Name of Food: ";
     public static final String VIEW_FOOD_TIP = "Tip: You may also view food entries by day using the format "
-            + "\"view food DATE(dd/MM/yyyy)\"";
+            + "\"view food dd/MM/yyyy\"";
     public static final String VIEW_EXERCISE_TIP = "Tip: You may also view exercise entries by day using the format "
-            + "\"view exercise DATE(dd/MM/yyyy)\"";
+            + "\"view exercise dd/MM/yyyy\"";
     public static final String VIEW_SUMMARY_TIP = "Tip: You may also view summary by day using the format "
-            + "\"view summary DATE(dd/MM/yyyy)\"";
+            + "\"view summary dd/MM/yyyy\"";
     public static final String ADD_SMART_FOOD_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
             + "\"" + FORMAT_SMART_FOOD_GOAL + "\"";
     public static final String ADD_SMART_EXERCISE_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
