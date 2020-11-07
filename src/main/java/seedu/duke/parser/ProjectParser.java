@@ -66,6 +66,7 @@ public class ProjectParser implements ExceptionsParser {
             // Get index of the project to select
             try {
                 int index = Integer.parseInt(parameters.get("0"));
+                // check if required project index present
                 if (index <= projectListManager.size() && index > 0) {
                     return new SelectProjectCommand(parameters, projectListManager);
                 } else {
