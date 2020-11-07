@@ -1,0 +1,46 @@
+@startuml
+skinparam Shadowing false
+
+participant ":Fitr"
+participant "<<class>>\n:Parser"
+
+activate ":Fitr"
+":Fitr" -> "<<class>>\n:Parser" ++ : parse("view profile")
+
+create ":ViewCommand"
+"<<class>>\n:Parser" -> ":ViewCommand" ++
+return
+
+return
+
+'To position the delete symbol below activation bar
+"<<class>>\n:Parser" -[hidden]-> ":ViewCommand"
+destroy "<<class>>\n:Parser"
+
+":Fitr"->":ViewCommand" : execute()
+activate ":ViewCommand"
+
+":ViewCommand" -> ":ViewCommand" ++ : viewProfile(user)
+":ViewCommand" -> "<<class>>\n:Ui" : printCustomMessage()
+activate "<<class>>\n:Ui"
+return
+
+":ViewCommand" -> ":User" : toString()
+activate ":User"
+return
+
+":ViewCommand" -> "<<class>>\n:Ui" : printCustomMessage()
+activate "<<class>>\n:Ui"
+return
+
+return
+return
+
+'To position the delete symbol below activation bar
+":Fitr" -[hidden]-> ":ViewCommand"
+destroy ":ViewCommand"
+
+
+
+hide footbox
+@enduml
