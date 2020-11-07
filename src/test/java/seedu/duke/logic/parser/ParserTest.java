@@ -99,4 +99,28 @@ class ParserTest {
         assertTrue(isOngoing);
     }
 
+    @Test
+    void extractType_dineCommand_returnsTrue() throws CustomException {
+        String command = "/dine science";
+        Parser p = new Parser(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
+    void extractType_dineInfoCommand_returnsTrue() throws CustomException {
+        String command = "/dineinfo arise";
+        Parser p = new Parser(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
+    void extractType_facultyCommand_returnsTrue() throws CustomException {
+        String command = "/faculty";
+        Parser p = new Parser(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
 }

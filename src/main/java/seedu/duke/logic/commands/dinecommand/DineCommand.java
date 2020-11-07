@@ -32,7 +32,8 @@ public class DineCommand extends Command {
         printLine();
     }
 
-    public void checkFaculty(ArrayList<FoodPlace> foodPlaceList) {
+    private void checkFaculty(ArrayList<FoodPlace> foodPlaceList) {
+        assert foodPlaceList != null : "Data not available.";
         boolean isFound = false;
         int count = 0;
         for (FoodPlace foodPlace : foodPlaceList) {
