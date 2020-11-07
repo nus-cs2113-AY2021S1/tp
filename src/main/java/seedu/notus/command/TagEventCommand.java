@@ -7,7 +7,12 @@ import seedu.notus.ui.Formatter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static seedu.notus.util.CommandMessage.*;
+import static seedu.notus.util.CommandMessage.TAG_MESSAGE;
+import static seedu.notus.util.CommandMessage.UNTAG_MESSAGE;
+import static seedu.notus.util.CommandMessage.TAG_HEADER;
+import static seedu.notus.util.CommandMessage.FILE_WRITE_UNSUCCESSFUL_MESSAGE;
+import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
+
 
 //@@author Chongjx
 /**
