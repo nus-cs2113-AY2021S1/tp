@@ -33,7 +33,7 @@ Scheduler--; Does the job
     - [3.10 Mark events as not done: undone](#310-mark-events-as-not-done-undone-marcus-tan)
     - [3.11 Deleting an event: delete](#311-deleting-an-event-delete-marcus-tan)
     - [3.12 Note taking: note](#312-note-taking-note-qing-ning)
-    - [3.13 Note taking: note](#313-view-note-view-qing-ning)
+    - [3.13 View note: view](#313-view-note-view-qing-ning)
     - [3.14 Reminder: reminder](#314-reminder-reminder-qing-ning)
     - [3.15 Extracting events from texts: extract](#315-extracting-events-from-texts-extract-matthew-gani)
     - [3.16 Save events: save](#316-save-events-save-colin)
@@ -717,7 +717,7 @@ _________________________________
 >
 > The event index keyed in have to be valid so that note can be created for the specified event index.
 
-### 3.13 View Note: `view` (Qing Ning)
+### 3.13 View note: `view` (Qing Ning)
 Typed your notes but want to view them? Here's how you view them!
 
 Format: `view EVENT_TYPE; EVENT_INDEX`
@@ -881,7 +881,7 @@ In this section, you can find some frequently asked questions(FAQ).
 |Set event as undone|undone EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: undone zoom 1 3/12/2020 <br>|
 |Delete|delete EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: delete timetable 3 <br>|
 |Notes|note EVENT_TYPE; EVENT_INDEX <br> note personal; 1 <br>|
-|View Notes|view EVENT_TYPE; EVENT_INDEX <br> view personal; 1 <br>|
+|View notes|view EVENT_TYPE; EVENT_INDEX <br> view personal; 1 <br>|
 |Extract|extract TEXT_SUBJECT; `<enter key>` TEXT_BODY  `<enter key>` extractend `<enter key>`<br>|
 |Reminder|reminder <br>|
 |Save|save <br>|
