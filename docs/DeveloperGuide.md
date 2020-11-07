@@ -9,7 +9,7 @@
 ### [3. Design](#3-Design1)
 #### [3.1 Architecture](#31-Architecture1)
 #### [3.2 Classes](#32-Classes1)
-##### [3.2.1 Main class](#321-Main-class1)
+##### [3.2.1 Logic class](#321-Logic-class1)
 ##### [3.2.2 UI class](#322-UI-class1)
 ##### [3.2.3 Parser class](#323-Parser-class1)
 ##### [3.2.4 Customer class](#324-Customer-class1)
@@ -80,7 +80,7 @@ The following section is a more detailed description of these four components.
 
 ### 3.2 Classes
 The CanteenHelper consists of six classes:
-* `Main`
+* `Logic`
 * `Ui`
 * `Parser`
 * `Customer`
@@ -89,7 +89,7 @@ The CanteenHelper consists of six classes:
 * `Stall`
 * `Dish`
 
-#### 3.2.1 Main class
+#### 3.2.1 Logic class
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
 Figure 2. Main Logic Diagram
 
