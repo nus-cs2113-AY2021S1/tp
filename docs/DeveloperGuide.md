@@ -302,6 +302,27 @@ The following sequence diagram illustrates the steps taken by the program when t
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
 
+### 3.10. Performing similarity checks
+This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
+instruction or command from the user and runs every time the user enters a `/route` or `/bus` command.<br>
+The following steps explain how the similarity checks are performed.
+* Once the location(s) entered by the user are retrieved, the `SimilarityCheck#similarLoc()` method is called for each 
+location.
+* `SimilarityCheck#similarLoc()` retrieves the list of bus stops and for each bus stop name, calls the 
+`SimilarityCheck#getSimilarity()` method.
+    + `SimilarityCheck#getSimilarity()` finds the location name with longer length and calculates Levenshtein distance
+    between the two names using `SimilarityCheck#editDistance()`.
+    + This distance is then divided by the longer distance to get a number between 0 and 1.
+    + This number is subtracted from 1 to get the ratio of similarity.
+* `SimilarityCheck#similarLoc()` adds the bus stop name to the list of possible locations if this similarity is greater 
+than a certain threshold (taken as 0.60).
+
+Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature) and 
+[`/bus` feature implementation](#39-bus-at-bus-stop-finder-bus-feature) examples of where this feature is used.
+
+_Credits: The Levenshtein distance algorithm was adapted from 
+[this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
+
 ## 4. Appendix I: Requirements
 
 ### 4.1 Product scope
