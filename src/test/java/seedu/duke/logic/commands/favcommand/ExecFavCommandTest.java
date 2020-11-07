@@ -26,71 +26,66 @@ public class ExecFavCommandTest {
 
     @Test
     void executeCommand_indexOutOfBounds_expectException() throws CustomException {
-        assertThrows(CustomException.class, ExecFavCommandTest::performCheck_indexOutOfBounds);
-    }
-
-    static void performCheck_indexOutOfBounds() throws CustomException {
         String input = "5";
         ExecFavCommand command = new ExecFavCommand(input);
-        command.executeCommand();
+        try {
+            command.executeCommand();
+        } catch (CustomException e) {
+            assertEquals("Sorry, that isn't the index of any command in the list.", e.toString());
+        }
     }
 
     @Test
-    void executeCommand_inputWords_expectException() {
-        assertThrows(CustomException.class, ExecFavCommandTest::performCheck_inputWords);
-    }
-
-    static void performCheck_inputWords() throws CustomException {
+    void executeCommand_inputWords_expectException() throws CustomException {
         String input = "random words";
-        ExecFavCommand command = new ExecFavCommand(input);
-        command.executeCommand();
+        try {
+            ExecFavCommand command = new ExecFavCommand(input);
+        } catch (CustomException e) {
+            assertEquals("Yikes! That is not even a number.", e.toString());
+        }
     }
 
     @Test
     void executeCommand_inputBlank_expectException() {
-        assertThrows(CustomException.class, ExecFavCommandTest::performCheck_inputBlank);
-    }
-
-    static void performCheck_inputBlank() throws CustomException {
         String input = " ";
-        ExecFavCommand command = new ExecFavCommand(input);
-        command.executeCommand();
+        try {
+            ExecFavCommand command = new ExecFavCommand(input);
+        } catch (CustomException e) {
+            assertEquals("Oh no! I cannot detect the input index.", e.toString());
+        }
     }
 
     @Test
     void executeCommand_inputNumberAndWords_expectException() {
-        assertThrows(CustomException.class, ExecFavCommandTest::performCheck_inputNumberAndWords);
+        String input = "1 random words";
+        try {
+            ExecFavCommand command = new ExecFavCommand(input);
+        } catch (CustomException e) {
+            assertEquals("Yikes! That is not even a number.", e.toString());
+        }
     }
 
-    static void performCheck_inputNumberAndWords() throws CustomException {
-        String input = "1 random words";
-        ExecFavCommand command = new ExecFavCommand(input);
-        command.executeCommand();
-    }
 
     @Test
-    void executeCommand_invalidCommand_expectException() {
-        assertThrows(CustomException.class, ExecFavCommandTest::performCheck_executeInvalidCommand);
-        assertEquals(3, FavList.getSize());
-    }
-    static void performCheck_executeInvalidCommand() throws CustomException {
+    void executeCommand_invalidCommand_expectException() throws CustomException {
         String input = "2";
         ExecFavCommand command = new ExecFavCommand(input);
-        command.executeCommand();
-    }
-
-    @Test
-    void executeCommand_inputValidIndex_TaskRuns() {
-        assertDoesNotThrow(ExecFavCommandTest::performCheck_inputValidIndex);
+        try {
+            command.executeCommand();
+        } catch (CustomException e) {
+            assertEquals(3, FavList.getSize());
+            assertEquals("Oh no! it seems that this command has been corrupted.\n"
+                    + "Don't worry, I have deleted it from your favourites list!", e.toString());
+        }
     }
 
     /*
     As size task in index 2 will be deleted from test of invalid command, valid index boundary is 3
      */
-    static void performCheck_inputValidIndex() throws CustomException {
+    @Test
+    void executeCommand_inputValidIndex_TaskRuns() throws CustomException {
         String input = "3";
         ExecFavCommand command = new ExecFavCommand(input);
-        command.executeCommand();
+        assertDoesNotThrow(()->command.executeCommand());
     }
-    
 }
