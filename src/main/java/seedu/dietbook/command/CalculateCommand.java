@@ -46,20 +46,20 @@ public class CalculateCommand extends Command {
             } else if (processedParam.length == 2) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
-                calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime);
-                carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime);
-                protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime);
-                fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime);
+                calorie = manager.getCalculator().calculateCalorie(startTime);
+                carb = manager.getCalculator().calculateCarb(startTime);
+                protein = manager.getCalculator().calculateProtein(startTime);
+                fat = manager.getCalculator().calculateFat(startTime);
                 ui.printAllIntake(calorie, carb, protein, fat, startTime);
             } else if (processedParam.length == 3) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
                 InputChecker.checkEndDate(startTime, endTime);
-                calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
-                carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
-                protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
-                fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
+                calorie = manager.getCalculator().calculateCalorie(startTime, endTime);
+                carb = manager.getCalculator().calculateCarb(startTime, endTime);
+                protein = manager.getCalculator().calculateProtein(startTime, endTime);
+                fat = manager.getCalculator().calculateFat(startTime, endTime);
                 ui.printAllIntake(calorie, carb, protein, fat, startTime, endTime);
 
             }
@@ -70,14 +70,14 @@ public class CalculateCommand extends Command {
             } else if (processedParam.length == 2) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
-                calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime);
+                calorie = manager.getCalculator().calculateCalorie(startTime);
                 ui.printCalorieIntake(calorie, startTime);
             } else if (processedParam.length == 3) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
                 InputChecker.checkEndDate(startTime, endTime);
-                calorie = manager.getCalculator().calculateCalorie(manager.getFoodList(), startTime, endTime);
+                calorie = manager.getCalculator().calculateCalorie(startTime, endTime);
                 ui.printCalorieIntake(calorie, startTime, endTime);
             }
             break;
@@ -87,14 +87,14 @@ public class CalculateCommand extends Command {
             } else if (processedParam.length == 2) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
-                carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime);
+                carb = manager.getCalculator().calculateCarb(startTime);
                 ui.printCarbIntake(carb, startTime);
             } else if (processedParam.length == 3) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
                 InputChecker.checkEndDate(startTime, endTime);
-                carb = manager.getCalculator().calculateCarb(manager.getFoodList(), startTime, endTime);
+                carb = manager.getCalculator().calculateCarb(startTime, endTime);
                 ui.printCarbIntake(carb, startTime, endTime);
             }
             break;
@@ -104,14 +104,14 @@ public class CalculateCommand extends Command {
             } else if (processedParam.length == 2) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
-                protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime);
+                protein = manager.getCalculator().calculateProtein(startTime);
                 ui.printProteinIntake(protein, startTime);
             } else if (processedParam.length == 3) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
                 InputChecker.checkEndDate(startTime, endTime);
-                protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
+                protein = manager.getCalculator().calculateProtein(startTime, endTime);
                 ui.printProteinIntake(protein, startTime, endTime);
             }
             break;
@@ -121,14 +121,14 @@ public class CalculateCommand extends Command {
             } else if (processedParam.length == 2) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
-                fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime);
+                fat = manager.getCalculator().calculateFat(startTime);
                 ui.printFatIntake(fat, startTime);
             } else if (processedParam.length == 3) {
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
                 InputChecker.checkEndDate(startTime, endTime);
-                fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
+                fat = manager.getCalculator().calculateFat(startTime, endTime);
                 ui.printFatIntake(fat, startTime, endTime);
             }
             break;
