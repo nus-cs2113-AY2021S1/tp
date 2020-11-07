@@ -131,6 +131,8 @@ public class Messages {
             + "Type some commands and see it.";
     public static final String MESSAGE_NEW_MODULE_FILE = "I have created a new modules.txt file for you :) "
             + "Type some commands and see it.";
+    public static final String MESSAGE_NEW_EXPENSE_FILE = "I have created a new expenses.txt file for you :) "
+            + "Type some commands and see it.";
 
     public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
             + "\t The format is: find <keyword>";

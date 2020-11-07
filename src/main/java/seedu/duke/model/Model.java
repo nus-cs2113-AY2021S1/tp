@@ -3,6 +3,7 @@ package seedu.duke.model;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.itemlist.BookList;
+import seedu.duke.model.itemlist.ExpenseList;
 import seedu.duke.model.itemlist.ItemList;
 import seedu.duke.model.itemlist.LinkList;
 import seedu.duke.model.itemlist.ModuleList;
@@ -26,6 +27,7 @@ public class Model {
         listMap.put(ListType.BOOK_LIST, new BookList());
         listMap.put(ListType.MODULE_LIST, new ModuleList());
         listMap.put(ListType.LINK_LIST, new LinkList());
+        listMap.put(ListType.EXPENSE_LIST, new ExpenseList());
     }
 
     public ItemList getList(ListType listType) {
@@ -67,6 +69,14 @@ public class Model {
             }
             Ui.dukePrint(Messages.MESSAGE_NEW_MODULE_FILE);
         }
+        try {
+            listMap.put(ListType.EXPENSE_LIST, new ExpenseList(storage.loadExpense()));
+        } catch (DukeException e) {
+            if (!errorMessage) {
+                Ui.showError(e);
+            }
+            Ui.dukePrint(Messages.MESSAGE_NEW_EXPENSE_FILE);
+        }
     }
 
     public void save() throws DukeException {
@@ -74,5 +84,6 @@ public class Model {
         storage.save(listMap.get(ListType.BOOK_LIST), Storage.BOOK_STORAGE_FILEPATH);
         storage.save(listMap.get(ListType.LINK_LIST), Storage.LINK_STORAGE_FILEPATH);
         storage.save(listMap.get(ListType.MODULE_LIST), Storage.MODULE_STORAGE_FILEPATH);
+        storage.save(listMap.get(ListType.EXPENSE_LIST), Storage.EXPENSE_STORAGE_FILEPATH);
     }
 }

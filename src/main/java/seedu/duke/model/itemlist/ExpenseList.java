@@ -31,8 +31,12 @@ public class ExpenseList extends ItemList<Expense> {
         super(expenses);
     }
 
-    @Override
-    public void addItem(Expense expense) {
+    /**
+     * Adds an expense item to the expense list from the parameters.
+     *
+     * @param expense Expense item to be added to the expense list.
+     */
+    public void addExpense(Expense expense) {
         items.add(expense);
         Ui.dukePrint(Messages.MESSAGE_ADD_EXPENSE + expense.toString() + Messages.MESSAGE_STATUS_FIRST
                 + items.size() + Messages.MESSAGE_EXPENSE_STATUS_LAST);

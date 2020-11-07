@@ -60,6 +60,6 @@ public class SpendCommand extends Command {
                 throw new DukeException(Messages.EXCEPTION_WRONG_DATE_FORMAT);
             }
         }
-        expenses.addItem(newExpense);
+        expenses.addExpense(newExpense);
     }
 }

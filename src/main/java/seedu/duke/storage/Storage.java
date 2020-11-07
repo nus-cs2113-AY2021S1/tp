@@ -4,15 +4,18 @@ import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
 import seedu.duke.model.item.Book;
-import seedu.duke.model.itemlist.ItemList;
+import seedu.duke.model.item.Expense;
 import seedu.duke.model.item.Link;
-import seedu.duke.model.item.Task;
 import seedu.duke.model.item.Module;
+import seedu.duke.model.item.Task;
+import seedu.duke.model.itemlist.ItemList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,6 +33,7 @@ public class Storage {
     public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
     public static final String LINK_STORAGE_FILEPATH = "links.txt";
     public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
+    public static final String EXPENSE_STORAGE_FILEPATH = "expenses.txt";
     
     /**
      * Loads the task list data from the storage, and then returns it.
@@ -122,6 +126,29 @@ public class Storage {
             modules.add(newModule);
         }
         return modules;
+    }
+
+    /**
+     * Loads the expense list data from the storage.
+     *
+     * @return ArrayList of expenses.
+     * @throws DukeException If the file does not exist, or parsing errors.
+     */
+    public ArrayList<Expense> loadExpense() throws DukeException {
+        File file = new File(EXPENSE_STORAGE_FILEPATH);
+        Scanner sc;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+        ArrayList<Expense> expenses = new ArrayList<>();
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            Expense newExpense = loadExpenseFromLine(line);
+            expenses.add(newExpense);
+        }
+        return expenses;
     }
 
     /**
@@ -272,6 +299,39 @@ public class Storage {
 
             return new Module(description, grade, mc, semester, isDone);
         } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+    }
+
+    /**
+     * Returns an expense item corresponding to arguments from a line loaded from file.
+     *
+     * @param line A line loaded from the save file.
+     * @return Expense corresponding to the loaded line.
+     * @throws DukeException If there is an error parsing the save file.
+     */
+    private Expense loadExpenseFromLine(String line) throws DukeException {
+        String paddedLine = line + " ";
+        String[] arguments = paddedLine.split("\\|");
+
+        if (arguments.length != 4) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+
+        try {
+            String description = arguments[0].trim();
+            Double value = Double.valueOf(arguments[1].trim());
+            String currency = arguments[2].trim();
+            LocalDate date = LocalDate.parse(arguments[3].trim());
+
+            Expense newExpense = new Expense(description, value);
+            newExpense.setCurrency(currency);
+            newExpense.setDate(date);
+
+            return newExpense;
+        } catch (NumberFormatException e) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        } catch (DateTimeParseException e) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
     }

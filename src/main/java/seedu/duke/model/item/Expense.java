@@ -2,6 +2,7 @@ package seedu.duke.model.item;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 // @@author GuoAi
 
@@ -13,9 +14,15 @@ public class Expense extends Item {
     private final double value;
     private String currency;
     private LocalDate date;
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private LocalDate now = LocalDate.now();
 
+    /**
+     * Constructor used when adding an expense item.
+     * Byt default, the expense item has currency "SGD and date of today.
+     *
+     * @param description the description of the expense item
+     * @param value the value of the expense item
+     */
     public Expense(String description, double value) {
         super(description);
         this.value = value;
@@ -25,7 +32,8 @@ public class Expense extends Item {
 
     @Override
     public String toString() {
-        return String.format("%s (%.2d %s) (date: %s)", getDescription(), getValue(), getCurrency(), dateTimeFormatter.format(getDate()));
+        return String.format("%s (%.2f %s) (date: %s)", getDescription(), getValue(), getCurrency(),
+                getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
     }
 
     public String getDescription() {
@@ -51,5 +59,15 @@ public class Expense extends Item {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    /**
+     * Converts the attributes of the expense item into a formatted string to be saved into the storage file.
+     *
+     * @return the formatted string to be saved into the storage file
+     */
+    @Override
+    public String toFile() {
+        return getDescription() + " | " + getValue() + " | " + getCurrency() + " | " + getDate().toString();
     }
 }
