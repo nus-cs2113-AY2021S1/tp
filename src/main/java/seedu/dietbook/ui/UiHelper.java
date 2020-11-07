@@ -47,6 +47,11 @@ public class UiHelper {
         return string.trim();
     }
 
+    String getDivider() {
+        return "__________________________________________________________________________________________"
+                + "________________________________________________";
+    }
+
     /**
      * Performs assertions for the string inputs.
      *

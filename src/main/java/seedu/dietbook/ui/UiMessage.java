@@ -85,13 +85,69 @@ public class UiMessage {
     }
 
     String getHelpCommandMessage() {
-        return "Listed below are the valid commands for DietBook:"
-                + UiHelper.LINE_SEPARATOR + UiHelper.LINE_SEPARATOR
-                + getUserInfoRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getDatabaseRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getFoodListRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getNutritionalRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getSystemRelatedCommands();
+        return "Listed below are the valid commands for DietBook:" + UiHelper.LINE_SEPARATOR
+                + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + getUserInfoRelatedCommands()
+                + getDatabaseRelatedCommands()
+                + getFoodListRelatedCommands()
+                + getNutritionalRelatedCommands()
+                + getSystemRelatedCommands()
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider();
+    }
+
+    private String getUserInfoRelatedCommands() {
+        return "  userinfo    | To view user information:" + UiHelper.LINE_SEPARATOR
+                + "              | userinfo"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  editinfo    | To edit user information:" + UiHelper.LINE_SEPARATOR
+                + "              | editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
+                + "[o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]";
+    }
+
+    String getDatabaseRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  add         | To add a food from the database:" + UiHelper.LINE_SEPARATOR
+                + "              | add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  data        | To view all food in the database:" + UiHelper.LINE_SEPARATOR
+                + "              | data";
+    }
+
+    String getSystemRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  help        | To view a list of valid commands:" + UiHelper.LINE_SEPARATOR
+                + "              | help"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  exit        | To exit DietBook:" + UiHelper.LINE_SEPARATOR
+                + "              | exit";
+    }
+
+    String getNutritionalRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  recommend   | To get recommended calorie intake:" + UiHelper.LINE_SEPARATOR
+                + "              | recommend"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  calculate   | To calculate nutritional intake:" + UiHelper.LINE_SEPARATOR
+                + "              | calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR
+                + "              |   Valid NUTRIENT_TYPE: carb, calorie, fat, protein, all";
+    }
+
+    String getFoodListRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  add         | To add a food not in the database:" + UiHelper.LINE_SEPARATOR
+                + "              | add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
+                + "[p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  list        | To view all food in DietBook:" + UiHelper.LINE_SEPARATOR
+                + "              | list [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  delete      | To delete a food from DietBook:" + UiHelper.LINE_SEPARATOR
+                + "              | delete INDEX"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "  clear       | To delete all food items from the DietBook:" + UiHelper.LINE_SEPARATOR
+                + "              | clear";
     }
 
     String getDatabaseMessage(String foodDatabase) {
@@ -136,7 +192,7 @@ public class UiMessage {
     }
 
     String getDeletedFoodMessage(String deletedFood) {
-        return "Noted. I've removed this food item:" + UiHelper.LINE_SEPARATOR  + "  "
+        return "Noted. I've removed this food item:" + UiHelper.LINE_SEPARATOR + "  "
                 + uiHelper.trimString(deletedFood);
     }
 
@@ -168,45 +224,6 @@ public class UiMessage {
         return "and you may start by entering any valid commands. "
                 + UiHelper.LINE_SEPARATOR
                 + "If you require a list of valid commands, you can enter: help";
-    }
-
-    String getSystemRelatedCommands() {
-        return "For other system related commands" + UiHelper.LINE_SEPARATOR
-                + "  To view a list of valid commands: help" + UiHelper.LINE_SEPARATOR
-                + "  To exit DietBook: exit";
-    }
-
-    String getNutritionalRelatedCommands() {
-        return "For nutritional intake and recommendation related commands" + UiHelper.LINE_SEPARATOR
-                + "  To get recommended calorie intake: recommend" + UiHelper.LINE_SEPARATOR
-                + "  To calculate nutritional intake: calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] "
-                + "[yyyy-mm-ddTHH:mm]" + UiHelper.LINE_SEPARATOR
-                + "    Valid NUTRIENT_TYPE: carb, calorie, fat, protein, all" + UiHelper.LINE_SEPARATOR;
-    }
-
-    String getUserInfoRelatedCommands() {
-        return "For user information related commands" + UiHelper.LINE_SEPARATOR
-                + "  To view user information: userinfo" + UiHelper.LINE_SEPARATOR
-                + "  To edit user information: editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
-                + "[o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]"
-                + UiHelper.LINE_SEPARATOR;
-    }
-
-    String getFoodListRelatedCommands() {
-        return "For food list related commands" + UiHelper.LINE_SEPARATOR
-                + "  To add a food not in the database: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE "
-                + "[c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]" + UiHelper.LINE_SEPARATOR
-                + "  To view all food in DietBook: list [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
-                + UiHelper.LINE_SEPARATOR
-                + "  To delete a food from DietBook: delete INDEX" + UiHelper.LINE_SEPARATOR
-                + "  To delete all food items from the DietBook: clear" + UiHelper.LINE_SEPARATOR;
-    }
-
-    String getDatabaseRelatedCommands() {
-        return "For database related commands" + UiHelper.LINE_SEPARATOR
-                + "  To add a food from the database: add INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]"
-                + UiHelper.LINE_SEPARATOR
-                + "  To view all food in the database: data" + UiHelper.LINE_SEPARATOR;
     }
 
     /**

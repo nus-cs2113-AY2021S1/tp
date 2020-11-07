@@ -20,13 +20,10 @@ public class UiOutput {
      */
     void print(String message) {
         uiHelper.performAssertionsForStringInputs(message, "Message to print");
-        String divider =
-                "__________________________________________________________________________________________"
-                        + "______________________________________________________________";
 
-        System.out.println(divider + uiHelper.LINE_SEPARATOR
-                + uiHelper.trimString(message) + uiHelper.LINE_SEPARATOR
-                + divider);
+        System.out.println(uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + uiHelper.trimString(message) + UiHelper.LINE_SEPARATOR
+                + uiHelper.getDivider());
 
     }
 }
