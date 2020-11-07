@@ -1,3 +1,5 @@
+// @@author Cao-Zeyu
+
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
@@ -69,7 +71,6 @@ public class ListCommand extends Command {
             this.hasPriority = false;
             this.hasCategory = false;
             this.isLink = true;
-
         }
     }
 

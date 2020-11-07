@@ -1,7 +1,25 @@
 package seedu.duke.parser;
 
 import seedu.duke.DukeException;
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.AddRecurringCommand;
+import seedu.duke.commands.BorrowCommand;
+import seedu.duke.commands.ByeCommand;
+import seedu.duke.commands.CalendarCommand;
+import seedu.duke.commands.CategoryCommand;
+import seedu.duke.commands.ClearCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandCreator;
+import seedu.duke.commands.DateCommand;
+import seedu.duke.commands.DeleteCommand;
+import seedu.duke.commands.DoneCommand;
+import seedu.duke.commands.FindCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.MakeFolderCommand;
+import seedu.duke.commands.ReturnCommand;
+import seedu.duke.commands.SetCommand;
+import seedu.duke.commands.SpendCommand;
 import seedu.duke.common.Messages;
 
 import java.time.DayOfWeek;
@@ -18,6 +36,7 @@ import java.util.regex.Pattern;
 public class Parser {
     public static final String ARGUMENT_REGEX = "([\\w]+/[^\\s]+)";
     public static final Logger parserLogger = Logger.getLogger(Parser.class.getName());
+    public static final Pattern argumentPattern = Pattern.compile(ARGUMENT_REGEX);
 
     /**
      * Parses user input into command for execution.
@@ -31,6 +50,7 @@ public class Parser {
         String commandString = fullCommand.replaceFirst(rootCommand, "").trim();
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
         HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+        checkValidDescription(description);
 
         switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
@@ -62,13 +82,11 @@ public class Parser {
             checkAllowedArguments(argumentsMap, BorrowCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createBorrowCommand(description, argumentsMap);
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommand(commandString);
         case DoneCommand.COMMAND_WORD:
             return CommandCreator.createDoneCommand(commandString);
         case ReturnCommand.COMMAND_WORD:
             return CommandCreator.createReturnCommand(commandString);
-        case DeductCommand.COMMAND_WORD:
-            return CommandCreator.createDeductCommand(description);
         case FindCommand.COMMAND_WORD:
             return CommandCreator.createFindCommand(commandString);
         case MakeFolderCommand.COMMAND_WORD:
@@ -82,6 +100,7 @@ public class Parser {
         }
     }
 
+    // @@author iamchenjiajun
     /**
      * Parses the command and obtain arguments in the form (keyword)/(argument).
      *
@@ -92,17 +111,31 @@ public class Parser {
     public static HashMap<String, String> getArgumentsFromRegex(String argumentString, String argumentRegex)
             throws DukeException {
         HashMap<String, String> argumentsMap = new HashMap<>();
-        Pattern argumentPattern = Pattern.compile(argumentRegex);
-        Matcher matcher = argumentPattern.matcher(argumentString);
         StringBuilder log = new StringBuilder("Optional arguments: ");
+        Matcher matcher = argumentPattern.matcher(argumentString);
 
-        while (matcher.find()) {
-            String[] currentArgument = matcher.group().trim().split("/", 2);
-            if (argumentsMap.containsKey(currentArgument[0])) {
+        if (!matcher.find()) {
+            return argumentsMap;
+        }
+
+        int argumentStartIndex = matcher.start();
+        String optionalArgumentString = argumentString.substring(argumentStartIndex).trim();
+        String[] arguments = optionalArgumentString.trim().split(" ");
+
+        for (String argument: arguments) {
+            if (argument.isEmpty()) {
+                continue;
+            }
+            log.append(argument).append(" ");
+            if (!argumentPattern.matcher(argument).find()) {
+                throw new DukeException("'" + argument + "' is not a valid argument!");
+            }
+            String argumentKey = argument.split("/", 2)[0];
+            String argumentValue = argument.split("/", 2)[1];
+            if (argumentsMap.containsKey(argumentKey)) {
                 throw new DukeException(Messages.EXCEPTION_DUPLICATE_ARGUMENTS);
             }
-            argumentsMap.put(currentArgument[0], currentArgument[1]);
-            log.append(currentArgument[0]).append("/").append(currentArgument[1]).append(" ");
+            argumentsMap.put(argumentKey, argumentValue);
         }
 
         parserLogger.log(Level.FINER, log.toString());
@@ -117,7 +150,6 @@ public class Parser {
      * @return String with matched patterns removed.
      */
     public static String removeArgumentsFromCommand(String argumentString, String argumentRegex) {
-        Pattern argumentPattern = Pattern.compile(argumentRegex);
         Matcher matcher = argumentPattern.matcher(argumentString);
         String description = argumentString.replaceAll(argumentRegex, "").trim();
 
@@ -143,6 +175,18 @@ public class Parser {
             if (!allowedArguments.contains(entry.getKey())) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
             }
+        }
+    }
+
+    /**
+     * Checks if the description contains illegal characters.
+     *
+     * @param description Description given by the user.
+     * @throws DukeException If the description contains illegal characters.
+     */
+    public static void checkValidDescription(String description) throws DukeException {
+        if (description.contains("/")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
         }
     }
 

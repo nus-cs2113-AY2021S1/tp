@@ -189,8 +189,10 @@ public class CommandCreator {
 
             case "task":
                 return new DeleteCommand(Integer.parseInt(value));
+            case "module":
+                return new DeleteCommand(Integer.parseInt(value), ListType.MODULE_LIST);
             default:
-                throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
+                throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
 
             }
         } catch (NumberFormatException e) {
@@ -229,33 +231,43 @@ public class CommandCreator {
      */
     public static Command createDoneCommand(String commandString) throws DukeException {
         try {
-            return new DoneCommand(Integer.parseInt(commandString));
+            String[] arguments = commandString.split(" ", 2);
+            String type = arguments[0];
+            int index = Integer.parseInt(arguments[1]);
+            switch (type) {
+            case "task":
+                return new DoneCommand(index, ListType.TASK_LIST);
+            case "module":
+                return new DoneCommand(index, ListType.MODULE_LIST);
+            default:
+                throw new DukeException(Messages.EXCEPTION_INVALID_DONE_COMMAND);
+            }
         } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Messages.WARNING_NO_TASK);
+            throw new DukeException(Messages.EXCEPTION_INVALID_DONE_COMMAND);
         }
     }
 
     public static Command createFindCommand(String commandString) throws DukeException {
-        try {
-            return new FindCommand(commandString.trim());
-        } catch (IndexOutOfBoundsException e) {
+        if (commandString.isEmpty()) {
             throw new DukeException(Messages.EXCEPTION_FIND);
+        } else {
+            return new FindCommand(commandString.toLowerCase().trim());
         }
     }
 
+    // @@author MuhammadHoze
+
     public static Command createBorrowCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
-        if (description.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_BOOK_DESCRIPTION);
-        }
-        if (argumentsMap.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_INVALID_DATE);
+        if (description.isEmpty() | argumentsMap.isEmpty()) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_BORROW);
         }
         return new BorrowCommand(description, argumentsMap);
     }
 
+    // @@author MuhammadHoze
 
     /**
      * Creates and returns a ReturnCommand with given arguments.
@@ -275,6 +287,7 @@ public class CommandCreator {
     }
 
     // @@author GuoAi
+
     /**
      * Creates and returns a CategoryCommand with given arguments.
      *
@@ -297,11 +310,5 @@ public class CommandCreator {
             throw new DukeException(Messages.EXCEPTION_EMPTY_CATEGORY);
         }
         return new CategoryCommand(index, argumentsMap.get("c"));
-    }
-
-    // @@author
-    public static Command createDeductCommand(String value)
-            throws DukeException {
-        return new DeductCommand(value);
     }
 }

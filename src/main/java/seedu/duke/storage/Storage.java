@@ -4,7 +4,6 @@ import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.common.Utils;
 import seedu.duke.model.item.Book;
-import seedu.duke.model.item.Credit;
 import seedu.duke.model.itemlist.ItemList;
 import seedu.duke.model.item.Link;
 import seedu.duke.model.item.Task;
@@ -31,7 +30,7 @@ public class Storage {
     public static final String CREDIT_STORAGE_FILEPATH = "credits.txt";
     public static final String LINK_STORAGE_FILEPATH = "links.txt";
     public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
-
+    
     /**
      * Loads the task list data from the storage, and then returns it.
      *
@@ -103,29 +102,6 @@ public class Storage {
     }
 
     /**
-     * Loads the credit list data from the storage, and then returns it.
-     *
-     * @return ArrayList of {@code Credit} from the storage file.
-     * @throws DukeException if the storage file does not exist, or is not a regular file.
-     */
-    public ArrayList<Credit> loadCredit() throws DukeException {
-        File file = new File(CREDIT_STORAGE_FILEPATH);
-        Scanner sc;
-        try {
-            sc = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
-        }
-        ArrayList<Credit> mealCredit = new ArrayList<>();
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            Credit newCredit = loadCreditFromLine(line);
-            mealCredit.add(newCredit);
-        }
-        return mealCredit;
-    }
-
-    /**
      * Loads the module list data from the storage.
      *
      * @return ArrayList of modules.
@@ -168,10 +144,12 @@ public class Storage {
         try {
             fw.write(saveString);
             fw.close();
+
         } catch (IOException e) {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
     }
+
 
     /**
      * Returns a task corresponding to arguments from a line loaded from file.
@@ -245,31 +223,6 @@ public class Storage {
         return newBook;
     }
 
-    /**
-     * Returns mealCredit corresponding to arguments from a line loaded from file.
-     *
-     * @param line A line loaded from the save file.
-     * @return Credit corresponding to the loaded line.
-     * @throws DukeException If there is an error parsing the save file.
-     */
-    private Credit loadCreditFromLine(String line) throws DukeException {
-        Credit newCredit;
-        String[] arguments = line.split("\\|");
-
-        if (arguments.length != EXPECTED_DIVIDER_COUNT - 4) {
-            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
-        }
-
-        try {
-            String description = arguments[1].trim();
-            newCredit = new Credit(description);
-
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
-        }
-
-        return newCredit;
-    }
 
     /**
      * Returns a link corresponding to arguments from a line loaded from file.
@@ -306,7 +259,7 @@ public class Storage {
         String paddedLine = line + " ";
         String[] arguments = paddedLine.split("\\|");
 
-        if (arguments.length != 4) {
+        if (arguments.length != 5) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
 
@@ -315,11 +268,11 @@ public class Storage {
             String grade = arguments[1].trim();
             int mc = Integer.parseInt(arguments[2].trim());
             String semester = arguments[3].trim();
+            boolean isDone = Utils.stringToBoolean(arguments[4].trim());
 
-            return new Module(description, grade, mc, semester);
+            return new Module(description, grade, mc, semester, isDone);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
     }
-
 }

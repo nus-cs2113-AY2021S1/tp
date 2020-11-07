@@ -1,7 +1,9 @@
 package seedu.duke.commands;
 
+import org.apache.commons.validator.routines.UrlValidator;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.common.Utils;
 import seedu.duke.model.Model;
 import seedu.duke.model.itemlist.LinkList;
 import seedu.duke.model.ListType;
@@ -16,6 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 // @@author iamchenjiajun
+
 /**
  * Represents a command that adds a task to the task list.
  */
@@ -31,7 +34,7 @@ public class AddCommand extends Command {
             + "     Example: " + COMMAND_WORD + " task" + " example_task <optional arguments>";
     public static final HashSet<String> TASK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("p", "c", "date"));
     public static final HashSet<String> LINK_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("m", "t", "u"));
-    public static final HashSet<String> MODULE_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("g", "mc", "ay"));
+    public static final HashSet<String> MODULE_ALLOWED_ARGUMENTS = new HashSet<>(Arrays.asList("g", "mc", "ay", "d"));
 
     protected String description;
     protected HashMap<String, String> argumentsMap;
@@ -79,13 +82,23 @@ public class AddCommand extends Command {
         }
         String module = argumentsMap.get("m");
         String type = argumentsMap.get("t");
+        if (!type.toLowerCase().equals("lecture") & !type.toLowerCase().equals("tutorial")
+                & !type.toLowerCase().equals("lab") & !type.toLowerCase().equals("project")) {
+            throw new DukeException(Messages.EXCEPTION_LINK_TYPE);
+        }
         String url = argumentsMap.get("u");
+        String[] schemes = {"http", "https"};
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        if (!urlValidator.isValid(url)) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_URL);
+        }
         Link newLink = new Link(module, type, url);
         links.addLink(newLink);
     }
 
     private void executeAddModule(ModuleList modules) throws DukeException {
         int mc;
+        boolean isDone = true;
 
         if (!argumentsMap.containsKey("g") || !argumentsMap.containsKey("mc") || !argumentsMap.containsKey("ay")) {
             throw new DukeException("OOPS!!! g, mc and ay arguments are required!");
@@ -97,14 +110,21 @@ public class AddCommand extends Command {
             throw new DukeException("OOPS!!! Your MCs are invalid!");
         }
 
-        Module module = new Module(description, argumentsMap.get("g"), mc, argumentsMap.get("ay"));
-        modules.addItem(module);
+        if (argumentsMap.containsKey("d")) {
+            if (!argumentsMap.get("d").equals("0") && !argumentsMap.get("d").equals("1")) {
+                throw new DukeException("Your done argument is invalid! Valid values: 1 or 0.");
+            }
+            isDone = Utils.stringToBoolean(argumentsMap.get("d"));
+        }
+
+        Module module = new Module(description, argumentsMap.get("g"), mc, argumentsMap.get("ay"), isDone);
+        modules.addModule(module);
     }
 
     /**
      * Sets the properties of a given Task.
      *
-     * @param task Task to set the properties of.
+     * @param task         Task to set the properties of.
      * @param argumentsMap HashMap containing arguments to set the Task properties.
      * @throws DukeException If arguments in HashMap are invalid.
      */

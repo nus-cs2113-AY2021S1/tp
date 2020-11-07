@@ -117,8 +117,10 @@ public class Ui {
      * Generates and prints the welcome message upon the start of the application.
      */
     public static void showWelcome() {
+        System.out.println("Hello from...");
         System.out.println(Messages.LOGO);
-        dukePrint("Hello! I'm termiNus.\n     What can I do for you?");
+        dukePrint("How can termiNus assist you today?\n\n \t Unsure what to type? Start of by typing <help> to see the "
+                + "commands and their usage.");
     }
 
     /**
