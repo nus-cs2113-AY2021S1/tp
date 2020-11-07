@@ -31,7 +31,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 ### Project management
-- Managed releases `v1.0` and `v2.0` on GitHub
+- Set up the framework of the programme for team members to work on.
+- Managed code cleanup before every release.
+- Managed releases `v1.0`, `v2.0` and `v2.1` on GitHub
 
 ### Contributions to User Guide
 Added documentation for following features:
@@ -58,7 +60,7 @@ Added implementation details for the following:
 
 ### Community
 1. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.
-    - Reviewed a total of 73 PRs out of 114 PRs, with 167 comments, dated 7/11/2020.
+    - Reviewed a total of 66 PRs out of 114 PRs, with [167 comments](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html), dated 7/11/2020.
 1. Reported bugs and suggested fixes for team members. ([#115](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/115), [#135](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/135), [#148](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/148), [#159](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/159), [#168](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/168), [#175](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/175) and [#199](https://github.com/AY2021S1-CS2113-T13-1/tp/issues/199))
 1. Contributed to forum discussions on usage of Jcolor and jansi libraries. ([#86](https://github.com/nus-cs2113-AY2021S1/forum/issues/86) and [#93](https://github.com/nus-cs2113-AY2021S1/forum/issues/93))
 

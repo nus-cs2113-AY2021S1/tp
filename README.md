@@ -67,3 +67,9 @@ Steps for publishing documentation to the public:
 1. Scroll down to the `GitHub Pages` section.
 1. Set the `source` as `master branch /docs folder`.
 1. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+
+## Acknowledgments 
+
+1. References were made to [addressbook-level2](https://se-education.org/addressbook-level2/) for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
+1. Used [Jcolor](https://github.com/dialex/JColor) 3rd-party library.
+1. Used [jansi](https://fusesource.github.io/jansi/) 3rd-party library.
