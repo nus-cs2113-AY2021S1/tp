@@ -1,3 +1,5 @@
+//@@author fchensan
+
 package seedu.zoomaster.command.timetable;
 
 import seedu.zoomaster.Ui;
@@ -23,6 +25,12 @@ public class EditSlotCommand extends Command {
     private String fieldToEdit;
     private String details;
 
+    /**
+     * Creates a new EditSlotCommand based on user input.
+     *
+     * @param command The command input by the user.
+     * @throws ZoomasterException if the user inputs in an invalid format.
+     */
     public EditSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(EDIT_KW);
 
@@ -46,6 +54,14 @@ public class EditSlotCommand extends Command {
         details = matcher.group("details");
     }
 
+    /**
+     * Edits a slot's module, title, or time based on user input.
+     *
+     * @param bookmarks The list of bookmarks.
+     * @param timetable The list of slots.
+     * @param ui The user interface.
+     * @throws ZoomasterException if there is an error in user input format.
+     */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         Pattern parser = Pattern.compile(

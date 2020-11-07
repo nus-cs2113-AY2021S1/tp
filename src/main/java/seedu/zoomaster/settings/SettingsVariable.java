@@ -5,6 +5,11 @@ package seedu.zoomaster.settings;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 
+/**
+ * Represents a setting that the user can set.
+ *
+ * @param <T> The object type of the options available to the user.
+ */
 public class SettingsVariable<T> {
     public static final String ON = "on";
     public static final String OFF = "off";
