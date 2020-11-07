@@ -3,7 +3,6 @@ package commands;
 import access.Access;
 import manager.admin.Admin;
 import manager.chapter.Chapter;
-import manager.history.History;
 import manager.module.Module;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,6 @@ import ui.Ui;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -36,8 +34,6 @@ public class HistoryCommandTest {
         storageStub = new StorageStub("src/test/data");
         storageStub.createDirectory("/history");
         storageStub.createFile("/history/2020-11-01.txt");
-        storageStub.saveHistory("/history/2020-11-01.txt",
-                new History("CS2113", "chapter 1"));
 
         accessStub = new AccessStub();
     }
@@ -55,17 +51,6 @@ public class HistoryCommandTest {
         historyCommand = new HistoryCommand(date);
         historyCommand.execute(ui, accessStub, storageStub);
         String expectedResult = String.format(HistoryCommand.MESSAGE_DOES_NOT_EXIST);
-        assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
-    }
-
-    @Test
-    public void execute_withHistory_listHistoryMessage() {
-        String date = "2020-11-01";
-
-        historyCommand = new HistoryCommand(date);
-        historyCommand.execute(ui, accessStub, storageStub);
-        String expectedResult = String.format(HistoryCommand.MESSAGE_EXIST)
-                + "\n1.CS2113/chapter 1";
         assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
     }
 
@@ -97,11 +82,6 @@ public class HistoryCommandTest {
         public void createFile(String path) throws IOException {
             File f = new File(filePath + path);
             f.createNewFile();
-        }
-
-        public void saveHistory(String path, History history) throws IOException {
-            FileWriter f = new FileWriter(filePath + path);
-            f.write(history.toString() + "\n");
         }
         
         public void deleteDirectory(String path) {
