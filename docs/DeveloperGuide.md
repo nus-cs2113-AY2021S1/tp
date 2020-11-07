@@ -156,7 +156,7 @@ _Aspect: How bus data should be stored and retrieved._
 * **Alternative 2:** Each location is an object that contains the location name and an ArrayList of bus objects. Each
 bus object contains the list of remaining stops in the route of that bus.
     + Pros: It is easier and somewhat faster to find the buses that go from the starting location to the destination as 
-    the data itself has filtered out the buses stop at the starting location.
+    the data itself has filtered out the buses that stop at the starting location.
     + Cons: A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
     that stops there. 
 
@@ -206,23 +206,40 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
 
 ### 3.5. Favourite command executor (`/execfav` Feature)
-`/execfav <index>` is a command to execute a command with the specific index in the list of fovourite commands. <br><br>
+`/execfav <index>` is the command to execute a command with the specific index in the list of favourite commands. <br>
+
 The command is executed in the following steps:
-1. The user calls `Parser#setUserInput(<UserInput>)` by typing in the command `/execfav <index>`. The new user input is updated.
-2. `Parser#extractType()` is called to instantiate `FavList#getFav(<index>)` and run the user command.
+1. The user calls `Parser#setUserInput(<UserInput>)` by entering the command `/execfav <index>`. The new user input is updated.
+2. `Parser#extractType()` is called to instantiate `ExecFavCommand` and run the user command.
 3. `ExecFavParser` is instantiated and `ExecFavParser#setIndex()` is called to parse the `<index>` input from the user.
     - `ExecFavParser#setIndex()` method throws an exception if `<index>` cannot be parsed into an integer or if it is blank.
 4. `ExecFavCommand#executeCommand()` is called.
-5. `ExecFavCommand#getFav()` is self invoked to obtain the required Fav object from Favlist.
-    - An exception is thrown if there is no Fav object in the specified index in FavList.
-6. A new `Parser` object is instantiated to run the command in the Fav object.
-<br><br>
+5. `ExecFavCommand#getFav()` is self invoked to obtain the required `Fav` object from `FavList`.
+    - An exception is thrown if there is no `Fav` object in the specified index in `FavList`.
+6. A new `Parser` object is instantiated to run the command in the `Fav` object.
+    - If the command from the Fav object throws an exception when running, the exception will be caught in `ExecFavCommand#executeCommand()` and the `Fav` object will be deleted from the `FavList`.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand/ExecFavCommand.png)
 
-####Design Considerations
+#### Design Considerations
+##### Aspect: Choice of command object in FavList to execute
+|**Approach** |**Choosing command by index in list (Current choice)**|**Choosing command by description in list**|
+|-----|-------|-------|
+|Implementation|Easy to implement as `Fav` object can be extracted directly through index in `FavList` |Harder to implement as description will have to be compared with all the descriptions of `Fav` objects in `FavList`|
+|Bugs|There will be no conflict in which command is meant to be executed as all commands have a unique index|As different commands in the list can have the same description conflict over which command to execute can arise|
+|User experience|Command to execute will be shorter|Command to execute will be longer|
 
+The first approach of choosing the command to execute in `FavList` by index was implemented.<br><br>
+Implementation of the first approach is easier as the required `Fav` object can be directly extracted through the index in the static arraylist in `FavList`.<br>
+However implementation of the second approach is more difficult as the description of all the `Fav` objects in the `FavList` will have to be scanned through and compared with the required description. This may adversely affect processing time as well.<br>
+
+Bugs for the first approach are easier to handle and limited. As all `Fav` objects in `FavList` have a unique index, the only bug to check for is whether the `<index>` keyed in by the user can be converted into an integer and whether the index is larger than the size of `FavList`.<br>
+However the handling of bugs for the second approach is more difficult as the description of `Fav` objects in the `FavList` are not unique. This causes extra complications to allow users to be able to choose which command to execute amongst those with duplicate descriptions instead of executing the wrong command.<br>
+
+User experience for the first approach will be improved as the command required is shorter than that of the second approach. This means users can potentially key in commands quicker. <br>
+
+Therefore, choosing commands based on index (first approach) is easier to implement, more efficient, reduces possible bugs encountered and provides better user experience.
 
 ### 3.6. Modifying the description of a favourite command (`/descfav` Feature)
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
@@ -302,8 +319,25 @@ The following sequence diagram illustrates the steps taken by the program when t
 ![bus data](DG_Diagrams/DineInfoSequence.png)
 
 ### 3.9. Bus at bus stop finder (`/bus` Feature)
+
+`/bus <bus stop>` is the command to execute to see buses which stop at a specific bus stop.<br>
+
+The command is executed in the following steps:
+1. The user calls `Parser#setUserInput(<UserInput>)` by entering the command `/bus <bus stop>`. The new user input is updated.
+2. `Parser#extractType()` is called to instantiate `BusCommand` and run the user command.
+3. `BusCommand#similarLocations()` is self invoked and calls `SimilarityCheck#similarLoc()` which returns an arraylist of possible location.
+4. If `SimilarityCheck#similarLoc()` returns an empty array list, `BusStops#findBusStop()` is called.
+    - If `SimilarityCheck#similarLoc()` returns non-empty array list, `Ui#printPossibleLocsMessage()` is called and an exception is thrown.
+    - If `BusStops#findBusStop()` returns null, an exception is thrown.
+5. `BusCommand#executeCommand()` is called.
+6. `BusData#getBusAtStop()` is called and returns an array list of buses.
+7. `BusData#printBusAtBusStop()` is called to print array list of buses.
+
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
+
+The following sequence diagram explains the interactions omitted in the main diagram.
+![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
 
 ### 3.10. Performing similarity checks
 This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
