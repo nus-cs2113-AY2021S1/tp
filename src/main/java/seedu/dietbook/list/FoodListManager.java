@@ -143,11 +143,5 @@ public class FoodListManager {
         return ListFunction.filterList(list, predicate);
     }
 
-    /**
-     * Sort a list of entries by date.
-     */
-
-
 }
 
-// Potential future work: create a functional interface for the functions instead:
