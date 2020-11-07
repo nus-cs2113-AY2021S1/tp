@@ -140,7 +140,8 @@ public class Sprint implements JsonableObject {
                 sprintInString.append(String.format("[Remaining: 1 day]%n"));
                 break;
             default:
-                sprintInString.append(String.format("[Remaining: %s days]%n", this.endDate.compareTo(LocalDate.now(Duke.getClock()))));
+                sprintInString.append(String.format("[Remaining: %s days]%n", 
+                        this.endDate.compareTo(LocalDate.now(Duke.getClock()))));
             }
         }
         if (taskList.size() == 0) {
