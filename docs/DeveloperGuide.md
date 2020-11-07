@@ -180,18 +180,18 @@ the user enters a view command, the `Ui` class reads it and passes it through `P
 a view command, it is then passed to `ViewCommand`, where it is handled based on the type of view command. 
 Then the respective view method is called to output the messages via the `Ui` class.
 
-For example, if you intend to view your goal entry, the input is passed to `ViewCommand`, which checks the arguments 
-after 'view' and calls the `viewGoal()` method. It then performs the required steps to retrieve the goal status for 
-each entry and prints the results using the `printCustomMessage()` method in the `Ui` class.
+For example, as illustrated in Figure 7a, if you intend to view your goal entry, the input is passed to `ViewCommand`
+, which checks the arguments after 'view' and calls the `viewGoal()` method. It then performs the required steps to
+retrieve the goal status for each entry and prints the results using the `printCustomMessage()` method in the `Ui` class.
 
 <p align="center"><img src="images/ViewGoalSequenceDiagram.png"></p>
-<p align="center">Figure 7: Sequence diagram for <code>view goal</code> command</p>
+<p align="center">Figure 7a: Sequence diagram for <code>view goal</code> command</p>
 
-The following sequence diagram shows how the `ViewCommand` class can interact with the `User` class when the user
- keys in `view profile`.
+The sequence diagram in Figure 7b below shows how the `ViewCommand` class can interact with the `User` class when the
+user keys in `view profile`.
  
  <p align="center"><img src="images/ViewProfileSequenceDiagram.png"></p>
- <p align="center">Figure 7: Sequence diagram for <code>view profile</code> command</p>
+ <p align="center">Figure 7b: Sequence diagram for <code>view profile</code> command</p>
 
 ### 4.4 Clear command
 
