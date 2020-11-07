@@ -178,9 +178,9 @@ public class MenuParser implements Parser {
                     LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
                     return new NoteCommand(commandArr[1], (TopicList) topicList);
                 } else {
-                    throw new Eduke8Exception(ERROR_NOTE_WRONG_FORMAT);
+                    break;
                 }
-            } catch (IndexOutOfBoundsException | Eduke8Exception e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_NOTE_WRONG_FORMAT);
             }
         case COMMAND_EXIT:
