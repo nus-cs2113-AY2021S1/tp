@@ -1,0 +1,14 @@
+Nov 07, 2020 1:08:53 AM seedu.duke.command.task.AddTaskCommand execute
+INFO: Added backlog task, ID : 1
+Nov 07, 2020 1:08:53 AM seedu.duke.command.task.AddTaskCommand execute
+INFO: Added backlog task, ID : 2
+Nov 07, 2020 1:08:53 AM seedu.duke.command.task.AddTaskCommand execute
+INFO: Added backlog task, ID : 3
+Nov 07, 2020 1:08:53 AM seedu.duke.command.task.AddTaskCommand execute
+INFO: Added backlog task, ID : 4
+Nov 07, 2020 1:08:54 AM seedu.duke.command.task.AddTaskCommand execute
+INFO: Added backlog task, ID : 5
+Nov 07, 2020 1:09:35 AM seedu.duke.command.task.ChangeTaskPriorityCommand handleDeletedId
+WARNING: Invalid task ID : edit task priority.
+Nov 07, 2020 1:10:10 AM seedu.duke.command.task.ChangeTaskPriorityCommand handleDeletedId
+WARNING: Invalid task ID : edit task priority.

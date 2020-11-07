@@ -7,18 +7,14 @@ import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ChangeTaskPriorityCommandTest {
+public class ChangeTaskPriorityCommandTest extends CommandTest {
 
     @Test
     void changeTaskPriorityCommand_validCommand_returnsNormalBehavior() {
         //Setup
-        ProjectManager projectList = new ProjectManager();
-        projectList.addProject("title", "description", 3, 3);
+        ProjectManager projectList = addTestProject();
 
-        Hashtable<String, String> setupParameters = new Hashtable<>();
-        setupParameters.put("title", "a");
-        setupParameters.put("desc", "b");
-        setupParameters.put("priority", "high");
+        Hashtable<String, String> setupParameters = addDefaultUserInput();
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
@@ -34,35 +30,30 @@ public class ChangeTaskPriorityCommandTest {
         parameters.put("id","1");
         parameters.put("priority", "medIum");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
-
         String outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Medium priority", outputPriority);
 
         parameters.put("priority", "lOW");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
-
         outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Low priority", outputPriority);
 
         parameters.put("priority", "MEDIUM");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
-
         outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Medium priority", outputPriority);
 
         parameters.put("priority", "higH");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
-
         outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("High priority", outputPriority);
 
         parameters.put("priority", "Medium");
         new ChangeTaskPriorityCommand(parameters, projectList).execute();
-
         outputPriority = projectList.getSelectedProject().getBacklog()
                 .getTask(1).getPriority();
         assertEquals("Medium priority", outputPriority);
@@ -71,13 +62,9 @@ public class ChangeTaskPriorityCommandTest {
     @Test
     void changeTaskPriorityCommand_invalidPriority_taskPriorityNotChanged() {
         //Setup
-        ProjectManager projectList = new ProjectManager();
-        projectList.addProject("title", "description", 3, 3);
+        ProjectManager projectList = addTestProject();
 
-        Hashtable<String, String> setupParameters = new Hashtable<>();
-        setupParameters.put("title", "a");
-        setupParameters.put("desc", "b");
-        setupParameters.put("priority", "high");
+        Hashtable<String, String> setupParameters = addDefaultUserInput();
 
         new AddTaskCommand(setupParameters, projectList).execute();
 

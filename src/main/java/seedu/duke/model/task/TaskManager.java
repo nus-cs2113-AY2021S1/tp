@@ -26,6 +26,10 @@ public class TaskManager implements JsonableObject {
         nextId = 1;
     }
 
+    /**
+     * Checks whether the task list is empty. Returns true if it is empty.
+     * @return whether task list empty.
+     */
     public boolean isEmpty() {
         return taskList.isEmpty();
     }
@@ -34,28 +38,56 @@ public class TaskManager implements JsonableObject {
         return taskList.size();
     }
 
+    /**
+     * Returns the ID after the ID of the latest task.
+     * @return next ID.
+     */
     public int getNextId() {
         return nextId;
     }
-    
+
+    /**
+     * Sets the project where task operations will handle.
+     * @param proj the project to be subject to task operations
+     */
     public void setProj(Project proj) {
         this.proj = proj;
     }
 
-    public void setNextId(int nextId) {
-        this.nextId = nextId;
-    }
-    
+    /**
+     * Adds a task to the task list.
+     * @param title the title of the task.
+     * @param description the description of the task.
+     * @param priority the priority of the task.
+     */
     public void addTask(String title, String description, String priority) {
         int newTaskId = nextId++;
         taskList.add(new Task(newTaskId, title, description, priority));
     }
 
+    /**
+     * Checks whether the priority entered is valid.
+     * @param input the user's input.
+     * @return true if the priority is valid, and false otherwise.
+     */
     public boolean checkValidPriority(String input) {
         for (Priority priority : Priority.values()) {
             if (priority.name().equals(input)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * Compares the user input with the prescribed priorities.
+     * @param name the prescribed priorities.
+     * @param input the user input.
+     * @return true if the user input matches, and false otherwise.
+     */
+    public boolean compareString(String name, String input) {
+        if (name.equals(input)) {
+            return true;
         }
         return false;
     }
@@ -72,28 +104,21 @@ public class TaskManager implements JsonableObject {
     public void removeTask(int taskId) {
         for (Task task : taskList) {
             if (task.getId() == taskId) {
-                ArrayList<Integer> allocatedSprint = task.getSprintList();
-                for (Integer sprintId : allocatedSprint) {
-                    proj.getSprintList().getSprint(sprintId).removeSprintTask(taskId);
-                }
+                cleanupSprint(task);
                 taskList.remove(task);
                 return;
             }
         }
     }
 
-    public void viewTask(String id, Ui ui) {
-        Task task;
-        try {
-            int taskId = Integer.parseInt(id) - 1;
-            if (taskId < nextId) {
-                task = taskList.get(taskId);
-                Ui.showToUserLn(task.toString());
-            } else {
-                Ui.showToUserLn("The following task id doesn't exist in backlog.\n Please enter a valid id.");
-            }
-        } catch (NumberFormatException e) {
-            Ui.showToUserLn("Task id is not an integer.");
+    /**
+     * Cleans up the sprint list when a task is removed.
+     * @param task the removed task.
+     */
+    public void cleanupSprint(Task task) {
+        ArrayList<Integer> allocatedSprint = task.getSprintList();
+        for (Integer sprintId : allocatedSprint) {
+            proj.getSprintList().getSprint(sprintId).removeSprintTask(task.getId());
         }
     }
 
@@ -101,6 +126,11 @@ public class TaskManager implements JsonableObject {
         return taskList;
     }
 
+    /**
+     * Checks whether the task of ID exist.
+     * @param id the ID of the task to be checked.
+     * @return true if the task exists, and false otherwise.
+     */
     public boolean checkTaskExist(int id) {
         for (Task task : taskList) {
             if (task.getId() == id) {

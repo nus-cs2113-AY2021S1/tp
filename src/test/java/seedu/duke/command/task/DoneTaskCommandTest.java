@@ -8,17 +8,13 @@ import java.util.Hashtable;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DoneTaskCommandTest {
+public class DoneTaskCommandTest extends CommandTest {
     @Test
     void doneTaskCommand_validCommand_returnsNormalBehavior() {
         //Setup
-        ProjectManager projectList = new ProjectManager();
-        projectList.addProject("title","description",3,3);
+        ProjectManager projectList = addTestProject();
 
-        Hashtable<String, String> setupParameters = new Hashtable<>();
-        setupParameters.put("title", "a");
-        setupParameters.put("desc", "b");
-        setupParameters.put("priority", "high");
+        Hashtable<String, String> setupParameters = addDefaultUserInput();
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
@@ -40,13 +36,9 @@ public class DoneTaskCommandTest {
     @Test
     void doneTaskCommand_invalidCommand_taskNotMarkedDone() {
         //Setup
-        ProjectManager projectList = new ProjectManager();
-        projectList.addProject("title","description",3,3);
+        ProjectManager projectList = addTestProject();
 
-        Hashtable<String, String> setupParameters = new Hashtable<>();
-        setupParameters.put("title", "a");
-        setupParameters.put("desc", "b");
-        setupParameters.put("priority", "high");
+        Hashtable<String, String> setupParameters = addDefaultUserInput();
 
         new AddTaskCommand(setupParameters, projectList).execute();
 
