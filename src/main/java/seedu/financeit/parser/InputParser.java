@@ -65,6 +65,7 @@ public class InputParser {
      * }
      */
     //@@author kaiwen98
+
     public CommandPacket parseInput(String input) {
         String commandString = "";
         HashMap<String, String> params = new HashMap<>();

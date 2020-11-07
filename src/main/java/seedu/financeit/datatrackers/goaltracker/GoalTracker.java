@@ -95,7 +95,7 @@ public class GoalTracker {
     }
 
     /**
-     * This function will parse the command to check whether it is for income
+     * This function will parse the command to check whether it is for income.
      * or expense goal
      */
     public static void editGoal(String[] userInput) {
@@ -121,7 +121,7 @@ public class GoalTracker {
 
     /**
      * This function will edit the user's expense goal for specific months.
-     * @param userInput
+     *
      */
     public static void editExpenseGoal(String[] userInput) {
         expenseGoal = Integer.parseInt(userInput[2]);
@@ -148,7 +148,7 @@ public class GoalTracker {
 
     /**
      * This function will edit the user's income goal for specific months.
-     * @param userInput
+     *
      */
     public static void editIncomeGoal(String[] userInput) {
         incomeGoal = Integer.parseInt(userInput[2]);
@@ -419,35 +419,35 @@ public class GoalTracker {
      * with regards to the goal the user set.
      */
     public static void printCurrentExpenseGoalStatus() {
-            double goalDifference = expenseGoal - totalExpenses;
-            if (goalDifference < 0) {
-                UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
-                        + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
-                        + expenseGoal + ". You have exceeded your " + "expense budget.");
-                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
-                        + "DisplayGoal. ");
-                input = UiManager.handleInput();
-                if (input.equals("y")) {
-                    return;
-                } else {
-                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
-                    printCurrentExpenseGoalStatus();
-                }
+        double goalDifference = expenseGoal - totalExpenses;
+        if (goalDifference < 0) {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
+                    + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
+                    + expenseGoal + ". You have exceeded your " + "expense budget.");
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
+                    + "DisplayGoal. ");
+            input = UiManager.handleInput();
+            if (input.equals("y")) {
+                return;
             } else {
-                UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
-                        + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
-                        + expenseGoal + ". You still have $" + goalDifference + " to spend");
-                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
-                        + "DisplayGoal. ");
-                input = UiManager.handleInput();
-                if (input.equals("y")) {
-                    return;
-                } else {
-                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
-                    printCurrentExpenseGoalStatus();
-                }
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
+                printCurrentExpenseGoalStatus();
+            }
+        } else {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
+                    + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
+                    + expenseGoal + ". You still have $" + goalDifference + " to spend");
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
+                    + "DisplayGoal. ");
+            input = UiManager.handleInput();
+            if (input.equals("y")) {
+                return;
+            } else {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
+                printCurrentExpenseGoalStatus();
             }
         }
+    }
 
     /**
      * This function will handle the expense by
