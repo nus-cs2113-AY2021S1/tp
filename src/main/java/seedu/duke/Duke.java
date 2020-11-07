@@ -41,6 +41,12 @@ public class Duke {
      */
     private void init() {
         try {
+            ScrumLogger.setup();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Ui.showError("Unable to setup logger!");
+        }
+        try {
             sm = new StorageManager(dataFilename, projectManager);
         } catch (IOException e) {
             Ui.showError("Unable to create data/ directory, please "
@@ -54,12 +60,6 @@ public class Duke {
         } catch (ClassCastException | NullPointerException | JsonException e) {
             Ui.showError("Data file is corrupted, "
                     + "proceeding in empty state. Old data.json will be cleared when the next save happens.");
-        }
-        try {
-            ScrumLogger.setup();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Ui.showError("Unable to setup logger!");
         }
         Ui.showWelcomeScreen();
     }
