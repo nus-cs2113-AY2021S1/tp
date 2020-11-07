@@ -514,18 +514,18 @@ Here are the anime in To Translate watchlist:
 <br/>
 
 ### 3.8 Bookmark
-`Bookmark` is the feature to use when you need your own customised list of anime. It provides you with greater personalisation such as tracking each episode and writing useful notes for each series. These features further enhance the manageability of translation jobs and allow you to easily access important information. 
+`Bookmark` is the feature to use when you need your own customised list of anime(s). It provides you with greater personalisation such as tracking anime episode or writing useful notes for the anime series. These features further enhance the manageability of translation jobs and allow you to easily access important information.
 
 The following subsections below describes the various bookmark-relation operations.
 
 <br/>
 
 #### 3.8.1 List all bookmark entries
-List all anime within the bookmark.
+List all anime(s) within the bookmark.
 
 Format: `bookmark -l`
 
-> :bulb: List Bookmark displays `<BOOKMARK_ID>`s together with anime names. This command is especially useful since `<BOOKMARK_ID>` is used by many other `bookmark` commands.
+> :bulb: List Bookmark displays `<BOOKMARK_ID>`s together with anime(s) names. This command is especially useful since `<BOOKMARK_ID>` is used by many other `bookmark` commands.
 
 <br/>
 
@@ -544,6 +544,8 @@ Listing all anime in bookmark:
 Add an anime to the bookmark.
 
 Format: `bookmark -a <ANIME_ID>`
+
+> :warning: You cannot add duplicate anime into the same bookmark.
 
 > :memo: Add Bookmark `<ANIME_ID>` is identified using `[Id: 1]` from `1. Cowboy Bebop [Id: 1]` which can be found in both outputs of `search` and `browse` command
 
@@ -595,6 +597,8 @@ Add a note for an anime within the bookmark.
 
 Format: `bookmark <BOOKMARK_ID> -n <NOTE>`
 
+> :warning: The use of "~" is prohibited for notes.
+
 <br/>
 
 Example of usage: `bookmark 2 -n Episode 5: Schedule push back`
@@ -624,7 +628,7 @@ From: Trigun.
 <br/>
 
 #### 3.8.7 View information of a bookmark entry
-View the detailed information for an anime, the current episode you are working on and the important notes you might have.
+View detailed information for an anime, the current episode you are working on and important notes you might have.
 
 Format: `bookmark <BOOKMARK_ID>`
 
