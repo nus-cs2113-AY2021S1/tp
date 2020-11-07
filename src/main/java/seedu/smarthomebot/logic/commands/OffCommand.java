@@ -1,16 +1,19 @@
 package seedu.smarthomebot.logic.commands;
 
+import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
-import static seedu.smarthomebot.commons.Messages.LINE;
+
+//@@author Ang-Cheng-Jun
 
 /**
- * Represent the command to turn off appliance.
+ * Represent the Command to turn off Appliance(s).
  */
 public class OffCommand extends Command {
 
@@ -21,80 +24,102 @@ public class OffCommand extends Command {
     private static final String LOCATION_TYPE = "location";
     private final String argument;
 
+    /**
+     * Constructor for OffCommand.
+     *
+     * @param argument Appliance or Location 's name to be off.
+     */
     public OffCommand(String argument) {
-        assert argument.isEmpty() != true : "InvalidCommand must not accept empty arguments";
+        assert !argument.isEmpty() : "OffCommand must not accept empty argument";
         this.argument = argument;
     }
 
-    private int getApplianceToOffIndex() {
-        for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((this.argument))) {
-                return applianceList.getAllAppliance().indexOf(appliance);
-            }
-        }
-        return -1;
-    }
-
+    /**
+     * Executing the OffCommand.
+     */
     @Override
     public CommandResult execute() {
-        String type = APPLIANCE_TYPE;
-        ArrayList<Appliance> filterApplianceList =
-                (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().equals(this.argument))
-                        .collect(toList());
-        if (!filterApplianceList.isEmpty()) {
-            type = LOCATION_TYPE;
-        }
-        switch (type) {
-        case (APPLIANCE_TYPE):
-            return offByAppliance();
-        case (LOCATION_TYPE):
-            return offByLocation();
-        default:
-            return new CommandResult("Invalid Format");
-        }
-    }
+        try {
+            String type = APPLIANCE_TYPE;
+            ArrayList<Appliance> filterApplianceList =
+                    (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
+                            .filter((s) -> s.getLocation().equals(argument))
+                            .collect(toList());
+            if (!filterApplianceList.isEmpty()) {
+                type = LOCATION_TYPE;
+            }
 
-    private CommandResult offByAppliance() {
-        int toOffApplianceIndex = getApplianceToOffIndex();
-        if (toOffApplianceIndex < 0) {
-            assert toOffApplianceIndex < 0 : "Index should be negative.";
-            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
-        } else {
-            assert toOffApplianceIndex > 0 : "Index should be positive.";
-            Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
-            String outputResult = offAppliance(toOffAppliance, "", false);
-            return new CommandResult(outputResult);
-        }
-    }
-
-    private CommandResult offByLocation() {
-        String outputResults = offByApplianceLoop();
-        outputResults = outputResults.concat("All appliance in \"" + this.argument + "\" are turned off ");
-        return new CommandResult(outputResults);
-    }
-
-    private String offByApplianceLoop() {
-        String outputResults = LINE;
-        for (Appliance toOffAppliance : applianceList.getAllAppliance()) {
-            if (toOffAppliance.getLocation().equals(this.argument)) {
-                outputResults = offAppliance(toOffAppliance, outputResults, true);
+            switch (type) {
+            case (APPLIANCE_TYPE):
+                return offByApplianceName();
+            case (LOCATION_TYPE):
+                return offByLocation(filterApplianceList);
+            default:
+                return new CommandResult("Invalid Format");
+            }
+        } catch (ApplianceNotFoundException e) {
+            if (locationList.isLocationCreated(argument)) {
+                commandLogger.log(Level.WARNING, "Unable to Off: There are no Appliances in \"" + argument + "\".");
+                return new CommandResult("There are no Appliances in \"" + argument + "\".");
+            } else {
+                commandLogger.log(Level.WARNING, "Unable to Off: " + MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+                return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
             }
         }
-        return outputResults;
     }
 
-    private String offAppliance(Appliance toOffAppliance, String outputResults, boolean isList) {
+    /**
+     * Method to off Appliance by the name.
+     */
+    private CommandResult offByApplianceName() throws ApplianceNotFoundException {
+        int toOffApplianceIndex = applianceList.getApplianceIndex(argument);
+        Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
+        String outputResult = offAppliance(toOffAppliance, true);
+        assert !outputResult.isEmpty() : "outputResult must contains String";
+        commandLogger.log(Level.INFO, "Appliance Off with output message: " + outputResult);
+        return new CommandResult(outputResult);
+    }
+
+    /**
+     * Method to off Appliance by the Location.
+     */
+    private CommandResult offByLocation(ArrayList<Appliance> toOffAppliance) {
+        offApplianceByLoop(toOffAppliance);
+        String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
+        assert !outputResult.isEmpty() : "outputResult must contains String";
+        commandLogger.log(Level.INFO, "Location Off with output message: " + outputResult);
+        return new CommandResult(outputResult);
+    }
+
+    /**
+     * Method to iterate through the list and filter out the location to turn off.
+     */
+    private void offApplianceByLoop(ArrayList<Appliance> toOffAppliance) {
+        for (Appliance appliance : toOffAppliance) {
+            offAppliance(appliance, false);
+        }
+    }
+
+    /**
+     * Method to switch off Appliance.
+     *
+     * @param toOffAppliance Appliance to switch off in Appliance.
+     * @param isList         flag to return its corresponding output message.
+     * @return the corresponding output Message in String if isList is true.
+     */
+    private String offAppliance(Appliance toOffAppliance, boolean isList) {
         boolean offResult = toOffAppliance.switchOff();
+        String outputResult = "";
         assert toOffAppliance.getStatus().equals("OFF") : "Appliance should be already OFF";
 
-        if (!isList) {
+        if (isList) {
             if (offResult) {
-                outputResults = LINE + "Switching: " + toOffAppliance + "......OFF";
+                outputResult = "Switching: " + toOffAppliance + "......OFF";
             } else {
-                outputResults = LINE + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
+                outputResult = toOffAppliance.getName() + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
             }
         }
-        return outputResults;
+        assert !outputResult.isEmpty() : "outputResult must contains String";
+        return outputResult;
     }
 }

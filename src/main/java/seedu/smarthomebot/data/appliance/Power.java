@@ -12,6 +12,8 @@ import java.util.Locale;
 import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_TIME_FORMAT_ERROR;
 
+//@@author fanceso
+
 /**
  * Class representing the power consumption of appliances.
  */
@@ -42,7 +44,7 @@ public class Power {
      * @return the status of the appliance in Boolean.
      */
     public Boolean getStatus() {
-        return this.status;
+        return status;
     }
 
     /**
@@ -51,13 +53,13 @@ public class Power {
      * @return true if appliance has not been turned on before.
      */
     public boolean onAppliance() {
-        if (!this.status) {
-            // if Appliance has not been turned ON
-            this.status = true;
-            this.onTime = getCurrentTime();
+        if (!status) {
+            status = true;
+            onTime = getCurrentTime();
+            assert !onTime.isEmpty() : "onTime must not accept empty value";
             return true;
         } else {
-            // if Appliance has been turned ON previously
+            // Appliance has been turned ON previously
             return false;
         }
     }
@@ -69,14 +71,12 @@ public class Power {
      * @return true if appliance has not been turned off before.
      */
     public boolean offAppliance() {
-        if (this.status) {
-            // if Appliance has not been turned OFF
-            this.status = false;
-            this.offTime = getCurrentTime();
+        if (status) {
+            status = false;
+            offTime = getCurrentTime();
             computeTotalPower();
             return true;
         } else {
-            // if Appliance has been turned OFF previously
             return false;
         }
     }
@@ -85,8 +85,8 @@ public class Power {
      * Reset all the appliance power usage and the total power consumption.
      */
     public void resetPower() {
-        this.powerUsed = 0.00;
-        this.totalPowerConsumption = 0.00;
+        powerUsed = 0.00;
+        totalPowerConsumption = 0.00;
     }
 
     /**
@@ -96,7 +96,7 @@ public class Power {
      */
     public double getPower() {
         computeTotalPower();
-        return this.totalPowerConsumption;
+        return totalPowerConsumption;
     }
 
     /**
@@ -117,8 +117,8 @@ public class Power {
      * @param powerConsumption of each appliance used within a day
      */
     public void loadDataFromFile(double powerConsumption) {
-        this.powerUsed = powerConsumption;
-        this.totalPowerConsumption += this.powerUsed;
+        powerUsed = powerConsumption;
+        totalPowerConsumption += powerUsed;
     }
 
     /**
@@ -131,18 +131,18 @@ public class Power {
         Date offTimeValue;
         double timeUsed = 0;
 
-        if (this.onTime != null) {
-            onTimeValue = timeFormat.parse(this.onTime);
-            if (!this.status) {
-                offTimeValue = timeFormat.parse(this.offTime);
+        if (onTime != null) {
+            assert !onTime.isEmpty() : "onTime must not accept empty value";
+            onTimeValue = timeFormat.parse(onTime);
+            if (!status) {
+                offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
-                // System time cannot be negative time
                 assert timeUsed >= 0 : "System Time is not correct! " + timeUsed;
-                this.onTime = this.offTime;
+                onTime = offTime;
             } else {
                 Date currentUsedTime = timeFormat.parse(getCurrentTime());
                 timeUsed = currentUsedTime.getTime() - onTimeValue.getTime();
-                this.onTime = getCurrentTime();
+                onTime = getCurrentTime();
             }
         }
 
@@ -157,12 +157,12 @@ public class Power {
         try {
             double totalTimeUsed = calculateTimeUsed();
             // Convert power unit to kWh
-            this.powerUsed = totalTimeUsed * this.wattage / 1000.00;
+            powerUsed = totalTimeUsed * wattage / 1000.00;
         } catch (ParseException e) {
             TextUi ui = new TextUi();
             ui.printToUser(LINE + MESSAGE_TIME_FORMAT_ERROR);
         }
-        assert this.powerUsed >= 0 : "Power usage cannot be negative! " + this.powerUsed;
+        assert powerUsed >= 0 : "Power usage cannot be negative! " + powerUsed;
     }
 
     /**
@@ -170,8 +170,8 @@ public class Power {
      */
     private void computeTotalPower() {
         computePower();
-        this.totalPowerConsumption += Math.round(this.powerUsed * 100.0) / 100.0;
-        assert this.totalPowerConsumption >= 0 : "totalPowerConsumption cannot be negative";
+        totalPowerConsumption += Math.round(powerUsed * 100.0) / 100.0;
+        assert totalPowerConsumption >= 0 : "totalPowerConsumption cannot be negative";
     }
 
     /**
@@ -180,7 +180,7 @@ public class Power {
      * @return the power consumption with only 2 decimal places in String.
      */
     public String toString() {
-        return String.format("%.2f", this.totalPowerConsumption);
+        return String.format("%.2f", totalPowerConsumption);
     }
 
 }

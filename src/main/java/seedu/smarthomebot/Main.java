@@ -3,7 +3,6 @@ package seedu.smarthomebot;
 import seedu.smarthomebot.logic.commands.Command;
 import seedu.smarthomebot.logic.commands.CommandResult;
 import seedu.smarthomebot.logic.commands.ExitCommand;
-import seedu.smarthomebot.commons.Messages;
 import seedu.smarthomebot.logic.parser.Parser;
 import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.data.location.LocationList;
@@ -11,19 +10,28 @@ import seedu.smarthomebot.storage.ReadStorageFile;
 import seedu.smarthomebot.storage.WriteStorageFile;
 import seedu.smarthomebot.ui.TextUi;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
+//@@author Ang-Cheng-Jun
+//Solution below adapted from https://github.com/nus-cs2113-AY2021S1/personbook
 /**
  * Entry point of the SmartHome application.
  * Initializes the application and starts the interaction with the user.
  */
-
 public class Main {
 
     private TextUi ui = new TextUi();
+    private static final String FILE_PATH = "data/SmartHomeBot.txt";
     private final ApplianceList applianceList = new ApplianceList();
     private final LocationList locationList = new LocationList();
-    private WriteStorageFile writeFile = new WriteStorageFile(applianceList, locationList);
-    private ReadStorageFile readFile = new ReadStorageFile(applianceList, locationList);
+    private WriteStorageFile writeFile = new WriteStorageFile(FILE_PATH, applianceList, locationList);
+    private ReadStorageFile readFile = new ReadStorageFile(FILE_PATH, applianceList, locationList);
+    private final Logger logger = Logger.getLogger("SmartHomeBotLogger");
 
     public static void main(String[] args) {
         new Main().run();
@@ -39,12 +47,13 @@ public class Main {
     }
 
     /**
-     * Initialise the import of data from the text file,
-     * and prints the welcome message.
+     * Initialises the import of data from the text file,
+     * and prints the Welcome message.
      */
     private void start() {
         this.ui = new TextUi();
         ui.showWelcomeMessage();
+        setupLogger();
         readFile.execute();
     }
 
@@ -52,7 +61,6 @@ public class Main {
      * Prints the Goodbye message and exits.
      */
     private void exit() {
-        ui.printToUser(Messages.MESSAGE_EXPORT);
         ui.showGoodByeMessage();
         System.exit(0);
     }
@@ -73,6 +81,9 @@ public class Main {
         } while (!ExitCommand.isExit(command));
     }
 
+    /**
+     * Executes the user command and prints the result.
+     */
     private CommandResult executeCommand(Command command) {
         try {
             command.setData(applianceList, locationList);
@@ -81,6 +92,26 @@ public class Main {
         } catch (Exception e) {
             ui.printToUser(e.getMessage());
             throw new RuntimeException(e);
+        }
+    }
+
+    //@@author zongxian-ctrl
+    /**
+     * Creates the default logger with level and initialise log file.
+     */
+    private void setupLogger() {
+        File myObj = new File("./log");
+        logger.setUseParentHandlers(false);
+        logger.setLevel(Level.INFO);
+        try {
+            if (!myObj.exists()) {
+                myObj.mkdir();
+            }
+            FileHandler fileHandler = new FileHandler("log/SmartHomeBotLog.txt", false);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

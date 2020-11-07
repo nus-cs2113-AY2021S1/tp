@@ -1,8 +1,9 @@
 package seedu.smarthomebot.logic.commands;
 
-import seedu.smarthomebot.commons.Messages;
+import static seedu.smarthomebot.commons.Messages.LINE;
 
 //@@author zongxian-ctrl
+
 /**
  * Represent the command for showing help instructions.
  */
@@ -10,8 +11,7 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
     public static final String MESSAGE_USAGE = "Help: " + COMMAND_WORD;
-    public static final String MESSAGE_HELP = Messages.LINE
-            + "Here is the list of commands available:\n" + Messages.LINE
+    public static final String MESSAGE_HELP = "Here is the list of commands available:\n" + LINE
             + "\t1. " + HelpCommand.MESSAGE_USAGE + "\n"
             + "\t2. " + CreateCommand.MESSAGE_USAGE + "\n"
             + "\t3. " + RemoveCommand.MESSAGE_USAGE + "\n"
@@ -24,6 +24,9 @@ public class HelpCommand extends Command {
             + "\t10. " + ResetCommand.MESSAGE_USAGE + "\n"
             + "\t11. " + ExitCommand.MESSAGE_USAGE + "\n";
 
+    /**
+     * Executing the HelpCommand.
+     */
     @Override
     public CommandResult execute() {
         return new CommandResult(MESSAGE_HELP);

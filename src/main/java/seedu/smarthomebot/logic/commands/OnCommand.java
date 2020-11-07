@@ -1,21 +1,25 @@
 package seedu.smarthomebot.logic.commands;
 
+import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.type.AirConditioner;
 import seedu.smarthomebot.data.appliance.type.Fan;
 import seedu.smarthomebot.data.appliance.Appliance;
+import seedu.smarthomebot.logic.commands.exceptions.ParameterFoundException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
-import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_ON;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 
+//@@author leonlowzd
+
 /**
- * Represent the command to turn on the appliance.
+ * Represent the Command to turn on Appliance(s).
  */
 public class OnCommand extends Command {
 
@@ -23,48 +27,81 @@ public class OnCommand extends Command {
     public static final String MESSAGE_USAGE = "Switch ON Appliance: \n\t\t a. " + COMMAND_WORD
             + " [APPLIANCE_NAME] \n\t\t b. " + COMMAND_WORD + " [APPLIANCE_NAME] p/[PARAMETER] \n\t\t c. "
             + COMMAND_WORD + " [LOCATION_NAME]";
+
     private static final String APPLIANCE_TYPE = "appliance";
     private static final String LOCATION_TYPE = "location";
-    private final String key;
+    private final String argument;
     private final String parameter;
 
-    public OnCommand(String key, String parameter) {
-        this.key = key;
+    /**
+     * Constructor for OnCommand.
+     *
+     * @param argument  Appliance or Location 's name to be on.
+     * @param parameter To set Appliance's parameter: only valid for fan and aircon.
+     */
+    public OnCommand(String argument, String parameter) {
+        assert !argument.isEmpty() : "OnCommand must not accept empty argument";
+        this.argument = argument;
         this.parameter = parameter;
     }
 
+    /**
+     * Executing the OnCommand.
+     */
     @Override
     public CommandResult execute() {
-        String onByType = APPLIANCE_TYPE;
-        // To check if any of the appliances contains the name of the location
-        ArrayList<Appliance> filterApplianceList =
-                (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
-                        .filter((s) -> s.getLocation().equals(this.key))
-                        .collect(toList());
+        try {
+            String onByType = APPLIANCE_TYPE;
+            // To filter out Appliances with location corresponding to the argument.
+            ArrayList<Appliance> filterApplianceList =
+                    (ArrayList<Appliance>) applianceList.getAllAppliance().stream()
+                            .filter((s) -> s.getLocation().equals(argument))
+                            .collect(toList());
 
-        // if list is empty
-        if (!filterApplianceList.isEmpty()) {
-            onByType = LOCATION_TYPE;
-        }
-        switch (onByType) {
-        case (APPLIANCE_TYPE):
-            return onByAppliance();
-        case (LOCATION_TYPE):
-            return onByLocation();
-        default:
-            return new CommandResult("");
-        }
-    }
-
-    private int getApplianceToOnIndex() {
-        for (Appliance appliance : applianceList.getAllAppliance()) {
-            if (appliance.getName().equals((this.key))) {
-                return applianceList.getAllAppliance().indexOf(appliance);
+            // If the list is not empty; it means that user wants to onByLocation.
+            if (!filterApplianceList.isEmpty()) {
+                onByType = LOCATION_TYPE;
             }
+
+            switch (onByType) {
+            case (APPLIANCE_TYPE):
+                return onByApplianceName();
+            case (LOCATION_TYPE):
+                return onByLocation(filterApplianceList);
+            default:
+                return new CommandResult("Invalid Format");
+            }
+        } catch (ApplianceNotFoundException e) {
+            if (locationList.isLocationCreated(argument)) {
+                commandLogger.log(Level.WARNING, "Unable to On : There are no Appliances in \"" + argument + "\".");
+                return new CommandResult("There are no Appliances in \"" + argument + "\".");
+            } else {
+                commandLogger.log(Level.WARNING, "Unable to On : " + MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+                return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            }
+        } catch (ParameterFoundException e) {
+            commandLogger.log(Level.WARNING, "Unable to On : "
+                    + "There should be no parameter when you ON by location.");
+            return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
         }
-        return -1;
     }
 
+    /**
+     * Method to on Appliance by the name.
+     */
+    private CommandResult onByApplianceName() throws ApplianceNotFoundException {
+        int toOnApplianceIndex = applianceList.getApplianceIndex(argument);
+        Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
+        String outputResult = onAppliance(toOnAppliance, true);
+        commandLogger.log(Level.INFO, "Appliance On with output message: " + outputResult);
+        return new CommandResult(outputResult);
+    }
+
+    /**
+     * Method to set Appliance's parameter.
+     *
+     * @return error message if there is an error setting the parameter.
+     */
     private String setParameter(String parameter, Appliance appliance) {
         String setParameterStatement = "";
         switch (appliance.getType().toLowerCase()) {
@@ -86,52 +123,51 @@ public class OnCommand extends Command {
         return setParameterStatement;
     }
 
-    private CommandResult onByLocation() {
+    /**
+     * Method to On Appliance by the Location.
+     */
+    private CommandResult onByLocation(ArrayList<Appliance> toOnAppliance) throws ParameterFoundException {
         if (!parameter.isEmpty()) {
-            return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
+            throw new ParameterFoundException();
         } else {
-            String outputResults = LINE;
-            outputResults = onApplianceByLoop(outputResults);
-            return new CommandResult(outputResults);
-        }
-    }
-
-    private CommandResult onByAppliance() {
-        int toOnApplianceIndex = getApplianceToOnIndex();
-        if (toOnApplianceIndex < 0) {
-            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
-        } else {
-            Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
-            String outputResult = onAppliance(toOnAppliance, "", false);
+            onApplianceByLoop(toOnAppliance);
+            String outputResult = "All Appliances in \"" + argument + "\" are turned on ";
+            commandLogger.log(Level.INFO, "Location On with output message: " + outputResult);
             return new CommandResult(outputResult);
         }
     }
 
-    private String onApplianceByLoop(String outputResults) {
-        for (Appliance toOnAppliance : applianceList.getAllAppliance()) {
-            if (toOnAppliance.getLocation().equals(this.key)) {
-                outputResults = onAppliance(toOnAppliance, outputResults, true);
-            }
+    /**
+     * Method to iterate through the toOnAppliance List and turn on the Appliance.
+     */
+    private void onApplianceByLoop(ArrayList<Appliance> toOnAppliance) {
+        for (Appliance appliance : toOnAppliance) {
+            onAppliance(appliance, false);
         }
-        outputResults = "All appliance in \"" + this.key + "\" are turned on ";
-        return outputResults;
     }
 
-    private String onAppliance(Appliance toOnAppliance, String outputResults, boolean isList) {
+    /**
+     * Method to switch on Appliance.
+     *
+     * @param toOnAppliance Appliance to switch on in Appliance.
+     * @param isList        flag to return its corresponding output message.
+     * @return the corresponding output Message in String if isList is true.
+     */
+    private String onAppliance(Appliance toOnAppliance, boolean isList) {
+        String outputResult = "";
         boolean onResult = toOnAppliance.switchOn();
         assert toOnAppliance.getStatus().equals("ON") : "Appliance should be already ON";
         String setParameterStatement = setParameter(parameter, toOnAppliance);
-        if (!isList) {
+        if (isList) {
             if (onResult) {
-                outputResults = setParameterStatement + "Switching " + toOnAppliance.toString() + ".....ON";
+                outputResult = setParameterStatement + "Switching " + toOnAppliance.toString() + ".....ON";
 
             } else {
-                outputResults = setParameterStatement
-                        + MESSAGE_APPLIANCE_PREVIOUSLY_ON + toOnAppliance.toString();
+                outputResult = setParameterStatement
+                        + toOnAppliance.getName() + MESSAGE_APPLIANCE_PREVIOUSLY_ON + toOnAppliance.toString();
             }
         }
-
-        return outputResults;
+        return outputResult;
     }
 
 }

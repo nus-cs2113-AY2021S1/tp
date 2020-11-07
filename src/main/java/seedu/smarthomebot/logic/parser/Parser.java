@@ -14,6 +14,7 @@ import seedu.smarthomebot.logic.commands.OnCommand;
 import seedu.smarthomebot.logic.commands.RemoveCommand;
 import seedu.smarthomebot.logic.commands.ResetCommand;
 import seedu.smarthomebot.logic.commands.UsageCommand;
+import seedu.smarthomebot.logic.commands.exceptions.ParameterFoundException;
 import seedu.smarthomebot.logic.parser.exceptions.EmptyParameterException;
 import seedu.smarthomebot.logic.parser.exceptions.IllegalCharacterException;
 import seedu.smarthomebot.logic.parser.exceptions.InvalidCommandException;
@@ -27,6 +28,8 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_LIST_COMMAND;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_POWER_EXCEEDED;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_VALUE_NOT_NUMBER;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_PARAMETER_INVALID;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION;
 
 /**
  * Parses user input.
@@ -37,11 +40,12 @@ public class Parser {
     private static final String LOCATION_TYPE = "location";
 
     //@@author zongxian-ctrl
+
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
-     * @return command based on the user input
+     * @param userInput full user input string.
+     * @return command based on the user input.
      */
     public Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
@@ -80,8 +84,8 @@ public class Parser {
     /**
      * Parses arguments for CreateCommand by checking if arguments is valid.
      *
-     * @param arguments parameter of CreateCommand
-     * @return the prepared CreateCommand
+     * @param arguments parameter of CreateCommand.
+     * @return the prepared CreateCommand.
      */
     private Command prepareCreateCommand(String arguments) {
         try {
@@ -103,8 +107,8 @@ public class Parser {
     /**
      * Parses arguments for RemoveCommand by checking if arguments is valid.
      *
-     * @param arguments parameter of RemoveCommand
-     * @return the prepared RemoveCommand
+     * @param arguments parameter of RemoveCommand.
+     * @return the prepared RemoveCommand.
      */
     private Command prepareRemoveCommand(String arguments) {
         try {
@@ -170,8 +174,8 @@ public class Parser {
     /**
      * Parses arguments for DeleteCommand by checking if arguments is valid.
      *
-     * @param arguments parameter of DeleteCommand
-     * @return the prepared DeleteCommand
+     * @param arguments parameter of DeleteCommand.
+     * @return the prepared DeleteCommand.
      */
     private Command prepareDeleteCommand(String arguments) {
         try {
@@ -185,7 +189,8 @@ public class Parser {
 
     }
 
-    //@@author
+    //@@author leonlowzd
+
     /**
      * Parses arguments into OnCommand format.
      *
@@ -215,11 +220,12 @@ public class Parser {
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         } catch (InvalidNumericalValueException e) {
-            return new InvalidCommand(MESSAGE_VALUE_NOT_NUMBER);
+            return new InvalidCommand(MESSAGE_PARAMETER_INVALID);
         }
     }
 
-    //@@author
+    //@@author Ang-Cheng-Jun
+
     /**
      * Parses arguments into OffCommand format.
      *
@@ -228,17 +234,23 @@ public class Parser {
      */
     private static Command prepareOffCommand(String arguments) {
         try {
+            int indexParameter = arguments.indexOf("p/");
+            if (!(indexParameter < 0)) {
+                throw new ParameterFoundException();
+            }
             if (isEmptyInput(arguments)) {
                 throw new EmptyParameterException();
             }
             return new OffCommand(arguments);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
-
+        } catch (ParameterFoundException e) {
+            return new InvalidCommand(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
         }
     }
 
-    //@@author
+    //@@author Ang-Cheng-Jun
+
     /**
      * Parses arguments into ListCommand format.
      *
@@ -262,7 +274,8 @@ public class Parser {
         }
     }
 
-    //@@author
+    //@@author fanceso
+
     /**
      * Checks if the parameter is numerical value.
      *
@@ -278,12 +291,12 @@ public class Parser {
 
     }
 
-    //@@author
     /**
      * Checks if the wattage entered by the user is valid.
-     * @param wattage parameter entered by user
-     * @throws WattageExceedException if the wattage is less 1 or more than 9999
-     * @throws InvalidNumericalValueException if the wattage is not an numerical value
+     *
+     * @param wattage parameter entered by user.
+     * @throws WattageExceedException         if the wattage is less 1 or more than 9999.
+     * @throws InvalidNumericalValueException if the wattage is not an numerical value.
      */
     private static void testWattageValidity(String wattage) throws WattageExceedException,
             InvalidNumericalValueException {
@@ -299,21 +312,23 @@ public class Parser {
     }
 
     //@@author zongxian-ctrl
+
     /**
      * Checks if the input is empty.
      *
-     * @param input parameter entered by the user
-     * @return true if input is empty
+     * @param input parameter entered by the user.
+     * @return true if input is empty.
      */
     private static boolean isEmptyInput(String input) {
         return (input.isEmpty());
     }
 
+
     /**
      * Check if the input contains illegal character.
      *
-     * @param input parameter entered by the user
-     * @return true if any illegal character is found
+     * @param input parameter entered by the user.
+     * @return true if any illegal character is found.
      */
     private static boolean hasIllegalCharacter(String input) {
         return (input.contains(" ") || input.contains("/") || input.contains("|"));

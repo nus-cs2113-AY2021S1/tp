@@ -10,13 +10,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static seedu.smarthomebot.commons.Messages.MESSAGE_WRITE_FILE_ERROR;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_FILE_CREATION_ERROR;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_CLEAR_FILE_ERROR;
+
 public class WriteStorageFile extends StorageFile {
 
-    private static final String FILE_PATH = "data/SmartHomeBot.txt";
+    private static String FILE_PATH;
     private final TextUi ui = new TextUi();
 
-    public WriteStorageFile(ApplianceList applianceList, LocationList locationList) {
+    public WriteStorageFile(String filePath, ApplianceList applianceList, LocationList locationList) {
         super(applianceList, locationList);
+        this.FILE_PATH = filePath;
     }
 
     @Override
@@ -32,7 +37,7 @@ public class WriteStorageFile extends StorageFile {
             }
             myWriter.close();
         } catch (IOException e) {
-            ui.printToUser("An error occur");
+            ui.printToUser(MESSAGE_WRITE_FILE_ERROR);
         }
     }
 
@@ -48,7 +53,7 @@ public class WriteStorageFile extends StorageFile {
             }
 
         } catch (IOException e) {
-            ui.printToUser("Unable to create file.");
+            ui.printToUser(MESSAGE_FILE_CREATION_ERROR);
         }
     }
 
@@ -59,7 +64,7 @@ public class WriteStorageFile extends StorageFile {
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
-            ui.printToUser("File is empty.");
+            ui.printToUser(MESSAGE_CLEAR_FILE_ERROR);
         }
     }
 }

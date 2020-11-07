@@ -16,7 +16,12 @@ import seedu.smarthomebot.logic.commands.RemoveCommand;
 import seedu.smarthomebot.logic.commands.UsageCommand;
 import seedu.smarthomebot.logic.parser.Parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_EMPTY_PARAMETER;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_ADD_COMMAND;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_LIST_COMMAND;
 
 class ParserTest {
 
@@ -27,81 +32,134 @@ class ParserTest {
         parser = new Parser();
     }
 
+
     @Test
-    void parse_helpCommand_parsedCorrectly() {
+    public void parse_emptyInput_returnsInvalid() {
+        final String[] emptyInputs = {"", " ", "\n  \n"};
+        final String resultMessage = (MESSAGE_INVALID_COMMAND_FORMAT);
+        parseAndAssertIncorrectWithMessage(resultMessage, emptyInputs);
+    }
+
+    @Test
+    public void parse_helpCommand_parsedCorrectly() {
         final String input = "help";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(HelpCommand.class));
+        parseAndAssertCommand(input, HelpCommand.class);
     }
 
     @Test
-    void parse_createCommand_parserCorrectly() {
+    public void parse_createCommand_parserCorrectly() {
         final String input = "create Bedroom1";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(CreateCommand.class));
+        parseAndAssertCommand(input, CreateCommand.class);
     }
 
     @Test
-    void parse_addCommand_parserCorrectly() {
+    public void parse_addCommand_parserCorrectly() {
         final String input = "add Lightbulb l/Kitchen w/ 100 t/Light";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(AddCommand.class));
+        parseAndAssertCommand(input, AddCommand.class);
     }
 
     @Test
-    void parse_exitCommand_parserCorrectly() {
+    public void parse_exitCommand_parserCorrectly() {
         final String input = "exit";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(ExitCommand.class));
+        parseAndAssertCommand(input, ExitCommand.class);
     }
 
     @Test
-    void parse_invalidCommand_parserCorrectly() {
+    public void parse_invalidCommand_parserCorrectly() {
         final String input = "SmartHomeBot";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(InvalidCommand.class));
+        parseAndAssertCommand(input, InvalidCommand.class);
     }
 
     @Test
-    void parse_deleteCommand_parserCorrectly() {
+    public void parse_deleteCommand_parserCorrectly() {
         final String input = "delete Lightbulb";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(DeleteCommand.class));
+        parseAndAssertCommand(input, DeleteCommand.class);
     }
 
     @Test
-    void parse_removeCommand_parserCorrectly() {
+    public void parse_removeCommand_parserCorrectly() {
         final String input = "remove Bedroom1";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(RemoveCommand.class));
+        parseAndAssertCommand(input, RemoveCommand.class);
     }
 
     @Test
-    void parse_usageCommand_parserCorrectly() {
+    public void parse_usageCommand_parserCorrectly() {
         final String input = "usage";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(UsageCommand.class));
+        parseAndAssertCommand(input, UsageCommand.class);
     }
 
     @Test
-    void parse_onCommand_parserCorrectly() {
+    public void parse_onCommand_parserCorrectly() {
         final String input = "on Lightbulb";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(OnCommand.class));
+        parseAndAssertCommand(input, OnCommand.class);
     }
 
     @Test
-    void parse_offCommand_parserCorrectly() {
+    public void parse_offCommand_parserCorrectly() {
         final String input = "off Lightbulb";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(OffCommand.class));
+        parseAndAssertCommand(input, OffCommand.class);
     }
 
     @Test
-    void parse_listCommand_parserCorrectly() {
+    public void parse_listCommand_parserCorrectly() {
         final String input = "list appliance";
-        final Command result = parser.parseCommand(input);
-        assertTrue(result.getClass().isAssignableFrom(ListCommand.class));
+        parseAndAssertCommand(input, ListCommand.class);
     }
 
+    @Test
+    public void parse_CommandsWithNoParameter_errorMessage() {
+        final String[] inputs = {
+            "create", "create ", "delete", "delete ",
+            "on", "on ", "off", "off ", "remove", "remove "
+        };
+        final String resultMessage = MESSAGE_EMPTY_PARAMETER;
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_listCommandNoParameter_errorMessage() {
+        final String[] inputs = {"list", "list ", "list appliance b/"};
+        final String resultMessage = MESSAGE_INVALID_LIST_COMMAND;
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_addCommandInvalidParameter_errorMessage() {
+        final String[] inputs = {
+            "add Light t/100 l/BR1 w/fan", "add  ", "add appliance b/",
+            "add Light l/BR1 w/fan", "add Light", "add Light 1234"
+        };
+        final String resultMessage = MESSAGE_INVALID_ADD_COMMAND;
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void parse_addCommandEmptyParameter_errorMessage() {
+        final String[] inputs = {
+            "add Light l/ w/100 t/fan", "add Light l/BR1 w/ t/fan",
+            "add Light l/BR1 w/100 t/"
+        };
+        final String resultMessage = MESSAGE_EMPTY_PARAMETER;
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+
+    /**
+     * Asserts that parsing the given inputs will return InvalidCommand with the given feedback.
+     */
+    private void parseAndAssertIncorrectWithMessage(String feedback, String... inputs) {
+        for (String input : inputs) {
+            final InvalidCommand result = parseAndAssertCommand(input, InvalidCommand.class);
+            assertEquals(result.feedbackToUser, feedback);
+        }
+    }
+
+    /**
+     * Parses input and assert it is the correct class command object.
+     */
+    private <T extends Command> T parseAndAssertCommand(String input, Class<T> expectedCommandClass) {
+        final Command result = parser.parseCommand(input);
+        assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
+        return (T) result;
+    }
 }

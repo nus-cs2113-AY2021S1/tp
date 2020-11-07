@@ -5,6 +5,8 @@ import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
 
 import java.util.ArrayList;
 
+//@@author leonlowzd
+
 /**
  * Represents the Appliances of SmartHomeBot.
  */
@@ -16,7 +18,7 @@ public class ApplianceList {
      * Constructor of ApplianceList.
      */
     public ApplianceList() {
-        this.applianceList = new ArrayList<>();
+        applianceList = new ArrayList<>();
     }
 
     /**
@@ -26,7 +28,7 @@ public class ApplianceList {
      */
     public void addAppliance(Appliance appliance) throws DuplicateDataException {
         if (!isApplianceExist(appliance.getName())) {
-            this.applianceList.add(appliance);
+            applianceList.add(appliance);
         } else {
             throw new DuplicateDataException();
         }
@@ -38,9 +40,9 @@ public class ApplianceList {
      * @param userEnteredName Appliance to remove.
      */
     public Appliance deleteAppliance(String userEnteredName) throws ApplianceNotFoundException {
-        for (Appliance appliance : this.getAllAppliance()) {
+        for (Appliance appliance : getAllAppliance()) {
             if (appliance.getName().equals(userEnteredName)) {
-                this.applianceList.remove(appliance);
+                applianceList.remove(appliance);
                 return appliance;
             }
         }
@@ -53,7 +55,7 @@ public class ApplianceList {
      * @param index Appliance to retrieve.
      */
     public Appliance getAppliance(int index) {
-        return this.applianceList.get(index);
+        return applianceList.get(index);
     }
 
     /**
@@ -62,7 +64,7 @@ public class ApplianceList {
      * @return the full list of the Appliances.
      */
     public ArrayList<Appliance> getAllAppliance() {
-        return this.applianceList;
+        return applianceList;
     }
 
     /**
@@ -72,7 +74,7 @@ public class ApplianceList {
      */
     public Boolean isApplianceExist(String toAddApplianceName) {
         boolean isExist = false;
-        for (Appliance a : this.applianceList) {
+        for (Appliance a : applianceList) {
             if (a.getName().equals(toAddApplianceName)) {
                 isExist = true;
                 break;
@@ -87,11 +89,20 @@ public class ApplianceList {
      * @param usersEnteredLocation Appliance to check.
      */
     public void deleteByLocation(String usersEnteredLocation) throws ApplianceNotFoundException {
-        for (int x = this.getAllAppliance().size() - 1; x >= 0; x--) {
-            if (this.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
-                this.deleteAppliance((this.getAppliance(x).getName()));
+        for (int x = getAllAppliance().size() - 1; x >= 0; x--) {
+            if (getAppliance(x).getLocation().equals(usersEnteredLocation)) {
+                deleteAppliance((getAppliance(x).getName()));
             }
         }
     }
 
+    public int getApplianceIndex(String argument)
+            throws ApplianceNotFoundException {
+        for (Appliance appliance : applianceList) {
+            if (appliance.getName().equals((argument))) {
+                return applianceList.indexOf(appliance);
+            }
+        }
+        throw new ApplianceNotFoundException();
+    }
 }

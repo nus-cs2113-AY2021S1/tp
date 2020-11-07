@@ -15,19 +15,23 @@ import seedu.smarthomebot.ui.TextUi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_FILE_DOES_NOT_EXIST;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_EMPTY_FILE;
 
 public class ReadStorageFile extends StorageFile {
 
-    private static final String FILE_PATH = "data/SmartHomeBot.txt";
+    private static String FILE_PATH;
     private final TextUi ui = new TextUi();
 
-    public ReadStorageFile(ApplianceList applianceList, LocationList locationList) {
+    public ReadStorageFile(String filePath, ApplianceList applianceList, LocationList locationList) {
         super(applianceList, locationList);
+        this.FILE_PATH = filePath;
     }
 
     @Override
@@ -41,15 +45,20 @@ public class ReadStorageFile extends StorageFile {
             try {
                 readToLocationList(locationList);
                 readToApplianceList(i, myReader);
-                ui.printToUser(Messages.MESSAGE_IMPORT);
+                if (locationList.equals("[]")) {
+                    ui.printToUser(MESSAGE_EMPTY_FILE);
+                } else {
+                    ui.printToUser(Messages.MESSAGE_IMPORT);
+                }
             } catch (FileCorruptedException e) {
                 ui.printToUser(Messages.MESSAGE_FILE_CORRUPTED);
             }
+            storageLogger.log(Level.INFO, "Successfully loaded Save File");
             myReader.close();
         } catch (FileNotFoundException | DuplicateDataException e) {
-            ui.printToUser("Load File does not exist. No contents will be loaded.");
+            ui.printToUser(MESSAGE_FILE_DOES_NOT_EXIST);
         } catch (NoSuchElementException e) {
-            ui.printToUser("Load File is corrupted.");
+            ui.printToUser(Messages.MESSAGE_FILE_CORRUPTED);
         }
     }
 
@@ -94,7 +103,7 @@ public class ReadStorageFile extends StorageFile {
                 // when user exit, get the current system and save in datafile
                 applianceList.getAppliance(i).loadDataFromFile(powerConsumption);
                 i++;
-            } catch (IndexOutOfBoundsException | InvalidApplianceNameException | LocationNotFoundException e) {
+            } catch (Exception e) {
                 throw new FileCorruptedException();
             }
         }
@@ -103,7 +112,7 @@ public class ReadStorageFile extends StorageFile {
     private void readToLocationList(String location) throws FileCorruptedException {
         try {
             int openBracesIndex = location.indexOf("[") + 1;
-            int closeBracesIndex = location.indexOf("]");
+            int closeBracesIndex = location.lastIndexOf("]");
             String locations = location.substring(openBracesIndex, closeBracesIndex);
             String[] stringSplit = locations.split(",");
             for (String locationName : stringSplit) {
