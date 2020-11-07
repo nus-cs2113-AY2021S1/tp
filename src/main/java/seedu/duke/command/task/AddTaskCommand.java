@@ -1,6 +1,7 @@
 package seedu.duke.command.task;
 
 import seedu.duke.command.Command;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
@@ -12,9 +13,8 @@ import static seedu.duke.command.CommandSummary.DESCRIPTION;
 import static seedu.duke.command.CommandSummary.PRIORITY;
 import static seedu.duke.command.CommandSummary.TITLE;
 
-public class AddTaskCommand extends Command {
+public class AddTaskCommand extends TaskCommand {
     private final ProjectManager projectManager;
-    private Project proj;
 
     public AddTaskCommand(Hashtable<String, String> parameters, ProjectManager projectManager) {
         super(parameters, true);
@@ -24,18 +24,15 @@ public class AddTaskCommand extends Command {
     public void execute() {
         assert !projectManager.isEmpty() : "No project\n";
         if (projectManager.isEmpty()) {
-            Ui.showError("Please create a project first.");
+            handleMissingProject("No project : add task.");
             return;
         }
-
         String title;
         boolean titleExists;
-
         title = parameters.get(TITLE);
-        titleExists = doesTitleExist(title);
+        titleExists = checkTitleExist(title);
         if (titleExists) {
-            Ui.showError("The task title already exists! "
-                    + "Please enter an alternative name.");
+            handleDuplicateTitle("Duplicate task : adding task.");
             return;
         }
 
@@ -43,41 +40,50 @@ public class AddTaskCommand extends Command {
         String priority;
         description = parameters.get(DESCRIPTION);
         priority = parameters.get(PRIORITY).toUpperCase();
-
         Project proj = projectManager.getSelectedProject();
         if (!proj.getBacklog().checkValidPriority(priority)) {
-            Ui.showError("Invalid priority!");
+            handleInvalidPriority("Syntax error : add task.");
             return;
         }
         proj.getBacklog().addTask(title, description, priority);
+        displayToUser(proj);
+    }
+
+    /**
+     * Displays the added task to the user.
+     * @param proj the project the task belongs to.
+     */
+    private void displayToUser(Project proj) {
         Task addedTask = proj.getBacklog().getTask(proj.getBacklog().getNextId() - 1);
         Ui.showToUserLn("Task successfully created.");
         Ui.showToUserLn(addedTask.toString());
+        ScrumLogger.LOGGER.info(String.format("Added backlog task, ID : %d",
+                addedTask.getId()));
     }
 
-    public boolean doesTitleExist(String title) {
+    /**
+     * Checks whether the title already exists.
+     * @param title the title of the task the user wishes to add.
+     * @return whether the title already exists.
+     */
+    public boolean checkTitleExist(String title) {
         boolean titleAlreadyExist = false;
         if (projectManager.isEmpty()) {
             return false;
         }
         for (int i = 1; i <= projectManager.getSelectedProject().getBacklog().size(); i++) {
             Task existingTask = projectManager.getSelectedProject().getBacklog().getTask(i);
-            String existingTitle = existingTask.getTitle();
-            titleAlreadyExist |= compareTitle(existingTitle, title);
+            if (existingTask != null) {
+                String existingTitle = existingTask.getTitle();
+                titleAlreadyExist |= existingTitle.equals(title);
+            }
         }
-        if (titleAlreadyExist) {
-            return true;
-        } else {
-            return false;
-        }
+        return titleAlreadyExist;
     }
 
-    public boolean compareTitle(String existingTitle, String title) {
-        if (existingTitle.equals(title)) {
-            return true;
-        }
-        return false;
-    }
+
+
+
 }
 
 
