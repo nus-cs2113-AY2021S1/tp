@@ -89,7 +89,7 @@ Expected output:
 At main menu:
 ![HelpMessage](Images/GeneralUG/help.png)
 
-At book mode:
+At bookmark mode:
 ![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
 
 ---
