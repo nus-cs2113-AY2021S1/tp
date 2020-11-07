@@ -14,7 +14,8 @@ import java.io.FileNotFoundException;
  * Main logic of the whole program
  */
 public class Logic {
-    public static String input; //input is for each statement input
+    public static String input;
+    //input is for each statement input
     public static Scanner in = new Scanner(System.in);
     protected static List<Canteen> canteens = new ArrayList<>();
     protected static Scanner sc = new Scanner(System.in);
