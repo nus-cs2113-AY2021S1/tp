@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 public class QuoteList extends QuotesifyList<Quote> {
     private ArrayList<Quote> quotes = super.getList();
     public static final String DEFAULT_QUOTE = "Better days are coming, they are called Saturday and Sunday.";
-    public static final String ERROR_REFLECTION_EXIST = "Quote already has a reflection. " +
-            "Please use the edit command instead.";
+    public static final String ERROR_REFLECTION_EXIST = "Quote already has a reflection. "
+            + "Please use the edit command instead.";
 
     /**
      * Default constructor fot quote list.
