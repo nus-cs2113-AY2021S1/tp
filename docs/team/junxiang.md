@@ -15,17 +15,17 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ## Summary of Contributions
 
 ### Features implemented
-- Implemented `TaggableObject` class which is inherited by `Note` and `Event`. 
+1. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. 
     - Taggable objects can have multiple tags and different Taggable objects can share same tag(s). They can also be filtered by their tags.
-- Implemented `Tag` class which contains the name and of the tag and its color.
+1. Implemented `Tag` class which contains the name and of the tag and its color.
     - Added color support for user to better differentiate the tags.
-- Implemented `TagManager` class which manages all the tags in application. 
+1. Implemented `TagManager` class which manages all the tags in application. 
     - A hashmap is used where each unique tag are the keys and the arraylist of taggable objects that share the same tag are the mapped values.
-- Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
-- Implemented `ParserManager` class which manages the creation of different parser functions to parse the user input to the required parameters.
-- Implemented `SystemException` class which extends from `Exception` class.
+1. Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
+1. Implemented `ParserManager` class which manages the creation of different parser objects to parse the user input to the required parameters.
+1. Implemented `SystemException` class which extends from `Exception` class.
     - Within it, there is an enumeration for all possible types of exception that may occur and each enum value contains a unique string as its message.
-- Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
+1. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
     
 ### Code contributed
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
