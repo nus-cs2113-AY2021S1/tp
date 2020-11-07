@@ -31,10 +31,11 @@ class RouteParserTest {
         try {
             p.getLocations();
         } catch (CustomException error) {
-            assertEquals("Oops! You are missing the delimiter /to.\n" +
-                    "The format for this command is as follows:\n" +
-                    "/route <starting loc> /to <destination>\n" +
-                    "where starting location and destination must be the names of bus stops in NUS.", error.toString());
+            assertEquals("Oops! You are missing the delimiter /to.\n"
+                    + "The format for this command is as follows:\n"
+                    + "/route <starting loc> /to <destination>\n"
+                    + "where starting location and destination must be the names of bus stops in NUS.",
+                    error.toString());
         }
     }
 
@@ -45,10 +46,11 @@ class RouteParserTest {
         try {
             p.getLocations();
         } catch (CustomException error) {
-            assertEquals("Oops! You have too many delimiters!\n" +
-                    "The format for this command is as follows:\n" +
-                    "/route <starting loc> /to <destination>\n" +
-                    "where starting location and destination must be the names of bus stops in NUS.", error.toString());
+            assertEquals("Oops! You have too many delimiters!\n"
+                    + "The format for this command is as follows:\n"
+                    + "/route <starting loc> /to <destination>\n"
+                    + "where starting location and destination must be the names of bus stops in NUS.",
+                    error.toString());
         }
     }
 

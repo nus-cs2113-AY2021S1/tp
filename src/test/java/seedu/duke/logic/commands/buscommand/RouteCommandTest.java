@@ -43,8 +43,6 @@ class RouteCommandTest {
     @Test
     void executeCommand_nonExistentLocations_expectException() {
         String locationsInvalidSource = " Orchard /to PGP  ";
-        String locationsInvalidDest = " University Health Centre /to Vivocity ";
-        String locationsInvalidAll = " Santosa /to West coast park";
         RouteCommand com = new RouteCommand(locationsInvalidSource);
         try {
             com.executeCommand();
@@ -53,14 +51,16 @@ class RouteCommandTest {
                     + "database :(", error.toString());
         }
 
+        String locationsInvalidDest = " University Health Centre /to Vivocity ";
         com = new RouteCommand(locationsInvalidDest);
         try {
             com.executeCommand();
         } catch (CustomException error) {
-            assertEquals("The destination you have provided is not the name of any bus stop in our database :("
-                    , error.toString());
+            assertEquals("The destination you have provided is not the name of any bus stop in our database :(",
+                    error.toString());
         }
 
+        String locationsInvalidAll = " Santosa /to West coast park";
         com = new RouteCommand(locationsInvalidAll);
         try {
             com.executeCommand();

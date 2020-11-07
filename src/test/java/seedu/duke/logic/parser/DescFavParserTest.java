@@ -46,9 +46,9 @@ class DescFavParserTest {
             p.parseInput();
         } catch (CustomException error) {
             assertEquals("Oops! You have too many delimiters!\nThe format for this command is as follows:"
-                            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum items in"
-                            + " the list\nand description is the new description you want for your favourite command.",
-                    error.toString());
+                            + "\n/descfav <index> /to <description>\nwhere index is a number between 1 and the maximum "
+                            + "items in the list\nand description is the new description you want for your favourite "
+                            + "command.", error.toString());
         }
     }
 

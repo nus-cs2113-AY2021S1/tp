@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeAll;
 import seedu.duke.exceptions.CustomException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FavListTest {
 
