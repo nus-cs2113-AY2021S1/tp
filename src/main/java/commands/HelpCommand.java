@@ -4,6 +4,9 @@ import access.Access;
 import storage.Storage;
 import ui.Ui;
 
+/**
+ * Lists all the command available.
+ */
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
