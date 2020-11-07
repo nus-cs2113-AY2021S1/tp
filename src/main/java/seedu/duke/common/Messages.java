@@ -15,7 +15,7 @@ public class Messages {
 
     public static final String MESSAGE_GOODBYE = "Farewell student. Hope to see you again soon!";
     public static final String MESSAGE_ADD_TASK = "Got it. I've added this task:\n       ";
-    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: ";
+    public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: \n";
     public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
     public static final String MESSAGE_ADD_MODULE = "Got it. I've added this module:\n       ";
 
@@ -116,7 +116,7 @@ public class Messages {
 
     public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
             + "\t The format is: find <keyword>";
-    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct type of lesson:\n "
+    public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct link type:\n "
             + "\t t/lecture\n"
             + "\t t/tutorial\n"
             + "\t t/lab\n"
