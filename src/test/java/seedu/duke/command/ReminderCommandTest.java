@@ -58,6 +58,7 @@ public class ReminderCommandTest {
         printWriter.println("You have successfully added this event to your list!");
         printWriter.println("[T][X] wakeup on " + printDate + ", 10:00");
         printWriter.println("You have the following events today: ");
+        printWriter.println("_________Events With Time________");
         printWriter.println("[T][X] wakeup on " + printDate + ", 10:00");
         printWriter.close();
         String expected = expectedStringWriter.toString();
@@ -86,6 +87,7 @@ public class ReminderCommandTest {
         printWriter.println("[T][X] wakeup on " + printLastDate + ", 10:00");
         printWriter.println("is now repeating weekly for 1 times.");
         printWriter.println("You have the following events today: ");
+        printWriter.println("_________Events With Time________");
         printWriter.println("[T][X] wakeup on " + printDate + ", 10:00");
         printWriter.close();
         String expected = expectedStringWriter.toString();

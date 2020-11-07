@@ -248,8 +248,37 @@ The following sequence diagram shows how the `list zoom` command is parsed:
 
 ![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
 
+The following sequence diagram shows how `ListCommand#execute()` works:
+
+![Sequence diagram for goal command execute](./diagrams/ListExecuteSequenceDiagram.jpg)
+
 #### Calendar feature
-(WIP)
+
+The calendar feature allows the user to list all events in chronological order.
+Only events with a date and time will be included in the calendar.
+The calendar is sorted by date using a treemap with each entry being an arraylist of events on the same date.
+It is then sorted by time in the arraylist of events.
+
+User calls the list command by executing `calendar`.
+
+Given below is an example usage scenario of the calendar feature.
+
+Step 1. The user executes `calendar` command to list the events in a calendar.
+The `calendar` command is passed through a parser to return the CalendarCommand with arguments initialised.
+
+Step 2. `CalendarCommand#execute()` is called, sorting the events with date and time in chronological order in a map.
+
+Step 3. `CalendarCommand#execute()` calls `Ui#printCalendarStart()` to print the number of dates to list and the number
+of events that will not be in the calendar.
+
+Step 4. `CalendarCommand#execute()` calls `Ui#printCalendar()` for every date in the map.
+
+Step 5. The user can choose to end the calendar with the input `q` or press **Enter** to list the next date.
+
+Step 6. `CalendarCommand#execute()` calls `Ui#printCalendarEnd()` to print that it is the end of the calendar when the
+last date is listed or the user ends it.
+
+
 
 #### Repeat feature
 
@@ -366,6 +395,7 @@ The following sequence diagram shows how the check operation works:
 
 The goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
 `UserData` if there is one, or it sets the input as the new goal by replacing the previous goal.
+The user can only have one goal at any time.
 
 Given below is an example usage scenario of the goal feature.
 

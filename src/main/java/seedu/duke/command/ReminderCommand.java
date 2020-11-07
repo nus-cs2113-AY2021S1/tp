@@ -38,7 +38,16 @@ public class ReminderCommand extends Command {
             ArrayList<Event> eventList = filterTodayEvents(allEventList.get(i));
             reminderEvents.addAll(eventList);
         }
-        ui.printReminder(reminderEvents);
+        ArrayList<Event> reminderEventsWithoutTime = new ArrayList<>();
+        ArrayList<Event> reminderEventsWithTime = new ArrayList<>();
+        for (int i = 0; i < reminderEvents.size(); i++) {
+            if (reminderEvents.get(i).getTime() == null) {
+                reminderEventsWithoutTime.add(reminderEvents.get(i));
+            } else {
+                reminderEventsWithTime.add(reminderEvents.get(i));
+            }
+        }
+        ui.printReminder(reminderEventsWithTime, reminderEventsWithoutTime);
 
     }
 

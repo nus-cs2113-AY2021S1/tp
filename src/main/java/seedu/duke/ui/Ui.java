@@ -169,21 +169,48 @@ public class Ui {
         System.out.println(eventUpdated);
     }
 
-    public void printReminder(ArrayList<Event> events) {
-        if (events.size() == 0) {
+    /**
+     * Printing reminder.
+     * @param eventsWithTime events that have time.
+     * @param eventsWithoutTime events without time.
+     */
+    public void printReminder(ArrayList<Event> eventsWithTime, ArrayList<Event> eventsWithoutTime) {
+        if (eventsWithoutTime.size() == 0 && eventsWithTime.size() == 0) {
             System.out.println("You have no events today!");
         } else {
-            System.out.println("You have the following events today: ");
-            Collections.sort(events, new Comparator<Event>() {
+            printReminderEvents(eventsWithTime, eventsWithoutTime);
+        }
+    }
+
+    /**
+     * Printing events according to events that have time and without time.
+     * @param eventsWithTime events that have time.
+     * @param eventsWithoutTime events without time.
+     */
+    private void printReminderEvents(ArrayList<Event> eventsWithTime, ArrayList<Event> eventsWithoutTime) {
+        System.out.println("You have the following events today: ");
+        if (eventsWithTime.size() > 0) {
+            System.out.println("_________Events With Time________");
+            Collections.sort(eventsWithTime, new Comparator<Event>() {
                 @Override
                 public int compare(Event o1, Event o2) {
                     return o1.getTime().compareTo(o2.getTime());
                 }
             });
-            for (int i = 0; i < events.size(); i++) {
-                System.out.println(events.get(i).toString());
+            for (int i = 0; i < eventsWithTime.size(); i++) {
+                System.out.println(eventsWithTime.get(i).toString());
+            }
+
+        }
+
+        if (eventsWithoutTime.size() > 0) {
+            System.out.println();
+            System.out.println("_________Events Without Time_____");
+            for (int i = 0; i < eventsWithoutTime.size(); i++) {
+                System.out.println(eventsWithoutTime.get(i).toString());
             }
         }
+
     }
 
     public void printEventMarkedDoneMessage(Event doneEvent) {
