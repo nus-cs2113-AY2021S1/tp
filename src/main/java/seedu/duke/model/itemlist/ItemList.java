@@ -54,14 +54,6 @@ public abstract class ItemList<T extends Item> {
                 + items.size() + Messages.MESSAGE_STATUS_LAST);
     }
 
-
-    /**
-     * Adds an item into the list.
-     *
-     * @param description the description of the item
-     */
-    public abstract void addTodo(String description);
-
     /**
      * Deletes an item from the list, identified by the index of the item in the list.
      *

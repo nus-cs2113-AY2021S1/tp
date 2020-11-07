@@ -2,12 +2,13 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.parser.Parser;
 import seedu.duke.model.ListType;
+import seedu.duke.parser.Parser;
 
 import java.util.HashMap;
 
 public class CommandCreator {
+
     /**
      * Creates and returns an AddCommand with given arguments.
      *
@@ -36,12 +37,43 @@ public class CommandCreator {
         }
     }
 
+    /**
+     * Creates and returns an AddRecurringCommand with given arguments.
+     *
+     * @param description description of the task
+     * @param argumentsMap Hashmap containing compulsory and optional arguments
+     * @return AddRecurringCommand with given arguments.
+     * @throws DukeException When description is empty.
+     */
     public static Command createAddRecurringCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
         if (description.equals("")) {
             throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
         }
         return new AddRecurringCommand(description, argumentsMap);
+    }
+    
+    public static Command createSpendCommand(String description, HashMap<String, String> argumentsMap)
+            throws DukeException {
+        if (description.equals("")) {
+            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
+        }
+        if (argumentsMap.containsKey("v")) {
+            if (argumentsMap.get("v").equals("")) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_VALUE);
+            }
+        }
+        if (argumentsMap.containsKey("currency")) {
+            if (argumentsMap.get("currency").equals("")) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_CURRENCY);
+            }
+        }
+        if (argumentsMap.containsKey("date")) {
+            if (argumentsMap.get("date").equals("")) {
+                throw new DukeException(Messages.EXCEPTION_EMPTY_DATE);
+            }
+        }
+        return new SpendCommand(description, argumentsMap);
     }
 
     /**

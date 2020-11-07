@@ -1,25 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.DukeException;
-import seedu.duke.commands.AddCommand;
-import seedu.duke.commands.AddRecurringCommand;
-import seedu.duke.commands.BorrowCommand;
-import seedu.duke.commands.ByeCommand;
-import seedu.duke.commands.CalendarCommand;
-import seedu.duke.commands.CategoryCommand;
-import seedu.duke.commands.ClearCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.CommandCreator;
-import seedu.duke.commands.DateCommand;
-import seedu.duke.commands.DeductCommand;
-import seedu.duke.commands.DeleteCommand;
-import seedu.duke.commands.DoneCommand;
-import seedu.duke.commands.FindCommand;
-import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.ListCommand;
-import seedu.duke.commands.MakeFolderCommand;
-import seedu.duke.commands.ReturnCommand;
-import seedu.duke.commands.SetCommand;
+import seedu.duke.commands.*;
 import seedu.duke.common.Messages;
 
 import java.time.DayOfWeek;
@@ -56,6 +38,9 @@ public class Parser {
         case AddRecurringCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddRecurringCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddRecurringCommand(description, argumentsMap);
+        case SpendCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, SpendCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createSpendCommand(description, argumentsMap);
         case SetCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createSetCommand(fullCommand, argumentsMap);

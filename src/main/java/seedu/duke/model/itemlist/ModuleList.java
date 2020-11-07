@@ -22,15 +22,6 @@ public class ModuleList extends ItemList<Module> {
     }
 
     /**
-     * Adds an item into the list.
-     *
-     * @param description the description of the item
-     */
-    @Override
-    public void addTodo(String description) {
-    }
-
-    /**
      * Lists all the modules in the module list.
      */
     @Override

@@ -18,20 +18,25 @@ public class Messages {
     public static final String MESSAGE_ADDBOOK = "Got it. I've added this book: ";
     public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
     public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
+    public static final String MESSAGE_ADD_EXPENSE = "Got it. I've added this expense item:\n       ";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_STATUS_LAST = " items in the list.";
     public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_LINK_STATUS_LAST = " links in the list.";
+    public static final String MESSAGE_EXPENSE_STATUS_LAST = " expense items in the list.";
 
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the books in your list:\n";
+    public static final String MESSAGE_EXPENSE_LIST = "Here are the expense items in your list:\n";
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the tasks of this priority in your list:";
     public static final String MESSAGE_LIST_WITH_CATEGORY = "Here are the tasks of this category in your list:";
     public static final String MESSAGE_EMPTY_TASK_LIST = "There are no tasks in your list. "
             + "Your task list is empty.";
     public static final String MESSAGE_EMPTY_BOOK_LIST = "There are no books in your list. "
             + "Your book list is empty.";
+    public static final String MESSAGE_EMPTY_EXPENSE_LIST = "There are no expense items in your list. "
+            + "Your expense list is empty.";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "There are no tasks of this priority in your list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "There are no tasks of this category in your list. ";
     public static final String MESSAGE_LINK_LIST = "Here are the links in your list:";
@@ -58,6 +63,10 @@ public class Messages {
     public static final String MESSAGE_FIND = "Here are the matching tasks in your list:";
     public static final String MESSAGE_NOT_FOUND = "There are no matching tasks in your list.";
 
+    public static final String MESSAGE_EXPENSE_DAY = "Your total expense for today is:";
+    public static final String MESSAGE_EXPENSE_WEEK = "Your total expense for this week is:";
+    public static final String MESSAGE_EXPENSE_MONTH = "Your total expense for this month is:";
+    public static final String MESSAGE_EXPENSE_YEAR = "Your total expense for this year is:";
     public static final String EXCEPTION_INVALID_COMMAND = ":( OOPS!!! I'm sorry, but I don't know what that means. "
             + "Please enter valid commands :-(";
     public static final String EXCEPTION_EMPTY_SPACE = ";( OOPS!! Detected an empty spacing. "
@@ -72,6 +81,7 @@ public class Messages {
     public static final String EXCEPTION_NEGATIVE_DAY_COUNT = ":( OOPS!!! Your number of days must be positive!";
     public static final String EXCEPTION_INVALID_DAY_COUNT = ":( OOPS!!! Your number of days is an invalid integer!";
     public static final String EXCEPTION_RECURRING_ARGUMENTS = ":( OOPS!!! You need the s/, e/ and day/ arguments!";
+    public static final String EXCEPTION_SPEND_ARGUMENTS = ":( OOPS!!! You need the v/ argument!";
     public static final String EXCEPTION_EMPTY_CATEGORY_BODY = ":( OOPS!!! The body of a category command cannot be "
             + "empty.";
     public static final String EXCEPTION_INVALID_DATE = ":( OOPS!!! The format of your date should be dd-MM-yyyy.";
@@ -80,16 +90,21 @@ public class Messages {
             + "     Example: mon, tue, wed, thu, fri, sat, sun";
     public static final String EXCEPTION_EMPTY_PRIORITY = ":( OOPS!!! The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = ":( OOPS!!! The category cannot be empty.";
-    public static final String EXCEPTION_EMPTY_DEADLINE = ":( OOPS!!! The deadline of a task cannot be empty.";
+    public static final String EXCEPTION_EMPTY_VALUE = ":( OOPS!!! The value of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_CURRENCY = ":( OOPS!!! The currency of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_DATE = ":( OOPS!!! The date of an expense item cannot be empty.";
     public static final String EXCEPTION_INVALID_INDEX = "Please input a valid task index.";
     public static final String EXCEPTION_INVALID_LINK_INDEX = "Please input a valid link index.";
-    public static final String EXCEPTION_INVALID_PRIORITY = "Invalid priority number.";
+    public static final String EXCEPTION_INVALID_PRIORITY = "Please input a valid priority number.";
+    public static final String EXCEPTION_INVALID_VALUE = "Please input a valid value.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
     public static final String EXCEPTION_WRONG_DATE_FORMAT = "Please input the date string in the format "
             + "\"yyyy-MM-dd\"";
     public static final String EXCEPTION_SAVE_FILE = ":( OOPS!!! Cannot save to file.";
+    public static final String EXCEPTION_EXPENSE_DATERANGE = "Please input a valid date range (one of \"DAY\", \"WEEK\","
+            + "\"MONTH\", \"YEAR\").";
     public static final String MESSAGE_NEW_TASK_FILE = "I have created a new tasks.txt file for you. :) "
             + "Type some commands and see it.";
     public static final String MESSAGE_NEW_BOOK_FILE = "I have created a new books.txt file for you. :) "
