@@ -29,7 +29,7 @@ e.g. For `name YOUR_NAME_OR_NICKNAME`, `name Jack` would be a valid command.
 e.g. For `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]`, `editinfo a/31` and `editinfo h/173 o/87` are valid commands but `editinfo
 ` is not.
  
-* For commands with multiple parameters, the parameters can be in any order **only if there is more than one parameter labelled with parameter tags** like `n/`, `a/`, etc. Otherwise, they **must be entered in the sequence as shown** on this guide, the [Help Command](#to-view-a-list-of-valid-commands-help) or the [Summary Command](#command-summary).<br/>
+* For commands with multiple parameters, the parameters can be in any order **only if there is more than one parameter labelled with parameter tags** like `n/`, `a/`, etc. Otherwise, they **must be entered in  the sequence as shown** in this guide, the [Help Command](#to-view-a-list-of-valid-commands-help) or the [Summary Command](#command-summary).<br/>
 e.g. For `calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]`,`calculate fat 2020-07-03T23:59 2020-09-03T23:59` is valid but `calculate 2020-07-03T23:59 fat 2020-09-03T23:59` is not.<br/>
 e.g. For `add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]`, `add n/bao x/1 p/5 k/157 f/5 c/23 2020-09-03T23:59` is valid but `add n/bao x/1 p/5 2020-09-03T23:59 k/157 f/5 c/23` is not as the time needs to be entered as the last parameter. 
 
