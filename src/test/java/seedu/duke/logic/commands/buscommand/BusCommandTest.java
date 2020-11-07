@@ -44,14 +44,14 @@ public class BusCommandTest {
     void executeCommand_inputValidStopRandomCaps_success() throws CustomException {
         String input = "KeNt RiDge";
         BusCommand command = new BusCommand(input);
-        assertDoesNotThrow(()->command.executeCommand());
+        assertDoesNotThrow(command::executeCommand);
     }
 
     @Test
     void executeCommand_inputValidStopExactCaps_success() throws CustomException {
         String input = "University Town";
         BusCommand command = new BusCommand(input);
-        assertDoesNotThrow(()->command.executeCommand());
+        assertDoesNotThrow(command::executeCommand);
     }
 
 }

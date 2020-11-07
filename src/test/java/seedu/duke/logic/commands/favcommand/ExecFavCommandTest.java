@@ -84,6 +84,6 @@ public class ExecFavCommandTest {
     void executeCommand_inputValidIndex_success() throws CustomException {
         String input = "4";
         ExecFavCommand command = new ExecFavCommand(input);
-        assertDoesNotThrow(()->command.executeCommand());
+        assertDoesNotThrow(command::executeCommand);
     }
 }
