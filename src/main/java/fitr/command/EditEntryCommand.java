@@ -22,6 +22,10 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static fitr.common.Messages.ERROR_FORMAT_MESSAGE;
+import static fitr.common.Messages.FORMAT_EDIT_EXERCISE;
+import static fitr.common.Messages.FORMAT_EDIT_FOOD;
+import static fitr.common.Messages.FORMAT_EDIT_GOAL;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
 import static fitr.common.Messages.SYMBOL_NO;
@@ -87,7 +91,8 @@ public class EditEntryCommand extends Command {
         Matcher matcher = EXERCISE_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
-            Ui.printFormatError(arguments);
+            Ui.printCustomError(ERROR_FORMAT_MESSAGE);
+            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_EXERCISE);
             return;
         }
 
@@ -130,7 +135,8 @@ public class EditEntryCommand extends Command {
         Matcher matcher = FOOD_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
-            Ui.printFormatError(arguments);
+            Ui.printCustomError(ERROR_FORMAT_MESSAGE);
+            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_FOOD);
             return;
         }
 
@@ -181,7 +187,8 @@ public class EditEntryCommand extends Command {
         Matcher matcher = GOAL_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
-            Ui.printFormatError(arguments);
+            Ui.printCustomError(ERROR_FORMAT_MESSAGE);
+            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_GOAL);
             return;
         }
 
@@ -197,7 +204,7 @@ public class EditEntryCommand extends Command {
         }
 
         String goalDescription = matcher.group("goalDescription").trim();
-        String goalType = matcher.group("goalType").trim();
+        String goalType = matcher.group("goalType").trim().toLowerCase();
 
         if (!(goalType.equals(Commands.COMMAND_EXERCISE) || goalType.equals(Commands.COMMAND_FOOD))) {
             Ui.printCustomError("Invalid goal type!");
