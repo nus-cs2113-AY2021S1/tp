@@ -37,6 +37,13 @@ The features can be found in [Section 4: “Features”](#4-features-br).
 
 Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started now!
 <br><br>
+
+### 1.d. How to use this guide?
+Links like [this](#1c-what-will-this-guide-do) help you navigate to different parts of the document.
+Text that are in a `monospace font` represent either the user input or the program output.
+>  **[NOTE]**
+>  The notes section contains additional information that may be helpful to you if you encounter any issues.
+>
 ## 2. Quick Start
 
 Prerequisite: Ensure that you have Java 11 installed in your Computer.
@@ -371,7 +378,7 @@ The `season` command updates the current season of an existing show in your watc
 >
 > * This command changes the current season that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
 
-
+If you would only like to change the current season:
  Format:
   `season <SHOWNAME> <SEASON>`
   
@@ -393,7 +400,11 @@ The `season` command updates the current season of an existing show in your watc
   
  &nbsp;
 
+If you would like to change both the current season and current episode:
 
+ Format:
+  `season <SHOWNAME> <SEASON> <EPISODE>`
+  
 ### 4.l. `episode` - Changes the episode of the show you are currently watching
 
 The `episode` command updates the current episode of an existing show in your watchlist.
