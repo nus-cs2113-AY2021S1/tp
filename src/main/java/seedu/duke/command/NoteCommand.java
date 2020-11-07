@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.InvalidIndexException;
-import seedu.duke.exception.InvalidListException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
@@ -17,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * Command to make notes.
@@ -25,7 +24,7 @@ import java.util.Scanner;
 public class NoteCommand extends Command {
     private int index;
     private String event;
-    private Scanner sc;
+    private static Logger logger = EventLogger.getEventLogger();
 
     /**
      * Constructor for note.
@@ -59,10 +58,10 @@ public class NoteCommand extends Command {
             ArrayList<String> updatedNotes = updatingNotesWithTimestamp(existingNotes, additionalNotes);
             eventRequested.setNotes(updatedNotes);
             ui.printNoteMessage(eventRequested, updatedNotes);
-        } else {
-            throw new InvalidIndexException("Error, no such index is available!");
         }
+
         storage.saveFile(storage.getFileLocation(list.getName()), data, list.getName());
+        logger.fine("Note for event was created/updated successfully.");
     }
 
     /**
@@ -79,9 +78,12 @@ public class NoteCommand extends Command {
                 index = parsingNumber(commandSplit[1].trim());
                 event = commandSplit[0].trim();
             } catch (NumberFormatException e) {
+                logger.warning("WrongNumberFormatException encountered -- Note index is not a number");
                 throw new WrongNumberFormatException("Index must be numerical format!");
             }
         } else {
+            logger.warning("WrongNumberOfArgumentsException encountered "
+                    + "-- Note have incorrect number of arguments");
             throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Note!");
         }
     }
