@@ -1,6 +1,6 @@
 package seedu.duke.calendar;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.calendar.event.Event;
 import seedu.duke.calendar.task.Task;
 
@@ -78,10 +78,15 @@ public class CalendarList {
      *
      * @param taskNumber   task index
      * @param calendarList calendar list of the task.
-     *
      * @return calendar index of the task
      */
-    public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList) {
+    public static int convertTaskNumberToCalendarNumber(int taskNumber, CalendarList calendarList)
+            throws CommandException {
+
+        if (taskNumber > calendarList.getTotalTasks() || taskNumber <= 0) {
+            throw new CommandException("invalid task action");
+        }
+
         int taskCount = 0;
         int itemCount = 0;
         for (CalendarItem s : calendarList.getCalendarList()) {
@@ -103,10 +108,15 @@ public class CalendarList {
      *
      * @param eventNumber  event index
      * @param calendarList calendar list of the task.
-     *
      * @return calendar index of the event
      */
-    public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList) {
+    public static int convertEventNumberToCalendarNumber(int eventNumber, CalendarList calendarList)
+            throws CommandException {
+
+        if (eventNumber > calendarList.getTotalEvents() || eventNumber <= 0) {
+            throw new CommandException("invalid event action");
+        }
+
         int eventCount = 0;
         int itemCount = 0;
         for (CalendarItem s : calendarList.getCalendarList()) {
@@ -128,36 +138,75 @@ public class CalendarList {
      *
      * @param calendarNumberCompleted of the task that is completed.
      */
-    public void markTaskAsDone(int calendarNumberCompleted) throws DukeException {
+    public void markTaskAsDone(int calendarNumberCompleted) throws CommandException {
 
         if (calendarList.get(calendarNumberCompleted) instanceof Task) {
             ((Task) calendarList.get(calendarNumberCompleted)).markAsDone();
         } else {
-            throw new DukeException("invalid done number");
+            throw new CommandException("invalid done number");
         }
 
     }
 
-    public void swapTasks(int i, int j) {
-        Collections.swap(calendarList, i, j);
+    /**
+     * Mark the task as important.
+     *
+     * @param calendarNumber the index of the task in the calendar list.
+     */
+    public void markTaskAsImportant(int calendarNumber) throws CommandException {
+        if (calendarList.get(calendarNumber) instanceof Task) {
+            ((Task) calendarList.get(calendarNumber)).markAsImportant();
+        } else {
+            throw new CommandException("prioritize");
+        }
     }
 
+    /**
+     * Swaps two tasks with index i and index j.
+     *
+     * @param i the index of the first task to be swapped.
+     * @param j the index of the second task to be swapped.
+     */
+    public void swapTasks(int i, int j) {
+        if (calendarList.get(i) != null && calendarList.get(j) != null) {
+            Collections.swap(calendarList, i, j);
+        }
+    }
+
+    /**
+     * Returns the total number of items in calendarList.
+     */
     public int getTotalItems() {
         return totalItems;
     }
 
+    /**
+     * Returns the total number of tasks in calendarList.
+     */
     public int getTotalTasks() {
         return totalTasks;
     }
 
+    /**
+     * Returns the total number of events in the calendarList.
+     */
     public int getTotalEvents() {
         return totalEvents;
     }
 
+    /**
+     * Returns the whole calendarList.
+     */
     public ArrayList<CalendarItem> getCalendarList() {
         return calendarList;
     }
 
+    /**
+     * Returns the specific item with index i.
+     *
+     * @param i the index of the item wanted.
+     * @return the item with index i.
+     */
     public CalendarItem getItem(int i) {
         return calendarList.get(i);
     }

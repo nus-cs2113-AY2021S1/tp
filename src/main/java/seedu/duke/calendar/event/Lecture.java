@@ -1,8 +1,10 @@
 package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /**
  * Represents a lecture event.
@@ -26,18 +28,20 @@ public class Lecture extends SchoolEvent {
     public Lecture(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LEC";
-        isOver = false;
+        this.isOver = getIsOver();
     }
 
     /**
-     * Check whether the lecture is over.
+     * Checks whether the lecture is over.
      *
      * @return whether the tutorial is over
      */
     public boolean getIsOver() {
-        if (date.isBefore(LocalDate.now())) {
-            return true;
-        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+        LocalDateTime dateAndTime = LocalDateTime.of(date, time);
+        ZonedDateTime due = ZonedDateTime.of(dateAndTime, ZoneId.of("+08:00"));
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("+08:00"));
+
+        if (due.isBefore(now)) {
             return true;
         } else {
             return false;
@@ -45,7 +49,7 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Show whether the lab is over.
+     * Shows whether the lab is over.
      *
      * @return whether the lab is over
      */
@@ -54,32 +58,54 @@ public class Lecture extends SchoolEvent {
     }
 
     /**
-     * Describe the lecture event.
+     * Describes the lecture event.
      *
      * @Return a string to describe the lecture event.
      */
     @Override
     public String toString() {
+        return "[LEC]" + "[" + getIcon() + "] " + super.toString();
+    }
 
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
-                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+
+    /**
+     * Returns the description of the lecture.
+     */
+    @Override
+    public String getDescription() {
+        return "[LEC]" + "[" + getIcon() + "] " + super.getDescription();
     }
 
     /**
-     * Save the lecture event into files.
+     * Returns the description of the recurring lecture.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[LEC]" + "[R] " + super.getRecurringDescription();
+    }
+
+    /**
+     * Saves the lecture event into files.
      *
      * @return string contains the information about the lecture event.
      */
     @Override
     public String printIntoFile() {
-        return LECTURE_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = LECTURE_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + (SEPARATOR + getAdditionalInformationElement(i));
+            }
+        }
+        return writeToFile;
     }
 
     /**
-     * Get the date of the lecture.
+     * Gets the date of the lecture.
      *
      * @return date of the lecture
      */
@@ -88,12 +114,9 @@ public class Lecture extends SchoolEvent {
         return date;
     }
 
-    @Override
-    public String getDescription() {
-        return "[LEC]" + "[" + getIcon() + "] " + moduleCode + " "
-                + " (" + venue + ")";
-    }
-
+    /**
+     * Returns the time of the lecture.
+     */
     @Override
     public LocalTime getTime() {
         return time;

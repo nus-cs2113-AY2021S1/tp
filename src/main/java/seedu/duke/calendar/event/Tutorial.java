@@ -1,8 +1,10 @@
 package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /**
  * Represents a tutorial event.
@@ -26,17 +28,20 @@ public class Tutorial extends SchoolEvent {
     public Tutorial(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "TUT";
+        this.isOver = getIsOver();
     }
 
     /**
-     * Check whether the tutorial is over.
+     * Checks whether the tutorial is over.
      *
      * @return whether the tutorial is over
      */
     public boolean getIsOver() {
-        if (date.isBefore(LocalDate.now())) {
-            return true;
-        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+        LocalDateTime dateAndTime = LocalDateTime.of(date, time);
+        ZonedDateTime due = ZonedDateTime.of(dateAndTime, ZoneId.of("+08:00"));
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("+08:00"));
+
+        if (due.isBefore(now)) {
             return true;
         } else {
             return false;
@@ -44,7 +49,7 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Show whether the tutorial is over.
+     * Shows whether the tutorial is over.
      *
      * @return whether the tutorial is over
      */
@@ -53,27 +58,51 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Describe the tutorial event.
+     * Describes the tutorial event.
      *
      * @Return a string to describe the tutorial event.
      */
     @Override
     public String toString() {
-        return "[TUT]" + "[" + getIcon() + "] " + moduleCode + " "
-                + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+        return "[TUT]" + "[" + getIcon() + "] " + super.toString();
     }
 
     /**
-     * Save the tutorial event into files.
+     * Gets the description of the tutorial.
+     *
+     * @return the description of the tutorial.
+     */
+    @Override
+    public String getDescription() {
+        return "[TUT]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
+    /**
+     * Returns the description of the recurring tutorial.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[TUT]" + "[R] " + super.getRecurringDescription();
+    }
+
+    /**
+     * Saves the tutorial event into files.
      *
      * @return string contains the information about the tutorial event.
      */
     @Override
     public String printIntoFile() {
-        return TUTORIAL_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = TUTORIAL_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**
@@ -85,23 +114,18 @@ public class Tutorial extends SchoolEvent {
     }
 
     /**
-     * Get the date of the tutorial.
+     * Gets the date of the tutorial.
      *
-     * @return date of the tutorial
+     * @return date of the tutorial.
      */
     @Override
     public LocalDate getDate() {
         return date;
     }
 
-    @Override
-    public String getDescription() {
-        return "[TUT]" +  "[" + getIcon() + "] " + moduleCode + " "
-                + " (" + venue + ")";
-    }
 
     /**
-     * Get the time of the tutorial.
+     * Gets the time of the tutorial.
      *
      * @return time of the tutorial
      */

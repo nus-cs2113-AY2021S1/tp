@@ -1,8 +1,10 @@
 package seedu.duke.calendar.event;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /**
  * Represents a lab event.
@@ -26,17 +28,20 @@ public class Lab extends SchoolEvent {
     public Lab(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
         eventType = "LAB";
+        this.isOver = getIsOver();
     }
 
     /**
-     * Check whether the lab is over.
+     * Checks whether the lab is over.
      *
      * @return whether the lab is over
      */
     public boolean getIsOver() {
-        if (date.isBefore(LocalDate.now())) {
-            return true;
-        } else if (date.isEqual(LocalDate.now()) && time.isBefore(LocalTime.now())) {
+        LocalDateTime dateAndTime = LocalDateTime.of(date, time);
+        ZonedDateTime due = ZonedDateTime.of(dateAndTime, ZoneId.of("+08:00"));
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("+08:00"));
+
+        if (due.isBefore(now)) {
             return true;
         } else {
             return false;
@@ -44,7 +49,7 @@ public class Lab extends SchoolEvent {
     }
 
     /**
-     * Show whether the lab is over.
+     * Shows whether the lab is over.
      *
      * @return whether the lab is over
      */
@@ -53,27 +58,49 @@ public class Lab extends SchoolEvent {
     }
 
     /**
-     * Describe the lab event.
+     * Describes the lab event.
      *
      * @return a string containing the information about the lab event
      */
     @Override
     public String toString() {
-        return "[LAB]" + "[" + getIcon() + "] "
-                + moduleCode + " " + date.format(DateTimeFormatter.ofPattern("dd-MM-yy E"))
-                + " " + time.format(DateTimeFormatter.ofPattern("h:mma"))
-                + " (" + venue + ")";
+        return "[LAB]" + "[" + getIcon() + "] " + super.toString();
     }
 
     /**
-     * Save the lab event into files.
+     * Returns the description of the lab.
+     */
+    @Override
+    public String getDescription() {
+        return "[LAB]" + "[" + getIcon() + "] " + super.getDescription();
+    }
+
+    /**
+     * Returns the description of the recurring lab.
+     */
+    @Override
+    public String getRecurringDescription() {
+        return "[LAB]" + "[R] " + super.getRecurringDescription();
+    }
+
+    /**
+     * Saves the lab event into files.
      *
      * @return string contains the information about the lab event.
      */
     @Override
     public String printIntoFile() {
-        return LAB_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
-                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = LAB_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR + moduleCode
+                + SEPARATOR + this.date + SEPARATOR + this.time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**
@@ -92,13 +119,6 @@ public class Lab extends SchoolEvent {
     @Override
     public LocalDate getDate() {
         return date;
-    }
-
-    @Override
-    public String getDescription() {
-        return "[LAB]" + "[" + getIcon() + "] "
-                + moduleCode + " "
-                + " (" + venue + ")";
     }
 
     /**

@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.DukeException;
+import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
@@ -20,44 +20,67 @@ public class DeleteCommand extends Command {
      *
      * @param calendarList the calendar list to delete the task/event from.
      * @param storage      the storage to be saved to.
-     * @throws DukeException if the delete command input is invalid.
+     * @throws CommandException if the delete command input is invalid.
      */
     @Override
-    public void execute(CalendarList calendarList, Storage storage) throws DukeException {
+    public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         int numberDelete = 0;
         boolean isTask = false;
-        int calendarNumber;
 
         try {
-            if (userInput.contains("-t")) {
+            if (userInput.startsWith("-t")) {
                 numberDelete = Integer.parseInt(userInput.replace("-t", "").trim());
                 isTask = true;
-            } else if (userInput.contains("-e")) {
+            } else if (userInput.startsWith("-e")) {
                 numberDelete = Integer.parseInt(userInput.replace("-e", "").trim());
+            } else {
+                throw new Exception("e");
             }
         } catch (Exception e) {
-            throw new DukeException("delete");
+            throw new CommandException("delete");
         }
 
         if (isTask) {
-            if (numberDelete > calendarList.getTotalTasks() || numberDelete <= 0) {
-                throw new DukeException("invalid task action");
-            }
-            calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
-            Ui.printDeleteMessage(calendarNumber, calendarList);
-            calendarList.deleteTask(calendarNumber);
-            Ui.printTotalTaskNumber(calendarList);
+            deleteTask(calendarList, numberDelete);
 
         } else {
-            if (numberDelete > calendarList.getTotalEvents() || numberDelete <= 0) {
-                throw new DukeException("invalid event action");
-            }
-            calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
-            Ui.printDeleteMessage(calendarNumber, calendarList);
-            calendarList.deleteEvent(numberDelete);
+            deleteEvent(calendarList, numberDelete);
         }
 
         storage.writeToFile(calendarList);
+
+    }
+
+    /**
+     * Deletes the event of event number specified by the user.
+     *
+     * @param calendarList the calendar list to delete the event from.
+     * @param numberDelete the delete event number specified by the user.
+     * @throws CommandException if the delete command input is invalid.
+     */
+    private void deleteEvent(CalendarList calendarList, int numberDelete) throws CommandException {
+        int calendarNumber;
+        calendarNumber = CalendarList.convertEventNumberToCalendarNumber(numberDelete, calendarList);
+        assert calendarNumber >= 0;
+        Ui.printDeleteMessage(calendarNumber, calendarList);
+        calendarList.deleteEvent(calendarNumber);
+    }
+
+    /**
+     * Deletes the task of task number specified by the user.
+     *
+     * @param calendarList the calendar list to delete the task from.
+     * @param numberDelete the delete task number specified by the user.
+     * @throws CommandException if the delete command input is invalid.
+     */
+    private void deleteTask(CalendarList calendarList, int numberDelete) throws CommandException {
+        int calendarNumber;
+        calendarNumber = CalendarList.convertTaskNumberToCalendarNumber(numberDelete, calendarList);
+        assert calendarNumber >= 0;
+
+        Ui.printDeleteMessage(calendarNumber, calendarList);
+        calendarList.deleteTask(calendarNumber);
+        Ui.printTotalTaskNumber(calendarList);
 
     }
 }
