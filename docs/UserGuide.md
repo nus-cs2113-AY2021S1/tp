@@ -112,7 +112,7 @@ Format: `delete [number]`
 Example of usage:
 'delete 2'
 
-![image](
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/ddlete.png)
 
 ### 3.4 finde the specific order: `find [dish name]`
 find the specific dish based on the user input dish name
@@ -123,7 +123,7 @@ Format: `find [dish name]`
 Example of usage:
 'find Pork Chop'
 
-![image](
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/findd.png)
 
 ### 3.5 list all the orders: `list`
 check all the orders made by this user
