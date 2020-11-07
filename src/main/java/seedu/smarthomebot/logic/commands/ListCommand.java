@@ -1,7 +1,6 @@
 package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.data.appliance.ApplianceList;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyApplianceListException;
 import seedu.smarthomebot.logic.commands.exceptions.EmptyLocationListException;
 import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
@@ -16,7 +15,8 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
 
-//@@author Ang_Cheng_Jun
+//@@author Ang-Cheng-Jun
+
 /**
  * Represent the command to list LocationList or ApplianceList to the user.
  */
@@ -45,7 +45,7 @@ public class ListCommand extends Command {
      * @param filteredLocation input location filter for ListAppliance.
      */
     public ListCommand(String argument, String filteredLocation) {
-        assert argument.isEmpty() != true : "ListCommand must not accept empty argument";
+        assert !argument.isEmpty() : "ListCommand must not accept empty argument";
         this.argument = argument;
         this.filteredLocation = filteredLocation;
     }
@@ -94,6 +94,7 @@ public class ListCommand extends Command {
         } else {
             outputResult = listApplianceByLocation(outputApplianceList);
         }
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
@@ -104,6 +105,7 @@ public class ListCommand extends Command {
             throw new EmptyApplianceListException();
         }
         String outputResult = displayOutput(MESSAGE_LIST_APPLIANCES, outputApplianceList);
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
@@ -123,6 +125,7 @@ public class ListCommand extends Command {
         }
         String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
         String outputResult = displayOutput(header, filterApplianceList);
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
@@ -144,6 +147,7 @@ public class ListCommand extends Command {
             outputResult = outputResult.concat(System.lineSeparator() + index + ": " + location);
             index++;
         }
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
@@ -170,6 +174,7 @@ public class ListCommand extends Command {
                     a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }

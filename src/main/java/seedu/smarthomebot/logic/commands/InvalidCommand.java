@@ -1,11 +1,8 @@
 package seedu.smarthomebot.logic.commands;
 
-
-//@@author Ang_Cheng_Jun
-
 import java.util.logging.Level;
 
-import static seedu.smarthomebot.commons.Messages.MESSAGE_LOCATION_NOT_EXIST;
+//@@author Ang-Cheng-Jun
 
 /**
  * Represent the command to print error notifications to user.

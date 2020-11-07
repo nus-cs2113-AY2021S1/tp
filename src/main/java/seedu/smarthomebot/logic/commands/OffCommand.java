@@ -10,7 +10,8 @@ import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 
-//@@author Ang_Cheng_Jun
+//@@author Ang-Cheng-Jun
+
 /**
  * Represent the Command to turn off Appliance(s).
  */
@@ -29,7 +30,7 @@ public class OffCommand extends Command {
      * @param argument Appliance or Location 's name to be off.
      */
     public OffCommand(String argument) {
-        assert argument.isEmpty() != true : "InvalidCommand must not accept empty arguments";
+        assert !argument.isEmpty() : "OffCommand must not accept empty argument";
         this.argument = argument;
     }
 
@@ -74,6 +75,7 @@ public class OffCommand extends Command {
         int toOffApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, true);
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, "Appliance Off with output message: " + outputResult);
         return new CommandResult(outputResult);
     }
@@ -84,6 +86,7 @@ public class OffCommand extends Command {
     private CommandResult offByLocation(ArrayList<Appliance> toOffAppliance) {
         offApplianceByLoop(toOffAppliance);
         String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, "Location Off with output message: " + outputResult);
         return new CommandResult(outputResult);
     }
@@ -116,6 +119,7 @@ public class OffCommand extends Command {
                 outputResult = toOffAppliance.getName() + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
             }
         }
+        assert !outputResult.isEmpty() : "outputResult must contains String";
         return outputResult;
     }
 }
