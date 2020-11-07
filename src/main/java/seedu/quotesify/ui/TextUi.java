@@ -354,7 +354,8 @@ public class TextUi {
         }
     }
 
-    //@author
+    //@@author
+    //@@author yuen-sihao
     public void printAddRating(int ratingScore, String titleOfBookToRate, String authorOfBookToRate) {
         System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, authorOfBookToRate, ratingScore);
     }
@@ -393,6 +394,7 @@ public class TextUi {
             }
         }
     }
+    //@@author
 
     //@@author lunzard
     public void printAddToDo(ToDo toDo) {
@@ -524,7 +526,7 @@ public class TextUi {
         System.out.println(System.lineSeparator() + "~ Your friends from Quotesify");
     }
 
-    //@author dozenmatter
+    //@@author dozenmatter
 
     /**
      * Prints a list of add commands.

@@ -4,6 +4,8 @@ import org.json.simple.JSONObject;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.parser.JsonSerializer;
 
+//@@author yuen-sihao
+
 /**
  * Represents a rating for a book.
  */

@@ -36,7 +36,7 @@
     * [Edit an existing quote reflection](#4211-editing-reflection-of-a-quote-edit--qr)
     * [Delete a quote reflection](#4212-deleting-reflection-of-a-quote-delete--qr)
   * [Progress Tracker](#43-progress-tracker)
-    * [Add bookmarks](#431-add-bookmarks-bookmark--b-pg)
+    * [Add bookmarks](#431-add-bookmarks-bookmark--b)
     * [List bookmarks](#432-list-bookmarks-list--bm)
     * [Delete bookmarks](#433-delete-bookmarks-delete--bm)
     * [Edit bookmarks](#434-edit-bookmarks-bookmark--b)
@@ -149,6 +149,7 @@ update the change across all books and quotes.
 If you are someone who likes being neat, organised and efficient, this feature is for you!
 <!-- @@author -->
 
+<!-- @@author yuen-sihao -->
 ### 3.5 Rating System for books
 
 The rating system in Quotesify allows you to rate your books from 1 to 5 star. With this system, you will not forget
@@ -158,6 +159,7 @@ in that rating anymore. Ratings can also be listed according to their rating sco
 as well as be searched based on keywords in the title.
 
 With Quotesify's rating system, remembering the books you love will never be an issue for you!
+<!-- @@author -->
 
 ---
 
@@ -977,8 +979,10 @@ Here is a list of categories with the keyword "man":
 -----------------------------------------------------
 ```
 <!-- @@author -->
+
 ---
 
+<!-- @@author yuen-sihao -->
 ### 4.5 Rating System for books
 
 Are you having your own opinions about the books you read? You might want to record down your favorites,
@@ -1087,6 +1091,7 @@ Here are the ratings you may be looking for!
 [Harry Potter] by JK Rowling: 4 star
 -----------------------------------------------
 ```
+<!-- @@author -->
 
 ---
 
