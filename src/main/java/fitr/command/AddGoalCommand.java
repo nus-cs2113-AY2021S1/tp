@@ -51,7 +51,6 @@ public class AddGoalCommand extends Command {
                     command = command.split(SPACE_STRING, 2)[1].trim();
                     newGoal = formatGoal(getCurrentDate(), SYMBOL_FOOD, command);
                     listManager.addGoal(newGoal);
-                    Ui.printMessageInBlue("|" + newGoal.getDescription() + "|");
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + CLOSE_SQUARE_BRACKET
                             + SPACE_STRING + newGoal.getDescription());
                     if (newGoal.getDescription().equals(command)) {
