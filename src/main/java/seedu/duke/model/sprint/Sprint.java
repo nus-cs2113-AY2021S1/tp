@@ -1,6 +1,7 @@
 package seedu.duke.model.sprint;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
+import seedu.duke.Duke;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.task.Task;
 import seedu.duke.storage.JsonableObject;
@@ -131,7 +132,7 @@ public class Sprint implements JsonableObject {
         sprintInString.append(String.format("[Goal: %s]%n", this.goal));
         sprintInString.append(String.format("[Period: %s - %s]%n", this.startDate, this.endDate));
         if (isCurrentSprint) {
-            switch (this.endDate.compareTo(LocalDate.now())) {
+            switch (this.endDate.compareTo(LocalDate.now(Duke.getClock()))) {
             case 0:
                 sprintInString.append(String.format("[Remaining: Last day]%n"));
                 break;
@@ -139,7 +140,7 @@ public class Sprint implements JsonableObject {
                 sprintInString.append(String.format("[Remaining: 1 day]%n"));
                 break;
             default:
-                sprintInString.append(String.format("[Remaining: %s days]%n", this.endDate.compareTo(LocalDate.now())));
+                sprintInString.append(String.format("[Remaining: %s days]%n", this.endDate.compareTo(LocalDate.now(Duke.getClock()))));
             }
         }
         if (taskList.size() == 0) {

@@ -9,6 +9,9 @@ import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static java.lang.System.exit;
 
@@ -17,6 +20,8 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
 
+    private static Clock clock = null;
+    
     private static final String dataFilename = "data.json";
 
     private static ParserManager parser = new ParserManager();
@@ -94,5 +99,16 @@ public class Duke {
                 }
             }
         }
+    }
+    
+    public static void setClock(Clock clock) {
+        Duke.clock = clock;
+    }
+    
+    public static Clock getClock() {
+        if (clock == null) {
+            return Clock.systemDefaultZone();
+        }
+        return clock;
     }
 }

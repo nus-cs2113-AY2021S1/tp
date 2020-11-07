@@ -2,6 +2,7 @@ package seedu.duke.model.sprint;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
+import seedu.duke.Duke;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.model.project.Project;
 import seedu.duke.storage.JsonableObject;
@@ -55,8 +56,8 @@ public class SprintManager implements JsonableObject {
     public boolean updateCurrentSprint() {
         for (int id = 1; id <= this.size(); id++) {
             Sprint current = this.getSprint(id);
-            if (DateTimeParser.diff(LocalDate.now(), current.getEndDate()) >= 0
-                    && DateTimeParser.diff(current.getStartDate(), LocalDate.now()) >= 0) {
+            if (DateTimeParser.diff(LocalDate.now(Duke.getClock()), current.getEndDate()) >= 0
+                    && DateTimeParser.diff(current.getStartDate(), LocalDate.now(Duke.getClock())) >= 0) {
                 this.setCurrentSprintIndex(id);
                 return true;
 
