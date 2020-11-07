@@ -7,15 +7,16 @@ DietBook is a desktop application, optimized for use via a **Command Line Interf
 {:toc} 
 
 ## Quick Start
-1. Ensure that you have Java 11 or above installed.
+1. Ensure that you have **Java 11** installed.
 1. Download the latest version of `dietbook.jar` from [here](https://github.com/AY2021S1-CS2113-T14-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your DietBook.
-1. Either double-click the jar file to start the application or navigate to the folder containing the jar file on command prompt and run the command `java -jar dietbook.jar`. 
-1. For first time users: <br/>
-A CLI, similar to the one shown below, should appear within a few seconds. Follow the instructions provided to setup DietBook or refer to [name](####Entering username: `name`) and [info](####Entering user information: `info`) for more detailed explanations.<br/>
+1. Navigate to the folder containing the jar file on command prompt and run the command `java -jar dietbook.jar`. 
+1. Enable full-screen for a better experience but rest assure that DietBook will still function normally even in non full-screen mode.
+1. For **first time users**: <br/>
+A CLI, similar to the one shown below, should appear within a few seconds. Follow the instructions provided to setup DietBook or refer to [name](#entering-username-name) and [info](#entering-user-information-info) for more detailed explanations.<br/>
 ![DietBook Welcome Message](images/DietBookWelcomeMessage.PNG)  
 1. Start using DietBook by typing any valid command and pressing Enter to execute it.
-1. Refer to the [Features](##Features) section below for more details of each command.
+1. Refer to the [Features](#features) section below for more details of each command or jump to [Command Summary](#command-summary) section for a list of valid commands.
 
 ## Features 
 
