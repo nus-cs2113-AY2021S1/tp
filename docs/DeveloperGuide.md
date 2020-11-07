@@ -124,6 +124,7 @@ Dishes that can be ordered by the user.
 ## 4. Implementation
 #### Feature: order
 The user types command “order” to make an order from a stall in a canteen. The order method will be activated and print open stalls through checkOpenCanteens method in Customer class in this manner:
+
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image1.png)
  
 User just type the corresponding index before the canteen to select canteen. Then the open stalls in this canteen will be printed through checkOpenStalls method in Customer class in this manner:
@@ -163,17 +164,33 @@ Figure . Sequence diagram for printOrder()
 The user enters the command: change/number/type to change the order type of one order in the order list. The main will enable the changeOrder() method. The Parser will make sense of the command and change the corresponding order’s order type. 
 e.g. change/1/Dine in: change order 1 to dine in
 
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/changeorder.png)
+
+Figure . Sequence diagram for changeOrder()
+
 #### Feature: check Canteen Operating Time
 The user enters the command: checkcanteen to check the operating time of an open canteen. The main will enable the checkCanteenOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
- 
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image1.png)
+
 User can type the number before the canteen name to check its operating time.
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopencanteen.png)
+
+Figure . Sequence diagram for checkCanteenOperatingTime()
 
 #### Feature: check Stall Operating Time
 The user enters the command: checkstall to check the operating time of an open stall. The main will enable the checkStallOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
  
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image1.png)
+
 User can type the number before the canteen name to display the stalls inside the canteen in this manner.
  
 User can type the number before the stall name to check its operating time.
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopenstall.png)
+
+Figure . Sequence diagram for checkStallOperatingTime()
 
 #### Feature: help
 The user enters the command: help to view all commands that are available. The main will enable the help() method. It prints all available commands.
