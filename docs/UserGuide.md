@@ -46,12 +46,12 @@ e.g. For `calculate NUTRIENT_TYPE`, `calculate all` is valid but `calculateall` 
 
 #### Entering username: `name`
 
-Stores the user's name into DietBook during the initial setup.
+Stores the user's name or nickname into DietBook during the initial setup.
 
-Format: `name YOUR_NAME`
+Format: `name YOUR_NAME_OR_NICKNAME`
 
 * The name given must not be empty.
-* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of the name can be done using the [editinfo](#Editing user information: `editinfo`) command.
+* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of the name can be done using the [editinfo](#editing-user-information-editinfo) command.
 
 Example of usage:
 
