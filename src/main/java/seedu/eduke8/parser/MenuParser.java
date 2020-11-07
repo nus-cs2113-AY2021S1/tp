@@ -67,10 +67,19 @@ public class MenuParser implements Parser {
     @Override
     public Command parseCommand(DisplayableList topicList, String userInput) {
         assert topicList != null;
-
-
         LOGGER.log(Level.INFO, "Begin parsing command.");
         String[] commandArr = userInput.trim().split(" ", 0);
+        
+        for (int i = 0; i < commandArr.length - 1; i++) {
+            if (commandArr[i].equals("") || (i > 0 && (commandArr[i].equals(commandArr[i - 1])))) {
+                int j = 1;
+                while (commandArr[i + j].equals("") && ((i + j) < commandArr.length - 1)) {
+                    j++;
+                }
+                commandArr[i] = commandArr[i + j];
+                commandArr[i + j] = "";
+            }
+        }
 
         Ui ui = new Ui();
         switch (commandArr[0]) {
@@ -92,7 +101,7 @@ public class MenuParser implements Parser {
             int userTimer = 0;
             try {
                 if (commandArr[1].contains(TIMER_INDICATOR)) {
-                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR))  {
+                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
                         numOfQuestions = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
