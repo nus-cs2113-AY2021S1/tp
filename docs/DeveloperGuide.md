@@ -94,6 +94,7 @@ The CanteenHelper consists of six classes:
 Figure 2. Main Logic Diagram
 
 Main logic of the whole app.
+Main method inside: main(String[] args)
 
 #### 3.2.2 UI class
 Mainly managed in MainPage, which contains several parts: showCommand, displayInfo, getInput. All of these should inherit from an abstract class UserInterface class. And this class can
@@ -102,21 +103,26 @@ Mainly managed in MainPage, which contains several parts: showCommand, displayIn
          2: Get open stalls
 2. Get user input (number) and use the Logic component to execute the corresponding user’s command
 3. Display the results of user and program interactions
+Main method inside: order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order); getCustomer(Scanner sc); getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes,Scanner sc, ArrayList<Order> Order); getDishes(Stall stallChoosed, Scanner sc); getYN(Scanner sc); getNumOfDishes(int count,Scanner sc); getStall(Customer customer, Canteen canteenChoosed, Scanner sc); getCanteen(List<Canteen> canteens, Customer customer, Scanner sc); greet(); bye(); help(); checkComment(List<Dish> dCs); checkCanteenOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); checkStallOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); changeOrder(Customer customer,String input,ArrayList<Order> Order); printOrder(String input,ArrayList<Order> Order); deleteOrder(String input,ArrayList<Order> Order); findDishinOrder(String input,ArrayList<Order> Order); 
 
 #### 3.2.3 Parser class
 Deals with making sense of the user's command and pass the command to certain functions.
+Main method inside: parseCustomer(String inputMessage)
 
 #### 3.2.4 Customer class
 Customer contains the list of open canteens and initializes Order objects.
+Main method inside: checkOpenStalls(Canteen canteen); checkOpenCanteens(List<Canteen> ListCanteen); checkDish(List<Dish> ListDish); checkWaitingTime(Stall stall); 
 
 #### 3.2.5 Order class
 Order contains the list of dishes that are ordered.
 
 #### 3.2.6 Canteen class
 Canteen contains the list of stalls.
+Main method inside: isOpen (int dayOfWeek, int time); 
 
 #### 3.2.7 Stall class
 Stall contains the list of dishes.
+Main method inside: isOpen (int dayOfWeek, int time); printDishes()
 
 #### 3.2.8 Dish class
 Dishes that can be ordered by the user.

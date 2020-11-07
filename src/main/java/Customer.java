@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ * a class represent a customer
+ */
 public class Customer {
 
     public String name;
@@ -20,13 +24,23 @@ public class Customer {
         return arriveTime;
     }
 
+    /**
+     * a method to get which day of week the customer comes
+     * @return int
+     */
     public int getDayOfWeek() {
         return dayOfWeek;
     }
 
     public int dayOfWeek;
 
-
+    /**
+     * constructor
+     * @param name
+     * @param ID
+     * @param arriveTime
+     * @param dayOfWeek
+     */
     public Customer(String name, int ID,  int arriveTime, int dayOfWeek) {
         this.name = name;
         this.ID = ID;
@@ -52,6 +66,14 @@ public class Customer {
 //        openStalls = this.canteen.checkOpenStall(this.dayOfWeek,this.arriveTime);
 //        return openStalls;
 //    }
+
+    /**
+     * a method to check open stalls based on
+     * a given choosen canteen
+     * return a list of stalls
+     * @param canteen
+     * @return List<Stall>
+     */
     public List<Stall> checkOpenStalls(Canteen canteen){
         List<Stall> openStallList = new ArrayList<>();
         for(Stall stall:canteen.stallList){
@@ -62,6 +84,13 @@ public class Customer {
         return openStallList;
     }
 
+    /**
+     * a method to check open stalls based on
+     *    a given list of canteens
+     *    return a list of open canteens
+     * @param ListCanteen
+     * @return
+     */
     public List<Canteen> checkOpenCanteens(List<Canteen> ListCanteen){
         List<Canteen> openCanteens=new ArrayList<>();
         for(Canteen canteen:ListCanteen){
@@ -71,6 +100,12 @@ public class Customer {
         }
         return openCanteens;
     }
+
+    /**
+     * a method to check dishes
+     * @param ListDish
+     * @return
+     */
     public List<Dish> checkDish(List<Dish> ListDish){
         List<Dish> dishList = new ArrayList<>();
         for(Dish dish: ListDish){
@@ -78,9 +113,24 @@ public class Customer {
         }
         return dishList;
     }
+
+    /**
+     * a method to check waiting time
+     * @param stall
+     * @return
+     */
     public int checkWaitingTime(Stall stall){
         return stall.queue * stall.servingTimePerPersom;
     }
+
+    /**
+     * a method to make the order according to the type of order
+     * @param canteen
+     * @param stall
+     * @param dish
+     * @param typeOfOrder
+     * @return
+     */
     public Order order(Canteen canteen,Stall stall,List<Dish> dish, String typeOfOrder) {
 
         if(typeOfOrder.compareTo("Delivery")==0){
