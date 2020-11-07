@@ -12,9 +12,8 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because some users might not be familiar enough with
    the commands and have to constantly refer to the user guide.
    Through this command it allows them to save previous commands will greatly improve convenience.
-  * Highlights: This enhancement affects existing commands and commands to be added in the future. 
-  The implementation was challenging as it required changes to existing commands to determine if command about to be 
-  added is valid.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future.
+  The implementation was challenging as it required changes to existing commands to determine if command about to be added is valid. 
   
 * **New Feature**: Added a /liststops command.
   * What it does: allows the user to view all bus stops and their respective description.
