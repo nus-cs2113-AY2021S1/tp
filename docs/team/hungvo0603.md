@@ -1,7 +1,7 @@
 # Quang Hung - Project Portfolio Page
 
 #Overview
-Develop filter words features and remind feature for writing.
+Develop the filter words features and the remind feature for writing.
 
 Develop word bank loader and saver.
 
