@@ -122,7 +122,9 @@ public class ReviseCommandTest {
         printWriter.print(expectedResult);
         printWriter.close();
         String expected = expectedStringWriter.toString();
-        expected.replaceAll("\r\n", "\n");
+        if (!(os.contains("win"))) {
+            expected = expected.replaceAll("\\r\\n", "\n");
+        }
         return expected;
     }
 
