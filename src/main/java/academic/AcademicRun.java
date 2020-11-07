@@ -13,10 +13,23 @@ import userinterface.Ui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *Framework for the academic mode.
+ */
 public class AcademicRun {
+    /**
+     * list that stores the current list of grades.
+     */
     private ArrayList<Grade> currentGrades;
+
+    /**
+     * list that stores the current list of person.
+     */
     private ArrayList<Person> listOfPerson;
 
+    /**
+     *Initializes the academic mode by initializing the array lists and loading the storage file.
+     */
     public AcademicRun() {
         currentGrades = new ArrayList<>();
         listOfPerson = new ArrayList<>();
@@ -30,6 +43,10 @@ public class AcademicRun {
         StudyItLog.logger.info("Academic mode initialized");
     }
 
+    /**
+     *Reads the user command and executes the various academic functions based on that command.
+     * @param command user input.
+     */
     public void run(String command) {
         try {
             AcademicCommandType commandType = AcademicCommandParser.getAcademicCommandType(command);

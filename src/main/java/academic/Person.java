@@ -16,6 +16,11 @@ public class Person {
         this.isStar = false;
     }
 
+    /**
+     * Receive a person and convert it into a string to be stored into local storage.
+     * @param person person to be stored.
+     * @return string to be added to local storage.
+     */
     public static String printIndividualPerson(Person person) {
         return "[P] | " + person.nameOfPerson + " | " + person.contactNumberOfPerson
                 + " | " + person.emailOfPerson + " | " + person.isStar;
