@@ -67,6 +67,10 @@ The following sequence diagram shows how the `Parser` works.
 
 ![DukeSequenceDiagram](./images/ParserSequenceDiagram.png)
 
+The following diagram shows how a command should be parsed into its separate parts.
+
+![CommandParseDiagram](./images/CommandParseDiagram.png)
+
 1. The `parse` method of `Parser` is invoked by the calling object. In termiNus, the only object that invokes this
 method is `Duke`. The `fullCommand` is passed an argument, which is the full command entered by the user.
 1. The method parses `fullCommand` into two separate `Strings`, which are `rootCommand` and `commandString`.
@@ -87,6 +91,10 @@ methods with the parsed `argumentsMap`, `description`, and `commandString`.
 
 Two of the previously mentioned methods, `removeArgumentsFromCommand` and `getArgumentsFromRegex` make use of regular
 expressions to parse the optional arguments.
+
+The diagram below illustrates how the regular expression matches an optional argument.
+
+![RegexDiagram](./images/RegexDiagram.png)
 
 - The regular expression that parses these optional arguments is `([\w]+/[^\s]+)`. This regular expression matches 1 or more
 alphanumeric characters (denoted by `[\w]+`), followed by a forward slash, then 1 or more of any character except whitespace (denoted by `[^\s]+`).
