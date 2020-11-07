@@ -233,7 +233,7 @@ public class Ui {
 
     public static void printBackToSubjects() {
         System.out.println(DIVIDER);
-        System.out.println("Going back to the subjects list.");
+        System.out.println("Going back to the main menu.");
         System.out.println(DIVIDER);
 
     }
@@ -584,7 +584,8 @@ public class Ui {
      * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
      */
     public static void printAll(List<Subject> subjects, Subject activeSubject, Topic activeTopic) {
-        System.out.println("Here's a list of all subjects, topics, tasks, and flashcards:");
+        System.out.println(DIVIDER);
+        System.out.println("Here's a list of all items:");
         if (activeSubject == null && activeTopic == null) {
             System.out.println("(You are currently here)");
         }
@@ -599,6 +600,7 @@ public class Ui {
                     + ((activeSubject != null && s == activeSubject) ? " (You are currently here)" : ""));
             printAllTopics(s, activeTopic);
         }
+        System.out.println(DIVIDER);
     }
 
     /**
