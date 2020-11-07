@@ -16,3 +16,9 @@ class ZoomasterTest {
         assertTrue(true);
     }
 }
+
+    void bar(boolean isValid) throws Exception{
+        if(!isValid){
+            throw new String("Invalid data");
+        }
+    }
