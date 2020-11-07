@@ -15,6 +15,7 @@ public class Todo extends Task {
     public Todo(String description) {
         super(description);
         this.taskType = "T";
+        this.isImportant = getIsImportant();
     }
 
     /**
@@ -28,6 +29,11 @@ public class Todo extends Task {
     @Override
     public String getDescription() {
         return "[T]" + super.getDescription();
+    }
+
+    @Override
+    public String getRecurringDescription() {
+        return null;
     }
 
     /**
@@ -45,7 +51,8 @@ public class Todo extends Task {
      */
     @Override
     public String printIntoFile() {
-        return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description;
+        return TODO_FILE_SYMBOL + SEPARATOR + isDone + SEPARATOR + description + SEPARATOR
+                + this.isImportant;
     }
 
     /**

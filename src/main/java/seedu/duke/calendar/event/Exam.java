@@ -8,6 +8,7 @@ import java.time.LocalTime;
  */
 public class Exam extends SchoolEvent {
     protected String eventType;
+    protected int countdown;
 
     private static final String EXAM_FILE_SYMBOL = "EXAM";
     private static final String SEPARATOR = "|";
@@ -16,6 +17,7 @@ public class Exam extends SchoolEvent {
 
     public Exam(String moduleCode, LocalDate date, LocalTime time, String venue) {
         super(moduleCode, date, time, venue);
+        this.isOver = getIsOver();
     }
 
     /**
@@ -70,8 +72,17 @@ public class Exam extends SchoolEvent {
      */
     @Override
     public String printIntoFile() {
-        return EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
-                + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue;
+        String writeToFile;
+        writeToFile = EXAM_FILE_SYMBOL + SEPARATOR + isOver + SEPARATOR
+                + moduleCode + SEPARATOR + date + SEPARATOR + time + SEPARATOR + venue
+                + SEPARATOR + getAdditionalInformationCount();
+        if (getAdditionalInformationCount() != 0) {
+            int i;
+            for (i = 0; i < getAdditionalInformationCount(); i++) {
+                writeToFile = writeToFile + SEPARATOR + getAdditionalInformationElement(i);
+            }
+        }
+        return writeToFile;
     }
 
     /**
@@ -88,5 +99,13 @@ public class Exam extends SchoolEvent {
     @Override
     public LocalTime getTime() {
         return this.time;
+    }
+
+    public int getCountdown() {
+        return countdown;
+    }
+
+    public void setCountdown(int countdown) {
+        this.countdown = countdown;
     }
 }
