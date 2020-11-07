@@ -6,7 +6,10 @@ The purpose of this user guide is to provide you with all the necessary informat
 around NUS campus via the school's shuttle service.<br>
 
 ## Table of Contents
-- [1. What is Nav@NUS?](#1-what-is-navnus)
+- [1. Overview](#1-overview)
+  * [1.1 What is Nav@NUS?](#11-what-is-navnus)
+  * [1.2 About the User Guide](#12-about-the-user-guide)
+  * [1.3 Introduction to Command Line Interface (CLI)](#13-intruduction-to-command-line-interface-cli)
 - [2. Quick Start](#2-quick-start)
 - [3. Features](#3-features)
   * [3.1. List available help: ```/help```](#31-list-available-help-help)
@@ -31,12 +34,13 @@ around NUS campus via the school's shuttle service.<br>
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
 
-## 1. What is Nav@NUS?
+## 1. Overview
+### 1.1 What is Nav@NUS?
 Are you new to NUS? <br>
 Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
 We have just the right solution for you!<br><br>
 Introducing **Nav@NUS**, your new navigation assistant!
-Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS campus
+Nav@NUS is a useful command line interface **(CLI)** application to guide you in navigating around the NUS campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
 hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor made for anyone unfamiliar to 
 NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes your 
@@ -50,6 +54,20 @@ Nav@NUS consists of 3 main features:
 * **Fav**: Saves your commands for you to have a personalised user experience catered to your needs.
 
 Skip the tight squeeze near information boards and use Nav@NUS today!
+
+### 1.2 About the User Guide
+This user guide introduces you to the features available in Nav@NUS. Step-by-step guides are provided along with instances when the features are used.<br>
+This user guide covers the following:
+ * How to use the Command Line Interface
+ * How to set up Nav@NUS
+ * Common instances when each feature is used
+ * Step-by-step instructions for using each feature
+ * Common errors or problems faced when using features
+ * Frequently asked questions
+
+### 1.3 Introduction to Command Line Interface (CLI)
+Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. To give you a better experience, this section will introduce you to the CLI.
+
 
 ## 2. Quick Start
 The following steps will guide you through the process of running **Nav@NUS**.
@@ -76,8 +94,8 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 
 >Notes about command format:  
 >
->1. Words in **bold** are parameters to be provided by the user.
->2. Parameters to be entered by the user are not case-sensitive.
+>1. Words in **bold** are parameters to be provided by the user. (e.g. **location_1**)
+>2. Parameters and commands to be entered by the user are not case-sensitive.
 
 ### 3.1. List available help: ```/help```
 This command lists a set of features along with their respective commands available to users.
@@ -172,10 +190,10 @@ Format: <br>
 <code>/bus<strong> bus stop</strong></code> <br>
 
 #### Examples of Usage
-**<u>Example 1</u>**<br>
+<br>
 Let's say that you are at <strong>University Town</strong> bus stop, and you want to know the buses which are available for you to take. Instead of searching for the bus stops which all the buses stop at, you can easily access this information by using the <code>/bus</code> command. 
 
-To search for available buses at University Town:
+To search for available buses at **University Town**:
 
 1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/bus4.png" width=600><br>
@@ -183,7 +201,7 @@ To search for available buses at University Town:
 2. The result will be a message displaying the buses available at University Town. <br><br>
 <img src="UG_Figures/bus3.png" width=650><br>
 
-**<u>Example 2</u>** <br>
+#### Common errors
 Let's say that you are at the <strong>museum</strong> bus stop, and you want to know the buses which are available for you to take. However, you make a spelling error and type <strong>"musuem"</strong> instead. <br>
 
 These are the steps to fix the mistake:
@@ -365,7 +383,6 @@ Format: <br>
 <code>/execfav<strong> index in list</strong></code> <br>
 
 #### Examples of Usage
-**<u>Example 1</u>**<br>
 Let's say that you have stored the command <code>/route <strong>Opp University Health Centre</strong> /to <strong>Opp Kent Ridge MRT station</strong></code> in your list of favourite commands. Instead of typing the long command using `/route`, you can now conveniently use the `/execfav` command.
 
 Given you have the list of favourite commands:<br>
@@ -374,8 +391,19 @@ Given you have the list of favourite commands:<br>
 
 To execute the command with the 2nd index in your list of favourite commands:
 
-1. Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/execfav2.png" width=600><br>
+
+#### Common errors and problems
+Let's say your data has been corrupted and thus your list of favourite commands contains an invalid command.<br>
+If you attempt to execute the command, Nav@NUS will automatically delete the corrupted data from your list.
+
+Given you have the list of favourite commands:<br>
+<img src="UG_Figures/execfav3.png"><br>
+
+If you attempt to execute the invalid command <code>/Funny command</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br>
+<img src="UG_Figures/execfav4.png"><br>
+
 
 ### 3.14. Change the description for a favourite command: `/descfav`
 This command helps you change the description of a command in your list of favourites.
