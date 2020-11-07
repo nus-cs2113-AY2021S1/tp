@@ -61,7 +61,8 @@ public class FlashcardDeck {
             Scanner in = new Scanner(System.in);
             int score = 0;
             Ui.printDivider();
-            System.out.println("You have entered the test mode.");
+            System.out.println("You have entered the test mode.\n"
+                    + "Use \"back\" to return to flashcard main, or \"show answer\" to reveal answer.");
             Ui.printDivider();
             String attempt = "null";
             while (!attempt.equalsIgnoreCase(BACK)) {
