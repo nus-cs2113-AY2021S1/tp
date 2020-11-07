@@ -881,7 +881,7 @@ In this section, you can find some frequently asked questions(FAQ).
 |Set event as undone|undone EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: undone zoom 1 3/12/2020 <br>|
 |Delete|delete EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: delete timetable 3 <br>|
 |Notes|note EVENT_TYPE; EVENT_INDEX <br> note personal; 1 <br>|
-|View Notes|view EVENT_TYPE; EVENT_INDEX <br> view personal; 1 <br>|
+|View notes|view EVENT_TYPE; EVENT_INDEX <br> view personal; 1 <br>|
 |Extract|extract TEXT_SUBJECT; `<enter key>` TEXT_BODY  `<enter key>` extractend `<enter key>`<br>|
 |Reminder|reminder <br>|
 |Save|save <br>|
