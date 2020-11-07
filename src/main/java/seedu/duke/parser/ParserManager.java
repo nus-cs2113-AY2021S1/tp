@@ -2,9 +2,10 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.EmptyCommand;
-import seedu.duke.command.help.HelpCommand;
+import seedu.duke.command.help.MainHelpCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
@@ -33,10 +34,11 @@ public class ParserManager {
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             exit = true;
+            ScrumLogger.LOGGER.info("Exit SCRUMptious");
             return new EmptyCommand(parameters);
         }
         if (userInput.equals(HELP)) {
-            return new HelpCommand(parameters);
+            return new MainHelpCommand(parameters);
         }
 
         Matcher cmdMatcher = CMD_PATTERN.matcher(userInput);
@@ -81,6 +83,7 @@ public class ParserManager {
                 }
             } catch (DukeException e) {
                 e.printExceptionMessage();
+                ScrumLogger.LOGGER.warning(e.getMessage());
             }
         } else {
             return new InvalidCommand(parameters);
@@ -91,7 +94,6 @@ public class ParserManager {
     public static boolean isStringIntParsable(String s) {
         try {
             Integer.parseInt(s);
-            assert Integer.parseInt(s) > 0;
             return true;
         } catch (NumberFormatException e) {
             return false;
