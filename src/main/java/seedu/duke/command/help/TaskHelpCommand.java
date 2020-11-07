@@ -32,6 +32,7 @@ public class TaskHelpCommand extends HelpCommand {
         Ui.showToUserLn("6. View tasks in descending priority");
         Ui.showToUserLn("   Format: task /priorityview");
     }
+
     @Override
     public void logExecution() {
         ScrumLogger.LOGGER.info("Viewed task help.");
