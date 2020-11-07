@@ -143,6 +143,7 @@ public class EditCommand {
 
             }
             Ui.printEditShow(showName);
+            Ui.printShow(showName);
         } catch (NumberFormatException | ArithmeticException e) {
             Ui.printBadInputException();
         } catch (NullPointerException e) {

@@ -40,7 +40,9 @@ Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-qui
 
 ### 1.d. How to use this guide?
 Links like [this](#1c-what-will-this-guide-do) help you navigate to different parts of the document.
+
 Text that are in a `monospace font` represent either the user input or the program output.
+
 >  **[NOTE]**
 >  The notes section contains additional information that may be helpful to you if you encounter any issues.
 >
@@ -132,9 +134,12 @@ Expected outcome:
   The duration of each episode is `25` minutes.<br>
  <img src = "images/addCommandUG/addInput.PNG" width = "450">
   &nbsp;<br>
+  
  After keying in the input as shown in the image above, the next image shows the expected output.<br>
+ 
  <img src = "images/addCommandUG/addResponse.PNG" width = "450">
   &nbsp;<br>
+  
  If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
  
  If you already have an entry with the same name in your list, the program will prompt you as follows:
@@ -154,9 +159,11 @@ friends was added to your watchlist.
 <br>
  
  If you replied `n`:
- 
- `The process is terminated. Your existing data is kept`
- 
+ ```
+________________________________________________________________________________
+The process is terminated. Your existing data is kept
+ ```
+
  >  **[NOTE]**
  >  * The overwrite prompt is not present in v2.0 of **WatchNext**, but will be available in future iterations.
  >
@@ -174,7 +181,7 @@ friends was added to your watchlist.
  of an episode depending on the input of the user when prompted.
   
  
-* Suppose you want to edit details for your favorite show, friends.
+* Suppose you would like to edit details for your favorite show, friends.
   Format:
      `edit <SHOWNAME>`
      
@@ -191,40 +198,53 @@ friends was added to your watchlist.
  
 Format:
     `name <SHOWNAME>`, `season <NUMBER OF SEASONS>`, `episode <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>`, `duration <DURATION OF EPISODE>`
+> **[NOTE]**
+>   * You do not need to edit all the fields, you can just pick and choose which fields you would like to update
 
 * Suppose you would like to update the name of the show
+
 Example of usage:
      `name F.r.i.e.n.d.s` 
      
 * A new season of F.r.i.e.n.d.s just started airing, and you would like to update your show details from 1 season to 2.
+
 Example of usage:
      `season 2`
      
 * Suppose the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
+
 Example of usage:
      `episode 10,11`
      
 * The duration of each episode of F.r.i.e.n.d.s is extended to 30 minutes
+
 Example of usage:
      `duration 30`
      
 * When you have completed all changes, input `done`.
+
 Example of usage:
     `done`
- 
+    
+* After your changes are successfully updated, the program will acknowledge the changes and print out the update details.
+
+Expected outcome:
+   
+  <img src = "images/edit.PNG" width = "550">
+   
+  &nbsp;
+  
+  
 > **[NOTE]**
+>  * If you use edit to add new season(s) but did not edit the episodes numbers to reflect the change, 
+>the new season(s) will be initialised to 1 episode.
 >
->  * The `<DURATION OF EPISODE>` can either be inputted in minutes, such as `duration 30` or in hours and minutes
+>  * The `<DURATION OF EPISODE>` can either be inputted in minutes, such as `duration 85` or in hours and minutes
 > such as `duration 1h25m` .
 >
 >  * The program will wait for your command to edit the show details until you input `done`.
 
  
- Expected outcome:
-  
- <img src = "images/edit.PNG" width = "550">
-  
- &nbsp;
  
  To help you better understand the flow of this command we have included a program flow diagram to illustrate the process.
  
