@@ -190,7 +190,7 @@ public class Main {
         Dish saltedEggChicken = new Dish("Salted Egg Chicken",4,
         "Really like this taste of chicken with salted egg.");
         Dish mapoTofu = new Dish("Mapo Tofu",2.5,
-                "Heared of this dish before, really good.");
+                "Heard of this dish before, really good.");
         Stall mixedRice = new Stall("Mixed Rice",9,"32 Nanyang Cres",
                 800,1900,Arrays.asList(1,2,5,7),
                 Arrays.asList(spicyChicken,saltedEggChicken,mapoTofu),3);
@@ -278,7 +278,7 @@ public class Main {
         System.out.println("Please choose a stall:");
         int stallIdChoosed = sc.nextInt();
         Stall stallChoosed = openStall.get(stallIdChoosed - 1);
-        System.out.println("Operating hours for the stall you choosed is: \n");
+        System.out.println("Operating hours for the stall you chose is: \n");
         System.out.println("Open Time: " + stallChoosed.getOpenTime()/100 + ":00" );
         System.out.println("Closing Time: " + stallChoosed.getCloseTime()/100 + ":"
             + String.format("%02d",stallChoosed.getCloseTime()%100));
@@ -305,7 +305,7 @@ public class Main {
 
     private static Order getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes) {
         try{
-            System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
+            System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delivery.");
             int typeChoosed = sc.nextInt();
             String orderType= "Dine in";
             if (typeChoosed == 1) {
@@ -423,7 +423,7 @@ public class Main {
 
     private static Stall getStall(Customer customer, Canteen canteenChoosed) {
         try{
-            System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
+            System.out.println("The available stalls in " + canteenChoosed + " are:");
             int stallCount;
             List<Stall> openStall = customer.checkOpenStalls(canteenChoosed);
             stallCount = 0;
