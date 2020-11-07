@@ -2,6 +2,7 @@ package anichan.commands;
 
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.parser.Parser;
 import anichan.watchlist.Watchlist;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ class WatchlistCommandTest {
     private static final String STORAGE_DIRECTORY = "src" + File.separator + "test"
                                                     + File.separator + "data" + File.separator;
 
+    Parser parser;
     private AnimeData animeData;
     private StorageManager storageManager;
     private User user;
@@ -28,6 +30,7 @@ class WatchlistCommandTest {
 
     @BeforeEach
     void setUp() throws AniException {
+        parser = new Parser();
         animeData = new AnimeData(new ArrayList<>());
         storageManager = new StorageManager(STORAGE_DIRECTORY);
         user = new User("Testing", "Male");
@@ -189,5 +192,38 @@ class WatchlistCommandTest {
 
         WatchlistCommand deleteWatchlist = new WatchlistCommand("d", 1);
         assertThrows(AniException.class, () -> deleteWatchlist.execute(animeData, storageManager, user));
+    }
+
+    // ========================== Integration Testing ==========================
+
+    @Test
+    void parseAndExecuteWatchlistCommandForCreate() throws AniException {
+        Command createWatchlist = parser.getCommand("watchlist -n HelloWorld");
+        createWatchlist.execute(animeData, storageManager, user);
+        assertEquals(4, activeWorkspace.getWatchlistList().size());
+    }
+
+    @Test
+    void parseAndExecuteWatchlistCommandForList() throws AniException {
+        Command listAllWatchlist = parser.getCommand("watchlist -l");
+        String listResult = listAllWatchlist.execute(animeData, storageManager, user);
+        String emptyListMessage = "Uhh.. You have no watchlist to list..";
+        assertNotEquals(emptyListMessage, listResult);
+    }
+
+    @Test
+    void parseAndExecuteWatchlistCommandForSelect() throws AniException {
+        Command selectWatchlist = parser.getCommand("watchlist -s 2");
+        selectWatchlist.execute(animeData, storageManager, user);
+        Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
+        Watchlist selectedWatchlist = activeWorkspace.getWatchlistList().get(1);
+        assertEquals(activeWatchlist, selectedWatchlist);
+    }
+
+    @Test
+    void parseAndExecuteWatchlistCommandForDelete() throws AniException {
+        Command deleteWatchlist = parser.getCommand("watchlist -d 2");
+        deleteWatchlist.execute(animeData, storageManager, user);
+        assertEquals(2, activeWorkspace.getWatchlistList().size());
     }
 }

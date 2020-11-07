@@ -4,6 +4,7 @@ import anichan.anime.AnimeData;
 import anichan.exception.AniException;
 import anichan.human.User;
 import anichan.human.Workspace;
+import anichan.parser.Parser;
 import anichan.watchlist.Watchlist;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,11 +36,13 @@ class EstimateCommandTest {
     private StorageManager emptySM;
     private StorageManager invalidDirectorySM;
 
+    private Parser parser;
     private AnimeData animeData;
     private User user;
 
     @BeforeEach
     void setUp() throws AniException {
+        parser = new Parser();
         animeData = new AnimeData(new ArrayList<>());
         validSM = new StorageManager(VALID_FILE_DIRECTORY);
         emptySM = new StorageManager(EMPTY_FILE_DIRECTORY);
@@ -88,5 +91,27 @@ class EstimateCommandTest {
     void execute_emptyFile_throwsAniException() {
         EstimateCommand estimateCommand = new EstimateCommand(SCRIPT_FILE_NAME, NO_WORDS_PER_HOUR_PROVIDED);
         assertThrows(AniException.class, () -> estimateCommand.execute(animeData, emptySM, user));
+    }
+
+    // ========================== Integration Testing ==========================
+
+    @Test
+    void parseAndExecuteEstimateCommandWithNoWordsPerHour() throws AniException {
+        String expectedNoWphResult = "Average translator (400 words per hour) takes: 8 hour(s) 1 minute(s).";
+        expectedNoWphResult += System.lineSeparator();
+        expectedNoWphResult += "Average translator (500 words per hour) takes: 6 hour(s) 25 minute(s).";
+        expectedNoWphResult += System.lineSeparator();
+        expectedNoWphResult += "Average translator (600 words per hour) takes: 5 hour(s) 20 minute(s).";
+
+        Command command = parser.getCommand("estimate script.txt");
+        String noWphResult = command.execute(animeData, validSM, user);
+        assertEquals(expectedNoWphResult, noWphResult);
+    }
+
+    @Test
+    void parseAndExecuteEstimateCommandWithWordsPerHour() throws AniException {
+        Command command = parser.getCommand("estimate script.txt -wph 777");
+        String wphWithHoursAndMinutesResult = command.execute(animeData, validSM, user);
+        assertEquals("You would need 4 hour(s) 7 minute(s).", wphWithHoursAndMinutesResult);
     }
 }
