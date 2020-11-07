@@ -25,6 +25,7 @@ public class UserSettings {
         new SettingsVariable<String>(AUTO_SAVE_FIELD, AUTO_SAVE_DESC, AUTO_SAVE_OPTIONS),
     };
 
+    //@@author fchensan
     public SettingsVariable[] getVariables() {
         return variables;
     }

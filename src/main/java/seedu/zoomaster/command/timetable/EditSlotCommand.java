@@ -23,6 +23,7 @@ public class EditSlotCommand extends Command {
     private String fieldToEdit;
     private String details;
 
+    //@@author fchensan
     public EditSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(EDIT_KW);
 

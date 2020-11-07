@@ -15,6 +15,7 @@ public class SettingsVariable<T> {
     private T[] options;
     private int chosenOptionIndex;
 
+    //@@author fchensan
     public SettingsVariable(String fieldName, String description, T[] options) {
         this.fieldName = fieldName;
         this.options = options;

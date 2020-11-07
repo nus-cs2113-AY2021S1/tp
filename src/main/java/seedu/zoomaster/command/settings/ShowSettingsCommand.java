@@ -14,6 +14,7 @@ import seedu.zoomaster.slot.Timetable;
 public class ShowSettingsCommand extends Command {
     public static final String SHOW_KW = "showsettings";
 
+    //@@author fchensan
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         ui.print(generateSettingsListMessage());

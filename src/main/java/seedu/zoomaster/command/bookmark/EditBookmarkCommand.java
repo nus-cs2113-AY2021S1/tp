@@ -23,6 +23,7 @@ public class EditBookmarkCommand extends Command {
     private String fieldToEdit;
     private String newValue;
 
+    //@@author fchensan
     public EditBookmarkCommand(String command) throws ZoomasterException {
         assert command.startsWith(EDIT_KW);
 

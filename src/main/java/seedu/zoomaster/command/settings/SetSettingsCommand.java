@@ -20,6 +20,7 @@ public class SetSettingsCommand extends Command {
     private String fieldName;
     private String newValue;
 
+    //@@author fchensan
     public SetSettingsCommand(String command) throws ZoomasterException {
         Pattern pattern = Pattern.compile(SET_KW + "\\s+(?<fieldName>\\w+)\\s+(?<newValue>\\w+)");
         Matcher matcher = pattern.matcher(command);
