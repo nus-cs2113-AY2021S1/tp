@@ -45,40 +45,28 @@ public class Parser {
         switch (command) {
         case COMMAND_WORKSPACE:
             return new WorkspaceParser().parse(description);
-
         case COMMAND_BROWSE:
             return new BrowseParser().parse(description);
-
         case COMMAND_SEARCH:
             return new SearchParser().parse(description);
-
         case COMMAND_WATCHLIST:
             return new WatchlistParser().parse(description);
-            
         case COMMAND_VIEW:
             return new ViewWatchlistParser().parse(description);
-
         case COMMAND_ADD:
             return new AddToWatchlistParser().parse(description);
-        
         case COMMAND_REMOVE:
             return new RemoveCommandParser().parse(description);
-
         case COMMAND_BOOKMARK:
             return new BookmarkParser().parse(description);
-
         case COMMAND_ESTIMATE:
             return new EstimateParser().parse(description);
-        
         case COMMAND_INFO:
             return new InfoParser().parse(description);
-
         case COMMAND_HELP:
             return new HelpParser().parse(description);
-
         case COMMAND_EXIT:
             return new ExitParser().parse(description);
-
         default:
             throw new AniException(UNKNOWN_COMMAND_ERROR);
         }
