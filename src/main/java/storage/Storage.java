@@ -284,14 +284,8 @@ public class Storage {
      *
      * @param busStopList ArrayList of BusStops in BusStopList
      */
-    public void loadBusStopData(ArrayList<BusStop> busStopList) throws DataFileNotFoundException {
-        File f = new File("./data/bus_stops.txt");
-        Scanner s;
-        try {
-            s = new Scanner(f);
-        } catch (FileNotFoundException e) {
-            throw new DataFileNotFoundException(f.getName());
-        }
+    public void loadBusStopData(ArrayList<BusStop> busStopList) {
+        Scanner s = new Scanner(busStopData);
 
         while (s.hasNext()) {
             String input = s.nextLine();
@@ -308,14 +302,8 @@ public class Storage {
      *
      * @param locationList ArrayList of Locations in LocationList
      */
-    public void loadLocationData(ArrayList<Location> locationList) throws DataFileNotFoundException {
-        File f = new File("./data/locations.txt");
-        Scanner s;
-        try {
-            s = new Scanner(f);
-        } catch (FileNotFoundException e) {
-            throw new DataFileNotFoundException(f.getName());
-        }
+    public void loadLocationData(ArrayList<Location> locationList) {
+        Scanner s = new Scanner(locationData);
 
         while (s.hasNext()) {
             String input = s.nextLine();
@@ -346,4 +334,33 @@ public class Storage {
             }
         }
     }
+
+    private String locationData = "BLK/EA/EA\n" +
+            "BLK/EA/Information Technology\n" +
+            "BLK/E1A/EA\n" +
+            "BLK/EW1/EA,Information Technology\n" +
+            "BLK/EW1A/EA\n" +
+            "BLK/E2/EA\n" +
+            "BLK/E3/EA,Raffles Hall\n" +
+            "BLK/E3A/EA\n" +
+            "BLK/E4/Information Technology\n" +
+            "BLK/E4A/Opp YIH,YIH\n" +
+            "BLK/E5/Information Technology\n" +
+            "BLK/E5A/Raffles Hall\n" +
+            "BLK/E6/Opp YIH,YIH\n" +
+            "BLK/IT/Information Technology,CLB\n" +
+            "H/Raffles Hall/Raffles Hall,NUS Museum\n" +
+            "L/LT1/E2\n" +
+            "L/LT2/E2\n" +
+            "L/LT6/E4\n" +
+            "L/LT7/EA\n" +
+            "L/LT7A/EA";
+
+    private String busStopData = "EA:B2,C,BTC2\n" +
+            "Raffles Hall:B2,C\n" +
+            "Information Technology:A2,B1,B2,D1\n" +
+            "Opp YIH:A2,B1,B2,D1\n" +
+            "NUS Museum:A2,BTC1,BTC2,C,D1,D2\n" +
+            "YIH:A1,B1,BTC1,D1\n" +
+            "CLB:A1,B1,BTC1,D1";
 }

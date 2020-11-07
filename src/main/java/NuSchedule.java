@@ -27,14 +27,12 @@ public class NuSchedule {
 
         busStops = new BusStopList();
         locations = new LocationList();
-        //busStops.loadBusStopData();
-        //locations.loadLocationData();
+        storage.loadBusStopData(busStops.getBusStopList());
+        storage.loadLocationData(locations.getLocationList());
 
         try {
             storage = new Storage(filePaths);
-            storage.loadBusStopData(busStops.getBusStopList());
-            storage.loadLocationData(locations.getLocationList());
-        } catch (CreatingFileException | DataFileNotFoundException e) {
+        } catch (CreatingFileException e) {
             ui.showError(e.getMessage());
         }
         try {
