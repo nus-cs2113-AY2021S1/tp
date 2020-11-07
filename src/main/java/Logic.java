@@ -1,4 +1,5 @@
 //import necessary libraries
+import exception.NoCanteenException;
 import exception.NoStallException;
 
 import java.util.ArrayList;
@@ -90,7 +91,12 @@ public class Logic {
         }catch(NoStallException e){
             sc.nextLine();
             System.out.println("____________________________________________________________\n");
-            System.out.println("  OOPS!!! No canteen or stall opens at that time. Please change your time. :-(\n");
+            System.out.println("  OOPS!!! No stall opens at that time. Please change your time. :-(\n");
+            System.out.println("____________________________________________________________\n");
+            main(canteens);
+        }catch (NoCanteenException e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! No canteen opens at that time. Please change your time. :-(\n");
             System.out.println("____________________________________________________________\n");
             main(canteens);
         }

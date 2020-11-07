@@ -56,7 +56,7 @@ public class Order {
     public String toString() {
         String dishString = "1. " + dishes.get(0).getDishName() + "\n";
         for(int i=1; i<dishes.size();i++){
-            dishString = dishString  + "i+1. " + dishes.get(i).getDishName() + "\n";
+            dishString = dishString  + (i+1)+". " + dishes.get(i).getDishName() + "\n";
         }
         return this.canteen + " order in" + this.stall + ": \n" + dishString ;
     }

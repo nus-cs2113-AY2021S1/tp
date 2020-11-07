@@ -20,7 +20,7 @@ public class UI {
      * @param sc
      * @param Order
      */
-    public static void order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order) throws NoStallException {
+    public static void order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order) throws NoStallException, NoCanteenException{
 
         Canteen canteenChoosed = getCanteen(canteens, customer,sc);
 
@@ -265,7 +265,7 @@ public class UI {
      * @param sc
      * @return
      */
-    private static Canteen getCanteen(List<Canteen> canteens, Customer customer, Scanner sc) throws NoStallException{
+    private static Canteen getCanteen(List<Canteen> canteens, Customer customer, Scanner sc) throws NoCanteenException{
         try{
             System.out.println("Dear " + customer.name + ",");
             System.out.println("Please choose a canteen from the list:");
@@ -276,7 +276,7 @@ public class UI {
                 System.out.println(canteenCount +". " + canteen);
             }
             if(canteenCount == 0){
-                throw new NoStallException();
+                throw new NoCanteenException();
             }
             System.out.println("Enter the number in front to choose:");
             int canteenIdChoosed = sc.nextInt();
