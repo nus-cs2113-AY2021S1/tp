@@ -94,6 +94,7 @@ The CanteenHelper consists of six classes:
 Figure 2. Main Logic Diagram
 
 Main logic of the whole app.
+Main method inside: main(String[] args)
 
 #### 3.2.2 UI class
 Mainly managed in MainPage, which contains several parts: showCommand, displayInfo, getInput. All of these should inherit from an abstract class UserInterface class. And this class can
@@ -102,21 +103,26 @@ Mainly managed in MainPage, which contains several parts: showCommand, displayIn
          2: Get open stalls
 2. Get user input (number) and use the Logic component to execute the corresponding user’s command
 3. Display the results of user and program interactions
+Main method inside: order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order); getCustomer(Scanner sc); getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes,Scanner sc, ArrayList<Order> Order); getDishes(Stall stallChoosed, Scanner sc); getYN(Scanner sc); getNumOfDishes(int count,Scanner sc); getStall(Customer customer, Canteen canteenChoosed, Scanner sc); getCanteen(List<Canteen> canteens, Customer customer, Scanner sc); greet(); bye(); help(); checkComment(List<Dish> dCs); checkCanteenOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); checkStallOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); changeOrder(Customer customer,String input,ArrayList<Order> Order); printOrder(String input,ArrayList<Order> Order); deleteOrder(String input,ArrayList<Order> Order); findDishinOrder(String input,ArrayList<Order> Order); 
 
 #### 3.2.3 Parser class
 Deals with making sense of the user's command and pass the command to certain functions.
+Main method inside: parseCustomer(String inputMessage)
 
 #### 3.2.4 Customer class
 Customer contains the list of open canteens and initializes Order objects.
+Main method inside: checkOpenStalls(Canteen canteen); checkOpenCanteens(List<Canteen> ListCanteen); checkDish(List<Dish> ListDish); checkWaitingTime(Stall stall); 
 
 #### 3.2.5 Order class
 Order contains the list of dishes that are ordered.
 
 #### 3.2.6 Canteen class
 Canteen contains the list of stalls.
+Main method inside: isOpen (int dayOfWeek, int time); 
 
 #### 3.2.7 Stall class
 Stall contains the list of dishes.
+Main method inside: isOpen (int dayOfWeek, int time); printDishes()
 
 #### 3.2.8 Dish class
 Dishes that can be ordered by the user.
@@ -207,7 +213,9 @@ The user enters the command: help to view all commands that are available. The m
 All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens.
 
 #### 6.1.2 Value proposition
-{Describe the value proposition: what problem does it solve?}
+CanteenHelper aims to assist the target audience with:
+
+ordering the meals in one application efficiently
 
 ### 6.2 User stories
 
@@ -217,16 +225,19 @@ All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens
 |v1.0|user|view which stalls are available currently|make my order|
 |v1.0|hungry person who wants to dine now|check the menus of some stalls at the current time|I can order my preferred meal in the menus|
 |v1.0|user who is deciding what to have for the next meal|view the menus of the stalls in advance|I can know what to eat for that meal in the future|
-|v2.0|user|check the operating time of canteens|I can go to the canteen which is currently open|
+|v2.0|user|check the operating time of canteens|I can go to the canteen which is  open|
 |v2.0|user who wants to try a new dish|check the comments made by others|I can have a brief idea about it|
-|v2.0|user who is not familiar with the campus|check the location and recommended route to a canteen|get my food as soon as possible|
+|v2.0|user|change the order type of my order|fit my time schedule more|
 
 
 ### 6.3 Non-Functional Requirements
-{Give non-functional requirements}
+1. The app should be able to work on any mainstream OS with Java 11 or above installed.
+2. Commands entered should follow the user guide.
 
 ### 6.4 Glossary
-* *glossary item* - Definition
+* *Sequence Diagram* - A sequence diagram shows object interactions arranged in time sequence.
+* *mainstream O* - Linux, Windows, Unix.
 
 ### 6.5 Instructions for manual testing
+Try different inputs with variations of the format, to check whether the exceptions are being correctly thrown.
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
