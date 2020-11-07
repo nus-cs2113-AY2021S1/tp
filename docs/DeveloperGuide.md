@@ -9,21 +9,19 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[Maintainability](#maintainability) <br>
 [Definitions](#definitions) <br>
 [Setting up the project in your computer](#setting-up-the-project-in-your-computer) <br>
-[System Overview](#system-overview) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Technological view](#technological-view) <br>
+[Design](#design) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Technological view](#technological-overview) <br>
 [Architecture](#architecture) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Project Overview](#project-overview) <br>
 [Writings class family](#writings-class-family) <br>
-[Filter words class family](#filter-words-class-family) <br>
+[Filter words class family](#filter-words-class-family--word-family) <br>
 [Bunny class family](#bunny-class-family) <br>
 [Names class family](#names-class-family) <br>
-[Design and Implementation](#design-and-implementation) <br>
-[Product scope](#product-scope) <br>
+[Product scope](#appendix-a-product-scope) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Target user profile](#target-user-profile) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Value proposition](#value-proposition) <br>
-[User Stories](#user-stories) <br>
-[Non-Functional Requirements](#non-functional-requirements) <br>
-[Glossary](#glossary) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Value proposition](#appendix-b-value-proposition) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[User Stories](#appendix-c-user-stories) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Non-Functional Requirements](#appendix-d-non-functional-requirements) <br>
 [Instruction for manual testing](#instructions-for-manual-testing) <br>
 
 ## Introduction
@@ -80,32 +78,17 @@ If you plan to use Intellij IDEA (highly recommended):
    1. Run the `java -jar duke.jar` and try a few commands.
    2. [Run the tests](Testing.md) to ensure they all pass. 
 //Note: should ask team W11-02 the permission for the above part.
+//Note: No need to create another testing.md, i have created a testing section below we can put all the things there
 
-## System Overview
+## Design
 
-The following sections describe the high level overview of our application, Fluffle.
+The following sections describe the high-level overview of our application, Fluffle.
 
-### Technological view
+### Technological overview
 The Integrated Development Environment, IntelliJ, is used to develop our program. The program is written in Java, 
 and uses Gradle for building and testing purposes. Our source code is mostly original, with some functions imported 
 from the java.util package. The remaining packages and classes which form the structure of our program 
 are independently developed.
-
-## Architecture
-This document contains all packages and classes that are used in developing Fluffle. The following figure describes the overview architecture of Fluffle.
-
-![UML Fluffle class diagram](graphics/diagrams/Architecture.PNG)
-<center><i><b>Figure 1: Overview of Fluffle Architecture</b></i></center>
-
-The design of Fluffle contains four main components:
-- Writing Manager component
-- Bunny Manager component
-- Name Manager component
-- Word Manager component
-
-All components can be accessed by the user through Fluffle's UI. 
-On loading Fluffle, all components will be loaded from the storage. 
-On exiting Fluffle, all components will be saved to the storage.
 
 ### Project overview
 Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the 
@@ -113,8 +96,34 @@ application, was created by our team. Due to the restrictions of the project, th
 .txt. We opted to save the data in the text files in a user readable format as opposed to the comma separated format 
 as it is easier for users to directly refer to and edit their saved files.
 
-## Writings class family
-### Constitution (member classes)
+### Architecture
+The following figure describes the overall architecture of Fluffle.
+
+![UML Fluffle class diagram](graphics/diagrams/Architecture.PNG)
+<center><i><b>Figure 1: Overview of Fluffle Architecture</b></i></center>
+
+The design of Fluffle contains four main components:
+- Writing Manager component
+- Bunny Manager component
+- Word Manager component
+- Name Manager component
+
+All components can be accessed by the user through Fluffle's UI. 
+On loading Fluffle, all components will be loaded from the storage. 
+On exiting Fluffle, all components will be saved to the storage.
+
+### Writing Manager Component
+
+### Bunny Manager Component
+
+### Word Manager Component
+
+### Name Manager Component
+
+## Implementation
+
+### Writings class family
+#### Constitution (member classes)
 WritingList: Represent the objects which are particular lists of Writings to be used in the application.
 Writings: Represent the objects of the writings, created from user’s input and stored in a database as text. 
 This Writings class is also the parent of 2 subclasses which are Poem and Essay.
@@ -133,7 +142,7 @@ either poem or essay at this stage)
 ![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 3: General interactions between member classes when generating a new writing</b></i></p>
 
-## Filter words class family
+### Filter words class family / Word family
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
 <p align = "center"><i><b>Figure 4: Filter word UML Class Diagram</b></i></p>
 
@@ -161,7 +170,7 @@ In **Figure 5** above, the flow of the program is as follow:
 1. The method `filterByStartString` in `WordsFilter` class in called to execute the main filter process.
 1. Filter list is printed by `printFilterList` method in `FilterList` class. The filter mode ends here.
    
-## Bunny class family
+### Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
 <center><i>Figure 6:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
@@ -191,7 +200,7 @@ method accordingly. The `addBunny` command calls the `parseSingleCharacterTagged
 from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called
 to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
-## Names class family
+### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
 <center><i>Figure 8: Names UML Class Diagram</i></center>
@@ -218,26 +227,27 @@ As shown in Figure 8, both the NamesDB class and the Names class will create the
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
-## Design and implementation
+## Testing
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+Put methods of testing here !!! JUnit test, Unit testing, integrated testing, ...
 
+## Appendices
 
-## Product scope
-### Target user profile
+### Appendix A: Product scope
+#### Target user profile
 
 The target user group are creative writers.
 * Writers who enjoy digitally typing up their works and thus can integrate using our CLI based app into their workflow
 * Writers who enjoy creating short pieces but lack the organisation to do so
 
-### Value proposition
+### Appendix B: Value proposition
 
 The application aims to provide the writer with the following services:
 * Provide them with an organised way to store and select their plot ideas which may be otherwise abandoned
 * Provide them with customised prompt suggestions to inspire them to write
 * Provide them with a system to organise longer writing projects in a neat and logical manner to facilitate the writing of long works
 
-## User Stories
+### Appendix C: User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -252,10 +262,9 @@ The application aims to provide the writer with the following services:
 |v2.0|As a user, I would like to get the inspiration from the app|
 |v2.0|As a user, I would like to have a database to refer to my scripts for future references|
 
-## Non-Functional Requirements
+### Appendix D: Non-Functional Requirements
 
 {Give non-functional requirements}
-
 
 ## Instructions for manual testing
 
