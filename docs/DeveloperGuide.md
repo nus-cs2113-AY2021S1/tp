@@ -15,15 +15,16 @@ enhancements.
     + [2.1.3. Model Component](#213-model-component)
     + [2.1.4. Storage Component](#214-storage-component)
 - [3. Implementation](#3-implementation)
-  * [3.1. Direct Route Finder (`/route` Feature)](#31-direct-route-finder-route-feature)
+  * [3.1. Finding a direct route (`/route` Feature)](#31-finding-a-direct-route-route-feature)
   * [3.2. Full Route Display (`/routemap` Feature)](#32-full-route-display-routemap-feature)
   * [3.3. List All stops (`/liststops` Feature)](#33-list-all-stops-liststops-feature)
   * [3.4. Favourite command adder (`/addfav` Feature)](#34-favourite-command-adder-addfav-feature)
   * [3.5. Favourite command executor (`/execfav` Feature)](#35-favourite-command-executor-execfav-feature)
-  * [3.6. Favourite command description modifier (`/descfav` Feature)](#36-favourite-command-description-modifier-descfav-feature)
+  * [3.6. Modifying the description of a favourite command (`/descfav` Feature)](#36-modifying-the-description-of-a-favourite-command-descfav-feature)
   * [3.7. Dining options finder (`/dine` Feature)](#37-dining-options-finder-dine-feature)
   * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
   * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
+  * [3.10. Performing similarity checks](#310-performing-similarity-checks)
 - [4. Appendix I: Requirements](#4-appendix-i-requirements)
   * [4.1 Product scope](#41-product-scope)
     + [4.1.1 Target user profile](#411-target-user-profile)
@@ -31,7 +32,8 @@ enhancements.
   * [4.2. User Stories](#42-user-stories)
   * [4.3. Non-Functional Requirements](#43-non-functional-requirements)
   * [4.4. Glossary](#44-glossary)
-- [5. Appendix II: Instructions for manual testing](#5-appendix-ii-instructions-for-manual-testing)
+- [5. Appendix II: Use Cases](#5-appendix-ii-use-cases) 
+- [6. Appendix III: Instructions for manual testing](#6-appendix-iii-instructions-for-manual-testing)
 
 ## 1. Setting up, getting started
 
@@ -221,7 +223,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 ####Design Considerations
 
 
-### 3.6. Favourite command description modifier (`/descfav` Feature)
+### 3.6. Modifying the description of a favourite command (`/descfav` Feature)
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -368,6 +370,8 @@ that require mouse clicks.
 
 * **Mainstream OS** - Windows, Linux, Unix, OS-X
 
-## 5. Appendix II: Instructions for manual testing
+## 5. Appendix II: Use Cases
+
+## 6. Appendix III: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
