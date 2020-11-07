@@ -1,6 +1,7 @@
 package fitr.exercise;
 
 import fitr.exception.FitrException;
+import fitr.exception.InvalidRecommendationException;
 import fitr.list.StandardExerciseList;
 import fitr.storage.StandardExerciseStorage;
 import fitr.ui.Ui;
@@ -35,7 +36,11 @@ public class Recommender {
         assert (isSuccessful);
     }
 
-    public StandardExerciseList recommend(int recommendationType) {
+    public StandardExerciseList recommend(String command) throws InvalidRecommendationException {
+        int recommendationType = this.recommendParser(command);
+        if(recommendationType == 5){
+            throw new InvalidRecommendationException();
+        }
         assert recommendationType >= 0 && recommendationType < 5;
         StandardExerciseList finalList = new StandardExerciseList();
         int firstIndex;

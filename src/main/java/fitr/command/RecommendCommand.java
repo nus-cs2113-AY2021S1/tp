@@ -35,12 +35,8 @@ public class RecommendCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         command.trim();
-        int recommendationType = recommender.recommendParser(command);
         try {
-            if (recommendationType == 5) {
-                throw new InvalidRecommendationException();
-            }
-            StandardExerciseList recommendList = recommender.recommend(recommendationType);
+            StandardExerciseList recommendList = recommender.recommend(command);
             int fitnessLevel = user.getFitnessLevel();
             assert fitnessLevel >= 0 && fitnessLevel <= 2;
             for (int i = 0; i < 4; i++) {

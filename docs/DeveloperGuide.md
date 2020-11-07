@@ -197,7 +197,17 @@ Figure 9 below shows the sequence diagram when the user inputs the `delete` comm
 <p align="center"><img src="images/DeleteCommandSequenceDiagram.png"></p>
 <p align="center">Figure 9: Sequence diagram for <code>delete</code> command</p>
 
-### 4.6 Tip of the day
+### 4.6 Recommend command
+
+The `recommend` command allows the user to get either a general recommended workout or a workout to a specific body part or type. The commands that can follow recommend are `aerobic`, `upperbody`, `lowerbody` and `stretch`.
+
+The user's input is first parsed by the `Parser` class, which returns a `RecommendCommand` to `Fitr`. The `RecommendCommand` is then executed to recommend workouts. The `RecommendCommand` calls on the `recommend` method in `Recommender`.
+
+Figure 10 below shows the sequence diagram for the `recommend` class.
+
+The `Recommender` class then returns a list of type `StandardExerciseList`. The user input is then read in by the `Ui` class to determine which `StandardExercise` objects in the `StandardExerciseList` should be converted to `Exercise` and added to the exerciseList of type `ExerciseList`
+
+### 4.7 Tip of the day
 
 Fitr can give an interesting fact or a tip of exercise every time the user opens the app.
 
