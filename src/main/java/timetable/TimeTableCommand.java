@@ -195,9 +195,10 @@ public class TimeTableCommand {
                     startTime = 0;
                 }
                 if (startTime < endTime) {
+                    isInvalid = false;
+                } else {
                     System.out.println("You have entered an ending time that is not later than the starting time."
                             + " Please try again ");
-                    isInvalid = false;
                 }
             } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 System.out.println("You have entered an invalid time. Please try again");
@@ -221,14 +222,19 @@ public class TimeTableCommand {
     }
 
     public static void accessEventList(EventList eventList, LocalDate todayDate, int now) {
+        boolean exist = false;
         for (Event event: eventList.events) {
             for (Duration period: event.periods) {
                 if ((period.timeSlot.contains(now) || period.timeSlot.contains(now + 100)
                         || period.timeSlot.contains(now + 200))
                         && period.startDateTime.toLocalDate().equals(todayDate)) {
-                    System.out.print(event.linkOrVenue + "|" + event.name + "\n");
+                    System.out.print(event.linkOrVenue + " | " + event.name + "\n");
+                    exist = true;
                 }
             }
+        }
+        if (exist = false) {
+            System.out.println("You do not have anything scheduled in the next two hours");
         }
     }
 
@@ -238,6 +244,9 @@ public class TimeTableCommand {
             index++;
             System.out.println(index + ". " + activity.name + " "
                     + activity.periods.get(0).startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        }
+        if (index == 0) {
+            System.out.println("There is no activity in the list");
         }
     }
 
@@ -259,6 +268,9 @@ public class TimeTableCommand {
                 System.out.print("\n");
             }
         }
+        if (index == 0) {
+            System.out.println("There is no classes in the list");
+        }
     }
 
     public static LocalDateTime getDate(String date) {
@@ -269,14 +281,5 @@ public class TimeTableCommand {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
 
-    public static LocalDateTime getDateTime(String command) {
-        String[] dateTime;
-        String[] date;
-        int fromIndex = command.indexOf("from");
-        dateTime = command.substring(fromIndex + 5).split(" ");
-        date = dateTime[0].split("/");
-        return LocalDateTime.of(Integer.parseInt(date[2]),Integer.parseInt(date[1]), Integer.parseInt(date[0]),
-                0,0);
-    }
 
 }

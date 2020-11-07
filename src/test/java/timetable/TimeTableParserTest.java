@@ -64,7 +64,7 @@ class TimeTableParserTest {
             ByteArrayOutputStream outContent = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outContent));
             TimeTableCommand.showLink(dateList);
-            String expected = "www.zoom.com/asdf|CS1234\nwww.zoom.com/qwer|CS5678\n";
+            String expected = "www.zoom.com/asdf | CS1234\nwww.zoom.com/qwer | CS5678\n";
             assertEquals(expected, outContent.toString());
         }
     }
