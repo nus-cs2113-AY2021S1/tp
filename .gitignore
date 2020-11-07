@@ -20,5 +20,5 @@ text-ui-test/EXPECTED-UNIX.TXT
 /text-ui-test/ACTUAL.TXT
 /text-ui-test/data/
 
-/logs/scrum.log.*
 /logs/scrum.log
+/logs/scrum.log.*
