@@ -27,7 +27,6 @@ public class ClearCommand extends Command {
     }
 
     public void execute(Model model) throws DukeException {
-
         TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
         BookList books = (BookList) model.getList(ListType.BOOK_LIST);
         LinkList links = (LinkList) model.getList(ListType.LINK_LIST);
@@ -36,14 +35,13 @@ public class ClearCommand extends Command {
         if (description.isEmpty() | !description.equals("all")) {
             throw new DukeException(Messages.EXCEPTION_INVALID_CLEAR);
         }
+
         if ((links.size() != 0 | books.size() != 0 | modules.size() != 0)) {
-
-            tasks.clearTask();
-            books.clearBook();
-            links.clearList();
-            modules.clearModule();
+            tasks.clearItems();
+            books.clearItems();
+            links.clearItems();
+            modules.clearItems();
             Ui.dukePrint(Messages.MESSAGE_CLEAR);
-
         } else {
             throw new DukeException(Messages.MESSAGE_CLEARED);
         }

@@ -72,14 +72,6 @@ public class ModuleList extends ItemList<Module> {
     }
 
     /**
-     * Clears all the links in the list.
-     */
-    public void clearModule() {
-        items = new ArrayList<>();
-
-    }
-
-    /**
      * Returns a list of graded modules from a list of modules.
      *
      * @param modules A list of modules.

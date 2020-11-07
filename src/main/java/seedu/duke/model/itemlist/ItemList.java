@@ -140,9 +140,9 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Clears all the tasks in the list.
+     * Clears all the items in the list.
      */
-    public void clearTask() {
+    public void clearItems() {
         items = new ArrayList<>();
     }
 
