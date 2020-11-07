@@ -53,15 +53,6 @@ public class StorageParser {
         return name;
     }
 
-    public static String parsePercentInFile(String arg) throws InvalidFileFormatException {
-        String percent = arg.trim().substring(0,3);
-        if (percent.isEmpty()) {
-            throw new InvalidFileFormatException(
-                    "There should be a number to indicate how many tasks have completed.");
-        }
-        return percent;
-    }
-
     public static String parseRatingInFile(String arg) throws InvalidFileFormatException {
         if (!(arg.trim().startsWith(Storage.RATING_PREFIX))) {
             throw new InvalidFileFormatException("Answers in the file should begin with [R].");

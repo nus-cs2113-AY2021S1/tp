@@ -8,6 +8,9 @@ import ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Represents an EditCommand which contains methods used in the various EditCommand classes.
+ */
 public abstract class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
@@ -26,13 +29,20 @@ public abstract class EditCommand extends Command {
             + "         " + COMMAND_WORD + " 2 Chapter 2\n"
             + "         " + COMMAND_WORD + " 3 q:What is the result of one plus one | a:two\n";
 
-    private static final String MESSAGE_BEFORE_EDIT = "The following %1$s will be edited:\n";
-    private static final String MESSAGE_AFTER_EDIT = "Edited %1$s:\n";
+    public static final String MESSAGE_BEFORE_EDIT = "The following %1$s will be edited:\n";
+    public static final String MESSAGE_AFTER_EDIT = "Edited %1$s:\n";
 
     @Override
     public abstract void execute(Ui ui, Access access, Storage storage)
             throws InvalidInputException, IOException, StorageDataException;
 
+    /**
+     * Constructs the result of the command execution before editing the content.
+     *
+     * @param type module, chapter or card type
+     * @param content content to be edited
+     * @return result to be displayed
+     */
     protected String prepareBeforeEdit(String type, String content) {
         StringBuilder result = new StringBuilder();
         result.append(String.format(MESSAGE_BEFORE_EDIT, type));
@@ -40,6 +50,13 @@ public abstract class EditCommand extends Command {
         return result.toString();
     }
 
+    /**
+     * Constructs the result of the command execution after editing the content.
+     *
+     * @param type module, chapter or card type
+     * @param content content it is edited to
+     * @return result to be displayed
+     */
     protected String prepareAfterEdit(String type, String content) {
         StringBuilder result = new StringBuilder();
         result.append(String.format(MESSAGE_AFTER_EDIT, type));

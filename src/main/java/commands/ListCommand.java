@@ -4,7 +4,9 @@ import access.Access;
 import storage.Storage;
 import ui.Ui;
 
-
+/**
+ * Represents a ListCommand which contains messages used in the various ListCommand classes.
+ */
 public abstract class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 

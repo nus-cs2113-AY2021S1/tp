@@ -13,11 +13,11 @@ import commands.HistoryCommand;
 import commands.IncludeCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
+import commands.PreviewCommand;
 import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import commands.ShowRateCommand;
-
 import manager.card.Card;
 import manager.chapter.DueChapter;
 
@@ -30,6 +30,9 @@ import java.util.Scanner;
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
+/**
+ * UI of the application.
+ */
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
@@ -77,6 +80,10 @@ public class Ui {
         return userChoice.toUpperCase();
     }
 
+    /** Prompts for the command and reads the text entered by the user.
+     *
+     * @return full command entered by the user
+     */
     public String readCommand() {
         out.print("Enter command here: ");
         String userCommand = in.nextLine();
@@ -87,23 +94,38 @@ public class Ui {
         return userCommand;
     }
 
-
-
+    /**
+     * Prints the welcome message upon the start of the application.
+     */
     public void showWelcome() {
         out.println("Welcome to Kaji!");
     }
 
+    /**
+     * Prints the access level that the user is currently at.
+     *
+     * @param access access level of the user
+     */
     public void showLevel(Access access) {
         out.println(access.getLevel());
     }
 
+    /**
+     * Prints the line divider between each command.
+     */
     public void printLine() {
         out.println(LINE);
     }
 
+    /**
+     * Shows message to the user.
+     *
+     * @param message message to be shown to the user
+     */
     public void showToUser(String message) {
         out.println(message);
     }
+
 
     public void showToUserInline(String message) {
         out.print(message);
@@ -129,27 +151,41 @@ public class Ui {
         return scanner.nextLine();
     }
 
+    /**
+     * Prints the exit message upon termination of the application.
+     */
     public void showExit() {
         out.println("Exiting the program...");
     }
 
+    /**
+     * Prints the list of commands available.
+     */
     public void showHelpList() {
         out.println("Here is a list of commands available:" + "\n");
-        out.println("1.  " + ListCommand.MESSAGE_USAGE);
-        out.println("2.  " + ReviseCommand.MESSAGE_USAGE);
-        out.println("3.  " + HelpCommand.MESSAGE_USAGE);
-        out.println("4.  " + AddCommand.MESSAGE_USAGE);
-        out.println("5.  " + ExitCommand.MESSAGE_USAGE);
-        out.println("6.  " + EditCommand.MESSAGE_USAGE);
-        out.println("7.  " + RemoveCommand.MESSAGE_USAGE);
-        out.println("8.  " + GoCommand.MESSAGE_USAGE);
-        out.println("9.  " + BackCommand.MESSAGE_USAGE);
-        out.println("10. " + ListDueCommand.MESSAGE_USAGE);
-        out.println("11. " + HistoryCommand.MESSAGE_USAGE);
-        out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
-        out.println("13. " + RescheduleCommand.MESSAGE_USAGE);
+        out.println("1.  " + AddCommand.MESSAGE_USAGE);
+        out.println("2.  " + BackCommand.MESSAGE_USAGE);
+        out.println("3.  " + ListDueCommand.MESSAGE_USAGE);
+        out.println("4.  " + EditCommand.MESSAGE_USAGE);
+        out.println("5.  " + ExcludeCommand.MESSAGE_USAGE);
+        out.println("6.  " + ExitCommand.MESSAGE_USAGE);
+        out.println("7.  " + GoCommand.MESSAGE_USAGE);
+        out.println("8.  " + HelpCommand.MESSAGE_USAGE);
+        out.println("9.  " + HistoryCommand.MESSAGE_USAGE);
+        out.println("10. " + IncludeCommand.MESSAGE_USAGE);
+        out.println("11. " + ListCommand.MESSAGE_USAGE);
+        out.println("12. " + PreviewCommand.MESSAGE_USAGE);
+        out.println("13. " + RemoveCommand.MESSAGE_USAGE);
+        out.println("14. " + RescheduleCommand.MESSAGE_USAGE);
+        out.println("15. " + ReviseCommand.MESSAGE_USAGE);
+        out.println("16. " + ShowRateCommand.MESSAGE_USAGE);
     }
 
+    /**
+     * Prints the error message from exceptions.
+     *
+     * @param error error message thrown by exceptions
+     */
     public void showError(String error) {
         out.println(error);
     }

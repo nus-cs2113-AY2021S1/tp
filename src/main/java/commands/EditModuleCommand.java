@@ -15,6 +15,9 @@ import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MESSAGE_ITEM_EXISTED;
 import static common.Messages.MODULE;
 
+/**
+ * Edits the module name.
+ */
 public class EditModuleCommand extends EditCommand {
     private static Logger logger = KajiLog.getLogger(EditModuleCommand.class.getName());
 
@@ -22,11 +25,17 @@ public class EditModuleCommand extends EditCommand {
             + "Parameters:" + MODULE_PARAMETERS + "\n"
             + "Example: " + COMMAND_WORD + " 1 CS2113T\n";
 
-    private static final String MESSAGE_SAME_NAME = "%1$s has the same module name as what you entered: %2$s\n";
+    public static final String MESSAGE_SAME_NAME = "%1$s has the same module name as what you entered: %2$s\n";
 
     private final int editIndex;
     private String module;
 
+    /**
+     * Creates an EditModuleCommand to edit to the specified {@code module}.
+     *
+     * @param editIndex of the module in the list of modules to edit
+     * @param module name to edit the module to
+     */
     public EditModuleCommand(int editIndex, String module) {
         this.editIndex = editIndex;
         this.module = module;
@@ -38,6 +47,15 @@ public class EditModuleCommand extends EditCommand {
         ui.showToUser(result);
     }
 
+    /**
+     * Edits the name of the module.
+     *
+     * @param access to get the list of modules
+     * @param storage to rename the storage file
+     * @return result to be displayed
+     * @throws InvalidInputException if the index is invalid
+     * @throws StorageDataException if there is an error renaming the storage file
+     */
     private String editModule(Access access, Storage storage) throws InvalidInputException, StorageDataException {
         assert access.isAdminLevel() : "Not admin level";
         assert !module.isEmpty() : "The module name is missing.";

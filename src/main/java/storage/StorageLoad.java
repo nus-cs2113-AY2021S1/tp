@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ *  Manages loading of Kaji data from local storage.
+ */
 public class StorageLoad {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
@@ -167,6 +170,14 @@ public class StorageLoad {
     }
 
     //@@author Jane-Ng
+    /**
+     * Loads all the chapters of the specified {@code module}.
+     *
+     * @param module module name of the chapters
+     * @param filePath of the storage file
+     * @return list of chapters
+     * @throws IOException if there is an error when loading from storage file
+     */
     protected static ArrayList<Chapter> loadChapter(String module, String filePath) throws IOException {
         File f = new File(filePath + "/" + module);
         checkExists(f);

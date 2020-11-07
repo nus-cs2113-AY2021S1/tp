@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+/**
+ * Manages storage of Kaji data in local storage.
+ */
 public class Storage {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
@@ -63,6 +66,13 @@ public class Storage {
         return StorageLoad.loadModule(filePath);
     }
 
+    /**
+     * Loads all the chapters of the specified {@code module}.
+     *
+     * @param module module name of the chapters
+     * @return list of chapters
+     * @throws IOException if there is an error when loading from storage file
+     */
     public ArrayList<Chapter> loadChapter(String module) throws IOException {
         return StorageLoad.loadChapter(module, filePath);
     }
@@ -105,10 +115,25 @@ public class Storage {
         return StorageWrite.deleteDirectory(directoryToBeDeleted);
     }
 
+    /**
+     * Rename the filename of a chapter.
+     *
+     * @param newChapterName new chapter name to rename to
+     * @param module module of the chapter to be renamed
+     * @param chapter existing chapter to be renamed
+     * @throws StorageDataException if there is an error renaming the storage file
+     */
     public void renameChapter(String newChapterName, Module module, Chapter chapter) throws StorageDataException {
         StorageWrite.renameChapter(newChapterName, module, chapter, filePath);
     }
 
+    /**
+     * Rename the folder of a module.
+     *
+     * @param newModuleName new module name to rename to
+     * @param module existing module to be renamed
+     * @throws StorageDataException if there is an error renaming the storage file
+     */
     public void renameModule(String newModuleName, Module module) throws StorageDataException {
         StorageWrite.renameModule(newModuleName, module, filePath);
     }
