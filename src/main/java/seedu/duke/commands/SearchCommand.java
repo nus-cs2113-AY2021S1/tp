@@ -7,6 +7,7 @@ import seedu.duke.utility.Ui;
 
 import java.util.ArrayList;
 
+//@@author judowha
 
 public class SearchCommand extends Command {
     ArrayList<String> inputs;
