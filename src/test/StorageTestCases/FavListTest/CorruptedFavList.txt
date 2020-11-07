@@ -1,0 +1,8 @@
+/bus kent ridge mrt station|test1
+/too many delimiters|too many delimiters|too many delimiters
+/route opp university health centre /to opp kent ridge mrt station|test2
+missing slash|test
+|
+ |
+/bus musuem|test3
+
