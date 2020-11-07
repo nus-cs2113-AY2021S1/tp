@@ -1,4 +1,4 @@
-package fitr;
+package fitr.food;
 
 import fitr.calorie.Calorie;
 import fitr.food.Food;

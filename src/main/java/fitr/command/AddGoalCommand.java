@@ -14,10 +14,13 @@ import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.DateManager.getCurrentDate;
+import static fitr.common.Messages.ADD_SMART_EXERCISE_GOAL_TIP;
+import static fitr.common.Messages.ADD_SMART_FOOD_GOAL_TIP;
 import static fitr.common.Messages.ECHO_ADDED_GOAL;
 import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
+import static fitr.common.Messages.VIEW_FOOD_TIP;
 import static fitr.goal.FormatGoal.formatGoal;
 
 public class AddGoalCommand extends Command {
@@ -39,6 +42,10 @@ public class AddGoalCommand extends Command {
                     newGoal = formatGoal(getCurrentDate(), SYMBOL_FOOD, command);
                     listManager.addGoal(newGoal);
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
+                    if (newGoal.getDescription().equals(command)) {
+                        Ui.printCustomMessage("-".repeat(136));
+                        Ui.printMessageInBlue(ADD_SMART_FOOD_GOAL_TIP);
+                    }
                 } catch (FitrException e) {
                     Ui.printFormatError("Smart food goal");
                 }
@@ -48,9 +55,12 @@ public class AddGoalCommand extends Command {
                 try {
                     command = command.split(" ", 2)[1].trim();
                     newGoal = formatGoal(getCurrentDate(), SYMBOL_EXERCISE, command);
-
                     listManager.addGoal(newGoal);
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + "] " + newGoal.getDescription());
+                    if (newGoal.getDescription().equals(command)) {
+                        Ui.printCustomMessage("-".repeat(136));
+                        Ui.printMessageInBlue(ADD_SMART_EXERCISE_GOAL_TIP);
+                    }
                 } catch (FitrException e) {
                     Ui.printFormatError("Smart exercise goal");
                 }
