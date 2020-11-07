@@ -5,7 +5,7 @@ import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
 import java.util.ArrayList;
 
-//@@author tanleewei
+//@@author TanLeeWei
 
 /**
  * Represents the locations in SmartHomeBot.
