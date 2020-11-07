@@ -29,7 +29,7 @@ class DataBaseTest {
         System.out.println("Trying a negative test case : Input : 10000");
         try {
             database.searchFoodByIndex(10000);
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             System.out.println("The index is too high!" + e);
         }
 
