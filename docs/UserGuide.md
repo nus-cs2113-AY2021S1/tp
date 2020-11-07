@@ -45,7 +45,8 @@ Text that are in a `monospace font` represent either the user input or the progr
 
 >  **[NOTE]**
 >  The notes section contains additional information that may be helpful to you if you encounter any issues.
->
+
+
 ## 2. Quick Start
 
 Prerequisite: Ensure that you have Java 11 installed in your Computer.
@@ -510,21 +511,40 @@ The `updatetimelimit` command updates your current watch time limit.
 
  Format:
   `updatetimelimit <DURATION LIMIT> `
+ 
+  Example of usage:
+  Let's say you want to set your daily watch time limit to 120 minutes, or 2 hours. If you have not set your watch time limit yet, your application will look like this on startup: <br>
+  <img src = "images/updatetimelimitbefore.PNG" width = "600"> <br> &nbsp;
   
+  Note the prompt above the red line, which signals to the user that the time limit has not been set yet.
+  
+  Now, we input `updatetimelimit 120` into the application. which updates your daily limit to 120 minutes.
+ 
+ Expected outcome:
+  
+ <img src = "images/updatetimelimit.PNG" width = "800"> 
+
+ &nbsp;
+ 
  > **[NOTE]**
+ > * Your set duration will be reset to zero after the end of each day.
  >
  > * `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
  >
  > * If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
+
+ As seen from the expected outcome, you now have a limit of 2 hours to spend on watching shows.To use the allocated limit, use the [watch command](#4ma-watch---watch-a-show-in-your-list) above.
+
+If you have **used up** your allocated time, a prompt will be displayed to you as seen below:<br> 
+ <img src = "images/useduptimelimit.PNG" width = "800"> <br>  &nbsp;
+
+If you have **exceeded** your allocated time, a prompt will be displayed to you as seen below:<br> 
+ <img src = "images/exceededlimit.PNG" width = "800"> <br>  &nbsp;
  
- Example of usage:
- `updatetimelimit 120 `
- 
- Expected outcome:
-  
- <img src = "images/updatetimelimit.PNG" width = "800">
-  
- &nbsp;
+The underlined portion shows the prompt to the user, and the circled portion details the amount of time that the user has exceeded.
+
+ > **[NOTE]**
+ > * To allocate more time for yourself, simply use the `updatetimelimit` command again with a longer duration limit.
 
 ### 4.n. `search` - search a show in the watchlist  
 
