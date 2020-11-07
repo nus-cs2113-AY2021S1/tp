@@ -94,6 +94,7 @@ The CanteenHelper consists of six classes:
 * `Canteen`
 * `Stall`
 * `Dish`
+* `Exception`
 
 #### 3.2.1 Logic class
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
@@ -191,6 +192,8 @@ printDishes()
 #### 3.2.8 Dish class
 Dishes that can be ordered by the user.
 
+#### 3.2.9 Exception class
+Exceptions that can catch user unexpected input.
 
 ## 4. Implementation
 #### Feature: order
