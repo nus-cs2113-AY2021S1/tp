@@ -2,11 +2,17 @@ package anichan.bookmark;
 
 import anichan.anime.Anime;
 import anichan.anime.AnimeData;
-import anichan.exception.AniException;
 
 import java.util.ArrayList;
 
+/**
+ * Represent the bookmark of a workspace.
+ */
 public class Bookmark {
+    private static final String NOTES_EMPTY_MESSAGE = "\tNotes is empty.. :(";
+    private static final String LIST_EMPTY_MESSAGE = "\tUhh.. It's empty.. :(";
+    private static final int EMPTY_SIZE = 0;
+    private static final int ONE_BASED_OFFSET = 1;
     private ArrayList<Integer> animeBookmarkList;
     private ArrayList<Integer> animeEpisode;
     private ArrayList<Note> noteList;
@@ -23,7 +29,7 @@ public class Bookmark {
         this.noteList.add(new Note());
     }
 
-    public void addAnimeBookmarkEpisode(int animeIndex, int episodeNumber, Note note) {
+    public void addAnimeBookmark(int animeIndex, int episodeNumber, Note note) {
         this.animeBookmarkList.add(animeIndex);
         this.animeEpisode.add(episodeNumber);
         this.noteList.add(note);
@@ -32,6 +38,7 @@ public class Bookmark {
     public void removeAnimeBookmark(int bookmarkIndex) {
         this.animeBookmarkList.remove(bookmarkIndex);
         this.animeEpisode.remove(bookmarkIndex);
+        this.noteList.remove(bookmarkIndex);
     }
 
     public void editAnimeBookmarkEpisode(int bookmarkIndex, int episode) {
@@ -64,25 +71,33 @@ public class Bookmark {
     }
 
     public int getNotesSize(int bookmarkIndex) {
-        return  this.noteList.get(bookmarkIndex).getSize();
+        return this.noteList.get(bookmarkIndex).getSize();
     }
 
     public void addNote(int bookmarkIndex, String note) {
         this.noteList.get(bookmarkIndex).addNote(note);
     }
 
-    public void addNote(int bookmarkIndex, String note, String date) throws AniException {
-        this.noteList.get(bookmarkIndex).addNote(note, date);
+    public String removeNote(int bookmarkIndex, int noteIndex) {
+        Note note = noteList.get(bookmarkIndex);
+        String removeNoteOutput = note.removeNote(noteIndex);
+        return removeNoteOutput;
     }
 
+    /**
+     * Retrieve all notes of a bookmark entry.
+     *
+     * @param bookmarkIndex the bookmark entry id
+     * @return list of all notes or "notes is empty" string
+     */
     public String getNoteInString(int bookmarkIndex) {
         StringBuilder sbNoteList = new StringBuilder(System.lineSeparator());
-        if (noteList.get(bookmarkIndex).getSize() == 0) {
-            sbNoteList.append("\tNotes is empty.. :(");
+        if (noteList.get(bookmarkIndex).getSize() == EMPTY_SIZE) {
+            sbNoteList.append(NOTES_EMPTY_MESSAGE);
             sbNoteList.append(System.lineSeparator());
         } else {
             for (int i = 0; i < noteList.get(bookmarkIndex).getSize(); i++) {
-                sbNoteList.append(i + 1);
+                sbNoteList.append(i + ONE_BASED_OFFSET);
                 sbNoteList.append(". ");
                 sbNoteList.append(noteList.get(bookmarkIndex).getNote(i) + System.lineSeparator());
             }
@@ -90,23 +105,25 @@ public class Bookmark {
         return sbNoteList.toString();
     }
 
-    public String removeNote(int bookmarkIndex, int noteIndex) {
-        String removeNote = noteList.get(bookmarkIndex).removeNote(noteIndex);
-        return removeNote;
-    }
-
+    /**
+     * Construct the list of bookmark into a string which consist of the bookmark id with the anime name.
+     * Animedata is used to retrieve the anime name of the anime id each bookmark id keeps.
+     *
+     * @param animeData anime data source
+     * @return List of the bookmark
+     */
     public String getListInString(AnimeData animeData) {
         StringBuilder sbAnimeList = new StringBuilder(System.lineSeparator());
-        if (animeBookmarkList.size() == 0) {
-            sbAnimeList.append("\tUhh.. It's empty.. :(");
+        if (animeBookmarkList.size() == EMPTY_SIZE) {
+            sbAnimeList.append(LIST_EMPTY_MESSAGE);
             sbAnimeList.append(System.lineSeparator());
         }
         for (int i = 0; i < animeBookmarkList.size(); i++) {
             sbAnimeList.append("\t");
-            sbAnimeList.append(i + 1);
+            sbAnimeList.append(i + ONE_BASED_OFFSET);
             sbAnimeList.append(". ");
             int animeIndex = this.animeBookmarkList.get(i);
-            sbAnimeList.append(animeData.getAnime(animeIndex));
+            sbAnimeList.append(animeData.getAnime(animeIndex).getAnimeName());
             sbAnimeList.append(System.lineSeparator());
         }
         return sbAnimeList.toString();
@@ -116,11 +133,18 @@ public class Bookmark {
         return animeData.returnAnimeInfo(this.animeBookmarkList.get(bookmarkIndex));
     }
 
+    /**
+     * Check if anime id already exist within the bookmark.
+     *
+     * @param animeIndex anime id to be added
+     * @return true if already exit, else otherwise
+     */
     public boolean checkExist(int animeIndex) {
         boolean alreadyExist = false;
         for (Integer animeID : animeBookmarkList) {
             if (animeID.equals(animeIndex)) {
                 alreadyExist = true;
+                break;
             }
         }
         return alreadyExist;

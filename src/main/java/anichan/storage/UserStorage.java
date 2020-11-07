@@ -8,9 +8,13 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author OngDeZhi
+/**
+ * Represents the class to manage user data.
+ */
 public class UserStorage extends Storage {
     private static final String USER_FILE_NAME = "user.txt";
-    private static final String USER_LINE_DELIMITER_FOR_DECODE = " \\| ";
+    private static final String USER_LINE_DELIMITER_FOR_DECODE = "\\|";
     private static final String USER_LINE_DELIMITER_FOR_ENCODE = " | ";
 
     private static final String EMPTY_USER_FILE = "Empty user file.";
@@ -21,12 +25,23 @@ public class UserStorage extends Storage {
 
     private final String storageDirectory;
 
+    /**
+     * Creates a new instance of UserStorage with the specified storage directory.
+     *
+     * @param storageDirectory the specified path to storage directory in hard disk
+     */
     public UserStorage(String storageDirectory) {
         this.storageDirectory = storageDirectory;
     }
 
     // ========================== Save and Load ==========================
 
+    /**
+     * Saves the user data.
+     *
+     * @param user the user object to be saved
+     * @throws AniException when an error occurred while saving the user data
+     */
     public void save(User user) throws AniException {
         String userFilePath = storageDirectory + USER_FILE_NAME;
         String encodedUserString = encode(user);
@@ -35,6 +50,12 @@ public class UserStorage extends Storage {
         writeFile(userFilePath, encodedUserString);
     }
 
+    /**
+     * Loads the user data.
+     *
+     * @return the user object that was loaded
+     * @throws AniException when an error occurred while loading the user data
+     */
     public User load() throws AniException {
         String userFilePath = storageDirectory + USER_FILE_NAME;
         String fileContent = readFile(userFilePath);
@@ -45,7 +66,7 @@ public class UserStorage extends Storage {
 
         String[] fileContentSplit = fileContent.split(USER_LINE_DELIMITER_FOR_DECODE, 2);
         LOGGER.log(Level.FINE, "Processing: " + System.lineSeparator() + fileContent);
-        if (!isValidUserString(fileContentSplit)) {
+        if (fileContentSplit.length != 2) {
             LOGGER.log(Level.WARNING, "Invalid user file: " + userFilePath);
             throw new AniException(NO_USER_LOADED);
         }
@@ -55,6 +76,12 @@ public class UserStorage extends Storage {
 
     // ========================== Encode and Decode ==========================
 
+    /**
+     * Encodes the user object into a readable string representation for saving in file.
+     *
+     * @param user the user object to be saved
+     * @return the readable string representation of the user object
+     */
     private String encode(User user) {
         String userName = user.getName();
         String userGender = user.getGender().toString();
@@ -64,15 +91,22 @@ public class UserStorage extends Storage {
         return encodedUserString;
     }
 
+    /**
+     * Decodes the readable string representation of the user object.
+     *
+     * @param fileContentSplit readable string representation of the user object
+     * @return the decoded user object
+     * @throws AniException when an error occurs while reconstructing the user object
+     */
     private User decode(String[] fileContentSplit) throws AniException {
         String userName = fileContentSplit[0].trim();
         String userGender = fileContentSplit[1].trim();
-        return new User(userName, userGender);
-    }
 
-    // ========================== Validation ==========================
-
-    private boolean isValidUserString(String[] fileContentSplit) {
-        return (fileContentSplit.length == 2);
+        try {
+            return new User(userName, userGender);
+        } catch (AniException exception) {
+            LOGGER.log(Level.WARNING, "Invalid user details: " + userName + ", " + userGender);
+            throw new AniException(NO_USER_LOADED);
+        }
     }
 }

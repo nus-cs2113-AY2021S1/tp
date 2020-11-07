@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static junit.framework.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+//@@author OngDeZhi
 class WatchlistTest {
     private static final int SAMPLE_ANIME_INDEX_ONE = 1;
     private static final int SAMPLE_ANIME_INDEX_TWO = 2;
@@ -26,7 +27,7 @@ class WatchlistTest {
     }
 
     @Test
-    void testEquals() {
+    void equals() {
         // Same object -> returns true.
         Watchlist duplicateNameWatchlist = new Watchlist("First Watchlist");
         assertEquals(firstWatchlist, duplicateNameWatchlist);
