@@ -1,4 +1,4 @@
-# Duke
+# Study It
 
 **Welcome to Study It!**
 
