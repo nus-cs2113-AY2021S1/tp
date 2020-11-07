@@ -135,6 +135,8 @@ Expected outcome:
 
 ### Adding a task : `add`
 
+Add a task to the task list and display task that was added.
+
 If the date and priority are omitted,
 default date will be the day when the tasked is added and
 default priority will be low. If the timings are omitted, the time displayed will be empty.
@@ -253,7 +255,10 @@ Expected outcome:
 ![monthly_view](images/list_month.PNG)
 
 *Figure 16. Display tasks in a monthly view for the current month.*
-
+When viewing tasks by the  `list -w` or `list -m`, monthly or weekly view , then the user will
+be in the display mode and can view tasks in the previous and month/week using `e` for the next
+month or date and the command`w` to view the previous month/week. The user can quit the display mode
+by typing in the command 'q' to quit display mode. 
 
 
 ### Searching relevant task(s) : `search`
@@ -298,9 +303,35 @@ Format: `clear`
 
 Expected outcome:
 
+    All tasks cleared.
+
 ![clear](images/Clear_tasks.png)
 
 *Figure 19. The task that was deleted will be displayed.*
+
+
+### Setting a reminder : `reminder`
+
+Allows you to set a reminder for any specific task on the list.
+You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
+before the start time of the task.
+
+Format: `reminder INDEX [t/TIME]`
+
+Example of usage: 
+
+`reminder 8833 t/2305`
+
+Expected outcome:
+
+![reminder_set](images/reminder_set.png)
+
+*Figure 20. Setting a reminder for task #8833 at 11.05pm.*
+
+![reminder_popup](images/reminder_popup.png)
+
+*Figure 21. Popup of a reminder.*
+
 
 
 ### Exiting program : `bye`
@@ -313,13 +344,18 @@ Expected outcome:
 
 ![bye](images/bye.png)
 
+*Figure 22. Exit message.*
+
 
 ### Saving data to file
 
 Data will be automatically saved after modification commands like 
 `add`, `delete`, `edit` and so forth.
-
-
+The data is saved in a file called data.jason which can  be found in the folder named
+data in the same location as the PlaNUS jar file. If you are moving over to a new device and
+wish to carry over your tasks from the previous device, then simply copy over the data folder into the 
+new device in the same location as the jar file and you'll have your tasks over
+in no time.
 <div style="page-break-after: always; visibility: hidden"> 
 \pagebreak 
 </div>
