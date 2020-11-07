@@ -94,7 +94,6 @@ public class ListCommand extends Command {
         } else {
             outputResult = listApplianceByLocation(outputApplianceList);
         }
-        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
@@ -105,7 +104,6 @@ public class ListCommand extends Command {
             throw new EmptyApplianceListException();
         }
         String outputResult = displayOutput(MESSAGE_LIST_APPLIANCES, outputApplianceList);
-        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
@@ -125,7 +123,6 @@ public class ListCommand extends Command {
         }
         String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
         String outputResult = displayOutput(header, filterApplianceList);
-        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
@@ -147,7 +144,6 @@ public class ListCommand extends Command {
             outputResult = outputResult.concat(System.lineSeparator() + index + ": " + location);
             index++;
         }
-        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
@@ -174,7 +170,6 @@ public class ListCommand extends Command {
                     a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
-        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
