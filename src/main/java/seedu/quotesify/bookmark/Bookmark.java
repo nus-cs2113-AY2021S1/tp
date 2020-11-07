@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.parser.JsonSerializer;
 
+//@@author lunzard
 public class Bookmark implements JsonSerializer {
     private Book book;
     private int pageNum;
@@ -41,4 +42,5 @@ public class Bookmark implements JsonSerializer {
         details.put("pageNum", this.pageNum);
         return details;
     }
+    //@@author
 }

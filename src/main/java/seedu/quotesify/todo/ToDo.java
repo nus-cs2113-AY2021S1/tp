@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 import seedu.quotesify.ui.UiMessage;
 
+//@@author lunzard
 public class ToDo implements JsonSerializer {
     private String name;
     private String deadline;
@@ -98,6 +99,7 @@ public class ToDo implements JsonSerializer {
         }
     }
 
+    //@@author
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

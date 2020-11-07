@@ -7,6 +7,7 @@ import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;
 
+//@@author lunzard
 public class BookmarkList extends QuotesifyList<Bookmark> {
     private ArrayList<Bookmark> bookmarks = super.getList();
 
@@ -65,6 +66,7 @@ public class BookmarkList extends QuotesifyList<Bookmark> {
         return bookmarksToReturn;
     }
 
+    //@@author
     @Override
     public JSONArray toJsonArray() {
         JSONArray list = new JSONArray();
