@@ -70,10 +70,15 @@ Before you start: Please ensure you have Java 11 installed in you computer.
 Figure 1. Architecture Diagram
 
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
+
 Main(Logic): The main logic flow of our whole App.
+
 Initializer: Initialize the whole app to start waiting for the input from the users.
+
 UI: The user interface of our App.
+
 Parser: Change the user input to something meaningful to the app.
+
 Exception: Throw different kinds of exception that user may make.
 
 The following section is a more detailed description of these four components.
@@ -81,7 +86,7 @@ The following section is a more detailed description of these four components.
 ### 3.2 Classes
 The CanteenHelper consists of six classes:
 * `Logic`
-* `Ui`
+* `UI`
 * `Parser`
 * `Customer`
 * `Order`
