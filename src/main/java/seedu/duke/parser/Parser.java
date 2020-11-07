@@ -21,6 +21,7 @@ public class Parser {
     private static Logger logger = Logger.getLogger("tp");
 
     public static Command parseCommand(String userInput) {
+        logger.setLevel(Level.WARNING);
         logger.log(Level.INFO, "going to start processing command");
 
         String[] userInputSplit = userInput.trim().split(" ");
@@ -70,6 +71,7 @@ public class Parser {
                 return new InvalidCommand(e.getMessage());
             }
         default:
+            logger.setLevel(Level.WARNING);
             logger.log(Level.WARNING, "processing error when parsing command");
             return new InvalidCommand("Invalid command! Please try again.");
         }

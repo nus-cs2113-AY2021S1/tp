@@ -26,6 +26,7 @@ public class StockPriceFetcher {
     }
 
     public double fetchLatestPrice(String symbol) throws PaperTradeException {
+        logger.setLevel(Level.WARNING);
         logger.log(Level.INFO, "fetching latest stock data for " + symbol);
         StockData stockData = fetchLatestStockData(symbol);
 
@@ -44,6 +45,7 @@ public class StockPriceFetcher {
 
             return stockData.get(0);
         } catch (AlphaVantageException e) {
+            logger.setLevel(Level.WARNING);
             logger.log(Level.INFO, "failed to fetch price from API");
             throw new PaperTradeException("API limit has reached. Take a chill pill and test again a moment later :)");
         }
