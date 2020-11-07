@@ -8,10 +8,18 @@ import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
 import java.util.Hashtable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ViewProjectCommandTest {
 
@@ -60,8 +68,9 @@ class ViewProjectCommandTest {
 
         ViewProjectCommand command = new ViewProjectCommand(parameters, projectManager);
         command.execute();
-        String expectedOutput = "============================ PROJECT ============================" + System.lineSeparator()
-                + "[ID: 3]" +  System.lineSeparator()
+        String expectedOutput = "============================ PROJECT ============================"
+
+                + System.lineSeparator() + "[ID: 3]" +  System.lineSeparator()
                 + "[Title: project3]" + System.lineSeparator()
                 + "[Description: project3]" + System.lineSeparator()
                 + "[No members added]" + System.lineSeparator()
