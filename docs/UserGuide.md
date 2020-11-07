@@ -11,6 +11,7 @@ Hospitalsaurus ReX is a program to help administrative staff to keep track of pa
 
 ## Features
 
+
 ### Adding a patient: `add`
 Adds a patient to the database.
 
@@ -24,6 +25,7 @@ Example of usage:
 `add S9922312D`
 
 `add S7423213Z`
+
 
 ### Retrieve a patient: `retrieve`
 Retrieves a patient to the database.
@@ -39,6 +41,7 @@ Example of usage:
 
 `retrieve S7423213Z`
 
+
 ### Edit a patient: `edit`
 Edits a patient to the database.
 
@@ -52,6 +55,7 @@ Example of usage:
 `edit S9922312D`
 
 `edit S7423213Z`
+
 
 ### Delete a patient: `delete`
 Deletes a patient to the database.
@@ -67,6 +71,7 @@ Example of usage:
 
 `delete S7423213Z`
 
+
 ### Create an appointment: `create`
 Creates an appointment date.
 
@@ -77,6 +82,7 @@ Format: `create`
 Example of usage:
 
 `create`
+
 
 ### Book an appointment: `book`
 Books an appointment date.
@@ -92,6 +98,7 @@ Example of usage:
 
 `book S7423213Z`
 
+
 ### Add a doctor: `doctor`
 Adds a doctor.
 
@@ -104,6 +111,7 @@ Example of usage:
 `doctor tan`
 
 `doctor trump`
+
 
 ### Remove a doctor: `doctor`
 Remove a doctor.
@@ -118,6 +126,7 @@ Example of usage:
 
 `nodoctor trump`
 
+
 ### View patient's appointments: `appointments`
 View patient's appointments
 
@@ -131,6 +140,7 @@ Example of usage:
 
 `appointments S1234556F`
 
+
 ### List patients: `list`
 View patient's appointments
 
@@ -141,6 +151,7 @@ Format: `list`
 Example of usage:
 
 `list`
+
 
 ### Edit patient's appointment: `editappt`
 Edit patient's appointment
@@ -156,6 +167,7 @@ Example of usage:
 
 `editappt S9900299D`
 
+
 ### Exit program: `bye`
 Exit the program
 
@@ -166,6 +178,7 @@ Format: `bye`
 Example of usage:
 
 `bye`
+
 
 ## FAQ
 
@@ -180,6 +193,7 @@ Example of usage:
 **Q**: How do I request for more features?
 
 **A**: Contact us.
+
 
 ## Command Summary
 
