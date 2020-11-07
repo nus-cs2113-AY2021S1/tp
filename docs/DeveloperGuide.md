@@ -92,10 +92,12 @@ from the java.util package. The remaining packages and classes which form the st
 are independently developed.
 
 ## Architecture
-![UML Fluffle class diagram](graphics/diagrams/classDiagram_Fluffle.png)
-<center><i><b>Figure 1: Overview of Fluffle UML diagram</b></i></center>
+This document contains all packages and classes that are used in developing Fluffle. The following figure describes the overview architecture of Fluffle.
 
-Fluffle Documentation: This document contains all packages and classes that are used in developing Fluffle. 
+![UML Fluffle class diagram](graphics/diagrams/Architecture.PNG)
+<center><i><b>Figure 1: Overview of Fluffle Architecture</b></i></center>
+
+// Some description
 
 ### Project overview
 Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the 
