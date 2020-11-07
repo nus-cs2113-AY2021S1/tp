@@ -20,7 +20,7 @@ The Package Diagram above gives a high level view of the project structure and t
 
 ![](./diagrams/Architecture.png)
 
-The Architecture Diagram above gives a high level design of PaperTrade. Below is a quick overview of each component.
+The High Level Class Diagram above gives a high level design of PaperTrade. Below is a quick overview of each component.
 
 ### Overview
 
