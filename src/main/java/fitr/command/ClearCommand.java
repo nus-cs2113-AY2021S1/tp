@@ -57,7 +57,7 @@ public class ClearCommand extends Command {
                 Ui.printCustomMessage("Goal list is cleared!");
                 break;
             default:
-                Ui.printCustomMessage("Invalid clear command entered!");
+                Ui.printCustomError("Invalid clear command entered!");
                 break;
             }
         }

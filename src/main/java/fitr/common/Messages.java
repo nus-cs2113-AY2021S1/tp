@@ -41,9 +41,9 @@ public class Messages {
     public static final String FORMAT_EDIT_FITNESS = "edit fitness NEW_FITNESS_LEVEL (0 for Unfit; 1 for Normal; 2 for"
             + " Fit)";
     public static final String FORMAT_EDIT_FOOD =
-            "edit food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY";
+            "edit food dd/MM/yyyy INDEX NAME_OF_FOOD /NUMBER_OF_CALORIES QUANTITY";
     public static final String FORMAT_EDIT_EXERCISE =
-            "edit exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX NAME_OF_EXERCISE /CALORIES_BURNT";
+            "edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT";
     public static final String FORMAT_EDIT_GOAL = "edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION";
     public static final String FORMAT_DELETE_FOOD = "delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
     public static final String FORMAT_DELETE_EXERCISE = "delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
