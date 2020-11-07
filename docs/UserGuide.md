@@ -76,8 +76,8 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 
 >Notes about command format:  
 >
->1. Words in **bold** are parameters to be provided by the user.
->2. Parameters to be entered by the user are not case-sensitive.
+>1. Words in **bold** are parameters to be provided by the user. (e.g. **location_1**)
+>2. Parameters and commands to be entered by the user are not case-sensitive.
 
 ### 3.1. List available help: ```/help```
 This command lists a set of features along with their respective commands available to users.
@@ -172,10 +172,10 @@ Format: <br>
 <code>/bus<strong> bus stop</strong></code> <br>
 
 #### Examples of Usage
-**<u>Example 1</u>**<br>
+<br>
 Let's say that you are at <strong>University Town</strong> bus stop, and you want to know the buses which are available for you to take. Instead of searching for the bus stops which all the buses stop at, you can easily access this information by using the <code>/bus</code> command. 
 
-To search for available buses at University Town:
+To search for available buses at **University Town**:
 
 1. Type <code>/bus <strong>University Town</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/bus4.png" width=600><br>
@@ -183,7 +183,7 @@ To search for available buses at University Town:
 2. The result will be a message displaying the buses available at University Town. <br><br>
 <img src="UG_Figures/bus3.png" width=650><br>
 
-**<u>Example 2</u>** <br>
+#### Common errors
 Let's say that you are at the <strong>museum</strong> bus stop, and you want to know the buses which are available for you to take. However, you make a spelling error and type <strong>"musuem"</strong> instead. <br>
 
 These are the steps to fix the mistake:
@@ -365,7 +365,6 @@ Format: <br>
 <code>/execfav<strong> index in list</strong></code> <br>
 
 #### Examples of Usage
-**<u>Example 1</u>**<br>
 Let's say that you have stored the command <code>/route <strong>Opp University Health Centre</strong> /to <strong>Opp Kent Ridge MRT station</strong></code> in your list of favourite commands. Instead of typing the long command using `/route`, you can now conveniently use the `/execfav` command.
 
 Given you have the list of favourite commands:<br>
@@ -374,8 +373,19 @@ Given you have the list of favourite commands:<br>
 
 To execute the command with the 2nd index in your list of favourite commands:
 
-1. Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
+Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/execfav2.png" width=600><br>
+
+#### Common errors and problems
+Let's say your data has been corrupted and thus your list of favourite commands contains an invalid command.<br>
+If you attempt to execute the command, Nav@NUS will automatically delete the corrupted data from your list.
+
+Given you have the list of favourite commands:<br>
+<img src="UG_Figures/execfav3.png"><br>
+
+If you attempt to execute the invalid command <code>/Funny command</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br>
+<img src="UG_Figures/execfav4.png"><br>
+
 
 ### 3.14. Change the description for a favourite command: `/descfav`
 This command helps you change the description of a command in your list of favourites.
