@@ -12,16 +12,36 @@ import seedu.quotesify.ui.TextUi;
 
 import java.util.logging.Level;
 
+/**
+ * Represents the command to add books to Quotesify's booklist.
+ */
 public class AddBookCommand extends AddCommand {
+    /**
+     * Constructor for the AddBook Command.
+     *
+     * @param arguments Inputs by the user.
+     */
     public AddBookCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the AddBook Command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         addBook(books, ui);
     }
 
+    /**
+     * Adds the book to booklist.
+     *
+     * @param books Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void addBook(BookList books, TextUi ui) {
         try {
             String[] titleAndAuthor = information.split(Command.FLAG_AUTHOR, 2);
@@ -45,6 +65,16 @@ public class AddBookCommand extends AddCommand {
         }
     }
 
+    /**
+     * Creates a new book based on whether the specified author already exists
+     * in the current booklist.
+     *
+     * @param books Booklist in Quotesify.
+     * @param title Title of book to be added.
+     * @param authorName Author name of book to be added.
+     * @return Book object created
+     * @throws QuotesifyException If there are similar books already in the booklist.
+     */
     private Book createNewBook(BookList books, String title, String authorName) throws QuotesifyException {
         Book newBook;
         Author existingAuthor = books.findExistingAuthor(authorName);
@@ -60,6 +90,13 @@ public class AddBookCommand extends AddCommand {
         return newBook;
     }
 
+    /**
+     * Checks for any missing information from the user input.
+     *
+     * @param title Title of book to be added.
+     * @param authorName Author name of book to be added.
+     * @throws QuotesifyException If title or authorName is empty.
+     */
     private void checkMissingInformation(String title, String authorName) throws QuotesifyException {
         if (title.isEmpty()) {
             throw new QuotesifyException(ERROR_BOOK_TITLE_MISSING);

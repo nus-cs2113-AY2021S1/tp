@@ -7,17 +7,37 @@ import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+/**
+ * Represents the command to list books.
+ */
 public class ListBookCommand extends ListCommand {
 
+    /**
+     * Constructor for the ListBook Command.
+     *
+     * @param arguments Input by the user.
+     */
     public ListBookCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the ListBook Command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         BookList bookList = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         listBooks(bookList, ui);
     }
 
+    /**
+     * Parses the type of books to be listed.
+     *
+     * @param bookList Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void listBooks(BookList bookList, TextUi ui) {
         try {
             if (information.isEmpty()) {
@@ -42,6 +62,12 @@ public class ListBookCommand extends ListCommand {
         }
     }
 
+    /**
+     * Lists books by completion.
+     *
+     * @param bookList Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void listBooksDoneOrUndone(BookList bookList, TextUi ui) {
         if (information.trim().equals(DONE_KEYWORD)) {
             listBooksDone(bookList, ui);
@@ -50,22 +76,48 @@ public class ListBookCommand extends ListCommand {
         }
     }
 
+    /**
+     * Lists books which are marked as done.
+     *
+     * @param bookList Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void listBooksDone(BookList bookList, TextUi ui) {
         BookList completedBooks = bookList.filterDone(true);
         ui.printListDoneBook(completedBooks);
     }
 
+    /**
+     * Lists books which are not done.
+     *
+     * @param bookList Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void listBooksUndone(BookList bookList, TextUi ui) {
         BookList undoneBooks = bookList.filterDone(false);
         ui.printListUndoneBook(undoneBooks);
     }
 
+    /**
+     * Lists book details of a book.
+     *
+     * @param bookList Booklist in Quotesify
+     * @param ui Ui of the program.
+     * @throws NumberFormatException If information is not an integer.
+     */
     private void listBookDetails(BookList bookList, TextUi ui) throws NumberFormatException {
         int bookIndex = Integer.parseInt(information.trim()) - 1;
         Book book = bookList.getBook(bookIndex);
         ui.printBookDetails(book);
     }
 
+    /**
+     * Lists all existing books in Quotesify.
+     *
+     * @param bookList Booklist in Quotesify.
+     * @param ui Ui of the program.
+     * @throws QuotesifyException If bookList is empty.
+     */
     private void listAllBooks(BookList bookList, TextUi ui) throws QuotesifyException {
         if (bookList.isEmpty()) {
             throw new QuotesifyException(ERROR_NO_BOOKS_IN_LIST);
@@ -73,6 +125,14 @@ public class ListBookCommand extends ListCommand {
         ui.printAllBooks(bookList);
     }
 
+    /**
+     * Lists all existing books by an author.
+     *
+     * @param bookList Booklist in Quotesify.
+     * @param ui Ui of the program.
+     * @throws QuotesifyException If list of books by that author is empty.
+     * @throws IndexOutOfBoundsException If no author name is specified.
+     */
     private void listBooksByAuthor(BookList bookList, TextUi ui) throws QuotesifyException, IndexOutOfBoundsException {
         String authorName = information.substring(4);
         BookList filteredBooks = bookList.filterByAuthor(authorName);

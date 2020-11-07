@@ -6,17 +6,37 @@ import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+/**
+ * Represents the command to find books.
+ */
 public class FindBookCommand extends FindCommand {
 
+    /**
+     * Constructor for the FindBook Command.
+     *
+     * @param arguments Input by the user.
+     */
     public FindBookCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the FindBook Command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         findBooks(books, ui);
     }
 
+    /**
+     * Finds a list of books with the specified keyword.
+     *
+     * @param books Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void findBooks(BookList books, TextUi ui) {
         try {
             String keyword = information.trim();

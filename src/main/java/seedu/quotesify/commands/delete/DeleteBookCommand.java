@@ -10,17 +10,37 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+/**
+ * Represents the command to delete books from Quotesify's booklist.
+ */
 public class DeleteBookCommand extends DeleteCommand {
 
+    /**
+     * Constructor for DeleteBookCommand.
+     *
+     * @param arguments Input by the user.
+     */
     public DeleteBookCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the DeleteBook Command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         deleteBook(books, ui);
     }
 
+    /**
+     * Deletes the book from Quotesify's booklist.
+     *
+     * @param books Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void deleteBook(BookList books, TextUi ui) {
         try {
             int bookIndex = Integer.parseInt(information.trim()) - 1;
@@ -51,6 +71,15 @@ public class DeleteBookCommand extends DeleteCommand {
         }
     }
 
+    /**
+     * Clears bookmarks from the specified book.
+     * Finds the book by its title.
+     *
+     * @param books Booklist in Quotesify.
+     * @param bookmarks Bookmark list in Quotesify.
+     * @param titleName Title of the book.
+     * @param ui Ui of the program.
+     */
     private void clearBookmark(BookList books, BookmarkList bookmarks, String titleName, TextUi ui) {
         Book targetBook = books.findByTitle(titleName);
         if (targetBook != null) {
@@ -58,6 +87,13 @@ public class DeleteBookCommand extends DeleteCommand {
         }
     }
 
+    /**
+     * Clears bookmarks from found book.
+     *
+     * @param targetBook Book which bookmarks are to be cleared.
+     * @param bookmarks Bookmark list in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void clearBookmarkFromDeletedBook(Book targetBook, BookmarkList bookmarks, TextUi ui) {
         Bookmark bookmarkToBeDeleted = bookmarks.find(targetBook);
 
