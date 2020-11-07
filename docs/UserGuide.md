@@ -257,7 +257,27 @@ Expected outcome:
 
  &nbsp;
  
-### 4.d. `addreview` - Adding a review
+### 4.d. `list` - Displays all your shows in the list
+
+The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
+season that you are currently at.
+
+The rating of your show will also be shown if you have added it using the [addreview](#4d-addreview---adding-a-review) command.
+
+   Format:
+    `list`
+    
+   Example of usage:
+   `list`
+   
+   Expected outcome:
+    
+   <img src = "images/list.PNG" width = "500">
+    
+   &nbsp;
+
+ 
+### 4.e. `addreview` - Adding a review
 
 The `addreview` command allows you to add a review for a show, including adding a rating.
 
@@ -278,7 +298,12 @@ The `addreview` command allows you to add a review for a show, including adding 
 
    &nbsp;
    
-### 4.e. `changereview` - Changing a review
+   Checking with the `list` command: 
+   
+   <img src = "images/addreviewlist.PNG" width = "450">
+   
+   
+### 4.f. `changereview` - Changing a review
 
 The `changereview` command allows you to change a review for a show that is already in the show list.
 
@@ -296,8 +321,13 @@ The `changereview` command allows you to change a review for a show that is alre
    Expected outcome:
    
   <img src = "images/changereview.PNG" width = "450">
-     
-### 4.f. `deletereview` - Deletes a review
+  
+  Checking with the `list` command:
+  
+  <img src = "images/changereviewlist.PNG" width = "450">
+  
+
+### 4.g. `deletereview` - Deletes a review
 
 The `deletereview` command allows you to delete a review for a show that is already in the show list.
 
@@ -311,24 +341,6 @@ The `deletereview` command allows you to delete a review for a show that is alre
    
   <img src = "images/deletereview.PNG" width = "450">
  
-### 4.g. `list` - Displays all your shows in the list
-
-The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
-season that you are currently at.
-
-The rating of your show will also be shown if you have added it using the [addreview](#4d-addreview---adding-a-review) command.
-
-   Format:
-    `list`
-    
-   Example of usage:
-   `list`
-   
-   Expected outcome:
-    
-   <img src = "images/list.PNG" width = "500">
-    
-   &nbsp;
 
 ### 4.h. `delete` - Deletes your show
 
@@ -391,7 +403,11 @@ The `changerating` command changes the rating for an existing show which already
  <img src = "images/changerating.PNG" width = "400">
   
  &nbsp;
-
+ 
+ Checking with the `list` command :
+ 
+ <img src = "images/changeratinglist.PNG" width = "450">
+ 
 
 ### 4.k. `season` - Changes the season of the show you are currently watching
 
