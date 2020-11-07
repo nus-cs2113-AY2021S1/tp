@@ -54,7 +54,7 @@ public class DescFavParser extends Parser {
      * Checks if either of the components after splitting is empty or still has a delimiter.
      *
      * @param components the components that user's message has been split into.
-     * @throws CustomException
+     * @throws CustomException if both components are empty or any of the components contains the delimiter.
      */
     private void checkComponents(String[] components) throws CustomException {
         assert components.length == 2 : "Components are not present";
