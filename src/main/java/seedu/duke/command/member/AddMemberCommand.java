@@ -1,5 +1,6 @@
 package seedu.duke.command.member;
 
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
@@ -17,17 +18,27 @@ public class AddMemberCommand extends MemberCommand {
     public void execute() {
         Member m;
         Project proj = projectManager.getSelectedProject();
+        String projMember;
         // adds members provided, can add multiple members at once.
         for (int i = 0; i < parameters.size(); i++) {
+            projMember = parameters.get(Integer.toString(i));
             // check if member is already added to the associated projectr
-            if (proj.getProjectMember().containMember(new Member(parameters.get(Integer.toString(i))))) {
-                Ui.showToUserLn(parameters.get(Integer.toString(i))
+            if (proj.getProjectMember().containMember(new Member(projMember))) {
+                Ui.showToUserLn(projMember
                         + " is already associated to the project.");
+                logExecution("User added member " + projMember + " to project " + proj.getTitle());
             } else {
                 m = new Member(parameters.get(Integer.toString(i)));
                 proj.getProjectMember().addMember(m);
-                Ui.showToUserLn(parameters.get(Integer.toString(i)) + " has been added to the project.");
+                Ui.showToUserLn(projMember + " has been added to the project.");
+                logExecution("User tried to add a already existing member " + projMember + " to project "
+                        + proj.getTitle());
             }
         }
+    }
+
+    @Override
+    public void logExecution(String loggerMessage) {
+        ScrumLogger.LOGGER.info(loggerMessage);
     }
 }
