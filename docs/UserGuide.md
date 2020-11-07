@@ -327,7 +327,6 @@ _________________________________
 
 You can print a list of all events by executing the following command: ```list all```
 
-{{box op="start" cssClass="boxed noteBox"}}
 > **Note!**
 > 
 > * Events will be listed in the order: Personal, Timetable, Zoom.
@@ -345,12 +344,10 @@ This brings you into calendar printing mode.
 - To exit the calendar printing mode, simply type in ```q```.
 - This mode is exited once you see ```End of calendar``` on pressing enter.
 
-{{box op="start" cssClass="boxed noteBox"}}
 > **Note!**
-
-> * Events without date or time are not printed in the calendar
 >
-> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode
+> * Only events with date and time will be in the calendar.
+> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode.
 
 
 Expected output:
@@ -365,7 +362,9 @@ Calendar has 2 dates to display
 ---------------------------------------------------------------------------------------
 Z | 9:00 PM | X | CS2113T Meeting | zoom.com.sg
 ---------------------------------------------------------------------------------------
+Enter 'q' to exit or enter to continue...
 q
+---------------------------------------------------------------------------------------
 End of calendar
 _________________________________
 ```
@@ -556,7 +555,7 @@ _________________________________
 ```
 
 > **Note!**
-
+>
 > *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
 > *	The date can also be omitted entirely. If you leave a date field as blank, the command takes the current date for that field by default.
 > *	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
@@ -582,7 +581,7 @@ When the optional argument `[GOAL]` is omitted, the current goal will be display
 When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
 > **Note!**
-> 
+> * You can only have one goal at any time.
 > * You can use `na` or `nil` instead of `delete` to remove goal.
 
 
