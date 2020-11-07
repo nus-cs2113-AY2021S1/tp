@@ -189,8 +189,8 @@ Also, Command may invoke saving of data via Storage at a given point in time.
 5. Finally, Command will then inspect the exit status after command execution to verify if the program should exit.
 6. Control is handed back over to the UI, either for processing of program exit, or the next user input command.
 
-* `X` represents the execution type such as `Add`, `Delete`, `Edit`, etc.
-* `Y` represents the model type such as `Book`, `Quote`, `Category`, etc.
+* `X` represents the execution type consisting of `Add`, `Delete`, `Edit`, `Find`, `List`, `Done`.
+* `Y` represents the model type consisting of `Book`, `Quote`, `Category`, `Bookmark`, `ToDo`, `Rating`.
 
 Therefore,
 * `XCommand` class represents the command type such as `AddCommand`, `FindCommand`, `DeleteCommand`, etc.
@@ -428,7 +428,7 @@ The sequence diagram below demonstrates the command execution process when addin
         even though the text in the deadline represents a high urgency.
     
 ---
-    
+<!-- @@author dozenmatter -->
 ### 4.4 Feature: Category Management
 
 Given below is the class diagram for classes related to Category Management in Quotesify:
@@ -476,7 +476,7 @@ The sequence diagram below demonstrates the command execution process when addin
 
 With the addition of new categories, users can perform several commands that makes use of them. Such as editing of category name, finding a category, deleting a category,
 listing all categories, or adding the same category to other books and quotes.
-
+<!-- @@author -->
 ---
 
 ### 4.5 Feature: Rating system for books
@@ -992,7 +992,7 @@ Alright, have a nice day!
    Expected: A message will be prompted to indicate that the task has been removed from the todo list successfully.
    
 ---
-   
+<!-- @@author dozenmatter -->   
 ### Testing for Category Management
    
 #### Adding categories
@@ -1126,7 +1126,7 @@ Alright, have a nice day!
    - `find -c 123` invalid category name
    
    Expected: An error message will be prompted. No categories will be listed.
-
+<!-- @@author -->
 ---
 
 ### Testing for Rating System for books
