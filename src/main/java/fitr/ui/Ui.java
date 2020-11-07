@@ -66,12 +66,13 @@ import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 public class Ui {
     private static final String HELP_SPACER = "%-90s%s%n";
     private static final String VIEW_SPACER = "%-30s%s%n";
-    private static final String GOAL_SPACER = "%-45s%s%n";
+    private static final String GOAL_SPACER = "%-70s%s%n";
     private static final String DELETE_SPACER = "%-60s%s%n";
     private static final String GREEN_COLOUR = "\033[0;32m";
     private static final String RED_COLOUR = "\033[0;31m";
-    private static final String RESET_COLOUR = "\033[0m";
     public static final String YELLOW_COLOUR = "\033[0;93m";
+    public static final String BLUE_COLOUR = "\033[0;34m";
+    private static final String RESET_COLOUR = "\033[0m";
     private static final String FORMAT = GREEN_COLOUR + "Format: " + RESET_COLOUR;
 
     public static String read() {
@@ -91,6 +92,11 @@ public class Ui {
     //Prints message in yellow
     public static void printMessageInYellow(String message) {
         System.out.println(YELLOW_COLOUR + message + RESET_COLOUR);
+    }
+
+    //Prints message in blue
+    public static void printMessageInBlue(String message) {
+        System.out.println(BLUE_COLOUR + message + RESET_COLOUR);
     }
 
     public static void printGreetingMessage() {
@@ -179,6 +185,7 @@ public class Ui {
             break;
         case COMMAND_GOAL:
             printCustomError(ERROR_FORMAT_MESSAGE);
+            System.out.printf(GOAL_SPACER, "<FORMAT>", "<USAGE>");
             System.out.printf(GOAL_SPACER, FORMAT_FOOD_GOAL, "Add a food goal");
             System.out.printf(GOAL_SPACER, FORMAT_SMART_FOOD_GOAL, "Add a smart food goal");
             System.out.printf(GOAL_SPACER, FORMAT_EXERCISE_GOAL, "Add an exercise goal");

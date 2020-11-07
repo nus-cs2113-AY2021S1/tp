@@ -66,6 +66,7 @@ public class RecommendCommand extends Command {
             String checker = Ui.read();
 
             if (checker.toLowerCase().equals("y")) {
+                Ui.printCustomMessage("-".repeat(136));
                 Ui.printCustomMessage(ECHO_ADDED_EXERCISE);
                 for (int i = 0; i < 4; i++) {
                     StandardExercise standardExercise = recommendList.getExercise(i);
@@ -99,6 +100,7 @@ public class RecommendCommand extends Command {
                         }
                         indexArr.add(Integer.parseInt(checker.split(" ")[i]));
                     }
+                    Ui.printCustomMessage("-".repeat(136));
                     Ui.printCustomMessage(ECHO_ADDED_EXERCISE);
                     for (int i = 0; i < indexArr.size(); i++) {
                         StandardExercise standardExercise = recommendList.getExercise(indexArr.get(i) - 1);

@@ -7,7 +7,7 @@ Fitr is a command-line application, helping you keep track of your food intake a
 ## Summary of Contributions
 
 ### Code contributed
-TBD
+[Link to code contributed](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jerichochua)
 
 ### Enhancements implemented
 - Allow the user to clear the individual list, or clear all the lists at the same time
@@ -15,7 +15,11 @@ TBD
 - Allow the user to edit a previous exercise or food entry in the lists
     - This feature allows users to correct mistakes that they make in a previous entry.
     - This was initially hard to implement as the `edit` command was also used to edit the user's profile. Hence, I created the `EditCommandParser` to handle the arguments in the `edit` command first. Once the arguments are parsed, it is then passed into a `EditEntryCommand` class and the corresponding entry is edited.
-    - The command to edit a specific entry is also designed as a one-shot command, so users who can type fast in a command-line application can quickly edit an entry.  
+    - The command to edit a specific entry is also designed as a one-shot command, so users who can type fast in a command-line application can quickly edit an entry.
+- Added a `ResourceManager` class to handle loading of resources in the JAR file
+    - As Fitr requires some resources to be packaged together with the JAR file, such as the tips and exercise lists, the usual way of reading files using `File` and `Scanner` cannot be used.
+    - Instead, `InputStream` and `InputStreamReader` is used to read the resources packaged in the JAR file.
+- Added some JUnit tests
 
 ### Contributions to documentation
 Contributed the following sections in the user guide:
@@ -23,11 +27,13 @@ Contributed the following sections in the user guide:
 - Editing an exercise entry
 - Clearing commands (Clearing all food entries, clearing all exercise entries, clearing all entries)
 - Saving your data
+- FAQ
 
 ### Contributions to DG
 Contributed the following sections in the developer guide:
 - Architecture diagram
-- Storage component
+- StorageManager component
+- ListManager component
 - Edit command
 - Clear command
 

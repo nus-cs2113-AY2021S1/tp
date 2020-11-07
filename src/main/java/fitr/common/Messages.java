@@ -97,6 +97,7 @@ public class Messages {
     public static final String EMPTY_GOAL_LIST = "The goal list is empty...";
     public static final String FOOD_LIST_HEADER = "Here is the list of your food:";
     public static final String EXERCISE_LIST_HEADER = "Here is the list of your exercises:";
+    public static final String GOAL_LIST_HEADER = "Here is the list of your goals:";
     public static final String CALORIE_CONSUMED_HEADER = "Total calorie consumed:";
     public static final String CALORIE_BURNT_HEADER = "Total calorie burnt:";
     public static final String NET_CALORIE_HEADER = "Net calorie:";
@@ -153,4 +154,8 @@ public class Messages {
             + "\"view exercise DATE(dd/MM/yyyy)\"";
     public static final String VIEW_SUMMARY_TIP = "Tip: You may also view summary by day using the format "
             + "\"view summary DATE(dd/MM/yyyy)\"";
+    public static final String ADD_SMART_FOOD_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
+            + "\"" + FORMAT_SMART_FOOD_GOAL + "\"";
+    public static final String ADD_SMART_EXERCISE_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
+            + "\"" + FORMAT_SMART_EXERCISE_GOAL + "\"";
 }
