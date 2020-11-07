@@ -563,6 +563,8 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 |v2.0|busy user|have an indicator telling me the current time|easily check on the time in a hurry|
 |v2.0|fast typer|be able to type a one-shot-command when entering the details of the lessons in my timetable|add the lesson details faster|
 |v2.0|busy NUS student|be able quickly launch my next Zoom lesson|avoid being late for my lessons|
+|v2.0|NUS student|find common empty slots between my teammates|plan my group meetings accordingly and efficiently|
+|v2.0|NUS student|save my group meetings to my timetable|avoid missing my groupo meetings|
 
 <a name="appendix-c"></a>
 ## **Appendix C: Non-Functional Requirements**
