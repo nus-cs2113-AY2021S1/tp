@@ -4,7 +4,7 @@
 A hospital appointment log application for admins. Relieves admins on mundane tasks.
 
 ### Summary of Contributions
-* Code contributed: https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tanjunhong
+* [Code contributed](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tanjunhong)
 * Enhancements implemented: 
   * Improved code quality
   * General code cleanup
