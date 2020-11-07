@@ -522,11 +522,11 @@ The following subsections below describes the various bookmark-related operation
 <br/>
 
 #### 3.8.1 List all bookmark entries
-List all anime(s) within the bookmark.
+List all anime within the bookmark.
 
 Format: `bookmark -l`
 
-> :bulb: List Bookmark displays `<BOOKMARK_ID>`s together with anime(s) names. This command is especially useful since `<BOOKMARK_ID>` is used by many other `bookmark` commands.
+> :bulb: List Bookmark displays `<BOOKMARK_ID>`s together with anime names. This command is especially useful since `<BOOKMARK_ID>` is used by many other `bookmark` commands.
 
 <br/>
 
