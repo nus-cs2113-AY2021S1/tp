@@ -9,10 +9,10 @@ It will also provide various functionalities to help with your studies. You will
 use of the application if you can type fast.
 
 This application currently has the following modes that you can access and use:
-1. Main menu 	-   Central location of the app
+1. Menu 	    -   Central location of the app
 1. Bookmark 	- 	Manage your online links at one convenient location
 1. Timetable 	- 	Keep track of your weekly activities
-1. Academic	- 	Track your academic performance and store useful contact information
+1. Academic	    - 	Track your academic performance and store useful contact information
 1. Flashcard	- 	Memorize your study content better with our built-in flashcard
 
 Useful links:

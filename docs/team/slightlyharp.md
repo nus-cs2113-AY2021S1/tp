@@ -1,12 +1,14 @@
-# Slightlyharp's Project Portfolio Page
+# Slightlyharp - Project Portfolio Page
 
-##Project: Study it
+## Project: Study it
 
 Study It is an interactive desktop app that helps students manage their study related matters, 
 optimized for use via a Command Line Interface (CLI). 
 
 
 Given below are my contributions to the project.
+
+### Features added:
 
 * **New Feature:** Implemented the timetable mode
 
@@ -25,14 +27,13 @@ Given below are my contributions to the project.
   * **Sub feature:** Added show activity command to allow user to see the
   full list of activities the user has added.
   
-  ### Code contributed: 
+### Code contributed: 
   
-  [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=slightlyharp&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=slightlyharp&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
   
-  
-  ### Documentation:
-  * User Guide: 
+### Documentation:
+* User Guide: 
     * Added documentation for all the commands in timetable mode, listed under section 2 of the user guide.
-  
-  * Developer Guide:
+
+* Developer Guide:
     * Added the implementation details timetable component, including the UMLs used in that section.
