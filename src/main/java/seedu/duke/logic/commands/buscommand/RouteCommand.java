@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 import static seedu.duke.model.bus.BusStops.isValidBusStop;
 
+/**
+ * Represents the route command that helps the user to find direct bus routes between 2 given locations.
+ */
 public class RouteCommand extends Command {
 
     private String rawMessage;

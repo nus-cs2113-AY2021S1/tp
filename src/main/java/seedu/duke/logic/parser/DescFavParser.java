@@ -10,6 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+/**
+ * Represents the parser for /descfav command.
+ * It makes sense of the user's input by extracting out the index and description for the given message.
+ */
 public class DescFavParser extends Parser {
 
     public static final String DELIMITER = "/to";

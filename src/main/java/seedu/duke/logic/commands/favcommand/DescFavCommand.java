@@ -6,6 +6,10 @@ import seedu.duke.logic.commands.commons.Command;
 import seedu.duke.logic.parser.DescFavParser;
 import seedu.duke.ui.Ui;
 
+/**
+ * Represents the command for changing the description of a particular favourite in the user's list of favourite
+ * commands.
+ */
 public class DescFavCommand extends Command {
 
     private String rawMessage;

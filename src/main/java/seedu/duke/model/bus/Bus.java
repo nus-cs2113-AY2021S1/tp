@@ -3,6 +3,10 @@ package seedu.duke.model.bus;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Represents a particular shuttle bus.
+ * It contains the bus number and the route taken by the bus.
+ */
 public class Bus {
 
     String busNumber;

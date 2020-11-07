@@ -4,6 +4,10 @@ import seedu.duke.model.bus.BusStops;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+/**
+ * Represents the similarity checker that provides the list of possible locations that have names similar to the one
+ * entered by the user.
+ */
 public class SimilarityCheck {
 
     private static final double THRESHOLD = 0.60;

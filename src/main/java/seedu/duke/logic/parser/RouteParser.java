@@ -10,6 +10,10 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 
+/**
+ * Represents the parser for /route command.
+ * It makes sense of the user's input by extracting the starting location and the destination.
+ */
 public class RouteParser extends Parser {
 
     public static final String DELIMITER = "/to";

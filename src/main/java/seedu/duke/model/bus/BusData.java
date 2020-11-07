@@ -3,6 +3,9 @@ package seedu.duke.model.bus;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+/**
+ * Represents the list of all shuttle buses in NUS with their routes.
+ */
 public class BusData {
 
     private static ArrayList<Bus> buses = new ArrayList<>();
