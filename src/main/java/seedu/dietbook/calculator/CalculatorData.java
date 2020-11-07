@@ -24,7 +24,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalCalorie() {
-        this.foods = list.getFoods();
+        this.foods = list.getPortionedFoods();
         List<Integer> calories = new ArrayList<>();
         for (Food food : foods) {
             calories.add(food.getCalorie());
@@ -33,7 +33,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalCalorie(LocalDateTime startTime) {
-        this.foods = list.getFoodsAfterDateTime(startTime);
+        this.foods = list.getPortionedFoodsAfterDateTime(startTime);
         List<Integer> calories = new ArrayList<>();
         for (Food food : foods) {
             calories.add(food.getCalorie());
@@ -42,7 +42,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalCalorie(LocalDateTime startTime, LocalDateTime endTime) {
-        this.foods = list.getFoodsInDateTimeRange(startTime, endTime);
+        this.foods = list.getPortionedFoodsInDateTimeRange(startTime, endTime);
         List<Integer> calories = new ArrayList<>();
         for (Food food : foods) {
             calories.add(food.getCalorie());
@@ -51,7 +51,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalCarb() {
-        this.foods = list.getFoods();
+        this.foods = list.getPortionedFoods();
         List<Integer> carbs = new ArrayList<>();
         for (Food food : foods) {
             carbs.add(food.getCarbohydrate());
@@ -60,7 +60,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalCarb(LocalDateTime startTime) {
-        this.foods = list.getFoodsAfterDateTime(startTime);
+        this.foods = list.getPortionedFoodsAfterDateTime(startTime);
         List<Integer> carbs = new ArrayList<>();
         for (Food food : foods) {
             carbs.add(food.getCalorie());
@@ -69,7 +69,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalCarb(LocalDateTime startTime, LocalDateTime endTime) {
-        this.foods = list.getFoodsInDateTimeRange(startTime, endTime);
+        this.foods = list.getPortionedFoodsInDateTimeRange(startTime, endTime);
         List<Integer> carbs = new ArrayList<>();
         for (Food food : foods) {
             carbs.add(food.getCarbohydrate());
@@ -78,7 +78,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalProtein() {
-        this.foods = list.getFoods();
+        this.foods = list.getPortionedFoods();
         List<Integer> proteins = new ArrayList<>();
         for (Food food : foods) {
             proteins.add(food.getProtein());
@@ -87,7 +87,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalProtein(LocalDateTime startTime) {
-        this.foods = list.getFoodsAfterDateTime(startTime);
+        this.foods = list.getPortionedFoodsAfterDateTime(startTime);
         List<Integer> proteins = new ArrayList<>();
         for (Food food : foods) {
             proteins.add(food.getProtein());
@@ -96,7 +96,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalProtein(LocalDateTime startTime, LocalDateTime endTime) {
-        this.foods = list.getFoodsInDateTimeRange(startTime, endTime);
+        this.foods = list.getPortionedFoodsInDateTimeRange(startTime, endTime);
         List<Integer> proteins = new ArrayList<>();
         for (Food food : foods) {
             proteins.add(food.getProtein());
@@ -105,7 +105,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalFat() {
-        this.foods = list.getFoods();
+        this.foods = list.getPortionedFoods();
         List<Integer> fats = new ArrayList<>();
         for (Food food : foods) {
             fats.add(food.getFat());
@@ -114,7 +114,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalFat(LocalDateTime startTime) {
-        this.foods = list.getFoodsAfterDateTime(startTime);
+        this.foods = list.getPortionedFoodsAfterDateTime(startTime);
         List<Integer> fats = new ArrayList<>();
         for (Food food : foods) {
             fats.add(food.getFat());
@@ -123,7 +123,7 @@ public class CalculatorData {
     }
 
     public List<Integer> getTotalFat(LocalDateTime startTime, LocalDateTime endTime) {
-        this.foods = list.getFoodsInDateTimeRange(startTime, endTime);
+        this.foods = list.getPortionedFoodsInDateTimeRange(startTime, endTime);
         List<Integer> fats = new ArrayList<>();
         for (Food food : foods) {
             fats.add(food.getFat());

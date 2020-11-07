@@ -14,24 +14,24 @@ class CalculatorTest {
     @Test
     void calculateCalorie_foodListOfThreeItems_sumOfCalorie() {
         FoodList foodList = new FoodList();
-        foodList.addFood(1, new Food("chicken rice", 666, 55, 30, 0));
-        foodList.addFood(1, new Food("pancake", 150, 16, 0, 0));
-        foodList.addFood(1, new Food("bao", 290, 0, 16, 0));
+        foodList.addFood(2, new Food("chicken rice", 666, 55, 30, 0));
+        foodList.addFood(2, new Food("pancake", 150, 16, 0, 0));
+        foodList.addFood(2, new Food("bao", 290, 0, 16, 0));
         CalculatorData data = new CalculatorData();
         data.inputData(foodList);
         Calculator calculator = new Calculator(data);
-        assertEquals(666 + 150 + 290, calculator.calculateCalorie());
+        assertEquals(2 * (666 + 150 + 290), calculator.calculateCalorie());
     }
 
     @Test
     void calculateCarb_foodListOfThreeItems_sumOfCarb() {
         FoodList foodList = new FoodList();
-        foodList.addFood(1, new Food("chicken rice", 666, 55, 30, 0));
-        foodList.addFood(1, new Food("pancake", 150, 16, 0, 0));
-        foodList.addFood(1, new Food("bao", 290, 0, 16, 0));
+        foodList.addFood(3, new Food("chicken rice", 666, 55, 30, 0));
+        foodList.addFood(3, new Food("pancake", 150, 16, 0, 0));
+        foodList.addFood(3, new Food("bao", 290, 0, 16, 0));
         CalculatorData data = new CalculatorData(foodList);
         Calculator calculator = new Calculator(data);
-        assertEquals(55 + 16, calculator.calculateCarb());
+        assertEquals(3 * (55 + 16), calculator.calculateCarb());
     }
 
     @Test
