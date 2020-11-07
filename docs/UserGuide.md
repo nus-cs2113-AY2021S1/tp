@@ -789,14 +789,16 @@ As shown above, the user can choose the date/time they want for the event as lon
  In the example, the user picks the second option for both date and time, shown by the two times '2' was input.
  
  
-{{box op="start" cssClass="boxed noteBox"}}
 > **Note!**
-> * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
 > * The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
-> * It is also able to attach the current year to the date if it is not specified in the text.
+> * The extract feature has the ability to attach the current year to the date if it is not specified in the text.
 > * The text body can include multiple paragraphs that are copy and pasted from emails.
-> * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected.
-> * The date/time/link has to be in the same line to be detected properly. For example, if the date/time/link is separated in a paragraph/by a new line it may not be detected properly. 
+> * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected. 
+
+> **Warning!**
+> * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
+> * It is not advised to copy and paste text containing emojis into the command line because the command line may crash. It is recommended to remove these emojis by editing the text in a text editor first like the Notepad app.
+> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for time and zoom links too.
 
 
 
@@ -839,7 +841,7 @@ In this section, you can find some frequently asked questions(FAQ).
 |Set event as undone|undone EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: undone zoom 1 3/12/2020 <br>|
 |Delete|delete EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: delete timetable 3 <br>|
 |Notes|note EVENT_TYPE; EVENT_INDEX <br> note personal; 1 <br>|
-|Extract|extract TEXT_SUBJECT; `<enter key>` TEXT_BODY  `<enter key>` extractend `<enter key>`<br>|
+|Extract|3 step process: <br> extract TEXT_SUBJECT; `<enter key>` TEXT_BODY  `<enter key>` extractend `<enter key>`<br>|
 |Reminder|reminder <br>|
 |Save|save <br>|
 |Help|help <br>|
