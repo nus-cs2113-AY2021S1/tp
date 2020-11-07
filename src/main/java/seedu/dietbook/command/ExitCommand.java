@@ -2,6 +2,8 @@ package seedu.dietbook.command;
 
 import seedu.dietbook.DietBook;
 import seedu.dietbook.Manager;
+import seedu.dietbook.checker.InputChecker;
+import seedu.dietbook.exception.DietException;
 import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.ui.Ui;
@@ -11,14 +13,16 @@ import seedu.dietbook.saveload.FoodSaveLoadManager;
 public class ExitCommand extends Command {
     PersonSaveLoadManager personSave;
     FoodSaveLoadManager foodSave;
+    String input;
 
-    public ExitCommand() {
+    public ExitCommand(String input) {
         this.personSave = new PersonSaveLoadManager();
         this.foodSave = new FoodSaveLoadManager();
+        this.input = input;
     }
 
     @Override
-    public void execute(Manager manager, Ui ui) {
+    public void execute(Manager manager, Ui ui) throws DietException {
         //ActivityLevel actLvl = manager.getPerson().getActivityLevel();
         //int actLvlInt = 1;
         //if (actLvl.equals(ActivityLevel.NONE)) {
@@ -54,6 +58,7 @@ public class ExitCommand extends Command {
         //personSave.save("UserInfo.txt");
         //foodSave.save("FoodList.txt", manager.getFoodList().getFoods());
         //ui.dataSuccessfullySavedMessage();
+        InputChecker.checkSingleCommand(this.input);
         ui.printExitMessage();
         DietBook.isExit = true;
     }

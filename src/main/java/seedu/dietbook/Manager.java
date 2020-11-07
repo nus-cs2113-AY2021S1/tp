@@ -115,17 +115,17 @@ public class Manager {
             return new CalculateCommand(calculator.calculateCalorie(), calculator.calculateCarb(),
                     calculator.calculateProtein(), calculator.calculateFat(), Parser.getCommandParam(userInput));
         case COMMAND_CLEAR:
-            return new ClearCommand();
+            return new ClearCommand(userInput);
         case COMMAND_DATA:
-            return new DataCommand();
+            return new DataCommand(userInput);
         case COMMAND_DELETE:
             return new DeleteCommand(Parser.getCommandIndex(userInput));
         case COMMAND_EDIT_INFO:
             return new EditInfoCommand(userInput);
         case COMMAND_EXIT:
-            return new ExitCommand();
+            return new ExitCommand(userInput);
         case COMMAND_HELP:
-            return new HelpCommand();
+            return new HelpCommand(userInput);
         case COMMAND_INFO:
             return new InfoCommand(userInput);
         case COMMAND_LIST:
@@ -133,9 +133,9 @@ public class Manager {
         case COMMAND_NAME:
             return new NameCommand(Parser.getCommandParam(userInput));
         case COMMAND_RECOMMEND:
-            return new RecommendCommand(getPerson());
+            return new RecommendCommand(getPerson(), userInput);
         case COMMAND_USERINFO:
-            return new UserinfoCommand();
+            return new UserinfoCommand(userInput);
         default:
             throw new DietException("There's no such command!");
         }
