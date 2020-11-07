@@ -20,11 +20,35 @@ import command.StudyTimeCommand;
 import command.UserInfoCommand;
 import event.Assignment;
 import event.PersonalEvent;
-import event.Assignment;
 import event.Class;
-import event.PersonalEvent;
 import event.SelfStudy;
-import exception.*;
+import exception.EmptyLocationException;
+import exception.NuScheduleException;
+import exception.EmptyFindException;
+import exception.EmptyFindDateException;
+import exception.DateFormatException;
+import exception.EmptyStudyTimeDateException;
+import exception.EmptyDoneException;
+import exception.DoneNumberFormatException;
+import exception.EmptyDeleteException;
+import exception.DeleteNumberFormatException;
+import exception.NoSortCriteriaException;
+import exception.InvalidSortCriteriaException;
+import exception.WrongEditFormatException;
+import exception.EmptyEventIndexException;
+import exception.UndefinedEventException;
+import exception.InvalidEditTypeException;
+import exception.InvalidEditLocationException;
+import exception.TimeFormatException;
+import exception.EmptyEventException;
+import exception.NoEventTimeMarkerException;
+import exception.NoEventLocationException;
+import exception.NoEventTimeException;
+import exception.DoubleTimeAssignmentException;
+import exception.NoEndTimeClassException;
+import exception.WrongCommandException;
+import exception.UnknownErrorException;
+import exception.NoPasswordException;
 
 import location.Building;
 import location.Hostel;
@@ -112,9 +136,9 @@ public abstract class Parser {
         }
 
         //this block deals with locate command
-        if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length>1) {
+        if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length > 1) {
             return new LocateCommand(words[1]);
-        } else if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length==1) {
+        } else if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length == 1) {
             throw new EmptyLocationException();
         }
 
