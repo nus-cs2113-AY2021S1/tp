@@ -21,56 +21,110 @@ During peak hours, people may not be able to know the dining situation and the d
 
 ## 3. Features 
 
-### 3.1 begin the order: `order`
+### 3.1 before the order: `[name]/[day of week]/[time]`
+
+Format: `[name]/[day of week]/[time]`
+
+Example of usage:
+'wy/2/1800'
+
+* day of week should between 1-7 (includes)
+* time should follow this format: 900 or 1600, represent 09:00 and 16:00 respectively.
+
+### 3.2 begin the order: `order`
 begin the order of a customer
+
+#### 3.2.1 Firstly
+
 Format: `order`
 
 Example of usage:
 'order'
 
-### 3.2 delete the specific order: `delete [number]`
+#### 3.2.2 The order method will be activated and print open stalls, user just type the corresponding index before the canteen to select canteen. 
+
+Format: `[number]`
+
+Example of usage:
+'2'
+
+#### 3.2.3 Then the open stalls in this canteen will be printed, user just type the corresponding index before the stall to select stall. 
+
+Format: `[number]`
+
+Example of usage:
+'3'
+
+#### 3.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. 
+
+Format: `[number]`
+
+Example of usage:
+'1'
+
+#### 3.2.5 After that, user will be asked whether he wants to see the comment of the dish, just type y/n.
+
+Format: `y/n`
+
+Example of usage:
+'y'
+
+#### 3.2.6 Finally, choosing the order type by typing the corresponding index before the type.
+
+Format: `[number]`
+
+Example of usage:
+'2'
+
+### 3.3 delete the specific order: `delete [number]`
 delete the order based on the number from user
+
 Format: `delete [number]`
 
 Example of usage:
 'delete 2'
 
-### 3.3 finde the specific order: `find [dish name]`
+### 3.4 finde the specific order: `find [dish name]`
 find the specific dish based on the user input dish name
+
 Format: `find [dish name]`
 
 Example of usage:
 'find Pork Chop'
 
-### 3.4 list all the orders: `list`
+### 3.5 list all the orders: `list`
 check all the orders made by this user
+
 Format: `list`
 
 Example of usage:
 'list'
 
-### 3.5 change the order: `change/[number]/[type]`
+### 3.6 change the order: `change/[number]/[type]`
 Change the order type 
+
 Format: `change/[number]/[type]`
 
 Example of usage:
 'change/2/dine in'
 
-### 3.6 check Canteen Operating Time: `checkcanteen`
+### 3.7 check Canteen Operating Time: `checkcanteen`
 check the operating hours of a canteen 
+
 Format: `checkcanteen`
 
 Example of usage:
 'checkcanteen'
 
-### 3.7 check Stall Operating Time: `checkstall`
+### 3.8 check Stall Operating Time: `checkstall`
 check the operating hours of a stall 
+
 Format: `checkstall`
 
 Example of usage:
 'checkstall'
 
-### 3.8 view all available commands: `help`
+### 3.9 view all available commands: `help`
 print all the commands with required format that the user can input
 
 Format: `help`

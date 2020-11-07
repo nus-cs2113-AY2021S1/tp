@@ -216,7 +216,11 @@ User just type the corresponding index before the stall to select stall. Then th
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image3.png)
  
-User just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. Finally, after choosing dine in, take away or delivery, an order object will be created and added into the order list.
+User just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. 
+
+After that, user will be asked whether he wants to see the comment of the dish.
+
+Finally, after choosing dine in, take away or delivery, an order object will be created and added into the order list.
 
 #### Feature: delete order
 The user enters the command: delete [number] to delete an order in the order list. The main will enable the deleteOrder () method. The Parser will make sense of the command and delete the corresponding order from the order list. 
