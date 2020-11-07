@@ -10,6 +10,8 @@ public class SearchParser extends CommandParser {
     private static final String NO_PARAM_PROVIDED = "Please provide a parameter type. Search will accept -n or -g.";
     private static final String INIT_STRING = "";
     private static final int INVALID_SEARCH_TYPE = -1;
+    private static final int SEARCH_BY_NAME = 0;
+    private static final int SEARCH_BY_GENRE = 1;
 
     private String searchTerm = INIT_STRING;
     private String searchGenre = INIT_STRING;
@@ -45,11 +47,11 @@ public class SearchParser extends CommandParser {
         switch (paramParts[0].trim()) {
         case NAME_PARAM:
             searchTerm = paramParts[1].trim();
-            searchType = 0;
+            searchType = SEARCH_BY_NAME;
             break;
         case GENRE_PARAM:
             searchGenre = paramParts[1].trim();
-            searchType = 1;
+            searchType = SEARCH_BY_GENRE;
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven[1] + NOT_RECOGNISED;

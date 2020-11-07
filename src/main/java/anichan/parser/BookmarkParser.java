@@ -23,7 +23,9 @@ public class BookmarkParser extends CommandParser {
 
     //Constant parameter
     private static final String EMPTY_PARAM = "";
-    private static final int SPLIT_LIMIT = 2;
+    private static final int MIN_LENGTH = 1;
+    private static final int ZERO_PARAM = 0;
+    public static final int MAX_PARAM_LENGTH = 2;
 
     //Message error header
     private static final String PARAMETER_ERROR_HEADER = "Parameter :";
@@ -66,7 +68,7 @@ public class BookmarkParser extends CommandParser {
     public BookmarkCommand parse(String description) throws AniException {
         assert description != null : DESCRIPTION_CANNOT_BE_NULL;
         String[] paramGiven = getSplitDescription(description);
-        if (paramGiven.length > 1) {
+        if (paramGiven.length > MIN_LENGTH) {
             parameterParser(paramGiven[1]);
             setFirstParameter(paramGiven[0]);
         } else {
@@ -85,7 +87,7 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if invalid parameters are parsed in
      */
     private void parameterParser(String paramGiven) throws AniException {
-        String[] paramParts = paramGiven.split(WHITESPACE, SPLIT_LIMIT);
+        String[] paramParts = paramGiven.split(WHITESPACE, FIELD_SPLIT_LIMIT);
         bookmarkAction = paramParts[0].trim();
         paramEmptyCheck(paramGiven, paramParts);
         switch (bookmarkAction) {
@@ -152,7 +154,7 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if the parameter provided is empty
      */
     private void paramEmptyCheck(String paramGiven, String[] paramParts) throws AniException {
-        if (paramParts.length == 0) {
+        if (paramParts.length == ZERO_PARAM) {
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
                     + System.lineSeparator() + EMPTY_PARAM_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
@@ -167,7 +169,7 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if the list field provided is not empty
      */
     private void listFieldCheck(String[] paramParts) throws AniException {
-        if (paramParts.length > 1) {
+        if (paramParts.length > MIN_LENGTH) {
             String invalidExtraField = PARAMETER_ERROR_HEADER + paramParts[1] + NOT_RECOGNISED
                     + System.lineSeparator() + BOOKMARK_LIST_EXTRA_FIELD_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidExtraField);
@@ -228,7 +230,7 @@ public class BookmarkParser extends CommandParser {
      */
     private String[] getSplitDescription(String description) throws AniException {
         String[] paramGiven = description.split(DASH);
-        if (paramGiven.length > 2) {
+        if (paramGiven.length > MAX_PARAM_LENGTH) {
             String invalidDescription = DESCRIPTION_ERROR_HEADER + description + TOO_MUCH_FIELDS;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidDescription);
             throw new AniException(invalidDescription);
