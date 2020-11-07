@@ -126,11 +126,6 @@ public class Ui {
         out.println(message);
     }
 
-
-    public void showToUserInline(String message) {
-        out.print(message);
-    }
-
     public void showCardRevision(Card c, Scanner scanner) {
         out.println(c.getRevisionQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c, scanner);
