@@ -1,7 +1,7 @@
 package seedu.duke.model;
 
 import seedu.duke.api.StockPriceFetcher;
-import seedu.duke.exception.DukeException;
+import seedu.duke.exception.PaperTradeException;
 import seedu.duke.ui.Ui;
 
 import java.io.Serializable;
@@ -52,7 +52,7 @@ public class Stock implements Serializable {
         try {
             double price = stockPriceFetcher.fetchLatestPrice(getSymbol());
             return price;
-        } catch (DukeException e) {
+        } catch (PaperTradeException e) {
             ui.print(e.getMessage());
             return 0;
         }

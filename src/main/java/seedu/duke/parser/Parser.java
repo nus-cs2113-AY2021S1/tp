@@ -11,7 +11,7 @@ import seedu.duke.command.SellCommand;
 import seedu.duke.command.ViewBookmarkedStocksCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.WalletCommand;
-import seedu.duke.exception.DukeException;
+import seedu.duke.exception.PaperTradeException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,19 +30,19 @@ public class Parser {
         case "search":
             try {
                 return parseSearch(userInputSplit);
-            } catch (DukeException e) {
+            } catch (PaperTradeException e) {
                 return new InvalidCommand(e.getMessage());
             }
         case "buy":
             try {
                 return parseBuy(userInputSplit);
-            } catch (DukeException e) {
+            } catch (PaperTradeException e) {
                 return new InvalidCommand(e.getMessage());
             }
         case "sell":
             try {
                 return parseSell(userInputSplit);
-            } catch (DukeException e) {
+            } catch (PaperTradeException e) {
                 return new InvalidCommand(e.getMessage());
             }
         case "bye":
@@ -54,19 +54,19 @@ public class Parser {
         case "mark":
             try {
                 return parseMark(userInputSplit);
-            } catch (DukeException e) {
+            } catch (PaperTradeException e) {
                 return new InvalidCommand(e.getMessage());
             }
         case "unmark":
             try {
                 return parseUnmark(userInputSplit);
-            } catch (DukeException e) {
+            } catch (PaperTradeException e) {
                 return new InvalidCommand(e.getMessage());
             }
         case "bookmarks":
             try {
                 return parseBookmarks(userInputSplit);
-            } catch (DukeException e) {
+            } catch (PaperTradeException e) {
                 return new InvalidCommand(e.getMessage());
             }
         default:
@@ -75,76 +75,76 @@ public class Parser {
         }
     }
 
-    public static Command parseBookmarks(String[] userInputSplit) throws DukeException {
+    public static Command parseBookmarks(String[] userInputSplit) throws PaperTradeException {
         if (userInputSplit.length > 1) {
-            throw new DukeException("There should not be an argument behind bookmarks!");
+            throw new PaperTradeException("There should not be an argument behind bookmarks!");
         }
         return new ViewBookmarkedStocksCommand();
     }
 
-    public static Command parseMark(String[] userInputSplit) throws DukeException {
+    public static Command parseMark(String[] userInputSplit) throws PaperTradeException {
         try {
             if (!userInputSplit[1].startsWith("/")) {
-                throw new DukeException("Please enter the ticker symbol of the company that you want to mark!");
+                throw new PaperTradeException("Please enter the ticker symbol of the company that you want to mark!");
             }
             String symbol = userInputSplit[1].substring(1).toUpperCase();
             return new AddBookmarkCommand(symbol);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(("Wrong input format! E.g. mark /MSFT"));
+            throw new PaperTradeException(("Wrong input format! E.g. mark /MSFT"));
         }
     }
 
-    public static Command parseUnmark(String[] userInputSplit) throws DukeException {
+    public static Command parseUnmark(String[] userInputSplit) throws PaperTradeException {
         try {
             if (!userInputSplit[1].startsWith("/")) {
-                throw new DukeException("Please enter the ticker symbol of the company that you want to unmark!");
+                throw new PaperTradeException("Please enter the ticker symbol of the company that you want to unmark!");
             }
             String symbol = userInputSplit[1].substring(1).toUpperCase();
             return new RemoveBookmarkCommand(symbol);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(("Wrong input format! E.g. unmark /MSFT"));
+            throw new PaperTradeException(("Wrong input format! E.g. unmark /MSFT"));
         }
     }
 
-    public static Command parseBuy(String[] userInputSplit) throws DukeException {
+    public static Command parseBuy(String[] userInputSplit) throws PaperTradeException {
         try {
             if (!userInputSplit[1].startsWith("/")) {
-                throw new DukeException("Please enter the ticker symbol of the company that you want to buy!");
+                throw new PaperTradeException("Please enter the ticker symbol of the company that you want to buy!");
             }
             int quantity = Integer.parseInt(userInputSplit[2]);
             String symbol = userInputSplit[1].substring(1);
             BuyCommand buyCommand = new BuyCommand(symbol, quantity);
             return buyCommand;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(("Wrong input format! E.g. buy /MSFT 11"));
+            throw new PaperTradeException(("Wrong input format! E.g. buy /MSFT 11"));
         } catch (NumberFormatException e) {
-            throw new DukeException("Please enter a valid integer for the quantity of stocks that you want to buy!");
+            throw new PaperTradeException("Please enter a valid integer for the quantity of stocks that you want to buy!");
         }
     }
 
-    public static Command parseSell(String[] userInputSplit) throws DukeException {
+    public static Command parseSell(String[] userInputSplit) throws PaperTradeException {
         try {
             if (!userInputSplit[1].startsWith("/")) {
-                throw new DukeException("Please enter the ticker symbol of the company that you want to buy!");
+                throw new PaperTradeException("Please enter the ticker symbol of the company that you want to buy!");
             }
             int quantity = Integer.parseInt(userInputSplit[2]);
             String symbol = userInputSplit[1].substring(1);
             SellCommand sellCommand = new SellCommand(symbol, quantity);
             return sellCommand;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Wrong input format! E.g. sell /MSFT 11");
+            throw new PaperTradeException("Wrong input format! E.g. sell /MSFT 11");
         } catch (NumberFormatException e) {
-            throw new DukeException("Please enter a valid integer for the quantity of stocks that you want to sell!");
+            throw new PaperTradeException("Please enter a valid integer for the quantity of stocks that you want to sell!");
         }
     }
 
-    public static Command parseSearch(String[] userInputSplit) throws DukeException {
+    public static Command parseSearch(String[] userInputSplit) throws PaperTradeException {
         try {
             if (!userInputSplit[1].startsWith("/")) {
-                throw new DukeException("Please enter the ticker symbol of the company!");
+                throw new PaperTradeException("Please enter the ticker symbol of the company!");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(("Please enter the ticker symbol of the company you would like to search for!"));
+            throw new PaperTradeException(("Please enter the ticker symbol of the company you would like to search for!"));
         }
 
         SearchCommand searchCommand = new SearchCommand(userInputSplit[1].substring(1));

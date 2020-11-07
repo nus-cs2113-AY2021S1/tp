@@ -1,6 +1,6 @@
 package seedu.duke.model;
 
-import seedu.duke.exception.DukeException;
+import seedu.duke.exception.PaperTradeException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,12 +22,12 @@ public class BookmarksManager {
         return bookmarks;
     }
 
-    public void addToBookmarks(String symbol) throws DukeException {
+    public void addToBookmarks(String symbol) throws PaperTradeException {
         bookmarks.addToBookmarks(symbol);
         save();
     }
 
-    public void removeBookmark(String symbol) throws DukeException {
+    public void removeBookmark(String symbol) throws PaperTradeException {
         bookmarks.removeBookmark(symbol);
         save();
     }
