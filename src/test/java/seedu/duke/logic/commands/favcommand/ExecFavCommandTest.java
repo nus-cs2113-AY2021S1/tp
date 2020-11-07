@@ -67,6 +67,7 @@ public class ExecFavCommandTest {
 
     @Test
     void executeCommand_invalidCommand_expectException() throws CustomException {
+        Fav dummyFav = new Fav("/bus museum", "dummy");
         String input = "2";
         ExecFavCommand command = new ExecFavCommand(input);
         try {
@@ -75,6 +76,7 @@ public class ExecFavCommandTest {
             assertEquals(3, FavList.getSize());
             assertEquals("Oh no! it seems that this command has been corrupted.\n"
                     + "Don't worry, I have deleted it from your favourites list!", e.toString());
+            FavList.addFav(dummyFav);
         }
     }
 
@@ -83,7 +85,7 @@ public class ExecFavCommandTest {
      */
     @Test
     void executeCommand_inputValidIndex_success() throws CustomException {
-        String input = "3";
+        String input = "4";
         ExecFavCommand command = new ExecFavCommand(input);
         assertDoesNotThrow(()->command.executeCommand());
     }
