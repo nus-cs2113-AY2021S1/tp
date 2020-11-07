@@ -1,4 +1,4 @@
-# About us(in-progress)
+# About us
 
 Display | Name | Github Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
