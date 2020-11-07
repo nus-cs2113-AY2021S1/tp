@@ -32,6 +32,7 @@ public class PortfolioManager {
 
     public void buyStock(String symbol, int quantity, double buyPrice)
             throws InsufficientFundException, NegativeQtyException {
+        logger.setLevel(Level.WARNING);
         logger.log(Level.INFO, "buying stock ...");
         portfolio.buyStock(symbol, quantity, buyPrice);
         save();
@@ -39,6 +40,7 @@ public class PortfolioManager {
 
     public void sellStock(String symbol, int quantity, double sellPrice)
             throws InsufficientQtyException, DoNotOwnStockException, NegativeQtyException {
+        logger.setLevel(Level.WARNING);
         logger.log(Level.INFO, "selling stock ...");
         portfolio.sellStock(symbol, quantity, sellPrice);
         save();
