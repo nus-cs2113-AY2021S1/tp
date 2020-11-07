@@ -211,15 +211,17 @@ The following sequence diagram illustrates the steps taken by the program when t
 |-----|-------|-------|
 |Implementation|Easy to implement as `Fav` object can be extracted directly through index in `FavList` |Harder to implement as description will have to be compared with all the descriptions of `Fav` objects in `FavList`|
 |Bugs|There will be no conflict in which command is meant to be executed as all commands have a unique index|As different commands in the list can have the same description conflict over which command to execute can arise|
- 
+|User experience|Command to execute will be shorter|Command to execute will be longer|
 The first approach of choosing the command to execute in `FavList` by index was implemented.<br><br>
 Implementation of the first approach is easier as the required `Fav` object can be directly extracted through the index in the static arraylist in `FavList`.<br>
-However implementation of the second approach is more difficult as the description of all the `Fav` objects in the `FavList` will have to be scanned through and compared with the required description. This may adversely affect processing time as well.<br><br>
+However implementation of the second approach is more difficult as the description of all the `Fav` objects in the `FavList` will have to be scanned through and compared with the required description. This may adversely affect processing time as well.<br>
 
-Bugs for the first approach are easier to handle and limit. As all `Fav` objects in `FavList` have a unique index, the only bug to check for is whether the `<index>` keyed in by the user can be converted into an integer and whether the index is larger than the size of `FavList`.<br>
+Bugs for the first approach are easier to handle and limited. As all `Fav` objects in `FavList` have a unique index, the only bug to check for is whether the `<index>` keyed in by the user can be converted into an integer and whether the index is larger than the size of `FavList`.<br>
 However the handling of bugs for the second approach is more difficult as the description of `Fav` objects in the `FavList` are not unique. This causes extra complications to allow users to be able to choose which command to execute amongst those with duplicate descriptions instead of executing the wrong command.<br>
 
-Therefore, choosing commands based on index is easier to implement, more efficient and reduces possible bugs encountered.
+User experience for the first approach will be improved as the command required is shorter than that of the second approach. This means users can potentially key in commands quicker. <br>
+
+Therefore, choosing commands based on index (first approach) is easier to implement, more efficient, reduces possible bugs encountered and provides better user experience.
 
 ### 3.6. Favourite command description modifier (`/descfav` Feature)
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
