@@ -74,7 +74,6 @@ public class ProjectParser implements ExceptionsParser {
             } catch (NumberFormatException e) {
                 throw new DukeException("Invalid input.");
             }
-
             // Show a list of all projects added, with id to select it.
         case LIST:
             if (projectListManager.isEmpty()) {

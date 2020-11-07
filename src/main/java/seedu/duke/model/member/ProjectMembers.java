@@ -39,19 +39,6 @@ public class ProjectMembers implements JsonableArray {
         memberList.add(m);
     }
 
-    //    public void addMember(List<String> userId) {
-    //        Member m;
-    //        for (String s : userId) {
-    //            if (memberList.contains(new Member(s))) {
-    //                System.out.println("The user associated with " + s + " is already added to the project");
-    //            } else {
-    //                m = new Member(s);
-    //                memberList.add(m);
-    //                System.out.println("The user associated with " + s + " has been added");
-    //            }
-    //        }
-    //    }
-
     //add comparator for removing object
     public void deleteMember(List<String> userId) {
         for (String s : userId) {

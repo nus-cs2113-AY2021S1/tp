@@ -62,6 +62,10 @@ public class CreateProjectCommand extends ProjectCommand {
 
     }
 
+    /**
+     * Displays title of added project to user.
+     * @param addProj Project just added by the user.
+     */
     private void printCreatedProject(Project addProj) {
         Ui.showToUserLn("\tTitle: " + addProj.getTitle());
     }
