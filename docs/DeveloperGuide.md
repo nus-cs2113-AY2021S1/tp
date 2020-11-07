@@ -13,10 +13,11 @@
 ##### [3.2.2 UI class](#322-UI-class1)
 ##### [3.2.3 Parser class](#323-Parser-class1)
 ##### [3.2.4 Customer class](#324-Customer-class1)
-##### [3.2.5 Order class](#324-Order-class1)
-##### [3.2.5 Canteen class](#324-Canteen-class1)
-##### [3.2.4 Stall class](#324-Stall-class1)
-##### [3.2.4 Dish class](#324-Dish-class1)
+##### [3.2.5 Order class](#325-Order-class1)
+##### [3.2.6 Canteen class](#326-Canteen-class1)
+##### [3.2.7 Stall class](#327-Stall-class1)
+##### [3.2.8 Dish class](#328-Dish-class1)
+##### [3.2.9 Exception class](#329-Exception-class1)
 ### [4. Implementation](#4-Implementation1)
 ### [5. Testing](#5-Testing1)
 ### [6. Appendix: Requirements](#6-Appendix-Requirements1)
@@ -32,7 +33,7 @@
 ## 1. Introduction
 
 ### 1.1 Software Overview
-During peak hours, people may not be able to know the dining situation and the density of the canteen they want to go to. To solve this problem, we want to create a program to store and display basic information of stalls in each canteen (e.g. Open hours, current menu, change order etc) to all their potential users. CanteenHelper is a command line (CLI) application that helps students, staff and even tourists order food in canteens efficiently. CanteenHelper will allow users to choose their favorite dishes from different stalls in different canteens based on the date and provided by the users. They also can check the comments of the dishes and operating hours of the stalls and canteens.
+During peak hours, people may not be able to know the dining situation and the density of the canteen they want to go to. To solve this problem, we want to create a program to store and display basic information of stalls in each canteen (e.g. Open hours, current menu, change order etc) to all their potential users. CanteenHelper is a command line (CLI) application that helps students, staff and even tourists order food in canteens efficiently. CanteenHelper will allow users to choose their favorite dishes from different stalls in different canteens based on the date and time provided by the users. They also can check the comments of the dishes and operating hours of the stalls and canteens.
 
 
 ### 1.2 Purpose
@@ -93,6 +94,7 @@ The CanteenHelper consists of six classes:
 * `Canteen`
 * `Stall`
 * `Dish`
+* `Exception`
 
 #### 3.2.1 Logic class
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
@@ -190,6 +192,8 @@ printDishes()
 #### 3.2.8 Dish class
 Dishes that can be ordered by the user.
 
+#### 3.2.9 Exception class
+Exceptions that can catch user unexpected input.
 
 ## 4. Implementation
 #### Feature: order
