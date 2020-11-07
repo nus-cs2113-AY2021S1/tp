@@ -11,10 +11,10 @@ public abstract class CommandParser {
     //Shared Constants by Parsers
     protected static final String NAME_PARAM = "n";
     protected static final String GENRE_PARAM = "g";
-    protected static final String SPLIT_DASH = "-";
-    protected static final String SPLIT_WHITESPACE = " ";
+    protected static final String DASH = "-";
+    protected static final String WHITESPACE = " ";
     protected static final String NOT_RECOGNISED = " is not recognised!";
-    protected static final String PARAMETER_ERROR_HEADER = "Parameter : -.";
+    protected static final String PARAMETER_ERROR_HEADER = "Parameter : -";
     protected static final String REQUIRE_ADDITIONAL_FIELD = " requires an additional field.";
     protected static final String TOO_MUCH_FIELDS = " has too much fields.";
     protected static final String TOO_MUCH_PARAMETERS = " has too much parameters.";
@@ -24,8 +24,11 @@ public abstract class CommandParser {
     protected static final String NOT_POSITIVE_INTEGER = "Please provide a positive integer instead!";
     protected static final String INTEGER_VALUE_OUTSIDE_OF_INTEGER_RANGE = "Please ensure the integer is not larger"
                                                                             + " than " + Integer.MAX_VALUE + ".";
-    protected static final String REGEX_ALPHANUMERIC = "^[a-zA-Z0-9\\s]*$";
+    protected static final String DESCRIPTION_NOT_REQUIRED = "Command does not require additional parameters!";
+    protected static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
     protected static final String REGEX_PARAMETER = "^.*-[a-zA-z]+.*$";
+    protected static final String NON_INTEGER_PROVIDED = "Please specify an integer value for ";
+    protected static final String PARAMETER_PARSED = "Parameter parsed properly";
     protected static final int FIELD_SPLIT_LIMIT = 2;
 
     private static final String REGEX_POSITIVE_INTEGER = "^\\d+$";
@@ -38,7 +41,7 @@ public abstract class CommandParser {
      * @return parameters in parts
      */
     protected String[] parameterSplitter(String parameter) {
-        return parameter.split("-");
+        return parameter.split(DASH);
     }
 
     /**
@@ -125,6 +128,19 @@ public abstract class CommandParser {
             // Thrown when stringInteger represents a valid integer that is outside
             // of java.lang.Integer range (overflow).
             throw new AniException(INTEGER_VALUE_OUTSIDE_OF_INTEGER_RANGE);
+        }
+    }
+
+    /**
+     * Checks if the string is an integer, and throws an exception if not.
+     * 
+     * @param paramPart a string containing the field value
+     * @param id a string indicating which ID it should use
+     * @throws AniException when an error occurred while parsing the string to integer
+     */
+    protected void isIntegerCheck(String paramPart, String id) throws AniException {
+        if (!isInteger(paramPart)) {
+            throw new AniException(NON_INTEGER_PROVIDED + id);
         }
     }
 }

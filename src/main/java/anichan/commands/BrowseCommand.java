@@ -22,25 +22,37 @@ public class BrowseCommand extends Command {
     private int indexToPrint;
     private int animePerPage;
 
+    //Constant values used by Browse
+    private static final int MIN_PAGE_NUM = 1;
+    private static final int ZERO_BASE_OFFSET = 1;
+    private static final int ZERO_INDEX = 0;
+
     //Constant values used for sortBrowseList()
     private static final int ANIME_PER_PAGE = 20;
+    private static final int ORDER_ASCENDING = 0;
+    private static final int ORDER_DESCENDING = 1;
     private static final int ID_SORT = 0;
-    private static final int ORDER_DESCENDING = 0;
     private static final int NAME_SORT = 1;
     private static final int RATING_SORT = 2;
     private static final int RESET_SORT = 3;
-    private static final int ORDER_ASCENDING = 1;
 
     //Constant Strings used for buildBrowseOutput()
     private static final String ID_HEADER = " [Id: ";
     private static final String ID_CLOSER = "]";
     private static final String ASCII_ONLY_REGEX = "[^\\x00-\\x7F]";
-    private static final String INDICATE_MORE = "...";
+    private static final String THREE_DOTS = "...";
     private static final String PERCENTAGE_STRING = "%";
     private static final String S_STRING = "s";
     private static final String EMPTY_STRING = "";
     private static final String DOT_SPACE = ". ";
     private static final String LAST_PAGE_INDICATOR = "You have reached the last page!";
+
+    //Constant values used for buildBrowseOutput()
+    private static final int MAX_NAME_LEN = 51;
+    private static final int MAX_ID_LEN = 3;
+    private static final int MAX_INDEX_LEN = 5;
+    private static final int TRIM_TITLE_END = 48;
+    private static final int TRIM_TITLE_START = 0;
 
     //Log Messages
     private static final String LAST_ANIME_WARNING = "Printing Last Anime Series from source";
@@ -58,12 +70,12 @@ public class BrowseCommand extends Command {
 
     private static final Logger LOGGER = AniLogger.getAniLogger(BrowseCommand.class.getName());
 
-    public BrowseCommand() {
-        this.sortType = ID_SORT;
-        this.order = ORDER_ASCENDING;
-        this.page = 1;
-        this.indexToPrint = 0;
-        animePerPage = ANIME_PER_PAGE;
+    public BrowseCommand(int sortType, int order, int page) {
+        setIndexToPrint(ZERO_INDEX);
+        setAnimePerPage(ANIME_PER_PAGE);
+        setSortType(sortType);
+        setOrder(order);
+        setPage(page);
     }
 
     /**
@@ -80,7 +92,7 @@ public class BrowseCommand extends Command {
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
         ArrayList<Anime> usableList = animeData.getAnimeDataList();
         assert (sortType < 4) : ASSERT_SORT_TYPE;
-        assert (order < 2) : ASSERT_ORDER_TYPE;
+        assert (order < 3) : ASSERT_ORDER_TYPE;
         sortBrowseList(usableList);
         String result = buildBrowseOutput(usableList);
         setSortType(RESET_SORT);
@@ -103,17 +115,17 @@ public class BrowseCommand extends Command {
             String animeName = browseAnime.getAnimeName();
             //Removes non-ascii and trim long titles.
             animeName = animeName.replaceAll(ASCII_ONLY_REGEX, EMPTY_STRING);
-            if (animeName.length() >= 51) {
-                animeName = animeName.substring(0, 48);
-                animeName += INDICATE_MORE;
+            if (animeName.length() >= MAX_NAME_LEN) {
+                animeName = animeName.substring(TRIM_TITLE_START, TRIM_TITLE_END);
+                animeName += THREE_DOTS;
             }
 
             //Pads the output if necessary
             String currAnimeID = Integer.toString(browseAnime.getAnimeID());
-            String browseIndex = i + 1 + DOT_SPACE;
-            animeName = String.format(PERCENTAGE_STRING + (-51) + S_STRING, animeName.trim());
-            currAnimeID = String.format(PERCENTAGE_STRING + (-3) + S_STRING, currAnimeID);
-            browseIndex = String.format(PERCENTAGE_STRING + (-5) + S_STRING, browseIndex);
+            String browseIndex = i + ZERO_BASE_OFFSET + DOT_SPACE;
+            animeName = String.format(PERCENTAGE_STRING + (-MAX_NAME_LEN) + S_STRING, animeName.trim());
+            currAnimeID = String.format(PERCENTAGE_STRING + (-MAX_ID_LEN) + S_STRING, currAnimeID);
+            browseIndex = String.format(PERCENTAGE_STRING + (-MAX_INDEX_LEN) + S_STRING, browseIndex);
 
             result.append(browseIndex);
             result.append(animeName);
@@ -121,7 +133,7 @@ public class BrowseCommand extends Command {
             result.append(currAnimeID);
             result.append(ID_CLOSER);
             result.append(System.lineSeparator());
-            if (i + 1 >= usableList.size()) {
+            if (i + ZERO_BASE_OFFSET >= usableList.size()) {
                 result.append(LAST_PAGE_INDICATOR).append(System.lineSeparator());
                 LOGGER.log(Level.WARNING, LAST_ANIME_WARNING);
                 break;
@@ -154,12 +166,12 @@ public class BrowseCommand extends Command {
             LOGGER.log(Level.INFO, SORT_ID_DESCENDING);
             usableList.sort(Comparator.comparing(Anime::getAnimeID).reversed());
         } else if (sortType == NAME_SORT && order == ORDER_DESCENDING) {
-            LOGGER.log(Level.INFO, SORT_NAME_ASCENDING);
-            usableList.sort(Comparator.comparing(Anime::getAnimeName));
-        } else if (sortType == NAME_SORT) {
             LOGGER.log(Level.INFO, SORT_NAME_DESCENDING);
             usableList.sort(Comparator.comparing(Anime::getAnimeName).reversed());
-        } else if (sortType == RATING_SORT && order == ORDER_DESCENDING) {
+        } else if (sortType == NAME_SORT) {
+            LOGGER.log(Level.INFO, SORT_NAME_ASCENDING);
+            usableList.sort(Comparator.comparing(Anime::getAnimeName));
+        } else if (sortType == RATING_SORT && order == ORDER_ASCENDING) {
             LOGGER.log(Level.INFO, SORT_RATING_ASCENDING);
             usableList.sort(Comparator.comparing(Anime::getRating));
         } else if (sortType == RATING_SORT) {
@@ -178,8 +190,8 @@ public class BrowseCommand extends Command {
      * @param page the page that was requested
      */
     public void setPage(int page) {
-        this.page = Math.max(page, 1);
-        indexToPrint = (page - 1) * getAnimePerPage();
+        this.page = Math.max(page, MIN_PAGE_NUM);
+        indexToPrint = (page - ZERO_BASE_OFFSET) * getAnimePerPage();
     }
 
     public int getPage() {
@@ -208,5 +220,9 @@ public class BrowseCommand extends Command {
 
     public void setAnimePerPage(int animePerPage) {
         this.animePerPage = animePerPage;
+    }
+
+    public void setIndexToPrint(int indexToPrint) {
+        this.indexToPrint = indexToPrint;
     }
 }

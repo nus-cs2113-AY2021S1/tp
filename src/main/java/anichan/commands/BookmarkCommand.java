@@ -17,7 +17,15 @@ import java.util.logging.Logger;
  * Represents the command that allows the user to bookmark an anime or add additional information.
  */
 public class BookmarkCommand extends Command {
+    //Error Header
+    private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
+    private static final String NOTES_INDEX_ERROR_HEADER = "Notes index ";
+    private static final String ANIME_INDEX_ERROR_HEADER = "Anime index ";
+    private static final String BOOKMARK_NOTE_ERROR_HEADER = "Bookmark note ";
+    private static final String BOOKMARK_INDEX_ERROR_HEADER = "Bookmark index ";
+    private static final String BOOKMARK_EPISODE_ERROR_HEADER = "Bookmark episode ";
 
+    //Error Message Trailer
     private static final String ANIME_ID_ERROR = " Anime index is outside AnimeData range "
             + "(Bigger than number of anime).";
     private static final String ANIME_ID_EXIST_ERROR = " Anime index is already in bookmark.";
@@ -27,9 +35,30 @@ public class BookmarkCommand extends Command {
             + "(Bigger than number of notes).";
     private static final String BOOKMARK_EPISODE_ERROR = " is invalid." + System.lineSeparator()
             + "Episode provided is bigger than the total episode.";
-    private static final String BOOKMARK_EXECUTE_ERROR_HEADER = "Bookmark command execute failed:";
+    private static final String BOOKMARK_NOTE_ERROR = " provided contain \"~\" which is not allowed.";
+    private static final String ANIME_ID_ZERO_ERROR = " Anime index start from 1.";
+    private static final String NOTE_ID_ZERO_ERROR = " Note index start from 1.";
+    private static final String BOOKMARK_ID_ZERO_ERROR = " Bookmark index start from 1.";
+    private static final String BOOKMARK_ACTION_NULL_ERROR = "Bookmark action cannot be null.";
+    private static final String BOOKMARK_NOTE_NULL_ERROR = "Bookmark note cannot be null.";
     private static final String BOOKMARK_ERROR_MESSAGE = " provided is invalid.";
-    private static final String BOOKMARK_NOTE_ERROR_MESSAGE = " provided contain \"~\" which is not allowed.";
+
+    //Output message header
+    private static final String INFO_EPISODE_HEADER = "Current Episode: ";
+    private static final String INFO_NOTES_HEADER = "Notes for anime:";
+    private static final String INFO_HEADER = "Here is the information for that anime.";
+    private static final String LIST_HEADER = "Listing all anime in bookmark:";
+    private static final String DELETING_HEADER = "Deleting note: ";
+    private static final String FROM_HEADER = "From: ";
+    private static final String ADD_NOTE_HEADER = "Adding note:\"";
+    private static final String REMOVE_HEADER = "Removing ";
+    private static final String ADD_HEADER = "Saving ";
+    private static final String EDITING_EPISODE_HEADER = "Editing the current episode for ";
+
+    //Output message trailer
+    public static final String ADD_TRAILER = " to bookmark.";
+
+    //Logging message
     private static final String BOOKMARK_EXECUTE_EDIT = "Executing Edit Episode.";
     private static final String BOOKMARK_EXECUTE_ADD = "Executing Add Anime to Bookmark.";
     private static final String BOOKMARK_EXECUTE_DELETE = "Executing Delete Anime from Bookmark.";
@@ -38,28 +67,35 @@ public class BookmarkCommand extends Command {
     private static final String BOOKMARK_EXECUTE_ADD_NOTE = "Executing bookmark add note.";
     private static final String BOOKMARK_EXECUTE_REMOVE_NOTE = "Executing bookmark remove note.";
     private static final String BOOKMARK_EXECUTE_SUCCESS = "Execute Bookmark command successful.";
-    private static final String BOOKMARK_LIST_HEADER = "Listing all anime in bookmark:";
-    private static final String BOOKMARK_INFO_HEADER = "Here is the information for that anime.";
+    private static final String BOOKMARK_COMMAND_LOAD_SUCCESS = "Successfully loaded fields for Bookmark command.";
+
+    //Constant Parameter
+    private static final int ZERO_PARAM = 0;
     private static final String BOOKMARK_NOTE_FORBIDDEN_CHAR = "~";
-    public static final String EPISODE_HEADER = "Current Episode: ";
-    public static final String NOTES_HEADER = "Notes for anime:";
-    public static final String ANIME_ID_ZERO_ERROR = " Anime index start from 1.";
-    public static final String NOTE_ID_ZERO_ERROR = " Note index start from 1.";
-    public static final String BOOKMARK_ID_ZERO_ERROR = " Bookmark index start from 1.";
-    public static final int ZERO_PARAM = 0;
+    private static final int ZERO_BASED_OFFSET = 1;
+    private static final String FULL_STOP = ".";
+    private static final String EMPTY_STRING = "";
+
+    //Bookmark required field
     private int bookmarkIndex;
     private int animeIndex;
-
-
     private int noteIndex;
     private int bookmarkEpisode;
     private String bookmarkAction;
     private String bookmarkNote;
+
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkCommand.class.getName());
 
-    public BookmarkCommand() {
-        bookmarkAction = null;
-        LOGGER.log(Level.INFO, "Successfully loaded fields for Bookmark command.");
+    public BookmarkCommand(String bookmarkAction, int bookmarkIndex, int animeIndex, int bookmarkEpisode,
+                           int noteIndex, String bookmarkNote) {
+        assert bookmarkAction != null : BOOKMARK_ACTION_NULL_ERROR;
+        this.bookmarkAction = bookmarkAction;
+        this.bookmarkIndex = bookmarkIndex;
+        this.animeIndex = animeIndex;
+        this.bookmarkEpisode = bookmarkEpisode;
+        this.noteIndex = noteIndex;
+        this.bookmarkNote = bookmarkNote;
+        LOGGER.log(Level.INFO, BOOKMARK_COMMAND_LOAD_SUCCESS);
     }
 
     /**
@@ -82,7 +118,7 @@ public class BookmarkCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        String result = "";
+        String result = EMPTY_STRING;
         Workspace workspace = user.getActiveWorkspace();
         Bookmark bookmark = user.getActiveWorkspace().getBookmark();
         switch (bookmarkAction) {
@@ -103,16 +139,17 @@ public class BookmarkCommand extends Command {
             break;
         case BookmarkParser.LIST_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_LIST);
-            result = BOOKMARK_LIST_HEADER;
+            result = LIST_HEADER;
             String bookmarkList = listBookmark(animeData, bookmark);
             result += bookmarkList;
             break;
         case BookmarkParser.INFO_PARAM:
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_INFO);
-            result = BOOKMARK_INFO_HEADER + System.lineSeparator();
+            result = INFO_HEADER + System.lineSeparator();
             result += getBookmarkInfo(animeData, bookmark);
             break;
         case BookmarkParser.ADD_NOTE_PARAM:
+            assert bookmarkNote != null : BOOKMARK_NOTE_NULL_ERROR;
             LOGGER.log(Level.INFO, BOOKMARK_EXECUTE_ADD_NOTE);
             result = addNoteToBookmark(animeData, bookmark);
             storageManager.saveBookmark(workspace.getName(), bookmark);
@@ -139,18 +176,18 @@ public class BookmarkCommand extends Command {
      * @throws AniException when an error occurred while executing the command
      */
     private String getBookmarkInfo(AnimeData animeData, Bookmark bookmark) throws AniException {
-        String result = "";
+        String result = EMPTY_STRING;
         String animeInfo = getAnimeInfoFromBookmark(animeData, bookmark);
         result += animeInfo + System.lineSeparator() + System.lineSeparator();
 
-        Integer bookmarkEpisodeInfo = bookmark.getBookmarkEpisode(bookmarkIndex - 1);
-        if (bookmarkEpisodeInfo != 0) {
-            result += EPISODE_HEADER;
+        Integer bookmarkEpisodeInfo = bookmark.getBookmarkEpisode(bookmarkIndex - ZERO_BASED_OFFSET);
+        if (bookmarkEpisodeInfo != ZERO_PARAM) {
+            result += INFO_EPISODE_HEADER;
             result += bookmarkEpisodeInfo;
             result += System.lineSeparator() + System.lineSeparator();
         }
 
-        result += NOTES_HEADER;
+        result += INFO_NOTES_HEADER;
         String notesInfo = getAnimeNotesFromBookmark(bookmark);
         result += notesInfo;
         return result;
@@ -163,7 +200,7 @@ public class BookmarkCommand extends Command {
      * @return the notes in list
      */
     private String getAnimeNotesFromBookmark(Bookmark bookmark) {
-        String notesInfo = bookmark.getNoteInString(bookmarkIndex - 1);
+        String notesInfo = bookmark.getNoteInString(bookmarkIndex - ZERO_BASED_OFFSET);
         return notesInfo;
     }
 
@@ -178,10 +215,12 @@ public class BookmarkCommand extends Command {
     private String removeNoteFromBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
         checkNoteIndex(bookmark);
-        String result = "Deleting note: ";
-        result += bookmark.removeNote(bookmarkIndex - 1, noteIndex - 1);
-        Anime animeToRemoveNote = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
-        result += System.lineSeparator() + "From: " + animeToRemoveNote.getAnimeName() + ".";
+        String result = DELETING_HEADER;
+        result += bookmark.removeNote(bookmarkIndex - ZERO_BASED_OFFSET,
+                noteIndex - ZERO_BASED_OFFSET);
+        Anime animeToRemoveNote = bookmark.getAnimeBookmarkByIndex(animeData,
+                bookmarkIndex - ZERO_BASED_OFFSET);
+        result += System.lineSeparator() + FROM_HEADER + animeToRemoveNote.getAnimeName() + FULL_STOP;
         return result;
     }
 
@@ -196,10 +235,11 @@ public class BookmarkCommand extends Command {
     private String addNoteToBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
         checkNoteForForbiddenChar();
-        bookmark.addNote(bookmarkIndex - 1, bookmarkNote);
-        Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
+        bookmark.addNote(bookmarkIndex - ZERO_BASED_OFFSET, bookmarkNote);
+        Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData,
+                bookmarkIndex - ZERO_BASED_OFFSET);
         String result;
-        result = "Adding note:\"" + bookmarkNote + "\""
+        result = ADD_NOTE_HEADER + bookmarkNote + "\""
                 + " to " + animeToDelete.getAnimeName() + "!";
         return result;
     }
@@ -214,7 +254,8 @@ public class BookmarkCommand extends Command {
      */
     private String getAnimeInfoFromBookmark(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
-        String animeInfo = bookmark.getAnimeBookmarkInfo(animeData, bookmarkIndex - 1);
+        String animeInfo = bookmark.getAnimeBookmarkInfo(animeData,
+                bookmarkIndex - ZERO_BASED_OFFSET);
         return animeInfo;
     }
 
@@ -229,9 +270,10 @@ public class BookmarkCommand extends Command {
     private String deleteBookmarkEntry(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
         String result;
-        Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
-        result = "Removing " + animeToDelete.getAnimeName() + "! :(";
-        bookmark.removeAnimeBookmark(bookmarkIndex - 1);
+        Anime animeToDelete = bookmark.getAnimeBookmarkByIndex(animeData,
+                bookmarkIndex - ZERO_BASED_OFFSET);
+        result = REMOVE_HEADER + animeToDelete.getAnimeName() + "! :(";
+        bookmark.removeAnimeBookmark(bookmarkIndex - ZERO_BASED_OFFSET);
         return result;
     }
 
@@ -247,9 +289,9 @@ public class BookmarkCommand extends Command {
         checkAnimeIndex(animeData);
         checkAnimeNotInBookmark(bookmark);
         String result;
-        bookmark.addAnimeBookmark(animeIndex - 1);
-        Anime animeToAdd = animeData.getAnime(animeIndex - 1);
-        result = "Saving " + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + " to bookmark.";
+        bookmark.addAnimeBookmark(animeIndex - ZERO_BASED_OFFSET);
+        Anime animeToAdd = animeData.getAnime(animeIndex - ZERO_BASED_OFFSET);
+        result = ADD_HEADER + animeToAdd.getAnimeID() + ". " + animeToAdd.getAnimeName() + ADD_TRAILER;
         return result;
     }
 
@@ -257,11 +299,11 @@ public class BookmarkCommand extends Command {
      * Check that the bookmark does not already have the bookmark entry.
      *
      * @param bookmark used to manage bookmark entries
-     * @throws AniException if there is bookmark entry already exist
+     * @throws AniException if bookmark entry already exist
      */
     private void checkAnimeNotInBookmark(Bookmark bookmark) throws AniException {
-        if (bookmark.checkExist(animeIndex - 1)) {
-            String invalidAnimeIndex = "Anime index " + animeIndex + BOOKMARK_ERROR_MESSAGE
+        if (bookmark.checkExist(animeIndex - ZERO_BASED_OFFSET)) {
+            String invalidAnimeIndex = ANIME_INDEX_ERROR_HEADER + animeIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + ANIME_ID_EXIST_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidAnimeIndex);
             throw new AniException(invalidAnimeIndex);
@@ -279,10 +321,12 @@ public class BookmarkCommand extends Command {
     private String editBookmarkEpisode(AnimeData animeData, Bookmark bookmark) throws AniException {
         checkBookmarkIndex(bookmark);
         String result;
-        Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData, bookmarkIndex - 1);
+        Anime animeToEdit = bookmark.getAnimeBookmarkByIndex(animeData,
+                bookmarkIndex - ZERO_BASED_OFFSET);
         checkEpisode(animeToEdit.getTotalEpisodes());
-        bookmark.editAnimeBookmarkEpisode(bookmarkIndex - 1, bookmarkEpisode);
-        result = "Editing " + animeToEdit.getAnimeName() + " to have " + bookmarkEpisode + " episode(s).";
+        bookmark.editAnimeBookmarkEpisode(bookmarkIndex - ZERO_BASED_OFFSET, bookmarkEpisode);
+        result = EDITING_EPISODE_HEADER + animeToEdit.getAnimeName() + " to episode(s) "
+                + bookmarkEpisode + ".";
         return result;
     }
 
@@ -295,12 +339,12 @@ public class BookmarkCommand extends Command {
     private void checkBookmarkIndex(Bookmark bookmark) throws AniException {
         //Bookmark index is one based numbering
         if (bookmarkIndex > bookmark.getBookmarkSize()) {
-            String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
+            String invalidBookmarkIndex = BOOKMARK_INDEX_ERROR_HEADER + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + BOOKMARK_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         } else if (bookmarkIndex == ZERO_PARAM) {
-            String invalidBookmarkIndex = "Bookmark index " + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
+            String invalidBookmarkIndex = BOOKMARK_INDEX_ERROR_HEADER + bookmarkIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + BOOKMARK_ID_ZERO_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
@@ -314,7 +358,7 @@ public class BookmarkCommand extends Command {
      */
     private void checkNoteForForbiddenChar() throws AniException {
         if (bookmarkNote.contains(BOOKMARK_NOTE_FORBIDDEN_CHAR)) {
-            String invalidBookmarkNote = "Bookmark note " + bookmarkNote + BOOKMARK_NOTE_ERROR_MESSAGE;
+            String invalidBookmarkNote = BOOKMARK_NOTE_ERROR_HEADER + bookmarkNote + BOOKMARK_NOTE_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkNote);
             throw new AniException(invalidBookmarkNote);
         }
@@ -328,7 +372,7 @@ public class BookmarkCommand extends Command {
      */
     private void checkEpisode(int totalEpisode) throws AniException {
         if (bookmarkEpisode > totalEpisode) {
-            String invalidBookmarkNote = "Bookmark episode " + bookmarkEpisode + BOOKMARK_EPISODE_ERROR;
+            String invalidBookmarkNote = BOOKMARK_EPISODE_ERROR_HEADER + bookmarkEpisode + BOOKMARK_EPISODE_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkNote);
             throw new AniException(invalidBookmarkNote);
         }
@@ -342,13 +386,13 @@ public class BookmarkCommand extends Command {
      */
     private void checkNoteIndex(Bookmark bookmark) throws AniException {
         //Bookmark index is one based numbering
-        if (noteIndex > bookmark.getNotesSize(bookmarkIndex - 1)) {
-            String invalidBookmarkIndex = "Notes index " + noteIndex + BOOKMARK_ERROR_MESSAGE
+        if (noteIndex > bookmark.getNotesSize(bookmarkIndex - ZERO_BASED_OFFSET)) {
+            String invalidBookmarkIndex = NOTES_INDEX_ERROR_HEADER + noteIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + NOTES_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         } else if (noteIndex == ZERO_PARAM) {
-            String invalidBookmarkIndex = "Notes index " + noteIndex + BOOKMARK_ERROR_MESSAGE
+            String invalidBookmarkIndex = NOTES_INDEX_ERROR_HEADER + noteIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + NOTE_ID_ZERO_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
@@ -364,12 +408,12 @@ public class BookmarkCommand extends Command {
     private void checkAnimeIndex(AnimeData animeData) throws AniException {
         //Anime index is one based numbering
         if (animeIndex > animeData.getSize()) {
-            String invalidAnimeIndex = "Anime index " + animeIndex + BOOKMARK_ERROR_MESSAGE
+            String invalidAnimeIndex = ANIME_INDEX_ERROR_HEADER + animeIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + ANIME_ID_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidAnimeIndex);
             throw new AniException(invalidAnimeIndex);
         } else if (animeIndex == ZERO_PARAM) {
-            String invalidAnimeIndex = "Anime index " + animeIndex + BOOKMARK_ERROR_MESSAGE
+            String invalidAnimeIndex = ANIME_INDEX_ERROR_HEADER + animeIndex + BOOKMARK_ERROR_MESSAGE
                     + System.lineSeparator() + ANIME_ID_ZERO_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_EXECUTE_ERROR_HEADER + invalidAnimeIndex);
             throw new AniException(invalidAnimeIndex);
@@ -387,32 +431,8 @@ public class BookmarkCommand extends Command {
         return bookmark.getListInString(animeData);
     }
 
+    //Getters and Setters
     public String getBookmarkAction() {
         return this.bookmarkAction;
     }
-
-    public void setBookmarkAction(String actionString) {
-        this.bookmarkAction = actionString;
-    }
-
-    public void setBookmarkIndex(String bookmarkIndexString) {
-        this.bookmarkIndex = Integer.parseInt(bookmarkIndexString);
-    }
-
-    public void setAnimeIndex(String animeIndexString) {
-        this.animeIndex = Integer.parseInt(animeIndexString);
-    }
-
-    public void setBookmarkEpisode(String bookmarkEpisodeString) {
-        this.bookmarkEpisode = Integer.parseInt(bookmarkEpisodeString);
-    }
-
-    public void setBookmarkNote(String note) {
-        this.bookmarkNote = note;
-    }
-
-    public void setNoteIndex(String noteIndex) {
-        this.noteIndex = Integer.parseInt(noteIndex);
-    }
-
 }

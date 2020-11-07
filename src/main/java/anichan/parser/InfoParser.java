@@ -12,20 +12,10 @@ import java.util.logging.Logger;
  * Handles parsing for info command.
  */
 public class InfoParser extends CommandParser {
-    protected static final String ANIME_ID_PARAM = "a";
-    protected static final String SPLIT_DASH = "-";
-    protected static final String TOO_MUCH_ARGUMENTS = "Info command " + TOO_MUCH_FIELDS;
-    protected static final String NON_INTEGER_PROVIDED = "Please specify an Int value for Anime ID!";
+    private static final String TOO_MUCH_ARGUMENTS = "Info command" + TOO_MUCH_FIELDS;
+    private static final String ANIME_ID = "Anime ID!";
     private static final Logger LOGGER = AniLogger.getAniLogger(InfoParser.class.getName());
     
-    private InfoCommand infoCommand;
-
-    /**
-     * Creates a new instance of InfoParser.
-     */
-    public InfoParser() {
-        infoCommand = new InfoCommand();
-    }
 
     /**
      * Parses the specified command description.
@@ -35,40 +25,33 @@ public class InfoParser extends CommandParser {
      * @throws AniException when an error occurred while parsing the command description
      */
     public InfoCommand parse(String description) throws AniException {
-        String[] paramGiven = description.split(SPLIT_DASH, 2);
+        description = description.trim();
 
-        paramIsSetCheck(paramGiven);
-        if (paramGiven[1] == null || paramGiven[1].trim().isBlank()) {
-            throw new AniException(NO_PARAMETER_PROVIDED);
+        if (description == null || description.isBlank()) {
+            throw new AniException(DESCRIPTION_CANNOT_BE_NULL);
         }
+
+        Integer animeIndex = parameterParser(description);
+        LOGGER.log(Level.INFO, PARAMETER_PARSED);
         
-        parameterParser(paramGiven[1]);
-        LOGGER.log(Level.INFO, "Parameter parsed properly");
-        
-        return infoCommand;
+        return new InfoCommand(animeIndex);
     }
 
     /**
      * Parses the parameter provided in the command description.
      *
-     * @param paramGiven a String Array containing the parameters and the value
+     * @param fieldGiven a String Array containing the value given
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private void parameterParser(String paramGiven) throws AniException {
-        String[] paramParts = paramGiven.split(" ");
+    private Integer parameterParser(String fieldGiven) throws AniException {
+        String fieldValue = fieldGiven.trim();
+        String[] fieldParts = fieldValue.split(WHITESPACE);
 
-        switch (paramParts[0].trim()) {
-        case ANIME_ID_PARAM:
-            paramFieldCheck(paramParts);
-            paramExtraFieldCheck(paramParts);
-            if (!isInteger(paramParts[1].trim())) {
-                throw new AniException(NON_INTEGER_PROVIDED);
-            }
-            infoCommand.setAnimeIndex(Integer.parseInt(paramParts[1].trim()));
-            break;
-        default:
-            String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
-            throw new AniException(invalidParameter);
+        if (fieldParts.length > 1) {
+            throw new AniException(TOO_MUCH_ARGUMENTS);
         }
+        isIntegerCheck(fieldValue, ANIME_ID);
+
+        return parseStringToInteger(fieldValue);
     }
 }

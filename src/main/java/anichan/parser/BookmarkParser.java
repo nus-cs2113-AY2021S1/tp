@@ -12,6 +12,7 @@ import java.util.logging.Logger;
  * Handles parsing for bookmark command.
  */
 public class BookmarkParser extends CommandParser {
+    //Bookmark action param
     public static final String ADD_PARAM = "a";
     public static final String DELETE_PARAM = "d";
     public static final String EPISODE_PARAM = "e";
@@ -19,28 +20,42 @@ public class BookmarkParser extends CommandParser {
     public static final String INFO_PARAM = "i";
     public static final String ADD_NOTE_PARAM = "n";
     public static final String REMOVE_NOTE_PARAM = "r";
-    public static final String DASH_PARAM = "-";
+
+    //Constant parameter
+    private static final String EMPTY_PARAM = "";
+    private static final int MIN_LENGTH = 1;
+    private static final int ZERO_PARAM = 0;
+    public static final int MAX_PARAM_LENGTH = 2;
+
+    //Message error header
     private static final String PARAMETER_ERROR_HEADER = "Parameter :";
     private static final String DESCRIPTION_ERROR_HEADER = "Description :";
     private static final String BOOKMARK_LOAD_ERROR_HEADER = "Could not load bookmark command :";
+
+    //Message bookmark action type
     private static final String BOOKMARK_EPISODE = "edit episode";
     private static final String BOOKMARK_DELETE = "delete";
     private static final String BOOKMARK_ADD = "add";
     private static final String BOOKMARK_REMOVE_NOTE = "remove note";
     private static final String BOOKMARK_INDEX = "index";
+
+    //Message error trailer
+    private static final String BOOKMARK_INDEX_INFO_ERROR = " Bookmark index for info requires integer.";
+    private static final String EXTRA_FIRST_PARAM_ERROR = " Add/Delete/List should not have extra first param.";
+    private static final String BOOKMARK_LIST_EXTRA_FIELD_ERROR = " Bookmark list should not have extra field.";
+    private static final String EMPTY_PARAM_ERROR = " The parameter is empty";
+    private static final String NON_INTEGER_ERROR = " param requires integer.";
+    private static final String NO_SPACE_BETWEEN_PARAM_ERROR = "Please leave a spacing between each parameter!";
+
+    //Bookmark required field
+    private int bookmarkIndex;
+    private int animeIndex;
+    private int noteIndex;
+    private int bookmarkEpisode;
+    private String bookmarkAction;
+    private String bookmarkNote;
+
     private static final Logger LOGGER = AniLogger.getAniLogger(BookmarkParser.class.getName());
-    public static final String WHITESPACE_PARAM = " ";
-    public static final String EMPTY_PARAM = "";
-    public static final String BOOKMARK_INDEX_INFO_ERROR = " Bookmark index for info requires integer.";
-    public static final String EXTRA_FIRST_PARAM_ERROR = " Add/Delete/List should not have extra first param.";
-    public static final String BOOKMARK_LIST_EXTRA_FIELD_ERROR = " Bookmark list should not have extra field.";
-    public static final String EMPTY_PARAM_ERROR = " The parameter is empty";
-
-    private BookmarkCommand bookmarkCommand;
-
-    public BookmarkParser() {
-        bookmarkCommand = new BookmarkCommand();
-    }
 
     /**
      * Parses the string parameters and creates an executable bookmarkCommand according to the parameters.
@@ -51,66 +66,61 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if an error is encountered while parsing
      */
     public BookmarkCommand parse(String description) throws AniException {
+        assert description != null : DESCRIPTION_CANNOT_BE_NULL;
         String[] paramGiven = getSplitDescription(description);
-        if (paramGiven.length > 1) {
+        if (paramGiven.length > MIN_LENGTH) {
             parameterParser(paramGiven[1]);
             setFirstParameter(paramGiven[0]);
         } else {
             setSingleParameter(description);
         }
 
-        return bookmarkCommand;
+        return new BookmarkCommand(bookmarkAction, bookmarkIndex, animeIndex, bookmarkEpisode, noteIndex, bookmarkNote);
     }
 
     /**
      * Bookmark commands only allow one dash parameter e.g "-a" or "-d".
      * The method based on the dach parameter will determine the checks to do
-     * and the values to set for Bookmark Command.
+     * and the values to set for Bookmark Command required field.
      *
      * @param paramGiven is the string containing the processed parameters with field
      * @throws AniException if invalid parameters are parsed in
      */
     private void parameterParser(String paramGiven) throws AniException {
-        String[] paramParts = paramGiven.split(WHITESPACE_PARAM);
+        String[] paramParts = paramGiven.split(WHITESPACE, FIELD_SPLIT_LIMIT);
+        bookmarkAction = paramParts[0].trim();
         paramEmptyCheck(paramGiven, paramParts);
-        switch (paramParts[0].trim()) {
+        switch (bookmarkAction) {
         case EPISODE_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkCommand.setBookmarkAction(paramParts[0]);
             checkIsInteger(paramGiven, paramParts[1], BOOKMARK_EPISODE);
-            bookmarkCommand.setBookmarkEpisode(paramParts[1].trim());
+            bookmarkEpisode = parseStringToInteger(paramParts[1].trim());
             break;
         case ADD_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkCommand.setBookmarkAction(paramParts[0]);
             checkIsInteger(paramGiven, paramParts[1], BOOKMARK_ADD);
-            bookmarkCommand.setAnimeIndex(paramParts[1].trim());
+            animeIndex = parseStringToInteger(paramParts[1].trim());
             break;
         case DELETE_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkCommand.setBookmarkAction(paramParts[0]);
             checkIsInteger(paramGiven, paramParts[1], BOOKMARK_DELETE);
-            bookmarkCommand.setBookmarkIndex(paramParts[1].trim());
+            bookmarkIndex = parseStringToInteger(paramParts[1].trim());
             break;
         case LIST_PARAM:
-            bookmarkCommand.setBookmarkAction(paramParts[0]);
             listFieldCheck(paramParts);
             break;
         case ADD_NOTE_PARAM:
             paramFieldCheck(paramParts);
-            paramParts = paramGiven.split(WHITESPACE_PARAM, 2);
-            bookmarkCommand.setBookmarkAction(paramParts[0]);
-            bookmarkCommand.setBookmarkNote(paramParts[1].trim());
+            bookmarkNote = paramParts[1].trim();
             break;
         case REMOVE_NOTE_PARAM:
             paramFieldCheck(paramParts);
             paramExtraFieldCheck(paramParts);
-            bookmarkCommand.setBookmarkAction(paramParts[0]);
             checkIsInteger(paramGiven, paramParts[1], BOOKMARK_REMOVE_NOTE);
-            bookmarkCommand.setNoteIndex(paramParts[1]);
+            noteIndex = parseStringToInteger(paramParts[1].trim());
             break;
         default:
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED;
@@ -130,7 +140,7 @@ public class BookmarkParser extends CommandParser {
     private void checkIsInteger(String paramGiven, String paramPart, String bookmarkType) throws AniException {
         if (!isInteger(paramPart.trim())) {
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
-                    + System.lineSeparator() + " Bookmark " + bookmarkType + " param requires integer.";
+                    + System.lineSeparator() + " Bookmark " + bookmarkType + NON_INTEGER_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
             throw new AniException(invalidParameter);
         }
@@ -144,7 +154,7 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if the parameter provided is empty
      */
     private void paramEmptyCheck(String paramGiven, String[] paramParts) throws AniException {
-        if (paramParts.length == 0) {
+        if (paramParts.length == ZERO_PARAM) {
             String invalidParameter = PARAMETER_ERROR_HEADER + paramGiven + NOT_RECOGNISED
                     + System.lineSeparator() + EMPTY_PARAM_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidParameter);
@@ -159,7 +169,7 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if the list field provided is not empty
      */
     private void listFieldCheck(String[] paramParts) throws AniException {
-        if (paramParts.length > 1) {
+        if (paramParts.length > MIN_LENGTH) {
             String invalidExtraField = PARAMETER_ERROR_HEADER + paramParts[1] + NOT_RECOGNISED
                     + System.lineSeparator() + BOOKMARK_LIST_EXTRA_FIELD_ERROR;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidExtraField);
@@ -176,11 +186,12 @@ public class BookmarkParser extends CommandParser {
      */
     private void setFirstParameter(String paramGiven) throws AniException {
         //Action edit(e), note(n), remove note(r) requires first parameter as bookmarkIndex
-        if (bookmarkCommand.getBookmarkAction().equals(EPISODE_PARAM)
-                || bookmarkCommand.getBookmarkAction().equals(ADD_NOTE_PARAM)
-                || bookmarkCommand.getBookmarkAction().equals(REMOVE_NOTE_PARAM)) {
+        if (bookmarkAction.equals(EPISODE_PARAM)
+                || bookmarkAction.equals(ADD_NOTE_PARAM)
+                || bookmarkAction.equals(REMOVE_NOTE_PARAM)) {
             checkIsInteger(paramGiven, paramGiven, BOOKMARK_INDEX);
-            bookmarkCommand.setBookmarkIndex(paramGiven.trim());
+            checkForParamStacking(paramGiven);
+            bookmarkIndex = parseStringToInteger(paramGiven.trim());
         } else {
             boolean isEmpty = paramGiven.trim().equals(EMPTY_PARAM);
             if (!isEmpty) {
@@ -205,8 +216,8 @@ public class BookmarkParser extends CommandParser {
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidBookmarkIndex);
             throw new AniException(invalidBookmarkIndex);
         }
-        bookmarkCommand.setBookmarkAction(INFO_PARAM);
-        bookmarkCommand.setBookmarkIndex(paramGiven.trim());
+        bookmarkAction = INFO_PARAM;
+        bookmarkIndex = parseStringToInteger(paramGiven.trim());
     }
 
     /**
@@ -218,12 +229,25 @@ public class BookmarkParser extends CommandParser {
      * @throws AniException if there is more than 2 parameter provided
      */
     private String[] getSplitDescription(String description) throws AniException {
-        String[] paramGiven = description.split(DASH_PARAM);
-        if (paramGiven.length > 2) {
+        String[] paramGiven = description.split(DASH);
+        if (paramGiven.length > MAX_PARAM_LENGTH) {
             String invalidDescription = DESCRIPTION_ERROR_HEADER + description + TOO_MUCH_FIELDS;
             LOGGER.log(Level.WARNING, BOOKMARK_LOAD_ERROR_HEADER + invalidDescription);
             throw new AniException(invalidDescription);
         }
         return paramGiven;
+    }
+
+    /**
+     * Checks and prevents parameter stacking e.g. "1-e 5" or "1-n test".
+     *
+     * @param firstParam first parameter before -
+     * @throws AniException if there is no space between the parameter
+     */
+    private void checkForParamStacking(String firstParam) throws AniException {
+        //Forgive the last param
+        if (!firstParam.endsWith(WHITESPACE)) {
+            throw new AniException(NO_SPACE_BETWEEN_PARAM_ERROR);
+        }
     }
 }

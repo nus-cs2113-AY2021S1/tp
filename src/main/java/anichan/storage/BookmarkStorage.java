@@ -123,11 +123,11 @@ public class BookmarkStorage extends Storage {
                 }
             }
 
-            bookmark.addAnimeBookmarkEpisode(bookmarkIndex, bookmarkEpisode, note);
+            bookmark.addAnimeBookmark(bookmarkIndex, bookmarkEpisode, note);
         }
 
         if (hasCorruptedBookmark) {
-            return "Not all loaded successfully.";
+            return "Not loaded successfully.";
         } else {
             return "Loaded successfully.";
         }

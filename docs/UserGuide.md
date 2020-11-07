@@ -7,9 +7,13 @@
 <br/>
 
 ## Table of Contents
-1. [Introduction](#1-introduction)
-2. [Quick Start](#2-quick-start)
-3. [Features](#3-features)
+1.  [Introduction](#1-introduction)
+<br/>&nbsp;1.1 [Purpose](#11-purpose)
+<br/>&nbsp;1.2 [Using this guide](#12-using-this-guide)
+
+2.  [Quick Start](#2-quick-start)
+
+3.  [Features](#3-features)
 <br/>&nbsp;3.1 [View the help](#31-view-the-help)
 <br/>&nbsp;3.2 [Estimate time need to translate the script](#32-estimate-time-needed-to-translate-the-script)
 <br/>&nbsp;3.3 [Browse through all anime](#33-browse-through-anime)
@@ -40,8 +44,10 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.8.7 [View information of a bookmark entry](#387-view-information-of-a-bookmark-entry)
 <br/>&nbsp;3.9 [Exit AniChan](#39-exit-anichan)
 <br/>&nbsp;3.10 [Saving and loading data](#310-saving-and-loading-data)
-4. [FAQ](#4-faq)
-5. [Command Summary](#5-command-summary)
+
+4.  [FAQ](#4-faq)
+
+5.  [Command Summary](#5-command-summary)
 
 <br/>
 
@@ -57,12 +63,32 @@ This guide provides you with in-depth information on setting up AniChan and how 
 
 <br/>
 
+### 1.2 Using this guide
+
+Along the way you might encounter several icons. These icons will provide you with different types of information that you may find useful.
+
+> :bulb: Take note when you see this icon, as it might tell you something important.
+
+> :memo: This icon represents a friendly tip that might be useful when using our application.
+
+> :warning: A caution that you have to keep in mind when using the command.
+
+Lastly, text that is blue like this [example](#12-using-this-guide), are clickable links that will bring you to the relevant part of this user guide. 
+
+<br/>
+
 ## 2. Quick Start
-1.  Ensure that you have Java 11 or above installed.
+1.  Ensure that you have Java `11` or above installed.
 2.  Download the latest version of **AniChan** from [here](https://github.com/AY2021S1-CS2113T-F12-2/tp/releases/tag/V2.0).
 3.  Copy the file to the folder you want to use as the home folder for **AniChan**.
-4.  Open **Command Prompt** and change directory into the folder. Run `java -jar AniChan.jar`.
-5.  Type a command into the command prompt and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display the help message.
+4.  Open **command prompt** or **terminal** and change directory into the folder. Run `java -jar AniChan.jar`.
+5.  You will be first greeted by the **command prompt** for your name and gender as shown below.
+6.  Upon completing them, you will be able to start using **AniChan**!
+7.  Type in a command into the **command prompt** and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
+
+![First Time Setup](images/User-Guide-Setting-Up.png)
+
+*Figure 1: Example of First Time Setup*
 
 <br/>
 
@@ -72,45 +98,50 @@ This guide provides you with in-depth information on setting up AniChan and how 
 *   Commands are case-sensitive. <br/>
 E.g. Only `help` will work, and so `HELP`, `hElp`, and its other variant will not work.
 
+*   All parameters are lowercase letters. <br/>
+E.g. `-l` in this case would be a lowercase letter of 'L'. Not to be mistaken with `1` or `I`.
+
 *   Words in UPPERCASE are values that can be supplied to the command. <br/>
 E.g. In `browse -s <SORT_CATEGORY> -p <PAGE_NO.>`, `SORT_CATEGORY` and `PAGE_NO.` can be replaced with `name` and `1` respectively. 
 
 *   Angle brackets (`<MANDATORY>`) are mandatory, while square brackets (`[OPTIONAL]`) are optional. <br/>
-E.g. `estimate <SCRIPT_NAME> [-t WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
+E.g. `estimate <SCRIPT_NAME> [-wph WORDS_PER_HOUR]` can be used as `estimate script.txt` or `estimate script.txt -wph 300`.
 
 *   Order of parameters (`-n`, `-l`, etc.) are not important, but they have to be defined after the non-parameter fields. <br/>
-E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not an parameter.
+E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result, but in the case of `estimate script.txt -wph 300` and `estimate -wph 300 script.txt`, the latter will not work because "script.txt" is not a parameter.
 
-> :bulb: This is what your input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
+> :bulb: This is what the input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
 
 <br/>
 
 ### 3.1 View the help
-This command will provide the details of all available commands and their usage. 
-This is done by displaying the ‘Command Summary’ as listed below to the user. 
+This command will provide the details of all available commands and their usage.
+This is done by displaying the ‘Command Summary’ as listed on the last page of the user guide [here](#5-command-summary).
 
-Format: `help`
+You can also view details of specific commands by specifying the optional command type in the input.
+
+Format: `help [COMMAND_TYPE]`
 
 <br/>
 
 ### 3.2 Estimate time needed to translate the script
-This command allows you to figure out the amount of time needed to translate a script. It estimates based on the amount of words you can translate in an hour, or by using the average translators' speed of 400, 500, and 600 words per hour. Hence, this would help you to better manage your time.
+This command allows you to estimate the time needed to translate a script. It estimates based on the amount of words you can translate in an hour, or by using the average translators’ speed of 400, 500, and 600 words per hour. Hence, this would allow you to better manage and plan your time.
 
 Format: `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`
 *   It only accepts one `.txt` file (other file extensions will be supported in a future version).
-*   If the parameter `-wph` is not specified, the average translator's speed will be used to generate three estimation timings for you to consider.
+*   If the parameter `-wph` is not specified, the average translator's speed will be used to generate three estimations for you to consider.
 
 > :bulb: Remember to specify the file extension. For example, `script.txt` and not `script`.
 
-> :bulb: Ensure the script file is in the current workspace's folder. For example, if the current workspace is "Default", then from the folder containing `AniChan.jar`, place the script file in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`) as shown in the diagram below. 
-> <br/>![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
+> :bulb: Put the script in the current workspace folder. If the current workspace is "Default", then from the folder containing `AniChan.jar`, put it in the subfolder named "Default" of the "data" folder (i.e. `data/Default/script.txt`) as shown in the diagram below. 
+> <br/><br/> ![Estimate Folder Structure Diagram](images/Estimate-Folder-Structure-Diagram.png)
 
 <br/>
 
 Example of usage: `estimate script.txt`
 
 The expected outcome: 
-```
+```text
 Average translator (400 words per hour) takes: 5 hour(s) 47 minute(s).
 Average translator (500 words per hour) takes: 4 hour(s) 38 minute(s).
 Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).
@@ -120,34 +151,36 @@ Average translator (600 words per hour) takes: 3 hour(s) 51 minute(s).
 Example of usage: `estimate script.txt -wph 777`
 
 The expected outcome:
-```
+```text
 You would need 2 hour(s) 58 minute(s).
 ```
 <br/>
 
 ### 3.3 Browse through anime
-This command will provide a realistic **browsing** experience as you are able to ‘flip’ through pages of different anime series. This is a useful way to get a quick overview of all available anime series.
+This command provides a realistic **browsing** experience as it first splits the list of all available anime series into pages. You will then be able to ‘flip’ through these pages providing a useful way to get a quick overview of all the different anime and find interesting ones.
 
-`browse` will also has various options to customise each browsing session by being able to sort the anime list.
+`browse` will also have various parameters to customise each browsing session by being able to sort and change the order of the anime list.
 
 Format: `browse [-s SORT_CATEGORY] [-o DISPLAY_ORDER] [-p PAGE_NUMBER`]
-*   `-s` will indicate how the list is sorted and will accept the values `name` or `rating` 
-*   `-o` will arrange the list in descending or ascending order by using the values `asc` or `dsc`
-*   The order of the options does not matter
-*   If no option or only `-o` is specified then it will display anime in no particular order.
+*   `-s` indicates how the list will be sorted by and accepts the values `name` or `rating`.
+*   `-o` will arrange the list in descending or ascending order by using the values `asc` or `dsc`.
+*   The order of the parameters does not matter.
+*   If no parameter or only `-o` is specified then it will display anime in no particular order.
+
+> :memo: It will actually be sorted according to its ID which is assigned randomly by our data source.
 
 <br/>
 
 Here are some commonly used `browse` commands to get you started. Feel free to experiment with different combinations!
-*   `browse -s name -o dsc`: browse alphabetically from A - Z
-*   `browse -s rating -o dsc`: browse starting from the most highly rated anime
+*   `browse -s name` browse alphabetically from A - Z.
+*   `browse -s rating -o dsc` browse starting from the most highly rated anime.
 
 <br/>
 
-Example of usage: `browse -s name -o asc`
+Example of usage: `browse -s name -o asc`.
 
 The expected outcome:
-```
+```text
 1.   .hack//Gift                                         [Id: 413]
 2.   .hack//Legend Of The Twilight                       [Id: 267]
 3.   .hack//Liminality                                   [Id: 268]
@@ -174,14 +207,13 @@ Browsing Page: 1
 <br/>
 
 ### 3.4 Search for anime
-Search is a versatile tool that will allow you to search through all available anime for a specific anime, anime belonging to a certain genre, or all anime that has a keyword.
+Search is a versatile tool that will allow you to search for a specific anime series or an anime belonging to a genre. Search can also find anime with just a keyword, which would be useful for long or hard to remove anime titles.
 
-The following subsections below describes the various search-relation operations.
-
+The following subsections below will describe the various search-related operations.
 <br/>
 
 ### 3.4.1 Search by anime title
-Search for all anime titles that contain or match precisely the search term.
+Search for all anime titles that **contains** or **matches** the search term precisely.
 
 Format: `search -n <SEARCH_TERM>` 
 
@@ -192,7 +224,7 @@ Format: `search -n <SEARCH_TERM>`
 Example of usage: `search -n bey`
 
 The expected outcome:
-```
+```text
 [ID:216] Haruka: Beyond the Stream of Time – A Tale of the Eight Guardians
 [ID:257] Beyblade
 [ID:410] InuYasha the Movie 2: The Castle Beyond the Looking Glass
@@ -201,16 +233,20 @@ The expected outcome:
 <br/>
 
 ### 3.4.2 Search by genre
-Search for anime that has the genre matching the search term.
+Search for all anime series that has the genre matching the search term.
 
 Format: `search -g <SEARCH_TERM>`
+
+<br/>
+
+> :bulb: Here are some popular genres that you may wish try out: Action, Adventure, Music, Mecha, Sci-Fi.
 
 <br/>
 
 Example of usage: `search -g Slice of Life`
 
 The expected outcome:
-```
+```text
 [ID:7] Honey and Clover
 [ID:8] Hungry Heart: Wild Striker
 [ID:35] Ai Yori Aoshi
@@ -229,16 +265,16 @@ The expected outcome:
 <br/>
 
 ### 3.5 View the information of an anime
-View all the information regarding a specific anime.
+The `info` feature allows you to view all the information regarding a specific anime.
 
-Format: `info -a <ANIME_ID>`
+Format: `info <ANIME_ID>`
 
 <br/>
 
-Example of usage: `info -a 1`
+Example of usage: `info 1`
 
 The expected outcome:
-```
+```text
 Here is the information for the anime:
 Index: 1
 Name: Cowboy Bebop
@@ -250,7 +286,6 @@ Genre: [Action, Adventure, Drama, Sci-Fi]
 
 <br/>
 
-<!-- @@author ChanJianHao -->
 ### 3.6 Workspace management
 The workspace management feature provides translators the flexibility of organising their application data like watchlist and bookmark easily.
 
@@ -272,7 +307,7 @@ Format: `workspace -n <NAME>`
 Example of usage: `workspace -n Crispy Donuts Studio`
 
 The expected outcome:
-```
+```text
 Successfully added new workspace: Crispy Donuts Studio
 ```
 
@@ -290,7 +325,7 @@ Format: `workspace -s <NAME>`
 Example of usage: `workspace -s Crispy Donuts Studio`
 
 The expected outcome:
-```
+```text
 Workspace switched to Crispy Donuts Studio
 ```
 
@@ -306,7 +341,7 @@ Format: `workspace -l`
 Example of usage: `workspace -l`
 
 The expected outcome:
-```
+```text
 Currently, you have 2 workspace(s):
 1. Default
 2. Crispy Donuts Studio
@@ -326,15 +361,14 @@ Format: `workspace -d <NAME>`
 Example of usage: `workspace -d Default`
 
 The expected outcome:
-```
+```text
 Successfully deleted workspace: Default
 ```
 
 <br/>
-<!-- @@author -->
 
 ### 3.7 Watchlist management
-The watchlist management feature provide translators with a simple way to keep track of animes and group them based on their own definition and criteria. This enables translators to stay organized, productive, and focus on their work rather than being concerned over irrelevant issues.
+The watchlist management feature provide translators with a simple way to keep track of animes and group them based on their own criteria. This enables translators to stay organized, productive, and focus on their work rather than being concerned over irrelevant issues.
 
 The following subsections below describes the various watchlist-relation operations.
 
@@ -347,14 +381,15 @@ Creates a new watchlist to keep track of anime(s).
 
 Format: `watchlist -n <WATCHLIST_NAME>`
 
-> :warning: Watchlist name has to be unique in your workspace.
+> :bulb: Watchlist name can only contain a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only.
+> :warning: Watchlist name has to be unique in the workspace.
 
 <br/>
 
 Example of usage: `watchlist -n Adventure Anime`
 
 The expected outcome:
-```
+```text
 Watchlist "Adventure Anime" has been created successfully!
 ```
 
@@ -370,7 +405,7 @@ Format: `watchlist -l`
 Example of usage: `watchlist -l`
 
 The expected outcome:
-```
+```text
 Currently, you have 2 watchlist(s):
     1. Default
     2. Adventure Anime
@@ -390,7 +425,7 @@ Format: `watchlist -s <WATCHLIST_ID>`
 Example of usage: `watchlist -s 2`
 
 The expected outcome:
-```
+```text
 "Adventure Anime" is now your active watchlist!
 ```
 
@@ -410,7 +445,7 @@ Format: `watchlist -d <WATCHLIST_ID>`
 Example of usage: `watchlist -d 2`
 
 The expected outcome:
-```
+```text
 Watchlist "Adventure Anime" has been deleted successfully!
 Changed active watchlist to: "Default".
 ```
@@ -420,17 +455,16 @@ Changed active watchlist to: "Default".
 ### 3.7.5 Add an anime to the current watchlist
 Add an anime to the currently selected watchlist
 
-Format: `add -a <ANIME_ID>`
+Format: `add <ANIME_ID>`
 
 > :warning: You cannot add duplicate anime into the same watchlist.
 
 <br/>
 
-Example of usage: `add -a 3`
+Example of usage: `add 3`
 
 The expected outcome: 
-
-```
+```text
 Trigun added to watchlist!
 ```
 
@@ -439,35 +473,45 @@ Trigun added to watchlist!
 ### 3.7.6 Remove an anime from the current watchlist
 Remove an anime from the currently selected watchlist
 
-Format: `remove -d <ANIME_ID_IN_WATCHLIST>`
+Format: `remove <ANIME_ID_IN_WATCHLIST>`
 > :bulb: The index used has to be the anime ID in the watchlist, and not the general anime ID
 
 <br/>
 
-Example of usage: 'remove -d 1'
+Example of usage: `remove 1`
 
 The expected outcome:
-
-```
+```text
 Trigun successfully removed from watchlist
 ```
 
 <br/>
 
 ### 3.7.7 View all anime in watchlist
-View all the anime that you have stored in a specific watchlist
+View all the anime that you have stored in your current watchlist, or in a specific watchlist
 
-Format: `view -v <WATCHLIST_ID>`
+Format: `view [-v WATCHLIST_ID]`
+*   If the parameter `-v` is not specified, the anime in the current watchlist you are using will be shown.
 
 <br/>
 
-Example of usage: 'view -v 1'
+Example of usage: `view`
 
 The expected outcome:
-```
+```text
 Here are the anime in Default watchlist:
 	1. Cowboy Bebop
-	2. Witch Hunter Robin
+   	2. Witch Hunter Robin
+```
+<br/>
+
+Example of usage: 'view -v 2'
+
+The expected outcome:
+```text
+Here are the anime in To Translate watchlist:
+	1. Naruto
+        2. Yakitate!! Japan
 ```
 <br/>
 
@@ -490,7 +534,7 @@ Format: `bookmark -l`
 Example of usage: `bookmark -l`
 
 The expected outcome:
-```
+```text
 Listing all anime in bookmark:
   1. InuYasha the Movie 3: Swords of an Honorable Ruler
   2. To Heart 2
@@ -510,7 +554,7 @@ Format: `bookmark -a <ANIME_ID>`
 Example of usage: `bookmark -a 3`
 
 The expected outcome:
-```
+```text
 Saving 3. Trigun to bookmark.
 ```
 
@@ -526,7 +570,7 @@ Format: `bookmark -d <BOOKMARK_ID>`
 Example of usage: `bookmark -d 2`
 
 The expected outcome:
-```
+```text
 Removing To Heart 2! :(
 ```
 
@@ -542,8 +586,8 @@ Format: `bookmark <BOOKMARK_ID> -e <EPISODE>`
 Example of usage: `bookmark 2 -e 5`
 
 The expected outcome:
-```
-Editing Trigun to have 5 episode(s).
+```text
+Editing the current episode for Trigun to episode(s) 5.
 ```
 
 <br/>
@@ -558,7 +602,7 @@ Format: `bookmark <BOOKMARK_ID> -n <NOTE>`
 Example of usage: `bookmark 2 -n Episode 5: Schedule push back`
 
 The expected outcome:
-```
+```text
 Adding note:"Episode 5: Schedule push back" to Trigun!
 ```
 
@@ -574,7 +618,7 @@ Format: `bookmark <BOOKMARK_ID> -r <NOTE_ID>`
 Example of usage: `bookmark 2 -r 1`
 
 The expected outcome:
-```
+```text
 Deleting note: Episode 5: Schedule push back
 From: Trigun.
 ```
@@ -591,7 +635,7 @@ Format: `bookmark <BOOKMARK_ID>`
 Example of usage: `bookmark 2`
 
 The expected outcome:
-```
+```text
 Here is the information for that anime.
 Index: 3
 Name: Trigun
@@ -604,7 +648,6 @@ Current Episode: 5
 
 Notes for anime:
 1. Episode 5: Schedule push back
-
 ```
 
 <br/>
@@ -619,7 +662,7 @@ Format: `exit`
 Example of usage: `exit`
 
 The expected outcome:
-```
+```text
 Sayonara <NAME>!
 ```
 
@@ -633,6 +676,10 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 *   User data will be stored in `data/user.txt`.
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`, e.g. if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
+
+![Data Loaded on Startup](images/Data-Loaded-On-Startup.png)
+
+*Figure 2: Example of Data Loaded On Startup*
 
 <br/>
 
@@ -666,10 +713,10 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | ---                                          | ---                                                      |
 | Help                                         | `help`                                                   |
 | Estimate time needed to translate the script | `estimate <SCRIPT_FILE_NAME> [-wph WORDS_PER_HOUR]`      |
-| Browse                                       | `browse -s <SORT_OPTION> -p <PAGE_NO.> -o <SORT_ORDER>`  |
+| Browse                                       | `browse [-s SORT_OPTION] [-p PAGE_NO.] [-o SORT_ORDER]`  |
 | Search by title                              | `search -n <SEARCH_TERM>`                                |
 | Search by genre                              | `search -g <SEARCH_TERM>`                                |
-| View anime information                       | `info -a <ANIME_ID>`                                     |
+| View anime information                       | `info <ANIME_ID>`                                        |
 | Create new workspace                         | `workspace -n <NAME>`                                    |
 | Switch workspace                             | `workspace -s <NAME>`                                    |
 | List workspace                               | `workspace -l`                                           |
@@ -678,9 +725,9 @@ works. However, we would strongly recommend you not to as you may cause data cor
 | List all watchlist                           | `watchlist -l`                                           |
 | Select watchlist                             | `watchlist -s <WATCHLIST_ID>`                            |
 | Delete watchlist                             | `watchlist -d <WATCHLIST_ID>`                            |
-| Add to watchlist                             | `add -a <ANIME_ID>`                                      |
-| Remove from watchlist                        | `remove -d <ANIME_ID_IN_WATCHLIST>`                      |
-| View anime in watchlist                      | `view -v <WATCHLIST_ID>`                                 |
+| Add to watchlist                             | `add <ANIME_ID>`                                         |
+| Remove from watchlist                        | `remove <ANIME_ID_IN_WATCHLIST>`                         |
+| View anime in watchlist                      | `view [-v WATCHLIST_ID]`                                 |
 | List bookmark                                | `bookmark -l`                                            |
 | Add bookmark entry                           | `bookmark -a <ANIME_ID>`                                 |
 | Delete bookmark entry                        | `bookmark -d <BOOKMARK_ID>`                              |

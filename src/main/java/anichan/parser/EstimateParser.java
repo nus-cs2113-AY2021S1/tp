@@ -12,23 +12,25 @@ import java.util.logging.Logger;
  * Handles parsing for estimate command.
  */
 public class EstimateParser extends CommandParser {
-    private static final String WORDS_PER_HOUR_PARAM = "wph";
-    private static final String VALID_SCRIPT_FILE_FORMAT = ".txt";
+    private static final String WORDS_PER_HOUR_PARAM = "-wph";
+    private static final String SCRIPT_FILE_FORMAT = ".txt";
     private static final String SLASH = "/";
+    private static final String DOT = ".";
+    private static final String REGEX_LAST_DOT = "\\.(?=[^.]*$)";
 
-    private static final String NO_SCRIPT_FILE_SPECIFIED = "No script file specified!";
-    private static final String TOO_MANY_SCRIPT_FILE = "AniChan can only process one script file at a time!";
-    private static final String SPECIFIED_PATH_TO_SCRIPT_FILE = "Only specify the script file name!";
-    private static final String INVALID_SCRIPT_FILE_FORMAT = "Only \".txt\" script files are accepted!";
-    private static final String INVALID_PARAMETER = "Estimate command only accepts the parameter: wph.";
-    private static final String ESTIMATE_COMMAND_TOO_MUCH_FIELDS = "Estimate command" + TOO_MUCH_FIELDS;
-    private static final String ESTIMATE_COMMAND_TOO_MANY_PARAMETERS = "Estimate command" + TOO_MUCH_PARAMETERS;
-    private static final String NO_WORDS_PER_HOUR_SPECIFIED = "Words per hour information is missing!";
-    private static final String MULTIPLE_WORDS_PER_HOUR_SPECIFIED = "Only one words per hour value is needed!";
-    private static final String WORDS_PER_HOUR_IS_ZERO = "Words per hour cannot be zero!";
+    private static final String NO_SCRIPT_FILE_SPECIFIED_ERROR = "No script file specified!";
+    private static final String SPECIFIED_PATH_TO_SCRIPT_FILE_ERROR = "Only specify the script file name!";
+    private static final String INVALID_SCRIPT_FILE_FORMAT_ERROR = "Only \".txt\" script files are accepted!";
+    private static final String INVALID_PARAMETER_ERROR = "Estimate command only accepts the parameter: -wph.";
+    private static final String ESTIMATE_COMMAND_TOO_MUCH_FIELDS_ERROR = "Estimate command" + TOO_MUCH_FIELDS;
+    private static final String ESTIMATE_COMMAND_TOO_MANY_PARAMETERS_ERROR = "Estimate command" + TOO_MUCH_PARAMETERS;
+    private static final String NO_WORDS_PER_HOUR_SPECIFIED_ERROR = "Words per hour information is missing!";
+    private static final String WORDS_PER_HOUR_IS_ZERO_ERROR = "Words per hour cannot be zero!";
 
-    private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
+    private static final int DEFAULT_WORDS_PER_HOUR = -1;
     private static final Logger LOGGER = AniLogger.getAniLogger(EstimateParser.class.getName());
+
+    private int wordsPerHour;
 
     /**
      * Parses the specified command description.
@@ -39,19 +41,25 @@ public class EstimateParser extends CommandParser {
      */
     public EstimateCommand parse(String description) throws AniException {
         assert description != null : DESCRIPTION_CANNOT_BE_NULL;
-        String[] paramGiven = description.split(SPLIT_DASH, 2);
-        if (paramGiven[0].isBlank()) {
-            throw new AniException(NO_SCRIPT_FILE_SPECIFIED);
+        if (description.isBlank() || !description.contains(DOT)) {
+            throw new AniException(NO_SCRIPT_FILE_SPECIFIED_ERROR);
         }
 
-        String fileName = paramGiven[0].trim();
+        // paramGiven[0] would be the file name
+        // paramGiven[1] would have the file extension provided (and the parameter)
+        String[] paramGiven = description.trim().split(REGEX_LAST_DOT, 2);
+
+        // secondParamGivenSplit[0] would have the file extension
+        // secondParamGivenSplit[1] would not exist if there is no parameter provided
+        String[] secondParamGivenSplit = paramGiven[1].split(WHITESPACE, 2);
+        String fileName = paramGiven[0] + "." + secondParamGivenSplit[0];
         if (!isValidFileName(fileName)) {
-            throw new AniException(INVALID_SCRIPT_FILE_FORMAT);
+            throw new AniException(INVALID_SCRIPT_FILE_FORMAT_ERROR);
         }
 
-        int wordsPerHour = NO_WORDS_PER_HOUR_PROVIDED;
-        if (paramGiven.length == 2) {
-            wordsPerHour = parameterParser(paramGiven);
+        wordsPerHour = DEFAULT_WORDS_PER_HOUR;
+        if (secondParamGivenSplit.length == 2) {
+            parameterParser(secondParamGivenSplit);
         }
 
         LOGGER.log(Level.INFO, "Returning a EstimateCommand object with file: "
@@ -63,37 +71,40 @@ public class EstimateParser extends CommandParser {
      * Parses the parameter provided in the command description.
      *
      * @param paramGiven an String Array containing the parameters and the value
-     * @return the parsed words per hour specified in the parameter
      * @throws AniException when an error occurred while parsing the parameters
      */
-    private int parameterParser(String[] paramGiven) throws AniException {
-        String[] parsedParts = paramGiven[1].split(SPLIT_WHITESPACE);
+    private void parameterParser(String[] paramGiven) throws AniException {
+        String[] parsedParts = paramGiven[1].trim().split(WHITESPACE, 2);
         String parameter = parsedParts[0].trim();
-        if (!parameter.equals(WORDS_PER_HOUR_PARAM)) {
-            throw new AniException(INVALID_PARAMETER);
-        } else if (paramGiven[1].matches(REGEX_PARAMETER)) {
-            throw new AniException(ESTIMATE_COMMAND_TOO_MANY_PARAMETERS);
+
+        // Check to ensure the correct parameter and its value is supplied and it is not just an argument
+        if (!parameter.contains(DASH)) {
+            throw new AniException(ESTIMATE_COMMAND_TOO_MUCH_FIELDS_ERROR);
+        } else if (!parameter.equals(WORDS_PER_HOUR_PARAM)) {
+            throw new AniException(INVALID_PARAMETER_ERROR);
+        } else if (parsedParts.length == 1) {
+            throw new AniException(NO_WORDS_PER_HOUR_SPECIFIED_ERROR);
         }
 
-        if (parsedParts.length == 1) {
-            throw new AniException(NO_WORDS_PER_HOUR_SPECIFIED);
-        } else if (parsedParts.length > 2) {
-            throw new AniException(MULTIPLE_WORDS_PER_HOUR_SPECIFIED);
-        }
-
+        // Check for extra parameters or fields
         String wordsPerHourString = parsedParts[1].trim();
+        if (wordsPerHourString.matches(REGEX_PARAMETER)) {
+            throw new AniException(ESTIMATE_COMMAND_TOO_MANY_PARAMETERS_ERROR);
+        } else if (wordsPerHourString.contains(WHITESPACE)) {
+            throw new AniException(ESTIMATE_COMMAND_TOO_MUCH_FIELDS_ERROR);
+        }
+
+        // Integer check
         if (isNegativeInteger(wordsPerHourString)) {
             throw new AniException(NOT_POSITIVE_INTEGER);
         } else if (!isInteger(wordsPerHourString)) {
             throw new AniException(NOT_INTEGER);
         }
 
-        int wordsPerHour = parseStringToInteger(wordsPerHourString);
+        wordsPerHour = parseStringToInteger(wordsPerHourString);
         if (wordsPerHour == 0) {
-            throw new AniException(WORDS_PER_HOUR_IS_ZERO);
+            throw new AniException(WORDS_PER_HOUR_IS_ZERO_ERROR);
         }
-
-        return wordsPerHour;
     }
 
     /**
@@ -105,28 +116,26 @@ public class EstimateParser extends CommandParser {
      */
     private boolean isValidFileName(String fileName) throws AniException {
         if (fileName.contains(SLASH)) {
-            throw new AniException(SPECIFIED_PATH_TO_SCRIPT_FILE);
+            throw new AniException(SPECIFIED_PATH_TO_SCRIPT_FILE_ERROR);
         }
 
-        String[] fileNameSplit = fileName.split(SPLIT_WHITESPACE);
+        String[] fileNameSplit = fileName.split(WHITESPACE);
         int numberOfTextFiles = 0;
         boolean hasAdditionalFields = false;
         for (String fileNameParts : fileNameSplit) {
-            if (numberOfTextFiles > 0) {
+            if (numberOfTextFiles == 1) {
                 hasAdditionalFields = true;
             }
 
-            if (fileNameParts.endsWith(VALID_SCRIPT_FILE_FORMAT)) {
+            if (fileNameParts.endsWith(SCRIPT_FILE_FORMAT)) {
                 numberOfTextFiles++;
             }
         }
 
-        if (numberOfTextFiles > 1) {
-            throw new AniException(TOO_MANY_SCRIPT_FILE);
-        } else if (hasAdditionalFields) {
-            throw new AniException(ESTIMATE_COMMAND_TOO_MUCH_FIELDS);
+        if (hasAdditionalFields) {
+            throw new AniException(ESTIMATE_COMMAND_TOO_MUCH_FIELDS_ERROR);
         }
 
-        return fileName.trim().endsWith(VALID_SCRIPT_FILE_FORMAT);
+        return fileName.trim().endsWith(SCRIPT_FILE_FORMAT);
     }
 }
