@@ -3,15 +3,11 @@ package seedu.duke.model.itemlist;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.item.Item;
-import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-
-// Renamed from previous Task.java with some modifications.
 
 /**
  * Represents a list of items.
@@ -19,8 +15,6 @@ import java.util.Collections;
 public abstract class ItemList<T extends Item> {
 
     protected ArrayList<T> items;
-    //protected ArrayList<Link> links;
-
 
     /**
      * Constructs an item list with the given items.
@@ -29,7 +23,6 @@ public abstract class ItemList<T extends Item> {
      */
     public ItemList(ArrayList<T> items) {
         this.items = items;
-
     }
 
     /**
@@ -53,12 +46,11 @@ public abstract class ItemList<T extends Item> {
      *
      * @param item Item to be added to the item list.
      */
-    public void addItem(T item) throws DukeException {
+    public void addItem(T item) {
         items.add(item);
         Ui.dukePrint(Messages.MESSAGE_ADD_TASK + item.toString() + Messages.MESSAGE_STATUS_FIRST
                 + items.size() + Messages.MESSAGE_STATUS_LAST);
     }
-
 
     /**
      * Adds an item into the list.
