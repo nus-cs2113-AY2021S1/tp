@@ -361,7 +361,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
 |```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
 
-##### <a name="handlerAndLogic"></a> Handler and Logic
+**Handler and Logic** <br />
 
 ![](uml_images/images_updated/Commands_Logic.png)
 
@@ -375,7 +375,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
 
-##### <a name="LogicManagerAndHandler"></a> Logic Manager and Handler
+**Logic Manager and Handler** <br />
 
 ![](uml_images/images_updated/Handler_Commands.png)
 
@@ -545,6 +545,7 @@ The sequence diagram below shows how it works:
 
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
 
+<!-- @@author bqxy -->
 ### FinanceTools
 **Overview** <br />
 FinanceTools consists of the following features
@@ -725,6 +726,7 @@ The following sequence diagram shows how the Account Storage feature works:
 To store the commands inputted by user and results from calculations in FinanceTools, an ```ArrayList``` is used.
 The commands are stored in the ```ArrayList``` before the params are handled and implementation is executed. 
 The results from calculation is stored in the ```ArrayList``` when the implementation has finished executed.
+<!-- @@author -->
 
 ### Goal Tracker
 **Set Expense Goal Feature** <br />
@@ -1173,6 +1175,7 @@ You should see the following:
 
 ![capture6](uml_images/saveManager/puml/Capture6.PNG)
 
+<!-- @@author bqxy -->
 ## FinanceTools
 **Simple Interest Calculator** <br />
 Enter ```simple /a 1000 /r 5``` into the console. <br />
@@ -1206,4 +1209,4 @@ You should see the following:
 <br />
 <br />
 ![Example](screenshots/financetools/AccountStorage(2).PNG) <br />
-    
+<!-- @@author -->
