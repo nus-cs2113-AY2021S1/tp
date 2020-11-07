@@ -2,7 +2,10 @@
 
 package seedu.duke.model.itemlist;
 
+import seedu.duke.Duke;
+import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
+import seedu.duke.model.item.Book;
 import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
@@ -53,9 +56,10 @@ public class LinkList extends ItemList<Link> {
      *
      * @param link the link to be added in to the list.
      */
-    public void addLink(Link link) {
+    public void addLink(Link link) throws DukeException {
+        checkLinkAlreadyExists(link);
         links.add(link);
-        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + link.toString() + Messages.MESSAGE_LINK_STATUS_FIRST
+        Ui.dukePrint(Messages.MESSAGE_ADD_LINK + link.toString() + Messages.MESSAGE_STATUS_FIRST
                 + links.size() + Messages.MESSAGE_LINK_STATUS_LAST);
     }
 
@@ -103,9 +107,19 @@ public class LinkList extends ItemList<Link> {
             Ui.dukePrint(Messages.WARNING_NO_LINK);
         } else {
             Link linkRemoved = links.get(index - 1);
-            Ui.dukePrint(Messages.MESSAGE_DELETE_LINK + linkRemoved.toString() + Messages.MESSAGE_LINK_STATUS_FIRST
+            Ui.dukePrint(Messages.MESSAGE_DELETE_LINK + linkRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
                     + (links.size() - 1) + Messages.MESSAGE_LINK_STATUS_LAST);
             links.remove(index - 1);
+        }
+    }
+
+    private void checkLinkAlreadyExists(Link link) throws DukeException {
+        int count = (int) links.stream()
+                .filter(existingLink -> existingLink.getModule().equals(link.getModule()))
+                .filter(existingLink -> existingLink.getType().equals(link.getType()))
+                .count();
+        if (count != 0) {
+            throw new DukeException("~Error~ Link of this lesson already exists!");
         }
     }
 }
