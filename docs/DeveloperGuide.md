@@ -226,7 +226,7 @@ All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens
 {Give non-functional requirements}
 
 ### 6.4 Glossary
-* *glossary item* - Definition
+* *Sequence Diagram* - A sequence diagram shows object interactions arranged in time sequence.
 
 ### 6.5 Instructions for manual testing
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
