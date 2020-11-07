@@ -1,6 +1,6 @@
 # Hospitalsaurus ReX
 
-{Give product intro here}
+A hospital appointment log application for admins. Relieves admins on mundane tasks.
 
 Useful links:
 * [User Guide](UserGuide.md)
