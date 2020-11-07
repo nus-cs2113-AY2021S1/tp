@@ -199,7 +199,8 @@ Example of Usage:
 * `add n/Prawn Mee x/1` adds the first instance of food with a name that contains Prawn Mee with a portion of 1.
 
 Output example:
-```Here are the food items in DietBook:
+```
+Here are the food items in DietBook:
    1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0 -- (1)
 ```
 
@@ -378,7 +379,7 @@ Similar Inputs and outputs for the following
  
 ### Other features
 
-#### To view a list of valid commands: help: `help`
+#### To view a list of valid commands: `help`
 
 Displays the helping guide for commands.
 
