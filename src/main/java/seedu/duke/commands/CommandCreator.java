@@ -53,26 +53,7 @@ public class CommandCreator {
         return new AddRecurringCommand(description, argumentsMap);
     }
     
-    public static Command createSpendCommand(String description, HashMap<String, String> argumentsMap)
-            throws DukeException {
-        if (description.equals("")) {
-            throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
-        }
-        if (argumentsMap.containsKey("v")) {
-            if (argumentsMap.get("v").equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_VALUE);
-            }
-        }
-        if (argumentsMap.containsKey("currency")) {
-            if (argumentsMap.get("currency").equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_CURRENCY);
-            }
-        }
-        if (argumentsMap.containsKey("date")) {
-            if (argumentsMap.get("date").equals("")) {
-                throw new DukeException(Messages.EXCEPTION_EMPTY_DATE);
-            }
-        }
+    public static Command createSpendCommand(String description, HashMap<String, String> argumentsMap) {
         return new SpendCommand(description, argumentsMap);
     }
 
