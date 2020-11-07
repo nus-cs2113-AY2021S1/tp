@@ -169,6 +169,10 @@ If you have entered the wrong answer, this is what you will see:
 If you did not answer the question within the specified time, this is what you will see: 
 ![quiz](./images/quiz_times_up.png)
 
+After every question, this is what you will see: 
+![quiz](./images/question_end.png)
+Please press "Enter" to proceed to the next question. 
+
 After attempting all of the questions, the quiz will automatically end:
 ![quiz](./images/quiz_end.png)
 
@@ -216,8 +220,6 @@ Example of usage:
 ```
 bookmark
 ```
-
-What you should see: 
 
 ### 3.11. Displaying stats: `stats`
 
