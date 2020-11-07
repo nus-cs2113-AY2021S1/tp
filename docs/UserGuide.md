@@ -433,7 +433,7 @@ Exits to main menu.
 
     exit
 
-    
+<!-- @@author bqxy -->
 # FinanceTools
 FinanceTools contains tools related to financial calculations.
 
@@ -615,8 +615,8 @@ Exit FinanceTools to Main Menu.
 > Example: 
 
     exit
-
 ![Example](screenshots/financetools/Exit(1).PNG)
+<!-- @@author -->
 
 # Goal Tracker
 Goal Tracker that helps user to track their monthly incomes and expenses goal.
@@ -813,6 +813,7 @@ No. | Feature | Syntax |
 5.|List Transaction Categories|_cat_|
 6.|Exit to Manual Tracker|_exit_|
 
+<!-- @@author bqxy -->
 ## FinanceTools
 
 No. | Feature | Syntax |
@@ -827,6 +828,7 @@ No. | Feature | Syntax |
 8.|Clear All Account Information|_clearinfo_|
 9.|Command and Calculation History|_history_|
 10.|Exit to Main Menu|_exit_|
+ <!-- @@author -->
 
 ## Goal Tracker
 
