@@ -62,7 +62,6 @@ public class Main {
                 System.out.println("____________________________________________________________\n");
             }
             /*exception handling of wrong input*/
-            //sc.nextLine();
             input=sc.nextLine();// get next input statement
 
         }
@@ -224,7 +223,7 @@ public class Main {
         Dish watermelon = new Dish("Watermelon Drink", 1.8,
                 "Really like this since eat watermelon is quite mafan.");
         Dish milkshade = new Dish("Milk shade",1.8,
-                "A bit too sweet for me.")
+                "A bit too sweet for me.");
         Stall drinks = new Stall("Drinks",12,"Jurong West Ave 5",
                 1100,2200,Arrays.asList(3,4,5,6),
                 Arrays.asList(milo,watermelon,milkshade),4);
@@ -572,7 +571,10 @@ public class Main {
         System.out.println("2. Delete order: 'delete [order number]'");
         System.out.println("3. Find order: 'find [keyword]'");
         System.out.println("4. List order: 'list'");
-        System.out.println("5. Exit program: 'bye' ");
+        System.out.println("5. Change order: 'change/[order number]/[order type]'");
+        System.out.println("6. Check Canteen Operating Time: 'checkcanteen'");
+        System.out.println("7. Check Canteen Operating Time: 'checkstall'");
+        System.out.println("8. Exit program: 'bye'");
         System.out.println("____________________________________________________________\n");
     }
 
