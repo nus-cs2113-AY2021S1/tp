@@ -99,7 +99,7 @@ Format: `[number]`
 Example of usage:
 '2'
 
-![image](
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/type.png)
 
 ### 3.3 delete the specific order: `delete [number]`
 delete the order based on the number from user
@@ -129,7 +129,7 @@ Format: `list`
 Example of usage:
 'list'
 
-![image](
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/lis.png)
 
 ### 3.6 change the order: `change/[number]/[type]`
 Change the order type 
@@ -144,22 +144,47 @@ Example of usage:
 ### 3.7 check Canteen Operating Time: `checkcanteen`
 check the operating hours of a canteen 
 
+#### 3.7.1 Firstly
+
 Format: `checkcanteen`
 
 Example of usage:
 'checkcanteen'
 
-![image](
+#### 3.7.2 User enters the number before canteen to check that specific canteen
+
+Format: `[number]`
+
+Example of usage:
+'4'
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopencanteen.png)
 
 ### 3.8 check Stall Operating Time: `checkstall`
 check the operating hours of a stall 
+
+#### 3.8.1 Firstly
 
 Format: `checkstall`
 
 Example of usage:
 'checkstall'
 
-![image](
+#### 3.8.2 User enters the number before canteen to check that specific canteen
+
+Format: `[number]`
+
+Example of usage:
+'3'
+
+#### 3.8.2 User enters the number before stall to check that specific stall
+
+Format: `[number]`
+
+Example of usage:
+'3'
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkstall.png)
 
 ### 3.9 view all available commands: `help`
 print all the commands with required format that the user can input
