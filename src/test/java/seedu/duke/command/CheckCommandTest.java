@@ -51,6 +51,8 @@ class CheckCommandTest {
         String timeTableInput = "timetable; Science class; S17; 4/5/2020; 3 pm";
         addCommand = new AddCommand(timeTableInput);
         addCommand.execute(data, ui, storage);
+
+        System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @AfterEach
@@ -62,7 +64,6 @@ class CheckCommandTest {
     void execute_someEventsInTimeRange_printEventsInTimeRange() throws DukeException {
         // Execute check command
         String inputString = "04/05/20; 13:15; 05/05/20; 14:30";
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         Command checkCommand  = new CheckCommand(inputString);
         checkCommand.execute(data, ui, storage);
@@ -78,7 +79,6 @@ class CheckCommandTest {
     void execute_repeatedEventInsideTimeRange_printEventInTimeRange() throws DukeException {
         // Execute check command
         String inputString = "10/10/2020; 12 pm; 10/10/20; 17";
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         Command checkCommand  = new CheckCommand(inputString);
         checkCommand.execute(data, ui, storage);
@@ -92,7 +92,6 @@ class CheckCommandTest {
     void execute_eventsOutsideTimeRange_printEventsInTimeRange() throws DukeException {
         // Execute check command
         String inputStringOne = "20/10/20; 13:00; ; ";
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         Command checkCommand  = new CheckCommand(inputStringOne);
         checkCommand.execute(data, ui, storage);
@@ -114,7 +113,6 @@ class CheckCommandTest {
     void execute_semicolonsNotUsedToSeparateFields_missingSemicolonExceptionThrown() {
         // Execute check command
         String inputString = "9/10/2020 3 pm 10/10/20 5 pm";
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         Exception e = assertThrows(MissingSemicolonException.class, () -> {
             Command checkCommand  = new CheckCommand(inputString);
@@ -123,7 +121,6 @@ class CheckCommandTest {
 
         String expectedMessage = "Remember to separate input fields with a ';'.";
         String actualMessage = e.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
     }
 
@@ -131,7 +128,6 @@ class CheckCommandTest {
     void execute_notEnoughFieldsFilled_WrongNumberOfArgumentsExceptionThrown() {
         // Execute check command
         String inputString = "9/10/2020; 3 pm";
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         Exception e = assertThrows(WrongNumberOfArgumentsException.class, () -> {
             Command checkCommand  = new CheckCommand(inputString);
@@ -141,7 +137,6 @@ class CheckCommandTest {
         String expectedMessage = "Insufficient fields provided to check events. "
                 + "Remember to put a semicolon even for blank fields.";
         String actualMessage = e.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
     }
 
@@ -156,10 +151,9 @@ class CheckCommandTest {
         });
 
         String expectedMessage = "Something is wrong with the date!" + System.lineSeparator()
-                + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy." + System.lineSeparator()
-                + "Dashes may be used in place of slashes.";
+                + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
+                + System.lineSeparator() + "Dashes may be used in place of slashes.";
         String actualMessage = firstE.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
 
         // Second invalid date format
@@ -171,7 +165,6 @@ class CheckCommandTest {
         });
 
         actualMessage = secondE.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
 
         // Third invalid date format
@@ -184,9 +177,7 @@ class CheckCommandTest {
 
         expectedMessage = "Too many fields given for the date!" + System.lineSeparator()
                 + "D/M/YYYY is the longest date format accepted.";
-
         actualMessage = thirdE.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
     }
 
@@ -194,7 +185,6 @@ class CheckCommandTest {
     void execute_invalidTimeFormatGiven_TimeErrorExceptionThrown() {
         // First invalid time format
         String inputStringOne = "9/10/2020; 3.00 pm; 10/10/2020; 5.00 pm";
-        System.setOut(new PrintStream(outputStreamCaptor));
 
         Exception firstE = assertThrows(TimeErrorException.class, () -> {
             Command checkCommand  = new CheckCommand(inputStringOne);
@@ -206,7 +196,6 @@ class CheckCommandTest {
                 + "(12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or " + System.lineSeparator()
                 + "(24 hour) HH:mm, HHmm, HH.";
         String actualMessage = firstE.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
 
         // Second invalid time format
@@ -218,7 +207,6 @@ class CheckCommandTest {
         });
 
         actualMessage = secondE.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
 
         // Third invalid time format
@@ -230,7 +218,6 @@ class CheckCommandTest {
         });
 
         actualMessage = thirdE.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
 
         // Fourth invalid time format
@@ -242,7 +229,6 @@ class CheckCommandTest {
         });
 
         actualMessage = fourthE.getMessage();
-
         assertEquals(expectedMessage, actualMessage);
     }
 }

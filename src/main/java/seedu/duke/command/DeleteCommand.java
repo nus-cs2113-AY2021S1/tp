@@ -41,8 +41,8 @@ public class DeleteCommand extends Command {
 
         String[] inputParameters = input.trim().split(";", 2);
 
-        if (inputParameters.length < 2) {
-            throw new WrongNumberOfArgumentsException("Event type or index not provided.");
+        if (inputParameters[0].isBlank() || inputParameters[1].isBlank()) {
+            throw new WrongNumberOfArgumentsException("Event type or index is missing.");
         }
 
         String listType = capitaliseFirstLetter(inputParameters[0].trim());
@@ -79,13 +79,15 @@ public class DeleteCommand extends Command {
             ui.printEventDeletedMessage(deleteEvent);
         } else if (eventIdentifierArray.length == 2 && deleteEvent.getRepeatType() != null) { // event is a repeat task
             LocalDate deleteEventDate = dateParser(eventIdentifierArray[1].trim());
+            boolean isDateFound;
 
             if (deleteEventDate.isEqual(deleteEvent.getDate())) {
+                isDateFound = true;
                 eventList.getEvents().remove(deleteEvent);
                 ui.printEventDeletedMessage(deleteEvent);
             } else {
                 ArrayList<Event> repeatEventList = deleteEvent.getRepeatEventList();
-                scanRepeatList(repeatEventList, deleteEventDate, ui);
+                isDateFound = scanRepeatList(repeatEventList, deleteEventDate, ui);
             }
         }
     }
@@ -101,13 +103,16 @@ public class DeleteCommand extends Command {
         return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
-    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate deleteEventDate, Ui ui) {
+    private boolean scanRepeatList(ArrayList<Event> repeatEventList, LocalDate deleteEventDate, Ui ui) {
+        boolean isDateFound = false;
         for (Event e: repeatEventList) {
             if (e.getDate().isEqual(deleteEventDate)) {
+                isDateFound = true;
                 repeatEventList.remove(e);
                 ui.printEventDeletedMessage(e);
                 break;
             }
         }
+        return isDateFound;
     }
 }
