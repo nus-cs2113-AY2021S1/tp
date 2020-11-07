@@ -69,7 +69,7 @@ public class MenuParser implements Parser {
         assert topicList != null;
         LOGGER.log(Level.INFO, "Begin parsing command.");
         String[] commandArr = userInput.trim().split(" ", 0);
-        
+
         for (int i = 0; i < commandArr.length - 1; i++) {
             if (commandArr[i].equals("") || (i > 0 && (commandArr[i].equals(commandArr[i - 1])))) {
                 int j = 1;
@@ -99,6 +99,9 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             int userTimer = 0;
+            if ((commandArr.length >= 4 && !commandArr[3].contains("/")) || commandArr.length < 4) {
+                return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
+            }
             try {
                 if (commandArr[1].contains(TIMER_INDICATOR)) {
                     if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
