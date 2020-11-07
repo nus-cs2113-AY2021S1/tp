@@ -1,4 +1,4 @@
-package seedu.dietbook.list;
+package seedu.dietbook.utils;
 
 import java.util.Map;
 import java.util.HashMap;

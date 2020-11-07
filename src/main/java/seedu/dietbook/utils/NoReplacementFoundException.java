@@ -1,4 +1,4 @@
-package seedu.dietbook.list;
+package seedu.dietbook.utils;
 
 public class NoReplacementFoundException extends Exception {
     

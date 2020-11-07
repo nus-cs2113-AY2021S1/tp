@@ -1,6 +1,8 @@
 package seedu.dietbook.list;
 
 import seedu.dietbook.food.Food;
+import seedu.dietbook.utils.StringFormatter;
+import seedu.dietbook.utils.NoReplacementFoundException;
 
 import java.util.Map;
 import java.util.HashMap;
