@@ -143,6 +143,20 @@ The following sequence diagrams explain the interactions omitted in the main dia
 ![bus data](DG_Diagrams/RouteCommand/BusData.png)
 
 #### Design Considerations
+The main aim here is to find if the starting location and destination exist in a particular list of bus stops in 
+that order.<br>
+_Aspect: How bus data should be stored and retrieved._
+* **Alternative 1 (current choice):** Each bus is an object that contains the bus number and full route as an ArrayList.
+    + Pros: Makes it easier to integrate with other functions of the app such as displaying bus route of a particular 
+    bus.  
+    + Cons: Each bus number's route has to be scanned to check for the starting location and destination in that order.
+     
+* **Alternative 2:** Each location is an object that contains the location name and an ArrayList of bus objects. Each
+bus object contains the list of remaining stops in the route of that bus.
+    + Pros: It is easier and somewhat faster to find the buses that go from the starting location to the destination as 
+    the data itself has filtered out the buses stop at the starting location.
+    + Cons: A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
+    that stops there. 
 
 ### 3.2. Full Route Display (`/routemap` Feature)
 
