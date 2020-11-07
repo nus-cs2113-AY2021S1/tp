@@ -70,10 +70,15 @@ Before you start: Please ensure you have Java 11 installed in you computer.
 Figure 1. Architecture Diagram
 
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
-Logic(Logic): The main logic flow of our whole App.
+
+Main(Logic): The main logic flow of our whole App.
+
 Initializer: Initialize the whole app to start waiting for the input from the users.
+
 UI: The user interface of our App.
+
 Parser: Change the user input to something meaningful to the app.
+
 Exception: Throw different kinds of exception that user may make.
 
 The following section is a more detailed description of these four components.
@@ -81,7 +86,7 @@ The following section is a more detailed description of these four components.
 ### 3.2 Classes
 The CanteenHelper consists of six classes:
 * `Logic`
-* `Ui`
+* `UI`
 * `Parser`
 * `Customer`
 * `Order`
@@ -91,10 +96,11 @@ The CanteenHelper consists of six classes:
 
 #### 3.2.1 Logic class
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
-Figure 2. Logic Logic Diagram
+Figure 2. Main Logic Diagram
 
-Logic logic of the whole app.
-Logic method inside: main(String[] args)
+Main logic of the whole app.
+
+Main method inside: main(String[] args)
 
 #### 3.2.2 UI class
 Mainly managed in MainPage, which contains several parts: showCommand, displayInfo, getInput. All of these should inherit from an abstract class UserInterface class. And this class can
@@ -103,26 +109,83 @@ Mainly managed in MainPage, which contains several parts: showCommand, displayIn
          2: Get open stalls
 2. Get user input (number) and use the Logic component to execute the corresponding user’s command
 3. Display the results of user and program interactions
-Logic method inside: order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order); getCustomer(Scanner sc); getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes,Scanner sc, ArrayList<Order> Order); getDishes(Stall stallChoosed, Scanner sc); getYN(Scanner sc); getNumOfDishes(int count,Scanner sc); getStall(Customer customer, Canteen canteenChoosed, Scanner sc); getCanteen(List<Canteen> canteens, Customer customer, Scanner sc); greet(); bye(); help(); checkComment(List<Dish> dCs); checkCanteenOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); checkStallOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); changeOrder(Customer customer,String input,ArrayList<Order> Order); printOrder(String input,ArrayList<Order> Order); deleteOrder(String input,ArrayList<Order> Order); findDishinOrder(String input,ArrayList<Order> Order); 
+
+Main method inside: 
+
+order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order); 
+
+getCustomer(Scanner sc); 
+
+getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes,Scanner sc, ArrayList<Order> Order); 
+
+getDishes(Stall stallChoosed, Scanner sc); 
+
+getYN(Scanner sc); 
+
+getNumOfDishes(int count,Scanner sc); 
+
+getStall(Customer customer, Canteen canteenChoosed, Scanner sc); 
+
+getCanteen(List<Canteen> canteens, Customer customer, Scanner sc); 
+
+greet(); 
+
+bye();
+
+help(); 
+
+checkComment(List<Dish> dCs); 
+
+checkCanteenOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); 
+
+checkStallOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc); 
+
+changeOrder(Customer customer,String input,ArrayList<Order> Order); 
+
+printOrder(String input,ArrayList<Order> Order); 
+
+deleteOrder(String input,ArrayList<Order> Order); 
+
+findDishinOrder(String input,ArrayList<Order> Order); 
+
 
 #### 3.2.3 Parser class
 Deals with making sense of the user's command and pass the command to certain functions.
-Logic method inside: parseCustomer(String inputMessage)
+
+Main method inside: 
+parseCustomer(String inputMessage)
 
 #### 3.2.4 Customer class
 Customer contains the list of open canteens and initializes Order objects.
-Logic method inside: checkOpenStalls(Canteen canteen); checkOpenCanteens(List<Canteen> ListCanteen); checkDish(List<Dish> ListDish); checkWaitingTime(Stall stall); 
+
+Main method inside: 
+checkOpenStalls(Canteen canteen); 
+
+checkOpenCanteens(List<Canteen> ListCanteen); 
+
+checkDish(List<Dish> ListDish); 
+
+checkWaitingTime(Stall stall); 
+
 
 #### 3.2.5 Order class
 Order contains the list of dishes that are ordered.
 
 #### 3.2.6 Canteen class
 Canteen contains the list of stalls.
-Logic method inside: isOpen (int dayOfWeek, int time); 
+
+Main method inside: 
+
+isOpen (int dayOfWeek, int time); 
 
 #### 3.2.7 Stall class
 Stall contains the list of dishes.
-Logic method inside: isOpen (int dayOfWeek, int time); printDishes()
+
+Main method inside: 
+
+isOpen (int dayOfWeek, int time); 
+
+printDishes()
 
 #### 3.2.8 Dish class
 Dishes that can be ordered by the user.

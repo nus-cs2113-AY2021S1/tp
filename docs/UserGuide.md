@@ -15,10 +15,13 @@
 
 {Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Chech all the orders: `list`
+check all the orders made by this user
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `list`
+
+Example of usage:
+'list'
 
 * The `DEADLINE` can be in a natural language format.
 * The `TODO_NAME` cannot contain punctuation.  
