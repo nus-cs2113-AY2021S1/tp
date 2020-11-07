@@ -29,7 +29,7 @@ public class PersonBook {
         if (indexToBeStar > 0 && indexToBeStar <= listOfPerson.size()) {
             Person.changePersonStar(listOfPerson.get(indexToBeStar - 1));
         } else {
-            System.out.println("Invalid star index! Please try again");
+            throw new NumberFormatException();
         }
     }
 
