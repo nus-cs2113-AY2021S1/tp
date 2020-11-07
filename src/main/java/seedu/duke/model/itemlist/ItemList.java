@@ -168,14 +168,12 @@ public abstract class ItemList<T extends Item> {
      * @param keyword the keyword to be searched in the items list
      */
     public void findItem(String keyword) {
-        ArrayList<T> matchingTasks = new ArrayList<>();
         int count = 0;
         String message = "";
         for (T item : items) {
             String[] description;
             description = item.getDescription().toLowerCase().split(" ");
             if (Arrays.asList(description).contains(keyword)) {
-                matchingTasks.add(item);
                 count++;
                 message = message + "\n     " + count + "." + item.toString();
 
