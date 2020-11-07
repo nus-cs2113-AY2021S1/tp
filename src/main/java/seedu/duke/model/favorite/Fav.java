@@ -3,9 +3,9 @@ package seedu.duke.model.favorite;
 import static seedu.duke.ui.Ui.printDupeMessage;
 
 public class Fav {
-    /** Command saved*/
+    /** Command saved.*/
     private String command;
-    /** Description for the command*/
+    /** Description for the command.*/
     private String desc;
 
     public Fav(String command, String desc) {
@@ -15,7 +15,7 @@ public class Fav {
 
     /**
      * Returns a boolean indicating if command stored in item is the same
-     * as the command stored in the current Fav object
+     * as the command stored in the current Fav object.
      *
      * @param item Fav object to be checked
      * @param index index of Fav object in FavList
