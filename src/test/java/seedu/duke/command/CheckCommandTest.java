@@ -220,5 +220,29 @@ class CheckCommandTest {
         actualMessage = secondE.getMessage();
 
         assertEquals(expectedMessage, actualMessage);
+
+        // Third invalid time format
+        String inputStringThree = "9/10/2020; 13 pm; 10/10/2020; 5:00 pm";
+
+        Exception thirdE = assertThrows(TimeErrorException.class, () -> {
+            Command checkCommand  = new CheckCommand(inputStringThree);
+            checkCommand.execute(data, ui, storage);
+        });
+
+        actualMessage = thirdE.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+
+        // Fourth invalid time format
+        String inputStringFour = "9/10/2020; 2500; 10/10/2020; 5:00 pm";
+
+        Exception fourthE = assertThrows(TimeErrorException.class, () -> {
+            Command checkCommand  = new CheckCommand(inputStringFour);
+            checkCommand.execute(data, ui, storage);
+        });
+
+        actualMessage = fourthE.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
     }
 }

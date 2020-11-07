@@ -162,7 +162,7 @@ public class CheckCommand extends Command {
                     time = timeParser(givenTwentyFourHour + ":00"); // default to minute 00
                     return time;
                 } else {
-                    throw new TryRegularParserException("HH format time requires hours between 0-23.");
+                    throw new TryRegularParserException("HH format time requires hours between 0-24.");
                 }
             } else {
                 throw new TimeErrorException("Something is wrong with the time!" + System.lineSeparator()
