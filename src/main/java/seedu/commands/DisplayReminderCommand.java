@@ -3,11 +3,11 @@ package seedu.commands;
 import static seedu.messages.Messages.REMINDER_MESSAGE;
 import seedu.task.Task;
 
-public class DisplayReminder extends Command {
+public class DisplayReminderCommand extends Command {
 
     private Task task;
 
-    public DisplayReminder(Task task) {
+    public DisplayReminderCommand(Task task) {
         this.task = task;
     }
 

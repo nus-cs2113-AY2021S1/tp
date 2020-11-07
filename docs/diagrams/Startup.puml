@@ -1,0 +1,19 @@
+@startuml
+
+activate Main
+
+Main -> Storage: loadTasks()
+activate Storage
+
+Storage --> Main
+deactivate Storage
+
+Main -> Storage: writeTasksToFile()
+activate Storage
+
+Storage --> Main
+deactivate Storage
+
+deactivate Main
+
+@enduml

@@ -4,37 +4,15 @@ actor User
 participant ":Ui" as Ui
 participant ":Logic" as Logic
 participant ":TaskMap" as TaskMap
-participant ":Storage" as Storage
-participant ":Main" as Main
 
-'delete
-activate Main
 
-Main -> Storage: loadTasks()
-activate Storage
-
-'Storage --> Storage: createDirectory()
-'activate Storage
-'
-'Storage --> Storage
-'deactivate Storage
-'
-'Storage --> Storage: readTasksFromFile()
-'activate Storage
-'
-'Storage --> Storage
-'deactivate Storage
-
-Storage --> Main
-deactivate Storage
-
-User -> Ui: "delete 2173"
+User -> Ui: "add meeting"
 activate Ui
 
-Ui -> Logic: processRaw("delete 2173")
+Ui -> Logic: processRaw("add meeting")
 activate Logic
 
-Logic -> TaskMap: remove(2173)
+Logic -> TaskMap: addTasks(task)
 activate TaskMap
 
 TaskMap --> Logic
@@ -46,7 +24,6 @@ deactivate Logic
 Ui --> User
 deactivate Ui
 
-'bye
 User -> Ui: "bye"
 activate Ui
 
@@ -59,12 +36,5 @@ deactivate Logic
 Ui --> User
 deactivate Ui
 
-Main -> Storage: writeTasksToFile()
-activate Storage
-
-Storage --> Main
-deactivate Storage
-
-deactivate Main
 
 @enduml

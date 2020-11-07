@@ -5,10 +5,11 @@ skinparam classAttributeIconSize 0
 class Storage {
    -{static}{field} DIRECTORY_NAME: String="data"
    -{static}{field} FILE_NAME: String="data.json"
-   +{method} loadTasks(TaskMap)
+   -{static}{field} TIMETABLE: String = "nusmods_calendar.ics"
+   +{method} loadTasks(): TaskMap
    +{method} writeTasksToFile(TaskMap)
-   -{method} createDirectory(): Boolean
-   -{method} readTasksFromFile(TaskMap)
+   -{method} createFile(): Boolean
+   -{method} readTasksFromFile(): TaskMap
 }
 
 class Gson {
@@ -20,7 +21,7 @@ class FileWriter
 class TaskMap
 class Task
 
-Storage "1"-"1" Gson
+Storage -> Gson
 Storage -[dashed]-> File
 Storage -[dashed]-> FileWriter
 Storage -[dashed]-> TaskMap

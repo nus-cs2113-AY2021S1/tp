@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.ADD_MESSAGE;
 
-public class Add extends ModificationCommand {
+public class AddCommand extends ModificationCommand {
     public static final String COMMAND_WORD = "add";
     // Default date: day that the task is created, default priority: 0 (low to high: 0 - 2)
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
@@ -34,8 +34,8 @@ public class Add extends ModificationCommand {
     private final String reminderTime;
 
 
-    public Add(String description, String date, String startTime, String endTime, String priority,
-               String reminder, String reminderTime) throws InvalidCommandException {
+    public AddCommand(String description, String date, String startTime, String endTime, String priority,
+                      String reminder, String reminderTime) throws InvalidCommandException {
         this.description = description;
         this.date = date;
         this.startTime = startTime;

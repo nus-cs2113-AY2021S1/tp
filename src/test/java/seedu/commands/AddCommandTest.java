@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.messages.Messages.ADD_MESSAGE;
 
-class AddTest {
+class AddCommandTest {
 
     Parser parser = new Parser();
 
