@@ -223,7 +223,7 @@ public class Parser {
         }
     }
 
-    //@@author leonlowzd
+    //@@author Ang-Cheng-Jun
 
     /**
      * Parses arguments into OffCommand format.
@@ -248,7 +248,7 @@ public class Parser {
         }
     }
 
-    //@@author Ang_Cheng_Jun
+    //@@author Ang-Cheng-Jun
 
     /**
      * Parses arguments into ListCommand format.

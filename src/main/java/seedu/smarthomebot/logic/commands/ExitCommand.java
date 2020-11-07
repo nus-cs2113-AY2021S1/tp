@@ -2,13 +2,12 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.data.appliance.Appliance;
 
-
 import java.util.logging.Level;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 
-//@@author Ang_Cheng_Jun
+//@@author Ang-Cheng-Jun
 
 /**
  * Represent the command to terminate the program.

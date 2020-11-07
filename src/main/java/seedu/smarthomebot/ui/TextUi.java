@@ -1,6 +1,5 @@
 package seedu.smarthomebot.ui;
 
-import seedu.smarthomebot.commons.Messages;
 import seedu.smarthomebot.logic.commands.CommandResult;
 
 import java.io.InputStream;
@@ -13,7 +12,8 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_EXPORT;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_GOODBYE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_WELCOME;
 
-//@@author Ang_Cheng_Jun
+//@@author Ang-Cheng-Jun
+//Solution below adapted from https://github.com/nus-cs2113-AY2021S1/personbook
 /**
  * Text UI of the application.
  */
@@ -36,6 +36,7 @@ public class TextUi {
      * Prints message(s) to the user.
      */
     public void printToUser(String message) {
+        assert !message.isEmpty() : "Message must not be empty";
         out.println(message);
     }
 
@@ -43,6 +44,7 @@ public class TextUi {
      * Prints result(s) of the command to the user.
      */
     public void printResultToUser(CommandResult result) {
+        assert !result.feedbackToUser.isEmpty() : "The feedback for result cannot be empty";
         printToUser(LINE + result.feedbackToUser);
     }
 

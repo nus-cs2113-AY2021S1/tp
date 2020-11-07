@@ -17,7 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-//@@author Ang_Cheng_Jun
+//@@author Ang-Cheng-Jun
+//Solution below adapted from https://github.com/nus-cs2113-AY2021S1/personbook
 /**
  * Entry point of the SmartHome application.
  * Initializes the application and starts the interaction with the user.
