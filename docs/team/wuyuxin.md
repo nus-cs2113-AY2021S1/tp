@@ -43,6 +43,6 @@ Given below are my contributions to the project.
     [\#203](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/203))
     
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#26](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/26), [\#74](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/74), [\#206](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/206))
+  * PRs reviewed (with non-trivial review comments): [\#26](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/26), [\#74](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/74), [\#204](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/204), [\#206](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/206))
   * Reported bugs and suggestions for other teams in the class (example: [click here](https://github.com/Lezn0/ped/issues))
   * Provided suggestions for the developer guide of another team (example: [click here](https://github.com/nus-cs2113-AY2021S1/tp/pull/36#discussion_r514890722))
