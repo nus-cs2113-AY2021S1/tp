@@ -38,6 +38,7 @@ public class CalculateCommand extends Command {
         manager.setCalculator();
         String[] processedParam = this.param.split("\\s+");
         InputChecker.checkCalculateParam(processedParam);
+
         switch (processedParam[0]) {
         case "all":
             if (processedParam.length == 1) {
@@ -60,6 +61,7 @@ public class CalculateCommand extends Command {
                 protein = manager.getCalculator().calculateProtein(manager.getFoodList(), startTime, endTime);
                 fat = manager.getCalculator().calculateFat(manager.getFoodList(), startTime, endTime);
                 ui.printAllIntake(calorie, carb, protein, fat, startTime, endTime);
+
             }
             break;
         case "calorie":
