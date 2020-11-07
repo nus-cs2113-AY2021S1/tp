@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
 import seedu.duke.model.ListType;
 import seedu.duke.model.Model;
+import seedu.duke.model.item.Task;
 import seedu.duke.model.itemlist.TaskList;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ class SetCommandTest {
         argumentsMap.put("p", Integer.toString(newPriority));
         Command setCommand = new SetCommand(1, argumentsMap);
 
-        tasks.addTodo("test description");
+        tasks.addItem(new Task("test description"));
         assertEquals(initialPriority, tasks.get(0).getPriority());
         setCommand.execute(model);
         assertEquals(newPriority, tasks.get(0).getPriority());
@@ -40,7 +41,7 @@ class SetCommandTest {
         argumentsMap.put("p", Integer.toString(newPriority));
         Command setCommand = new SetCommand(1, argumentsMap);
 
-        tasks.addTodo("test description");
+        tasks.addItem(new Task("test description"));
         assertThrows(DukeException.class, () -> {
             setCommand.execute(model);
         });
@@ -55,7 +56,7 @@ class SetCommandTest {
         argumentsMap.put("p", newPriority);
         Command setCommand = new SetCommand(1, argumentsMap);
 
-        tasks.addTodo("test description");
+        tasks.addItem(new Task("test description"));
         assertThrows(DukeException.class, () -> {
             setCommand.execute(model);
         });

@@ -18,6 +18,10 @@
      I have created a new modules.txt file for you :) Type some commands and see it.
     ____________________________________________________________
 
+    ____________________________________________________________
+     I have created a new expenses.txt file for you :) Type some commands and see it.
+    ____________________________________________________________
+
 Hello from...
      _                           _  _   _
     | |                         (_)| \ | |
@@ -47,7 +51,7 @@ Hello from...
        - p/<number> sets the priority of the task.
        - c/<category> sets the category of the task.
        - date/<dd-MM-yyyy> sets the date of the task.
-     List of `<compulsory arguments>
+     List of <compulsory arguments>:
        - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)
        - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).
        - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.
@@ -122,19 +126,19 @@ Hello from...
     ____________________________________________________________
      Got it. I've added this task:
        [T][N] iP meeting (p:0)
-     Now you have 1 task(s) in the list.
+     Now you have 1 items in the list.
     ____________________________________________________________
 
     ____________________________________________________________
      Got it. I've added this task:
        [T][N] other meeting (p:3)
-     Now you have 2 task(s) in the list.
+     Now you have 2 items in the list.
     ____________________________________________________________
 
     ____________________________________________________________
      Got it. I've added this task:
        [T][N] tP meeting (p:5) (category: cs2113)
-     Now you have 3 task(s) in the list.
+     Now you have 3 items in the list.
     ____________________________________________________________
 
     ____________________________________________________________
@@ -173,7 +177,7 @@ Hello from...
     ____________________________________________________________
      Noted. I've removed this task:
        [T][N] other meeting (p:3)
-     Now you have 2 task(s) in the list.
+     Now you have 2 items in the list.
     ____________________________________________________________
 
     ____________________________________________________________

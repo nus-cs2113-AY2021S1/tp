@@ -115,8 +115,8 @@ public class Messages {
     public static final String EXCEPTION_WRONG_DATE_FORMAT = "Please input the date string in the format "
             + "\"yyyy-MM-dd\"";
     public static final String EXCEPTION_SAVE_FILE = "~Error~ Cannot save to file.";
-    public static final String EXCEPTION_EXPENSE_DATERANGE = "Please input a valid date range (one of \"DAY\", \"WEEK\","
-            + "\"MONTH\", \"YEAR\").";
+    public static final String EXCEPTION_EXPENSE_DATERANGE = "Please input a valid date range (one of \"DAY\", "
+            + "\"WEEK\", \"MONTH\", \"YEAR\").";
 
     public static final String EXCEPTION_INVALID_CLEAR = "~Error~ The command is: clear all";
     public static final String EXCEPTION_INVALID_BORROW = "~Error~ The format is: borrow <description> "

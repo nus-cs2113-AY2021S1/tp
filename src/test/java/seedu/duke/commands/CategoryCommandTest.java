@@ -2,13 +2,10 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
-import seedu.duke.model.Model;
-import seedu.duke.model.itemlist.ItemList;
 import seedu.duke.model.ListType;
+import seedu.duke.model.Model;
+import seedu.duke.model.item.Task;
 import seedu.duke.model.itemlist.TaskList;
-
-import java.util.EnumMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,7 +18,7 @@ public class CategoryCommandTest {
         Model model = new Model();
         TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
 
-        tasks.addTodo("test description");
+        tasks.addItem(new Task("test description"));
         Command categoryCommand = new CategoryCommand(index + 1, category);
         assertEquals(null, tasks.get(index).getCategory());
         categoryCommand.execute(model);

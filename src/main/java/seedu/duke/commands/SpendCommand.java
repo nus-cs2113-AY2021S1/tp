@@ -37,14 +37,13 @@ public class SpendCommand extends Command {
 
     @Override
     public void execute(Model model) throws DukeException {
-        ExpenseList expenses = (ExpenseList) model.getList(ListType.EXPENSE_LIST);
         if (!argumentsMap.containsKey("v")) {
             throw new DukeException(Messages.EXCEPTION_SPEND_ARGUMENTS);
         }
         Double value = 0.0;
         try {
             value = Double.valueOf(argumentsMap.get("v"));
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_VALUE);
         }
         Expense newExpense = new Expense(description, value);
@@ -60,6 +59,7 @@ public class SpendCommand extends Command {
                 throw new DukeException(Messages.EXCEPTION_WRONG_DATE_FORMAT);
             }
         }
+        ExpenseList expenses = (ExpenseList) model.getList(ListType.EXPENSE_LIST);
         expenses.addExpense(newExpense);
     }
 }
