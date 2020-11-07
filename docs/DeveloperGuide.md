@@ -6,32 +6,17 @@
 * <a href="#design">3. Design</a> 
     * <a href="#card">3.1 Card Package</a> 
         * <a href="#quiz">Quiz Package</a> 
-            * <a href="#Qclass">Quiz Class</a> 
-            * <a href="#Qsubject">SubjectQuiz Class</a>  
-            * <a href="#Qtopic">TopicQuiz Class</a>  
-            * <a href="#Qresult">Result Class</a> 
         * <a href="#task">Task Package</a> 
-            * <a href="#Ttask">Task Class</a> 
-            * <a href="#Ttodo">Todo Class</a> 
-            * <a href="#Tdeadline">Deadline Class</a> 
-            * <a href="#Tevent">Event Class</a> 
-        * <a href="#flashcard">Flashcard Class</a> 
-        * <a href="#subject">Subject Class</a> 
-        * <a href="#topic">Topic Class</a> 
     * <a href="#command">3.2 Command Package</a> 
     * <a href="#list">3.3 List Package</a> 
     * <a href="#parser">3.4 Parser Package</a> 
     * <a href="#ui">3.5 Ui Package</a> 
     * <a href="#storage">3.6 Storage Package</a> 
-       * <a href="#Sbuilder">Storage Builder</a> 
-       * <a href="#Sstorage">Storage</a> 
 * <a href="#implementation">4. Implementation</a>
 * <a href="#logging">5. Logging</a>
 * <a href="#documentation">6. Documentation</a>
 * <a href="#testing">7. Testing</a>
 * <a href ="#product-scope">Appendix A: Product Scope</a> 
-   - <a href ="#Ptarget">Target User Profile</a> 
-   - <a href ="#Pvalue">Value Proposition</a> 
 * <a href ="#user-story">Appendix B: User Stories</a> 
 * <a href ="#nfr">Appendix C: Non functional Requirements</a> 
 * <a href ="#glossary">Appendix D: Glossary</a> 
@@ -101,11 +86,11 @@ designing of the code, with the help of visual aids.
 
 The application has been broken down into different levels so that users would find it easy to navigate from one level 
 to the next one. There are three levels within the application, and their hierarchy is ranked as shown below:
-* Main: This level edits the list of all the subjects present within the application and takes care of relevant commands 
+* **Main:** This level edits the list of all the subjects present within the application and takes care of relevant commands 
 such as add subject, delete subject or find subject.
-* Subject: This level is accessed through the `subject NAMEOFSUBJECT` command. The user would then look at the individual 
+* **Subject:** This level is accessed through the `subject [NAMEOFSUBJECT]` command. The user would then look at the individual 
 subjects and then would be able to add, delete, list or find either tasks or topics.
-* Topic : This level is accessed through the `topic NAMEOFTOPIC` command. The user can add, delete or list flashcards
+* **Topic:** This level is accessed through the `topic [NAMEOFTOPIC]` command. The user can add, delete or list flashcards
 in this level.
 
 Exiting from the Topic level will result in the program running at the Subject level, while exiting from the Subject level 
@@ -113,16 +98,14 @@ allows the program to run at the Main level. The program can also access the Sub
 from the Subject level via user input.
 
 The code contains the main class Revised, as well as different packages, which combine classes that perform a similar 
-functionality. Here are the list of packages:
+functionality. Here are the list of the main packages:
 
-* Card: In charge of classes related to the subject, topic, flashcard and quiz functionalities
-* Command: In charge of reading the command and calling the relevant methods. The package itself holds
-the following packages.
-* Exceptions: Deals with the various exceptions which are thrown in the application.
-* Parser: Parses the commands and instantiates the relevant command classes.
-* Storage: Stores the data in an external folder
-* Task: Contains the classes for the different types of tasks.
-* Ui: In charge of interaction with the user.
+* <a href="#card">card</a>
+* <a href="#command">command</a> 
+* <a href="#list">list</a>
+* <a href="#parser">parser</a>
+* <a href="#ui">ui</a>
+* <a href="#storage">storage</a>
 
 ### 3.1 Card Package <a name="card"></a>
 The Card package consists of different classes that holds information on the main functionalities of the application,
@@ -287,7 +270,7 @@ The `subjectcommand` package holds the following classes.
 - SorrySubjectCommand
 - SubjectCommand
 
-#####AccessSubjectCommand
+##### AccessSubjectCommand
 The `AccessSubjectCommand` class has 3 methods:
 - execute()
 - goToSubject()
@@ -307,7 +290,7 @@ The isExit() method determines whether the program exits. The `AccessSubjectComm
 A sequence diagram of accessing a subject is shown below.
 ![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
 
-#####AddSubjectCommand
+##### AddSubjectCommand
 The execute() method of the `AddSubjectCommand` decodes the user input, then adds a subject into the SubjectList, which title depends on the user input. For example, if the 
 user input is `add Maths`, then the title of the Subject created in the SubjectList will be Maths. It also prints the title of the subject that 
 is added to the SubjectList.
@@ -318,60 +301,60 @@ A sequence diagram of adding a Maths subject is shown below.
 The isExit() method determines whether the program exits. The `AddSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
 
-#####DeleteSubjectCommand
+##### DeleteSubjectCommand
 The execute() method of the `DeleteSubjectCommand` decodes the user input, then deletes a subject based on the index the Subject currently in the SubjectList. 
 For example, when the user input is `delete 1`, the program decodes the input, and deletes the first Subject in the SubjectList, which is at index 0 of the SubjectList.
 
 The isExit() method determines whether the program exits. The `DeleteSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####ExitSubjectCommand
+##### ExitSubjectCommand
 The execute() method of the `ExitSubjectCommand` does nothing, but needed since this method was implemented from an abstract class.
 
 The isExit() method determines whether the program exits. The `ExitSubjectCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
 will exit.
 
-#####ExportSubjectCommand
+##### ExportSubjectCommand
 The execute() method of the `ExportSubjectCommand` 
 TODO: Add execute method documentation
 
 The isExit() method determines whether the program exits. The `ExportSubjectCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
 
 
-#####FindSubjectCommand
+##### FindSubjectCommand
 The execute() method of the `FindSubjectCommand` decodes the user input, then find subjects whose title contains the keywords the user input into the program. 
 It then prints the title of the Subjects in the SubjectList whose title contains the keyword.
 
 The isExit() method determines whether the program exits. The `FindSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####HelpSubjectCommand
+##### HelpSubjectCommand
 The execute() method of the `HelpSubjectCommand` prints a list of available commands at the main level of the program, 
 for the user to understand the format of inputs, as well as types of input needed for execution.
 
 The isExit() method determines whether the program exits. The `HelpSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####ListAllSubjectCommand
+##### ListAllSubjectCommand
 The execute() method of the `ListAllSubjectCommand` groups different tasks and flashcards under each topic, and different topics under each subject, then prints an organized list 
 of all the subjects, topics, tasks and flashcards.
 
 The isExit() method determines whether the program exits. The `ListAllSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####ListSubjectCommand
+##### ListSubjectCommand
 The execute() method of the `ListAllSubjectCommand` prints a list of all subjects in the SubjectList instance.
 
 The isExit() method determines whether the program exits. The `ListSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####QuizSubjectCommand
+##### QuizSubjectCommand
 The execute() method of the `QuizSubjectCommand`
 TODO: Add execute method documentation
 
 The isExit() method determines whether the program exits. The `QuizSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####ResultSubjectCommand
+##### ResultSubjectCommand
 TODO: Add execute method documentation
 
 The isExit() method determines whether the program exits. The `ResultSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####SorrySubjectCommand
+##### SorrySubjectCommand
 The execute() method of the `SorrySubjectCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
 to the user.
 
@@ -380,7 +363,7 @@ A sequence diagram of the SorrySubjectCommand can be seen below.
 
 The isExit() method determines whether the program exits. The `SorrySubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-#####SubjectCommand
+##### SubjectCommand
 The `SubjectCommand` class is an abstract class that contains a abstract execute() method as well as a isExit() method, and is a super class for all the commands in the subjectcommand 
 package. This is to ensure that all other commands in the subjectcommand package can have the same method calls, and that execute() can be called on a SubjectCommand class, 
 even if they are a subclass of the SubjectCommand class.
@@ -425,7 +408,7 @@ The isExit() method determines whether the program exits. The `AccessTopicComman
 A sequence diagram of accessing a Topic is shown below.
 TODO: Add sequence diagram
 
-#####AddTopicCommand
+##### AddTopicCommand
 The execute() method of the `AddTopicCommand` decodes the user input, then adds a Topic into the TopicList, which title depends on the user input. For example, if the 
 user input is `add Geometry`, then the title of the Topic created in the TopicList will be Geometry. It also prints the title of the Topic that 
 is added to the TopicList.
@@ -435,53 +418,53 @@ TODO: Add sequence diagram
 
 The isExit() method determines whether the program exits. The `AddTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####DeleteTopicCommand
+##### DeleteTopicCommand
 The execute() method of the `DeleteTopicCommand` decodes the user input, then deletes a Topic based on the index the Topic currently in the TopicList. 
 For example, when the user input is `delete 1`, the program decodes the input, and deletes the first Topic in the TopicList, which is at index 0 of the TopicList.
 
 The isExit() method determines whether the program exits. The `DeleteTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####ExitTopicCommand
+##### ExitTopicCommand
 The execute() method of the `ExitTopicCommand` does nothing, but needed since this method was implemented from an abstract class.
 
 The isExit() method determines whether the program exits the subject. The `ExitTopicCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
 will exit the subject.
 
-#####FindTopicCommand
+##### FindTopicCommand
 The execute() method of the `FindTopicCommand` decodes the user input, then find Topics whose title contains the keywords the user input into the program. 
 It then prints the title of the Topics in the TopicList whose title contains the keyword.
 
 The isExit() method determines whether the program exits. The `FindTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####HelpTopicCommand
+##### HelpTopicCommand
 The execute() method of the `HelpTopicCommand` prints a list of available commands at the subject level of the program, 
 for the user to understand the format of inputs, as well as types of input needed for execution.
 
 The isExit() method determines whether the program exits. The `HelpTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####ListAllTopicCommand
+##### ListAllTopicCommand
 The execute() method of the `ListAllTopicCommand` groups different tasks and flashcards under each topic, and different topics under each subject, then prints an organized list 
 of all the subjects, topics, tasks and flashcards.
 
 The isExit() method determines whether the program exits. The `ListAllTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####ListTopicCommand
+##### ListTopicCommand
 The execute() method of the `ListAllTopicCommand` prints a list of all Topics in the TopicList instance.
 
 The isExit() method determines whether the program exits. The `ListTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####QuizTopicCommand
+##### QuizTopicCommand
 The execute() method of the `QuizTopicCommand`
 TODO: Add execute method documentation
 
 The isExit() method determines whether the program exits. The `QuizTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####ResultTopicCommand
+##### ResultTopicCommand
 TODO: Add execute method documentation
 
 The isExit() method determines whether the program exits. The `ResultTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####SorryTopicCommand
+##### SorryTopicCommand
 The execute() method of the `SorryTopicCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
 to the user.
 
@@ -490,7 +473,7 @@ A sequence diagram of the SorryTopicCommand can be seen below.
 
 The isExit() method determines whether the program exits. The `SorryTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
-#####TopicCommand
+##### TopicCommand
 The `TopicCommand` class is an abstract class that contains an abstract execute() method as well as an abstract isExit() method, and is a super class for all the commands in the topiccommand 
 package. This is to ensure that all other commands in the topiccommand package can have the same method calls, and that execute() can be called on a TopicCommand class, 
 even if they are a subclass of the TopicCommand class.
@@ -499,13 +482,33 @@ even if they are a subclass of the TopicCommand class.
 
 #### flashcardcommand package
 
+### 3.3 List Package <a name="list"></a>
+
+This package contains different list classes used for managing a list of different card package objects. 
+They are used to abstract the extra processing needed (if any) before or after interacting with the underlying list.
+The relationship between the classes is shown below.
+
+![ListClass](https://user-images.githubusercontent.com/15065550/98441484-79d26b00-20b3-11eb-9899-596db27b8570.png)
+
+<sub>***Figure 3.3.1** UML class diagram for list package*</sub>
+
+> ✔️ **_TODO:_** Delete method should also be implemented here (just like the add method) and be called to do the delete operations 
+> instead of doing it directly through the underlying list for better cohesion.
+
+> ✔️ **_TODO:_** FlashcardList should also be created to manage the list of flashcards instead of directly operate on the
+> ArrayList for better cohesion.
+
+### 3.4 Parser Package <a name="parser"></a>
+
+### 3.5 Ui Package <a name="ui"></a>
+
 ### 3.6 Storage Package <a name="storage"></a>
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
 relationship between the two classes.
 
 ![StorageClass](https://user-images.githubusercontent.com/15065550/97547893-9cfe6b80-198b-11eb-8475-0992c8274ee3.png)
 
-<sub>***Figure 2.6.1** UML class diagram for storage package*</sub>
+<sub>***Figure 3.6.1** UML class diagram for storage package*</sub>
 
 #### StorageBuilder <a name="Sbuilder"></a>
 
@@ -623,7 +626,7 @@ including topics will be saved. The behavior mentioned is shown in the diagram b
 
 <sub>***Figure 4.1.6** UML sequence diagram for storing topics*</sub>
 
-As can be seen in figure , all the data is deleted from the disk before saving of data takes place. It is implemented this way
+As can be seen in _figure 4.1.5_, all the data is deleted from the disk before saving of data takes place. It is implemented this way
 to make sure the deletion of a subject or topic by the user is also saved. Otherwise, the subject or topic will not be
 deleted since the rest of the method calls only replace or create data.
 
