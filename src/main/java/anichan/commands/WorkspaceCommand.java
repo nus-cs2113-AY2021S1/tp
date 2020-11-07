@@ -25,6 +25,7 @@ public class WorkspaceCommand extends Command {
     private static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
             + "options: -n, -s, -l, and -d.";
     private static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
+    private static final String ASSERTION_INVALID_MESSAGE = "Option should not be null.";
 
     private final String commandOption;
     private final String workspaceName;
@@ -57,7 +58,7 @@ public class WorkspaceCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert commandOption != null : "Option should not be null.";
+        assert commandOption != null : ASSERTION_INVALID_MESSAGE;
 
         switch (commandOption) {
         case CREATE_OPTION:
@@ -138,6 +139,7 @@ public class WorkspaceCommand extends Command {
      * @return result after executing the command
      */
     private String listWorkspace(User user) {
+        // Builds string containing list of Workspaces for Ui print
         StringBuilder workspacesString = new StringBuilder();
         ArrayList<Workspace> userWorkspaces = user.getWorkspaceList();
 

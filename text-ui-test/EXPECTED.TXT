@@ -15,6 +15,42 @@ What's your name?
 Hello Uneasy barton seeing remark happen his has Am possible offering at contempt mr distance stronger amis! What might your gender be? (Male/Female/Other)
 OOPS!!! Unexpected gender: feMale5
 What's your name?
+Hello  ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello   ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello       ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello      ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello           ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello                                  h.! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello               l    /  ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello                                                                  .! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello                                                  a O! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: Femal3
+What's your name?
+Hello    ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello      3! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: M4LE
+What's your name?
 Hello Friendly cat! What might your gender be? (Male/Female/Other)
 OOPS!!! Unexpected gender: Cat
 What's your name?
@@ -28,16 +64,16 @@ Hello ! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid name!
 What's your name?
 Hello  ! What might your gender be? (Male/Female/Other)
-OOPS!!! Unexpected gender:  
+OOPS!!! Invalid name!
 What's your name?
 Hello   ! What might your gender be? (Male/Female/Other)
-OOPS!!! Unexpected gender:   
+OOPS!!! Invalid name!
 What's your name?
 Hello   -! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid name!
 What's your name?
 Hello  ! What might your gender be? (Male/Female/Other)
-OOPS!!! Unexpected gender:       -
+OOPS!!! Invalid name!
 What's your name?
 Hello ! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid name!
@@ -46,7 +82,7 @@ Hello イングランド王! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid name!
 What's your name?
 Hello    ! What might your gender be? (Male/Female/Other)
-OOPS!!! Unexpected gender: 女性
+OOPS!!! Invalid name!
 What's your name?
 Hello Duuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuududududu12381828182! What might your gender be? (Male/Female/Other)
 OOPS!!! Unexpected gender: 495398475345939 4398594859 ---====== ''''''';;;;;;;;;//////.....445
@@ -730,5 +766,135 @@ Triple Fromage Cheesecake (Hello               World) #> Watchlist "Hello       
 Changed active watchlist to: "Default".
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No parameter provided.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> Successfully added new workspace: abc
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace name must be shorter than 31 characters and consist only alphanumeric characters and/or spaces.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace already exist!
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 5 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. abc
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 5 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. abc
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 5 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. abc
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace 2 does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace 1 2 does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace one does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> Successfully added new workspace: Hello               World
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 6 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. abc
+6. Hello               World
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 6 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. abc
+6. Hello               World
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace 2 does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace 5                   5 does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Unknown command
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No parameter provided.
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 6 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. abc
+6. Hello               World
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Invalid parameters detected!
+
+Triple Fromage Cheesecake (Default) #> Successfully deleted workspace: abc
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Workspace does not exist!
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 5 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. Hello               World
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Unknown command
+
+Triple Fromage Cheesecake (Default) #> Successfully deleted workspace: Hello               World
+
+Triple Fromage Cheesecake (Default) #> Currently, you have 4 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
 
 Triple Fromage Cheesecake (Default) #> Sayonara Abec Steiner 77th-chan!
