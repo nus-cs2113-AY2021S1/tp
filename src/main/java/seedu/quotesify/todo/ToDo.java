@@ -98,6 +98,7 @@ public class ToDo implements JsonSerializer {
             isDeadlineFormatted = false;
         }
     }
+
     //@@author
     @Override
     public JSONObject toJson() {
