@@ -2,8 +2,11 @@ package seedu.dietbook.calculator;
 
 import org.junit.jupiter.api.Test;
 import seedu.dietbook.food.Food;
+
 import seedu.dietbook.list.FoodList;
-import seedu.dietbook.person.ActivityLevel;
+
+import seedu.dietbook.person.FitnessLevel;
+
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.Person;
 

@@ -2,7 +2,7 @@ package seedu.dietbook.command;
 
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.Manager;
-import seedu.dietbook.Ui;
+import seedu.dietbook.ui.Ui;
 
 public class DeleteCommand extends Command {
     int index;

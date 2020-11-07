@@ -1,14 +1,16 @@
 package seedu.dietbook;
 
+import seedu.dietbook.ui.Ui;
 import seedu.dietbook.database.DataBase;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.command.Command;
-import seedu.dietbook.person.ActivityLevel;
+import seedu.dietbook.person.FitnessLevel;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.saveload.FoodSaveLoadManager;
 import seedu.dietbook.saveload.PersonSaveLoadManager;
 
+//@@author tikimonarch
 /**
  * Main class of the program.
  * The DietBook program is an application which can store, display and check your daily dietary intake.
@@ -16,7 +18,6 @@ import seedu.dietbook.saveload.PersonSaveLoadManager;
  * @author tikimonarch
  */
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 public class DietBook {
@@ -47,18 +48,18 @@ public class DietBook {
     public void loadPerson() {
         try {
             loadPerson.load("resources/UserInfo.txt");
-            ActivityLevel actLvl = ActivityLevel.NONE;
-            int actLvlInt = loadPerson.getActivityLevel();
-            if (actLvlInt == 1) {
-                actLvl = ActivityLevel.NONE;
-            } else if (actLvlInt == 2) {
-                actLvl = ActivityLevel.LOW;
-            } else if (actLvlInt == 3) {
-                actLvl = ActivityLevel.MEDIUM;
-            } else if (actLvlInt == 4) {
-                actLvl = ActivityLevel.HIGH;
-            } else if (actLvlInt == 5) {
-                actLvl = ActivityLevel.EXTREME;
+            FitnessLevel fitLvl = FitnessLevel.NONE;
+            int fitLvlInt = loadPerson.getActivityLevel();
+            if (fitLvlInt == 1) {
+                fitLvl = FitnessLevel.NONE;
+            } else if (fitLvlInt == 2) {
+                fitLvl = FitnessLevel.LOW;
+            } else if (fitLvlInt == 3) {
+                fitLvl = FitnessLevel.MEDIUM;
+            } else if (fitLvlInt == 4) {
+                fitLvl = FitnessLevel.HIGH;
+            } else if (fitLvlInt == 5) {
+                fitLvl = FitnessLevel.EXTREME;
             }
 
             Gender gender;
@@ -72,7 +73,7 @@ public class DietBook {
             }
             manager.getPerson().setAll(loadPerson.getName(), gender, loadPerson.getAge(),
                     loadPerson.getHeight(), loadPerson.getOriginalWeight(), loadPerson.getCurrentWeight(),
-                    loadPerson.getTargetWeight(), actLvl);
+                    loadPerson.getTargetWeight(), fitLvl);
 
         } catch (FileNotFoundException e) {
             ui.printErrorMessage("Person data file not found!");
@@ -101,7 +102,7 @@ public class DietBook {
     /**
      * Main method to run the program.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DietException {
         DietBook dietBook = new DietBook();
         dietBook.ui.printWelcomeMessage();
         //dietBook.loadPerson();
@@ -109,11 +110,13 @@ public class DietBook {
 
         while (!isExit) {
             try {
-                String userInput = dietBook.ui.readCommand();
+                String userInput = dietBook.ui.getCommand();
                 Command c = dietBook.manager.manage(userInput);
                 c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
+            } catch (Exception e) {
+                dietBook.ui.printErrorMessage("Oops something went wrong!");
             }
         }
     }
