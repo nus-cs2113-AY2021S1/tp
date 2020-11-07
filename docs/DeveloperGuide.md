@@ -214,7 +214,6 @@ All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens
 
 #### 6.1.2 Value proposition
 CanteenHelper aims to assist the target audience with:
-
 ordering the meals in one application efficiently
 
 ### 6.2 User stories
@@ -240,4 +239,4 @@ ordering the meals in one application efficiently
 
 ### 6.5 Instructions for manual testing
 Try different inputs with variations of the format, to check whether the exceptions are being correctly thrown.
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
