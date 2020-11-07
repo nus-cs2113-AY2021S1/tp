@@ -6,7 +6,10 @@ The purpose of this user guide is to provide you with all the necessary informat
 around NUS campus via the school's shuttle service.<br>
 
 ## Table of Contents
-- [1. What is Nav@NUS?](#1-what-is-navnus)
+- [1. Overview](#1-overview)
+  * [1.1 What is Nav@NUS?](#11-what-is-navnus)
+  * [1.2 About the User Guide](#12-about-the-user-guide)
+  * [1.3 Introduction to Command Line Interface (CLI)](#13-intruduction-to-command-line-interface-cli)
 - [2. Quick Start](#2-quick-start)
 - [3. Features](#3-features)
   * [3.1. List available help: ```/help```](#31-list-available-help-help)
@@ -31,12 +34,13 @@ around NUS campus via the school's shuttle service.<br>
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
 
-## 1. What is Nav@NUS?
+## 1. Overview
+### 1.1 What is Nav@NUS?
 Are you new to NUS? <br>
 Are you searching for ways to get around NUS all squeezed up in front of a tiny information board?<br>
 We have just the right solution for you!<br><br>
 Introducing **Nav@NUS**, your new navigation assistant!
-Nav@NUS is a useful command line interface (CLI) application to guide you in navigating around the NUS campus
+Nav@NUS is a useful command line interface **(CLI)** application to guide you in navigating around the NUS campus
 via the school's shuttle services. This application enables you to retrieve key bus information easily, skipping the 
 hassle of physically checking the bus stop's notice board. Nav@NUS is a tool tailor made for anyone unfamiliar to 
 NUS campus, students, professors and visitors included. Nav@NUS brings convenience to you and wishes your 
@@ -50,6 +54,20 @@ Nav@NUS consists of 3 main features:
 * **Fav**: Saves your commands for you to have a personalised user experience catered to your needs.
 
 Skip the tight squeeze near information boards and use Nav@NUS today!
+
+### 1.2 About the User Guide
+This user guide introduces you to the features available in Nav@NUS. Step-by-step guides are provided along with instances when the features are used.<br>
+This user guide covers the following:
+ * How to use the Command Line Interface
+ * How to set up Nav@NUS
+ * Common instances when each feature is used
+ * Step-by-step instructions for using each feature
+ * Common errors or problems faced when using features
+ * Frequently asked questions
+
+### 1.3 Introduction to Command Line Interface (CLI)
+Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. To give you a better experience, this section will introduce you to the CLI.
+
 
 ## 2. Quick Start
 The following steps will guide you through the process of running **Nav@NUS**.
