@@ -46,4 +46,4 @@ In addition, we meetup and discuss regularly on the developments of SmartHomeBot
 
 I also actively take part in other group's project development by reviewing their program for tutorials and PE dry runs. 
 * [Bug Issue 1](https://github.com/leonlowzd/ped/issues/1)
-* [Bug Issue 1](https://github.com/nus-cs2113-AY2021S1/tp/pull/28)
+* [Bug Issue 2](https://github.com/nus-cs2113-AY2021S1/tp/pull/28)
