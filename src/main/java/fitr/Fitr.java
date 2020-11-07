@@ -11,7 +11,6 @@ import fitr.user.User;
 import fitr.parser.Parser;
 import org.fusesource.jansi.AnsiConsole;
 
-
 import java.io.IOException;
 
 public class Fitr {
@@ -52,7 +51,6 @@ public class Fitr {
             System.out.println("-".repeat(136));
             isExit = c.isExit();
         }
-        Ui.printExitMessage();
     }
 
     public static void main(String[] args) {

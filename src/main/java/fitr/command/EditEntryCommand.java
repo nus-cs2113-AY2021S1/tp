@@ -105,6 +105,11 @@ public class EditEntryCommand extends Command {
         String formattedDate = date.format(DateManager.formatter);
         ExerciseList filteredExercises = new ExerciseList(exerciseList.filterByDate(formattedDate));
 
+        if (filteredExercises.getSize() == 0) {
+            Ui.printCustomError("No exercise entries found on: " + formattedDate);
+            return;
+        }
+
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredExercises.getSize()) {
             Ui.printCustomError("Invalid index entered!");
@@ -148,6 +153,11 @@ public class EditEntryCommand extends Command {
         LocalDate date = LocalDate.parse(matcher.group("date").trim(), DateManager.formatter);
         String formattedDate = date.format(DateManager.formatter);
         FoodList filteredFood = new FoodList(foodList.filterByDate(formattedDate));
+
+        if (filteredFood.getSize() == 0) {
+            Ui.printCustomError("No food entries found on: " + formattedDate);
+            return;
+        }
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > filteredFood.getSize()) {

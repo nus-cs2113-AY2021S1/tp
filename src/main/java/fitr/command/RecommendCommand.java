@@ -29,12 +29,11 @@ import static fitr.common.Messages.SPACE_FORMATTING;
 
 public class RecommendCommand extends Command {
     public RecommendCommand(String command) {
-        this.command = command;
+        this.command = command.trim();
     }
 
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
-        command.trim();
         int recommendationType = recommender.recommendParser(command);
         try {
             if (recommendationType == 5) {
@@ -58,10 +57,10 @@ public class RecommendCommand extends Command {
                         + SPACE_FORMATTING + BURNT_CAL_HEADER + calorieBurnt);
             }
 
-            Ui.printCustomMessage("Will you be doing this workout?\n"
-                    + "type y for yes to add all 4 to your exercise list.\n"
+            Ui.printCustomMessage("Will you be doing this workout?" + System.lineSeparator()
+                    + "Type 'y' to add all 4 to your exercise list," + System.lineSeparator()
                     + "or you can type in the index of the exercises you want added to you exercise list "
-                    + "(separated by a space).\nAny other key will be taken as a no.");
+                    + "(separated by a space)." + System.lineSeparator() + "Any other input will be taken as a no.");
 
             String checker = Ui.read();
 
