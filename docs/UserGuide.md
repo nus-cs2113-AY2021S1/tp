@@ -49,38 +49,34 @@ Format: `list`
 Example of usage:
 'list'
 
-### 3.4 change the order: `change/[number]/[type]`
+### 3.5 change the order: `change/[number]/[type]`
 Change the order type 
 Format: `change/[number]/[type]`
 
 Example of usage:
 'change/2/dine in'
 
-### 3.5 check Canteen Operating Time: `checkcanteen`
+### 3.6 check Canteen Operating Time: `checkcanteen`
 check the operating hours of a canteen 
 Format: `checkcanteen`
 
 Example of usage:
 'checkcanteen'
 
-### 3.6 check Stall Operating Time: `checkstall`
+### 3.7 check Stall Operating Time: `checkstall`
 check the operating hours of a stall 
 Format: `checkstall`
 
 Example of usage:
 'checkstall'
 
-### 3.7 view all available commands: `help`
+### 3.8 view all available commands: `help`
 print all the commands with required format that the user can input
 
 Format: `help`
 
 Example of usage:
 'help'
-
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
 
 
 ## 4. FAQ
@@ -92,6 +88,14 @@ Example of usage:
 
 ## 5. Command Summary
 
-{Give a 'cheat sheet' of commands here}
+|Action|Command|Example|
+|------|-------|-------|
+|order|`order`|`order`|
+|delete|`delete [number]`|`delete 2`|
+|find|`find [dish name]`|`find Pork Chop`|
+|list|`list`|`list`|
+|change|`change/[number]/[type]`|`change/3/take away`|
+|check Canteen Operating Time|`checkcanteen`|`checkcanteen`|
+|check Stall Operating Time|`checkstall`|`checkstall`|
+|help|`help`|`help`|
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`

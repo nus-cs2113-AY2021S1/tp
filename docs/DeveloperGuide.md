@@ -13,10 +13,11 @@
 ##### [3.2.2 UI class](#322-UI-class1)
 ##### [3.2.3 Parser class](#323-Parser-class1)
 ##### [3.2.4 Customer class](#324-Customer-class1)
-##### [3.2.5 Order class](#324-Order-class1)
-##### [3.2.5 Canteen class](#324-Canteen-class1)
-##### [3.2.4 Stall class](#324-Stall-class1)
-##### [3.2.4 Dish class](#324-Dish-class1)
+##### [3.2.5 Order class](#325-Order-class1)
+##### [3.2.6 Canteen class](#326-Canteen-class1)
+##### [3.2.7 Stall class](#327-Stall-class1)
+##### [3.2.8 Dish class](#328-Dish-class1)
+##### [3.2.9 Exception class](#329-Exception-class1)
 ### [4. Implementation](#4-Implementation1)
 ### [5. Testing](#5-Testing1)
 ### [6. Appendix: Requirements](#6-Appendix-Requirements1)
@@ -93,6 +94,7 @@ The CanteenHelper consists of six classes:
 * `Canteen`
 * `Stall`
 * `Dish`
+* `Exception`
 
 #### 3.2.1 Logic class
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
@@ -190,6 +192,15 @@ printDishes()
 #### 3.2.8 Dish class
 Dishes that can be ordered by the user.
 
+#### 3.2.9 Exception class
+Exceptions that can catch user unexpected input.
+
+### 3.3 Overall Sequence Diagram
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/overall.png)
+
+Figure 3. Overall Sequence diagram 
+
 
 ## 4. Implementation
 #### Feature: order
@@ -213,7 +224,7 @@ e.g. delete 1 means delete the first order in the order list.
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/delete.png)
 
-Figure . Sequence diagram for deleteOrder()
+Figure 4. Sequence diagram for deleteOrder()
 
 #### Feature: find order
 The user enters the command: find [dish name] to find the order contains this dish in the order list. The main will enable the findDishinOrder() method. The Parser will make sense of the command and iterate the order list and dish list to print the order containing this dish. 
@@ -221,14 +232,14 @@ e.g. find chicken rice means find all orders containing chicken rice in the orde
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/find.png)
 
-Figure . Sequence diagram for findDishinOrder()
+Figure 5. Sequence diagram for findDishinOrder()
 
 #### Feature: list order
 The user enters the command: list to print all the orders in the order list . The main will enable the printOrder() method. The printOrder() method will iterate the whole order list and print all the orders
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/print.png)
 
-Figure . Sequence diagram for printOrder()
+Figure 6. Sequence diagram for printOrder()
 
 #### Feature: change order (change dine in, take away or delivery)
 The user enters the command: change/number/type to change the order type of one order in the order list. The main will enable the changeOrder() method. The Parser will make sense of the command and change the corresponding order’s order type. 
@@ -236,7 +247,7 @@ e.g. change/1/Dine in: change order 1 to dine in
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/changeorder.png)
 
-Figure . Sequence diagram for changeOrder()
+Figure 7. Sequence diagram for changeOrder()
 
 #### Feature: check Canteen Operating Time
 The user enters the command: checkcanteen to check the operating time of an open canteen. The main will enable the checkCanteenOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
@@ -247,7 +258,7 @@ User can type the number before the canteen name to check its operating time.
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopencanteen.png)
 
-Figure . Sequence diagram for checkCanteenOperatingTime()
+Figure 8. Sequence diagram for checkCanteenOperatingTime()
 
 #### Feature: check Stall Operating Time
 The user enters the command: checkstall to check the operating time of an open stall. The main will enable the checkStallOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
@@ -260,7 +271,7 @@ User can type the number before the stall name to check its operating time.
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopenstall.png)
 
-Figure . Sequence diagram for checkStallOperatingTime()
+Figure 9. Sequence diagram for checkStallOperatingTime()
 
 #### Feature: help
 The user enters the command: help to view all commands that are available. The main will enable the help() method. It prints all available commands.
