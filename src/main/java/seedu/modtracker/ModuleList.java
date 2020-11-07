@@ -29,6 +29,7 @@ public class ModuleList {
     private static final int MAX_TIME_HOURS = 99;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
+    private static final int EMPTY = 0;
     public static double NO_INPUT = -1.0;
 
 
@@ -90,14 +91,13 @@ public class ModuleList {
                 return true;
             }
         }
-        ui.printInvalidModuleType(toPrint);
         return false;
     }
 
     /**
      * Checks if the expected workload has less than or equal to 1 decimal place.
      *
-     * @param exp   expected workload typed in by user.
+     * @param exp     expected workload typed in by user.
      * @param toPrint whether the UI should print the output.
      * @return true if expected workload is valid, false otherwise.
      */
@@ -128,6 +128,60 @@ public class ModuleList {
         } else {
             return true;
         }
+    }
+
+    /**
+     * Checks if the week is valid.
+     *
+     * @param week    number of weeks typed in by user.
+     * @param toPrint whether the UI should print the output.
+     * @return true if week number is valid, false otherwise.
+     */
+    public boolean checkIfWeekValid(String week, boolean toPrint) {
+
+
+        if (week.length() == 2) {
+            char firstCharacter = week.charAt(0);
+            boolean firstIntegerCheck = Character.isDigit(firstCharacter);
+            char secondCharacter = week.charAt(1);
+            boolean secondIntegerCheck = Character.isDigit(secondCharacter);
+
+            if (!firstIntegerCheck) {
+                ui.printWeekAlphabetError(toPrint);
+                return false;
+            } else if (!secondIntegerCheck) {
+                ui.printWeekAlphabetError(toPrint);
+                return false;
+            }
+
+            int weekNumber = Integer.parseInt(week);
+            if (weekNumber < 1 || weekNumber > 13) {
+                ui.printWeekError(toPrint);
+                return false;
+            } else {
+                return true;
+            }
+        } else if (week.length() == 1) {
+            char firstCharacter = week.charAt(0);
+            boolean firstIntegerCheck = Character.isDigit(firstCharacter);
+            if (firstIntegerCheck) {
+                int weekNumber = Integer.parseInt(week);
+                if (weekNumber < 1 || weekNumber > 13) {
+                    ui.printWeekError(toPrint);
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                ui.printWeekAlphabetError(toPrint);
+                return false;
+            }
+
+        } else {
+            ui.printWeekError(toPrint);
+            return false;
+        }
+
     }
 
     /**
@@ -169,6 +223,8 @@ public class ModuleList {
             modCode = modCode.toUpperCase();
 
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printAddModError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
@@ -185,6 +241,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printAddModError(toPrint);
+            ui.printEmptyline(toPrint);
         }
     }
 
@@ -204,6 +261,8 @@ public class ModuleList {
             String expTime = modInfo[2];
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printAddExpError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             if (!checkIfExpStringValid(expTime, toPrint)) {
@@ -238,6 +297,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printAddExpError(toPrint);
+            ui.printEmptyline(toPrint);
         } catch (NumberFormatException nfe) {
             ui.printAddExpNfe(toPrint);
         }
@@ -257,6 +317,8 @@ public class ModuleList {
             modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printDeleteModError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             if (checkIfModuleExist(modCode)) {
@@ -281,6 +343,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printDeleteModError(toPrint);
+            ui.printEmptyline(toPrint);
         }
     }
 
@@ -298,6 +361,8 @@ public class ModuleList {
             modCode = modCode.trim();
             modCode = modCode.toUpperCase();
             if (!checkIfModuleValid(modCode, toPrint)) {
+                ui.printDeleteExpError(toPrint);
+                ui.printInvalidModuleType(toPrint);
                 return;
             }
             if (checkIfModuleExist(modCode)) {
@@ -317,6 +382,7 @@ public class ModuleList {
             }
         } catch (IndexOutOfBoundsException e) {
             ui.printDeleteExpError(toPrint);
+            ui.printEmptyline(toPrint);
         }
     }
 
@@ -332,11 +398,14 @@ public class ModuleList {
         String modCode;
         modCode = commandInfo[1].toUpperCase();
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printDeleteTimeError(toPrint);
+            ui.printInvalidModuleType(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
         if (!checkIfModuleExist(modCode)) {
+            ui.printDeleteTimeNotExist(toPrint);
             ui.printNotExist(modCode, toPrint);
         } else {
             Module currentModule = new Module(modCode);
@@ -368,18 +437,27 @@ public class ModuleList {
     public void addTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
         String modCode;
+        String week;
         double hours;
         modCode = commandInfo[1].toUpperCase();
-        hours = Double.parseDouble(commandInfo[2]);
+        week = commandInfo[3];
+        double initialHours = Double.parseDouble(commandInfo[2]);
+        hours = Math.round(initialHours * 10) / 10; // this rounds the hours to the nearest 1dp.
+
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printInvalidModule(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
+
         if (!checkIfTimeValid(hours, toPrint)) {
             return;
+        } else if (!checkIfWeekValid(week, toPrint)) {
+            return;
         }
+
 
         if (!checkIfModuleExist(modCode)) {
             ui.printNotExist(modCode, toPrint);
@@ -389,11 +467,11 @@ public class ModuleList {
             modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_ADD + modCode + FULL_STOP);
+                    System.out.println(hours + HOURS_ADD + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_ADD + modCode + FULL_STOP);
+                    System.out.println(hours + HOUR_ADD + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }
@@ -411,19 +489,25 @@ public class ModuleList {
      * @param storage storage object where data is stored.
      */
     public void minusTime(String input, boolean toPrint, Storage storage) {
-        String modCode;
-        double hours;
         String[] commandInfo = input.trim().split(" ", 4);
+        String modCode;
+        String weekNumber;
+        double hours;
         modCode = commandInfo[1].toUpperCase();
-        hours = Double.parseDouble(commandInfo[2]);
+        weekNumber = commandInfo[3];
+        double initialHours = Double.parseDouble(commandInfo[2]);
+        hours = (Math.round(initialHours * 10)) / 10; // this rounds the hours to the nearest 1dp.
 
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printInvalidModule(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
         if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        } else if (!checkIfWeekValid(weekNumber, toPrint)) {
             return;
         }
 
@@ -438,13 +522,13 @@ public class ModuleList {
                     modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
                     if (toPrint) {
                         if (hours > 1) {
-                            System.out.println(commandInfo[2] + HOURS_REMOVAL
+                            System.out.println(hours + HOURS_REMOVAL
                                     + modCode + FULL_STOP);
                             System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                                     + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
 
                         } else {
-                            System.out.println(commandInfo[2] + HOUR_REMOVAL
+                            System.out.println(hours + HOUR_REMOVAL
                                     + modCode + FULL_STOP);
                             System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                                     + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
@@ -476,16 +560,24 @@ public class ModuleList {
     public void editTime(String input, boolean toPrint, Storage storage) {
         String[] commandInfo = input.trim().split(" ", 4);
         String modCode;
+        String week;
         double hours;
+        double initialHours = Double.parseDouble(commandInfo[2]);
+        hours = Math.round(initialHours * 10.0) / 10.0; // this rounds the hours to the nearest 1dp.
         modCode = commandInfo[1].toUpperCase();
-        hours = Double.parseDouble(commandInfo[2]);
+        week = commandInfo[3];
+
+
         if (!checkIfModuleValid(modCode, toPrint)) {
+            ui.printInvalidModule(toPrint);
             return;
         }
         assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
         assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
 
         if (!checkIfTimeValid(hours, toPrint)) {
+            return;
+        } else if (!checkIfWeekValid(week, toPrint)) {
             return;
         }
 
@@ -497,11 +589,11 @@ public class ModuleList {
             modList.get(index).editsActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
-                    System.out.println(commandInfo[2] + HOURS_EDIT + modCode + FULL_STOP);
+                    System.out.println(hours + HOURS_EDIT + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
-                    System.out.println(commandInfo[2] + HOUR_EDIT + modCode + FULL_STOP);
+                    System.out.println(hours + HOUR_EDIT + modCode + FULL_STOP);
                     System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
                             + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }

@@ -62,15 +62,16 @@ public class Module {
 
     public void addActualTime(String time, String week) {
         double d = Double.parseDouble(time);
+        double roundedTime = Math.round(d * 10.0) / 10.0;
         int i = Integer.parseInt(week);
         double timeDifference = 99 - this.actualTime[i - INDEX_OFFSET];
-        if (timeDifference < d) {
+        if (timeDifference < roundedTime) {
             throw new IllegalArgumentException("Total workload cannot be more than 99 hours.");
         }
         if (this.actualTime[i - INDEX_OFFSET] == NO_INPUT) {
-            this.actualTime[i - INDEX_OFFSET] = d;
+            this.actualTime[i - INDEX_OFFSET] = roundedTime;
         } else {
-            this.actualTime[i - INDEX_OFFSET] += d;
+            this.actualTime[i - INDEX_OFFSET] += roundedTime;
         }
 
     }
@@ -78,16 +79,18 @@ public class Module {
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
+        double roundedTime = Math.round(d * 10.0) / 10.0;
         //assert this.actualTime[i - INDEX_OFFSET] != NO_INPUT : "Cannot minus if actual time is not initialised";
         if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {
-            this.actualTime[i - INDEX_OFFSET] -= d;
+            this.actualTime[i - INDEX_OFFSET] -= roundedTime;
         }
     }
 
     public void editsActualTime(String time, String week) {
         double d = Double.parseDouble(time);
+        double roundedTime = Math.round(d * 10.0) / 10.0;
         int i = Integer.parseInt(week);
-        this.actualTime[i - INDEX_OFFSET] = d;
+        this.actualTime[i - INDEX_OFFSET] = roundedTime;
     }
 
     @Override

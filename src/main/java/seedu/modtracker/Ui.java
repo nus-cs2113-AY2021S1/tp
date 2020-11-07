@@ -8,17 +8,23 @@ import java.util.Scanner;
  */
 public class Ui {
     private static final Scanner in = new Scanner(System.in);
-    private static final String INVALID_MODULETYPE = "The module code should have 2 - 3 characters, followed by "
-        + "4 digits, followed by an optional character without any spacing.";
+    private static final String INVALID_MODULE = "The module code should have 2 - 3 characters, followed by "
+            + "4 digits, followed by an optional character without any spacing.";
+    private static final String INVALID_MODULETYPE = ", with the module code having 2 - 3 characters, followed by "
+            + "4 digits, followed by an optional character without any spacing.";
     private static final String MODULETYPE_EXAMPLE = "The accepted module code is of the following forms: CG1111, "
-        + "CS2113T, GER1000, GES1000T.";
+            + "CS2113T, GER1000, GES1000T.";
     private static final String ERROR_ADDMOD = "Please type addmod <module code>";
     private static final String ERROR_DELETEMOD = "Please type deletemod <module code>";
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
+    private static final String ERROR_DELETE_TIME = "Please type deletetime <module code> <week number>";
+    private static final String ERROR_DELETE_TIME_MISS = " with an existing module code.";
+
     private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
             + "with a maximum of 1 decimal place.";
     private static final String ERROR_WEEK = "The week number should be between 1 and 13.";
+    private static final String ERROR_ALPHABET_WEEK = "The week input should be a positive number.";
     private static final String NO_EXPECTED_WORKLOAD = "There is no input in the expected workload.";
     private static final String NO_ACTUAL_TIME = "There is no input in the actual time.";
     private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
@@ -156,6 +162,13 @@ public class Ui {
         }
     }
 
+    public void printInvalidModule(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(INVALID_MODULE);
+            System.out.println(MODULETYPE_EXAMPLE + System.lineSeparator());
+        }
+    }
+
     /**
      * Prints the message when module does not exist.
      */
@@ -175,11 +188,20 @@ public class Ui {
     }
 
     /**
+     * Prints empty line.
+     */
+    public void printEmptyline(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(System.lineSeparator());
+        }
+    }
+
+    /**
      * Prints the message when addmod command is wrong.
      */
     public void printAddModError(boolean toPrint) {
         if (toPrint) {
-            System.out.println(ERROR_ADDMOD + System.lineSeparator());
+            System.out.print(ERROR_ADDMOD);
         }
     }
 
@@ -188,7 +210,8 @@ public class Ui {
      */
     public void printDeleteModError(boolean toPrint) {
         if (toPrint) {
-            System.out.println(ERROR_DELETEMOD + System.lineSeparator());
+            System.out.print(ERROR_DELETEMOD);
+
         }
     }
 
@@ -197,7 +220,7 @@ public class Ui {
      */
     public void printAddExpError(boolean toPrint) {
         if (toPrint) {
-            System.out.println(ERROR_ADDEXP + System.lineSeparator());
+            System.out.print(ERROR_ADDEXP);
         }
     }
 
@@ -206,7 +229,25 @@ public class Ui {
      */
     public void printDeleteExpError(boolean toPrint) {
         if (toPrint) {
-            System.out.println(ERROR_DELETEEXP + System.lineSeparator());
+            System.out.print(ERROR_DELETEEXP);
+        }
+    }
+
+    /**
+     * Prints the message when deletetime command has non existing module.
+     */
+    public void printDeleteTimeNotExist(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_DELETE_TIME + ERROR_DELETE_TIME_MISS);
+        }
+    }
+
+    /**
+     * Prints the message when deletetime command is wrong.
+     */
+    public void printDeleteTimeError(boolean toPrint) {
+        if (toPrint) {
+            System.out.print(ERROR_DELETE_TIME);
         }
     }
 
@@ -319,6 +360,15 @@ public class Ui {
     public void printWeekError(boolean toPrint) {
         if (toPrint) {
             System.out.println(ERROR_WEEK + System.lineSeparator());
+        }
+    }
+
+    /**
+     * Prints the message when the week number is an alphabet instead of integer.
+     */
+    public void printWeekAlphabetError(boolean toPrint) {
+        if (toPrint) {
+            System.out.println(ERROR_ALPHABET_WEEK + System.lineSeparator());
         }
     }
 
