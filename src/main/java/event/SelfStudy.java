@@ -47,4 +47,17 @@ public class SelfStudy extends PersonalEvent {
         return "S//" + (isDone ? 1 : 0) + "//" + description + "//" + at + "//" + (end != null ? end + "//" : "")
                 + (location != null ? location.fileString() : link.fileString());
     }
+
+    /**
+     * A copy constructor;
+     *
+     * @param anotherSelfStudy the SelfStudy to be copied.
+     */
+    public SelfStudy(SelfStudy anotherSelfStudy) {
+        super(anotherSelfStudy);
+    }
+
+    public SelfStudy clone() {
+        return new SelfStudy(this);
+    }
 }

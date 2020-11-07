@@ -364,5 +364,23 @@ public class UI {
             System.out.println(numPrintedEvents + ". " + event.toString());
         }
     }
+
+    /**
+     * Print the success message after repeating all classes in the current week.
+     *
+     * @param numWeeks number of weeks to repeat.
+     */
+    public void printRepeatAll(int numWeeks) {
+        System.out.println("All classes in this week have been repeated for " + numWeeks + " weeks.");
+    }
+
+    /**
+     * Print the success message after repeating the selected event.
+     *
+     * @param numWeeks number of weeks to repeat.
+     */
+    public void printRepeatEvent(int numWeeks) {
+        System.out.println("The selected event has been repeated for " + numWeeks + " weeks.");
+    }
 }
 
