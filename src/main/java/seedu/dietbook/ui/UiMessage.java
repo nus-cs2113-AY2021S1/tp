@@ -10,7 +10,7 @@ import java.util.logging.Level;
 
 /**
  * Represents a storage that stores all the messages that Ui can utilise and print out.
- * A <code>UiMessage</code> objects contains all the necessary methods required to retrieve the output
+ * A <code>UiMessage</code> object contains all the necessary methods required to retrieve the output
  * messages.
  */
 public class UiMessage {
