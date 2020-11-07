@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             isInvalidEventType = true;
         } else {
             String[] commandWords = command.split(";");
-            String tempEventType = commandWords[0].toLowerCase();
+            String tempEventType = commandWords[0].toLowerCase().trim();
             switch (tempEventType) {
             case "zoom":
                 eventType = "Zoom";
