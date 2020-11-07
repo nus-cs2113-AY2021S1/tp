@@ -179,9 +179,9 @@ public class User {
         while (heightInput < 0.50 || heightInput > 4.00) {
             try {
                 if (isEdit) {
-                    heightInput = Double.parseDouble(argument);
+                    heightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(argument)));
                 } else {
-                    heightInput = Double.parseDouble(Ui.read());
+                    heightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(Ui.read())));
                 }
                 if (heightInput < 0.50 || heightInput > 4.00) {
                     Ui.printCustomError(ERROR_INVALID_HEIGHT_INPUT);
@@ -215,9 +215,9 @@ public class User {
         while (weightInput < 2.00 || weightInput > 1000.00) {
             try {
                 if (isEdit) {
-                    weightInput = Double.parseDouble(argument);
+                    weightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(argument)));
                 } else {
-                    weightInput = Double.parseDouble(Ui.read());
+                    weightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(Ui.read())));
                 }
                 if (weightInput < 2.00 || weightInput > 1000.00) {
                     Ui.printCustomError(ERROR_INVALID_WEIGHT_INPUT);
@@ -299,8 +299,9 @@ public class User {
     @Override
     public String toString() {
         return NAME_OUTPUT_HEADER + getName() + LINE_BREAK + AGE_OUTPUT_HEADER + getAge() + LINE_BREAK
-                + GENDER_OUTPUT_HEADER + getGender() + LINE_BREAK + HEIGHT_OUTPUT_HEADER + getHeight()
-                + LINE_BREAK + WEIGHT_OUTPUT_HEADER + getWeight() + LINE_BREAK + FITNESS_OUTPUT_HEADER
+                + GENDER_OUTPUT_HEADER + getGender() + LINE_BREAK + HEIGHT_OUTPUT_HEADER
+                + String.format("%.2f", getHeight()) + LINE_BREAK + WEIGHT_OUTPUT_HEADER
+                + String.format("%.2f", getWeight()) + LINE_BREAK + FITNESS_OUTPUT_HEADER
                 + getUserFitnessLevelString();
     }
 
