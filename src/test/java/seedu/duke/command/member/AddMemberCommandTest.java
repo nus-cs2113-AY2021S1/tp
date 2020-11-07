@@ -6,7 +6,11 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
