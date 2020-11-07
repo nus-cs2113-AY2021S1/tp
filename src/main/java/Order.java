@@ -1,5 +1,9 @@
 import java.util.List;
 
+/**
+ *
+ * a class represents an order
+ */
 public class Order {
 
     private Canteen canteen;

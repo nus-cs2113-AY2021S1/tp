@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * a class initialize the canteens, stalls, dishes
+ */
 public class Initializer {
     /**
      * Initialize the canteens, stalls and dishes
