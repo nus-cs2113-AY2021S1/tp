@@ -32,7 +32,7 @@ public class DeleteExpenseCommand extends Command {
      * @param index the index of the expense item to be deleted
      */
     public DeleteExpenseCommand(int index) {
-        assert index > 0: "Expense item number should be greater than 0";
+        assert index > 0 : "Expense item number should be greater than 0";
         this.hasCurrency = false;
         this.hasCurrency = false;
         this.hasIndex = true;

@@ -76,7 +76,8 @@ Hello from...
      date: Sets the date of a given task in the list.
      Example: date <taskIndex> date/DD-MM-YYYY
 
-     delete: Deletes the task identified by the index number used in the task listing.
+     delete:
+     1. Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
      Example: delete task 1
           Optional parameter 1: p/PRIORITY
@@ -85,10 +86,16 @@ Hello from...
           Optional parameter 2: c/CATEGORY
              Deletes all the tasks with CATEGORY.
              Example: delete tasks c/cs2113.
-     Deletes the link identified by the index number used in the link listing.
+     2. Deletes the link identified by the index number used in the link listing.
      Parameters: INDEX
      Example: delete link 1
-
+     3. Deletes the expense items identified by the index number used in the expense list.
+          Optional parameter 1: currency/CURRENCY
+             Deletes all the expense items with CURRENCY.
+             Example: delete expenses currency/SGD
+          Optional parameter 2: date/yyyy-MM-dd
+             Deletes all the expense items on the date in the format of yyyy-MM-dd
+             Example: delete expenses date/2020-11-07
 
      done: Marks the task/module identified by the index number used in the listing as done.
      Parameters: <type> INDEX
