@@ -237,8 +237,6 @@ Search for all anime series that has the genre matching the search term.
 
 Format: `search -g <SEARCH_TERM>`
 
-<br/>
-
 > :bulb: Here are some popular genres that you may wish try out: Action, Adventure, Music, Mecha, Sci-Fi.
 
 <br/>
