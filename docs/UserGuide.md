@@ -205,6 +205,7 @@ bookmark
 ```
 
 What you should see:
+
 ![bookmark](./images/bookmark_store.jpg)
 
 ### 3.10. Listing out all bookmarked questions: `bookmark`
@@ -220,6 +221,7 @@ bookmark
 ```
 
 What you should see:
+
 ![data saving](./images/bookmark_list.jpg)
 
 ### 3.11. Deleting a bookmark: `bookmark delete <index number>`

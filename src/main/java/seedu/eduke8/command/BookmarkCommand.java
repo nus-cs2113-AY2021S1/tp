@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class BookmarkCommand extends Command {
     private static final String BOOKMARK_LIST = "listing";
     private static final String BOOKMARK_STORE = "storing";
+    private static final String BOOKMARK_DELETE = "delete";
 
     private BookmarkList bookmarks;
     private Question question;
@@ -55,7 +56,7 @@ public class BookmarkCommand extends Command {
             } else {
                 ui.printBookmarkedIndicator();
             }
-        } else if (typeOfBookmarkCommand.equals("delete")) {
+        } else if (typeOfBookmarkCommand.equals(BOOKMARK_DELETE)) {
             ui.printDeletedBookmarkIndicator(deleteIndex);
         }
     }
