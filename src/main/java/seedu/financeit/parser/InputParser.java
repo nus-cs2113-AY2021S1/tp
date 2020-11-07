@@ -9,6 +9,7 @@ import seedu.financeit.utils.RegexMatcher;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
+import java.util.regex.PatternSyntaxException;
 
 //@@author Artemis-Hunt
 public class InputParser {
@@ -32,6 +33,8 @@ public class InputParser {
      * @param userCommand the command user enter
      * @return
      */
+
+    //@@author dixoncwc
     public String[] parseGoalCommand(String userCommand) {
         String[] newCommand = userCommand.split(" ", 4);
         return newCommand;
@@ -61,7 +64,7 @@ public class InputParser {
      *  }
      * }
      */
-
+    //@@author kaiwen98
     public CommandPacket parseInput(String input) {
         String commandString = "";
         HashMap<String, String> params = new HashMap<>();
