@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
 
+/**
+ * Main logic of the whole program
+ */
 public class Main {
     public static String input; //input is for each statement input
     public static Scanner in = new Scanner(System.in);
@@ -17,6 +20,10 @@ public class Main {
     public static FileInputStream inputFile;
     public static ArrayList<Order> Order = new ArrayList<Order>();
 
+    /**
+     * Main method of the whole program
+     * @param args input from the user
+     */
     public static void main(String[] args) {
         Initializer initializer = new Initializer();
         List<Canteen> canteens = initializer.initialize();
@@ -68,10 +75,6 @@ public class Main {
         }
         UI.bye();
     }
-
-
-
-
 
 
 }

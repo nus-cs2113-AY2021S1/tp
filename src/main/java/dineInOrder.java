@@ -1,5 +1,8 @@
 import java.util.List;
 
+/**
+ * a class represents a dine in order which extends order class
+ */
 public class dineInOrder extends Order {
 
     private boolean isDineIn;

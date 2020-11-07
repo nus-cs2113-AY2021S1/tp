@@ -1,5 +1,8 @@
 import java.util.List;
 
+/**
+ * a class represents a delivery order which extends order class
+ */
 public class deliveryOrder extends Order {
 
     private final static double carrierFee = 0.3;

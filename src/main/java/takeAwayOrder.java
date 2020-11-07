@@ -1,5 +1,8 @@
 import java.util.List;
 
+/**
+ * a class represents a take away order which extends order class
+ */
 public class takeAwayOrder extends Order {
 
     private boolean isTakeAway;
