@@ -1,8 +1,7 @@
 @startuml
 participant ":Duke" as DukeClass <<class>>
 participant ":Duke" as Duke
-participant ":Storage" as Storage
-participant ":ItemList" as ItemList
+participant ":Model" as Model
 participant ":Ui" as Ui <<class>>
 participant ":Parser" as Parser <<class>>
 participant ":Command" as Command
@@ -14,25 +13,18 @@ create Duke
 DukeClass -> Duke: new Duke()
 activate Duke
 
-create Storage
-Duke -> Storage : new Storage()
-activate Storage
+create Model
+Duke -> Model : new Model()
+activate Model
 
-Duke <-- Storage
-deactivate Storage
+Duke <-- Model
+deactivate Model
 
-Duke -> Storage : load()
-activate Storage
+Duke -> Model : load()
+activate Model
 
-Duke <-- Storage : ArrayList<Item>
-deactivate Storage
-
-create ItemList
-Duke -> ItemList : new ItemList(ArrayList<Item>)
-activate ItemList
-
-Duke <-- ItemList : items
-deactivate ItemList
+Duke <-- Model
+deactivate Model
 
 DukeClass <-- Duke
 deactivate Duke
@@ -65,11 +57,11 @@ deactivate Command
 Duke <-- Parser : Command
 deactivate Parser
 
-Duke -> Command : execute()
+Duke -> Command : execute(model)
 
 Duke -> Command : isExit()
 
-Duke -> Storage : save(items)
+Duke -> Model : save()
 
 destroy Command
 
@@ -81,6 +73,7 @@ DukeClass <-- Duke
 deactivate Duke
 
 destroy Duke
+destroy Model
 
 <-- DukeClass
 deactivate DukeClass

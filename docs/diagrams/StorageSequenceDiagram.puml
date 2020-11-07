@@ -1,20 +1,20 @@
+' @@author GuoAi
 @startuml
-participant ":Duke" as Duke
+participant ":Model" as Model
 participant ":Storage" as Storage
 participant ":Task" as Task
 participant ":Book" as Book
 participant ":Link" as Link
-participant ":Credit" as Credit
 participant ":Module" as Module
 
 create Storage
-Duke -> Storage : new Storage()
+Model -> Storage : new Storage()
 activate Storage
 
-Duke <-- Storage
+Model <-- Storage
 deactivate Storage
 
-Duke -> Storage : loadTask()
+Model -> Storage : loadTask()
 activate Storage
 
 loop sc.hasNextLine()
@@ -29,7 +29,7 @@ activate Task
 Storage <-- Task : newTask
 deactivate Task
 
-alt !category.equals("")
+opt !category.equals("")
 
 Storage -> Task : setCategory(category)
 activate Task
@@ -39,7 +39,7 @@ deactivate Task
 
 end
 
-alt !dateString.equals("")
+opt !dateString.equals("")
 
 Storage -> Task : setDateFromString(dateString)
 activate Task
@@ -56,10 +56,10 @@ deactivate Storage
 
 end
 
-Duke <-- Storage : tasks
+Model <-- Storage : tasks
 deactivate Storage
 
-Duke -> Storage : loadBook()
+Model -> Storage : loadBook()
 activate Storage
 
 loop sc.hadNextLine()
@@ -74,7 +74,7 @@ activate Book
 Storage <-- Book : newBook
 deactivate Book
 
-alt !dateString.equals("")
+opt !dateString.equals("")
 
 Storage -> Book : setDateFromString(dateString)
 activate Book
@@ -84,7 +84,7 @@ deactivate Book
 
 end
 
-alt !futureDateString.equals("")
+opt !futureDateString.equals("")
 
 Storage -> Book : setDateFromString(dateString)
 activate Book
@@ -101,35 +101,10 @@ deactivate Storage
 
 end
 
-Duke <-- Storage : books
+Model <-- Storage : books
 deactivate Storage
 
-Duke -> Storage : loadCredit()
-activate Storage
-
-loop sc.hasNextLine()
-
-Storage -> Storage : loadCreditFromLine(line)
-activate Storage
-
-create Credit
-Storage -> Credit : new Credit(description)
-activate Credit
-
-Storage <-- Credit : newCredit
-deactivate Credit
-
-destroy Credit
-
-Storage <-- Storage : newCredit
-deactivate Storage
-
-end
-
-Duke <-- Storage : mealCredit
-deactivate Storage
-
-Duke -> Storage : loadLinks()
+Model -> Storage : loadLinks()
 activate Storage
 
 loop sc.hasNextLine()
@@ -151,10 +126,10 @@ deactivate Storage
 
 end
 
-Duke <-- Storage : links
+Model <-- Storage : links
 deactivate Storage
 
-Duke -> Storage : loadModule()
+Model -> Storage : loadModule()
 activate Storage
 
 loop sc.hasNextLine()
@@ -176,13 +151,13 @@ deactivate Storage
 
 end
 
-Duke <-- Storage : modules
+Model <-- Storage : modules
 deactivate Storage
 
-Duke -> Storage : save(items, path)
+Model -> Storage : save(items, path)
 activate Storage
 
-Duke <-- Storage
+Model <-- Storage
 deactivate Storage
 
 destroy Storage
