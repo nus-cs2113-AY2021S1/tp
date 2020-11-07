@@ -49,7 +49,7 @@ public class SelfStudy extends PersonalEvent {
     }
 
     /**
-     * A copy constructor;
+     * A copy constructor.
      *
      * @param anotherSelfStudy the SelfStudy to be copied.
      */

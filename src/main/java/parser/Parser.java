@@ -248,7 +248,7 @@ public abstract class Parser {
                 } catch (NumberFormatException e) {
                     throw new RepeatIndexFormatException();
                 }
-                return new RepeatCommand(index-1, numWeeks);
+                return new RepeatCommand(index - 1, numWeeks);
             }
         }
 
