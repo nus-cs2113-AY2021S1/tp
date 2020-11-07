@@ -12,8 +12,8 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FavStorageTest {
-    private static String CORRUPTED_DIR = "src/test/StorageTestCases/FavListTest/CorruptedFavList.txt";
-    private static String VALID_DIR = "src/test/StorageTestCases/FavListTest/ValidFavList.txt";
+    private static String CORRUPTED_DIR = "src/test/StorageTestCases/FavStorageTestTXT/CorruptedFavStorage.txt";
+    private static String VALID_DIR = "src/test/StorageTestCases/FavStorageTestTXT/ValidFavStorage.txt";
     private static FavStorage corruptedFile;
     private static FavStorage validFile;
 
