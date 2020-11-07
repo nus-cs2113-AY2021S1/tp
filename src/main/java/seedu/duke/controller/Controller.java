@@ -135,6 +135,9 @@ public class Controller {
     }
 
     private void viewBookmarkedStocks() {
+        if (bookmarksManager.getBookmarks().getBookmarkedStocks().size() == 0) {
+            ui.printWithDivider("Currently no stocks bookmarked! Try bookmarking stock using mark /TICKER");
+        }
         for (String symbol : bookmarksManager.getBookmarks().getBookmarkedStocks()) {
             searchSymbol(symbol);
         }

@@ -64,11 +64,22 @@ public class Parser {
                 return new InvalidCommand(e.getMessage());
             }
         case "bookmarks":
-            return new ViewBookmarkedStocksCommand();
+            try {
+                return parseBookmarks(userInputSplit);
+            } catch (DukeException e) {
+                return new InvalidCommand(e.getMessage());
+            }
         default:
             logger.log(Level.WARNING, "processing error when parsing command");
             return new InvalidCommand("Invalid command! Please try again.");
         }
+    }
+
+    public static Command parseBookmarks(String[] userInputSplit) throws DukeException {
+        if (userInputSplit.length > 1) {
+            throw new DukeException("There should not be an argument behind bookmarks!");
+        }
+        return new ViewBookmarkedStocksCommand();
     }
 
     public static Command parseMark(String[] userInputSplit) throws DukeException {
@@ -76,7 +87,7 @@ public class Parser {
             if (!userInputSplit[1].startsWith("/")) {
                 throw new DukeException("Please enter the ticker symbol of the company that you want to mark!");
             }
-            String symbol = userInputSplit[1].substring(1);
+            String symbol = userInputSplit[1].substring(1).toUpperCase();
             return new AddBookmarkCommand(symbol);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(("Wrong input format! E.g. mark /MSFT"));
@@ -88,7 +99,7 @@ public class Parser {
             if (!userInputSplit[1].startsWith("/")) {
                 throw new DukeException("Please enter the ticker symbol of the company that you want to unmark!");
             }
-            String symbol = userInputSplit[1].substring(1);
+            String symbol = userInputSplit[1].substring(1).toUpperCase();
             return new RemoveBookmarkCommand(symbol);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(("Wrong input format! E.g. unmark /MSFT"));
