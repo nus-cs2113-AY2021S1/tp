@@ -4,8 +4,29 @@
 ### [1. Introduction](#1-Introduction1)
 ### [2. Quick start](#2-Quick-start1)
 ### [3. Features](#3-Features1)
-### [4. FAQ](#4-FAQ1)
-### [5. Command Summary](#5-Command-Summary1)
+#### [3.1 Before the order](#31-Before-the-order1)
+#### [3.2 Begin the order](#32-Begin-the-order1)
+##### [3.2.1 Firstly](#321-Firstly1)
+##### [3.2.2 The order method will be activated and print open stalls, user just type the corresponding index before the canteen to select canteen.](#322-The-order-method-will-be-activated-and-print-open-stalls, user-just-type-the-corresponding-index-before-the-canteen-to-select-canteen.1)
+##### [3.2.3 Then the open stalls in this canteen will be printed, user just type the corresponding index before the stall to select stall.](#323-Then the open stalls in this canteen will be printed, user just type the corresponding index before the stall to select stall.1)
+##### [3.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order.](#324-Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order.1)
+##### [3.2.5 User chooses dishes in the same way as they select canteen and stall. ](#325-User chooses dishes in the same way as they select canteen and stall. 1)
+##### [3.2.6 User will be asked whether he wants to see the comment of the dish, just type y/n.](#326-User will be asked whether he wants to see the comment of the dish, just type y/n.1)
+##### [3.2.7 User choose the order type by typing the corresponding index before the type.](#327-User choose the order type by typing the corresponding index before the type.1)
+#### [3.3 delete the specific order](#33-delete the specific order1)
+#### [3.4 find the specific order](#34-find-the-specific-order1)
+#### [3.5 list all the orders](#35-list-all-the-orders1)
+#### [3.6 change the order](#36-change-the-order1)
+#### [3.7 check Canteen Operating Time](#37-check-Canteen-Operating-Time)
+##### [3.7.1 Firstly](#371-Firstly1)
+##### [3.7.2 User enters the number before canteen to check that specific canteen](#372-User enters the number before canteen to check that specific canteen1)
+#### [3.8 ccheck Stall Operating Time](#38-check Stall Operating Time1)
+##### [3.8.1 Firstly](#381-Firstly1)
+##### [3.8.2 User enters the number before canteen to check that specific canteen](#382-User enters the number before canteen to check that specific canteen1)
+##### [3.8.3 User enters the number before stall to check that specific stall](#383-User enters the number before stall to check that specific stall1)
+#### [3.9 view all available commands](#39-view-all-available-commands1)
+#### [3.10 quit the system](#310-quit-the-system)
+### [4. Command Summary](#4-Command-Summary1)
 
 
 ## 1. Introduction
@@ -21,7 +42,7 @@ During peak hours, people may not be able to know the dining situation and the d
 
 ## 3. Features 
 
-### 3.1 before the order: `[name]/[day of week]/[time]`
+### 3.1 Before the order: `[name]/[day of week]/[time]`
 
 Format: `[name]/[day of week]/[time]`
 
@@ -36,7 +57,7 @@ Result is like this:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/before.png)
 
-### 3.2 begin the order: `order`
+### 3.2 Begin the order: `order`
 begin the order of a customer
 
 #### 3.2.1 Firstly
@@ -84,7 +105,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/dish.png)
 
-#### 3.2.6 After that, user will be asked whether he wants to see the comment of the dish, just type y/n.
+#### 3.2.6 User will be asked whether he wants to see the comment of the dish, just type y/n.
 
 Format: `y/n`
 
@@ -94,7 +115,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/comment.png)
 
-#### 3.2.7 Finally, choosing the order type by typing the corresponding index before the type.
+#### 3.2.7 User choose the order type by typing the corresponding index before the type.
 
 Format: `[number]`
 
@@ -110,18 +131,18 @@ user needs to input the number of order
 Format: `delete [number]`
 
 Example of usage:
-'delete 2'
+'delete 1'
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/ddlete.png)
 
-### 3.4 finde the specific order: `find [dish name]`
+### 3.4 find the specific order: `find [dish name]`
 find the specific dish based on the user input dish name
 from the order list made by the user
 
 Format: `find [dish name]`
 
 Example of usage:
-'find Pork Chop'
+'find Hawaiian'
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/findd.png)
 
@@ -149,6 +170,7 @@ Example of usage:
 'change/2/dine in'
 'change/1/delivery
 
+* order type is case sensitive
 
 ![image](
 
@@ -207,7 +229,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/help.png)
 
-### 4.0 quit the system: `bye`
+### 3.10 quit the system: `bye`
 quit the system
 
 Format: `bye`
@@ -217,14 +239,8 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/bye.png)
 
-## 4. FAQ
 
-**Q**: How do I transfer my data to another computer? 
-
-**A**: {your answer here}
-
-
-## 5. Command Summary
+## 4. Command Summary
 
 |Action|Command|Example|
 |------|-------|-------|
