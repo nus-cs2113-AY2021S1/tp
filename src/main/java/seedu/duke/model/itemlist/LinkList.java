@@ -21,10 +21,6 @@ public class LinkList extends ItemList<Link> {
         links = new ArrayList<>();
     }
 
-    @Override
-    public void addTodo(String description) {
-    }
-
     /**
      * Constructs a link list with the given links.
      *
