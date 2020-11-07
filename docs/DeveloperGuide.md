@@ -630,7 +630,7 @@ After the project is finalised and released, if you find any bugs or problems, o
 
 **WatchNext** is a program made for teenagers and young adults.For users who use multiple free streaming platforms or other open source stream websites,
 the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a tracker 
-to limit your weekly show progress to help manage your time.
+to limit your daily show progress to help manage your time.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
@@ -838,12 +838,12 @@ Expected: An error message indicating that the input supplied was in a wrong for
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
 2. Test case: `search friends`<br>
-Expected: An acknowledgement message that `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
+Expected: An acknowledgement message that shows containing the keyword `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 
 3. Test case: `search`<br>
 
 Expected: An error message indicating that the input supplied was in a wrong format.
 
-4. Test case: `search a`<br>
-Expected: An error message indicating that the show input was not found in the watch list.
+4. Test case: `search fri`<br>
+Expected: An acknowledgement message that shows containing the keyword `fri` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 
