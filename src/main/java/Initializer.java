@@ -2,6 +2,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * class Initializer
+ * for initializing the canteen information
+ * at the start of the program
+ */
 public class Initializer {
     public List<Canteen> initialize() {
 

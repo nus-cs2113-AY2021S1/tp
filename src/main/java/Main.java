@@ -1,3 +1,4 @@
+//import necessary libraries
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,21 +11,28 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 
 public class Main {
-    public static String input; //input is for each statement input
+    public static String input;
+    //input is for each statement input
     public static Scanner in = new Scanner(System.in);
     protected static List<Canteen> canteens = new ArrayList<>();
     protected static Scanner sc = new Scanner(System.in);
     public static FileInputStream inputFile;
     public static ArrayList<Order> Order = new ArrayList<Order>();
 
+    /**
+     * main method
+     * @param args
+     */
     public static void main(String[] args) {
         Initializer initializer = new Initializer();
         List<Canteen> canteens = initializer.initialize();
-        UI.greet(); // call greet() method to greet
+        UI.greet();
+        // call greet() method to greet
         Customer customer = UI.getCustomer(sc);
         System.out.println("Please enter your command. (Type help for instruction.)");
         input=sc.nextLine();
-        while(!input.equals("bye")) { //if input is not "bye"
+        while(!input.equals("bye")) {
+            //if input is not "bye"
             /** print the list of tasks*/
             if (input.equals("list")) {
                 UI.printOrder(input, Order);
@@ -57,13 +65,15 @@ public class Main {
                 UI.changeOrder(customer,input,Order);
             }
 
-            else{ //dealing with undefined type of input
+            else{
+                //dealing with undefined type of input
                 System.out.println("____________________________________________________________\n");
                 System.out.println("  OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 System.out.println("____________________________________________________________\n");
             }
             /*exception handling of wrong input*/
-            input=sc.nextLine();// get next input statement
+            input=sc.nextLine();
+            // get next input statement
 
         }
         UI.bye();

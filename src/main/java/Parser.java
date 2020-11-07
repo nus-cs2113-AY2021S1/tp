@@ -1,4 +1,17 @@
+/**
+ * class Parser
+ * to parse user's input
+ */
 public class Parser {//name week time
+
+    /**
+     * a method to parseCustomer
+     * when they input their infomation
+     * @param inputMessage
+     * @return
+     * @throws DayOfWeekException
+     * @throws ArriveTimeException
+     */
     public static Customer parseCustomer(String inputMessage) throws DayOfWeekException, ArriveTimeException {
 
         String[] inputWords = inputMessage.split("/"); //split the input message

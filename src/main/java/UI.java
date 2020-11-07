@@ -2,8 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * UI class to deal with interactions with user
+ */
 public class UI {
-
+    /**
+     * when user wants to make an order
+     * this method is invoked to create Order objects
+     * call methods inside to perform steps
+     * for knowing which canteen, stall user goes to
+     * how many dishes user orders, dishes user orders
+     * @param canteens
+     * @param customer
+     * @param sc
+     * @param Order
+     */
     public static void order(List<Canteen> canteens, Customer customer,Scanner sc, ArrayList<Order> Order){
 
         Canteen canteenChoosed = getCanteen(canteens, customer,sc);
@@ -21,6 +34,14 @@ public class UI {
 
     }
 
+    /**
+     * when a user starts our app,
+     * collect his basic information
+     * including name,day of week and time arrive
+     * user needs input following the format name/day of week/time arrive
+     * @param sc
+     * @return
+     */
     public static Customer getCustomer(Scanner sc) {
         try{
             System.out.println("Please enter your name/day of week/time arrive:");
@@ -45,6 +66,17 @@ public class UI {
         }
     }
 
+    /**
+     * method to get the order type
+     * for creating an order
+     * @param customer
+     * @param canteenChoosed
+     * @param stallChoosed
+     * @param orderedDishes
+     * @param sc
+     * @param Order
+     * @return
+     */
     private static Order getOrder(Customer customer, Canteen canteenChoosed, Stall stallChoosed, List<Dish> orderedDishes,Scanner sc, ArrayList<Order> Order) {
         try{
             System.out.println("Please choose your order type:\n\t1.Dine in.\n\t2.Take away.\n\t3.delevery.");
@@ -78,6 +110,13 @@ public class UI {
         }
     }
 
+    /**
+     * a method to get
+     * what dishes the user orders
+     * @param stallChoosed
+     * @param sc
+     * @return
+     */
     private static List<Dish> getDishes(Stall stallChoosed, Scanner sc) {
         try{
             int dishCount;
@@ -120,6 +159,12 @@ public class UI {
         }
     }
 
+    /**
+     * a method to ask user whether he/she wants to know the comments
+     * of the selected dish
+     * @param sc
+     * @return
+     */
     private static String getYN(Scanner sc) {
         try{
             System.out.println("Do you want to check the comment for this stall? (y/n)");
@@ -141,6 +186,12 @@ public class UI {
         }
     }
 
+    /**
+     * a method to know how many dishes user wants to order
+     * @param count
+     * @param sc
+     * @return
+     */
     private static int getNumOfDishes(int count,Scanner sc) {
         try{
             System.out.println("How many dishes you want to order please?");
@@ -163,6 +214,13 @@ public class UI {
         }
     }
 
+    /**
+     * a method to get which stall the user selects
+     * @param customer
+     * @param canteenChoosed
+     * @param sc
+     * @return
+     */
     private static Stall getStall(Customer customer, Canteen canteenChoosed, Scanner sc) {
         try{
             System.out.println("The avaliable stalls in " + canteenChoosed + " are:");
@@ -194,7 +252,13 @@ public class UI {
         }
     }
 
-
+    /**
+     * a method to know which canteen the user selects
+     * @param canteens
+     * @param customer
+     * @param sc
+     * @return
+     */
     private static Canteen getCanteen(List<Canteen> canteens, Customer customer, Scanner sc) {
         try{
             System.out.println("Dear " + customer.name + ",");
@@ -226,6 +290,9 @@ public class UI {
         }
     }
 
+    /**
+     * a method to greet the user at the start of the program
+     */
     public static void greet(){
         System.out.println("____________________________________________________________\n");
         System.out.println(" Hello! I'm Canteenhelper\n");
@@ -242,6 +309,10 @@ public class UI {
         System.out.println("____________________________________________________________\n");
     }
 
+    /**
+     * a method to display help information for the user
+     * if the user does not know what to do next
+     */
     public static void help() {
         System.out.println("____________________________________________________________\n");
         System.out.println("Hello! Here is a list of commands you can try:");
@@ -253,12 +324,26 @@ public class UI {
         System.out.println("____________________________________________________________\n");
     }
 
+    /**
+     * method to check comments
+     * based on list of dishes
+     * user needs to choose y/n
+     * @param dCs
+     */
     public static void checkComment(List<Dish> dCs) {
         for (int i = 0; i < dCs.size(); i++) {
             System.out.println(dCs.get(i).getComment());
         }
     }
 
+    /**
+     * a method to check the operating time of a canteen
+     * prints operating time of user selected canteen
+     * user needs to choose the number before canteen list
+     * @param canteens
+     * @param customer
+     * @param sc
+     */
     public static void checkCanteenOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc){
         System.out.println("Choose the canteen you want to check:");
         List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
@@ -278,7 +363,16 @@ public class UI {
         sc.nextLine();
     }
 
-
+    /**
+     * a method to check the operating time of a stall
+     * prints operating time of user selected stall
+     * user needs to choose the number before the canteen list
+     * and stall list
+     * to get the corresponding one
+     * @param canteens
+     * @param customer
+     * @param sc
+     */
     public static void checkStallOperatingTime(List<Canteen> canteens,Customer customer,Scanner sc){
         System.out.println("Input the canteen which your desired stall belongs to: \n");
         List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
@@ -307,7 +401,14 @@ public class UI {
         System.out.println("____________________________________________________________\n");
     }
 
-
+    /**
+     * a method to change order
+     * if the user wants to change type of order
+     * user needs to input index of order and what order type he/she wants to change to
+     * @param customer
+     * @param input
+     * @param Order
+     */
     public static void changeOrder(Customer customer,String input,ArrayList<Order> Order)
     {
         System.out.println("____________________________________________________________\n");
@@ -329,6 +430,11 @@ public class UI {
 
     }
 
+    /**
+     * a method to print all the orders made by the user
+     * @param input
+     * @param Order
+     */
     public static void printOrder(String input,ArrayList<Order> Order) {
         System.out.println("____________________________________________________________\n");
         for (int i = 0; i < Order.size(); i++) {
@@ -350,6 +456,14 @@ public class UI {
 
 
     }
+
+    /**
+     * a method to delete one order
+     * if user wants to delete one order from what he had ordered
+     * user needs to provide order index to delete
+     * @param input
+     * @param Order
+     */
     public static void deleteOrder(String input,ArrayList<Order> Order) {
         System.out.println("____________________________________________________________\n");
         System.out.println("Noted. I've removed this order:  ");
@@ -359,6 +473,13 @@ public class UI {
         System.out.println("Now you have " + Order.size() + " orders in the list. ");
         System.out.println("____________________________________________________________\n");
     }
+
+    /**
+     * a method for user to find all the orders containing certain dish
+     * user needs to input dish name
+     * @param input
+     * @param Order
+     */
     public static void findDishinOrder(String input,ArrayList<Order> Order) {
         System.out.println("____________________________________________________________\n");
         System.out.println("Here are the matching orders in your list:\n");
