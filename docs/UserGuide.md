@@ -4,6 +4,11 @@
 
 PaperTrade is a command line trading simulator that lets you try your hand at trading stocks with no risk!
 
+__Note: Do not panic if you see the `API limit reached` error!__
+
+What you are using is a free version. Hence, there is a limit of 5 API requests per minute.
+You can pay for the premium version starting at only $29.99/month!
+
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
