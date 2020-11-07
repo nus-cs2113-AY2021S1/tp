@@ -9,7 +9,6 @@ import seedu.rex.data.hospital.Appointment;
 import seedu.rex.storage.Storage;
 import seedu.rex.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**

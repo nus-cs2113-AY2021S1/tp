@@ -14,6 +14,7 @@ import seedu.rex.storage.Storage;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 
@@ -22,18 +23,15 @@ import java.util.logging.Level;
  */
 public class Ui {
 
-    public static final String LOGO =
-            " _    _                 _ _        _                                  _____     __   __\n"
-                    + "\t | |  | |               (_| |      | |                                |  __ \\    \\ \\ / /\n"
-                    + "\t | |__| | ___  ___ _ __  _| |_ __ _| |___  __ _ _   _ _ __ _   _ ___  | |__) |___ \\ V / \n"
-                    + "\t |  __  |/ _ \\/ __| '_ \\| | __/ _` | / __|/ _` | | | | '__| | | / __| |  _  // _ \\ > <  \n"
-                    + "\t | |  | | (_) \\__ | |_) | | || (_| | \\__ | (_| | |_| | |  | |_| \\__ \\ | | \\ |  __// . \\"
-                    + " \n"
-                    + "\t |_|  |_|\\___/|___| .__/|_|\\__\\__,_|_|___/\\__,_|\\__,_|_|   \\__,_|___/ |_|  \\_\\___/_/ "
-                    + "\\_\\\n"
-                    + "\t                  | |                                                                   \n"
-                    + "\t                  |_|                                                                   "
-                    .replaceAll("\n", System.lineSeparator());
+    public static final String LOGO = String.join(System.lineSeparator(),
+            " _    _                 _ _        _                                  _____     __   __",
+            "| |  | |               (_| |      | |                                |  __ \\    \\ \\ / /",
+            "| |__| | ___  ___ _ __  _| |_ __ _| |___  __ _ _   _ _ __ _   _ ___  | |__) |___ \\ V / ",
+            "|  __  |/ _ \\/ __| '_ \\| | __/ _` | / __|/ _` | | | | '__| | | / __| |  _  // _ \\ > <  ",
+            "| |  | | (_) \\__ | |_) | | || (_| | \\__ | (_| | |_| | |  | |_| \\__ \\ | | \\ |  __// . \\ ",
+            "|_|  |_|\\___/|___| .__/|_|\\__\\__,_|_|___/\\__,_|\\__,_|_|   \\__,_|___/ |_|  \\_\\___/_/ \\_\\",
+            "                 | |                                                                   ",
+            "                 |_|                                                                   ");
     private static final String DOTTED_LINE = "____________________________________________________________";
     private static final String DATE_ERROR = "Error in date format.";
     private static final String BLANK_INPUT_ERROR = "Input cannot be blank!";
@@ -45,7 +43,7 @@ public class Ui {
      * @param string String to print.
      */
     private void printWithIndent(String string) {
-        System.out.println("\t " + string);
+        Arrays.stream(string.split(System.lineSeparator())).forEach((line) -> System.out.println("\t " + line));
     }
 
     /**
