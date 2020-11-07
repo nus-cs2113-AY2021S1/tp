@@ -33,6 +33,30 @@ public class Model {
         return listMap.get(listType);
     }
 
+    // @@author MuhammadHoze
+    /**
+     * Clears all lists in the model.
+     *
+     * @throws DukeException If lists are already cleared.
+     */
+    public void clear() throws DukeException {
+        TaskList tasks = (TaskList) getList(ListType.TASK_LIST);
+        BookList books = (BookList) getList(ListType.BOOK_LIST);
+        LinkList links = (LinkList) getList(ListType.LINK_LIST);
+        ModuleList modules = (ModuleList) getList(ListType.MODULE_LIST);
+
+        if ((links.size() != 0 || books.size() != 0 || modules.size() != 0)) {
+            getList(ListType.TASK_LIST).clearItems();
+            getList(ListType.BOOK_LIST).clearItems();
+            getList(ListType.LINK_LIST).clearItems();
+            getList(ListType.MODULE_LIST).clearItems();
+            Ui.dukePrint(Messages.MESSAGE_CLEAR);
+        } else {
+            throw new DukeException(Messages.MESSAGE_CLEARED);
+        }
+    }
+
+    // @@author
     public void load() {
         boolean errorMessage = false;
         try {
