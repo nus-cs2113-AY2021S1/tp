@@ -205,7 +205,7 @@ The command is executed in the following steps:
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand/ExecFavCommand.png)
 
-####Design Considerations
+#### Design Considerations
 ##### Aspect: Choice of command object in FavList to execute
 |**Approach** |**Choosing command by index in list (Current choice)**|**Choosing command by description in list**|
 |-----|-------|-------|
