@@ -13,7 +13,7 @@ public class Search extends ReadOnlyCommand {
     public static final String COMMAND_WORD = "search";
     // Search by description, can extend to other attributes
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-        "^search (?<toSearch>(\\w+\\s*)+\\w*)$");
+        "^(?<toSearch>(\\w+\\s*)+\\w*)$");
 
     private final String toSearch;
 

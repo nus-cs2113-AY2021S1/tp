@@ -17,7 +17,7 @@ public class Add extends ModificationCommand {
     public static final String COMMAND_WORD = "add";
     // Default date: day that the task is created, default priority: 0 (low to high: 0 - 2)
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-            "^add (?<description>(\\w+\\s*)+\\w*)"
+            "^(?<description>(\\w+\\s*)+\\w*)"
                     + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?"
                     + "( st/(?<st>\\d{4}))?"
                     + "( et/(?<et>\\d{4}))?"
