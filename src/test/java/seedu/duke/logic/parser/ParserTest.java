@@ -6,6 +6,7 @@ import seedu.duke.exceptions.CustomException;
 import seedu.duke.model.bus.Bus;
 import seedu.duke.model.bus.BusData;
 import seedu.duke.model.bus.BusStops;
+import seedu.duke.model.favorite.FavList;
 
 import java.util.ArrayList;
 
@@ -100,6 +101,17 @@ class ParserTest {
     }
 
     @Test
+    void extractType_addFavCommand_returnsFalse() throws CustomException {
+        FavList list = new FavList();
+        String fav = "/help";
+        Parser p = new Parser(fav);
+        p.extractType();
+        p.setUserInput("/addfav");
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
     void extractType_dineCommand_returnsTrue() throws CustomException {
         String command = "/dine science";
         Parser p = new Parser(command);
@@ -108,9 +120,36 @@ class ParserTest {
     }
 
     @Test
+    void extractType_listFavCommand_returnsFalse() throws CustomException {
+        FavList list = new FavList();
+        String fav = "/help";
+        Parser p = new Parser(fav);
+        p.extractType();
+        p.setUserInput("/addfav");
+        p.extractType();
+        p.setUserInput("/listfav");
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
     void extractType_dineInfoCommand_returnsTrue() throws CustomException {
         String command = "/dineinfo arise";
         Parser p = new Parser(command);
+
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
+    void extractType_deleteFavCommand_returnsFalse() throws CustomException {
+        FavList list = new FavList();
+        String fav = "/help";
+        Parser p = new Parser(fav);
+        p.extractType();
+        p.setUserInput("/addfav");
+        p.extractType();
+        p.setUserInput("/deletefav 1");
         boolean isOngoing = p.extractType();
         assertTrue(isOngoing);
     }
@@ -123,4 +162,45 @@ class ParserTest {
         assertTrue(isOngoing);
     }
 
+    @Test
+    void extractType_execFavCommand_returnsFalse() throws CustomException {
+        FavList list = new FavList();
+        String command = "/execfav 1";
+        String fav = "/help";
+        Parser p = new Parser(fav);
+        p.extractType();
+        p.setUserInput("/addfav");
+        p.extractType();
+        p.setUserInput(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
+    void extractType_descFavCommand_returnsFalse() throws CustomException {
+        FavList list = new FavList();
+        String command = "/descfav 1 /to help function";
+        String fav = "/help";
+        Parser p = new Parser(fav);
+        p.extractType();
+        p.setUserInput("/addfav");
+        p.extractType();
+        p.setUserInput(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
+
+    @Test
+    void extractType_clearFavCommand_returnsFalse() throws CustomException {
+        FavList list = new FavList();
+        String command = "/clearfav";
+        String fav = "/help";
+        Parser p = new Parser(fav);
+        p.extractType();
+        p.setUserInput("/addfav");
+        p.extractType();
+        p.setUserInput(command);
+        boolean isOngoing = p.extractType();
+        assertTrue(isOngoing);
+    }
 }
