@@ -114,8 +114,10 @@ public class Parser {
                 if (processedParam[1].contains("/")) {
                     trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 1).trim();
                 } else if (trimmedParam.split("\\s+").length >= 2) {
-                    int lengthWithoutTime = trimmedParam.length() - timeFormatLength;
-                    trimmedParam = trimmedParam.substring(0,lengthWithoutTime).trim();
+                    if (InputChecker.checkDate(trimmedParam)) {
+                        int lengthWithoutTime = trimmedParam.length() - timeFormatLength;
+                        trimmedParam = trimmedParam.substring(0, lengthWithoutTime).trim();
+                    }
                 }
                 switch (param) {
                 case "x/":
