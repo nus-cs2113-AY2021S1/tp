@@ -399,7 +399,7 @@ If you encounter any errors, take note of the following warnings. If problems st
 **Warning:**
 * Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to mark your links as starred. (Refer to 1.2) 
 * Ensure that the link number that you want to mark as star is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.1 to find out the correct link number. 
-
+<!-- @@author slightlyharp -->
 ## 2. Timetable
 Do you find it a hassle to keep track of all your activities and Zoom links for online classes?
 Do you wish there was a simple, visual way to organise your day and foresee any clashes in your schedule?
@@ -492,6 +492,7 @@ Instruction:
 
 Expected output:
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
+<!-- @@author -->
 
 ## 3. Academic
 Have you ever had to dig through tons of emails to look for the contact of a particular TA 
