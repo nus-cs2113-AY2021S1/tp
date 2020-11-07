@@ -2,32 +2,48 @@ package academic;
 
 import exceptions.InvalidEmailException;
 import exceptions.RepeatedGradeException;
-import timetable.DateList;
-import userinterface.Ui;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
-
+/**
+ *Facilitates the storage of data on to a local storage file.
+ */
 public class AcademicStorage {
-
     private static final String filePath = "data/academic.txt";
 
+    /**
+     * Determines the existence and validity of the stored file before running the loadText command.
+     * @param listOfPerson current list of person.
+     * @param listOfGrades current list of grade.
+     * @throws IOException when there is failed I/O operations.
+     */
     public static void loadFile(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades) throws IOException {
         try {
-            loadText(listOfPerson,listOfGrades);
-        } catch (FileNotFoundException | InvalidEmailException | RepeatedGradeException e) {
+            loadText(listOfPerson, listOfGrades);
+        } catch (FileNotFoundException e) {
             File f = new File(filePath);
             f.createNewFile();
             System.out.println("data/academic.txt is not found, creating a new file now!");
+        } catch (StringIndexOutOfBoundsException | NumberFormatException
+                | InvalidEmailException | RepeatedGradeException e) {
+            File f = new File(filePath);
+            f.createNewFile();
+            System.out.println("data/academic.txt is corrupted, invalid entries have been removed.");
         }
     }
 
+    /**
+     * Reads the local storage file and update the array lists containing person and grades accordingly.
+     * @param listOfPerson current list of person.
+     * @param listOfGrades current list of grade.
+     * @throws FileNotFoundException when a local storage file is not found.
+     * @throws InvalidEmailException when email accepted is not a valid email
+     * @throws RepeatedGradeException when an existing grade is added repeatedly.
+     */
     private static void loadText(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades)
             throws FileNotFoundException, InvalidEmailException, RepeatedGradeException {
         File f = new File(filePath); // create a File for the given file path
@@ -42,6 +58,12 @@ public class AcademicStorage {
         }
     }
 
+    /**
+     * Updates the local storage file based on the array lists containing person and grades accordingly.
+     * @param listOfPerson current list of person.
+     * @param listOfGrades current list of grade.
+     * @throws IOException when there is failed I/O operations.
+     */
     public static void writeFile(ArrayList<Person> listOfPerson, ArrayList<Grade> listOfGrades)
             throws IOException {
 

@@ -8,6 +8,13 @@ import java.util.ArrayList;
  * Represents a grade book in study-it.
  */
 public class GradeBook {
+
+    /**
+     * Adds a grade to an array list of grades.
+     * @param args parameters of the grade.
+     * @param currentGrades array list of grade.
+     * @throws RepeatedGradeException when grade added is already present in list of grade.
+     */
     public static void addGrade(String[] args, ArrayList<Grade> currentGrades) throws RepeatedGradeException {
 
         for (Grade grade : currentGrades) {
@@ -26,10 +33,20 @@ public class GradeBook {
         }
     }
 
+    /**
+     * Delete a grade from an array list of grades.
+     * @param indexToBeDeleted index of the grade to be deleted.
+     * @param currentGrades array list of grade.
+     */
     public static void deleteGrade(Integer indexToBeDeleted, ArrayList<Grade> currentGrades) {
         currentGrades.remove(indexToBeDeleted - 1);
     }
 
+    /**
+     * Calculate current CAP and return it as a string.
+     * @param currentGrades array list of grade.
+     * @return string with current CAP.
+     */
     public static String printCap(ArrayList<Grade> currentGrades) {
         double totalGradeScore = 0;
         int totalCredits = 0;
@@ -47,6 +64,11 @@ public class GradeBook {
         }
     }
 
+    /**
+     * SU a grade.
+     * @param indexToBeSued index of the grade to be SUed.
+     * @param currentGrades array list of grade.
+     */
     public static void suGradeInGradeBook(Integer indexToBeSued, ArrayList<Grade> currentGrades) {
         Grade.suGrade(currentGrades.get(indexToBeSued - 1));
     }
