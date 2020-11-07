@@ -27,6 +27,7 @@ Format: `[name]/[day of week]/[time]`
 
 Example of usage:
 'wy/2/1800'
+‘fqy/1/1200
 
 * day of week should between 1-7 (includes)
 * time should follow this format: 900 or 1600, represent 09:00 and 16:00 respectively.
@@ -89,6 +90,7 @@ Format: `y/n`
 
 Example of usage:
 'y'
+'n'
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/comment.png)
 
@@ -103,6 +105,7 @@ Example of usage:
 
 ### 3.3 delete the specific order: `delete [number]`
 delete the order based on the number from user
+user needs to input the number of order 
 
 Format: `delete [number]`
 
@@ -113,6 +116,7 @@ Example of usage:
 
 ### 3.4 finde the specific order: `find [dish name]`
 find the specific dish based on the user input dish name
+from the order list made by the user
 
 Format: `find [dish name]`
 
@@ -132,12 +136,19 @@ Example of usage:
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/lis.png)
 
 ### 3.6 change the order: `change/[number]/[type]`
-Change the order type 
+Change the order type to the type user inputed
 
 Format: `change/[number]/[type]`
 
+type should choose from:
+1. dine in
+2. delivery
+3. take away
+
 Example of usage:
 'change/2/dine in'
+'change/1/delivery
+
 
 ![image](
 
