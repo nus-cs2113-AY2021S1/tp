@@ -2,30 +2,12 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
-import seedu.duke.model.Model;
-import seedu.duke.model.ListType;
 import seedu.duke.model.item.Task;
-import seedu.duke.model.itemlist.TaskList;
-
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class DateCommandTest {
-    private static final String TEST_DESCRIPTION = "test description";
-    private HashMap<String, String> argumentsMap;
-    private Model model;
-    private TaskList tasks;
-
-    /**
-     * Resets the fields for each test case.
-     */
-    void resetFields() {
-        model = new Model();
-        argumentsMap = new HashMap<>();
-        tasks = (TaskList) model.getList(ListType.TASK_LIST);
-    }
+class DateCommandTest extends CommandTest {
 
     @Test
     void execute_validDate_setsNewDate() throws DukeException {

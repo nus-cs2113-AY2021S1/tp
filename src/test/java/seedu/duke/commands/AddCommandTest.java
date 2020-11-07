@@ -2,38 +2,21 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
-import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
 import seedu.duke.model.item.Task;
-import seedu.duke.model.itemlist.TaskList;
-
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AddCommandTest {
-    private static final String TEST_DESCRIPTION = "test description";
-    private HashMap<String, String> argumentsMap;
-    private Model model;
-    private TaskList taskList;
-
-    /**
-     * Resets the fields for each test case.
-     */
-    void resetFields() {
-        model = new Model();
-        argumentsMap = new HashMap<>();
-        taskList = (TaskList) model.getList(ListType.TASK_LIST);
-    }
+class AddCommandTest extends CommandTest {
 
     @Test
     void execute_validCommand_addsTodo() throws DukeException {
         resetFields();
 
         new AddCommand(TEST_DESCRIPTION, argumentsMap, ListType.TASK_LIST).execute(model);
-        assertEquals(1, taskList.size());
-        assertEquals(TEST_DESCRIPTION, taskList.get(0).getDescription());
+        assertEquals(1, tasks.size());
+        assertEquals(TEST_DESCRIPTION, tasks.get(0).getDescription());
     }
 
     @Test
@@ -44,8 +27,8 @@ class AddCommandTest {
         argumentsMap.put("p", inputPriority);
 
         new AddCommand(TEST_DESCRIPTION, argumentsMap, ListType.TASK_LIST).execute(model);
-        assertEquals(1, taskList.size());
-        assertEquals(Integer.parseInt(inputPriority), taskList.get(0).getPriority());
+        assertEquals(1, tasks.size());
+        assertEquals(Integer.parseInt(inputPriority), tasks.get(0).getPriority());
     }
 
     @Test
@@ -56,8 +39,8 @@ class AddCommandTest {
         argumentsMap.put("c", inputCategory);
 
         new AddCommand(TEST_DESCRIPTION, argumentsMap, ListType.TASK_LIST).execute(model);
-        assertEquals(1, taskList.size());
-        assertEquals(inputCategory, taskList.get(0).getCategory());
+        assertEquals(1, tasks.size());
+        assertEquals(inputCategory, tasks.get(0).getCategory());
     }
 
     @Test
@@ -85,7 +68,7 @@ class AddCommandTest {
         argumentsMap.put("date", inputDate);
 
         new AddCommand(TEST_DESCRIPTION, argumentsMap, ListType.TASK_LIST).execute(model);
-        assertEquals(expectedDateString, taskList.get(0).getDateString(Task.DATETIME_PRINT_FORMAT));
+        assertEquals(expectedDateString, tasks.get(0).getDateString(Task.DATETIME_PRINT_FORMAT));
     }
 
     @Test
