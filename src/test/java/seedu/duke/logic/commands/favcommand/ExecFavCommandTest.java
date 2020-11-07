@@ -80,9 +80,6 @@ public class ExecFavCommandTest {
         }
     }
 
-    /*
-    As size task in index 2 will be deleted from test of invalid command, valid index boundary is 3
-     */
     @Test
     void executeCommand_inputValidIndex_success() throws CustomException {
         String input = "4";
