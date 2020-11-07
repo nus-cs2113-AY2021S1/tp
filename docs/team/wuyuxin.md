@@ -27,10 +27,9 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Created the Nav@NUS logo to be displayed during the welcome message.
-  * Set word limit for bus route output. (Pull Request: [/#52](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/52))
-  * Added bus stops enum class. (Pull Request: [/#28](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/28))
-  * Wrote additional tests for /addfav feature. (Pull Request: [/#109](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/109))
-  * Added bus stops enum class. (Pull Request: [/#28](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/28))
+  * Set word limit for bus route output. (Pull Request: [\#52](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/52))
+  * Added bus stops enum class. (Pull Request: [\#28](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/28))
+  * Wrote additional tests for /addfav feature. (Pull Request: [\#109](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/109))
   
 * **Contributions to team-based tasks**:
   * Maintained the issue tracker for specific features and bugs.
@@ -38,12 +37,12 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Add documentation for the features `/addfav`, `/liststops`, `/help` and `/exit`. (Pull Request: [\#88](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/88),
-    [/#148](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/148))
+    [\#148](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/148))
   * Developer Guide:
     * Added implementation details of the `/addfav` and `/liststops` feature. (Pull Request: [\#113](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/113),
-    [/#203](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/203))
+    [\#203](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/203))
     
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#26](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/26), [\#74](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/74)
+  * PRs reviewed (with non-trivial review comments): [\#26](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/26), [\#74](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/74), [\#206](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/206))
   * Reported bugs and suggestions for other teams in the class (example: [click here](https://github.com/Lezn0/ped/issues))
   * Provided suggestions for the developer guide of another team (example: [click here](https://github.com/nus-cs2113-AY2021S1/tp/pull/36#discussion_r514890722))
