@@ -9,7 +9,7 @@ import seedu.duke.utility.Ui;
 public class AddReviewCommand extends Command {
 
     /**
-     * Adds a rating and a review to a show
+     * Adds a rating and a review to a show.
      * @param input String with show title, rating and review to be inputted
      * @throws ArrayIndexOutOfBoundsException throws exception when input do not have correct no. of arguments
      * @throws NullPointerException throws exception when show not in list

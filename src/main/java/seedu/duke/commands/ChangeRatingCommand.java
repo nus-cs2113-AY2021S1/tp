@@ -13,7 +13,7 @@ public class ChangeRatingCommand extends Command {
     }
 
     /**
-     * Changes rating of a show
+     * Changes rating of a show.
      * @param showName Name of show which rating is to be changed
      * @param targetRating New rating to be updated into showlist
      * @throws NullPointerException throws exception when show is not in list

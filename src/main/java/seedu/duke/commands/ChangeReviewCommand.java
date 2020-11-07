@@ -13,7 +13,7 @@ public class ChangeReviewCommand extends Command {
     }
 
     /**
-     * Changes a review of a show
+     * Changes a review of a show.
      * @param showName Name of show which review is to be changed
      * @param review New review to be updated
      * @throws NullPointerException throws exception when show is not in the list

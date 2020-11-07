@@ -13,7 +13,7 @@ public class DeleteReviewCommand extends Command {
     }
 
     /**
-     * Deletes review of a show
+     * Deletes review of a show.
      * @param showName Name of show which review is to be deleted
      * @throws NullPointerException throws exception when show is not in the list
      * @throws IndexOutOfBoundsException throws exception when there is no review
