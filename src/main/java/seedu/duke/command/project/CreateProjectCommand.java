@@ -7,6 +7,7 @@ import seedu.duke.model.sprint.Sprint;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
+import java.util.Map;
 
 import static seedu.duke.command.CommandSummary.TITLE;
 import static seedu.duke.command.CommandSummary.DURATION;
@@ -25,8 +26,15 @@ public class CreateProjectCommand extends ProjectCommand {
 
     public void execute() {
 
+        boolean projectExists;
         String title;
         title = this.parameters.get(TITLE).trim();
+        projectExists = checkTitleExist(title);
+
+        if (projectExists) {
+            handleDuplicateProject("User tried to add duplicate project.");
+            return;
+        }
 
         String description;
         description = parameters.get(DESCRIPTION).trim();
@@ -57,6 +65,22 @@ public class CreateProjectCommand extends ProjectCommand {
 
     private void printCreatedProject(Project addProj) {
         Ui.showToUserLn("\tTitle: " + addProj.getTitle());
+    }
+
+    public boolean checkTitleExist(String title) {
+
+        Project proj;
+        if (projectManager.isEmpty()) {
+            return false;
+        }
+
+        for (Map.Entry<Integer, Project> entry: projectManager.getProjectList().entrySet()) {
+            proj = entry.getValue();
+            if (proj.getTitle().equalsIgnoreCase(title)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
