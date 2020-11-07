@@ -54,7 +54,7 @@ Code contributed: [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dash
 
 ### Documentation
 * **User Guide**:
-    * Update the User Guide to include exmaples of the input and output from the program. [#54](https://github.com/AY2021S1-CS2113-T16-3/tp/pull/54/commits/648043fd7c90f16c964d1d773efdd4b56e6d1939)
+    * Update the User Guide to include examples of the input and output from the program. [#54](https://github.com/AY2021S1-CS2113-T16-3/tp/pull/54/commits/648043fd7c90f16c964d1d773efdd4b56e6d1939)
 
 * **Developer Guide**:
     * Added the Package Diagram as well as the High Level Class Diagram to give the overall view of the project structure.
