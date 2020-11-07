@@ -1,41 +1,9 @@
 # WatchNext Developer Guide
 
+* Table of Contents
+{:toc}
 
-- [WatchNext Developer Guide](#watchnext-developer-guide)
-  - [1. Introduction](#1-introduction)
-    - [1.a Purpose](#1a-purpose)
-    - [1.b Scope](#1b-scope)
-  - [2. Setting up](#2-setting-up)
-    - [2.a Prerequisites](#2a-prerequisites)
-    - [2.b Setting up the project in your computer](#2b-setting-up-the-project-in-your-computer)
-    - [2.c Verifying the setup](#2c-verifying-the-setup)
-    - [2.d Before Writing Code](#2d-before-writing-code)
-  - [3. Design](#3-design)
-  - [4. Implementation](#4-implementation)
-    - [AddCommand](#addcommand)
-    - [EditCommand](#editcommand)
-    - [DeleteCommand](#deletecommand)
-    - [AddReview Command](#addreviewcommand)
-    - [ChangeRatingCommand](#changeratingcommand)
-    - [DeleteRatingCommand](#deleteratingcommand)
-    - [ChangeReviewCommand](#changereviewcommand)
-    - [DeleteReviewCommand](#deletereviewcommand)
-    - [WatchCommand](#watchcommand)
-    - [UpdateShowEpisodeProgressCommand](#updateshowepisodeprogresscommand)
-    - [UpdateShowSeasonCommand](#updateshowseasoncommand)
-    - [UpdateTimeLimitCommand](#updatetimelimitcommand)
-    - [Storage](#storage)
-    - [ErrorHandling](#error-handling)
-  - [5. Documentation](#5-documentation)
-  - [6. Testing](#6-testing)
-  - [7. Dev Ops](#7-dev-ops)
-  - [Appendix A: Product Scope](#appendix-a-product-scope)
-  - [Appendix B: User Stories](#appendix-b-user-stories)
-  - [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
-  - [Appendix D: Glossary](#appendix-d-glossary)
-  - [Appendix E: Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
 
-   
 ## 1. Introduction
 
 ### 1.a Purpose
@@ -56,12 +24,12 @@ This section will show you the requirements that you need to fulfill in order to
 ### 2.a Prerequisites
 
 1. **JDK `11`**  
-
+<br>   
 > **[NOTE]**
 > The `WatchNext.jar` file is compiled using the Java version mentioned above.
 
 2. **IntelliJ IDEA IDE**
-
+ <br>  
 > **[NOTE]**
 > IntelliJ has Gradle and JavaFx plugins installed by default.
 > Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
@@ -97,12 +65,10 @@ This will generate all the resources required by the application and tests.
 
 ### 2.d Before Writing Code
  
- 1. Set up CI
- 
+ 1. Set up CI (Continuous Integration) <br> <br> 
  This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the master branch or to any PR. No set up required.
  
- 2. Learn the design
- 
+ 2. Learn the design <br> <br> 
  When you are ready to start coding, we recommend that you get some sense of the overall design by reading about WatchNext’s architecture [here](#3-design).
 
 ## 3. Design
@@ -159,8 +125,9 @@ episodes for each season respectively,Duration of an episode)
 
 **Step 5**
 
+* AddCommand checks the `ShowList` for duplicates. If there are duplicates, the user is prompted if they would like to
+overwrite the duplicate entry.
 * The `Show` is added to the `ShowList`.
-
 
 **Step 6** 
 
@@ -179,10 +146,19 @@ illustrate the steps in a visual form.
 >
 > `NullPointerException` will be thrown when show entered by user is not found in the showlist.
 
+<img src = "images/programFlowUG.png" width = "450">
+ 
+ <sub><sup>The blue bubbles represent the Program portion of the interaction, while the yellow bubbles indicate the user input</sup></sub>
+
+ &nbsp;
+   
+*Figure 1: Program Flow for Edit Command*
+
 <img src = "images/EditCommand.png" width = "700">
  
  <br> 
-*Figure 1: Sequence Diagram for Edit Command*
+*Figure 2: Sequence Diagram for Edit Command*
+
 
 **Step 1**
 
@@ -204,15 +180,16 @@ duration (of an episode) respectively.
 
 * The user inputs `done`, and the copy of the `Show` object is inserted into the `ShowList`, replacing the old object.
 
-
-
 ### DeleteCommand
   
 The `delete` command takes in 1 parameter, the show to be deleted. Following that, the command proceeds to delete the
 `Show` from the `ShowList`. The `delete` command is invoked by the `InputParser` Method `parseDeleteCommand`.
 
-
 Given below is an example usage scenario and how the `DeleteCommand` Class behaves at each step.
+
+<img src = "images/DeleteCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for Delete Command*
 
 **Step 1**
 
@@ -273,6 +250,10 @@ updated to.
 
 Given below is an example usage scenario and how the `ChangeRatingCommand` Class behaves at each step.
 
+<img src = "images/ChangeRatingCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for ChangeRating Command*
+
 **Step 1**
 
 * The user types in `changerating friends 3` , assuming that friends has been added by the user beforehand.
@@ -310,7 +291,12 @@ The `deleterating` command deletes the rating of the desired show.
 The `deleterating` command takes in 1 parameter, the show which rating is to be deleted.Following that, the command 
 proceeds to delete the rating of the show that was inputted by the user.
 
+
 Given below is an example usage scenario and how the `DeleteCommand` Class behaves at each step.
+
+<img src = "images/DeleteRatingCommand.png" width = "700">
+
+*Figure 1: Sequence Diagram for DeleteRating Command*
 
 **Step 1**
 
@@ -328,6 +314,7 @@ The `deleteRating` method in `DeleteRatingCommand` class is called.
 
 **Step 3**
 
+
 * The `deleteRating` method starts with retrieving the `Show` from the `ShowList`
 
 **Step 4**
@@ -340,7 +327,35 @@ The `deleteRating` method in `DeleteRatingCommand` class is called.
 
 **Step 6**
 
+<<<<<<< HEAD
+The changes are reflected back to the user. At the same time, changes are saved into the showList.txt file.
+
+### Add Review Command
+
+The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. 
+Within the AddReview class
+
+**Step 1**
+
+The string is tokenised into separate words.
+
+**Step 2**
+
+The corresponding show is retrieved from the show list.
+
+**Step 3**
+
+The rating of the show is updated.
+
+**Step 4**
+
+The review of the rating is added to the show.
+
+**Step 5**
+
+
 * The changes are reflected back to the user. Concurrently, the changes will be saved to the showList.txt file.
+
 
 ### ChangeReviewCommand
 
@@ -465,6 +480,7 @@ The `UpdateShowEpisodeProgressCommand` class extends `Command` by providing meth
 **Step 2**
 
 *  `processCommand()` is called and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command.
+
 
 ### UpdateShowSeasonCommand
 
@@ -656,6 +672,8 @@ actual time they spend watching shows and is a feature that is not provided by m
 
 * *Mainstream OS* - Windows, Linux, Unix, OS-X
 
+* *Continuous Integration* - A software practice that requires frequently committing code to a shared repository
+
 ##  Appendix E: Instructions for manual testing
 
 **[NOTE]** The instructions and sample test cases only act as a guide for you to start testing on some of our application features. You are free to test our features with more test cases of your own. Refer to [Section 2.a,“Prerequisites”](#2a-prerequisites) for the instructions to set up our program on your computer.
@@ -812,10 +830,8 @@ Expected: An error message indicating that the input supplied was in a wrong for
 1. Test case: `list`<br>
 Expected: A list of the shows you have added will be displayed into the terminal. If no shows have been added, the list wil be empty.
 
-2. Test case: `List`<br>
+2. Test case: `list a`<br>
 Expected: An error message indicating that the input supplied was in a wrong format.
-
-> **[NOTE]** The command input is case-sensitive.
 
 #### Finding a show in your watch list
 

@@ -150,12 +150,15 @@ public class Show {
         des.append("Seasons ").append(numSeasons).append(" | Episodes: ");
         for (int episode : numEpisodesForSeasons) {
             des.append(episode);
-            des.append(" ");
+            des.append(" ,");
         }
+        des.deleteCharAt(des.length() - 1);
         if (!review.equals("null")) {
-            des.append("| Review: ");
+            des.append("| Review:");
             des.append(review);
         }
+        des.append("| Duration: ");
+        des.append(episodeDuration);
         return des.toString();
     }
 

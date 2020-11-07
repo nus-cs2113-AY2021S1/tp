@@ -20,9 +20,15 @@ public class EditCommand {
     /**
      * Edits the number of seasons for a particular show.
      * @param editCommand number of seasons
+     * @throws ArithmeticException when the input is negative
+     * @throws NumberFormatException when input is not int or
+     *      when current season is set more than the new number of seasons
      */
-    public static void editSeasons(String editCommand) {
+    public static void editSeasons(String editCommand) throws ArithmeticException, NumberFormatException {
         int numSeasons = Integer.parseInt(editCommand.substring(7));
+        if (numSeasons < 1) {
+            throw new ArithmeticException();
+        }
         int initialNumSeasons = show.getNumSeasons();
         show.setNumSeasons(numSeasons);
         int[] episodes;
@@ -37,8 +43,11 @@ public class EditCommand {
                 episodes[i] = 1;
             }
         } else {
+            if (show.getCurrentSeason() > numSeasons) {
+                throw new NumberFormatException();
+            }
             episodes = new int[numSeasons];
-            //Started for 1 to reference the correct season number
+            //Started from 1 to reference the correct season number
             for (int i = 0; i < numSeasons; i++) {
                 episodes[i] = show.getRawEpisodesForSeason(i);
             }
@@ -51,21 +60,27 @@ public class EditCommand {
      * @param input length of episode
      */
     public static void editDuration(String input) {
-        String[] tokenizedInput = input.split(" ");
+        String[] tokenizedInput = input.split(" ",2);
         try {
             int duration = TimeParser.parseTime(tokenizedInput[1]);
+            if (duration < 0) {
+                throw new RuntimeException();
+            }
             show.setEpisodeDuration(duration);
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printBadInputException();
+        } catch (RuntimeException e) {
+            return;
         }
     }
 
     /**
      * changes the number of episodes in each season.
      * @param input number of episodes comma separated
-     * @throws NullPointerException when input is empty
+     * @throws NullPointerException if the number of episodes input by the user is invalid or empty.
+     * @throws NumberFormatException when input is not a number
      */
-    public static void editEpisode(String input) throws NullPointerException {
+    public static void editEpisodes(String input) throws NullPointerException, NumberFormatException {
         String[] numOfEpisodes = input.split(",");
         int i = 0;
         assert numOfEpisodes.length == show.getNumSeasons();
@@ -76,6 +91,9 @@ public class EditCommand {
             } catch (Exception e) {
                 throw new NullPointerException();
             }
+            if (intNumOfEpisodes[i] < 1) {
+                throw new NumberFormatException();
+            }
             i++;
         }
         //I put this below for now in case we need to add checks to ensure numOfEpisodes is not empty
@@ -83,6 +101,16 @@ public class EditCommand {
             throw new NullPointerException();
         }
         show.setNumEpisodesForSeasons(intNumOfEpisodes);
+    }
+
+    /**
+     * Changes the name of current show and add the update show into ShowList.
+     * @param newName the updated name
+     */
+    public static void editName(String newName) {
+        show.setName(newName);
+        DeleteCommand.delete(showName);
+        showName = newName;
     }
 
     /**
@@ -95,24 +123,31 @@ public class EditCommand {
             Ui.printShowNotInList();
             return;
         }
+        try {
+            Scanner in = new Scanner(System.in);
+            Ui.printEditPrompt();
+            while (true) {
+                String editCommand = in.nextLine();
+                if (editCommand.startsWith("name")) {
+                    editName(editCommand.substring(5));
+                } else if (editCommand.startsWith("episode")) {
+                    editEpisodes(editCommand.substring(8));
+                } else if (editCommand.startsWith("season")) {
+                    editSeasons(editCommand);
+                } else if (editCommand.startsWith("duration")) {
+                    editDuration(editCommand);
+                } else if (editCommand.equals("done")) {
+                    ShowList.setShow(showName, show);
+                    break;
+                }
 
-        Scanner in = new Scanner(System.in);
-        Ui.printEditPrompt();
-        while (true) {
-            String editCommand = in.nextLine();
-            if (editCommand.startsWith("name")) {
-                show.setName(editCommand.substring(5));
-            } else if (editCommand.startsWith("episode")) {
-                editEpisode(editCommand.substring(8));
-            } else if (editCommand.startsWith("season")) {
-                editSeasons(editCommand);
-            } else if (editCommand.startsWith("duration")) {
-                editDuration(editCommand);
-            } else if (editCommand.equals("done")) {
-                break;
             }
-            ShowList.setShow(showName, show);
+            Ui.printEditShow(showName);
+            Ui.printShow(showName);
+        } catch (NumberFormatException | ArithmeticException e) {
+            Ui.printBadInputException();
+        } catch (NullPointerException e) {
+            Ui.printInvalidEpisodesInputException();
         }
-        Ui.printEditShow(showName);
     }
 }

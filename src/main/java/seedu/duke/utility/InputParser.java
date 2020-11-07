@@ -48,13 +48,18 @@ public class InputParser {
         String[] singleWordInputs = new String[]{"bye", "list", "help", "watchtime", "example"};
         String command = StringOperations.getFirstWord(input).toLowerCase();
 
-        String[] splitInput = input.split(" ");
+        String[] splitInput = input.toLowerCase().split(" ");
+        boolean commandFormatIsSingleInput = Arrays.asList(singleWordInputs).contains(splitInput[0]);
         if (splitInput.length < 2) {
-            if (!Arrays.asList(singleWordInputs).contains(splitInput[0])) {
+            if (!commandFormatIsSingleInput) {
                 Ui.printInvalidFormatException();
                 return command;
             }
-
+        } else {
+            if (commandFormatIsSingleInput) {
+                Ui.printInvalidFormatException();
+                return command;
+            }
         }
         switch (command) {
 
@@ -152,14 +157,19 @@ public class InputParser {
     private static void parseEditCommand(String input) {
         ArrayList<String> tokenizedString = tokenizeStringArray(input);
         try {
-            EditCommand edit = new EditCommand(tokenizedString.get(1));
-            edit.processCommand();
+            if (tokenizedString.size() > 2) {
+                throw new IllegalArgumentException();
+            }
+            new EditCommand(tokenizedString.get(1));
+            EditCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
             Ui.printSpecifyShowName();
             return;
         } catch (NullPointerException e) {
             Ui.printInvalidEpisodesInputException();
             return;
+        } catch (IllegalArgumentException e) {
+            Ui.printBadInputException();
         }
     }
 
@@ -200,7 +210,6 @@ public class InputParser {
             showWatched.processCommand();
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
-            return;
         }
     }
 
@@ -211,10 +220,8 @@ public class InputParser {
             searchCommand.processCommand();
         } catch (IndexOutOfBoundsException e) {
             Ui.printSpecifyShowName();
-            return;
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
-            return;
         }
     }
 
@@ -223,14 +230,13 @@ public class InputParser {
         UpdateShowEpisodeProgressCommand updateShowProgress;
         try {
             updateShowProgress = new UpdateShowEpisodeProgressCommand(command, updateInputs);
+            updateShowProgress.processCommand();
         } catch (NullPointerException e) {
             Ui.printBadInputException();
-            return;
         } catch (NumberFormatException e) {
             Ui.printInvalidFormatException();
-            return;
         }
-        updateShowProgress.processCommand();
+
 
     }
 
@@ -299,25 +305,27 @@ public class InputParser {
      * Parses command for adding a show into the watch list.
      *
      * @param input Command inputted by user in string format.
-     * @throws IndexOutOfBoundsException if input is empty or the format is invalid.
-     * @throws NullPointerException      if the format of episodes added is invalid.
-     * @throws NumberFormatException      if the format of show name added is invalid.
+     *      catches IndexOutOfBoundsException  if input is empty or the format is invalid.
+     *      catches  NullPointerException      if the format of episodes added is invalid.
+     *      catches  NumberFormatException     if the format of show name added is invalid.
      */
     private static void parseAddCommand(String input) {
         String[] tokenizedInput = input.split(" ");
         try {
             new AddCommand(tokenizedInput);
+            AddCommand.processCommand();
         } catch (NullPointerException e) {
             Ui.printInvalidEpisodesInputException();
             return;
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             Ui.printInvalidFormatException();
             return;
         } catch (NumberFormatException e) {
-            Ui.printAddNameFormatException();
+            Ui.printInvalidFormatException();
             return;
+        } catch (RuntimeException e) {
+            Ui.printBadInputException();
         }
-        Ui.printShowAdded(tokenizedInput[1]);
     }
 
     /**
@@ -399,6 +407,8 @@ public class InputParser {
             Ui.printDeleteReview(input);
         } catch (NullPointerException e) {
             Ui.printNotFoundException();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printNoReview();
         }
     }
 }
