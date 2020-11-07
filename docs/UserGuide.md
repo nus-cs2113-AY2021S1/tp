@@ -19,8 +19,8 @@ to be completed. The users can store the tasks under different subjects and flas
 subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
 
-This user guide provides an in-depth documentation on the installation process, the program features, and
-the program usage to get you started.
+This user guide provides an in-depth documentation on the installation process, the appplication features, and
+the appplication usage to get you started.
 
 Note the following symbols and formatting used in this document:
 
@@ -76,12 +76,15 @@ in each level.
 
 
 ### 3.1 Main Level Features <a name="main-level"></a>
-#### 3.1.1 `help` - Display all commands 
+#### 3.1.1 Displaying all the available commands: `help`
 
-Displays all the available commands.
+Displays all available commands on the main level.  
 
 Format: `help`  
- 
+
+- Use this command whenever you get confused or need help to navigate the application 
+- The appplication will print a list of all the functions available to you at the current level(main) on the command line
+
 Example of usage:
 ```
 help
@@ -104,36 +107,23 @@ bye:           exits the application
 ________________________________________________________________________________________________________________________
 ```
 
-#### 3.1.2 `add` - Add subject
 
-Add a subject.
 
-Format: `add` `[SUBJECT_NAME]`
+#### 3.1.2 Listing all subjects: `list` <a name="list"></a>
 
-Example of usage:
-```
-add CS2101
-```
-Output:
-```
-____________________________________________________________
-Got it. I've added this subject:
-  CS2101
-Now you have 5 subjects in the list.
-____________________________________________________________
-```
-
-#### 3.1.3 `list` - List all subjects <a name="list"></a>
-
-Prints a list of all subjects stored
+Prints a list of all subjects in the main list.
 
 Format: `list`
+
+- Use this command whenever you need to see a list of all the subjects you have keyed into the application
+- The appplication will print the title of all the subjects in your list on the command line
 
 Example of usage:
 ```
 list
 ```
-Output:
+Expected output:
+
 ```
 ____________________________________________________________
 Here are the subject(s) in your list:
@@ -145,17 +135,85 @@ Here are the subject(s) in your list:
 ____________________________________________________________
 ```
 
-#### 3.1.4 `delete` - Delete a subject
+#### 3.1.3 Listing all items: `list all` <a name="list"></a>
+
+Prints a list of all items stored in the appplication.
+
+Format: `list all`
+
+- Use this command if you want to have a look at all the subjects, topics and tasks you have keyed into the application
+- The appplication will print a tree on the command line, and will also show you that you are accessing the main level
+
+Expected output:
+
+```
+____________________________________________________________
+Here's a list of all items:
+(You are currently here)
+├─ 1. CG2027
+│  │  Topics
+│  ├─ 1. Pass Transistor Multiplexers
+│  ├─ 2. Arithmetic Logic Unit
+│  │  Tasks
+│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+├─ 2. CS2101
+│  │  Topics
+│  ├─ 1. Oral Presentation
+│  ├─ 2. Project Demo
+│  │  Tasks
+│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+└─ 3. CS2113T
+   │  Topics
+   ├─ 1. Class Diagram
+   ├─ 2. Abstraction
+   │  Tasks
+   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+____________________________________________________________
+```
+
+#### 3.1.4 Adding a subject: `add`
+
+Adds a subject to the main list.
+
+Format: `add [SUBJECT_NAME]`
+
+- Use this command if you want to add a subject into your list
+- The appplication will print the title of the subject you have added into the list, as well as the amount of subjects you 
+have in the list on the command line
+
+> ⚠️ **_WARNING:_** `SUBJECT_NAME` is case-sensitive. Beware not to add 2 different subjects with the
+> same name in different cases as they will not store the same topics and tasks.
+
+Example of usage:
+```
+add CS2101
+```
+Expected output:
+
+```
+____________________________________________________________
+Got it. I've added this subject:
+  CS2101
+Now you have 5 subjects in the list.
+____________________________________________________________
+```
+
+#### 3.1.5 Deleting a subject: `delete`
 
 Deletes the specified subject.
 
-Format: `delete` `[SUBJECT_NUMBER]`
+Format: `delete [SUBJECT_NUMBER]`
+
+- Use this command if you want to delete an existing subject from the list
+- The appplication will print the title of the subject you have deleted from the list, as well as the amount of subjects you 
+have in the list on the command line
 
 Example of usage:
 ```
 delete 1
 ```
-Output:
+Expected output:
+
 ```
 ____________________________________________________________
  Noted. I've removed this subject:
@@ -164,17 +222,31 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.1.5 `find` Find subjects
+> 📝️️ **_NOTE:_** The `SUBJECT_NUMBER` of a subject is the number assigned to each subject when the user uses the 
+>list command to print out the subjects.
 
-Searches the list of subjects for all subjects that contains the query
+> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
+> in this subject before you delete it!
 
-Format: `find` `[QUERY]`
+> ⚠️ **_WARNING:_** After deletion of a subject, the `SUBJECT_NUMBER` of subjects in the list may change.
+
+#### 3.1.6 Finding a subject: `find`
+
+Searches the list of subject names for all subjects that contains the query.
+
+Format: `find [QUERY]`
+
+- Use this command if you want to find subjects with titles that contain the query
+- The appplication will print the title of all subjects with titles that contain `QUERY` on the command line
+
+> ⚠️ **_WARNING:_** QUERY is case-sensitive. Subjects that contain the same letters as the query but with different case
+> will not be printed.
 
 Example of usage:
 ```
 find CS
 ```
-Output:
+Expected output:
 ```
 ____________________________________________________________
  Here are the matching subject(s) in your list:
@@ -185,28 +257,38 @@ ____________________________________________________________
 
 ```
 
-#### 3.1.6 `subject` - Enter a subject
+#### 3.1.7 Accessing a subject: `subject`
 
-Enters a pre-existing subject
+Allows the user to access a pre-existing subject.
 
-Format: `subject` `[SUBJECT_NAME]`
+Format: `subject [SUBJECT_NAME]`
+
+- Use this command if you want to access the subject level of a subject in the list
+- The appplication will print the subject level of the subject specified in `SUBJECT_NAME` on the command line
+
+> ⚠️ **_WARNING:_** SUBJECT_NAME is case-sensitive. Subjects with title that has the same letters as the SUBJECT_NAME but 
+>with different case will not be accessed.
 
 Example of usage:
 ```
 subject CS2113T
 ```
-Output:
+Expected output:
 ```
 ____________________________________________________________
 You are currently looking at the subject: CS2113T
 ____________________________________________________________
 ```
 
-#### 3.1.7 Starting Subject Quiz - `quiz`
+#### 3.1.8 Starting Subject Quiz: `quiz`
 
-This type of quiz helps you prepare for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>
+Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>
 
-Format: `quiz NAMEOFSUBJECT`<br>
+Format: `quiz [SUBJECT_NAME]`
+
+- Use this command if you want to initiate a quiz of a specified subject
+- The appplication will quiz you on the subject specified in `SUBJECT_NAME` on the command line
+
 Example of usage: 
 ```
 quiz CS2113T
@@ -217,11 +299,15 @@ Sample output:
 You are about to begin the quiz for maths.You have 2 minutes.
 ```
 
-#### 3.1.8 Viewing results for quizzes on a subject - `results`
+#### 3.1.8 Viewing results for quizzes on a subject: `results`
 
 This command allows you to look at the results for a subject. For more details, see <a href="#result">result</a>.
 
-Format: `results NAMEOFSUBJECT`<br>
+Format: `results [SUBJECT_NAME]`
+
+- Use this command if you want to show the results of all the quizzes you have taken in the appplication
+- The appplication will print all the results of the quizzes of the subject specified in `SUBJECT_NAME` in the command line
+
 Example of usage: 
 ```
 results CS2113T
@@ -232,10 +318,14 @@ Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
 ```
 
-#### 3.1.9 Exporting data - `export` <a name="export-command"></a>
+#### 3.1.9 Exporting data: `export` <a name="export-command"></a>
+
 This command exports all the data of the application to an external file. For more details, see <a href="#export">Exporting Data section</a>.
 
 Format: `export`
+
+- Use this command if you want to save all the data in the appplication on an external file
+- The appplication will print the file location of the file the data is being saved to on the command line
 
 Example of usage:
 ```
@@ -249,13 +339,43 @@ Your data has been successfully exported to /home/guest/revised/export/data.json
 ____________________________________________________________
 ```
 
-#### 3.1.10 `bye`
+#### 3.1.10 Saving and exiting: `bye` <a name="bye"></a>
 
-### 3.2 Subject Level Features <a name = "subject-level"> </a>
-Topic commands can only be used when looking at a subject.
-#### 3.2.1 `help` - Display all commands
+This command will save all the appplications
 
-Displays all the available commands.
+Format: `bye`
+
+- Use this command if you want to save and exit the appplication
+- The appplication will save all the updated details and exit
+
+> ⚠️ **_WARNING:_** Use this command before closing the command line as this command is vital to 
+>ensure all your data updated is saved. Failure to use this method to exit the appplication will 
+>result in all work updated in the session being lost.
+
+Example of usage:
+```
+bye
+```
+
+Sample output:
+```
+____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________
+```
+
+### 3.2 Subject Level Features (Herman)<a name = "subject-level"> </a>
+
+Subject level features can only be used when the user is currently viewing a subject.
+On this level, users are able to add and delete topics and tasks. 
+Users are also able to access the topics listed in the current subject. 
+For more details on topics, see section <a href="#topic-level">3.3 Topic Level Features</a>
+This section describes the usage of commands that can be used to add, delete and list both topics and tasks. 
+
+#### 3.2.1 Displaying all commands: `help` <a name = "subject-help"> </a>
+
+Displays all available commands on the subject level.
+Use this command whenever you need help to navigate the application. 
 
 Format: `help` 
   
@@ -263,10 +383,10 @@ Example of usage:
 ```
 help
 ```
-Output:
+Expected output:
 ```
 ________________________________________________________________________________________________________________________
-help:                            shows the list of commands available at the subject level
+help:                              shows the list of commands available at the subject level
 add abc:                           adds a topic called 'abc' in the current subject
 todo abc:                          adds a todo type task with the description 'abc'
 deadline abc /by 12:00 13-11-2020: adds a deadline type task with description 'abc' with date/time of deadline
@@ -286,150 +406,200 @@ results abc:                       gives you the results of all attempted quizze
 exit:                              exits the subject to return to the main screen, where you can work with subjects
 ________________________________________________________________________________________________________________________
 ```
-#### 3.2.2 `add` - Add topic
 
-Add a topic.
+#### 3.2.2 Listing all topics and tasks: `list` <a name="subject-list"></a>
 
-Format:
+Prints a list of all topics and tasks of the current subject. 
+Use this command to view all objects under the current subject.
+  
+Format: `list`
 
-`add` `[TOPIC_NAME]`
+Expected outcome:
+
+```
+____________________________________________________________
+Here are the topic(s) under CS2101: 
+1. Oral Presentation
+2. Project Demo
+____________________________________________________________
+Here are the tasks(s) under CS2101: 
+1. [E][?] Project Demo (at: 2:00 PM 5 Nov 2020)
+____________________________________________________________
+```
+#### 3.2.3 Listing all items: `list all`
+
+Prints a list of all items stored in the appplication.
+
+Format: `list all`
++ The tree will show you which subject you are currently accessing.
+
+Expected output:
+
+```
+____________________________________________________________
+Here's a list of all items:
+├─ 1. CG2027
+│  │  Topics
+│  ├─ 1. Pass Transistor Multiplexers
+│  ├─ 2. Arithmetic Logic Unit
+│  │  Tasks
+│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+├─ 2. CS2101 (You are currently here)
+│  │  Topics
+│  ├─ 1. Oral Presentation
+│  ├─ 2. Project Demo
+│  │  Tasks
+│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+└─ 3. CS2113T
+   │  Topics
+   ├─ 1. Class Diagram
+   ├─ 2. Abstraction
+   │  Tasks
+   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+____________________________________________________________
+```
+#### 3.2.4 Adding a topic: `add` <a name="add-topic"></a>
+
+Adds a topic to the current subject.
+
+Format: `add [TOPIC_NAME]`
++ Adds a topic with a name of `[TOPIC_NAME]`
 
 Example of usage: 
-
-`add speed`
+```
+add Project Pitch
+```
 
 Expected outcome:
 
 ```
 ____________________________________________________________
 Got it. I've added this topic:
-  speed
-Now you have 1 topic in the list.
+  Project Pitch
+Now you have 3 topics in the list.
 ____________________________________________________________
 ```
 
-#### 3.2.3 `delete topic` - Delete a topic
+#### 3.2.5 Deleting a topic: `delete topic` <a name="delete-topic"></a>
 
-Deletes the specified topic.
+Deletes the topic from the current subject, given the topic number.
 
-Format:
+Format: `delete topic [TOPIC_NUMBER]`
 
-`delete topic` `[TOPIC_NUMBER]`
++ Deletes the topic with the index number of `[TOPIC_NUMBER]`.
++ `[TOPIC_NUMBER]` must be a **positive integer**.
++ Topic `[TOPIC_NUMBER]` must **already exist in the topic list**.
 
 Example of usage: 
-
-`delete topic 1`
+```
+delete topic 3
+```
 
 Expected outcome:
 
 ```
 ____________________________________________________________
  Noted. I've removed this topic:
-   speed
- Now you have 0 tasks in the list.
+   Project Pitch
+ Now you have 2 topics in the list.
 ____________________________________________________________
 ```
+> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
+> in this subject before you delete it!
 
-#### 3.2.4 `list` - List all topics and tasks
-
-Prints a list of all topics and tasks of the subject you are currently viewing.
-  
-Example of usage: 
-
-`list`
-
-Expected outcome:
-
-```
-____________________________________________________________
-Here are the topic(s) under math: 
-1.speed
-____________________________________________________________
-Here are the tasks(s) under math: 
-1.[T][✘] laundry
-2.[E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
-3.[D][✘] assignment (by: 11:59 PM 21 Oct 2020)
-____________________________________________________________
-
-```
-
-#### 3.2.5 `find` - Find topics and tasks
+#### 3.2.6 Finding a topic or task: `find` <a name="subject-find"></a>
 
 Searches the current subject for all the topics and tasks that contains the query.
 
-Format:
-
-`find [QUERY]`
+Format: `find [QUERY]`
++ searches all topics and tasks in the current subject with `[QUERY]` in its name and prints a list of them.
++ The search is case-sensitive. e.g. `project` will not find a topic with the name `PROJECT`.
++ The `find` command will only search the name of topics and tasks on this level.
++ Partial words will be matched. e.g. `Pro` will find `Project`.
 
 Example of usage: 
 
-`find laund`
+```
+find Pro
+``` 
 
 Expected outcome:
 
 ```
 ____________________________________________________________
- Sorry! I could not find any topics with laund in the list.
+ Here are the matching topic(s) in your list:
+Project Demo
 
+____________________________________________________________
  Here are the matching task(s) in your list:
-[T][✓] laundry
+[E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 
-#### 3.2.6 `topic` - Enter a topic
+#### 3.2.7 Accessing a topic: `topic` <a name="access-topic"></a>
 
 Enters a pre-existing topic.
 
-Format: `topic` `[TOPIC_NAME]`
+Format: `topic [TOPIC_NAME]`
++ Access a pre-existing topic with a name of `[TOPIC_NAME]`.
++ This command is case-sensitive. e.g. `topic project` will not allow you to access a topic with the name `PROJECT`.
++ For more information on topic level commands, refer to TODO
 
 Example of usage:
 ```
-topic speed
+Topic Oral Presentation
 ```
-Output:
+
+Expected output:
 ```
 ____________________________________________________________
-You are currently looking at the topic: speed
+You are currently looking at the topic: Oral Presentation
+____________________________________________________________
+____________________________________________________________
+Type help for all available commands
 ____________________________________________________________
 ```
 
-#### 3.2.7 `todo` - Add todo
+#### 3.2.8 Adding a 'todo' task: `todo` <a name="todo"></a>
 
-Add a todo task.
+Adds a todo task.
 
-Format:
-
-`todo` `[DESCRIPTION]`
+Format: `todo [DESCRIPTION]`
 
 Example of usage: 
 
-`todo laundry`
+```
+todo look up on what is active listening
+```
 
-Expected outcome:
+Expected output:
 
 ```
 ____________________________________________________________
 Got it. I've added this task:
-	[T][✘] laundry
-Now you have 4 tasks in the list.
+  [T][✘] look up on what is active listening
+Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 3.2.8 `deadline` - Add deadline
+#### 3.2.9 Adding a 'deadline' task - `deadline` <a name="deadline"></a>
 
-Add a deadline task.
+Adds a deadline task.
 
 Format:
 
 `deadline [DESCRIPTION] /by [TIME]`
++ A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
->
 
 Example of usage: 
 
-`deadline assignment /by 23:59 21-10-2020`
-Expected outcome:
+```
+deadline assignment /by 23:59 21-10-2020
+```
+
+Expected output:
 
 ```
 ____________________________________________________________
@@ -439,19 +609,22 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 3.2.9 `event` - Add event
+#### 3.2.10 Adding an event - `event` - Add event <a name="event"></a>
 
 Add an event task.
 
-Format:
+Format: `event [DESCRIPTION] /at [TIME]`
++ A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 
-`event [DESCRIPTION] /at [TIME]`
+> 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
 Example of usage: 
 
-`event tutorial /at 16:00 21-10-2020`
+```
+event tutorial /at 16:00 21-10-2020
+```
 
-Expected outcome:
+Expected output:
 
 ```
 ____________________________________________________________
@@ -461,19 +634,22 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-#### 3.2.10 `delete` - Delete Task
+#### 3.2.11 Deleting a task: `delete task`
 
-Deletes the specified task.
+Deletes a task from the current subject, given the task number.
 
-Format:
+Format: `delete task [TASK_INDEX]`
 
-`delete task [TASK_INDEX]`
++ `[TASK_INDEX]` must be a **positive integer**.
++ Task `[TASK_INDEX]` must **already exist in the task list**.
 
 Example of usage: 
 
-`delete task 2`
+```
+delete task 2
+```
 
-Expected outcome:
+Expected output:
 
 ```
 ____________________________________________________________
@@ -483,19 +659,29 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.2.11 `done` - Mark task as completed
+> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
+> in this subject before you delete it!
+
+#### 3.2.12 Marking a task as completed: `done`
 
 Marks the specified task as done.
 
 Format:
 
-`done [TASK_INDEX]`
+```
+done [TASK_INDEX]
+```
+
++ `[TASK_INDEX]` must be a **positive integer**.
++ Task `[TASK_INDEX]` must **already exist in the task list**.
 
 Example of usage: 
 
-`done 2`
+```
+done 2
+```
 
-Expected outcome:
+Expected output:
 
 ```
 ____________________________________________________________
@@ -504,40 +690,65 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.2.12 Starting Topic Quiz - `quiz` 
+#### 3.2.13 Starting Topic Quiz - `quiz` 
 
-This type of quiz helps you to prepare for a particular topic. For more details, see <a href =#takeQuiz>takeQuiz</a>.
+This type of quiz helps you to prepare for a particular topic. For more details, see section <a href =#takeQuiz>3.4.1 Taking quizzes</a>.
 
-Format: `quiz NAMEOFTOPIC`<br>
+Format: `quiz [TOPIC_NAME]`
+
++ Starts a quiz of the a pre-existing topic the name `[TOPIC_NAME]`.
++ This command is case-sensitive. e.g. `quiz java` will not allow you to start a `Java` quiz.
+
 Example of usage: 
+
 ```
 quiz Java
 ```
 
-Sample output: 
+Expected output: 
 ```
-You are about to begin the quiz for Java.You have 1 minute.
+You are about to begin the quiz for Java. You have 1 minute.
 ```
 
-#### 3.2.13 Viewing results for quizzes on a topic - `results`
+#### 3.2.14 Viewing results for quizzes on a topic: `results`
 
-This feature allows you to looks at the previous results that you obtained for a quiz for a particular
+Prints the previous results that you obtained for a quiz for a particular
 topic. For more details, see <a href =#result>result</a>.
 
-Format: `results NAMEOFTOPIC`<br>
+Format: `results [TOPIC_NAME]`
+
++ Displays the results of your previous quizzes of the topic the name `[TOPIC_NAME]`.
++ This command is case-sensitive. e.g. `results java` will not allow you to see you `Java` quiz results.
+
 Example of usage: 
+
 ```
-quiz Java
+results Java
 ```
 
-Sample output: 
+Expected output: 
+
 ```
 Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
-
 ```
 
-#### 3.2.14 `exit`
+#### 3.2.14 Exiting the subject: `exit`
+
+Exit the subjects and returns to the main level.
+
+Format: `exit`
+
+Expected output: 
+
+```
+____________________________________________________________
+Going back to the main menu.
+____________________________________________________________
+
+```
+> 📝️  **_NOTE:_** The `exit` command is not the same as the `bye` command.
+> The `bye` command saves and closes the application, and can only be accessed on the main level.
 
 ### 3.3 Topic Level Features <a name="topic-level"> </a>
 
@@ -550,16 +761,15 @@ and add, delete and list flashcards.
 
 #### 3.3.1 `help` - Displaying all commands
 
-The help command displays all the available commands so that you can refer to them whenever you get confused 
-or need help to navigate the application.   
+Displays all available commands. Use this command whenever you get confused  or need help to navigate the application.   
 
-Format: `help`
-   
+Format: `help` 
+  
 Example of usage:
 ```
 help
 ```
-Expected Outcome:
+Expected output:
 ```
 ________________________________________________________________________________________________________________________
 help:              shows the list of commands available at the topic level
@@ -572,56 +782,7 @@ ________________________________________________________________________________
 ```
 > 📝️ ️  **_NOTE:_** Do not add extra spaces after or before help.
 
-#### 3.3.2 `add` - Adding a flashcard
-
-The add command allows you to add a flashcard, under the topic you are currently viewing.
-These flashcards can be added to take notes. 
-They are added in the form of questions and answers.
-
-Format:
-
-`add` `[QUESTION]; [ANSWER]`
-
-Example of usage: 
-```
-add How to calculate speed?; Speed=distance/time.
-```
-
-Expected outcome:
-
-```
-____________________________________________________________
-Got it. I've added this flashcard:
-  How to calculate speed?; Speed=distance/time.
-Now you have 3 flashcard in the list.
-____________________________________________________________
-```
-> 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
-
-#### 3.3.3 `delete` - Deleting a flashcard
-
-The delete command deletes the specified flashcard. 
-This can be used if you make a mistake or no longer need a flashcard.
-You can check the flashcard number from the list of flashcards, which is described next.
-
-Format:
-
-`delete` `[FLASHCARD NUMBER]`
-
-Example of usage: 
-
-`delete 1`
-
-Expected outcome:
-
-```
-____________________________________________________________
- Noted. I've removed this flashcard:
-   How to calculate speed?; Speed=distance/time.
- Now you have 2 flashcards in the list.
-____________________________________________________________```
-```
-#### 3.3.4 `list` - List all flashcards
+#### 3.3.2 `list` - List all flashcards
 
 The list command prints a list of all flashcards of the topic you are currently viewing. 
 This will help you to keep track of all the flashcards you have added 
@@ -641,7 +802,93 @@ Here are the flashcard(s) under speed:
 ```
 > 📝️ ️️ **_NOTE:_** Do not add extra spaces after or before list.
 
-#### 3.3.5 `exit`
+#### 3.3.3 Listing all items: `list all`
+
+Prints a list of all items stored in the appplication.
+
+Format: `list all`
++ The tree will show you which topic you are currently accessing.
+
+Expected output:
+
+```
+____________________________________________________________
+Here's a list of all items:
+├─ 1. CG2027
+│  │  Topics
+│  ├─ 1. Arithmetic Logic Unit
+│  ├─ 2. Pass Transistor Multiplexers
+│  │  Tasks
+│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+├─ 2. CS2101
+│  │  Topics
+│  ├─ 1. Oral Presentation
+│  ├─ 2. Project Demo
+│  │  Tasks
+│  ├─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 2. [T][✘] look up on what is active listening
+└─ 3. CS2113T
+   │  Topics
+   ├─ 1. Abstraction
+   ├─ 2. Class Diagram
+   ├─ 3. Java (You are currently here)
+   │  └─ 1 Flashcard
+   │  Tasks
+   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+____________________________________________________________
+```
+
+#### 3.3.4 `add` - Adding a flashcard
+
+The add command allows you to add a flashcard, under the topic you are currently viewing.
+These flashcards can be added to take notes. 
+They are added in the form of questions and answers.
+
+Format:
+
+`add` `[QUESTION]; [ANSWER]`
+
+Example of usage: 
+```
+add What is the version of Java used in CS2113T; 11.0
+```
+
+Expected outcome:
+
+```
+____________________________________________________________
+Got it. I've added this flashcard:
+  What is the version of Java used in CS2113T; 11.0
+Now you have 3 flashcard in the list.
+____________________________________________________________
+```
+> 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
+
+#### 3.3.5 `delete` - Deleting a flashcard
+
+The delete command deletes the specified flashcard. 
+This can be used if you make a mistake or no longer need a flashcard.
+You can check the flashcard number from the list of flashcards, which is described next.
+
+Format:
+
+`delete` `[FLASHCARD NUMBER]`
+
+Example of usage: 
+
+`delete 3`
+
+Expected outcome:
+
+```
+____________________________________________________________
+ Noted. I've removed this flashcard:
+   What is the version of Java used in CS2113T; 11.0
+ Now you have 2 flashcards in the list.
+____________________________________________________________```
+```
+
+#### 3.3.6 `exit` TODO
 
 ### 3.4 Other Features <a name="other-feat"></a>
 This section expands on the features that are not specific to any part of the previous sections and features that
@@ -726,7 +973,7 @@ This can be done for the subjects or for the topics.
 >that you obtained for the topics in the CS2113T subject and vice-versa.  
 
 #### 3.4.3 Storing data <a name="store"> </a>
-When you exit the application, the data you have added to the program is automatically saved to the disk. 
+When you exit the application, the data you have added to the appplication is automatically saved to the disk. 
 The data is stored under the `data/` folder in the same folder where you run the application. 
 
 > ⚠️ **_WARNING:_** The data (or any changes to the data) are not saved if the application is closed abnormally 
