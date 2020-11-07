@@ -124,6 +124,15 @@ public class DataBase {
     // -------- Search functions --------
 
     /**
+     * This method returns the ith food item from the entire list of food from the data base
+     * @param index entry number of the food
+     * @return food object
+     */
+    public Food searchFoodByIndex(int index){
+        return foodStream().skip(index - 1).findFirst().orElseThrow();
+    }
+
+    /**
      * This method searchs the whole data base and returns the first food item whose name contains the provided string.
      * ( CASE SENSITIVE ! )
      *

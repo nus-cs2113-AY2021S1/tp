@@ -12,12 +12,26 @@ class DataBaseTest {
         database.printAllData();
 
         // ---- Using stream version to print -----
-        System.out.println("------------ printing using food stream ------------");
-        database.foodStream().forEach(System.out::println);
+        // System.out.println("------------ printing using food stream ------------");
+        // database.foodStream().forEach(System.out::println);
 
         // ---- Printing out as list -----
-        System.out.println("---------- printing food using list --------------");
-        database.getFoodList().forEach(System.out::println);
+        // System.out.println("---------- printing food using list --------------");
+        // database.getFoodList().forEach(System.out::println);
+
+        // ---- get food list string ----
+        System.out.print(database.getFoodListString());
+
+        // ---- search food by index test ----
+        System.out.println("-------- testing the searchFoodByIndex function --------");
+        System.out.println("Input : 1 ## OutPut : " + database.searchFoodByIndex(1));
+        System.out.println("Input : 10 ## Output : " + database.searchFoodByIndex(10));
+        System.out.println("Trying a negative test case : Input : 10000");
+        try {
+            database.searchFoodByIndex(10000);
+        } catch (NoSuchElementException e){
+            System.out.println("The index is too high!" + e);
+        }
 
         // ---- search food by name test -----
         try {
