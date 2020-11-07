@@ -20,12 +20,14 @@ public class PersonalEvent extends Event {
     protected LocalDateTime at;
     protected LocalDateTime end = null;
 
-    public void setAt(LocalDateTime at) {
+    public void setDateTime(LocalDateTime at) {
         this.at = at;
     }
 
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
+    public void setEndDateTime(LocalDateTime end) {
+        if (this.end != null) {
+            this.end = end;
+        }
     }
 
     /**
@@ -134,5 +136,20 @@ public class PersonalEvent extends Event {
         }
 
         return isEqual;
+    }
+
+    /**
+     * A copy constructor.
+     *
+     * @param anotherPersonalEvent the PersonalEvent to be copied.
+     */
+    public PersonalEvent(PersonalEvent anotherPersonalEvent) {
+        super(anotherPersonalEvent);
+        this.at = anotherPersonalEvent.at;
+        this.end = anotherPersonalEvent.end;
+    }
+
+    public PersonalEvent clone() {
+        return new PersonalEvent(this);
     }
 }
