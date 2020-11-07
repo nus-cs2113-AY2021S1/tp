@@ -60,25 +60,41 @@ You may want to first have a look at the glossary to be clear on the terminology
 [Jump to top](#fluffle-user-guide)
 
 ## Quick Start
+If you are a first-time user of Fluffle, make use you follow the instruction below:
 
 1. Check that your computer has `Java 11` installed.
 1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder.
-1. Type in a command prompt `java -jar duke.jar` and press Enter.
-1. Type the `help` command and press Enter to get started.
+1. Type in a command prompt `java -jar duke.jar` and press Enter. If the setup is correct, you should see something like below:
+```
+--------------------------------------------------------------
+Write a story with
+  ______ _        __  __ _
+ |  ____| |      / _|/ _| |
+ | |__  | |_   _| |_| |_| | ___
+ |  __| | | | | |  _|  _| |/ _ \
+ | |    | | |_| | | | | | |  __/
+ |_|    |_|\__,_|_| |_| |_|\___|
+--------------------------------------------------------------
+Hello User! Welcome to Fluffle!
+What can I do for you?
+--------------------------------------------------------------
+What is your name?
+```
+1. After entering your name, type the `help` command and press Enter to get started.
 1. Some example commands you can try:
     1. `list words`: List the vocabulary stored in the word list.
     1. `filter bunny g/fantasy`: Filters bunny ideas that are of the fantasy genre.
     1. `exit`: Exits the app.
-1. Refer to the Features below for details of each command.
+1. Refer to the [Features](#features) below for details of each command. A [Command Summry Table](#command-summary) is provided at the end of this User Guide.
 
 [Jump to top](#fluffle-user-guide)
 
 ## Features 
 
 This section includes five subsections which will guide you through all the commands in five main components of Fluffle: 
-`Basic CLI`, `Words list`, `Bunnies list`, `Names list` and `Writings list`. We will adhere to the following format in 
-explaining the syntax of the commands in Fluffle.
+[`Basic CLI`](#basic-cli-commands), [`Words list`](#words-list-commands), [`Bunnies list`](#bunnies-list-commands), [`Names list`](#names-list-commands) and [`Writings list`](#writings-list-commands).
+We will adhere to the following format in explaining the syntax of the commands in Fluffle.
 
 ***
 **Command format**
