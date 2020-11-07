@@ -32,15 +32,15 @@
 ## 1. Introduction
 
 ### 1.1 Software Overview
-During peak hours, people may not be able to know the dining situation and the density of the canteen they want to go to. To solve this problem, we want to create a program to store and display basic information of stalls in each canteen (e.g. Open hours, current menu, approximation of current waiting time etc.) to all their potential users. CanteenHelper is a command line (CLI) application that helps students, staff and even tourists order food in canteens efficiently. CanteenHelper will allow users to choose their favorite dishes from different stalls in different canteens based on the date and provided by the users. They also can check the comments of the dishes and operating hours of the stalls and canteens.
+During peak hours, people may not be able to know the dining situation and the density of the canteen they want to go to. To solve this problem, we want to create a program to store and display basic information of stalls in each canteen (e.g. Open hours, current menu, change order etc) to all their potential users. CanteenHelper is a command line (CLI) application that helps students, staff and even tourists order food in canteens efficiently. CanteenHelper will allow users to choose their favorite dishes from different stalls in different canteens based on the date and provided by the users. They also can check the comments of the dishes and operating hours of the stalls and canteens.
 
 
 ### 1.2 Purpose
 This document describes the architecture and software design of CanteenHelper. The goal of this document is to cover the high-level system architecture and design.
-The document is divided into three main parts: design, implementation and documantation. The design includes the architecture diagram and the introduction of each class. The implementation describes some details on how certain features are implemented and how the users go through our app. The documentation details the logging, testing and configuration of CanteenHelper. It also includes the requirement and the instructions for manual testing in the appendices.
+The document is divided into three main parts: design, implementation and documantation. The design includes the architecture diagram and the introduction of each class. The implementation consists of some details on how certain features are implemented and how the users go through our app. The documentation details the logging, testing and configuration of CanteenHelper. It also includes the requirement and the instructions for manual testing in the appendices.
 
 ### 1.3 Scope
-The intended audience of this document is the developers, designers, and software testers of CEGMods.
+The intended audience of this document is the developers, designers, and software testers of CanteenHelper.
 
 
 ## 2. Setting up and getting started
@@ -120,16 +120,10 @@ Dishes that can be ordered by the user.
 ## 4. Implementation
 #### Feature: order
 The user types command “order” to make an order from a stall in a canteen. The order method will be activated and print open stalls through checkOpenCanteens method in Customer class in this manner:
-
- ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image1.png)
  
 User just type the corresponding index before the canteen to select canteen. Then the open stalls in this canteen will be printed through checkOpenStalls method in Customer class in this manner:
-
- ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image2.png)
  
 User just type the corresponding index before the stall to select stall. Then the available dishes and price in this stall will be printed through getDish() method in Stall class in this manner:
-
- ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image3.png)
  
 User just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. Finally, after choosing dine in, take away or delivery, an order object will be created and added into the order list.
 
@@ -141,7 +135,7 @@ e.g. delete 1 means delete the first order in the order list.
 The user enters the command: find [dish name] to find the order contains this dish in the order list. The main will enable the findDishinOrder() method. The Parser will make sense of the command and iterate the order list and dish list to print the order containing this dish. 
 e.g. find chicken rice means find all orders containing chicken rice in the order list.
 
-#### Feature: List order
+#### Feature: list order
 The user enters the command: list to print all the orders in the order list . The main will enable the printOrder() method. The printOrder() method will iterate the whole order list and print all the orders
 
 #### Feature: change order (change dine in, take away or delivery)
@@ -150,21 +144,18 @@ e.g. change/1/Dine in: change order 1 to dine in
 
 #### Feature: check Canteen Operating Time
 The user enters the command: checkcanteen to check the operating time of an open canteen. The main will enable the checkCanteenOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
-
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image1.png)
-
  
 User can type the number before the canteen name to check its operating time.
 
 #### Feature: check Stall Operating Time
 The user enters the command: checkstall to check the operating time of an open stall. The main will enable the checkStallOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
-
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image1.png)
-
  
 User can type the number before the canteen name to display the stalls inside the canteen in this manner.
  
 User can type the number before the stall name to check its operating time.
+
+#### Feature: help
+The user enters the command: help to view all commands that are available. The main will enable the help() method. It prints all available commands.
 
 
 ## 5. Testing
