@@ -120,7 +120,7 @@ Basic CLI commands consist of commands that are standard CLI application command
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
 Output:  
 ```
-Type 'help <function name here>' to view help for each command.
+Type 'help FUNCTION_NAME' to view help for each command.
 Available commands:
 - help
 - divider
@@ -157,7 +157,7 @@ Example output:
 help filter name
 --------------------------------------------------------------
 Find all the names from the list of names
-Format: filter name <NAME>
+Format: filter name NAME
 --------------------------------------------------------------
 ```
 
@@ -191,7 +191,7 @@ Changing line divider...
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
 
 Format: 
-- `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE _OBJECT` 
+- `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE_OBJECT` 
 
 Example usage:  
 `clear type\word item\-noungrass`  
@@ -283,7 +283,7 @@ you want to print out all the words in the list, or you only want to print out t
     If you provide more than one target string, the strings should be separated by the dash symbol `-`.
 
 **Step-by-step example usages and example outputs:**
-* Suppose you have a word bank of ten words:
+* Suppose you have a word list of ten words:
 ```
 house: a building for people to live in, usually for one family
 grass: a common wild plant with narrow green leaves and stems 
@@ -295,7 +295,7 @@ beautiful: having beauty; giving pleasure to the senses or to the mind
 nice: pleasant or attractive
 meaningful : important and serious
 ```
-* Now you want to get all nouns and adjectives in your word bank. You use the command `filter words by\type -noun -adjective`
+* Now you want to get all nouns and adjectives in your word list. You use the command `filter words by\type -noun -adjective`
 ```
 Printing all 7 word(s) from your filter list:
 - house: a building for people to live in, usually for one family
