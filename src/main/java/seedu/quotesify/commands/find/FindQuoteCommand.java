@@ -46,7 +46,7 @@ public class FindQuoteCommand extends FindCommand {
             if (keyword.isEmpty()) {
                 throw new QuotesifyException(ERROR_FIND_KEYWORD_MISSING);
             }
-            String findResultList = quoteList.findQuoteByKeyword(quoteList, keyword);
+            String findResultList = quoteList.findQuoteByKeyword(keyword);
 
             if (findResultList.isEmpty()) {
                 ui.printFindQuoteFail();

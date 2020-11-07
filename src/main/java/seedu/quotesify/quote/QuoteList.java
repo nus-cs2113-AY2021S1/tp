@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 public class QuoteList extends QuotesifyList<Quote> {
     private ArrayList<Quote> quotes = super.getList();
     public static final String DEFAULT_QUOTE = "Better days are coming, they are called Saturday and Sunday.";
+    public static final String ERROR_REFLECTION_EXIST = "Quote already has a reflection. " +
+            "Please use the edit command instead.";
 
     /**
      * Default constructor fot quote list.
@@ -89,7 +91,7 @@ public class QuoteList extends QuotesifyList<Quote> {
         assert getQuote(index).getReflection() == null;
         Quote quote = quotes.get(index);
         if (quote.getReflection() != null) {
-            throw new QuotesifyException("Quote already has a reflection. Please use the edit command instead.");
+            throw new QuotesifyException(ERROR_REFLECTION_EXIST);
         }
         quote.setReflection(reflection);
         quotes.set(index, quote);
@@ -123,7 +125,7 @@ public class QuoteList extends QuotesifyList<Quote> {
      * @param newQuote Quote to be compared with.
      * @return True if same quote is found in the quote list, false otherwise.
      */
-    public boolean checkDuplicateQuote(Quote newQuote) {
+    public boolean isDuplicateQuote(Quote newQuote) {
         for (Quote quote : getList()) {
             String quoteToCheck = newQuote.getQuote().toLowerCase();
             if (quote.getQuote().toLowerCase().equals(quoteToCheck)) {
@@ -136,14 +138,13 @@ public class QuoteList extends QuotesifyList<Quote> {
     /**
      * Find all matching quotes from a keyword.
      *
-     * @param quoteList List of quotes.
      * @param keyword User specified keyword.
      * @return A list of quotes matching the specified keyword.
      */
-    public String findQuoteByKeyword(QuoteList quoteList, String keyword) {
+    public String findQuoteByKeyword(String keyword) {
         String listToReturn = "";
         int matchCounter = 0;
-        for (Quote quote : quoteList.getList()) {
+        for (Quote quote : quotes) {
             if (quote.getQuote().toLowerCase().contains(keyword)) {
                 listToReturn += (++matchCounter + ". " + quote.toString() + System.lineSeparator());
             } else if (quote.hasReference() && quote.getReference().toLowerCase().contains(keyword)) {
@@ -181,11 +182,11 @@ public class QuoteList extends QuotesifyList<Quote> {
         String listToReturn = "";
         int quoteCounter = 0;
         for (Quote quote : getList()) {
-            if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
+            if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName.toLowerCase())) {
                 listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
             }
         }
-        return listToReturn;
+        return listToReturn.trim();
     }
 
     /**
@@ -198,11 +199,11 @@ public class QuoteList extends QuotesifyList<Quote> {
         String listToReturn = "";
         int quoteCounter = 0;
         for (Quote quote : getList()) {
-            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference.toLowerCase())) {
                 listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
             }
         }
-        return listToReturn;
+        return listToReturn.trim();
     }
 
     /**
@@ -216,13 +217,13 @@ public class QuoteList extends QuotesifyList<Quote> {
         String listToReturn = "";
         int quoteCounter = 0;
         for (Quote quote : getList()) {
-            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference)) {
-                if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName)) {
+            if (quote.hasReference() && quote.getReference().toLowerCase().equals(reference.toLowerCase())) {
+                if (quote.hasAuthor() && quote.getAuthorName().toLowerCase().equals(authorName.toLowerCase())) {
                     listToReturn += (++quoteCounter + ". " + quote.toString() + System.lineSeparator());
                 }
             }
         }
-        return listToReturn;
+        return listToReturn.trim();
     }
 
     /**
@@ -271,7 +272,7 @@ public class QuoteList extends QuotesifyList<Quote> {
         for (int i = 0; i < getSize(); i++) {
             quotesToReturn += (i + 1 + ". " + quotes.get(i).toString()) + System.lineSeparator();
         }
-        return quotesToReturn;
+        return quotesToReturn.trim();
     }
 
     /**

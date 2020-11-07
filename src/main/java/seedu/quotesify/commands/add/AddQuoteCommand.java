@@ -43,10 +43,10 @@ public class AddQuoteCommand extends AddCommand {
      */
     private void addQuote(QuoteList quoteList, TextUi ui) {
         try {
-            Quote quote = QuoteParser.parseAddParameters(information);
+            Quote quote = QuoteParser.parseParametersIntoQuote(information);
             assert !quote.getQuote().isEmpty() : "quote should not be empty";
 
-            boolean isDuplicate = quoteList.checkDuplicateQuote(quote);
+            boolean isDuplicate = quoteList.isDuplicateQuote(quote);
             if (isDuplicate) {
                 throw new QuotesifyException(ERROR_DUPLICATE_QUOTE);
             }

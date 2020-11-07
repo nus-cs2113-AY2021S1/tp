@@ -294,6 +294,7 @@ The sequence diagram below demonstrates the command execution process when findi
 
 ---
 
+<!-- @@author nat-ho -->
 ### 4.2 Feature: Quote Management
 
 Given below is the class diagram for classes related to the Quote Management System in Quotesify:
@@ -360,8 +361,10 @@ message will be displayed.
 * Include a `updateReflection` method in `QuoteList` instead of editing quote object directly
     * Pros: Better encapsulation and data hiding as attributes can be set to private
     * Cons: Additional methods and passing of data required
-    
+<!-- @@author -->
+
 ---
+
 <!-- @@author lunzard -->
 ### 4.3 Feature: Progress Tracker
 
@@ -733,7 +736,8 @@ Alright, have a nice day!
    Expected: Book title will not be edited. An error message will be printed. 
    
 ---
-   
+
+<!-- @@author nat-ho -->
 ### Testing for Quote Management
    
 #### Adding a quote
@@ -905,7 +909,8 @@ Alright, have a nice day!
    * `delete -qr 9999999`: non existent quote number
    
    Expected: Quote reflection will not be deleted. A message with error details will be shown.
-   
+<!-- @@author -->
+
 ---
 <!-- @@author lunzard --> 
 ### Testing for Progress Tracker
