@@ -33,10 +33,11 @@ Scheduler--; Does the job
     - [3.10 Mark events as not done: undone](#310-mark-events-as-not-done-undone-marcus-tan)
     - [3.11 Deleting an event: delete](#311-deleting-an-event-delete-marcus-tan)
     - [3.12 Note taking: note](#312-note-taking-note-qing-ning)
-    - [3.13 Reminder: reminder](#313-reminder-reminder-qing-ning)
-    - [3.14 Extracting events from texts: extract](#314-extracting-events-from-texts-extract-matthew-gani)
-    - [3.15 Save events: save](#315-save-events-events-colin)
-    - [3.16 Exiting the program: bye](#316-exiting-the-program-bye)
+    - [3.13 View note: view](#313-view-note-view-qing-ning)
+    - [3.14 Reminder: reminder](#314-reminder-reminder-qing-ning)
+    - [3.15 Extracting events from texts: extract](#315-extracting-events-from-texts-extract-matthew-gani)
+    - [3.16 Save events: save](#316-save-events-save-colin)
+    - [3.17 Exiting the program: bye](#317-exiting-the-program-bye)
 
 - [4. FAQ](#4-faq)
 
@@ -327,7 +328,6 @@ _________________________________
 
 You can print a list of all events by executing the following command: ```list all```
 
-{{box op="start" cssClass="boxed noteBox"}}
 > **Note!**
 > 
 > * Events will be listed in the order: Personal, Timetable, Zoom.
@@ -345,12 +345,10 @@ This brings you into calendar printing mode.
 - To exit the calendar printing mode, simply type in ```q```.
 - This mode is exited once you see ```End of calendar``` on pressing enter.
 
-{{box op="start" cssClass="boxed noteBox"}}
 > **Note!**
-
-> * Events without date or time are not printed in the calendar
 >
-> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode
+> * Only events with date and time will be in the calendar.
+> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode.
 
 
 Expected output:
@@ -365,7 +363,9 @@ Calendar has 2 dates to display
 ---------------------------------------------------------------------------------------
 Z | 9:00 PM | X | CS2113T Meeting | zoom.com.sg
 ---------------------------------------------------------------------------------------
+Enter 'q' to exit or enter to continue...
 q
+---------------------------------------------------------------------------------------
 End of calendar
 _________________________________
 ```
@@ -556,7 +556,7 @@ _________________________________
 ```
 
 > **Note!**
-
+>
 > *	You may omit the DD or DD/MM in a date. If you do not fill in these fields for the date, the command takes the current date for that field by default (e.g.  input 2021 on 11 Oct 2020 would be taken as 11/10/2021)
 > *	The date can also be omitted entirely. If you leave a date field as blank, the command takes the current date for that field by default.
 > *	You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
@@ -582,7 +582,7 @@ When the optional argument `[GOAL]` is omitted, the current goal will be display
 When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
 > **Note!**
-> 
+> * You can only have one goal at any time.
 > * You can use `na` or `nil` instead of `delete` to remove goal.
 
 
@@ -714,11 +714,53 @@ _________________________________
 
 > **Warning!**
 >
-> The event index keyed in have to be valid so that deadline can be created for the specified event index.
+> The event index keyed in have to be valid so that note can be created for the specified event index.
+
+### 3.13 View note: `view` (Qing Ning)
+Typed your notes but want to view them? Here's how you view them!
+
+Format: `view EVENT_TYPE; EVENT_INDEX`
+
+* The `EVENT_TYPE` have to be either personal, zoom or timetable.
+* Scheduler will prompt you to type your notes
+Example of usage: 
+
+`view personal; 1 `
+
+#### How to use?
+
+##### Step 1: Find the index number of the event that you want to view the note
+You can do this by typing the command list EVENT_TYPE into your application. The result for the following command is shown in the following:
+
+```
+Here is a list of your Personal events:
+1. [P][X] sleep 
+```
+In this case, the index number that you want is 1.
+
+##### Step 2: Type the command into the terminal
+````
+view personal; 1 
+````
+
+##### Step 3: Voilà! Here's your notes! 
+```
+These are the notes that you have taken:
+---------2020-10-30T00:53:01.907824900---------
+hello there!
+scheduler says hi:)
+_________________________________
+``` 
 
 
 
-### 3.13 Reminder: `reminder` (Qing Ning)
+> **Warning!**
+>
+> The event index keyed in have to be valid so that note can be viewed for the specified event index.
+
+
+
+### 3.14 Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
 
 Format: `reminder`
@@ -730,7 +772,7 @@ You have the following events today:
 [Z][X] math, Link: www.zoom.com/blah on 2010-10-26, 12:00
 [P][X] sleep on 2020-10-26, 23:00
 ```
-### 3.14 Extracting events from texts: `extract` (Matthew Gani)
+### 3.15 Extracting events from texts: `extract` (Matthew Gani)
 Ever feel tired of reading long emails everyday? Copy and paste your email into this feature!
 You can use our extract function which will help you read any text and extract out possible dates and times. 
 You’ll be able to choose the dates and times detected and create a Personal or Zoom event. 
@@ -799,9 +841,9 @@ As shown above, the user can choose the date/time they want for the event as lon
 
 
 
-### 3.15 Save events: `events` (Colin)
+### 3.16 Save events: `save` (Colin)
 
-### 3.16 Exiting the program: `bye` 
+### 3.17 Exiting the program: `bye` 
 Time to have a rest? See you later! Do not worry, we will keep your events in Scheduler--.
 
 Format: `bye`
@@ -838,6 +880,7 @@ In this section, you can find some frequently asked questions(FAQ).
 |Set event as undone|undone EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: undone zoom 1 3/12/2020 <br>|
 |Delete|delete EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: delete timetable 3 <br>|
 |Notes|note EVENT_TYPE; EVENT_INDEX <br> note personal; 1 <br>|
+|View notes|view EVENT_TYPE; EVENT_INDEX <br> view personal; 1 <br>|
 |Extract|extract TEXT_SUBJECT; `<enter key>` TEXT_BODY  `<enter key>` extractend `<enter key>`<br>|
 |Reminder|reminder <br>|
 |Save|save <br>|

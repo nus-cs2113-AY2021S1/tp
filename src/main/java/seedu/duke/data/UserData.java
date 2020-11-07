@@ -1,5 +1,6 @@
 package seedu.duke.data;
 
+import seedu.duke.EventLogger;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.event.Goal;
@@ -7,10 +8,12 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidListException;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class UserData {
     private ArrayList<EventList> eventLists = new ArrayList<>();
     private Goal goal;
+    private static Logger logger = EventLogger.getEventLogger();
 
     public UserData() {
         eventLists.add(new EventList("Personal"));
@@ -35,6 +38,7 @@ public class UserData {
                 return e;
             }
         }
+        logger.warning("InvalidListException encountered -- " + name + " list does not exist");
         throw new InvalidListException(name + " list does not exist.");
     }
 

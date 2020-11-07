@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
@@ -10,11 +11,14 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Command to print reminder for user.
  */
 public class ReminderCommand extends Command {
+    private static Logger logger = EventLogger.getEventLogger();
+
     /**
      * Constructor for reminder seedu.duke.
      */
@@ -38,7 +42,17 @@ public class ReminderCommand extends Command {
             ArrayList<Event> eventList = filterTodayEvents(allEventList.get(i));
             reminderEvents.addAll(eventList);
         }
-        ui.printReminder(reminderEvents);
+        ArrayList<Event> reminderEventsWithoutTime = new ArrayList<>();
+        ArrayList<Event> reminderEventsWithTime = new ArrayList<>();
+        for (int i = 0; i < reminderEvents.size(); i++) {
+            if (reminderEvents.get(i).getTime() == null) {
+                reminderEventsWithoutTime.add(reminderEvents.get(i));
+            } else {
+                reminderEventsWithTime.add(reminderEvents.get(i));
+            }
+        }
+        logger.fine("Reminder Command executed");
+        ui.printReminder(reminderEventsWithTime, reminderEventsWithoutTime);
 
     }
 
