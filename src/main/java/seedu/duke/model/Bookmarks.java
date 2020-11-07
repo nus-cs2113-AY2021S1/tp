@@ -22,6 +22,9 @@ public class Bookmarks implements Serializable {
     }
 
     public void addToBookmarks(String symbol) throws DukeException {
+        if (bookmarkedStocks.size() == 5) {
+            throw new DukeException("Maximum of 5 bookmarked stocks reached!");
+        }
         if (bookmarkedStocks.contains(symbol)) {
             throw new DukeException("Already bookmarked this stock!");
         }
