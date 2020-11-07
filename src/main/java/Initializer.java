@@ -3,13 +3,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * a class initialize the canteens, stalls, dishes
+ * class Initializer
+ * for initializing the canteen information
+ * at the start of the program
  */
 public class Initializer {
-    /**
-     * Initialize the canteens, stalls and dishes
-     * @return list of canteens
-     */
     public List<Canteen> initialize() {
 
         Dish porkChop = new Dish("Pork Chop",4,

@@ -1,16 +1,14 @@
-import exception.ArriveTimeException;
-import exception.DayOfWeekException;
-
 /**
- *
- * a class used to parser user input
+ * class Parser
+ * to parse user's input
  */
 public class Parser {//name week time
 
     /**
-     * Parser the user input
-     * @param inputMessage input from the user
-     * @return a new customer object with information
+     * a method to parseCustomer
+     * when they input their infomation
+     * @param inputMessage
+     * @return
      * @throws DayOfWeekException
      * @throws ArriveTimeException
      */

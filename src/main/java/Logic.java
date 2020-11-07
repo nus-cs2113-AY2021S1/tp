@@ -1,3 +1,4 @@
+//import necessary libraries
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,17 +22,19 @@ public class Logic {
     public static ArrayList<Order> Order = new ArrayList<Order>();
 
     /**
-     * Main method of the whole program
-     * @param args input from the user
+     * main method
+     * @param args
      */
     public static void main(String[] args) {
         Initializer initializer = new Initializer();
         List<Canteen> canteens = initializer.initialize();
-        UI.greet(); // call greet() method to greet
+        UI.greet();
+        // call greet() method to greet
         Customer customer = UI.getCustomer(sc);
         System.out.println("Please enter your command. (Type help for instruction.)");
         input=sc.nextLine();
-        while(!input.equals("bye")) { //if input is not "bye"
+        while(!input.equals("bye")) {
+            //if input is not "bye"
             /** print the list of tasks*/
             if (input.equals("list")) {
                 UI.printOrder(input, Order);
@@ -64,17 +67,23 @@ public class Logic {
                 UI.changeOrder(customer,input,Order);
             }
 
-            else{ //dealing with undefined type of input
+            else{
+                //dealing with undefined type of input
                 System.out.println("____________________________________________________________\n");
                 System.out.println("  OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 System.out.println("____________________________________________________________\n");
             }
             /*exception handling of wrong input*/
-            input=sc.nextLine();// get next input statement
+            input=sc.nextLine();
+            // get next input statement
 
         }
         UI.bye();
     }
+
+
+
+
 
 
 }
