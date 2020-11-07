@@ -132,6 +132,10 @@ public enum BusStops {
         this.searchCount = searchCount;
     }
 
+    /**
+     * Prints out all bus stops and their description
+     * Prints out close names if the bus stop have one.
+     */
     public static void listStops() {
         printLine();
         for (BusStops info : EnumSet.allOf(BusStops.class)) {
