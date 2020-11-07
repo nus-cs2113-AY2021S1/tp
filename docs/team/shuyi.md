@@ -24,15 +24,23 @@ Given below are my contributions to the project.
     
 * List all faculties: `/faculty`
     + Provides the user with a list of faculties in NUS.
+    + **Justification:** This feature allows users to see the list of faculties that can be used for the `/dine` 
+    feature. It improves the usability of the product since some users may not be familiar with the faculties in NUS.
 
 * List routes of all buses: `/allbus`
     + Provides the user with a list containing the routes of all shuttle buses available in NUS.
+    + **Justification:** This feature improves the usability of the product as it informs the user of all available 
+    shuttle buses in NUS and their routes, so that they can plan their travel routes better.
 
 * List all favorite commands: `/listfav`
     + Allows the user to see a list of all his favorite commands with indexes and descriptions.
+    + **Justification:** This feature improves the usability of the product as it allows the user to see the indexes 
+    and descriptions of the favorite commands, which are needed for the `/deletefav`, `/execfav`, `/descfav` features.
 
 * Clear all favorite commands: `/clearfav`
     + Allows the user to clear his list of favorite commands.
+    + **Justification:** This feature improves the usability of the product as it allows the user to delete all the 
+    commands in the list of favorite commands, instead of removing them one by one using the `/deletefav` feature.
 
 #### Code contribution
 * RepoSense [link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=F14-3&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=mrwsy1&tabRepo=AY2021S1-CS2113T-F14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
@@ -45,6 +53,9 @@ Given below are my contributions to the project.
 * Developer guide:
     + Added implementation details and UML diagrams for the following features: `/dine`, `/dineinfo`, `/faculty`, 
     `/allbus`, `/listfav`, `/clearfav`. ([#114](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/114), [#186](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/186))
+
+#### Review/mentoring contributions:
+* PRs reviewed (with non-trivial review comments): [#205](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/205)
 
 #### Contributions beyond the project team
 * Reported bugs for another team's [project](https://github.com/mrwsy1/ped/issues)
