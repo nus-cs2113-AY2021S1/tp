@@ -83,7 +83,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/dish.png)
 
-#### 3.2.5 After that, user will be asked whether he wants to see the comment of the dish, just type y/n.
+#### 3.2.6 After that, user will be asked whether he wants to see the comment of the dish, just type y/n.
 
 Format: `y/n`
 
@@ -92,7 +92,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/comment.png)
 
-#### 3.2.6 Finally, choosing the order type by typing the corresponding index before the type.
+#### 3.2.7 Finally, choosing the order type by typing the corresponding index before the type.
 
 Format: `[number]`
 
