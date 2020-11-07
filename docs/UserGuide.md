@@ -122,19 +122,15 @@ Command: `cd academic`
 
 ![CDAcademic](Images/GeneralUG/cdacademic.png)
 
----
 **Warning**
 * An error message will appear when you type an invalid mode index or mode name
 
 ![WrongModeIndex](Images/GeneralUG/wrongmodeindex.png)
 
 * Ensure that your index is within range or you spelt the mode names correctly when using this command!
----
 
----
 **Useful information:**
 * You can use this command anywhere in the app to switch between modes quickly!
----
 
 ### 3. Shows the current location: `location`
 
