@@ -64,8 +64,8 @@ public class CreateProjectCommand extends ProjectCommand {
 
     @Override
     public void logExecution() {
-        ScrumLogger.LOGGER.info("Project" + projectManager.getSelectedProject().getTitle() +  "successfully added to " +
-                "ProjectManager.");
+        ScrumLogger.LOGGER.info("Project" + projectManager.getSelectedProject().getTitle() +  "successfully added to "
+                + "ProjectManager.");
     }
 
 }

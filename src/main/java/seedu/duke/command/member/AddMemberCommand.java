@@ -31,7 +31,8 @@ public class AddMemberCommand extends MemberCommand {
                 m = new Member(parameters.get(Integer.toString(i)));
                 proj.getProjectMember().addMember(m);
                 Ui.showToUserLn(projMember + " has been added to the project.");
-                logExecution("User tried to add a already existing member " + projMember + " to project " + proj.getTitle());
+                logExecution("User tried to add a already existing member " + projMember + " to project "
+                        + proj.getTitle());
             }
         }
     }

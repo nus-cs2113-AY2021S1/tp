@@ -15,6 +15,7 @@ public abstract class MemberCommand extends Command {
     }
 
     public abstract void execute();
+
     public abstract void logExecution(String userMessage);
 
 }

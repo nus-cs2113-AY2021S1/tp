@@ -31,7 +31,8 @@ public class DeleteMemberCommand extends MemberCommand {
             } else {
                 Ui.showToUserLn(projMember
                         + " is not associated with the project.");
-                logExecution("User tried to remove unassociated member " + projMember + " from project " + proj.getTitle());
+                logExecution("User tried to remove unassociated member " + projMember
+                        + " from project " + proj.getTitle());
             }
         }
     }

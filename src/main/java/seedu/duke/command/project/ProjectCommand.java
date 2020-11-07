@@ -15,5 +15,6 @@ public abstract class ProjectCommand extends Command {
     }
 
     public abstract void execute();
+
     public abstract void logExecution();
 }
