@@ -10,17 +10,37 @@ import seedu.quotesify.rating.RatingList;
 import seedu.quotesify.store.Storage;
 import seedu.quotesify.ui.TextUi;
 
+/**
+ * Represents the command to edit books.
+ */
 public class EditBookCommand extends EditCommand {
 
+    /**
+     * Constructor for EditBook Command.
+     *
+     * @param arguments Input by the user.
+     */
     public EditBookCommand(String arguments) {
         super(arguments);
     }
 
+    /**
+     * Executes the EditBook Command.
+     *
+     * @param ui Ui of the program.
+     * @param storage Storage of the program.
+     */
     public void execute(TextUi ui, Storage storage) {
         BookList books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
         editBook(books, ui);
     }
 
+    /**
+     * Edits the book title to a specified new title.
+     *
+     * @param books Booklist in Quotesify.
+     * @param ui Ui of the program.
+     */
     private void editBook(BookList books, TextUi ui) {
         try {
             String[] bookDetails = information.split(FLAG_EDIT, 2);
@@ -51,6 +71,13 @@ public class EditBookCommand extends EditCommand {
         }
     }
 
+    /**
+     * Checks the existence of the rating for the book using its old title.
+     *
+     * @param book Book which the rating is checked.
+     * @param oldTitle The old title of the book.
+     * @param author The author name of the book.
+     */
     private void checkRatingForOldTitle(Book book, String oldTitle, String author) {
         // check ratings in rating list before editing the title.
         RatingList ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
