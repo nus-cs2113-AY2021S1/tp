@@ -17,11 +17,13 @@ enhancements.
 - [3. Implementation](#3-implementation)
   * [3.1. Direct Route Finder (`/route` Feature)](#31-direct-route-finder-route-feature)
   * [3.2. Full Route Display (`/routemap` Feature)](#32-full-route-display-routemap-feature)
-  * [3.3. Favourite command adder (`/addfav` Feature)](#33-favourite-command-adder-addfav-feature)
-  * [3.4. Favourite command executor (`/execfav` Feature)](#34-favourite-command-executor-execfav-feature)
-  * [3.5. Favourite command description modifier (`/descfav` Feature)](#35-favourite-command-description-modifier-descfav-feature)
-  * [3.6. Dining options finder (`/dine` Feature)](#36-dining-options-finder-dine-feature)
-  * [3.7. Bus at bus stop finder (`/bus` Feature)](#37-bus-at-bus-stop-finder-bus-feature)
+  * [3.3. List All stops (`/liststops` Feature)](#33-list-all-stops-liststops-feature)
+  * [3.4. Favourite command adder (`/addfav` Feature)](#34-favourite-command-adder-addfav-feature)
+  * [3.5. Favourite command executor (`/execfav` Feature)](#35-favourite-command-executor-execfav-feature)
+  * [3.6. Favourite command description modifier (`/descfav` Feature)](#36-favourite-command-description-modifier-descfav-feature)
+  * [3.7. Dining options finder (`/dine` Feature)](#37-dining-options-finder-dine-feature)
+  * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
+  * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
 - [4. Appendix I: Requirements](#4-appendix-i-requirements)
   * [4.1 Product scope](#41-product-scope)
     + [4.1.1 Target user profile](#411-target-user-profile)
@@ -161,10 +163,23 @@ The following sequence diagram explains the above steps when the user searches f
 
 ![Overview](DG_Diagrams/RouteMapCommandSeq.png)
 
+###3.3. List All stops (/liststops Feature)
+`/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
-### 3.3. Favourite command adder (`/addfav` Feature)
+The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class executes the command in the following steps:
+1. Calls `BusStops#listStops()` to make a new Fav object to be saved in the FavList.
+    - The `BusStops#listStops()` 
+    
+### 3.4. Favourite command adder (`/addfav` Feature)
+
+`/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
+list of favourites.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
+![add favourites](DG_Diagrams/AddFavSequence.png)
+
 The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the command in the following steps:
-1. The `RouteParser#executeCommand` method throws an exception if the command to be saved in FavList is missing.
+1. The `AddFavCommand#executeCommand` method throws an exception if the command to be saved in FavList is missing.
 2. Calls `AddFavCommand#createFav()` to make a new Fav object to be saved in the FavList.
     - The `AddFavCommand#createFav()` method creates a Fav object with its command saved as its description if 
     the user left description empty.
@@ -173,13 +188,7 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
 
-`/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's
-list of favourites.
-
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
-![add favourites](DG_Diagrams/AddFavSequence.png)
-
-### 3.4. Favourite command executor (`/execfav` Feature)
+### 3.5. Favourite command executor (`/execfav` Feature)
 `/execfav <index>` is a command to execute a command with the specific index in the list of fovourite commands. <br><br>
 The command is executed in the following steps:
 1. The user calls `Parser#setUserInput(<UserInput>)` by typing in the command `/execfav <index>`. The new user input is updated.
@@ -191,16 +200,14 @@ The command is executed in the following steps:
     - An exception is thrown if there is no Fav object in the specified index in FavList.
 6. A new `Parser` object is instantiated to run the command in the Fav object.
 <br><br>
+
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand/ExecFavCommand.png)
 
 ####Design Considerations
 
 
-
-
-
-### 3.5. Modifying a favourite command's description (`/descfav` Feature)
+### 3.6. Favourite command description modifier (`/descfav` Feature)
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -238,7 +245,7 @@ The following sequence diagram explains the interactions omitted in the main dia
 
 #### Design Considerations
 
-### 3.6. Find dining options within a faculty (`/dine` Feature)
+### 3.7. Dining options finder (/dine Feature)
 
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
@@ -253,7 +260,7 @@ The `DineCommand#executeCommand()` method of DineCommand Class executes the comm
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
 ![bus data](DG_Diagrams/DineSequence.png)
 
-### 3.7. Find specific dining outlets (`/dineinfo` Feature)
+### 3.8 Find specific dining outlets (/dineinfo Feature)
 
 `/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
 
@@ -266,7 +273,7 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
 ![bus data](DG_Diagrams/DineInfoSequence.png)
 
-### 3.7. Bus at bus stop finder (`/bus` Feature)
+### 3.9. Bus at bus stop finder (`/bus` Feature)
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/bus` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/BusCommand/BusCommand.png)
 
