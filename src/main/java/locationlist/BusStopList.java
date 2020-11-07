@@ -19,7 +19,7 @@ public class BusStopList {
      */
     public boolean checkExistence(String name) {
         for (BusStop busStop : busStopList) {
-            if (name.equalsIgnoreCase(busStop.getName())) {
+            if (name.equals(busStop.getName())) {
                 return true;
             }
         }

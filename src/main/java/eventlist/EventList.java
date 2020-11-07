@@ -474,6 +474,9 @@ public class EventList {
         } catch (NullPointerException e) {
             throw new NoClassWeekException();
         }
+        if (filteredClassList.size() == 0) {
+            throw new NoClassWeekException();
+        }
 
         ArrayList<Event> copyList = new ArrayList<>();
 

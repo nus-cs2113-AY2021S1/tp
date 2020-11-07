@@ -11,6 +11,6 @@ public class NoClassWeekException extends NuScheduleException {
      */
     @Override
     public String getMessage() {
-        return "Seems there is no class in this week.";
+        return "Seems there is no class in this week, so there is nothing for me to repeat.";
     }
 }

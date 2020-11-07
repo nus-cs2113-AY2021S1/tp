@@ -32,6 +32,7 @@ import exception.EmptyEventException;
 import exception.EmptyEventIndexException;
 import exception.EmptyFindDateException;
 import exception.EmptyFindException;
+import exception.EmptyLocationException;
 import exception.EmptyRepeatException;
 import exception.EmptyStudyTimeDateException;
 import exception.InvalidEditLocationException;
@@ -140,8 +141,10 @@ public abstract class Parser {
         }
 
         //this block deals with locate command
-        if (words[0].equalsIgnoreCase(LOCATE_EVENT)) {
+        if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length > 1) {
             return new LocateCommand(words[1]);
+        } else if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length == 1) {
+            throw new EmptyLocationException();
         }
 
         //this block deals with find command
