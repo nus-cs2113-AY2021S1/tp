@@ -37,6 +37,7 @@ public class RouteCommand extends Command {
             }
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
+            throw new CustomException(ExceptionType.POSSIBLE_LOCS_DUMMY);
         }
     }
 
