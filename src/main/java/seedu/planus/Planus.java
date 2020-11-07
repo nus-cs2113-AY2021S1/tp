@@ -24,10 +24,13 @@ public class Planus {
     }
 
     private void run() {
+        ui = new Ui();
         try {
             initProgram();
             logicManager.run();
             shutdownProgram();
+        } catch (IOException e) {
+            ui.showIoException();
         } catch (Exception e) {
             ui.showException(e);
         }
@@ -36,7 +39,6 @@ public class Planus {
     private void initProgram() throws IOException, ParseException {
         storage = new Storage();
         model = new Model(storage.loadTasks());
-        ui = new Ui();
         logicManager = new LogicManager(ui, model);
         ui.showWelcomeMessage(model.getTaskMap());
     }
