@@ -205,6 +205,10 @@ The following sequence diagram shows how the whole add feature works: <br>
 The list feature allows the user to print a list of events added by type.
 The list of events is print according to the order it was added in.
 
+The following is the class diagram for list command:
+
+![Class diagram for calendar command](./diagrams/ListClassDiagram.png)
+
 User calls the list command by executing `list [argument]`.
 
 Executing `list` without specifying any argument prints a list of event types available.  
@@ -230,12 +234,17 @@ The following sequence diagram shows how `ListCommand#execute()` works:
 
 ![Sequence diagram for goal command execute](./diagrams/ListExecuteSequenceDiagram.jpg)
 
+
 #### Calendar feature
 
 The calendar feature allows the user to list all events in chronological order.
 Only events with a date and time will be included in the calendar.
 The calendar is sorted by date using a treemap with each entry being an arraylist of events on the same date.
 It is then sorted by time in the arraylist of events.
+
+The following is the class diagram for calendar command:
+
+![Class diagram for calendar command](./diagrams/CalendarClassDiagram.png)
 
 User calls the list command by executing `calendar`.
 
@@ -256,6 +265,9 @@ Step 5. The user can choose to end the calendar with the input `q` or press **En
 Step 6. `CalendarCommand#execute()` calls `Ui#printCalendarEnd()` to print that it is the end of the calendar when the
 last date is listed or the user ends it.
 
+The following sequence diagram shows how `CalendarCommand#execute()` works:
+
+![Sequence diagram for goal command execute](./diagrams/CalendarExecuteSequenceDiagram.jpg)
 
 
 #### Repeat feature
@@ -375,6 +387,10 @@ The goal feature is achieved by `GoalCommand`. It either prints the current goal
 `UserData` if there is one, or it sets the input as the new goal by replacing the previous goal.
 The user can only have one goal at any time.
 
+The following is the class diagram for goal command:
+
+![Class diagram for calendar command](./diagrams/GoalClassDiagram.png)
+
 Given below is an example usage scenario of the goal feature.
 
 Step 1. The user launches the application for the first time. `Ui#printGoal` is called, 
@@ -391,10 +407,6 @@ The `goal` command is passed through a parser to return the GoalCommand with bla
 
 Step 5.  `GoalCommand#execute()` is called, to retrieve the current goal in `UserData` and print it
 with `Ui#printGoal()`.
-
-The following sequence diagram shows how the `goal save money` command is parsed:
-
-![Sequence diagram for parsing goal command](./diagrams/GoalParseSequenceDiagram.jpg)
 
 The following sequence diagram shows how `GoalCommand#execute()` works:
 
