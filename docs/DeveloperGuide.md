@@ -139,7 +139,7 @@ The Ui component is responsible for:
 The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
 
 <p align="center">
-  <img src="DG_Images/LogicClassDiagram.png" width="600" alt="Logic Class Diagram"/>
+  <img src="DG_Images/LogicClassDiagram.png" width="80%" alt="Logic Class Diagram"/>
   <br/>Figure <>. Class diagram of Logic component  
 </p>
 
@@ -152,7 +152,7 @@ The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `parse("edit 1 CS2113T")` API call:
 
 <p align="center">
-  <img src="DG_Images/LogicSequenceDiagram.png" width="600" alt="Logic Sequence Diagram"/>
+  <img src="DG_Images/LogicSequenceDiagram.png" width="80%" alt="Logic Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of Logic component  
 </p>
 
@@ -284,7 +284,7 @@ For instance, the user wants to edit the module `CS2113`, a detailed description
 The following sequence diagram shows how the edit module name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditModuleSequenceDiagram.png" width="600" alt="Edit Module Sequence Diagram"/>
+  <img src="DG_Images/EditModuleSequenceDiagram.png" width="80%" alt="Edit Module Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit module name feature
 </p>
 
@@ -462,7 +462,7 @@ For instance, the user wants to edit the chapter `chap 1` from the module `CS211
 The following sequence diagram shows how the edit chapter name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditChapterSequenceDiagram.png" width="600" alt="Edit Chapter Sequence Diagram"/>
+  <img src="DG_Images/EditChapterSequenceDiagram.png" width="80%" alt="Edit Chapter Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit chapter name feature  
 </p>
 
@@ -539,7 +539,7 @@ For instance, the user wants to add a flashcard `[Q] 1+1 | [A] 2` to the chapter
 The following sequence diagram shows how the add flashcard feature works:
 
 <p align="center">
-  <img src="DG_Images/AddCardSequenceDiagram.png" width="600" alt="Add Card Sequence Diagram"/>
+  <img src="DG_Images/AddCardSequenceDiagram.png" width="80%" alt="Add Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of add flashcard feature  
 </p>
 
@@ -601,7 +601,7 @@ For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the ch
 The following sequence diagram shows how the edit flashcard content feature works:
 
 <p align="center">
-  <img src="DG_Images/EditCardSequenceDiagram.png" width="600" alt="Edit Card Sequence Diagram"/>
+  <img src="DG_Images/EditCardSequenceDiagram.png" width="80%" alt="Edit Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit flashcard content feature  
 </p>
 
@@ -958,7 +958,7 @@ For instance, the user wants to reschedule the due date `2020-12-12` of the chap
 The following sequence diagram shows how the reschedule chapter feature works:
 
 <p align="center">
-  <img src="DG_Images/RescheduleChapterSequenceDiagram.png" width="800" alt="Reschedule Chapter Sequence Diagram"/>
+  <img src="DG_Images/RescheduleChapterSequenceDiagram.png" width="80%" alt="Reschedule Chapter Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of reschedule chapter feature  
 </p>
 
