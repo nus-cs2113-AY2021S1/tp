@@ -9,6 +9,8 @@ public class MainLogger {
 
     private final Logger logger;
 
+    //@@author HengFuYuen-reused
+    //Reused from https://stackoverflow.com/a/6315736 with minor modifications
     public MainLogger(String className) {
         logger = Logger.getLogger(className);
         Handler consoleHandler = new ConsoleHandler();
