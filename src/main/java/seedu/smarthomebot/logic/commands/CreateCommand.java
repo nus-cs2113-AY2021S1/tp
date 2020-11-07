@@ -5,7 +5,6 @@ import seedu.smarthomebot.commons.exceptions.InvalidLocationException;
 
 import java.util.logging.Level;
 
-import static seedu.smarthomebot.commons.Messages.LINE;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LOCATION_EXIST;
 
 //@@author zongxian-ctrl
@@ -26,7 +25,7 @@ public class CreateCommand extends Command {
      * @param location Name of Location to be created.
      */
     public CreateCommand(String location) {
-        assert location.isEmpty() != true : "CreateCommand must not accept empty location";
+        assert !location.isEmpty() : "CreateCommand must not accept empty location";
         this.userEnteredLocation = location;
     }
 

@@ -27,7 +27,7 @@ public class RemoveCommand extends Command {
      * @param location name of Location to be removed from LocationList.
      */
     public RemoveCommand(String location) {
-        assert location.isEmpty() != true : "RemoveCommand must not accept empty location";
+        assert !location.isEmpty() : "RemoveCommand must not accept empty location";
         this.userEnteredLocation = location;
     }
 

@@ -17,10 +17,10 @@ public class Messages {
     public static final String MESSAGE_TOTAL_POWER_USAGE = "\n\nTotal power consumption: ";
     public static final String MESSAGE_LIST_LOCATIONS = "Here are the Location in your list:";
     public static final String MESSAGE_LIST_APPLIANCES = "Here are the Appliances in your list:";
-    public static final String MESSAGE_POWER_USAGE = "Here are the power usage consumption:";
+    public static final String MESSAGE_POWER_USAGE = "Here are the recorded power usage consumption:";
     public static final String MESSAGE_LIST_NO_LOCATIONS = "There is currently no Location in the list.";
     public static final String MESSAGE_LIST_NO_APPLIANCES = "There is currently no Appliance in the list.";
-    public static final String MESSAGE_USAGE_RESET = "Power usage has been reset!";
+    public static final String MESSAGE_USAGE_RESET = "Previous recorded power usage has been reset!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid Command Format";
     public static final String MESSAGE_INVALID_ADD_COMMAND =
             "Please follow this order, add NAME l/[LOCATION_NAME] w/[WATTS] t/[TYPE_OF_APPLIANCE]";
@@ -50,7 +50,6 @@ public class Messages {
     public static final String MESSAGE_EMPTY_PARAMETER =
             "Empty Parameter detected! Please follow format and enter required parameters.";
     public static final String MESSAGE_LOCATION_EXIST = "Location already exist";
-
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
             "Exiting SmartHomeBot as requested, all Appliances are switched off.";
     public static final String MESSAGE_FILE_DOES_NOT_EXIST = "Load File does not exist. No contents will be loaded.";

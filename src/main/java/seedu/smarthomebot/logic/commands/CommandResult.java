@@ -15,7 +15,7 @@ public class CommandResult {
      * @param feedbackToUser Message to print to user.
      */
     public CommandResult(String feedbackToUser) {
-        assert feedbackToUser.isEmpty() != true : "CommandResult must not accept empty feedbackToUser";
+        assert !feedbackToUser.isEmpty() : "CommandResult must not accept empty feedbackToUser";
         this.feedbackToUser = feedbackToUser;
     }
 

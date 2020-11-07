@@ -18,11 +18,11 @@ class LocationListTest {
     private ArrayList<String> emptyList;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         myHome = new LocationList();
-        myHome.addLocation("Living Room");
+        myHome.addLocation("LivingRoom");
         expectedOutput = new ArrayList<>();
-        expectedOutput.add("Living Room");
+        expectedOutput.add("LivingRoom");
         emptyList = new ArrayList<>();
     }
 
@@ -35,12 +35,12 @@ class LocationListTest {
 
     @Test
     void addLocation_locationAlreadyInList_throwsDuplicateDataException() {
-        assertThrows(DuplicateDataException.class, () -> myHome.addLocation("Living Room"));
+        assertThrows(DuplicateDataException.class, () -> myHome.addLocation("LivingRoom"));
     }
 
     @Test
     void removeLocation_locationInList_locationRemovedNormally() throws InvalidLocationException {
-        myHome.removeLocation("Living Room");
+        myHome.removeLocation("LivingRoom");
         assertEquals(emptyList, myHome.getAllLocations());
     }
 
@@ -56,12 +56,12 @@ class LocationListTest {
 
     @Test
     void testToString() {
-        assertEquals("Living Room\n", myHome.toString());
+        assertEquals("LivingRoom\n", myHome.toString());
     }
 
     @Test
     void isLocationCreated_locationInList_returnTrue() {
-        assertTrue(myHome.isLocationCreated("Living Room"));
+        assertTrue(myHome.isLocationCreated("LivingRoom"));
     }
 
 }
