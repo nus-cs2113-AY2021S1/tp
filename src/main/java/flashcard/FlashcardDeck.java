@@ -57,7 +57,7 @@ public class FlashcardDeck {
     }
 
     public void testRandomCard() {
-        if(flashcardDeck.size() > 0) {
+        if (flashcardDeck.size() > 0) {
             Scanner in = new Scanner(System.in);
             int score = 0;
             Ui.printDivider();
