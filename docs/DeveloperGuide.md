@@ -266,7 +266,7 @@ This section introduces the specific implementation details and design considera
 <br/>
 
 ### 4.1 Estimate Feature
-The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability. Hence, this feature allows users to better manage their time and be able to provide clients with much accurate estimation timings.
+The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability, or by the average translators' capability. Hence, this feature allows users to better manage and plan their time.
 
 #### 4.1.1 Current Implementation
 The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant field (and parameter), `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction.
@@ -279,15 +279,15 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 
 **Step 2:** `EstimateParser` is terminated at this point. The application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
-**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace the user is currently using, then it invokes `StorageManager#loadScriptFile()` to read and store the content of `scriptFileName` in the active workspace folder in `fileContent`.
-> :memo: Every workspace is actually a folder in the system.
+**Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace the user is currently using, then it invokes `StorageManager#loadScriptFile()` to read `scriptFileName` (located in the active workspace folder) and store its content in `fileContent`.
+> :memo: Every workspace is actually a folder.
 
 > :memo: The application assumes that the user has the file placed in the active (currently using) workspace.
 
 <br/>
 
 **Step 4:** Once the file has been read, it calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
-> :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 estimation timings, unlike the current scenario, only 1 estimation timing will be generated.
+> :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 timings, unlike the current scenario, only 1 timing will be generated.
 
 <br/>
 
@@ -305,7 +305,7 @@ The sequence diagram presented below depicts the interaction between the compone
 <br/>
 
 #### 4.1.2 Design Considerations
-This section shows some design considerations taken when implementing the estimate feature.
+This section shows the design considerations taken when implementing the estimate feature.
 
 Aspect: **When should the application validate the script file**
 
@@ -313,10 +313,10 @@ Since the script file specified by the user can be non-existent or empty, it is 
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| During command execution. | Easy to implement since `Command` already handle file matters. | Memory resource are wasted if the file is invalid. |
+| During command execution. | Easy to implement since `Command` already handle file matters. | Some memory resource are wasted if the file is invalid. |
 | During parsing. | No memory resource wasted since invalid file will be detected early. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
-Having considered both approach, we have decided to implement the first approach, **validate the script file during command execution** because we do not want to decrease the cohesion of Parser, and we find that the memory resource wasted is a worthy exchange for the cohesion preserved.
+Having considered both approach, we have decided to implement the first approach, **validate the script file during command execution** because we do not want to decrease the cohesion of `Parser`, and we find that the memory resource wasted is a worthy exchange for the cohesion preserved.
 
 <br/>
 
@@ -326,10 +326,10 @@ As the user have to specify a script file for the command, there is a need to de
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| Specify file extension. |  Ensures the correct file will be read. | Some users may not know how to identify the file extension. |
+| Have to specify file extension. |  Ensures the correct file will be read. | May affect usability as some user may not know how to identify the file extension and might find it troublesome. |
 | Do not have to specify file extension. | Users can easily specify the file to read. | May read the wrong file due to identical names but different file extension. |
 
-We have decided to the implement the first approach, **users should specify the file extension** because it is important for the application to generate the correct estimation timing to the user, and this far outweighs and compensates for the hassle of entering the file extension, and we believe such mistakes are also costly for our users.
+We have decided to implement the first approach, **users should specify the file extension** because if the wrong timing is provided to the user, it could end up being a costly mistake. In addition, we also find that this accuracy we are assuring our users far outweighs and compensate for the slight inconvenience introduced.
 
 <br/>
 
@@ -627,7 +627,7 @@ We picked the first approach as it is the safer option. By allowing **AniChan** 
 <br/>
 
 ### 4.5 Watchlist Management Feature
-The watchlist management feature aims to provide translators with a simple way to keep track of anime by being able to group anime based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over management issues.
+The watchlist management feature aims to provide translators with a simple way to keep track of anime by being able to group anime based on their own criteria. This allows them to stay organized and focused on their work rather than being concerned over irrelevant issues.
 
 #### 4.5.1 Current Implementation
 The watchlist management feature is facilitated by `WatchlistCommand`. By running the command `watchlist` with the relevant parameter and field, `WatchlistParser` will construct `WatchlistCommand` which will be used to execute the user's instruction. 
@@ -635,7 +635,7 @@ The watchlist management feature is facilitated by `WatchlistCommand`. By runnin
 Below is a table describing the 4 parameters supported by the `watchlist` command, and the corresponding method that is invoked (required parameters are omitted).
 > :memo: The term **active watchlist** refers to the watchlist that the user is using to add anime into or remove anime from, and this is tracked by `activeWatchlist` in `Workspace`.
 
-| Parameters | Method | Description |
+| Parameter | Method | Description |
 | --- | --- | --- |
 | `-n` | `WatchlistCommand#createWatchlist()` | Creates a new watchlist |
 | `-l` (lowercase letter 'L') | `WatchlistCommand#listAllWatchlist()` | Lists all watchlist in the workspace |
@@ -657,10 +657,9 @@ Given below is an example usage scenario showing how the `WatchlistCommand` beha
 **Step 3:** `WatchlistCommand` first invokes `User#getActiveWorkspace()` to identify the workspace to add the new watchlist, and according to the instruction "-n", `WatchlistCommand#createWatchlist()` is invoked.
 
 **Step 4:** It first invokes `activeWorkspace.getWatchlistList()` to initialise `watchlistList`. A `Watchlist` object is then constructed with the name "NewAnime" and validated before it is added to `watchlistList`.
-
-**Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and finally, the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
 > :memo: The validation checks ensure the watchlist name is unique in `watchlistList`, is not empty, and contains less than or equal to 30 alphanumeric characters and/or spaces. 
 
+**Step 5:** `StorageManager#saveWatchlist()` is invoked to save the updated `watchlistList`, and finally, the result of this command execution is returned to `Main` for it to be printed via `Ui#printMessage()`.
 > :memo: The details of all `Watchlist` object for a workspace will be saved in the file "watchlist.txt" in the workspace folder.
 
 <br/>
@@ -677,7 +676,7 @@ All the other parameters in the `watchlist` command also follows a similar execu
 The following diagrams will **continue from step 6**, and it will show how the `activeWatchlist` state will change as the `watchlist` command executes with the select (`-s`) and delete (`-d`) parameter.
 > :memo: The execution with the list parameter (`-l`) is not shown as it does not result in any change to the `activeWatchlist` state.
 
-**Step 7:** The user executes `watchlist -s 2` to change his active watchlist to the second watchlist (“NewAnime”) in the list.
+**Step 7:** The user executes `watchlist -s 2` to set the second watchlist ("New Anime") in the list as the new active watchlist.
 
 ![WatchlistCommand After Select State](images/WatchlistCommand-After-Select-State.png)
 
@@ -705,7 +704,7 @@ The sequence diagram presented below depicts the interaction between the compone
 <br/>
 
 #### 4.5.2 Design Considerations
-This section shows some design considerations taken when implementing the watchlist management features.
+This section shows the design considerations taken when implementing the watchlist management features.
 
 Aspect: **Saving watchlist data**
 
@@ -713,10 +712,10 @@ Since watchlist can be created and deleted at any point of time, it is important
 
 | Approach | Pros | Cons |
 | --- | --- | --- |
-| When the watchlist data has been modified. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
+| Whenever the watchlist data is modified. | Data would not be lost if the application or system crashes midway. | Application might slow down when the data grows large. |
 | When the user exits the program. | Saving is more efficient and could improve performance. | User may lose their data if the application or system crashes midway. |
 
-Having considered both approach, we have decided to save watchlist data **when the watchlist data has been modified** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to translators especially if the data are important.
+Having considered both approach, we have decided to save watchlist data **whenever the watchlist data is modified** because users may work on the application for long period and unexpected events can always happen. Losing work data can also be a frustrating and costly mistake to the user especially if the data are important.
 
 <br/>
 
@@ -729,7 +728,7 @@ To create a watchlist, users would have to give it a name, and these names can a
 | No restriction. | Users have more flexibility. | This may hinder user's vision of the input prompt and affects the usability. |
 | Maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only. | Ensure users have a easy to read input prompt. | Users have less flexibility in naming. |
 
-While both approach are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy and have special characters can muddle up the readability of the input prompt, and that would also affect the usability of the application.
+While both approach are valid in their own ways, we have decided to **restrict watchlist name to a maximum of 30 alphanumeric characters and/or spaces, but cannot contain spaces only** because having a watchlist name that is lengthy or has special characters can muddle up the readability of the input prompt, and that can affect the usability of the application.
 
 <br/>
 
@@ -1152,7 +1151,8 @@ If you wish to add new checks, simply add the check file with a filename `check-
 3.  Enter the command `java -jar AniChan.jar` to launch **AniChan**.
 4.  Program will prompt for `Name` and `Gender` of user, thereafter **AniChan** will be ready for use.
 
-> :bulb: This is what the input prompt means: **WORKSPACE-NAME (WATCHLIST-NAME) #>**
+> :bulb: AniChan's Input Prompt: 
+> <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 36: AniChan's Input Prompt*
 
 #### Shutdown
 1.  To exit **AniChan**, enter the `exit` command.
@@ -1164,19 +1164,19 @@ If you wish to add new checks, simply add the check file with a filename `check-
     1.  Prerequisite: Have a non-empty `script.txt` file in the current workspace folder.
         1.  Create a `.txt` file and name it "script" such that the file name with the file extension is `script.txt`, then fill it up with some content (i.e. random words and sentences).
         2.  Go to the folder containing `AniChan.jar`.
-        3.  Open the `data` folder (if it does not exist, restart **AniChan**).
-        4.  In the `data` folder, find and open the folder named after the current workspace (if the input prompt shows `Default (myWatchlist) #>`, then look for the folder named "Default" as that is the current workspace name).
+        3.  **Open** the `data` folder (if it does not exist, restart **AniChan**).
+        4.  In the `data` folder, **find and open** the folder named after the current workspace (if the input prompt shows `Default (myWatchlist) #>`, then look for the folder named "Default" as that is the current workspace name).
         5.  Move `script.txt` into this folder (i.e. `data/Default/script.txt`).
 
     2.  Test case: `estimate script.txt`. <br/>
-    Expected: 3 estimation timings are generated and printed.
+    Expected: 3 timings are generated and printed.
 
     3.  Test case: `estimate script.txt -wph 550`. <br/>
-    Expected: 1 estimation timing is generated and printed.
+    Expected: 1 timing is generated and printed.
     
     4.  Other incorrect commands to try: 
         1.  `estimate`.
-        2.  `estimate x` (where x is not a `.txt` file, or it is a file path).
+        2.  `estimate x` (where x is not a `.txt` file, consist of multiple files, or it is a file path).
         3.  `estimate script.txt -wph x` (where x is a negative number or a word).
 
 > :memo: The file name (including extension) does not have to be `script.txt`, it is named as such for the convenience of testing.
@@ -1185,23 +1185,24 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ### D.3: Creating watchlist
 1.  Creating a watchlist with a unique name.
-    1.  Prerequisite: Watchlist list does not have a watchlist named "newWatchlist".
+    1.  Prerequisite: None.
     
     2.  Test case: `watchlist -n newWatchlist`. <br/>
-    Expected: A empty watchlist named "newWatchlist" is created, and a message indicating the watchlist was created successfully is printed.
+    Expected: A empty watchlist named "newWatchlist" is created, and a message indicating the watchlist was created successfully is printed. 
+    If the current workspace has a watchlist named "newWatchlist" created already, then, a message indicating the watchlist creation failed due to a non-unique watchlist name provided is printed.
         
     3.  Other incorrect commands to try: 
         1.  `watchlist -n`.
-        2.  `watchlist -n x` (where x is a non-unique watchlist name, exceeds 30 characters, or it contains non-alphanumeric characters).
+        2.  `watchlist -n x` (where x is watchlist name that exceeds 30 characters, contains non-alphanumeric characters, or contain spaces only).
 
 <br/>
 
 ### D.4: Listing all watchlist(s)
 1.  Listing all created watchlist(s).
-    1.  Prerequisite: The watchlist list in the current workspace is not empty.
+    1.  Prerequisite: None.
     
     2.  Test case: `watchlist -l` <br/>
-    Expected: The names of all watchlist in the current workspace is printed.
+    Expected: All watchlist entries in the current workspace is printed.
     
     3.  Other incorrect commands to try: 
         1.  `watchlist -l x` (where x is any additional parameters or values).
@@ -1210,7 +1211,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 ### D.5: Selecting a watchlist to be the new active watchlist
 1.  Selecting a watchlist to be the new active watchlist.
-    1.  Prerequisite: The watchlist list in the current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
+    1.  Prerequisite: The current workspace has at least 2 watchlist, and **the first watchlist in the list is the active watchlist**.
     
     2.  Test case: `watchlist -s 2` <br/>
     Expected: The second watchlist in the list becomes the new active watchlist, and a message indicating the name of the new active watchlist is printed.
@@ -1219,24 +1220,25 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: An error message indicating that the selected watchlist is already the active watchlist is printed.
     
     4.  Other incorrect commands to try: 
-        1.  `watchlist -s`
+        1.  `watchlist -s`.
         2.  `watchlist -s x` (where x is a negative number, a word, or an additional parameter).
 
 <br/>
 
 ### D.6: Deleting a watchlist
 1.  Deleting a watchlist.
-    1.  Prerequisite: The watchlist list in the current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
+    1.  Prerequisite: The current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
 
     2.  Test case: `watchlist -d 2` <br/>
     Expected: The second watchlist in the list is deleted, and a message indicating the name of the deleted watchlist is printed.
     
     3.  Test case: `watchlist -d 1` <br/>
-    Expected: The first watchlist in the list is deleted, and a message indicating the name of the deleted watchlist, and the name of the new active watchlist is printed.
+    Expected: The first watchlist in the list is deleted, and the first watchlist that is in the list after the deletion becomes the new active watchlist.
+    Then, a message indicating the name of the deleted watchlist, and the name of the new active watchlist is printed.
     
     4.  Other incorrect commands to try: 
-        1.  `watchlist -d`
-        2.  `watchlist -d x` (where x is a negative number, a word, or an additional parameter)
+        1.  `watchlist -d`.
+        2.  `watchlist -d x` (where x is a negative number, a word, or an additional parameter).
 
 <br/>
 
