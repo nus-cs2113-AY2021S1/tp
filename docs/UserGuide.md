@@ -169,6 +169,10 @@ If you have entered the wrong answer, this is what you will see:
 If you did not answer the question within the specified time, this is what you will see: 
 ![quiz](./images/quiz_times_up.png)
 
+After every question, this is what you will see: 
+![quiz](./images/question_end.png)
+Please press "Enter" to proceed to the next question. 
+
 After attempting all of the questions, the quiz will automatically end:
 ![quiz](./images/quiz_end.png)
 
@@ -210,6 +214,7 @@ Lists out all the bookmarked questions and each of their four options.
 
 Note:
 - Listing out all bookmarked questions can only be done in the main menu
+
 
 Example of usage:
 ```
@@ -254,6 +259,7 @@ note add
 
 What you should see:
 
+![noteadd](./images/noteadd.png)
 
 ### 3.13. Deleting a note: `note delete`
 
@@ -264,6 +270,10 @@ Example of usage:
 note delete
 ```
 
+What you should see:
+
+![notedelete](./images/notedelete.png)
+
 ### 3.14. Listing out notes: `note list`
 
 Lists out all notes belonging to a specific topic.
@@ -272,6 +282,10 @@ Example of usage:
 ```
 note list
 ```
+
+What you should see:
+
+![notelist](./images/notelist.png)
 
 
 ### 3.15. Exiting the program: `exit`
