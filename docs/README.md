@@ -24,3 +24,10 @@ Here are some useful links:
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
+
+## Acknowledgements
+##### Third party libraries used in this project
+ - [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/) under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+##### Code reused
+ - termiNus is based on [GuoAi/ip](https://github.com/GuoAi/ip), although much of the codebase has been heavily modified.

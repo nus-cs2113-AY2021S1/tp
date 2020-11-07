@@ -159,6 +159,4 @@ activate Storage
 
 Model <-- Storage
 deactivate Storage
-
-destroy Storage
 @enduml
