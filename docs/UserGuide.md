@@ -68,7 +68,7 @@ accurate calculations for you :). Therefore, could you please share with me the 
 - Your original weight in kg, the weight when you first started using DietBook or you current weight.
 - Your current weight in kg.
 - Your target weight in kg, or your current weight if that is also your target weight.
-- Your activity level, represented by a number from 1 to 5.
+- Your fitness level, represented by a number from 1 to 5.
   1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   2 = You engage in some form of light exercise or have a job that requires some physical activity.
   3 = You engage in moderate amount of exercise or have a job that requires moderate physical activity.
@@ -76,22 +76,22 @@ accurate calculations for you :). Therefore, could you please share with me the 
   5 = You engage in extremely vigorous exercise or have an extremely physically demanding job.
 
 Please input your details in the following format:
-  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL
-  Example: info g/F a/21 h/165 o/65 c/65 t/55 l/2
+  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT f/FITNESS_LEVEL
+  Example: info g/F a/21 h/165 o/65 c/65 t/55 f/2
 ```
 
-#### Entering user information : `info`
+#### Entering user information: `info`
 
 Stores the user's personal information into DietBook during the initial setup. 
 
-Format: `info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL`
+Format: `info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT f/FITNESS_LEVEL`
 
-* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of user information can be done using the [editinfo](#Editing user information: `editinfo`) command.
+* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of user information can be done using the [editinfo](#editing-user-information-editinfo) command.
 * The gender must be either **`M` for male, `F` for female or `O` for others**.
-* The age must be a positive integer **from 0 to 150, inclusive**.
-* The height in cm must be a positive integer **from 1 to 300, inclusive**.
-* The original, current and target weight in kg must be a positive integer ***from 1 to 500, inclusive**.
-* The activity level must be a positive integer **from 1 to 5, inclusive**.
+* The age must be a positive **integer from 0 to 150, inclusive**.
+* The height in cm must be a positive **integer from 1 to 300, inclusive**.
+* The original, current and target weight in kg must be a positive **integer from 1 to 500, inclusive**.
+* The fitness level must be a positive **integer from 1 to 5, inclusive**.
   * 1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   * 2 = You engage in some form of light exercise or have a job that requires some physical activity.
   * 3 = You engage in moderate amount of exercise or have a job that requires moderate physical activity.
@@ -100,11 +100,11 @@ Format: `info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGE
 
 Example of usage:
 
-* `info g/M a/21 h/175 o/85 c/85 t/75 l/2` stores the user's gender, age, height, original, current and target weight as well as the activity level to `male`, `21`, `175`, `85`, `85`, `75` and `You engage in some form of light exercise  or have a job that requires some physical activity.` respectively.
+* `info g/M a/21 h/175 o/85 c/85 t/75 f/2` stores the user's gender, age, height, original, current and target weight as well as the fitness level to `male`, `21`, `175`, `85`, `85`, `75` and `You engage in some form of light exercise  or have a job that requires some physical activity.` respectively.
 
 Output example:
 ```
-Thank you! DietBook has been initialised and you may start by entering any valid commands. 
+Thank you! DietBook has been initialised and you may start by entering any valid commands.
 If you require a list of valid commands, you can enter: help
 ```
 
@@ -124,7 +124,7 @@ Here is your information:
   Original weight: 85kg
   Current weight: 85kg
   Target weight: 75kg
-  Activity level: You engage in some form of light exercise or have a job that requires some physical activity.
+  Fitness level: You engage in some form of light exercise or have a job that requires some physical activity.
 ```
 
 #### Editing user information: `editinfo`
