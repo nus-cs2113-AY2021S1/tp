@@ -92,10 +92,20 @@ from the java.util package. The remaining packages and classes which form the st
 are independently developed.
 
 ## Architecture
-![UML Fluffle class diagram](graphics/diagrams/classDiagram_Fluffle.png)
-<center><i><b>Figure 1: Overview of Fluffle UML diagram</b></i></center>
+This document contains all packages and classes that are used in developing Fluffle. The following figure describes the overview architecture of Fluffle.
 
-Fluffle Documentation: This document contains all packages and classes that are used in developing Fluffle. 
+![UML Fluffle class diagram](graphics/diagrams/Architecture.PNG)
+<center><i><b>Figure 1: Overview of Fluffle Architecture</b></i></center>
+
+The design of Fluffle contains four main components:
+- Writing Manager component
+- Bunny Manager component
+- Name Manager component
+- Word Manager component
+
+All components can be accessed by the user through Fluffle's UI. 
+On loading Fluffle, all components will be loaded from the storage. 
+On exiting Fluffle, all components will be saved to the storage.
 
 ### Project overview
 Fluffle is built using IntelliJ and all concepts for the user interfaces, as well as the backend data management of the 
@@ -120,7 +130,7 @@ methods on that sequence respectively, the user should be able to access the pro
 into the database. During this process, the user has the ability of choosing their preferred type of writings(which are 
 either poem or essay at this stage)
 
-![UML WritingList family sequence diagram](graphics/diagrams/UML_Writing_Sequence_diagram.png)
+![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 3: General interactions between member classes when generating a new writing</b></i></p>
 
 ## Filter words class family
@@ -249,4 +259,4 @@ The application aims to provide the writer with the following services:
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing/ Summary of UG}
