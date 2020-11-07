@@ -45,7 +45,7 @@ public class StockPriceFetcher {
             return stockData.get(0);
         } catch (AlphaVantageException e) {
             logger.log(Level.INFO, "failed to fetch price from API");
-            throw new DukeException("Failed to retrieve price! Please try again.");
+            throw new DukeException("API limit has reached. Take a chill pill and test again a moment later :)");
         }
     }
 
