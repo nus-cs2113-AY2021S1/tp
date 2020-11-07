@@ -53,6 +53,11 @@ class CheckCommandTest {
         addCommand.execute(data, ui, storage);
     }
 
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
+    }
+
     @Test
     void execute_someEventsInTimeRange_printEventsInTimeRange() throws DukeException {
         // Execute check command
@@ -72,7 +77,7 @@ class CheckCommandTest {
     @Test
     void execute_repeatedEventInsideTimeRange_printEventInTimeRange() throws DukeException {
         // Execute check command
-        String inputString = "10/10/2020; 12 pm; 10/10/20; 5 pm";
+        String inputString = "10/10/2020; 12 pm; 10/10/20; 17";
         System.setOut(new PrintStream(outputStreamCaptor));
 
         Command checkCommand  = new CheckCommand(inputString);
@@ -86,14 +91,23 @@ class CheckCommandTest {
     @Test
     void execute_eventsOutsideTimeRange_printEventsInTimeRange() throws DukeException {
         // Execute check command
-        String inputString = "20/10/20; 13:00; ; ";
+        String inputStringOne = "20/10/20; 13:00; ; ";
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        Command checkCommand  = new CheckCommand(inputString);
+        Command checkCommand  = new CheckCommand(inputStringOne);
         checkCommand.execute(data, ui, storage);
 
-        String expectedString = "You have no coinciding events!";
-        assertEquals(expectedString, outputStreamCaptor.toString().trim());
+        String expectedStringOne = "You have no coinciding events!";
+        assertEquals(expectedStringOne, outputStreamCaptor.toString().trim());
+
+        String inputStringTwo = "11/20; 13:00; 20; ";
+
+        checkCommand  = new CheckCommand(inputStringTwo);
+        checkCommand.execute(data, ui, storage);
+
+        String expectedStringTwo = "You have no coinciding events!";
+        assertEquals(expectedStringOne + System.lineSeparator()
+                + expectedStringTwo, outputStreamCaptor.toString().trim());
     }
 
     @Test
@@ -102,10 +116,15 @@ class CheckCommandTest {
         String inputString = "9/10/2020 3 pm 10/10/20 5 pm";
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        assertThrows(MissingSemicolonException.class, () -> {
+        Exception e = assertThrows(MissingSemicolonException.class, () -> {
             Command checkCommand  = new CheckCommand(inputString);
             checkCommand.execute(data, ui, storage);
         });
+
+        String expectedMessage = "Remember to separate input fields with a ';'.";
+        String actualMessage = e.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
@@ -114,46 +133,92 @@ class CheckCommandTest {
         String inputString = "9/10/2020; 3 pm";
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        assertThrows(WrongNumberOfArgumentsException.class, () -> {
+        Exception e = assertThrows(WrongNumberOfArgumentsException.class, () -> {
             Command checkCommand  = new CheckCommand(inputString);
             checkCommand.execute(data, ui, storage);
         });
+
+        String expectedMessage = "Insufficient fields provided to check events. "
+                + "Remember to put a semicolon even for blank fields.";
+        String actualMessage = e.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
     void execute_invalidDateFormatGiven_DateErrorExceptionThrown() {
-        // Execute check command
-        String inputStringOne = "9.10.2020; 3 pm; 10.10.2020; 5 pm";
-        System.setOut(new PrintStream(outputStreamCaptor));
+        // First invalid date format
+        String inputStringOne = "9/10.2020; 3 pm; 10.10.2020; 5 pm";
 
-        assertThrows(DateErrorException.class, () -> {
+        Exception firstE = assertThrows(DateErrorException.class, () -> {
             Command checkCommand  = new CheckCommand(inputStringOne);
             checkCommand.execute(data, ui, storage);
         });
 
-        String inputStringTwo = "9,10,2020; 3 pm; 10,10,2020; 5 pm";
-        System.setOut(new PrintStream(outputStreamCaptor));
+        String expectedMessage = "Something is wrong with the date!" + System.lineSeparator()
+                + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy." + System.lineSeparator()
+                + "Dashes may be used in place of slashes.";
+        String actualMessage = firstE.getMessage();
 
-        assertThrows(DateErrorException.class, () -> {
+        assertEquals(expectedMessage, actualMessage);
+
+        // Second invalid date format
+        String inputStringTwo = "9/10/2020; 3 pm; 10,10,2020; 5 pm";
+
+        Exception secondE = assertThrows(DateErrorException.class, () -> {
             Command checkCommand  = new CheckCommand(inputStringTwo);
             checkCommand.execute(data, ui, storage);
         });
+
+        actualMessage = secondE.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+
+        // Third invalid date format
+        String inputStringThree = "5/9/10/2020; 3 pm; 10/10/2020; 5 pm";
+
+        Exception thirdE = assertThrows(DateErrorException.class, () -> {
+            Command checkCommand  = new CheckCommand(inputStringThree);
+            checkCommand.execute(data, ui, storage);
+        });
+
+        expectedMessage = "Too many fields given for the date!" + System.lineSeparator()
+                + "D/M/YYYY is the longest date format accepted.";
+
+        actualMessage = thirdE.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
-    void execute_invalidTimeFormatGiven_DateErrorExceptionThrown() {
-        // Execute check command
+    void execute_invalidTimeFormatGiven_TimeErrorExceptionThrown() {
+        // First invalid time format
         String inputStringOne = "9/10/2020; 3.00 pm; 10/10/2020; 5.00 pm";
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        assertThrows(TimeErrorException.class, () -> {
+        Exception firstE = assertThrows(TimeErrorException.class, () -> {
             Command checkCommand  = new CheckCommand(inputStringOne);
             checkCommand.execute(data, ui, storage);
         });
-    }
 
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
+        String expectedMessage = "Something is wrong with the time!" + System.lineSeparator()
+                + "The accepted formats are:" + System.lineSeparator()
+                + "(12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or " + System.lineSeparator()
+                + "(24 hour) HH:mm, HHmm, HH.";
+        String actualMessage = firstE.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+
+        // Second invalid time format
+        String inputStringTwo = "9/10/2020; 3:00 pm; 10/10/2020; 5:00 PST pm";
+
+        Exception secondE = assertThrows(TimeErrorException.class, () -> {
+            Command checkCommand  = new CheckCommand(inputStringTwo);
+            checkCommand.execute(data, ui, storage);
+        });
+
+        actualMessage = secondE.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
     }
 }

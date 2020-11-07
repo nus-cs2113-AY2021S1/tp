@@ -78,7 +78,8 @@ public class CheckCommand extends Command {
 
             ui.printList(coinciding);
         } catch (ArrayIndexOutOfBoundsException e) { // if datesAndTime[x] is unable to be accessed
-            throw new WrongNumberOfArgumentsException("Insufficient fields provided to check events.");
+            throw new WrongNumberOfArgumentsException("Insufficient fields provided to check events. "
+                    + "Remember to put a semicolon even for blank fields.");
         }
     }
 
@@ -122,7 +123,8 @@ public class CheckCommand extends Command {
             }
         } catch (DateTimeParseException e) {
             throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
-                    + "The accepted formats are: D/M/YYYY, M/YYYY or YYYY. YYYY can also be YY. Dashes may be used in place of slashes.");
+                    + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy." + System.lineSeparator()
+                    + "Dashes may be used in place of slashes.");
         }
     }
 
@@ -164,8 +166,9 @@ public class CheckCommand extends Command {
                 }
             } else {
                 throw new TimeErrorException("Something is wrong with the time!" + System.lineSeparator()
-                        + "The accepted formats are: (12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or "
-                        + "(24 hour) HH:mm, HHmm, HH");
+                        + "The accepted formats are:" + System.lineSeparator()
+                        + "(12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or " + System.lineSeparator()
+                        + "(24 hour) HH:mm, HHmm, HH.");
             }
         } catch (NumberFormatException | TryRegularParserException e) {
             // if hh:mm, HH:mm or other invalid non integers is given
