@@ -37,4 +37,7 @@ public class ListProjectCommand extends ProjectCommand {
         ScrumLogger.LOGGER.info("Projects added shown in ascending order.");
     }
 
+
+
+
 }
