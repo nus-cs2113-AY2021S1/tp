@@ -162,10 +162,10 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Finds and lists all tasks in the task list whose description contains the argument keywords.
+     * Finds and lists all items in the task list whose description contains the argument keywords.
      * Keyword matching is case-insensitive.
      *
-     * @param keyword the keyword to be searched in the task list
+     * @param keyword the keyword to be searched in the items list
      */
     public void findItem(String keyword) {
         ArrayList<T> matchingTasks = new ArrayList<>();
@@ -189,29 +189,29 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Retrieves the size of the task list.
+     * Retrieves the size of the item list.
      *
-     * @return the size of the task list
+     * @return the size of the item list
      */
     public int size() {
         return items.size();
     }
 
     /**
-     * Retrieves a task using the given index.
+     * Retrieves an item using the given index.
      *
-     * @param index the index of the task to be retrieved
-     * @return the task in the task list at the given index
+     * @param index the index of the item to be retrieved
+     * @return the item in the item list at the given index
      */
     public T get(int index) {
         return items.get(index);
     }
 
     /**
-     * Sets the date of a task at the given index.
+     * Sets the date of an item at the given index.
      *
-     * @param index the index of the task to set priority.
-     * @param date  the date to set the task at.
+     * @param index the index of the item to set date.
+     * @param date  the date to set the item at.
      */
     public void setDate(int index, String date) throws DukeException {
         if (index > items.size() || index < 1) {
