@@ -18,6 +18,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 import static commands.ReviseCommand.MESSAGE_CHAPTER_NOT_DUE;
@@ -113,6 +115,15 @@ public class ReviseCommandTest {
         }
     }
 
+    private String getExpected(String expectedResult) {
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.print(expectedResult);
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        return expected;
+    }
+
     @Test
     public void execute_invalidIndex_expectException() {
         ReviseCommand command = new ReviseCommand(2);
@@ -120,7 +131,7 @@ public class ReviseCommandTest {
     }
 
     @Test
-    public void execute_validIndexUserInputN_expectNoOutput() throws IOException {
+    public void execute_validIndexUserInputN_expectNoRevision() throws IOException {
         ReviseCommand command = new ReviseCommand(0);
         String testInput = "w\nN";
         provideInput(testInput);
@@ -128,11 +139,12 @@ public class ReviseCommandTest {
         String expectedResult = String.format(MESSAGE_CHAPTER_NOT_DUE, "chapter1")
                 + MESSAGE_SHOW_REVISE_PROMPT + "\r\n" + INVALID_INPUT
                 + String.format(MESSAGE_NOT_REVISING, "chapter1");
-        assertEquals(expectedResult, getOutput().trim());
+        String expected = getExpected(expectedResult);
+        assertEquals(expected, getOutput().trim());
     }
 
     @Test
-    public void execute_validIndexUserInputYEasy_expectNoOutput() throws IOException {
+    public void execute_validIndexUserInputYEasy_expectRevision() throws IOException {
         ReviseCommand command = new ReviseCommand(0);
         String testInput = "w\nY\nw\ns\nw\nc\ns\ne";
         provideInput(testInput);
@@ -145,11 +157,12 @@ public class ReviseCommandTest {
                 + INVALID_INPUT + "\nQuestion 2:\r\n" + card.getRevisionQuestion()
                 + MESSAGE_SHOW_ANSWER_PROMPT + "\r\n" + card.getRevisionAnswer() + "\r\n"
                 + MESSAGE_SHOW_RATING_PROMPT + "\r\n" + String.format(MESSAGE_SUCCESS, "chapter1");
-        assertEquals(expectedResult, getOutput().trim());
+        String expected = getExpected(expectedResult);
+        assertEquals(expected, getOutput().trim());
     }
 
     @Test
-    public void execute_validIndexUserInputYMedium_expectNoOutput() throws IOException {
+    public void execute_validIndexUserInputYMedium_expectRevision() throws IOException {
         ReviseCommand command = new ReviseCommand(0);
         String testInput = "w\nY\nw\ns\nw\nc\ns\nm";
         provideInput(testInput);
@@ -162,11 +175,12 @@ public class ReviseCommandTest {
                 + INVALID_INPUT + "\nQuestion 2:\r\n" + card.getRevisionQuestion()
                 + MESSAGE_SHOW_ANSWER_PROMPT + "\r\n" + card.getRevisionAnswer() + "\r\n"
                 + MESSAGE_SHOW_RATING_PROMPT + "\r\n" + String.format(MESSAGE_SUCCESS, "chapter1");
-        assertEquals(expectedResult, getOutput().trim());
+        String expected = getExpected(expectedResult);
+        assertEquals(expected, getOutput().trim());
     }
 
     @Test
-    public void execute_validIndexUserInputYHard_expectNoOutput() throws IOException {
+    public void execute_validIndexUserInputYHard_expectRevision() throws IOException {
         ReviseCommand command = new ReviseCommand(0);
         String testInput = "w\nY\nw\ns\nw\nc\ns\nh";
         provideInput(testInput);
@@ -179,7 +193,8 @@ public class ReviseCommandTest {
                 + INVALID_INPUT + "\nQuestion 2:\r\n" + card.getRevisionQuestion()
                 + MESSAGE_SHOW_ANSWER_PROMPT + "\r\n" + card.getRevisionAnswer() + "\r\n"
                 + MESSAGE_SHOW_RATING_PROMPT + "\r\n" + String.format(MESSAGE_SUCCESS, "chapter1");
-        assertEquals(expectedResult, getOutput().trim());
+        String expected = getExpected(expectedResult);
+        assertEquals(expected, getOutput().trim());
     }
 
     @Test
@@ -191,6 +206,7 @@ public class ReviseCommandTest {
         String expectedResult = String.format(MESSAGE_CHAPTER_NOT_DUE, "chapter2")
                 + MESSAGE_SHOW_REVISE_PROMPT + "\r\n" + "\nCard count: 0\r\n"
                 + String.format(MESSAGE_NO_CARDS_IN_CHAPTER, "chapter2");
-        assertEquals(expectedResult, getOutput().trim());
+        String expected = getExpected(expectedResult);
+        assertEquals(expected, getOutput().trim());
     }
 }
