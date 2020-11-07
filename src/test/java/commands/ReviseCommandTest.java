@@ -116,11 +116,13 @@ public class ReviseCommandTest {
     }
 
     private String getExpected(String expectedResult) {
+        String os = System.getProperty("os.name").toLowerCase();
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.print(expectedResult);
         printWriter.close();
         String expected = expectedStringWriter.toString();
+        expected.replaceAll("\r\n", "\n");
         return expected;
     }
 
