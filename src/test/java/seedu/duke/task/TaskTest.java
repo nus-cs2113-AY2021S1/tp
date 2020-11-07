@@ -8,23 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TaskTest {
+    private static final String TEST_DESCRIPTION = "test description";
 
     @Test
     void getDescription_inputDescription_returnsCorrectDescription() {
-        String inputString = "test description";
-        Task todo = new Task(inputString);
-        assertEquals(inputString, todo.getDescription());
+        Task todo = new Task(TEST_DESCRIPTION);
+        assertEquals(TEST_DESCRIPTION, todo.getDescription());
     }
 
     @Test
     void getIsDone_isDone_returnsFalseByDefault() {
-        Task todo = new Task("test description");
+        Task todo = new Task(TEST_DESCRIPTION);
         assertFalse(todo.getIsDone());
     }
 
     @Test
     void markAsDone_setIsDone_todoSetAsDone() {
-        Task todo = new Task("test description");
+        Task todo = new Task(TEST_DESCRIPTION);
         assertFalse(todo.getIsDone());
         todo.markAsDone();
         assertTrue(todo.getIsDone());
@@ -32,29 +32,29 @@ class TaskTest {
 
     @Test
     void toFile_getToFile_returnsCorrectString() {
-        Task todo = new Task("test description");
+        Task todo = new Task(TEST_DESCRIPTION);
         String fileString = todo.toFile();
-        String expectedString = "T | 0 | test description | 0 |  | ";
+        String expectedString = "T | 0 | " + TEST_DESCRIPTION + " | 0 |  | ";
         assertEquals(expectedString, fileString);
     }
 
     @Test
     void testToString_toString_returnsCorrectString() {
-        Task todo = new Task("test description");
+        Task todo = new Task(TEST_DESCRIPTION);
         String todoString = todo.toString();
-        String expectedString = "[T][N] test description (p:0)";
+        String expectedString = "[T][N] " + TEST_DESCRIPTION + " (p:0)";
         assertEquals(expectedString, todoString);
     }
 
     @Test
     void todo_noInputPriority_setsDefaultPriority() {
-        Task todo = new Task("test description");
+        Task todo = new Task(TEST_DESCRIPTION);
         assertEquals(0, todo.getPriority());
     }
 
     @Test
     void setPriority_validPriority_setsCorrectPriority() {
-        Task todo = new Task("test description");
+        Task todo = new Task(TEST_DESCRIPTION);
         todo.setPriority(5);
         assertEquals(5, todo.getPriority());
     }
