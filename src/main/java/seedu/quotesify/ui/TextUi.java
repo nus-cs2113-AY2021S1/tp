@@ -16,18 +16,31 @@ import seedu.quotesify.todo.ToDoList;
 
 import java.util.Scanner;
 
+/**
+ * Represents the UI component of Quotesify.
+ */
 public class TextUi {
     private final Scanner in;
 
+    /**
+     * Default constructor for TextUi.
+     * Initialises STDIN.
+     */
     public TextUi() {
         in = new Scanner(System.in);
     }
 
+    /**
+     * Displays the welcome message.
+     */
     public void showWelcomeMessage() {
         System.out.println(UiMessage.LOGO);
         System.out.println(UiMessage.WELCOME_MESSAGE);
     }
 
+    /**
+     * Displays the goodbye message.
+     */
     public void showGoodbyeMessage() {
         System.out.println(UiMessage.GOODBYE_MESSAGE);
     }
@@ -42,6 +55,10 @@ public class TextUi {
 
     public void printDividerLine() {
         System.out.println(UiMessage.DIVIDER_LINE);
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 
     public void printAddBook(Book book) {
@@ -186,34 +203,75 @@ public class TextUi {
         System.out.println(results);
     }
 
+    //@@author dozenmatter
+
+    /**
+     * Prints the addition of a category to a book message.
+     *
+     * @param bookTitle Book title.
+     * @param categoryName Category name.
+     */
     public void printAddCategoryToBook(String bookTitle, String categoryName) {
         String trailer = "the book [" + bookTitle + "]";
         System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
+    /**
+     * Prints the addition of a category to a quote message.
+     *
+     * @param quote Quote string.
+     * @param categoryName Category name.
+     */
     public void printAddCategoryToQuote(String quote, String categoryName) {
         String trailer = "the quote [\"" + quote + "\"]";
         System.out.printf((UiMessage.ADD_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
+    /**
+     * Prints the deletion of a category from a book message.
+     *
+     * @param bookTitle Book title.
+     * @param categoryName Category name.
+     */
     public void printRemoveCategoryFromBook(String bookTitle, String categoryName) {
         String trailer = "the book [" + bookTitle + "]";
         System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
+    /**
+     * Prints the deletion of a category from a quote message.
+     *
+     * @param quote Quote string.
+     * @param categoryName Category name.
+     */
     public void printRemoveCategoryFromQuote(String quote, String categoryName) {
         String trailer = "the quote [\"" + quote + "\"]";
         System.out.printf((UiMessage.DELETE_CATEGORY_MESSAGE) + "\n", categoryName, trailer);
     }
 
+    /**
+     * Prints the deletion of a category from all books and quotes message.
+     *
+     * @param categoryName Category name.
+     */
     public void printRemoveCategory(String categoryName) {
         System.out.printf(UiMessage.DELETE_CATEGORY_MESSAGE + "\n", categoryName, "all books and quotes");
     }
 
+    /**
+     * Prints the size of a category.
+     *
+     * @param category Category object.
+     */
     public void printCategorySize(Category category) {
         System.out.printf((UiMessage.CATEGORY_SIZE_MESSAGE) + "\n", category.getSize(), category.getCategoryName());
     }
 
+    /**
+     * Prints all categories.
+     *
+     * @param categoryList List of categories.
+     */
     public void printAllCategories(CategoryList categoryList) {
         if (categoryList.getList().size() == 0) {
             System.out.println(UiMessage.EMPTY_CATEGORY_LIST_MESSAGE);
@@ -223,11 +281,22 @@ public class TextUi {
         System.out.println(categoryList.toString());
     }
 
+    /**
+     * Prints all categories matching the keyword.
+     *
+     * @param categoryList List of categories.
+     * @param keyword User specified keyword.
+     */
     public void printMatchingCategories(CategoryList categoryList, String keyword) {
         System.out.printf(UiMessage.FIND_CATEGORIES_MESSAGE + "\n", keyword);
         System.out.println(categoryList.toString());
     }
 
+    /**
+     * Prints all items tagged under the category.
+     *
+     * @param category Category object.
+     */
     public void printAllInCategory(Category category) {
         String categoryName = category.getCategoryName();
         if (category.getSize() == 0) {
@@ -241,6 +310,11 @@ public class TextUi {
         printAllQuotesInCategory(category);
     }
 
+    /**
+     * Prints all books tagged under the category.
+     *
+     * @param category Category object.
+     */
     public void printAllBooksInCategory(Category category) {
         BookList bookList = category.getBookList();
         BookList allBooks = (BookList) ListManager.getList(ListManager.BOOK_LIST);
@@ -253,6 +327,21 @@ public class TextUi {
         }
     }
 
+    /**
+     * Prints the successful change from the old to a new category name.
+     *
+     * @param oldCategory Old category name.
+     * @param newCategory New category name.
+     */
+    public void printEditCategory(String oldCategory, String newCategory) {
+        System.out.printf(UiMessage.EDIT_CATEGORY_MESSAGE + "\n", oldCategory, newCategory);
+    }
+
+    /**
+     * Prints all quotes tagged under the category.
+     *
+     * @param category Category object.
+     */
     public void printAllQuotesInCategory(Category category) {
         QuoteList quoteList = category.getQuoteList();
         QuoteList allQuotes = (QuoteList) ListManager.getList(ListManager.QUOTE_LIST);
@@ -260,20 +349,12 @@ public class TextUi {
             System.out.println("QUOTES:");
             for (Quote quote : quoteList.getList()) {
                 int index = allQuotes.getIndex(quote) + 1;
-                // used print() because quote.toString() has additional line separator
                 System.out.println(index + ". " + quote.toString());
             }
         }
     }
 
-    public void printEditCategory(String oldCategory, String newCategory) {
-        System.out.printf(UiMessage.EDIT_CATEGORY_MESSAGE + "\n", oldCategory, newCategory);
-    }
-
-    public void printErrorMessage(String message) {
-        System.out.println(message);
-    }
-
+    //@author
     public void printAddRating(int ratingScore, String titleOfBookToRate, String authorOfBookToRate) {
         System.out.printf((UiMessage.ADD_RATING_MESSAGE) + "\n", titleOfBookToRate, authorOfBookToRate, ratingScore);
     }
@@ -441,6 +522,11 @@ public class TextUi {
         System.out.println(System.lineSeparator() + "~ Your friends from Quotesify");
     }
 
+    //@author dozenmatter
+
+    /**
+     * Prints a list of add commands.
+     */
     public void printListOfAddCommands() {
         System.out.println("Here is a list of Add commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
@@ -453,6 +539,9 @@ public class TextUi {
         System.out.println(UiMessage.ADD_TODO_COMMAND);
     }
 
+    /**
+     * Prints a list of delete commands.
+     */
     public void printListOfDeleteCommands() {
         System.out.println("Here is a list of Delete commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
@@ -465,6 +554,9 @@ public class TextUi {
         System.out.println(UiMessage.DELETE_TODO_COMMAND);
     }
 
+    /**
+     * Prints a list of list commands.
+     */
     public void printListOfListCommands() {
         System.out.println("Here is a list of List commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
@@ -479,6 +571,9 @@ public class TextUi {
         System.out.println(UiMessage.LIST_TODO_COMMAND);
     }
 
+    /**
+     * Prints a list of edit commands.
+     */
     public void printListOfEditCommands() {
         System.out.println("Here is a list of Edit commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
@@ -490,6 +585,9 @@ public class TextUi {
         System.out.println(UiMessage.EDIT_RATING_COMMAND);
     }
 
+    /**
+     * Prints a list of find commands.
+     */
     public void printListOfFindCommands() {
         System.out.println("Here is a list of Find commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);
@@ -499,6 +597,9 @@ public class TextUi {
         System.out.println(UiMessage.FIND_CATEGORY_COMMAND);
     }
 
+    /**
+     * Prints a list of done commands.
+     */
     public void printDoneCommandUsage() {
         System.out.println("Here is a list of Done commands you can do:");
         System.out.println(UiMessage.DIVIDER_LINE);

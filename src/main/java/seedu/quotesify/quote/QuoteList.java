@@ -225,6 +225,12 @@ public class QuoteList extends QuotesifyList<Quote> {
         return listToReturn;
     }
 
+    /**
+     * Returns a list of quotes filtered by the given category name.
+     *
+     * @param categoryName User specified category name.
+     * @return A list of quotes tagged with the category name.
+     */
     public QuoteList filterByCategory(String categoryName) {
         ArrayList<Quote> filteredQuotes = (ArrayList<Quote>) quotes.stream()
                 .filter(quote -> {

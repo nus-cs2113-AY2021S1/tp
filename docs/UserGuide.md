@@ -139,6 +139,7 @@ and easily find the most urgent task in the list.
 If you hate flipping pages to find the page to continue reading, 
 or want to develop a reading habit by setting many goals of reading, this feature is prepared for you!
 
+<!-- @@author dozenmatter -->
 ### 3.4 Category Management
 Category Management in Quotesify allows you to create, list, edit and delete categories at your free will.
 With the categories you have created, you can simply tag them to any book or quote and list all of them in a categorised fashion.
@@ -146,6 +147,7 @@ Whenever you have second thoughts about a given category name, simply change the
 update the change across all books and quotes.
 
 If you are someone who likes being neat, organised and efficient, this feature is for you!
+<!-- @@author -->
 
 ### 3.5 Rating System for books
 
@@ -824,7 +826,7 @@ The task [[v] return Harry Potter (by: tmr 2pm)] has been deleted!
 ```
 
 ---
-
+<!-- @@author dozenmatter -->
 ### 4.4 Category Management
 
 If you like customising your own list, you can do so by categorising your books and quotes.
@@ -848,6 +850,10 @@ Example of usage:
 1. `add -c fantasy -b 1`
 2. `add -c inspirational -q 1`
 
+Context:
+* The book *Harry Potter* is assigned with a BOOK_NUMBER of 1.
+* The quote *"Life is Great"* is assigned with a QUOTE_NUMBER of 1.
+
 Expected outcome 1:
 ```
 ------------------------------------------------------------
@@ -869,6 +875,8 @@ List all existing categories.
 Format: `list -c`
 
 Example of usage: `list -c`
+
+Context: The *action* category has been previously added and assigned to 2 items.
 
 Expected outcome:
 ```
@@ -909,14 +917,18 @@ Format: `delete -c CATEGORIES [-b BOOK_NUMBER] [-q QUOTE_NUMBER]`
 
 Example of usage: 
 
-1. `delete -c fantasy`
+1. `delete -c action`
 2. `delete -c fantasy -b 1`
 3. `delete -c inspirational -q 1`
+
+Context:
+* The book *Harry Potter* is assigned with a BOOK_NUMBER of 1.
+* The quote *"Life is Great"* is assigned with a QUOTE_NUMBER of 1.
 
 Expected outcome 1:
 ```
 --------------------------------------------------------------
-I have removed category [fantasy] from all books and quotes!
+I have removed category [action] from all books and quotes!
 --------------------------------------------------------------
 ```
 
@@ -964,7 +976,7 @@ Here is a list of categories with the keyword "man":
 1. romance - (1 items)
 -----------------------------------------------------
 ```
-
+<!-- @@author -->
 ---
 
 ### 4.5 Rating System for books
