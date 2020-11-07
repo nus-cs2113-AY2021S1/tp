@@ -3,6 +3,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Initializer {
+    /**
+     * Initialize the canteens, stalls and dishes
+     * @return list of canteens
+     */
     public List<Canteen> initialize() {
 
         Dish porkChop = new Dish("Pork Chop",4,
