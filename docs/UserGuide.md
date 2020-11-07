@@ -19,8 +19,8 @@ to be completed. The users can store the tasks under different subjects and flas
 subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
 
-This user guide provides an in-depth documentation on the installation process, the program features, and
-the program usage to get you started.
+This user guide provides an in-depth documentation on the installation process, the appplication features, and
+the appplication usage to get you started.
 
 Note the following symbols and formatting used in this document:
 
@@ -78,11 +78,13 @@ in each level.
 ### 3.1 Main Level Features <a name="main-level"></a>
 #### 3.1.1 Displaying all the available commands: `help`
 
-Displays all available commands on the main level.
-Use this command whenever you get confused  or need help to navigate the application.   
+Displays all available commands on the main level.  
 
 Format: `help`  
- 
+
+- Use this command whenever you get confused or need help to navigate the application 
+- The appplication will print a list of all the functions available to you at the current level(main) on the command line
+
 Example of usage:
 ```
 help
@@ -105,11 +107,16 @@ bye:           exits the application
 ________________________________________________________________________________________________________________________
 ```
 
+
+
 #### 3.1.2 Listing all subjects: `list` <a name="list"></a>
 
 Prints a list of all subjects in the main list.
 
 Format: `list`
+
+- Use this command whenever you need to see a list of all the subjects you have keyed into the application
+- The appplication will print the title of all the subjects in your list on the command line
 
 Example of usage:
 ```
@@ -130,11 +137,12 @@ ____________________________________________________________
 
 #### 3.1.3 Listing all items: `list all` <a name="list"></a>
 
-Prints a list of all items stored in the program.
+Prints a list of all items stored in the appplication.
 
 Format: `list all`
 
-+ The tree will show you that you are accessing the main level.
+- Use this command if you want to have a look at all the subjects, topics and tasks you have keyed into the application
+- The appplication will print a tree on the command line, and will also show you that you are accessing the main level
 
 Expected output:
 
@@ -142,24 +150,25 @@ Expected output:
 ____________________________________________________________
 Here's a list of all items:
 (You are currently here)
-├─ 1. math
+├─ 1. CG2027
 │  │  Topics
-│  ├─ 1. geometry
-│  ├─ 2. ratio
-│  ├─ 3. speed
-│  │  └─ 2 Flashcards
+│  ├─ 1. Pass Transistor Multiplexers
+│  ├─ 2. Arithmetic Logic Unit
 │  │  Tasks
-│  ├─ 1. [E][?] test (at: 12:00 PM 12 Dec 2020)
-│  └─ 2. [D][?] assignment (by: 12:00 PM 13 Dec 2020)
-└─ 2. science
+│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+├─ 2. CS2101
+│  │  Topics
+│  ├─ 1. Oral Presentation
+│  ├─ 2. Project Demo
+│  │  Tasks
+│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+└─ 3. CS2113T
    │  Topics
-   ├─ 1. ecology
-   │  └─ 1 Flashcard
-   ├─ 2. plant reproduction
+   ├─ 1. Class Diagram
+   ├─ 2. Abstraction
    │  Tasks
-   └─ 1. [T][?] study for science
+   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
-
 ```
 
 #### 3.1.4 Adding a subject: `add`
@@ -167,6 +176,13 @@ ____________________________________________________________
 Adds a subject to the main list.
 
 Format: `add [SUBJECT_NAME]`
+
+- Use this command if you want to add a subject into your list
+- The appplication will print the title of the subject you have added into the list, as well as the amount of subjects you 
+have in the list on the command line
+
+> ⚠️ **_WARNING:_** `SUBJECT_NAME` is case-sensitive. Beware not to add 2 different subjects with the
+> same name in different cases as they will not store the same topics and tasks.
 
 Example of usage:
 ```
@@ -188,6 +204,10 @@ Deletes the specified subject.
 
 Format: `delete [SUBJECT_NUMBER]`
 
+- Use this command if you want to delete an existing subject from the list
+- The appplication will print the title of the subject you have deleted from the list, as well as the amount of subjects you 
+have in the list on the command line
+
 Example of usage:
 ```
 delete 1
@@ -201,13 +221,26 @@ ____________________________________________________________
  Now you have 4 subjects in the list.
 ____________________________________________________________
 ```
+
+> 📝️️ **_NOTE:_** The `SUBJECT_NUMBER` of a subject is the number assigned to each subject when the user uses the 
+>list command to print out the subjects.
+
 > ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
 > in this subject before you delete it!
+
+> ⚠️ **_WARNING:_** After deletion of a subject, the `SUBJECT_NUMBER` of subjects in the list may change.
+
 #### 3.1.6 Finding a subject: `find`
 
 Searches the list of subject names for all subjects that contains the query.
 
 Format: `find [QUERY]`
+
+- Use this command if you want to find subjects with titles that contain the query
+- The appplication will print the title of all subjects with titles that contain `QUERY` on the command line
+
+> ⚠️ **_WARNING:_** QUERY is case-sensitive. Subjects that contain the same letters as the query but with different case
+> will not be printed.
 
 Example of usage:
 ```
@@ -230,6 +263,12 @@ Allows the user to access a pre-existing subject.
 
 Format: `subject [SUBJECT_NAME]`
 
+- Use this command if you want to access the subject level of a subject in the list
+- The appplication will print the subject level of the subject specified in `SUBJECT_NAME` on the command line
+
+> ⚠️ **_WARNING:_** SUBJECT_NAME is case-sensitive. Subjects with title that has the same letters as the SUBJECT_NAME but 
+>with different case will not be accessed.
+
 Example of usage:
 ```
 subject CS2113T
@@ -246,6 +285,10 @@ ____________________________________________________________
 Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>
 
 Format: `quiz [SUBJECT_NAME]`
+
+- Use this command if you want to initiate a quiz of a specified subject
+- The appplication will quiz you on the subject specified in `SUBJECT_NAME` on the command line
+
 Example of usage: 
 ```
 quiz CS2113T
@@ -260,7 +303,10 @@ You are about to begin the quiz for maths.You have 2 minutes.
 
 This command allows you to look at the results for a subject. For more details, see <a href="#result">result</a>.
 
-Format: `results NAMEOFSUBJECT`
+Format: `results [SUBJECT_NAME]`
+
+- Use this command if you want to show the results of all the quizzes you have taken in the appplication
+- The appplication will print all the results of the quizzes of the subject specified in `SUBJECT_NAME` in the command line
 
 Example of usage: 
 ```
@@ -273,9 +319,13 @@ Quiz 2: 2.0/2.0 -- Excellent
 ```
 
 #### 3.1.9 Exporting data: `export` <a name="export-command"></a>
+
 This command exports all the data of the application to an external file. For more details, see <a href="#export">Exporting Data section</a>.
 
 Format: `export`
+
+- Use this command if you want to save all the data in the appplication on an external file
+- The appplication will print the file location of the file the data is being saved to on the command line
 
 Example of usage:
 ```
@@ -291,7 +341,16 @@ ____________________________________________________________
 
 #### 3.1.10 Saving and exiting: `bye` <a name="bye"></a>
 
+This command will save all the appplications
+
 Format: `bye`
+
+- Use this command if you want to save and exit the appplication
+- The appplication will save all the updated details and exit
+
+> ⚠️ **_WARNING:_** Use this command before closing the command line as this command is vital to 
+>ensure all your data updated is saved. Failure to use this method to exit the appplication will 
+>result in all work updated in the session being lost.
 
 Example of usage:
 ```
@@ -359,19 +418,17 @@ Expected outcome:
 
 ```
 ____________________________________________________________
-Here are the topic(s) under math: 
-1.speed
+Here are the topic(s) under CS2101: 
+1. Oral Presentation
+2. Project Demo
 ____________________________________________________________
-Here are the tasks(s) under math: 
-1.[T][✘] laundry
-2.[E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
-3.[D][✘] assignment (by: 11:59 PM 21 Oct 2020)
+Here are the tasks(s) under CS2101: 
+1. [E][?] Project Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
-
 ```
 #### 3.2.3 Listing all items: `list all`
 
-Prints a list of all items stored in the program.
+Prints a list of all items stored in the appplication.
 
 Format: `list all`
 + The tree will show you which subject you are currently accessing.
@@ -381,25 +438,25 @@ Expected output:
 ```
 ____________________________________________________________
 Here's a list of all items:
-(You are currently here)
-├─ 1. math
+├─ 1. CG2027
 │  │  Topics
-│  ├─ 1. geometry
-│  ├─ 2. ratio
-│  ├─ 3. speed
-│  │  └─ 2 Flashcards
+│  ├─ 1. Pass Transistor Multiplexers
+│  ├─ 2. Arithmetic Logic Unit
 │  │  Tasks
-│  ├─ 1. [E][?] test (at: 12:00 PM 12 Dec 2020)
-│  └─ 2. [D][?] assignment (by: 12:00 PM 13 Dec 2020)
-└─ 2. science
+│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+├─ 2. CS2101 (You are currently here)
+│  │  Topics
+│  ├─ 1. Oral Presentation
+│  ├─ 2. Project Demo
+│  │  Tasks
+│  └─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+└─ 3. CS2113T
    │  Topics
-   ├─ 1. ecology
-   │  └─ 1 Flashcard
-   ├─ 2. plant reproduction
+   ├─ 1. Class Diagram
+   ├─ 2. Abstraction
    │  Tasks
-   └─ 1. [T][?] study for science
+   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
-
 ```
 #### 3.2.4 Adding a topic: `add` <a name="add-topic"></a>
 
@@ -410,7 +467,7 @@ Format: `add [TOPIC_NAME]`
 
 Example of usage: 
 ```
-add speed
+add Project Pitch
 ```
 
 Expected outcome:
@@ -418,8 +475,8 @@ Expected outcome:
 ```
 ____________________________________________________________
 Got it. I've added this topic:
-  speed
-Now you have 1 topic in the list.
+  Project Pitch
+Now you have 3 topics in the list.
 ____________________________________________________________
 ```
 
@@ -435,7 +492,7 @@ Format: `delete topic [TOPIC_NUMBER]`
 
 Example of usage: 
 ```
-delete topic 1
+delete topic 3
 ```
 
 Expected outcome:
@@ -443,8 +500,8 @@ Expected outcome:
 ```
 ____________________________________________________________
  Noted. I've removed this topic:
-   speed
- Now you have 0 tasks in the list.
+   Project Pitch
+ Now you have 2 topics in the list.
 ____________________________________________________________
 ```
 > ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
@@ -456,24 +513,26 @@ Searches the current subject for all the topics and tasks that contains the quer
 
 Format: `find [QUERY]`
 + searches all topics and tasks in the current subject with `[QUERY]` in its name and prints a list of them.
-+ The search is case-sensitive. e.g. `math` will not find a topic with the name `MATH`.
++ The search is case-sensitive. e.g. `project` will not find a topic with the name `PROJECT`.
 + The `find` command will only search the name of topics and tasks on this level.
-+ Partial words will be matched. e.g. `mat` will find `mathematics`.
++ Partial words will be matched. e.g. `Pro` will find `Project`.
 
 Example of usage: 
 
 ```
-find laundry
+find Pro
 ``` 
 
 Expected outcome:
 
 ```
 ____________________________________________________________
- Sorry! I could not find any topics with laund in the list.
+ Here are the matching topic(s) in your list:
+Project Demo
 
+____________________________________________________________
  Here are the matching task(s) in your list:
-[T][✓] laundry
+[E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -483,18 +542,21 @@ Enters a pre-existing topic.
 
 Format: `topic [TOPIC_NAME]`
 + Access a pre-existing topic with a name of `[TOPIC_NAME]`.
-+ This command is case-sensitive. e.g. `topic math` will not allow you to access a topic with the name `MATH`.
-+ For more information on topic level commands, refer to 
++ This command is case-sensitive. e.g. `topic project` will not allow you to access a topic with the name `PROJECT`.
++ For more information on topic level commands, refer to TODO
 
 Example of usage:
 ```
-topic speed
+Topic Oral Presentation
 ```
 
 Expected output:
 ```
 ____________________________________________________________
-You are currently looking at the topic: speed
+You are currently looking at the topic: Oral Presentation
+____________________________________________________________
+____________________________________________________________
+Type help for all available commands
 ____________________________________________________________
 ```
 
@@ -507,7 +569,7 @@ Format: `todo [DESCRIPTION]`
 Example of usage: 
 
 ```
-todo laundry
+todo look up on what is active listening
 ```
 
 Expected output:
@@ -515,8 +577,8 @@ Expected output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-	[T][✘] laundry
-Now you have 4 tasks in the list.
+  [T][✘] look up on what is active listening
+Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
@@ -645,7 +707,7 @@ quiz Java
 
 Expected output: 
 ```
-You are about to begin the quiz for Java.You have 1 minute.
+You are about to begin the quiz for Java. You have 1 minute.
 ```
 
 #### 3.2.14 Viewing results for quizzes on a topic: `results`
@@ -661,7 +723,7 @@ Format: `results [TOPIC_NAME]`
 Example of usage: 
 
 ```
-quiz Java
+results Java
 ```
 
 Expected output: 
@@ -669,7 +731,6 @@ Expected output:
 ```
 Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
-
 ```
 
 #### 3.2.14 Exiting the subject: `exit`
@@ -743,7 +804,7 @@ Here are the flashcard(s) under speed:
 
 #### 3.3.3 Listing all items: `list all`
 
-Prints a list of all items stored in the program.
+Prints a list of all items stored in the appplication.
 
 Format: `list all`
 + The tree will show you which topic you are currently accessing.
@@ -753,25 +814,28 @@ Expected output:
 ```
 ____________________________________________________________
 Here's a list of all items:
-(You are currently here)
-├─ 1. math
+├─ 1. CG2027
 │  │  Topics
-│  ├─ 1. geometry
-│  ├─ 2. ratio
-│  ├─ 3. speed
-│  │  └─ 2 Flashcards
+│  ├─ 1. Arithmetic Logic Unit
+│  ├─ 2. Pass Transistor Multiplexers
 │  │  Tasks
-│  ├─ 1. [E][?] test (at: 12:00 PM 12 Dec 2020)
-│  └─ 2. [D][?] assignment (by: 12:00 PM 13 Dec 2020)
-└─ 2. science
+│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+├─ 2. CS2101
+│  │  Topics
+│  ├─ 1. Oral Presentation
+│  ├─ 2. Project Demo
+│  │  Tasks
+│  ├─ 1. [E][✓] Project Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 2. [T][✘] look up on what is active listening
+└─ 3. CS2113T
    │  Topics
-   ├─ 1. ecology
+   ├─ 1. Abstraction
+   ├─ 2. Class Diagram
+   ├─ 3. Java (You are currently here)
    │  └─ 1 Flashcard
-   ├─ 2. plant reproduction
    │  Tasks
-   └─ 1. [T][?] study for science
+   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
-
 ```
 
 #### 3.3.4 `add` - Adding a flashcard
@@ -786,7 +850,7 @@ Format:
 
 Example of usage: 
 ```
-add How to calculate speed?; Speed=distance/time.
+add What is the version of Java used in CS2113T; 11.0
 ```
 
 Expected outcome:
@@ -794,7 +858,7 @@ Expected outcome:
 ```
 ____________________________________________________________
 Got it. I've added this flashcard:
-  How to calculate speed?; Speed=distance/time.
+  What is the version of Java used in CS2113T; 11.0
 Now you have 3 flashcard in the list.
 ____________________________________________________________
 ```
@@ -812,19 +876,19 @@ Format:
 
 Example of usage: 
 
-`delete 1`
+`delete 3`
 
 Expected outcome:
 
 ```
 ____________________________________________________________
  Noted. I've removed this flashcard:
-   How to calculate speed?; Speed=distance/time.
+   What is the version of Java used in CS2113T; 11.0
  Now you have 2 flashcards in the list.
 ____________________________________________________________```
 ```
 
-#### 3.3.6 `exit`
+#### 3.3.6 `exit` TODO
 
 ### 3.4 Other Features <a name="other-feat"></a>
 This section expands on the features that are not specific to any part of the previous sections and features that
@@ -909,7 +973,7 @@ This can be done for the subjects or for the topics.
 >that you obtained for the topics in the CS2113T subject and vice-versa.  
 
 #### 3.4.3 Storing data <a name="store"> </a>
-When you exit the application, the data you have added to the program is automatically saved to the disk. 
+When you exit the application, the data you have added to the appplication is automatically saved to the disk. 
 The data is stored under the `data/` folder in the same folder where you run the application. 
 
 > ⚠️ **_WARNING:_** The data (or any changes to the data) are not saved if the application is closed abnormally 
