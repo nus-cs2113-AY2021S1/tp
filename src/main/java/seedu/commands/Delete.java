@@ -15,7 +15,7 @@ public class Delete extends ModificationCommand {
     public static final String COMMAND_WORD = "delete";
     private final Integer key;
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-            "^delete (?<key>\\d+)$");
+            "^(?<key>\\d+)$");
 
     public Delete(String keyString) throws InvalidTaskNumberException {
         try {

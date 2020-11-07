@@ -5,9 +5,7 @@ import seedu.task.PrioritySorter;
 import seedu.task.Task;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,6 +77,9 @@ public class TaskMap {
     }
 
     public void delete(Integer key) {
+        if (tasksMap.size() > 0) {
+            tasksMap.get(key).reminder.offReminder();
+        }
         tasksMap.remove(key);
     }
 

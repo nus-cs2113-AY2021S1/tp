@@ -114,6 +114,11 @@ and at the location bar type `cmd` and press `Enter`.
 
 - Task index is the number displayed between "#" and description of the task.
     - e.g. "#1029 meeting", 1029 is the index.
+
+- Input reminder format is either on or off, with the time component having the same HHmm in 24-hrs.
+
+- If only the index is entered for the edit command, command will still be valid.
+    - e.g. "edit 1028' is valid. 
 ```    
 
 ### Showing all commands : `help`
@@ -124,7 +129,7 @@ Format: `help`
 
 Expected outcome:
 
-![help](images/help.PNG)
+![help_command](images/Help_command.png)
 
 *Figure 3. A list of available commands and their formats will be displayed.*
 
@@ -135,23 +140,35 @@ Add a task to the task list and display task that was added.
 If the date and priority are omitted,
 default date will be the day when the tasked is added and
 default priority will be low. If the timings are omitted, the time displayed will be empty.
+A reminder can be set for the task, which will be displayed at a given time. If no time is given for the reminder, it will
+be set to its default which is one hour before the start time of the task. If both are omitted, an error is given.
 
-Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]`
+Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]`
 
 Example of usage: 
 
 `add meeting st/1000`  
 `add borrow book`  
+`add Movie st/1700 et/1900 p/3 r/on t-1530`
 
 Expected outcome:
 
-![add_with_start_time](images/add_with_st.png)
+![add_with_start_time](images/task_add_st.png)
 
 *Figure 4. After adding "meeting" starting at 10.00am.*
 
-![add_without_optional_parameters](images/add_normal.png)
+![add_without_optional_parameters](images/task_add_normal.png)
 
 *Figure 5. After adding "borrow book" with no other inputs.*
+
+![remainder_set](images/reminder_set.png)
+
+*Figure 6. After adding "Movie" with starting time at 05:00pm, end time at 07:00pm and priority HIGH with 
+a reminder set for 3:30pm*
+
+![remainder_prompt](images/reminder_prompt.png)
+
+*Figure 7. After the reminder has reached the specified time*
 
 
 ### Editing a task : `edit`
@@ -162,22 +179,27 @@ Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/
 
 Example of usage: 
 
-`edit 8833 des/reading`  
-`edit 4893 st/1400 et/1600 p/3`
+`edit 875 des/reading`  
+`edit 4075 st/1400 et/1600 p/3`
+`edit 875 r/off`
 
 Expected outcome:
 
-![edit_before](images/edit_before.png)
+![edit_intial_list](images/edit_Initial_list.png)
 
-*Figure 6. Initial list before edits.*
+*Figure 8. Initial list before edits.*
 
 ![edit_after_description](images/edit_after_des.png)
 
-*Figure 7. After editing the description of task #8833.*
+*Figure 9. After editing the description of task #875.*
 
-![edit_after_start_end_priority](images/edit_after_st_et_p.png)
+![edit_after_start_end_priority](images/edit_after_else.png)
 
-*Figure 8. After editing the timings and priority of task #4893.*
+*Figure 10. After editing the timings and priority of task #4075.*
+
+![edit_after_reminder_off](images/edit_after_reminder.png)
+
+*Figure 11. After editing the reminder of task #875 to off.*
 
 ### Displaying tasks : `list` 
 
@@ -206,33 +228,33 @@ Expected outcome:
 
 `list`:
 
-![list](images/list.PNG)
+![list](images/list_normal.png)
 
-*Figure 9. Default list, tasks are in order of their addition to the list.*
+*Figure 12. Default list, tasks are in order of their addition to the list.*
 
 `list -d`:
 
-![sort_by_date](images/list_sort_by_date.PNG)
+![list_date](images/list_date.png)
 
-*Figure 10. List tasks by date, from oldest to newest.*
+*Figure 13. List tasks by date, from oldest to newest.*
 
 `list -p`:
 
-![sort_by_priority](images/list_sort_by_priority.PNG)
+![list_priority](images/list_priority.png)
 
-*Figure 11. List tasks by priority, from HIGH to LOW.*
+*Figure 14. List tasks by priority, from HIGH to LOW.*
 
 `list -w`:
 
 ![weekly_view](images/list_week.PNG)
 
-*Figure 12. Display tasks in a weekly view for the current week.*
+*Figure 15. Display tasks in a weekly view for the current week.*
 
 `list -m`:
 
 ![monthly_view](images/list_month.PNG)
 
-*Figure 13. Display tasks in a monthly view for the current month.*
+*Figure 16. Display tasks in a monthly view for the current month.*
 When viewing tasks by the  `list -w` or `list -m`, monthly or weekly view , then the user will
 be in the display mode and can view tasks in the previous and month/week using `e` for the next
 month or date and the command`w` to view the previous month/week. The user can quit the display mode
@@ -251,9 +273,9 @@ Example of usage:
 
 Expected outcome:
 
-![search](images/search.PNG)
+![search_meeting](images/search_meeting.png)
 
-*Figure 14. A list of tasks containing the keyword will be displayed.*
+*Figure 17. A list of tasks containing the keyword will be displayed.*
 
 
 ### Removing a task : `delete`
@@ -264,13 +286,13 @@ Format: `delete INDEX`
 
 Example of usage: 
 
-`delete 8833`
+`delete 7369`
 
 Expected outcome:
 
 ![delete](images/delete.png)
 
-*Figure 15. The task that was deleted will be displayed.*
+*Figure 18. The task that was deleted will be displayed.*
     
 
 ### Clearing tasks : `clear`
@@ -282,6 +304,10 @@ Format: `clear`
 Expected outcome:
 
     All tasks cleared.
+
+![clear](images/Clear_tasks.png)
+
+*Figure 19. The task that was deleted will be displayed.*
 
 
 ### Setting a reminder : `reminder`
@@ -300,11 +326,12 @@ Expected outcome:
 
 ![reminder_set](images/reminder_set.png)
 
-*Figure 16. Setting a reminder for task #8833 at 11.05pm.*
+*Figure 20. Setting a reminder for task #8833 at 11.05pm.*
 
 ![reminder_popup](images/reminder_popup.png)
 
-*Figure 17. Once the specified time has arrived.*
+*Figure 21. Popup of a reminder.*
+
 
 
 ### Exiting program : `bye`
@@ -315,7 +342,9 @@ Format: `bye`
 
 Expected outcome:
 
-    Bye! See you again!
+![bye](images/bye.png)
+
+*Figure 22. Exit message.*
 
 
 ### Saving data to file
@@ -369,8 +398,8 @@ and run the batch file by typing `SwitchJava.bat` and press `Enter`.
 
 Action | Format | Example
 ------ | ------ | -------
-add | `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]` | `add meeting st/1400`
-edit | `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY]` | `edit 1234 p/3`
+add | `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]` | `add meeting st/1400`
+edit | `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]` | `edit 1234 p/3`
 list | <code>list [-d&#124;-p&#124;-w&#124;-m&#124;d/DATE]</code> | `list -d`, `list d/10-10-2020`
 search | `search KEYWORD` | `search meet`
 delete | `delete INDEX` | `delete 212`
