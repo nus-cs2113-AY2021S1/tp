@@ -449,13 +449,13 @@ differ if you have different items stored in the calendar list.
 
 #### Printing calendar for the current week: 
 
-Print the personal calendar for the current week.
+Print the personal calendar for the next 7 days.
 
 Format: `print timeline week`
 
 #### Printing calendar for the current month: 
 
-Print the personal calendar for the current month.
+Print the personal calendar for the next 31 days.
 
 Format: `print timeline month`
 
