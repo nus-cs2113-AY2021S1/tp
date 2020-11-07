@@ -27,7 +27,8 @@ public class ListCommand extends ReadOnlyCommand {
     private final String date;
 
 
-    public ListCommand(boolean dateFlag, boolean priorityFlag, boolean displayByWeek, boolean displayByMonth, String date) {
+    public ListCommand(boolean dateFlag, boolean priorityFlag, boolean displayByWeek,
+                       boolean displayByMonth, String date) {
         this.dateFlag = dateFlag;
         this.priorityFlag = priorityFlag;
         this.displayByWeek = displayByWeek;

@@ -33,8 +33,8 @@ public class EditCommand extends ModificationCommand {
     private final String reminder;
     private final String reminderTime;
 
-    public EditCommand(String keyString, String description, String date, String startTime, String endTime, String priority,
-                       String reminder, String reminderTime)
+    public EditCommand(String keyString, String description, String date, String startTime, String endTime,
+                       String priority, String reminder, String reminderTime)
             throws InvalidTaskNumberException, InvalidCommandException {
         try {
             key = Integer.parseInt(keyString);
