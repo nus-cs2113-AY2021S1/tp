@@ -36,8 +36,8 @@ public class HistoryCommandTest {
         storageStub = new StorageStub("src/test/data");
         storageStub.createDirectory("/history");
         storageStub.createFile("/history/2020-11-01.txt");
-        storageStub.saveHistory("/history/2020-11-01.txt"
-                , new History("CS2113", "chapter 1"));
+        storageStub.saveHistory("/history/2020-11-01.txt",
+                new History("CS2113", "chapter 1"));
 
         accessStub = new AccessStub();
     }
@@ -99,7 +99,7 @@ public class HistoryCommandTest {
             f.createNewFile();
         }
 
-        public void saveHistory(String path, History history) throws IOException{
+        public void saveHistory(String path, History history) throws IOException {
             FileWriter f = new FileWriter(filePath + path);
             f.write(history.toString() + "\n");
         }
