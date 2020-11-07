@@ -36,78 +36,95 @@ The high-level design of our program is based on a 3-tier architecture which con
 
 ### 2.2. Model Component
 
-The data model is centered around `DisplayableList` objects which hold `Displayable` objects. This implementation allows us to create various topics with questions, options, hints and explanations. This was also extended to creating bookmarks and notes.
+The data model is centered around `DisplayableList` objects which hold `Displayable` objects. This implementation 
+allows us to create various topics with questions, options, hints and explanations. This was also extended to creating bookmarks and notes.
 
 ####  2.2.1. Design of TopicList
 
-TopicList is an ArrayList of type Displayable, which is one of two interfaces implemented 
-in the code for E-Duke-8. As such, many of the commands that manipulate the TopicList make 
-use of the package java.util.ArrayList. The TopicList is used to store Topics. Additionally,
-each topic stores a NoteList, which contains Notes.
+`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 3 interfaces implemented 
+in the code for E-Duke-8. As such, many of the commands that manipulate the `TopicList` make 
+use of the package `java.util.ArrayList`. 
 
-1. Listing topics in TopicList
-2. Adding a new note
-3. Deleting an existing note
-4. Listing out all notes in a topic
+The `TopicList` is used to store `Topics`. `Topics` themselves implement the interface `Displayable`. 
 
-![TopicList_Class_Diagram](./images/TopicListAndNotes.png)
+![TopicList](images/TopicListClassDiagram.png)
+
+There is just 1 command that manipulates the `TopicList`, which is `topics`. The `topics` command shows all the 
+`Topic` objects in the current `TopicList`.
+
 
 #### 2.2.2. Implementation of TopicList
 
 **Listing topics in TopicList:**
 
-![TopicListSampleSequence](./images/TopicListSampleSequence.png)
-
 This task is performed by the `TopicList.showTopics()` method.
 
-Step 1. The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
+![topicsSequence](images/topiclistsequence.png)
+
+Step 1: The `parseCommand()` method instantiates a `TopicsCommand` object which then calls the 
         `TopicList.showTopics()` method.
         
 Step 2. The `TopicList.showTopics()` method then calls the method `Ui.printTopicList()`. The 
         current `TopicList` is passed into the called method.
-        
-Step 3. The `Ui.printTopicList()` method then prints out the description of each topic in the 
-        `TopicList`. 
 
-`NoteList` is also an `ArrayList` of type `Displayable`, which is one of two interfaces implemented in the code for 
-E-Duke-8. As such, many of the commands that manipulate the `TopicList` make use of the package `java.util.ArrayList`. 
-The `NoteList` stores `Note` objects. Each topic has 1 `NoteList`. 
+Step 3: The `Ui.printTopicList()` method then prints out the number of questions in each topic,
+        along with the description of each topic in the `TopicList`. 
 
-#### 2.2.3. Implementation of Notes
+
+#### 2.2.3. Design of NoteList
+
+`NoteList` is also an `ArrayList` of type `Displayable`. As such, just like with `TopicList`, many of the commands 
+that manipulate the `NoteList` also make use of the package `java.util.ArrayList`. 
+
+Each topic has an attribute of type `NoteList`, which contains `Note` objects.
+
+![NoteListClass](images/NoteListClassDiagram.png)
+
+#### 2.2.4. Implementation of Notes
+
+There are 3 commands that involve the manipulation of `NoteList` objects. They are: `note add`, which adds a new `Note`
+object, `note delete`, which deletes a `Note` object, and `note list`, which lists out all `Note` objects in a `NoteList` from a 
+specified `Topic`. These commands are carried out by the instantiation of a `NoteCommand` object. The `NoteCommand` 
+object then performs a task based on the type of command from the user's input. This is reflected in the following 
+sequence diagram:
+
+![NoteCommandSequence](images/NoteCommandSequence.png)
 
 **Adding a new note:**
 
 This task is performed by the `NoteList.add()` method.
 
-Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.add()` method. 
-        A new `Note` object is passed into its parameter.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.addNoteInteractions()` 
+method. 
 
-Step 2. The `NoteList.add()` method makes use of `ArrayList` API, specifically the `ArrayList.add()` method, to add 
-        the `Note` object into `NoteList`.
+Step 2: The `Ui.addNoteInteractions()` method uses the user's input to create a `Note` object. 
+
+Step 3: The `Ui,addNoteInteractions()` method then calls the method `NoteList.add()`, passing the created `Note` object 
+into this method. `NoteList.add()` makes use of the package `java.util.ArrayList`, specifically the `ArrayList.add()` 
+method, to add the `Note` object into the specified `NoteList` object.
+
+**Listing out all notes in a topic:**
+
+This task is performed by the `Ui.printNoteList()` method.
+
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
+and calls the `Ui.listInteraction` method. The topic's `NoteList` object is passed into this method.
+
+Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` object is passed into 
+this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` object.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `NoteList.delete()` method. 
-        An integer that represents the index of the `Note` object to be deleted within the `NoteList` is passed into 
-        this method.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.deleteNoteInteractions` method. 
+An integer provided by the user's input is passed into this method. This integer is interpreted as the index of the `Note` object to be deleted in the
+specified `NoteList` object.
 
-Step 2. The `NoteList.delete()` method makes use of `ArrayList` API, specifically the `ArrayList.remove()` method, to 
-        delete the `Note` object in `NoteList`.
+Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the `ArrayList.remove()` method, to 
+delete the specified `Note` object in the specified `NoteList` object.
 
-**Listing out all notes in a topic**
-
-This task is performed by the `Ui.printNoteList()` method.
-
-Step 1. The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. 
-
-Step 2. The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` is passed into 
-this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the 
-topic's `NoteList`.
-
-#### 2.2.4. Design of Option and OptionList 
+#### 2.2.5. Design of Option and OptionList 
 
 The `Option` and `OptionList` classes implements the `Displayable` and `DisplayableList` interfaces respectively. 
 The `Option` object stores one option of a question while the `OptionList` object stores all 4 options of the same 
@@ -120,18 +137,22 @@ The `Option` class implements the `Displayable` interface while the `OptionList`
 The `Option` object stores the description of one option from a question. It also indicates if the option is the correct answer for the question by using the `isCorrectAnswer` boolean. 
 The `OptionList` object stores all 4 options of the same question. 
 
-#### 2.2.5. Implementation of Option and OptionList
+#### 2.2.6. Implementation of Option and OptionList
 
 An example of when the `Option` and `OptionList` classes are used is when the quiz mode is activated. The quiz requires all the options of a particular question to be printed out. 
 
+The diagram below is only an illustration to show the implementation of `Option` and `OptionList` classes, it does not show the full sequence diagram of the `SingleTopicQuiz()` method. 
+
 ![Option_and_OptionList_Sequence](./images/OptionSequence.png)
 
-Step 1. When a quiz is started, the `SingleTopicQuiz()` method will instantiate a `SingleTopicQuiz` object which calls the `getOptionList()` method. 
+Step 1. When a quiz is started, the `SingleTopicQuiz()` method will instantiate a `SingleTopicQuiz` object. 
 
-Step 2. The `OptionList` object then calls the `getInnerList()` method, a getter method, to get the list of options for the same question. 
+Step 2. The `SingleTopicQuiz` object then calls the `Question` class using the `getOptionList()` method. The `Question` class then returns `optionList`. 
 
-Step 3. The `printOption()` method is then called to print out all the options for the user to see. The `options.get(i)` parameter will get the description of the specific option and the `i+1` parameter 
-will handle the numbering of the options. The printing out of the options will be handled by the `Ui` class. 
+Step 3. The `SingleTopicQuiz` object then calls the `OptionList` class using the `getInnerList()` method. The `OptionList` class then returns `options` which contains the list of 4 options of a particular question that is shown to the user. 
+
+Step 4. The `SingleTopicQuiz` object then calls the `Ui` to print out all 4 options using the `printOption(options.get(i), i+1)` method. 
+The `options.get(i)` parameter will get the description of the specific option and the `i+1` parameter will handle the numbering of the options.
 
 ### 2.3. Logic Component
 
@@ -241,6 +262,51 @@ Through the logic in the object of `UserStatsCalculator`, necessary information 
 
 A similar procedure is being employed by the `TopicalStatsCalculator` object to calculate the topic-level statistics for the user. The only difference between the objects of these two classes is that instead of iterating through all the topics available, the `TopicalStatsCalculator` object only deals with a particular topic at any point of time. By iterating through the questions of the single topic, it calculates statistics for the topic and returns it back to the `Stats` object, which will then pass them to the `Ui` object to display them to the user. As such, in order to display the user’s statistics for each and every topic, a loop is done in the `Stats` object to repeatedly calculate the topic-level information for all of the topics and displaying them concurrently. 
 
+#### 2.3.7. Implementation of Timer Feature
+
+E-Duke-8 has a timer feature for the quiz. The users are able to choose how much time (in seconds) they require to complete each question. 
+The timer would start as soon as the options are being printed out. 
+If the user has typed in a valid answer, the timer would stop and move on to the next question. 
+If the time is up, it will be regarded as an `IncompleteCommand` and it will be deemed as a wrong answer as well. 
+
+The diagram below only illustrates the implementation of the timer feature, it does not show the full sequence diagram of the `SingleTopicQuiz()` method. 
+
+![Timer_Sequence_Diagram](./images/Timer.png)
+
+When a quiz is started, the `startQuiz(ui)` method will be called. 
+Some details has been omitted here for simplicity. 
+After the options of a particular question has been printed out, the timer would begin.
+The `getCommand(ui, optionList, userTimer)` method is first called. The `userTimer` parameter used here is the time that the user has set at the start of the quiz. 
+The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. 
+For simplicity, some details in this method has been omitted. 
+The `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
+There are some details omitted here as well for simplicity. 
+The `command` object will be returned. 
+
+For example, if the user entered a string (that is not "hint" or "bookmark" and not a number), then the `command` returned will be one of `IncorrectCommand`. 
+If the user entered any number from 1 to 4, it will be an `AnswerCommand`. 
+If the user did not input anything and the time is up, the `command` returned will be `IncompleteCommand`. 
+
+It will then enter into a loop. If the `command` is not an `AnswerCommand` or `IncompleteCommand`, it will continue in this loop. 
+The `SingleTopicQuiz` object will then call the respective `Command` object, using the `execute(optionList, ui)` method. 
+
+For example, if it is a `HintCommand`, then the execution would mean that the hint will be printed out by the `Ui` class to show the user the hint for the particular question. 
+However, some details were omitted so that the sequence diagram is easier to understand. 
+
+The `SingleTopicQuiz` object will then call the `Ui` class using the `printQuizInputMessage()` method to print the prompt for the users to enter in their input. 
+The `getCommand(ui, optionList, userTimer - timePassed)` method will be called again. However, this `getCommand()` method is different from the one that was used initially. 
+This `getCommand()` method takes in the time left on the timer (`userTimer - timePassed`) instead of the timer set by the user. This is because, we want to avoid the situation where the user is able to extend the timer by entering in any random value (except number 1 to 4) as this would cause the timer to reset everytime. 
+Hence, in order to prevent this bug, for this `getCommand()` method, we have to use the time left on the timer instead. 
+The subsequent steps are similar to the one stated above. 
+
+If the `command` is an instance of `AnswerCommand` and `IncompleteCommand`, the loop will end and the `SingleTopicQuiz` object will proceed to execute the `Command` for the last time, using the `execute(optionList, ui)` method.
+
+It will then enter another loop that checks if the user has pressed on the "Enter" button on the computer. 
+This feature was implemented so that they have sufficient time to read through and understand the explanation before moving on to the next question. 
+The `Ui` class will be called by the `getEnterFromUser()` method. This method will prompt the user to press the "Enter" button. 
+The `Ui` class will then return the boolean `enterIsUsed`. 
+If the user has pressed on any keys other than "Enter", the boolean `enterIsUsed` is set to false and it will remain in the loop. 
+If the user has pressed on the "Enter" button, the boolean `enterIsUsed` is set to true and it will exit out of the loop and proceed to the next question. 
 
 ### 2.4. Storage Component
 
@@ -374,12 +440,12 @@ The command line interface was chosen for users that prefer to type using a keyb
 #### 2.5.1. Implementation of Ui
 
 The `Ui` class handles all the interactions with the users. It reads the input from the users and prints out replies to 
-the users. It is the point of communication between EDuke8 and the users. 
+the users. It is the point of communication between E-Duke-8 and the users. 
 
 An example is provided below to illustrate how the `Ui` class prints out the starting page of the quiz for 
 the user to comprehend. 
 
-![Ui_Printing_Start_Quiz_Page](./images/PrintQuizStartPage.png)
+![Ui_Page](./images/Ui.png)
 
 As the user starts the quiz, the `Ui` class will print out the quiz page to show that the quiz has started. 
 The user inputs the number of questions that he wants to answer and also the topics that he wants to be tested on. 
