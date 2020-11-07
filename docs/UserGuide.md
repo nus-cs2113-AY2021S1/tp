@@ -15,7 +15,7 @@
 
 **WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
 **WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
-<br>It additionally serves as a tracker to limit your weekly watch time to help you better manage your time.
+<br>It additionally serves as a tracker to limit your daily watch time to help you better manage your time.
 <br>For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
 <br><br>This motivated our team to create an application that would not only help track all your shows and lectures, 
 but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
@@ -70,6 +70,8 @@ If you are unfamiliar with the CLI (Command Line Interface), do give this helpfu
 ## 3. Command Format
 
 * Words in `UPPER_CASE` and within the `<>` field are the inputs that need to be supplied by the user e.g. rating `<SCORE>`.
+
+* The commands to be entered by the user are case-insensitive (For example, using both `Help` and `help` will work).
 
 * The maximum length for a Show `SHOWNAME` is 100 characters.
 
@@ -507,25 +509,44 @@ The `watch` command updates the watching progress for your show, and automatical
  
 ### 4.m.b. `updatetimelimit` - update your watch time limit
 
-The `updatetimelimit` command updates your current watch time limit.
+The `updatetimelimit` command updates your daily watch time limit.
 
  Format:
   `updatetimelimit <DURATION LIMIT> `
+ 
+  Example of usage:
+  Let's say you want to set your daily watch time limit to 120 minutes, or 2 hours. If you have not set your watch time limit yet, your application will look like this on startup: <br><br>
+  <img src = "images/updatetimelimitbefore.PNG" width = "600"> <br> &nbsp;
   
+  Note the prompt above the red line, which signals to the user that the time limit has not been set yet.
+  
+  Now, we input `updatetimelimit 120` into the application. which updates your daily limit to 120 minutes.
+ 
+ Expected outcome:
+  
+ <img src = "images/updatetimelimit.PNG" width = "800"> 
+
+ &nbsp;
+ 
  > **[NOTE]**
+ > * Your set duration will be reset to zero after the end of each day.
  >
  > * `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
  >
  > * If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
+
+ As seen from the expected outcome, you now have a limit of 2 hours to spend on watching shows.To use the allocated limit, use the [watch command](#4ma-watch---watch-a-show-in-your-list) above.
+
+If you have **used up** your allocated time, a prompt will be displayed to you as seen below:<br> 
+ <img src = "images/useduptimelimit.PNG" width = "800"> <br>  &nbsp;
+
+If you have **exceeded** your allocated time, a prompt will be displayed to you as seen below:<br> 
+ <img src = "images/exceededlimit.PNG" width = "800"> <br>  &nbsp;
  
- Example of usage:
- `updatetimelimit 120 `
- 
- Expected outcome:
-  
- <img src = "images/updatetimelimit.PNG" width = "800">
-  
- &nbsp;
+The underlined portion shows the prompt to the user, and the circled portion details the amount of time that the user has exceeded.
+
+ > **[NOTE]**
+ > * To allocate more time for yourself, simply use the `updatetimelimit` command again with a longer duration limit.
 
 ### 4.n. `search` - search a show in the watchlist  
 
@@ -540,7 +561,7 @@ The `search` command helps you search for a specific show in the watchlist and p
  
  > **[NOTE]**
  >
- > * The `<SHOWNAME>` is case-sensitive.
+ > * The `<SHOWNAME>` is case-insensitive.
 
  Input:
    
@@ -573,7 +594,7 @@ Expected outcome:
  
 &nbsp;
 
-### 5. FAQ 
+## 5. FAQ 
 <br>
 
 **Q**: Is my watchlist saved after I exit the program?  
@@ -598,7 +619,7 @@ Expected outcome:
 
 <br>
 
-### 6. Command Summary
+## 6. Command Summary
 
 This section showcases the list of available features and usage examples for your reference.
              
@@ -619,7 +640,7 @@ This section showcases the list of available features and usage examples for you
 |Update episode |`episode <SHOWNAME> <EPISODE>`|  `episode Friends 10`|
 |Update season |`season <SHOWNAME> <SEASON>`|   `season Friends 3`|
 |Watch a show  |`watch <SHOWNAME>`|  `watch Friends`|
-|Update watch time limit |`updatetimelimit <DURATION LIMIT>`|   `updatetimelimit 100`|
+|Update watch time limit |`updatetimelimit <DURATION LIMIT>`|   `updatetimelimit 120`|
 |Search a show |`search <SHOWNAME>`|  `search Friends`|
 |Exit program |`bye`|   `bye`|
 
