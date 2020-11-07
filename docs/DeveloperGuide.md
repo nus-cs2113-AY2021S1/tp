@@ -300,7 +300,7 @@ The rationale for overloading such methods are given below:<br>
 
 Timetable handles adding, deleting and getting all instances of stored events in a given time period. All scheduling, retrieving and processing of events are done here
 
-The timetable component stores five arrays of events. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
+The timetable component stores an array of all events and 5 different arrays of recurring events split by frequency of re-occurrence. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
 
  <p align="center">
    <img alt="TimetableClassDiagram" src="diagrams/out/TimetableClass.png" />

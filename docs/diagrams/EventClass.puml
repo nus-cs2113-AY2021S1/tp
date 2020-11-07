@@ -23,25 +23,12 @@ class Event {
 -isToRemind: Boolean
 -isRecurring: boolean
 -reminderPeriods: HashMap<String, ArrayList<Integer>>
-+getTitle(): String
-+setTitle(String): void
-+getStartDateTime(): LocalDateTime
-+setStartDateTime(LocalDateTime): void
-+getStartDate(): LocalDate
-+getStartTime(): LocalTime
-+getEndDateTime(): LocalDateTime
-+setEndDateTime(LocalDateTime): void
-+getEndDate(): LocalDate
-+getEndTime(): LocalTime
 -getLocalDateTimeStringRep(LocalDateTime): String
 +getStartDateTimeString(): String
 +getEndDateTimeString(): String
-+getIsToRemind(): boolean
-+setIsToRemind(boolean): void
 +getReminderPeriods(): HashMap<String, ArrayList<Integer>>
 +setReminderPeriods(HashMap<String, ArrayList<Integer>>): void
 +getReminderPeriodsString(): ArrayList<String>
-+getRecurring(): boolean
 +hasSameStartEndDateDate(): boolean
 +getEventLengthInMinutes(): int
 +getReminderDates(): ArrayList<LocalDate>
@@ -64,9 +51,6 @@ class "{abstract} \n RecurringEvent" {
 -endRecurrenceDate: LocalDate
 -endRecurrenceTime: LocalTime
 -recurrenceType: String
-+getRecurrenceType(): String
-+getEndRecurrenceDate(): LocalDate
-+setEndRecurrenceDate(LocalDate): void
 +getEndRecurrenceDateTime(): String
 +checkAfterEndRecurrence(LocalDate): boolean
 +getRecurrences(LocalDate, LocalDate): ArrayList<Event>
