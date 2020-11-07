@@ -225,10 +225,12 @@ ordering the meals in one application efficiently
 
 
 ### 6.3 Non-Functional Requirements
-{Give non-functional requirements}
+1. The app should be able to work on any mainstream OS with Java 11 or above installed.
+2. Commands entered should follow the user guide.
 
 ### 6.4 Glossary
-* *glossary item* - Definition
+* *Sequence Diagram* - A sequence diagram shows object interactions arranged in time sequence.
+* *mainstream O* - Linux, Windows, Unix.
 
 ### 6.5 Instructions for manual testing
 Try different inputs with variations of the format, to check whether the exceptions are being correctly thrown.
