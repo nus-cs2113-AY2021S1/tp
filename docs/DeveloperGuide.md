@@ -362,7 +362,7 @@ A Sprint can be created when there is an existing Project.
 When the Project is created, the duration of the Project and length of the Sprints are specified, thus, there will be a finite number of Sprints for each Project.
 
 
-Before execution:
+Usage scenario:
 1. Parse user input into Command
 
     SCRUMptious will receive user input using the `Ui` class and parse it into `CreateSprintCommand` with `Parser` and `SprintParser`.
@@ -370,7 +370,6 @@ Before execution:
 
     SCRUMptious calls `Command.execute()` which will execute the command as mentioned in the implementation.
 
-Implementation:
 1. Choose the Project to add the new Sprint
 
     `chooseProject()` will be called to check for the optional `-project` tag in the user specified parameters.

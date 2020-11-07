@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
 import seedu.duke.parser.DateTimeParser;
@@ -8,6 +9,8 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static seedu.duke.parser.DateTimeParser.catchDateFormat;
 
@@ -42,9 +45,10 @@ public class CreateSprintCommand extends SprintCommand {
             updateProjectDates();
             sprintList.addSprint(this.projOwner, sprintGoal, sprintStart, sprintEnd);
             printCreatedSprint();
-
+            logExecution();
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
         }
     }
 
@@ -85,8 +89,10 @@ public class CreateSprintCommand extends SprintCommand {
             LocalDate projEndDate = this.sprintStart.plusDays(this.projOwner.getProjectDuration() - 1);
             this.projOwner.setStartDate(this.sprintStart);
             this.projOwner.setEndDate(projEndDate);
-            Ui.showToUserLn("Project will start along with the newly created sprint");
+            Ui.showToUserLn("First Sprint: Project will start along with the newly created sprint");
             Ui.showToUserLn("Project period: " + this.sprintStart + " to " + projEndDate);
+        } else {
+            printRedundantStart();
         }
     }
 
@@ -95,7 +101,19 @@ public class CreateSprintCommand extends SprintCommand {
      */
     private void printCreatedSprint() {
         Sprint createdSprint = sprintList.getSprint(sprintList.size());
-        Ui.showToUserLn(createdSprint.toString());
+        Ui.showToUser(createdSprint.toString());
+    }
+
+    /**
+     * Print message if -start tag is specified for subsequent sprint.
+     */
+    private void printRedundantStart() {
+        if (this.parameters.containsKey("start")) {
+            Ui.showToUserLn("Not first sprint: Start tag will be ignored and "
+                    + "new sprint will start right after previous sprint ends.");
+        } else {
+            Ui.showToUserLn("Not first sprint: New sprint will start right after previous sprint ends.");
+        }
     }
 
     /**
@@ -119,5 +137,15 @@ public class CreateSprintCommand extends SprintCommand {
      */
     private boolean checkIsFirstSprint() {
         return sprintList.size() == 0;
+    }
+
+    /**
+     * Add entry to logger that execution is successful.
+     */
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Created New Sprint - "
+                + this.sprintList.getSprint(this.sprintList.size()).getGoal()
+                + " for Project " + this.projOwner.toIdString());
     }
 }

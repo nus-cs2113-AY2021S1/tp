@@ -25,9 +25,9 @@ project /view
 sprint /view
 sprint /addtask 1 3 4
 sprint /view
-sprint /assign -task 1 -user amy
-sprint /assign -task 3 -user amy jane mary
-sprint /assign -task 1 -user bob
+sprint /allocate -task 1 -user amy
+sprint /allocate -task 3 -user amy jane mary
+sprint /allocate -task 1 -user bob
 sprint /view
 sprint /removetask 3
 task /done 1

@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
@@ -38,8 +39,10 @@ public class AllocateSprintTaskCommand extends SprintCommand {
             Ui.showToUser(this.projOwner.toIdString());
             Ui.showToUser(this.sprintOwner.toIdString());
             allocateTask();
+            logExecution();
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
         }
     }
 
@@ -88,5 +91,14 @@ public class AllocateSprintTaskCommand extends SprintCommand {
                 }
             }
         }
+    }
+
+    /**
+     * Add entry to logger that execution is successful.
+     */
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info(String.format("Allocate task to user - Users: %s | Tasks: %s",
+                Arrays.toString(this.userIds), Arrays.toString(this.taskIds.toArray())));
     }
 }

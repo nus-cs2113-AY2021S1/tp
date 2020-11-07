@@ -8,6 +8,7 @@ import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.sprint.Sprint;
 import seedu.duke.model.sprint.SprintManager;
 
+import java.time.LocalDateTime;
 import java.util.Hashtable;
 
 public abstract class SprintCommand extends Command {
@@ -25,6 +26,8 @@ public abstract class SprintCommand extends Command {
     }
 
     public abstract void execute();
+
+    public abstract void logExecution();
 
     /**
      * Choose the project to execute command.
@@ -66,7 +69,8 @@ public abstract class SprintCommand extends Command {
             if (this.projOwner.getSprintList().updateCurrentSprint()) {
                 selectedSprint = this.projOwner.getSprintList().getCurrentSprintIndex();
             } else {
-                throw new DukeException("No ongoing sprint. Maybe you can specify using -sprint tag");
+                throw new DukeException("No ongoing sprint today (" + LocalDateTime.now().toLocalDate()
+                        + "). Maybe you can specify using -sprint tag");
             }
         }
         this.sprintOwner = this.projOwner.getSprintList().getSprint(selectedSprint);
@@ -77,10 +81,13 @@ public abstract class SprintCommand extends Command {
      * Choose the sprint to execute command.
      * Validation completed at SprintParser
      */
-    protected void selectCurrentSprint() {
-        this.sprintList.updateCurrentSprint();
-        int selectedSprint = this.sprintList.getCurrentSprintIndex();
-        this.sprintOwner = this.projOwner.getSprintList().getSprint(selectedSprint);
+    protected void selectCurrentSprint() throws DukeException {
+        if (this.sprintList.updateCurrentSprint()) {
+            int selectedSprint = this.sprintList.getCurrentSprintIndex();
+            this.sprintOwner = this.projOwner.getSprintList().getSprint(selectedSprint);
+        } else {
+            throw new DukeException("No ongoing sprint. Maybe you can specify using -sprint tag");
+        }
     }
 
     /**
@@ -89,7 +96,7 @@ public abstract class SprintCommand extends Command {
     protected void checkProjectExist(int projId) throws DukeException {
         if (projId != -1) {
             if (!this.projectList.checkExist(projId)) {
-                throw new DukeException("Project do not exist:" + projId);
+                throw new DukeException("Project not found: " + projId);
             }
         } else {
             if (this.projectList.size() == 0) {
