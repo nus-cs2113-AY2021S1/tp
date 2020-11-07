@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.EDIT_MESSAGE;
 
-public class Edit extends ModificationCommand {
+public class EditCommand extends ModificationCommand {
     public static final String COMMAND_WORD = "edit";
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^(?<key>\\d+)"
@@ -33,8 +33,8 @@ public class Edit extends ModificationCommand {
     private final String reminder;
     private final String reminderTime;
 
-    public Edit(String keyString, String description, String date, String startTime, String endTime, String priority,
-                String reminder, String reminderTime)
+    public EditCommand(String keyString, String description, String date, String startTime, String endTime,
+                       String priority, String reminder, String reminderTime)
             throws InvalidTaskNumberException, InvalidCommandException {
         try {
             key = Integer.parseInt(keyString);

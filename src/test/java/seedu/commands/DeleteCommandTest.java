@@ -19,7 +19,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class DeleteTest {
+class DeleteCommandTest {
 
     private Task t1;
     private Task t2;

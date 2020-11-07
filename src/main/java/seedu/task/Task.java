@@ -48,13 +48,16 @@ public class Task {
     }
 
     public Task(String description, LocalDate date,
-                LocalTime startTime, LocalTime endTime, Priority priority) {
+                LocalTime startTime, LocalTime endTime, Priority priority)
+        throws InvalidDatetimeException, InvalidReminderException {
         this.description = description;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.priority = priority;
         this.taskID = generateHashValue();
+        reminder = new Reminder();
+        initiateReminder(null, null);
     }
 
     public Task(String taskID, String description, String dateString,

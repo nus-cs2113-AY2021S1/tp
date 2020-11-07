@@ -10,15 +10,15 @@ import java.util.zip.CheckedOutputStream;
 
 import static seedu.messages.Messages.LIST_MESSAGE;
 
-public class List extends ReadOnlyCommand {
+public class ListCommand extends ReadOnlyCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-        "^(?<dateFlag> -d)?"
-                + "(?<priorityFlag> -p)?"
-                + "(?<displayByWeek> -w)?"
-                + "(?<displayByMonth> -m)?"
-                + "( d/(?<date>\\d{2}-\\d{2}-\\d{4}))?$");
+        "^(?<dateFlag>-d)?"
+                + "(?<priorityFlag>-p)?"
+                + "(?<displayByWeek>-w)?"
+                + "(?<displayByMonth>-m)?"
+                + "(d/(?<date>\\d{2}-\\d{2}-\\d{4}))?$");
 
     private final boolean dateFlag;
     private final boolean priorityFlag;
@@ -27,7 +27,8 @@ public class List extends ReadOnlyCommand {
     private final String date;
 
 
-    public List(boolean dateFlag, boolean priorityFlag, boolean displayByWeek, boolean displayByMonth, String date) {
+    public ListCommand(boolean dateFlag, boolean priorityFlag, boolean displayByWeek,
+                       boolean displayByMonth, String date) {
         this.dateFlag = dateFlag;
         this.priorityFlag = priorityFlag;
         this.displayByWeek = displayByWeek;
@@ -37,8 +38,6 @@ public class List extends ReadOnlyCommand {
 
     public CommandResult execute(TaskMap tasks) {
         assert !(dateFlag && priorityFlag);
-
-        // TODO Check flag condition
 
         if (dateFlag) {
             return new CommandResult(LIST_MESSAGE, tasks.sortListByDate());

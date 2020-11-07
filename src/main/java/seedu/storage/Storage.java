@@ -3,6 +3,8 @@ package seedu.storage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import seedu.data.TaskMap;
+import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.InvalidReminderException;
 import seedu.parser.CalParser;
 import seedu.task.Priority;
 import seedu.task.Task;
@@ -17,10 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Scanner;
@@ -32,7 +31,6 @@ public class Storage {
     private static final String FILE_NAME = "data.json";
     private static final String TIMETABLE = "nusmods_calendar.ics";
     private final Gson gson = new Gson();
-    private final String pathName = "./data";
 
     /**
      * Write to file the latest data of tasks.
@@ -50,14 +48,11 @@ public class Storage {
     /**
      * Load data from file and add tasks to TaskList.
      */
-    public TaskMap loadTasks() throws IOException, ParseException {
+    public TaskMap loadTasks() throws IOException {
         // If both dir and file are newly created, return empty taskMap.
-        if (!createDirectory()) {
-            TaskMap taskMap = readTasksFromFile();
-            calReader(taskMap);
         if (!createFile()) {
             TaskMap taskMap = readTasksFromFile();
-            readTasksFromTimetable(taskMap);
+            calReader(taskMap);
             return taskMap;
         }
         return new TaskMap();
@@ -106,15 +101,17 @@ public class Storage {
             calenderChecker(taskMap);
         } catch (IOException | ParseException e) {
             System.err.println("Directory not there!" + e.getMessage());
+        } catch (InvalidDatetimeException | InvalidReminderException e) {
+            System.err.println("Invalid data format!" + e.getMessage());
         }
     }
 
-    public void calenderChecker(TaskMap taskMap) throws IOException, ParseException {
-        String inputPathName = "nusmods_calendar.ics";
-        File dirFile = new File(this.pathName);
+    public void calenderChecker(TaskMap taskMap)
+        throws IOException, ParseException, InvalidDatetimeException, InvalidReminderException {
+        File dirFile = new File(DIRECTORY_NAME);
         Priority priority;
         if (dirFile.isDirectory()) {
-            File calfile = new File(pathName + "/" + inputPathName);
+            File calfile = new File(DIRECTORY_NAME + "/" + TIMETABLE);
             String output = CalParser.lineExtractor(calfile);
             String[] splitInputs = output.split("UID:");
             LocalTime startTime;
@@ -152,10 +149,10 @@ public class Storage {
     public void taskPrinter(TaskMap taskMap, ArrayList<LocalDate> dates,
                             LocalTime startTime, LocalTime endTime,
                             String description, int repeatCount,
-                            Priority priority) {
+                            Priority priority) throws InvalidReminderException, InvalidDatetimeException {
         Task task;
         for (int i = 0; i < repeatCount; i++) {
-            task = new Task(dates.get(i), startTime, endTime, description, priority);
+            task = new Task(description, dates.get(i), startTime, endTime, priority);
             taskMap.addTask(task);
         }
     }
@@ -170,7 +167,8 @@ public class Storage {
     }
 
 
-    private void readTasksFromTimetable(TaskMap taskMap) throws FileNotFoundException, ParseException {
+    private void readTasksFromTimetable(TaskMap taskMap)
+        throws FileNotFoundException, ParseException, InvalidReminderException, InvalidDatetimeException {
         File file = new File(DIRECTORY_NAME + "/" + TIMETABLE);
         if (file.exists()) {
             Task task;
@@ -208,7 +206,8 @@ public class Storage {
         }
     }
 
-    private void addTaskToTaskmap(TaskMap taskMap, Task task) {
+    private void addTaskToTaskmap(TaskMap taskMap, Task task)
+        throws InvalidReminderException, InvalidDatetimeException {
         int weeksPerSem = 13;
         int recessWeek = 7;
         int daysPerWeek = 7;

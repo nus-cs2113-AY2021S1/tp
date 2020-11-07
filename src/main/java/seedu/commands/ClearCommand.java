@@ -7,7 +7,7 @@ import seedu.data.Timers;
 
 import static seedu.messages.Messages.CLEAR_MESSAGE;
 
-public class Clear extends ModificationCommand {
+public class ClearCommand extends ModificationCommand {
     public static final String COMMAND_WORD = "clear";
 
     public CommandResult execute(Model model) {

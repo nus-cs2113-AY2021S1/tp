@@ -2,7 +2,7 @@ package seedu.task;
 
 import seedu.commands.Command;
 import seedu.commands.CommandResult;
-import seedu.commands.DisplayReminder;
+import seedu.commands.DisplayReminderCommand;
 import seedu.data.Timers;
 import seedu.ui.Ui;
 
@@ -55,7 +55,7 @@ public class Reminder {
         getTimer().schedule(new TimerTask() {
             @Override
             public void run() {
-                Command display = new DisplayReminder(task);
+                Command display = new DisplayReminderCommand(task);
                 CommandResult result = display.execute();
                 Ui ui = new Ui();
                 ui.interpretCommandResult(result);
