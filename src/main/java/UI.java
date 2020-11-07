@@ -1,3 +1,7 @@
+import exception.WrongNumberException;
+import exception.ArriveTimeException;
+import exception.DayOfWeekException;
+import exception.YNException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -320,7 +324,10 @@ public class UI {
         System.out.println("2. Delete order: 'delete [order number]'");
         System.out.println("3. Find order: 'find [keyword]'");
         System.out.println("4. List order: 'list'");
-        System.out.println("5. Exit program: 'bye' ");
+        System.out.println("5. Change order: 'change/[number]/[type]'");
+        System.out.println("6. Check Canteen Operating Time: 'checkcanteen'");
+        System.out.println("7. Check Stall Operating Time: 'checkstall '");
+        System.out.println("8. Exit program: 'bye' ");
         System.out.println("____________________________________________________________\n");
     }
 
