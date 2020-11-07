@@ -11,17 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class AddTaskCommandTest {
+public class AddTaskCommandTest extends CommandTest {
 
     @Test
     void addTaskCommand_validCommand_returnsNormalBehavior() {
-        ProjectManager projectList = new ProjectManager();
-        projectList.addProject("title","description",3,3);
+        ProjectManager projectList = addTestProject();
 
-        Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("title", "a");
-        parameters.put("desc", "b");
-        parameters.put("priority", "high");
+        Hashtable<String, String> parameters = addDefaultUserInput();
 
         new AddTaskCommand(parameters, projectList).execute();
 
@@ -44,15 +40,14 @@ public class AddTaskCommandTest {
         assertFalse(outputDone);
     }
 
+
+
+
     @Test
     void addTaskCommand_invalidPriority_noTaskCreated() {
-        ProjectManager projectList = new ProjectManager();
-        projectList.addProject("title", "description", 3, 3);
+        ProjectManager projectList = addTestProject();
 
-        Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("title", "a");
-        parameters.put("desc", "b");
-        parameters.put("priority", "CRITICAL");
+        Hashtable<String, String> parameters = addInvalidPriorityInput();
 
         new AddTaskCommand(parameters, projectList).execute();
 
@@ -62,13 +57,9 @@ public class AddTaskCommandTest {
 
     @Test
     void addTaskCommand_duplicateTask_noTaskCreated() {
-        ProjectManager projectList = new ProjectManager();
-        projectList.addProject("title", "description", 3, 3);
+        ProjectManager projectList = addTestProject();
 
-        Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("title", "a");
-        parameters.put("desc", "b");
-        parameters.put("priority", "high");
+        Hashtable<String, String> parameters = addDefaultUserInput();
 
         new AddTaskCommand(parameters, projectList).execute();
         new AddTaskCommand(parameters, projectList).execute();
