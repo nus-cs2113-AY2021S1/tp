@@ -54,12 +54,12 @@ public class EditProfileCommand extends Command {
 
     private void editHeight(User user, String argument) {
         user.setupHeight(argument, true);
-        Ui.printCustomMessage(Messages.HEIGHT_ECHO_HEADER + user.getHeight());
+        Ui.printCustomMessage(Messages.HEIGHT_ECHO_HEADER + String.format("%.2f", user.getHeight()));
     }
 
     private void editWeight(User user, String argument) {
         user.setupWeight(argument, true);
-        Ui.printCustomMessage(Messages.WEIGHT_ECHO_HEADER + user.getWeight());
+        Ui.printCustomMessage(Messages.WEIGHT_ECHO_HEADER + String.format("%.2f", user.getWeight()));
     }
 
     private void editAge(User user, String argument) {
