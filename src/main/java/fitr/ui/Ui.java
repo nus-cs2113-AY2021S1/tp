@@ -21,44 +21,7 @@ import static fitr.common.Commands.WORD_AEROBIC;
 import static fitr.common.Commands.WORD_LOWERBODY;
 import static fitr.common.Commands.WORD_STRETCH;
 import static fitr.common.Commands.WORD_UPPERBODY;
-import static fitr.common.Messages.ERROR_FORMAT_MESSAGE;
-import static fitr.common.Messages.ERROR_INVALID_COMMAND;
-
-import static fitr.common.Messages.FORMAT_CLEAR_EXERCISE;
-import static fitr.common.Messages.FORMAT_CLEAR_FOOD;
-import static fitr.common.Messages.FORMAT_CLEAR_GOAL;
-import static fitr.common.Messages.FORMAT_DELETE_EXERCISE;
-import static fitr.common.Messages.FORMAT_DELETE_FOOD;
-import static fitr.common.Messages.FORMAT_DELETE_GOAL;
-import static fitr.common.Messages.FORMAT_EDIT_AGE;
-import static fitr.common.Messages.FORMAT_EDIT_EXERCISE;
-import static fitr.common.Messages.FORMAT_EDIT_FITNESS;
-import static fitr.common.Messages.FORMAT_EDIT_FOOD;
-import static fitr.common.Messages.FORMAT_EDIT_GENDER;
-import static fitr.common.Messages.FORMAT_EDIT_GOAL;
-import static fitr.common.Messages.FORMAT_EDIT_HEIGHT;
-import static fitr.common.Messages.FORMAT_EDIT_NAME;
-import static fitr.common.Messages.FORMAT_EDIT_WEIGHT;
-import static fitr.common.Messages.FORMAT_EXERCISE;
-import static fitr.common.Messages.FORMAT_EXERCISE_GOAL;
-import static fitr.common.Messages.FORMAT_FOOD;
-import static fitr.common.Messages.FORMAT_FOOD_GOAL;
-import static fitr.common.Messages.FORMAT_MARK_GOAL_AS_COMPLETE;
-import static fitr.common.Messages.FORMAT_SMART_EXERCISE_GOAL;
-import static fitr.common.Messages.FORMAT_SMART_FOOD_GOAL;
-import static fitr.common.Messages.FORMAT_VIEW_BMI;
-import static fitr.common.Messages.FORMAT_VIEW_EXERCISE;
-import static fitr.common.Messages.FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE;
-import static fitr.common.Messages.FORMAT_VIEW_FOOD;
-import static fitr.common.Messages.FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE;
-import static fitr.common.Messages.FORMAT_VIEW_GOAL;
-import static fitr.common.Messages.FORMAT_VIEW_PROFILE;
-import static fitr.common.Messages.FORMAT_VIEW_SUMMARY;
-import static fitr.common.Messages.FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE;
-import static fitr.common.Messages.MESSAGE_BYE;
-import static fitr.common.Messages.MESSAGE_GREET;
-import static fitr.common.Messages.MESSAGE_SUGGEST_QUESTION;
-import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
+import static fitr.common.Messages.*;
 
 /**
  * Prints messages.
@@ -68,12 +31,10 @@ public class Ui {
     private static final String VIEW_SPACER = "%-30s%s%n";
     private static final String GOAL_SPACER = "%-70s%s%n";
     private static final String DELETE_SPACER = "%-60s%s%n";
-    private static final String GREEN_COLOUR = "\033[0;32m";
     private static final String RED_COLOUR = "\033[0;31m";
     public static final String YELLOW_COLOUR = "\033[0;93m";
     public static final String BLUE_COLOUR = "\033[0;34m";
     private static final String RESET_COLOUR = "\033[0m";
-    private static final String FORMAT = GREEN_COLOUR + "Format: " + RESET_COLOUR;
 
     public static String read() {
         Scanner sc = new Scanner(System.in);
@@ -120,7 +81,7 @@ public class Ui {
         printCustomMessage(" * Items in square brackets are [optional]");
         printCustomMessage(" * Items in brackets are (additional information)\n");
 
-        printCustomMessage("-".repeat(64) + "Profile" + "-".repeat(65));
+        printCustomMessage(DASH.repeat(64) + "Profile" + DASH.repeat(65));
         System.out.printf(HELP_SPACER, FORMAT_VIEW_PROFILE, "View your profile information");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_BMI, "View your BMI");
         System.out.printf(HELP_SPACER, FORMAT_EDIT_NAME, "Edit your profile name");
@@ -130,7 +91,7 @@ public class Ui {
         System.out.printf(HELP_SPACER, FORMAT_EDIT_WEIGHT, "Edit your profile weight");
         System.out.printf(HELP_SPACER, FORMAT_EDIT_FITNESS, "Edit your profile fitness\n");
 
-        printCustomMessage("-".repeat(66) + "Food" + "-".repeat(66));
+        printCustomMessage(DASH.repeat(66) + "Food" + DASH.repeat(66));
         System.out.printf(HELP_SPACER, FORMAT_FOOD, "Add a food entry");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_FOOD, "View your food entries");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE,
@@ -139,7 +100,7 @@ public class Ui {
         System.out.printf(HELP_SPACER, FORMAT_DELETE_FOOD, "Delete a food entry");
         System.out.printf(HELP_SPACER, FORMAT_CLEAR_FOOD, "Clear all your food entries\n");
 
-        printCustomMessage("-".repeat(64) + "Exercise" + "-".repeat(64));
+        printCustomMessage(DASH.repeat(64) + "Exercise" + DASH.repeat(64));
         System.out.printf(HELP_SPACER, COMMAND_RECOMMEND, "Get a recommended workout");
         System.out.printf(HELP_SPACER, COMMAND_RECOMMEND + " " + WORD_AEROBIC, "Get a recommended aerobic workout");
         System.out.printf(HELP_SPACER, COMMAND_RECOMMEND + " " + WORD_UPPERBODY, "Get a recommended upperbody workout");
@@ -153,7 +114,7 @@ public class Ui {
         System.out.printf(HELP_SPACER, FORMAT_DELETE_EXERCISE, "Delete an exercise entry");
         System.out.printf(HELP_SPACER, FORMAT_CLEAR_EXERCISE, "Clear all your exercise entries\n");
 
-        printCustomMessage("-".repeat(66) + "Goal" + "-".repeat(66));
+        printCustomMessage(DASH.repeat(66) + "Goal" + DASH.repeat(66));
         System.out.printf(HELP_SPACER, FORMAT_FOOD_GOAL, "Add a food goal");
         System.out.printf(HELP_SPACER, FORMAT_SMART_FOOD_GOAL, "Add a smart food goal");
         System.out.printf(HELP_SPACER, FORMAT_EXERCISE_GOAL, "Add an exercise goal");
@@ -164,7 +125,7 @@ public class Ui {
         System.out.printf(HELP_SPACER, FORMAT_DELETE_GOAL, "Delete a goal entry");
         System.out.printf(HELP_SPACER, FORMAT_CLEAR_GOAL, "Clear all your goal entries\n");
 
-        printCustomMessage("-".repeat(65) + "Other" + "-".repeat(66));
+        printCustomMessage(DASH.repeat(65) + "Other" + DASH.repeat(66));
         System.out.printf(HELP_SPACER, COMMAND_HELP, "Display available commands");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_SUMMARY, "View calorie summary");
         System.out.printf(HELP_SPACER, FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE,
@@ -177,11 +138,11 @@ public class Ui {
         switch (command) {
         case COMMAND_FOOD:
             printCustomError(ERROR_FORMAT_MESSAGE);
-            printCustomMessage(FORMAT + FORMAT_FOOD);
+            printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_FOOD);
             break;
         case COMMAND_EXERCISE:
             printCustomError(ERROR_FORMAT_MESSAGE);
-            printCustomMessage(FORMAT + FORMAT_EXERCISE);
+            printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_EXERCISE);
             break;
         case COMMAND_GOAL:
             printCustomError(ERROR_FORMAT_MESSAGE);
@@ -193,7 +154,7 @@ public class Ui {
             break;
         case COMMAND_VIEW:
             printCustomError(ERROR_FORMAT_MESSAGE);
-            printCustomMessage(FORMAT + "view <TYPE>");
+            printCustomMessage(COLOURED_FORMAT_STRING + "view <TYPE>");
             System.out.printf(VIEW_SPACER, "<TYPE>", "<DESCRIPTION>");
             System.out.printf(VIEW_SPACER, COMMAND_VIEW_PROFILE, "View your profile");
             System.out.printf(VIEW_SPACER, COMMAND_VIEW_BMI, "View your BMI");
@@ -225,17 +186,17 @@ public class Ui {
             System.out.printf(HELP_SPACER, FORMAT_EDIT_EXERCISE, "Edit your previous exercise entry");
             System.out.printf(HELP_SPACER, FORMAT_EDIT_GOAL, "Edit your previous goal entry");
             break;
-        case "Smart food goal":
+        case PHRASE_SMART_FOOD_GOAL:
             printCustomError(ERROR_FORMAT_MESSAGE);
-            printCustomMessage(FORMAT + FORMAT_SMART_FOOD_GOAL);
+            printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_SMART_FOOD_GOAL);
             break;
-        case "Smart exercise goal":
+        case PHRASE_SMART_EXERCISE_GOAL:
             printCustomError(ERROR_FORMAT_MESSAGE);
-            printCustomMessage(FORMAT + FORMAT_SMART_EXERCISE_GOAL);
+            printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_SMART_EXERCISE_GOAL);
             break;
         case COMMAND_COMPLETE:
             printCustomError(ERROR_FORMAT_MESSAGE);
-            printCustomMessage(FORMAT + FORMAT_MARK_GOAL_AS_COMPLETE);
+            printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_MARK_GOAL_AS_COMPLETE);
             break;
         default:
             printInvalidCommandError();

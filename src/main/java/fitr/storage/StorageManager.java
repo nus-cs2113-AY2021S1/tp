@@ -74,6 +74,9 @@ public class StorageManager {
 
     public ArrayList<Goal> loadGoalList() throws FileNotFoundException {
         try {
+            for (Goal goal : goalStorage.loadGoalList()) {
+                Ui.printMessageInBlue(goal.getDescription());
+            }
             return goalStorage.loadGoalList();
         } catch (InvalidFileFormatException | ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             Ui.printCustomError("Error: Invalid goal file - new goal list created!");

@@ -84,7 +84,7 @@ Okay! The following goal has been added:
 #### 2.1.3.1 Adding a smart food goal
 Fitr also understands particular keywords. If you would like to set a target for your calorie intake, you can key in your goal following the format below. By adding a smart food goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
-> :bulb: **Additional information:** Smart food goals are linked to the calorie intake of its created date
+> :bulb: **Additional information:** Smart food goals are linked to your calorie intake of its created date
 
 Format: `goal food > NUMBER_OF_CALORIES`
         or `goal food Eat more than NUMBER_OF_CALORIES calories`  
@@ -113,7 +113,7 @@ Okay! The following goal has been added:
 #### 2.1.4.1 Adding a smart exercise goal
 Fitr also understands particular keywords. If you would like to set a target for your calorie burnt, you can key in your goal following the format below. By adding a smart exercise goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
-> :bulb: **Additional information:** Smart exercise goals are linked to the calorie intake of its created date
+> :bulb: **Additional information:** Smart exercise goals are linked to your calories burnt of its created date
 
 Format: `goal exercise > NUMBER_OF_CALORIES` 
         or `goal exercise Burn more than NUMBER_OF_CALORIES calories` 

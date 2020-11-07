@@ -3,6 +3,8 @@ package fitr.command;
 import fitr.calorie.Calorie;
 import fitr.common.DateManager;
 import fitr.exception.FitrException;
+import fitr.exception.UpperBoundLessThanException;
+import fitr.exception.UpperBoundMoreThanException;
 import fitr.goal.Goal;
 import fitr.exercise.Recommender;
 import fitr.common.Commands;
@@ -22,10 +24,18 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
+import static fitr.common.Messages.COLOURED_FORMAT_STRING;
 import static fitr.common.Messages.ERROR_FORMAT_MESSAGE;
+import static fitr.common.Messages.ERROR_GOAL_LESS_THAN_UPPERBOUND;
+import static fitr.common.Messages.ERROR_GOAL_MORE_THAN_UPPERBOUND;
+import static fitr.common.Messages.ERROR_INVALID_GOAL_TYPE;
+import static fitr.common.Messages.ERROR_INVALID_INDEX;
 import static fitr.common.Messages.FORMAT_EDIT_EXERCISE;
 import static fitr.common.Messages.FORMAT_EDIT_FOOD;
 import static fitr.common.Messages.FORMAT_EDIT_GOAL;
+import static fitr.common.Messages.KEYWORD_CALORIES;
+import static fitr.common.Messages.SPACE_STRING;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
 import static fitr.common.Messages.SYMBOL_NO;
@@ -67,6 +77,10 @@ public class EditEntryCommand extends Command {
             }
         } catch (NumberFormatException | FitrException | DateTimeParseException e) {
             Ui.printCustomError("Invalid value entered!");
+        } catch (UpperBoundLessThanException e) {
+            Ui.printCustomError(ERROR_GOAL_LESS_THAN_UPPERBOUND);
+        } catch (UpperBoundMoreThanException e) {
+            Ui.printCustomError(ERROR_GOAL_MORE_THAN_UPPERBOUND);
         }
 
         try {
@@ -92,7 +106,7 @@ public class EditEntryCommand extends Command {
 
         if (!matcher.matches()) {
             Ui.printCustomError(ERROR_FORMAT_MESSAGE);
-            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_EXERCISE);
+            Ui.printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_EDIT_EXERCISE);
             return;
         }
 
@@ -117,7 +131,7 @@ public class EditEntryCommand extends Command {
             return;
         }
 
-        int calories = Integer.parseInt(matcher.group("calories").trim());
+        int calories = Integer.parseInt(matcher.group(KEYWORD_CALORIES).trim());
 
         if (calories < 0) {
             Ui.printCustomError("Calories cannot be negative!");
@@ -136,7 +150,7 @@ public class EditEntryCommand extends Command {
 
         if (!matcher.matches()) {
             Ui.printCustomError(ERROR_FORMAT_MESSAGE);
-            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_FOOD);
+            Ui.printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_EDIT_FOOD);
             return;
         }
 
@@ -182,13 +196,13 @@ public class EditEntryCommand extends Command {
                 + ", calories (per qty): " + calories + ", amount: " + quantity);
     }
 
-    private void editGoal(GoalList goalList, String arguments) throws FitrException {
+    private void editGoal(GoalList goalList, String arguments) throws FitrException, UpperBoundLessThanException, UpperBoundMoreThanException {
         LOGGER.fine("Editing a goal entry...");
         Matcher matcher = GOAL_FORMAT.matcher(arguments);
 
         if (!matcher.matches()) {
             Ui.printCustomError(ERROR_FORMAT_MESSAGE);
-            Ui.printCustomMessage("\033[0;32mFormat: \033[0m" + FORMAT_EDIT_GOAL);
+            Ui.printCustomMessage(COLOURED_FORMAT_STRING + FORMAT_EDIT_GOAL);
             return;
         }
 
@@ -199,7 +213,7 @@ public class EditEntryCommand extends Command {
 
         int index = Integer.parseInt(matcher.group("index").trim());
         if (index <= 0 || index > goalList.getSize()) {
-            Ui.printCustomError("Invalid index entered!");
+            Ui.printCustomError(ERROR_INVALID_INDEX);
             return;
         }
 
@@ -207,7 +221,7 @@ public class EditEntryCommand extends Command {
         String goalType = matcher.group("goalType").trim().toLowerCase();
 
         if (!(goalType.equals(Commands.COMMAND_EXERCISE) || goalType.equals(Commands.COMMAND_FOOD))) {
-            Ui.printCustomError("Invalid goal type!");
+            Ui.printCustomError(ERROR_INVALID_GOAL_TYPE);
             return;
         }
 
@@ -218,6 +232,6 @@ public class EditEntryCommand extends Command {
         goal.setGoal(editedGoal, SYMBOL_NO);
 
         Ui.printCustomMessage("Successfully edited goal to: [" + editedGoal.getGoalType()
-                + "] " + editedGoal.getDescription());
+                + CLOSE_SQUARE_BRACKET + SPACE_STRING + editedGoal.getDescription());
     }
 }

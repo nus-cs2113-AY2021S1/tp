@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_COMPLETE;
 import static fitr.common.Commands.COMMAND_GOAL;
-import static fitr.common.Messages.ERROR_INVALID_INDEX;
+import static fitr.common.Messages.ERROR_INDEX_DOES_NOT_EXIST;
 import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
 import static fitr.common.Messages.SYMBOL_YES;
@@ -59,7 +59,7 @@ public class CompleteGoalCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError(ERROR_INVALID_INDEX);
+            Ui.printCustomError(ERROR_INDEX_DOES_NOT_EXIST);
         } catch (NumberFormatException e) {
             Ui.printCustomError("Sorry, deletion index must be an positive integer.");
         } catch (IOException e) {

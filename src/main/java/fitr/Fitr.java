@@ -14,6 +14,9 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
+import static fitr.common.Commands.COMMAND_BYE;
+import static fitr.common.Messages.DASH;
+
 public class Fitr {
     private StorageManager storageManager;
     private ListManager listManager;
@@ -46,10 +49,12 @@ public class Fitr {
         while (!isExit) {
             System.out.print("> ");
             String userInput = Ui.read();
-            System.out.println("-".repeat(136));
+            Ui.printCustomMessage(DASH.repeat(136));
             Command c = Parser.parse(userInput);
             c.execute(listManager, storageManager, user, recommender);
-            System.out.println("-".repeat(136));
+            if (!userInput.equals(COMMAND_BYE)) {
+                Ui.printCustomMessage(DASH.repeat(136));
+            }
             isExit = c.isExit();
         }
         Ui.printExitMessage();
