@@ -275,9 +275,8 @@ public class ModuleList {
             ui.printAddExpError(toPrint);
             ui.printEmptyline(toPrint);
         } catch (NumberFormatException nfe) {
-            ui.printAddExpNfe(toPrint);
             logger.log(Level.INFO, "Invalid number format");
-            System.out.println("");
+            ui.printAddExpNfe(toPrint);
         }
     }
 

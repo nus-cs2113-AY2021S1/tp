@@ -260,7 +260,7 @@ class ModuleListTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         String expectedStart = "Please type deletetime <module code> <week number> with an existing "
-                + "module code." + System.lineSeparator();
+                + "module code and week number as a whole number between 1 and 13." + System.lineSeparator();
         String expectedEnd = "CS1234 does not exist." + System.lineSeparator();
         modulesTest.deleteTime("deleteTime CS1234 4 1", true, storage);
         assertEquals(expectedStart + expectedEnd + System.lineSeparator(), outContent.toString());
