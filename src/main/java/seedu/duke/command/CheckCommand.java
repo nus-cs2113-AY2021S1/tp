@@ -123,8 +123,8 @@ public class CheckCommand extends Command {
             }
         } catch (DateTimeParseException e) {
             throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
-                    + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy." + System.lineSeparator()
-                    + "Dashes may be used in place of slashes.");
+                    + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
+                    + System.lineSeparator() + "Dashes may be used in place of slashes.");
         }
     }
 
@@ -199,15 +199,15 @@ public class CheckCommand extends Command {
             boolean eventIsBetweenDate = event.getDate().isAfter(startDate) && event.getDate().isBefore(endDate);
             boolean eventIsWithinTimePeriod;
 
-            if (eventIsBetweenDate) { // if an event is after start date and before end date, it is definitely within the time period
+            if (eventIsBetweenDate) { // if an event is after start date and before end date, it is in the time period
                 eventIsWithinTimePeriod = true;
-            } else if (event.getDate().isEqual(startDate)) { // if an event is on the start date, check if its after the start time
+            } else if (event.getDate().isEqual(startDate)) { // if an event is on the start date check event time
                 if (event.getTime() == null) { // if the event has no time, by default count it as coinciding
                     eventIsWithinTimePeriod = true;
                 } else { // if the event is before the start time, it is not within the time period
                     eventIsWithinTimePeriod = !(event.getTime().isBefore(startTime));
                 }
-            } else if (event.getDate().isEqual(endDate)) { // if an event is on the end date, check if its before the end time
+            } else if (event.getDate().isEqual(endDate)) { // if an event is on the end date check event time
                 if (event.getTime() == null) { // if the event has no time, by default count it as coinciding
                     eventIsWithinTimePeriod = true;
                 } else { // if the event is after the end time, it is not within the time period
