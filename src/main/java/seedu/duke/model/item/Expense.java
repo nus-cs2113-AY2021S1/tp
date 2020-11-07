@@ -18,7 +18,7 @@ public class Expense extends Item {
 
     /**
      * Constructor used when adding an expense item.
-     * Byt default, the expense item has currency "SGD and date of today.
+     * By default, the expense item has currency "SGD and date of today.
      *
      * @param description the description of the expense item
      * @param value the value of the expense item
