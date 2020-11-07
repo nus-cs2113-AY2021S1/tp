@@ -169,6 +169,10 @@ If you have entered the wrong answer, this is what you will see:
 If you did not answer the question within the specified time, this is what you will see: 
 ![quiz](./images/quiz_times_up.png)
 
+After every question, this is what you will see: 
+![quiz](./images/question_end.png)
+Please press "Enter" to proceed to the next question. 
+
 After attempting all of the questions, the quiz will automatically end:
 ![quiz](./images/quiz_end.png)
 
@@ -213,6 +217,7 @@ Lists out all the bookmarked questions and each of their four options.
 
 Note:
 - Listing out all bookmarked questions can only be done in the main menu
+
 
 Example of usage:
 ```
@@ -274,6 +279,7 @@ note add
 
 What you should see:
 
+![noteadd](./images/noteadd.png)
 
 ### 3.14. Deleting a note: `note delete`
 
@@ -284,6 +290,10 @@ Example of usage:
 note delete
 ```
 
+What you should see:
+
+![notedelete](./images/notedelete.png)
+
 ### 3.15. Listing out notes: `note list`
 
 Lists out all notes belonging to a specific topic.
@@ -293,24 +303,11 @@ Example of usage:
 note list
 ```
 
-### 3.16. Displaying stats: `stats`
+What you should see:
 
-User data will be saved after every command that changes the data completes such as at the end of using
-`quiz`, `note`, and `bookmark`. There will be a final save confirmation message upon successful exit of the application
-through the `exit` command.
-You will see this message while the data saves:
+![notelist](./images/notelist.png)
 
-![data saving](./images/data_saving.png)
-
-When the data has been saved successfully you should see this message:
-
-![data saved](./images/data_saved.png)
-
-This is stored in the `user.json` file in the `data` folder and can be transferred between machines to keep your own
-history. Please do not attempt to edit this file as it will disrupt the running of application.
-If you want a better score you can always reattempt a quiz!
-
-### 3.17. Exiting the program: `exit`
+### 3.16. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -323,7 +320,7 @@ exit
 
 ![exit](./images/exit.png)
 
-### 3.18. Saving user data
+### 3.17. Saving user data
 
 User data will be saved after every command that changes the data completes such as at the end of using
 `quiz`, `note`, and `bookmark`. There will be a final save confirmation message upon successful exit of the application
