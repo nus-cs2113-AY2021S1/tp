@@ -273,13 +273,17 @@ The diagram below only illustrates the implementation of the timer feature, it d
 
 ![Timer_Sequence_Diagram](./images/Timer.png)
 
-When a quiz is started, the `SingleTopicQuiz()` method will instantiate a `SingleTopicQuiz` object. 
+When a quiz is started, the `startQuiz(ui)` method will be called. 
+Some details has been omitted here for simplicity. 
 After the options of a particular question has been printed out, the timer would begin.
 The `getCommand(ui, optionList, userTimer)` method is first called. The `userTimer` parameter used here is the time that the user has set at the start of the quiz. 
-The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. For simplicity, some details in this method has been omitted. 
-The `Ui` will return the `userInput` back to the `SingleTopicQuiz` object. The `QuizParser` class is then called by the `parseCommand(optionList, userInput)` method. The `QuizParser` class will then return the respective `command` back to the `SingleTopicQuiz` object. 
+The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. 
+For simplicity, some details in this method has been omitted. 
+The `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
+There are some details omitted here as well for simplicity. 
+The `command` object will be returned. 
 
-For example, if the user entered a string, then the `command` returned will be one of `IncorrectCommand`. 
+For example, if the user entered a string (that is not "hint" or "bookmark" and not a number), then the `command` returned will be one of `IncorrectCommand`. 
 If the user entered any number from 1 to 4, it will be an `AnswerCommand`. 
 If the user did not input anything and the time is up, the `command` returned will be `IncompleteCommand`. 
 
