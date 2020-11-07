@@ -99,7 +99,7 @@ Other Threads:
   0x000002317e610000 GCTaskThread "GC Thread#1" [stack: 0x000000af28900000,0x000000af28a00000] [id=27568]
   0x000002317e611000 GCTaskThread "GC Thread#2" [stack: 0x000000af28a00000,0x000000af28b00000] [id=26748]
   0x000002317e633800 GCTaskThread "GC Thread#3" [stack: 0x000000af28b00000,0x000000af28c00000] [id=20872]
-  0x0000023179bdc800 ConcurrentGCThread "G1 Main Marker" [stack: 0x000000af27700000,0x000000af27800000] [id=13708]
+  0x0000023179bdc800 ConcurrentGCThread "G1 Logic Marker" [stack: 0x000000af27700000,0x000000af27800000] [id=13708]
   0x0000023179bde800 ConcurrentGCThread "G1 Conc#0" [stack: 0x000000af27800000,0x000000af27900000] [id=18752]
   0x000002317d316800 ConcurrentGCThread "G1 Refine#0" [stack: 0x000000af27900000,0x000000af27a00000] [id=15744]
   0x000002317d317800 ConcurrentGCThread "G1 Young RemSet Sampling" [stack: 0x000000af27a00000,0x000000af27b00000] [id=17028]
