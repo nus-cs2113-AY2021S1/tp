@@ -211,10 +211,13 @@ Lists out all the bookmarked questions and each of their four options.
 Note:
 - Listing out all bookmarked questions can only be done in the main menu
 
+
 Example of usage:
 ```
 bookmark
 ```
+
+What you should see: 
 
 ### 3.11. Displaying stats: `stats`
 
@@ -254,6 +257,7 @@ note add
 
 What you should see:
 
+![noteadd](./images/noteadd.png)
 
 ### 3.13. Deleting a note: `note delete`
 
@@ -264,6 +268,10 @@ Example of usage:
 note delete
 ```
 
+What you should see:
+
+![notedelete](./images/notedelete.png)
+
 ### 3.14. Listing out notes: `note list`
 
 Lists out all notes belonging to a specific topic.
@@ -272,6 +280,10 @@ Example of usage:
 ```
 note list
 ```
+
+What you should see:
+
+![notelist](./images/notelist.png)
 
 
 ### 3.15. Exiting the program: `exit`
