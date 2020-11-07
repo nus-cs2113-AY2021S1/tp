@@ -167,8 +167,9 @@ The following sequence diagram explains the above steps when the user searches f
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
 The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class executes the command in the following steps:
-1. Calls `BusStops#listStops()` to make a new Fav object to be saved in the FavList.
-    - The `BusStops#listStops()` 
+1. Calls `BusStops#listStops()` to print out all stops.
+    - The `BusStops#listStops()` method iterate through all bus stops declared in the BusStops enum class.
+    - Alternative names for bus stops will also be printed if it has one.
     
 ### 3.4. Favourite command adder (`/addfav` Feature)
 
