@@ -6,6 +6,9 @@ import seedu.duke.model.itemlist.TaskList;
 
 import java.util.HashMap;
 
+/**
+ * Represents the state of an instance of a Command test.
+ */
 public class CommandTest {
     protected static final String TEST_DESCRIPTION = "test description";
     protected HashMap<String, String> argumentsMap;
