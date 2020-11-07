@@ -42,9 +42,9 @@ public class ListBookCommand extends ListCommand {
         try {
             if (information.isEmpty()) {
                 listAllBooks(bookList, ui);
-            } else if (information.contains(FLAG_AUTHOR)) {
+            } else if (information.startsWith(FLAG_AUTHOR)) {
                 listBooksByAuthor(bookList, ui);
-            } else if (information.contains(DONE_KEYWORD)) {
+            } else if (information.startsWith(DONE_KEYWORD) || information.startsWith(UNDONE_KEYWORD)) {
                 listBooksDoneOrUndone(bookList, ui);
             } else {
                 listBookDetails(bookList, ui);
@@ -68,11 +68,13 @@ public class ListBookCommand extends ListCommand {
      * @param bookList Booklist in Quotesify.
      * @param ui Ui of the program.
      */
-    private void listBooksDoneOrUndone(BookList bookList, TextUi ui) {
+    private void listBooksDoneOrUndone(BookList bookList, TextUi ui) throws QuotesifyException {
         if (information.trim().equals(DONE_KEYWORD)) {
             listBooksDone(bookList, ui);
-        } else if (information.trim().equals("undone")) {
+        } else if (information.trim().equals(UNDONE_KEYWORD)) {
             listBooksUndone(bookList, ui);
+        } else {
+            throw new QuotesifyException(ERROR_LIST_UNKNOWN_COMMAND);
         }
     }
 

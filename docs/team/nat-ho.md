@@ -1,7 +1,7 @@
 # Ho Chong Han Nathaniel - Project Portfolio Page for Quotesify
 
 ## Overview
-I am part of a team of 5 software engineering students and we were tasked to design and implement a
+I am part of a team of 5 software engineering students, and we were tasked to design and implement a
 Command Line Interface (CLI) desktop application for our team project. The application that we developed
 is called Quotesify. I was tasked with the Quote Management and Quote Reflection feature in Quotesify.
 
@@ -47,7 +47,7 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
     By making it more interactive and allowing users to actively engage with the content through their own reflection
     and summary, users are far more likely to internalize the content and remember it in the long run. 
 
-### Contributions to documentation:
+### Contributions to the UG:
 * I have contributed to all parts relating to Quote Management and Quote Reflection in the UG.
 * Additionally, I also contributed to the FAQ section of the UG.
 

@@ -1,7 +1,7 @@
 # Tay Chin Heng - Project Portfolio Page for Quotesify
 
 ## Overview
-I am part of a team of 5 software engineering students and we were tasked to design and implement a
+I am part of a team of 5 software engineering students, and we were tasked to design and implement a
 Command Line Interface (CLI) desktop application for our team project. The application that we developed
 is called Quotesify. I was tasked with the Category Management feature in Quotesify.
 
@@ -44,7 +44,7 @@ The aim is to provide the user a basic statistic on the number of items under ea
 **Justification:**
 The Storage is a must-have component for Quotesify as it would have defeated the purpose if a user's favourite books or quotes only lasts on runtime.
     
-### Contributions to documentation:
+### Contributions to the UG:
 * I have contributed to all parts relating to Category Management in the UG.
 * I have contributed to the Quick Start and FAQ sections of the UG.
 

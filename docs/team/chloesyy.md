@@ -1,7 +1,7 @@
 # Seah Yi Yi Chloe - Project Portfolio Page for Quotesify
 
 ## Overview
-I am part of a team of 5 software engineering students and we were tasked to design and implement a
+I am part of a team of 5 software engineering students, and we were tasked to design and implement a
 Command Line Interface (CLI) desktop application for our team project. The application that we developed
 is called Quotesify. I was tasked with the Book Management System in Quotesify.
 
@@ -28,35 +28,29 @@ I implemented the Book Management feature of Quotesify.
 * The user may use the `list -b` command to list existing books in the booklist. They have the option to:
     * List all existing books 
     * List books by a specified existing author
-    * List books which they have completed
-    * List books which they have yet to complete
+    * List books which they have completed or have yet to complete
 * The user may use the `find -b` command to find books with titles or authors containing a particular keyword or phrase.
 
 **Justification:**
-The Book Management feature is a core feature of Quotesify which forms the backbone of Quotesify,
-as other features require the existence of the Book Management Feature in order to be implemented. 
+The Book Management feature is a core feature of Quotesify which forms the backbone of Quotesify. 
 This feature is useful for users to keep track of their books and their completion progress. 
 
 **Highlights:**
-
 The booklist is always sorted in alphabetical order for ease of access and reading when users list their books. 
-This makes it particularly useful when users are looking for a particular book without using the find feature.
-
-The find feature is case-insensitive. This is useful as users may not be able to remember the exact case in which 
+Also, the find feature is case-insensitive. This is useful as users may not be able to remember the exact case in which 
 they typed the book title or author. 
 
-### Contributions to documentation:
+### Contributions to the UG:
 * I contributed to the parts of the UG that describe and explain the Book Management System. 
-* I also maintained the cohesiveness and formatting of the documentation. 
 
 ### Contributions to the DG:
 * I contributed to the parts of the DG that describe and explain the Book Management System, 
 including the UML diagrams.
-* I also maintained the cohesiveness and formatting of the documentation.
 
 ### Contributions to team-based tasks:
 * I took notes for the team during team meetings to keep track of tasks to be done.
+* I maintained the cohesiveness in language and formatting of the documentations.
 
 ### Contributions beyond the project team: 
-* I contributed in helping to identify bugs for other teams which can be found [here](https://github.com/AY2021S1-CS2113T-T12-1/tp/issues).
-* I also gave feedback on documentation for other teams. 
+I contributed in helping to identify bugs for other teams which can be found [here](https://github.com/AY2021S1-CS2113T-T12-1/tp/issues)
+ and gave feedback on documentations for other teams. 

@@ -59,7 +59,7 @@ and notice the most urgent task quickly.
 One thing to note, deadlines with incorrect formats or invalid dates will be accepted for users' freedom, but 
 their task objects will be shown at the last part of the ToDoList.
 
-### Contributions to documentation:
+### Contributions to the UG:
 * I contributed to the parts of the UG that describe and explain the Bookmark Management and Task Management System. 
 * I also maintained the cohesiveness and formatting of the documentation. 
 

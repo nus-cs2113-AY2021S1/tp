@@ -1,7 +1,7 @@
 # Yuen Si Hao - Project Portfolio Page for Quotesify
 
 ## Overview
-I am part of a team of 5 software engineering students and we were tasked to design and implement a
+I am part of a team of 5 software engineering students, and we were tasked to design and implement a
 Command Line Interface (CLI) desktop application for our team project. The application that we developed
 is called Quotesify. I was tasked with the Rating System for Books feature in Quotesify.
 
@@ -35,7 +35,7 @@ The ratings are sorted according to their rating score when listed, with the hig
 This is to reduce the amount users need to scroll as they would often want to view the ratings of books
 that they like, rather than those with lower ratings.
 
-### Contributions to documentation:
+### Contributions to the UG:
 * I contributed to the parts of the UG that describe and explain the Rating System for books feature.
 * I also contributed to other sections of the UG such as Introduction, Getting Help in Quotesify,
 Terminating the program, and the Command Summary.
