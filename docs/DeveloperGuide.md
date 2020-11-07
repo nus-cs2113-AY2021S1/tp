@@ -258,7 +258,18 @@ The following sequence diagram explains the interactions omitted in the main dia
 ![executing command](DG_Diagrams/DescFavCommand/descFavInternal.png)
 
 #### Design Considerations
-
+The main aim here is to change the description of a particular command in the list of favourites.<br>
+Aspect: How index and description are verified.
+* **Alternative 1 (current choice):** Perform checks on the validity of index and description at intermediate steps
+    + Pros: The checks specific to `FavList` and `Fav` will be performed in those classes and all these methods 
+    will be called in the main `DescFavCommand#executeCommand()` thus reducing coupling.
+    + Cons: It requires more methods to be written for any particular class.
+    
+* **Alternative 2:** Use the `DescFavParser` class to determine if the index is within bounds of the list and 
+the description is different from what is already stored.
+    + Pros: It is quicker to determine that the command is invalid.
+    + Cons: Requires calling functions from `FavList` and `Fav` in the parser which would increase coupling.
+    
 ### 3.7. Dining options finder (/dine Feature)
 
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
