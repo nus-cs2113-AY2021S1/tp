@@ -26,8 +26,7 @@ public class ProjectMembers implements JsonableArray {
         return this.memberList;
     }
 
-    /**
-     * Return required member if present in the projectMember
+    /**Return required member if present in the projectMember.
      * @param userid Id of the member added
      * @return Member object if found, else null
      */

@@ -71,7 +71,7 @@ public class CreateProjectCommand extends ProjectCommand {
     }
 
     /**
-     * Checks for adding duplicate projects to the projectManager
+     * Checks for adding duplicate projects to the projectManager.
      * @param title Title of new project to be added
      * @return true if project alr exists, else false.
      */

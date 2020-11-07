@@ -21,7 +21,7 @@ public abstract class MemberCommand extends Command {
     public abstract void logExecution(String userMessage);
 
     /**
-     * Checks if a member is already added to a project
+     * Checks if a member is already added to a project.
      * @param proj Project currently being used.
      * @param member Member who has to be checked for association with proj.
      * @return true if proj contains member

@@ -44,7 +44,7 @@ public class Member implements JsonableObject {
 
     /**
      * Check if o is an instance of Member or not
-     * "null instanceof [type]" also returns false
+     * "null instanceof [type]" also returns false.
      * @param o Object to be compared with user id
      * @return true if it equal, false if it is not an instance of Member class/ not equal.
      */
