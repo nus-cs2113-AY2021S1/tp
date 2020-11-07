@@ -118,7 +118,7 @@ public class Parser {
         } catch (IndexOutOfBoundsException e) {
             throw new PaperTradeException(("Wrong input format! E.g. buy /MSFT 11"));
         } catch (NumberFormatException e) {
-            throw new PaperTradeException("Please enter a valid integer for the quantity of stocks that you want to buy!");
+            throw new PaperTradeException("Please enter a valid integer for quantity of stocks that you want to buy!");
         }
     }
 
@@ -134,7 +134,7 @@ public class Parser {
         } catch (IndexOutOfBoundsException e) {
             throw new PaperTradeException("Wrong input format! E.g. sell /MSFT 11");
         } catch (NumberFormatException e) {
-            throw new PaperTradeException("Please enter a valid integer for the quantity of stocks that you want to sell!");
+            throw new PaperTradeException("Please enter a valid integer for quantity of stocks that you want to sell!");
         }
     }
 
@@ -144,7 +144,7 @@ public class Parser {
                 throw new PaperTradeException("Please enter the ticker symbol of the company!");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new PaperTradeException(("Please enter the ticker symbol of the company you would like to search for!"));
+            throw new PaperTradeException(("Please enter the ticker symbol of the company you want to search for!"));
         }
 
         SearchCommand searchCommand = new SearchCommand(userInputSplit[1].substring(1));
