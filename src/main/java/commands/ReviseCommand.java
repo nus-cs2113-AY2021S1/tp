@@ -12,6 +12,7 @@ import ui.Ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 import static common.Messages.CHAPTER;
@@ -71,19 +72,21 @@ public class ReviseCommand extends Command {
         return allCards;
     }
 
-    private int reviseCard(int count, Card c, Ui ui, ArrayList<Card> repeatCards) {
+    private int reviseCard(int count, Card c, Ui ui, ArrayList<Card> repeatCards, Scanner scanner) {
         ui.showToUser("\nQuestion " + count + ":");
-        ui.showCardRevision(c);
-        String input = ui.getInput(MESSAGE_SHOW_RATING_PROMPT);
-        rateCard(ui, repeatCards, c, input);
+        ui.showCardRevision(c, scanner);
+        String input = ui.getInput(MESSAGE_SHOW_RATING_PROMPT, scanner);
+        rateCard(ui, repeatCards, c, input, scanner);
         return ++count;
     }
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IOException {
         Chapter toRevise = getChapter(reviseIndex, access);
+        // re-initialize scanner for testing purposes
+        Scanner scanner = new Scanner(System.in);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
-            if (promptNotDue(ui, toRevise)) {
+            if (promptNotDue(ui, toRevise, scanner)) {
                 ui.showToUser(String.format(MESSAGE_NOT_REVISING, toRevise));
                 return;
             }
@@ -103,9 +106,9 @@ public class ReviseCommand extends Command {
         int count = 1;
 
         for (Card c : allCards) {
-            count = reviseCard(count, c, ui, repeatCards);
+            count = reviseCard(count, c, ui, repeatCards, scanner);
         }
-        repeatRevision(ui, repeatCards, count);
+        repeatRevision(ui, repeatCards, count, scanner);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         logger.info("Revision has completed for chapter: " + toRevise);
         toRevise.setDueBy(Scheduler.computeChapterDeadline(toRevise.getCards()), storage, access);
@@ -114,11 +117,11 @@ public class ReviseCommand extends Command {
         HistoryCommand.addHistory(access, storage, reviseIndex);
     }
 
-    private boolean promptNotDue(Ui ui, Chapter toRevise) {
+    private boolean promptNotDue(Ui ui, Chapter toRevise, Scanner scanner) {
         StringBuilder prompt = new StringBuilder();
         prompt.append(String.format(MESSAGE_CHAPTER_NOT_DUE, toRevise));
         prompt.append(MESSAGE_SHOW_REVISE_PROMPT);
-        String input = ui.getInput(prompt.toString()).trim().toUpperCase();
+        String input = ui.getInput(prompt.toString(), scanner).trim().toUpperCase();
         boolean isInvalid = true;
         boolean notRevising = false;
         while (isInvalid) {
@@ -132,16 +135,16 @@ public class ReviseCommand extends Command {
                 notRevising = true;
                 break;
             default:
-                input = ui.getInput("You have entered an invalid input, please try again.")
+                input = ui.getInput("You have entered an invalid input, please try again.", scanner)
                         .trim().toUpperCase();
             }
         }
         return notRevising;
     }
 
-    public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
+    public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards,
+                                           Card c, String input, Scanner scanner) {
         boolean isInvalid = true;
-
         while (isInvalid) {
             switch (input.trim().toLowerCase()) {
             case EASY:
@@ -165,17 +168,17 @@ public class ReviseCommand extends Command {
                 isInvalid = false;
                 break;
             default:
-                input = ui.getInput("You have entered an invalid input, please try again.");
+                input = ui.getInput("You have entered an invalid input, please try again.", scanner);
             }
         }
         return repeatCards;
     }
 
-    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
+    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count, Scanner scanner) {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
-                count = reviseCard(count, c, ui, repeatCards);
+                count = reviseCard(count, c, ui, repeatCards, scanner);
             }
             cards = new ArrayList<>(repeatCards);
         }
