@@ -1,4 +1,8 @@
 # Developer Guide
+{:.no_toc}
+
+* Table of contents
+{:toc}
 
 ## Design & implementation
 <!-- @@author iamchenjiajun -->
