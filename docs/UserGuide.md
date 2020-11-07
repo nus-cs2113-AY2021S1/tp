@@ -26,6 +26,7 @@ Example of usage:
 
 `add S7423213Z`
 
+<div style="page-break-after: always;"></div>
 
 ### Retrieve a patient: `retrieve`
 Retrieves a patient to the database.
@@ -71,6 +72,7 @@ Example of usage:
 
 `delete S7423213Z`
 
+<div style="page-break-after: always;"></div>
 
 ### Create an appointment: `create`
 Creates an appointment date.
@@ -112,6 +114,7 @@ Example of usage:
 
 `doctor trump`
 
+<div style="page-break-after: always;"></div>
 
 ### Remove a doctor: `doctor`
 Remove a doctor.
@@ -152,6 +155,7 @@ Example of usage:
 
 `list`
 
+<div style="page-break-after: always;"></div>
 
 ### Edit patient's appointment: `editappt`
 Edit patient's appointment
@@ -194,6 +198,7 @@ Example of usage:
 
 **A**: Contact us.
 
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
