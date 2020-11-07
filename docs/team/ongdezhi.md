@@ -9,12 +9,12 @@
 *   **New Feature:** Added the ability to estimate the time needed to translate a script.
     *   What it does: Allows the user to figure out the time needed to translate a script based on the amount of words they can translate in an hour (defined as words per hour), or by using the average translator's speed (3 different words per hour values).
     *   Justification: Being able to estimate the time needed can help the user in managing and planning their time.
-    *   Highlights: A file name could contain special characters, whitespaces, and even file extensions, and that makes the validation process highly complicated, and hence, this feature would need to perform extensive checks to ensure a single valid file is provided. Moreover, there is a optional parameter that needs to be validated and to also ensure it is not missed or accidentally validated as part of the file name.
+    *   Highlights: A file name could contain special characters, whitespaces, and even file extensions, and that makes the validation process highly complicated, and hence, this feature would need to perform extensive checks to ensure a single valid file is provided. Moreover, there is an optional parameter that needs to be validated and should not be missed or be accidentally validated as part of the file name.
     
 *   **New Feature:** Added the ability to create, list, select, and delete watchlist.
     *   What it does: Allows the user to create, list, select, and delete watchlist.
     *   Justification: This feature provides the user with a simple way to keep track of animes and group them based on their own criteria, and this helps them to be more organized.
-    *   Highlights: Besides the need to validate the inputs (i.e. not empty, is a positive integer, etc.), this feature is also in-charge of maintaining the active watchlist pointer. This pointer is used by the input prompt, and if it is ever invalid, the application would not function as intended.
+    *   Highlights: Besides the need to validate the inputs (i.e. not empty, is a positive integer, etc.), this feature also maintains the active watchlist pointer. This pointer is used by the input prompt, and if it is ever invalid, the application would not be able to function as intended.
 
 *   **New Feature:** Added the ability to save and load watchlist data automatically.
     *   What it does: Helps the user to automatically save their watchlist data into the file `watchlist.txt`, and load these data automatically when the application is launched.
