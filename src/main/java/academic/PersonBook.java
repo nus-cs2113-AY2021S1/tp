@@ -8,6 +8,12 @@ import java.util.ArrayList;
  * Represents a grade book in study-it.
  */
 public class PersonBook {
+    /**
+     * Adds a person to an array list of person.
+     * @param args parameters of the person.
+     * @param listOfPerson array list of person.
+     * @throws InvalidEmailException when email added does not have an @ in it.
+     */
     public static void addPerson(String[] args, ArrayList<Person> listOfPerson) throws InvalidEmailException {
         if (args[2].contains("@")) {
             listOfPerson.add(new Person(args[0], args[1], args[2]));
@@ -21,6 +27,11 @@ public class PersonBook {
         }
     }
 
+    /**
+     * Delete a person from an array list of person.
+     * @param indexToBeDeleted index of the person to be deleted.
+     * @param listOfPerson array list of person.
+     */
     public static void deletePerson(Integer indexToBeDeleted, ArrayList<Person> listOfPerson) {
         listOfPerson.remove(indexToBeDeleted - 1);
     }

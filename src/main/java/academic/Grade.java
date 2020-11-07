@@ -1,7 +1,7 @@
 package academic;
 
 /**
- * Represents a grade for a module in study-it.
+ * Represents a grade for a module in study it.
  */
 public class Grade {
     protected String moduleName;
@@ -10,7 +10,11 @@ public class Grade {
     protected Boolean isModuleSued;
     protected Boolean isStar;
 
+    /**
+     * List of valid grades the program accepts.
+     */
     public static String[] listOfGrades = new String[]{"a+","a","a-","b+","b","b-","c+","c","d+","d","f"};
+
 
     public Grade(String name, Integer credits, String grade) {
         this.moduleName = name;
@@ -20,6 +24,11 @@ public class Grade {
         this.isStar = false;
     }
 
+    /**
+     * Receive a grade and convert it into a string to be stored into local storage.
+     * @param grade grade to be stored.
+     * @return string to be added to local storage.
+     */
     public static String printIndividualGrade(Grade grade) {
         return "[G] | " + grade.moduleName + " | " + grade.moduleCredits
                 + " | " + grade.moduleGrade + " | " + grade.isModuleSued
@@ -50,6 +59,11 @@ public class Grade {
         return grade.isStar;
     }
 
+    /**
+     * converts grade of module into its corresponding score.
+     * @param input letter representing grade.
+     * @return marks to be used for CAP caculation.
+     */
     public static double convertLetterToCredit(String input) {
         switch (input.trim().toLowerCase()) {
         case "a+":

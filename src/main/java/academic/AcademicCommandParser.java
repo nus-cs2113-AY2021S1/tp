@@ -1,29 +1,36 @@
 package academic;
 
-import academic.Grade;
 import exceptions.InvalidCommandException;
 import exceptions.InvalidGradeException;
 import exceptions.InvalidMcException;
 import studyit.CommandParser;
-
 import java.util.Arrays;
 import java.util.List;
 
-public class AcademicCommandParser extends CommandParser {
 
+/**
+ *Parses user inputs for academic mode.
+ */
+public class AcademicCommandParser extends CommandParser {
+    /**
+     * Takes in an input command to and return which type of academic command it falls under.
+     * @param command input command from the user.
+     * @return command type
+     * @throws InvalidCommandException if command type is invalid
+     */
     public static AcademicCommandType getAcademicCommandType(String command)
             throws InvalidCommandException {
         String commandModified = CommandParser.standardizeCommand(command);
 
         if (commandModified.startsWith("add contact")) {
             return AcademicCommandType.ADD_CONTACT;
-        } else if (commandModified.startsWith("list contact")) {
+        } else if (commandModified.equals("list contact")) {
             return AcademicCommandType.LIST_CONTACT;
         } else if (commandModified.startsWith("add grade")) {
             return AcademicCommandType.ADD_GRADE;
-        } else if (commandModified.startsWith("check cap")) {
+        } else if (commandModified.equals("check cap")) {
             return AcademicCommandType.CHECK_CAP;
-        } else if (commandModified.equalsIgnoreCase("list grade")) {
+        } else if (commandModified.equals("list grade")) {
             return AcademicCommandType.LIST_GRADE;
         } else if (commandModified.startsWith("delete contact")) {
             return AcademicCommandType.DELETE_PERSON;
@@ -35,13 +42,19 @@ public class AcademicCommandParser extends CommandParser {
             return AcademicCommandType.STAR_GRADE;
         } else if (commandModified.startsWith("star contact")) {
             return AcademicCommandType.STAR_CONTACT;
-        } else if (commandModified.startsWith("list star")) {
+        } else if (commandModified.equals("list star")) {
             return AcademicCommandType.LIST_STAR;
         } else {
             throw new InvalidCommandException();
         }
     }
 
+    /**
+     * Extract details of a contact from a string into a string array.
+     * @param command input string
+     * @return string array containing the various variables for the contact.
+     * @throws NumberFormatException when phone number inputted is not a valid phone number.
+     */
     public static String[] getContact(String command) throws NumberFormatException {
         String name = command.substring(command.indexOf("c/") + 2,
                 command.indexOf("m/")).trim();
@@ -56,6 +69,13 @@ public class AcademicCommandParser extends CommandParser {
         return new String[]{name, number, email};
     }
 
+    /**
+     * Extract details of a module grade from a string into a string array.
+     * @param command input string
+     * @return string array containing the various variables for the module grade.
+     * @throws InvalidGradeException grade inputted is nto a valid grade.
+     * @throws InvalidMcException mc inputted is nto a valid mc.
+     */
     public static String[] getGrade(String command) throws InvalidGradeException, InvalidMcException {
         String name = command.substring(command.indexOf("n/") + 2,
                 command.indexOf("m/")).trim();
@@ -73,7 +93,14 @@ public class AcademicCommandParser extends CommandParser {
         return new String[]{name, mc, grade};
     }
 
+    /**
+     * Extracts details of a contact from the storage file into a string array.
+     * @param importedStatement input string from the storage file.
+     * @return string array containing the various variables for the contact.
+     */
     public static String[] parseImportedPerson(String importedStatement) {
+        assert importedStatement.startsWith("[P]") : "Parsed statement should be a person";
+
         int positionOfFirstDivider = importedStatement.indexOf("|");
         int positionOfSecondDivider = importedStatement.indexOf("|",positionOfFirstDivider + 1);
         int positionOfThirdDivider = importedStatement.indexOf("|",positionOfSecondDivider + 1);
@@ -88,7 +115,14 @@ public class AcademicCommandParser extends CommandParser {
 
     }
 
+    /**
+     * Extracts details of a module grade from the storage file into a string array.
+     * @param importedStatement input string from the storage file.
+     * @return string array containing the various variables for the module grade.
+     */
     public static String[] parseImportedGrade(String importedStatement) {
+        assert importedStatement.startsWith("[G]") : "Parsed statement should be a grade";
+
         int positionOfFirstDivider = importedStatement.indexOf("|");
         int positionOfSecondDivider = importedStatement.indexOf("|",positionOfFirstDivider + 1);
         int positionOfThirdDivider = importedStatement.indexOf("|", positionOfSecondDivider + 1);

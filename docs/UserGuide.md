@@ -600,6 +600,7 @@ Expected output:
 
 **Warning:**
 * Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+Note that there this program doesn't cap how many MCs a module can have.
 * This application is not synced to a module database, so any valid input will be accepted as a module name.
 
 ### 3.7 Listing all grades: 
