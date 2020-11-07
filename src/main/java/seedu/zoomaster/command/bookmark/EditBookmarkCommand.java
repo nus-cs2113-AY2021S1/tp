@@ -23,7 +23,12 @@ public class EditBookmarkCommand extends Command {
     private String fieldToEdit;
     private String newValue;
 
-    //@@author fchensan
+    /**
+     * Constructs a new EditBookmarkCommand instance based on user input.
+     *
+     * @param command The command that the user input.
+     * @throws ZoomasterException if the user inputs with invalid format.
+     */
     public EditBookmarkCommand(String command) throws ZoomasterException {
         assert command.startsWith(EDIT_KW);
 
@@ -41,6 +46,14 @@ public class EditBookmarkCommand extends Command {
         newValue = matcher.group("newValue");
     }
 
+    /**
+     * Edit a bookmark's description or based on user input.
+     *
+     * @param bookmarks The list of bookmarks containing the bookmark to be editted.
+     * @param timetable The list of slots.
+     * @param ui The user interface.
+     * @throws ZoomasterException if there is an error in user input.
+     */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         Bookmark bookmark = null;

@@ -7,6 +7,9 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Day;
 
+/**
+ * Stores the user's settings as a series of SettingsVariable instances.
+ */
 public class UserSettings {
     public static final String MODE_MAINMENU = "mainmenu";
     public static final String MODE_TIMETABLE = "timetable";
@@ -25,11 +28,17 @@ public class UserSettings {
         new SettingsVariable<String>(AUTO_SAVE_FIELD, AUTO_SAVE_DESC, AUTO_SAVE_OPTIONS),
     };
 
-    //@@author fchensan
     public SettingsVariable[] getVariables() {
         return variables;
     }
 
+    /**
+     * Go through the SettingsVariable list and retrieve the one with the given field name.
+     *
+     * @param fieldName The field name of the SettingsVariable instance to be retrieved.
+     * @return A SettingsVariable instance from the list.
+     * @throws ZoomasterException if no SettingsVariable instance is found with the given field name.
+     */
     public SettingsVariable getSettingsVariable(String fieldName) throws ZoomasterException {
         for (SettingsVariable variable: variables) {
             if (variable.getFieldName().equals(fieldName)) {
