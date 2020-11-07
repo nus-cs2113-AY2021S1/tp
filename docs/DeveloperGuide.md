@@ -140,12 +140,24 @@ User just type number of dishes he wants to order and chooses dishes in the same
 The user enters the command: delete [number] to delete an order in the order list. The main will enable the deleteOrder () method. The Parser will make sense of the command and delete the corresponding order from the order list. 
 e.g. delete 1 means delete the first order in the order list.
 
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/delete.png)
+
+Figure . Sequence diagram for deleteOrder()
+
 #### Feature: find order
 The user enters the command: find [dish name] to find the order contains this dish in the order list. The main will enable the findDishinOrder() method. The Parser will make sense of the command and iterate the order list and dish list to print the order containing this dish. 
 e.g. find chicken rice means find all orders containing chicken rice in the order list.
 
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/find.png)
+
+Figure . Sequence diagram for findDishinOrder()
+
 #### Feature: list order
 The user enters the command: list to print all the orders in the order list . The main will enable the printOrder() method. The printOrder() method will iterate the whole order list and print all the orders
+
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/print.png)
+
+Figure . Sequence diagram for printOrder()
 
 #### Feature: change order (change dine in, take away or delivery)
 The user enters the command: change/number/type to change the order type of one order in the order list. The main will enable the changeOrder() method. The Parser will make sense of the command and change the corresponding order’s order type. 
