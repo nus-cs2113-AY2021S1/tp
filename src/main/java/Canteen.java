@@ -33,12 +33,13 @@ public class Canteen {
     public int getOpenTime(int dayOfWeek){
         return openTime.get(dayOfWeek-1);
     }
+
     /**
      * a method to get the close time of the canteen
      * @param dayOfWeek
      * @return int
      */
-    int getCloseTime(int dayOfWeek) {
+    public int getCloseTime(int dayOfWeek) {
         return closeTime.get(dayOfWeek-1);
     }
 
