@@ -664,6 +664,7 @@ Reflection for the quote ["No, I am your mummy" - by Darth Vader] has been delet
 ```
 
 ---
+<!-- @@author lunzard -->
 
 ### 4.3 Progress Tracker
 
@@ -678,7 +679,11 @@ Format: `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER`
 * Book number refers to the index of the book shown in the book list.
 * You must specify both book number and page number.
 
-Example of usage: `bookmark -b 3 /pg 109`
+Example of usage: `bookmark -b 1 /pg 109`
+
+Context:
+
+* The book *Harry Potter* is added to Quotesify and assigned with a BOOK_NUMBER of 1.
 
 Expected outcome:
 ```
@@ -696,12 +701,17 @@ Format: `list -bm`
 
 Example of usage: `list -bm`
 
+Context:
+
+* The bookmark of *Harry Potter* is assigned with a PAGE_NUMBER of 109.
+* The bookmark of *Fantastic Beasts* is assigned with a PAGE_NUMBER of 56.
+
 Expected outcome:
 ```
 ------------------------------------------------
-Here is the lsit of all bookmark(s) recorded:
-1. "hp" at page: 123
-2. "Harry Potter" at page: 56
+Here is the list of all bookmark(s) recorded:
+1. "Harry Potter" at page: 109
+2. "Fantastic Beasts" at page: 56
 ------------------------------------------------
 ```
 
@@ -712,12 +722,17 @@ Delete the bookmark that you have already added.
 Format: `delete -bm BOOKMARK_NUMBER`
 * You must specify the bookmark number.
 
-Example of usage: `delete -bm 1`
+Example of usage: `delete -bm 2`
+
+Context:
+
+* The bookmark of *Harry Potter* is assigned with a PAGE_NUMBER of 109 and a BOOKMARK_NUMBER of 1.
+* The bookmark of *Fantastic Beasts* is assigned with a PAGE_NUMBER of 56 and a BOOKMARK_NUMBER of 2.
 
 Expected outcome:
 ```
 ---------------------------------------------------
-The bookmark ["hp" at page: 123] has been removed!
+The bookmark ["Fantastic Beasts" at page: 56] has been removed!
 ---------------------------------------------------
 ```
 
@@ -730,7 +745,11 @@ Format: `bookmark -b BOOK_NUMBER /pg PAGE_NUMBER`
 * You must add the bookmark of the same book before so as to update it.
 * You must specify both book number and page number.
 
-Example of usage: `bookmark -b 3 /pg 185`
+Example of usage: `bookmark -b 1 /pg 185`
+
+Context:
+
+* The book *Harry Potter* is assigned with a BOOK_NUMBER of 1 and a PAGE_NUMBER of 109.
 
 Expected outcome:
 ```
@@ -806,6 +825,12 @@ Format: `done -t TASK_NUMBER`
 
 Example of usage: `done -t 1`
 
+Context:
+
+* You have added a task by typing `add -t return Harry Potter /by tmr 2pm` in the command line.
+* The task *[x] return Harry Potter (by: tmr 2pm)* appears as the first task in ToDoList 
+  when you type `list -t`.
+
 Expected outcome:
 ```
 --------------------------------------------------------------------------
@@ -819,6 +844,13 @@ Format: `delete -t TASK_NUMBER`
 * The task Number must be an integer and smaller than the total number of tasks you added.
 
 Example of usage: `delete -t 1`
+
+Context:
+
+* You have added a task by typing `add -t return Harry Potter /by tmr 2pm` in the command line.
+* The task is marked as done.
+* The task *[v] return Harry Potter (by: tmr 2pm)* appears as the first task in ToDoList 
+  when you type `list -t`.
 
 Expected outcome:
 ```
