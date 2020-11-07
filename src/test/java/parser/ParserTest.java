@@ -1,20 +1,7 @@
 package parser;
 
 import access.Access;
-import commands.AddCardCommand;
-import commands.AddChapterCommand;
-import commands.AddCommand;
-import commands.AddModuleCommand;
-import commands.EditCardCommand;
-import commands.EditChapterCommand;
-import commands.EditCommand;
-import commands.EditModuleCommand;
-import commands.ExitCommand;
-import commands.ListCardsCommand;
-import commands.ListChaptersCommand;
-import commands.ListCommand;
-import commands.ListModulesCommand;
-import commands.RescheduleCommand;
+import commands.*;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
@@ -80,6 +67,12 @@ public class  ParserTest {
         access.setIsModuleLevel();
         assertTrue(Parser.parse(RescheduleCommand.COMMAND_WORD + " 1 " + date, access)
                 instanceof RescheduleCommand);
+    }
+
+    @Test
+    public void parse_history() throws Exception {
+        Access access = new Access();
+        assertTrue(Parser.parse(HistoryCommand.COMMAND_WORD, access) instanceof HistoryCommand);
     }
 
     @Test
