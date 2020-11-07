@@ -39,7 +39,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `/addfav`, `/liststops`, `/help` and `/exit`. (Pull Request: [\#88](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/88),
     [\#148](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/148))
   * Developer Guide:
-    * Added implementation details of the `/addfav` and `/liststops` feature. (Pull Request: [\#113](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/113),
+    * Added implementation details of the `/addfav` and `/liststops` features. (Pull Request: [\#113](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/113),
     [\#203](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/203))
     
 * **Community**:
