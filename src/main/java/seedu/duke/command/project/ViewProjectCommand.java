@@ -1,5 +1,6 @@
 package seedu.duke.command.project;
 
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
@@ -20,11 +21,18 @@ public class ViewProjectCommand extends ProjectCommand {
 
         if (projectManager.size() == 0) {
             Ui.showError("No projects are created.");
+            ScrumLogger.LOGGER.warning("No project added to the project manager");
         } else {
             Project project = projectManager.getSelectedProject();
             assert project != null : "The project is null";
             Ui.showToUserLn(project.toString());
-
+            logExecution();
         }
     }
+
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Current working project details shown to user.");
+    }
+
 }

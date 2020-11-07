@@ -14,4 +14,7 @@ public abstract class MemberCommand extends Command {
         this.projectManager = projectManager;
     }
 
+    public abstract void execute();
+    public abstract void logExecution(String userMessage);
+
 }
