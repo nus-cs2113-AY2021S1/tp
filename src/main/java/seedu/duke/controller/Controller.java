@@ -81,7 +81,7 @@ public class Controller {
         try {
             stockPriceFetcher.fetchLatestPrice(symbol);
         } catch (DukeException e) {
-            ui.printWithDivider("Invalid stock!");
+            ui.printWithDivider("Error validating stock, might be an invalid stock!");
             return;
         }
         try {

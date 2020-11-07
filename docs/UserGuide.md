@@ -126,6 +126,7 @@ ____________________________________________________________
 ### Bookmark stocks to keep on watchlist: `mark /STOCK_TICKER`, `unmark /STOCK_TICKER`, `bookmarks`
 Allows you to bookmark stocks for easy access of stocks that you are actively watching
 * The `STOCK_TICKER` is the stock's short form
+* There is a limit of up to __5__ stocks that can be added to bookmarks. 
 
 #### Marking Stocks: 
 
