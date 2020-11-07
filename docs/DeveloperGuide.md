@@ -66,8 +66,8 @@ Before you start: Please ensure you have Java 11 installed in you computer.
 ## 3. Design
 
 ### 3.1 Architecture
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/arch.png)
-Feature 1. Architecture Diagram
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/arch%20dia.png)
+Figure 1. Architecture Diagram
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
 Main:  Our main class has one class called Main.java. It is responsible for,
 At app launch, the Main.java will initialize the UI to start waiting for the input from the users.
@@ -88,6 +88,8 @@ The CanteenHelper consists of six classes:
 * `Dish`
 
 #### 3.2.1 Main class
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
+Figure 2. Main Logic Diagram
 Main logic of the whole app.
 
 #### 3.2.2 UI class
@@ -120,10 +122,13 @@ Dishes that can be ordered by the user.
 ## 4. Implementation
 #### Feature: order
 The user types command “order” to make an order from a stall in a canteen. The order method will be activated and print open stalls through checkOpenCanteens method in Customer class in this manner:
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image1.png)
  
 User just type the corresponding index before the canteen to select canteen. Then the open stalls in this canteen will be printed through checkOpenStalls method in Customer class in this manner:
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image2.png)
  
 User just type the corresponding index before the stall to select stall. Then the available dishes and price in this stall will be printed through getDish() method in Stall class in this manner:
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image3.png)
  
 User just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. Finally, after choosing dine in, take away or delivery, an order object will be created and added into the order list.
 
