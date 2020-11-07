@@ -1,17 +1,19 @@
 package seedu.duke.command.help;
 
 import seedu.duke.command.Command;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 
-public class SprintHelpCommand extends Command {
+public class SprintHelpCommand extends HelpCommand {
     public SprintHelpCommand(Hashtable<String, String> parameters) {
         super(parameters, false);
     }
 
     @Override
     public void execute() {
+        logExecution();
         Ui.showToUserLn("1. Create sprint");
         Ui.showToUserLn("   Format: sprint /create -goal <goal_input> [optional tags]");
         Ui.showToUserLn("   Example 1: sprint /create Shopping Cart -start 20201010");
@@ -51,5 +53,10 @@ public class SprintHelpCommand extends Command {
         Ui.showToUserLn("   Example 1: sprint /deallocate -task 1 2 -user johntan mary jane");
         Ui.showToUserLn("   Example 2: sprint /deallocate -project 2 -task 1 -user mary");
         Ui.showToUserLn("   Example 3: sprint /deallocate -project 2 -sprint 3 -task 1 -user mary");
+    }
+
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Viewed sprint help.");
     }
 }

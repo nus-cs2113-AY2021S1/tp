@@ -352,13 +352,12 @@ Create a new sprint for the project.
 ##### Expected Outcome:
 ```
 [Project ID: 1]
-Project will start along with the newly created sprint
+First Sprint: Project will start along with the newly created sprint
 Project period: 2020-10-10 to 2020-11-08
-
 ============================ SPRINT =============================
 [ID: 1]
-[Goal: Shopping Cart ]
-[Period: 2020-10-10 - 2020-10-19] 
+[Goal: Shopping Cart]
+[Period: 2020-10-10 - 2020-10-19]
 [No allocated tasks]
 =================================================================
 ```
@@ -382,6 +381,7 @@ Display the information of the current or specified sprint.
     * If not specified: Ongoing Sprint.         
 ##### Example: `sprint /view`
 ##### Expected Outcome:
+Note: Expected outcome will be affected by the date of command execution (2020-10-15 in the example)  
 ```
 [Project ID: 1] 
 ========================= CURRENT SPRINT ========================
@@ -411,7 +411,8 @@ Edit the Sprint goal of the selected sprint.
     * Example: `sprint /edit -project 2 -sprint 3 -goal Add Documentation` - Edit the goal for the third sprint in Project 2.                                                               
     * If not specified: Ongoing Sprint.                                                                                                                                   
 ##### Example: `sprint /edit -goal Add Documentation`                                                                   
-##### Expected Outcome:                                                                                                               
+##### Expected Outcome:  
+Note: Expected outcome will be affected by the date of command execution (2020-10-15 in the example)                                                                                                            
 ```                                                                                                                                   
 [Project ID: 1]                                                                                                                                                                                                                                                                                                                                                                                                                       
 ============================ SPRINT =============================                                                                     
@@ -451,6 +452,7 @@ Add task(s) from the project backlog to the current sprint.
 
 ##### Example: `sprint /addtask 1 3 4`
 ##### Expected Outcome:
+Note: Expected outcome will be affected by the date of command execution (2020-10-15 in the example)  
 ```
 [Project ID: 1]
     DummyTask1 added to sprint 1.
@@ -485,6 +487,7 @@ Remove task(s) from the current sprint.
 
 ##### Example: `sprint /removetask 1 3 4`
 ##### Expected Outcome:
+Note: Expected outcome will be affected by the date of command execution (2020-10-15 in the example)  
 ```    
 [Project ID: 1]
     DummyTask1 removed from sprint 1.

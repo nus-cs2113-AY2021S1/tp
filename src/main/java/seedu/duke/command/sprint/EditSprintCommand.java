@@ -1,9 +1,11 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
+import java.util.Arrays;
 import java.util.Hashtable;
 
 public class EditSprintCommand extends SprintCommand {
@@ -33,8 +35,10 @@ public class EditSprintCommand extends SprintCommand {
             //Valid Command
             Ui.showToUser(this.projOwner.toIdString());
             editSprint();
+            logExecution();
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
         }
 
     }
@@ -50,8 +54,28 @@ public class EditSprintCommand extends SprintCommand {
      * Update goal of selected Sprint.
      */
     private void editSprint() {
+        printEditMessage();
         this.sprintOwner.setGoal(sprintGoal);
-        Ui.showToUserLn(this.projOwner.toIdString());
         Ui.showToUser(this.sprintOwner.toString());
+    }
+
+    /**
+     * Print message if provided goal is the same as current goal.
+     */
+    private void printEditMessage() {
+        if (this.sprintOwner.getGoal().equals(sprintGoal)) {
+            Ui.showToUserLn("Provided goal is the same as current goal.");
+        } else {
+            Ui.showToUserLn("Goal updated.");
+        }
+    }
+
+    /**
+     * Add entry to logger that execution is successful.
+     */
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info(String.format("Edited goal for Sprint %d - New Goal: %s",
+                this.sprintOwner.getId(), this.parameters.get("goal")));
     }
 }

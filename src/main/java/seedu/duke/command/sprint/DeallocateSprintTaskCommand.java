@@ -1,6 +1,7 @@
 package seedu.duke.command.sprint;
 
 import seedu.duke.exception.DukeException;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.member.Member;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
@@ -40,8 +41,10 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
             Ui.showToUser(this.projOwner.toIdString());
             Ui.showToUser(this.sprintOwner.toIdString());
             deallocateTask();
+            logExecution();
         } catch (DukeException e) {
             e.printExceptionMessage();
+            ScrumLogger.LOGGER.warning(e.getMessage());
         }
     }
 
@@ -89,5 +92,14 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
                 throw new DukeException("Not all Tasks are allocated to member: " + Arrays.toString(this.userIds));
             }
         }
+    }
+
+    /**
+     * Add entry to logger that execution is successful.
+     */
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info(String.format("Deallocate task from user - Users: %s | Tasks: %s",
+                Arrays.toString(this.userIds), Arrays.toString(this.taskIds.toArray())));
     }
 }

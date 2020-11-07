@@ -31,26 +31,30 @@ public class DateTimeParser {
 
     public static String catchDateFormat(String date) throws DukeException {
         try {
-            String monthInString = date.substring(4,6);
+            String monthInString = date.substring(4, 6);
             int month = Integer.parseInt(monthInString.trim());
             boolean isThirtyDays = (month == 4 || month == 6 || month == 9 || month == 11);
             boolean isFebruary = (month == 2);
             String dayInString = date.substring(6, 8);
             int day = Integer.parseInt(dayInString.trim());
-            if (isThirtyDays) {
-                if (day == 31) {
-                    throw new DukeException("There are no 31 days on the specified month.");
-                }
-            }
             if (isFebruary) {
-                String yearInString = date.substring(0,4);
+                String yearInString = date.substring(0, 4);
                 int year = Integer.parseInt(yearInString.trim());
                 boolean isLeapYear = checkLeapYear(year);
                 if (isLeapYear && (day > 29 && day < 32)) {
-                    throw new DukeException("There are only 29 days on the specified February.");
+                    throw new DukeException("There are only 29 days on the February in the specified year.");
                 }
                 if (!isLeapYear && (day > 28 && day < 32)) {
-                    throw new DukeException("There are only 28 days on the specified February.");
+                    throw new DukeException("There are only 28 days on the February in the specified year.");
+                }
+
+            } else if (isThirtyDays) {
+                if (day > 30) {
+                    throw new DukeException("There are only 30 days on the specified month.");
+                }
+            } else {
+                if (day > 31) {
+                    throw new DukeException("There are only 31 days on the specified month.");
                 }
             }
         } catch (Exception e) {
@@ -75,7 +79,7 @@ public class DateTimeParser {
         try {
             return LocalDate.parse(date, formatter);
         } catch (Exception e) {
-            throw new DukeException(e.getMessage());
+            throw new DukeException("Please indicate a valid date in this following format: YYYYMMDD.");
         }
     }
 

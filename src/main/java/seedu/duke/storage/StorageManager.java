@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import seedu.duke.model.project.ProjectManager;
@@ -45,15 +46,15 @@ public class StorageManager {
      *
      * @throws IOException Thrown when there is error opening the file or reading to the file.
      */
-    public void load() throws IOException {
+    public void load() throws IOException, JsonException {
         if (!Files.exists(filepath)) {
             return; //file does not exist, start from a new
         }
         String rawData = loadRawData();
-        JsonObject rawJson = Jsoner.deserialize(rawData, new JsonObject());
         try {
+            JsonObject rawJson = (JsonObject) Jsoner.deserialize(rawData);
             projectManager.fromJson(rawJson);
-        } catch (ClassCastException e) {
+        } catch (ClassCastException | NullPointerException | JsonException e) {
             projectManager.clearProjects();
             throw e;
         }

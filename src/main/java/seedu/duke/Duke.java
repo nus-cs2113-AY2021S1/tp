@@ -1,6 +1,8 @@
 package seedu.duke;
 
+import com.github.cliftonlabs.json_simple.JsonException;
 import seedu.duke.command.Command;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.parser.ParserManager;
 import seedu.duke.storage.StorageManager;
@@ -49,9 +51,15 @@ public class Duke {
         } catch (IOException e) {
             Ui.showError("Unable to load the data file properly, "
                     + "proceeding in empty state.");
-        } catch (ClassCastException e) {
+        } catch (ClassCastException | NullPointerException | JsonException e) {
             Ui.showError("Data file is corrupted, "
                     + "proceeding in empty state. Old data.json will be cleared when the next save happens.");
+        }
+        try {
+            ScrumLogger.setup();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Ui.showError("Unable to setup logger!");
         }
         Ui.showWelcomeScreen();
     }
@@ -62,6 +70,7 @@ public class Duke {
         } catch (IOException e) {
             Ui.showError("Unable to save data successfully, your data might be lost.");
         }
+        ScrumLogger.destroy();
     }
 
     /**

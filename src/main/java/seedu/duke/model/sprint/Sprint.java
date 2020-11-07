@@ -131,7 +131,16 @@ public class Sprint implements JsonableObject {
         sprintInString.append(String.format("[Goal: %s]%n", this.goal));
         sprintInString.append(String.format("[Period: %s - %s]%n", this.startDate, this.endDate));
         if (isCurrentSprint) {
-            sprintInString.append(String.format("[Remaining: %s days]%n", this.endDate.compareTo(LocalDate.now())));
+            switch (this.endDate.compareTo(LocalDate.now())) {
+            case 0:
+                sprintInString.append(String.format("[Remaining: Last day]%n"));
+                break;
+            case 1:
+                sprintInString.append(String.format("[Remaining: 1 day]%n"));
+                break;
+            default:
+                sprintInString.append(String.format("[Remaining: %s days]%n", this.endDate.compareTo(LocalDate.now())));
+            }
         }
         if (taskList.size() == 0) {
             sprintInString.append(String.format("[No allocated tasks]%n"));

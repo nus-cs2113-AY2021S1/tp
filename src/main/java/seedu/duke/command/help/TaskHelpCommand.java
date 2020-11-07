@@ -1,17 +1,19 @@
 package seedu.duke.command.help;
 
 import seedu.duke.command.Command;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 
-public class TaskHelpCommand extends Command {
+public class TaskHelpCommand extends HelpCommand {
     public TaskHelpCommand(Hashtable<String, String> parameters) {
         super(parameters, false);
     }
 
     @Override
     public void execute() {
+        logExecution();
         Ui.showToUserLn("1. Add tasks ");
         Ui.showToUserLn("   Format: task /add -title <title> -desc <description> -priority <category>");
         Ui.showToUserLn("   Example: task /add -title Add UI -desc add an interactive UI -priority HIGH");
@@ -30,4 +32,10 @@ public class TaskHelpCommand extends Command {
         Ui.showToUserLn("6. View tasks in descending priority");
         Ui.showToUserLn("   Format: task /priorityview");
     }
+
+    @Override
+    public void logExecution() {
+        ScrumLogger.LOGGER.info("Viewed task help.");
+    }
+
 }

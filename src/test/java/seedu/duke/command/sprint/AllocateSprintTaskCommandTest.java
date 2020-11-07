@@ -4,8 +4,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.model.member.Member;
-import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.project.Project;
+import seedu.duke.model.project.ProjectManager;
+import seedu.duke.model.sprint.Sprint;
+import seedu.duke.model.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.io.ByteArrayOutputStream;
@@ -16,8 +18,7 @@ import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-class AddSprintTaskCommandTest {
+public class AllocateSprintTaskCommandTest {
     private final PrintStream systemOut = System.out;
     private ByteArrayOutputStream testOut;
 
@@ -79,128 +80,151 @@ class AddSprintTaskCommandTest {
         }
     }
 
+    private void generateDummySprintTask(ProjectManager projectManager) {
+        for (Project project : projectManager.getProjectList().values()) {
+            for (Sprint sprint : project.getSprintList().getSprintList()) {
+                sprint.addSprintTask(1);
+                sprint.addSprintTask(2);
+                sprint.addSprintTask(3);
+                assert sprint.getAllSprintTaskIds().size() == 3 : "Dummy sprint tasks for "
+                        + sprint.getGoal() + " not added!";
+            }
+        }
+
+    }
+
     @Test
-    void addSprintTaskCommand_validCommand() {
+    void allocateSprintTaskCommand_validCommand() {
         ProjectManager projectManager = generateProject();
+        generateDummyMember(projectManager);
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("0", "1");
-        parameters.put("1", "2");
-        parameters.put("2", "3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        parameters.put("user", "project2member1 project2member2 project2member3");
+        parameters.put("task", "1 2 3");
+        AllocateSprintTaskCommand command = new AllocateSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
-                + "\tproject2task3 added to sprint 1." + System.lineSeparator()
-                + "\tproject2task2 added to sprint 1." + System.lineSeparator()
-                + "\tproject2task1 added to sprint 1." + System.lineSeparator();
+                + "[Sprint ID: 1]" + System.lineSeparator()
+                + "project2task1 is assigned to [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task2 is assigned to [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task3 is assigned to [project2member1, project2member2, project2member3]"
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(3,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
+        for (Member mem : projectManager.getProject(2).getMemberList().getAllMembers()) {
+            assertEquals(3, mem.getTaskList().size());
+        }
     }
 
     @Test
-    void addSprintTaskCommand_validCommand_withTaskTag() {
+    void allocateSprintTaskCommand_validCommand_specifySprint() {
         ProjectManager projectManager = generateProject();
+        generateDummyMember(projectManager);
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
+        parameters.put("user", "project2member1 project2member2 project2member3");
         parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
+        parameters.put("sprint", "3");
+        AllocateSprintTaskCommand command = new AllocateSprintTaskCommand(parameters, projectManager);
 
         command.execute();
 
         String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
-                + "\tproject2task1 added to sprint 1." + System.lineSeparator()
-                + "\tproject2task2 added to sprint 1." + System.lineSeparator()
-                + "\tproject2task3 added to sprint 1." + System.lineSeparator();
+                + "[Sprint ID: 3]" + System.lineSeparator()
+                + "project2task1 is assigned to [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task2 is assigned to [project2member1, project2member2, project2member3]"
+                + System.lineSeparator()
+                + "project2task3 is assigned to [project2member1, project2member2, project2member3]"
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(3,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
+        for (Member mem : projectManager.getProject(2).getMemberList().getAllMembers()) {
+            assertEquals(3, mem.getTaskList().size());
+        }
     }
 
     @Test
-    void addSprintTaskCommand_validCommand_duplicateTask() {
+    void allocateSprintTaskCommand_validCommand_specifyProject() {
         ProjectManager projectManager = generateProject();
+        generateDummyMember(projectManager);
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("0", "1");
-        parameters.put("1", "1");
-        parameters.put("2", "1");
-        parameters.put("3", "2");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
-
-        command.execute();
-
-        String expected = "[Project ID: " + projectManager.getSelectedProjectIndex() + "]" + System.lineSeparator()
-                + "\tproject2task2 added to sprint 1." + System.lineSeparator()
-                + "\tproject2task1 added to sprint 1." + System.lineSeparator()
-                + "\tproject2task1 is already added in sprint 1." + System.lineSeparator()
-                + "\tproject2task1 is already added in sprint 1." + System.lineSeparator();
-        assertEquals(expected, getOutput());
-        assertEquals(2,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
-    }
-
-    @Test
-    void addSprintTaskCommand_invalidCommand_nonExistentTask() {
-        ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
-        generateDummySprint(projectManager);
-
-        Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("0", "99");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
-
-        command.execute();
-
-        String expected = "Task not found in backlog: 99" + System.lineSeparator();
-        assertEquals(expected, getOutput());
-        assertEquals(0,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
-    }
-
-    @Test
-    void addSprintTaskCommand_invalidCommand_nonExistentProject() {
-        ProjectManager projectManager = generateProject();
-        generateDummyTask(projectManager);
-        generateDummySprint(projectManager);
-
-        Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("project", "99");
+        parameters.put("user", "project1member1 project1member2 project1member3");
         parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
-
+        parameters.put("sprint", "3");
+        parameters.put("project", "1");
+        AllocateSprintTaskCommand command = new AllocateSprintTaskCommand(parameters, projectManager);
         command.execute();
 
-        String expected = "Project not found: 99" + System.lineSeparator();
+        String expected = "[Project ID: 1]" + System.lineSeparator()
+                + "[Sprint ID: 3]" + System.lineSeparator()
+                + "project1task1 is assigned to [project1member1, project1member2, project1member3]"
+                + System.lineSeparator()
+                + "project1task2 is assigned to [project1member1, project1member2, project1member3]"
+                + System.lineSeparator()
+                + "project1task3 is assigned to [project1member1, project1member2, project1member3]"
+                + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(0,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
+        for (Member mem : projectManager.getProject(1).getMemberList().getAllMembers()) {
+            assertEquals(3, mem.getTaskList().size());
+        }
     }
 
     @Test
-    void addSprintTaskCommand_invalidCommand_nonExistentSprint() {
+    void allocateSprintTaskCommand_invalidCommand_nonExistentUser() {
         ProjectManager projectManager = generateProject();
+        generateDummyMember(projectManager);
         generateDummyTask(projectManager);
         generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
 
         Hashtable<String, String> parameters = new Hashtable<>();
-        parameters.put("sprint", "99");
+        parameters.put("user", "fakeuser1 fakeuser3");
         parameters.put("task", "1 2 3");
-        AddSprintTaskCommand command = new AddSprintTaskCommand(parameters, projectManager);
-
+        parameters.put("sprint", "3");
+        parameters.put("project", "1");
+        AllocateSprintTaskCommand command = new AllocateSprintTaskCommand(parameters, projectManager);
         command.execute();
 
-        String expected = "Sprint not found: 99" + System.lineSeparator();
+        String expected = "User not found: fakeuser1" + System.lineSeparator();
         assertEquals(expected, getOutput());
-        assertEquals(0,
-                projectManager.getProject(2).getSprintList().getSprint(1).getAllSprintTaskIds().size());
+        for (Task task : projectManager.getProject(1).getBacklog().getTaskList()) {
+            assertEquals(0, task.getMemberList().size());
+        }
+    }
+
+    @Test
+    void allocateSprintTaskCommand_invalidCommand_nonExistentTask() {
+        ProjectManager projectManager = generateProject();
+        generateDummyMember(projectManager);
+        generateDummyTask(projectManager);
+        generateDummySprint(projectManager);
+        generateDummySprintTask(projectManager);
+
+        Hashtable<String, String> parameters = new Hashtable<>();
+        parameters.put("user", "project1member1 project1member2");
+        parameters.put("task", "0");
+        parameters.put("sprint", "3");
+        parameters.put("project", "1");
+        AllocateSprintTaskCommand command = new AllocateSprintTaskCommand(parameters, projectManager);
+        command.execute();
+
+        String expected = "Task not found in backlog: 0" + System.lineSeparator();
+        assertEquals(expected, getOutput());
+        for (Task task : projectManager.getProject(1).getBacklog().getTaskList()) {
+            assertEquals(0, task.getMemberList().size());
+        }
     }
 }

@@ -1,4 +1,4 @@
-# Ho Ming Jun - Project Portfolio Page for SCRUMptious
+# Ho Ming Jun - Project Portfolio Page
 
 ## Overview
 My team of 4 software engineering students and I created a command line interface project managing 

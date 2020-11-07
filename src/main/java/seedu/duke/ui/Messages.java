@@ -18,8 +18,6 @@ public class Messages {
             + "                                    |_|\n";
     public static final String MESSAGE_WELCOME = "WELCOME TO SCRUMPTIOUS";
     public static final String MESSAGE_PROMPT_INPUT = "command> ";
-    public static final String MESSAGE_CREATE_SUB_SPRINT = "Newly created sprint will automatically start after "
-                                                   + "the previous sprint ends.";
     public static final String MESSAGE_INVALID_IDTYPE = "Task ID entered is not an integer!";
     public static final String MESSAGE_INVALID_DURATION = "Duration must be a multiple of sprint duration. "
            + "Duration must be longer than the project sprint";
