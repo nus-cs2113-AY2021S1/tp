@@ -10,6 +10,7 @@ import seedu.zoomaster.slot.Timetable;
 /**
  * Executes the change mode functionality of the program.
  */
+//@@author TYS0n1
 public class ChangeModeCommand extends Command {
     public static final String MODE_KW = "mode";
     public int setToMode;

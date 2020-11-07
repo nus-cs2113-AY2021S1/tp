@@ -74,8 +74,8 @@ then its various components.
 <a name="architecture"></a>
 ### Architecture
 
-The figure below shows a high-level design for the architecture of Zoomaster. 
-![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/archiveture2-01.png?raw=true)
+The figure below shows a high-level design for the architecture of Zoomaster. <br/></br>
+![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/archiveture2-01.png?raw=true) <br/></br>
 *<center/> Figure 1.1 Architecture diagram of Zoomaster </center> <br/></br>*
 
 Our Program can be split up into 8 components
@@ -93,7 +93,7 @@ These components interact with each other as shown in Figure 1.1 to execute the 
 <a name="initialization"></a>
 ### Initialization
 The diagram below shows a class-level diagram for Zoomaster. <br/></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/initial.png)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/initial.png) <br/></br>
 *<center/> Figure 1.2 Class diagram of Initialization </center> <br/></br>*
 
 **API**:`Zoomaster.java`
@@ -135,7 +135,7 @@ Its main roles are:
 <a name="parser"></a>
 ### Parser component
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram%20new.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/parser%20class%20diagram%20new.png?raw=true) <br/></br>
 *<center/> Figure 1.3 Class diagram of Parser </center> <br/></br>*
 
 
@@ -167,16 +167,16 @@ The diagrams are colour coded as such:
 * Blue -> Timetable Mode
 * Red -> Planner Mode
 
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode1.png)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode1.png) <br/></br>
 *<center/> Figure 1.4 Class diagram of Commands valid in all modes (Global) </center> <br/></br>*
 <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode2.png)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode2.png) <br/></br>
 *<center/> Figure 1.5 Class diagram of Commands valid in Bookmark Mode </center> <br/></br>*
 <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode3.png)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode3.png) <br/></br>
 *<center/> Figure 1.6 Class diagram of Commands valid in Timetable Mode</center> <br/></br>*
 <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode4.png)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode4.png) <br/></br>
 *<center/> Figure 1.7 Class diagram of Commands valid in Planner Mode</center> <br/></br>*
 <br></br>
 The Command component is responsible for carrying out the functions of Zoomaster.
@@ -253,6 +253,7 @@ Its main role is:
 This section explains the implementations of Zoomaster's features. It goes through the step-by-step process, 
 expected outcomes of each feature and the design considerations.
 
+<!-- @@author TYS0n1 -->
 <a name="mode"></a>
 ### Bookmark, Timetable and Planner modes feature (Tan Yu Shing)
 
@@ -262,8 +263,8 @@ To simplify input commands for users, all lists has the same keywords for adding
 Hence, by having separating both list into different modes allows both lists to access the same keywords without causing conflicts when parsing commands.
 
 In this section, I will refer to *input command* and *input parameter*. <br></br>
-*input command* refers to the string of characters the user has typed into the command line and entered into the program. Eg. "mode bookmark" is an *input command* <br></br>
-*input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
+* *input command* refers to the string of characters the user has typed into the command line and entered into the program. Eg. "mode bookmark" is an *input command* <br></br>
+* *input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
 Eg. "mode bookmark", "mode" is the identifier string of the command and "bookmark" is the *input parameter*.
 
 #### Implementation
@@ -288,7 +289,7 @@ Given below is a sequence diagram of how changing between modes occur.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command%20new.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20change%20mode%20command%20new.png?raw=true) <br/></br>
 *<center/> Figure 2.02 Activity diagram for ChangeModeCommand </center> <br/></br>*
 
 1. First, the program checks if the length of the input command is more than 5. Any input command of length less than 5 is
@@ -321,13 +322,13 @@ user the valid modes of Zoomaster.
 <a name="show-timetable"></a>
 ### Show timetable feature (Tan Yu Shing)
 Users can see the timetable they have created in the App using the **show** command. 
-The can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. 
+They can see complete timetable from monday to sunday, the timetable of a specified day of the week or the timetable today. 
 The commands for these are **show**, **show {DAY}** eg. **show mon**, **show tue** and **show today**. <br></br>
 
 In this section, I will refer to *input command* and *input parameter*. <br></br>
-*input command* refers to the string of characters the user has typed into the command line and entered into the program. 
+* *input command* refers to the string of characters the user has typed into the command line and entered into the program. 
 Eg. "show today" is an *input command* <br></br>
-*input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
+* *input parameter* refers to the string of characters the proceeds after the identifier string of the *input command*. 
 Eg. "show sun", "show" is the identifier string of the command and "sun" is the *input parameter*.
 
 #### Implementation
@@ -341,19 +342,19 @@ Additionally, it implements the following operations:
 * getHighlighBoxUpperMessage() - Returns a **String** containing a indicator with a message "lesson now".
 * getHighlighBoxLowerMessage() - Returns a **String** containing a indicator.
 
-Given below is a sequence diagram of how printing the timetable occurs.
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%201.png?raw=true)
+Given below is a sequence diagram of how printing the timetable occurs. <br/></br>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%201.png?raw=true) <br/></br>
 *<center/>Figure 2.03 sequence diagram for ShowTimetableCommand</center> <br/></br>*
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%202.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%202.png?raw=true) <br/></br>
 *<center/>Figure 2.04 sequence diagram for "Initialize ShowTimetableCommand" Block</center> <br/></br>*
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%203.png?raw=true)
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%203.png?raw=true) <br/></br>
 *<center/>Figure 2.05 sequence diagram for "Execute ShowTimetableCommand" Block</center> <br/></br>*
 
 1. When Zoomaster gets a command from the user to show the timetable, a new ShowTimetableCommand object is created.
 
-2. The ShowTimetableCommand passes the command through getModeFromCommand() function to decode the mode the user wishes to view the timetable in.
+2. The ShowTimetableCommand decodes the input command to retrieve the way the user wishes to view the timetable in.
 
 3. If an invalid input day is entered by the user, the input day will be set as **null**.
 
@@ -361,8 +362,8 @@ Given below is a sequence diagram of how printing the timetable occurs.
 
 5. If the input day is **null**, no timetable will be printed out. Instead, the program checks for does checks for Show Lesson Bookmarks feature.
 
-The following activity diagram summarizes what happens when a user executes a new command:
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20show%20timetable%20command.png?raw=true)
+The following activity diagram summarizes what happens when a user executes a new command: <br/></br>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/activity%20diagram%20show%20timetable%20command.png?raw=true) <br/></br>
 *<center/>Figure 2.06 Activity diagram for ShowTimetableCommand</center> <br/></br>*
 
 1. First, the program checks if the input command is just "show". This corresponds to the user requesting the full timetable.
@@ -401,6 +402,8 @@ If so, it sets **day** variable as that of input parameter and moves on to the E
     * Cons: Less user-friendly. Users have to type an additional phrase to show their timetable. Experienced users
     whom can memorise the command would not encounter the error message of Alternative 1, thus would find typing the
     additional keyword troublesome.
+
+<!-- @@author -->
 
 <a name="add-module-slot"></a>
 ### Add Module and Slot feature (Xing Rong)
@@ -558,7 +561,8 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 |v2.0|advanced user|be able to launch multiple links at the same time if the links are grouped together|save time by not doing multiple launching commands|
 |v2.0|advanced user|edit my bookmarks and timetable lists according to changes in my module and timetable|quickly make changes to my lessons|
 |v2.0|busy user|have an indicator telling me the current time|easily check on the time in a hurry|
-|v2.0|fast typer|to be able to type a one-shot-command when entering the details of the lessons in my timetable|add the lesson details faster|
+|v2.0|fast typer|be able to type a one-shot-command when entering the details of the lessons in my timetable|add the lesson details faster|
+|v2.0|busy NUS student|be able quickly launch my next Zoom lesson|avoid being late for my lessons|
 
 <a name="appendix-c"></a>
 ## **Appendix C: Non-Functional Requirements**
@@ -590,6 +594,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 <a name="appendix-e"></a>
 ## **Appendix E: Instructions for manual testing**
 
+**Basics**
 1. Initial launch
     1. Download the jar file and copy into an empty folder.
     2. Open the command prompt and change directory to the location of the jar file.
@@ -617,3 +622,39 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     and `add CS2113T`. There should be a message that the module "CS2113T" already exists. 
     7. You can also edit the data in the text files in JSON format and test the loading of data into the Zoomaster by 
     launching the application. You can refer to the class diagrams above for the associations between the classes.
+
+**Advanced**
+1. Testing global commands (`mode`, `help`, `clear`, `exit`)
+    1. Test `mode` command. Enter `mode bookmark` to enter bookmark mode, you should see the message "Changing to bookmark mode". <br></br>
+    Enter `mode timetable` to enter bookmark mode, you should see the message "Changing to timetable mode". <br></br>
+    Enter `mode planner` to enter bookmark mode, you should see the message "Changing to planner mode". <br></br>
+    2. Test `help` command. In bookmark mode, enter `help`, you should see message "Available inputs in Bookmark mode are" and the list available commands. <br></br>
+    Then, enter `help add`, you should see message "Adds a bookmark to the bookmark list URL must start with www or https:// or http:// Format: add {description} {URL}".
+    3. Test `clear`. Enter `clear`, you should see your screen is cleared.
+    4. Test `exit`. Enter `Exit`, you should see message "Bye. Hope to see you again soon!" and the program is terminated.
+2. Testing bookmark commands (`add`, `show`, `delete`, `find`, `launch`)
+    1. Test `add`. Enter `add google www.google.com`, you should see message "Added bookmark: [google] www.google.com".
+    2. Test `show`. Enter `show`, if you did not add any other bookmark except that of step 1, you should see message
+    "Here are the bookmarks in your list: 1.[google] www.google.com".
+    3. Test `find`. Enter `find google`, you should see message "Here are your matching bookmarks 1.[google] www.google.com". 
+    4. Test `delete`. Enter `delete 1`, you should see message "I've deleted this bookmark!: [google] www.google.com".
+    5. Test `launch`. Re-add bookmark from step 1 and enter `launch 1`, you should see www.google.com launched in your browser.
+3. Testing timetable commands (`add`, `show`, `edit`, `delete`, `launch`)
+    1. Test `add`. Enter `add cs2113t lecture fri 16:00 18:00 www.github.com`, you should see message 
+    "CS2113T added lecture slot added bookmark added to CS2113T lecture".
+    2. Test `show`. Enter `show`, if you did not add any other slot except that of step 1, you should see a lesson slot
+    from 16:00 to 18:00 on fridays with description "lecture CS2113T". Enter `show fri`, and you should see the same lesson slot.
+    Enter `show today`, if your system date is friday, you should.see the lesson slot. Else you should see message "No lesson" and
+    the current time indicator.
+    3. Test `edit`. Enter `edit module fri 2 cs2113`, you should see message "Slot moved to CS2113". Enter `edit title fri 2 tutorial`,
+    you should see message "Slot title changed to tutorial". Enter `edit time fri 2 thu 17:00 18:00`, you should see message "Slot time changed to thu 17:00 18:00".
+    4. Test `delete`. Enter `delete cs2113 1`, you should see message "deleted 17:00-18:00 tutorial from cs2113".
+    5. Test `launch`. Re-add slot from step 1 and enter `launch cs2113t 1`, you should see www.github.com launched in your browser.
+4. Testing planner commands ()
+    <jusuf please add the test procedures for planner mode, you can copy what i have writen in step bookmark and timetable just specified for planner mode>
+5. Testing `launch now`
+    1. First, get your current system time. You can view this via your clock app on your device.
+    2. Secondly, in timetable mode, use the `add` command to create a new slot with period overlapping with your current system time.
+    3. Thirdly, use `add` command to add a bookmark(Eg. www.google.com) to the slot you created in step 2. 
+    4. Lastly, enter `launch now`, you should see the bookmark you entered launched in your browser.
+    
