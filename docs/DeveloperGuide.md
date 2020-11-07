@@ -300,7 +300,7 @@ The rationale for overloading such methods are given below:<br>
 
 Timetable handles adding, deleting and getting all instances of stored events in a given time period. All scheduling, retrieving and processing of events are done here
 
-The timetable component stores an array of events. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
+The timetable component stores an array of all events and 5 different arrays of recurring events split by frequency of re-occurrence. On launch, an empty timetable will be created. All stored events will be loaded via the StorageManger. 
 
  <p align="center">
    <img alt="TimetableClassDiagram" src="diagrams/out/TimetableClass.png" />
@@ -316,14 +316,34 @@ The timetable component stores an array of events. On launch, an empty timetable
  1. getMonthTimetable(): Wrapper around getTimetable for a specific month.
  1. getYearTimetable(): Wrapper around getMonthTimetable for a specific year.
  1. getClashingEvents(): Checks the input event to all other events in the timetable to check if the timing clashes. Uses getTimetable on that date of the input event.
-
+ 
+ An event holds information about all information about start date time, end date time, name, reminders set and how often to re-occur.
+ 
+ On re-occurrence, a new event will be instantiated for display on the timetable.
+ 
+  <p align="center">
+    <img alt="EventClassDiagram" src="diagrams/out/EventClass.png" />
+    <br><em>Figure 13</em>
+  </p>
+  
+  Event Class Key Methods Provided:
+  1. getReminderDates(): Get an ArrayList of all reminders that this Event will generate.
+  1. occursDuringEvent(): Returns true if another event is occurring during this event's time duration.
+  1. equals(): Checks if the title of another event is the same and has a clashing time period. If both conditions are satisfied, return true.
+  
+  RecurringEvent Class Key Methods Provided:
+  1. timeStep(): Returns a LocalDateTime with one time step depending on what the event is.
+  1. toReoccur(): Checks if this event is to reoccur on this date.
+  1. getRecurrences(): Get an ArrayList of Events of all instances this event will reoccur during the specified time period.
+  1. checkAfterEndRecurrences(): Checks if this Event should still reoccur as of this date.
+  
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
 Figure 13 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
 
 <p align="center">
    <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
-   <br><em>Figure 13</em>
+   <br><em>Figure 14</em>
 </p>
  
 💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
@@ -336,14 +356,14 @@ The StorageManager saves and loads data to text files. On launch, the storage ma
 
 <p align="center">
    <img alt="StorageManagerClassDiagram" src="diagrams/out/StorageManager.png"/>
-   <br><em>Figure 14</em>
+   <br><em>Figure 15</em>
 </p>
 
 While loading information is passed to the parser manager to prepare the information to be added. Following that, the respective Add Command will be called to add the event/note to the program Below is the sequence for loading the notes and events when the program first starts up. 
 
 <p align="center">
    <img alt="StorageManagerObjectDiagram" src="diagrams/out/StorageManagerObject.png"/>
-   <br><em>Figure 15</em>
+   <br><em>Figure 16</em>
 </p>
 
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
@@ -352,14 +372,14 @@ The InterfaceManger receives the input from the user which is then processed by 
 
 <p align="center">
    <img alt="InterfaceManager" src="diagrams/out/InterfaceManagerClass.png"/>
-   <br><em>Figure 16</em>
+   <br><em>Figure 17</em>
 </p>
 
 The Formatter class handles the formatting of the Note(s), Event(s) and message(s) into a String which is then passed to InterfaceManager to be printed out through NotUS. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 17</em>
+   <br><em>Figure 18</em>
 </p>
 
 There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.

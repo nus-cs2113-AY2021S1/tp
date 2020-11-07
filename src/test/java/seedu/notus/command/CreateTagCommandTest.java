@@ -3,8 +3,11 @@ package seedu.notus.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.tag.TagManager;
 import seedu.notus.data.tag.Tag;
+import seedu.notus.data.timetable.Timetable;
+import seedu.notus.storage.StorageManager;
 
 import java.util.ArrayList;
 
@@ -23,6 +26,9 @@ class CreateTagCommandTest {
 
     private ArrayList<Tag> tags;
     private TagManager tagManager;
+    private Notebook notebook = new Notebook();
+    private Timetable timetable = new Timetable();
+
 
     @BeforeEach
     void setUp() {
@@ -100,7 +106,8 @@ class CreateTagCommandTest {
 
     private String getCommandExecutionString(TagManager tagManager, ArrayList<Tag> tags) {
         CreateTagCommand createTagCommand = new CreateTagCommand(tags);
-        createTagCommand.setData(null, null, tagManager, null);
+        StorageManager storageManager = new StorageManager(timetable, null, notebook, tagManager);
+        createTagCommand.setData(notebook, timetable, tagManager, storageManager);
         return createTagCommand.execute();
     }
 }

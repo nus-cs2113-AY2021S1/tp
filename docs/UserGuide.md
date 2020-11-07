@@ -486,7 +486,7 @@ Expected output:
    <img alt="editEvent" src="screenshots/editEvent.png"/>
 </p>
 
-### <a id="list-e"><ins>3.18 Event Manager:</ins> `list-e`</a>
+### <a id="list-e"><ins>3.18 List Events:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/timing Year] [/timing Year-Month]`
