@@ -32,10 +32,10 @@ public class Parser {
         case List.COMMAND_WORD:
             matcher = List.COMMAND_PATTERN.matcher(commandArgs);
             if (matcher.find()) {
-                return new List(" -d".equals(matcher.group("dateFlag")),
-                        " -p".equals(matcher.group("priorityFlag")),
-                        " -w".equals(matcher.group("displayByWeek")),
-                        " -m".equals(matcher.group("displayByMonth")),
+                return new List("-d".equals(matcher.group("dateFlag")),
+                        "-p".equals(matcher.group("priorityFlag")),
+                        "-w".equals(matcher.group("displayByWeek")),
+                        "-m".equals(matcher.group("displayByMonth")),
                         matcher.group("date"));
             } else {
                 throw new InvalidCommandException();
