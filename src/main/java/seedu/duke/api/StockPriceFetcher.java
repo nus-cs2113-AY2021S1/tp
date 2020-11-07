@@ -47,7 +47,7 @@ public class StockPriceFetcher {
         } catch (AlphaVantageException e) {
             logger.setLevel(Level.WARNING);
             logger.log(Level.INFO, "failed to fetch price from API");
-            throw new PaperTradeException("API limit has reached. Take a chill pill and test again a moment later :)");
+            throw new PaperTradeException("API limit reached. Take a chill pill and try again a minute later :)");
         }
     }
 
