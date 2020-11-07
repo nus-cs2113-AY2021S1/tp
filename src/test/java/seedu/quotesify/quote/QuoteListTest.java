@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import seedu.quotesify.author.Author;
 import seedu.quotesify.exception.QuotesifyException;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 public class QuoteListTest {
     private static final String movieQuote = "I am your father!";
@@ -44,15 +46,6 @@ public class QuoteListTest {
     public void addReflection_addSuccess() throws QuotesifyException {
         quoteList.addReflection(reflection, quoteIndex);
         assertEquals(reflection, quoteList.getQuote(quoteIndex).getReflection());
-    }
-
-    @Ignore
-    public void addReflection_quoteContainsReflection_throwsQuotesifyException()  throws QuotesifyException {
-        quoteList.addReflection(reflection, quoteIndex);
-
-        Throwable exception = assertThrows(QuotesifyException.class, () ->
-                quoteList.addReflection(reflection, quoteIndex));
-        assertEquals(QuoteList.ERROR_REFLECTION_EXIST, exception.getMessage());
     }
 
     @Test
@@ -118,28 +111,4 @@ public class QuoteListTest {
         String param = "1. " + quote.toString();
         assertEquals(param, quoteList.toString());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

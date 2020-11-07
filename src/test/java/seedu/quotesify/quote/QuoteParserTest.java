@@ -222,7 +222,7 @@ public class QuoteParserTest {
 
 
     @Test
-    public void getReflectionToAdd_parseSuccess() throws QuotesifyException{
+    public void getReflectionToAdd_parseSuccess() throws QuotesifyException {
         String reflection = "Baby Yoda is cute!";
         String param = "1 /reflect Baby Yoda is cute!";
 
