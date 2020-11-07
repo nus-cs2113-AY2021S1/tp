@@ -169,6 +169,11 @@ public class Ui {
         System.out.println(eventUpdated);
     }
 
+    /**
+     * Printing reminder.
+     * @param eventsWithTime events that have time.
+     * @param eventsWithoutTime events without time.
+     */
     public void printReminder(ArrayList<Event> eventsWithTime, ArrayList<Event> eventsWithoutTime) {
         if (eventsWithoutTime.size() == 0 && eventsWithTime.size() == 0) {
             System.out.println("You have no events today!");
@@ -177,6 +182,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Printing events according to events that have time and without time.
+     * @param eventsWithTime events that have time.
+     * @param eventsWithoutTime events without time.
+     */
     private void printReminderEvents(ArrayList<Event> eventsWithTime, ArrayList<Event> eventsWithoutTime) {
         System.out.println("You have the following events today: ");
         if (eventsWithTime.size() > 0) {
