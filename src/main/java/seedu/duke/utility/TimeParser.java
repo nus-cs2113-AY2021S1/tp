@@ -25,10 +25,12 @@ public class TimeParser {
             //set bounds for hours and minutes.  NOTE: 24 hours as the maximum limit sounds reasonable
             if (hours > 24 || hours < 0) {
                 Ui.printInvalidTimeInput();
+                return -1;
             }
             int minutes = Integer.parseInt(splitMinutes[0].strip());
             if (minutes > 59 || minutes < 0) {
                 Ui.printInvalidTimeInput();
+                return -1;
             }
             return hours * 60 + minutes;
         } catch (ArrayIndexOutOfBoundsException e) {
