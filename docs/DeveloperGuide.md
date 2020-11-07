@@ -212,6 +212,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 |Implementation|Easy to implement as `Fav` object can be extracted directly through index in `FavList` |Harder to implement as description will have to be compared with all the descriptions of `Fav` objects in `FavList`|
 |Bugs|There will be no conflict in which command is meant to be executed as all commands have a unique index|As different commands in the list can have the same description conflict over which command to execute can arise|
 |User experience|Command to execute will be shorter|Command to execute will be longer|
+
 The first approach of choosing the command to execute in `FavList` by index was implemented.<br><br>
 Implementation of the first approach is easier as the required `Fav` object can be directly extracted through the index in the static arraylist in `FavList`.<br>
 However implementation of the second approach is more difficult as the description of all the `Fav` objects in the `FavList` will have to be scanned through and compared with the required description. This may adversely affect processing time as well.<br>
