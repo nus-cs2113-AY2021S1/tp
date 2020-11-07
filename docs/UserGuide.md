@@ -347,7 +347,7 @@ This brings you into calendar printing mode.
 
 {{box op="start" cssClass="boxed noteBox"}}
 > **Note!**
-
+>
 > * Events without date or time are not printed in the calendar
 >
 > * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode
