@@ -24,7 +24,7 @@
 *   **New Feature:** Added the ability to save and load user data automatically.
     *   What it does: Helps the user to automatically save their profile details into the file `user.txt`, and load these data automatically when the application is launched.
     *   Justification: This will allow the application to greet the user so they can feel welcomed.
-    *   Highlights: During the loading of user profile data, the profile data would be validated to ensure it is not corrupted (i.e. invalid name or gender), and it not loaded if it is corrupted. In addition, the failure to load the profile data does not prevent existing watchlist and bookmark data from being loaded.
+    *   Highlights: During the loading of user data, the data would be validated to ensure it is not corrupted (i.e. invalid name or gender), and it not loaded if it is corrupted. In addition, the failure to load the user data does not prevent existing watchlist and bookmark data from being loaded.
 
 *   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ongdezhi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=OngDeZhi&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 

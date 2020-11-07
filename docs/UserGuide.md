@@ -673,7 +673,7 @@ Sayonara <NAME>!
 User, workspace(s), watchlist(s), and bookmark(s) data will be **saved automatically** when they are created or modified, and they will also be **loaded automatically** when **AniChan** is launched. 
 
 In the folder where **AniChan** is launched, there will be a `data` folder which would contain these data:
-*   User profile details will be stored in `data/user.txt`.
+*   User data will be stored in `data/user.txt`.
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`. For example, if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
