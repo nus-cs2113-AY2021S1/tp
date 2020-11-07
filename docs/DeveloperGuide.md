@@ -213,58 +213,60 @@ borrowed books tracking, and module-related functions. This increase users' effi
 
 ## Implementation
 
+<!-- @@author Cao-Zeyu -->
 ##### List tasks
 The list tasks feature allows the user to list all the tasks tracked.
 This feature is facilitated by `ListCommand`. 
-- Step 1 The user inputs the command `list tasks`. (Assuming the task list is not empty)
-- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
-- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks`, and returns a `ListCommand` for the whole task list.
-- Step 4 The command is executed and the complete list of all the tracked tasks is displayed.
+1. The user inputs the command `list tasks`. (Assuming the task list is not empty)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks`, and returns a `ListCommand` for the whole task list.
+1. The command is executed and the complete list of all the tracked tasks is displayed.
 
 ##### List tasks with priority
 The list tasks with priority feature allows the user to list tasks of a certain priority.
 This feature is facilitated by `Parser` and `ListCommand`.
-- Step 1 The user inputs the command `list tasks p/3`. (Assuming the tasks of CS2113 is not empty)
-- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
-- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `p/`, and returns a `ListCommand` for the task list of priority level 3.
-- Step 4 The command is executed and the list of tasks with level 3 priority is displayed.
+1. The user inputs the command `list tasks p/3`. (Assuming the tasks of CS2113 is not empty)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `p/`, and returns a `ListCommand` for the task list of priority level 3.
+1. The command is executed and the list of tasks with level 3 priority is displayed.
 
 ##### List tasks with category
 The list tasks with category feature allows the user to list tasks of a certain category.
 This feature is facilitated by `Parser` and `ListCommand`.
-- Step 1 The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 is not empty)
-- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
-- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `c/`, and returns a `ListCommand` for the task list under CS2113 category.
-- Step 4 The command is executed and the list of tasks categoried by CS2113 is displayed.
+1. The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 is not empty)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `c/`, and returns a `ListCommand` for the task list under CS2113 category.
+1. The command is executed and the list of tasks categoried by CS2113 is displayed.
 
 ##### Add links
 The add links feature allows the user to add and save zoom meeting links of modules.
 This feature is faclitated by `Parser`, `AddCommand` and `Storage`.
-- Step 1 The user inputs `add links m/CS2113 t/lecture u/https://nus.sg.zoom.us/cs2113/lecture`.
-- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `AddCommand`.
-- Step 3 The method `createAddCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, and returns a `AddCommand`.
-- Step 4 The command is excuted and the links is added into the link list with module name and online class type.
-- Step 5 `Storage` saves the added link by writing it into the `links.txt` file.
+1. The user inputs `add links m/CS2113 t/lecture u/https://nus.sg.zoom.us/cs2113/lecture`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `AddCommand`.
+1. The method `createAddCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, and returns a `AddCommand`.
+1. The command is excuted and the links is added into the link list with module name and online class type.
+1. `Storage` saves the added link by writing it into the `links.txt` file.
 
 ##### List links
 The list link feature allows the user to list all the zoom meeting links.
 This feature is facilitated by `Parser` and `AddCommand`.
-- Step 1 The user inputs `list links`. (Assuming the link list is not empty).
-- Step 2 The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
-- Step 3 The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `links`, and returns a `ListCommand` for the link list.
-- Step 4 The command is excuted and the complete list of links is displayed.
+1. The user inputs `list links`. (Assuming the link list is not empty).
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `links`, and returns a `ListCommand` for the link list.
+1. The command is excuted and the complete list of links is displayed.
 
+<!-- @@author iamchenjiajun -->
 ##### Calendar command
 The calendar command allows users to print out a calendar view of their tasks within the next `X` days, where `X` is a parameter passed by the user.
 
-- `CalendarCommand` obtains a list of tasks from `TaskList` by using its `getTaskList` method, which returns an `ArrayList` of `Task` objects.
-- The list of tasks is converted into a `Stream`.
-- The `Task` objects without dates are filtered out.
-- The `Task` objects outside the range of the current date and `X` days of the current date are filtered out.
-- The `ArrayList` is sorted by task dates, which uses a `Comparator` defined in the parameters.
-- The `Stream` is collected back into an `ArrayList`, which has sorted dates of tasks within the next `X` days.
-- The `ArrayList` of `Task` objects are passed to the `Ui.dukePrintCalendar` method, which prints the tasks as a calendar.
-- The `dukePrintCalendar` method groups tasks by date and a new heading is printed for each day. This is done by comparing each `Task` in the loop with the
+1. `CalendarCommand` obtains a list of tasks from `TaskList` by using its `getTaskList` method, which returns an `ArrayList` of `Task` objects.
+1. The list of tasks is converted into a `Stream`.
+1. The `Task` objects without dates are filtered out.
+1. The `Task` objects outside the range of the current date and `X` days of the current date are filtered out.
+1. The `ArrayList` is sorted by task dates, which uses a `Comparator` defined in the parameters.
+1. The `Stream` is collected back into an `ArrayList`, which has sorted dates of tasks within the next `X` days.
+1. The `ArrayList` of `Task` objects are passed to the `Ui.dukePrintCalendar` method, which prints the tasks as a calendar.
+1. The `dukePrintCalendar` method groups tasks by date and a new heading is printed for each day. This is done by comparing each `Task` in the loop with the
 previous task to check if they have the same date, and to print a new heading if not.
 
 The filtering of the tasks by date is done using this code, which is called on a `Stream` object.
@@ -275,7 +277,7 @@ The filtering of the tasks by date is done using this code, which is called on a
 
 The sorting of tasks by date is done using this code, which is also called on a `Stream` object.
 ```
-.sorted(Comparator.comparing(Task::getDate))
+    .sorted(Comparator.comparing(Task::getDate))
 ```
 This sorts the stream using a `Comparator` which is defined inline. The `Comparator` makes use of the `Task.getDate()` method to do the comparisons.
 This is done instead of defining a new `Comparator` class as `toCompare` is already implemented in the `LocaDate` API, and doing this simplifies the code.
