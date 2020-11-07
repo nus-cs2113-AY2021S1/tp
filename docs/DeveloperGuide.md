@@ -143,6 +143,13 @@ the command `filter -continue by\start limit\10 -cs -cg.`
 ![UML Filter word sequence diagram](graphics/diagrams/Sequence_FilterWords.png)
 
 <p align = "center"><i><b>Figure 5: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
+
+In **Figure 5** above, the flow of the program is as follow:
+1. After getting the `filter words` command, the `CommandExecutor` calls `executeFilterCommand` in `FilterExecutor` class.
+1. In the method `executeFilterCommand`, the method `getTypeOfFilter` of `FilterType` class is called to get the filter mode, which is `START`.
+1. Then, `FilterCommandSlicer`'s methods `isNewFilter`, `getWordPrintLimitFromFilterCommand`, `getTargetedStringTags` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
+1. The method `filterByStartString` in `WordsFilter` class in called to execute the main filter process.
+1. Filter list is printed by `printFilterList` method in `FilterList` class. The filter mode ends here.
    
 ## Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
