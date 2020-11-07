@@ -28,6 +28,7 @@ public class Messages {
 
     public static final String MESSAGE_TASK_LIST = "Here are the task(s) in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the book(s) in your list:\n";
+
     public static final String MESSAGE_LINK_LIST = "Here are the links in your list:\n";
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the task(s) of this priority in your list:\n";
     public static final String MESSAGE_LIST_WITH_CATEGORY = "Here are the task(s) of this category in your list:\n";
@@ -41,6 +42,7 @@ public class Messages {
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "~Info~ There are no tasks of this category in your "
             + "list. ";
     public static final String MESSAGE_EMPTY_LINK_LIST = "~Info~ There are no links in your list. "
+
             + "Your link list is empty.";
     public static final String MESSAGE_EMPTY_MODULE_LIST = "~Info~ There are no modules in your list. "
             + "Your module list is empty.";

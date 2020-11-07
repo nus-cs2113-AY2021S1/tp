@@ -68,7 +68,9 @@ List of `<optional arguments>`:
 
 🚩: Optional arguments can be typed in **any** order.
 
+
 🚩: Duplicate entry of tasks are **allowed**. 
+
 
 Example of usage: 
 
@@ -106,7 +108,9 @@ List of `<compulsory arguments>`:
 
 🚩: Optional and compulsory arguments can be typed in **any** order.
 
+
 🚩: Duplicate entry of recurring tasks are **allowed**. 
+
 
 Example of usage:
 
@@ -189,7 +193,9 @@ List of `<compulsory arguments>`:
 
 🚩: URL has to begin with either **http:// or https://**. 
 
+
 🚩: All characters in `<module code>` must be in **caps**. 
+
 
 Example of usage:
 
