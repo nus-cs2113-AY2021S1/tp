@@ -627,7 +627,7 @@ Setting of income goal for respective months.
 
 >syntax
 
-    income *amount* for *month in int form*
+    income {int amount} for {month in int form}
     
  
 >Example:
@@ -641,7 +641,7 @@ Setting of expense goal for respective months.
 
 >syntax
 
-    expense *amount* for *month in int form*
+    expense {int amount} for {month in int form}
    
 >Example
 
@@ -654,7 +654,7 @@ Display income and expense goal for the individual month.
 
 >syntax
 
-    display income/expense for *month in int form*
+    display income/expense for {month in int form}
    
 >Example
 
@@ -669,7 +669,7 @@ The system will auto prompt the user whether they want to exit DisplayGoal and r
 
 >syntax 
 
-    enter *y* to exit
+    enter {y} to exit
 
 >Example
 
@@ -683,7 +683,7 @@ Edit income and expense goal for the individual month.
 
 >syntax
 
-    edit income/expense *amount* for *month in int form*
+    edit income/expense {int amount} for {month in int form}
  
 >Example
     
@@ -703,7 +703,12 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 >Example 
 
     exit
-    
+
+## Integrate Goal Tracker with Recurring Tracker [Coming in v3.0]
+In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
+tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
+the goal tracker progress to better aid the user in managing their finances.
+ 
 # Save Manager
 This utility feature helps to save multiple program states and load them at will.
 

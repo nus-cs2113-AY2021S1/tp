@@ -1073,57 +1073,62 @@ Enter `list`. Output:
 **Positive Test** <br />
 Enter ``` expense 4000 for 01 ``` into the console.
 You should see the following: 
-![SetExpenseGoal](.DeveloperGuide_images/SetExpenseGoal.png)
+![SetExpenseGoal](developerGuide_images/screenshot_goaltracker/SetExpenseGoal.png)
 
 **Negative Test** <br />
 Again, enter ```expense 2000 for 01``` into the console.
 You should see the following:
-![NegativeSet](.DeveloperGuide_images/NegativeSetExpense.png)
+![NegativeSet](developerGuide_images/screenshot_goaltracker/NegativeSetExpense.png)
 
 **Testing Set Goal for Income** <br />
 **Positive Test** <br />
 Enter ```income 2000 for 02``` into the console.
 You should see the following:
-![SetIncomeGoal](.DeveloperGuide_images/SetIncomeGoal.png)
+![SetIncomeGoal](developerGuide_images/screenshot_goaltracker/SetIncomeGoal.png)
 
 **Negative Test** <br />
 Again, enter ```income 7000 for 02``` into the console.
 You should see the following:
-![NegativeSetIncome](.DeveloperGuide_images/NegativeSetIncome.png)
+![NegativeSetIncome](developerGuide_images/screenshot_goaltracker/NegativeSetIncome.png)
 
 **Edit Goal for Expense** <br />
 **Positive Test** <br />
 Enter ```edit expense 2000 for 01``` into the console.
 You should see the following:
-![EditExpenseGoal](.DeveloperGuide_images/EditExpenseGoal.png)
+![EditExpenseGoal](developerGuide_images/screenshot_goaltracker/EditExpenseGoal.png)
 
 **Negative Test** <br />
 Enter ```edit expense 4000 for 05``` into the console.
 You should see the following:
-![NegativeEditExpense](.DeveloperGuide_images/NegativeEditExpense.png)
+![NegativeEditExpense](developerGuide_images/screenshot_goaltracker/NegativeEditExpense.png)
 
 **Edit Goal for Income** <br />
 **Positive Test** <br />
 Enter ```edit income 5000 for 02``` into the console.
 You should see the following:
-![EditIncomeGoal](.DeveloperGuide_images/EditIncomeGoal.png)
+![EditIncomeGoal](developerGuide_images/screenshot_goaltracker/EditIncomeGoal.png)
 
 **Negative Test** <br />
 Enter ```edit income 1000 for 09``` into the console.
 You should see the following:
-![NegativeEditIncome](.DeveloperGuide_images/NegativeEditIncome.png)
+![NegativeEditIncome](developerGuide_images/screenshot_goaltracker/NegativeEditIncome.png)
 
 **Display Expense goal** <br />
 **Positive Test** <br />
 Enter ```display expense for 01``` into the console.
 You should see the following:
-![DisplayExpenseGoal](.DeveloperGuide_images/DisplayExpenseGoal.png)
+![DisplayExpenseGoal](developerGuide_images/screenshot_goaltracker/DisplayExpenseGoal.png)
 
 **Display Income Goal** <br />
 **Positive Test** <br />
 Enter ```display income for 02``` into the console.
 You should see the following:
-![DisplayIncomeGoal](.DeveloperGuide_images/DisplayIncomeGoal.png)
+![DisplayIncomeGoal](developerGuide_images/screenshot_goaltracker/DisplayIncomeGoal.png)
+
+**Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
+In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
+tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
+the goal tracker progress to better aid the user in managing their finances.
 
 ## SaveManager
 **Add Save** <br />

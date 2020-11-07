@@ -11,6 +11,7 @@ import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
+import java.text.ParseException;
 import java.time.DateTimeException;
 import java.time.Month;
 import java.util.Scanner;
@@ -46,6 +47,7 @@ public class GoalTracker {
      * to another method/function.
      */
 
+    //@@author dixoncwc
     public static void execute() {
         exitTracker = false;
         while (!exitTracker) {
@@ -93,55 +95,17 @@ public class GoalTracker {
     }
 
     /**
-     * This function will allow user to edit their respective goal
-     * for respective months.
+     * This function will parse the command to check whether it is for income.
+     * or expense goal
      */
     public static void editGoal(String[] userInput) {
         isExist = false;
         try {
             month = Month.of(Integer.parseInt(userInput[4]));
             if (userInput[1].equals("expense")) {
-                expenseGoal = Integer.parseInt(userInput[2]);
-                for (int i = 0; i < totalGoalList.getListSize(); i++) {
-                    try {
-                        if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
-                            isExist = true;
-                            goalToSet = new Goal(expenseGoal, "Expense", month);
-                            totalGoalList.getGoal().set(i, goalToSet);
-                            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have successfully"
-                                    + " edited your expense goal for " + month + " to $" + expenseGoal);
-
-                        }
-
-                    } catch (NullPointerException e) { // This NullPointerException occurs when the first object in the
-                        continue;                      // arraylist is not expense so it will continue the for loop.
-                    }
-                }
-                if (!isExist) {
-                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not have "
-                            + "any existing goal for " + month);
-                }
-
+                editExpenseGoal(userInput);
             } else if (userInput[1].equals("income")) {
-                incomeGoal = Integer.parseInt(userInput[2]);
-                for (int i = 0; i < totalGoalList.getListSize(); i++) {
-                    try {
-                        if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
-                            isExist = true;
-                            goalToSet = new Goal(incomeGoal, "Income", month);
-                            totalGoalList.getGoal().set(i, goalToSet);
-                            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have successfully"
-                                    + " edited your income goal for " + month + " to $" + incomeGoal);
-                            execute();
-                        }
-                    } catch (NullPointerException e) {
-                        continue;
-                    }
-                }
-                if (!isExist) {
-                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not have "
-                            + "any existing goal for " + month);
-                }
+                editIncomeGoal(userInput);
             }
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter either expense "
@@ -155,10 +119,64 @@ public class GoalTracker {
         }
     }
 
+    /**
+     * This function will edit the user's expense goal for specific months.
+     *
+     */
+    public static void editExpenseGoal(String[] userInput) {
+        expenseGoal = Integer.parseInt(userInput[2]);
+        for (int i = 0; i < totalGoalList.getListSize(); i++) {
+            try {
+                if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
+                    isExist = true;
+                    goalToSet = new Goal(expenseGoal, "Expense", month);
+                    totalGoalList.getGoal().set(i, goalToSet);
+                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have successfully"
+                            + " edited your expense goal for " + month + " to $" + expenseGoal);
+
+                }
+
+            } catch (NullPointerException e) { // This NullPointerException occurs when the first object in the
+                continue;                      // arraylist is not expense so it will continue the for loop.
+            }
+        }
+        if (!isExist) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not have "
+                    + "any existing goal for " + month);
+        }
+    }
+
+    /**
+     * This function will edit the user's income goal for specific months.
+     *
+     */
+    public static void editIncomeGoal(String[] userInput) {
+        incomeGoal = Integer.parseInt(userInput[2]);
+        for (int i = 0; i < totalGoalList.getListSize(); i++) {
+            try {
+                if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
+                    isExist = true;
+                    goalToSet = new Goal(incomeGoal, "Income", month);
+                    totalGoalList.getGoal().set(i, goalToSet);
+                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You have successfully"
+                            + " edited your income goal for " + month + " to $" + incomeGoal);
+                    execute();
+                }
+            } catch (NullPointerException e) {
+                continue;
+            }
+        }
+        if (!isExist) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not have "
+                    + "any existing goal for " + month);
+        }
+    }
+
     public static TotalGoalList getTotalGoalList() {
         return totalGoalList;
     }
 
+    //@@author Feudalord
     /**
      * This function is for save and load of the expense and income goals
      * for respective months.
@@ -179,6 +197,7 @@ public class GoalTracker {
         }
     }
 
+    //@@author dixoncwc
     /**
      * This function will handle and parser the user command to differentiate whether
      * user want to display for expense for income.
@@ -187,14 +206,18 @@ public class GoalTracker {
         try {
             if (cmdPacket[1].equals("expense")) {
                 ledgerMonth = null;
-                displayExpenseGoal();
+                handleCurrentExpenses();
             } else if (cmdPacket[1].equals("income")) {
                 ledgerMonth = null;
-                displayIncomeGoal();
+                handleCurrentIncomes();
+            } else {
+                throw new IllegalArgumentException("Please enter only expense or income");
             }
         } catch (IndexOutOfBoundsException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter either expense "
                     + "or income");
+        } catch (IllegalArgumentException e) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, e.getMessage());
         }
     }
 
@@ -305,9 +328,9 @@ public class GoalTracker {
         entryData = entry;
         entryCategory = entryData.getEntryType().toString();
         if (entryCategory.equals("Expense")) {
-            handleExpenseGoal();
+            handleNewExpenses();
         } else {
-            handleIncomeGoal();
+            handleNewIncomes();
         }
     }
 
@@ -324,10 +347,10 @@ public class GoalTracker {
     }
 
     /**
-     * This function allows user to display their expense goal.
-     * for indicated month
+     * This function will handle the total current
+     * expenses being made by the user for the month.
      */
-    public static void displayExpenseGoal() {
+    public static void handleCurrentExpenses() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalExpenses = 0;
         int ledgerSize = ledgerList.getItemsSize();
@@ -348,16 +371,91 @@ public class GoalTracker {
                 }
             }
         }
-        printExpenseGoal();
+        handleCurrentExpenseGoalStatus();
     }
 
     /**
-     * This function will handle the expense goal by
-     * summing up the total expense being made by the
-     * user based on the indicated month. Lastly printing
-     * the expense goal status.
+     * This function will handle the current expense
+     * goal based on the month that user want to display.
+     * Lastly calling the function to print out the current
+     * expense status.
      */
-    public static void handleExpenseGoal() {
+    public static void handleCurrentExpenseGoalStatus() {
+        try {
+            for (int i = 0; i < totalGoalList.getListSize(); i++) {
+                if (cmdPacket != null) {
+                    month = Month.of(Integer.parseInt(cmdPacket[3]));
+                }
+                try {
+                    if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
+                        expenseGoal = totalGoalList.getGoal().get(i).getExpenseGoal();
+                        break;
+                    } else {
+                        expenseGoal = 0;
+                    }
+                } catch (NullPointerException e) {
+                    continue;
+                }
+            }
+            if (expenseGoal == 0) {
+                if (cmdPacket != null) {
+                    month = Month.of(Integer.parseInt(cmdPacket[3]));
+                }
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a expense "
+                        + "goal for " + month);
+            }
+            printCurrentExpenseGoalStatus();
+        } catch (DateTimeException e) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
+                    + "int month ");
+        } catch (NumberFormatException e) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
+                    + "int month ");
+        }
+    }
+
+    /**
+     * This function will print out the current expense status
+     * with regards to the goal the user set.
+     */
+    public static void printCurrentExpenseGoalStatus() {
+        double goalDifference = expenseGoal - totalExpenses;
+        if (goalDifference < 0) {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
+                    + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
+                    + expenseGoal + ". You have exceeded your " + "expense budget.");
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
+                    + "DisplayGoal. ");
+            input = UiManager.handleInput();
+            if (input.equals("y")) {
+                return;
+            } else {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
+                printCurrentExpenseGoalStatus();
+            }
+        } else {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
+                    + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
+                    + expenseGoal + ". You still have $" + goalDifference + " to spend");
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
+                    + "DisplayGoal. ");
+            input = UiManager.handleInput();
+            if (input.equals("y")) {
+                return;
+            } else {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
+                printCurrentExpenseGoalStatus();
+            }
+        }
+    }
+
+    /**
+     * This function will handle the expense by
+     * summing up the total expense being made by the
+     * user based on the indicated month. Next calling
+     * the function to handle the expense goal.
+     */
+    public static void handleNewExpenses() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalExpenses = 0;
         int ledgerSize = ledgerList.getItemsSize();
@@ -377,95 +475,34 @@ public class GoalTracker {
                 }
             }
         }
-        printExpenseGoal(); // call print method to display the goal status for the month
+        handleNewExpenseGoalStatus(); // call print method to display the goal status for the month
     }
 
     /**
-     * This function will print the expense goal status for the
-     * indicated month.
+     * This function will handle the expense goal based on
+     * the month the entry is being made. Lastly calling
+     * the function to print out the new status of the
+     * expense goal.
      */
-    public static void printExpenseGoal() {
+    public static void handleNewExpenseGoalStatus() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
-                if (cmdPacket != null) {
-                    month = Month.of(Integer.parseInt(cmdPacket[3]));
-                }
                 try {
-                    if (ledgerMonth == null) {
-                        if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(month)) {
-                            expenseGoal = totalGoalList.getGoal().get(i).getExpenseGoal();
-                            break;
-                        } else {
-                            expenseGoal = 0;
-                        }
-                    } else if (ledgerMonth != null) {
-                        if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(ledgerMonth)) {
-                            expenseGoal = totalGoalList.getGoal().get(i).getExpenseGoal();
-                            break;
-                        } else {
-                            expenseGoal = 0;
-                        }
+                    if (totalGoalList.getGoal().get(i).getExpenseMonth().equals(ledgerMonth)) {
+                        expenseGoal = totalGoalList.getGoal().get(i).getExpenseGoal();
+                        break;
+                    } else {
+                        expenseGoal = 0;
                     }
                 } catch (NullPointerException e) {
                     continue;
                 }
             }
-            if (expenseGoal == 0 && ledgerMonth != null) {
+            if (expenseGoal == 0) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a expense "
                         + "goal for " + ledgerMonth);
-            } else if (expenseGoal == 0 && ledgerMonth == null) {
-                if (cmdPacket != null) {
-                    month = Month.of(Integer.parseInt(cmdPacket[3]));
-                }
-                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a expense "
-                        + "goal for " + month);
             }
-
-            double goalDifference = expenseGoal - totalExpenses;
-            if (ledgerMonth == null) {
-                if (goalDifference < 0) {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
-                            + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
-                            + expenseGoal + ". You have exceeded your " + "expense budget.");
-                    UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
-                            + "DisplayGoal. ");
-                    input = UiManager.handleInput();
-                    if (input.equals("y")) {
-                        return;
-                    } else {
-                        UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
-                        printExpenseGoal();
-                    }
-                } else {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
-                            + "expense goal status for " + month + ". You have spent $" + totalExpenses + " / $"
-                            + expenseGoal + ". You still have $" + goalDifference + " to spend");
-                    UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
-                            + "DisplayGoal. ");
-                    input = UiManager.handleInput();
-                    if (input.equals("y")) {
-                        return;
-                    } else {
-                        UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
-                        printExpenseGoal();
-                    }
-                }
-            } else {
-                if (goalDifference < 0) {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Expense Budget Updated, "
-                            + " You have spent $" + totalExpenses + " / $" + expenseGoal + " for " + ledgerMonth
-                            + ". You have exceeded your expense budget");
-                } else {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Expense Budget Updated, "
-                            + "You have spent $" + totalExpenses + " / $" + expenseGoal + " You have not reached your "
-                            + "expense budget for " + ledgerMonth + " You still have $" + goalDifference
-                            + " to spend.");
-                }
-            }
-            month = null;
-        } catch (IndexOutOfBoundsException e) {
-            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You did not set "
-                    + "a goal for expense.");
+            printNewExpenseGoalStatus();
         } catch (DateTimeException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
                     + "int month ");
@@ -476,10 +513,28 @@ public class GoalTracker {
     }
 
     /**
-     * This function allows user to display their income goal.
-     * for indicated month
+     * This function will print out the new expense goal
+     * status.
      */
-    public static void displayIncomeGoal() {
+    public static void printNewExpenseGoalStatus() {
+        double goalDifference = expenseGoal - totalExpenses;
+        if (goalDifference < 0) {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Expense Budget Updated, "
+                    + " You have spent $" + totalExpenses + " / $" + expenseGoal + " for " + ledgerMonth
+                    + ". You have reached/exceeded your expense budget");
+        } else {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Expense Budget Updated, "
+                    + "You have spent $" + totalExpenses + " / $" + expenseGoal + " You have not reached your "
+                    + "expense budget for " + ledgerMonth + ", You still have $" + goalDifference
+                    + " to spend.");
+        }
+    }
+
+    /**
+     * This function will handle the total current
+     * income being saved by the user for the month.
+     */
+    public static void handleCurrentIncomes() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalIncomes = 0;
         int ledgerSize = ledgerList.getItemsSize();
@@ -500,16 +555,92 @@ public class GoalTracker {
                 }
             }
         }
-        printIncomeGoal();
+        handleCurrentIncomeGoalStatus();
     }
 
     /**
-     * This function will handle the income goal by
-     * summing up the total income being saved by the
-     * user based on the indicated month. Lastly printing
-     * the income goal status
+     * This function will handle the current income
+     * goal based on the month that user want to display.
+     * Lastly calling the function to print out the current
+     * income status.
      */
-    public static void handleIncomeGoal() {
+    public static void handleCurrentIncomeGoalStatus() {
+        try {
+            for (int i = 0; i < totalGoalList.getListSize(); i++) {
+                if (cmdPacket != null) {
+                    month = Month.of(Integer.parseInt(cmdPacket[3]));
+                }
+                try {
+                    if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
+                        incomeGoal = totalGoalList.getGoal().get(i).getIncomeGoal();
+                        break;
+                    } else {
+                        incomeGoal = 0;
+                    }
+                } catch (NullPointerException e) {
+                    continue;
+                }
+            }
+            if (incomeGoal == 0) {
+                if (cmdPacket != null) {
+                    month = Month.of(Integer.parseInt(cmdPacket[3]));
+                }
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a income "
+                        + "goal for " + month);
+            }
+            printCurrentIncomeGoalStatus();
+        } catch (DateTimeException e) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
+                    + "int month ");
+        } catch (NumberFormatException e) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
+                    + "int month ");
+        }
+    }
+
+    /**
+     * This function will print out the current income status
+     * with regards to the goal the user set.
+     */
+    public static void printCurrentIncomeGoalStatus() {
+        double goalDifference = incomeGoal - totalIncomes;
+        if (goalDifference < 0) {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
+                    + "income goal status for " + month + ". You have saved $" + totalIncomes + " / $"
+                    + incomeGoal + ". You have met your " + "revenue goal.");
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
+                    + "DisplayGoal. ");
+            input = UiManager.handleInput();
+            if (input.equals("y")) {
+                return;
+            } else {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
+                printCurrentIncomeGoalStatus();
+            }
+        } else {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
+                    + "income goal status for " + month + ". You have saved $" + totalIncomes + " / $"
+                    + incomeGoal + ". You have not met your " + "revenue goal. You are $" + goalDifference
+                    + " away from your goal.");
+            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
+                    + "DisplayGoal. ");
+            input = UiManager.handleInput();
+            if (input.equals("y")) {
+                return;
+            } else {
+                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
+                printCurrentIncomeGoalStatus();
+            }
+        }
+    }
+
+    /**
+     * This function will handle the income by
+     * summing up the total income being saved by the
+     * user based on the indicated month. Next calling
+     * the function handle the income goal.
+     */
+    public static void handleNewIncomes() {
         LedgerList ledgerList = ManualTracker.getLedgerList();
         totalIncomes = 0;
         int ledgerSize = ledgerList.getItemsSize();
@@ -529,97 +660,33 @@ public class GoalTracker {
                 }
             }
         }
-        printIncomeGoal(); // call print method to display the goal status for the month
+        handleNewIncomeGoalStatus();
     }
 
     /**
-     * This function will print the income goal status for the.
-     * indicated month
+     * This function will handle the income goal based on
+     * the month the entry is being made. Lastly calling
+     * the function to print out the new status of the
+     * income goal.
      */
-    public static void printIncomeGoal() {
+    public static void handleNewIncomeGoalStatus() {
         try {
             for (int i = 0; i < totalGoalList.getListSize(); i++) {
-                if (cmdPacket != null) {
-                    month = Month.of(Integer.parseInt(cmdPacket[3]));
-                }
                 try {
-                    if (ledgerMonth == null) {
-                        if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(month)) {
-                            incomeGoal = totalGoalList.getGoal().get(i).getIncomeGoal();
-                            break;
-                        } else {
-                            incomeGoal = 0;
-                        }
+                    if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(ledgerMonth)) {
+                        incomeGoal = totalGoalList.getGoal().get(i).getIncomeGoal();
+                        break;
                     } else {
-                        if (totalGoalList.getGoal().get(i).getIncomeMonth().equals(ledgerMonth)) {
-                            incomeGoal = totalGoalList.getGoal().get(i).getIncomeGoal();
-                            break;
-                        } else {
-                            incomeGoal = 0;
-                        }
+                        incomeGoal = 0;
                     }
                 } catch (NullPointerException e) {
                     continue;
                 }
             }
-
-            if (incomeGoal == 0 && ledgerMonth != null) {
+            if (incomeGoal == 0) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a income "
                         + "goal for " + ledgerMonth);
-            } else if (incomeGoal == 0 && ledgerMonth == null) {
-                if (cmdPacket != null) {
-                    month = Month.of(Integer.parseInt(cmdPacket[3]));
-                }
-                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "You did not set a income "
-                        + "goal for " + month);
             }
-
-            double goalDifference = incomeGoal - totalIncomes;
-            if (ledgerMonth == null) {
-                if (goalDifference < 0) {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
-                            + "income goal status for " + month + ". You have saved $" + totalIncomes + " / $"
-                            + incomeGoal + ". You have met your " + "revenue goal.");
-                    UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
-                            + "DisplayGoal. ");
-                    input = UiManager.handleInput();
-                    if (input.equals("y")) {
-                        return;
-                    } else {
-                        UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
-                        printIncomeGoal();
-                    }
-                } else {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "This is your current "
-                            + "income goal status for " + month + ". You have saved $" + totalIncomes + " / $"
-                            + incomeGoal + ". You have not met your " + "revenue goal. You are $" + goalDifference
-                            + " away from your goal.");
-                    UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Enter y to exit "
-                            + "DisplayGoal. ");
-                    input = UiManager.handleInput();
-                    if (input.equals("y")) {
-                        return;
-                    } else {
-                        UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter y");
-                        printIncomeGoal();
-                    }
-                }
-            } else {
-                if (goalDifference < 0) {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
-                            + " You have saved $" + totalIncomes + " / $" + incomeGoal + " for " + ledgerMonth
-                            + ". You have met your revenue goal.");
-                } else {
-                    UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
-                            + "You have saved $" + totalIncomes + " / $" + incomeGoal + " You have not met your "
-                            + "revenue goal. for " + ledgerMonth + " You are $" + goalDifference
-                            + " away from your goal.");
-                }
-            }
-            month = null;
-        } catch (IndexOutOfBoundsException e) {
-            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "You did not set "
-                    + "a goal for income.");
         } catch (DateTimeException e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
                     + "int month ");
@@ -627,5 +694,25 @@ public class GoalTracker {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE, "Please enter a valid "
                     + "int month ");
         }
+        printNewIncomeGoalStatus();
     }
+
+    /**
+     * This function will print out the new income goal
+     * status.
+     */
+    public static void printNewIncomeGoalStatus() {
+        double goalDifference = incomeGoal - totalIncomes;
+        if (goalDifference < 0) {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
+                    + " You have saved $" + totalIncomes + " / $" + incomeGoal + " for " + ledgerMonth
+                    + ". You have met your revenue goal.");
+        } else {
+            UiManager.printWithStatusIcon(Common.PrintType.GOAL_STATUS, "Revenue Goal Updated, "
+                    + "You have saved $" + totalIncomes + " / $" + incomeGoal + " You have not met your "
+                    + "revenue goal. for " + ledgerMonth + " You are $" + goalDifference
+                    + " away from your goal.");
+        }
+    }
+
 }
