@@ -15,7 +15,7 @@ Hello Fluffle. Welcome to Fluffle!
 Your registration has been recorded on Nov 07 2020
 Please type in "help" command for information!
 --------------------------------------------------------------
-Type 'help <function name here>' to view help for each command.
+Type 'help FUNCTION_NAME' to view help for each command.
 Available commands:
 - help
 - divider
