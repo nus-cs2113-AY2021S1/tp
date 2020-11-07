@@ -29,7 +29,7 @@ reflects my code contribution.
 
 
 #### Contributions to team-based tasks 
-* Skeleton code for all favourite features.
+* Skeleton code for favourite features.
 * Maintained the issue tracker for tasks and documentation.
 
 #### Review/mentoring contributions
