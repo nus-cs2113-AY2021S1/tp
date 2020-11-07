@@ -64,6 +64,7 @@ public abstract class Command {
     public static final String REFERENCE_KEYWORD = "reference";
     public static final String AUTHORNAME_KEYWORD = "authorName";
     public static final String DONE_KEYWORD = "done";
+    public static final String UNDONE_KEYWORD = "undone";
 
     /**
      * Executes the different commands.
