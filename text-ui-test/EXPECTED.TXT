@@ -33,108 +33,83 @@ What's your name?
 Hello           ! What might your gender be? (Male/Female/Other)
 OOPS!!! Invalid name!
 What's your name?
-Hello                                  h! What might your gender be? (Male/Female/Other)
+Hello                                  h.! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello               l    /  ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello                                                                  .! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello                                                  a O! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: Femal3
+What's your name?
+Hello    ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello      3! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: M4LE
+What's your name?
+Hello Friendly cat! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: Cat
+What's your name?
+Hello Dog 12345! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: duuuug
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello  ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello   ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello   -! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello  ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello イングランド王! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello    ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello Duuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuududududu12381828182! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: 495398475345939 4398594859 ---====== ''''''';;;;;;;;;//////.....445
+What's your name?
+Hello ?????????????????????``````````````````! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello random name 123! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: monster
+What's your name?
+Hello ! What might your gender be? (Male/Female/Other)
+OOPS!!! Invalid name!
+What's your name?
+Hello King                                  1! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: Elf
+What's your name?
+Hello Queen! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: maleS
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: F3maLe
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
+OOPS!!! Unexpected gender: MaLes
+What's your name?
+Hello Abec Steiner 77th! What might your gender be? (Male/Female/Other)
 -------------------------------------------------------------
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Input is empty
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
-
-Default (Default) #> OOPS!!! Unknown command
 
 Default (Default) #> OOPS!!! Unknown command
 
@@ -792,4 +767,4 @@ Changed active watchlist to: "Default".
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
 
-Triple Fromage Cheesecake (Default) #> Sayonara                                  h-san!
+Triple Fromage Cheesecake (Default) #> Sayonara Abec Steiner 77th-chan!
