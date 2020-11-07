@@ -19,7 +19,7 @@ It is optimised for use via the Command Line Interface (CLI) and it serves as an
 Given below are my contributions to the project. <br/>
 ## Summary of Contributions
 ### Code contributed:
-https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhangyilin0203
+[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhangyilin0203)
 ### Enhancements implemented:
 #### Enhancements to New features:
 * Added ability to save and load data to local file.
