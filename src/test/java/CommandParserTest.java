@@ -25,6 +25,7 @@ class CommandParserTest {
         assertEquals(CommandType.LOCATION, commandParser.getCommandType("location"));
         assertEquals(CommandType.CHANGE_MODE, commandParser.getCommandType("cd 3"));
         assertEquals(CommandType.HELP, commandParser.getCommandType("help"));
+        assertEquals(CommandType.HIGHLIGHT, commandParser.getCommandType("highlight"));
 
         // Checks if exit detects exit mode when inside one of the modes
         StudyIt studyIt = new StudyIt();
@@ -37,6 +38,9 @@ class CommandParserTest {
         CommandParser commandParser = new CommandParser();
 
         assertEquals(CommandType.UNIDENTIFIABLE, commandParser.getCommandType("asdhajskd"));
+        assertEquals(CommandType.UNIDENTIFIABLE, commandParser.getCommandType("highlight 50000"));
+        assertEquals(CommandType.UNIDENTIFIABLE, commandParser.getCommandType("help test"));
+        assertEquals(CommandType.UNIDENTIFIABLE, commandParser.getCommandType("location wrong"));
     }
 
     @Test
