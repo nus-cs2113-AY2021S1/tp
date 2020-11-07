@@ -1176,7 +1176,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     
     4.  Other incorrect commands to try: 
         1.  `estimate`.
-        2.  `estimate x` (where x is not a `.txt` file, consist of multiple files, or it is a file path).
+        2.  `estimate x` (where x is not a `.txt` file, is a file path, or consists of more than two files).
         3.  `estimate script.txt -wph x` (where x is a negative number or a word).
 
 > :memo: The file name (including extension) does not have to be `script.txt`, it is named as such for the convenience of testing.
