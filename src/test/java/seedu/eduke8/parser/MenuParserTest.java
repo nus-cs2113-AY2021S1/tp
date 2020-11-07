@@ -3,7 +3,17 @@ package seedu.eduke8.parser;
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.command.*;
+import seedu.eduke8.command.Command;
+import seedu.eduke8.command.IncorrectCommand;
+import seedu.eduke8.command.AboutCommand;
+import seedu.eduke8.command.BookmarkCommand;
+import seedu.eduke8.command.ExitCommand;
+import seedu.eduke8.command.HelpCommand;
+import seedu.eduke8.command.NoteCommand;
+import seedu.eduke8.command.QuizCommand;
+import seedu.eduke8.command.TopicsCommand;
+import seedu.eduke8.command.TextbookCommand;
+import seedu.eduke8.command.StatsCommand;
 import seedu.eduke8.topic.TopicList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

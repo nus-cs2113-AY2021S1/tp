@@ -2,12 +2,13 @@ package seedu.eduke8.bookmark;
 
 import org.junit.jupiter.api.Test;
 import seedu.eduke8.Eduke8Test;
-import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.Question;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BookmarkListTest extends Eduke8Test {
 

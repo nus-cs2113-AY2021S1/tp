@@ -7,7 +7,9 @@ import seedu.eduke8.common.Displayable;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.ui.Ui;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BookmarkCommandTest extends Eduke8Test {
 
