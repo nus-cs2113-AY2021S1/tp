@@ -131,17 +131,16 @@ Here is your information:
 
 Edits the user information stored in DietBook.
 
-Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [l/ACTIVITY_LEVEL]` 
+Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]` 
 
 * Although all parameters are listed as optional, **at least one of the optional fields needs to be provided**. In this case, any one of the parameters would work.
-* If more than one parameter is given, they can be in any order.
-* Existing values will be updated to the input values.
+* Existing values will be updated to the input values, even if the new value given is the same as the existing value.
 * The name must not be empty.
 * The gender must be either **`M` for male, `F` for female or `O` for others**.
-* The age must be a positive integer **from 0 to 150, inclusive**.
-* The height must be a positive integer **from 1 to 300, inclusive**.
-* The original, current and target weight must be a positive integer **from 1 to 500, inclusive**.
-* The activity level must be a positive integer **from 1 to 5, inclusive**.
+* The age must be a positive **integer from 0 to 150, inclusive**.
+* The height must be a positive **integer from 1 to 300, inclusive**.
+* The original, current and target weight must be a positive **integer from 1 to 500, inclusive**.
+* The fitness level must be a positive **integer from 1 to 5, inclusive**.
   * 1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   * 2 = You engage in some form of light exercise or have a job that requires some physical activity.
   * 3 = You engage in moderate amount of exercise or have a job that requires moderate physical activity.
@@ -150,10 +149,9 @@ Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/
 
 Example of usage: 
 
-* `editinfo n/John` edits the name of the user to be `John`.
-* Both `editinfo c/75 l/4` and `editinfo l/4 c/75` edits the current weight and activity level of the user to be `75` and `You engage in vigorous exercise or have a physically demanding job.` respectively.
+* Both `editinfo c/75 f/4` and `editinfo f/4 c/75` edits the current weight and fitness level of the user to be `75` and `You engage in vigorous exercise or have a physically demanding job.` respectively.
  
-Output example for usage example 2: 
+Output example: 
 ```
 Got it! I've updated your personal information:
   Name: Jack
@@ -163,7 +161,7 @@ Got it! I've updated your personal information:
   Original weight: 85kg
   Current weight: 75kg
   Target weight: 75kg
-  Activity level: You engage in vigorous exercise or have a physically demanding job.
+  Fitness level: You engage in vigorous exercise or have a physically demanding job.
 ```
 
 ### Features related to the food database
