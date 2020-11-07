@@ -148,7 +148,7 @@ public abstract class Event implements Cloneable {
     }
 
     public String toCalendarString() {
-        return String.format("%s | ", time.format(DateTimeFormatter.ofPattern("K:mm a")))
+        return String.format("%s | ", time.format(DateTimeFormatter.ofPattern("h:mm a")))
                 + String.format("%s | ", getStatus())
                 + String.format("%s ", getDescription());
     }
