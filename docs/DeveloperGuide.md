@@ -207,7 +207,9 @@ The user enters the command: help to view all commands that are available. The m
 All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens.
 
 #### 6.1.2 Value proposition
-{Describe the value proposition: what problem does it solve?}
+CanteenHelper aims to assist the target audience with:
+
+ordering the meals in one application efficiently
 
 ### 6.2 User stories
 
@@ -219,14 +221,15 @@ All the NTU undergraduate, graduate and faculty who need to dine at NTU canteens
 |v1.0|user who is deciding what to have for the next meal|view the menus of the stalls in advance|I can know what to eat for that meal in the future|
 |v2.0|user|check the operating time of canteens|I can go to the canteen which is currently open|
 |v2.0|user who wants to try a new dish|check the comments made by others|I can have a brief idea about it|
-|v2.0|user who is not familiar with the campus|check the location and recommended route to a canteen|get my food as soon as possible|
+|v2.0|user|change the order type of my order|fit my time scedule more|
 
 
 ### 6.3 Non-Functional Requirements
 {Give non-functional requirements}
 
 ### 6.4 Glossary
-* *Sequence Diagram* - A sequence diagram shows object interactions arranged in time sequence.
+* *glossary item* - Definition
 
 ### 6.5 Instructions for manual testing
+Try different inputs with variations of the format, to check whether the exceptions are being correctly thrown.
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
