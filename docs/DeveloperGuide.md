@@ -199,7 +199,7 @@ Exceptions that can catch user unexpected input.
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/overall.png)
 
-Figure 3. Sequence diagram for deleteOrder()
+Figure 3. Overall Sequence diagram 
 
 
 ## 4. Implementation
