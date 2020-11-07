@@ -130,7 +130,7 @@ class UtilTest {
     @Test
     void dateStringToDate_invalidFormat_InvalidDatetimeExceptionThrown() {
         try {
-            LocalDate actual = Util.dateStringToDate("111-11-2020");
+            Util.dateStringToDate("111-11-2020");
             fail();
         } catch (InvalidDatetimeException e) {
             assertTrue(true);
@@ -147,7 +147,7 @@ class UtilTest {
     @Test
     void timeStringToTime_invalidFormat_InvalidDatetimeExceptionThrown() {
         try {
-            LocalTime actual = Util.timeStringToTime("2500");
+            Util.timeStringToTime("2500");
             fail();
         } catch (InvalidDatetimeException e) {
             assertTrue(true);
@@ -164,7 +164,7 @@ class UtilTest {
     @Test
     void priorityStringToPriority_invalidPriority_InvalidPriorityExceptionThrown() {
         try {
-            Priority actual = Util.priorityStringToPriority("0");
+            Util.priorityStringToPriority("0");
             fail();
         } catch (InvalidPriorityException e) {
             assertTrue(true);
