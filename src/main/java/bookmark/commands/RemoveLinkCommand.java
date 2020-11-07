@@ -35,7 +35,7 @@ public class RemoveLinkCommand extends BookmarkCommand {
                 System.out.println("Removing link: "
                         + categories.get(categoryNumber - 1).getLinks().get(linkNumber - 1));
                 categories.get(categoryNumber - 1).removeLink(linkNumber);
-                ui.showBookmarkLinkList(categories.get(categoryNumber - 1).getLinks());
+                ui.showBookmarkLinkList(categories.get(categoryNumber - 1));
                 storage.saveLinksToFile(categories);
             }
         } catch (EmptyBookmarkException e) {
