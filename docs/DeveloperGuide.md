@@ -120,6 +120,7 @@ Dishes that can be ordered by the user.
 ## 4. Implementation
 #### Feature: order
 The user types command “order” to make an order from a stall in a canteen. The order method will be activated and print open stalls through checkOpenCanteens method in Customer class in this manner:
+/n
  ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/image1.png)
  
 User just type the corresponding index before the canteen to select canteen. Then the open stalls in this canteen will be printed through checkOpenStalls method in Customer class in this manner:
