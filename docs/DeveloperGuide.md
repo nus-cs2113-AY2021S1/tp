@@ -221,7 +221,7 @@ ordering the meals in one application efficiently
 |v1.0|user who is deciding what to have for the next meal|view the menus of the stalls in advance|I can know what to eat for that meal in the future|
 |v2.0|user|check the operating time of canteens|I can go to the canteen which is currently open|
 |v2.0|user who wants to try a new dish|check the comments made by others|I can have a brief idea about it|
-|v2.0|user|change the order type of my order|fit my time scedule more|
+|v2.0|user|change the order type of my order|fit my time schedule more|
 
 
 ### 6.3 Non-Functional Requirements
