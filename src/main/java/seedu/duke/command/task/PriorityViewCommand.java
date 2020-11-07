@@ -1,5 +1,6 @@
 package seedu.duke.command.task;
 
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
@@ -10,7 +11,6 @@ import java.util.Hashtable;
 
 public class PriorityViewCommand extends TaskCommand {
     private final ProjectManager projectListManager;
-    private Project proj;
 
     public PriorityViewCommand(Hashtable<String, String> parameters, ProjectManager projectListManager) {
         super(parameters, false);
@@ -20,10 +20,9 @@ public class PriorityViewCommand extends TaskCommand {
     public void execute() {
         assert !projectListManager.isEmpty() : "No project found!\n";
         if (projectListManager.isEmpty()) {
-            Ui.showError("Please create a project first.");
+            handleMissingProject("No project : priority view.");
             return;
         }
-
         try {
             Project proj = projectListManager.getSelectedProject();
             ArrayList<Task> tasks = proj.getBacklog().getTaskList();
@@ -31,36 +30,56 @@ public class PriorityViewCommand extends TaskCommand {
             ArrayList<Task> mediumPriorityTasks = new ArrayList<>();
             ArrayList<Task> lowPriorityTasks = new ArrayList<>();
 
-            for (Task task: tasks) {
+            arrangeTasks(tasks, highPriorityTasks, mediumPriorityTasks, lowPriorityTasks);
+            Ui.showToUserLn("The details of the tasks, in descending priority, are as follows: ");
+            printTasksByPriority(highPriorityTasks, mediumPriorityTasks, lowPriorityTasks);
+            ScrumLogger.LOGGER.info("Viewed tasks by priority.");
+        } catch (IndexOutOfBoundsException e) {
+            handleMissingProject("No project : priority view.");
+        }
+    }
 
-                if (task != null) {
-                    String priority = task.getPriority().substring(0, 1);
-                    if (priority.equals("H")) {
-                        highPriorityTasks.add(task);
-                    }
-                    if (priority.equals("M")) {
-                        mediumPriorityTasks.add(task);
-                    }
-                    if (priority.equals("L")) {
-                        lowPriorityTasks.add(task);
-                    }
+    /**
+     * Arrange the the tasks in order of priority.
+     * @param tasks the list of tasks to be arranged.
+     * @param highPriorityTasks the list of high priority tasks after arrangement.
+     * @param mediumPriorityTasks the list of medium priority tasks after arrangement.
+     * @param lowPriorityTasks the list of low priority tasks after arrangement.
+     */
+    private void arrangeTasks(ArrayList<Task> tasks, ArrayList<Task> highPriorityTasks,
+                              ArrayList<Task> mediumPriorityTasks, ArrayList<Task> lowPriorityTasks) {
+        for (Task task: tasks) {
+            if (task != null) {
+                String priority = task.getPriority().substring(0, 1);
+                if (priority.equals("H")) {
+                    highPriorityTasks.add(task);
+                }
+                if (priority.equals("M")) {
+                    mediumPriorityTasks.add(task);
+                }
+                if (priority.equals("L")) {
+                    lowPriorityTasks.add(task);
                 }
             }
+        }
+    }
 
-            Ui.showToUserLn("The details of the tasks, in descending priority, are as follows: ");
-
-            for (Task task : highPriorityTasks) {
-                Ui.showToUser(task.toString());
-            }
-            for (Task task : mediumPriorityTasks) {
-                Ui.showToUser(task.toString());
-            }
-            for (Task task :lowPriorityTasks) {
-                Ui.showToUser(task.toString());
-            }
-
-        } catch (IndexOutOfBoundsException e) {
-            Ui.showError("There are no projects! Please create a project first.");
+    /**
+     * Prints out the tasks in order of descending priority.
+     * @param highPriorityTasks high priority tasks are printed first.
+     * @param mediumPriorityTasks medium priority tasks are printed after high priority tasks.
+     * @param lowPriorityTasks low priority tasks are printed last.
+     */
+    private void printTasksByPriority(ArrayList<Task> highPriorityTasks, ArrayList<Task> mediumPriorityTasks,
+                                      ArrayList<Task> lowPriorityTasks) {
+        for (Task task : highPriorityTasks) {
+            Ui.showToUser(task.toString());
+        }
+        for (Task task : mediumPriorityTasks) {
+            Ui.showToUser(task.toString());
+        }
+        for (Task task : lowPriorityTasks) {
+            Ui.showToUser(task.toString());
         }
     }
 }

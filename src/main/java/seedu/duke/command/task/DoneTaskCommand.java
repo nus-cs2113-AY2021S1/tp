@@ -1,17 +1,15 @@
 package seedu.duke.command.task;
 
-import seedu.duke.command.Command;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.Project;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.model.task.Task;
-import seedu.duke.ui.Messages;
 import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 
-public class DoneTaskCommand extends Command {
+public class DoneTaskCommand extends TaskCommand {
     private final ProjectManager projectListManager;
-    private Project proj;
 
     public DoneTaskCommand(Hashtable<String,String> parameters, ProjectManager projectListManager) {
         super(parameters, true);
@@ -22,38 +20,54 @@ public class DoneTaskCommand extends Command {
 
         assert !projectListManager.isEmpty() : "No project\n";
         if (projectListManager.isEmpty()) {
-            Ui.showError("Please create a project first.");
+            handleMissingProject("No project : task completion.");
             return;
         }
-
         Project proj = projectListManager.getSelectedProject();
         if (parameters.size() == 0) {
-            Ui.showError("Missing parameters.");
+            handleMissingParams("Syntax error : task completion.");
             return;
         }
         for (int i = 0; i < parameters.size(); i++) {
-            Task task;
             try {
-                int taskId = Integer.parseInt(parameters.get(Integer.toString(i)));
-                if (taskId <= 0) {
-                    Ui.showError("The ID: " + taskId + " is invalid. "
-                            + "Please enter a positive integer.");
-                } else if (taskId <= proj.getBacklog().getNextId()) {
-                    task = proj.getBacklog().getTask(taskId);
-                    task.setAsDone();
-                    Ui.showToUserLn("The task ID: " + task.getId()
-                            + " and title: " + task.getTitle() + " has been marked as done.");
-                } else {
-                    Ui.showError("The following task ID: " + taskId
-                            + " doesn't exist in backlog.\nPlease enter a"
-                            + " valid ID.");
-                }
+                markTaskDone(proj, i);
             } catch (NumberFormatException e) {
-                Ui.showError(Messages.MESSAGE_INVALID_IDTYPE);
+                handleNonIntegerId("Syntax error : task completion.");
             } catch (NullPointerException e) {
-                Ui.showError("The task does not exist or has been deleted.");
+                handleDeletedId("Invalid task ID : task completion.");
             }
         }
+    }
+
+    /**
+     * Checks the user input and set task as done.
+     * @param proj the project the task belongs to.
+     * @param input the user input.
+     */
+    private void markTaskDone(Project proj, int input) {
+        Task task;
+        int taskId = Integer.parseInt(parameters.get(Integer.toString(input)));
+        if (taskId <= 0) {
+            handleNegativeId(taskId, "Syntax error : task completion.");
+        } else if (taskId <= proj.getBacklog().getNextId()) {
+            task = proj.getBacklog().getTask(taskId);
+            task.setAsDone();
+            displayToUser(task, taskId);
+        } else {
+            handleInvalidId(taskId, "Invalid task ID : task completion.");
+        }
+    }
+
+    /**
+     * Displays the completed task ID and title to the user.
+     * @param task the completed task.
+     * @param taskId the ID of the completed task.
+     */
+    private void displayToUser(Task task, int taskId) {
+        Ui.showToUserLn("The task ID: " + task.getId()
+                + " and title: " + task.getTitle() + " has been marked as done.");
+        ScrumLogger.LOGGER.info(String.format("Set task as done, ID : %d",
+                taskId));
     }
 }
 
