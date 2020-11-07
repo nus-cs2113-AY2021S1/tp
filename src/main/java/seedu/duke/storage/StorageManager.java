@@ -34,6 +34,9 @@ public class StorageManager {
      * File name of the data file is specified when the StorageManager object is instantiated
      */
     public void save() throws IOException {
+        if (!Files.exists(filepath.getParent())) {
+            initDataDir();
+        }
         FileWriter fw = new FileWriter((filepath.toFile()));
         Jsoner.serialize(projectManager, fw);
         fw.close();
