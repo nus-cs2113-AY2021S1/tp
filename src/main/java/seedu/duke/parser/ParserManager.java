@@ -33,7 +33,7 @@ public class ParserManager {
         if (userInput.equals(BYE)) {
             System.out.println(BYE);
             exit = true;
-            return null;
+            return new EmptyCommand(parameters);
         }
         if (userInput.equals(HELP)) {
             return new HelpCommand(parameters);
@@ -91,6 +91,7 @@ public class ParserManager {
     public static boolean isStringIntParsable(String s) {
         try {
             Integer.parseInt(s);
+            assert Integer.parseInt(s) > 0;
             return true;
         } catch (NumberFormatException e) {
             return false;
