@@ -21,9 +21,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_FILE_DOES_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_EMPTY_FILE;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_FILE_CORRUPTED;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_FILE_DOES_NOT_EXIST;
 
+//@@author TanLeeWei
+
+/**
+ * Represent reading of storage file back into the program.
+ */
 public class ReadStorageFile extends StorageFile {
 
     private static String FILE_PATH;
@@ -34,6 +40,9 @@ public class ReadStorageFile extends StorageFile {
         this.FILE_PATH = filePath;
     }
 
+    /**
+     *  Executing the reading of storage file.
+     */
     @Override
     public void execute() {
         try {
@@ -51,18 +60,26 @@ public class ReadStorageFile extends StorageFile {
                     ui.printToUser(Messages.MESSAGE_IMPORT);
                 }
             } catch (FileCorruptedException e) {
+                storageLogger.log(Level.WARNING, MESSAGE_FILE_CORRUPTED);
                 ui.printToUser(Messages.MESSAGE_FILE_CORRUPTED);
             }
             storageLogger.log(Level.INFO, "Successfully loaded Save File");
             myReader.close();
-        } catch (FileNotFoundException | DuplicateDataException e) {
+        } catch (FileNotFoundException e) {
+            storageLogger.log(Level.WARNING, MESSAGE_FILE_DOES_NOT_EXIST);
             ui.printToUser(MESSAGE_FILE_DOES_NOT_EXIST);
         } catch (NoSuchElementException e) {
+            storageLogger.log(Level.WARNING, MESSAGE_FILE_CORRUPTED);
             ui.printToUser(Messages.MESSAGE_FILE_CORRUPTED);
         }
     }
 
-    private void readToApplianceList(int i, Scanner myReader) throws FileCorruptedException, DuplicateDataException {
+    /**
+     * Method to read appliance from the storage file into ApplianceList.
+     * @param numberOfAppliance Keep track of the number of appliance.
+     * @param myReader Read each line in the .txt storage file into the program.
+     */
+    private void readToApplianceList(int numberOfAppliance, Scanner myReader) throws FileCorruptedException {
         while (myReader.hasNextLine()) {
             try {
                 String appliance = myReader.nextLine();
@@ -100,15 +117,19 @@ public class ReadStorageFile extends StorageFile {
                 default:
                     ui.printToUser(MESSAGE_APPLIANCE_TYPE_NOT_EXIST);
                 }
-                // when user exit, get the current system and save in datafile
-                applianceList.getAppliance(i).loadDataFromFile(powerConsumption);
-                i++;
+                applianceList.getAppliance(numberOfAppliance).loadDataFromFile(powerConsumption);
+                numberOfAppliance++;
+                storageLogger.log(Level.INFO, "Successfully read appliance into appliancelist");
             } catch (Exception e) {
                 throw new FileCorruptedException();
             }
         }
     }
 
+    /**
+     * Method to read location from the storage file into LocationList.
+     * @param location appliance location read from the .txt storage file.
+     */
     private void readToLocationList(String location) throws FileCorruptedException {
         try {
             int openBracesIndex = location.indexOf("[") + 1;
@@ -120,6 +141,7 @@ public class ReadStorageFile extends StorageFile {
                     locationList.addLocation(locationName.trim());
                 }
             }
+            storageLogger.log(Level.INFO, "Successfully read location into locationList");
         } catch (IndexOutOfBoundsException | DuplicateDataException e) {
             throw new FileCorruptedException();
         }
