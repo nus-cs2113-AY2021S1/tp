@@ -9,7 +9,7 @@
 *   **New Feature:** Added the ability to estimate the time needed to translate a script.
     *   What it does: Allows the user to figure out the time needed to translate a script based on the amount of words they can translate in an hour (defined as words per hour), or by using the average translator's speed (3 different words per hour values).
     *   Justification: Being able to estimate the time needed can help the user in managing and planning their time.
-    *   Highlights: A file name could contain special characters, whitespaces, and even file extensions, and that makes the validation process highly complicated, and hence, this feature would need to perform extensive checks to ensure a single valid file is provided. Moreover, there is an optional parameter that needs to be validated and should not be missed or be accidentally validated as part of the file name.
+    *   Highlights: A file name could contain special characters, whitespaces, and even file extensions, and that makes the validation process highly complicated, and hence, this feature would need to perform extensive checks to ensure a single valid file is provided. Moreover, there is an optional parameter that needs to be validated, and it should not be missed or be accidentally validated as part of the file name.
     
 *   **New Feature:** Added the ability to create, list, select, and delete watchlist.
     *   What it does: Allows the user to create, list, select, and delete watchlist.
