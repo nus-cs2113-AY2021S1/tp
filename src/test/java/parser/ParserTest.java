@@ -1,7 +1,21 @@
 package parser;
 
 import access.Access;
-import commands.*;
+import commands.AddCommand;
+import commands.AddModuleCommand;
+import commands.AddChapterCommand;
+import commands.AddCardCommand;
+import commands.EditCommand;
+import commands.EditModuleCommand;
+import commands.EditChapterCommand;
+import commands.EditCardCommand;
+import commands.ExitCommand;
+import commands.HistoryCommand;
+import commands.ListCommand;
+import commands.ListModulesCommand;
+import commands.ListChaptersCommand;
+import commands.ListCardsCommand;
+import commands.RescheduleCommand;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
 
