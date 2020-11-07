@@ -50,8 +50,8 @@ Hello from...
 
 **Take note:**
 
-    1. 
-    2.
+    1. Priority 0: Default , Priority 1: Highest (As number increases, priority decreases) 
+    2. 
     3.
 
 ### Adding a task: `add`
