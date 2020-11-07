@@ -19,8 +19,8 @@ public class Main {
 
     public static void main(String[] args) {
         List<Canteen> canteens = initialize();
-        greet(); // call greet() method to greet
-        Customer customer = getCustomer();
+        UI.greet(); // call greet() method to greet
+        Customer customer = UI.getCustomer(sc);
         System.out.println("Please enter your command. (Type help for instruction.)");
         input=sc.nextLine();
         while(!input.equals("bye")) { //if input is not "bye"
@@ -29,7 +29,7 @@ public class Main {
                 printOrder();
             }
             else if (input.equals("help")) {
-                help();
+                UI.help();
             }
             else if (input.equals("checkcanteen")) {
                 checkCanteenOperatingTime(canteens,customer);
@@ -49,7 +49,7 @@ public class Main {
             /** user decides to make orders*/
             else if (input.startsWith("order"))
             {
-                order(canteens,customer);
+                UI.order(canteens,customer,sc,Order);
             }
             else if (input.startsWith("change"))
             {
@@ -65,32 +65,10 @@ public class Main {
             input=sc.nextLine();// get next input statement
 
         }
-        bye();
+        UI.bye();
     }
 
-    private static Customer getCustomer() {
-        try{
-            System.out.println("Please enter your name/day of week/time arrive:");
-            String inputMessage = sc.nextLine();
-            Customer customer = Parser.parseCustomer(inputMessage);
-            return customer;
-        } catch(DayOfWeekException e){
-            System.out.println("____________________________________________________________\n");
-            System.out.println("  OOPS!!! Wrong day of week! Please enter again. :-(\n");
-            System.out.println("____________________________________________________________\n");
-            return getCustomer();
-        }catch(ArriveTimeException e){
-            System.out.println("____________________________________________________________\n");
-            System.out.println("  OOPS!!! Wrong time! Please enter again. :-(\n");
-            System.out.println("____________________________________________________________\n");
-            return getCustomer();
-        } catch(Exception e){
-            System.out.println("____________________________________________________________\n");
-            System.out.println("  OOPS!!! Wrong format! Please enter again. :-(\n");
-            System.out.println("____________________________________________________________\n");
-            return getCustomer();
-        }
-    }
+
 
 
     public static List<Canteen> initialize() {
@@ -238,6 +216,7 @@ public class Main {
         canteens.add(canteen4);
         return canteens;
     }
+
     public static void checkCanteenOperatingTime(List<Canteen> canteens,Customer customer){
         System.out.println("Choose the canteen you want to check:");
         List<Canteen> openCanteens = customer.checkOpenCanteens(canteens);//list of canteens
