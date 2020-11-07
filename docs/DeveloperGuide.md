@@ -11,10 +11,11 @@ Below is an architecture diagram of termiNus.
 
 - `Duke` is the main object of the program and handles all the logic and models related to the program.
 - `Ui` is the main object that provides an interface between `Duke` and the user.
-- `Command` represents a command that is provided by the user. `Ui` reads the command and it is sent to `Parser` to create a new `Command` object.
-- `Duke` executes the command and shows the output to the user using `Ui`.
-- `Command` object modifies the state of `ItemList`, which consists of multiple lists for different types of `Items`.
-- `Storage` takes the state of `ItemList` and stores it to file.
+- `Command` represents a command that is provided by the user. `Ui` reads the command before it is sent to `Parser` to create a new `Command` object.
+- `Parser` creates a command object by parsing the user's arguments and sending them to `CommandCreator`, which returns a `Command` object. For instances where no arguments are needed (such as `ByeCommand`), Parser creates the `Command` object directly.
+- `Duke` executes the `Command` and shows the output to the user through `Ui`.
+- `Command` object modifies the state of `Model`, which consists of multiple lists for different types of `Items`.
+- `Storage` takes the state of `Model` and stores it to file.
 
 ##### Sequence Diagram
 Below is a sequence diagram of how the main program functions.
