@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.event.Personal;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
-import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
@@ -16,6 +15,7 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.logging.Logger;
 
 /**
  * Command to set deadline for personal events.
@@ -24,6 +24,7 @@ public class DeadlineCommand extends Command {
     private int index;
     private LocalDate date;
     private LocalTime time;
+    private static Logger logger = EventLogger.getEventLogger();
 
     /**
      * Constructor for setting deadline seedu.duke.
@@ -44,28 +45,20 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-
-        try {
-            parseUserCommand(command);
-            EventList personalList = data.getEventList("Personal");
-            Event updatedEvent = personalList.getEventByIndex(index - 1);
-            if (updatedEvent != null) {
-                //Personal event = (Personal) updatedEvent;
-                if (time == null) {
-                    updatedEvent.setDate(date);
-                } else {
-                    updatedEvent.setDate(date);
-                    updatedEvent.setTime(time);
-                }
-                ui.printDeadlineChangedMessage(updatedEvent);
+        parseUserCommand(command);
+        EventList personalList = data.getEventList("Personal");
+        Event updatedEvent = personalList.getEventByIndex(index - 1);
+        if (updatedEvent != null) {
+            if (time == null) {
+                updatedEvent.setDate(date);
+            } else {
+                updatedEvent.setDate(date);
+                updatedEvent.setTime(time);
             }
-            storage.saveFile(storage.getFileLocation("Personal"), data, "Personal");
-
-        } catch (InvalidIndexException e) {
-            throw new InvalidIndexException("Error, no such index is available!");
+            ui.printDeadlineChangedMessage(updatedEvent);
         }
-
-
+        logger.fine("Deadline for event was created/updated successfully.");
+        storage.saveFile(storage.getFileLocation("Personal"), data, "Personal");
     }
 
     /**
@@ -82,8 +75,10 @@ public class DeadlineCommand extends Command {
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
                 assert date != null : "date is not detected after parsing";
             } catch (DateErrorException e) {
+                logger.warning("DateErrorException encountered -- Deadline date is not in the correct format");
                 throw new DateErrorException("Something is wrong with the date!");
             } catch (NumberFormatException e) {
+                logger.warning("WrongNumberFormatException encountered -- Deadline index is not numerical");
                 throw new WrongNumberFormatException("Index must be numerical format!");
             }
 
@@ -97,13 +92,18 @@ public class DeadlineCommand extends Command {
                 time = DateTimeParser.timeParser(timeString);
                 assert time != null : "time is not detected after parsing";
             } catch (DateErrorException e) {
+                logger.warning("DateErrorException encountered -- Deadline date is not in the correct format");
                 throw new DateErrorException("Something is wrong with the date!");
             } catch (TimeErrorException e) {
+                logger.warning("TimeErrorException encountered -- Deadline time is not in the correct format");
                 throw new TimeErrorException("Something is wrong with the time!");
             } catch (NumberFormatException e) {
+                logger.warning("WrongNumberFormatException encountered -- Deadline index is not numerical");
                 throw new WrongNumberFormatException("Index must be numerical format!");
             }
         } else {
+            logger.warning("WrongNumberOfArgumentsException encountered -- "
+                    + "Deadline have incorrect number of arguments");
             throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Deadline!");
 
         }
