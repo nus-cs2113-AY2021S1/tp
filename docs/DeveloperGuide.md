@@ -156,23 +156,28 @@ The `options.get(i)` parameter will get the description of the specific option a
 
 ### 2.3. Logic Component
 
-The main application logic, such as provisioning quizes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
+The main application logic, such as provisioning quizzes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
 
 #### 2.3.1. Design of Parser
 
 ![Parser Diagram](./images/ParserDiagram.png)
 
-1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
+1. After constructing a new `MenuParser()` in the `Eduke8` class, the `parseCommand()` method is used to parse the 
    user command.
-2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
+2. This results in a `Command` object, which is executed by `Command` class itself, using the `execute()` method.
 3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
 to be completed as per the user input.
+
+It should be made clear that `parseCommand()` returns a new object from the child class of `Command`. The object's exact 
+class depends on the input typed into the command line, and so since `parseCommand()` returns all these objects from the 
+various specific `Command` classes, the `MenuParser` which has the `parseCommand()` method is dependent on all these 
+specific `Command` classes.
 
 #### 2.3.2. Implementation of MenuParser
 
 Below is the sequence diagram for how the Parser component of `Eduke8` works with commands to show output to the user.
 
-![Parser Sample Sequence](./images/ParserSampleSequence.png)
+![Parser Sample Sequence](./images/ParserSampleSequence.jpg)
 
 The command parsing feature is our program’s way of reading the user’s input into the command line. It makes use of a 
 single method `parseCommand` that identifies what command the user is calling for and then calls the command. There are 
