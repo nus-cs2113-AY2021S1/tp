@@ -20,6 +20,12 @@ public class RouteMapCommand extends Command {
         selectAndPrintBusRoute(userBusRouteSelection);
     }
 
+    /**
+     * Select and print bus route, if found.
+     *
+     * @param userBusRouteSelection user-specified bus route
+     * @throws CustomException to catch missing bus code or invalid bus code
+     */
     private void selectAndPrintBusRoute(String userBusRouteSelection) throws CustomException {
         assert !userBusRouteSelection.isBlank() : "User input is empty.";
         if (userBusRouteSelection.isEmpty()) {

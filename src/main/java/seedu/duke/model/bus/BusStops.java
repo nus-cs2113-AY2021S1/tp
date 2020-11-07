@@ -102,12 +102,20 @@ public enum BusStops {
         return false;
     }
 
+    /**
+     * Re-initialise all search frequencies to zero.
+     */
     public static void resetSearchFrequency() {
         for (BusStops busStop : EnumSet.allOf(BusStops.class)) {
             busStop.setCount(0);
         }
     }
 
+    /**
+     * Searches for the most searched bus top with highest search frequency.
+     *
+     * @return bus Bus object, if found
+     */
     public static BusStops mostSearchedBusStop() {
         int maxSearch = 0;
         BusStops correspondingBusStop = null;
