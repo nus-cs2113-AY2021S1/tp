@@ -802,7 +802,20 @@ Expected output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: All of Study It's data are stored under the `ROOT_FOLDER/data` folder.
+To transfer these data to another computer, please back up the `data` folder 
+and copy it over to the directory in the new computer accordingly after installing the app.
+
+**Q**: Why is my application not starting up properly?
+
+**A**: Please refer to the "Getting Started" section and ensure that 
+the correct version of java is installed on your computer. If you face any further difficulties, 
+feel free to refer to the About Us page and contact any of the developers.
+
+**Q**: Why is XXX feature not supported?
+
+**A**: As this app is still under development, there are many features we would like to add in the future.
+Do feedback to us what features you would like to see in Study It!
 
 ## Command Summary
 

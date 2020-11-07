@@ -55,7 +55,7 @@ public class GradeBook {
         if (indexToBeStar > 0 && indexToBeStar <= currentGrades.size()) {
             Grade.changeStarGrade(currentGrades.get(indexToBeStar - 1));
         } else {
-            System.out.println("Invalid star index! Please try again!");
+            throw new NumberFormatException();
         }
     }
 
