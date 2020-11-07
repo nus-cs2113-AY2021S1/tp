@@ -12,7 +12,7 @@ import java.time.LocalTime;
 
 
 /**
- * Prints the personal calendar for users
+ * Prints the personal calendar for users.
  */
 //@@author Jingming517
 public class PrintTimelineCommand extends Command {
