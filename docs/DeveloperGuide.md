@@ -144,7 +144,14 @@ Under the `ListManager` component, the `ListManager` class handles operations on
 
 On startup, the `Fitr` class creates a new `ListManager` object, with `StorageManager` as its parameter. The `ListManager` object then creates `ExerciseList`, `FoodList` and `GoalList` objects, and attempt to load the data into the lists through the `StorageManager` object. If no data is found, then an empty list will be created.
 
-#### 3.2.7 Common classes
+#### 3.2.7 Recommender component
+The `Recommender` component handles the recommendation of the exercises. Based on the user inputs, it either returns a list of type `StandardExerciseList` full of general or specific workouts. For example, it either recommends a mix of exercises from the 4 different categories of aerobic, upperbody, lowerbody and stretch, or it chooses only workouts from each of the category.
+
+When the `Recommend` class is instantiated, the constructor calls onto the `Storage` class to load multiple different `StandardExerciseList` instances as attributes. 
+
+The `recommand` method in the class then chooses and adds different permutations or combinations of `StandardExercise` instances from the multiple different `StandardExerciseList` instances to load into a new instance of `StandardExerciseList`, which is then returned.
+
+#### 3.2.8 Common classes
 
 Classes used by multiple components are in the `fitr.common` package.
 
@@ -203,9 +210,11 @@ The `recommend` command allows the user to get either a general recommended work
 
 The user's input is first parsed by the `Parser` class, which returns a `RecommendCommand` to `Fitr`. The `RecommendCommand` is then executed to recommend workouts. The `RecommendCommand` calls on the `recommend` method in `Recommender`.
 
+The `Recommender` class then returns a list of type `StandardExerciseList`. The user input is then read in by the `Ui` class to determine which `StandardExercise` objects in the `StandardExerciseList` should be converted to `Exercise` and added to the exerciseList of type `ExerciseList`
+
 Figure 10 below shows the sequence diagram for the `recommend` class.
 
-The `Recommender` class then returns a list of type `StandardExerciseList`. The user input is then read in by the `Ui` class to determine which `StandardExercise` objects in the `StandardExerciseList` should be converted to `Exercise` and added to the exerciseList of type `ExerciseList`
+
 
 ### 4.7 Tip of the day
 
