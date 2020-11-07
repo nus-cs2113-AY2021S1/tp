@@ -257,6 +257,7 @@ Examples:
 - `add timetable; math class; 10/10/2020; 12pm`
 
 Expected Output:
+
 For the first 3 examples above,
 ```
 _________________________________

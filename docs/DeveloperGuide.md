@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Contents
-- [Introduction]()
+- [Introduction](#introduction)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
     * [Architecture](#architecture)
@@ -44,6 +44,9 @@
     * [Checking schedule availability](#checking-schedule-availability)
     * [Adding deadline to event](#adding-deadline-to-event)
     * [Setting reminder](#setting-reminder)
+    
+## Introduction
+
 
 ## Setting up, getting started
 1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
@@ -160,26 +163,43 @@ The add feature in the program allows the user to create one of 3 different even
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
 be inserted upon creation. 
 
-Firstly, to begin, the user needs to key in the command `add [event type] [description]; [date]; [time]`
-The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively . For example,
-`add zoom cs2113t meeting; zoom.sg; 16/09/20; 2100`
+Generally, Personal events are meant for non school related events and can be any general task the user wants to do. 
+Zoom events are meant for events that require zoom links and helps the user to store their zoom links easily. 
+Timetable events can contain a location and are meant for school related events like classes.
+
+Firstly, to begin, the user needs to key in the add command with the general format `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`.
+The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. For example,
+`add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`
 
 When a command like this is called, the constructor to `addCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
 
 Next, when `addCommand#execute` is called from the main, this method will call the respective method to create one of the three events. These methods are `addCommand#addPersonal`, `addCommand#addZoom`, and `addCommand#addTimetable`.
 
 The personal event can contain the following fields: 
-1. Description
-2. Description and date
-3. Description, date and time
+- Description 
+- Description and date
+- Description, date and time
+
+Examples of user inputs for the respective fields of personal events are:
+- add personal; run
+- add personal; run; 16/7/2020;
+- add personal; run; 16/7/2020; 1600
 
 The zoom event can contain the following fields:
-1. Description and link
-2. Description, link, date and time
+- Description and link
+- Description, link, date and time
+
+Examples of user inputs for the respective fields of zoom events are:
+- add zoom; meeting; zoom.com.sg
+- add zoom; meeting; zoom.com.sg; 17/10/2000; 2100
 
 The Timetable event can contain the following fields:
-1. Description, date and time
-2. Description, location, date and time
+- Description, date and time
+- Description, location, date and time
+
+Examples of user inputs for the respective fields of timetable events are:
+- add timetable; math class; 10/10/2000; 4:00 pm
+- add timetable; math class; NUS engineering; 10/10/2000; 4:00 pm
 
 The fields for what each event can contain were chosen based on what we as a team thought were important fields for the respective event types.
 However, these methods can easily be edited to accept different numbers of fields if we change our minds in the future.
@@ -188,7 +208,7 @@ Given below is an example scenario of the add feature:
  
 Step 1. The user launches the application for the first time. There will be no events stored at the moment.
  
-Step 2. The user executes `add zoom cs2113t meeting; zoom.sg; 16/09/20; 2100`. The `addCommand` instance is created and detects that the event is of Zoom type.
+Step 2. The user inputs `add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`. The `addCommand` instance is created and detects that the event is of Zoom type.
  
 Step 3. `addCommand#execute` is called. The class knows the current addCommand is of Zoom type so it calls `addCommand#addZoom`.
  
@@ -199,6 +219,7 @@ Step 5. The Zoom event is then added to the user's `UserData` for further use.
 The following sequence diagram shows how the whole add feature works: <br>
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
+// to be updated
 
 #### List feature
 
