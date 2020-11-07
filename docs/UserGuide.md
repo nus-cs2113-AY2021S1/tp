@@ -6,10 +6,8 @@ PaperTrade is a command line trading simulator that lets you try your hand at tr
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `PaperTrade` from [here](https://github.com/AY2021S1-CS2113-T16-3/tp/releases/tag/v1.0).
+2. Down the latest version of `PaperTrade` from [here](https://github.com/AY2021S1-CS2113-T16-3/tp/releases/tag/v2.1).
 
 ## Features 
 
@@ -133,19 +131,55 @@ Allows you to bookmark stocks for easy access of stocks that you are actively wa
 
 Format: `mark /STOCK_TICKER`
 
-Example of usage: mark /tsla
+Example of usage:
+```
+What would you like to do today?
+mark /msft
+____________________________________________________________
+You have added MSFT to bookmarks.
+____________________________________________________________
+```
 
 #### Unmarking Stocks: 
 
 Format: `unmark /STOCK_TICKER`
 
-Example of usage: unmark /tsla
+Example of usage: 
+```
+What would you like to do today?
+unmark /aapl
+____________________________________________________________
+You have removed AAPL from bookmarks.
+____________________________________________________________
+```
 
 #### Viewing info of all bookmarked stocks: 
 
 Format: `bookmarks`
 
-Example of usage: bookmarks
+Example of usage: 
+```
+What would you like to do today?
+bookmarks
+____________________________________________________________
+Here is the latest information on AAPL:
+date:   2020-11-06T20:00
+open:   118.53
+high:   118.54
+low:    118.52
+close:  118.52
+volume: 5859
+____________________________________________________________
+____________________________________________________________
+Here is the latest information on MSFT:
+date:   2020-11-06T20:00
+open:   223.4
+high:   223.4
+low:    223.4
+close:  223.4
+volume: 190
+____________________________________________________________
+```
 
 ### Exit: `bye`
 Exits the program. Duke will save your info for the next time you come back!
@@ -153,22 +187,30 @@ Exits the program. Duke will save your info for the next time you come back!
 Format: `bye`
 
 Example of usage: 
+```
+What would you like to do today?
+bye
+____________________________________________________________
+Goodbye! Hope to see you again.
+____________________________________________________________
+```
 
-`bye`
 
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Just copy the txt file over.
+**A**: Just copy over any .ser files into the data folder.
+
 
 ## Command Summary
-
-{Give a 'cheat sheet' of commands here}
 
 * Buy a stock `buy /aapl quantity`
 * Sell a stock `sell /aapl quantity`
 * Search for a stock's info `search /aapl`
 * View portfolio `view`
 * Check your wallet `wallet`
+* Bookmark a stock `mark /aapl`
+* Remove a stock from bookmarks `unmark /aapl`
+* View bookmarked stocks `bookmarks`
 * Exit program `bye`
