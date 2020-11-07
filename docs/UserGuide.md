@@ -38,8 +38,6 @@ Result is like this:
 ### 3.2 begin the order: `order`
 begin the order of a customer
 
-![image](
-
 #### 3.2.1 Firstly
 
 Format: `order`
@@ -63,18 +61,25 @@ Example of usage:
 Format: `[number]`
 
 Example of usage:
-'3'
+'1'
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/stall.png)
 
-#### 3.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. 
+#### 3.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order.
 
 Format: `[number]`
 
 Example of usage:
-'1'
+'2'
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/num.png)
+
+#### 3.2.5 User chooses dishes in the same way as they select canteen and stall. 
+
+Format: `[number]`
+
+Example of usage:
+'2'
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/dish.png)
 
