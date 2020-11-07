@@ -158,7 +158,7 @@ Format: `[number]`
 Example of usage:
 '4'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopencanteen.png)
+![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkcanteen.png)
 
 ### 3.8 check Stall Operating Time: `checkstall`
 check the operating hours of a stall 
@@ -177,12 +177,12 @@ Format: `[number]`
 Example of usage:
 '3'
 
-#### 3.8.2 User enters the number before stall to check that specific stall
+#### 3.8.3 User enters the number before stall to check that specific stall
 
 Format: `[number]`
 
 Example of usage:
-'3'
+'2'
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkstall.png)
 
