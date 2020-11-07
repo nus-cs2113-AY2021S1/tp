@@ -18,18 +18,19 @@ public class ExecFavCommandTest {
     public static void makeList() {
         new FavList();
         FavList.addFav(new Fav("/route University Town /to PGP", "Go home"));
+        FavList.addFav(new Fav("/invalid command", "test"));
         FavList.addFav(new Fav("/bus Museum", "Cool place"));
         FavList.addFav(new Fav("/dine science", "Science food"));
     }
 
+
     @Test
     void executeCommand_indexOutOfBounds_expectException() throws CustomException {
         assertThrows(CustomException.class, ExecFavCommandTest::performCheck_indexOutOfBounds);
-
     }
 
     static void performCheck_indexOutOfBounds() throws CustomException {
-        String input = "10";
+        String input = "5";
         ExecFavCommand command = new ExecFavCommand(input);
         command.executeCommand();
     }
@@ -68,12 +69,26 @@ public class ExecFavCommandTest {
     }
 
     @Test
+    void executeCommand_invalidCommand_expectException() {
+        assertThrows(CustomException.class, ExecFavCommandTest::performCheck_executeInvalidCommand);
+        assertEquals(3, FavList.getSize());
+    }
+    static void performCheck_executeInvalidCommand() throws CustomException {
+        String input = "2";
+        ExecFavCommand command = new ExecFavCommand(input);
+        command.executeCommand();
+    }
+
+    @Test
     void executeCommand_inputValidIndex_TaskRuns() {
         assertDoesNotThrow(ExecFavCommandTest::performCheck_inputValidIndex);
     }
 
+    /*
+    As size task in index 2 will be deleted from test of invalid command, valid index boundary is 3
+     */
     static void performCheck_inputValidIndex() throws CustomException {
-        String input = "1";
+        String input = "3";
         ExecFavCommand command = new ExecFavCommand(input);
         command.executeCommand();
     }
