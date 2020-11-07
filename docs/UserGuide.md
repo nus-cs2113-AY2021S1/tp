@@ -45,7 +45,8 @@ Text that are in a `monospace font` represent either the user input or the progr
 
 >  **[NOTE]**
 >  The notes section contains additional information that may be helpful to you if you encounter any issues.
->
+
+
 ## 2. Quick Start
 
 Prerequisite: Ensure that you have Java 11 installed in your Computer.
