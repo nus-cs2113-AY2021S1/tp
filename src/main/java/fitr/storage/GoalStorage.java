@@ -116,7 +116,7 @@ public class GoalStorage {
             if (arguments[1].equals(SYMBOL_EXERCISE) || arguments[1].equals(SYMBOL_FOOD)) {
                 isValidGoalType = true;
             }
-            //Check if status is valid (Y or N or 0.0 < status < 100.0
+            //Check if status is valid (Y or N or 0.0 < status < 100.0)
             if (arguments[2].equals(SYMBOL_YES) || arguments[2].equals(SYMBOL_NO)) {
                 isValidStatus = true;
             } else if (Double.parseDouble(arguments[2].substring(0, arguments[2].length() - 1)) >= 0.0
