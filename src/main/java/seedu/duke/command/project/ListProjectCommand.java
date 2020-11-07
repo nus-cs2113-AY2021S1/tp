@@ -35,7 +35,7 @@ public class ListProjectCommand extends ProjectCommand {
     }
 
     /**
-     * Displays all added project to the users.
+     * Displays all added project to the users in an order.
      * @param proj Project to be displayed to the user
      * @param id Identifying id of the corresponding project
      */
