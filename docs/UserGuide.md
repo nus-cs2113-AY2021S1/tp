@@ -55,7 +55,7 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 &nbsp;  
 
-If you are unfamilar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
+If you are unfamiliar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
 
 ## 3. Command Format
 
@@ -189,11 +189,11 @@ Format:
 Example of usage:
      `name F.r.i.e.n.d.s` 
      
-* A new season of F.r.i.e.n.d.s just started airing and you would like to update your show details from 1 season to 2.
+* A new season of F.r.i.e.n.d.s just started airing, and you would like to update your show details from 1 season to 2.
 Example of usage:
      `season 2`
      
-* Suppose the first season has 10 episodes and the new season of F.r.i.e.n.d.s has 11 episodes.
+* Suppose the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
 Example of usage:
      `episode 10,11`
      
@@ -437,7 +437,7 @@ The `episode` command updates the current episode of an existing show in your wa
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.m.a. `watch` - Watch a show in your watchlist
+### 4.m.a. `watch` - Watch a show in your list
 
 The `watch` command updates the watching progress for your show, and automatically updates your watch time limit.
 
@@ -457,8 +457,9 @@ The `watch` command updates the watching progress for your show, and automatical
  
  <img src = "images/watch_before.PNG" width = "800">
  &nbsp;
+ 
  To illustrate the change in your watch time limit, we have added the time limit to 120 minutes.
- The duration of the show friends is 60 minutes. the change in time limit can be seen in the expected outcome below. 
+ The duration of `friends` is 60 minutes. the change in time limit can be seen in the expected outcome below. 
  
  
  Expected outcome:
