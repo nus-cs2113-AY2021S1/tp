@@ -27,15 +27,17 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Created the Nav@NUS logo to be displayed during the welcome message.
-  * Added bus stops enum class.
-  * Wrote additional tests for /addfav feature.
+  * Added bus stops enum class. (Pull Request: [/#28](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/28))
+  * Wrote additional tests for /addfav feature. (Pull Request: [/#109](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/109))
 
 * **Documentation**:
   * User Guide:
-    * Add documentation for the features `/addfav`, `/liststops`, `/help` and `/exit` [\#72]()
+    * Add documentation for the features `/addfav`, `/liststops`, `/help` and `/exit`. (Pull Request: [\#88](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/88),
+    [/#148](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/148))
   * Developer Guide:
-    * Added implementation details of the `/addfav` and `/liststops` feature.
-
+    * Added implementation details of the `/addfav` and `/liststops` feature. (Pull Request: [\#113](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/113),
+    [/#203](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/203))
+    
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#26](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/26), [\#74](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/74)
   * Reported bugs and suggestions for other teams in the class (example: [click here](https://github.com/Lezn0/ped/issues))
