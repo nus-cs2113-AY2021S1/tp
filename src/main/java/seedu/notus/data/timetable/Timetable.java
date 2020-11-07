@@ -61,20 +61,6 @@ public class Timetable {
         this.events = events;
     }
 
-    public ArrayList<Event> getAllNonRecurringEvents() {
-        return nonRecurringEvents;
-    }
-
-    public ArrayList<RecurringEvent> getAllRecurringEventsArray() {
-        ArrayList<RecurringEvent> events = new ArrayList<>();
-        events.addAll(dailyEvents);
-        events.addAll(weeklyEvents);
-        events.addAll(monthlyEvents);
-        events.addAll(yearlyEvents);
-
-        return events;
-    }
-
     /**
      * Method to allow a new event to be set at a specific index.
      *
@@ -322,6 +308,12 @@ public class Timetable {
         return todayReminders;
     }
 
+    /**
+     * Compares this event to all other events stored in the timetable and get all events that clashes.
+     *
+     * @param event Event to be checked against the timetable
+     * @return ArrayList of Events that clashes.
+     */
     public ArrayList<Event> getClashingEvents(Event event) {
         ArrayList<Event> clashedEvents = new ArrayList<>();
         LocalDate eventDate = event.getStartDate();
