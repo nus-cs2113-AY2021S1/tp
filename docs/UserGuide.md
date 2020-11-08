@@ -1,5 +1,7 @@
 # User Guide
 
+## Table of contents
+
 ## Introduction
 
 **_25HoursADay_** is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
