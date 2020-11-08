@@ -9,49 +9,101 @@ import seedu.quotesify.lists.QuotesifyList;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+//@@author chloesyy
+
+/**
+ * Represents a BookList of books.
+ */
 public class BookList extends QuotesifyList<Book> {
     private ArrayList<Book> books = super.getList();
     private BookTitleComparator comparator = new BookTitleComparator();
 
+    /**
+     * Constructor for empty BookList.
+     */
     public BookList() {
         super(new ArrayList<>());
     }
 
+    /**
+     * Constructor for BookList with books.
+     * @param books Books to be added into BookList.
+     */
     public BookList(ArrayList<Book> books) {
         super(books);
     }
 
+    /**
+     * Adds a new book to the BookList and sorts the BookList in alphabetical order.
+     *
+     * @param newBook New book to be added to the BookList.
+     */
     @Override
     public void add(Book newBook) {
         books.add(newBook);
         books.sort(comparator);
     }
 
+    /**
+     * Deletes a book from the BookList, specified by its index.
+     *
+     * @param index Item index in the list.
+     */
     @Override
     public void delete(int index) {
         books.remove(index);
     }
 
+    /**
+     * Returns true if the BookList is empty.
+     *
+     * @return True if Booklist is empty.
+     */
     public boolean isEmpty() {
         return books.isEmpty();
     }
 
+    /**
+     * Returns index of specified book in the BookList.
+     *
+     * @param book Book to get index.
+     * @return Index of book.
+     */
     public int getIndex(Book book) {
         return books.indexOf(book);
     }
 
+    /**
+     * Returns book for a specified index.
+     *
+     * @param index Index of book.
+     * @return Book with the specified index.
+     */
     public Book getBook(int index) {
         return books.get(index);
     }
 
+    /**
+     * Returns the number of books the BookList has.
+     *
+     * @return Number of books in the BookList.
+     */
     public int getSize() {
         return books.size();
     }
 
+    /**
+     * Sorts the BookList in alphabetical order.
+     */
     public void sort() {
         books.sort(comparator);
     }
 
+    /**
+     * Converts the BookList into a String.
+     *
+     * @return String of books in BookList.
+     */
     @Override
     public String toString() {
         String booksToReturn = "";
@@ -63,6 +115,11 @@ public class BookList extends QuotesifyList<Book> {
         return booksToReturn;
     }
 
+    /**
+     * Converts the BookList into a String with corresponding indexing.
+     *
+     * @return String of books with their corresponding index in BookList.
+     */
     public String toStringWithIndex() {
         String booksToReturn = "";
 
@@ -74,6 +131,13 @@ public class BookList extends QuotesifyList<Book> {
         return booksToReturn;
     }
 
+    /**
+     * Ensures there are no books in the BookList with the same title and author.
+     *
+     * @param title Title of book.
+     * @param authorName Author name of book.
+     * @throws QuotesifyException If there is a similar book.
+     */
     public void ensureNoSimilarBooks(String title, String authorName) throws QuotesifyException {
         ArrayList<Book> similarBooks = find(title, authorName);
 
@@ -82,6 +146,13 @@ public class BookList extends QuotesifyList<Book> {
         }
     }
 
+    /**
+     * Finds a list of books in the BookList with the same author and title.
+     *
+     * @param title Title of book.
+     * @param authorName Author name of book.
+     * @return List of books with the same author and title.
+     */
     public ArrayList<Book> find(String title, String authorName) {
         assert !title.isEmpty() || !authorName.isEmpty();
         String lowerCaseTitle = title.toLowerCase();
@@ -99,6 +170,12 @@ public class BookList extends QuotesifyList<Book> {
         return filteredBooks;
     }
 
+    /**
+     * Finds a BookList of books containing a keyword.
+     *
+     * @param keyword Keyword used to find the books.
+     * @return BookList of books containing keyword.
+     */
     public BookList findByKeyword(String keyword) {
         assert !keyword.isEmpty();
         String lowerCaseKeyword = keyword.toLowerCase();
@@ -114,6 +191,12 @@ public class BookList extends QuotesifyList<Book> {
         return new BookList(filteredBooks);
     }
 
+    /**
+     * Finds a book by its title.
+     *
+     * @param title Title of book.
+     * @return Book with the specified title.
+     */
     public Book findByTitle(String title) {
         assert !title.isEmpty();
         String lowerCaseTitle = title.toLowerCase();
@@ -126,6 +209,12 @@ public class BookList extends QuotesifyList<Book> {
         return null;
     }
 
+    /**
+     * Finds a book by a specified number.
+     *
+     * @param num Index of book + 1
+     * @return Book corresponding to specified number.
+     */
     public Book findByNum(int num) {
         int index = num - 1;
         if (num <= books.size()) {
@@ -135,6 +224,12 @@ public class BookList extends QuotesifyList<Book> {
         }
     }
 
+    /**
+     * Finds an existing author.
+     *
+     * @param authorName Author to be found.
+     * @return Author corresponding to authorName.
+     */
     public Author findExistingAuthor(String authorName) {
         BookList filteredBooks = filterByAuthor(authorName);
 
@@ -146,6 +241,12 @@ public class BookList extends QuotesifyList<Book> {
         return author;
     }
 
+    /**
+     * Filters the BookList by its completion.
+     *
+     * @param isDone True if book is completed, false otherwise.
+     * @return BookList of books corresponding to isDone boolean.
+     */
     public BookList filterDone(boolean isDone) {
         ArrayList<Book> filteredBooks;
 
@@ -162,6 +263,12 @@ public class BookList extends QuotesifyList<Book> {
         return new BookList(filteredBooks);
     }
 
+    /**
+     * Filters the BookList by its author.
+     *
+     * @param authorName Author name to be filtered by.
+     * @return BookList of books with the same author.
+     */
     public BookList filterByAuthor(String authorName) {
         String lowerCaseAuthor = authorName.toLowerCase();
 
@@ -175,6 +282,12 @@ public class BookList extends QuotesifyList<Book> {
         return new BookList(filteredBooks);
     }
 
+    /**
+     * Filters the BookList by its Categories.
+     *
+     * @param categoryName Category to be filtered by.
+     * @return BookList of books in that category.
+     */
     public BookList filterByCategory(String categoryName) {
         ArrayList<Book> filteredBooks = (ArrayList<Book>) books.stream()
                 .filter(book -> {
@@ -184,6 +297,11 @@ public class BookList extends QuotesifyList<Book> {
         return new BookList(filteredBooks);
     }
 
+    /**
+     * Converts the BookList into a JSONArray.
+     *
+     * @return JSONArray of BookList.
+     */
     @Override
     public JSONArray toJsonArray() {
         JSONArray list = new JSONArray();
