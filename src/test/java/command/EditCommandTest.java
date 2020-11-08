@@ -67,8 +67,6 @@ class EditCommandTest {
         LocalDateTime by = LocalDateTime.parse("2020-02-02T20:00");
         event.Event existing = new Assignment("existing", location, by);
         events.addEvent(existing);
-        //ByteArrayInputStream in = new ByteArrayInputStream("\nsomething\n\n\n\n".getBytes());
-        //System.setIn(in);
         String[] editInformation = {"","something","","",""};
         LocalDateTime[] startEnd = new LocalDateTime[2];
 
