@@ -87,7 +87,7 @@ public class WordList {
                     }
                     if (!duplicate) {
                         wordList.add(toAdd);
-                        UI.addNounMessage(toAdd.getDescription());
+                        UI.addVerbMessage(toAdd.getDescription());
                     }
                 }
             }
@@ -123,7 +123,7 @@ public class WordList {
                     }
                     if (!duplicate) {
                         wordList.add(toAdd);
-                        UI.addNounMessage(toAdd.getDescription());
+                        UI.addAdjectiveMessage(toAdd.getDescription());
                     }
                 }
             }
@@ -174,5 +174,9 @@ public class WordList {
                 i++;
             }
         }
+    }
+
+    public static void clearAllWords() {
+        wordList.clear();
     }
 }
