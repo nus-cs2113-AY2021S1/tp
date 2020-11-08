@@ -499,7 +499,7 @@ There are four options:
     4. Delete all bookmarks contained in a slot from the module.  
     
 
-
+<a name="edit-slot"></a>
 ### Edit Slot feature (Francisco)
 
 This feature allows users to edit a slot's title or time. Users can also move slots over to another module.
@@ -507,7 +507,7 @@ This feature allows users to edit a slot's title or time. Users can also move sl
 Given below is an example usage scenario and how the edit mechanism works.
 
 1. The user enters "edit title mon 2 new_title"
-2. A new EditSlotCommand instance is created and the execute() method is called.
+2. A new EditSlotCommand instance is created and its execute() method is called.
 3. The slot corresponding to the day and index given in the user input is retrieved by calling the getSlotByIndexInDay method of the timetable. In this case, the 2nd slot on Monday will be returned.
 4. Based on the chosen field in the user input, different methods are called:
     a. If the command is "edit module", the moveSlotToAnotherModule method in timetable is called to move the slot to a given module.
@@ -518,6 +518,44 @@ The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
 *<center/> Figure 2.18 Sequence diagram for EditSlotCommand </center> <br/></br>*
+
+<a name="showsettings"></a>
+### Show settings feature (Francisco)
+
+This feature allows more experienced users to view Zoomaster's settings. 
+
+Given below is an example usage scenario and how the `showsettings` command works.
+
+1. The user enters `showsettings`
+2. A new ShowSettingsCommand instance is created and its `execute` method is called.
+3. Inside the `execute` method, a private method `generateSettingsListMessage` is called to generate the string of 
+settings to be printed.
+4. `generateSettingsListMessage` retrieves a list of the user's settings by calling the getSettingsVariables method of 
+the UserSettings object in the main Zoomaster class. It will then convert them into a string and return it.
+5. In `execute`, the generated text will be printed by calling the `ui`'s `print` method.
+
+The sequence diagram below explains how this feature is executed:
+
+ ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettingssequence.png)
+*<center/> Figure 2.19 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
+
+<a name="setsettings"></a>
+### Set settings feature (Francisco)
+
+This feature allows users to change settings as shown from the `showsettings` command. 
+
+Given below is an example usage scenario and how the `set` command works.
+
+1. The user enters `set def_mode timetable`, which means set the default mode to timetable mode.
+2. A new SetSettingsCommand instance is created and its `execute` method is called.
+3. Inside the `execute` method, the list of all settings variables is retrieved from the `UserSettings` object in
+`Zoomaster`.
+4. The corresponding variable is extracted out (in this case, `def_mode`), and the value is set to `timetable`.
+
+The sequence diagram below explains how this feature is executed:
+
+ ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
+*<center/> Figure 2.20 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
 
 ### Planner feature (Jusuf)
