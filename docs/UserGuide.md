@@ -240,7 +240,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Adding an expense item: `spend` (coming soon)
+### Adding an expense item: `spend`
 Add an expense item into the expense list.
 
 Format: `spend <description> <compulsory arguments> <optional arguments>`
@@ -267,8 +267,8 @@ Output:
 ```
     ____________________________________________________________
      Got it. I've added this expense item:
-       lunch (5 SGD) (date: 28 Oct 2020)
-     Now you have 4 expense(s) in the list.
+       lunch (5.00 SGD) (date: Sunday, November 8, 2020)
+     Now you have 5 expense items in the list.
     ____________________________________________________________
 ```
 
@@ -432,8 +432,9 @@ Output:
      Total MCs completed: 12
     ____________________________________________________________
 ```
-### Displaying expense items on list: `list` (coming soon)
-List all the expense items in the expense list and shows total amount of money spent for each currency.
+### Displaying expense items on list: `list` 
+List all the expense items in the expense list, show total amount of money spent for each currency and the curent day,
+week, month, and year.
 
 Format: `list expenses`
 
@@ -445,14 +446,74 @@ Output:
 
 ```
     ____________________________________________________________
-     Here is a list of your expense(s):
-     
-     lunch (5 SGD) (date: 28 Oct 2020)
-     dinner (10 USD)
+     Here are the expense item(s) in your list:
+
+     breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
+     bus (1.00 SGD) (date: Saturday, November 7, 2020)
+     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (0.40 USD) (date: Saturday, November 7, 2020)
+
+     Your total expense for today is:
+
+     Your total expense for this week is:
+     4.30 SGD
+     0.40 USD
+
+     Your total expense for this month is:
+     4.30 SGD
+     0.40 USD
+
+     Your total expense for this year is:
+     4.30 SGD
+     0.40 USD
     ____________________________________________________________
-     Total money spent:
-     SGD: 5
-     USD: 10
+```
+
+### Displaying expense items on a certain date on list: `list` 
+List all the expense items in the expense list and shows total amount of money spent for each currency.
+
+Format: `list expenses date/YYYY-MM-DD`
+
+Example of usage:
+
+`list expenses date/2020-11-07`
+
+Output:
+```    
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list of date Saturday, November 7, 2020:
+     book (15.00 SGD) (date: Saturday, November 7, 2020)
+
+     The total amount listed:
+     15.00 SGD
+    ____________________________________________________________
+```
+
+### Displaying expense items for a certain time period on list: `list` 
+List all the expense items in the expense list and shows total amount of money spent for each currency.
+
+Format: `list expenses for/<time period>`
+
+🚩: `<time period>` can only be `day`, `week`, `month`, or `year`.
+
+🚩: time period is **case-insensitive**.
+
+Example of usage:
+
+`list expenses for/week`
+
+Output:
+```    
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list for this week:
+     breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
+     bus (1.00 SGD) (date: Saturday, November 7, 2020)
+     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (0.40 USD) (date: Saturday, November 7, 2020)
+
+     The total amount listed:
+     4.30 SGD
+     0.40 USD
     ____________________________________________________________
 ```
 
@@ -570,7 +631,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Deleting an expense item from the list: `delete` (coming soon)
+### Deleting an expense item from the list: `delete`
 Deletes an expense item from the list 
 
 Format: `delete expense <expenseIndexNumber>`
@@ -585,11 +646,30 @@ Output:
 
 ```
     ____________________________________________________________
-     Noted. I've removed this expense item:
-       lunch (5 SGD)
-     Now you have 1 expense(s) in the list.
-    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
 
+     lunch (5.00 SGD) (date: Saturday, November 7, 2020)
+    ____________________________________________________________
+```
+
+### Deleting expense items on a certain date from the list: `delete`
+Deletes an expense item from the list 
+
+Format: `delete expenses date/YYYY-MM-DD`
+
+Example of usage:
+
+`delete expenses date/2020-11-07`
+
+Output: 
+```
+    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
+
+     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (0.40 USD) (date: Saturday, November 7, 2020)
+     sandwich (3.00 SGD) (date: Saturday, November 7, 2020)
+    ____________________________________________________________
 ```
 
 ### Marking a task as done: `done`

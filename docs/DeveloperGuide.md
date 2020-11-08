@@ -499,6 +499,10 @@ Below are the steps required for manual testing of termiNus
 6. Adding an expense item
     - Test case: `spend lunch v/4 currency/SGD date/2020-11-08`
       Expected: a `4.00` `SGD` expense on `lunch` on `Sunday, November 8,2020` is added to the expense list.
+    - Test case: `spend book v/15`
+      Expected: a `15.00` `SGD` expense on `book` on the current day is added to the expense list. 
+      (By default, if `currency/` and `date/` arguments are not specified, termiNus will assume the currency is `SGD` 
+      and the date is the current day.)
       
 ### Creating module folders
 - Test case: `makefolders`
@@ -535,6 +539,8 @@ Below are the steps required for manual testing of termiNus
     - Test case: `list expenses date/2020-11-09`
       Expected: the list of expenses on `Sunday, November 8, 2020` is displayed, followed by the total expenses 
       caculated for the given day.
+    - Test case: `list expenses for/week`
+      Expected: the list of expenses for the current week is displayed.
 
 ### Deleting items
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
