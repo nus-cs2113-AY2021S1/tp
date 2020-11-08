@@ -2,7 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":Parser" as Parser LOGIC_COLOR
 participant ":ReviseCommand" as ReviseCommand LOGIC_COLOR
 participant ":Scheduler" as Scheduler LOGIC_COLOR
 participant ":HistoryCommand" as HistoryCommand LOGIC_COLOR
@@ -23,93 +22,18 @@ box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
 
-[-> Parser : parse("revise 1")
-activate Parser
-
-create ReviseCommand
-Parser -> ReviseCommand : ReviseCommand(1)
-activate ReviseCommand
-
-ReviseCommand --> Parser : command
-deactivate ReviseCommand
-
-[<-- Parser : command
-deactivate Parser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-[<-[hidden]- Parser
-destroy Parser
-
 [-> ReviseCommand : execute(ui, access, storage)
 activate ReviseCommand
-ReviseCommand -> ReviseCommand : getChapter(reviseIndex, access)
-activate ReviseCommand
-ReviseCommand -> Access : getModule()
-activate Access
-ReviseCommand <-- Access : module
-deactivate Access
-[<-[hidden]- Access
-destroy Access
-ReviseCommand -> Module : getChapters()
-activate Module
-ReviseCommand <-- Module : chapters
-deactivate Module
-[<-[hidden]- Module
-destroy Module
-ReviseCommand -> ChapterList : getChapter()
-activate ChapterList
-ReviseCommand <-- ChapterList : chapter
-deactivate ChapterList
-[<-[hidden]- ChapterList
-destroy ChapterList
-ReviseCommand <-- ReviseCommand : toRevise
-deactivate ReviseCommand
-opt chapter not due
-    ReviseCommand -> ReviseCommand : promptNotDue(ui, toRevise)
-    activate ReviseCommand
-    ReviseCommand -> Ui : getInput()
-    activate Ui
-    ReviseCommand <-- Ui : input
-    deactivate Ui
-    loop input is invalid
-        alt user enters Y
-        else user enters N
-        else invalid input
-            ReviseCommand -> Ui : getInput()
-            activate Ui
-            ReviseCommand <-- Ui : input
-            deactivate Ui
-        end
-    end
-    ReviseCommand --> ReviseCommand : notRevising
-    deactivate ReviseCommand
-    opt notRevising
-        <--  ReviseCommand
-    end
-end
-ReviseCommand -> ReviseCommand : getCards(ui, access, storage)
-activate ReviseCommand
-ReviseCommand -> Storage : loadCard(module, chapter)
-activate Storage
-ReviseCommand <-- Storage
-deactivate Storage
-ReviseCommand <-- Storage : allCards
-ReviseCommand -> Chapter : setCards(allCards)
-activate Chapter
-ReviseCommand <-- Chapter
-deactivate Chapter
-ReviseCommand --> ReviseCommand : allCards
-deactivate ReviseCommand
+ref over ReviseCommand, ChapterList : Get Chapter
+[<-[hidden]- ReviseCommand
+ref over ReviseCommand, Ui : Chapter is not due for revision
+[<-[hidden]- ReviseCommand
+
+ref over ReviseCommand, Chapter: Get Cards
 ReviseCommand -> Ui : showToUser(cardCount)
 activate Ui
 ReviseCommand <-- Ui
 deactivate Ui
-opt no cards
-    ReviseCommand -> Ui : showToUser(message)
-    activate Ui
-    ReviseCommand <-- Ui
-    deactivate Ui
-    [<-- ReviseCommand
-end
 ReviseCommand -> Ui : showToUser(message)
 activate Ui
 ReviseCommand <-- Ui
@@ -130,8 +54,6 @@ ReviseCommand -> Ui : showToUser(message)
 activate Ui
 ReviseCommand <-- Ui
 deactivate Ui
-[<-[hidden]- Ui
-destroy Ui
 ReviseCommand -> Scheduler : computeDeckDeadline(cards)
 activate Scheduler
 ReviseCommand <-- Scheduler : date
@@ -148,8 +70,6 @@ ReviseCommand -> Storage : saveCards(cards, module, chapter)
 activate Storage
 ReviseCommand <-- Storage
 deactivate Storage
-[<-[hidden]- Storage
-destroy Storage
 ReviseCommand -> HistoryCommand : addHistory(ui, access, storage, reviseIndex)
 activate HistoryCommand
 ReviseCommand <-- HistoryCommand

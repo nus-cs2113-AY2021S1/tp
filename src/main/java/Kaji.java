@@ -5,7 +5,7 @@ import exception.IncorrectAccessLevelException;
 import exception.InvalidFileFormatException;
 import exception.InvalidInputException;
 import exception.ExclusionFileException;
-import exception.DuplicateDataException;
+import exception.StorageDataException;
 
 import manager.admin.Admin;
 import parser.Parser;
@@ -18,12 +18,22 @@ import java.util.logging.Logger;
 
 import static common.Messages.MESSAGE_HELP;
 
+
+/**
+ * Entry point of the Kaji application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Kaji {
     private Ui ui;
     private Access access;
     private Storage storage;
     private static final Logger logger = KajiLog.getLogger("Kaji");
 
+    /**
+     * Sets up the required objects and loads the data from the storage file.
+     *
+     * @param filePath filepath of the storage file
+     */
     public Kaji(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -31,11 +41,12 @@ public class Kaji {
             Admin admin = new Admin(storage.loadModule());
             access = new Access(admin);
         } catch (FileNotFoundException e) {
-            storage.createAdmin(ui);
+            storage.createAdmin();
             access = new Access();
         }
     }
 
+    /** Runs the program until termination. */
     public void run() {
         logger.info("Starting up Kaji...");
         ui.showWelcome();
@@ -52,7 +63,7 @@ public class Kaji {
                 isExit = c.isExit();
             } catch (InvalidInputException | IncorrectAccessLevelException | IOException
                     | IndexOutOfBoundsException | InvalidFileFormatException | ExclusionFileException
-                    | DuplicateDataException e) {
+                    | StorageDataException e) {
                 logger.warning("An error occured: " + e.getMessage());
                 ui.showError(e.getMessage());
                 ui.printLine();

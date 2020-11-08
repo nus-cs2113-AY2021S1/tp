@@ -10,13 +10,14 @@ import commands.ExitCommand;
 import commands.GoCommand;
 import commands.HelpCommand;
 import commands.HistoryCommand;
+import commands.IncludeCommand;
 import commands.ListCommand;
 import commands.ListDueCommand;
+import commands.PreviewCommand;
 import commands.RemoveCommand;
 import commands.RescheduleCommand;
 import commands.ReviseCommand;
 import commands.ShowRateCommand;
-
 import manager.card.Card;
 import manager.chapter.DueChapter;
 
@@ -29,6 +30,9 @@ import java.util.Scanner;
 import static commands.ReviseCommand.MESSAGE_SHOW_ANSWER_PROMPT;
 import static common.Messages.LINE;
 
+/**
+ * UI of the application.
+ */
 public class Ui {
     private final Scanner in;
     private final PrintStream out;
@@ -76,6 +80,10 @@ public class Ui {
         return userChoice.toUpperCase();
     }
 
+    /** Prompts for the command and reads the text entered by the user.
+     *
+     * @return full command entered by the user
+     */
     public String readCommand() {
         out.print("Enter command here: ");
         String userCommand = in.nextLine();
@@ -86,69 +94,93 @@ public class Ui {
         return userCommand;
     }
 
-
-
+    /**
+     * Prints the welcome message upon the start of the application.
+     */
     public void showWelcome() {
         out.println("Welcome to Kaji!");
     }
 
+    /**
+     * Prints the access level that the user is currently at.
+     *
+     * @param access access level of the user
+     */
     public void showLevel(Access access) {
         out.println(access.getLevel());
     }
 
+    /**
+     * Prints the line divider between each command.
+     */
     public void printLine() {
         out.println(LINE);
     }
 
+    /**
+     * Shows message to the user.
+     *
+     * @param message message to be shown to the user
+     */
     public void showToUser(String message) {
         out.println(message);
     }
 
-    public void showToUserInline(String message) {
-        out.print(message);
+    public void showCardRevision(Card c, Scanner scanner) {
+        out.println(c.getRevisionQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
+        getAnswerInput(c, scanner);
     }
 
-    public void showCardRevision(Card c) {
-        out.println(c.getQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
-        getAnswerInput(c);
-    }
-
-    public void getAnswerInput(Card c) {
-        String input = in.nextLine();
+    public void getAnswerInput(Card c, Scanner scanner) {
+        String input = scanner.nextLine();
         while (!input.trim().equalsIgnoreCase("s")) {
             out.println("You have entered an invalid input, please try again.");
-
-            input = in.nextLine();
+            input = scanner.nextLine();
         }
-        out.println(c.getAnswer());
+        out.println(c.getRevisionAnswer());
     }
 
-    public String getInput(String prompt) {
+
+    public String getInput(String prompt, Scanner scanner) {
         out.println(prompt);
-        return in.nextLine();
+        return scanner.nextLine();
     }
 
+    /**
+     * Prints the exit message upon termination of the application.
+     */
     public void showExit() {
         out.println("Exiting the program...");
     }
 
+    /**
+     * Prints the list of commands available.
+     */
     public void showHelpList() {
         out.println("Here is a list of commands available:" + "\n");
-        out.println("1.  " + ListCommand.MESSAGE_USAGE);
-        out.println("2.  " + ReviseCommand.MESSAGE_USAGE);
-        out.println("3.  " + HelpCommand.MESSAGE_USAGE);
-        out.println("4.  " + AddCommand.MESSAGE_USAGE);
-        out.println("5.  " + ExitCommand.MESSAGE_USAGE);
-        out.println("6.  " + EditCommand.MESSAGE_USAGE);
-        out.println("7.  " + RemoveCommand.MESSAGE_USAGE);
-        out.println("8.  " + GoCommand.MESSAGE_USAGE);
-        out.println("9.  " + BackCommand.MESSAGE_USAGE);
-        out.println("10. " + ListDueCommand.MESSAGE_USAGE);
-        out.println("11. " + HistoryCommand.MESSAGE_USAGE);
-        out.println("12. " + ShowRateCommand.MESSAGE_USAGE);
-        out.println("13. " + RescheduleCommand.MESSAGE_USAGE);
+        out.println("1.  " + AddCommand.MESSAGE_USAGE);
+        out.println("2.  " + BackCommand.MESSAGE_USAGE);
+        out.println("3.  " + ListDueCommand.MESSAGE_USAGE);
+        out.println("4.  " + EditCommand.MESSAGE_USAGE);
+        out.println("5.  " + ExcludeCommand.MESSAGE_USAGE);
+        out.println("6.  " + ExitCommand.MESSAGE_USAGE);
+        out.println("7.  " + GoCommand.MESSAGE_USAGE);
+        out.println("8.  " + HelpCommand.MESSAGE_USAGE);
+        out.println("9.  " + HistoryCommand.MESSAGE_USAGE);
+        out.println("10. " + IncludeCommand.MESSAGE_USAGE);
+        out.println("11. " + ListCommand.MESSAGE_USAGE);
+        out.println("12. " + PreviewCommand.MESSAGE_USAGE);
+        out.println("13. " + RemoveCommand.MESSAGE_USAGE);
+        out.println("14. " + RescheduleCommand.MESSAGE_USAGE);
+        out.println("15. " + ReviseCommand.MESSAGE_USAGE);
+        out.println("16. " + ShowRateCommand.MESSAGE_USAGE);
     }
 
+    /**
+     * Prints the error message from exceptions.
+     *
+     * @param error error message thrown by exceptions
+     */
     public void showError(String error) {
         out.println(error);
     }
@@ -197,35 +229,8 @@ public class Ui {
 
     }
 
-    public boolean isValidExclusionChoice(String choice) {
-        switch (choice.toLowerCase()) {
-        case ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE:
-        case ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_CHAPTER:
-            return true;
-        default:
-            return false;
-        }
-    }
-
-    public String chooseModuleOrChapterExclusion(String type) {
-        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MORE)) {
-            showToUser("Would you like to exclude a module or chapter from your schedule?");
-        } else {
-            showToUser("Would you like to include a module or chapter back into your schedule?");
-        }
-        String choice = readCommand();
-        while (!isValidExclusionChoice(choice)) {
-            String message = "That was not a valid choice. Please enter \""
-                    + ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE + "\" or \""
-                    + ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_CHAPTER + "\".";
-            showToUser(message);
-            choice = readCommand();
-        }
-        return choice.toLowerCase();
-    }
-
     public String getExcludedModuleName(String type) {
-        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
+        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_OPTION_MODULE)) {
             showToUser("Which module will you like to be excluded from your schedule?");
         } else {
             showToUser("Which module does the chapter you would like to be excluded belong to?");
@@ -239,7 +244,7 @@ public class Ui {
     }
 
     public String getIncludedModuleName(String type) {
-        if (type.equals(ExcludeCommand.EXCLUDE_COMMAND_SECONDARY_OPTION_MODULE)) {
+        if (type.equals(IncludeCommand.INCLUDE_COMMAND_OPTION_MODULE)) {
             showToUser("Which module will you like to include back into your schedule?");
         } else {
             showToUser("Which module does the chapter you would like to be included belong to?");

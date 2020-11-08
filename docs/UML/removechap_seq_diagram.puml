@@ -2,7 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":Parser" as Parser LOGIC_COLOR
 participant ":RemoveChapterCommand" as RemoveChapterCommand LOGIC_COLOR
 participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
 end box
@@ -19,21 +18,6 @@ end box
 box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
-
-[-> Parser : parse("remove 1")
-activate Parser
-
-create RemoveChapterCommand
-Parser -> RemoveChapterCommand : RemoveChapterCommand(1)
-activate RemoveChapterCommand
-
-RemoveChapterCommand --> Parser : command
-deactivate RemoveChapterCommand
-
-[<-- Parser : command
-deactivate Parser
-[<-[hidden]- Parser
-destroy Parser
 
 -> RemoveChapterCommand : execute(ui, access, storage)
 activate RemoveChapterCommand
@@ -59,8 +43,6 @@ RemoveChapterCommand -> Storage : removeChapterFromDue(module, chapter)
 activate Storage
 RemoveChapterCommand <-- Storage : isRemovedFromDue
 deactivate Storage
-[<-[hidden]- Storage
-destroy Storage
 RemoveChapterCommand -> RemoveCommand : prepareResult(type, module, count)
 activate RemoveCommand
 RemoveChapterCommand <-- RemoveCommand : result
@@ -73,8 +55,6 @@ RemoveChapterCommand -> Ui : showToUser(result)
 activate Ui
 RemoveChapterCommand <-- Ui
 deactivate Ui
-[<-[hidden]- Ui
-destroy Ui
 <-- RemoveChapterCommand
 deactivate RemoveChapterCommand
 @enduml

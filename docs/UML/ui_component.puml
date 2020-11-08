@@ -4,31 +4,28 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-Class Kaji
+Class Kaji LOGIC_COLOR
 
 package Model <<Rectangle>> {
-Class HiddenModel MODEL_COLOR
+Class HiddenModel #FFFFFF
 }
 
 package Logic <<Rectangle>> {
-Class HiddenLogic LOGIC_COLOR
+Class HiddenModel #FFFFFF
 }
 
 package Storage <<Rectangle>> {
-Class HiddenLogic STORAGE_COLOR
+Class HiddenModel #FFFFFF
 }
 
 package Ui <<Rectangle>> {
-Class HiddenLogic UI_COLOR
+Class Ui UI_COLOR
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
-
+Kaji .up.> Ui
 Model -up-> Ui
 Storage -up-> Ui
 Logic -up-> Ui
-Kaji .up.> Ui
 
 Storage -[hidden]left- Model
 Model -[hidden]left- Logic

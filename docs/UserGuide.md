@@ -85,8 +85,8 @@ To get started on this application, please perform the following steps:
 
 1. Ensure that you have Java 11 or above installed.
 1. Download the latest version of `Kaji` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
-1. Copy the file to the folder you want to use as the <I>home folder</I> for your Kaji.
-1. Double-click the file to start the app or open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
+1. Copy the file to an empty folder you want to use as the <I>home folder</I> for your Kaji.
+1. Open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
 ![Welcome screen](images/kaji.PNG)
 1. Type the command in the command window and press Enter to execute it. 
    e.g. typing `help` and pressing Enter will open the help window.<br>
@@ -118,8 +118,8 @@ Welcome to the first feature of Kaji! In order to use this program, you will fir
 
 ##### Key Pointers:
 * Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message
-* Kaji is not case-sentive, therefore, a new module named `module`  will be treated equally as module named `MODULE`. 
-
+* Kaji is not case-sensitive, therefore, a new module named `module`  will be treated equally to a module named `MODULE`. 
+* Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113 CS2050` will creates a module named `CS2113 CS2050`, instead of two separated modules named `CS2113` and `CS2050` respectively.
 
 ##### Example: 
 Input: add CS2113
@@ -197,20 +197,20 @@ For instance, you are currently at the admin level and want to remove the module
 
 Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go \MODULE_CODE`.
 
-##### Format: `go \MODULE_CODE`
-\MODULE_CODE is the name of the module that you have created, such as `CS2113`, `Module 1` or `Biology`. 
+##### Format: `go \MODULE_INDEX`
+\MODULE_INDEX is the index of the module that you can find in the list command, such as `1`, `2` or `3`. 
 
 ##### Key Pointers:
-* Kaji only allow access to the existing modules that are shown in the list, therefore, module code that is deleted or has never been created will result in an error message.
-* Kaji is not case-sentive, therefore, a module named `module`  will be treated equally as module named `MODULE`. 
+* Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
+* Kaji does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
 
 ##### Example: 
-Input: `go CS2113`
+Input: `go 1`
 Output:
 ```
 ---------------------------------------------------------------------
 admin
-Enter command here: go CS2113
+Enter command here: go 1
 Command Type: go
 This is a new module, you can try to add chapters inside!
 ---------------------------------------------------------------------
@@ -230,7 +230,7 @@ You are now at the module level! This command allows you to create a new chapter
 
 ##### Key Pointers:
 * Similar to module, Kaji does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
-* Kaji is not case-sentive, therefore, a new chapter named `chapter`  will be treated equally as module named `CHAPTER`. 
+* Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
 
 ##### Example 1: 
 Input:
@@ -568,7 +568,7 @@ For instance, you are currently in chapter level `Chapter 1` and want to return 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
 
-Congradulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
+Congratulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
 
 It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. 
 
@@ -576,9 +576,10 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 
 
 ##### Key Pointers:
-* This command is only accessible in the chapter level. You will gets an error message if you are in the wrong access level.
-* Only overall performance of your current chapter level is computed.
->:information_source: <b>Note:</b> As you now know, it is the level that you can add/edit/delete cards.
+* This command is only accessible in the chapter level. You will get an error message if you are in the wrong access level.
+* Only overall performance of your current chapter level will be computed.
+* Cards that has yet be answered will be label as <cannot answer>, therefore, if you find a `1.0` for `the percentage of cards that is labeled <cannot answer>`, don't panic, it will be updated as soon as you finish your first revision session of this particular chapter.
+>:information_source: <b>Note:</b> As you now know, it is the level which you can add/edit/delete cards.
 
 ##### Example: 
 Input: showrate
@@ -739,204 +740,182 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 
 <br><br>
 
-### 4.5.3. Customising your list of Excluded Modules: `exclude`
+### 4.5.3. Adding chapters to your list of Excluded Modules: `exclude`
 (by Yan An)
 
+Apart from viewing your schedule, what if the Semester has ended and you would like to take a Module or Chapter out of your schedule? If you were to remove the files from your database completely, it would be really tedious to add the content back Card by Card. Therefore, we created the `exclude` command.
 
-As your Database grows in size over time, you might want to **customise the automated scheduling** that KAJI provides for you. However, it would **take considerable effort** for you to **delete** an entire Module or Chapter, only to find that you have to **add it back** into your Database **Card by Card**.
-
-Our solution to that is an Exclusion List: **a list of Chapters that KAJI will ignore** as it creates your schedule for you. In this way, you will only have to **add** a Chapter to the list to **exclude** it from your schedule and **remove** it from the list to **include** it back into your schedule.
-
-The `exclude` command allows you to **add or remove** a single Chapter or an entire Module, to and from your Exclusion list to **customise which Chapters are scheduled** in your Database.
+The `exclude` command allows you to **add** a single Chapter or every Chapter from a Module to your Exclusion list so that you can **remove these items** from your schedule.
 <br>
 
-#### Format: `exclude \PRIMARY_OPTION`
-\PRIMARY_OPTION has two values which changes the mode of the `exclude` command:
-* ***more***: This option allows you to use `exclude` to **add** to the Exclusion List
-* ***less***: This option allows you to use `exclude` to **remove** from the Exclusion List
+#### Format: `exclude MODULE_OR_CHAPTER`
+The `exclude` command has two options for MODULE_OR_CHAPTER:
+* ***module***: This option allows you to use `exclude` to add all the Chapters from a Module into the Exclusion List.
+* ***chapter***: This option allows you to use `exclude` to add a Chpater into the Exclusion List.
 
 
 #### Key Pointers:
 * This command can be **called from any Level**
-* This command **checks if the Chapter/Module** you are adding into the Exclusion List **exists**, so the List will
- not be filled with non-existing exclusions.
-* After calling the command with either "more" or "less", there will be **a guided secondary option** on whether you
- would like to add/remove **a single Chapter** or **an entire Module**
-* The name entry of the Chapter/Module to be operated on is **case-sensitive**
-
+* This command **checks if the Chapter/Module** you are adding into the Exclusion List **exists**, so the List will not be filled with non-existing exclusions.
+* Do note that the name of the Chapter/Module you provide has to be in the correct case as our check is **case-sensitive**.
 
 #### Example
-At any point, if you **customise your Exclusion List**, all you have to do is enter the `exclude` command with the
- choice of "more" or "less" in the format specified above. Below are examples of the execution of the `exclude` command using both options.
+At any point, if you would like to **add to your Exclusion List**, all you have to do is enter the `exclude` command with the choice of "module" or "chapter" in the format specified above. Below are examples of the execution of the `exclude` command using both options.
 
-Example of ***`exclude more`***
-* ***Step 1***: Key the **`exclude more`** command **into the prompt** as shown below and **press *[Enter]***
+Example of ***`exclude module`***
+* ***Step 1***: Key the **`exclude module`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeMore.png" alt="Exclude Command more"/>
-  <br/>Figure <>. Example of the "exclude more" command  
+  <img src="UG_Images/excludeModule.png" alt="Exclude Command Module mode: Command"/>
+  <br/>Figure <>. Example of Exclude Command Module mode: Command
 </p>
 
-* ***Step 2***: Key either **"chapter"**, to exclude a new Chapter, or **"module"**, to exclude an entire Module
-, **into the prompt** as shown below and **press *[Enter]***
+* ***Step 2***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeMore2.png" alt="Exclude Command more Secondary Option"/>
-  <br/>Figure <>. Example of "exclude more" Secondary Option 
-</p>
-
-* ***`exclude more`*** + ***chapter***    
-        
-<p align="center">
-  <img src="UG_Images/excludeMore2Chapter.png" alt="Exclude Command more Chapter"/>
-  <br/>Figure <>. Example of "exclude more" with Chapter as the Secondary Option 
-</p>
-
-* ***Step 3***: Key the **Module name** of the Module that the Chapter you wish to exclude from your schedule
-     belongs to **into the prompt** as shown below and **press *[Enter]***
-        
-<p align="center">
-  <img src="UG_Images/excludeMore2ChapterModuleName.png" alt="Exclude Command more Chapter: ModuleName prompt"/>
-  <br/>Figure <>. Example of "exclude more" + ModuleName prompt 
+  <img src="UG_Images/excludeModuleModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
+  <br/>Figure <>. Example of Exclude Command Module mode: ModuleName Prompt
 </p>
 
 <p align="center">
-  <img src="UG_Images/excludeMore2ChapterModuleName2.png" alt="Exclude Command more Chapter: ModuleName filled"/>
-  <br/>Figure <>. Example of "exclude more" + ModuleName filled 
-</p>
-
-* ***Step 4***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown
- below and **press *[Enter]***
-        
-<p align="center">
-  <img src="UG_Images/excludeMore2ChapterChapterName.png" alt="Exclude Command more Chapter: ChapterName prompt"/>
-  <br/>Figure <>. Example of "exclude more" + ChapterName prompt 
-</p>
-
-<p align="center">
-  <img src="UG_Images/excludeMore2ChapterChapterName2.png" alt="Exclude Command more Chapter: ChapterName filled"/>
-  <br/>Figure <>. Example of "exclude more" + ChapterName result
+  <img src="UG_Images/excludeModuleModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
+  <br/>Figure <>. Example of Exclude Command Module mode: ModuleName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeMore2ChapterComplete.png" alt="Exclude Command more Chapter: Result"/>
-  <br/>Figure <>. Example of "exclude more" + chapter Result
+  <img src="UG_Images/excludeModuleResult.png" alt="Exclude Command Module mode: Result"/>
+  <br/>Figure <>. Example of Exclude Command Module mode: Result
 </p>
 
-* ***`exclude more`*** + ***module***
-        
+Example of ***`exclude chapter`***
+* ***Step 1***: Key the **`exclude chapter`** command **into the prompt** as shown below and **press *[Enter]***
+
 <p align="center">
-  <img src="UG_Images/excludeMore2Module.png" alt="Exclude Command more Chapter"/>
-  <br/>Figure <>. Example of "exclude more" with Module as the Secondary Option
+  <img src="UG_Images/excludeChapter.png" alt="Exclude Command Chapter mode: ChapterName Command"/>
+  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Command
 </p>
 
-* ***Step 3***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown
- below and **press *[Enter]***
+* ***Step 2***: Key the **Module name** of the Module that contains Chapter that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeMore2ModuleModuleName.png" alt="Exclude Command more Module: ModuleName prompt"/>
-  <br/>Figure <>. Example of "exclude more" + module prompt
+  <img src="UG_Images/excludeChapterModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
+  <br/>Figure <>. Example of Exclude Command Chapter mode: ModuleName Prompt
 </p>
 
 <p align="center">
-  <img src="UG_Images/excludeMore2ModuleModuleName2.png" alt="Exclude Command more Module: ModuleName filled"/>
-  <br/>Figure <>. Example of "exclude more" + module filled  
+  <img src="UG_Images/excludeChapterModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
+  <br/>Figure <>. Example of Exclude Command Chapter mode: ModuleName Filled
+</p>
+
+* ***Step 3***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/excludeChapterChapterPrompt.png" alt="Exclude Command Chapter mode: ChapterName Prompt"/>
+  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Prompt
+</p>
+
+<p align="center">
+  <img src="UG_Images/excludeChapterChapterFilled.png" alt="Exclude Command Chapter mode: ChapterName Filled"/>
+  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeMore2ModuleComplete.png" alt="Exclude Command more Module: Result"/>
-  <br/>Figure <>. Example of "exclude more" + module Result 
+  <img src="UG_Images/excludeChapterResult.png" alt="Exclude Command Chapter mode: Result"/>
+  <br/>Figure <>. Example of Exclude Command Chapter mode: Result
 </p>
 
-Example of ***`exclude less`***
-* ***Step 1***: Key the **`exclude less`** command **into the prompt** as shown below and **press *[Enter]***
 
-<p align="center">
-  <img src="UG_Images/excludeLess.png" alt="Exclude Command less"/>
-  <br/>Figure <>. Example of "exclude less" command  
-</p>
 
-* ***Step 2***: Key either **"chapter"**, to include a excluded Chapter, or **"module"**, to include a excluded
- Module, **into the prompt** as shown below and **press *[Enter]***
+### 4.5.4. Removing chapters from the list of Excluded Modules: `include`
+(by Yan An)
 
-<p align="center">
-  <img src="UG_Images/excludeLess2.png" alt="Exclude Command Secondary Option"/>
-  <br/>Figure <>. Example of "exclude less" Secondary Option
-</p>
+However, what should be done if you had excluded the Chapters of a Module from your schedule, only to find that it is a prerequisite for another module the next semester. To prepare for the upcoming semester, you would like to revise the excluded content again. This is why we created the `include` command.
 
-* ***`exclude less`*** + ***chapter***
-        
-<p align="center">
-  <img src="UG_Images/excludeLess2Chapter.png" alt="Exclude Command more Chapter"/>
-  <br/>Figure <>. Example of "exclude less" with Chapter as the Secondary Option
-</p>
-
-* ***Step 3***: Key the **Module name** of the Module that the Chapter you wish to include back into your schedule
-     belongs to **into the prompt** as shown below and **press *[Enter]***
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ChapterModuleName.png" alt="Exclude Command less Chapter: ModuleName prompt"/>
-  <br/>Figure <>. Example of "exclude less" + chapter ModuleName prompt 
-</p>
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ChapterModuleName2.png" alt="Exclude Command less Chapter: ModuleName filled"/>
-  <br/>Figure <>. Example of "exclude less" + chapter ModuleName filled
-</p>
-
-* ***Step 4***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown
- below and **press *[Enter]***
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ChapterModuleName.png" alt="Exclude Command less Chapter: ChapterName prompt"/>
-  <br/>Figure <>. Example of "exclude less" + chapter ChapterName prompt
-</p>
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ChapterModuleName2.png" alt="Exclude Command less Chapter: ChapterName filled"/>
-  <br/>Figure <>. Example of "exclude less" + chapter ChapterName filled
-</p>
-
-* ***Upon completion***: This is what you will see:
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ChapterComplete.png" alt="Exclude Command less Chapter: Result"/>
-  <br/>Figure <>. Example of "exclude less" + chapter Result 
-</p>
-
-* ***`exclude less`*** + ***module***
-        
-<p align="center">
-  <img src="UG_Images/excludeLess2Module.png" alt="Exclude Command more Chapter"/>
-  <br/>Figure <>. Example of "exclude less" with Module as the Secondary Option
-</p>
-
-* ***Step 3***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown
- below and **press *[Enter]***
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ModuleModuleName.png" alt="Exclude Command less Module: ModuleName prompt"/>
-  <br/>Figure <>. Example of "exclude less" + module ModuleName prompt 
-</p>
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ModuleModuleName2.png" alt="Exclude Command less Module: ModuleName filled"/>
-  <br/>Figure <>. Example of "exclude less" + module ModuleName filled 
-</p>
-
-* ***Upon completion***: This is what you will see:
-
-<p align="center">
-  <img src="UG_Images/excludeLess2ModuleComplete.png" alt="Exclude Command less Module: Result"/>
-  <br/>Figure <>. Example of "exclude less" + module Result
-</p>
-
+The `include` command allows you to **remove** a single Chapter or every Chapter from a Module from your Exclusion list so that you can **add these items** back into your schedule.
 <br>
 
+#### Format: `include MODULE_OR_CHAPTER`
+The `include` command has two options for MODULE_OR_CHAPTER:
+* ***module***: This option allows you to use `include` to remove all the Chapters from a Module from the Exclusion List.
+* ***chapter***: This option allows you to use `include` to remove a Chpater from the Exclusion List.
+
+#### Key Pointers:
+* This command can be **called from any Level**
+* Do note that the name of the Chapter/Module you provide has to be in the correct case as our check is **case-sensitive**.
+
+#### Example
+At any point, if you wish to **remove from your Exclusion List**, you can either enter the `include` command with the choice of either "chapter" or "module" in the format specified above. Below are examples of the command's execution using both options.
+
+Example of ***`include module`***
+* ***Step 1***: Key the **`include module`** command **into the prompt** as shown below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/includeModule.png" alt="Include Command Module mode: ModuleName Command"/>
+  <br/>Figure <>. Example of Include Command Module mode: ModuleName Command
+</p>
+
+* ***Step 2***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/includeModuleModulePrompt.png" alt="Include Command Module mode: ModuleName Prompt"/>
+  <br/>Figure <>. Example of Include Command Module mode: ModuleName Prompt
+</p>
+
+<p align="center">
+  <img src="UG_Images/includeModuleModuleFilled.png" alt="Include Command Module mode: ModuleName Filled"/>
+  <br/>Figure <>. Example of Include Command Module mode: ModuleName Filled
+</p>
+
+* ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/includeModuleResult.png" alt="Include Command Module mode: Result"/>
+  <br/>Figure <>. Example of Include Command Module mode: Result
+</p>
+
+
+Example of ***`exclude chapter`***
+* ***Step 1***: Key the **`exclude chapter`** command **into the prompt** as shown below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/includeChapter.png" alt="Include Command Chapter mode: ChapterName Command"/>
+  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Command
+</p>
+
+* ***Step 2***: Key the **Module name** of the Module that contains the Chapter that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/includeChapterModulePrompt.png" alt="Include Command Chapter mode: ModuleName Prompt"/>
+  <br/>Figure <>. Example of Include Command Chapter mode: ModuleName Prompt
+</p>
+
+<p align="center">
+  <img src="UG_Images/includeChapterModuleFilled.png" alt="Include Command Chapter mode: ModuleName Filled"/>
+  <br/>Figure <>. Example of Include Command Chapter mode: ModuleName Filled
+</p>
+
+* ***Step 3***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
+
+<p align="center">
+  <img src="UG_Images/includeChapterChapterPrompt.png" alt="Include Command Chapter mode: ChapterName Prompt"/>
+  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Prompt
+</p>
+
+<p align="center">
+  <img src="UG_Images/includeChapterChapterFilled.png" alt="Include Command Chapter mode: ChapterName Filled"/>
+  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Filled
+</p>
+
+* ***Upon completion***: This is what you will see:
+
+<p align="center">
+  <img src="UG_Images/includeChapterResult.png" alt="Include Command Chapter mode: Result"/>
+  <br/>Figure <>. Example of Include Command Chapter mode: Result
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -946,18 +925,49 @@ Example of ***`exclude less`***
 
 | Action | Format, Examples |
 |--------|------------------|
+| Add Module | `add MODULE_NAME` <br> e.g. `add CS2113` |
+| List Modules | `list` |
+| Edit Module Name | `edit INDEX MODULE_NAME` <br> e.g. `edit 1 CS2113` |
+| Remove Module | `remove MODULE_INDEX` <br> e.g. `remove 1` |
+| Access Module Level | `go MODULE_NAME` <br> e.g. `go CS2113` |
 
 ### 4.2. Module Level
 
 | Action | Format, Examples |
 |--------|------------------|
+| Add Chapter | `add CHAPTER_NAME` <br> e.g. `add Chapter 1` |
+| List Chapters | `list` |
+| Edit Chapter Name | `edit INDEX CHAPTER_NAME` <br> e.g. `edit 1 Chapter 1` |
+| Remove Chapter | `remove CHAPTER_INDEX` <br> e.g. `remove 1` |
+| Access Chapter Level | `go CHAPTER_NAME` <br> e.g. `go Chapter 1` |
+| Return Admin Level | `back` |
+| Revise | `revise CHAPTER_INDEX` <br> e.g. `revise Chapter 1` |
+| Reschedule | `reschedule CHAPTER_INDEX DATE` <br> e.g. `reschedule 1 2020-11-03` |
 
 ### 4.3. Chapter Level
 
 | Action | Format, Examples |
 |--------|------------------|
+| Add Flashcard | `add q:QUESTION I a:ANSWER` <br> e.g. `add q:1+1 I a:2` |
+| List Flashcards | `list` |
+| Edit Flashcard | `edit INDEX q:QUESTION I a:ANSWER` <br> e.g. `edit 1 q:2*1 I a:2` |
+| Remove Flashcard | `remove FLASHCARD_INDEX` <br> e.g. `remove 1` |
+| Return Module Level | `back` |
+| Show Rate | `showrate` |
 
 ### 4.4. General
 
 | Action | Format, Examples |
 |--------|------------------|
+| Help | `help` |
+| Show Revision History | `history` or `history DATE` <br> e.g. `history 2020-11-03` |
+| Exit | `exit` |
+
+### 4.5. Scheduling
+
+| Action | Format, Examples |
+|--------|------------------|
+| List Due Chapters | `due` |
+| Preview | `preview` |
+| Exclude | `exclude MODULE_OR_CHAPTER` <br> e.g. `exclude module` or `exclude chapter` |
+| Include | `include MODULE_OR_CHAPTER` <br> e.g. `include module` or `include chapter` |

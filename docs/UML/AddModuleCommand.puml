@@ -1,31 +1,46 @@
 @startuml
-Kaji -> Parser ++ : parse(userCommand)
-Parser -> Parser ++ : prepareAddCommand
-Parser -> Access ++ : isAdminLevel()
-return True
-return
-create AddModuleCommand
-Parser -> AddModuleCommand ++ : new()
-return
-return AddModuleCommand
-Kaji -> AddModuleCommand ++ : execute
+!include style.puml
 
+box Logic LOGIC_COLOR_T1
+participant ":AddModuleCommand" as AddModuleCommand LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+-> AddModuleCommand ++ : execute(ui, access, storage)
 create Module
-AddModuleCommand -> Module ++ : new()
-return
-AddModuleCommand -> AddModuleCommand ++ : addModule()
+AddModuleCommand -> Module ++ : new(moduleName)
+return module
+AddModuleCommand -> AddModuleCommand ++ : addModule(access, storage, module)
 AddModuleCommand -> Access ++ : getAdmin()
-return admin
-create ModuleList
-AddModuleCommand -> ModuleList ++ : addModules()
 return newAdmin
+AddModuleCommand -> ModuleList ++ : getModules()
+return modules
+AddModuleCommand -> ModuleList ++ : addModules()
+return
 AddModuleCommand -> Access ++ : setAdmin(newAdmin)
 return
-AddModuleCommand -> Storage ++: createModule(String)
+destroy ModuleList
+AddModuleCommand -> Storage ++: createModule(moduleName)
 return
+AddModuleCommand -> AddCommand ++: prepareResult(MODULE, moduleName, moduleCount)
+return result
 return result
 AddModuleCommand -> Ui ++ : showToUser(result)
 return
 return
-
+destroy AddModuleCommand
 @enduml

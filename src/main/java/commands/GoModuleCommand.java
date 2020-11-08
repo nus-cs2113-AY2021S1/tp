@@ -1,25 +1,33 @@
 package commands;
 
 import access.Access;
+import common.KajiLog;
 import manager.admin.ModuleList;
 import manager.chapter.Chapter;
 import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
+import static common.Messages.MODULE;
 
 public class GoModuleCommand extends GoCommand {
+    private static Logger logger = KajiLog.getLogger(GoModuleCommand.class.getName());
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to module level. \n"
             + "Parameters:" + MODULE_PARAMETERS + "\n"
-            + "Example: " + COMMAND_WORD + " CS2113T\n";
+            + "Example: " + COMMAND_WORD + " 2\n";
 
-    private String module;
+    private final int moduleIndex;
 
-    public GoModuleCommand(String module) {
-        this.module = module;
+    public GoModuleCommand(int moduleIndex) {
+        this.moduleIndex = moduleIndex;
     }
 
     @Override
@@ -32,31 +40,29 @@ public class GoModuleCommand extends GoCommand {
     }
 
     private String goModule(Access access, Storage storage) throws IOException {
-        boolean isLevelExist = false;
+        assert access.isAdminLevel() : "Not admin level";
         String result = "";
-        String currentModule = this.module;
-        ModuleList modules = access.getAdmin().getModules();
-        ArrayList<Module> allModules = modules.getAllModules();
-        for (Module module : allModules) {
-            if (currentModule.equalsIgnoreCase(module.getModuleName())) {
-                access.setModuleLevel(currentModule);
-                isLevelExist = true;
-                try {
-                    ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName());
-                    if (chapters.size() == 0) {
-                        result = "This is a new module, you can try to add chapters inside!";
-                    }
-                    module.setChapters(chapters);
-                    access.setModule(module);
-                } catch (FileNotFoundException e) {
-                    result = "The module folder cannot be found.";
-                }
-                break;
+        try {
+            ModuleList modules = access.getAdmin().getModules();
+            ArrayList<Module> allModules = modules.getAllModules();
+            Module module = allModules.get(moduleIndex);
+            ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName());
+            if (chapters.size() == 0) {
+                result = "This is a new module, you can try to add chapters inside!";
             }
+            access.setModuleLevel(module.getModuleName());
+            module.setChapters(chapters);
+            access.setModule(module);
+            logger.info("Going into module: " + module.toString());
+            return result;
+        } catch (IndexOutOfBoundsException e) {
+            result = String.format(MESSAGE_INVALID_INDEX_RANGE, MODULE);
+            logger.info(result);
+            return result;
+        } catch (FileNotFoundException e) {
+            result = "The module folder cannot be found.";
+            logger.info(result);
+            return result;
         }
-        if (!isLevelExist) {
-            result = "Sorry, I cannot find this module, please add this module first";
-        }
-        return result;
     }
 }

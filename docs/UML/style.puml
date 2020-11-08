@@ -69,6 +69,9 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor white
+skinparam classAttributeFontSize 12
 
 hide footbox
 hide members

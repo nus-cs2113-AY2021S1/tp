@@ -1,27 +1,54 @@
 @startuml
-Kaji -> Parser ++ : parse(userCommand)
-Parser -> Parser ++ : prepareGoModuleCommand
-Parser -> Access ++ : isAdminLevel()
-return True
-return
-create GoModuleCommand
-Parser -> GoModuleCommand ++ : new()
-return
-return GoModuleCommand
-Kaji -> GoModuleCommand ++ : execute
+!include style.puml
 
-GoModuleCommand -> Access ++ : setModuleLevel(module)
-Access -> Access ++ : setLevel(module)
-return
-return
-return
+box Logic LOGIC_COLOR_T1
+participant ":GoModuleCommand" as GoModuleCommand LOGIC_COLOR
+participant ":GoCommand" as GoCommand LOGIC_COLOR
+end box
 
-create Ui
-Kaji -> Ui ++ : showLevel(access)
-Ui -> Access ++ : getLevel()
-return level : String
-Ui -> Ui ++ : showLevel(level)
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Admin" as Admin MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+-> GoModuleCommand ++ : execute(ui, access, storage)
+GoModuleCommand -> GoModuleCommand ++: goModule(access, storage)
+GoModuleCommand -> Access ++ : getAdmin()
+Access -> Admin ++: getModules()
+Admin -> ModuleList ++: getAllModules()
 return
 return
+return allModules
+GoModuleCommand -> Module ++: get(moduleIndex)
+return module
+GoModuleCommand -> Access ++ : setModuleLevel(moduleName)
+alt isAdminLevel == True
+    Access -> Access ++ : setGoModuleLevel(moduleName)
+    Access -> Access ++ : setIsModuleLevel()
+    return
+    return
+    end
+return
+GoModuleCommand -> Storage ++ : loadChapter(moduleName)
+return chapters
+GoModuleCommand -> Module ++ : setChapters(chapters)
+return
+GoModuleCommand -> Access ++ : setModule(module)
+return
+return
+GoModuleCommand -> Ui ++ : showToUser(result)
+return
+return
+destroy GoModuleCommand
 
 @enduml
