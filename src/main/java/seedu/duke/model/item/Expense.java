@@ -9,7 +9,7 @@ import java.time.format.FormatStyle;
 /**
  * Represents an expense item.
  */
-public class Expense extends Item {
+public class Expense extends Item implements Comparable<Expense> {
 
     private final double value;
     private String currency;
@@ -70,5 +70,23 @@ public class Expense extends Item {
     @Override
     public String toFile() {
         return getDescription() + " | " + getValue() + " | " + getCurrency() + " | " + getDate().toString();
+    }
+
+    /**
+     * Defines how expense items are sorted. Firstly sort expense items based on date in descending order (i.e. the
+     * latest expense items are shown first). If two expense items have the same date, sort them based on currency
+     * lexicographically.
+     *
+     * @param otherExpense The other expense item to compare to
+     * @return negative integer if this expense item precedes the argument expense item, positive integer if this
+     * expense item follows the argument expense item, 0 otherwise.
+     */
+    @Override
+    public int compareTo(Expense otherExpense) {
+        if (this.date.compareTo(otherExpense.getDate()) != 0) {
+            return -this.date.compareTo(otherExpense.getDate());
+        } else {
+            return this.currency.compareTo(otherExpense.getCurrency());
+        }
     }
 }

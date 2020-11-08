@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -78,6 +79,7 @@ public class ExpenseList extends ItemList<Expense> {
             Ui.dukePrint(Messages.MESSAGE_EMPTY_EXPENSE_LIST);
             return;
         }
+        items = sortExpenseList(items);
         Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST);
         items.forEach(expense -> Ui.dukePrintMultiple(expense.toString()));
@@ -130,6 +132,7 @@ public class ExpenseList extends ItemList<Expense> {
                 expensesListed.add(items.get(i));
             }
         }
+        expensesListed = sortExpenseList(expensesListed);
         if (expensesListed.size() == 0) {
             Ui.dukePrint(Messages.MESSAGE_EMPTY_EXPENSE_LIST);
             return;
@@ -154,6 +157,7 @@ public class ExpenseList extends ItemList<Expense> {
                 expensesListed.add(items.get(i));
             }
         }
+        expensesListed = sortExpenseList(expensesListed);
         if (expensesListed.size() == 0) {
             Ui.dukePrint(Messages.MESSAGE_EMPTY_EXPENSE_LIST);
             return;
@@ -175,6 +179,7 @@ public class ExpenseList extends ItemList<Expense> {
      */
     public void listExpense(TotalExpenseType totalExpenseType) throws DukeException {
         ArrayList<Expense> expensesListed = getExpenseItems(totalExpenseType);
+        expensesListed = sortExpenseList(expensesListed);
         if (expensesListed.size() == 0) {
             Ui.dukePrint(Messages.MESSAGE_EMPTY_EXPENSE_LIST);
             return;
@@ -288,5 +293,10 @@ public class ExpenseList extends ItemList<Expense> {
             throw new DukeException(Messages.EXCEPTION_EXPENSE_DATERANGE);
         }
         return resultExpenses;
+    }
+
+    public ArrayList<Expense> sortExpenseList(ArrayList<Expense> expenses) {
+        Collections.sort(expenses);
+        return expenses;
     }
 }
