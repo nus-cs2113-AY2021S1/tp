@@ -82,6 +82,7 @@ public class Financeit {
                 }
             }
         } catch (Exception e) {
+            LoggerCentre.loggerSystemMessages.info("\n\n\nUnknown error......\n\n\n");
             System.out.println("you are gay");
         }
     }
