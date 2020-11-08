@@ -834,6 +834,7 @@ bill payments
 |v1.0|user|calculate miles credit earned|know how much miles credit I can earn|
 |v1.0|user|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
 |v1.0|user|set income goal for 1 year|know how much I have saved and did I reach my saving target|
+|v1.0|user|know my goal status everytime I made an entry|saved the hassle to go to goal tracker just to check the progress|
 |v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
 |v2.0|user|store account or card information|refer to account features such as interest rate any time|
 |v2.0|user|compare my calculations with different interest rate|decide which account is better|
@@ -1124,6 +1125,10 @@ You should see the following:
 Enter ```display income for 02``` into the console.
 You should see the following:
 ![DisplayIncomeGoal](developerGuide_images/screenshot_goaltracker/DisplayIncomeGoal.png)
+
+**Goal Status Update** <br />
+When a user make a new entry, the goal status will update and display as output as shown:
+![GoalStatusUpdate](developerGuide_images/screenshot_goaltracker/GoalStatusUpdate.png)
 
 **Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
 In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
