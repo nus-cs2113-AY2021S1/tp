@@ -32,7 +32,6 @@ public class TopicsStorage extends LocalStorage {
     private String currentQuestionDescription;
     private String currentTopicTitle;
     private final HashSet<String> topicTitles;
-    private final HashSet<String> questionDescriptions;
 
     public TopicsStorage(String filePath) {
         super(filePath);
@@ -40,7 +39,6 @@ public class TopicsStorage extends LocalStorage {
         currentQuestionDescription = "";
         currentTopicTitle = "";
         topicTitles = new HashSet<>();
-        questionDescriptions = new HashSet<>();
     }
 
     /**
@@ -73,7 +71,14 @@ public class TopicsStorage extends LocalStorage {
     private Topic parseToTopicObject(JSONObject topic) throws Eduke8Exception {
         currentTopicTitle = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
 
-        checkBlankOrDuplicate(currentTopicTitle, topicTitles);
+        checkIfBlank(currentTopicTitle);
+
+        boolean isNotDuplicate = topicTitles.add(currentTopicTitle);
+
+        if (!isNotDuplicate) {
+            throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
+                    + System.lineSeparator() + ERROR_TOPICS_JSON_DUPLICATE);
+        }
 
         JSONArray questionsAsJsonArray = (JSONArray) topic.get(KEY_QUESTIONS);
 
@@ -92,7 +97,7 @@ public class TopicsStorage extends LocalStorage {
     private Question parseToQuestionObject(JSONObject question) throws Eduke8Exception {
         currentQuestionDescription = (String) question.get(KEY_DESCRIPTION);
 
-        checkBlankOrDuplicate(currentQuestionDescription, questionDescriptions);
+        checkIfBlank(currentQuestionDescription);
 
         JSONArray optionsAsJsonArray = (JSONArray) question.get(KEY_OPTIONS);
 
@@ -132,19 +137,14 @@ public class TopicsStorage extends LocalStorage {
         return new Question(currentQuestionDescription, optionList, hint, explanation);
     }
 
-    private void checkBlankOrDuplicate(String description, HashSet<String> existingDescriptions)
+    private void checkIfBlank(String description)
             throws Eduke8Exception {
         if (description.equals("")) {
             throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
                     + System.lineSeparator() + ERROR_TOPICS_JSON_BLANK);
         }
 
-        boolean isNotDuplicate = existingDescriptions.add(description);
 
-        if (!isNotDuplicate) {
-            throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
-                    + System.lineSeparator() + ERROR_TOPICS_JSON_DUPLICATE);
-        }
     }
 
     private Option parseToOptionObject(JSONObject option) throws Eduke8Exception {
