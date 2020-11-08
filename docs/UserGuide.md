@@ -174,7 +174,8 @@ by the figure below.
 ### Adding an event:
 
 You can add different events to the calendar list, including school events, 
-such as`lecture`, `tutorial`, `exam`, and `lab` events, and other events in `activity` type.
+such as`lecture`, `tutorial`, `exam`, and `lab` events, and other events in `activity` type. 
+You may add both past and upcoming events to your calendar list.
 You can add `lecture`, `tutorial`, and `lab` events as recurring events, but the `exam` and `activity` events cannot be recurring. 
 When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command in following formats:  
 
@@ -184,8 +185,7 @@ When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `ac
 
 #### Adding an activity event:
 
-This function allows you to add activities, such as interview workshops or Co-Curriculum Activities (CCAs), both past and
-future, so as to keep track of your activity records.
+This function allows you to add activities, such as interview workshops or Co-Curriculum Activities (CCAs). 
 This is definitely the best way to keep track of your commitments and will surely make your student life more vibrant and gain the most out of it! 
 
 Format: `act <activity_description> @<venue> / <date> <time>`
@@ -201,65 +201,74 @@ Example:
 #### Adding an examination event:
 
 You can add an examination event to the calendar list by using the following format.
-Note: Only valid modules provided by NUS are allowed to be added! 
 
 Format: `exam <module_name> @<venue> / <date> <time>`
 
 Example of usage:
 
-`exam CS1010 @com1-b1-12 / 121220 1700` - adds CS1010 exam at 2020-12-12 5p.m. to the event list. The venue is com1-b1-12.
+`exam CS1010 @com1-b1-12 / 121220 1700` 
+
+This adds CS1010 exam at 2020-12-12 5pm to the event list. The venue is com1-b1-12.
 
 ![exam_command](images/exam_command.PNG)
 
-#### Adding recurring laboratory session events:
-
-When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
-
 Note: Only valid modules provided by NUS are allowed to be added! 
 
-Note: The value for `<number of lab session>` is in the range of 1 to 13 only!
+#### Adding recurring laboratory events:
+
+When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
 
 Format: `lab <module_name> @<venue> -r <number of lab session> / <date> <time>`
 
 Example of usage:
 
-`lab CS1010 @com1-b1-14 -r 9 / 210920 1600` - adds CS1010 lab at 2020-09-21 4p.m.  to the event list, the venue is com1-b1-14 and the lab will happen for the next 9 weeks.
+`lab CS1010 @com1-b1-14 -r 9 / 210920 1600` 
+
+This adds CS1010 lab at 2020-09-21 4pm to the event list, the venue is com1-b1-14 and the lab will happen for the next 9 weeks.
 
 ![lab_command](images/lab_command.PNG)
+
+Note: Only valid modules provided by NUS are allowed to be added! 
+
+Note: The value for `<number of lab session>` is in the range of 1 to 13 only!
 
 #### Adding recurring lecture events:
 
 When you have new recurring lecture events and want to add them to the calendar list, you can use `lect` command.
 
-Note: Only valid modules provided by NUS are allowed to be added! 
-
-Note: The value for `<number of lecutre>` is in the range of 1 to 13 only!
-
-Format: `lect <module_name> @<venue> -r <number of lecutre> / <date> <time>`
+Format: `lect <module_name> @<venue> -r <number of lecture> / <date> <time>`
 
 Example of usage:
 
-`lect CS2113 @lt12 -r 10 / 030220 1200` - adds CS2113 lecture at 2020-02-03 12p.m. to the event list, the venue is lt12 and the lecture will happen for the next 10 weeks.
+`lect CS2113 @lt12 -r 10 / 030220 1200` 
+
+This adds CS2113 lecture at 2020-02-03 12pm to the event list, the venue is lt12 and the lecture will happen for the next 10 weeks.
 
 ![lect_command](images/lect_command.PNG)
+
+Note: Only valid modules provided by NUS are allowed to be added! 
+
+Note: The value for `<number of lecture>` is in the range of 1 to 13 only!
 
 #### Adding recurring tutorial events:
 
 When you have new recurring tutorial events and want to add them to the calendar list, you can use `tut` command.
 
-Note: Only valid modules provided by NUS are allowed to be added! 
-
-Note: The value for `<number of tutorial>` is in the range of 1 to 13 only!
-
 Format: `tut <module_name> @<venue> -r <number of tutorial> / <date> <time>`
 
 Example of usage:
 
-`tut CS1010 @com1-b1-12 -r 5 / 121020 1700` - adds CS1010 lab at 2020-10-20 5p.m. to the event list, the venue is com1-b1-12 and the tutorial will happen for the next 5 weeks.
+`tut CS1010 @com1-b1-12 -r 5 / 121020 1700` 
+
+This adds CS1010 lab at 2020-10-20 5pm to the event list, the venue is com1-b1-12 and the tutorial will happen for the next 5 weeks.
 
 ![tut_command](images/tut_command.PNG)
 
 ![warning_event_date](images/warning_event_format.PNG)
+
+Note: Only valid modules provided by NUS are allowed to be added! 
+
+Note: The value for `<number of tutorial>` is in the range of 1 to 13 only!
 
 ### Additional information of an event
 You can add additional information pertaining to an event in your calendar list, 
@@ -267,7 +276,7 @@ view the list of added information and delete irrelevant ones! Use this as a one
 
 #### Adding additional information to an event:
 You can add additional information pertaining to an event in your calendar list. You may use this feature to store
- the module website for a school event or the things to bring to an event.
+the module website for a school event or the things to bring to an event.
 
 Format: `/a <event_number> - <additional information>`
 
@@ -277,8 +286,8 @@ Example of usage:
 
 ![additional_info_command](images/additional_info_command.PNG)
 
-Note: The above figure is for illustration purpose only. The desired output will
-differ if you have a different event stored in the event index number 1.
+Note: The above figure is for illustration purpose only. The desired output will differ if you have a different event 
+stored in the event index number 1.
 
 You may then view the additional information using the view additional information feature below.
 ![tip_additional_info](images/tip_additional_info.PNG)
@@ -328,7 +337,9 @@ Format: `done <task_number>`
 
 Example:
 
-`done 1` - By using this command, you will mark the first task on your task list as done! 
+`done 1`
+
+By using this command, you will mark the first task on your task list as done! 
 
 ![done_command](images/done_command.PNG)
 
@@ -339,7 +350,7 @@ differ if you have a different task stored in the task index number 1.
 
 ### Deleting a calendar item:
 
-You may delete any calendar item you have added wrongly or any items that have become obsolete. It is advisable
+You may delete any calendar items you have added wrongly or any items that have become obsolete. It is advisable
  for you to use this feature frequently to keep your task and event lists uncluttered!
  ![warning_cal_delete](images/warning_cal_delete.png)
 
@@ -353,9 +364,10 @@ Example of usage:
  
  `-t 1` 
  
+  After executing this command, notice that task number 1 has been removed from your calendar.
+ 
  ![delete_task_command](images/delete_task_command.PNG)
  
- After executing this command, notice that task number 1 has been removed from your calendar.
  
  Note: The above figure is for illustration purpose only. The desired output will
  differ if you have a different task stored in the task index number 1.
@@ -414,12 +426,12 @@ Example of usage:
 
 `/ft tuition` 
 
+You should be able to see only the list of tasks containing the keyword “tuition”.
+
 ![find_task_command](images/find_task_command.PNG)
 
-You should be able to see only the lists of tasks containing the keyword “tuition”.
 
 Note: The above figure is for illustration purpose only. The desired output depends on the tasks stored in the program.
-
 
 #### Finding an item from the event list: 
 
@@ -445,13 +457,15 @@ Note: The above figure is for illustration purpose only. The desired output depe
 ### Prioritizing a task:                                                                                                
 
 When you have important tasks, you can prioritize them in the task list to distinguish from ordinary tasks.
-If you want to prioritize an important task, you can use *t <task_number> to mark the task as important. 
+If you want to prioritize an important task, you can use `*t <task_number>` to mark the task as important. 
     
 Format: `*t <task_number>`
     
 Example of usage: 
 
-`*t 1` - marks the first task in the task list as important.
+`*t 1` 
+
+This marks the first task in the task list as important.
 
 ![prioritizing_command](images/prioritizing_command.PNG)
 
@@ -543,13 +557,13 @@ Format: `print timeline`
 Note: The above figure is for illustration purpose only. The desired output will
 differ if you have different items stored in the calendar list.
 
-#### Printing calendar for the current week: 
+#### Printing calendar for the next 7 days: 
 
 Print the personal calendar for the next 7 days.
 
 Format: `print timeline week`
 
-#### Printing calendar for the current month: 
+#### Printing calendar for the next 31 days: 
 
 Print the personal calendar for the next 31 days.
 
@@ -561,7 +575,7 @@ Format: `print timeline month`
 
 Print the calendar before a specific date.
 
-Format: `print timeline date <DATE>`
+Format: `print timeline date <date>`
 
 ![warning_timeline_date](images/warning_timeline_date.PNG)
 
@@ -574,8 +588,8 @@ double check how many days you still have before the deadline, you can type the 
 
 If you type `countdown`, you can see the countdown of all the unfinished deadlines tasks and all the upcoming exam events.
 
-The remaining date is printed in ascending order.
-
+The item with the closest date will be printed first.
+ 
 All the unfinished deadlines will be printed before all the upcoming exams.
 
 Format: `countdown`
@@ -589,7 +603,7 @@ Format: `countdown`
 
 If you type `countdown exams`, you can see the countdown of all upcoming exams.
 
-The remaining date for the exams is printed in ascending order.
+The exam with the closest date will be printed first.
 
 Format: `countdown exams`
 
@@ -604,7 +618,7 @@ Format: `countdown exams`
 
 If you type `countdown deadlines`, you can see the countdown of all unfinished deadlines.
 
-The remaining dates for the deadlines are printed in ascending order.
+The deadline with the closest due date will be printed first.
 
 
 Format: `countdown deadlines`
@@ -621,7 +635,7 @@ Format: `countdown deadlines`
 
 When you close the program or you make some changes to the program such as adding an event, the data for the tasks and events 
 are automatically saved locally. So, there is no need for users to save manually.
-Next time when you open the program, all the data will automatically be loaded from the local file to the program.
+Next time when you start the program, all the data will automatically be loaded from the local file to the program.
 
 ![saving_data](images/savingdata.png)
 
@@ -641,7 +655,7 @@ Format: `bye`
 
 Want to find out more about 25HoursADay? 
 How to transfer our data to another device? Or how to store our data? 
-Here are the most common questions that NUS students would ask about our app. 
+Here are the most common questions that NUS students would ask about our application. 
 The questions and the answers to them can be found below.
 
 **Q**: How do I transfer my data to another computer? 
@@ -649,9 +663,9 @@ The questions and the answers to them can be found below.
 **A**: Download the program in the other computer and overwrite the empty data file it creates with the data from your 
 previous **_25HoursADay.jar_**.
 
-**Q**: Can I use **_25 hours a day_** on different operating systems like Linux, Windows, or macOS?  
+**Q**: Can I use **_25HoursADay_** on different operating systems like Linux, Windows, or macOS?  
 
-**A**: Yes, **_25 hours a day_** is compatible with Linux, Windows and macOS.
+**A**: Yes, **_25HoursADay_** is compatible with Linux, Windows and macOS.
 
 **Q**: Will the data be saved if I accidentally close my program without typing the command bye?  
 
@@ -659,7 +673,7 @@ previous **_25HoursADay.jar_**.
 
 **Q**: If I wrongly deleted my task, can I undo it?
 
-**A**: No, currently **_25 hours a day_** doesn't have an undo feature, therefore you need to manually add your task back 
+**A**: No, currently **_25HoursADay_** doesn't have an undo feature, therefore you need to manually add your calendar item back 
 using `add` command.
 
 
@@ -669,8 +683,8 @@ using `add` command.
 |--------|----------------|--------|
 |Add|activity event|`act <activity_description> @<venue> / <date> <time>`|
 |Add|additional information for an event|`/a <event_number> - <additional_information>`|
-|Add|deadline task|`deadline <task_description>/ <due_date>`|
-|Add|exam event|`exam<module_name> @<venue> / <date> <time>`|
+|Add|deadline task|`deadline <task_description> / <due_date>`|
+|Add|exam event|`exam <module_name> @<venue> / <date> <time>`|
 |Add|lab event|`lab <module_name> @<venue> -r <recurring_number> / <date> <time>`|
 |Add|lecture event|`lect <module_name> @<venue> -r <recurring_number> / <date> <time>`|
 |Add|todo task|`todo <task_description>`|
@@ -689,7 +703,7 @@ using `add` command.
 |Print|progress|`print progress`|
 |Print|tasks|`print tasks`|
 |Print|timeline (default)|`print timeline`|
-|Print|timeline before a date|`print timeline date <DATE>`|
-|Print|timeline for current month|`print timeline month`|
-|Print|timeline for current week|`print timeline week`|
+|Print|timeline before a date|`print timeline date <date>`|
+|Print|timeline for the next 31 days|`print timeline month`|
+|Print|timeline for the next 7 days|`print timeline week`|
 |Quit|exit the program|`bye`|
