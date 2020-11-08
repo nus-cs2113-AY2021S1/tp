@@ -1,5 +1,7 @@
 package seedu.dietbook;
 
+import seedu.dietbook.calculator.Calculator;
+import seedu.dietbook.calculator.CalculatorData;
 import seedu.dietbook.command.AddCommand;
 import seedu.dietbook.command.CalculateCommand;
 import seedu.dietbook.command.ClearCommand;
@@ -14,16 +16,14 @@ import seedu.dietbook.command.ListCommand;
 import seedu.dietbook.command.NameCommand;
 import seedu.dietbook.command.RecommendCommand;
 import seedu.dietbook.command.UserinfoCommand;
-import seedu.dietbook.list.FoodList;
-import seedu.dietbook.person.FitnessLevel;
-import seedu.dietbook.person.Person;
-import seedu.dietbook.calculator.Calculator;
 import seedu.dietbook.database.DataBase;
-import seedu.dietbook.person.Gender;
 import seedu.dietbook.exception.DietException;
+import seedu.dietbook.list.FoodList;
 import seedu.dietbook.parser.Parser;
+import seedu.dietbook.person.FitnessLevel;
+import seedu.dietbook.person.Gender;
+import seedu.dietbook.person.Person;
 
-//@@author tikimonarch
 /**
  * Manager class of the program.
  * The manager class takes in the checked and processed input and carry out the command specified.
@@ -37,6 +37,7 @@ public class Manager {
     private String name;
     private int commandCount = 1; // This is currently unused
     private DataBase dataBase;
+    private CalculatorData data = new CalculatorData();
     private Calculator calculator;
 
     public static final String COMMAND_ADD = "add";
@@ -59,7 +60,8 @@ public class Manager {
                 1, FitnessLevel.LOW);
         this.foodList = foodlist;
         this.dataBase = dataBase;
-        this.calculator = new Calculator(foodList.getFoods());
+        this.data.inputData(this.foodList);
+        this.calculator = new Calculator(this.data);
     }
 
     public FoodList getFoodList() {
@@ -84,7 +86,8 @@ public class Manager {
     }
 
     public void setCalculator() {
-        this.calculator = new Calculator(foodList.getFoods());
+        this.data.inputData(foodList);
+        this.calculator.update(this.data);
     }
 
     public DataBase getDataBase() {
@@ -115,17 +118,17 @@ public class Manager {
             return new CalculateCommand(calculator.calculateCalorie(), calculator.calculateCarb(),
                     calculator.calculateProtein(), calculator.calculateFat(), Parser.getCommandParam(userInput));
         case COMMAND_CLEAR:
-            return new ClearCommand();
+            return new ClearCommand(userInput);
         case COMMAND_DATA:
-            return new DataCommand();
+            return new DataCommand(userInput);
         case COMMAND_DELETE:
             return new DeleteCommand(Parser.getCommandIndex(userInput));
         case COMMAND_EDIT_INFO:
             return new EditInfoCommand(userInput);
         case COMMAND_EXIT:
-            return new ExitCommand();
+            return new ExitCommand(userInput);
         case COMMAND_HELP:
-            return new HelpCommand();
+            return new HelpCommand(userInput);
         case COMMAND_INFO:
             return new InfoCommand(userInput);
         case COMMAND_LIST:
@@ -133,9 +136,9 @@ public class Manager {
         case COMMAND_NAME:
             return new NameCommand(Parser.getCommandParam(userInput));
         case COMMAND_RECOMMEND:
-            return new RecommendCommand(getPerson());
+            return new RecommendCommand(getPerson(), userInput);
         case COMMAND_USERINFO:
-            return new UserinfoCommand();
+            return new UserinfoCommand(userInput);
         default:
             throw new DietException("There's no such command!");
         }

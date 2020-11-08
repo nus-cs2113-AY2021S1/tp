@@ -23,7 +23,8 @@ public class InputChecker {
     public static final String[] PARAM_FITNESS = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
     public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/"};
-    public static final String[] PARAM_CALCULATE = {"fat", "carbohydrate","protein", "calorie", "all"};
+    public static final String[] PARAM_CALCULATE = {"fat", "carb","protein", "calorie", "all"};
+    public static final String[] SINGLE_COMMAND = {"clear", "data","exit", "help", "recommend", "userinfo"};
     public static final String[] PARAM_GENDER = {"M","F","O"};
     public static final String[] PARAM_INFO = {"g/","a/","h/","f/","o/","t/","c/"};
     public static final String[] PARAM_EDIT_INFO = {"n/","g/","a/","h/","f/","o/","t/","c/"};
@@ -39,6 +40,24 @@ public class InputChecker {
         if (userInput.split(command).length < 2
                 || userInput.split(command)[1].trim().equals("")) {
             throw new DietException("Error! Missing command parameters!");
+        }
+    }
+
+    /**
+     * Takes in user input to check for single word commands.
+     *
+     * @param input user input.
+     * @throws DietException when a single word command has "options" attached.
+     */
+    public static void checkSingleCommand(String input) throws DietException {
+        boolean isSingleCommand = false;
+        for (String command: SINGLE_COMMAND) {
+            if (input.trim().equals(command)) {
+                isSingleCommand = true;
+            }
+        }
+        if (!isSingleCommand) {
+            throw new DietException("Error! This command has no option!");
         }
     }
 
