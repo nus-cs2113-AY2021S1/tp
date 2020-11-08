@@ -31,6 +31,7 @@ Class CardList MODEL_COLOR {
     + addCard(card : Card) : void
     + checkCardExistence(newQuestion : String,
     newAnswer : String) : boolean
+    + getCardCount() : int
 }
 
 Class Storage STORAGE_COLOR {
