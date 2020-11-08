@@ -30,6 +30,9 @@ public class HelpCommand extends Command {
         return Formatter.formatString(HELP_COMMAND_USAGE, true, false);
     }
 
+    /**
+     * Sets up Logger files and gets ready to log messages to the file.
+     */
     public void setupLogger() {
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.INFO);
