@@ -277,7 +277,7 @@ generally indicates whether an operation has failed.
 
 |Class| Function |
 |--------|--------|
-|```ManualTracker```| [Refer to section](#LogicManagerAndHandler).
+|```ManualTracker```| [Refer to section](#logicManager_handler).
 |```EntryTracker```| Omitted for brevity.
 |```EntryList```| Omitted for brevity.
 |```Entry```| Omitted for brevity.
@@ -302,7 +302,7 @@ generally indicates whether an operation has failed.
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
 
 
-**Logic Manager and Handler** <br />
+**<a name = logicManager_handler> </a>Logic Manager and Handler** <br />
 
 ![](uml_images/images_updated/Handler_Commands.png)
 
