@@ -26,7 +26,7 @@ create ":BusCommand"
 
 activate ":BusCommand"
 ref over ":BusCommand"
-get exact bus stop name
+get bus stop
 end
 ":BusCommand" --> ":Parser"
 deactivate ":BusCommand"
@@ -38,9 +38,6 @@ activate ":BusCommand"
 
 ":BusCommand"->":BusData": getBusAtStop(busStop)
 activate ":BusData"
-'ref over ":BusData"
-'get Buses at busStop
-'end
 ":BusData" -->":BusCommand": ArrayList<Bus> busList
 deactivate ":BusData"
 

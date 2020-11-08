@@ -3,6 +3,9 @@ package seedu.duke.model.bus;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+/**
+ * Represents the list of all shuttle buses in NUS with their routes.
+ */
 public class BusData {
 
     private static ArrayList<Bus> buses = new ArrayList<>();
@@ -12,6 +15,13 @@ public class BusData {
         buses.addAll(busList);
     }
 
+    /**
+     * Returns all buses with their intermediate routes that go from the startingLoc to the destination.
+     *
+     * @param startingLoc the location to start at.
+     * @param destination the location to be reached.
+     * @return all possible buses that can be taken with the intermediate stops for each.
+     */
     public static ArrayList<Bus> possibleBuses(String startingLoc, String destination) {
         ArrayList<Bus> busOptions = new ArrayList<>();
         if (BusStops.isValidBusStop(startingLoc)) {

@@ -15,25 +15,25 @@ enhancements.
     + [2.1.3. Model Component](#213-model-component)
     + [2.1.4. Storage Component](#214-storage-component)
 - [3. Implementation](#3-implementation)
-  * [3.1. Direct Route Finder (`/route` Feature)](#31-direct-route-finder-route-feature)
+  * [3.1. Finding a direct route (`/route` Feature)](#31-finding-a-direct-route-route-feature)
   * [3.2. Full Route Display (`/routemap` Feature)](#32-full-route-display-routemap-feature)
   * [3.3. List All stops (`/liststops` Feature)](#33-list-all-stops-liststops-feature)
   * [3.4. Favourite command adder (`/addfav` Feature)](#34-favourite-command-adder-addfav-feature)
   * [3.5. Favourite command executor (`/execfav` Feature)](#35-favourite-command-executor-execfav-feature)
-  * [3.6. Favourite command description modifier (`/descfav` Feature)](#36-favourite-command-description-modifier-descfav-feature)
+  * [3.6. Modifying the description of a favourite command (`/descfav` Feature)](#36-modifying-the-description-of-a-favourite-command-descfav-feature)
   * [3.7. Dining options finder (`/dine` Feature)](#37-dining-options-finder-dine-feature)
   * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
   * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
+  * [3.10. Performing similarity checks](#310-performing-similarity-checks)
   * [3.11. Displaying most searched bus stop](#311-displaying-most-searched-bus-stop-on-start-up)
     + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies)
-- [4. Appendix I: Requirements](#4-appendix-i-requirements)
-  * [4.1 Product scope](#41-product-scope)
-    + [4.1.1 Target user profile](#411-target-user-profile)
-    + [4.1.2 Value](#412-value)
-  * [4.2. User Stories](#42-user-stories)
-  * [4.3. Non-Functional Requirements](#43-non-functional-requirements)
-  * [4.4. Glossary](#44-glossary)
-- [5. Appendix II: Instructions for manual testing](#5-appendix-ii-instructions-for-manual-testing)
+- [4. Appendix A: Product scope](#4-appendix-a-product-scope)
+  * [4.1. Target user profile](#41-target-user-profile)
+  * [4.2. Value Proposition](#42-value-proposition)
+- [5. Appendix B: User Stories](#5-appendix-b-user-stories)
+- [6. Appendix C: Non-Functional Requirements](#6-appendix-c-non-functional-requirements)
+- [7. Appendix D: Glossary](#7-appendix-d-glossary)
+- [8. Appendix E: Instructions for manual testing](#8-appendix-e-instructions-for-manual-testing)
 
 ## 1. Setting up, getting started
 
@@ -80,7 +80,12 @@ delimiters if any.
 
 The following class diagram briefly explains how different classes in the Logic component interact with each other.
 
-<img src="DG_Diagrams/LogicComponent.png" alt="logiccomponent" width=1100 height=500>
+> Note: ABCFavCommand represents the different fav command classes.
+> PQRCommand represents the different dine command classes.
+> XYZCommand represents the different route command classes.
+> The actual class names are written in the notes beside the classes.
+
+<img src="DG_Diagrams/Components/LogicComponent.png" alt="logiccomponent" width=1200>
 
 #### 2.1.3. Model Component
 The Model component is responsible for the following tasks:
@@ -113,9 +118,8 @@ This section provides details of how the main features of Nav@NUS have been impl
 available from **location1** to **location2**.
 
 The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
-are linked to each other. 
-
-![RouteCommandClass](DG_Diagrams/RouteCommand/RouteCommandClass.png)
+are linked to each other. <br>
+<img src="DG_Diagrams/RouteCommand/RouteCommandClass.png" alt="RouteCommandClass" width = 800>
 
 The `RouteCommand#executeCommand()` method of RouteCommand Class executes the command in the following steps:
 1. Calls `RouteParser#getLocations()` to get the locations entered by the user in the order of starting location and 
@@ -136,15 +140,32 @@ the destination.
 
 The following sequence diagram explains the above steps when the user enters `/route loc1 /to loc2`.
 
-![Overview](DG_Diagrams/RouteCommand/RouteCommand.png)
+<img src="DG_Diagrams/RouteCommand/RouteCommand.png" alt="Executing" width = 850>
 
 The following sequence diagrams explain the interactions omitted in the main diagram.
+<img src="DG_Diagrams/RouteCommand/RouteCommandInternal.png" alt="executing command" width = 700>
 
-![executing command](DG_Diagrams/RouteCommand/RouteCommandInternal.png)
-
-![bus data](DG_Diagrams/RouteCommand/BusData.png)
+<img src="DG_Diagrams/RouteCommand/BusData.png" alt="bus data" width = 600>
 
 #### Design Considerations
+The main aim here is to find if the starting location and destination exist in a particular list of bus stops in 
+that order.
+
+##### Aspect: How bus data should be stored and retrieved.
+* **Alternative 1 (current choice):** Each bus is an object that contains the bus number and full route as an ArrayList.
+    + Pros: Makes it easier to integrate with other functions of the app such as displaying bus route of a particular 
+    bus.  
+    + Cons: Each bus number's route has to be scanned to check for the starting location and destination in that order.
+     
+* **Alternative 2:** Each location is an object that contains the location name and an ArrayList of bus objects. Each
+bus object contains the list of remaining stops in the route of that bus.
+    + Pros: It is easier and somewhat faster to find the buses that go from the starting location to the destination as 
+    the data itself has filtered out the buses that stop at the starting location.
+    + Cons: A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
+    that stops there. 
+    
+Given the above alternatives, alternative 1 was used considering the implementation of other features of the 
+application.
 
 ### 3.2. Full Route Display (`/routemap` Feature)
 
@@ -245,7 +266,7 @@ User experience for the first approach will be improved as the command required 
 
 Therefore, choosing commands based on index (first approach) is easier to implement, more efficient, reduces possible bugs encountered and provides better user experience.
 
-### 3.6. Favourite command description modifier (`/descfav` Feature)
+### 3.6. Modifying the description of a favourite command (`/descfav` Feature)
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -255,7 +276,7 @@ at location **index** in the list to **newDescription**.
 The class diagram in the figure below shows how different classes used for implementation of the `/descfav` command 
 are linked to each other. 
 
-![DescFav class diagram](DG_Diagrams/DescFavCommand/descFavClass.png)
+<img src="DG_Diagrams/DescFavCommand/descFavClass.png" alt="DescFav class diagram" width = 700>
 
 The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes the command in the following steps:
 1. Calls `DescFavParser#parseInput()` to check if the command message input by the user is valid.
@@ -274,15 +295,29 @@ The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes th
     - Calls `Fav#changeDesc()` to update the old description to **description**.
     
 The following sequence diagram explains the above steps when the user enters `/descfav 1 /to hello`.
-
-![Overview](DG_Diagrams/DescFavCommand/descFav.png)
+<img src="DG_Diagrams/DescFavCommand/descFav.png" alt="Executing" width = 800>
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 
-![executing command](DG_Diagrams/DescFavCommand/descFavInternal.png)
+<img src="DG_Diagrams/DescFavCommand/descFavInternal.png" alt="executing command" width=700>
 
 #### Design Considerations
+The main aim here is to change the description of a particular command in the list of favourites.
 
+##### Aspect: How index and description are verified.
+* **Alternative 1 (current choice):** Perform checks on the validity of index and description at intermediate steps
+    + Pros: The checks specific to `FavList` and `Fav` will be performed in those classes and all these methods 
+    will be called in the main `DescFavCommand#executeCommand()` thus reducing coupling.
+    + Cons: It requires more methods to be written for any particular class.
+    
+* **Alternative 2:** Use the `DescFavParser` class to determine if the index is within bounds of the list and 
+the description is different from what is already stored.
+    + Pros: It is quicker to determine that the command is invalid.
+    + Cons: Requires calling functions from `FavList` and `Fav` in the parser which would increase coupling.
+    
+While alternative 2 would place all checks in one place, it can be tedious to test or debug. Therefore, alternative 1 
+was chosen. It also made the code look neater and more readable. 
+    
 ### 3.7. Dining options finder (/dine Feature)
 
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
@@ -319,7 +354,7 @@ The command is executed in the following steps:
 1. The user calls `Parser#setUserInput(<UserInput>)` by entering the command `/bus <bus stop>`. The new user input is updated.
 2. `Parser#extractType()` is called to instantiate `BusCommand` and run the user command.
 3. `BusCommand#similarLocations()` is self invoked and calls `SimilarityCheck#similarLoc()` which returns an arraylist of possible location.
-4. If `SimilarityCheck#similarLoc()` returns an empty array list, `BusStops#findBusStop()` is called.
+4. `BusCommand#setBusStop()` is self invoked in which, if `SimilarityCheck#similarLoc()` returns an empty array list, `BusStops#findBusStop()` is called.
     - If `SimilarityCheck#similarLoc()` returns non-empty array list, `Ui#printPossibleLocsMessage()` is called and an exception is thrown.
     - If `BusStops#findBusStop()` returns null, an exception is thrown.
 5. `BusCommand#executeCommand()` is called.
@@ -331,6 +366,27 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
+
+### 3.10. Performing similarity checks
+This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
+instruction or command from the user and runs every time the user enters a `/route` or `/bus` command.<br>
+The following steps explain how the similarity checks are performed.
+* Once the location(s) entered by the user are retrieved, the `SimilarityCheck#similarLoc()` method is called for each 
+location.
+* `SimilarityCheck#similarLoc()` retrieves the list of bus stops and for each bus stop name, calls the 
+`SimilarityCheck#getSimilarity()` method.
+    + `SimilarityCheck#getSimilarity()` finds the location name with longer length and calculates Levenshtein distance
+    between the two names using `SimilarityCheck#editDistance()`.
+    + This distance is then divided by the longer distance to get a number between 0 and 1.
+    + This number is subtracted from 1 to get the ratio of similarity.
+* `SimilarityCheck#similarLoc()` adds the bus stop name to the list of possible locations if this similarity is greater 
+than a certain threshold (taken as 0.60).
+
+Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature) and 
+[`/bus` feature implementation](#39-bus-at-bus-stop-finder-bus-feature) for examples of where this feature is used.
+
+_Credits: The Levenshtein distance algorithm was adapted from 
+[this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
 
 ### 3.11 Displaying most searched bus stop on start-up
 This feature informs the user about their most searched bus stop.
@@ -389,9 +445,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 ## 4. Appendix I: Requirements
 
-### 4.1 Product scope
-
-#### 4.1.1 Target user profile
+### 4.1. Target user profile
 
 Nav@NUS targets people who are unfamiliar with the shuttle bus service in NUS Kent Ridge Campus 
 including students, professors and visitors.
@@ -400,14 +454,14 @@ These are people who:
  - prefer a desktop CLI app over other types
  - are new to NUS Kent Ridge Campus
   
-#### 4.1.2 Value 
+### 4.2. Value Proposition
 
 Nav@NUS seeks to help the intended audience to achieve the following:
  - Efficient checking of bus routes in NUS
  - Fast viewing of dining options available at other locations
  - Personalised application suited to the user's needs
 
-### 4.2. User Stories
+## 5. Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
@@ -421,17 +475,17 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 
-### 4.3. Non-Functional Requirements
+## 6. Appendix C: Non-Functional Requirements
 
 1. Nav@NUS should be able to work on any _mainstream OS_ which has Java 11 or a higher version of Java installed.
 2. The user is expected to have a basic idea about the places around NUS.
 3. A user comfortable with typing english text should be able to find this application faster and more useful than those
 that require mouse clicks.
 
-### 4.4. Glossary
+## 7. Appendix D: Glossary
 
 * **Mainstream OS** - Windows, Linux, Unix, OS-X
 
-## 5. Appendix II: Instructions for manual testing
+## 8. Appendix E: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
