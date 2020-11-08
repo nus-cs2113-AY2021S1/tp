@@ -17,12 +17,14 @@ public class TestUtil {
 
     /**
      * Creates a command packet. Assumes that paramTypes and paramArguments are of the same length.
-     * @param commandString Command String of command
-     * @param paramTypes
-     * @param paramArguments
+     *
+     * @param commandString command to execute e.g. "new" or "edit"
+     * @param paramTypes Array of param types e.g. ["/desc", "/amt"]
+     * @param paramArguments Array of param arguments associated with paramTypes
      * @return CommandPacket created
      */
-    public static CommandPacket createCommandPacket(String commandString, String[] paramTypes, String[] paramArguments) {
+    public static CommandPacket createCommandPacket(String commandString,
+                                                    String[] paramTypes, String[] paramArguments) {
         HashMap<String, String> paramMap = new HashMap<>();
         if (paramTypes != null) {
             for (int i = 0; i < paramTypes.length; i++) {

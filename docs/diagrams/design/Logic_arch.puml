@@ -29,14 +29,13 @@ rectangle CommandHandlers {
 
     class ParamHandler <<abstract>> {
         requiredParams: HashSet<String>
-        paramsSuccessfullyParsed: hashSet<String>
-        missingRequiredParams: hashSet<String>
-        hasParsedAllRequiredParams: boolean
+        paramsSuccessfullyParsed: HashSet<String>
+        missingRequiredParams: HashSet<String>
         handleParams()
         checkParseFailedParams()
         handleSingleParam() ABSTRACT
     }
-    class XYZCommandHandlers {
+    class XYZCommandHandler <<Singleton>>{
         setRequiredParams()
         handlePacket()
         handleSingleParam()
@@ -44,13 +43,13 @@ rectangle CommandHandlers {
     }
 
 
-    XYZCommandHandlers --|> ParamHandler
+    XYZCommandHandler --|> ParamHandler
 
-    XYZCommandHandlers ..right> "1"  ParamChecker #line:blue;text:black : < Checks validity of params for
-    note top of XYZCommandHandlers: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
+    XYZCommandHandler ..right> "1"  ParamChecker #line:blue;text:black : > Checks validity of params using
+    note top of XYZCommandHandler: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
 }
 
-LogicManager -> XYZCommandHandlers : < Performs param-dependent \noperations for
+LogicManager -> XYZCommandHandler : > Passes CommandPacket to
 note top of ParamChecker: Contains methods that \ncheck validity of params supplied\n e.g. check that user has entered\n a valid integer without alphabets\n or decimal point for a param\n which expects int
 
 

@@ -238,7 +238,7 @@ OTHERS|oth|Income
 
 >Syntax
 
-    add {PARAM_TYPE} {PARAM}
+    new {PARAM_TYPE} {PARAM}
 
         
 Param Type| Param | Param Format
@@ -341,12 +341,13 @@ Exit to Manual tracker where users can choose another ledger.
 
 ![](developerGuide_images/screenshot_entrytracker/entry_exit.png)
 
-<div style="page-break-after: always;"></div>  
+
+<!-- @@author Artemis-Hunt -->
 
 # Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
 
-## Add entry
+## New entry
 Creates a recurring entry. Entries can either be income or expense. If income, entries
 can be set to "auto" which indicates that the income is automatically credited to the user's
 bank account e.g. Salary which is transferred into bank account by company. 
@@ -356,28 +357,29 @@ of reward points on a monthly basis.
 
 Vice versa for expense entries.
 
->Syntax
-
-    add {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
-    
 **Parameters** <br />
-* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 of 2)
-* `-auto` - Whether entry is auto or manual (only serves as a reminder for user, 
-is not linked to any functionality)
+* `-e` OR `-i` - Indicates whether entry is income or expense (Mandatory to have 1 out of 2)
+* `-auto` - Indicates that entry is an automatically deducted/credited expense/income. Only serves as a reminder, 
+is not linked to any functionality. (Optional)
 * `/desc` - Description of entry (Mandatory)
 * `/amt` - Amount (Mandatory)
 * `/day` - Day of month which entry occurs on (Mandatory)
-* `/notes` - Additional notes and remarks
+* `/notes` - Additional notes and remarks (Optional)
+
+>Syntax
+
+    new {-e OR -i} [-auto] /desc <DESCRIPTION> /amt <AMOUNT> /day <DAY_OF_MONTH> [/notes <NOTES>]
+   
 
 >Example
     
-    add -e -auto /desc Netflix /amt 40 /day 2 /notes Cancel if Homemade ends
+    new -e -auto /desc Netflix /amt 40 /day 2 /notes Cancel if Homemade ends
     //Netflix, $40 per month, auto-payment via credit card 
     on the 2nd of every month. Saved with a note of “Cancel if Homemade ends"
     
-    add -i /desc Redeem air miles for vouchers /amt 50 /day 27
+    new -i /desc Redeem air miles for vouchers /amt 50 /day 27
     //Redeem air miles for vouchers, $50 per month, user has to take manual action 
-    on or by 27th of every month.
+    by 27th of every month.
     
 ## List all entries
 Displays a list of all recurring entries.
@@ -388,10 +390,10 @@ Displays a list of all recurring entries.
     
 **Parameters** <br />
 None
- 3  
+
 ## Delete entry
 Deletes an entry at the given index. Index can be found via `list` and then checking the 
-associated index in the leftmost column
+associated index in the leftmost column.
 
 >Syntax
 
@@ -414,7 +416,9 @@ field(s) being modified.
     
 **Parameters** <br />
 * `/id` - Index of entry to edit. 1-based indexing (Mandatory)
-* `field(s) to edit` - Follows the same format as add entry E.g. to edit amount, use `/amt <NEW_AMT>`
+* `field(s) to edit` - Follows the same format as new entry 
+E.g. to edit amount, use `/amt {NEW_AMT}`.
+Overwrites previous value present.
 
 >Example
     
@@ -705,16 +709,9 @@ Exit Goal Tracker program and return to FinanceIt main UI.
 
     exit
 
-<<<<<<< HEAD
-## Integrate Goal Tracker with Recurring Tracker [Coming in v3.0]
-In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
-tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
-the goal tracker progress to better aid the user in managing their finances.
- 
-=======
+
 <div style="page-break-after: always;"></div>  
 
->>>>>>> 21939f12c4bca64aa61a15b77e52dd3bc50788ca
 # Save Manager
 This utility feature helps to save multiple program states and load them at will.
 
@@ -827,6 +824,7 @@ No. | Feature | Syntax |
 6.|Exit to Manual Tracker|_exit_|
 
 <!-- @@author bqxy -->
+
 ## FinanceTools
 
 No. | Feature | Syntax |
@@ -841,7 +839,8 @@ No. | Feature | Syntax |
 8.|Clear All Account Information|_clearinfo_|
 9.|Command and Calculation History|_history_|
 10.|Exit to Main Menu|_exit_|
- <!-- @@author -->
+
+<!-- @@author -->
 
 ## Goal Tracker
 

@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class RecurringTrackerTest {
     CommandPacket testPacket;
     public static final int ENTRIES_TO_CREATE = 15;
-    final String[] SAMPLE_COMPULSORY_PARAMS  = new String[] {"-i or -e", "/desc", "/amt", "day"};
+    final String[] sampleCompulsoryParams = new String[] {"-i or -e", "/desc", "/amt", "day"};
 
     CreateEntryHandler createHandler = CreateEntryHandler.getInstance();
     EditEntryHandler editHandler = EditEntryHandler.getInstance();
@@ -28,10 +28,9 @@ public class RecurringTrackerTest {
     public RecurringEntry createEntryHandler_validInput_validEntryCreated() {
         String[] validParamTypes = new String[] {"-e", "/desc", "/amt", "/day", "/notes"};
         String[] validParamArguments = new String[] {"", "Test23123//>?>_+_~#$#@",
-                "3490.34", "15", "OIYH(*^(*ot9w3848(*&(*~~||///"};
+            "3490.34", "15", "OIYH(*^(*ot9w3848(*&(*~~||///"};
         clearEntries();
-        testPacket = TestUtil.createCommandPacket("add",
-                validParamTypes, validParamArguments);
+        testPacket = TestUtil.createCommandPacket("new", validParamTypes, validParamArguments);
         try {
             createHandler.handlePacket(testPacket);
         } catch (Exception exception) {
@@ -52,7 +51,7 @@ public class RecurringTrackerTest {
     public void editEntryHandler_oneParamToEdit_entryEdited() {
         String[] validEditParamTypes = new String[] {"-e", "/desc", "/amt", "/day", "/notes"};
         String[] validEditParamArguments = new String[] {"", "NewDescription)*(&)(908945",
-                "1999.99", "27", "HP08709HN*^*D?:L[]``]/<>"};
+            "1999.99", "27", "HP08709HN*^*D?:L[]``]/<>"};
         RecurringEntry entry = new RecurringEntry();
         clearEntries();
         testPacket = TestCommands.generateCreateCorrectEntryCommandAutoIncome();
@@ -124,13 +123,13 @@ public class RecurringTrackerTest {
         CommandPacket[] packets = TestCommands.generateCreateEntryMissingParamsCommands();
         //Do a for loop to vary which params are missing
         //Only loop 4 times, as there are 4 compulsory params
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             try {
                 testPacket = packets[i];
                 RecurringEntry entry = RecurringTracker.handleNewEntry(testPacket);
                 assertNull(entry);
             } catch (Exception exception) {
-                String expectedErrorMessage = "The following params require valid input: " + SAMPLE_COMPULSORY_PARAMS[i];
+                String expectedErrorMessage = "The following params require valid input: " + sampleCompulsoryParams[i];
                 assertEquals(expectedErrorMessage, exception.getMessage());
             }
         }

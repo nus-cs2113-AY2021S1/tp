@@ -3,6 +3,7 @@ package seedu.financeit.datatrackers.recurringtracker;
 //@@author Artemis-Hunt
 import seedu.financeit.common.CommandPacket;
 import seedu.financeit.common.Common;
+import seedu.financeit.common.exceptions.DuplicateInputException;
 import seedu.financeit.common.exceptions.InsufficientParamsException;
 import seedu.financeit.common.exceptions.ItemNotFoundException;
 import seedu.financeit.datatrackers.recurringtracker.recurringhandlers.RetrieveEntryHandler;
@@ -35,7 +36,7 @@ public class RecurringTracker {
             CommandPacket packet = InputParser.getInstance().parseInput(input);
             UiManager.refreshPage();
             switch (packet.getCommandString()) {
-            case "add":
+            case "new":
                 handleNewEntry(packet);
                 break;
             case "list":
@@ -63,8 +64,15 @@ public class RecurringTracker {
         RecurringEntry entry = null;
         CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
         try {
+            //Create and retrieve entry created
             createEntryHandler.handlePacket(packet);
             entry = createEntryHandler.getEntry();
+
+            // Checking of duplicates
+            if (entries.isItemDuplicate(entry)) {
+                throw new DuplicateInputException();
+            }
+
             entries.addItem(entry);
             String entryName = entry.getName();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
@@ -72,6 +80,11 @@ public class RecurringTracker {
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
+        } catch (DuplicateInputException exception) {
+            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    "Duplicate item already exists in the list; not added!",
+                    "At least one of description, expenditure/income type, ",
+                    "auto/manual, amount or day must be different.");
         } finally {
             if (!createEntryHandler.getHasParsedAllRequiredParams()) {
                 UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
@@ -86,6 +99,8 @@ public class RecurringTracker {
         RetrieveEntryHandler retrieveEntryHandler = RetrieveEntryHandler.getInstance();
 
         try {
+            //Set the index of the item to be deleted as
+            //an attribute of entries
             retrieveEntryHandler.handlePacket(packet, entries);
             entry = (RecurringEntry) entries.getItemAtCurrIndex();
             String entryName = entry.getName();
@@ -111,6 +126,8 @@ public class RecurringTracker {
         EditEntryHandler editEntryHandler = EditEntryHandler.getInstance();
 
         try {
+            //Set the index of the item to be edited as
+            //an attribute of entries
             retrieveEntryHandler.handlePacket(packet, entries);
             entry = (RecurringEntry) entries.getItemAtCurrIndex();
             editEntryHandler.setEntry(entry);
@@ -137,7 +154,7 @@ public class RecurringTracker {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command                 ;Input Format                ;"
                             + "Notes                           ");
-        TablePrinter.addRow("1.;New expenditure (-e) or income (-i).;add -[e/i] [-auto] >/desc {DESCRIPTION} "
+        TablePrinter.addRow("1.;New expenditure (-e) or income (-i).;new -[e/i] [-auto] >/desc {DESCRIPTION} "
                             + ">/amt {AMOUNT} >/day {DAY_OF_MONTH} >[/notes {NOTES}];Use -auto for "
                             + "income/expenses that are auto-credited into/auto-deducted from bank "
                             + "account/credit card");

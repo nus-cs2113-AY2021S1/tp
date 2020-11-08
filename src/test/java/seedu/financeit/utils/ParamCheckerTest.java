@@ -251,7 +251,7 @@ public class ParamCheckerTest {
                 List.of(String.valueOf(Integer.MIN_VALUE), "-1", "0", "1", String.valueOf(Integer.MAX_VALUE))
         );
 
-        for(String validIntegerAsString: validIntegersAsStrings) {
+        for (String validIntegerAsString: validIntegersAsStrings) {
             testPacket = TestUtil.createCommandPacket(
                     "",
                     new String[][]{
