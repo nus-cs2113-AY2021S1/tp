@@ -306,7 +306,7 @@ The following sequence diagram shows how the `execute()` operation works when th
 
 Note: It uses `getEarliestDeadline()` function to get the earliest ordinary deadline in the list, and `getEarImportantDeadline()` function to get the earliest important deadline in the list.
 Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
-If no corresponding items, the functions will return null.
+If no corresponding items, the functions will return null. The Ui prints out suggestions with respect to their importance and urgency.
 
 ### Print countdown feature
 This feature is facilitated by `CountdownCommand`.
