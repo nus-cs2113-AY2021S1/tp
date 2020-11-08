@@ -3,6 +3,9 @@ package seedu.duke.logic.parser;
 import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
+/**
+ * Parses inputs by users into execfav command
+ */
 public class ExecFavParser extends Parser {
 
     private String userInput;
@@ -18,6 +21,11 @@ public class ExecFavParser extends Parser {
         return index;
     }
 
+    /**
+     * Sets index input by user
+     *
+     * @throws CustomException if user input cannot be parsed into integer or blank
+     */
     private void setIndex() throws CustomException {
         assert ! (userInput == null) : "userInput not declared";
         if (userInput.isBlank()) {
