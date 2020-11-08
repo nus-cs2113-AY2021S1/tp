@@ -107,6 +107,7 @@ As a first-time user you can always type help in the terminal to view the list o
 Format: `help`
 
 ![Screen_Shot_of_help_command](images/Help_Command.PNG)
+
 ![wanring_message_for_help](images/warning_help_command.PNG)
 
 ### Adding a task:
@@ -128,22 +129,29 @@ Example:
 
 `todo exercise for 10 minutes` adds a todo task of exercising for 10 minutes to the calendar list as demonstrated in the figure below.
 ![todo_command](images/todo_command.png)
+Note: The above figure is for illustration purpose only. The total number of tasks may differ if you have more tasks stored in the program.
 
 ![tips_todo](images/tip_for_todo.PNG)
 
 #### Adding a deadline task:
 
-update this section with 2 different date input examples!....
 This function allows you to add a deadline task, such as project submission or assignment submission and the program 
-will keep track of the due date which will definitely make your study life more manageable!
+will keep track of the due date which will definitely make your study life more manageable! The function will also display a 
+warning message if the due date of the deadline item is already due (with respect to today's date), making sure all your deadlines are properly recorded and
+minimise any potential careless typo.
 
 Format: `deadline <task_description> / <due_date>`
 
-Example:
+Example of a passed deadline:
 
-`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020 
+`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020, 
 as illustrated by the figure below.
-![deadline_command](images/deadline_command.png)
+![deadline_command_passed](images/deadline_command.png)
+
+Example of a proper deadline:
+`deadline project video demo /090922` adds a deadline task of project video demo which is due on 09 September 2022, as illustrated 
+by the figure below.
+![deadline_command_proper](images/deadline_command_proper.png)
 
 ![tips_deadline](images/tips_deadline.PNG)
 
