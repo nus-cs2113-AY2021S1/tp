@@ -64,23 +64,13 @@
 ## Introduction
 This section provides an introduction to the developer guide for *25HoursADay*.
 
-### Introduction to *25HoursADay*
+### What is *25HoursADay*?
 *25HoursADay* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *25HoursADay* can schedule your tasks and events faster than traditional GUI apps.
 
 ### Purpose and scope
 The purpose of this developer guide is to describe the architecture and software design decisions for the task scheduling application *25HoursADay*. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions.
 
 The intended audience of this guide are the developers and software testers of *25HoursADay*.
-
-### Developer guide organization
-The table below shows the content of the developer guide.
-
-|Section| Purpose | 
-|--------|----------|
-|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up *25HoursADay* on your computer.|
-|[Section 3: Design](#design)|To explain the architecture of *25HoursADay*,  and describe the major components of *25HoursADay*, the roles of major components, as well as their organization and interaction of major components.|
-|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to *25HoursADay* and the features added to *25HoursADay*.|
-|[Section 5: Documentation](#documentation)|To represent documents describing the system and its parts.|
 
 ## Setting Up & Getting started
 This section provides on setting up the *25HoursADay* application.
@@ -92,7 +82,7 @@ Before diving into the project development and testing, here are some essential 
 1. **JAVA 11.0.8**
     * Launch your terminal and type "java -version" to ensure you have the correct version number
     * If you have no Java installed or different version number, please proceed to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
-    to download the **Java 11.0.9** installer.
+    to download the **Java 11.0.8** installer.
 1. **Intellij IDEA**
     * If you are new to IntelliJ, please proceed to this [website](https://www.jetbrains.com/help/idea/installation-guide.html)
     to download and install the IDE.
@@ -117,7 +107,7 @@ Now, Open Intellij
     JDK being used for the project.
     * Wait for the importing process to finish (may take a few minutes, so get some :coffee: :relaxed:)
 1. **Verify the set up**:
-    * Run the `..main/java/seedu.duke/Duke`
+    * Run the `..main/java/seedu.duke/Main`
     * Upon a successful configuration, you should be able to see the welcome screen of the project as shown below:
     ![verify_set_up](images/Verify_setup.PNG)
     * Run some tests to ensure it is working properly.
@@ -181,18 +171,17 @@ The `Task` and `Event` classes are further explained below.
 
 #### Task
 
-The `Task` class stores the information of all task items, including description and status, such as isDone and isImportant. 
+The `Task` class stores the information of all task items, including description and status, such as `isDone` and `isImportant`. 
 It has two subclasses: `Todo` and `Deadline`. `Deadline` items also have the date information and countdown for the deadline date, which are not included in `Todo` tasks. 
 
 #### Event
 
 The `Event` class stores the information of all `Event` items, including date, time, venue, status whether it is overdue, and any other information if added. 
-It has two subclasses: SchoolEvent and Activity. `Activity` items can have other details.
+It has two subclasses: `SchoolEvent` and `Activity`. `Activity` items can have other details.
 All `SchoolEvent` items must have a module code.  
 Furthermore, the `SchoolEvent` class has four subclasses which are `Lecture`, `Tutorial`, `Lab`, and `Exam`. Among them only `Exam` items have a countdown for the exam date. 
-All `Event` items update the information or provide needed information about `Event` items when executing commands related to events or saving the information to `Storage`.
 
-Design consideration: `SchoolEvent` is modelled after NUS modules to cater to our intended users.
+Design consideration: `SchoolEvent` is modelled after classes in NUS to cater to our intended users.
 
 ## Implementation
 This section describes the details of how each feature is implemented.
@@ -214,8 +203,8 @@ The following sequence diagram shows how the `execute()` operation works to add 
 ="" width
 ="750"/><br/>
 
-Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the
- `CalendarItem` being added. The `CalendarItem` object created is also based on the `CalendarItem` being added. 
+Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the type of
+ `CalendarItem` being added. The `CalendarItem` object created is also based on the type of `CalendarItem` being added. 
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
@@ -255,7 +244,7 @@ Note: The command first extracts the task/event number from the user input prior
 
 ### Find a calendar item feature
 This feature is facilitated by `FindCommand`.
-The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
+The following sequence diagram shows how the `execute()` operation works when the user searches the entire calendar.:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
 
 The search for tasks or events feature has a similar sequence diagram with a slight difference to the varying condition. Depending
@@ -273,7 +262,7 @@ The following sequence diagram shows how the `execute()` operation works when th
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
-The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
+The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
 
 ### Prioritize a task feature 
@@ -296,8 +285,6 @@ This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
 
-Note: It uses `calculateNumTotal()` and `calculateNumFinshed()` to calculate the numbers of only tasks and finished tasks in the list, not including events. 
-Then it uses these numbers to calculate the progress. 
 
 ### Print suggestions feature
 This feature is facilitated by `PrintSuggestionCommand`.
@@ -326,7 +313,7 @@ The file `tasks.txt` is loaded when initializing the program by calling the func
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_load_data_SD.jpg" alt="" width="500"/><br/>
 
-The local file is updated every time when the user adds or deletes and item, 
+The local file is updated every time when the user adds or deletes an item, 
 or changes the attributes of the item by calling the function `writeToFile()`.
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_store_data_SD.jpg" alt="" width="500"/><br/>
@@ -340,7 +327,7 @@ directory, and a new text file.
 This feature is facilitated by `ModuleChecker` class and `NusModule` class.
 
 The `NusModule` class consists of an empty constructor, a getter and setter to retrieve and set the module code of a `NusModule` object.
-The `ModuleChecker` class has a *generateNusModsMap* which generates a HashMap<String, NusModule>. This is achieved by reading
+The `ModuleChecker` class has a `generateNusModsMap()` which generates a `HashMap<String, NusModule>`. This is achieved by reading
 the JSON file from the NUS Mod website and parser it into a list of Module objects.
 
 After which, the isModuleValid function will analyse the module code entered by the user, and returns TRUE if the code is 
@@ -351,10 +338,10 @@ The following sequence diagram further illustrates the above process.
 
 <!-- @@author Jingming517 -->
 ## Documentation
+This section shows how the developer guide is documented.
 
 ### Documentation guide
 
-#### Introduction
 We use Markdown for writing documentation.
 
 #### Setting up and maintaining the project website
@@ -381,31 +368,17 @@ We use Markdown for writing documentation.
 
 There are two ways to run tests.
 - Method 1: Using IntelliJ JUnit test runner
-  - To run all tests, right-click on the src/test/java folder and choose Run 'Tests in 'tp.test''
-  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run 'DukeTest'
+  - To run all tests, right-click on the src/test/java folder and choose Run Tests in `tp.test`
+  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run `DukeTest`
 - Method 2: Using Gradle
-  - Open a console and run the command gradlew checkstyleMain (Mac/Linux: ./gradlew checkstyleMain)  
+  - Open a console and run the command `gradlew checkstyleMain` (Mac/Linux: ./gradlew checkstyleMain)  
 
 <!-- @@author -->
-
-### Logging guide
-
-- We are using the java.util.logging package for logging.
-- The LogsCenter class is used to manage the logging levels and logging destinations.
-- The Logger for a class can be obtained using LogsCenter.getLogger(Class) which will log messages according to the specified logging level.
-- Log messages are output through the console and to a .log file.
-- The output logging level can be controlled using the logLevel setting in the configuration file
-- When choosing a level for a log message, follow the conventions given in [[se-edu/guides] Java: Logging conventions](https://se-education.org/guides/conventions/java/logging.html).
-  - SEVERE : Critical problem detected which may possibly cause the termination of the application
-  - WARNING : Can continue, but with caution
-  - INFO : Information showing the noteworthy actions by the App
-  - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
-
 
 
 ## DevOps guide
 
-### 1. Build automation
+### Build automation
 This project uses Gradle for **build automation and dependency management.**
 **You are highly recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html).
 
@@ -427,16 +400,16 @@ e.g. `./gradlew shadowJar`
     * `./gradlew test` - Runs all tests
     * `./gradlew clean test` - Cleans the project and runs tests
 
-### 2. Continuous integration (CI)
+### Continuous integration (CI)
 This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files 
 (in the `.github/workflows` folder). No further setting up required.
 
-### 3. Make a release
+### Make a release
 Here are the stpes to create a new release after you have implemented new features.
 
 1. Update the version number in `Main.java`.
 1. Generate a fat JAR file using Gradle (i.e. `gradlew shadow`).
-1. Tag the repo with the version number e.g: `V2.0`.
+1. Tag the repo with the version number e.g: `V2.1`.
 1. [Create a new release using Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository).
 1. Upload the JAR file you created.
 
@@ -455,16 +428,16 @@ It is specially catered to NUS students, offering features relevant to a NUS stu
 * has the need to manage a significant number of day-to-day matters
 * prefer desktop command line apps over other types
 * prefer typing to using mouse interactions
-* comfortable with using command line apps
+* comfortable with using command line applications
 * forgetful person who needs reminders
 * a fast typer
 
 
 ### Value proposition
 
-By using *25HoursADay*, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
-need to search through different platforms for information. *25HoursADay* can manage one's day-to-day matters faster than a 
-typical mouse/GUI driven app.
+By using *25HoursADay*, it provides an all-in-one application for the users to keep track of his/her day-to-day matters. Without the
+need to search through different platforms for information, *25HoursADay* can manage one's day-to-day matters faster than a 
+typical mouse/GUI driven application.
 
 ## Appendix B: User Stories
 This section describes the user stories considered when implementing the features.
@@ -475,7 +448,7 @@ This section describes the user stories considered when implementing the feature
 |v1.0|user|add different tasks and events|better manage my day-to-day matters|
 |v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
-|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
+|v1.0|user|print all events and tasks separately|have a clear picture of what I have on hand|
 |v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
 |v1.0|user|store all the data locally|load my saved data to the app next time|
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
@@ -524,10 +497,11 @@ The table below shows the information and contact details of developers.
 ## Appendix F: Instructions for manual testing
 
 General steps for manual testing:
-1. Execute an "Add" action.
+1. Execute an "Add" action.  
 2. Execute a "Delete" / "Find" / "Print" / "Set" / "View" action of the same command type.
 
-Refer to [Command Summary](#command-summary) to view the list of actions, command types and command format. 
+Refer to [Command Summary](#command-summary) to view the list of actions, command types and command format.   
+Refer to [User Guide](https://ay2021s1-cs2113t-t12-2.github.io/tp/UserGuide.html) to view the other commands and their expected output.
 
 ### Command summary
 The following table contains the list of commands available in the application.
