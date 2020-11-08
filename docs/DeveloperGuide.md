@@ -142,7 +142,7 @@ The Ui component is responsible for:
 The Logic component consists of the `Parser`, `Command` and `Scheduler` classes as shown in the class diagram below:
 
 <p align="center">
-  <img src="DG_Images/LogicClassDiagram.png" width="600" alt="Logic Class Diagram"/>
+  <img src="DG_Images/LogicClassDiagram.png" width="700" alt="Logic Class Diagram"/>
   <br/>Figure <>. Class diagram of Logic component  
 </p>
 
@@ -271,7 +271,7 @@ In addition, it implements the following operations:
 The following diagram shows the class diagram of the edit module name feature:
 
 <p align="center">
-  <img src="DG_Images/EditModuleClassDiagram.png" width="600" alt="Edit Module Class Diagram"/>
+  <img src="DG_Images/EditModuleClassDiagram.png" width="800" alt="Edit Module Class Diagram"/>
   <br/>Figure <>. Class diagram of edit module name feature  
 </p>
 
@@ -456,7 +456,7 @@ In addition, it implements the following operations:
 The following diagram shows the class diagram of the edit chapter name feature:
 
 <p align="center">
-  <img src="DG_Images/EditChapterClassDiagram.png" width="700" alt="Edit Chapter Class Diagram"/>
+  <img src="DG_Images/EditChapterClassDiagram.png" width="800" alt="Edit Chapter Class Diagram"/>
   <br/>Figure <>. Class diagram of edit chapter name feature  
 </p>
  
@@ -540,7 +540,7 @@ In addition, it implements the following operation:
 The following diagram shows the class diagram of the add flashcard feature:
 
 <p align="center">
-  <img src="DG_Images/AddCardClassDiagram.png" width="600" alt="Add Card Class Diagram"/>
+  <img src="DG_Images/AddCardClassDiagram.png" width="800" alt="Add Card Class Diagram"/>
   <br/>Figure <>. Class diagram of add flashcard feature  
 </p>
  
@@ -605,7 +605,7 @@ In addition, it implements the following operations:
 The following diagram shows the class diagram of the edit flashcard content feature:
 
 <p align="center">
-  <img src="DG_Images/EditCardClassDiagram.png" width="600" alt="Edit Flashcard Class Diagram"/>
+  <img src="DG_Images/EditCardClassDiagram.png" width="800" alt="Edit Flashcard Class Diagram"/>
   <br/>Figure <>. Class diagram of edit flashcard content feature  
 </p>
 
@@ -973,7 +973,7 @@ In addition, it implements the following operations:
 The following diagram shows the class diagram of the reschedule chapter feature:
 
 <p align="center">
-  <img src="DG_Images/RescheduleChapterClassDiagram.png" width="600" alt="Reschedule Chapter Class Diagram"/>
+  <img src="DG_Images/RescheduleChapterClassDiagram.png" width="800" alt="Reschedule Chapter Class Diagram"/>
   <br/>Figure <>. Class diagram of reschedule chapter feature  
 </p>
  
