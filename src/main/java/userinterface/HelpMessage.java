@@ -66,6 +66,7 @@ public class HelpMessage extends Ui {
             + "list    - shows the flashcards that have been added\n"
             + "delete  - deletes the flashcard corresponding to the card index entered by user\n"
             + "test    - user can attempt to answer a random question from the flashcard deck\n"
+            + "          use \"back\" to exit test mode, and \"show answer\" to show the answer to the question\n"
             + "find    - searches and returns flashcards containing user's desired search term\n"
             + "back    - exit test mode and go back to flashcard main";
 
