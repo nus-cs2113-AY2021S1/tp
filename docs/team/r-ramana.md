@@ -24,6 +24,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     - `find-n`
         - Allows the user to filter and find a note by the note title.
         - Users are able to find for notes and retrieve them as opposed to scanning for them in the list. It makes the process more efficient for the user.
+        
+        <div style="page-break-after: always;"></div>
+        
     - `help`
         - Allows the user a quick access on the list of commands available and how to use them.
         - As the application has a myriad of commands, the user might not recall all of them and this is a simple way to assist the user.  
@@ -55,6 +58,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 1. Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)) to make the application more user-friendly. 
 1. Refactored code to abstract out the successful/unsuccessful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) from the individual command classes to its own `CommandMessage` class.
 
+<div style="page-break-after: always;"></div>
+
 ### Code contributed
 [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=r-ramana&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
 
@@ -85,6 +90,8 @@ Filled up the following:
 1. [Non-functional requirements](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103)
 1. [Glossary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103)
 1. Initial [manual testing draft](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/119)
+
+<div style="page-break-after: always;"></div>
 
 ### Community
 - [PRs reviewed](https://github.com/AY2021S1-CS2113-T13-1/tp/pulls?q=is%3Apr+is%3Aclosed) (with non-trivial review comments): [#33](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#36](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/36), [#37](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37), [#40](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/40), [#45](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/45), [#46](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/46), [#47](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47), [#49](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/49), [#52](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/52), [#53](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/53), [#58](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/58), [#61](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [#65](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/65), [#83](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/83), [#88](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88), [#104](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/104), [#107](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/107), [#108](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/108), [#111](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [#114](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#116](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#117](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/114), [#120](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/120), [#121](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121), [#126](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#177](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#180](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#182](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/126), [#189](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/189), [#192](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/192), [#195](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/195), [#196](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/196), [#203](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/203), [#205](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/205), [#207](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/207), [#213](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/213).
