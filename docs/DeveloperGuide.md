@@ -41,22 +41,28 @@ In summary, the `UI` component,
 * Updates the user about any changes in the data after executing the command or errors encountered when executing the commands as instructed by the `Logic` component.
 
 ## Implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-### [Proposed] Enter user information feature
+### Enter user information feature
 
-#### Proposed Implementation
-The proposed feature utilised two commands words [`name`](UserGuide.md/####Entering username: `name`) and [`info`](UserGuide.md/####Entering user information: `info`) that allows users to enter their name using the [`name`](UserGuide.md/####Entering username: `name`) command and [`info`](UserGuide.md/####Entering user information: `info`) to enter other information, such as age, gender, height, activity level, original, current and target weight, separately. 
+#### Implementation
 
-The proposed feature to enter user information is facilitated by `Manager` which stores a [`Person`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Person.java) which
- stores all user information provided. It implements the following operation:
+**This feature utilises two commands words**
 
-* Manager#setPerson(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel) - Calls the method below to set the attribute values of the `Person` object.
-* Person#setAll(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel) - Updates the attribute values of the `Person` object.
-                                               
-Both operation are only executed by the `Manager` class of the `Logic` component. Only one instance of `Person` is ever instantiated. A default person is instantiated at the start with default attribute values and when the user enters their information for the first time during the set up, all the default values would be updated to the inputted values. Therefore, the command to enter the user information will result in a change in the attribute values and not the creation of a new `Person` object.
+* [`name`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#entering-username-name): Saves the user's name or nickname into the application. 
+* [`info`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#entering-user-information-info): Saves the user's age, gender, height, fitness level, original, current and target weight into the application. 
 
-Given below is the example usage scenario and how the feature works.
+**Main classes and methods used** 
+
+* [`Manager`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/Manager.java): Stores a `Person` object.
+    * `Manager#setPerson(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight
+    , int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel)`: Calls a method in `Person` class (listed below) to set the attribute values of the `Person` object.
+* [`Person`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Person.java): Stores all user information provided.
+    * `Person#setAll(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel)`: Updates the attribute values of the `Person` object.
+                                             
+
+**Example usage scenario and how the feature work**<br/>
+_Summary_: Only one instance of `Person` is ever instantiated. A default person is instantiated at the start
+ with default attribute values and when the user enters their information for the first time during the set up, all the default values would be updated to the inputted values. Therefore, the command to enter the user information will result in a change in the attribute values and not the creation of a new `Person` object.
 
 Step 1. When the user launches the application for the first time. A default `Person` object will be initialised by `Manager` and the user will be prompted to enter their name.
  
@@ -90,13 +96,13 @@ Aspect: Whether to enter name and other information separately or together
 
 * **Alternative 2**: Enter name and other information together
     * Pros: Enter all information at once.
-    * Cons: Increase user interaction and engagement.
+    * Cons: Decrease user interaction and engagement.
 
 Aspect: Whether to use singleton pattern for Person class
 
 * **Alternative 1 (current choice)**: Did not use singleton pattern for `Person`
     * Pros: Reduce coupling and increase testability.
-    * Cons:  Risk of creating multiple `Person` object by mistake and there might be negative consequence in creating multiple objects.
+    * Cons: Risk of creating multiple `Person` object by mistake and there might be negative consequence in creating multiple objects.
     
     However, there  is minimal risk of creating multiple `Person` object by mistake and minimal negative consequence in creating multiple objects as long as the `Manager` refers the correct instance of `Person`.
       
