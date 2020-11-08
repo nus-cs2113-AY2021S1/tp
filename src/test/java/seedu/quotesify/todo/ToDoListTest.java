@@ -23,7 +23,7 @@ public class ToDoListTest {
 
 
     @BeforeEach
-    void setToDo() {
+    void setUp() {
         toDoList = new ToDoList();
 
         toDo1 = new ToDo(task1Name, task1Deadline);
