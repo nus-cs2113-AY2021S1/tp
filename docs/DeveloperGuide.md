@@ -153,7 +153,7 @@ The `Recommender` component handles the recommendation of the exercises. Based o
 
 When the `Recommend` class is instantiated, the constructor calls onto the `Storage` class to load multiple different `StandardExerciseList` instances as attributes. 
 
-The `recommand` method in the class then chooses and adds different permutations or combinations of `StandardExercise` instances from the multiple different `StandardExerciseList` instances to load into a new instance of `StandardExerciseList`, which is then returned.
+The `recommend` method in the class then chooses and adds different permutations or combinations of `StandardExercise` instances from the multiple different `StandardExerciseList` instances to load into a new instance of `StandardExerciseList`.
 
 <p align="center"><img src="images/RecommenderClassDiagram.png"></p>
 <p align="center">Figure 5: <code>Recommender</code> class diagram</p>
@@ -238,11 +238,15 @@ The user's input is first parsed by the `Parser` class, which returns a `Recomme
 The `Recommender` class then returns a list of type `StandardExerciseList`. The user input is then read in by the `Ui` class to determine which `StandardExercise` objects in the `StandardExerciseList` should be converted to `Exercise` and added to the exerciseList of type `ExerciseList`
 
 <p align="center"><img src="images/RecommendCommandSequenceDiagram.png"></p>
-<p align="center">Figure 5: <code>Recommend Command</code> sequence diagram</p>
+<p align="center">Figure 9: Sequence diagram for <code>recommend</code> command</p>
 
 
-### Add Command
+### 4.7 Add Exercise and Add Food Command
 
+The `AddFoodCommand` and `AddExerciseCommand` are similar in implementation. It simply adds the user input into either the `ExerciseList` or the `Foodlist` using the ListManager.
+
+<p align="center"><img src="images/AddExerciseCommandSequenceDiagram.png"></p>
+<p align="center">Figure 10: Sequence diagram for <code>AddExerciseCommand</code></p>
 ### 4.8 Tip of the day
 
 Fitr can give an interesting fact or a tip of exercise every time the user opens the app.
@@ -251,8 +255,8 @@ When the user opens the program, a `TipList` is automatically created by `Fitr`,
 
 Figure 10 below shows the sequence diagram for giving a tip.
 
-<p align="center"><img src="images/TipCommandSequenceDiagram.png"></p>
-<p align="center">Figure 10: Sequence diagram for giving a tip</p>
+<p align="center"><img src="images/AddExerciseCommandSequence.png"></p>
+<p align="center">Figure 11: Sequence diagram for giving a tip</p>
 
 ## Appendix A: Product Scope
 ### Target user profile
