@@ -366,7 +366,7 @@ In this case, ```handleCreateLedger()``` will be called.
 1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createledgerHandler``` instance
 and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 
-__<a name = table1/> Param Handling Behavior:__
+__<a name = table1></a> Param Handling Behavior:__
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
@@ -391,7 +391,7 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
             1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
                 * Note that only one of the two params need to be invoked from the input. 
 
-__<a name = table2/> Param Handling Behavior:__
+__<a name = table2/></a> Param Handling Behavior:__
     
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
@@ -400,7 +400,6 @@ __<a name = table2/> Param Handling Behavior:__
 
 1. __Phase 2: Ledger Deletion__
     1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
-
 
 ![](uml_images/images_updated/manualTrackerDeleteLedgerSeqDiagram.png)
 
@@ -415,9 +414,9 @@ The editing of details within the entry is performed in two phases: Entry Retrie
     1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
     In this case, ```handleEditEntry()``` will be called.
 1. __Phase 1: Entry retrieval__
-<br/>
+
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
-<br/>
+
     1. At ```handleEditEntry()```, the following processes will be executed:
         1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
         ```retrieveentryHandler.setRequiredParams()``` to set required params for a successful parse.
@@ -426,15 +425,16 @@ The editing of details within the entry is performed in two phases: Entry Retrie
             1. For ```retrieveentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
             1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
-<a name = table3></a>
+__<a name = table3></a> Param Handling Behavior__
+
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.INDEX```|"/index"|Valid index on the list <br/>from 1 onwards.|Call ```entryList.setIndexToModify()``` <br/>to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
 1. __Phase 2: Entry edit__
-<br/>
+
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
-<br/>
+
     1. Following Phase 1, the following processes will be executed:
         1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
@@ -443,7 +443,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
         1. For ```editentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
 
-<a name = table4></a>            
+__<a name = table4></a>Param Handling Behavior__           
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
