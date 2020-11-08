@@ -1,0 +1,27 @@
+@startuml
+participant ":CommandSearchMember" as CommandFinanceSummary
+participant ":MemberList" as FinanceList
+->CommandFinanceSummary:execute()
+activate CommandFinanceSummary
+CommandFinanceSummary -> FinanceList : search()
+activate FinanceList
+loop numOfMembers
+opt any
+FinanceList -> FinanceList: searchAny()
+end
+opt name
+FinanceList -> FinanceList: searchName()
+end
+opt phone
+FinanceList -> FinanceList: searchePhone()
+end
+opt email
+FinanceList -> FinanceList: searcheEmail()
+end
+opt role
+FinanceList -> FinanceList: searcheRole()
+end
+end
+return output
+return output
+@enduml

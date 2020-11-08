@@ -637,6 +637,134 @@ Aspect: Changing member information <br/>
 
 [Return to top](#CCA-manager-developer-guide)
 
+
+**3.5.4. Search for members**  
+(by: Wang Zixin)  
+
+**3.5.4.1 Current Implementation**  
+The `CommandSearchMember` class in `seedu.duke.hr` handles searching for any `Member` in `MemberList` whose information matches 
+any one of the conditions provided by the user input and then prints all the results.  
+It implements the following operation:  
+* `CommandSearchMember#execute()` - Search for any `Member` whose information matches any conditions 
+provided by the user input then print all the results.  
+
+Given below is an example usage scenario and how the program search particular members.  
+
+Step 1. After some `hr addMember` commands, the user created two `Member`s in `MemberList`. The first `Member` is 
+"John Sterling" with phone number "12345678", email "123@gmail.com", role "member". The second `Member` is 
+"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "president".  
+
+![](hrDiagramPic/3-5S1.png)  
+
+Step 2. The user executes `hr search President` command to search for any `Member` whose information includes "President". 
+The program first check if the first `Member` matches the condition. This `Member` does not match the search condition.  
+
+![](hrDiagramPic/3-5S2.png)  
+
+Step 3. Then the program check if the second `Member` matches the condition. This `Member` now matches the search condition. 
+Because there is no more `Member`s, program will print out information of the second `Member`.  
+
+![](hrDiagramPic/3-5S3.png)  
+
+The sequence diagram for searching is given below:  
+
+![](hrDiagramPic/CommandSearchMember.png)  
+
+**3.5.4.2. Design Considerations**  
+Aspect: Search condition  
+*Alternative 1(Current choice): It will search for `Members` whose inforamtion matches any conditions provided by user input.  
+    *Pros: It can maximize the number of results that are provided to user just like what google search is doing now. It can 
+    also decrease the running time in some degree because it can jump to the next `Member` if the previous `Member`'s name or phone 
+    number or email matches the search condition.  
+    *Cons: If the user input contains some common strings like ".com" or "a", there will be too many results shown to the user.  
+*Alternative 2: It will search for `Members` whose information matches all the conditions provided by user input.  
+    *Pros: There will not be too many results when the user input includes common strings with other conditions.  
+    *Cons: It will increase the running time a lot because it has to check all the information of `Member`s, especially 
+    when there are many members.  
+
+[Return to top](#CCA-manager-developer-guide)  
+
+
+**3.5.5. List Professors and Administrators**  
+(by: Wang Zixin)  
+
+**3.5.5.1 Current Implementation**  
+The `CommandListProfAdmin` class in `seedu.duke.hr` handles listing all the `Member`s in `MemberList` whose roles are professor 
+or administartor.  
+It implements the following operation:  
+* `CommandListProfAdmin#execute()` - List all the `Member`s who are professors or administrators  
+
+Given below is an example usage scenario and how the program list all the professors or administrators.  
+
+Step 1: After some `hr addMember` commands, the user has created three `Member` in `MemberList`. The first `Member` is 
+"John Sterling" with phone number "12345678", email "123@gmail.com", role "member". The second `Member` is 
+"Harry Potter", phone number "88888888", email "qaz@gmail.com", role "professor". The third `Member` is 
+"Tony Parker", phone number "114514", email "tp9@gmail.com", role "Administrator".  
+
+![](hrDiagramPic/35S1.png)  
+
+Step 2. Then the user executes `hr list prof&admin`. After sifting, the remaining `Member`'s information will be 
+printed.  
+
+![](hrDiagramPic/35S2.png)  
+
+The sequence diagram for listing professors and administrators is shown below:  
+
+![](hrDiagramPic/CommandListProfAdmin.png)  
+
+**3.5.5.2. Design Considerations**  
+Aspect: Just use `hr search` or use `hr list prof&admin`  
+*Alternative 1(Current choice): Use `hr list prof&admin`
+    *Pros: The user can just type one command, instead of typing `hr search prof` and `hr search admin`.  
+    *Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
+    to `hr list` that may confuse the user.  
+*Alternative 2: Use `hr search`  
+    *Pros: The time of searching all `Command`s in command list will not be influenced.
+    *Cons: The user has to type `hr search` twice to list professors and administrators and the lists are separated.  
+
+[Return to top](#CCA-manager-developer-guide)  
+
+
+**3.5.6. List Connection**  
+(by: Wang Zixin)  
+
+**3.5.6.1 Current Implementation**  
+The `CommandListConnection` class in `seedu.duke.hr` handles listing all the `Member`s in `MemberList` whose roles are speakers 
+or alumni.  
+It implements the following operation:  
+* `CommandListConnection#execute()` - List all the `Member`s who are speakers or alumni  
+
+Given below is an example usage scenario and how the program list all the `Member` in connection.  
+
+Step 1. After some `hr addMember` commands, the user has created three `Member` in `MemberList`. The first `Member` is 
+        "John Sterling" with phone number "12345678", email "123@gmail.com", role "member". The second `Member` is 
+        "Harry Potter", phone number "88888888", email "qaz@gmail.com", role "speaker". The third `Member` is 
+        "Tony Parker", phone number "114514", email "tp9@gmail.com", role "Alumni".  
+
+![](hrDiagramPic/3-6S1.png)  
+ 
+Step 2. Then the user executes `hr list connections`. After sifting, the remaining `Member`'s information will be 
+        printed.  
+      
+![](hrDiagramPic/3-6S2.png)    
+  
+The sequence diagram for listing connection is shown below:  
+
+![](hrDiagramPic/CommandListConnection.png)  
+
+**3.5.5.2. Design Considerations**  
+Aspect: Just use `hr search` or use `hr list connections`  
+*Alternative 1(Current choice): Use `hr list connections`
+    *Pros: The user can just type one command, instead of typing `hr search speaker` and `hr search alumni`.  
+    *Cons: It increases the time of searching all the `Command`s in command list and this command looks similar 
+    to `hr list` that may confuse the user.  
+*Alternative 2: Use `hr search`  
+    *Pros: The time of searching all `Command`s in command list will not be influenced.
+    *Cons: The user has to type `hr search` twice to list speakers and alumni and the lists are separated.  
+
+[Return to top](#CCA-manager-developer-guide)  
+
+
 ### 3.6. Storage
 
 ![](BackendDiagram/StorageFlow.png)

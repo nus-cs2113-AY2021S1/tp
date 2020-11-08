@@ -25,6 +25,9 @@ class FinanceTest {
         String actual4 = FinanceList.dellog(5);
         String non = FinanceList.dellog(1);
         assertEquals(expected4,actual4);
+        String expected5 = "Sorry, your finance list is empty.\n";
+        String actual5 = FinanceList.summary();
+        assertEquals(expected5,actual5);
     }
 
     @Test
