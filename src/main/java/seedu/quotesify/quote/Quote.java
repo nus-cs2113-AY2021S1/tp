@@ -6,12 +6,14 @@ import seedu.quotesify.parser.JsonSerializer;
 
 import java.util.ArrayList;
 
+//@@author nat-ho
+
 /**
  * Represents a quote.
  */
 public class Quote implements JsonSerializer {
-    private Author author;
     private String quote;
+    private Author author;
     private ArrayList<String> categories = new ArrayList<>();
     private String reference;
     private String reflection;

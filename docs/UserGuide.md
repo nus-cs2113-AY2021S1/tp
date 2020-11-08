@@ -116,6 +116,7 @@ their authors or completion and even find any book you want by just typing in ke
 
 What are you waiting for? If you've struggled with keeping up with your long booklist, Quotesify is here to help! 
 
+<!-- @@author nat-ho -->
 ### 3.2 Quote Management
 
 The quote management system in Quotesify allows you to add your quotes, list, edit and delete them acting as
@@ -126,6 +127,7 @@ a reflection to it allowing you to expand and note down important ideas or why t
 
 If you are someone trying to remember and apply productivity tips from a book you just read, or someone trying to 
 track those all inspiring quotes to come back to, Quotesify's quote management system is the perfect fit for you!
+<!-- @@author -->
 
 ### 3.3 Progress Tracker
 
@@ -408,6 +410,7 @@ The book has been edited from [Harry Potter] to [Harry Potter 2]!
 
 ---
 
+<!-- @@author nat-ho -->
 ### 4.2 Quote Management
 
 Came across an inspiring quote while reading, or a useful productivity tip from an article only to forget it after
@@ -662,6 +665,7 @@ Expected outcome:
 Reflection for the quote ["No, I am your mummy" - by Darth Vader] has been deleted!
 -----------------------------------------------------------------------------------
 ```
+<!-- @@author -->
 
 ---
 <!-- @@author lunzard -->

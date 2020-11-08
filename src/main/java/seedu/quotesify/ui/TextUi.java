@@ -107,6 +107,7 @@ public class TextUi {
         System.out.print(bookList.toStringWithIndex());
     }
 
+    //@@author nat-ho
     public void printAddQuote(Quote quote) {
         System.out.printf(UiMessage.ADD_QUOTE_MESSAGE + "\n", quote.toString());
     }
@@ -124,7 +125,7 @@ public class TextUi {
         if (quoteList.getSize() == 0) {
             System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
-        String listToPrint = quoteList.getQuotesByAuthor(authorName.toLowerCase());
+        String listToPrint = quoteList.getQuotesByAuthor(authorName);
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
         } else {
@@ -137,7 +138,7 @@ public class TextUi {
         if (quoteList.getSize() == 0) {
             System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
-        String listToPrint = quoteList.getQuotesByReference(reference.toLowerCase());
+        String listToPrint = quoteList.getQuotesByReference(reference);
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
         } else {
@@ -150,7 +151,7 @@ public class TextUi {
         if (quoteList.getSize() == 0) {
             System.out.println(UiMessage.LIST_NO_QUOTES_SAVED_MESSAGE);
         }
-        String listToPrint = quoteList.getQuotesByReferenceAndAuthor(reference.toLowerCase(), authorName.toLowerCase());
+        String listToPrint = quoteList.getQuotesByReferenceAndAuthor(reference, authorName);
         if (listToPrint.isEmpty()) {
             System.out.println(UiMessage.LIST_NO_QUOTES_FOUND_MESSAGE);
         } else {
@@ -202,6 +203,7 @@ public class TextUi {
         System.out.println(UiMessage.FIND_QUOTE_SUCCESS);
         System.out.println(results);
     }
+    //@@author
 
     //@@author dozenmatter
 
