@@ -228,7 +228,8 @@ if it isn’t an error is thrown. If there is no parameter inputted, an empty st
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Off.png) 
 
-`prepareOffCommand(argument)` is called. The name can be an Appliance or a Location. A new OffCommand is created: OffCommand(name).
+When the user enters the ‘on’ command, the 
+`prepareOffCommand(argument)` is called. The name can be an Appliance or a Location. A new OffCommand is created: OffCommand(name) and returned.
 
 #### Sequence Diagram for `list`
 
