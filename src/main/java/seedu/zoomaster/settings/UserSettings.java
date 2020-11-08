@@ -44,6 +44,6 @@ public class UserSettings {
             }
         }
 
-        throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_FIELD);
+        throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_FIELD, fieldName);
     }
 }

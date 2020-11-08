@@ -248,6 +248,15 @@ public class Ui {
         case JSON_PARSE_ERROR:
             printJsonParseErrorMessage(e.getInfo());
             break;
+        case INVALID_SETTING_INPUT:
+            printInvalidSettingInput();
+            break;
+        case INVALID_SETTING_FIELD:
+            printInvalidSettingField(e.getInfo());
+            break;
+        case INVALID_SETTING_OPTION:
+            printInvalidSettingOption(e.getInfo());
+            break;
         default:
             // unable to get dukeExceptionType
             break;
@@ -390,6 +399,19 @@ public class Ui {
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
+    }
+
+    //@@author fchensan
+    private void printInvalidSettingInput() {
+        printRedWithBorder("Invalid set setting input format" + NEW_LINE);
+    }
+
+    private void printInvalidSettingField(String invalidSettingName) {
+        printRedWithBorder("Invalid setting name: " + invalidSettingName + NEW_LINE);
+    }
+
+    private void printInvalidSettingOption(String invalidSettingOption) {
+        printRedWithBorder("Invalid setting option: \"" + invalidSettingOption + " is not in the list." + NEW_LINE);
     }
 
     //@@author Speedweener
