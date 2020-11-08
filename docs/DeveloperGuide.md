@@ -369,6 +369,9 @@ borrowed books tracking, and module-related functions. This increase users' effi
 
 ### Glossary
 
+**CI** - Continuous Integration <br>
+**SDK** - Software Development Kit <br>
+**IntelliJ** - An Integrated Development Environment written in Java <br> 
 **UML** - Unified Modeling Language <br>
 **CLI** - Command Line Interface <br>
 **GUI** - Graphical User Interface <br>
