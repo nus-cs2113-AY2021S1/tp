@@ -5,6 +5,7 @@ import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
 import seedu.duke.model.itemlist.ModuleList;
 
+// @@author iamchenjiajun
 public class ListModuleCommand extends Command {
     @Override
     public void execute(Model model) throws DukeException {

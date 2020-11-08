@@ -67,6 +67,7 @@ public class AddCommand extends Command {
         }
     }
 
+    // @@author iamchenjiajun
     /**
      * Adds tasks to Task List.
      *
@@ -82,6 +83,7 @@ public class AddCommand extends Command {
         tasks.addItem(newTask);
     }
 
+    // @@author Cao-Zeyu
     /**
      * Adds links to Link List.
      *
@@ -108,6 +110,7 @@ public class AddCommand extends Command {
         links.addLink(newLink);
     }
 
+    // @@author iamchenjiajun
     /**
      * Adds module to Module List.
      *
@@ -139,6 +142,7 @@ public class AddCommand extends Command {
         modules.addModule(module);
     }
 
+    // @@author iamchenjiajun
     /**
      * Sets the properties of a given Task.
      *
