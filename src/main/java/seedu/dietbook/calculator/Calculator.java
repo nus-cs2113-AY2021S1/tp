@@ -250,19 +250,19 @@ public class Calculator {
     public int calculateRecommendation(Person person) {
         double requirement = 0;
         int recommendation;
-        double activityScore = 0;
-        activityScore = getFitnessScore(person);
+        double fitnessScore;
+        fitnessScore = getFitnessScore(person);
         switch (person.getGender()) {
         case MALE:
-            requirement = 662 - 9.53 * person.getAge() + 15.91 * activityScore * person.getCurrentWeight()
+            requirement = 662 - 9.53 * person.getAge() + 15.91 * fitnessScore * person.getCurrentWeight()
                     + 539.6 * person.getHeight() / 100;
             break;
         case FEMALE:
-            requirement = 354 - 6.91 * person.getAge() + 9.36 * activityScore * person.getCurrentWeight()
+            requirement = 354 - 6.91 * person.getAge() + 9.36 * fitnessScore * person.getCurrentWeight()
                     + 726 * person.getHeight() / 100;
             break;
         case OTHERS:
-            requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getCurrentWeight()
+            requirement = 508 - 8.22 * person.getAge() + 12.635 * fitnessScore * person.getCurrentWeight()
                     + 632.8 * person.getHeight() / 100;
             break;
         default:
