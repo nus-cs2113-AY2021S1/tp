@@ -45,7 +45,7 @@ public class ListCommand extends Command {
      * @param filteredLocation input location filter for ListAppliance.
      */
     public ListCommand(String argument, String filteredLocation) {
-        assert argument.isEmpty() !=true : "ListCommand must not accept empty argument";
+        assert argument.isEmpty() != true : "ListCommand must not accept empty argument";
         this.argument = argument;
         this.filteredLocation = filteredLocation;
     }

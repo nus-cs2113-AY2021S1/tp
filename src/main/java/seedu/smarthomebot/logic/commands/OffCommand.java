@@ -30,7 +30,7 @@ public class OffCommand extends Command {
      * @param argument Appliance or Location 's name to be off.
      */
     public OffCommand(String argument) {
-        assert argument.isEmpty() !=true : "OffCommand must not accept empty argument";
+        assert argument.isEmpty() != true : "OffCommand must not accept empty argument";
         this.argument = argument;
     }
 
