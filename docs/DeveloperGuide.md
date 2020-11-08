@@ -173,15 +173,15 @@ The sequence diagram for deleting a finance log entry is shown below:
 
 **3.3.1.2. Design Considerations**  
 Aspect: User input format for adding a finance log entry  
-*Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
-    *Pros: It is more convenient for the user to type commands and easier to memorize the command format.  
-    *Cons: It takes longer time to execute the command for the program has to identify which part is ITEM_NAME and which part is
+* Alternative 1(Current Choice): The user inputs command in format of "finance addLog ITEM_NAME ITEM_VALUE".  
+    * Pros: It is more convenient for the user to type commands and easier to memorize the command format.  
+    * Cons: It takes longer time to execute the command for the program has to identify which part is ITEM_NAME and which part is
     ITEM_VALUE. If the user inputs a separate number for ITEM_NAME but forgets to type ITEM_VALUE, then the program will mistake 
     the separate number in ITEM_NAME for its ITEM_VALUE. For example, if the user just input `finance summary iphone 12` but forgot to
     type the price, then the finance log entry will become `iphone $12`.    
-*Alternative 2: The user inputs command in format of "finance addLog /n ITEM_VALUE /v ITEM_VALUE".  
-    *Pros: The program can easily detect if the input command is valid.  
-    *Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
+* Alternative 2: The user inputs command in format of "finance addLog /n ITEM_VALUE /v ITEM_VALUE".  
+    * Pros: The program can easily detect if the input command is valid.  
+    * Cons: It is harder for the user to memorize the command format. It also costs more time when executing.  
     
 
 **3.3.2. List the summary of finance log entries**  
@@ -210,14 +210,14 @@ The sequence diagram of listing summary of finance log entries is shown below:
 
 **3.3.2.2. Design Considerations**  
 Aspect: Repeated items  
-*Alternative 1(Current Choice): The summary will output all the repeated items.  
-    *Pros: It can display all the indexes of the repeated items so that when user wants to delete any one of them, 
+* Alternative 1(Current Choice): The summary will output all the repeated items.  
+    * Pros: It can display all the indexes of the repeated items so that when user wants to delete any one of them, 
     he can just refer to this summary.  
-    *Cons: It cannot display the total budget for these repeated items. The user has to find a way to calculate it 
+    * Cons: It cannot display the total budget for these repeated items. The user has to find a way to calculate it 
     by himself.  
-*Alternative 2: The summary will combine all the repeated items then output them.  
-    *Pros: The user do not have to calculate the total budget for repeated items by himself.  
-    *Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
+* Alternative 2: The summary will combine all the repeated items then output them.  
+    * Pros: The user do not have to calculate the total budget for repeated items by himself.  
+    * Cons: The summary cannot show each index of the repeated items that it is confusing when user wants to delete 
     any one of them.  
     
 
@@ -244,13 +244,13 @@ to "rent field" and its `finLogVal` is changed to "$50".
 
 **3.3.3.2. Design Considerations**  
 Aspect: User input format  
-*Alternative 1(Current Choice): It changes both `finLog` and `finLogVal` together at the same time.  
-    *Pros: The user does not need to remember two different command formats and the current format can increase the 
+* Alternative 1(Current Choice): It changes both `finLog` and `finLogVal` together at the same time.  
+    * Pros: The user does not need to remember two different command formats and the current format can increase the 
     efficiency of the program.  
-    *Cons: Every time the user has to type in both ITEM_NAME and ITEM_VALUE, it may waste some time for the user.  
-*Alternative 2: Split the command into changeName and changeNum.  
-    *Pros: The user can choose whether just change only `finLog` or `finLogVal` and it is easier to debug.  
-    *Cons: If the user want to change both `finLog` and `finLogVal`, it will waste more time on typing commands. Also, 
+    * Cons: Every time the user has to type in both ITEM_NAME and ITEM_VALUE, it may waste some time for the user.  
+* Alternative 2: Split the command into changeName and changeNum.  
+    * Pros: The user can choose whether just change only `finLog` or `finLogVal` and it is easier to debug.  
+    * Cons: If the user want to change both `finLog` and `finLogVal`, it will waste more time on typing commands. Also, 
     it takes longer time to execute the commands, including others.  
 
 
@@ -319,13 +319,13 @@ The sequence diagram for deleting a particular event or all events is as shown b
 
 Aspect : User input format for adding an event <br/>
 
-*Alternative 1 (current choice) : The user will input the command in the format `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`. <br/>
-*pros: Easy to detect if user input is valid for each parameter, `/n`,`/d`and`/t`. <br/>
-*cons : It may be hard for the user to memorise the command format at the beginning. <br/>
+* Alternative 1 (current choice) : The user will input the command in the format `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`. <br/>
+    * Pros: Easy to detect if user input is valid for each parameter, `/n`,`/d`and`/t`. <br/>
+    * Cons : It may be hard for the user to memorise the command format at the beginning. <br/>
 
-*Alternative 2 : User input with the format `event addevent EVENT_NAME EVENT_DATE EVENT_TIME` <br/>
-*pros: It is more convenient for the user to type commands and easier to memorise the command format. <br/>
-*cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered. <br/>
+* Alternative 2 : User input with the format `event addevent EVENT_NAME EVENT_DATE EVENT_TIME` <br/>
+    * Pros: It is more convenient for the user to type commands and easier to memorise the command format. <br/>
+    * Cons : It takes longer to execute the command as the program will take time to identify the respective parameters within the command entered. <br/>
 
 
 **3.4.2. Listing Events** `CommandEventList`
@@ -352,16 +352,20 @@ Step 2.The user executes `event listEvent` command to list the `EventList`. The 
 
 **3.4.2.2. Design Considerations** <br/>
 
+
 Aspect: Repeated items  <br/>
+
 * Alternative 1 (Current Choice): `event listEvent` command will only list unique events present in the list. It will not show repeated events.
 When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
 to the event list. <br/>
-* Pros : The resulting event list does not contain duplicates. The number of events in the list will be valid. <br/>
+    * Pros : The resulting event list does not contain duplicates. The number of events in the list will be valid. <br/>
+    * Cons :  Requires more methods to be written.
 
 * Alternative 2 : Program accepts duplicated events and filters the duplicates for the user. <br/>
-* Cons : The duplicate list is redundant to the user. <br/>
- 
+    * Pros: It can display all the indexes of the repeated items which user can refer to delete the duplicates. <br/>
+    * Cons : The duplicate list is redundant to the user. <br/>
 
+ 
 The sequence diagram for listing events is as shown below:
 
 ![](EventDiagram/SequenceDiagram/CommandEventList.png)
@@ -370,6 +374,7 @@ The sequence diagram for listing events is as shown below:
 
 (By: Varsha)<br/>
 **Current Implementation**
+
 The `CommandSearchEvent` class in `seedu.duke.event` handles searching of an event via its name or its date.
 
 It implements the following operation:  
@@ -388,8 +393,8 @@ It implements the following operation:
 
 The `CommandEventCountdown` class in `seedu.duke.event` handles displaying of countdown as an additional feature in the `EventList`.
  
-It implements the following operation:
-*`CommandEventCountdown#execute()` -  displays countdown feature for all upcoming `Event` in the `EventList`.
+It implements the following operation: <br/>
+* `CommandEventCountdown#execute()` -  displays countdown feature for all upcoming `Event` in the `EventList`.
 
 The sequence diagram for displaying countdown is as shown below:
 
@@ -402,8 +407,8 @@ The sequence diagram for displaying countdown is as shown below:
 
 The `CommandEventStatus` class in `seedu.duke.event` handles marking of an event. It can manually mark an event as done.
  
-It implements the following operation:
-*`CommandEventStatus#execute()` -  Marks an `Event` in the `EventList` as done.
+It implements the following operation: <br/>
+* `CommandEventStatus#execute()` -  Marks an `Event` in the `EventList` as done.
 
 The sequence diagram for marking an event as done is as shown below:
 
@@ -454,12 +459,12 @@ The sequence diagram for deleting a participant from a particular event is as sh
 
 Aspect: Delete participant attendance from an event  <br/>
 *Alternative 1 (Current Choice): `event delAttendance` command will only delete member from each event by the member name. <br/>
-*Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
-*Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
+    *Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
+    *Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
 
 *Alternative 2 : `event delAttendance` command will only delete member from each event by the member's index in the participant list. <br/>
-*Pros : It is easier to implement.  
-*Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
+    *Pros : It is easier to implement.  
+    *Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
 
 **3.4.7. Listing event participants** `CommandViewEventAttendance`
 

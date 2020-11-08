@@ -32,7 +32,7 @@ public class CommandEventAdd extends Command {
 
         if (!(matchFound)) {
             output = WRONG_TIME_FORMAT;
-        } else if ((EventList.checkIfEventNameMatch(eventName)) && (EventList.checkIfEventDateMatch(eventDate))) {
+        } else if ((EventList.checkEventNameMatch(eventName)) && (EventList.checkEventDateMatch(eventDate))) {
             output = DUPLICATE_EVENT;
         } else {
             output = EventList.addEvent(cachedEvent);
