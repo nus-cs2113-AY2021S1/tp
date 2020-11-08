@@ -382,7 +382,9 @@ public class Ui {
                     + "1) " + ChangeModeCommand.MODE_KW + " bookmark/timetable/planner" + NEW_LINE
                     + "2) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "3) " + LaunchNowCommand.LAUNCH_NOW_KW + NEW_LINE
-                    + "4) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "4) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "5) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "6) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else if (Parser.programMode == 1) {
             printYellowWithBorder("Available inputs in Bookmark mode are" + NEW_LINE
                     + "1) " + AddBookmarkCommand.ADD_KW + NEW_LINE
@@ -390,9 +392,12 @@ public class Ui {
                     + "3) " + ShowBookmarkCommand.SHOW_KW + NEW_LINE
                     + "4) " + FindBookmarkCommand.FIND_KW + NEW_LINE
                     + "5) " + LaunchBookmarkCommand.LAUNCH_KW + NEW_LINE
-                    + "6) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "7) " + ChangeModeCommand.MODE_KW + " timetable/planner" + NEW_LINE
-                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "6) " + EditBookmarkCommand.EDIT_KW + NEW_LINE
+                    + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
+                    + "8) " + ChangeModeCommand.MODE_KW + " timetable/planner" + NEW_LINE
+                    + "8) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "9) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "10) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else if (Parser.programMode == 2) {
             printYellowWithBorder("Available inputs in Timetable mode are" + NEW_LINE
                     + "1) " + AddSlotCommand.ADD_KW + NEW_LINE
@@ -402,7 +407,9 @@ public class Ui {
                     + "5) " + LaunchModuleAndSlotBookmark.LAUNCH_KW + NEW_LINE
                     + "6) " + ChangeModeCommand.MODE_KW + " bookmark/planner" + NEW_LINE
                     + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "8) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "9) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "10) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else {
             printYellowWithBorder("Available inputs in Planner mode are" + NEW_LINE
                     + "1) " + LoadPlannerCommand.LOAD_KW + NEW_LINE
@@ -411,7 +418,9 @@ public class Ui {
                     + "4) " + SavePlannerCommand.SAVE_KW + NEW_LINE
                     + "6) " + ChangeModeCommand.MODE_KW + " bookmark/timetable" + NEW_LINE
                     + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "8) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "9) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "10) " + ExitCommand.EXIT_KW + NEW_LINE);
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
