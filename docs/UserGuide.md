@@ -122,18 +122,27 @@ Welcome to the first feature of Kaji! In order to use this program, you first wi
 * Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113T CS2101` will creates a module named `CS2113T CS2101`, instead of two separated modules named `CS2113T` and `CS2101` respectively.
 
 ##### Example: 
-For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
-* Step 1: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`: <br>
+In this example, you are going to add a new module called `CS2113T`.
+Below are steps of using this `add` command:
+* Step 1: Enters the command `add CS2113T` into the command prompt. Your new module name comes after the key word `add`.
 ![Add Module 1](UG_Images/addModule1.PNG)
-* Step 2: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown: <br>
+* Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module!
 ![Add Module 2](UG_Images/addModule2.PNG)
 
-
+This is an additional example to show you the unique property of Kaji's add feature. 
+As you may aware from `Key Pointers` section above, Kaji is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example.
+Below are the breakdown of this example:
+* Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters.
 ![Add Module 3](UG_Images/addModule3.PNG)
+* Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed!
 ![Add Module 4](UG_Images/addModule4.PNG)
 
-
+This is an additional example to show you the unique property of Kaji's add feature. 
+As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time.
+Below are the breakdown of this example:
+* Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`.
 ![Add Module 5](UG_Images/addModule5.PNG)
+* Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. 
 ![Add Module 6](UG_Images/addModule6.PNG)
 
 #### 3.1.2. Listing modules available: `list` 
