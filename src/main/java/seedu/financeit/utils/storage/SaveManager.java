@@ -70,8 +70,7 @@ public class SaveManager {
      * This method checks if the entered command is valid and adds the
      * appropriate prompt to the status bar.
      * @param packet packet containing parsed command from user
-     * @return If true, run the command, if false, report status to the user
-     * and don't run the command.
+     * @return If true, run the command, if false, report status to the user and don't run the command.
      */
     private static boolean checkValidity(CommandPacket packet) {
         if (packet.getParam("/name") == null) {
