@@ -53,7 +53,8 @@ public class ExtractCommand extends Command {
      * @throws InvalidListException the eventlist that the event added to is not valid (should never occur).
      */
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) throws InvalidExtractCommandException, InvalidListException {
+    public void execute(UserData data, Ui ui, Storage storage) throws InvalidExtractCommandException,
+            InvalidListException {
         if (textSubject == null) {
             throw new InvalidExtractCommandException("Text subject was not entered correctly!");
         }
@@ -101,7 +102,8 @@ public class ExtractCommand extends Command {
      * @param zoomLink final zoom link chosen by user, may be null if no zoom link detected.
      * @throws InvalidListException the eventlist that the event added to is not valid (should never occur).
      */
-    private void createEvent(UserData data, Ui ui, LocalDate finalDate, LocalTime finalTime, String zoomLink) throws InvalidListException {
+    private void createEvent(UserData data, Ui ui, LocalDate finalDate, LocalTime finalTime, String zoomLink)
+            throws InvalidListException {
         if (finalDate == null) {
             if (eventType.equals("Personal")) {
                 ui.printExtractNoDatePersonalEventMessage();
@@ -177,7 +179,8 @@ public class ExtractCommand extends Command {
                         assert zoomLink != null : "zoomLink is null when chosen in extract";
                     }
                 } catch (NumberFormatException e) {
-                    logger.warning("NumberFormatException occured -- User chose an invalid zoom link number from list.");
+                    logger.warning("NumberFormatException occured -- "
+                            + "User chose an invalid zoom link number from list.");
                     ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
@@ -246,7 +249,7 @@ public class ExtractCommand extends Command {
                 LocalTime localTime = DateTimeParser.timeParser(timeInString.trim());
                 timeList.add(localTime);
             } catch (TimeErrorException e) {
-                logger.fine(timeInString + " was detected but not parsed");
+                logger.fine(timeInString + " was detected but could not parsed");
             }
         }
 
@@ -273,10 +276,11 @@ public class ExtractCommand extends Command {
                     } else {
                         finalTime = timeList.get(timeNumberChosen - 1);
                         timeChosen = true;
-                        assert finalTime!= null : "date is null when chosen in extract";
+                        assert finalTime != null : "time is null when chosen in extract";
                     }
                 } catch (NumberFormatException e) {
-                    logger.warning("NumberFormatException occured -- User chose an invalid time number from list.");
+                    logger.warning("NumberFormatException occured -- "
+                            + "User chose an invalid time number from list.");
                     ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
@@ -284,7 +288,7 @@ public class ExtractCommand extends Command {
             ui.printExtractNoFieldMessage("timing");
         } else {
             finalTime = timeList.get(0);
-            assert finalTime!= null : "date is null when chosen in extract";
+            assert finalTime != null : "time is null when chosen in extract";
             ui.printExtractSingleTimeDetectedMessage(finalTime);
         }
 
@@ -346,7 +350,7 @@ public class ExtractCommand extends Command {
                 LocalDate localDate = DateTimeParser.dateParser(dateInString);
                 dateList.add(localDate);
             } catch (DateErrorException e) {
-                logger.fine(dateInString + " was detected but not parsed");
+                logger.fine(dateInString + " was detected but could not be parsed");
             }
         }
 

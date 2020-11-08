@@ -32,7 +32,7 @@ public class AddCommand extends Command {
     private static Logger logger = EventLogger.getEventLogger();
 
     /**
-     * Constructor for adding events
+     * Constructor for adding events.
      *
      * @param command from user input
      */
@@ -220,7 +220,8 @@ public class AddCommand extends Command {
      * @throws WrongNumberOfArgumentsException the number of arguments cannot create a valid zoom event.
      * @throws InvalidListException the eventlist that the event added to is not valid (should never occur).
      */
-    private void addZoom(UserData data, Ui ui, String[] argumentWords) throws DateErrorException, TimeErrorException, WrongNumberOfArgumentsException, InvalidListException  {
+    private void addZoom(UserData data, Ui ui, String[] argumentWords) throws DateErrorException,
+            TimeErrorException, WrongNumberOfArgumentsException, InvalidListException  {
         if (argumentWords.length == 2 || argumentWords.length == 4) {
             // 2 cases: only have description & zoomlink , have description,zoomlink, date,time
             if (argumentWords.length == 2) {
