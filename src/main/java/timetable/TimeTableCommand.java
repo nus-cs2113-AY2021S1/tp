@@ -1,6 +1,5 @@
 package timetable;
 
-import exceptions.InvalidBookmarkException;
 import exceptions.InvalidDayOfTheWeekException;
 import exceptions.InvalidTimeException;
 
@@ -43,8 +42,18 @@ public class TimeTableCommand {
         final String linkOrVenue = in.nextLine();
         System.out.println("What are the days and time of the lesson?\n(e.g. Monday 5-8pm, Tuesday 6-9pm)");
         final String [] periods = in.nextLine().split(", ");
-        System.out.println("How many weeks is the lesson?");
-        int repeat = Integer.parseInt(in.nextLine());
+        isInvalid=true;
+        int repeat = 0;
+        while (isInvalid) {
+            System.out.println("How many weeks is the lesson?");
+            repeat = Integer.parseInt(in.nextLine());
+            if (repeat < 54) {
+                isInvalid = false;
+            } else {
+                System.out.println("Your lesson should not last for more than a year "
+                        + "Please enter a number less than 53");
+            }
+        }
         isInvalid = true;
         LocalDateTime startDay = null;
         while (isInvalid) {
@@ -233,7 +242,7 @@ public class TimeTableCommand {
                 }
             }
         }
-        if (exist = false) {
+        if (!exist) {
             System.out.println("You do not have anything scheduled in the next two hours");
         }
     }
@@ -243,7 +252,8 @@ public class TimeTableCommand {
         for (Activity activity: dateList.activities) {
             index++;
             System.out.println(index + ". " + activity.name + " "
-                    + activity.periods.get(0).startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    + activity.periods.get(0).startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+                    + (activity.isOnline?" online link:":" offline venue: ") + activity.linkOrVenue);
         }
         if (index == 0) {
             System.out.println("There is no activity in the list");
@@ -267,6 +277,8 @@ public class TimeTableCommand {
             } catch (IndexOutOfBoundsException e) {
                 System.out.print("\n");
             }
+            System.out.println((lesson.isOnline?" online link:":" offline venue: ")
+                    + lesson.linkOrVenue);
         }
         if (index == 0) {
             System.out.println("There is no classes in the list");
