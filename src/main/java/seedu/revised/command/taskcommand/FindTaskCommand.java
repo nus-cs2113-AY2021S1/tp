@@ -10,6 +10,10 @@ public class FindTaskCommand extends TaskCommand {
         this.fullcommand = fullcommand;
     }
 
+    /**
+     * Searches a <code>Tasklist</code> for all tasks containing the search query.
+     * @param taskList <code>Tasklist</code> to be searched
+     */
     public void execute(TaskList taskList) {
         String[] message = this.fullcommand.split(" ");
         Ui.printFindTask(taskList,message[1]);

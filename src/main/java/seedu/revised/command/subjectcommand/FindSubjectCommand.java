@@ -9,28 +9,27 @@ import java.util.logging.Logger;
 
 public class FindSubjectCommand extends SubjectCommand {
     private static final Logger logger = Logger.getLogger(FindSubjectCommand.class.getName());
+    private String fullCommand;
 
-    private String fullcommand;
-
-    public FindSubjectCommand(String fullcommand) {
-        this.fullcommand = fullcommand;
+    public FindSubjectCommand(String fullCommand) {
+        this.fullCommand = fullCommand;
     }
 
     /**
-     * Find subjects in an instance of the <code>SubjectList</code> that holds a keyword keyed in by the user.
+     * Find subjects in an instance of the <code>SubjectList</code> that holds a query keyed in by the user.
      *
      * @param subjectList   An instance of the <code>SubjectList</code> class for the user to conduct the search on
      * @param storage       Does nothing in this case but needed since this method was implemented
      *                      from an abstract class
      */
     public void execute(SubjectList subjectList, Storage storage) throws InvalidSubjectException {
-        logger.info("Begin checking string command to get the keyword.");
-        String[] message = this.fullcommand.split("\\s+", 2);
+        logger.info("Begin checking string command to get the query.");
+        String[] message = this.fullCommand.split("\\s+", 2);
         if (message.length <= 1 || message[1].isEmpty()) {  // empty argument
             throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }
         Ui.printFindSubject(subjectList, message[1].strip());
-        logger.info("Finished searching for subjects matching the keyword.");
+        logger.info("Finished searching for subjects matching the query.");
     }
 
     /**

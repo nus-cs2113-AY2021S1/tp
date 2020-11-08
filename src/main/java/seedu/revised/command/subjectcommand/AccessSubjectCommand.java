@@ -18,11 +18,11 @@ import java.util.logging.Logger;
 
 public class AccessSubjectCommand extends SubjectCommand {
     private static final Logger logger = Logger.getLogger(AccessSubjectCommand.class.getName());
-    private String fullcommand;
+    private String fullCommand;
     private SubjectList subjectList;
 
-    public AccessSubjectCommand(String fullcommand) {
-        this.fullcommand = fullcommand;
+    public AccessSubjectCommand(String fullCommand) {
+        this.fullCommand = fullCommand;
     }
 
     /**
@@ -39,7 +39,7 @@ public class AccessSubjectCommand extends SubjectCommand {
         this.subjectList = subjectList;
         Subject gotoSubject = null;
 
-        String[] message = this.fullcommand.split(" ",2);
+        String[] message = this.fullCommand.split(" ",2);
         if (message.length == 1 || message[1].isEmpty()) {
             throw new NoSubjectException(Ui.NO_SUBJECT_EXCEPTION);
         }
