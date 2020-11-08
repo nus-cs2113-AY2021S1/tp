@@ -8,6 +8,9 @@ import ui.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Calculates user's overall revision performance and display the result.
+ */
 public class ShowRateCommand extends Command {
     public static final String COMMAND_WORD = "showrate";
 
@@ -35,6 +38,13 @@ public class ShowRateCommand extends Command {
     private int noCard = 0;
 
 
+    /**
+     * Manages the execution of ShowRateCommand and display the calculated result to user.
+     *
+     * @param ui user interface of Kaji
+     * @param access temporary access data about user's current access level
+     * @param storage file storage and file management of Kaji
+     */
     @Override
     public void execute(Ui ui, Access access, Storage storage) {
         Chapter chapter = access.getChapter();
@@ -50,6 +60,12 @@ public class ShowRateCommand extends Command {
         ui.showToUser(String.format(MESSAGE_SHOW_PERCENTAGE_PROMPT, CANNOT_ANSWER, cannotAnswerPercentage));
     }
 
+    /**
+     * Computes the percentage of card at each master level in a chapter.
+     *
+     * @param chapter blueprint of chapter that user is currently accessing
+     * @return number of card in the chapter
+     */
     private int computePercentage(Chapter chapter) {
         ArrayList<Card> allCards = chapter.getCards().getAllCards();
         int cardCount = allCards.size();

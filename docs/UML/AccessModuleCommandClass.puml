@@ -49,8 +49,12 @@ Class GoModuleCommand LOGIC_COLOR {
     + execute(Ui, Access, Storage) : void
 }
 
-GoCommand <|-right[LOGIC_COLOR_T4]- GoModuleCommand
-Command <|-right[LOGIC_COLOR_T4]- GoCommand
+GoCommand <|-right- GoModuleCommand
+GoModuleCommand : - module : String
+GoModuleCommand : - goModule(Access, Storage, Ui)
+GoModuleCommand : + execute(Ui, Access, Storage)
+
+Command <|-right- GoCommand
 
 GoModuleCommand .down[LOGIC_COLOR_T4].> Access
 GoModuleCommand .right[LOGIC_COLOR_T4].> Storage

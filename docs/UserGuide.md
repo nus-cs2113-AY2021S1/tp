@@ -118,8 +118,8 @@ Welcome to the first feature of Kaji! In order to use this program, you will fir
 
 ##### Key Pointers:
 * Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message
-* Kaji is not case-sensitive, therefore, a new module named `module`  will be treated equally to a module named `MODULE`. 
-* Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113 CS2050` will creates a module named `CS2113 CS2050`, instead of two separated modules named `CS2113` and `CS2050` respectively.
+* Kaji is not case-sentive, therefore, a new module named `module`  will be treated equally as module named `MODULE`. 
+
 
 ##### Example: 
 Input: add CS2113
@@ -197,20 +197,20 @@ For instance, you are currently at the admin level and want to remove the module
 
 Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go \MODULE_CODE`.
 
-##### Format: `go \MODULE_INDEX`
-\MODULE_INDEX is the index of the module that you can find in the list command, such as `1`, `2` or `3`. 
+##### Format: `go \MODULE_CODE`
+\MODULE_CODE is the name of the module that you have created, such as `CS2113`, `Module 1` or `Biology`. 
 
 ##### Key Pointers:
-* Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
-* Kaji does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
+* Kaji only allow access to the existing modules that are shown in the list, therefore, module code that is deleted or has never been created will result in an error message.
+* Kaji is not case-sentive, therefore, a module named `module`  will be treated equally as module named `MODULE`. 
 
 ##### Example: 
-Input: `go 1`
+Input: `go CS2113`
 Output:
 ```
 ---------------------------------------------------------------------
 admin
-Enter command here: go 1
+Enter command here: go CS2113
 Command Type: go
 This is a new module, you can try to add chapters inside!
 ---------------------------------------------------------------------
@@ -230,7 +230,7 @@ You are now at the module level! This command allows you to create a new chapter
 
 ##### Key Pointers:
 * Similar to module, Kaji does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
-* Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
+* Kaji is not case-sentive, therefore, a new chapter named `chapter`  will be treated equally as module named `CHAPTER`. 
 
 ##### Example 1: 
 Input:
@@ -568,7 +568,7 @@ For instance, you are currently in chapter level `Chapter 1` and want to return 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
 
-Congratulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
+Congradulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
 
 It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. 
 
@@ -576,10 +576,9 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 
 
 ##### Key Pointers:
-* This command is only accessible in the chapter level. You will get an error message if you are in the wrong access level.
-* Only overall performance of your current chapter level will be computed.
-* Cards that has yet be answered will be label as <cannot answer>, therefore, if you find a `1.0` for `the percentage of cards that is labeled <cannot answer>`, don't panic, it will be updated as soon as you finish your first revision session of this particular chapter.
->:information_source: <b>Note:</b> As you now know, it is the level which you can add/edit/delete cards.
+* This command is only accessible in the chapter level. You will gets an error message if you are in the wrong access level.
+* Only overall performance of your current chapter level is computed.
+>:information_source: <b>Note:</b> As you now know, it is the level that you can add/edit/delete cards.
 
 ##### Example: 
 Input: showrate
