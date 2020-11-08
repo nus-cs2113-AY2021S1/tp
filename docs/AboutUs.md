@@ -4,7 +4,7 @@
 
 Display | Name | Github Profile | Portfolio 
 --------|:----:|:--------------:|:---------:
-<img src="https://avatars0.githubusercontent.com/u/69335512?s=460&v=4" width="150">  | Ang Cheng Jun | [Github](https://github.com/Ang-Cheng-Jun) | [Portfolio](team/ang-cheng-jun.md)
+<img src="https://avatars0.githubusercontent.com/u/69335512?s=460&v=4" width="150">  | Ang Cheng Jun | [Github](https://github.com/Ang-Cheng-Jun) | [Portfolio](https://ay2021s1-cs2113-t14-1.github.io/tp/team/ang-cheng-jun.html)
 <img src="https://avatars2.githubusercontent.com/u/69446308?s=460&v=4" width="150">  | Leon Low | [Github](https://github.com/leonlowzd) | [Portfolio](team/leonlowzd.md)
 <img src="https://avatars2.githubusercontent.com/u/60400567?s=460&u=e15ac87ec16b6f64d93cd7624a2f5c519436f259&v=4" width="150"> | Ong Zong Xian | [Github](https://github.com/zongxian-ctrl) | [Portfolio](team/zongxian-ctrl.md)
 <img src="https://avatars0.githubusercontent.com/u/69335512?s=460&v=4" width="150"> | Tan Lee Wei | [Github](https://github.com/TanLeeWei) | [Portfolio](team/tanleewei.md)
