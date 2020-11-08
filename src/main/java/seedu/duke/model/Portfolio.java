@@ -3,6 +3,7 @@ package seedu.duke.model;
 import seedu.duke.exception.DoNotOwnStockException;
 import seedu.duke.exception.InsufficientFundException;
 import seedu.duke.exception.InsufficientQtyException;
+import seedu.duke.exception.NegativeQtyException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,8 +20,13 @@ public class Portfolio implements Serializable {
         assert getWalletInitialAmount() <= 100000;
     }
 
-    public void buyStock(String symbol, int quantity, double buyPrice) throws InsufficientFundException {
+    public void buyStock(String symbol, int quantity, double buyPrice)
+            throws InsufficientFundException, NegativeQtyException {
         assert buyPrice > 0 : "buyPrice should be more than 0";
+
+        if (quantity <= 0) {
+            throw new NegativeQtyException();
+        }
 
         if (wallet.getCurrentAmount() < buyPrice * quantity) {
             throw new InsufficientFundException();
@@ -39,11 +45,15 @@ public class Portfolio implements Serializable {
     }
 
     public void sellStock(String symbol, int quantity, double sellPrice)
-            throws InsufficientQtyException, DoNotOwnStockException {
+            throws InsufficientQtyException, DoNotOwnStockException, NegativeQtyException {
         if (stocks.get(symbol) == null) {
             throw new DoNotOwnStockException();
         } else if (stocks.get(symbol).getTotalQuantity() < quantity) {
             throw new InsufficientQtyException(stocks.get(symbol).getTotalQuantity());
+        }
+
+        if (quantity < 0) {
+            throw new NegativeQtyException();
         }
 
         assert sellPrice > 0 : "sellPrice should be more than 0";

@@ -1,6 +1,4 @@
-# Duke
-
-{Paper trading command line app}
+# Paper trading command line app
 
 Useful links:
 * [User Guide](UserGuide.md)(Read more about how to use our application!)

@@ -20,7 +20,7 @@ The Package Diagram above gives a high level view of the project structure and t
 
 ![](./diagrams/Architecture.png)
 
-The Architecture Diagram above gives a high level design of PaperTrade. Below is a quick overview of each component.
+The High Level Class Diagram above gives a high level design of PaperTrade. Below is a quick overview of each component.
 
 ### Overview
 
@@ -207,7 +207,6 @@ Paper trading allows inexperienced people to get a feel of what trading feels li
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
 1. Program should not take more than 5s to run for every command.
 2. Program should give some loading indicator when fetching stock prices from API calls.
 
