@@ -122,7 +122,7 @@ Expected Outcome:
 
 
 ### Sort events
-With this command, you can sort all events by either their end time or their description. When sorting by time, events
+With this command, you can sort all events by either their end time, location or their description. When sorting by time, events
 will be sorted in a chronological order. Events with an earlier end date will be sorted on top of events with later end
 dates. This way, you can prioritize the events that are due soon.   
 
