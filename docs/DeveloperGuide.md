@@ -158,13 +158,13 @@ When a `Command` from the [Logic component](#logic-component) is executed, it wi
     * `SprintManager` to facilitate the management of `Sprint` iterations that belongs to the `Project`.
     * `TaskManager` to facilitate the management of `Tasks` that are broken down from the `Project`.
 ##### Members Operations
-* `ProjectMembers` facilitate the management of multiple `Members` instances and is dependant on the `Project` that initialises it.
+* `ProjectMembers` facilitate the management of multiple `Members` instances and is dependent on the `Project` that initialises it.
     * Creation of `Member` adds an entry to `ProjectMembers`.
     * Deletion of `Member` removes an entry from `ProjectMembers`.
 * `Member` contain the Member's user ID.
 
 ##### Task Operations
-* `TaskManager` facilitate the management of multiple `Task` instances and is dependant on the `Project` that initialises it.
+* `TaskManager` facilitate the management of multiple `Task` instances and is dependent on the `Project` that initialises it.
     * Creation of `Task` adds an entry to `TaskManager`.
     * Deletion of `Task` removes an entry from `TaskManager`.
 * `Task` contain necessary information about the task such as:
@@ -287,7 +287,7 @@ Implementation:
 #### View Project
 View the details of the project on which the user is currently working on.
 Before execution:
-1. Parse user input `project /vuew` into Command
+1. Parse user input `project /view` into Command
 
     SCRUMptious will receive user input using the `Ui` class and parse it into `ViewProjectCommand` with `Parser` and
      `ProjectParser`.
@@ -307,44 +307,137 @@ Implementation:
 ### Task
 #### Add Task
 A task is created following the creation of a project, with a clear title, description 
-and priority of the task.
-Command executed by user `task /add -title <title> -desc <description> -priority <priority>`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the input format is valid and if a project exists, and executes a corresponding AddTaskCommand 
-object.
-* A new task is created, and added to project manager.
+and priority of the task. `TaskManager` stores all the tasks in an array list.
+
+Prerequisites:
+1. There must be at least one project.
+
+Before execution:
+
+1. Parse user input `task /add -title <title> -desc <description> -priority <priority>` into Command
+
+    SCRUMptious will receive user input using the `Ui` class and parse it into CreateTaskCommand using `Parser` and `TaskParser`.
+
+1. Check whether a project exists. If there are no projects, an error is displayed and no tasks are created.   
+    
+1. Execute AddTaskCommand
+
+    SCRUMptious calls `Command.execute()` which will execute the command.    
+
+Implementation:
+
+1. Prepare parameters
+    1. Extracts required fields, to be passed as parameters for task creation.
+    1. Checks the title for duplicates. If duplicate found, an error is displayed and the task is not created.
+    
+1. `taskManager.addTask()` adds a task using the provided parameters.
+
+1. User output
+    The overridden function `toString()` is called to output the new Task using Ui.showToUserLn().
     
 #### View Task
+![Figure X: Sequence diagram of ViewTaskCommand](./image/developerguide/viewTask.png
+ "Add Project Sequence Diagram") 
+ 
+ The user specifies one or more task IDs to view the corresponding tasks. 
+ 
+ Prerequisites:
+ 1. There must be at least one project.
+ 
+ Before execution:
+ 
+ 1. Parse user input `task /view <taskid> [<taskid>...]` into Command
+ 
+     SCRUMptious will receive user input using the `Ui` class and parse it into ViewTaskCommand using `Parser` and `TaskParser`.
+ 
+ 1. Check whether a project exists. If there are no projects, an error is displayed.   
+     
+ 1. Execute ViewTaskCommand
+ 
+     SCRUMptious calls `Command.execute()` which will execute the command.    
+
+Implementation:
+
+1. Prepare parameters
+    1. Extracts the task IDs, to be passed as integers for task viewing.
+    1. Checks IDs for invalid IDs. Any entry of invalid IDs will show corresponding errors.
+    
+1. Obtain task list
+    1. The task list is obtained from the project.
+
+1. User output
+    The overridden function `toString()` is called to output the requested Tasks in the task list using Ui.showToUserLn().
+    
 #### Delete Task
-An existing task is deleted when the user wishes to remove a completed or unnecessary task. The task
-ID is provided.
-Command executed by user `task /del -id`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the id entered is valid, and executes a corresponding DeleteTaskCommand 
-    object.
-* The corresponding task is deleted from the program.
+
+Users may choose to delete tasks that are deemed unnecessary or incorrect.
+The task IDs are provided.
+
+Prerequisites:
+1. There must be at least one project.
+1. There must be at least one task for the command to delete.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute DeleteTaskCommand
+    1. Check all IDs are valid. Invalid IDs will display corresponding errors.
+    1. On TaskList
+        1. Delete the task from the task list
+    1. On sprints
+        1. De-link the task from all sprints.
+    1. UI output to user
+          
     
 #### Change Task Priority
-An existing task can have its priority changed when the user wishes to re-rank the urgency of the task. The task
-ID and the new priority are provided.
-Command executed by user `task /priority -priority HIGH -id 1`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the id and priority entered is valid, and executes a corresponding ChangeTaskPriorityCommand 
-    object.
-* The corresponding task will have its priority updated in the program.
-    
+
+A user can change the priority of an existing task after changes to project requirements.
+The task ID and new priority are provided.
+
+Prerequisites:
+1. There must be at least one project.
+1. There must be at least one task for the command to edit its priority.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute ChangeTaskPriorityCommand
+    1. Check the new priority is valid. If not valid, an error will be displayed.
+    1. Check all IDs are valid. Invalid IDs will display corresponding errors.
+    1. The corresponding task will be updated its priority
+    1. UI output to user
+
 #### Mark Task as Complete    
-An existing task can be marked as complete when the user completes the task. The task
-ID is provided.
-Command executed by user `task /done -id`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the id entered is valid, and executes a corresponding DoneTaskCommand 
-    object.
-* The corresponding task is marked as done in the program.
+The user can mark tasks as complete when the team completes the task. The task
+IDs are provided.
+
+Prerequisites:
+1. There must be at least one project.
+1. There must be at least one task for the command to be marked complete.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute DoneTaskCommand
+    1. Check all IDs are valid. Invalid IDs will display corresponding errors.
+    1. The corresponding tasks will be marked as complete.
+    1. UI output to user
+
+#### View Task by Descending Priority
+A user may choose to view all tasks in order of priority associated with the project. No parameters are supplied.
+
+Prerequisites:
+1. There must be at least one project.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute PriorityViewCommand
+    1. UI output to user
     
 ### Sprint
 In SCRUMptious, a Project will be broken down into smaller iterations known as Sprints. The Sprint will contain information about the Tasks allocated for that iteration and Members that are assigned to complete the Tasks.
