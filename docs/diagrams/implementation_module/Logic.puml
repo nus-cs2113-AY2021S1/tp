@@ -40,67 +40,16 @@ rectangle CommandHandlers {
         + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
     }
 
-    rectangle "Ledger CommandHandlers" {
-        class createLedgerHandler <<Singleton>>{
+    class XYZCommandHandler <<SingleTon>>{
             + handlePacket() : void
             + handleSingleParams(paramType : String) : void
             + handleParams(packet : CommandPacket) : void
-        }
-        class retrieveLedgerHandler <<Singleton>>{
-            + handlePacket() : void
-            + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
-        }
     }
 
-    rectangle XYZCommands {
-    }
+    ParamChecker "1" <.. XYZCommandHandler #line:blue;text:black : Checks param validity with
+    "{abstract}\nParamHandler" <|-[norank]- XYZCommandHandler #line:purple;line.bold;text:red
 
-
-
-    rectangle "Entry CommandHandlers" {
-        class createEntryHandler <<Singleton>>{
-            + handlePacket() : void
-            + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
-        }
-        class editEntryHandler <<Singleton>>{
-            + handlePacket() : void
-            + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
-        }
-        class retrieveEntryHandler <<Singleton>>{
-            + handlePacket() : void
-            + handleSingleParams(paramType : String) : void
-            + handleParams(packet : CommandPacket) : void
-        }
-        package p4 <<Layout>> {
-        }
-
-        package p5 <<Layout>> {
-        }
-
-        p4 -[hidden]- p5
-        p5 -[hidden]- "{abstract}\nParamHandler"
-    }
-
-
-
-
-    ParamChecker "1" <.[norank]. createLedgerHandler #line:blue;text:black
-    ParamChecker "1" <.[norank]. retrieveLedgerHandler #line:blue;text:black
-    ParamChecker "1" <.[norank]. createEntryHandler #line:blue;text:black
-    ParamChecker "1" <.[norank]. editEntryHandler #line:blue;text:black
-    ParamChecker "1" <.[norank]. retrieveEntryHandler #line:blue;text:black
-    ParamChecker "1" <.[norank]. XYZCommands #line:blue;text:black
-    "{abstract}\nParamHandler" <|-[norank]- createLedgerHandler #line:purple;line.bold;text:red
-    "{abstract}\nParamHandler" <|-[norank]- retrieveLedgerHandler #line:purple;line.bold;text:red
-    "{abstract}\nParamHandler" <|-[norank]- createEntryHandler #line:purple;line.bold;text:red
-    "{abstract}\nParamHandler" <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
-    "{abstract}\nParamHandler" <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
-    "{abstract}\nParamHandler" <|-[norank]- XYZCommands #line:purple;line.bold;text:red
-
-    note bottom of XYZCommands: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
+    note bottom of XYZCommandHandler: Includes: \n1. FinanceTools Calculator functions\n2. DataTracker Commands\n     eg. RetrieveEntryHandler()\n          CreateLedgerHandler()
 }
 
 note right of ParamChecker: Contains methods that check validity of params supplied

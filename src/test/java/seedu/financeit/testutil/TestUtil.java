@@ -14,4 +14,21 @@ public class TestUtil {
         }
         return new CommandPacket(commandString, paramMap);
     }
+
+    /**
+     * Creates a command packet. Assumes that paramTypes and paramArguments are of the same length.
+     * @param commandString
+     * @param paramTypes
+     * @param paramArguments
+     * @return CommandPacket created
+     */
+    public static CommandPacket createCommandPacket(String commandString, String[] paramTypes, String[] paramArguments) {
+        HashMap<String, String> paramMap = new HashMap<>();
+        if (paramTypes != null) {
+            for (int i = 0; i < paramTypes.length; i++) {
+                paramMap.put(paramTypes[i], paramArguments[i]);
+            }
+        }
+        return new CommandPacket(commandString, paramMap);
+    }
 }

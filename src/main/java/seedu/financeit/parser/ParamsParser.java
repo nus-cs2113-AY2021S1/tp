@@ -115,7 +115,7 @@ public class ParamsParser {
 
     public void putParamIntoParamMap(String paramType, String param, HashMap paramMap) {
         try {
-            ParamChecker.getInstance().checkAndReturnDuplicateParamTypes(paramType, paramMap);
+            ParamChecker.getInstance().checkForDuplicateParamTypes(paramType, paramMap);
             paramMap.put(paramType, param);
         } catch (ParseFailParamException exception) {
             // Fall through

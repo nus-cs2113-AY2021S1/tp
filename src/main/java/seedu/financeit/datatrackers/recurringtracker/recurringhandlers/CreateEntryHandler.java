@@ -42,6 +42,10 @@ public class CreateEntryHandler extends ParamHandler {
         return handler;
     }
 
+    public RecurringEntry getEntry() {
+        return recurringEntry;
+    }
+
     public void handlePacket(CommandPacket packet)
             throws InsufficientParamsException, ItemNotFoundException {
         recurringEntry = new RecurringEntry();
@@ -82,7 +86,4 @@ public class CreateEntryHandler extends ParamHandler {
         }
     }
 
-    public RecurringEntry getCurrEntry() {
-        return recurringEntry;
-    }
 }

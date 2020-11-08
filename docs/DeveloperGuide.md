@@ -370,7 +370,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |--------|----------|
 |```retrieveledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
 |```createledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
-|```retrieveEntryHandler```| Omitted and left as exercise for reader. : ^ )
+|```retrieveEntryHandler```| Omitted for brevity.
 |```createentryHandler```| Omitted for brevity.
 |```editEntryHandler```| Omitted for brevity.
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
@@ -444,12 +444,14 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
 
 **<a name = entryseq></a>Entry Tracker: Edit of entries** <br />
 The editing of details within the entry is performed in two phases: Entry Retrieval and Entry Edit.
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram1.png)
 1. __Phase 0: Instruction retrieval__ 
     1. At ```EntryTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
     1. Input is parsed by ```InputParser.parseInput()```, and ```EntryTracker.packet``` is set to the returned ```CommandPacket``` instance.
     1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
     In this case, ```handleEditEntry()``` will be called.
 1. __Phase 1: Entry retrieval__
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
     1. At ```handleEditEntry()```, the following processes will be executed:
         1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
         ```retrieveentryHandler.setRequiredParams()``` to set required params for a successful parse.
@@ -464,6 +466,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
 1. __Phase 2: Entry edit__
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
     1. Following Phase 1, the following processes will be executed:
         1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.

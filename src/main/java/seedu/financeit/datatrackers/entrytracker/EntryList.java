@@ -21,10 +21,10 @@ public class EntryList extends ItemList {
     public void printList() {
         TablePrinter.setTitle(String.format("List of Entries for Ledger [%s]", this.ledger));
         TablePrinter.addRow("Entry Number;Entry Type;Category;Amount;Time;Description                    ");
-        if (super.getItemsSize() == 0) {
+        if (super.getListSize() == 0) {
             TablePrinter.addRow("No entries created               ");
         } else {
-            for (int i = 0; i < super.getItemsSize(); i++) {
+            for (int i = 0; i < super.getListSize(); i++) {
                 TablePrinter.addRow(String.format("%s;%s", i + 1, super.items.get(i)));
             }
         }
