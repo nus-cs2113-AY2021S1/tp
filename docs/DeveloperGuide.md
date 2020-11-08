@@ -370,7 +370,7 @@ Step.10 The actual workload is updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `addTime CS2113T 2 4`.
 
-![addTimeSeq](diagrams/addTimeSeqDiagram.png)  
+![addTimeSeq](diagrams/AddTimeSeqDiagram.png)  
 <br/> Figure 7. Sequence Diagram of Add Time feature
 
 #### Design Considerations
