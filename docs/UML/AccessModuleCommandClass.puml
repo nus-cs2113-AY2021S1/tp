@@ -4,11 +4,11 @@ show member
 skinparam arrowThickness 1.1
 
 Class "{abstract}\nGoCommand" as GoCommand LOGIC_COLOR {
-  + isExist() : boolean
+  + isExit() : boolean
 }
 
 Class "{abstract}\nCommand" as Command LOGIC_COLOR {
-  + {abstract} isExist() : String
+  + {abstract} isExit() : String
   + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
 }
 
