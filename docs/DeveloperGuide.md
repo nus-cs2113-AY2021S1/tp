@@ -412,6 +412,8 @@ This section describes the user stories considered when implementing the feature
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
 |v2.0|NUS student|delete information about my classes|can keep the information about my class relevant at all times |
 |v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
+|v2.0|user|print calendar in timeline format|have a visual overview of all the items I have|
+|v2.0|user|print timeline before a certain date|have an overview of current tasks and better manage my time|
 |v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
 |v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
 |v2.0|NUS student|see the exam and deadline countdown|be conscious about the coming exams and deadlines and manage my time more wisely|
