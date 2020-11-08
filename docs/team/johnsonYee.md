@@ -56,7 +56,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
-   [\#23](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/23),
+   Pull requests[\#23](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/23),
    [\#29](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/29),
    [\#78](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/78), 
    [\#195](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/195),
