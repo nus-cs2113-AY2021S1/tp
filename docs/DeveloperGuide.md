@@ -809,6 +809,10 @@ bill payments
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
+|v1.0|Financially prudent user|Keep record of my spendings of the day|I can keep track of my spending habits on a daily basis.|
+|v1.0|As a student who mistypes easily|Edit my transaction details using one line commands|I can correct my mis-types in a easy and intuitive way.|
+|v1.0|As a university student who may have difficulty keeping track of his finances|Monitor my spending habits and income according to various categories of expenditure|I can identify which particular category of spending forms the majority of my daily expenditures.|
+|v1.0|As a person who spends a lot of time in front of a computer|Record my expenses and income using one-line commands|I can monitor my spending habits conveniently and hassle-free.|
 |v1.0|user|calculate interest over a principal amount|know how much interest I can earn|
 |v1.0|user|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
 |v1.0|user|calculate cashback earned|know how much cashback I can earn|
@@ -837,6 +841,13 @@ bill payments
 * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
 * _CLI_ - Command Line Interface
 * _UML_ - Unified Modeling Language
+
+# Future implementations
+
+**Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
+In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
+tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
+the goal tracker progress to better aid the user in managing their finances.
 
 # Instructions for Manual Testing
 
@@ -1110,11 +1121,6 @@ You should see the following:
 **Goal Status Update** <br />
 When a user make a new entry, the goal status will update and display as output as shown:
 ![GoalStatusUpdate](developerGuide_images/screenshot_goaltracker/GoalStatusUpdate.png)
-
-**Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
-In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
-tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
-the goal tracker progress to better aid the user in managing their finances.
 
 ## SaveManager
 **Add Save** <br />
