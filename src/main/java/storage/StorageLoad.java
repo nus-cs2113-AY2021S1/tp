@@ -90,9 +90,9 @@ public class StorageLoad {
     }
 
     //@@author Darticune
-    protected static ArrayList<DueChapter> checkAllChaptersForDue(Ui ui, ArrayList<String> excludedChapters,
-                                                                  ArrayList<DueChapter> dueChapters,
-                                                                  String[] modules, String filePath)
+    protected static ArrayList<DueChapter> loadAllChaptersAsDueChapters(Ui ui, ArrayList<String> excludedChapters,
+                                                                        ArrayList<DueChapter> dueChapters,
+                                                                        String[] modules, String filePath)
                                                                   throws FileNotFoundException {
         for (String module : modules) {
             if (module.equals("exclusions.txt")) {
@@ -108,16 +108,16 @@ public class StorageLoad {
                 return dueChapters;
             }
             for (String chapter : chapters) {
-                processChapterForDue(ui, excludedChapters, dueChapters, module, chapter, filePath);
+                convertChapterInToDueChapter(ui, excludedChapters, dueChapters, module, chapter, filePath);
             }
         }
         return dueChapters;
     }
 
     //@@author Darticune
-    private static void processChapterForDue(Ui ui, ArrayList<String> excludedChapters,
-                                             ArrayList<DueChapter> dueChapters, String module, String chapter,
-                                             String filePath) {
+    private static void convertChapterInToDueChapter(Ui ui, ArrayList<String> excludedChapters,
+                                                     ArrayList<DueChapter> dueChapters, String module, String chapter,
+                                                     String filePath) {
         if (chapter.equals("dues")) {
             return;
         }
@@ -226,7 +226,7 @@ public class StorageLoad {
         checkExists(admin);
         String[] modules = admin.list();
         ArrayList<DueChapter> dueChapters = new ArrayList<>();
-        return checkAllChaptersForDue(ui, excludedChapters, dueChapters, modules, filePath);
+        return loadAllChaptersAsDueChapters(ui, excludedChapters, dueChapters, modules, filePath);
     }
 
     //@@author Zhu-Ze-Yu

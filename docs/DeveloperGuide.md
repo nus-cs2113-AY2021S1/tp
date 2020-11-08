@@ -888,6 +888,11 @@ On top of that, `Storage` implements the following operations:
 
 The following sequence Diagrams illustrates how the View Due Chapters Process is executed:
 
+<p align="center">
+  <img src="DG_Images/listDueSeq.png" width="800" alt="Sequence Diagram of the View Due Feature"/>
+  <br/>Figure <>. Sequence Diagram of the View Due Feature 
+</p>
+
 #### 4.5.2. Preview Upcoming Dues Feature
 (Lucas)
 
@@ -915,6 +920,11 @@ On top of that, the following operations from `Storage` are used:
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
 
 The following sequence Diagrams illustrates how the Preview Upcoming Dues Process is executed:
+
+<p align="center">
+  <img src="DG_Images/previewSeq.png" width="800" alt="Sequence Diagram of the Preview Upcoming Dues Feature"/>
+  <br/>Figure <>. Sequence Diagram of the Preview Upcoming Dues Feature 
+</p>
 
 #### 4.5.3. Exclusion Feature
 (Lucas)
@@ -954,6 +964,13 @@ Items are added into the `ArrayList<String>` Exclusion List using two pairs of c
     * `ExcludeCommand#addModuleToExclusion()` - gets the name of the `Module` to be excluded, and calls `Storage#appendModuleToExclusionFile()`
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
 
+The following sequence Diagrams illustrates how the "include" command is executed:
+
+<p align="center">
+  <img src="DG_Images/excludeSeq.png" width="800" alt="Sequence Diagram of the exclude command"/>
+  <br/>Figure <>. Sequence Diagram using the Exclusion Feature to exclude content from the schedule
+</p>
+
 <br>
 On the other hand, the `include` command can be called with `include chapter` or `include module` which removes a `Chapter` or every `Chapter` from a `Module` from the Exclusion List.
 
@@ -972,17 +989,13 @@ Items are removed from the `ArrayList<String>` Exclusion List using two pairs of
     * `IncludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
     * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
 
-The following sequence Diagrams illustrates how the Exclusion Process is executed:
+The following sequence Diagrams illustrates how the "include" command is executed:
 
-![](images/ExcludeCommand.png)
+<p align="center">
+  <img src="DG_Images/includeSeq.png" width="800" alt="Sequence Diagram of the include command"/>
+  <br/>Figure <>. Sequence Diagram using the Exclusion Feature to include content into the schedule
+</p>
 
-![](images/addModuleToExclusion.png)
-
-![](images/addChapterToExclusion.png)
-
-![](images/removeModuleFromExclusion.png)
-
-![](images/removeChapterFromExclusion.png)
 <br>
 
 #### 4.5.4. Reschedule Chapter Feature

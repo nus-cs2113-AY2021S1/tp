@@ -2,21 +2,20 @@
 
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
+skinparam arrowColor STORAGE_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
 Class HiddenOutside #FFFFFF
 
-package logic {
-Class HiddenModel #FFFFFF
+package logic LOGIC_COLOR_T1 {
 }
 
-package storage {
+package storage STORAGE_COLOR_T1 {
 
-Class Storage
-Class StorageLoad
-Class StorageParser
-Class StorageWrite
+    Class Storage STORAGE_COLOR
+    Class StorageLoad STORAGE_COLOR
+    Class StorageParser STORAGE_COLOR
+    Class StorageWrite STORAGE_COLOR
 }
 
 logic .down.> Storage
