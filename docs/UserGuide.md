@@ -157,7 +157,7 @@ Expected outcome:
  
  ```
 ________________________________________________________________________________
-friends was added to your watchlist.
+Friends was added to your watchlist.
 ```
 <br>
  
@@ -184,13 +184,13 @@ The process is terminated. Your existing data is kept
  of an episode depending on the input of the user when prompted.
   
  
-* Suppose you would like to edit details for your favorite show, friends.
+* Suppose you would like to edit details for your favorite show, Friends.
   Format:
      `edit <SHOWNAME>`
      
 * Input in the following format to use the edit feature
   Example of usage:
-      `edit friends`
+      `edit Friends`
     
      <img src = "images/edit_step_1.PNG" width = "550">
      
@@ -320,11 +320,11 @@ The `changereview` command allows you to change a review for a show that is alre
  
    Expected outcome:
    
-  <img src = "images/changereview.PNG" width = "450">
+  <img src = "images/changereview.PNG" width = "650">
   
   Checking with the `list` command:
   
-  <img src = "images/changereviewlist.PNG" width = "450">
+  <img src = "images/changereviewlist.png" width = "650">
   
 
 ### 4.g. `deletereview` - Deletes a review
@@ -351,7 +351,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
   
  Example of usage:
  
- If you want to delete the show named friends, you can input the command: `delete friends`.
+ If you want to delete the show named Friends, you can input the command: `delete Friends`.
  
  Input:
  
@@ -359,7 +359,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
   &nbsp;
 
- The show friends will be deleted from the list ,and a success message will be printed.
+ The show Friends will be deleted from the list ,and a success message will be printed.
 
  Expected outcome :
   
@@ -400,13 +400,13 @@ The `changerating` command changes the rating for an existing show which already
  
  Expected outcome:
   
- <img src = "images/changerating.PNG" width = "400">
+ <img src = "images/changerating.PNG" width = "600">
   
  &nbsp;
  
  Checking with the `list` command :
  
- <img src = "images/changeratinglist.PNG" width = "450">
+ <img src = "images/changeratinglist.png" width = "650">
  
 
 ### 4.k. `season` - Changes the season of the show you are currently watching
@@ -423,7 +423,7 @@ If you would only like to change the current season:
   
  Example of usage:
  
- If your are going to watch the third season of a show named friends, you can input `season friends 3`.
+ If your are going to watch the third season of a show named Friends, you can input `season Friends 3`.
  
  Input:
  
@@ -431,7 +431,7 @@ If you would only like to change the current season:
     
    &nbsp;
  
- The current season you are watching of friends will be updated to season 3.
+ The current season you are watching of Friends will be updated to season 3.
  
  Expected outcome :
   
@@ -458,7 +458,7 @@ The `episode` command updates the current episode of an existing show in your wa
   
  Example of usage:
  
- In the current season, If your are going to watch the 10th episode of the show named friends, you can input a command: `episode friends 10`.
+ In the current season, If your are going to watch the 10th episode of the show named Friends, you can input a command: `episode Friends 10`.
  
  Input: 
  
@@ -466,7 +466,7 @@ The `episode` command updates the current episode of an existing show in your wa
    
   &nbsp;
  
- The current episode you are watch of the show friends will be updated to 10.
+ The current episode you are watch of the show Friends will be updated to 10.
  
  > **[NOTE]**
  
@@ -495,13 +495,13 @@ The `watch` command updates the watching progress for your show, and automatical
   `watch <SHOWNAME> `
   
  Example of usage:
- `watch friends`
+ `watch Friends`
  
   > **[NOTE]**
   > * The show name must have already been added into the list.
   > * Refer to our section on [adding a show](#4b-add---adds-a-show) if you need help with adding a show into your watch list. 
  
- Explanation of input: Assuming `friends` has already been added into the watch list, we use the example input `watch friends`. 
+ Explanation of input: Assuming `Friends` has already been added into the watch list, we use the example input `watch Friends`. 
  
  Before input:
  
@@ -509,7 +509,7 @@ The `watch` command updates the watching progress for your show, and automatical
  &nbsp;
  
  To illustrate the change in your watch time limit, we have added the time limit to 120 minutes.
- The duration of `friends` is 60 minutes. the change in time limit can be seen in the expected outcome below. 
+ The duration of `Friends` is 60 minutes. the change in time limit can be seen in the expected outcome below. 
  
  
  Expected outcome:
@@ -518,8 +518,8 @@ The `watch` command updates the watching progress for your show, and automatical
   
  &nbsp;
  
- Note from the expected outcome that the show WatchHistory has been updated from S1E1 to S1E2. That is because you have told the program that you have watched S1E1 of friends, and 
- are now watching S1E2 of friends!<br>
+ Note from the expected outcome that the show WatchHistory has been updated from S1E1 to S1E2. That is because you have told the program that you have watched S1E1 of Friends, and 
+ are now watching S1E2 of Friends!<br>
  
  In addition, the previously set time limit of 120 minutes has been reduced to 60 minutes.
  
@@ -573,7 +573,7 @@ The `search` command helps you search for a specific show in the watchlist and p
  
  Example of usage:
  
- If you want to search a show named friends in the list, you can use the command: `search friends`.
+ If you want to search a show named Friends in the list, you can use the command: `search Friends`.
  
  > **[NOTE]**
  >
