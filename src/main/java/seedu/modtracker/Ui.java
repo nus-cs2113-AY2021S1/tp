@@ -19,8 +19,8 @@ public class Ui {
     private static final String ERROR_ADDEXP = "Please type addexp <module code> <expected workload>";
     private static final String ERROR_DELETEEXP = "Please type deleteexp <module code>";
     private static final String ERROR_DELETE_TIME = "Please type deletetime <module code> <week number>";
-    private static final String ERROR_DELETE_TIME_MISS = " with an existing module code.";
-
+    private static final String ERROR_DELETE_TIME_MISS = "an existing module code";
+    private static final String ERROR_WEEK_NUM = "week number as a whole number between 1 and 13.";
     private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
             + "with a maximum of 1 decimal place.";
     private static final String ERROR_WEEK = "The week number should be between 1 and 13.";
@@ -238,7 +238,7 @@ public class Ui {
      */
     public void printDeleteTimeNotExist(boolean toPrint) {
         if (toPrint) {
-            System.out.println(ERROR_DELETE_TIME + ERROR_DELETE_TIME_MISS);
+            System.out.println(ERROR_DELETE_TIME + " with " + ERROR_DELETE_TIME_MISS + " and " + ERROR_WEEK_NUM);
         }
     }
 
@@ -503,8 +503,8 @@ public class Ui {
                     + System.lineSeparator());
             break;
         case Parser.COMMAND_DELETETIME:
-            System.out.print("Please type deletetime <module code> <week number> ");
-            System.out.println("with week number as a whole number between 1 and 13." + System.lineSeparator());
+            System.out.print(ERROR_DELETE_TIME);
+            System.out.println(" with " + ERROR_WEEK_NUM + System.lineSeparator());
             break;
         case Parser.COMMAND_LIST:
             System.out.println(WRONG_FORMAT);

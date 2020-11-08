@@ -26,6 +26,8 @@
 
 * We also use Draw.io for our diagrams [_**Using Draw.io**_](https://drawio-app.com/learning/step-by-step-guides/)
 
+* We also use `.pptx` for our diagrams. The `.pptx` files can be found in the images folder. To update a diagram, the diagrams in the `.pptx` files can be modified.
+
 #### 4. Converting a document to the PDF format <a name="4"></a>
 
 * We follow this guide to convert our documents to PDF[_[se-edu/guides] **Saving web documents as PDF files**_](https://se-education.org/guides/tutorials/savingPdf.html)

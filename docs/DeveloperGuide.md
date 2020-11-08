@@ -629,6 +629,7 @@ NUS students
 |v2.0|user|save tasks related to a module|be reminded of what tasks I have to do|
 |v2.0|user|save my username|I don't have to re-enter it every time|
 |v2.0|user|manage the task list|use the app as a planner|
+|v2.0|busy user|receive notifications|know immediately which modules I am spending too little or too much time on|
 
 ### 6.3 Use Cases <a name="6.3"></a>
 (For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)
