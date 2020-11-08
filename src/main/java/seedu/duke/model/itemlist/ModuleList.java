@@ -79,6 +79,7 @@ public class ModuleList extends ItemList<Module> {
         Ui.dukePrintMultiple(String.format("Projected CAP: %.2f", projectedCap));
         Ui.dukePrintMultiple(String.format("Total MCs completed: %d", totalMcs));
         Ui.showLine();
+        System.out.println();
     }
 
     /**
