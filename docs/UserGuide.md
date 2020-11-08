@@ -46,7 +46,6 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 - Words in UPPER_CASE are the parameters that you can specify for your usage.
 - e.g. in `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, 'NUM_QUESTIONS' specifies the number of questions you want to have in your quiz, and 'TIMER' specifies the number of seconds given to complete each question. 
 
-<div style="page-break-after: always;"></div>
 
 ### 3.1. Loading Data 
 
@@ -74,7 +73,6 @@ Upon successful startup, you should be greeted with a screen like this:
 
 ![welcome](./images/welcome.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 3.3. Viewing E-Duke-8 information: `about`
 
@@ -89,7 +87,6 @@ What you should see:
 
 ![about](./images/about.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 3.4. Viewing available commands: `help`
 
@@ -121,7 +118,6 @@ What you should see:
 
 ![topics](./images/topics.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 3.6. Accessing the CS2113T textbook content: `textbook`
 
@@ -165,6 +161,8 @@ Example of usage:
 quiz t/OOP n/5 s/10
 ```
 - This will start a quiz that contains 5 randomly-chosen questions from the topic on OOP. Each question will have to be completed within 10 seconds. 
+
+<div style="page-break-after: always;"></div>
 
 What you should see:
 
@@ -266,6 +264,7 @@ Example of usage:
 ```
 bookmark delete 2
 ```
+<div style="page-break-after: always;"></div>
 
 What you should see:
 
@@ -287,6 +286,9 @@ stats
 If you are a new user, this is what you should see:
 
 ![stats_no_progress](./images/stats_No_Progress.png)
+
+<div style="page-break-after: always;"></div>
+
 
 If you have attempted the quizzes on E-Duke-8, you would be able to see your own stats. 
 
@@ -315,7 +317,6 @@ What you should see:
 
 ![noteadd](./images/noteadd.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 3.14. Deleting a note: `note delete`
 
@@ -345,7 +346,6 @@ What you should see:
 
 ![notelist](./images/notelist.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 3.16. Exiting the program: `exit`
 
@@ -398,8 +398,8 @@ A correct answer in a future quiz attempt would also mean that you have come to 
 
 **Q4**: Using hints will limit the total points that I can earn to build up my stats, so why should I still use hint?
 
-**A4**: While points you earn will indeed be lesser, you are still encouraged to use hint when answering questions to spur your thinking, or to confirm your thoughts. 
-Hints might give you an alternative perspective to think about the question at hand, which may be helpful to how you answer similar questions in the future.
+**A4**: While points you earn will indeed be lesser, you are still encouraged to use hints when you have any doubts while answering questions, as they help to spur your thinking, or to confirm your thoughts. 
+Furthermore, hints might give you an alternative perspective to think about the question at hand, which may be helpful to how you answer similar questions in the future.
 
 **Q5**: How are the points awarded for correct answers?
 
@@ -451,6 +451,7 @@ Note:
 - If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
 - The title of a topic cannot be blank or repeated.
+- The description of a question cannot be blank.
 - Do refrain from adding duplicate questions because you can already re-attempt the same question if you start a quiz from the topic the question is from.
 - If duplicate questions are added, then you might find that the same question might appear more than once in your quiz.
 
