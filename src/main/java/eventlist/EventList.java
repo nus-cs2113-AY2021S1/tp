@@ -160,7 +160,6 @@ public class EventList {
             if (editInformation[4].equals("nil")) {
                 end = null;
             }
-            // conversion from an assignment to other type would result in an error if END date is not specified.
 
             if (end == null && editInformation[0].equalsIgnoreCase("class")) {
 
