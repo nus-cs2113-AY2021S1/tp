@@ -38,7 +38,7 @@ public class DineInfoCommand extends Command {
      *
      * @param foodPlaceList contains data of all dining options
      */
-    private void checkFoodPlace(ArrayList<FoodPlace> foodPlaceList) {
+    private void checkFoodPlace(ArrayList<FoodPlace> foodPlaceList) throws CustomException {
         assert foodPlaceList != null : "Data not available.";
         ArrayList<DiningOptions> searchList = new ArrayList<>();
         for (FoodPlace foodPlace : foodPlaceList) {
@@ -53,7 +53,11 @@ public class DineInfoCommand extends Command {
         if (searchList.size() > 0) {
             isValid = true;
         }
-        printDineInfoResult(searchList);
+        if (searchList.size() == 0) {
+            throw new CustomException(ExceptionType.NO_MATCH_FOODPLACE);
+        } else {
+            printDineInfoResult(searchList);
+        }
     }
 
 }

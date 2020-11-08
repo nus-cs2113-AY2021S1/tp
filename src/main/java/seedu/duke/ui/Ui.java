@@ -44,9 +44,17 @@ public class Ui {
 
     public static void showError(Exception error) {
         if (error.toString() != "Possible Locs shown") {
-            printLine();
-            System.out.println(error);
-            printLine();
+            if (error.toString() == "No match found. To see the list of faculties in NUS, type /faculty") {
+                System.out.println(error);
+                printLine();
+            } else if (error.toString() == "No match found. Try searching for another outlet!") {
+                System.out.println(error);
+                printLine();
+            } else {
+                printLine();
+                System.out.println(error);
+                printLine();
+            }
         }
     }
 
@@ -181,13 +189,9 @@ public class Ui {
     }
 
     public static void printDineInfoResult(ArrayList<DiningOptions> searchList) {
-        if (searchList.size() == 0) {
-            System.out.println("No match found.");
-        } else {
-            System.out.println("The stores that match your search:");
-            for (DiningOptions item : searchList) {
-                System.out.println("\n" + item.toString());
-            }
+        System.out.println("The stores that match your search:");
+        for (DiningOptions item : searchList) {
+            System.out.println("\n" + item.toString());
         }
     }
 

@@ -38,7 +38,7 @@ public class DineCommand extends Command {
      *
      * @param foodPlaceList contains data of all dining options
      */
-    private void checkFaculty(ArrayList<FoodPlace> foodPlaceList) {
+    private void checkFaculty(ArrayList<FoodPlace> foodPlaceList) throws CustomException {
         assert foodPlaceList != null : "Data not available.";
         boolean isFound = false;
         int count = 0;
@@ -62,7 +62,7 @@ public class DineCommand extends Command {
             }
         }
         if (!isFound) {
-            System.out.println("No match found. To see the list of faculties in NUS, type /faculty");
+            throw new CustomException(ExceptionType.NO_MATCH_FACULTY);
         }
     }
 
