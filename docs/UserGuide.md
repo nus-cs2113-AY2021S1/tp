@@ -684,7 +684,6 @@ Example of usage:
 Output:
 
 <img src="./images/showplannercommand.PNG" width="308" height="328" />
-![](./images/showplannercommand.PNG)
 
 <br/>
 
