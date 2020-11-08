@@ -1,5 +1,6 @@
 package seedu.zoomaster.exception;
 
+//@@author
 /**
  * The class DukeException is a subclass of Exception.
  * It is thrown when an error specific to Duke occurs.

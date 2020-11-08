@@ -3,6 +3,7 @@ package seedu.zoomaster.command.timetable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+//@@author
 class AddSlotCommandTest {
 //
 //    @Test

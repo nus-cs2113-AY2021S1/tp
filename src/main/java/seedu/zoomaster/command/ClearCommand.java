@@ -4,6 +4,7 @@ import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.slot.Timetable;
 
+//@@author
 public class ClearCommand extends Command {
     public static final String CLEAR_KW = "clear";
 

@@ -20,6 +20,7 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
+//@@author
 /**
  * Executes the help functionality of the program.
  */

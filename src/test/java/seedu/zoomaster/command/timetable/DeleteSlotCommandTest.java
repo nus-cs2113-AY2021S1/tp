@@ -1,3 +1,5 @@
+//@@author
+
 package seedu.zoomaster.command.timetable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

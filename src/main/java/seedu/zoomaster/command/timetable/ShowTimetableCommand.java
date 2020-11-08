@@ -89,6 +89,7 @@ public class ShowTimetableCommand extends Command {
         ui.print(message);
     }
 
+    //@@author TYS0n1
     /**
      * Builds a message string containing information of lesson slot(s) in the input day.
      * Lesson slot(s) are sorted by timing from 00:00 to 23:59
@@ -98,7 +99,6 @@ public class ShowTimetableCommand extends Command {
      * @param day The input day.
      * @return message.toString()
      */
-    //@@author TYS0n1
     private String getMessageSlotsInADay(List<Module> modules, List<Slot> slots, String day) {
         StringBuilder message = new StringBuilder();
         boolean hasSlotOnDay = false;
@@ -155,6 +155,7 @@ public class ShowTimetableCommand extends Command {
         return message.toString();
     }
 
+    //@@author TYS0n1
     /**
      * Builds a message string containing information of lesson slot(s) in the entire timetable.
      * Lesson slot(s) are sorted by timing from 00:00 to 23:59
@@ -163,7 +164,6 @@ public class ShowTimetableCommand extends Command {
      * @param slots List of lesson slots stored in the program.
      * @return message.toString()
      */
-    //@@author TYS0n1
     private String getMessageTimetable(List<Module> modules, List<Slot> slots) {
         StringBuilder message = new StringBuilder();
         for (Day day: Day.values()) {
@@ -173,6 +173,7 @@ public class ShowTimetableCommand extends Command {
         return message.toString();
     }
 
+    //@@author
     /**
      * Builds a message string of the timetable to be printed.
      * Lesson slot(s) are sorted by timing from 00:00 to 23:59
@@ -214,13 +215,13 @@ public class ShowTimetableCommand extends Command {
         return message;
     }
 
+    //@@author TYS0n1
     /**
      * Checks if there is an overlap with the input slot timing and the current system time.
      *
      * @param slot The selected slots to be tested.
      * @return isOverlap
      */
-    //@@author TYS0n1
     public static boolean hasLessonNow(Slot slot) {
         boolean isOverlap = false;
         LocalTime timeNow = LocalTime.now();
@@ -231,12 +232,12 @@ public class ShowTimetableCommand extends Command {
         return isOverlap;
     }
 
+    //@@author TYS0n1
     /**
      * Returns an indicator with the current time.
      *
      * @return "\u001b[33m" + currentTimeMessage + "\u001b[0m"
      */
-    //@@author TYS0n1
     public static String getIndicatorMessage() {
         DateTimeFormatter hoursAndMinutes = DateTimeFormatter.ofPattern("HH:mm");
         String currentTimeMessage = "<----" + "Current Time: " + LocalTime.now().format(hoursAndMinutes)
@@ -245,30 +246,32 @@ public class ShowTimetableCommand extends Command {
         return "\u001b[33m" + currentTimeMessage + "\u001b[0m";
     }
 
+    //@@author TYS0n1
     /**
      * Returns the upper highlighted box for lesson now indicator.
      *
      * @return "\u001b[32m" + message + "\u001b[0m"
      */
-    //@@author TYS0n1
     public static String getHighlighBoxUpperMessage() {
         String message = "[====" + "Lesson now" + "====]" + "\n";
 
         return "\u001b[32m" + message + "\u001b[0m";
     }
 
+    //@@author TYS0n1
     /**
      * Returns the lower highlighted box for lesson now indicator.
      *
      * @return "\u001b[32m" + message + "\u001b[0m"
      */
-    //@@author TYS0n1
     public static String getHighlighBoxLowerMessage() {
         String message = "[==================]" + "\n";
 
         return "\u001b[32m" + message + "\u001b[0m";
     }
 
+
+    //@@author
     private boolean isShowModuleBookmarks() {
         return module != null && showBookmarks;
     }
