@@ -256,12 +256,12 @@ The application aims to provide the writer with the following services:
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v1.0|writer with a lot of fleeting ideas|a place I can temporarily store all my short ideas |find them easily when I need them|
 |v1.0|user|I would like the app to have a word list|keep my list of favorite words and refer to them in my writings|
 |v1.0|writer|choose the name of the character generated from the database|write without thinking a lot about my character's name|
 |v1.0|writer|clear and edit the saved writings in my storage|easily change them later on|
 |v1.0|writer|generate words from my word list based on word type or some substrings|find the ideas to continue my writings|
 |v1.0|writer|continue to filter on my last filter list|narrow down the words I want to use|
+|v1.0|writer with a lot of fleeting ideas|a place I can temporarily store all my short ideas |find them easily when I need them|
 |v2.0|user|check my spelling automatically|don't spell wrongly|
 |v2.0|writer|have an app that list all the statistics from my past writings|
 |v2.0|user|get the inspiration from the app|improve my creative writing skills|
@@ -274,7 +274,15 @@ The application aims to provide the writer with the following services:
 
 ### Appendix D: Non-Functional Requirements
 
-{Give non-functional requirements}
+- Should be a Command-line Interface application.
+- Should work on any common Operating System (Windows, Linux or OS-X platform) as long as Java 11 is installed in the system.
+- Should be user-friendly to new and expert creative writers with average typing speed.
+- Should help creative writers do their tasks faster by commands rather than any other programs that uses mouses and other pointing devices.
+- Should display characters in ISO basic Latin alphabet and basic numbers correctly.
+- Should have local storage of editable text files (.txt).
+- Should work without requiring an installer.
+- Should work for single user.
+- Should work without Internet connection.
 
 ## Instructions for manual testing
 Given below are the instructions to test Fluffle manually.
