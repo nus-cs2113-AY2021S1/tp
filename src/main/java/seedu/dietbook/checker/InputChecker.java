@@ -20,6 +20,7 @@ public class InputChecker {
     public static final int FOOD_CAP = 100000;
     public static final int HEIGHT_CAP = 300;
     public static final int WEIGHT_CAP = 500;
+    public static final int TIME_FORMAT_LENGTH = 16;
     public static final String[] PARAM_FITNESS = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
     public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/"};
@@ -171,9 +172,16 @@ public class InputChecker {
      */
     public static boolean checkDate(String userInput) throws DietException {
         String[] processedInput = userInput.split("\\s+");
-        if (processedInput[processedInput.length - 1].contains("T")) {
+        try {
+            String time = processedInput[processedInput.length - 1];
+            LocalDateTime.parse(time);
+            if (time.length() != TIME_FORMAT_LENGTH) {
+                throw new DietException("Wrong date time format!");
+            }
             return true;
-        } else {
+        } catch (DietException e) {
+            throw new DietException(e.getMessage());
+        } catch (Exception e) {
             return false;
         }
     }

@@ -28,7 +28,7 @@ public class ListCommand extends Command {
         String[] processedInput = this.userInput.split("\\s+");
         InputChecker.checkList(processedInput);
         if (processedInput.length == 1) {
-            ui.printFoodList(manager.getFoodList().toString());
+            ui.printFoodList(manager.getFoodList().toDatedString());
         } else {
             if (processedInput.length == 2) {
                 startTime = LocalDateTime.parse(processedInput[1]);

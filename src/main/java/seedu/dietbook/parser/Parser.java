@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * @author tikimonarch
  */
 public class Parser {
-    public static final int timeFormatLength = 16;
+    public static final int TIME_FORMAT_LENGTH = 16;
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
     public static final String COMMAND_EDIT_INFO = "editinfo";
@@ -113,9 +113,12 @@ public class Parser {
                 trimmedParam = processedParam[1].trim();
                 if (processedParam[1].contains("/")) {
                     trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 1).trim();
+                    if (InputChecker.checkDate(trimmedParam)) {
+                        throw new DietException("Date time stated in the wrong place!");
+                    }
                 } else if (trimmedParam.split("\\s+").length >= 2) {
                     if (InputChecker.checkDate(trimmedParam)) {
-                        int lengthWithoutTime = trimmedParam.length() - timeFormatLength;
+                        int lengthWithoutTime = trimmedParam.length() - TIME_FORMAT_LENGTH;
                         trimmedParam = trimmedParam.substring(0, lengthWithoutTime).trim();
                     }
                 }
