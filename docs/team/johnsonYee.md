@@ -45,7 +45,7 @@ Given below are my contributions to the project.
     [#147](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/147))
     * Designed Nav@NUS logo used in user guide and developer guide.
     ([#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
-    * Added sections on introduction and quick start. ([#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
+    * Added sections on introduction and quick start. (Pull request[#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
   
   * Developer Guide:
     * Added implementation details, class diagrams and sequence diagrams for the `/routemap`, `/deletefav` and `/reset`
