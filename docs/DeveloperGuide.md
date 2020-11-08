@@ -558,14 +558,14 @@ Expected: Similar to previous.
 1. Changing the description of a favourite command in the list.
     - Prerequisites: List all favourite commands by executing `/listfav` command. There is at least one favourite in the 
     list.
-    - Test case: `/descfav 1 /to I go there often`
+    - Test case: `/descfav 1 /to I go there often`<br>
     Expected: The description for the first command will be changed to "I go there often".
-    - Test case: `/descfav 0 /to I go there often`
+    - Test case: `/descfav 0 /to I go there often`<br>
     Expected: An error message will be displayed. The list of favourites remains unchanged.
-    - Test case: `/descfav 1 /to I go there often` after running the first test case.
+    - Test case: `/descfav 1 /to I go there often` after running the first test case.<br>
     Expected: An error message saying the description is the same as before will be displayed.
     - Test case: `/descfav   /to I go there often`, `/descfav  `, `/descfav 1 I go there`, `/descfav x /to something` 
-    (where x is a number bigger than the number of elements in the list), `/descfav 2e /to something`, etc.
+    (where x is a number bigger than the number of elements in the list), `/descfav 2e /to something`, etc.<br>
     Expected: The appropriate error message will be displayed.
     
 <!-- @@author -->
