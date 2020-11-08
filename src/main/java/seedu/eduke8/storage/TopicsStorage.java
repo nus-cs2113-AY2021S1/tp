@@ -73,7 +73,7 @@ public class TopicsStorage extends LocalStorage {
 
         checkIfBlank(currentTopicTitle);
 
-        boolean isNotDuplicate = topicTitles.add(currentTopicTitle);
+        boolean isNotDuplicate = topicTitles.add(currentTopicTitle.toLowerCase());
 
         if (!isNotDuplicate) {
             throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
