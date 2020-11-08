@@ -63,7 +63,6 @@ Recurring Tracker|```recur```|
 Goal Tracker|```goal```| 
 Save Manager|```saver```| 
 Finance Tools|```financial```| 
-Logger|```logger```| 
 Quit|```quit```|
 
 ## Exit from Main Menu
@@ -210,16 +209,6 @@ Entries are specified by the following parameters:
     
     From the above, we can infer that on the date 20-10-03, the user has one expense entry and one income entry.
     
-No. |Content|
-----|------|
-3.3.1|[Add Entry](#entryTracker1)
-3.3.2|[Edit Entry](#entryTracker2)
-3.3.3|[Remove Ledger](#entryTracker3)
-3.3.4|[Show Entry List](#entryTracker4)
-3.3.5|[Show commands](#entryTracker5)
-3.3.6|[Show Categories](#entryTracker6)
-3.3.7|[Exit](#entryTracker7)
-
 ## Add entry
 Add an entry to the ledger record.
 
@@ -244,7 +233,7 @@ OTHERS|oth|Income
 Param Type| Param | Param Format
 ----------|-------|------------|
 `/time`|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
-`/amt`|Amount involved in the transaction.| Input floating point number in 2 d.p
+`/amt`|Amount involved in the transaction.| Input positive floating point number in 2 d.p. <br/> Can be $XX.XX, XX, etc.
 `/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
 `-i or -e`|Type of transaction. | No parameter required. 
 
@@ -270,7 +259,7 @@ Param Type| Param | Param Format
 ----------|-------|------------|
 `/id`|Index of the entry in the list, where the first entry is of index 1. | Input positive integer
 `/time`|Time of the entry.| Input string of the date in HHMM, HHMMSS or H.
-`/amt`|Amount involved in the transaction.| Input floating point number in 2 d.p
+`/amt`|Amount involved in the transaction.| Input positive floating point number in 2 d.p. <br/> Can be $XX.XX, XX, etc.
 `/cat`|Category of transaction. | Input string belonging in the set: {tpt, fd, tvl, shp, bll, slr, alw}
 `-i or -e`|Type of transaction. | No parameter required. 
         
@@ -806,17 +795,17 @@ To reset all data currently used by the program enter "reset"
 
 No. | Feature | Syntax |
 ----|---------|---------|
-1.|Open Ledger|_open /date {YYMMDD}_|
+1.|Open Ledger|_open /date {YYMMDD} or delete /id {INDEX}_|
 2.|New Ledger|_new /date {YYMMDD}_|
 3.|List Ledgers|_list_|
-4.|Delete Ledgers|_delete /date {YYMMDD}_|;
+4.|Delete Ledgers|_delete /date {YYMMDD} or delete /id {INDEX}_ |;
 5.|Exit to Main Menu|_exit_|
 
 ## Entry tracker
 
 No. | Feature | Syntax |
 ----|---------|---------|
-1.|New Entry|_new /time {HHMM} /desc {STRING} /cat {STRING:CATEGORY} -[i/e]_|
+1.|New Entry|_new /time {HHMM} /desc {STRING} /cat {STRING_CATEGORY} /amt {AMOUNT} [-i or -e]_|
 2.|Edit Entry|_edit /id {INDEX} {PARAM_TYPE} {PARAM} ..._|
 3.|list Entries|_list_|
 4.|Delete Entry|_delete /id {INDEX}_|
