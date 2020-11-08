@@ -128,6 +128,129 @@ The `Command` object:
 
 The `Storage` class is a class loading data from files when termiNus starts and saving data to files after each command.
 
+<!-- @@author iamchenjiajun -->
+### Model Component
+
+![ModelClassDiagram](./images/ModelClassDiagram.png)
+
+The `Model` component represents the state of the various lists stored in memory.
+
+The `Model` component:
+- Stores and loads program state to file using the `Storage` API.
+- Expose references to its `ItemList` objects so that other objects such as `Command` can modify it.
+
+<!-- @@author -->
+## Product scope
+### Target user profile
+Undergraduate students of National University of Singapore who:
+- require help to better manage their school work.
+- forgets to return their loan books to the library on time.
+- wants a timetable planner for easy reference.
+- are lazy to create separate module folders every semester.
+- wish to calculate their CAP.
+
+### Value proposition
+termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
+borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
+
+## User Stories
+|Version|Priority| As a ... | I want to ... | So that I can ...|
+|--------|----------|----------|---------------|------------------|
+|v1.0|***|student|add tasks into a list|keep track of the things I need to do|
+|v1.0|***|student|assign priorities to tasks|focus on the more important things first|
+|v1.0|**|student|assign categories to tasks|have a more organised task list|
+|v1.0|***|student|mark tasks as done|keep track of the remaining tasks to do|
+|v1.0|**|student|list all tasks in my list|have a better overview|
+|v1.0|***|student|be able to delete unwanted tasks|focus on the tasks which I need|
+|v1.0|***|student|save all data after using the application|retrieve the data upon running the application
+|v2.0|**|student|automatically create folders for my modules|I do not have to manually create them|
+|v2.0|***|student|add recurring tasks|avoid adding the same tasks every week
+|v2.0|***|student|have a calendar|I can view my current and upcoming tasks
+|v2.0|***|student|be able to set a tracker my borrowed books|avoid overdue fines
+|v2.0|**|student|sort my tasks based on highest priority|focus on those tasks first
+|v2.0|***|student|save zoom links in a centralized place|easily attend my online classes instead of looking through my email for the link 
+|v2.0|***|student|add modules and calculate my CAP|have a better projection of my grades and efforts
+|v2.0|*|student|login with a password|my system is protected 
+
+## Implementation
+This section describes how certain features are implemented.
+
+<!-- @@author iamchenjiajun -->
+### Parser
+
+This section describes how the `Parser` class works.
+
+#### High level description
+
+The `Parser.parse()` method takes in `fullCommand` as an argument, which is the full command entered by the user.
+
+Example commands:
+- `add task tP meeting c/cs2113 p/0`
+- `add module CS2113 mc/4 ay/2021S1 g/A`
+
+The `fullCommand` is composed of several parts, which consists of a root command (`add`), description (`module CS2113`)
+and optional arguments (`mc/4 ay/2021S1 g/A`).
+
+An optional argument consists of 2 parts, which is delimited by a forward slash. In the example above, there are 3 optional
+arguments, which are `mc/4`, `ay/2021S1` and `g/A`. Each optional argument can be represented in this form: `<key>/<value>`.
+
+In some commands, the optional arguments may be compulsory and is checked by the `Parser` at runtime.
+
+The `parse` method parses the `fullCommand` into these parts before passing them as arguments to `CommandCreator`
+methods and returns a `Command` object with the corresponding arguments.
+
+The following sequence diagram shows how the `Parser` works.
+
+![DukeSequenceDiagram](./images/ParserSequenceDiagram.png)
+
+The following diagram shows how a command should be parsed into its separate parts.
+
+![CommandParseDiagram](./images/CommandParseDiagram.png)
+
+#### Implementation details
+
+1. The `parse` method of `Parser` is invoked by the calling object. In termiNus, the only object that invokes this
+method is `Duke`. The `fullCommand` is passed an argument, which is the full command entered by the user.
+1. The method parses `fullCommand` into two separate `Strings`, which are `rootCommand` and `commandString`.
+`rootCommand` contains the first word of the command and `commandString` contains the rest of the command with the first
+word removed. This is done using the `split` method of the `String` class, then removing the `rootCommand` from the 
+`fullCommand` before storing it in `commandString`.
+1. The method then invokes the `removeArgumentsFromCommand` method to parse and remove optional arguments from the full
+command. This is done using regular expression parsing which is detailed in the next section. The results are returned
+to the `parse` method and stored in `description`.
+1. The method then invokes the `getArgumentsFromRegex` method to parse the optional arguments from the full command.
+The results are stored in a `HashMap<String, String>`, which is a `HashMap` of key-value pairs, similar to the form of the
+optional argument (`<key>/<value>`). The results are returned to the `parse` method and stored as `argumentsMap`.
+1. The method then checks the `rootCommand` and decides which `Command` to return, which calls `CommandCreator`
+methods with the parsed `argumentsMap`, `description`, and `commandString`.
+1. The results of the `CommandCreator` methods are returned as a `Command` back to the invoker of the `parse` method.
+
+#### Regular expression parsing
+
+Two of the previously mentioned methods, `removeArgumentsFromCommand` and `getArgumentsFromRegex` make use of regular
+expressions to parse the optional arguments.
+
+The diagram below illustrates how the regular expression matches an optional argument.
+
+![RegexDiagram](./images/RegexDiagram.png)
+
+- The regular expression that parses these optional arguments is `([\w]+/[^\s]+)`. This regular expression matches 1 or more
+alphanumeric characters (denoted by `[\w]+`), followed by a forward slash, then 1 or more of any character except whitespace (denoted by `[^\s]+`).
+- The expression also uses capturing parenthesis to ensure that the parser does not parse the same argument twice.
+
+#### Design considerations
+
+- The results of `getArgumentsFromRegex` are stored as a `HashMap` instead of `ArrayList` or simply returned as a value.
+This allows the same method to be reused for different commands, which may accept different optional arguments with
+different key-value pairs. This ensures that the code follows DRY principles.
+- The regular expressions parsing means that we do not need to manually parse every different command with different
+arguments, thus reducing code complexity and SLOC.
+
+<!-- @@author GuoAi -->
+### Storage
+
+This section describes how the `Storage` class works
+
 #### High level description
 
 Methods handling data loading (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()` methods) 
@@ -197,121 +320,6 @@ The following sequence diagram shows how the `Storage` works.
 sequentially. Each loading method calls the corresponding helper method (i.e. `loadTaskFromLine()`, `loadBookFromLine()`, 
 `loadLinkFromLine()`, `loadModuleFromLine()`) to load `Item`s from each line in the file. 
 3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
-
-<!-- @@author iamchenjiajun -->
-### Model Component
-
-![ModelClassDiagram](./images/ModelClassDiagram.png)
-
-The `Model` component represents the state of the various lists stored in memory.
-
-The `Model` component:
-- Stores and loads program state to file using the `Storage` API.
-- Expose references to its `ItemList` objects so that other objects such as `Command` can modify it.
-
-<!-- @@author -->
-## Product scope
-### Target user profile
-Undergraduate students of National University of Singapore who:
-- require help to better manage their school work.
-- forgets to return their loan books to the library on time.
-- wants a timetable planner for easy reference.
-- are lazy to create separate module folders every semester.
-- wish to calculate their CAP.
-
-### Value proposition
-termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
-borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
-
-## User Stories
-|Version|Priority| As a ... | I want to ... | So that I can ...|
-|--------|----------|----------|---------------|------------------|
-|v1.0|***|student|add tasks into a list|keep track of the things I need to do|
-|v1.0|***|student|assign priorities to tasks|focus on the more important things first|
-|v1.0|**|student|assign categories to tasks|have a more organised task list|
-|v1.0|***|student|mark tasks as done|keep track of the remaining tasks to do|
-|v1.0|**|student|list all tasks in my list|have a better overview|
-|v1.0|***|student|be able to delete unwanted tasks|focus on the tasks which I need|
-|v1.0|***|student|save all data after using the application|retrieve the data upon running the application
-|v2.0|**|student|automatically create folders for my modules|I do not have to manually create them|
-|v2.0|***|student|add recurring tasks|avoid adding the same tasks every week
-|v2.0|***|student|have a calendar|I can view my current and upcoming tasks
-|v2.0|***|student|be able to set a tracker my borrowed books|avoid overdue fines
-|v2.0|**|student|sort my tasks based on highest priority|focus on those tasks first
-|v2.0|***|student|save zoom links in a centralized place|easily attend my online classes instead of looking through my email for the link 
-|v2.0|***|student|add modules and calculate my CAP|have a better projection of my grades and efforts
-|v2.0|*|student|login with a password|my system is protected 
-
-## Implementation
-This section describes how certain features are implemented.
-
-### Parser
-
-#### High level description
-
-The `Parser.parse()` method takes in `fullCommand` as an argument, which is the full command entered by the user.
-
-Example commands:
-- `add task tP meeting c/cs2113 p/0`
-- `add module CS2113 mc/4 ay/2021S1 g/A`
-
-The `fullCommand` is composed of several parts, which consists of a root command (`add`), description (`module CS2113`)
-and optional arguments (`mc/4 ay/2021S1 g/A`).
-
-An optional argument consists of 2 parts, which is delimited by a forward slash. In the example above, there are 3 optional
-arguments, which are `mc/4`, `ay/2021S1` and `g/A`. Each optional argument can be represented in this form: `<key>/<value>`.
-
-In some commands, the optional arguments may be compulsory and is checked by the `Parser` at runtime.
-
-The `parse` method parses the `fullCommand` into these parts before passing them as arguments to `CommandCreator`
-methods and returns a `Command` object with the corresponding arguments.
-
-The following sequence diagram shows how the `Parser` works.
-
-![DukeSequenceDiagram](./images/ParserSequenceDiagram.png)
-
-The following diagram shows how a command should be parsed into its separate parts.
-
-![CommandParseDiagram](./images/CommandParseDiagram.png)
-
-#### Implementation details
-
-1. The `parse` method of `Parser` is invoked by the calling object. In termiNus, the only object that invokes this
-method is `Duke`. The `fullCommand` is passed an argument, which is the full command entered by the user.
-1. The method parses `fullCommand` into two separate `Strings`, which are `rootCommand` and `commandString`.
-`rootCommand` contains the first word of the command and `commandString` contains the rest of the command with the first
-word removed. This is done using the `split` method of the `String` class, then removing the `rootCommand` from the 
-`fullCommand` before storing it in `commandString`.
-1. The method then invokes the `removeArgumentsFromCommand` method to parse and remove optional arguments from the full
-command. This is done using regular expression parsing which is detailed in the next section. The results are returned
-to the `parse` method and stored in `description`.
-1. The method then invokes the `getArgumentsFromRegex` method to parse the optional arguments from the full command.
-The results are stored in a `HashMap<String, String>`, which is a `HashMap` of key-value pairs, similar to the form of the
-optional argument (`<key>/<value>`). The results are returned to the `parse` method and stored as `argumentsMap`.
-1. The method then checks the `rootCommand` and decides which `Command` to return, which calls `CommandCreator`
-methods with the parsed `argumentsMap`, `description`, and `commandString`.
-1. The results of the `CommandCreator` methods are returned as a `Command` back to the invoker of the `parse` method.
-
-#### Regular expression parsing
-
-Two of the previously mentioned methods, `removeArgumentsFromCommand` and `getArgumentsFromRegex` make use of regular
-expressions to parse the optional arguments.
-
-The diagram below illustrates how the regular expression matches an optional argument.
-
-![RegexDiagram](./images/RegexDiagram.png)
-
-- The regular expression that parses these optional arguments is `([\w]+/[^\s]+)`. This regular expression matches 1 or more
-alphanumeric characters (denoted by `[\w]+`), followed by a forward slash, then 1 or more of any character except whitespace (denoted by `[^\s]+`).
-- The expression also uses capturing parenthesis to ensure that the parser does not parse the same argument twice.
-
-#### Design considerations
-
-- The results of `getArgumentsFromRegex` are stored as a `HashMap` instead of `ArrayList` or simply returned as a value.
-This allows the same method to be reused for different commands, which may accept different optional arguments with
-different key-value pairs. This ensures that the code follows DRY principles.
-- The regular expressions parsing means that we do not need to manually parse every different command with different
-arguments, thus reducing code complexity and SLOC.
 
 ### List feature
 
