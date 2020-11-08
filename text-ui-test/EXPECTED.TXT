@@ -760,6 +760,8 @@ Triple Fromage Cheesecake (Default) #> OOPS!!! You cannot delete the last watchl
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! You cannot delete the last watchlist!
 
+Triple Fromage Cheesecake (Default) #> OOPS!!! This is not a valid watchlist index.
+
 Triple Fromage Cheesecake (Default) #> OOPS!!! You cannot select the active watchlist..
 
 Triple Fromage Cheesecake (Default) #> Watchlist "Hello               World" has been created successfully!

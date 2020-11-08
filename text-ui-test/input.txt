@@ -278,6 +278,7 @@ watchlist -d -hello
 watchlist -d -------
 watchlist -d 1
 watchlist -d 1
+watchlist -d 2
 watchlist -s 1
   watchlist             -n           Hello               World
   watchlist             -l

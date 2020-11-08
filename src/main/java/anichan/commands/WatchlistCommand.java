@@ -222,8 +222,8 @@ public class WatchlistCommand extends Command {
     /**
      * Validates that the watchlist index supplied for the select and delete watchlist command is valid.
      * <ul>
-     *     <li>Attempts to delete the last watchlist.</li>
      *     <li>Watchlist index specified is out of range.</li>
+     *     <li>Attempts to delete the last watchlist.</li>
      * </ul>
      *
      * @param watchlistList a list containing all of the watchlist for the active workspace
@@ -231,12 +231,12 @@ public class WatchlistCommand extends Command {
      * @throws AniException when the watchlist index is invalid
      */
     private void validateWatchlistIndex(ArrayList<Watchlist> watchlistList, int index) throws AniException {
-        if (watchlistList.size() == 1 && parameter.equals(DELETE_PARAM)) {
-            throw new AniException(CANNOT_DELETE_LAST_WATCHLIST);
-        }
-
         if (index >= watchlistList.size()) {
             throw new AniException(INVALID_WATCHLIST_INDEX);
+        }
+
+        if (watchlistList.size() == 1 && parameter.equals(DELETE_PARAM)) {
+            throw new AniException(CANNOT_DELETE_LAST_WATCHLIST);
         }
     }
 }
