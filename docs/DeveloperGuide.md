@@ -267,5 +267,55 @@ The application aims to provide the writer with the following services:
 {Give non-functional requirements}
 
 ## Instructions for manual testing
+Given below are the instructions to test Fluffle manually.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing/ Summary of UG}
+### Launch and Shutdown
+Following are the instructions to launch and shutdown Fluffle
+
+1. Verify that you have `Java11` or above version installed by typing `java --version` to your computer's terminal (Command Prompt for Windows, Terminal for MacOS)
+2. Get the lastest version of **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v2.0).
+3. Copy the file to the folder you want to use as the home folder for Fluffle.
+4. Type in the terminal `java -jar duke.jar` and press Enter. If the setup is correct, you should see something like below:
+```
+--------------------------------------------------------------
+Write a story with
+  ______ _        __  __ _
+ |  ____| |      / _|/ _| |
+ | |__  | |_   _| |_| |_| | ___
+ |  __| | | | | |  _|  _| |/ _ \
+ | |    | | |_| | | | | | |  __/
+ |_|    |_|\__,_|_| |_| |_|\___|
+--------------------------------------------------------------
+Hello User! Welcome to Fluffle!
+What can I do for you?
+--------------------------------------------------------------
+What is your name?
+```
+5. After entering your name, try typing the `help` command and press Enter to get started.
+6. Some example commands you can try:
+  1. `noun computer d\ a smart machine`: to add a noun to your word list.
+  1. `list word`: to view your word list.
+7. If you want to shutdown Fluffle, use the command `exit`.
+
+Following are the commands to help you test Fluffle manually.
+
+### Basic commands
+
+### Words list command
+
+### Bunnies list command
+
+### Names list command
+
+### Writings list command
+#### Getting reminders for your writings schedules for a specific day: `remind`
+* Test case: `remind 01/12/2020`. 
+* Expected output:
+```
+On 01/12/2020, you should continue on the following writing(s):
+1.
+  Id: 222
+  Title: CS2113T Final
+```
+
+For a more specific explanation of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html)
