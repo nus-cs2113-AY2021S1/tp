@@ -84,7 +84,11 @@ public class ExpenseList extends ItemList<Expense> {
         items = sortExpenseList(items);
         Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST);
-        items.forEach(expense -> Ui.dukePrintMultiple(expense.toString()));
+        int count = 0;
+        for (Expense expense : items) {
+            count++;
+            Ui.dukePrintMultiple(count + ". " + expense.toString());
+        }
         ArrayList<Expense> selectedExpenses = new ArrayList<>();
         try {
             Ui.showEmptyLine();
