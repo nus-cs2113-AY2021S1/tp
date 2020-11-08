@@ -2,18 +2,17 @@ package seedu.financeit.datatrackers.goaltracker;
 
 import seedu.financeit.common.Common;
 import seedu.financeit.data.Goal;
+import seedu.financeit.datatrackers.entrytracker.Entry;
+import seedu.financeit.datatrackers.entrytracker.EntryList;
 import seedu.financeit.datatrackers.manualtracker.Ledger;
 import seedu.financeit.datatrackers.manualtracker.LedgerList;
 import seedu.financeit.datatrackers.manualtracker.ManualTracker;
-import seedu.financeit.datatrackers.entrytracker.Entry;
-import seedu.financeit.datatrackers.entrytracker.EntryList;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
 import java.time.DateTimeException;
 import java.time.Month;
-import java.util.Scanner;
 
 /**
  * This is the class that will handle the setting of goals
@@ -24,7 +23,6 @@ public class GoalTracker {
     private static String[] cmdPacket = null;
     private static String[] editPacket;
     private static Goal goalToSet;
-    private static Scanner scanner = new Scanner(System.in);
     private static int expenseGoal = 0;
     private static int incomeGoal = 0;
     private static String input;

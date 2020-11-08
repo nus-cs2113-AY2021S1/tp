@@ -22,7 +22,7 @@ import static seedu.financeit.utils.ParamChecker.PARAM_TIME;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
 /**
- * Command class to edit an existing entry instance with specified parameter values.
+ * CommandHandler class to edit an existing entry instance with specified parameter values.
  * Entry to be edited must be referenced via the constructor argument.
  */
 public class EditEntryHandler extends ParamHandler {

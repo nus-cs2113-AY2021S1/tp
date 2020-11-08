@@ -11,6 +11,7 @@ import static seedu.financeit.datatrackers.manualtracker.TestCommands.generateDe
 import static seedu.financeit.datatrackers.manualtracker.TestCommands.generateDeleteLedgerByIdCorrectCommand;
 import static seedu.financeit.datatrackers.manualtracker.TestCommands.generateDeleteLedgerByIdErrorCommand;
 
+
 public class ManualTrackerTest {
     private static final int FREQUENCY_ERROR_ENTRY = 3;
     private static final int NUM_ENTRIES = 20;

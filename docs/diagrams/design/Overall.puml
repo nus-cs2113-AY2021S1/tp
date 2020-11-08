@@ -4,7 +4,7 @@ skinparam classAttributeIconSize 0
 skinparam BoxPadding 50
 skinparam shadowing false
 left to right direction
-
+scale 1049 width
 skinparam package<<Layout>> {
   borderColor Transparent
   backgroundColor Transparent

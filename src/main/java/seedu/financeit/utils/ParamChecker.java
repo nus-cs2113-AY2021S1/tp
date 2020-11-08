@@ -251,32 +251,13 @@ public class ParamChecker {
         return index - 1;
     }
 
-    public double checkAndReturnDouble(String paramType) throws ParseFailParamException {
-        String input = packet.getParam(paramType);
-        boolean parseSuccess = false;
-        double output = -1;
-
-        clearErrorMessage();
-
-        LoggerCentre.loggerParamChecker.info("Checking input Double...");
-        input = input.replaceAll("[^\\w | .]", "");
-        try {
-            output = Double.parseDouble(input);
-            parseSuccess = true;
-        } catch (NumberFormatException | NullPointerException exception) {
-            LoggerCentre.loggerParamChecker.warning(
-                String.format("Double not recognised... Err: %s", exception.getMessage()));
-            errorMessage = getErrorMessageDoubleNumberFormatException(input, errorMessage);
-        } finally {
-            printErrorMessage();
-        }
-
-        if (!parseSuccess) {
-            throw new ParseFailParamException(paramType);
-        }
-        return output;
-    }
-
+    /**
+     * Checks if input is a positive Double.
+     * @param paramType Param Type to acquire from packet.
+     * @return input if it is valid.
+     * @throws ParseFailParamException If user entered an invalid input
+     *                                 e.g. negative integer, alphabets, decimal
+     */
     public double checkAndReturnDoubleSigned(String paramType) throws ParseFailParamException {
         String input = packet.getParam(paramType);
         boolean parseSuccess = false;
@@ -285,20 +266,24 @@ public class ParamChecker {
         clearErrorMessage();
         LoggerCentre.loggerParamChecker.info("Checking input Double...");
         try {
+            // checks for alphabet inputs.
             if (RegexMatcher.alphabetMatcher(input).find()) {
                 throw new NumberFormatException();
             }
+            // Converts String to Decimal.
+            // Removes Currency characters if any.
             input = input.replaceAll("[^\\w | [-.]]", "");
             if (input.length() > MAX_INPUT_DOUBLE_LENGTH) {
                 throw new NumberFormatException();
             }
             output = Double.parseDouble(input);
 
-            //Truncate double to 2 d.p.
+            // Truncate double to 2 d.p.
             DecimalFormat bd = new DecimalFormat("#.##");
             bd.setRoundingMode(RoundingMode.CEILING);
             output = Double.parseDouble(bd.format(output));
 
+            // Checks for negative values.
             if (output < 0) {
                 throw new NumberFormatException();
             }

@@ -12,7 +12,6 @@ import java.util.Comparator;
  * Extends ParamHandler so it is able to handle params from a CommandPacket.
  */
 public abstract class ItemList {
-    protected Item currItem;
     protected ArrayList<Item> items = new ArrayList<>();
     protected int indexToModify;
     protected boolean isIndexToModifySet;
@@ -113,12 +112,6 @@ public abstract class ItemList {
     public void removeItemAtCurrIndex() throws IndexOutOfBoundsException {
         assert this.indexToModify >= 0;
         this.items.remove(this.indexToModify);
-    }
-
-    //Manually specify index in the code, if necessary
-    public void removeItemAtCurrIndex(int index) throws IndexOutOfBoundsException {
-        assert index < this.items.size();
-        this.items.remove(index);
     }
 
     /**

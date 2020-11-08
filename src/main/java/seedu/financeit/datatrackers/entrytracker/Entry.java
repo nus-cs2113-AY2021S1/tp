@@ -5,6 +5,9 @@ import seedu.financeit.common.Common;
 import seedu.financeit.data.DateTimeItem;
 import seedu.financeit.datatrackers.manualtracker.Ledger;
 
+/**
+ * Item class which represents transactions of the users.
+ */
 public class Entry extends DateTimeItem {
     private String description = " ";
     private String category = null;
@@ -60,6 +63,13 @@ public class Entry extends DateTimeItem {
         return tokens[tokens.length - 1];
     }
 
+    /**
+     * In certain system messages, referencing of entry type by full description can be
+     * aesthetically unpleasing.
+     * This method shortens the description printed.
+     * @param description Full description of entry.
+     * @return Shortened description of entry.
+     */
     private String getShortFormDesc(String description) {
         int maxDescLength = 20;
         maxDescLength = Math.min(maxDescLength, description.length());

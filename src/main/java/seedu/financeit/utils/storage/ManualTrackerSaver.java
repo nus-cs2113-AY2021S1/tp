@@ -98,33 +98,37 @@ public class ManualTrackerSaver extends SaveHandler {
         String inputString = "";
         int ledgerIndex = -1;
         while (scanner.hasNext()) {
-            String saveString = scanner.nextLine();
-            classContents = saveString.split(";");
-            switch (classContents[0]) {
-            case "Entry":
-                if (classContents[1].equals("Expense")) {
-                    classContents[1] = " -e";
-                } else if (classContents[1].equals("Income")) {
-                    classContents[1] = " -i";
-                }
-                classContents[2] = CategoryMap.categoryToInputMap.get(classContents[2]);
-                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtIndex(ledgerIndex));
-                inputString = "new /time " + classContents[4] + " /cat "
+            try {
+                String saveString = scanner.nextLine();
+                classContents = saveString.split(";");
+                switch (classContents[0]) {
+                case "Entry":
+                    if (classContents[1].equals("Expense")) {
+                        classContents[1] = " -e";
+                    } else if (classContents[1].equals("Income")) {
+                        classContents[1] = " -i";
+                    }
+                    classContents[2] = CategoryMap.categoryToInputMap.get(classContents[2]);
+                    EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtIndex(ledgerIndex));
+                    inputString = "new /time " + classContents[4] + " /cat "
                         + classContents[2] + " /desc " + classContents[5] + " /amt "
                         + classContents[3] + classContents[1];
-                EntryTracker.setCommandPacket(InputParser.getInstance().parseInput(inputString));
-                EntryTracker.createEntry();
-                break;
-            case "Ledger":
-                inputString = "new /date " + classContents[1];
-                ManualTracker.setCommandPacket(InputParser.getInstance().parseInput(inputString));
-                ManualTracker.createLedger();
-                ledgerIndex++;
-                break;
-            default:
-                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
+                    EntryTracker.setCommandPacket(InputParser.getInstance().parseInput(inputString));
+                    EntryTracker.createEntry();
+                    break;
+                case "Ledger":
+                    inputString = "new /date " + classContents[1];
+                    ManualTracker.setCommandPacket(InputParser.getInstance().parseInput(inputString));
+                    ManualTracker.createLedger();
+                    ledgerIndex++;
+                    break;
+                default:
+                    UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                         "Class is not recognised to load.");
-                break;
+                    break;
+                }
+            } catch (Exception e) {
+                // Fall -through
             }
         }
     }

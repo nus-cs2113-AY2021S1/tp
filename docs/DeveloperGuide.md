@@ -2,6 +2,9 @@
 
 * Table of Contents
 {:toc}
+
+<div style="page-break-after: always;"></div>
+
 # Design
 
 ## Overview of Architecture
@@ -26,7 +29,7 @@ The design of the software can be split into 5 distinct components:
 __Description__
 
 The Logic Manager component serves as the bridge between user interface and program operations.
-It includes 4 classes: 
+<br />It includes 5 classes: 
 * ```ManualTracker```
 * ```EntryTracker```
 * ```RecurringTracker```
@@ -41,7 +44,7 @@ and provides an interface for the user to append or remove ```Goals```.
 * ```Finance Tools``` class provides an interface for users to utilize an array of 
 finance calculator tools within it.
 * All ```LogicManager``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
-to perform the operation associated with the user input.
+to perform the operation associated with the param handling.
 
 ## Logic Component
 
@@ -50,7 +53,7 @@ to perform the operation associated with the user input.
 __Description__
 
 The Logic Component executes logic operations passed via a `CommandPacket`, by handling individual params 
-contained in the `CommandPacket`
+contained in the `CommandPacket`.
 
 __API__
 
@@ -75,6 +78,7 @@ __API__
 
 * ```handleInput()``` from the ```UiManager``` class is called from ```Handler``` classes to 
 retrieve the raw string input from the user.
+
 * ```Parser``` classes are responsible for parsing raw String input from the user
 and produce a ```CommandPacket```.
 * `CommandPacket` consists of two components
@@ -84,6 +88,7 @@ and produce a ```CommandPacket```.
     * E.g. if user inputs `new /desc Quick brown fox`, `commandString` will be `"add"`,
     while paramMap will consist of one key-value pair, key being `"/desc"` and value being
     `"Quick brown fox"`
+
 
 ## Model Component
 
@@ -96,13 +101,19 @@ by user input can be performed upon.
 
 __API__
 
-* ```EntryTracker``` and ```ManualTracker``` classes can interact with ```LedgerList``` and ```EntryList```
+* ```EntryTracker```, ```RecurringEntryTracker``` and ```ManualTracker``` classes can interact with ```LedgerList``` and ```EntryList```
 instances to perform add, remove or edit operations on the ```Ledgers``` or ```Entry``` instances in it.
 * ```Storage``` component interact with ```DataList``` classes for save and load operations.
     * For save, ```Storage``` component uses the ```EntryTracker``` and ```ManualTracker``` instances in the program
     at the point of save to write to a series of text files that persists after the program closes.
     * For load, ```Storage``` component writes data from the text files to ```EntryTracker``` and ```ManualTracker``` respectively.
-     
+* Utility Model sub-components
+    * Goal
+        * Used by the `GoalTracker`. The user can set their income or expense goals by creating a `Goal` instance. They can then be compared against with total entry amounts recorded by the user, whereby the `GoalTracker` will report the progress of the user towards the `Goal` that they set. 
+        * More information can be found in the [GoalTracker section](#goalTracker).
+    * AccountSaver
+        * Stores account information of the user.
+        * More details can be found in the [FinanceTools section](#financeTools).
 
 ## Storage Component
 
@@ -119,120 +130,105 @@ __API__
 * ```manualTrackerSaver```, ```goalTrackerSaver``` and ```autoTrackerSaver``` inherits some common methods
 from ```saveHandler```. The saver classes are primarily used by ```saveManager``` for file input output operations.
 
+<div style="page-break-after: always;"></div>
 
+## Logging
+
+__Description__
+
+Some classes facilitate critical operations which need to be logged for debugging purposes.
+The `LoggerCentre` class includes all logger instances for such classes throughout the program.
+
+__API__
+* The `LoggerCentre` interacts with `FinanceIt` class directly; it creates log files in the beginning of program execution.
+* The `LoggerCentre` consolidates initial configuration of all `logger` instances used in the program. However,
+those instances will log independently of the `LoggerCentre`. 
+* The `LoggerCentre` creates new log files every time the program runs from the command line. The files are in .log format and
+can be accessed in the `logs` folder.   
 
 # Implementation
 ## Module-level Implementation
 * This section describes generalizable implementations that are similar across features.
 * More components described in [Feature-level implementation](#feature-level-implementation) below.
-### Logic Component
-* Note: Refer to [Logic Component](#logic-component) above for class diagram 
+
+### Input Manager
+* Note: Refer to [Input Manager Component](#input-manager-component) above for class diagram 
 illustration of the below subsections.
 
-**`ParamChecker`**
-1. Contains a set of public static methods which verifies the validity of the raw input provided
-1. If there is nothing wrong with the ```param```, the method will typically return the `param` supplied without modification.
-1. If the ```param``` fails to pass the tests administered within the method, the following procedures will execute:
-    1. Log to log file a corresponding error message with ```WARNING``` level
-    1. Print to console, any applicable error messages.
-    1. Throw a common exception: `ParseFailParamException` 
-        1. The implication is that the range of exceptions that would have been caught in other
-        parts of the software with regards to param handling, is now consolidated within a single class in the program.
-        The class that uses ParamChecker is only concerned with whether the ```param``` is valid or not.
-&nbsp;  
+__Input Conventions__
+* The user input is composed of the following format:
+```
+    <command> <param type> <parameter> <param type> <parameter> ...
+```
+* The ```command``` string determines the current state of the Finite State Machine, and
+hence the function executed. 
+* The remainder of the string includes a series of  ```param type``` - ```param``` combinations, whereby
+```param type``` indicates the type of the parameter which is to be identified by the user class,
+and ```param``` indicates the parameter that is associated with the ```param type```. 
 
-**`ParamHandler`**
-1. `CommandPacket` created from user-input needs to be handled by a particular `ParamHandler` subclass,
-depending on what kind of command it is. E.g. CreateEntryHandler handles creating a new Entry.
+* Param types are restricted to two types: 
+    * ```/<string>```, requires a corresponding parameter.
+        * Eg. ```param type```: ```/date```
+              <br>  ```param``` : ```2020-04-04```
+    * ```-<string>```, does not require a corresponding parameter. 
+        * Reserved for param types which are used to specify a property to be true/false
+        * Eg. ```-auto```, to specify if an entry has automatic deduction. 
+        
+<a name="commandPacket"></a> __CommandPacket class__ 
+* A helper class. Contains two particular attributes to store the user input in an organised fashion.
+    * ```commandString``` :  ```String``` Store the command string from the input.
+    * ```paramMap``` : ```HashMap``` Store the pairs of ```param type``` and ```param``` present in the input string.
+        * Key: ```param type```
+        * Value:  ```param```
 
-**`CommandHandler`**
-1. Extends `ParamHandler` class. Individual implementation of `handleSingleParams()`
-    * E.g. `CreateEntryHandler` handles `/desc` param, whereas `RetrieveEntryHandler` does not.
-1. Used within Logic Managers to handle processing of `CommandPacket`.  
+__InputParser class__
+* A helper class. Parses the input string and returns a corresponding [```commandPacket```](#commandPacket).
+    * ```parseInput()```: 
+        * Initializes a ```commandPacket``` and populates the ```commandString``` attribute.
+        * Calls ParamParser instance to parse the segment of the input string
+        that corresponds with the sequence of ```param type``` - ```param``` pairs, and
+        return a HashMap populated with the aforementioned pairs.
+        * Returns a fully populated ```commandPacket``` to be used by user classes.
+         
+__ParamsParser class__
+* A helper class. Parses the subsequence of the input string that corresponds with sequence of 
+```param type``` - ```param``` pairs.
+    * Parsing of input for params via ```parseParams()```:
+        * __Step 1__: Use a regex helper class ```RegexMatcher``` to identify and extract ```param type``` that matches the 
+        pattern specified in "Input conventions":
+        
+            * Param types are restricted to two types: 
+                * `/abcd`, requires a corresponding parameter.
+                    * Example: <br>param type: `/date`, param: `2020-04-04`
+                * `-abcd`, does not require a corresponding parameter. 
+                    * Reserved for param types which are used to specify a property to be true/false
+                    * Example: <br>`-auto`, to specify if an entry has automatic deduction. 
+        
+        * __Step 2__: Identify the substring of the rest of the input string before the next ```param type``` or end-of-line, 
+        as the ```param``` to the previously identified ```param type```. Extract it from the input string.
+        * __Step 3__: Put the ```param type``` - ```param``` pair into a ```HashMap```.
+        * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
+        * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
-
-**Handling of params by `XYZCommandHandler`**:  
-1. Initialize the state of the handler 
-    * `XYZCommandHandler#setRequiredParams()` sets required Params that need to be parsed successfully to 
-    constitute a valid input.
-        * E.g. to create a new `RecurringEntry`, `/desc` and `/day` are two of the required params,
-        whereas editing has no required params (provided that at least one param is present).
-    * Pass `CommandPacket` to `ParamChecker` by calling `ParamChecker.setPacket(packet)`.
-1. Call `ParamHandler#handleParams()`
-    * For every`paramType` in the `CommandPacket` instance, execute `XYZCommandHandler#handleSingleParam(packet)`
-    * If the `param` parses successfully, it will be added to `paramsSuccessfullyParsed`, else an Exception will be thrown
-1. Check if the CommandPacket is valid. The below conditions must be satisfied:
-    * All params set earlier via `setRequiredParams()` are parsed with no exceptions thrown.
-    That is, all params in `requiredParams` is also in `paramsSuccessfullyParsed`.
-1. If all successful, the entry created is returned. Else, throw ```InsufficientParamsException()```.
-
-
-
-## Feature-level Implementation
-### Main Menu
-- Loading up user data
-- Access to various features
-- Saving outstanding user data to respective save files
-
-### Manual Tracker & Entry Tracker
-**Overview** <br />
-__Ledgers and Entries__
-
-In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
-Instances of ```Entry``` class are categorised by the date of origin, which is represented by
-```Ledger``` instances.
-
-```Entry``` instances are characterized by the following: 
-* Time of transaction
-* Type of transaction: Income/ Expense 
-* Amount in transaction
-* Category of spending/ expenditure
-* Description
-
-```Ledger``` instances are characterized by the following: 
-* Time of transaction
-* Collection of ```Entry```instances
-
-**Manual Tracker** <br />
-
-The Manual Tracker is a feature that allows users to manage Ledgers with create, delete
-and open operations. Ledgers is a class that maintains a list of transactions that are 
-recorded for a given date. 
-
-The Entry Tracker is fundamentally similar to the Manual Tracker, except it manages ```Entry``` instances
-instead of ```Ledger```. Entry Tracker is initialized when a ```Ledger``` instance is "opened", whereby 
-the Entry Tracker facilitate the manipulation of the collection of ```Entry``` instances that are associated with
-that particular ```Ledger``` instance.
-
-For the sake of brevity, this section will focus on the discussion of the Manual Tracker. Section [2.2.2.3] (#2.2.2.3) will describe
-the edit operation of the Entry Tracker, which is sufficiently unique to Manual Tracker operations to merit detailed discussion.
-
-The Manual Tracker is capable of executing the following states of operation:
-
-|States| Operations | 
-|--------|----------|
-|```MAIN_MENU```|Go to main menu for users to choose the available operations
-|```CREATE_LEDGER```|Create a ledger specified by date, and append it to ```ledgerList```.
-|```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
-|```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
-
-**Architecture in Context** <br />
-
-**Logic Manager and Parser** <br />
-![](uml_images/images_updated/Handler.png)
+### Logic Managers
+* Note: Refer to [Logic Manager Component](#logic-manager-component) above for class diagram 
+illustration of the below subsections.
 
 **Execution** <br />
 1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
 to maintain a cycle of 2 processes: User input processing and Command handling.
+
 **User Input Processing** <br />
 1. Logic Managers depend on InputManager module to read user input, parse user input and produce a 
 meaningful ```CommandPacket``` instance.
 1. The ```CommandPacket``` instance can then be used by the next step of the cycle.
+
 **Command Handling** <br />
 1. Each Logic Manager will have several methods that are dedicated to handle a single operation. They can
 typically be identified by a specific naming convention: `"handle.....()"`.
 1. These methods use ```CommandHandler``` classes to perform `param` dependent operations, which involves evaluation
 of `paramMap` in the provided `CommandPacket` instance to decide the operation to perform, be it on `Data` or `DataList`.
+
 **Error Reporting** <br />
 1. While error handling from `param` parsing is handled by `ParamChecker` singleton class, there is a need
 to identify from the execution methods at Logic Managers, whether an exception has been thrown. 
@@ -263,14 +259,119 @@ generally indicates whether an operation has failed.
 ```
 &nbsp;  
 
+### Logic Component
+* Note: Refer to [Logic Component](#logic-component) above for class diagram 
+illustration of the below subsections.
 
-**Logic Manager and Data** <br />
+**`ParamChecker`**
+1. Contains a set of public static methods which verifies the validity of the raw input provided
+1. If there is nothing wrong with the ```param```, the method will typically return the `param` supplied without modification.
+1. If the ```param``` fails to pass the tests administered within the method, the following procedures will execute:
+    1. Log to log file a corresponding error message with ```WARNING``` level
+    1. Print to console, any applicable error messages.
+    1. Throw a common exception: `ParseFailParamException` 
+        1. The implication is that the range of exceptions that would have been caught in other
+        parts of the software with regards to param handling, is now consolidated within a single class in the program.
+        The class that uses ParamChecker is only concerned with whether the ```param``` is valid or not.
+
+&nbsp;  
+
+**`ParamHandler`**
+1. `CommandPacket` created from user-input needs to be handled by a particular `ParamHandler` subclass,
+depending on what kind of command it is. E.g. CreateEntryHandler handles creating a new Entry.
+
+**`CommandHandler`**
+1. Extends `ParamHandler` class. Individual implementation of `handleSingleParams()`
+    * E.g. `CreateEntryHandler` handles `/desc` param, whereas `RetrieveEntryHandler` does not.
+1. Used within Logic Managers to handle processing of `CommandPacket`.  
+
+**Handling of params by `XYZCommandHandler`**:  
+1. Initialize the state of the handler 
+    * `XYZCommandHandler#setRequiredParams()` sets required Params that need to be parsed successfully to 
+    constitute a valid input.
+        * E.g. to create a new `RecurringEntry`, `/desc` and `/day` are two of the required params,
+        whereas editing has no required params (provided that at least one param is present).
+    * Pass `CommandPacket` to `ParamChecker` by calling `ParamChecker.setPacket(packet)`.
+1. Call `ParamHandler#handleParams()`
+    * For every`paramType` in the `CommandPacket` instance, execute `XYZCommandHandler#handleSingleParam(packet)`
+    * If the `param` parses successfully, it will be added to `paramsSuccessfullyParsed`, else an Exception will be thrown
+1. Check if the CommandPacket is valid. The below conditions must be satisfied:
+    * All params set earlier via `setRequiredParams()` are parsed with no exceptions thrown.
+    That is, all params in `requiredParams` is also in `paramsSuccessfullyParsed`.
+1. If all successful, the entry created is returned. Else, throw ```InsufficientParamsException()```.
+
+<div style="page-break-after: always;"></div>
+
+## Feature-level Implementation
+### Main Menu
+- Loading up user data
+- Access to various features
+- Saving outstanding user data to respective save files
+
+### Manual Tracker & Entry Tracker
+**Overview** <br />
+
+__Ledgers and Entries__
+
+In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
+Instances of ```Entry``` class are categorised by the date of origin, which is represented by
+```Ledger``` instances.
+
+```Entry``` instances are characterized by the following: 
+* Time of transaction
+* Type of transaction: Income/ Expense 
+* Amount in transaction
+* Category of spending/ expenditure
+* Description
+
+```Ledger``` instances are characterized by the following: 
+* Time of transaction
+* Collection of ```Entry```instances
+
+**Manual Tracker** <br />
+
+The Manual Tracker is a feature that allows users to manage Ledgers with create, delete
+and open operations. Ledgers is a class that maintains a list of transactions that are 
+recorded for a given date. 
+
+The Entry Tracker is fundamentally similar to the Manual Tracker, except it manages ```Entry``` instances
+instead of ```Ledger```. Entry Tracker is initialized when a ```Ledger``` instance is "opened", whereby 
+the Entry Tracker facilitate the manipulation of the collection of ```Entry``` instances that are associated with
+that particular ```Ledger``` instance.
+
+For the sake of brevity, this section will focus on the discussion of the Manual Tracker. 
+The edit operation of the Entry Tracker will be discussed at the [end of this section](#entryseq); it is sufficiently unique to Manual Tracker operations to merit detailed discussion.
+
+The Manual Tracker is capable of executing the following states of operation:
+
+|States| Operations | 
+|--------|----------|
+|```MAIN_MENU```|Go to main menu for users to choose the available operations
+|```CREATE_LEDGER```|Create a ledger specified by date, and append it to ```ledgerList```.
+|```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
+|```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
+
+**Architecture in Context** 
+
+**Logic Manager and Parser** 
+
+![](uml_images/images_updated/Handler.png)
+
+|Class| Function |	
+|--------|----------|	
+|```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.	
+|```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.	
+|```ManualTracker```| [Refer to section](#logicManager_handler).
+|```EntryTracker```| Omitted for brevity.
+
+
+**<a name = logic_data></a>Logic Manager and Data** <br />
 
 ![](uml_images/images_updated/Handler_Data.png)
 
 |Class| Function |
 |--------|--------|
-|```ManualTracker```| [Refer to section above](#LogicManagerAndHandler).
+|```ManualTracker```| [Refer to section](#logicManager_handler).
 |```EntryTracker```| Omitted for brevity.
 |```EntryList```| Omitted for brevity.
 |```Entry```| Omitted for brevity.
@@ -280,7 +381,7 @@ generally indicates whether an operation has failed.
 |```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
 |```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
 
-**Handler and Logic** <br />
+**<a name = handler_logic></a>Handler and Logic** <br />
 
 ![](uml_images/images_updated/Commands_Logic.png)
 
@@ -288,21 +389,21 @@ generally indicates whether an operation has failed.
 |--------|----------|
 |```retrieveledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
 |```createledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
-|```retrieveEntryHandler```| Omitted and left as exercise for reader. : ^ )
+|```retrieveEntryHandler```| Omitted for brevity.
 |```createentryHandler```| Omitted for brevity.
 |```editEntryHandler```| Omitted for brevity.
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
 
 
-**Logic Manager and Handler** <br />
+**<a name = logicManager_handler> </a>Logic Manager and Handler** <br />
 
 ![](uml_images/images_updated/Handler_Commands.png)
 
 |Class| Function |
 |--------|----------|
-|```retrieveledgerHandler```| [Refer to section above](#handlerAndLogic).
-|```createledgerHandler```| [Refer to section above](#handlerAndLogic).
+|```retrieveledgerHandler```| [Refer to section](#handler_logic).
+|```createledgerHandler```| [Refer to section](#handler_logic).
 |```retrieveEntryHandler```| Omitted for brevity.
 |```createentryHandler```| Omitted for brevity.
 |```editEntryHandler```| Omitted for brevity.
@@ -312,29 +413,31 @@ generally indicates whether an operation has failed.
 
 **Functions with Sequence Diagrams** <br />
 
-**Creation of Ledger** <br />
+**Creation of Ledger([Sequence Diagram](#diag1))** <br />
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
-1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
-In this case, ```handleCreateLedger()``` will be called.
-1. At ```handleCreateLedger()```, the following processes will be executed:
-    1. A new instance of ```createledgerHandler``` is created. The input String array will be passed into 
-    ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
-    1. A new instance of ```Ledger``` will be instantiated and set to ```createledgerHandler.currLedger```.
+1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br/>In this case, ```handleCreateLedger()``` will be called.
+1. At `handleCreateLedger()`, the following processes will be executed:
+    1. A new instance of ```createledgerHandler``` is created. The input String array will be passed into `createledgerHandler.setRequiredParams()` to set required params for a successful parse.
+    1. A new instance of `Ledger` will be instantiated and set to `createledgerHandler.currLedger`.
     1. ```createledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-        1. Refer to the [section on Param Handling](#paramHandling) for more details pertaining to general param handling. 
-        1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
+        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+        1. For `createledgerHandler`, the `handleSingleParam` abstract method will be implemented as shown in the [following table](#table1).
         
+1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createledgerHandler``` instance
+and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
+
+#### <a name = table1></a> Param Handling Behavior
+
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
-1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createledgerHandler``` instance
-and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
-  
+
+#### <a name = diag1></a> Sequence Diagram
+
 ![](uml_images/images_updated/manualTrackerCreateLedgerSeqDiagram.png)
 
-
-**Deletion of Ledger** <br />
+**Deletion of Ledger ([Sequence Diagram](#diag2))** <br />
 The deletion of a specified ledger is performed in two phases: Ledger Retrieval and Ledger Delete.
 1. __Phase 0: Instruction retrieval__ 
     1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
@@ -346,51 +449,63 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
         1. A new instance of ```retrieveledgerHandler``` is created. The input String array will be passed into 
         ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```deleteledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
-            1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
+            1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+            1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
                 * Note that only one of the two params need to be invoked from the input. 
-            
+1. __Phase 2: Ledger Deletion__
+    1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
+
+#### <a name = table2></a> Param Handling Behavior
+    
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDate(packet)```|
 |```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
-1. __Phase 2: Ledger Deletion__
-    1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
-
+#### <a name = diag2></a> Sequence Diagram
 
 ![](uml_images/images_updated/manualTrackerDeleteLedgerSeqDiagram.png)
 
-**Entry Tracker: Edit of entries** <br />
+**<a name = entryseq></a>Entry Tracker: Edit of entries** <br />
 The editing of details within the entry is performed in two phases: Entry Retrieval and Entry Edit.
+
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram0.png)
+
 1. __Phase 0: Instruction retrieval__ 
     1. At ```EntryTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
-    1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
+    1. Input is parsed by ```InputParser.parseInput()```, and ```EntryTracker.packet``` is set to the returned ```CommandPacket``` instance.
     1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
     In this case, ```handleEditEntry()``` will be called.
-1. __Phase 1: Entry retrieval__
+1. __Phase 1: Entry retrieval([Sequence Diagram](#diag3))__
     1. At ```handleEditEntry()```, the following processes will be executed:
-        1. A singleton instance of ```retrieveentryHandler``` is retrieved. The input String array will be passed into 
+        1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
         ```retrieveentryHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```retrieveentryHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
-            1. For ```retrieveentryHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
-            
+            1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+            1. For ```retrieveentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
+            1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
+
+#### <a name = table3></a> Param Handling Behavior
+
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
-|```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```entryList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
-        
-        1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
+|```PARAM.INDEX```|"/index"|Valid index on the list <br/>from 1 onwards.|Call ```entryList.setIndexToModify()``` <br/>to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
-1. __Phase 2: Entry edit__
+#### <a name = diag3></a> Sequence Diagram 
+
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
+
+1. __Phase 2: Entry edit ([Sequence Diagram](#diag4))__ 
     1. Following Phase 1, the following processes will be executed:
-        1. The singleton instance of ```editentryHandler``` is retrieved. There is no need to call ```editentryHandler.setRequiredParams()```
+        1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
         1. `editeEntryHandler.setPacket(packet)` is called to set packet.
     1. ```editentryHandler.handlePacket()``` is called to handle params in the packet.
-        1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
-        1. For ```editentryHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
-            
+        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+        1. For ```editentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
+
+#### <a name = table4></a> Param Handling Behavior           
+
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.AMOUNT```|"/amt"|Double in 2 decimal places|Call ```entryList.setAmount()``` to set amount | ```ParamChecker.checkAndReturnDoubleSigned(packet)```|
@@ -399,11 +514,12 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 |```PARAM.EXP```|"-e"|Expense entry type flag|Call ```entryList.setEntryType(EntryType.EXP)``` to set index of retrieved item. | ```nil```|
 |```PARAM.DESCRIPTION```|"/desc"|Description in string, ';' character is illegal.|Call ```entryList.setDescription()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDescription(packet)```|
 |```PARAM.CATEGORY```|"/cat"|A set of strings that corresponds with entry type|Call ```entryList.setCategory()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnCategories(packet)```|
-            
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram.png)
 
+#### <a name = diag4></a> Sequence Diagram 
 
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Recurring Tracker
 **Overview** <br />
@@ -478,8 +594,10 @@ The sequence diagram below shows how it works:
 
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author bqxy -->
-### FinanceTools
+### <a name = financeTools></a> FinanceTools
 **Overview** <br />
 FinanceTools consists of the following features
 1. Simple Interest Calculator
@@ -659,9 +777,12 @@ The following sequence diagram shows how the Account Storage feature works:
 To store the commands inputted by user and results from calculations in FinanceTools, an ```ArrayList``` is used.
 The commands are stored in the ```ArrayList``` before the params are handled and implementation is executed. 
 The results from calculation is stored in the ```ArrayList``` when the implementation has finished executed.
-<!-- @@author -->
 
-### Goal Tracker
+<div style="page-break-after: always;"></div>
+
+<!-- @@author @dixoncwc-->
+
+### <a name = goalTracker></a> Goal Tracker
 **Set Expense Goal Feature** <br />
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
@@ -693,6 +814,8 @@ This sequence diagram will show the flow of setting of expense goal:
 
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Storage Utility
 **What it does** <br />
 Storage utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
@@ -722,6 +845,8 @@ terminated.
 **Save Manager Sequence Diagram** <br />
 
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
+
+<div style="page-break-after: always;"></div>
 
 # Product scope
 ## Target user profile
@@ -757,10 +882,16 @@ bill payments
 * Calculate miles credit earned
 * Save account information for reference
 
+<div style="page-break-after: always;"></div>
+
 # User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
+|v1.0|Financially prudent user|Keep record of my spendings of the day|I can keep track of my spending habits on a daily basis.|
+|v1.0|As a student who mistypes easily|Edit my transaction details using one line commands|I can correct my mis-types in a easy and intuitive way.|
+|v1.0|As a university student who may have difficulty keeping track of his finances|Monitor my spending habits and income according to various categories of expenditure|I can identify which particular category of spending forms the majority of my daily expenditures.|
+|v1.0|As a person who spends a lot of time in front of a computer|Record my expenses and income using one-line commands|I can monitor my spending habits conveniently and hassle-free.|
 |v1.0|user|calculate interest over a principal amount|know how much interest I can earn|
 |v1.0|user|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
 |v1.0|user|calculate cashback earned|know how much cashback I can earn|
@@ -776,19 +907,46 @@ bill payments
 |v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
 |v2.0|user|display expense/income goal for specific month|keep track of my progress|
 
+<div style="page-break-after: always;"></div>
+
 # Non-Functional Requirements
 
-* _Constraint_ - Single User Product
-* _Performance_ - JAR file does not exceed 100Mb
+* _Constraint_ - Single User Product. 
+* _Performance_ - JAR file does not exceed 100Mb.
 * _User_ - Users should prefer typing on CLI
 * _Program_ - Platform independent (Windows/Mac/Linux)
 * _Program_ - Works without needing an installer
 
 # Glossary
+* __General__
+    * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
+    * _CLI_ - Command Line Interface
+    * _UML_ - Unified Modeling Language
+* __Manual Tracker and Entry Tracker__
+    * _Entries_ - The class designed to represent a unit of transaction of the user. 
+    * _Ledger_ - A collection of entries which are incurred on the same day.
+    * _Entry Type_ - Whether an entry is an Income or Expense.
+    * _Entry Category_ - Type of entry along the following choices:
+        * _Expense Entry_ - Transport, Food, Travel, Shopping, Bills, Others
+        * _Income Entry_ - Allowance, Salary, Others
+    * _Entry Amount_ - Amount of money associated with the transaction.
+    * _Entry Description_ - Text for users to identify the transaction. Can include general transaction details.
 
-* _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
-* _CLI_ - Command Line Interface
-* _UML_ - Unified Modeling Language
+<div style="page-break-after: always;"></div>
+
+# Future implementations
+
+1. **Integrate Goal Tracker with Recurring Tracker**  <br/>
+In the next version, the Goal tracker will be used to keep track not only the manual tracker but also the recurring 
+tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
+the goal tracker progress to better aid the user in managing their finances.
+
+1. **Entry Categories used for analysis** <br />
+In the next version, entry categories can be recorded and used in meaningful calculations to represent the user's 
+spending habits in a more detailed and categorised manner. Perhaps a tabulated summary of entries by each category
+would be helpful in assisting the users in meaningfully monitoring their spending habits.
+
+<div style="page-break-after: always;"></div>
 
 # Instructions for Manual Testing
 
@@ -800,17 +958,11 @@ bill payments
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
 ## Main Menu
-1. Accessing a feature:
-    1. ```ManualTracker```
-        1. Enter ```manual``` into the console.
-            You should see the following: 
+1. Accessing a feature (Using ManualTracker as example):
+    1. Enter ```manual``` into the console.
+    You should see the following: 
             
-    ![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
-
-    1. ```RecurringTracker```
-    1. ```GoalTracker```
-    1. ```SaveManager```
-    1. ```FinanceTools```
+![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
 
 1. Exiting the main menu and quit the program: 
     1. Enter ```exit``` into the console.
@@ -845,11 +997,11 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list.png)
 
-    * Observe that there is currently one ledger in the list, of date 2020-05-05.
-1. Refer to [7.2.1](#7.2.1) to create another ledger of date 2020-06-06 using the command: 
+> Observe that there is currently one ledger in the list, of date 2020-05-05.
+1. Refer to the above section on creating ledgers to create another ledger of date 2020-06-06 using the command: 
 ```new /date 200606```. 
 1. Enter ```list``` into the console. 
-    * Observe that there are now two ledgers in the list.
+> Observe that there are now two ledgers in the list.
 You should see the following: 
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list2.png)
@@ -863,7 +1015,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
 
-    * Observe there is now one ledger on the list.
+> Observe there is now one ledger on the list.
 
 **Open Ledger** <br />
 1. Enter ```open /date 200707``` into the console.
@@ -871,9 +1023,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_open.png)
 
-    * Note that the ledger of date 2020-07-07 was not created beforehand. 
-    However, the ledger will be automatically created by the operation, and
-    will resume as per normal. 
+> Note that the ledger of date 2020-07-07 was not created beforehand. However, the ledger will be automatically created by the operation, and will resume as per normal. 
 
 ## EntryTracker
 1. The following testing guide assumes that testing at [7.2](#7.2) is completed.
@@ -890,6 +1040,7 @@ You should see the following:
 ![](developerGuide_images/screenshots_entrytracker/entry_cat.png)
 
 **Create Entry** <br />
+**Positive Test** <br />
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -e``` into the console.
 You should see the following:
 
@@ -899,11 +1050,12 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create2.png)
 
+**Negative Test** <br />
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -i``` into the console.
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create_err1.png)
-    * Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
+> Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
     considered an expenditure, and `-e` should have been used instead.
 
 **Testing Show Entry List** <br />
@@ -911,7 +1063,7 @@ You should see the following:
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_list.png)
-    * Note that the number of entries is now __2__.
+> Note that the number of entries is now __2__.
 
 **Testing Edit Entry** <br />
 
@@ -921,7 +1073,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_edit_list.png)
 
-* Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
+> Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
 
 **Testing Delete Entry** <br />
 1. Enter ```delete /id 2``` into the console.
@@ -930,15 +1082,19 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_delete_list.png)
 
-* Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
+> Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
 removed from the list.
 
 ## RecurringTracker
 1. Enter `recur` in the Main Menu. You should see the following:
+
 ![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
+
 **Show Command List** <br />
 1. Enter `commands`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/commands.png)
+
 **Testing Add Entry** <br />
 **Positive Test 1: Normal Entry** <br />
 1. Enter `add -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
@@ -946,39 +1102,50 @@ removed from the list.
 
 **Entry with special day of month** <br />
 1. Enter `add -e /desc Drinks /amt 58.45 /day 31`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_day_31.png)
 
 **Negative Test** <br />
 1. Enter `add /desc OIH()(&%* /amt 343243`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_no_day_i&e.png)
 
 **Testing List Entries** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
 Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list.png)
 
 **Testing Edit Entry** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
+
 **Positive Test** <br />
 1. Enter `edit /id 1 /day 29 -i`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
 1. Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
 
 **Negative Test: No Params to Edit** <br />
 1. Enter `edit /id 1`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
+
 <br />
 **Negative Test: No Such Index** <br />
 1. Enter `edit /id 4 /desc Hello Bubble`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
 
 **Testing Delete Entry** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
 1. Enter `delete /id 2`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/delete_entry.png)
+
 1. Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
 
 **Testing Reminders** <br />
@@ -1000,6 +1167,7 @@ Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/reminders.png)
 
 1. Enter `exit` to quit the program. Run the .jar file again. Reminders are printed below the logo and above the Main Menu prompt.
+
 ![](developerGuide_images/screenshots_recurringtracker/reminders_launch.png)
 
 ## GoalTracker
@@ -1062,11 +1230,6 @@ You should see the following:
 **Goal Status Update** <br />
 When a user make a new entry, the goal status will update and display as output as shown:
 ![GoalStatusUpdate](developerGuide_images/screenshot_goaltracker/GoalStatusUpdate.png)
-
-**Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
-In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
-tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
-the goal tracker progress to better aid the user in managing their finances.
 
 ## SaveManager
 **Add Save** <br />

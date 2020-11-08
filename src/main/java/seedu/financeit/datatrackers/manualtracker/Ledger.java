@@ -5,6 +5,9 @@ import seedu.financeit.datatrackers.entrytracker.EntryList;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a list of entries with common date.
+ */
 public class Ledger extends DateTimeItem {
     protected LocalDate date = null;
     public EntryList entryList = new EntryList(this);

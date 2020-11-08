@@ -16,7 +16,7 @@ import static seedu.financeit.utils.ParamChecker.PARAM_DATE;
 import static seedu.financeit.utils.ParamChecker.PARAM_INDEX;
 
 /**
- * Command class to create an entry instance, and populates it with parameter values.
+ * CommandHandler class to create an entry instance, and populates it with parameter values.
  * The populated entry will be stored within the class, and can be retrieved by calling a
  * corresponding getter method.
  */
