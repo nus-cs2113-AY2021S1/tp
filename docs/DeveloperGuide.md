@@ -412,28 +412,33 @@ This feature allows the user to add modules and lesson slots into the timetable.
 Users can also add bookmarks to specific modules and slots.
 Users can enter one-shot-commands, adding multiple slots and bookmarks to a module.
 
+The class diagram below mainly shows the associations between the objects contained in the Timetable class. In the 
+following sequence diagrams, the BookmarkList class is omitted for simplicity.  
+![](diagrams/addSlotCommand/timetableClassDiagram.png)  
+*<center/> Figure 2.07 Class diagram for Timetable </center> <br/></br>*
+
 Given below is a sequence diagram of how the feature works.  
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram.png?raw=true)  
-*<center/> Figure 2.07 Sequence diagram for AddSlotCommand </center> <br/></br>*
+*<center/> Figure 2.08 Sequence diagram for AddSlotCommand </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram2.png?raw=true)  
-*<center/> Figure 2.08 Sequence diagram for 
+*<center/> Figure 2.09 Sequence diagram for 
 "Get module if it exist, else create a new module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram3.png?raw=true)  
-*<center/> Figure 2.09 Sequence diagram for 
+*<center/> Figure 2.10 Sequence diagram for 
 "Create bookmark for module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram4.png?raw=true)  
-*<center/> Figure 2.10 Sequence diagram for 
+*<center/> Figure 2.11 Sequence diagram for 
 "Create bookmark for existing slot base on its index" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram5.png?raw=true)  
-*<center/> Figure 2.11 Sequence diagram for 
+*<center/> Figure 2.12 Sequence diagram for 
 "Get slot if it exist, else create a new slot" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/addSlotCommand/addSlotSequenceDiagram6.png?raw=true)  
-*<center/> Figure 2.12 Sequence diagram for 
+*<center/> Figure 2.13 Sequence diagram for 
 "Create bookmark for slot" Block </center> <br/></br>*
 <br></br>
 
@@ -469,22 +474,22 @@ This feature allows the user to delete the modules, slots and their bookmarks fr
 
 Given below is a sequence diagram of how the feature works.  
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram.png?raw=true)  
-*<center/> Figure 2.13 Sequence diagram for DeleteSlotCommand </center> <br/></br>*
+*<center/> Figure 2.14 Sequence diagram for DeleteSlotCommand </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram2.png?raw=true)  
-*<center/> Figure 2.14 Sequence diagram for 
+*<center/> Figure 2.15 Sequence diagram for 
 "delete module" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram3.png?raw=true)  
-*<center/> Figure 2.15 Sequence diagram for 
+*<center/> Figure 2.16 Sequence diagram for 
 "delete slot" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram4.png?raw=true)  
-*<center/> Figure 2.16 Sequence diagram for 
+*<center/> Figure 2.17 Sequence diagram for 
 "delete module bookmarks" Block </center> <br/></br>*
 <br></br>
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/deleteSlotSequenceDiagram5.png?raw=true)  
-*<center/> Figure 2.17 Sequence diagram for 
+*<center/> Figure 2.18 Sequence diagram for 
 "delete slot bookmarks" Block </center> <br/></br>*
 <br></br>
 
@@ -498,7 +503,8 @@ There are four options:
     3. Delete all bookmarks associated with the module.
     4. Delete all bookmarks contained in a slot from the module.  
     
-
+The whole-relationship between the objects, which can be seen from the class diagram Figure 2.07, would mean that 
+deleting an object would also delete all objects contained in it.  
 <!-- @@author -->
 
 <!-- @@author fchensan -->
@@ -521,7 +527,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.18 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.19 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 <a name="showsettings"></a>
 ### Show settings feature (Francisco)
@@ -541,7 +547,7 @@ the UserSettings object in the main Zoomaster class. It will then convert them i
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettingssequence.png)
-*<center/> Figure 2.19 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.20 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
 
 <a name="setsettings"></a>
 ### Set settings feature (Francisco)
@@ -559,7 +565,7 @@ Given below is an example usage scenario and how the `set` command works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
-*<center/> Figure 2.20 Sequence diagram for SetSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.21 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
 <!-- @@author -->
 
