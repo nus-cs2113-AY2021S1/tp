@@ -1,9 +1,9 @@
 [
   {
-    "topic": "",
+    "topic": "First Topic",
     "questions": [
       {
-        "description": "What is encapsulation?",
+        "description": "",
         "hint": "check the textbook",
         "explanation": "because option A is the best answer",
         "options": [

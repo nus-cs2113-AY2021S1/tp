@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_DESCRIPTION_BLANK;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_NOT_FOUR_OPTIONS;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_NO_CORRECT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_PREFACE;
@@ -99,6 +100,12 @@ public class TopicsStorage extends LocalStorage {
 
     private Question parseToQuestionObject(JSONObject question) throws Eduke8Exception {
         currentQuestionDescription = (String) question.get(KEY_DESCRIPTION);
+
+        if (currentQuestionDescription.equals("")) {
+            throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
+                    + System.lineSeparator() + ERROR_TOPICS_JSON_DESCRIPTION_BLANK);
+        }
+
         JSONArray optionsAsJsonArray = (JSONArray) question.get(KEY_OPTIONS);
 
         wasCorrectAnswerMarked = false;
