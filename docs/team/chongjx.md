@@ -23,6 +23,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     - A hashmap is used where each unique tag are the keys and the arraylist of taggable objects that share the same tag are the mapped values.
 1. Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
 1. Implemented `ParserManager` class which manages the creation of different parser objects to parse the user input to the required parameters.
+
+<div style="page-break-after: always;"></div>
+
 1. Implemented `SystemException` class which extends from `Exception` class.
     - Within it, there is an enumeration for all possible types of exception that may occur and each enum value contains a unique string as its message.
 1. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
@@ -38,25 +41,27 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ### Contributions to User Guide
 Added documentation for following features:
 
-1. [3.11 Create Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#create-t)
-1. [3.12 List Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#list-t)
-1. [3.13 Tag/Untag Notes](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-n)
-1. [3.14 Tag/Untag Events](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-e)
-1. [3.15 Delete Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-t)
+1. [Section 3.11 Create Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#create-t)
+1. [Section 3.12 List Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#list-t)
+1. [Section 3.13 Tag/Untag Notes](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-n)
+1. [Section 3.14 Tag/Untag Events](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-e)
+1. [Section 3.15 Delete Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-t)
 
 ### Contributions to Developer Guide
 Added implementation details for the following:
 
-1. [2.1 Architecture Overview](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#overview)
-1. [2.3 Parser & ParserManager](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parserManager)
-1. [2.4 Commands`](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#commands)
+1. [Section 2.1 Architecture Overview](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#overview)
+1. [Section 2.3 Parser & ParserManager](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parserManager)
+1. [Section 2.4 Commands](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#commands)
     - Class diagram of Command Class, Figure 6
-1. [2.7 Tags`](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#tag)
-1. [2.9 User Interface](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#ui)
-1. [2.10 SystemException](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#exception)
-1. [2.11 Usage of External Libraries](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#color)
-1. [8.1 List of ParseCommand Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parseXYZCommands)
-1. [8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
+1. [Section 2.7 Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#tag)
+1. [Section 2.9 User Interface](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#ui)
+1. [Section 2.10 SystemException](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#exception)
+1. [Section 2.11 Usage of External Libraries](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#color)
+1. [Section 8.1 List of ParseCommand Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parseXYZCommands)
+1. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
+
+<div style="page-break-after: always;"></div>
 
 ### Community
 1. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.

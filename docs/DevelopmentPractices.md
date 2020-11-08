@@ -49,6 +49,13 @@ A Program Evaluation Review Technique (PERT) Chart was created prior to the star
   <br><em>Figure 2</em>
 </p>
 
+A Gantt chart was created prior to the start of developing NotUS and was constantly updated based on progress and updates from the development team's weekly meetings. A Gantt chart is a visual view of tasks scheduled over time. The chart was used for planning project features and was a useful way of showing what work is scheduled and had to be completed. It assisted in ensuring the individual in the development team was held accountable for their respective tasks.
+
+<p align="center">
+  <img alt="PERT Chart" src="diagrams/out/Gantt_Chart.png" />
+  <br><em>Figure 3</em>
+</p>
+
 <br>
 
 ## <a name="uml">5. UML Diagrams</a>
