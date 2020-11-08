@@ -38,7 +38,7 @@ Given below are my contributions to the project. <br/>
   * Justification: The feature enables the users to have an overview of all the calendar items in a timeline format.
   * Highlights: This feature is able to print all the calendar items in a timeline format, so that it presents 
   how many tasks the user have on each day. Timelines provide a simple visual overview of all the items the user
-  have, and help the user with better time management.
+  has, and help the user with better time management.
   
 #### Enhancement to existing features:
 * Standardised the `getDescription()` function that returns the details of calendar items.
