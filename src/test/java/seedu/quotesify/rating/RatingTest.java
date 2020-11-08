@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.lists.ListManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class RatingTest {
 
-    private RatingList ratings;
     private Rating rating;
     private BookList books;
     private Book book;
@@ -25,9 +23,7 @@ public class RatingTest {
      */
     @BeforeEach
     public void setUp() {
-        ListManager.initialiseAllLists();
-        books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
-        ratings = (RatingList) ListManager.getList(ListManager.RATING_LIST);
+        books = new BookList();
         String title = "Harry Potter";
         String name = "JK Rowling";
         Author author = new Author(name);

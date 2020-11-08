@@ -45,21 +45,15 @@ public class UiMessage {
     public static final String EDIT_RATING_MESSAGE = "Ratings for [%s by %s] has been updated to %d star!";
     public static final String FIND_RATING_MESSAGE = "Here are the ratings you may be looking for!";
     public static final String ADD_TODO_MESSAGE = "The task [%s] has been added!";
-    public static final String TODO_SIZE_MESSAGE = "You have a total of %d task(s) recorded.";
     public static final String LIST_TODOS_MESSAGE = "Here is the list of all task(s) recorded:";
     public static final String DELETE_TODO_MESSAGE = "The Task [%s] has been deleted!";
     public static final String DONE_TODO_MESSAGE = "The Task [%s] has been marked as done!";
     public static final String EMPTY_TODO_LIST_MESSAGE = "There are no task created";
-    public static final String INCORRECT_DATE_FORMAT_MESSAGE = "The format of the date you provide is incorrect! "
-            + "I will add the task with a deadline of plain task instead." + System.lineSeparator()
-            + "Note that this task may not be displayed in order of time.";
     public static final String ADD_BOOKMARK_MESSAGE = "The bookmark [%s] has been added!";
     public static final String UPDATE_BOOKMARK_MESSAGE = "The bookmark [%s] has been updated";
-    public static final String BOOKMARK_SIZE_MESSAGE = "You have a total of %d bookmark(s) recorded.";
     public static final String LIST_BOOKMARKS_MESSAGE = "Here is the list of all bookmark(s) recorded:";
     public static final String EMPTY_BOOKMARK_LIST_MESSAGE = "There are no bookmark created";
     public static final String DELETE_BOOKMARK_MESSAGE = "The bookmark [%s] has been removed!";
-    public static final String EMPTY_BOOKMARK_COMMAND = "There is no info related to bookmark provided!";
     public static final String ADD_QUOTE_MESSAGE = "The quote [%s] has been added!";
     public static final String LIST_ALL_QUOTES = "Here are all your quotes:";
     public static final String DELETE_QUOTE_MESSAGE = "The quote \"%s\" has been deleted!";
@@ -132,7 +126,7 @@ public class UiMessage {
             + "  " + "find -b KEYWORD";
     public static final String FIND_QUOTE_COMMAND = "Find quote:                                                   "
             + "   " + "find -q QUOTE_NUMBER";
-    public static final String FIND_RATING_COMMAND = "Find rating:                                                 "
+    public static final String FIND_RATING_COMMAND = "Find ratings:                                                 "
             + "    " + "find -r KEYWORD";
     public static final String FIND_CATEGORY_COMMAND = "Find category:                                              "
             + "     " + "find -c KEYWORD";

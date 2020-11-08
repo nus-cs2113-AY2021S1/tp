@@ -1091,7 +1091,7 @@ Format: `delete -r BOOK_NUMBER`
 
 Example of usage: `delete -r 1`
 
-Assuming the book exists, has an index of 1, and has been rated before.
+Assuming the book "Harry Potter" exists, has an index of 1, and has been rated before.
 
 Expected outcome:
 ```
@@ -1131,7 +1131,7 @@ Format: `find -r KEYWORD`
 
 Example of usage: `find -r POT`
 
-Assuming the book "Harry Potter" and has been rated 4 star.
+Assuming the book "Harry Potter" exists and has been rated 4 star.
 
 Expected outcome:
 ```
@@ -1207,7 +1207,7 @@ Add rating:                                         add -r RATING_SCORE BOOK_NUM
 Delete rating:                                      delete -r BOOK_NUMBER
 List ratings:                                       list -r [RATING_SCORE]
 Edit rating:                                        edit -r RATING_SCORE BOOK_NUMBER
-Find rating:                                        find -r KEYWORD
+Find ratings:                                        find -r KEYWORD
 ------------------------------------------------------------------------------------------------------------------------
                             Other useful commands
 ------------------------------------------------------------------------------------------------------------------------
