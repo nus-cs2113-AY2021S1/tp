@@ -41,6 +41,14 @@ public class GoModuleCommand extends GoCommand {
         ui.showToUser(result);
     }
 
+    /**
+     * Goes to a module level.
+     *
+     * @param access temporary access data about user's current access level
+     * @param storage file storage and file management of Kaji
+     * @return result to be displayed
+     * @throws IOException if there is an error writing to the storage file
+     */
     private String goModule(Access access, Storage storage) throws IOException {
         assert access.isAdminLevel() : "Not admin level";
         String result = "";

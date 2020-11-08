@@ -9,6 +9,7 @@ import storage.Storage;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -40,6 +41,14 @@ public class GoChapterCommand extends GoCommand {
         ui.showToUser(result);
     }
 
+    /**
+     * Goes to a chapter level.
+     *
+     * @param access temporary access data about user's current access level
+     * @param storage file storage and file management of Kaji
+     * @return result to be displayed
+     * @throws IOException if there is an error writing to the storage file
+     */
     private String goChapter(Access access, Storage storage) {
         assert access.isModuleLevel() : "Not module level";
         String result = "";

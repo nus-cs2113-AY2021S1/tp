@@ -61,7 +61,7 @@ public class ShowRateCommand extends Command {
     }
 
     /**
-     * Computes the percentage of card at each master level in a chapter
+     * Computes the percentage of card at each master level in a chapter.
      *
      * @param chapter blueprint of chapter that user is currently accessing
      * @return number of card in the chapter
