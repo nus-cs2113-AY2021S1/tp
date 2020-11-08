@@ -415,6 +415,16 @@ that require mouse clicks.
 This portion contains instructions on how to perform manual testing.
 
 ### E.1 Launch and Shutdown
+1. Initial launch
+- Download the jar file and copy into an empty folder
+- Launch CLI and navigate to home folder of jar file
+- Run jar file, `java -jar Nav@NUS.jar`<br><br>
+Expected: The CLI application will run with the Nav@NUS logo.
+
+2. Shutdown
+- Type `/exit` followed by enter key to exit<br><br>
+Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
+
 
 ### E.2 Check for direct bus
 
@@ -431,6 +441,14 @@ This portion contains instructions on how to perform manual testing.
 ### E.8 Delete favourite command from favourite list
 
 ### E.9 Execute a favourite command from favourite list
+1. Executing a favourite command in list of favourites.
+- Prerequisites: List all favourite commands by executing `/listfav` command
+- Test case: `/execfav 1`<br>
+Expected: Command in index 1 of the list of favourites will be executed.<br>
+- Test case: `/execfav 0`<br>
+Expected: No command executed. Error details will be shown. List of favourites will not be modified.<br>
+- Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).
+Expected: Similar to previous.
 
 ### E.10 Change description of favourite command in favourite list
 
