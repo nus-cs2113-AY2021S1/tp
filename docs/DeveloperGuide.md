@@ -51,7 +51,7 @@ allows us to create various topics with questions, options, hints and explanatio
 in the code for E-Duke-8. As such, many of the commands that manipulate the `TopicList` make 
 use of the package `java.util.ArrayList`. 
 
-The `TopicList` is used to store `Topic`. `Topic` themselves implement the interface `Displayable`. 
+The `TopicList` is used to store `Topic` objects. `Topic` objects themselves implement the interface `Displayable`. 
 
 ![TopicList](images/TopicListClassDiagram.png)
 
@@ -107,32 +107,33 @@ This task is performed by the `NoteList.add()` method.
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.addNoteInteractions()` 
 method. 
 
-Step 2: The `Ui.addNoteInteractions()` method uses the user's input to create a `Note` object. 
+Step 2: The `Ui.printAddNote()` method uses the user's input to create a `Note` object. 
 
-Step 3: The `Ui,addNoteInteractions()` method then calls the method `NoteList.add()`, passing the created `Note` object 
+Step 3: The `Ui.printAddNote()` method then calls the method `NoteList.add()`, passing the created `Note` object 
 into this method. `NoteList.add()` makes use of the package `java.util.ArrayList`, specifically the `ArrayList.add()` 
 method, to add the `Note` object into the specified `NoteList` object.
 
 **Listing out all notes in a topic:**
 
-This task is performed by the `Ui.printNoteList()` method.
+This task is performed by the `Ui.showNotes()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. The topic's `NoteList` object is passed into this method.
+and calls the `Ui.printListNote` method. The topic's `NoteList` object is passed into this method.
 
-Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` object is passed into 
-this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` object.
+Step 2: The `Ui.printListNote` method calls the `Ui.showNotes()` method. The topic's `NoteList` object is passed into 
+this method. `Ui.showNotes()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` 
+object.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.deleteNoteInteractions` method. 
-An integer provided by the user's input is passed into this method. This integer is interpreted as the index of the `Note` object to be deleted in the
-specified `NoteList` object.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.printDeleteNote` 
+method. An integer provided by the user's input is passed into this method. This integer is interpreted as the index of 
+the `Note` object to be deleted in the specified `NoteList` object.
 
-Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the `ArrayList.remove()` method, to 
-delete the specified `Note` object in the specified `NoteList` object.
+Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the 
+`ArrayList.remove()` method, to delete the specified `Note` object in the specified `NoteList` object.
 
 <div style="page-break-after: always;"></div>
 
