@@ -121,7 +121,7 @@ public class Messages {
     public static final String EXCEPTION_INVALID_INDEX = "~Error~ Please input a valid index.";
     public static final String EXCEPTION_INVALID_LINK_INDEX = "~Error~ Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
-    public static final String EXCEPTION_INVALID_VALUE = "Please input a valid value.";
+    public static final String EXCEPTION_INVALID_VALUE = "~Error~ Please input a valid value.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "~Error~ Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "~Error~ The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
