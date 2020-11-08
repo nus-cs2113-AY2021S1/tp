@@ -53,7 +53,8 @@ major sections but still larger than normal paragraphs to distinguish them.
 * [Appendix C: Non-Functional Requirements](#appendix-c)
 * [Appendix D: Glossary](#appendix-d)
 * [Appendix E: Instructions for manual testing](#appendix-e)
-  * [Launch and shutdown](#command-summary)
+  * [Basics](#appendix-e-basic)
+  * [Advanced](#appendix-e-advanced)
 
 <a name="getting-started"></a>
 ## **Getting Started**
@@ -274,7 +275,7 @@ This feature extends Command class with a way to toggle between different modes 
 
 Given below is a sequence diagram of how changing between modes occur.
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20seq%20dia%20new.png?raw=true) <br/><br/>
 
 *<center/>Figure 2.01 sequence diagram for ChangeModeCommand</center> <br/></br>*
 
@@ -343,7 +344,7 @@ Additionally, it implements the following operations:
 * getHighlighBoxLowerMessage() - Returns a **String** containing a indicator.
 
 Given below is a sequence diagram of how printing the timetable occurs. <br/></br>
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%201.png?raw=true) <br/></br>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%201%20new.png?raw=true) <br/></br>
 *<center/>Figure 2.03 sequence diagram for ShowTimetableCommand</center> <br/></br>*
 
 ![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%202.png?raw=true) <br/></br>
@@ -499,6 +500,7 @@ There are four options:
     
 <!-- @@author -->
 
+<a name="edit-slot"></a>
 ### Edit Slot feature (Francisco)
 
 This feature allows users to edit a slot's title or time. Users can also move slots over to another module.
@@ -506,7 +508,7 @@ This feature allows users to edit a slot's title or time. Users can also move sl
 Given below is an example usage scenario and how the edit mechanism works.
 
 1. The user enters "edit title mon 2 new_title"
-2. A new EditSlotCommand instance is created and the execute() method is called.
+2. A new EditSlotCommand instance is created and its execute() method is called.
 3. The slot corresponding to the day and index given in the user input is retrieved by calling the getSlotByIndexInDay method of the timetable. In this case, the 2nd slot on Monday will be returned.
 4. Based on the chosen field in the user input, different methods are called:
     a. If the command is "edit module", the moveSlotToAnotherModule method in timetable is called to move the slot to a given module.
@@ -517,6 +519,44 @@ The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
 *<center/> Figure 2.18 Sequence diagram for EditSlotCommand </center> <br/></br>*
+
+<a name="showsettings"></a>
+### Show settings feature (Francisco)
+
+This feature allows more experienced users to view Zoomaster's settings. 
+
+Given below is an example usage scenario and how the `showsettings` command works.
+
+1. The user enters `showsettings`
+2. A new ShowSettingsCommand instance is created and its `execute` method is called.
+3. Inside the `execute` method, a private method `generateSettingsListMessage` is called to generate the string of 
+settings to be printed.
+4. `generateSettingsListMessage` retrieves a list of the user's settings by calling the getSettingsVariables method of 
+the UserSettings object in the main Zoomaster class. It will then convert them into a string and return it.
+5. In `execute`, the generated text will be printed by calling the `ui`'s `print` method.
+
+The sequence diagram below explains how this feature is executed:
+
+ ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettingssequence.png)
+*<center/> Figure 2.19 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
+
+<a name="setsettings"></a>
+### Set settings feature (Francisco)
+
+This feature allows users to change settings as shown from the `showsettings` command. 
+
+Given below is an example usage scenario and how the `set` command works.
+
+1. The user enters `set def_mode timetable`, which means set the default mode to timetable mode.
+2. A new SetSettingsCommand instance is created and its `execute` method is called.
+3. Inside the `execute` method, the list of all settings variables is retrieved from the `UserSettings` object in
+`Zoomaster`.
+4. The corresponding variable is extracted out (in this case, `def_mode`), and the value is set to `timetable`.
+
+The sequence diagram below explains how this feature is executed:
+
+ ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
+*<center/> Figure 2.20 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
 
 ### Planner feature (Jusuf)
@@ -564,7 +604,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 |v2.0|fast typer|be able to type a one-shot-command when entering the details of the lessons in my timetable|add the lesson details faster|
 |v2.0|busy NUS student|be able quickly launch my next Zoom lesson|avoid being late for my lessons|
 |v2.0|NUS student|find common empty slots between my teammates|plan my group meetings accordingly and efficiently|
-|v2.0|NUS student|save my group meetings to my timetable|avoid missing my groupo meetings|
+|v2.0|NUS student|save my group meetings to my timetable|avoid missing my group meetings|
 
 <a name="appendix-c"></a>
 ## **Appendix C: Non-Functional Requirements**
@@ -596,6 +636,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 <a name="appendix-e"></a>
 ## **Appendix E: Instructions for manual testing**
 
+<a name="appendix-e-basic"></a>
 **Basics**
 1. Initial launch
     1. Download the jar file and copy into an empty folder.
@@ -625,6 +666,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     7. You can also edit the data in the text files in JSON format and test the loading of data into the Zoomaster by 
     launching the application. You can refer to the class diagrams above for the associations between the classes.
 
+<a name="appendix-e-advanced"></a>
 **Advanced**
 1. Testing global commands (`mode`, `help`, `clear`, `exit`)
     1. Test `mode` command. Enter `mode bookmark` to enter bookmark mode, you should see the message "Changing to bookmark mode". <br></br>

@@ -7,6 +7,7 @@ import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import java.time.LocalTime;
 
+//@@author
 public class Slot {
     private LocalTime startTime;
     private LocalTime endTime;

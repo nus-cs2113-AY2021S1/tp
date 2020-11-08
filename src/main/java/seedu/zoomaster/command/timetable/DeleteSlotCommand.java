@@ -9,6 +9,7 @@ import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
 import seedu.zoomaster.slot.Timetable;
 
+//@@author
 public class DeleteSlotCommand extends Command {
     public static final String DEL_KW = "delete";
     private String moduleCode;

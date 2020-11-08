@@ -24,13 +24,13 @@ public class AddSlotCommand extends Command {
     public String moduleCode;
     private List<String> commands;
 
+    //@@author xingrong123
     /**
      * Constructs a new AddSlotCommand instance and stores the information of the slot given by the input.
      *
      * @param command The user input command.
      * @throws ZoomasterException if input command is invalid.
      */
-    //@@author xingrong123
     public AddSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(ADD_KW);
         String details = command.substring(ADD_KW.length());

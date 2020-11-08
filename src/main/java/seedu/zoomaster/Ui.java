@@ -30,6 +30,7 @@ import static org.fusesource.jansi.Ansi.Color.WHITE;
 import static org.fusesource.jansi.Ansi.Color.YELLOW;
 import static org.fusesource.jansi.Ansi.ansi;
 
+//@@author
 /**
  * Represents the user interface on the command line and deals with interactions with the user.
  */
