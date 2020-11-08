@@ -3,14 +3,15 @@ package fitr.storage;
 import fitr.calorie.Calorie;
 import fitr.common.DateManager;
 import fitr.exercise.Exercise;
-import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
+import fitr.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -43,25 +44,31 @@ public class ExerciseStorage {
      *
      * @return an ArrayList of Exercise objects
      * @throws FileNotFoundException if the file is not found
-     * @throws InvalidFileFormatException if the file format is invalid
      */
-    public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException, InvalidFileFormatException {
+    public ArrayList<Exercise> loadExerciseList() throws FileNotFoundException {
         LOGGER.fine("Attempting to read file: " + exerciseListPath);
         ArrayList<Exercise> exerciseList = new ArrayList<>();
         String line;
         String[] arguments;
         File exerciseListFile = new File(exerciseListPath);
         Scanner readFile = new Scanner(exerciseListFile);
+        boolean containsInvalidEntry = false;
 
         while (readFile.hasNext()) {
             line = readFile.nextLine();
             arguments = line.split(COMMA_SEPARATOR);
 
-            if (arguments.length != 3) {
-                throw new InvalidFileFormatException();
+            if (isValidEntry(arguments)) {
+                exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1])),
+                        LocalDate.parse(arguments[2], DateManager.formatter)));
+            } else {
+                LOGGER.fine("Invalid entry found in exercise list file.");
+                containsInvalidEntry = true;
             }
-            exerciseList.add(new Exercise(arguments[0], new Calorie(Integer.parseInt(arguments[1])),
-                    LocalDate.parse(arguments[2], DateManager.formatter)));
+        }
+
+        if (containsInvalidEntry) {
+            Ui.printCustomError("Invalid exercise entries found and are not added to your exercise list!");
         }
 
         LOGGER.fine("Exercise list file read successfully.");
@@ -88,5 +95,29 @@ public class ExerciseStorage {
 
         LOGGER.fine("Exercise list file written successfully.");
         file.close();
+    }
+
+    private boolean isValidEntry(String[] arguments) {
+        if (arguments.length != 3) {
+            return false;
+        }
+
+        String name = arguments[0];
+        if (name.isBlank()) {
+            return false;
+        }
+
+        try {
+            int calories = Integer.parseInt(arguments[1]);
+            if (calories < 1 || calories > 10000) {
+                return false;
+            }
+
+            LocalDate date = LocalDate.parse(arguments[2], DateManager.formatter);
+        } catch (NumberFormatException | DateTimeParseException e) {
+            return false;
+        }
+
+        return true;
     }
 }

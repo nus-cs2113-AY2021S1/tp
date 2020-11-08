@@ -3,7 +3,6 @@ package fitr.storage;
 import fitr.calorie.Calorie;
 import fitr.common.DateManager;
 import fitr.food.Food;
-import fitr.exception.InvalidFileFormatException;
 import fitr.list.FoodList;
 import fitr.ui.Ui;
 
@@ -111,7 +110,7 @@ public class FoodStorage {
 
         try {
             int calories = Integer.parseInt(arguments[1]);
-            if (calories < 0 || calories > 1000) {
+            if (calories < 0 || calories > 10000) {
                 return false;
             }
 
