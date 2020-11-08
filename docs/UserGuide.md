@@ -119,6 +119,7 @@ What you should see:
 
 ![topics](./images/topics.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.6. Accessing the CS2113T textbook content: `textbook`
 
