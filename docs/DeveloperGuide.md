@@ -49,7 +49,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
     **No setup is required for this**.
     
 1. Learn the design
-   * When you are ready to start coding, we recommend that you refer to [termiNus's architecture] (#LINK TO DG ARCHITECTURE DESIGN)
+   * When you are ready to start coding, we recommend that you refer to [termiNus's architecture](#architecture-diagram)
    to get a better idea of the overall design.
    
 ## Design
