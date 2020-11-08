@@ -190,7 +190,7 @@ hint
 What you should see:
 
 ![hint](./images/hint.png)
-
+    
 Note: 
 - Once a hint is used for a question, it will be recorded into your [stats](#311-displaying-stats-stats).
 - When a hint is used, getting the question correct will earn you 1 point instead of 2.
@@ -208,6 +208,10 @@ Example of usage:
 bookmark
 ```
 
+What you should see:
+
+![bookmark](./images/bookmark_store.jpg)
+
 ### 3.10. Listing out all bookmarked questions: `bookmark`
 
 Lists out all the bookmarked questions and each of their four options.
@@ -221,7 +225,27 @@ Example of usage:
 bookmark
 ```
 
-### 3.11. Displaying stats: `stats`
+What you should see:
+
+![data saving](./images/bookmark_list.jpg)
+
+### 3.11. Deleting a bookmark: `bookmark delete <index number>`
+
+Lists out all the bookmarked questions and each of their four options.
+
+Note:
+- Listing out all bookmarked questions can only be done in the main menu
+
+Example of usage:
+```
+bookmark delete 2
+```
+
+What you should see:
+
+![bookmark](./images/bookmark_delete.jpg)
+
+### 3.12. Displaying stats: `stats`
 
 Displays the points you have earned, hints used, and the accumulated statistics of your quiz attempts on E-Duke-8.
 
@@ -244,7 +268,7 @@ This is an example of what you should see:
 
 - Refer to [**FAQ**](#4-faq) for more information about the point system in E-Duke-8.
 
-### 3.12. Adding a note: `note add`
+### 3.13. Adding a note: `note add`
 
 Adds a note to a specified topic.
 
@@ -261,7 +285,7 @@ What you should see:
 
 ![noteadd](./images/noteadd.png)
 
-### 3.13. Deleting a note: `note delete`
+### 3.14. Deleting a note: `note delete`
 
 Deletes a note from a specific topic.
 
@@ -274,7 +298,7 @@ What you should see:
 
 ![notedelete](./images/notedelete.png)
 
-### 3.14. Listing out notes: `note list`
+### 3.15. Listing out notes: `note list`
 
 Lists out all notes belonging to a specific topic.
 
@@ -287,8 +311,7 @@ What you should see:
 
 ![notelist](./images/notelist.png)
 
-
-### 3.15. Exiting the program: `exit`
+### 3.16. Exiting the program: `exit`
 
 Exits E-Duke-8.
 - You can only exit the application when you are not in a quiz.
@@ -299,10 +322,9 @@ Example of usage:
 exit
 ```
 
-
 ![exit](./images/exit.png)
 
-### 3.16. Saving user data
+### 3.17. Saving user data
 
 User data will be saved after every command that changes the data completes such as at the end of using
 `quiz`, `note`, and `bookmark`. There will be a final save confirmation message upon successful exit of the application
