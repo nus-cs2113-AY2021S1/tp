@@ -104,8 +104,10 @@ public class PrintTimelineCommand extends Command {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Invalid input! "
-                    + "Please key in the command in this format: print timeline <week/month/date [ddMMyy]>");
+            System.out.println("Invalid input!\n"
+                    + "Please key in the command in this format: \n"
+                    + "1. print timeline\n2. print timeline week\n3. "
+                    + "print timeline month\n4. print timeline date [ddMMyy]");
         }
     }
 
@@ -148,16 +150,16 @@ public class PrintTimelineCommand extends Command {
         if (userInputSplit.length == 2) {
             endDate = null;
         } else if (userInputSplit.length == 3) {
-            if (userInputSplit[2] == "week") {
+            if (userInputSplit[2].matches("week")) {
                 endDate = startDate.plusDays(7);
-            } else if (userInputSplit[2] == "month") {
+            } else if (userInputSplit[2].matches("month")) {
                 endDate = startDate.plusDays(31);
             } else {
                 throw new CommandException("invalid command");
             }
-        } else if (userInputSplit.length == 4 && userInputSplit[2] == "date") {
+        } else if (userInputSplit.length == 4 && userInputSplit[2].matches("date")) {
             String[] userInputSplitDate = userInput.split("date", 2);
-            endDate = DateTimeParser.inputDateProcessor(userInputSplit[1].trim());
+            endDate = DateTimeParser.inputDateProcessor(userInputSplit[3].trim());
         } else {
             throw new CommandException("invalid command");
         }

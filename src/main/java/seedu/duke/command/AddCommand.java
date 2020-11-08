@@ -83,6 +83,9 @@ public class AddCommand extends Command {
             }
             break;
         case EXAM:
+            if (command.length == 1) {
+                throw new CommandException("not enough info");
+            }
             if (isValid(command)) {
                 try {
                     addExamEvent(calendarList, command);
@@ -94,6 +97,9 @@ public class AddCommand extends Command {
             }
             break;
         case LECTURE:
+            if (command.length == 1) {
+                throw new CommandException("not enough info");
+            }
             if (isValid(command)) {
                 try {
                     addLectureEvent(calendarList, command);
@@ -105,6 +111,9 @@ public class AddCommand extends Command {
             }
             break;
         case TUTORIAL:
+            if (command.length == 1) {
+                throw new CommandException("not enough info");
+            }
             if (isValid(command)) {
                 try {
                     addTutorialEvent(calendarList, command);
@@ -116,6 +125,9 @@ public class AddCommand extends Command {
             }
             break;
         case LAB:
+            if (command.length == 1) {
+                throw new CommandException("not enough info");
+            }
             if (isValid(command)) {
                 try {
                     addLabEvent(calendarList, command);
@@ -342,7 +354,6 @@ public class AddCommand extends Command {
         ModuleChecker moduleChecker = new ModuleChecker();
         command = command[1].trim().split(" ", 2);
         moduleCode = command[0];
-
         return moduleChecker.isModuleValid(moduleCode);
     }
 }

@@ -17,9 +17,10 @@ Our product, **_25HoursADay_** is a scheduling application catered for NUS stude
 It is optimised for use via the Command Line Interface (CLI) and it serves as an efficient one stop application for our users to manage their time. <br/>
 <br/>
 Given below are my contributions to the project. <br/>
+
 ## Summary of Contributions
 ### Code contributed:
-[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Jingming517&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Jingming517)
 ### Enhancements implemented:
 #### Enhancements to New features:
 * Added ability to print personal calendar.
@@ -30,27 +31,34 @@ Given below are my contributions to the project. <br/>
   [\#61](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/61),
   [\#92](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/92),
   [\#94](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/94),
-  [\#100](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/100),
+  [\#100](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/100))
   * What it does: Add the ability to print the personal calendar for all calendar items of the user.  
                   User can decide to print the default calendar, weekly calendar, 
                   monthly calendar and personalised calendar.  
-  * Justification: The feature enables the users to have an overview of all the items in a timeline format.
-  * Highlights: This feature 
+  * Justification: The feature enables the users to have an overview of all the calendar items in a timeline format.
+  * Highlights: This feature is able to print all the calendar items in a timeline format, so that it presents 
+  how many tasks the user have on each day. Timelines provide a simple visual overview of all the items the user
+  has, and help the user with better time management.
+  
 #### Enhancement to existing features:
-* Standardised the getDescription() functions that returns the details of calendar items.
+* Standardised the `getDescription()` function that returns the details of calendar items.
   ([\#72](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/72))
 * Wrote Junit tests to increase coverage.
   ([\#180](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/180))
+* Wrote the `inputDateProcessor` that converts user input Strings into LocalDate.
   
 ### Contributions to documentation:
 #### Contributions to the Developer Guide:
 * Added the documentation guide, testing guide and logging guide to the Developer Guide.
   ([\#114](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/114),
    [\#229](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/229))
-* Added sequence diagram for feature `print timeline`.
+* Added implementation for the feature `print timeline`.
+* Added sequence diagram for feature `print timeline`.  
   ([\#140](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/140),
    [\#141](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/141),
    [\#161](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/161))
+* Added part of the user stories.
+  ([\#287](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/287))
    
 #### Contributions to the User Guide:
 * Documented features `Printing default calendar`,`Printing calendar for the current week`,
