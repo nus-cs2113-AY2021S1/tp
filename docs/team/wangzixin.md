@@ -36,8 +36,10 @@ Its lightweight Command Line Interface (CLI) allows administrators to breeze thr
     
     
 * **Contributions to the DG:**  
-    * Added sequential diagrams, state diagrams and architecture diagram for `finance` feature  
-    * Added feature description and design considerations for `finance` feature  
+    * Added sequential diagrams, state diagrams and architecture diagram for `finance` feature and 
+    `search`, `list prof&admin`, `list connection` in `hr` part   
+    * Added feature description and design considerations for `finance` feature and `search`, `list prof&admin`, 
+    `list connection` in `hr` part    
     
     
 * **Review/mentoring contributions:**  
