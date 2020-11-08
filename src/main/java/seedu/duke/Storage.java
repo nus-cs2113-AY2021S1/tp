@@ -183,6 +183,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads exam event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
     private static CalendarItem readExamEvent(String[] taskInFile) {
         CalendarItem item = null;
         LocalTime time;
@@ -197,6 +203,12 @@ public class Storage {
         return item;
     }
 
+    /**
+     * Reads lab event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
     private static CalendarItem readLabEvent(String[] taskInFile) {
         CalendarItem item = null;
         LocalTime time;
@@ -211,6 +223,12 @@ public class Storage {
         return item;
     }
 
+    /**
+     * Reads tutorial event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
     private static CalendarItem readTutorialEvent(String[] taskInFile) {
         CalendarItem item = null;
         LocalTime time;
@@ -225,6 +243,12 @@ public class Storage {
         return item;
     }
 
+    /**
+     * Reads lecture event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
     private static CalendarItem readLectureEvent(String[] taskInFile) {
         CalendarItem item = null;
         LocalTime time;
@@ -239,6 +263,12 @@ public class Storage {
         return item;
     }
 
+    /**
+     * Reads activity event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
     private static CalendarItem readActivity(String[] taskInFile) {
         CalendarItem item = null;
         LocalTime time;
@@ -253,6 +283,12 @@ public class Storage {
         return item;
     }
 
+    /**
+     * Reads deadline task to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
     private static CalendarItem readDeadlineTask(String[] taskInFile) {
         CalendarItem item = null;
         LocalDate date;
