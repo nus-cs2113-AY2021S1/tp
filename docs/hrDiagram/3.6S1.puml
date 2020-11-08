@@ -1,0 +1,24 @@
+@startuml
+!include styleHR.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state
+
+package MemberList {
+    class State0 as "Member\nTony Parker\n114514\ntp9@gmail.com\nAlumni"
+    class State1 as "Member\nHarry Potter\n88888888\nqaz@gmail.com\nspeaker"
+    class State2 as "Member\nJohn Sterling\n12345678\n123@gmail.com\nmember"
+}
+
+package MemberToPrint {
+    class State3 as "Member\nTony Parker\n114514\ntp9@gmail.com\nAlumni"
+    class State4 as "Member\nHarry Potter\n88888888\nqaz@gmail.com\nspeaker"
+}
+
+hide MemberToPrint
+
+MemberList -left-> MemberToPrint
+
+
+@enduml
