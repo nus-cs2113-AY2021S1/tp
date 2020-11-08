@@ -180,6 +180,8 @@ The Model,
 ### 3.4. Storage Component 
 (Lucas)
 
+
+
 ### 3.5. Common Classes
 
 ##### <a href="#top">Back to Top ^</a>

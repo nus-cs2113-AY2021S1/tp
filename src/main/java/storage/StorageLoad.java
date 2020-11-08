@@ -193,7 +193,7 @@ public class StorageLoad {
             if (deadline.equals("Does not exist")) {
                 String dirPath = filePath + "/" + module + "/" + "dues";
                 String duePath = filePath + "/" + module + "/" + "dues" + "/" + target + "due" + ".txt";
-                boolean success = StorageWrite.createChapterDue(duePath, dirPath);
+                boolean success = Storage.createChapterDue(duePath, dirPath);
                 if (!success) {
                     throw new IOException("Error creating chapter due file.");
                 }
