@@ -7,8 +7,9 @@ participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Admin" as Admin MODEL_COLOR
+participant ":Access" as Access MODEL_COLOR
 participant ":Module" as Module MODEL_COLOR
+participant ":ChapterList" as ChapterList MODEL_COLOR
 end box
 
 box Ui UI_COLOR_T1
@@ -23,27 +24,33 @@ end box
 activate RemoveChapterCommand
 RemoveChapterCommand -> RemoveChapterCommand : removeChapter(access, storage)
 activate RemoveChapterCommand
-RemoveChapterCommand -> Admin : getModules()
-activate Admin
-RemoveChapterCommand <-- Admin
-deactivate Admin
-[<-[hidden]- Admin
-destroy Admin
+RemoveChapterCommand -> Access : getModule()
+activate Access
+RemoveChapterCommand <-- Access : module
+deactivate Access
+[<-[hidden]- Access
+destroy Access
 RemoveChapterCommand -> Module : getChapters()
 activate Module
 RemoveChapterCommand <-- Module : chapters
 deactivate Module
 [<-[hidden]- Module
 destroy Module
+RemoveChapterCommand -> ChapterList : getAllChapters()
+activate ChapterList
+RemoveChapterCommand <-- ChapterList : chapters
+deactivate ChapterList
+[<-[hidden]- ChapterList
+destroy ChapterList
 RemoveChapterCommand -> Storage : deleteDirectory(directory)
 activate Storage
 RemoveChapterCommand <-- Storage : isRemoved
 deactivate Storage
 RemoveChapterCommand -> Storage : removeChapterFromDue(module, chapter)
 activate Storage
-RemoveChapterCommand <-- Storage : isRemovedFromDue
+RemoveChapterCommand <-- Storage : isRemoved
 deactivate Storage
-RemoveChapterCommand -> RemoveCommand : prepareResult(type, module, count)
+RemoveChapterCommand -> RemoveCommand : prepareResult(type, content, count)
 activate RemoveCommand
 RemoveChapterCommand <-- RemoveCommand : result
 deactivate RemoveCommand
