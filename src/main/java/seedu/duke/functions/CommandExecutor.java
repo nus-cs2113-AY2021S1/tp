@@ -1,6 +1,5 @@
 package seedu.duke.functions;
 
-import seedu.duke.bunny.Bunny;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
@@ -35,7 +34,7 @@ import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.wordlist.WordList.wordList;
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.database.WordsSaver.saveWordsToFile;
-import static seedu.duke.filters.BunnyFilter.filterBunny;
+import static seedu.duke.bunnylist.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.changeLineDivider;
 import static seedu.duke.ui.UI.printHelpMessage;
 //import static seedu.duke.database.ClearLoader.clearItems;

@@ -1,4 +1,4 @@
-package seedu.duke.filters;
+package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
 import seedu.duke.exceptions.CommandInvalidException;
