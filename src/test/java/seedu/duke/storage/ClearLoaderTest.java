@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.FileEmptyException;

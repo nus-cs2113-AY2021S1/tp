@@ -1,6 +1,6 @@
 package seedu.duke.spellchecker;
 
-import seedu.duke.database.DictionaryLoader;
+import seedu.duke.storage.DictionaryLoader;
 
 import java.util.ArrayList;
 

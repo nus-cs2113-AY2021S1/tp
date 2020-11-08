@@ -1,15 +1,12 @@
 package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
-import seedu.duke.constants.FluffleMessages;
-import seedu.duke.database.FileFunctions;
+import seedu.duke.storage.FileFunctions;
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
-import seedu.duke.ui.UI;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
@@ -38,7 +35,7 @@ import static seedu.duke.constants.FluffleMessages.TYPE_COMMAND_INSTRUCTION;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
-import static seedu.duke.database.WritingsLoader.recordListToFile;
+import static seedu.duke.storage.WritingsLoader.recordListToFile;
 
 
 public class WritingList {

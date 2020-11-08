@@ -1,7 +1,6 @@
 package seedu.duke.writinglist;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.database.ClearLoader;
 import seedu.duke.writing.WritingList;
 
 import java.time.LocalDate;
