@@ -27,23 +27,23 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 <div style="page-break-after: always;"></div>
 
-1. Implemented the following classes
+3. Implemented the following classes
     * `ParserAddNoteCommand`
     * `AddNoteCommand`
     * `ParserDeleteNoteCommand`
     * `DeleteNoteCommand`
     * `ParserEditNoteCommand`
     * `EditNoteCommand`
-1. Implemented test code for the following classes
+4. Implemented test code for the following classes
     * [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
     * [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
     * [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
-1. Maintained Notebook and Note classes.
-1. Created inputContent() function for `add-n` and `edit-n` in `Parser`.
-1. Added formatNote method into the Formatter class.
-1. Implemented prefix handling method used in all Parser classes with Jun Xiang. Prefix are able to be called in any order.
-1. Set up demo commands and bug testing for v1.0 and v2.1.
-1. Edited v1.0 and v2.1 demo videos.
+5. Maintained Notebook and Note classes.
+6. Created inputContent() function for `add-n` and `edit-n` in `Parser`.
+7. Added formatNote method into the Formatter class.
+8. Implemented prefix handling method used in all Parser classes with Jun Xiang. Prefix are able to be called in any order.
+9. Set up demo commands and bug testing for v1.0 and v2.1.
+10. Edited v1.0 and v2.1 demo videos.
 
 ### Enhancements to existing features
 1. Multiple improvements/bug-fixes made for [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88) and [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/180) after each milestone.
