@@ -36,7 +36,7 @@ public class Messages {
             + WELCOME_PREFIX + ANSI_CYAN + "  / /_/ / / __ `/  |/ / / / /\\__ \\ " + ANSI_RESET + "            ||" + LS
             + WELCOME_PREFIX + ANSI_CYAN + " / ____/ / /_/ / /|  / /_/ /___/ / " + ANSI_RESET + "            ||" + LS
             + WELCOME_PREFIX + ANSI_CYAN + "/_/   /_/\\__,_/_/ |_/\\____//____/  " + ANSI_RESET
-            + ANSI_CYAN + "v2.0" + ANSI_RESET + "        ||" + LS
+            + ANSI_CYAN + "v2.1" + ANSI_RESET + "        ||" + LS
             + WELCOME_BORDER_SPACE;
 
     public static final String HELP_MESSAGE = HELP_BORDER + LS
@@ -66,7 +66,12 @@ public class Messages {
             + padString(' ', 91) + "||" + LS
             + HELP_PREFIX + "- clear: remove all tasks" + padString(' ', 86) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "clear" + ANSI_RESET + padString(' ', 98)
-            + "||" + LS + HELP_PREFIX + "- bye: exit the program" + padString(' ', 88) + "||" + LS
+            + "||" + LS
+            + HELP_PREFIX + "- undo: revert modifications commands like add, edit, delete"
+            + padString(' ', 51) + "||" + LS
+            + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "undo" + ANSI_RESET + padString(' ', 99)
+            + "||" + LS
+            + HELP_PREFIX + "- bye: exit the program" + padString(' ', 88) + "||" + LS
             + HELP_PREFIX + "format: " + ANSI_BRIGHT_GREEN + "bye" + ANSI_RESET + padString(' ', 100)
             + "||" + LS + HELP_BORDER_SPACE + LS
             + HELP_BORDER + LS;
