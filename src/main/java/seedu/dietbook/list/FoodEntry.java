@@ -27,14 +27,14 @@ public class FoodEntry {
             int carbohydrate, int protein, int fat) {
         assert (portionSize > 0) : "Non-positive, invalid portion size not caught.";
         this.portionSize = portionSize;
-        this.food = new Food(name, calorie, carbohydrate, protein, fat);
+        this.food = FoodManager.createFood(name, calorie, carbohydrate, protein, fat);
     }
 
     /**
      * Getter method for the Food object.
      */
     public Food getFood() {
-        return food;
+        return FoodManager.retrieveFood(food);
     }
 
     /**
