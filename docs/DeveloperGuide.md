@@ -441,11 +441,11 @@ Acronym | Full form | Meaning
 Below are the steps required for manual testing of termiNus
 <!-- @@author Cao-Zeyu -->
 ### Launch and shutdown
-1. Initial launch
+1. Initial launch <br>
     1. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) 
     and copy the jar file to an empty folder.
     2. Open a command line window in the same directory and launch termiNus by typing `java -jar termiNus.jar` and press enter.
-2. Shutdown
+2. Shutdown <br>
     1. Input `bye` to exit the program.
 
 ### Adding items
