@@ -125,7 +125,14 @@ public class Question implements Displayable {
     /**
      * Marks this question as bookmarked by the user.
      */
-    public boolean markAsBookmarked() {
-        return isBookmarked = true;
+    public void markAsBookmarked() {
+        isBookmarked = true;
+    }
+
+    /**
+     * Marks this question as not bookmarked by the user.
+     */
+    public void markAsNotBookmarked() {
+        isBookmarked = false;
     }
 }
