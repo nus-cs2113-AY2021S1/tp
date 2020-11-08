@@ -24,7 +24,6 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     
 ### Code contributed
 
-1. Implemented prefix handling method used in all Parser classes with Nazryl.
 
 ### Contributions to User Guide
 1.
