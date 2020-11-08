@@ -115,6 +115,6 @@ public class Slot {
 
     @Override
     public String toString() {
-        return String.format(startTime.toString() + "-" + endTime.toString() + " " + title);
+        return startTime.toString() + "-" + endTime.toString() + " " + title;
     }
 }
