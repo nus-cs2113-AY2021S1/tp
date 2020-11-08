@@ -69,7 +69,7 @@ public class Ui {
             + "||  \\\\  /   |||   ||  |  |||   ||  ||    ||\\\\ | __/ ||\n"
             + "||   \\\\/    |\\\\__/\\\\__|  |||   \\\\__|\\___ || \\\\\\___| ||\n"
             + "******************************************************\n";
-    public static final String BYE_LOGO =  "_______    _______\n"
+    public static final String BYE_LOGO = "_______    _______\n"
             + "||   \\\\\\  //||\n"
             + "||___//\\\\// ||___\n"
             + "||   \\\\ ||  ||\n"
@@ -120,7 +120,7 @@ public class Ui {
      * Greets the user by his/ her name.
      */
     public void printGreeting(String name) {
-        System.out.println("");
+        System.out.println();
         System.out.println("Hello " + name + "!");
         System.out.println("What can I do for you?" + System.lineSeparator());
     }
@@ -376,7 +376,7 @@ public class Ui {
      * Prints the analysis of actual time spent.
      *
      * @param modList module list
-     * @param week week number
+     * @param week    week number
      */
     public void printBreakDownAnalysis(ModuleList modList, int week) {
         ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();

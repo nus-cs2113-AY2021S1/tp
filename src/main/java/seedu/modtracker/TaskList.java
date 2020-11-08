@@ -93,7 +93,7 @@ public class TaskList {
             String[] split = str.trim().split(" ", 3);
             String modCode = split[1];
             modCode = modCode.toUpperCase();
-            if (!modList.checkIfModuleValid(modCode, true)) {
+            if (!modList.checkIfModuleValid(modCode)) {
                 ui.printInvalidModule(toPrint);
                 return;
             }
