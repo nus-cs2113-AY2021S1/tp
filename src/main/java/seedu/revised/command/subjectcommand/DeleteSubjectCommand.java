@@ -26,7 +26,7 @@ public class DeleteSubjectCommand extends SubjectCommand {
     public void execute(SubjectList subjectList, Storage storage) throws NumberFormatException {
         logger.info("Begin checking string command to get the subject to be deleted.");
         String[] message = this.fullCommand.split(" ");
-        int number = Integer.valueOf(message[1]);
+        int number = Integer.parseInt(message[1]);
         Subject subject = subjectList.getList().get(number - 1);
         assert !(number <= 0 && number > subjectList.getList().size());
         subjectList.getList().remove(number - 1);

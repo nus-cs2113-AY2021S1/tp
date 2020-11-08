@@ -1,15 +1,16 @@
 package seedu.revised.command.topiccommand;
 
 import seedu.revised.card.Subject;
-import seedu.revised.exception.FailedParseException;
-import seedu.revised.exception.topicexception.InvalidTopicException;
-import seedu.revised.exception.topicexception.NoTopicException;
-import seedu.revised.exception.topicexception.RepeatedTopicException;
 
 public class ExitTopicCommand extends TopicCommand {
+
+    /**
+     * Does nothing, needed because it inherits from an abstract class.
+     *
+     * @param subject The subject that the user is currently looking at
+     */
     @Override
-    public void execute(Subject subject) throws NoTopicException, InvalidTopicException,
-            FailedParseException, RepeatedTopicException {
+    public void execute(Subject subject)  {
     }
 
     /**

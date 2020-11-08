@@ -11,10 +11,10 @@ import java.util.logging.Logger;
 
 public class ResultSubjectCommand extends SubjectCommand {
     private static final Logger logger = Logger.getLogger(ResultSubjectCommand.class.getName());
-    private String fullcommand;
+    private final String fullCommand;
 
-    public ResultSubjectCommand(String fullcommand) {
-        this.fullcommand = fullcommand;
+    public ResultSubjectCommand(String fullCommand) {
+        this.fullCommand = fullCommand;
     }
 
     /**
@@ -27,7 +27,7 @@ public class ResultSubjectCommand extends SubjectCommand {
     public void execute(SubjectList subjectList, Storage storage) throws
             NoSubjectException, InvalidSubjectException {
         logger.info("Begin finding the subject for which the results feature has to be called.");
-        String[] message = this.fullcommand.split("\\s+", 2);
+        String[] message = this.fullCommand.split("\\s+", 2);
         if (message.length == 1 || message[1].isEmpty()) {
             throw new InvalidSubjectException(Ui.INVALID_SUBJECT_EXCEPTION);
         }

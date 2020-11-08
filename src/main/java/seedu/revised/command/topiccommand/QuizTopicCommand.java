@@ -12,19 +12,19 @@ import java.util.logging.Logger;
 
 public class QuizTopicCommand extends TopicCommand {
     private static final Logger logger = Logger.getLogger(QuizTopicCommand.class.getName());
-    private String fullcommand;
+    private final String fullCommand;
 
-    public QuizTopicCommand(String fullcommand) {
-        this.fullcommand = fullcommand;
+    public QuizTopicCommand(String fullCommand) {
+        this.fullCommand = fullCommand;
     }
 
-    public String getFullcommand() {
-        return this.fullcommand;
+    public String getFullCommand() {
+        return this.fullCommand;
     }
 
     public void execute(Subject subject) throws NoTopicException, InvalidTopicException, NoFlashcardException {
         logger.info("Begin finding the topic for which the quiz has to be conducted.");
-        String[] message = this.fullcommand.split("\\s+", 2);
+        String[] message = this.fullCommand.split("\\s+", 2);
         if (message.length <= 1 || message[1].isEmpty()) {
             throw new InvalidTopicException(Ui.INVALID_TOPIC_EXCEPTION);
         }
