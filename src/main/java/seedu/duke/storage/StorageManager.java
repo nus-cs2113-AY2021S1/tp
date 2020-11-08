@@ -3,6 +3,7 @@ package seedu.duke.storage;
 import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 
 import java.io.FileWriter;
@@ -24,7 +25,13 @@ public class StorageManager {
             filepath = Paths.get("./data", filename);
         }
         this.projectManager = projectManager;
-        init();
+        try {
+            init();
+        } catch (IOException e) {
+            ScrumLogger.LOGGER.warning(String.format("Unable to create data directory: %s%n",
+                    e.toString()));
+            throw e;
+        }
     }
 
     //Public functions to be invoked
@@ -34,9 +41,18 @@ public class StorageManager {
      * File name of the data file is specified when the StorageManager object is instantiated
      */
     public void save() throws IOException {
-        FileWriter fw = new FileWriter((filepath.toFile()));
-        Jsoner.serialize(projectManager, fw);
-        fw.close();
+        try {
+            if (!Files.exists(filepath.getParent())) {
+                initDataDir();
+            }
+            FileWriter fw = new FileWriter((filepath.toFile()));
+            Jsoner.serialize(projectManager, fw);
+            fw.close();
+            ScrumLogger.LOGGER.info("Data has been successfully saved to the data file");
+        } catch (IOException e) {
+            ScrumLogger.LOGGER.warning(String.format("Data failed to be saved: %s%n", e.toString()));
+            throw e;
+        }
     }
 
     /**
@@ -50,12 +66,19 @@ public class StorageManager {
         if (!Files.exists(filepath)) {
             return; //file does not exist, start from a new
         }
-        String rawData = loadRawData();
         try {
+            String rawData = loadRawData();
             JsonObject rawJson = (JsonObject) Jsoner.deserialize(rawData);
             projectManager.fromJson(rawJson);
+            ScrumLogger.LOGGER.info("Data has been successfully loaded from the data file");
+        } catch (IOException e) {
+            ScrumLogger.LOGGER.warning(String.format("Parsing of JSON failed, proceeding in empty state: %s%n", 
+                    e.toString()));
+            throw e;
         } catch (ClassCastException | NullPointerException | JsonException e) {
             projectManager.clearProjects();
+            ScrumLogger.LOGGER.warning(String.format("Parsing of JSON failed, proceeding in empty state: %s%n", 
+                    e.toString()));
             throw e;
         }
     }
@@ -68,6 +91,7 @@ public class StorageManager {
     private void initDataDir() throws IOException {
         Path path = filepath.getParent();
         if (!Files.exists(path)) {
+            ScrumLogger.LOGGER.info("Data directory does not exist, creating a data directory");
             Files.createDirectory(path);
         }
     }

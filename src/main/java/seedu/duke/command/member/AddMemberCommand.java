@@ -23,12 +23,12 @@ public class AddMemberCommand extends MemberCommand {
         for (int i = 0; i < parameters.size(); i++) {
             projMember = parameters.get(Integer.toString(i));
             // check if member is already added to the associated projectr
-            if (proj.getProjectMember().containMember(new Member(projMember))) {
+            if (checkMember(proj, projMember)) {
                 Ui.showToUserLn(projMember
                         + " is already associated to the project.");
                 logExecution("User added member " + projMember + " to project " + proj.getTitle());
             } else {
-                m = new Member(parameters.get(Integer.toString(i)));
+                m = new Member(projMember);
                 proj.getProjectMember().addMember(m);
                 Ui.showToUserLn(projMember + " has been added to the project.");
                 logExecution("User tried to add a already existing member " + projMember + " to project "

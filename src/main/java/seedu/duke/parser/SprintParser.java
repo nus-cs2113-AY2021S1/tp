@@ -151,7 +151,7 @@ public class SprintParser implements ExceptionsParser {
         } else if (parameters.containsKey("0")) {
             checkTaskParamTag(parameters, "0");
         } else {
-            throw new DukeException("Please indicate task(s) to be allocated.");
+            throw new DukeException("Please indicate the task(s) to be allocated/deallocated.");
         }
     }
 
@@ -168,8 +168,8 @@ public class SprintParser implements ExceptionsParser {
 
     /**
      * Check if a parameter exist.
-     * @parameters - All parameters supplied by user
-     * @paramName - Parameter to be check if exist in @parameters
+     * @param parameters - All parameters supplied by user
+     * @param paramName - Parameter to be check if exist in @parameters
      * @throws DukeException if do not exist
      */
     private void checkParamExist(Hashtable<String, String> parameters, String paramName)
@@ -181,7 +181,7 @@ public class SprintParser implements ExceptionsParser {
 
     /**
      * Check if a start parameter exist and DateTime parsable.
-     * @parameters - All parameters supplied by user
+     * @param parameters - All parameters supplied by user
      * @throws DukeException if not DateTime parsable
      */
     private void checkStartParam(Hashtable<String, String> parameters) throws DukeException {

@@ -49,7 +49,6 @@ public class ProjectParser implements ExceptionsParser {
             }
             // View the current selected project, and the details of the same.
         case VIEW:
-            assert projectListManager.size() != 0 : "Invalid Input";
             if (!parameters.isEmpty()) {
                 throw new DukeException("Invalid action!");
             } else {
@@ -57,7 +56,7 @@ public class ProjectParser implements ExceptionsParser {
             }
             // Select the project on which all commands are executed.
         case SELECT:
-            assert parameters.get("0") != null : "Invalid Input";
+
             if (parameters.get("0") == null) {
                 throw new DukeException("Please do not enter dashes.");
             }
@@ -67,6 +66,7 @@ public class ProjectParser implements ExceptionsParser {
             // Get index of the project to select
             try {
                 int index = Integer.parseInt(parameters.get("0"));
+                // check if required project index present
                 if (index <= projectListManager.size() && index > 0) {
                     return new SelectProjectCommand(parameters, projectListManager);
                 } else {
@@ -75,13 +75,12 @@ public class ProjectParser implements ExceptionsParser {
             } catch (NumberFormatException e) {
                 throw new DukeException("Invalid input.");
             }
-
             // Show a list of all projects added, with id to select it.
         case LIST:
-            assert projectListManager.size() != 0 : "Invalid Input";
             if (projectListManager.isEmpty()) {
                 throw new DukeException("There are no projects added.");
             } else {
+                assert projectListManager.getSelectedProject() != null : "Project exists, but is null type\n.";
                 return new ListProjectCommand(parameters, projectListManager);
             }
         default:

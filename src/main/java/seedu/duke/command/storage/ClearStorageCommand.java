@@ -1,5 +1,6 @@
 package seedu.duke.command.storage;
 
+import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
 import seedu.duke.ui.Ui;
 
@@ -22,9 +23,11 @@ public class ClearStorageCommand extends StorageCommand {
         String input = Ui.getUserInput();
         if (!input.trim().toLowerCase().equals("y")) {
             Ui.showToUserLn("Data clear aborted.");
+            ScrumLogger.LOGGER.info("Data clear requested and aborted.");
             return;
         }
         projectManager.clearProjects();
         Ui.showToUserLn("All data has been cleared!");
+        ScrumLogger.LOGGER.info("Data clear requested and proceeded, all data has been cleared.");
     }
 }

@@ -23,7 +23,7 @@ public class DeleteMemberCommand extends MemberCommand {
         for (int i = 0; i < parameters.size(); i++) {
             // Check if the member is associated with the project.
             projMember = parameters.get(Integer.toString(i));
-            if (proj.getProjectMember().containMember(new Member(projMember))) {
+            if (checkMember(proj, projMember)) {
                 proj.getProjectMember().removeMember(new Member(projMember));
                 Ui.showToUserLn(projMember
                         + " has been removed from the project.");
