@@ -11,8 +11,11 @@ import fitr.user.User;
 import fitr.parser.Parser;
 import org.fusesource.jansi.AnsiConsole;
 
-
 import java.io.IOException;
+
+import static fitr.common.Commands.COMMAND_BYE;
+import static fitr.common.Messages.DASH;
+import static fitr.common.Messages.SEPARATOR_LINE;
 
 public class Fitr {
     private StorageManager storageManager;
@@ -25,10 +28,9 @@ public class Fitr {
             Ui.printGreetingMessage();
 
             storageManager = new StorageManager();
-            listManager = new ListManager(storageManager);
-
             user = storageManager.loadUserProfile();
             storageManager.writeUserProfile(user);
+            listManager = new ListManager(storageManager, user);
 
             TipList tipList = new TipList(storageManager.loadTipList());
             TipManager tipOfTheDay = new TipManager(tipList);
@@ -46,13 +48,12 @@ public class Fitr {
         while (!isExit) {
             System.out.print("> ");
             String userInput = Ui.read();
-            System.out.println("-".repeat(136));
+            Ui.printCustomMessage(SEPARATOR_LINE);
             Command c = Parser.parse(userInput);
             c.execute(listManager, storageManager, user, recommender);
-            System.out.println("-".repeat(136));
+            Ui.printCustomMessage(SEPARATOR_LINE);
             isExit = c.isExit();
         }
-        Ui.printExitMessage();
     }
 
     public static void main(String[] args) {

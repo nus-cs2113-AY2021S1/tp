@@ -1,7 +1,6 @@
-package fitr;
+package fitr.exercise;
 
 import fitr.calorie.Calorie;
-import fitr.exercise.Exercise;
 import org.junit.jupiter.api.Test;
 
 import static fitr.common.DateManager.getCurrentDate;

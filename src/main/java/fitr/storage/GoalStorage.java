@@ -6,6 +6,7 @@ import fitr.exception.InvalidFileFormatException;
 import fitr.list.ExerciseList;
 import fitr.list.FoodList;
 import fitr.list.GoalList;
+import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.File;
@@ -17,11 +18,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static fitr.common.Messages.SYMBOL_EXERCISE;
+import static fitr.common.Messages.SYMBOL_FOOD;
+import static fitr.common.Messages.SYMBOL_NO;
+import static fitr.common.Messages.SYMBOL_YES;
 import static fitr.storage.StorageManager.COMMA_SEPARATOR;
 
 public class GoalStorage {
     private static final Logger LOGGER = Logger.getLogger(GoalStorage.class.getName());
-    private static final String DEFAULT_GOAL_LIST_PATH = "goals.txt";
+    private static final String DEFAULT_GOAL_LIST_PATH = "goalList.txt";
     private final String goalListPath;
 
     public GoalStorage() throws IOException {
@@ -52,6 +57,7 @@ public class GoalStorage {
         String[] arguments;
         File goalListFile = new File(goalListPath);
         Scanner readFile = new Scanner(goalListFile);
+        boolean hasUnrecognisedGoals = false;
 
         while (readFile.hasNext()) {
             line = readFile.nextLine();
@@ -60,8 +66,17 @@ public class GoalStorage {
             if (arguments.length != 4) {
                 throw new InvalidFileFormatException();
             }
-            goalList.add(new Goal(LocalDate.parse(arguments[0], DateManager.formatter),
-                    arguments[1], arguments[2], arguments[3]));
+
+            if (isValidGoalLine(arguments)) {
+                goalList.add(new Goal(LocalDate.parse(arguments[0], DateManager.formatter),
+                        arguments[1], arguments[2], arguments[3]));
+            } else {
+                hasUnrecognisedGoals = true;
+            }
+        }
+
+        if (hasUnrecognisedGoals) {
+            Ui.printCustomError("Unrecognised goals were not added to your goal list!");
         }
 
         LOGGER.fine("Goal list file read successfully.");
@@ -90,5 +105,27 @@ public class GoalStorage {
 
         LOGGER.fine("Goal list file written successfully.");
         fileWriter.close();
+    }
+
+    private static boolean isValidGoalLine(String[] arguments) {
+        boolean isValidGoalType = false;
+        boolean isValidStatus = false;
+
+        try {
+            //Check if goal type is valid (E or F)
+            if (arguments[1].equals(SYMBOL_EXERCISE) || arguments[1].equals(SYMBOL_FOOD)) {
+                isValidGoalType = true;
+            }
+            //Check if status is valid (Y or N or 0.0 < status < 100.0)
+            if (arguments[2].equals(SYMBOL_YES) || arguments[2].equals(SYMBOL_NO)) {
+                isValidStatus = true;
+            } else if (Double.parseDouble(arguments[2].substring(0, arguments[2].length() - 1)) >= 0.0
+                    && Double.parseDouble(arguments[2].substring(0, arguments[2].length() - 1)) <= 100) {
+                isValidStatus = true;
+            }
+            return (isValidGoalType && isValidStatus);
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

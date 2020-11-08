@@ -11,7 +11,7 @@ public class TipManager {
     }
 
     public void execute() {
-        int totalNumberOfTips = 49;
+        int totalNumberOfTips = 99;
         Ui.printMessageInYellow("Tip of the day!" + System.lineSeparator() + tips.getTip(totalNumberOfTips));
     }
 
