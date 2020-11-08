@@ -9,16 +9,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-// Renamed from previous Task.java with some modifications.
-
 /**
  * Represents a list of items.
  */
 public abstract class ItemList<T extends Item> {
 
     protected ArrayList<T> items;
-    //protected ArrayList<Link> links;
-
 
     /**
      * Constructs an item list with the given items.
@@ -27,7 +23,6 @@ public abstract class ItemList<T extends Item> {
      */
     public ItemList(ArrayList<T> items) {
         this.items = items;
-
     }
 
     /**
@@ -103,6 +98,7 @@ public abstract class ItemList<T extends Item> {
         Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST
                 + (items.size()) + Messages.MESSAGE_STATUS_LAST);
         Ui.showLine();
+        System.out.println();
     }
 
     /**
@@ -145,9 +141,9 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Clears all the tasks in the list.
+     * Clears all the items in the list.
      */
-    public void clearTask() {
+    public void clearItems() {
         items = new ArrayList<>();
     }
 
@@ -167,10 +163,10 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Finds and lists all tasks in the task list whose description contains the argument keywords.
+     * Finds and lists all items in the task list whose description contains the argument keywords.
      * Keyword matching is case-insensitive.
      *
-     * @param keyword the keyword to be searched in the task list
+     * @param keyword the keyword to be searched in the items list
      */
     public void findItem(String keyword) {
         ArrayList<T> matchingItems = new ArrayList<>();
@@ -206,29 +202,29 @@ public abstract class ItemList<T extends Item> {
     }
 
     /**
-     * Retrieves the size of the task list.
+     * Retrieves the size of the item list.
      *
-     * @return the size of the task list
+     * @return the size of the item list
      */
     public int size() {
         return items.size();
     }
 
     /**
-     * Retrieves a task using the given index.
+     * Retrieves an item using the given index.
      *
-     * @param index the index of the task to be retrieved
-     * @return the task in the task list at the given index
+     * @param index the index of the item to be retrieved
+     * @return the item in the item list at the given index
      */
     public T get(int index) {
         return items.get(index);
     }
 
     /**
-     * Sets the date of a task at the given index.
+     * Sets the date of an item at the given index.
      *
-     * @param index the index of the task to set priority.
-     * @param date  the date to set the task at.
+     * @param index the index of the item to set date.
+     * @param date  the date to set the item at.
      */
     public void setDate(int index, String date) throws DukeException {
         if (index > items.size() || index < 1) {

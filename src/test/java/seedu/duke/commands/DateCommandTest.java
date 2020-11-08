@@ -12,8 +12,8 @@ class DateCommandTest extends CommandTest {
     @Test
     void execute_validDate_setsNewDate() throws DukeException {
         resetFields();
-
-        tasks.addItem(new Task("test description"));
+      
+        tasks.addTaskFromString(TEST_DESCRIPTION);
         argumentsMap.put("date", "13-05-2020");
         Command dateCommand = new DateCommand(1, argumentsMap);
 
@@ -25,7 +25,7 @@ class DateCommandTest extends CommandTest {
     void execute_invalidDate_throwsException() {
         resetFields();
 
-        tasks.addItem(new Task("test description"));
+        tasks.addTaskFromString(TEST_DESCRIPTION);
         argumentsMap.put("date", "xx-yy-zzzz");
         Command dateCommand = new DateCommand(1, argumentsMap);
 
@@ -36,7 +36,7 @@ class DateCommandTest extends CommandTest {
     void execute_noDate_throwsException() {
         resetFields();
 
-        tasks.addItem(new Task("test description"));
+        tasks.addTaskFromString(TEST_DESCRIPTION);
         Command dateCommand = new DateCommand(1, argumentsMap);
 
         assertThrows(DukeException.class, () -> dateCommand.execute(model));

@@ -55,8 +55,6 @@ public class ListCommand extends Command {
     private String category;
     private boolean isSorted;
     private boolean isBook;
-    public static int listSize;
-    public static int newListSize;
     private boolean isLink;
 
     public ListCommand() {
@@ -114,7 +112,6 @@ public class ListCommand extends Command {
 
         ArrayList<Task> newTasks = new ArrayList<Task>();
         ArrayList<Book> newBooks = new ArrayList<Book>();
-        listSize = tasks.size();
         if (hasPriority) {
             if (priority < 0) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_PRIORITY);
@@ -150,15 +147,6 @@ public class ListCommand extends Command {
             links.listLink();
         } else {
             tasks.listTask();
-        }
-        newListSize = newTasks.size();
-    }
-
-    public int getSize(Boolean isNew) {
-        if (isNew) {
-            return newListSize;
-        } else {
-            return listSize;
         }
     }
 }

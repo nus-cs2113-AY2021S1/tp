@@ -27,13 +27,7 @@ daily expenses and be reminded of any library loans.
 
 ##### Contributions to Developer Guide:
 1. Implementation of `list`.
+2. Instructions for manual testing.
 
 ##### Contributions to Team-based tasks:
-
-##### Review/mentoring contributions: 
-
-##### Contributions beyond the project team:
-
-### Contributions to the User Guide (Extracts)
-
-### Contributions to the Developer Guide (Extracts)
+1. Use issue tracker to add necessary issues.

@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
+import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
 import seedu.duke.model.Model;
 import seedu.duke.model.item.Task;
@@ -18,7 +19,7 @@ public class CategoryCommandTest {
         Model model = new Model();
         TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
 
-        tasks.addItem(new Task("test description"));
+        tasks.addTaskFromString("test description");
         Command categoryCommand = new CategoryCommand(index + 1, category);
         assertEquals(null, tasks.get(index).getCategory());
         categoryCommand.execute(model);

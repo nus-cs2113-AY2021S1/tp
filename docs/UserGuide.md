@@ -21,7 +21,9 @@ command. We hope this guide is user-friendly!
 
 3. Copy the jar file to a new folder.
 
-4. Navigate to the directory which contains `termiNus.jar` using the command prompt.
+4. Navigate to the directory which contains `termiNus.jar` using the command prompt. Alternatively, on windows, you
+   can open the folder which contains `termiNus.jar` and in the address bar type `cmd` and press enter. It will open up a
+   command prompt with that directory.
 
 5. Run termiNus by typing `java -jar termiNus.jar` and press enter.
 
