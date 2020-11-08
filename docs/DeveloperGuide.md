@@ -80,6 +80,11 @@ delimiters if any.
 
 The following class diagram briefly explains how different classes in the Logic component interact with each other.
 
+> Note: ABCFavCommand represents the different fav command classes.
+> PQRCommand represents the different dine command classes.
+> XYZCommand represents the different route command classes.
+> The actual class names are written in the notes beside the classes.
+
 <img src="DG_Diagrams/LogicComponent.png" alt="logiccomponent" width=1100 height=500>
 
 #### 2.1.3. Model Component
@@ -113,9 +118,8 @@ This section provides details of how the main features of Nav@NUS have been impl
 available from **location1** to **location2**.
 
 The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
-are linked to each other. 
-
-![RouteCommandClass](DG_Diagrams/RouteCommand/RouteCommandClass.png)
+are linked to each other. <br>
+<img src="DG_Diagrams/RouteCommand/RouteCommandClass.png" alt="RouteCommandClass" width = 800>
 
 The `RouteCommand#executeCommand()` method of RouteCommand Class executes the command in the following steps:
 1. Calls `RouteParser#getLocations()` to get the locations entered by the user in the order of starting location and 
@@ -136,13 +140,12 @@ the destination.
 
 The following sequence diagram explains the above steps when the user enters `/route loc1 /to loc2`.
 
-![Overview](DG_Diagrams/RouteCommand/RouteCommand.png)
+<img src="DG_Diagrams/RouteCommand/RouteCommand.png" alt="Executing" width = 850>
 
 The following sequence diagrams explain the interactions omitted in the main diagram.
+<img src="DG_Diagrams/RouteCommand/RouteCommandInternal.png" alt="executing command" width = 700>
 
-![executing command](DG_Diagrams/RouteCommand/RouteCommandInternal.png)
-
-![bus data](DG_Diagrams/RouteCommand/BusData.png)
+<img src="DG_Diagrams/RouteCommand/BusData.png" alt="bus data" width = 600>
 
 #### Design Considerations
 The main aim here is to find if the starting location and destination exist in a particular list of bus stops in 
@@ -255,7 +258,7 @@ at location **index** in the list to **newDescription**.
 The class diagram in the figure below shows how different classes used for implementation of the `/descfav` command 
 are linked to each other. 
 
-![DescFav class diagram](DG_Diagrams/DescFavCommand/descFavClass.png)
+<img src="DG_Diagrams/DescFavCommand/descFavClass.png" alt="DescFav class diagram" width = 700>
 
 The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes the command in the following steps:
 1. Calls `DescFavParser#parseInput()` to check if the command message input by the user is valid.
@@ -274,17 +277,16 @@ The `DescFavCommand#executeCommand()` method of DescFavCommand Class executes th
     - Calls `Fav#changeDesc()` to update the old description to **description**.
     
 The following sequence diagram explains the above steps when the user enters `/descfav 1 /to hello`.
-
-![Overview](DG_Diagrams/DescFavCommand/descFav.png)
+<img src="DG_Diagrams/DescFavCommand/descFav.png" alt="Executing" width = 800>
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 
-![executing command](DG_Diagrams/DescFavCommand/descFavInternal.png)
+<img src="DG_Diagrams/DescFavCommand/descFavInternal.png" alt="executing command" width=700>
 
 #### Design Considerations
 The main aim here is to change the description of a particular command in the list of favourites.
 
-#####Aspect: How index and description are verified.
+##### Aspect: How index and description are verified.
 * **Alternative 1 (current choice):** Perform checks on the validity of index and description at intermediate steps
     + Pros: The checks specific to `FavList` and `Fav` will be performed in those classes and all these methods 
     will be called in the main `DescFavCommand#executeCommand()` thus reducing coupling.
@@ -363,7 +365,7 @@ location.
 than a certain threshold (taken as 0.60).
 
 Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature) and 
-[`/bus` feature implementation](#39-bus-at-bus-stop-finder-bus-feature) examples of where this feature is used.
+[`/bus` feature implementation](#39-bus-at-bus-stop-finder-bus-feature) for examples of where this feature is used.
 
 _Credits: The Levenshtein distance algorithm was adapted from 
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
