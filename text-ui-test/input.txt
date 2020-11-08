@@ -256,30 +256,37 @@ watchlist -n abc -hello
 watchlist -n -hello
 watchlist -n testing1233333333333333333333333333333333333333
 watchlist -n abc
+watchlist -n
 watchlist -l
 watchlist -l a
 watchlist -l -hello
 watchlist -l -----
 watchlist -l -1
 watchlist -s 2
+watchlist -s 0
 watchlist -s 1 2
 watchlist -s -1
 watchlist -s one
 watchlist -s -hello
 watchlist -s -------
 watchlist -d 2
+watchlist -d 0
 watchlist -d 1 2
 watchlist -d -1
 watchlist -d one
 watchlist -d -hello
 watchlist -d -------
-watchlist             -n           Hello               World
-watchlist             -l
-watchlist             -l                         abc
-watchlist                -s                 2
-watchlist                -s                 5                   5
-watchlist                     -d                 2
-watchlist                     -d                 5              5
+watchlist -d 1
+watchlist -d 1
+watchlist -d 2
+watchlist -s 1
+  watchlist             -n           Hello               World
+  watchlist             -l
+  watchlist             -l                         abc
+  watchlist                -s                 2
+  watchlist                -s                 5                   5
+  watchlist                     -d                 2
+  watchlist                     -d                 5              5
 workspace
 workspace -unknown helloworld
 workspace -n abc
@@ -324,4 +331,32 @@ workspace -l
 Hello               World
 workspace -d Hello               World
 workspace -l
+estimate
+estimate -wph 800
+estimate -hello
+estimate -----
+estimate script
+estimate script.
+estimate script.t
+estimate script.tx
+estimate script-wph.txt.txt-wph 700
+estimate script-wph.txt.txt .txt
+estimate script.txt hello
+estimate script.txt -hello
+estimate script.txt -----
+estimate script.txt -   wph 700
+estimate script.txt -wph 0
+estimate script.txt -wph -1
+estimate script.txt -wph 1 2
+estimate script.txt -wph one
+estimate script.txt -wph -hello
+estimate script.txt -wph 1 -wph 2
+estimate script.txt -wph 1 -hello
+estimate -wph -1
+estimate -wph one
+estimate -wph 1 -wph 2
+estimate -wph 1 -hello
+estimate -wph -hello
+  estimate  do-not-exist-file.txt
+  estimate  do-not-exist-file.txt  -wph    123
 exit

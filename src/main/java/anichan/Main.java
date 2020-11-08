@@ -72,7 +72,7 @@ public class Main {
      */
     private void displayWelcome() {
         ui.printWelcomeMessage();
-        LOGGER.log(Level.INFO, "AniChan started! Initializing...");
+        LOGGER.log(Level.INFO, "AniChan started! Initializing..");
         ui.printHorizontalLine();
     }
 

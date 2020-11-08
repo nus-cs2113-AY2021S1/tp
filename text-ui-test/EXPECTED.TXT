@@ -713,6 +713,8 @@ Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name should not be long
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name is used already!
 
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name cannot be empty!
+
 Triple Fromage Cheesecake (Default) #> Currently, you have 2 watchlist(s):
 	1. Default
 	2. abc
@@ -727,6 +729,8 @@ Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fi
 
 Triple Fromage Cheesecake (Default) #> "abc" is now your active watchlist!
 
+Triple Fromage Cheesecake (abc) #> OOPS!!! Watchlist index cannot be zero!
+
 Triple Fromage Cheesecake (abc) #> OOPS!!! Watchlist command has too much fields.
 
 Triple Fromage Cheesecake (abc) #> OOPS!!! Please provide a positive integer instead!
@@ -740,6 +744,8 @@ Triple Fromage Cheesecake (abc) #> OOPS!!! Please provide a integer instead!
 Triple Fromage Cheesecake (abc) #> Watchlist "abc" has been deleted successfully!
 Changed active watchlist to: "Default".
 
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist index cannot be zero!
+
 Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much fields.
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a positive integer instead!
@@ -749,6 +755,14 @@ Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a integer instead!
 Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much parameters.
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a integer instead!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! You cannot delete the last watchlist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! You cannot delete the last watchlist!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! This is not a valid watchlist index.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! You cannot select the active watchlist..
 
 Triple Fromage Cheesecake (Default) #> Watchlist "Hello               World" has been created successfully!
 
@@ -896,5 +910,61 @@ Triple Fromage Cheesecake (Default) #> Currently, you have 4 workspace(s):
 2. COOKIES N CREME CH33SECAKE
 3. APPLES ORANGES OREOS PANCAKESS
 4. Triple Fromage Cheesecake
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Only ".txt" script files are accepted!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Only ".txt" script files are accepted!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Only ".txt" script files are accepted!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Only ".txt" script files are accepted!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command only accepts the parameter: -wph.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command only accepts the parameter: -wph.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command only accepts the parameter: -wph.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Words per hour cannot be zero!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a positive integer instead!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much fields.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Please provide a integer instead!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much parameters.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much parameters.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! Estimate command has too much parameters.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! No script file specified!
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File does not exist.
+
+Triple Fromage Cheesecake (Default) #> OOPS!!! File does not exist.
 
 Triple Fromage Cheesecake (Default) #> Sayonara Abec Steiner 77th-chan!
