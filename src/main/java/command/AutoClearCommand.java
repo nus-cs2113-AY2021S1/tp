@@ -36,6 +36,11 @@ public class AutoClearCommand extends Command {
      */
     @Override
     public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws EmptyEventListException{
-
+        if (!isOn) {
+            ui.printAutoClearOn();
+            events.clearBefore(clearDate);
+        } else {
+            ui.printAutoClearOff();
+        }
     }
 }

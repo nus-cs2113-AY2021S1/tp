@@ -381,5 +381,21 @@ public class UI {
     public void printRepeatEvent(int numWeeks) {
         System.out.println("The selected event has been repeated for " + numWeeks + " weeks.");
     }
+
+    /**
+     * Print the success message after the user turned the auto-clear function on
+     *
+     */
+    public void printAutoClearOn() {
+        System.out.println("Great! You have turned the auto-clear function on! \nEverything happened one month ago will be automatically cleared :)");
+    }
+
+    /**
+     * Print the success message after the user turned the auto-clear function off
+     *
+     */
+    public void printAutoClearOff() {
+        System.out.println("Great! You have turned the auto-clear function off!\nYour past events will be kept :)");
+    }
 }
 

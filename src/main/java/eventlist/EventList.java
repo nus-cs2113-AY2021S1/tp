@@ -523,4 +523,15 @@ public class EventList {
             events.add(newEvent);
         }
     }
+
+    /**
+     * clear all events before a certain date
+     *
+     * @param clearDate before which all events to be cleared
+     */
+    public void clearBefore(LocalDate clearDate) {
+        if (events != null) {
+            events.removeIf(event -> event.getDate().compareTo(clearDate) < 0);
+        }
+    }
 }
