@@ -10,12 +10,12 @@ schedule your tasks and events faster than traditional GUI applications.
 
 **_25HoursADay_** is targeted towards students from National University of Singapore (NUS). This user guide is designed 
 to provide documentation for potential users who will use **_25HoursADay_** on a day-to-day basis. This document will provide a 
-step-by-step guide to show you how to access following features of the program:
+step-by-step guide to show you how to access following features of the application:
 
-1)	View available commands of the program
-2)	Add tasks and events to the program
+1)	View available commands of the application
+2)	Add tasks and events to the application
 3)	View your personalized calendar and the items available
-4)	Search an item in the program
+4)	Search an item in the application
 5)	Prioritize your tasks and keep track of your progress
 
 After familiarizing with all the functionalities, you will definitely be able to better manage your day-to-day matters. Feeling excited? Let’s begin!
@@ -60,7 +60,7 @@ After familiarizing with all the functionalities, you will definitely be able to
         * [printing countdown for deadline tasks only](#printing-countdown-for-deadline-tasks-only)
         * [printing countdown for exam events only](#printing-countdown-for-exam-events-only)
     * [Saving the data](#saving-the-data)
-    * [Exiting the program](#exiting-the-program)
+    * [Exiting the application](#exiting-the-application)
 * [Frequently Asked Questions (FAQ)](#faq)
 * [Command summary](#command-summary)
 
@@ -94,7 +94,7 @@ The following table displays the list of terminologies used in this document:
 1. Download the latest version of the project file **_25HoursADay.jar_** and the JSON data file **_NUS_Mod_info.json_** from [here](https://github.com/AY2021S1-CS2113T-T12-2/tp/releases/tag/V1.0).
 1. Copy the JAR file and the JSON data file to the same folder that you want to use as the _home folder_ for the project file.
 1. In the _Command Prompt_, navigate to the working directory of the _home folder_.
-1. Type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to start the programme.
+1. Type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to start the application.
 1. The _Command Prompt_ should display a similar output as shown in the figure below:
     ![Screen_Shot_of_welcome_message](images/Verify_setup.PNG)
 1. Type the command in the _Command Prompt_ and press _Enter_ to execute it. 
@@ -121,7 +121,7 @@ Are you sometimes overwhelmed by different tasks and not sure how to document th
 
 •	Todo task which has no specific due date and just serves as a reminder for your day to day matters.
 
-•	Deadline tasks which has a specific due date and the program has a count down feature to monitor them.
+•	Deadline tasks which has a specific due date and the application has a count down feature to monitor them.
 
 The following 2 sub-sections will provide you with the guide on how to add a task to the calendar list.  
 
@@ -138,13 +138,13 @@ Example:
 
 This adds a todo task of exercising for 10 minutes to the calendar list as demonstrated in the figure below.
 ![todo_command](images/todo_command.png)
-Note: The above figure is for illustration purpose only. The total number of tasks may differ if you have more tasks stored in the program.
+Note: The above figure is for illustration purpose only. The total number of tasks may differ if you have more tasks stored in the application.
 
 ![tips_todo](images/tip_for_todo.PNG)
 
 #### Adding a deadline task:
 
-This function allows you to add a deadline task, such as project submission or assignment submission and the program 
+This function allows you to add a deadline task, such as project submission or assignment submission and the application 
 will keep track of the due date which will definitely make your study life more manageable! The function will also display a 
 warning message if the due date of the deadline item is already passed (with respect to today's date), making sure all your deadlines are properly recorded and
 minimise any potential careless typo.
@@ -410,7 +410,7 @@ Example of usage:
 
 You should be able to see the lists of items (both tasks and events) containing the keyword “assignment”.
 
-Note: The above figure is for illustration purpose only. The desired output depends on the items stored in the program.
+Note: The above figure is for illustration purpose only. The desired output depends on the items stored in the application.
 
 ![tip_find](images/tip_find.PNG)
 
@@ -431,7 +431,7 @@ You should be able to see only the list of tasks containing the keyword “tuiti
 ![find_task_command](images/find_task_command.PNG)
 
 
-Note: The above figure is for illustration purpose only. The desired output depends on the tasks stored in the program.
+Note: The above figure is for illustration purpose only. The desired output depends on the tasks stored in the application.
 
 #### Finding an item from the event list: 
 
@@ -449,7 +449,7 @@ Example of usage:
 
 You should be able to see only the lists of events containing the keyword “09-Nov-2020”.
 
-Note: The above figure is for illustration purpose only. The desired output depends on the events stored in the program.
+Note: The above figure is for illustration purpose only. The desired output depends on the events stored in the application.
 
 
 ![tip_find_event](images/tip_find_event.PNG)
@@ -477,7 +477,7 @@ This marks the first task in the task list as important.
 ### Printing tasks:
 
 If you want to prioritize or delete some of the tasks on hand but cannot recall the task number as there are simply 
-too many tasks, you can always ask the program to print out all tasks saved in the program. 
+too many tasks, you can always ask _**25HoursADay**_ to print out all tasks saved in the application. 
 In this way, you can have a better picture of the tasks on hand! 
 
 Format: `print tasks`
@@ -491,8 +491,8 @@ differ if you have different tasks stored in the calendar list.
 
 ### Printing events:
 
-If you want to delete past events or to add additional information to a certain event, you can always ask the program 
-to display all events saved in the program. This feature will definitely save your brain space wasted on memorising them.
+If you want to delete past events or to add additional information to a certain event, you can always ask the application 
+to display all events saved in the application. This feature will definitely save your brain space wasted on memorising them.
 
 Format: `print events`
 
@@ -633,17 +633,17 @@ Format: `countdown deadlines`
 
 ### Saving the data
 
-When you close the program or you make some changes to the program such as adding an event, the data for the tasks and events 
+When you close the application or you make some changes to the application such as adding an event, the data for the tasks and events 
 are automatically saved locally. So, there is no need for users to save manually.
-Next time when you start the program, all the data will automatically be loaded from the local file to the program.
+Next time when you start the application, all the data will automatically be loaded from the local file to the application.
 
 ![saving_data](images/savingdata.png)
 
 ![warning_savingdata](images/warning_savingdata.png)
 
-### Exiting the program: 
+### Exiting the application: 
 
-If you want to exit the program, you can always type `bye` in the terminal to quit and all the data entered will be saved 
+If you want to exit the application, you can always type `bye` in the terminal to quit and all the data entered will be saved 
 automatically for your future use. 
 
 Format: `bye`
@@ -660,16 +660,16 @@ The questions and the answers to them can be found below.
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Download the program in the other computer and overwrite the empty data file it creates with the data from your 
+**A**: Download the application in the other computer and overwrite the empty data file it creates with the data from your 
 previous **_25HoursADay.jar_**.
 
 **Q**: Can I use **_25HoursADay_** on different operating systems like Linux, Windows, or macOS?  
 
 **A**: Yes, **_25HoursADay_** is compatible with Linux, Windows and macOS.
 
-**Q**: Will the data be saved if I accidentally close my program without typing the command bye?  
+**Q**: Will the data be saved if I accidentally close my application without typing the command bye?  
 
-**A**: Yes, the data will automatically be saved locally even when you close your program halfway.
+**A**: Yes, the data will automatically be saved locally even when you close your application halfway.
 
 **Q**: If I wrongly deleted my task, can I undo it?
 
@@ -706,4 +706,4 @@ using `add` command.
 |Print|timeline before a date|`print timeline date <date>`|
 |Print|timeline for the next 31 days|`print timeline month`|
 |Print|timeline for the next 7 days|`print timeline week`|
-|Quit|exit the program|`bye`|
+|Quit|exit the application|`bye`|
