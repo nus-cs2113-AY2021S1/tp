@@ -73,7 +73,9 @@ Shows all available commands to the user
 Format: `help`
 
 Example: `help`
+
 Output: 
+
    ![](images/user_guide/helpCommand.png)   
 <br/><br/>
 ### Creating a location: `create`
@@ -162,6 +164,14 @@ Output:
    
    ![](images/user_guide/onCommand2.png) 
 
+When Appliance is already ON, we can still change the Appliance's parameter:
+
+Example: `on AIRCON1 p/16`
+
+Output:
+
+   ![](images/user_guide/onCommand6.png) 
+   
 Example: `on FAN1 p/3`
 
 Output: 
