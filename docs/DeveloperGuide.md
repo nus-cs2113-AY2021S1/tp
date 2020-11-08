@@ -1,6 +1,5 @@
 # Developer Guide
 {:.no_toc}
-
 * Table of contents
 {:toc}
 
@@ -331,14 +330,20 @@ borrowed books tracking, and module-related functions. This increase users' effi
 Below are the steps required for manual testing of termiNus
 
 ### Initial launch and shutdown
-a. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) and copy the jar file to a new folder.
 
-b. Launch termiNus by typing `java -jar termiNus.jar` and press enter.
+1. Initial Launch
+    a. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) and copy the jar file to a new folder.
 
-c. To get a detailed description, refer to [User Guide](UserGuide.md).
+    b. Launch termiNus by typing `java -jar termiNus.jar` and press enter.
 
-d. Once testing is conducted, exit the program by entering `bye`.
+    c. To get a detailed description, refer to [User Guide](UserGuide.md).
 
-2. Capabilities 
+
+2. Shutdown 
+    a. Once testing is conducted, exit the program by entering `bye`.
+
+### Features and functions
+
+1. Add task function `add task`
 
     
