@@ -457,29 +457,12 @@ borrowed books tracking, and module-related functions. This increase users' effi
 
 ## Appendix: Instructions for manual testing
 Below are the steps required for manual testing of termiNus
-
-### Initial launch and shutdown
-
-1. Initial Launch
-    a. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) and copy the jar file to a new folder.
-
-    b. Launch termiNus by typing `java -jar termiNus.jar` and press enter.
-
-    c. To get a detailed description, refer to [User Guide](UserGuide.md).
-
-
-2. Shutdown 
-    a. Once testing is conducted, exit the program by entering `bye`.
-
-### Features and functions
-
 <!-- @@author Cao-Zeyu -->
-## Instructions for manual testing
-
 ### Launch and shutdown
 1. Initial launch
-    1. Download the jar file and copy to an empty folder.
-    2. Open a command line window in the same directory and type `java -jar termiNus.jar` to launch.
+    1. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) 
+    and copy the jar file to an empty folder.
+    2. Open a command line window in the same directory and launch termiNus by typing `java -jar termiNus.jar` and press enter.
 2. Shutdown
     1. Input `bye` to exit the program.
 
@@ -514,8 +497,8 @@ Below are the steps required for manual testing of termiNus
       Expected: the book `Harry Potter` is added to the book list with the loan date `10 Nov 2020` and due date 
       `10 Dec 2020`.
 6. Adding an expense item
-    - Test case: `spend ....`
-      Expected: ...
+    - Test case: `spend lunch v/4 currency/SGD date/2020-11-08`
+      Expected: a `4.00` `SGD` expense on `lunch` on `Sunday, November 8,2020` is added to the expense list.
       
 ### Creating module folders
 - Test case: `makefolders`
@@ -547,7 +530,11 @@ Below are the steps required for manual testing of termiNus
       Expected: the complete list of books is displayed.
 5. Displaying expenses
     - Test case: `list expenses`
-      Expected: the complete list of expenses is displayed.
+      Expected: the complete list of expenses is displayed, followed by the total expenses calculated for 
+      the current day, week, month, and year.
+    - Test case: `list expenses date/2020-11-09`
+      Expected: the list of expenses on `Sunday, November 8, 2020` is displayed, followed by the total expenses 
+      caculated for the given day.
 
 ### Deleting items
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
@@ -585,6 +572,11 @@ Prerequisite: list the desired item list using `list` command. Multiple items in
       Expected: the first expense in the expense list is deleted.
     - Test case: `delete expense 10`
       Expected: an error message is printed, since the expense index does not exist.
+    - Test case: `delete expenses date/2020-11-09`
+      Expected: all the expenses on `Sunday, November 8, 2020` are removed from the expense list.
+    - Test case: `delete expense date/2020-11-09`
+      Expected: an error message is printed indicating invalid index, since the delete command for expenses on a certain
+      day should be `expenses` instead of `expense` in the input.
 
 ### Marking an item as done
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
