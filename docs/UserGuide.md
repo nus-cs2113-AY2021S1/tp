@@ -8,7 +8,8 @@ Command Line Interface (CLI) while retaining benefits of a Graphical User Interf
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
 This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
-<br/><br/> 
+<br/>
+
 ## 2.0 About this Document
 
 Please take note of the symbols used throughout the document:
@@ -645,7 +646,8 @@ Format: load
 * You need to copy the different .txt files manually to the planner folder before entering this command.
 * This command only displays the common empty time slots between.
 
-<br/><br/> 
+<br/>
+
 <a name="addmeeting"></a>  
 #### 5.4.2. Add meeting: `add`  
 You can add modules, time slots and bookmarks using this feature.
@@ -657,7 +659,8 @@ Format: same as [add time slots](#addtimeslot) command.
 * Note that this command does not automatically store the newly added meeting to the .txt files. 
 * You will need to type `save` to save your changes.
 
-<br/><br/> 
+<br/>
+
 <a name="showplanner"></a>  
 #### 5.4.3. Show planner: `show`
 You will be able to see the empty time slots for a certain day or the whole week. 
@@ -680,10 +683,11 @@ Example of usage:
 
 Output:
 
+<img src="./images/showplannercommand.PNG" width="308" height="328" />
 ![](./images/showplannercommand.PNG)
 
+<br/>
 
-<br/><br/> 
 <a name="saveplanner"></a>  
 #### 5.4.4. Save planner: `save`  
 Saves the newly added slot(s) to each individual timetables.
