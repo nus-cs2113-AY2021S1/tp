@@ -12,6 +12,11 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class represents a reminder for a specific task, stores the time and timer needed to start a reminder.
+ * An instance of this object is automatically created when a Task object is created.
+ *
+ */
 public class Reminder {
     private LocalTime time;
     private boolean isOn;
@@ -41,7 +46,10 @@ public class Reminder {
         return timer;
     }
 
-
+    /**
+     * Starts a timer and sets a schedule to print a specific task at a specified time.
+     * @param task The task that is associated with the reminder.
+     */
     public void startReminder(Task task) {
         if (!getIsOn()) {
             return;
