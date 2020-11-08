@@ -766,12 +766,13 @@ Expected output:
 Grading your own work is one of the best ways to revise as it helps you effectively retain information.
 After adding the flashcards, you may wish to revise the content by testing yourself. 
 
+If you are unable to answer a question and wish to refer to the answer, use `show answer`.
 When you are done revising, use `back` to exit the test mode, and return to the flashcard main.
 
 Instruction:
 1. `test`
 2. Answer the questions as prompted
-3. `back`
+3. `show answer` / `back`
 
 Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
