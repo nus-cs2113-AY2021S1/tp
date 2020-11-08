@@ -20,11 +20,12 @@ import seedu.eduke8.ui.Ui;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_IOB_ERROR;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_NFE;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NEGATIVE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_INCORRECT_COMMAND;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NEGATIVE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_NFE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_IOB_ERROR;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
 
 /**
@@ -38,7 +39,6 @@ public class MenuParser implements Parser {
     private static final int LENGTH_OF_QUESTIONS_INDICATOR = 2;
     private static final int LENGTH_OF_TOPIC_INDICATOR = 2;
     private static final int LENGTH_OF_TIMER_INDICATOR = 2;
-    private static final int BOOKMARK_DELETE_COMMANDARR_LENGTH = 3;
     private static final String BOOKMARK_LIST = "listing";
     private static final String COMMAND_ABOUT = "about";
     private static final String COMMAND_HELP = "help";
@@ -47,11 +47,16 @@ public class MenuParser implements Parser {
     private static final String COMMAND_QUIZ = "quiz";
     private static final String COMMAND_NOTE = "note";
     private static final String COMMAND_BOOKMARK = "bookmark";
+    private static final String COMMAND_BOOKMARK_DELETE = "delete";
+    private static final String COMMAND_BOOKMARK_LIST = "list";
+    private static final int BOOKMARK_DELETE_COMMAND_ARR_SIZE = 3;
+    private static final int BOOKMARK_LIST_COMMAND_ARR_SIZE = 2;
     private static final String COMMAND_EXIT = "exit";
     private static final String COMMAND_STATS = "stats";
     private static final String COMMAND_NOTE_ADD = "add";
     private static final String COMMAND_NOTE_DELETE = "delete";
     private static final String COMMAND_NOTE_LIST = "list";
+
 
     private BookmarkList bookmarkList;
 
@@ -101,7 +106,7 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             int userTimer = 0;
-            if ((commandArr.length > 4 && (!commandArr[3].contains("/") || commandArr[4].equals("")))
+            if ((commandArr.length > 4 && (!commandArr[3].contains("/") || !commandArr[4].equals("")))
                     || commandArr.length < 4) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
@@ -133,17 +138,16 @@ public class MenuParser implements Parser {
                 if (userTimer < 1) {
                     return new IncorrectCommand(ERROR_QUIZ_TIMER_NEGATIVE);
                 }
-
                 LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
                 return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarkList, userTimer);
-
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark list command chosen.");
-            if (commandArr.length == BOOKMARK_DELETE_COMMANDARR_LENGTH) {
-                int deleteIndex = 0;
+            if (commandArr.length >= BOOKMARK_DELETE_COMMAND_ARR_SIZE
+                    && commandArr[1].trim().equalsIgnoreCase(COMMAND_BOOKMARK_DELETE)) {
+                int deleteIndex;
                 try {
                     deleteIndex = Integer.parseInt(commandArr[2]);
                     return new BookmarkCommand(deleteIndex, commandArr[1], bookmarkList);
@@ -154,11 +158,15 @@ public class MenuParser implements Parser {
                 } catch (IndexOutOfBoundsException iobe) {
                     return new IncorrectCommand(ERROR_BOOKMARK_DELETE_IOB_ERROR);
                 }
-            }
-            try {
-                return new BookmarkCommand(BOOKMARK_LIST, bookmarkList);
-            } catch (Eduke8Exception e) {
-                return new IncorrectCommand(e.getMessage());
+            } else if (commandArr.length >= BOOKMARK_LIST_COMMAND_ARR_SIZE
+                    && commandArr[1].trim().equalsIgnoreCase(COMMAND_BOOKMARK_LIST)) {
+                try {
+                    return new BookmarkCommand(BOOKMARK_LIST, bookmarkList);
+                } catch (Eduke8Exception e) {
+                    return new IncorrectCommand(e.getMessage());
+                }
+            } else {
+                return new IncorrectCommand(ERROR_BOOKMARK_INCORRECT_COMMAND);
             }
         case COMMAND_NOTE:
             try {
