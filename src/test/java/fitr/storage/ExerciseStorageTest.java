@@ -2,7 +2,6 @@ package fitr.storage;
 
 import fitr.calorie.Calorie;
 import fitr.exercise.Exercise;
-import fitr.exception.InvalidFileFormatException;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -11,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExerciseStorageTest {
     @Test
@@ -30,12 +28,13 @@ class ExerciseStorageTest {
     }
 
     @Test
-    public void loadExerciseList_invalidExerciseData_exceptionThrown() throws Exception {
+    public void loadExerciseList_invalidExerciseData_invalidDataRemoved() throws Exception {
         ExerciseStorage exerciseStorage = new ExerciseStorage("src/test/data/StorageTest/InvalidExerciseData.txt");
-        assertThrows(InvalidFileFormatException.class, exerciseStorage::loadExerciseList);
+        ArrayList<Exercise> actualExerciseList = exerciseStorage.loadExerciseList();
+        assertEquals(0, actualExerciseList.size());
     }
 
-    private ArrayList<Exercise> getValidExerciseList() throws ParseException {
+    private ArrayList<Exercise> getValidExerciseList() {
         ArrayList<Exercise> exerciseList = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         exerciseList.add(new Exercise("Test Exercise 1", new Calorie(500), LocalDate.parse("22/10/2020", formatter)));
