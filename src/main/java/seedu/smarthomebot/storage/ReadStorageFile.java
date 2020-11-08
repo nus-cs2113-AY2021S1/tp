@@ -8,8 +8,6 @@ import seedu.smarthomebot.data.appliance.type.Fan;
 import seedu.smarthomebot.data.appliance.type.Lights;
 import seedu.smarthomebot.data.appliance.type.SmartPlug;
 import seedu.smarthomebot.data.location.LocationList;
-import seedu.smarthomebot.logic.commands.exceptions.InvalidApplianceNameException;
-import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 import seedu.smarthomebot.storage.exceptions.FileCorruptedException;
 import seedu.smarthomebot.ui.TextUi;
 
@@ -18,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_TYPE_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_EMPTY_FILE;
@@ -37,7 +34,7 @@ public class ReadStorageFile extends StorageFile {
 
     public ReadStorageFile(String filePath, ApplianceList applianceList, LocationList locationList) {
         super(applianceList, locationList);
-        this.FILE_PATH = filePath;
+        FILE_PATH = filePath;
     }
 
     /**
@@ -46,8 +43,8 @@ public class ReadStorageFile extends StorageFile {
     @Override
     public void execute() {
         try {
-            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "FILE_PATH should be data/SmartHome.txt";
             int i = 0;
+            assert FILE_PATH.equals("data/SmartHomeBot.txt") : "FILE_PATH should be data/SmartHome.txt";
             File myFile = new File(FILE_PATH);
             Scanner myReader = new Scanner(myFile);
             String locationList =  myReader.nextLine();
@@ -76,6 +73,7 @@ public class ReadStorageFile extends StorageFile {
 
     /**
      * Method to read appliance from the storage file into ApplianceList.
+     *
      * @param numberOfAppliance Keep track of the number of appliance.
      * @param myReader Read each line in the .txt storage file into the program.
      */
@@ -128,6 +126,7 @@ public class ReadStorageFile extends StorageFile {
 
     /**
      * Method to read location from the storage file into LocationList.
+     *
      * @param location appliance location read from the .txt storage file.
      */
     private void readToLocationList(String location) throws FileCorruptedException {

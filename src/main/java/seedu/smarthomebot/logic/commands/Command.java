@@ -6,6 +6,8 @@ import seedu.smarthomebot.data.location.LocationList;
 
 import java.util.logging.Logger;
 
+//@@author zongxian-ctrl
+
 /**
  * Represent the parent of all command types.
  */
@@ -16,8 +18,6 @@ public abstract class Command {
     protected int maxNameLength = 0;
     protected int maxLocationLength = 0;
     public static Logger commandLogger = Logger.getLogger("SmartHomeBotLogger");
-
-    //@@author zongxian-ctrl
 
     protected Command() {
     }

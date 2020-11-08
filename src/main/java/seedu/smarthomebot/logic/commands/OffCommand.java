@@ -59,10 +59,10 @@ public class OffCommand extends Command {
             }
         } catch (ApplianceNotFoundException e) {
             if (locationList.isLocationCreated(argument)) {
-                commandLogger.log(Level.WARNING, "Unable to Off: There are no Appliances in \"" + argument + "\".");
+                commandLogger.log(Level.WARNING, "There are no Appliances in \"" + argument + "\".");
                 return new CommandResult("There are no Appliances in \"" + argument + "\".");
             } else {
-                commandLogger.log(Level.WARNING, "Unable to Off: " + MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+                commandLogger.log(Level.WARNING, MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
                 return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
             }
         }
@@ -70,12 +70,16 @@ public class OffCommand extends Command {
 
     /**
      * Method to off Appliance by the name.
+     *
+     * @throws ApplianceNotFoundException when keyed Appliance is not found in ApplianceList.
      */
     private CommandResult offByApplianceName() throws ApplianceNotFoundException {
         int toOffApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, true);
-        commandLogger.log(Level.INFO, "Appliance Off with output message: " + outputResult);
+        assert !outputResult.isEmpty() : "outputResult must contains String";
+        commandLogger.log(Level.INFO, outputResult);
+
         return new CommandResult(outputResult);
     }
 
@@ -85,7 +89,7 @@ public class OffCommand extends Command {
     private CommandResult offByLocation(ArrayList<Appliance> toOffAppliance) {
         offApplianceByLoop(toOffAppliance);
         String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
-        commandLogger.log(Level.INFO, "Location Off with output message: " + outputResult);
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 

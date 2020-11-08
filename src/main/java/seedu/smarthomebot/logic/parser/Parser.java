@@ -50,25 +50,25 @@ public class Parser {
     public Command parseCommand(String userInput) {
         String[] words = userInput.trim().split(" ", 2);
         final String commandWord = words[0];
-        final String arguments = StringUtils.replaceOnce(userInput, commandWord, "").trim();
+        final String argument = StringUtils.replaceOnce(userInput, commandWord, "").trim();
 
         switch (commandWord) {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case CreateCommand.COMMAND_WORD:
-            return prepareCreateCommand(arguments);
+            return prepareCreateCommand(argument);
         case RemoveCommand.COMMAND_WORD:
-            return prepareRemoveCommand(arguments);
+            return prepareRemoveCommand(argument);
         case AddCommand.COMMAND_WORD:
-            return prepareAddCommand(arguments);
+            return prepareAddCommand(argument);
         case DeleteCommand.COMMAND_WORD:
-            return prepareDeleteCommand(arguments);
+            return prepareDeleteCommand(argument);
         case OnCommand.COMMAND_WORD:
-            return prepareOnCommand(arguments);
+            return prepareOnCommand(argument);
         case OffCommand.COMMAND_WORD:
-            return prepareOffCommand(arguments);
+            return prepareOffCommand(argument);
         case ListCommand.COMMAND_WORD:
-            return prepareListCommand(arguments);
+            return prepareListCommand(argument);
         case UsageCommand.COMMAND_WORD:
             return new UsageCommand();
         case ResetCommand.COMMAND_WORD:
@@ -84,18 +84,18 @@ public class Parser {
     /**
      * Parses arguments for CreateCommand by checking if arguments is valid.
      *
-     * @param arguments parameter of CreateCommand.
+     * @param argument parameter of CreateCommand.
      * @return the prepared CreateCommand.
      */
-    private Command prepareCreateCommand(String arguments) {
+    private Command prepareCreateCommand(String argument) {
         try {
-            if (isEmptyInput(arguments)) {
+            if (isEmptyInput(argument)) {
                 throw new EmptyParameterException();
             }
-            if (hasIllegalCharacter(arguments)) {
+            if (hasIllegalCharacter(argument)) {
                 throw new IllegalCharacterException();
             }
-            return new CreateCommand(arguments);
+            return new CreateCommand(argument);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         } catch (IllegalCharacterException e) {
@@ -107,15 +107,15 @@ public class Parser {
     /**
      * Parses arguments for RemoveCommand by checking if arguments is valid.
      *
-     * @param arguments parameter of RemoveCommand.
+     * @param argument parameter of RemoveCommand.
      * @return the prepared RemoveCommand.
      */
-    private Command prepareRemoveCommand(String arguments) {
+    private Command prepareRemoveCommand(String argument) {
         try {
-            if (isEmptyInput(arguments)) {
+            if (isEmptyInput(argument)) {
                 throw new EmptyParameterException();
             }
-            return new RemoveCommand(arguments);
+            return new RemoveCommand(argument);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         }
@@ -125,13 +125,13 @@ public class Parser {
     /**
      * Parses arguments into AddCommand format.
      *
-     * @param arguments parameters of AddComand
-     * @return the prepared AddCommand
+     * @param argument parameters of AddComand.
+     * @return the prepared AddCommand.
      */
-    private static Command prepareAddCommand(String arguments) {
-        int indexLocation = arguments.indexOf("l/");
-        int indexPower = arguments.indexOf("w/");
-        int indexType = arguments.indexOf("t/");
+    private static Command prepareAddCommand(String argument) {
+        int indexLocation = argument.indexOf("l/");
+        int indexPower = argument.indexOf("w/");
+        int indexType = argument.indexOf("t/");
         String name;
         String location;
         String wattage;
@@ -139,10 +139,10 @@ public class Parser {
 
         try {
             if (indexLocation < indexPower && indexPower < indexType) {
-                name = arguments.substring(0, indexLocation).trim();
-                location = arguments.substring(indexLocation + 2, indexPower).trim();
-                wattage = arguments.substring(indexPower + 2, indexType).trim();
-                type = arguments.substring(indexType + 2).toLowerCase().trim();
+                name = argument.substring(0, indexLocation).trim();
+                location = argument.substring(indexLocation + 2, indexPower).trim();
+                wattage = argument.substring(indexPower + 2, indexType).trim();
+                type = argument.substring(indexType + 2).toLowerCase().trim();
 
                 if (isEmptyInput(name) | isEmptyInput(location)
                         | isEmptyInput(wattage) | isEmptyInput(type)) {
@@ -174,15 +174,15 @@ public class Parser {
     /**
      * Parses arguments for DeleteCommand by checking if arguments is valid.
      *
-     * @param arguments parameter of DeleteCommand.
+     * @param argument parameter of DeleteCommand.
      * @return the prepared DeleteCommand.
      */
-    private Command prepareDeleteCommand(String arguments) {
+    private Command prepareDeleteCommand(String argument) {
         try {
-            if (isEmptyInput(arguments)) {
+            if (isEmptyInput(argument)) {
                 throw new EmptyParameterException();
             }
-            return new DeleteCommand(arguments);
+            return new DeleteCommand(argument);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         }
@@ -194,23 +194,23 @@ public class Parser {
     /**
      * Parses arguments into OnCommand format.
      *
-     * @param arguments parameters of OnCommand
+     * @param argument parameters of OnCommand
      * @return the prepared OnCommand
      */
-    private static Command prepareOnCommand(String arguments) {
-        int indexParameter = arguments.indexOf("p/");
+    private static Command prepareOnCommand(String argument) {
+        int indexParameter = argument.indexOf("p/");
         String name;
         String parameter;
         try {
             if (indexParameter < 1) {
-                name = arguments;
+                name = argument;
                 if (isEmptyInput(name)) {
                     throw new EmptyParameterException();
                 }
                 parameter = "";
             } else {
-                name = arguments.substring(0, indexParameter).trim();
-                parameter = arguments.substring(indexParameter + 2).toLowerCase().trim();
+                name = argument.substring(0, indexParameter).trim();
+                parameter = argument.substring(indexParameter + 2).toLowerCase().trim();
                 if (isEmptyInput(name) || isEmptyInput(parameter)) {
                     throw new EmptyParameterException();
                 }
@@ -229,19 +229,19 @@ public class Parser {
     /**
      * Parses arguments into OffCommand format.
      *
-     * @param arguments parameters of OffCommand
+     * @param argument parameters of OffCommand
      * @return the prepared OffCommand
      */
-    private static Command prepareOffCommand(String arguments) {
+    private static Command prepareOffCommand(String argument) {
         try {
-            int indexParameter = arguments.indexOf("p/");
+            int indexParameter = argument.indexOf("p/");
             if (!(indexParameter < 0)) {
                 throw new ParameterFoundException();
             }
-            if (isEmptyInput(arguments)) {
+            if (isEmptyInput(argument)) {
                 throw new EmptyParameterException();
             }
-            return new OffCommand(arguments);
+            return new OffCommand(argument);
         } catch (EmptyParameterException e) {
             return new InvalidCommand(MESSAGE_EMPTY_PARAMETER);
         } catch (ParameterFoundException e) {
@@ -254,15 +254,15 @@ public class Parser {
     /**
      * Parses arguments into ListCommand format.
      *
-     * @param arguments parameters of ListCommand
+     * @param argument parameters of ListCommand
      * @return the prepared ListCommand
      */
-    private static Command prepareListCommand(String arguments) {
-        String[] str = arguments.split(" ");
+    private static Command prepareListCommand(String argument) {
+        String[] str = argument.split(" ");
         if (str[0].equals(LOCATION_TYPE)) {
             return new ListCommand(LOCATION_TYPE, "");
         } else if (str[0].equals(APPLIANCE_TYPE)) {
-            if (arguments.equals(APPLIANCE_TYPE)) {
+            if (argument.equals(APPLIANCE_TYPE)) {
                 return new ListCommand(APPLIANCE_TYPE, "");
             } else if (str[1].trim().startsWith("l/")) {
                 return new ListCommand(APPLIANCE_TYPE, str[1].trim().substring(2));

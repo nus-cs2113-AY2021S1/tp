@@ -178,9 +178,9 @@ Below is the list of commands available.
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Create.png)
 
-When the user enters the `create` command, the `prepareCreateCommand(arguments)` is called. 
-It will reject the input provided by the user if the `arguments` is empty or contain characters such as `/` or if the argument contains spaces in between. 
-If the arguments is not rejected, it will return and construct a new CreateCommand object with arguments as the parameter to be created.  
+When the user enters the `create` command, the `prepareCreateCommand(argument)` is called. 
+It will reject the input provided by the user if the `argument` is empty or contain characters such as `/` or ` \| ` or if the argument contains spaces in between. 
+If the argument is not rejected, it will return and construct a new CreateCommand object with argument as the parameter to be created.  
 
 For example: user input: `create bedroom1`. `prepareCreateCommand(bedroom1)` will return a new CreateCommand object to be executed to create the location `bedroom1` in the LocationList. 
 
@@ -188,9 +188,9 @@ For example: user input: `create bedroom1`. `prepareCreateCommand(bedroom1)` wil
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Remove.png)
 
-When the user enters the `remove` command, the `prepareRemoveCommand(arguments)` is called. 
-It will reject the input provided by the user if the `arguments` is empty. 
-If the arguments is not rejected, it will return a new RemoveCommand object with arguments as the parameter to be used to remove a location in the LocationList. 
+When the user enters the `remove` command, the `prepareRemoveCommand(argument)` is called. 
+It will reject the input provided by the user if the `argument` is empty. 
+If the argument is not rejected, it will return a new RemoveCommand object with argument as the parameter to be used to remove a location in the LocationList. 
 
 For example: user input: `remove bedroom1`. `prepareRemoveCommand(bedroom1)` will return and construct a new RemoveCommand object to be executed to remove the location `bedroom1` in the LocationList.  
 
@@ -198,18 +198,18 @@ For example: user input: `remove bedroom1`. `prepareRemoveCommand(bedroom1)` wil
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Add.png)
 
-When the user enters the `add` command, the `prepareAddCommand(arguments)` is called. 
+When the user enters the `add` command, the `prepareAddCommand(argument)` is called. 
 It will reject the input provided by the user if the l/[LOCATION_NAME] w/[WATTAGE] t/[APPLIANCE_TYPE] is not in this particular order. 
-If the `arguments` entered are in the right order, it will split and reject if any of the parameters entered by the user is empty. 
-Next, it will check to ensure that the [APPLIANCE_NAME] parameter does not contain characters such as `/` or spaces in between and [WATTAGE] is a valid int number from 1-9999. 
+If the `argument` entered are in the right order, it will split and reject if any of the parameters entered by the user is empty. 
+Next, it will check to ensure that the [APPLIANCE_NAME] parameter does not contain characters such as `/` or ` \| ` or spaces in between and [WATTAGE] is a valid int number from 1-9999. 
 If all these conditions are fulfilled, it will return and construct a new AddCommand object with name, location, wattage and type as the parameters to be used to add an appliance to the ApplianceList. 
 
 #### Sequence Diagram for `delete`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Delete.png)
 
-When the user enters the `delete` command, the `prepareDeleteCommand(arguments)` is called. 
-It will reject the input provided by the user if the `arguments` is empty. If the arguments is not rejected, it will return a new DeleteCommand object with arguments as the parameter to be used to delete an appliance from the ApplianceList. 
+When the user enters the `delete` command, the `prepareDeleteCommand(argument)` is called. 
+It will reject the input provided by the user if the `argument` is empty. If the argument is not rejected, it will return a new DeleteCommand object with arguments as the parameter to be used to delete an appliance from the ApplianceList. 
 
 For example: user input: `delete aircon1`. `prepareRemoveCommand(aircon1)` will return and construct a new DeleteCommand object to be executed to remove the location `aircon1` in the LocationList.  
 
@@ -218,22 +218,31 @@ For example: user input: `delete aircon1`. `prepareRemoveCommand(aircon1)` will 
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_On.png)
 
+When the user enters the ‘on’ command, the 
+`prepareOnCommand(argument)` is called. It will check if the user inputs a p/ for the argument. 
+
+The name can either be a Location, or an Appliance name. If there is a parameter, the program will then check if the command is an integer,
+if it isn’t an error is thrown. If there is no parameter inputted, an empty string. Finally, a new OnCommand(name,parameter) will be returned.
+
 #### Sequence Diagram for `off`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Off.png) 
+
+When the user enters the ‘on’ command, the 
+`prepareOffCommand(argument)` is called. The name can be an Appliance or a Location. A new OffCommand is created: OffCommand(name) and returned.
 
 #### Sequence Diagram for `list`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_List.png)<br><br>
 When the user enters the `list` command, the 
-`prepareListCommand(arguments)` is called. It will check if the argument contains “appliance’ or ‘location”.
-1. If the arguments contains “location”,  a new `ListCommand(LOCATION_TYPE, ““)` will be returned. 
+`prepareListCommand(argument)` is called. It will check if the argument contains “appliance’ or ‘location”.
+1. If the argument contains “location”,  a new `ListCommand(LOCATION_TYPE, ““)` will be returned. 
 
-2. If the arguments contains “appliance”, it will check if it contains a “l/” parameter. If it exist, it 
+2. If the argument contains “appliance”, it will check if it contains a “l/” parameter. If it exist, it 
 means there is a filteredLocation, thus a new `ListCommand(APPLIANCE_TYPE, filteredLocation)` will be returned.
 Else, a new `ListCommand(APPLIANCE_TYPE, ““)` will be returned.
 
-3. Any argument that does not contains “location” and “appliance” or contains “appliance” with a wrong 
+3. Any argument that do not contain “location” and “appliance” or contains “appliance” with a wrong 
 format will return a `InvalidCommand` class with their respective error messages. 
 
 #### Sequence Diagram for `commandword`
@@ -254,7 +263,7 @@ that will be executed to inform the user that it is a ‘Invalid Command Format�
 
 ### Command Component
 #### Help Command
-To see the help usage for the commands in SmartHomebot, the `HelpCommand` class is used. This class' object is 
+To see the help usage for the commands in SmartHomeBot, the `HelpCommand` class is used. This class' object is 
 first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()` 
 function called. When the `Main` class calls the `execute()` function, the `HelpCommand` 
 will then return a new `CommandResult` class (which stores the Help message)
@@ -479,7 +488,8 @@ The sequence diagram for `ReadStorageFile` is shown below:
 
 ### Target user profile
 
-Disabled Home Users who want to automate/monitor their home with smart home devices.
+Disabled individuals with mobility issues to perform tasks like switching On/Off Appliances at home. 
+While allowing them to automate/monitor their home with smart home devices.
 
 ### Value proposition
 
@@ -504,7 +514,7 @@ electricity price to calculate users’ utility bills. A backlog of the usage ca
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 appliances without a noticeable sluggishness in performance for typical usage.
 
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
@@ -523,22 +533,23 @@ electricity price to calculate users’ utility bills. A backlog of the usage ca
 
 *Launch and Shutdown*
 **Initial launch**
+
     i. Download the jar file from the latest release and copy into an empty folder
-    ii. Double-click the jar file
-        Expected: Shows the GUI with some welcome messages. The window size may not be optimum.
+    ii. Run the jar file with java -jar SmartHomeBot.jar
+        Expected: Shows the GUI with some welcome messages.
 
 *Creating a room and adds a new appliance*
 Creating a new location while it is not existed in the locations list
 Prerequisites: List all locations using the `list location` command. Making sure the name of the new location is not found in the list.
 
-Test case: `create bedroom`
-Expected-printout: Creating Location "bedroom".....CREATED!
+Test case: `create Bedroom`
+Expected-printout: Creating Location "Bedroom".....CREATED!
 
-Test case: `add coolx l/bedroom w/550 t/fan`
-Expected-printout: ADDING coolx(550W) in bedroom ......ADDED
+Test case: `add coolx l/Bedroom w/550 t/fan`
+Expected-printout: ADDING coolx(550W), located at Bedroom ......ADDED!
 
-Test case: `add coolx l/other_room w/550 t/fan`
+Test case: `add coolx l/other_room w/500 t/fan`
 Expected-printout: Location does not exist.
 
 Other incorrect wattage value used to try: `add coolx l/bedroom w/xyz t/fan` (where wattage has to be in valid integer value)
-Expected-printout: Please enter a valid numerical value.
+Expected-printout: Please enter a valid numerical value ranging from 1-9999 for the wattage.
