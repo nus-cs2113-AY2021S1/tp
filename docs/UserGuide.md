@@ -726,8 +726,9 @@ Expected output:
 If you encounter any errors, take note of the following warning.
 
 **Warning:**
-* “back” cannot be added as an answer for the flashcard.
-This is because “back” is used as a command to exit the test mode later on.
+* “back” and "show answer" cannot be added as an answer for the flashcard.
+This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
+respectively.
 If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 ![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
@@ -776,6 +777,10 @@ Instruction:
 
 Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+
+**Useful information:**
+* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
+the stored answer, the answer will be accepted as the right answer.
 
 ### 4.6 Finding relevant flashcards: `find`
 
