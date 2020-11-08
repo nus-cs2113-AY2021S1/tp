@@ -2,7 +2,7 @@
 
 
 ## **Introduction**
- ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
+ ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/zoomasterwhitebg.png) <br/><br/>
 ### Introduction to Zoomaster
 Zoomaster is a Java application for the Command Line. It provides a simple and intuitive way to store Zoom links for 
 online classes and other useful links for the lesson at hand.<br/>
@@ -100,7 +100,7 @@ These components interact with each other as shown in Figure 1.1 to execute the 
 <a name="initialization"></a>
 ### Initialization
 The diagram below shows a class-level diagram for Zoomaster. <br/></br>
-![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/inital.png) <br/></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/initial.png) <br/></br>
 *<center/> Figure 1.2 Class diagram of Initialization </center> <br/></br>*
 
 **API**:`Zoomaster.java`
@@ -522,19 +522,20 @@ deleting an object would also delete all objects contained in it.
 This feature allows the application to validate if the modules entered by the user 
 are existing NUS modules. This helps the user avoid erroneously adding modules from typos, 
 as the application might otherwise consider the input to be a new module (eg. When adding slots to 
-exisiting module CS2113T, a typo such as CS2113R would cause the application to add a new module 
+existing module CS2113T, a typo such as CS2113R would cause the application to add a new module 
 instead).
 
 This is done by retrieving a JSON file of existing NUS modules from NUSMods API. 
 The application will then convert the JSON file to an ArrayList of modules, which will be used to validate 
 modules entered by the user. The ArrayList is then stored locally so that subsequent runs of the application
 will be able to read from the local file instead, which allows the application to be loaded faster. 
-Below is a sequence diagram of the process of retrieving the module list.   
+Below is a sequence diagram of the process of retrieving the module list. Note that the alt block is informally used 
+to illustrate the try-catch block. 
 
 
 
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/loadModuleList/getModuleList.png)  
-*<center/> Figure 2.18 Sequence diagram for retrieving module list </center> <br/></br>*
+*<center/> Figure 2.19 Sequence diagram for retrieving module list </center> <br/></br>*
 
 <br></br>
 
@@ -584,7 +585,7 @@ This command will be sensitive to the current mode of the application. For examp
 Below is a sequence diagram of the extended HelpCommand.   
 
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/loadModuleList/helpCommandOverallDiagram.png)  
-*<center/> Figure 2.18 Sequence diagram for extended "HelpCommand" </center> <br/></br>*
+*<center/> Figure 2.20 Sequence diagram for extended "HelpCommand" </center> <br/></br>*
 
 <br></br>
 
@@ -622,7 +623,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.19 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.21 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 <a name="showsettings"></a>
 ### Show settings feature (Francisco)
@@ -642,7 +643,7 @@ the UserSettings object in the main Zoomaster class. It will then convert them i
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettingssequence.png)
-*<center/> Figure 2.20 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.22 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
 
 <a name="setsettings"></a>
 ### Set settings feature (Francisco)
@@ -660,7 +661,7 @@ Given below is an example usage scenario and how the `set` command works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
-*<center/> Figure 2.21 Sequence diagram for SetSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.23 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
 <!-- @@author -->
 
