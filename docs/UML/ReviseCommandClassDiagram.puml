@@ -85,7 +85,7 @@ ReviseCommand .up[LOGIC_COLOR_T4].> Chapter
 ReviseCommand .up[LOGIC_COLOR_T4].> Module
 ReviseCommand .down[LOGIC_COLOR_T4].> Storage
 Module *-left[MODEL_COLOR]-> "0..1" ChapterList
-ChapterList *-left[MODEL_COLOR]->"0..*" Chapter
+ChapterList *-left[MODEL_COLOR]->"*" Chapter
 Access *-left[MODEL_COLOR]>"0..1" Module
-
+Storage -down[HIDDEN]-> Ui
 @enduml
