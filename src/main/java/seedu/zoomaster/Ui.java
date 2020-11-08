@@ -10,9 +10,12 @@ import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
 import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
 import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
+import seedu.zoomaster.command.bookmark.EditBookmarkCommand;
 import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
 import seedu.zoomaster.command.planner.SavePlannerCommand;
+import seedu.zoomaster.command.settings.SetSettingsCommand;
+import seedu.zoomaster.command.settings.ShowSettingsCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
@@ -431,6 +434,15 @@ public class Ui {
             printYellow("Launches bookmarks for lessons happening at the current time" + NEW_LINE);
             printCyan("Format: launch now" + NEW_LINE);
             System.out.println(LINE);
+        } else if (input.equals(ShowSettingsCommand.SHOW_KW)) {
+            printYellow("Shows your Zoomaster's settings" + NEW_LINE);
+            printCyan("Format: showsettings" + NEW_LINE);
+            System.out.println(LINE);
+        } else if (input.equals(SetSettingsCommand.SET_KW)) {
+            printYellow("Set a setting to a new value" + NEW_LINE);
+            printCyan("Format: set {setting name} {new value}" + NEW_LINE);
+            printGreen("eg. set def_mode timetable" + NEW_LINE);
+            System.out.println(LINE);
         } else if (Parser.programMode == 1) {
             printModeOneExtendedHelp(input);
 
@@ -473,6 +485,13 @@ public class Ui {
                     + " or index " + NEW_LINE);
             printCyan("Format: launch {keyword} " + NEW_LINE
                     + "Format: launch {index} " + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case EditBookmarkCommand.EDIT_KW:
+            System.out.println(LINE);
+            printYellow("Edit a bookmark's description or URL" + NEW_LINE);
+            printCyan("Format: edit {desc/url} {index} {new value}" + NEW_LINE);
+            printGreen("eg. edit url 3 www.amazon.com" + NEW_LINE);
             System.out.println(LINE);
             break;
         default:
