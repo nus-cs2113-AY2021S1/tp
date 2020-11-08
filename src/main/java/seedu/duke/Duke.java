@@ -2,8 +2,13 @@ package seedu.duke;
 
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.constants.Logos;
+<<<<<<< HEAD
 import seedu.duke.database.FileFunctions;
 import seedu.duke.database.WritingsLoader;
+=======
+import seedu.duke.storage.FileFunctions;
+import seedu.duke.storage.WritingsLoader;
+>>>>>>> b1e1d27c13a25412051fcf3ad669a371d90b7b04
 import seedu.duke.user.User;
 import seedu.duke.writing.WritingList;
 
@@ -15,11 +20,19 @@ import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.extractCommandType;
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
+<<<<<<< HEAD
 import static seedu.duke.database.BunnyLoader.loadBunnyFile;
 import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
 import static seedu.duke.database.WordsLoader.loadWordsFile;
 import static seedu.duke.database.WritingsLoader.loadWritings;
 import static seedu.duke.database.WritingsLoader.recordListToFile;
+=======
+import static seedu.duke.storage.BunnyLoader.loadBunnyFile;
+import static seedu.duke.storage.UserSettingsLoader.loadUserSettings;
+import static seedu.duke.storage.WordsLoader.loadWordsFile;
+import static seedu.duke.storage.WritingsLoader.loadWritings;
+import static seedu.duke.storage.WritingsLoader.recordListToFile;
+>>>>>>> b1e1d27c13a25412051fcf3ad669a371d90b7b04
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.ui.UI.printAskForName;

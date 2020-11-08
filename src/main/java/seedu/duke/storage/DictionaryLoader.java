@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import java.util.ArrayList;
 

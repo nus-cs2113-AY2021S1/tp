@@ -1,7 +1,7 @@
 package seedu.duke.writinglist;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.database.ClearLoader;
+import seedu.duke.storage.ClearLoader;
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.writing.Poem;

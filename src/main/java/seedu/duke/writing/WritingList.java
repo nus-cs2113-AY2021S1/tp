@@ -1,7 +1,11 @@
 package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
+<<<<<<< HEAD
 import seedu.duke.database.FileFunctions;
+=======
+import seedu.duke.storage.FileFunctions;
+>>>>>>> b1e1d27c13a25412051fcf3ad669a371d90b7b04
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
 
@@ -37,6 +41,10 @@ import static seedu.duke.constants.FluffleMessages.TYPE_COMMAND_INSTRUCTION;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
+<<<<<<< HEAD
+=======
+import static seedu.duke.storage.WritingsLoader.recordListToFile;
+>>>>>>> b1e1d27c13a25412051fcf3ad669a371d90b7b04
 
 
 public class WritingList {

@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import seedu.duke.bunny.Bunny;
 import seedu.duke.ui.UI;
@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static seedu.duke.constants.FilePaths.DEFAULT_BUNNY_FILE_PATH;
 import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;

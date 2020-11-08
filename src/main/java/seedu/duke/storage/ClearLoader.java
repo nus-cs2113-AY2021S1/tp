@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
