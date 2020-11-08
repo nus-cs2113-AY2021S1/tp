@@ -27,8 +27,21 @@ return
 
 ":Fitr" -> ":EditEntryCommand" : execute()
 activate ":EditEntryCommand"
-":EditEntryCommand" -> ":EditEntryCommand" ++ : editExercise()
+":EditEntryCommand" -> ":EditEntryCommand" ++ : editExercise(exerciseList,\n arguments)
 return
+
+":EditEntryCommand" -> "<<class>>\n:Ui" ++ : printCustomMessage()
+return
+
+":EditEntryCommand" -> ":StorageManager" ++ : writeExerciseList(exerciseList)
+return
+
+":EditEntryCommand" -> ":StorageManager" ++ : writeFoodList(foodList)
+return
+
+":EditEntryCommand" -> ":StorageManager" ++ : writeGoalList(goalList)
+return
+
 ":EditEntryCommand" --> ":Fitr"
 deactivate ":EditEntryCommand"
 'To position the delete symbol below activation bar

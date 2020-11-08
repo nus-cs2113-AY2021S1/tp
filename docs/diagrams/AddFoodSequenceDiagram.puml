@@ -38,7 +38,7 @@ activate ":FoodList"
 |||
 return
 
-":AddFoodCommand" -> ":StorageManager" : writeFoodList()
+":AddFoodCommand" -> ":StorageManager" : writeFoodList(foodList)
 activate ":StorageManager"
 |||
 return
