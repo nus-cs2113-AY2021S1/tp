@@ -5,6 +5,8 @@ import fitr.user.User;
 
 import java.util.ArrayList;
 
+import static fitr.common.Messages.SYMBOL_YES;
+
 public class GoalList {
     private final ArrayList<Goal> goalList;
 
@@ -45,7 +47,7 @@ public class GoalList {
         GoalList incompletedGoalList = new GoalList();
 
         for (int i = 0; i < goalList.getSize(); i++) {
-            if (goalList.getGoal(i).getStatus(goalList.getGoal(i), foodList, exerciseList, user).equals("✓")) {
+            if (goalList.getGoal(i).getStatus(goalList.getGoal(i), foodList, exerciseList, user).equals(SYMBOL_YES)) {
                 completedGoalList.addGoal(goalList.getGoal(i));
             } else {
                 incompletedGoalList.addGoal(goalList.getGoal(i));

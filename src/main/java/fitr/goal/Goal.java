@@ -8,6 +8,7 @@ import fitr.user.User;
 import java.time.LocalDate;
 
 import static fitr.common.Messages.SYMBOL_NO;
+import static fitr.common.Messages.SYMBOL_PERCENTAGE;
 import static fitr.common.Messages.SYMBOL_YES;
 import static fitr.goal.CheckGoalStatus.checkGoalStatus;
 
@@ -44,17 +45,17 @@ public class Goal {
     }
 
     public String getStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
-        String rawStatus = checkGoalStatus(goalStatus, goal, foodList, exerciseList, user) + "%";
-        if (rawStatus.equals("0.0%") || rawStatus.equals(SYMBOL_NO + "%")) {
+        String rawStatus = checkGoalStatus(goalStatus, goal, foodList, exerciseList, user) + SYMBOL_PERCENTAGE;
+        if (rawStatus.equals("0.0" + SYMBOL_PERCENTAGE) || rawStatus.equals(SYMBOL_NO + SYMBOL_PERCENTAGE)) {
             return SYMBOL_NO;
-        } else if (rawStatus.equals("100.0%") || rawStatus.equals(SYMBOL_YES + "%")) {
+        } else if (rawStatus.equals("100.0" + SYMBOL_PERCENTAGE) || rawStatus.equals(SYMBOL_YES + SYMBOL_PERCENTAGE)) {
             return SYMBOL_YES;
         }
         return rawStatus;
     }
 
     public void markAsCompleted() {
-        this.goalStatus = "Y";
+        this.goalStatus = SYMBOL_YES;
     }
 
     public void setGoal(Goal goal, String goalStatus) {

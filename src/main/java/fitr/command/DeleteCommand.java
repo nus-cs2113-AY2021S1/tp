@@ -1,5 +1,6 @@
 package fitr.command;
 
+import fitr.common.DateManager;
 import fitr.exercise.Recommender;
 import fitr.exception.FitrException;
 
@@ -11,13 +12,13 @@ import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_FOOD;
 import static fitr.common.Commands.COMMAND_GOAL;
-import static fitr.common.Messages.ERROR_INVALID_FORMAT;
-import static fitr.common.Messages.ERROR_INVALID_INDEX;
+import static fitr.common.Messages.ERROR_INDEX_DOES_NOT_EXIST;
 import static fitr.common.Messages.ERROR_IN_FILE;
 
 public class DeleteCommand extends Command {
@@ -36,6 +37,7 @@ public class DeleteCommand extends Command {
             switch (type) {
             case COMMAND_EXERCISE: {
                 String deletionDate = command.split(" ")[1];
+                deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 ExerciseList exerciseList = listManager.getExerciseList();
                 boolean isValidDate = false;
                 int deletionIndex = Integer.parseInt(command.split(" ")[2]);
@@ -62,6 +64,7 @@ public class DeleteCommand extends Command {
             }
             case COMMAND_FOOD: {
                 String deletionDate = command.split(" ")[1];
+                deletionDate = LocalDate.parse(deletionDate, DateManager.formatter).format(DateManager.formatter);
                 FoodList foodList = listManager.getFoodList();
                 boolean isValidDate = false;
                 int deletionIndex = Integer.parseInt(command.split(" ")[2]);
@@ -99,7 +102,7 @@ public class DeleteCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError(ERROR_INVALID_INDEX);
+            Ui.printCustomError(ERROR_INDEX_DOES_NOT_EXIST);
         } catch (NumberFormatException e) {
             Ui.printCustomError("Sorry, index deletion must be a positive number");
         } catch (IOException e) {
