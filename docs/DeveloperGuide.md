@@ -435,9 +435,45 @@ but does not cause different functionality.
 
 **Logic Manager and Handler**
 
-`RecurringTracker`, like `EntryTracker`, utilizes 3 handlers - `CreateEntryHandler`, `EditEntryHandler` and `DeleteEntryHandler`.
+`RecurringTracker`, like `EntryTracker`, utilizes 3 handlers - `CreateEntryHandler`, `EditEntryHandler` and `RetrieveEntryHandler`.
 
+**`handleCreateEntry()`**
 
+* Entry creation is handled by `CreateEntryHandler`, who will create an empty RecurringEntry,
+call `ParamChecker` to verify validity of input, and set the relevant fields in the RecurringEntry.
+* Finally, it returns the filled entry back to RecurringTracker to add to the list.
+
+Below are the compulsory params; an Exception will be thrown by `CreateEntryHandler` if not all are present.
+* "-e" or "-i"
+* "/desc"
+* "/amt" 
+* "/day"
+
+Optional params are
+* "-auto"
+* "-notes"
+
+The following sequence diagram illustrates the process:
+
+![](uml_images/images_updated/recurringTrackerCreateEntrySeqDiagram.png)
+
+**`handleDeleteEntry()`**
+
+The only compulsory param is `/id`, the 1-based index of the item to delete.
+
+* Uses`RetrieveEntryHandler`, who will call `ParamChecker` to verify
+that a valid index was provided. 
+* The handler will then remove the entry at the given index
+by calling `entries#removeItemAtCurrIndex()`.
+
+**`handleEditEntry()`**
+
+Compulsory params are "/id" and at least one other param to edit 
+
+* `RetrieveEntryHandler` is first called to retrieve the entry to be edited, similar to what 
+occurs in `handleDeleteEntry().
+* `EditEntryHandler` is then called to operate on the given entry. The overall process is 
+similar to that of `handleCreateEntry()`.
 
 
 
@@ -726,12 +762,10 @@ terminated.
 # Product scope
 ## Target user profile
 
-Fresh computing graduates who are just starting to enter the workforce.
-* Have limited income/budget
-* Little experience in personal financial management
-* Busy juggling their various job applications and interview which might cause them to lose track of their expenditure/ 
-bill payments
-* First time drawing salary and lack experience in income tax filling
+* has a need to keep track of their expenditure and income
+* needs a tool to calculate interest earned and cashback amounts
+* prefers CLI over a GUI app
+* can type fast
 
 ## Value proposition
  
@@ -746,9 +780,9 @@ bill payments
 * Edit the budget (monthly)
 * Display the budget for that month
 
-**Bill Tracker**
-* Remind users of payment due dates
-* Monthly tracker for each individual bill, visualise trends in bill spending
+**Recurring Expenditure/Income**
+* Keep track of expenditure/income that occur on a monthly basis e.g. bills and income
+* Remind users of upcoming entries, e.g. a bill payment which is due tomorrow
 
 **Finance Tools**
 * Calculate simple interest
@@ -768,6 +802,9 @@ bill payments
 |v1.0|user|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
 |v1.0|user|set income goal for 1 year|know how much I have saved and did I reach my saving target|
 |v1.0|user|know my goal status everytime I made an entry|saved the hassle to go to goal tracker just to check the progress|
+|v1.0|user|add a recurring entry||
+|v1.0|user|edit a recurring entry|update details of existing entries without having to re-enter everything|
+|v1.0|user|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
 |v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
 |v2.0|user|store account or card information|refer to account features such as interest rate any time|
 |v2.0|user|compare my calculations with different interest rate|decide which account is better|
@@ -775,6 +812,7 @@ bill payments
 |v2.0|user|set income goal for specific month|know exactly which month I manage to saved up to my target goal|
 |v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
 |v2.0|user|display expense/income goal for specific month|keep track of my progress|
+|v2.0|user|view upcoming recurring entries|keep track of bill payment dates and prevent late payments|
 
 # Non-Functional Requirements
 
@@ -936,49 +974,63 @@ removed from the list.
 ## RecurringTracker
 1. Enter `recur` in the Main Menu. You should see the following:
 ![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
+
 **Show Command List** <br />
-1. Enter `commands`. Output:
+1. Enter `commands`. Output: <br />
 ![](developerGuide_images/screenshots_recurringtracker/commands.png)
+
 **Testing Add Entry** <br />
-**Positive Test 1: Normal Entry** <br />
-1. Enter `add -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
+
+**Positive Test 1: Normal Entry** <br/>
+1. Enter `new -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_all_months.png)
 
 **Entry with special day of month** <br />
-1. Enter `add -e /desc Drinks /amt 58.45 /day 31`. Output:
+1. Enter `new -e /desc Drinks /amt 58.45 /day 31`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_day_31.png)
 
 **Negative Test** <br />
-1. Enter `add /desc OIH()(&%* /amt 343243`. Output:
+1. Enter `new /desc OIH()(&%* /amt 343243`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_no_day_i&e.png)
 
 **Testing List Entries** <br />
-* The following testing guide assumes that the testing of show command list is completed. <br />
+* The following testing guide assumes that the testing above has been completed. <br />
 Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/list.png)
 
 **Testing Edit Entry** <br />
-* The following testing guide assumes that the testing of show command list is completed. <br />
+* The following testing guide assumes that the testing above has been completed. <br />
 **Positive Test** <br />
-1. Enter `edit /id 1 /day 29 -i`. Output:
+1. Enter `edit /id 1 /day 29 -i`. Output:<br />
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
 1. Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
 
 **Negative Test: No Params to Edit** <br />
+
 1. Enter `edit /id 1`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
 <br />
+
 **Negative Test: No Such Index** <br />
+
 1. Enter `edit /id 4 /desc Hello Bubble`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
 
 **Testing Delete Entry** <br />
-* The following testing guide assumes that the testing of show command list is completed. <br />
-1. Enter `delete /id 2`. Output:
+* The following testing guide assumes that all testing above has been completed. <br />
+
+1. Enter `delete /id 1`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/delete_entry.png)
+
 1. Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
 
 **Testing Reminders** <br />
