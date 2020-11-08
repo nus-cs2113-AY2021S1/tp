@@ -63,7 +63,7 @@ public class Ui {
             + System.lineSeparator() + "6) bookmark list / bookmark delete"
             + System.lineSeparator() + "7) stats"
             + System.lineSeparator() + "8) note add / note delete / note list"
-            + System.lineSeparator() + "9) exit (saves your data too!)";
+            + System.lineSeparator() + "9) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
             + System.lineSeparator() + "Hope you have learnt something new!"
