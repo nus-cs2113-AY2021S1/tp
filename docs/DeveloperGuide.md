@@ -299,7 +299,7 @@ The command is executed in the following steps:
 1. The user calls `Parser#setUserInput(<UserInput>)` by entering the command `/bus <bus stop>`. The new user input is updated.
 2. `Parser#extractType()` is called to instantiate `BusCommand` and run the user command.
 3. `BusCommand#similarLocations()` is self invoked and calls `SimilarityCheck#similarLoc()` which returns an arraylist of possible location.
-4. If `SimilarityCheck#similarLoc()` returns an empty array list, `BusStops#findBusStop()` is called.
+4. `BusCommand#setBusStop()` is self invoked in which, if `SimilarityCheck#similarLoc()` returns an empty array list, `BusStops#findBusStop()` is called.
     - If `SimilarityCheck#similarLoc()` returns non-empty array list, `Ui#printPossibleLocsMessage()` is called and an exception is thrown.
     - If `BusStops#findBusStop()` returns null, an exception is thrown.
 5. `BusCommand#executeCommand()` is called.
