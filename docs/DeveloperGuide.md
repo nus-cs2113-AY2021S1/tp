@@ -70,7 +70,7 @@ The **main component** of Study It helps user access each of these components.
 It processes the user input, provides general functionalities to traverse the software and other
 helpful functionalities. This will be further explained under Study It's design later.
 
-### **Architecture**
+### Architecture
 This section describes the overall architecture of Study It.
 
 ![Architecture Diagram](Images/ArchitectureDiagrams/architecture.png)
@@ -112,6 +112,8 @@ User can switch between these modes at any point when using the software.
 
 **How the architecture components interact with each other**
 
+The following sequence diagram shows the interactions within the software when command is received from the user
+
 ![Sequence Overview](Images/ArchitectureDiagrams/overviewsequence.png)
 
 As shown in the sequence diagram above, the user will interact with Study It via the User Interface (UI).
@@ -120,7 +122,11 @@ general commands, it'll be processed and provide output. Otherwise, the command 
 to different components to be processed based on the software's current mode. 
 
 ### **Main Component**
-This section will give an overview of the main component of Study It
+
+This section will give an overview of the main component of Study It.
+
+The following class diagram shows the components related to the main Study It component and their respective
+details.
 
 ![Main Component Diagram](Images/MainComponentDiagrams/maincomponent.png)
 
@@ -187,7 +193,7 @@ in Bookmark mode.
 
 ![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand_Sequence.png)
 
-###Timetable Component
+### **Timetable Component**
 
 This section will describe in detail how some features inside the timetable section have been 
 implemented.
