@@ -156,6 +156,7 @@ public class AddCommand extends Command {
                     throw new TimeErrorException("Something is wrong with the time!");
                 }
             }
+            logger.fine("Timetable event successfully added.");
         } else {
             throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Timetable event!");
         }
@@ -184,6 +185,7 @@ public class AddCommand extends Command {
                     assert localDate != null : "date is not detected after parsing";
                     data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate));
                 } catch (DateErrorException e) {
+                    logger.warning("DateErrorException encountered -- Personal date is not in the correct format");
                     throw new DateErrorException("Something is wrong with the date!");
                 }
             } else {
@@ -194,11 +196,14 @@ public class AddCommand extends Command {
                     assert localTime != null : "time is not detected after parsing";
                     data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
+                    logger.warning("DateErrorException encountered -- Personal date is not in the correct format");
                     throw new DateErrorException("Something is wrong with the date!");
                 } catch (TimeErrorException e) {
+                    logger.warning("TimeErrorException encountered -- Personal time is not in the correct format");
                     throw new TimeErrorException("Something is wrong with the time!");
                 }
             }
+            logger.fine("Personal event successfully added.");
         } else {
             throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Personal event!");
         }
@@ -229,8 +234,10 @@ public class AddCommand extends Command {
                     data.addToEventList("Zoom", new Zoom(argumentWords[0].trim(),
                             argumentWords[1].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
+                    logger.warning("DateErrorException encountered -- Zoom date is not in the correct format");
                     throw new DateErrorException("Something is wrong with the date!");
                 } catch (TimeErrorException e) {
+                    logger.warning("TimeErrorException encountered -- Zoom time is not in the correct format");
                     throw new TimeErrorException("Something is wrong with the time!");
                 }
             }

@@ -101,6 +101,7 @@ class ExtractCommandTest {
                             + "with no quotation marks and press enter once more." + System.lineSeparator()
                             + "_________________________________" + System.lineSeparator()
                             + "No date detected for this text body!" + System.lineSeparator()
+                            + "No timing detected for this text body!" + System.lineSeparator()
                             + "Since no date was detected in the text body, "
                             + "the personal event will only contain the description." + System.lineSeparator()
                             + "You have successfully added this event to your list!" + System.lineSeparator()
@@ -271,6 +272,7 @@ class ExtractCommandTest {
                             + " https://nus-sg.zoom.us/j/9290988107?pwd=dDZSQ0lTa0loaTRPc1F1d01hbWVFZz09"
                             + System.lineSeparator()
                             + "No date detected for this text body!" + System.lineSeparator()
+                            + "No timing detected for this text body!" + System.lineSeparator()
                             + "Since no date was detected in the text body,"
                             + " the zoom event will only contain the description and zoom link."
                             + System.lineSeparator()
