@@ -45,14 +45,14 @@ Given below are my contributions to the project.
     [#87](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/87),
     [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
     * Designed Nav@NUS logo used in user guide and developer guide.
-    ([#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
-    * Added sections on introduction and quick start. (Pull request[#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
+    (Pull request [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
+    * Added sections on introduction and quick start. (Pull request [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
   
   * Developer Guide:
     * Added implementation details, class diagrams and sequence diagrams for the `/routemap`, `/deletefav` and `/reset`
      features. (Pull requests [#116](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/116), 
      [#213](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/213)) 
-     * Updated target user profile and value proposition. (Pull request[#91](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/91))
+     * Updated target user profile and value proposition. (Pull request [#91](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/91))
      
 
 * **Community**:
