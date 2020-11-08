@@ -19,7 +19,7 @@ public class LedgerList extends ItemList {
      * @throws ItemNotFoundException When there is no ledger for that date
      */
     public int getIndexFromDate(LocalDate date) throws ItemNotFoundException {
-        for (int i = 0; i < super.getItemsSize(); i++) {
+        for (int i = 0; i < super.getListSize(); i++) {
             Ledger ledger = (Ledger) super.items.get(i);
             if (ledger.getDate().equals(date)) {
                 return i;
@@ -32,10 +32,10 @@ public class LedgerList extends ItemList {
     public void printList() {
         TablePrinter.setTitle("List of Ledgers");
         TablePrinter.addRow("Ledger Number;Ledger Date");
-        if (super.getItemsSize() == 0) {
+        if (super.getListSize() == 0) {
             TablePrinter.addRow("No ledgers created;               ");
         } else {
-            for (int i = 0; i < super.getItemsSize(); i++) {
+            for (int i = 0; i < super.getListSize(); i++) {
                 TablePrinter.addRow(String.format("%s;%s", i + 1, this.items.get(i)));
             }
         }

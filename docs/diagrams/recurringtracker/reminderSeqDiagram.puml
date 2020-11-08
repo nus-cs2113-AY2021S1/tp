@@ -1,13 +1,14 @@
 @startuml
 autoactivate on
 
-":FinanceIt" -> "<<class>>\nMenuPrinter"
-    "<<class>>\nMenuPrinter" -> "<<class>>\nReminderListGenerator": generateListOfRemindersAsStrings()
+":FinanceIt" -> "<<class>>\nReminderPrinter"
+    "<<class>>\nReminderPrinter" -> "<<class>>\nReminderListGenerator": generateListOfRemindersAsStrings()
         "<<class>>\nReminderListGenerator" -> "<<class>>\nRunHistory": getCurrentDayOfMonth();
         return currentDayOfMonth
         "<<class>>\nReminderListGenerator" -> "<<class>>\nRunHistory": getNumOfDaysInCurrentMonth();
         return lastDayOfMonth
 
+        note over "<<class>>\nReminderListGenerator": ggdfdf
         alt isOverflowToNextMonth == false
             "<<class>>\nReminderListGenerator" -> "allRecurringEntries:RecurringEntriesList": getEntriesFromDayXtoY(currentDay, dayToRemindUntil)
             return entriesToRemind
@@ -24,12 +25,10 @@ autoactivate on
 
         end
     return remindersToPrint
-    "<<class>>\nMenuPrinter" -> "<<class>>\nUiManager": printWithStatusIcon(\nPrintType.//REMINDER//, \nremindersToPrint)
 return
 
 box "UI" #Pink
-participant "<<class>>\nMenuPrinter"
-participant "<<class>>\nUiManager"
+participant "<<class>>\nReminderPrinter"
 endbox
 
 box "Logic" #LightBlue

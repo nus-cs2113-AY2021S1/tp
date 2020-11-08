@@ -17,8 +17,12 @@ public class RecurringTracker {
     static String DirectoryMainMenu = "[ MAIN_MENU -> RECURRING_TRACKER ]";
     static RecurringEntryList entries = new RecurringEntryList();
 
-    public static RecurringEntryList getRecurringEntryList() {
+    public static RecurringEntryList getEntries() {
         return entries;
+    }
+
+    public static void loadEntry(CommandPacket packet) {
+        handleNewEntry(packet);
     }
 
     public static void execute() {
@@ -55,20 +59,12 @@ public class RecurringTracker {
         } while (!endTracker);
     }
 
-    public static RecurringEntryList getEntries() {
-        return entries;
-    }
-
-    public static void loadEntry(CommandPacket packet) {
-        handleNewEntry(packet);
-    }
-
     public static RecurringEntry handleNewEntry(CommandPacket packet) {
         RecurringEntry entry = null;
         CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
         try {
             createEntryHandler.handlePacket(packet);
-            entry = createEntryHandler.getCurrEntry();
+            entry = createEntryHandler.getEntry();
             entries.addItem(entry);
             String entryName = entry.getName();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
@@ -109,7 +105,7 @@ public class RecurringTracker {
         return entry;
     }
 
-    static RecurringEntry handleEditEntry(CommandPacket packet) {
+    public static RecurringEntry handleEditEntry(CommandPacket packet) {
         RecurringEntry entry = null;
         RetrieveEntryHandler retrieveEntryHandler = RetrieveEntryHandler.getInstance();
         EditEntryHandler editEntryHandler = EditEntryHandler.getInstance();

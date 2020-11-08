@@ -113,7 +113,7 @@ public class SaveManager {
         System.out.println(ManualTracker.getLedgerList());
         ManualTracker.getLedgerList().removeAllItems();
         EntryTracker.getEntryList().removeAllItems();
-        RecurringTracker.getRecurringEntryList().removeAllItems();
+        RecurringTracker.getEntries().removeAllItems();
     }
 
     private static void listSaves(CommandPacket packet) {

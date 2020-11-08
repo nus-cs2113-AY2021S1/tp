@@ -19,10 +19,14 @@ rectangle Storage {
 rectangle Model {
         rectangle Data {
 
-        class Item {
+        class Item <<abstract>> {
+            setIndex()
+            getIndex()
         }
 
         class XYZItem {
+            getName()
+            toString()
         }
 
         class AccountStorage {
@@ -33,28 +37,32 @@ rectangle Model {
     }
     rectangle DataList {
 
-        class XYZItemList{
+        class XYZItemList {
         }
 
-        class ItemList{
+        class ItemList <<abstract>> {
+            items: ArrayList<Item>
+            addItem()
+            addItemAndSort()
+            removeAllItems()
         }
 
     }
 
 }
-ItemList -|> XYZItemList
+ItemList <|- XYZItemList
 XYZItem --|> Item
-XYZItemList --> "*" XYZItem #line:red;text:red : contains >
+XYZItemList o--> "*" XYZItem #line:red;text:red : contains >
 
 rectangle "       \nLogicManagers\n         " {
 }
 
 
-"       \nLogicManagers\n         " --> "1" XYZItemList #line:red;text:red : keeps track \nof items with >
+"       \nLogicManagers\n         " --> "1" XYZItemList #line:red;text:red : keeps track \nof items using >
 "       \nLogicManagers\n         " --> "*" AccountStorage : Manages >
 "       \nLogicManagers\n         " --> "*" Goal : Manages >
 
-Storage ..> XYZItemList #line:green;text:green : < Saves and Loads LedgerList
-Storage ..> Goal #line:green;text:green : < Saves and Loads Goal
+Storage ..> XYZItemList #line:green;text:green : > Saves and loads
+Storage ..> Goal #line:green;text:green : > Saves and Loads Goal
 
 @enduml
