@@ -1,5 +1,7 @@
 package fitr.common;
 
+import fitr.ui.Ui;
+
 /**
  * Container for user visible messages.
  */
@@ -12,6 +14,17 @@ public class Messages {
     public static final String MESSAGE_SUGGEST_QUESTION = "What can I do for you?";
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
     public static final String PHRASE_EXTRA_PARAMETERS = "Extra parameters";
+
+    //Common strings
+    public static final String LINE_BREAK = System.lineSeparator();
+    public static final String SPACE_STRING = " ";
+    public static final String EMPTY_STRING = "";
+    public static final String OPEN_SQUARE_BRACKET = "[";
+    public static final String CLOSE_SQUARE_BRACKET = "]";
+    public static final String DASH = "-";
+    public static final String COLOURED_FORMAT_STRING = "\033[0;32mFormat: \033[0m";
+    public static final String SEPARATOR_LINE = DASH.repeat(136);
+
     //Format messages
     public static final String FORMAT_FOOD = "food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]";
     public static final String FORMAT_EXERCISE = "exercise NAME_OF_EXERCISE /CALORIES_BURNT";
@@ -72,7 +85,6 @@ public class Messages {
     public static final String HEIGHT_OUTPUT_HEADER = "Height (in m): ";
     public static final String WEIGHT_OUTPUT_HEADER = "Weight (in kg): ";
     public static final String FITNESS_OUTPUT_HEADER = "Your fitness level: ";
-    public static final String LINE_BREAK = "\n";
     public static final String MALE_SYMBOL = "M";
     public static final String FEMALE_SYMBOL = "F";
     public static final String MALE_STRING = "Male";
@@ -82,12 +94,19 @@ public class Messages {
     public static final String NORMAL_STRING = "Normal";
     public static final String NULL_STRING = "NULL";
 
+    //Error messages
     public static final String ERROR_INVALID_FORMAT = "Sorry, you have keyed in an invalid format!";
     public static final String ERROR_INVALID_COMMAND = "Sorry, this is an invalid command!";
     public static final String ERROR_IN_FILE = "Sorry, there is an error in the file.";
     public static final String ERROR_INVALID_CALORIE = "Sorry, invalid calorie amount entered.";
     public static final String ERROR_FORMAT_MESSAGE = "Please input in the correct format!";
-    public static final String ERROR_INVALID_INDEX = "Sorry, that index does not exist in the list";
+    public static final String ERROR_INDEX_DOES_NOT_EXIST = "Sorry, that index does not exist in the list";
+    public static final String ERROR_INVALID_INDEX = "Invalid index entered!";
+    public static final String ERROR_INVALID_GOAL_TYPE = "Invalid goal type!";
+    public static final String ERROR_GOAL_LESS_THAN_UPPERBOUND = "Invalid value for target calories. "
+            + "Please enter an amount between 0 and 100000.";
+    public static final String ERROR_GOAL_MORE_THAN_UPPERBOUND = "Invalid value for target calories. "
+            + "Please enter an amount between 0 (inclusive) and 100000.";
 
     //ViewCommand class messages
     public static final String EMPTY_FOOD_LIST = "The food list is empty...";
@@ -103,8 +122,6 @@ public class Messages {
     public static final String NET_CALORIE_HEADER = "Net calorie:";
     public static final String BMI_HEADER = "Your BMI is: ";
     public static final String USER_PROFILE_HEADER = "User profile:";
-    public static final String OPEN_SQUARE_BRACKET = "[";
-    public static final String CLOSE_SQUARE_BRACKET = "] ";
     public static final String FOOD_HEADER = "Food: ";
     public static final String QUANTITY_HEADER = "Quantity: ";
     public static final String EXERCISE_HEADER = "Exercise: ";
@@ -113,7 +130,6 @@ public class Messages {
     public static final String DATE_HEADER = "Date: ";
     public static final String BURNT_CAL_HEADER = "Burnt Cal: ";
     public static final String INTENSITY_CAL_HEADER = "Intensity: ";
-    public static final String EMPTY_STRING = "";
     public static final String ERROR_INVALID_DATE = "Sorry, please enter a correct date in the format dd/MM/yyyy";
     public static final String NO_RECORDS_FOUND = "No records found!";
 
@@ -138,16 +154,34 @@ public class Messages {
     public static final String SYMBOL_NO = "N";
     public static final String SYMBOL_EXERCISE = "E";
     public static final String SYMBOL_FOOD = "F";
+    public static final char SYMBOL_MORE_THAN = '>';
+    public static final char SYMBOL_LESS_THAN = '<';
+    public static final String SYMBOL_PERCENTAGE = "%";
+
+    //Smart goal texts
     public static final String KEYWORD_FOOD_MORE_THAN = "Eat more than ";
     public static final String KEYWORD_FOOD_LESS_THAN = "Eat less than ";
     public static final String KEYWORD_EXERCISE_MORE_THAN = "Burn more than ";
     public static final String KEYWORD_EXERCISE_LESS_THAN = "Burn less than ";
-    public static final String ECHO_ADDED_GOAL = "Okay! The following goal has been added: \n\t[";
+    public static final String KEYWORD_EAT = "Eat";
+    public static final String KEYWORD_BURN = "Burn";
+    public static final String KEYWORD_MORE = "more";
+    public static final String KEYWORD_LESS = "less";
+    public static final String KEYWORD_THAN = "than";
+    public static final String KEYWORD_CALORIE = "calorie";
+    public static final String KEYWORD_CALORIES = "calories";
+    public static final String PHRASE_MORE_THAN = "more than";
+    public static final String PHRASE_LESS_THAN = "less than";
+    public static final String PHRASE_SMART_EXERCISE_GOAL = "Smart exercise goal";
+    public static final String PHRASE_SMART_FOOD_GOAL = "Smart food goal";
 
+    public static final String ECHO_ADDED_GOAL = "Okay! The following goal has been added: \n\t[";
     public static final String ECHO_ADDED_EXERCISE = "The following exercise has been added:";
     public static final String ECHO_ADDED_FOOD = "The following food has been added:\n";
     public static final String EXERCISE_NAME_HEADER = "Name of Exercise: ";
     public static final String FOOD_NAME_HEADER = "Name of Food: ";
+
+    //Tip messages
     public static final String VIEW_FOOD_TIP = "Tip: You may also view food entries by day using the format "
             + "\"view food dd/MM/yyyy\"";
     public static final String VIEW_EXERCISE_TIP = "Tip: You may also view exercise entries by day using the format "
@@ -156,6 +190,6 @@ public class Messages {
             + "\"view summary dd/MM/yyyy\"";
     public static final String ADD_SMART_FOOD_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
             + "\"" + FORMAT_SMART_FOOD_GOAL + "\"";
-    public static final String ADD_SMART_EXERCISE_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
-            + "\"" + FORMAT_SMART_EXERCISE_GOAL + "\"";
+    public static final String ADD_SMART_EXERCISE_GOAL_TIP = "Tip: You may also add a smart exercise goal using "
+            + "the format \"" + FORMAT_SMART_EXERCISE_GOAL + "\"";
 }

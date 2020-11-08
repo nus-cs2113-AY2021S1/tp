@@ -4,6 +4,7 @@ import fitr.exercise.Exercise;
 import fitr.food.Food;
 import fitr.goal.Goal;
 import fitr.storage.StorageManager;
+import fitr.user.User;
 
 import java.io.IOException;
 
@@ -12,10 +13,10 @@ public class ListManager {
     private final FoodList foodList;
     private final GoalList goalList;
 
-    public ListManager(StorageManager storageManager) throws IOException {
+    public ListManager(StorageManager storageManager, User user) throws IOException {
         exerciseList = new ExerciseList(storageManager.loadExerciseList());
         foodList = new FoodList(storageManager.loadFoodList());
-        goalList = new GoalList(storageManager.loadGoalList());
+        goalList = new GoalList(storageManager.loadGoalList(foodList, exerciseList, user));
     }
 
     public void addExercise(Exercise exercise) {

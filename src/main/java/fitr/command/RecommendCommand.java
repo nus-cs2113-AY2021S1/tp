@@ -14,7 +14,6 @@ import fitr.user.User;
 import fitr.exercise.Exercise;
 
 import java.io.IOException;
-import java.lang.invoke.SwitchPoint;
 import java.util.ArrayList;
 
 import static fitr.common.DateManager.getCurrentDate;
@@ -26,6 +25,7 @@ import static fitr.common.Messages.EXERCISE_HEADER;
 import static fitr.common.Messages.INTENSITY_CAL_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
 import static fitr.common.Messages.SPACE_FORMATTING;
+import static fitr.common.Messages.SPACE_STRING;
 
 public class RecommendCommand extends Command {
     public RecommendCommand(String command) {
@@ -49,7 +49,7 @@ public class RecommendCommand extends Command {
                         * standardExercise.getSets().get(fitnessLevel)
                         * user.getWeight())
                         / 60;
-                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + (i + 1) + CLOSE_SQUARE_BRACKET
+                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + (i + 1) + CLOSE_SQUARE_BRACKET + SPACE_STRING
                         + EXERCISE_HEADER + recommendList.getExercise(i).getName()
                         + SPACE_FORMATTING + INTENSITY_CAL_HEADER
                         + recommendList.getExercise(i).getSets().get(fitnessLevel) + " sets of "
@@ -74,7 +74,7 @@ public class RecommendCommand extends Command {
                             * standardExercise.getSets().get(fitnessLevel)
                             * user.getWeight())
                             / 60);
-                    Ui.printCustomMessage(OPEN_SQUARE_BRACKET + (i + 1) + CLOSE_SQUARE_BRACKET
+                    Ui.printCustomMessage(OPEN_SQUARE_BRACKET + (i + 1) + CLOSE_SQUARE_BRACKET + SPACE_STRING
                             + EXERCISE_HEADER + standardExercise.getName()
                             + SPACE_FORMATTING + BURNT_CAL_HEADER
                             + caloriesBurnt.get());
@@ -109,7 +109,7 @@ public class RecommendCommand extends Command {
                                 * standardExercise.getSets().get(fitnessLevel)
                                 * user.getWeight())
                                 / 60);
-                        Ui.printCustomMessage(OPEN_SQUARE_BRACKET + (i + 1) + CLOSE_SQUARE_BRACKET
+                        Ui.printCustomMessage(OPEN_SQUARE_BRACKET + (i + 1) + CLOSE_SQUARE_BRACKET + SPACE_STRING
                                 + EXERCISE_HEADER + standardExercise.getName()
                                 + SPACE_FORMATTING + BURNT_CAL_HEADER
                                 + caloriesBurnt.get());

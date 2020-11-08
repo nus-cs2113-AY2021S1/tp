@@ -83,7 +83,7 @@ For example, you can enter `goal food eat less food than yesterday` and this wil
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
 Okay! The following goal has been added: 
-	[F] eat less food than yesterday
+    [F] eat less food than yesterday
 ----------------------------------------------------------------------------------------------------------------------------------------
 Tip: You may also add a smart food goal using the format "goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES"
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -92,7 +92,10 @@ Tip: You may also add a smart food goal using the format "goal food < NUMBER_OF_
 #### 2.1.3.1 Adding a smart food goal
 Fitr also understands particular keywords. If you would like to set a target for your calorie intake, you can key in your goal following the format below. By adding a smart food goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
-> :bulb: **Additional information:** Smart food goals are linked to the calorie intake of its created date
+> :bulb: **Additional information:** 
+> * Smart food goals are linked to your calorie intake of its created date
+> * Target number of calories can only be between 0 (inclusive) and 100 000 for 'more than' goals
+> * Target number of calories can only be between 0 and 100 000 for 'less than' goals
 
 Format: `goal food > NUMBER_OF_CALORIES`
         or `goal food Eat more than NUMBER_OF_CALORIES calories`  
@@ -104,7 +107,7 @@ For example, if your goal is to consume less than 800 calories, you can enter `g
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
 Okay! The following goal has been added: 
-	[F] Eat less than 800 calories
+    [F] Eat less than 800 calories
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
@@ -118,7 +121,7 @@ For example, you can enter `goal exercise do 50 push ups` and below shows the ex
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
 Okay! The following goal has been added: 
-	[E] do 50 push ups
+    [E] do 50 push ups
 ----------------------------------------------------------------------------------------------------------------------------------------
 Tip: You may also add a smart food goal using the format "goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT"
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -127,7 +130,10 @@ Tip: You may also add a smart food goal using the format "goal exercise < CALORI
 #### 2.1.4.1 Adding a smart exercise goal
 Fitr also understands particular keywords. If you would like to set a target for your calorie burnt, you can key in your goal following the format below. By adding a smart exercise goal, Fitr will help you calculate your percentage completion and update it accordingly.
 
-> :bulb: **Additional information:** Smart exercise goals are linked to the calorie intake of its created date
+> :bulb: **Additional information:** 
+> * Smart exercise goals are linked to your calories burnt of its created date
+> * Target number of calories can only be between 0 (inclusive) and 100 000 for 'more than' goals
+> * Target number of calories can only be between 0 and 100 000 for 'less than' goals
 
 Format: `goal exercise > NUMBER_OF_CALORIES` 
         or `goal exercise Burn more than NUMBER_OF_CALORIES calories` 
@@ -139,7 +145,7 @@ For example, you can enter `goal exercise > 3800` and you should expect the foll
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
 Okay! The following goal has been added: 
-	[E] Burn more than 3800 calories
+    [E] Burn more than 3800 calories
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
@@ -198,12 +204,12 @@ Date: 23/10/2020
     Quantity: 1
     Total Calorie(s): 52
 
-Date: 1/11/2020
+Date: 28/10/2020
 [1] Food: Fish
     Quantity: 1
     Total Calorie(s): 300
 
-Date: 3/11/2020
+Date: 31/10/2020
 [1] Food: Orange
     Quantity: 1
     Total Calorie(s): 52
@@ -250,14 +256,6 @@ Format: `view exercise`
 Example of an expected outcome is as follows:
 ```
 Here is the list of your exercises:
-Date: 22/10/2020
-[1] Exercise: Planks to Pushup
-    Burnt Cal: 46
-[2] Exercise: Side Lying Leg lifts
-    Burnt Cal: 62
-[3] Exercise: Planks to Pushup
-    Burnt Cal: 46
-
 Date: 23/10/2020
 [1] Exercise: Step ups
     Burnt Cal: 50
@@ -275,6 +273,10 @@ Date: 27/10/2020
     Burnt Cal: 14
 [4] Exercise: Cobra stretch
     Burnt Cal: 6
+
+Date: 31/10/2020
+[1] Exercise: Side Lying Leg lifts
+    Burnt Cal: 23
 
 Date: 5/11/2020
 [1] Exercise: jumping rope
@@ -300,7 +302,7 @@ Date: 31/10/2020
 ### 2.2.6 Viewing goal entries
 You can view the goals you have previously set for yourself and track your progress using this command. 
 
-> :bulb: **Additional information:** The goal list is sorted by the progress of the goals, from the most incomplete to completed goals
+> :bulb: **Additional information:** The goal list is sorted by the progress of the goals, and its created date
 
 The letter in the first square bracket denotes the goal type, `[F]` for food goals and `[E]` for exercise goals.
 The second square bracket shows the status of that goal, `[Y]` for completed goals, `[N]` for incompleted goals and percentages indicate the completeness of that goal.
@@ -326,14 +328,6 @@ Format: `view summary`
 
 Example of an expected outcome is as follows:
 ```
-Date: 22/10/2020
-Total calorie consumed:
-0
-Total calorie burnt:
-154
-Net calorie:
--154
-
 Date: 23/10/2020
 Total calorie consumed:
 52
@@ -350,6 +344,13 @@ Total calorie burnt:
 Net calorie:
 -41
 
+Date: 31/10/2020
+Total calorie consumed:
+382
+Total calorie burnt:
+74
+Net calorie:
+308
 ----------------------------------------------------------------------------------------------------------------------------------------
 Tip: You may also view summary by day using the format "view summary dd/MM/yyyy"
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -476,16 +477,17 @@ Successfully edited exercise to: Push ups, calories burnt: 500
 ### 2.3.4 Editing a goal entry
 You can edit your previous goal entries, for example, if you previously made a mistake when entering the type or description of a goal.
 
-> :bulb:  **Additional information:** 
-> * By editing the goal entry, it will reset the status of the goal
-> * Smart goals will be updated based on the created date's calorie intake and calories burnt
-
 Format: `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION`
 
 For example, you can enter `edit goal 1 exercise run 2.4km`, and you should expect to see the following output:
 ```
 Successfully edited goal to: [E] run 2.4km
 ```
+
+> :bulb:  **Additional information:** 
+> * As goals are ordered based on its created date and progress status, please view your goals before editing a goal
+> * By editing the goal entry, it will reset the status of the goal
+> * Smart goals will be updated based on the created date's calorie intake and calories burnt
 
 ## 2.4 Deleting Commands
 If you would like to delete a particular entry, you can utilise the various delete commands as listed below. 
@@ -517,11 +519,13 @@ To delete a particular goal entry, you can use this command. However, you would 
 
 Format: `delete goal INDEX`
 
+> :bulb:  **Additional information:** 
+> * As goals are ordered based on its created date and progress status, please view your goals before deleting a goal
+
 For example, you can enter `delete goal 1`, and you should expect to see the following:
 ```
 The following has been deleted from the list of goals: Burn more than 30000 calories
 ```
-
 
 ## 2.5 Clearing Commands
 Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
@@ -631,6 +635,7 @@ Any other key will be taken as a no.
 
 If you follow this up with a `y`, you will then see the exercises added in as follows:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 The following exercise has been added:
 [1] Exercise: Triceps dips
     Burnt Cal: 6
@@ -640,26 +645,39 @@ The following exercise has been added:
     Burnt Cal: 167
 [4] Exercise: Mountain stretch
     Burnt Cal: 5
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 If you decide you only want exercise 2 and 4 to be added, you can key in `2 4` and you will see as follows:
 
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 The following exercise has been added:
 [1] Exercise: Side Lunges
     Burnt Cal: 12
 [2] Exercise: Mountain stretch
     Burnt Cal: 5
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.6.2 Marking a goal as complete
 After completing a goal, you can mark it as complete. However, if it is a smart goal, Fitr will mark it as complete according to your calorie intake or calorie burnt.
 
+Format: `complete goal INDEX`
+
 > :bulb:  **Additional information:**
+> * As goals are ordered based on its created date and progress status, please view your goals before marking a particular one as complete
+> * Marking a goal as complete is irreversible!
 > * You are able to override the smart goal to mark them as complete
 > * When you mark a goal as complete, it is moved to the bottom of the list
 
-Format: `complete goal INDEX`
+For example, after marking a goal as complete with the command `complete goal 1` , you should expect something similar to below:
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+Yay! You completed:
+    run more
+----------------------------------------------------------------------------------------------------------------------------------------
+```
 
 <!-- @@author jerichochua -->
 
@@ -710,7 +728,7 @@ View Goal Entry | `view goal` |
 View Calorie Summary | `view summary` |
 View Calorie Summary on a Specified Date | `view summary dd/MM/yyyy` | `view summary 31/10/2020`
 Get a recommended general workout | `recommed` | 
-Get a recommended specific workout| `recommend WORKOUT_CATEGORY` | `recommend aerobic`
+Get a recommended specific workout| `recommend WORKOUT_CATEGORY` | `recommend upperbody` or `recommend lowebody` or `recommend aerobic` or `recommend stretch`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
 Edit Food Entry | `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 31/10/2020 1 green apple /50 1`
 Edit Exercise Entry | `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 31/10/2020 1 5km run /360`

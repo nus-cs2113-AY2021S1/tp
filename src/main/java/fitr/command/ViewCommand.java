@@ -1,7 +1,6 @@
 package fitr.command;
 
 import fitr.common.DateManager;
-import fitr.common.Messages;
 import fitr.goal.Goal;
 import fitr.exercise.Recommender;
 import fitr.list.ExerciseList;
@@ -34,6 +33,8 @@ import static fitr.common.Messages.GOAL_LIST_HEADER;
 import static fitr.common.Messages.NET_CALORIE_HEADER;
 import static fitr.common.Messages.BMI_HEADER;
 import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
+import static fitr.common.Messages.SEPARATOR_LINE;
+import static fitr.common.Messages.SPACE_STRING;
 import static fitr.common.Messages.USER_PROFILE_HEADER;
 import static fitr.common.Messages.OPEN_SQUARE_BRACKET;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
@@ -114,7 +115,7 @@ public class ViewCommand extends Command {
                     lastDate = foodList.getFood(index).getDate();
                     printIndex = 1;
                 }
-                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET + SPACE_STRING
                         + FOOD_HEADER + foodList.getFood(index).getFoodName()
                         + SPACE_FORMATTING + QUANTITY_HEADER + foodList.getFood(index).getAmountOfFood()
                         + SPACE_FORMATTING + CAL_HEADER + foodList.getFood(index).getCalories());
@@ -122,7 +123,7 @@ public class ViewCommand extends Command {
                 printIndex++;
             }
         }
-        Ui.printCustomMessage("-".repeat(136));
+        Ui.printCustomMessage(SEPARATOR_LINE);
         Ui.printMessageInBlue(VIEW_FOOD_TIP);
     }
 
@@ -144,14 +145,14 @@ public class ViewCommand extends Command {
                     lastDate = exerciseList.getExercise(index).getDate();
                     printIndex = 1;
                 }
-                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET + SPACE_STRING
                         + EXERCISE_HEADER + exerciseList.getExercise(index).getNameOfExercise()
                         + SPACE_FORMATTING + BURNT_CAL_HEADER + exerciseList.getExercise(index).getCalories());
                 index++;
                 printIndex++;
             }
         }
-        Ui.printCustomMessage("-".repeat(136));
+        Ui.printCustomMessage(SEPARATOR_LINE);
         Ui.printMessageInBlue(VIEW_EXERCISE_TIP);
     }
 
@@ -221,11 +222,11 @@ public class ViewCommand extends Command {
             totalCalorieBurnt = 0;
             totalCalorieConsumed = 0;
             if (dateList.size() != 1) {
-                Ui.printCustomMessage("");
+                Ui.printCustomMessage(EMPTY_STRING);
             }
         }
         if (!isDate) {
-            Ui.printCustomMessage("-".repeat(136));
+            Ui.printCustomMessage(SEPARATOR_LINE);
             Ui.printMessageInBlue(VIEW_SUMMARY_TIP);
         }
     }
@@ -299,7 +300,7 @@ public class ViewCommand extends Command {
                 Ui.printCustomMessage(EXERCISE_LIST_HEADER);
                 Ui.printMessageInYellow(DATE_HEADER + date);
                 while (index < exercisesOnThatDate.getSize()) {
-                    Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                    Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET + SPACE_STRING
                             + EXERCISE_HEADER + exercisesOnThatDate.getExercise(index).getNameOfExercise()
                             + SPACE_FORMATTING + BURNT_CAL_HEADER
                             + exercisesOnThatDate.getExercise(index).getCalories());
@@ -336,7 +337,7 @@ public class ViewCommand extends Command {
                 Ui.printCustomMessage(FOOD_LIST_HEADER);
                 Ui.printMessageInYellow(DATE_HEADER + date);
                 while (index < foodOnThatDate.getSize()) {
-                    Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET
+                    Ui.printCustomMessage(OPEN_SQUARE_BRACKET + printIndex + CLOSE_SQUARE_BRACKET + SPACE_STRING
                             + FOOD_HEADER + foodOnThatDate.getFood(index).getFoodName()
                             + SPACE_FORMATTING + BURNT_CAL_HEADER + foodOnThatDate.getFood(index).getCalories());
                     index++;
