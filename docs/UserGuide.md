@@ -104,6 +104,7 @@ Example:
 Let's say you have one event stored in NuSchedule currently:  
 
 ![edit1](diagrams/edit1.png)
+  
 Suppose you entered the timing incorrectly and would like to edit it to the correct timing. Enter the following command
 to edit the event:  
 
