@@ -47,11 +47,11 @@ allows us to create various topics with questions, options, hints and explanatio
 
 ####  2.2.1. Design of TopicList
 
-`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 3 interfaces implemented 
+`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 6 interfaces implemented 
 in the code for E-Duke-8. As such, many of the commands that manipulate the `TopicList` make 
 use of the package `java.util.ArrayList`. 
 
-The `TopicList` is used to store `Topic`. `Topic` themselves implement the interface `Displayable`. 
+The `TopicList` is used to store `Topic` objects. `Topic` objects themselves implement the interface `Displayable`. 
 
 ![TopicList](images/TopicListClassDiagram.png)
 
@@ -107,32 +107,33 @@ This task is performed by the `NoteList.add()` method.
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.addNoteInteractions()` 
 method. 
 
-Step 2: The `Ui.addNoteInteractions()` method uses the user's input to create a `Note` object. 
+Step 2: The `Ui.printAddNote()` method uses the user's input to create a `Note` object. 
 
-Step 3: The `Ui,addNoteInteractions()` method then calls the method `NoteList.add()`, passing the created `Note` object 
+Step 3: The `Ui.printAddNote()` method then calls the method `NoteList.add()`, passing the created `Note` object 
 into this method. `NoteList.add()` makes use of the package `java.util.ArrayList`, specifically the `ArrayList.add()` 
 method, to add the `Note` object into the specified `NoteList` object.
 
 **Listing out all notes in a topic:**
 
-This task is performed by the `Ui.printNoteList()` method.
+This task is performed by the `Ui.showNotes()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. The topic's `NoteList` object is passed into this method.
+and calls the `Ui.printListNote` method. The topic's `NoteList` object is passed into this method.
 
-Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` object is passed into 
-this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` object.
+Step 2: The `Ui.printListNote` method calls the `Ui.showNotes()` method. The topic's `NoteList` object is passed into 
+this method. `Ui.showNotes()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` 
+object.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.deleteNoteInteractions` method. 
-An integer provided by the user's input is passed into this method. This integer is interpreted as the index of the `Note` object to be deleted in the
-specified `NoteList` object.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.printDeleteNote` 
+method. An integer provided by the user's input is passed into this method. This integer is interpreted as the index of 
+the `Note` object to be deleted in the specified `NoteList` object.
 
-Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the `ArrayList.remove()` method, to 
-delete the specified `Note` object in the specified `NoteList` object.
+Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the 
+`ArrayList.remove()` method, to delete the specified `Note` object in the specified `NoteList` object.
 
 <div style="page-break-after: always;"></div>
 
@@ -297,37 +298,38 @@ The timer would start as soon as the options are being printed out.
 If the user has typed in a valid answer, the timer would stop and move on to the next question. 
 If the time is up, it will be regarded as an `IncompleteCommand` and it will be deemed as a wrong answer as well. 
 
-The diagram below only illustrates the implementation of the timer feature, it does not show the full sequence diagram of the `SingleTopicQuiz()` method. 
+The diagram and explanation below only illustrates the implementation of the timer feature, 
+it does not show the full sequence diagram and explanation of the `SingleTopicQuiz()` method. 
 
 ![Timer_Sequence_Diagram](./images/Timer.png)
 
 When a quiz is started, the `startQuiz(ui)` method will be called. 
-Some details has been omitted here for simplicity. 
 After the options of a particular question has been printed out, the timer would begin.
 The `getCommand(ui, optionList, userTimer)` method is first called. The `userTimer` parameter used here is the time that the user has set at the start of the quiz. 
-The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. 
-For simplicity, some details in this method has been omitted. 
-The `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
-There are some details omitted here as well for simplicity. 
-The `command` object will be returned. 
+The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. The timer continues to count down as it waits for the users' input. 
+After the user has written an input, the `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
+If the user did not write in any input and the time is up, the `Ui` will return `null` string back to the `SingleTopicQuiz` object instead. 
+The `Command` object will be returned. 
 
-For example, if the user entered a string (that is not "hint" or "bookmark" and not a number), then the `command` returned will be one of `IncorrectCommand`. 
+For example, if the user entered a string (that is not "hint" or "bookmark" and not a number from 1 to 4), then the `Command` returned will be one of `IncorrectCommand`. 
 If the user entered any number from 1 to 4, it will be an `AnswerCommand`. 
-If the user did not input anything and the time is up, the `command` returned will be `IncompleteCommand`. 
+If the user did not input anything and the time is up, the `Command` returned will be `IncompleteCommand`. 
 
-It will then enter into a loop. If the `command` is not an `AnswerCommand` or `IncompleteCommand`, it will continue in this loop. 
-The `SingleTopicQuiz` object will then call the respective `Command` object, using the `execute(optionList, ui)` method. 
+It will then enter into a loop and remain in this loop unless the user has input a valid answer or the time is up for that question. 
+In the loop, the `SingleTopicQuiz` object will then call the respective `Command` object, using the `execute(optionList, ui)` method. 
 
 For example, if it is a `HintCommand`, then the execution would mean that the hint will be printed out by the `Ui` class to show the user the hint for the particular question. 
-However, some details were omitted so that the sequence diagram is easier to understand. 
+However, some details were omitted here so that the sequence diagram is easier to understand. 
 
 The `SingleTopicQuiz` object will then call the `Ui` class using the `printQuizInputMessage()` method to print the prompt for the users to enter in their input. 
 The `getCommand(ui, optionList, userTimer - timePassed)` method will be called again. However, this `getCommand()` method is different from the one that was used initially. 
-This `getCommand()` method takes in the time left on the timer (`userTimer - timePassed`) instead of the timer set by the user. This is because, we want to avoid the situation where the user is able to extend the timer by entering in any random value (except number 1 to 4) as this would cause the timer to reset everytime. 
+This `getCommand()` method takes in the time left on the timer (`userTimer - timePassed`) instead of the timer set by the user. 
+This is because, we want to avoid the situation where the user is able to extend the timer by entering in any random value (except number 1 to 4) as this would cause the timer to reset everytime. 
 Hence, in order to prevent this bug, for this `getCommand()` method, we have to use the time left on the timer instead. 
 The subsequent steps are similar to the one stated above. 
 
-If the `command` is an instance of `AnswerCommand` and `IncompleteCommand`, the loop will end and the `SingleTopicQuiz` object will proceed to execute the `Command` for the last time, using the `execute(optionList, ui)` method.
+The loop will end if the user has written an input or the time is up for that question. 
+The `SingleTopicQuiz` object will then proceed to execute the `Command` for the last time, using the `execute(optionList, ui)` method.
 
 It will then enter another loop that checks if the user has pressed on the "Enter" button on the computer. 
 This feature was implemented so that they have sufficient time to read through and understand the explanation before moving on to the next question. 
@@ -351,11 +353,12 @@ The class diagram below shows this relationship.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
+<div style="page-break-after: always;"></div>
+
 The format of the JSON file is important as it is loaded in a particular way. This format has been designed as an array 
 of topics that hold the different properties for questions, options, hints and explanations.
 An example is as such:
 
-<div style="page-break-after: always;"></div>
 
 ```json
 [
@@ -417,6 +420,8 @@ In order to save and load attributes specific to each user, such as the question
 This class requires access to the main `TopicList` and `BookmarkList` from the Model component in order to extract these attributes. The class diagram below shows this relationship.
 
 ![UserStorage Class Diagram](./images/UserStorage.png)
+
+<div style="page-break-after: always;"></div>
 
 The attributes will be saved in the JSON file tied to each question in a topic and is identified by its description.
 A question's presence in the file represents that it has been attempted before while other attributes are stored as boolean values.
