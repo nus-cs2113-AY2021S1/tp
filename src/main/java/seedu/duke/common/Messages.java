@@ -123,12 +123,12 @@ public class Messages {
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
     public static final String EXCEPTION_INVALID_VALUE = "Please input a valid value.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "~Error~ Invalid category.";
-    public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
+    public static final String EXCEPTION_LOAD_FILE = "~Error~ The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
-    public static final String EXCEPTION_WRONG_DATE_FORMAT = "Please input the date string in the format "
+    public static final String EXCEPTION_WRONG_DATE_FORMAT = "~Error~ Please input the date string in the format "
             + "\"yyyy-MM-dd\"";
     public static final String EXCEPTION_SAVE_FILE = "~Error~ Cannot save to file.";
-    public static final String EXCEPTION_EXPENSE_DATERANGE = "Please input a valid date range (one of \"DAY\", "
+    public static final String EXCEPTION_EXPENSE_DATERANGE = "~Error~ Please input a valid date range (one of \"DAY\", "
             + "\"WEEK\", \"MONTH\", \"YEAR\").";
 
     public static final String EXCEPTION_INVALID_CLEAR = "~Error~ The command is: clear all";
