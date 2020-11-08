@@ -294,13 +294,13 @@ The `addreview` command allows you to add a review for a show, including adding 
  
    Expected outcome:
  
-  <img src = "images/addreview.PNG" width = "450">
+  <img src = "images/addreview.PNG" width = "650">
 
    &nbsp;
    
    Checking with the `list` command: 
    
-   <img src = "images/addreviewlist.PNG" width = "450">
+   <img src = "images/addreviewlist.png" width = "650">
    
    
 ### 4.f. `changereview` - Changing a review
