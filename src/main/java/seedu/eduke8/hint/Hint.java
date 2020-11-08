@@ -11,6 +11,11 @@ public class Hint implements Displayable {
         wasShown = false;
     }
 
+    /**
+     * Returns the description of the question.
+     *
+     * @return Question information.
+     */
     @Override
     public String getDescription() {
         markAsShown();

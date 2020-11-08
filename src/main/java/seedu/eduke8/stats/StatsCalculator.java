@@ -37,10 +37,17 @@ public class StatsCalculator {
         }
     }
 
+    /**
+     * Given the user's progress and the available progress, calculates the percentage of progress for the user.
+     * User progress is expected to be 0 or more, and total available progress is expected to always be bigger than 0
+     * User progress is also expected to always be lesser than or equal to the total available progress.
+     *
+     * @return Percentage of progression of the user given his or her progress and the total available progress.
+     */
     protected int calculateProgressionPercentage(int userProgress, int totalAvailableProgress) {
-        assert userProgress > 0;
+        assert userProgress >= 0;
         assert totalAvailableProgress > 0;
-        assert userProgress < totalAvailableProgress;
+        assert userProgress <= totalAvailableProgress;
 
         double progressionLevel = (double) userProgress / totalAvailableProgress;
 
