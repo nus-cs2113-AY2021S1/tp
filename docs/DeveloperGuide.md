@@ -11,7 +11,9 @@ This program will help them achieve a better grip on their school life as well a
 daily expenses and be reminded of any library loans. 
 
 This document gives an overview understanding of the architectural design and implementation of termiNus. This will
-assist developers in the knowledge they require to further build upon this application if needed. <br>
+assist developers in the knowledge they require to further build upon this application. We hope you have a clearer picture
+after reading through after developer guide. <br>
+
 **Pre-requisite:** Proficient in comprehending UML diagrams and notations.   
 
 ## Setting up, Getting Started
