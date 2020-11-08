@@ -50,6 +50,7 @@ Save Manager|```saver```| Allows save of multiple program running states and loa
 Finance Tools|```finance```| FinanceTools contains tools related to financial calculations.
 
 <div style="page-break-after: always;"></div>  
+
 # Main Menu
 Gateway to the various other features of the application. 
 Upon running the application, you should be greeted by the main menu. Enter the corresponsing commands shown on the table to visit the desired feature!
