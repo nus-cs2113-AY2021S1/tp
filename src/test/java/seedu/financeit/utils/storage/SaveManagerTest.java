@@ -32,7 +32,7 @@ public class SaveManagerTest {
             SaveManager.clear();
 
             GoalTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_gt.txt");
-            AutoTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_at.txt");
+            ReccuringTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_at.txt");
             ManualTrackerSaver.getInstance().load("./data/tests", "./data/tests/JunitTestCase_mt.txt");
 
             InputParser parser = InputParser.getInstance();

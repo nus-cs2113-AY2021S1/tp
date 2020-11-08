@@ -110,7 +110,7 @@ public class SaveManager {
 
     private static void resetSave() {
         GoalTrackerSaver.clear();
-        AutoTrackerSaver.clear();
+        ReccuringTrackerSaver.clear();
         ManualTrackerSaver.clear();
         prompt = "Program has been reset";
     }
@@ -164,7 +164,7 @@ public class SaveManager {
             String path = dirPath + "/" + name;
             GoalTrackerSaver.getInstance().save(dirPath, path + "_gt.txt");
             ManualTrackerSaver.getInstance().save(dirPath, path + "_mt.txt");
-            AutoTrackerSaver.getInstance().save(dirPath, path + "_at.txt");
+            ReccuringTrackerSaver.getInstance().save(dirPath, path + "_at.txt");
             SaveHandler.buildFile(dirPath, fullPath);
             File file = new File(fullPath);
             Scanner scanner = new Scanner(file);
@@ -197,10 +197,10 @@ public class SaveManager {
         try {
             String name = packet.getParam("/name");
             String path = dirPath + "/" + name;
-            String desAuto = AutoTrackerSaver.getInstance().fullPath;
+            String desAuto = ReccuringTrackerSaver.getInstance().fullPath;
             String desGoal = GoalTrackerSaver.getInstance().fullPath;
             String desManual = ManualTrackerSaver.getInstance().fullPath;
-            AutoTrackerSaver.getInstance().buildFile();
+            ReccuringTrackerSaver.getInstance().buildFile();
             GoalTrackerSaver.getInstance().buildFile();
             ManualTrackerSaver.getInstance().buildFile();
             File file = new File(fullPath);
@@ -246,7 +246,7 @@ public class SaveManager {
 
     public static void clear() {
         GoalTrackerSaver.clear();
-        AutoTrackerSaver.clear();
+        ReccuringTrackerSaver.clear();
         ManualTrackerSaver.clear();
     }
 

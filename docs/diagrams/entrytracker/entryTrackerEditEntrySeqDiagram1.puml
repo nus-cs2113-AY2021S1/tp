@@ -18,8 +18,8 @@ participant entryTracker as entryTracker <<class>>
 endBox
 
 box "Logic" #LightBlue
-participant ":RetrieveEntryHandler"
-participant ":EditEntryHandler"
+participant "retrieveEntryHandler:RetrieveEntryHandler"
+participant "editEntryHandler:EditEntryHandler"
 participant ":ParamChecker"
 endBox
 
@@ -32,11 +32,11 @@ User -> entryTracker: Edit Entry
 
 entryTracker ->entryTracker: handleCreateEntry()
     == Phase 1: Retrieve Entry ==
-   entryTracker-> ":RetrieveEntryHandler" : getInstance()
+   entryTracker-> "retrieveEntryHandler:RetrieveEntryHandler" : getInstance()
     return handler
 
-       entryTracker-> ":RetrieveEntryHandler" : handlePacket
-            ref over entryTracker, ":RetrieveEntryHandler", ":ParamChecker","entryList:EntryList" : handlePacket (Phase 1) 
+       entryTracker-> "retrieveEntryHandler:RetrieveEntryHandler" : handlePacket
+            ref over entryTracker, "retrieveEntryHandler:RetrieveEntryHandler", ":ParamChecker","entryList:EntryList" : handlePacket (Phase 1) 
 
        return
 
@@ -45,12 +45,12 @@ entryTracker ->entryTracker: handleCreateEntry()
     return entry
 
     == Phase 2: Edit Entry ==
-       entryTracker-> ":EditEntryHandler" : getInstance()
+       entryTracker-> "editEntryHandler:EditEntryHandler" : getInstance()
         return handler
-        entryTracker -> ":EditEntryHandler" : setPacket(packet)
+        entryTracker -> "editEntryHandler:EditEntryHandler" : setPacket(packet)
         return
-        entryTracker -> ":EditEntryHandler" : handlePacket
-                        ref over entryTracker, ":RetrieveEntryHandler", ":ParamChecker","entryList:EntryList" : handlePacket (Phase 2) 
+        entryTracker -> "editEntryHandler:EditEntryHandler" : handlePacket
+                        ref over entryTracker, "retrieveEntryHandler:RetrieveEntryHandler", ":ParamChecker","entryList:EntryList" : handlePacket (Phase 2) 
        
         return
    == Edit successful ==

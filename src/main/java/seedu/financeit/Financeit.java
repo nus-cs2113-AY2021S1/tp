@@ -12,7 +12,7 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
-import seedu.financeit.utils.storage.AutoTrackerSaver;
+import seedu.financeit.utils.storage.ReccuringTrackerSaver;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
 import seedu.financeit.utils.storage.SaveHandler;
@@ -36,7 +36,7 @@ public class Financeit {
 
         ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
         GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
-        AutoTrackerSaver.getInstance("./data", "./data/saveAt.txt");
+        ReccuringTrackerSaver.getInstance("./data", "./data/saveAt.txt");
         load();
 
         //Loads the dateTime when the program was last ran
@@ -83,7 +83,7 @@ public class Financeit {
             }
         } catch (Exception e) {
             LoggerCentre.loggerSystemMessages.info("\n\n\nUnknown error......\n\n\n");
-            System.out.println("you are gay");
+            System.out.println("An unknown error has occured.");
         }
     }
 
@@ -120,7 +120,7 @@ public class Financeit {
         }
 
         try {
-            AutoTrackerSaver.getInstance().load();
+            ReccuringTrackerSaver.getInstance().load();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to load: " + m);
         }
@@ -141,7 +141,7 @@ public class Financeit {
         }
 
         try {
-            AutoTrackerSaver.getInstance().save();
+            ReccuringTrackerSaver.getInstance().save();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to save: " + m);
         }

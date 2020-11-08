@@ -18,7 +18,7 @@ participant ":ManualTracker" as manualTracker <<class>>
 endBox
 
 box "Logic" #LightBlue
-participant ":CreateLedgerCommand"
+participant "handler:CreateLedgerHandler"
 participant ":ParamChecker"
 endBox
 
@@ -31,25 +31,25 @@ User-> manualTracker: Create Ledger
 
 manualTracker ->manualTracker: handleCreateLedger()
 
-   manualTracker-> ":CreateLedgerCommand" : getInstance()
+   manualTracker-> "handler:CreateLedgerHandler" : getInstance()
     return handler
 
-   manualTracker-> ":CreateLedgerCommand" : handlePacket(packet)
+   manualTracker-> "handler:CreateLedgerHandler" : handlePacket(packet)
 
         create ":ledger:Ledger"
-        ":CreateLedgerCommand" -> ":ledger:Ledger" : Ledger()
+        "handler:CreateLedgerHandler" -> ":ledger:Ledger" : Ledger()
         return
         == Handling of Params in packet ==
-        ":CreateLedgerCommand" -> ":CreateLedgerCommand" : handleParams(packet)
-            ":CreateLedgerCommand" -> ":ParamChecker" : setPacket(packet)
+        "handler:CreateLedgerHandler" -> "handler:CreateLedgerHandler" : handleParams(packet)
+            "handler:CreateLedgerHandler" -> ":ParamChecker" : setPacket(packet)
             return
             loop For all paramType in the command packet
                 note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the ledger instance."
-                ":CreateLedgerCommand" -> ":CreateLedgerCommand" : handleSingleParam(packet, paramType)
+                "handler:CreateLedgerHandler" -> "handler:CreateLedgerHandler" : handleSingleParam(packet, paramType)
                     alt "paramType = PARAM_DATE"
-                        ":CreateLedgerCommand" ->":ParamChecker": checkAndReturnDate(paramType)
+                        "handler:CreateLedgerHandler" ->":ParamChecker": checkAndReturnDate(paramType)
                         return date
-                        ":CreateLedgerCommand" -> ":ledger:Ledger" : setDate(date)
+                        "handler:CreateLedgerHandler" -> ":ledger:Ledger" : setDate(date)
                         return
                     end
                 return
@@ -57,7 +57,7 @@ manualTracker ->manualTracker: handleCreateLedger()
         return
    return
    == Retrieval of newly created ledger from the command instance ==
-   manualTracker-> ":CreateLedgerCommand" : getCurrLedger()
+   manualTracker-> "handler:CreateLedgerHandler" : getCurrLedger()
    return ledger
    == Storing of ledger into ledgerList ==
    manualTracker-> "ledger:LedgerList" : addItem(ledger)

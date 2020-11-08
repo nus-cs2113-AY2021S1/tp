@@ -11,24 +11,24 @@ import java.io.IOException;
 import java.util.Scanner;
 
 //@@author Feudalord
-public class AutoTrackerSaver extends SaveHandler {
+public class ReccuringTrackerSaver extends SaveHandler {
 
-    private static AutoTrackerSaver saver;
+    private static ReccuringTrackerSaver saver;
 
-    private AutoTrackerSaver() {
+    private ReccuringTrackerSaver() {
         super();
     }
 
-    private AutoTrackerSaver(String directory, String filepath) {
+    private ReccuringTrackerSaver(String directory, String filepath) {
         super(directory, filepath);
     }
 
-    public static AutoTrackerSaver getInstance(String... paths) {
+    public static ReccuringTrackerSaver getInstance(String... paths) {
         if (saver == null) {
             if (paths.length == 2) {
-                saver = new AutoTrackerSaver(paths[0], paths[1]);
+                saver = new ReccuringTrackerSaver(paths[0], paths[1]);
             } else {
-                saver = new AutoTrackerSaver();
+                saver = new ReccuringTrackerSaver();
             }
         }
         return saver;
