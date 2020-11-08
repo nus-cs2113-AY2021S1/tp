@@ -306,9 +306,9 @@ public class Ui {
 
     public static void printFlashcardDelete(Flashcard flashcard, int total) {
         System.out.println(DIVIDER);
-        System.out.println(" Noted. I've removed this flashcard:");
-        System.out.println("   " + flashcard.getQuestion() + "; " + flashcard.getAnswer());
-        System.out.println(" Now you have " + total + (total == 1 ? " flashcard " : " flashcards " + "in the list."));
+        System.out.println("Noted. I've removed this flashcard:");
+        System.out.println("  Q: " + flashcard.getQuestion() + "\n  A: " + flashcard.getAnswer());
+        System.out.println("Now you have " + total + (total == 1 ? " flashcard " : " flashcards " + "in the list."));
         System.out.println(DIVIDER);
     }
 
@@ -409,7 +409,7 @@ public class Ui {
     public static void printFlashcard(Flashcard flashcard, List<Flashcard> flashcards) {
         System.out.println(DIVIDER);
         System.out.println("Got it. I've added this flashcard:");
-        System.out.println(flashcard.getQuestion() + "; " + flashcard.getAnswer());
+        System.out.println("  Q: " + flashcard.getQuestion() + "\n  A: " + flashcard.getAnswer());
         System.out.println("Now you have " + flashcards.size() + (flashcards.size() == 1
                 ? " flashcard " : " flashcards ") + "in the list.");
         System.out.println(DIVIDER);
