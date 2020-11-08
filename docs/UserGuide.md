@@ -85,6 +85,9 @@ Before you begin, here's what you need to do:
 5. Type a command in the command line and press `ENTER` to execute it. You should see the following:
 6. Refer to [4.0 Usage](#40-usage) for details of each command.
 
+Note: The examples and expected outcome given in each section are independent from the other sections,
+and not meant to be in sequential order.
+
 ```
 ________                __                .__  _____       
 \_____  \  __ __  _____/  |_  ____   _____|__|/ ____\__.__.
@@ -1037,6 +1040,8 @@ Format: `add -r RATING_SCORE BOOK_NUMBER`
 
 Example of usage: `add -r 5 1`
 
+Assuming the book "Harry Potter" exists with an index of 1.
+
 Expected outcome:
 ```
 ---------------------------------------------------------
@@ -1056,6 +1061,8 @@ Format: `list -r [RATING_SCORE]`
 Example of usage:
 1. `list -r`
 2. `list -r 5`
+
+Assuming the book "Harry Potter" exists and is rated 5 star.
 
 Expected outcome 1:
 ```
@@ -1084,6 +1091,8 @@ Format: `delete -r BOOK_NUMBER`
 
 Example of usage: `delete -r 1`
 
+Assuming the book exists, has an index of 1, and has been rated before.
+
 Expected outcome:
 ```
 ----------------------------------------------------------
@@ -1103,6 +1112,8 @@ Format: `edit -r RATING_SCORE BOOK_NUMBER`
 
 Example of usage: `edit -r 4 1`
 
+Assuming the book "Harry Potter" exists, has an index of 1, and has been rated before.
+
 Expected outcome:
 ```
 ----------------------------------------------------------------------
@@ -1119,6 +1130,8 @@ Format: `find -r KEYWORD`
 * `KEYWORD` field cannot be left empty.
 
 Example of usage: `find -r POT`
+
+Assuming the book "Harry Potter" and has been rated 4 star.
 
 Expected outcome:
 ```
