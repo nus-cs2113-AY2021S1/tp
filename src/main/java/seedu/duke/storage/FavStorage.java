@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -15,6 +17,7 @@ public class FavStorage extends Storage {
     private static final String FILE_READ = "FavList.txt Read with no issues";
     private File file;
     private boolean isCorrupted = false;
+    private static final List <String> VALID_COMMANDS = Arrays.asList("/help", "/route", "/routemap", "/bus", "allbus", "liststops", "/faculty", "/dine", "/dineinfo", "/reset");
 
     public FavStorage(String dir) {
         super(dir);
@@ -41,12 +44,25 @@ public class FavStorage extends Storage {
             isCorrupted = true;
             return;
         }
-        if (!entryWords[0].contains("/")) {
+        if (!isValidCommand(entryWords[0])) {
             isCorrupted = true;
             return;
         }
         FavList.addFav(new Fav(entryWords[0], entryWords[1]));
 
+    }
+
+    /**
+     * Checks if command type is a valid command.
+     *
+     * @param command command from favlist.txt
+     * @return boolean which indicates if command type is exists in VALID_COMMANDS
+     */
+    private Boolean isValidCommand(String command) {
+        String [] entryWords = command.split(" ");
+        String commandType = entryWords[0].toLowerCase();
+        boolean isValidCommand = VALID_COMMANDS.contains(commandType);
+        return isValidCommand;
     }
 
     @Override
