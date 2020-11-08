@@ -8,6 +8,11 @@ import static seedu.messages.Messages.HELP_MESSAGE;
 public class HelpCommand extends GeneralCommand {
     public static final String COMMAND_WORD = "help";
 
+    /**
+     * Prints list of commands for user.
+     *
+     * @return CommandResult object.
+     */
     public CommandResult execute() {
         return new CommandResult(HELP_MESSAGE);
     }
