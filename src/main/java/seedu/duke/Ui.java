@@ -531,6 +531,12 @@ public class Ui {
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
             break;
+        case "find":
+            System.out.println("Error: Please key in the find command in this format: \n"
+                    + "1. /f <keyword>\n"
+                    + "2. /ft <task_number>\n"
+                    + "3. /fe <event_number");
+            break;
         case "file not found":
             System.out.println("The file can not be found.");
             break;
