@@ -1,12 +1,11 @@
 package seedu.duke.storage;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.FileEmptyException;
+import seedu.duke.exceptions.storageexceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
 import seedu.duke.words.Words;
 import seedu.duke.writing.WritingList;
-import seedu.duke.writing.Writings;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

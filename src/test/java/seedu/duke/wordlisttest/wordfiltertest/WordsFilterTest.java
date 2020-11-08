@@ -1,7 +1,6 @@
 package seedu.duke.wordlisttest.wordfiltertest;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.wordlist.wordfilter.FilterExecutor;
 import seedu.duke.wordlist.wordfilter.FilterList;

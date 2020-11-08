@@ -1,12 +1,11 @@
 package seedu.duke.writing;
 
-import seedu.duke.user.User;
+import seedu.duke.common.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static seedu.duke.constants.DataFileConvention.LENGTH_OF_DATE;
 import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
 
 public abstract class Writings {

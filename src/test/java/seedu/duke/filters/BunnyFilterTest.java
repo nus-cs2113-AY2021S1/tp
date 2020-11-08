@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.duke.bunnylist.BunnyFilter;
 import seedu.duke.bunnylist.BunnyList;
-import seedu.duke.exceptions.CommandInvalidException;
-import seedu.duke.exceptions.MissingFilterOptionsException;
-import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.exceptions.bunnyexceptions.CommandInvalidException;
+import seedu.duke.exceptions.bunnyexceptions.MissingFilterOptionsException;
+import seedu.duke.exceptions.bunnyexceptions.NoFilteredItemsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.bunnylist.BunnyList.bunniesList;

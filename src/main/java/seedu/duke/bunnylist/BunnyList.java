@@ -1,9 +1,9 @@
 package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
-import seedu.duke.exceptions.BunnyIdeaMissingException;
-import seedu.duke.exceptions.CommandInvalidException;
-import seedu.duke.exceptions.CommandMissingArgumentsException;
+import seedu.duke.exceptions.bunnyexceptions.BunnyIdeaMissingException;
+import seedu.duke.exceptions.bunnyexceptions.CommandInvalidException;
+import seedu.duke.exceptions.bunnyexceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.MissingParamsException;
 import seedu.duke.ui.UI;
 
@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 import static seedu.duke.constants.Tags.GENRE_TAG;
 import static seedu.duke.constants.Tags.IDEA_TAG;
-import static seedu.duke.parsers.Parsers.parseSingleCharacterTaggedParamsFromUserInput;
+import static seedu.duke.common.Parsers.parseSingleCharacterTaggedParamsFromUserInput;
 
 public class BunnyList {
     public static ArrayList<Bunny> bunniesList = new ArrayList<>();

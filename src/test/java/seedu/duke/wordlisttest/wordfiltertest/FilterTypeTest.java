@@ -1,8 +1,8 @@
 package seedu.duke.wordlisttest.wordfiltertest;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.FilterCommandException;
-import seedu.duke.exceptions.FilterTypeTagMissingException;
+import seedu.duke.exceptions.wordexceptions.FilterCommandException;
+import seedu.duke.exceptions.wordexceptions.FilterTypeTagMissingException;
 import seedu.duke.wordlist.wordfilter.FilterType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
