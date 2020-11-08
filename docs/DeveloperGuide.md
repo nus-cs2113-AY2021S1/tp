@@ -65,7 +65,7 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
 <p align="center">
-  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_OverviewV2.png" />
+  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_OverviewV3.png" />
   <br><em>Figure 1</em>
 </p>
 
