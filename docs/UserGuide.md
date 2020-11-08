@@ -509,7 +509,7 @@ Instruction:
 
 Expected output:
 
-![To be added]
+![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png)
 
 ### 2.7 Showing Class list: `list class`
 
@@ -521,7 +521,7 @@ Instruction:
 
 Expected output:
 
-![To be added]
+![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png)
 
 ### 2.8 Deleting an activity: `delete activity INDEX`
 
@@ -537,7 +537,7 @@ Example of usage:
 
 Expected output:
 
-![To be added]
+![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png)
 
 ### 2.9 Deleting a class: `delete class INDEX`
 
@@ -553,7 +553,7 @@ Example of usage:
 
 Expected output:
 
-![To be added]
+![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png)
 
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
