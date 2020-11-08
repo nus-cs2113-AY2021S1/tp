@@ -7,4 +7,7 @@ CanteenHelper will allow users to choose their favorite dishes from different st
 They also can check the comments of the dishes and operating hours of the stalls and canteens.
 
 ### Summary of Contributions
-Code contributed:
+Code contributed: see from [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=louis-feng&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
+### Contributions to the DG: Implementation part including the UML diagrams.
+### Contributions to the UG: Instructions for order part.
+### Contributions to team-based tasks: 
