@@ -9,27 +9,31 @@ around NUS campus via the school's shuttle service.<br>
 - [1. Overview](#1-overview)
   * [1.1 What is Nav@NUS?](#11-what-is-navnus)
   * [1.2 About the User Guide](#12-about-the-user-guide)
-  * [1.3 Introduction to Command Line Interface (CLI)](#13-intruduction-to-command-line-interface-cli)
+  * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
 - [2. Quick Start](#2-quick-start)
 - [3. Features](#3-features)
-  * [3.1. List available help: ```/help```](#31-list-available-help-help)
-  * [3.2. Check for direct bus: ```/route```](#32-check-for-direct-bus-route)
-  * [3.3. Check bus route: ```/routemap```](#33-check-bus-route-routemap)
-  * [3.4. Check for buses at a bus stop: ```/bus```](#34-check-for-buses-at-a-bus-stop-bus)
-  * [3.5. List all bus available in NUS ```/allbus```](#35-list-all-bus-available-in-nus-allbus)
-  * [3.6. List all bus stops in NUS: ```/liststops```](#36-list-all-bus-stops-in-nus-liststops)
-  * [3.7. List all faculties in NUS: ```/faculty```](#37-list-all-faculties-in-nus-faculty)
-  * [3.8. Search for dining options within a faculty: ```/dine```](#38-search-for-dining-options-within-a-faculty-dine)
-  * [3.9. Search for specific dining outlet: ```/dineinfo```](#39-search-for-specific-dining-outlet-dineinfo)
-  * [3.10. Add a favourite command: `/addfav`](#310-add-a-favourite-command-addfav)
-  * [3.11. List all favourite commands: `/listfav`](#311-list-all-favourite-commands-listfav)
-  * [3.12. Delete a favourite command: `/deletefav`](#312-delete-a-favourite-command-deletefav)
-  * [3.13. Execute a favourite command: `/execfav`](#313-execute-a-favourite-command-execfav)
-  * [3.14. Change the description for a favourite command: `/descfav`](#314-change-the-description-for-a-favourite-command-descfav)
-  * [3.15. Clear the list of favourite commands: `/clearfav`](#315-clear-the-list-of-favourite-commands-clearfav)
-  * [3.16. Similarity Checks](#316-similarity-checks)
-  * [3.17. Reset frequent search data: ```/reset```](#317-reset-frequent-search-data-reset)
-  * [3.18. Exit the program: ```/exit```](#318-exit-the-program-exit)
+  + [3.1. Bus Features](#31-bus-features)
+      * [3.1.1. List available help: ```/help```](#311-list-available-help-help)
+      * [3.1.2. Check for direct bus: ```/route```](#312-check-for-direct-bus-route)
+      * [3.1.3. Check bus route: ```/routemap```](#313-check-bus-route-routemap)
+      * [3.1.4. Check for buses at a bus stop: ```/bus```](#314-check-for-buses-at-a-bus-stop-bus)
+      * [3.1.5. List all bus available in NUS ```/allbus```](#315-list-all-bus-available-in-nus-allbus)
+      * [3.1.6. List all bus stops in NUS: ```/liststops```](#316-list-all-bus-stops-in-nus-liststops)
+      * [3.1.7. List all faculties in NUS: ```/faculty```](#317-list-all-faculties-in-nus-faculty)
+  + [3.2. Dine Features](#32-dine-features)    
+      * [3.2.1. Search for dining options within a faculty: ```/dine```](#321-search-for-dining-options-within-a-faculty-dine)
+      * [3.2.2. Search for specific dining outlet: ```/dineinfo```](#322-search-for-specific-dining-outlet-dineinfo)
+  + [3.3. Favourite Features](#33-favourite-features)      
+      * [3.3.1. Add a favourite command: `/addfav`](#331-add-a-favourite-command-addfav)
+      * [3.3.2. List all favourite commands: `/listfav`](#332-list-all-favourite-commands-listfav)
+      * [3.3.3. Delete a favourite command: `/deletefav`](#333-delete-a-favourite-command-deletefav)
+      * [3.3.4. Execute a favourite command: `/execfav`](#334-execute-a-favourite-command-execfav)
+      * [3.3.5. Change the description for a favourite command: `/descfav`](#335-change-the-description-for-a-favourite-command-descfav)
+      * [3.3.6. Clear the list of favourite commands: `/clearfav`](#336-clear-the-list-of-favourite-commands-clearfav)
+  + [3.4. Common Features](#34-common-features)       
+      * [3.4.1. Similarity Checks](#341-similarity-checks)
+      * [3.4.2. Reset frequent search data: ```/reset```](#342-reset-frequent-search-data-reset)
+      * [3.4.3. Exit the program: ```/exit```](#343-exit-the-program-exit)
 - [4. FAQ](#4-faq)
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
@@ -56,7 +60,8 @@ Nav@NUS consists of 3 main features:
 Skip the tight squeeze near information boards and use Nav@NUS today!
 
 ### 1.2 About the User Guide
-This user guide introduces you to the features available in Nav@NUS. Step-by-step guides are provided along with instances when the features are used.<br>
+This user guide introduces you to the features available in Nav@NUS. Step-by-step guides are provided along with 
+instances when the features are used.<br>
 This user guide covers the following:
  * How to use the Command Line Interface
  * How to set up Nav@NUS
@@ -66,7 +71,8 @@ This user guide covers the following:
  * Frequently asked questions
 
 ### 1.3 Introduction to Command Line Interface (CLI)
-Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. To give you a better experience, this section will introduce you to the CLI.
+Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
+To give you a better experience, this section will introduce you to the CLI.
 
 
 ## 2. Quick Start
@@ -91,13 +97,15 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 
 ## 3. Features 
 There are 18 features available in Nav@NUS. The following are instructions for using the features.
-
 >Notes about command format:  
 >
 >1. Words in **bold** are parameters to be provided by the user. (e.g. **location_1**)
 >2. Parameters and commands to be entered by the user are not case-sensitive.
+### 3.1. Bus Features
+This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
-### 3.1. List available help: ```/help```
+<!-- @@author wamikamalik -->
+### 3.1.1. List available help: ```/help```
 This command lists a set of features along with their respective commands available to users.
 
 Format: <code>/help</code>
@@ -105,14 +113,13 @@ Format: <code>/help</code>
 The expected outcome is as follows:<br><br>
 <img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
 
-### 3.2. Check for direct bus: ```/route```
+### 3.1.2. Check for direct bus: ```/route``` - Wamika
 This command displays all bus routes from one location to another that do not require changing buses.
 
 The format of this command is as follows: <br>
 <code>/route <strong>location_1</strong> /to <strong>location_2 </strong> </code>
 
 #### Examples of Usage
-**<u>Example 1</u>**<br>
 Let's say you are currently at **PGP** and want to find out the buses you can board from **PGP** bus station to get to **NUS IT**.
 
 To find all such bus routes:
@@ -124,26 +131,26 @@ to execute the command as shown in the figure below.<br><br>
 2. The result will be a message displaying the list of buses you can take with their routes as shown in the figure below.<br><br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=650><br>
 
-**<u>Example 2</u>**<br>
+#### Common errors
 Let's say you are currently at **University Health Centre** and you want to go to **PGPR**. But you accidentally type **"Univerity 
 Health Center"** instead. 
 
-These are the steps to follow: 
+Here's what you can do: 
 
-1. You type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
-press <kbd>Enter</kbd> to execute the command as done in example 1.
-
-2. The result will be a message displaying suggestions for possible spelling errors you may have made.<br><br>
+1. When you type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
+press <kbd>Enter</kbd> to execute the command as done in example 1, the result will be a message displaying suggestions 
+for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
 
-3. Type <code>/route <strong>University Health Centre</strong> /to <strong>PGPR</strong></code> into the CLI
+2. Type <code>/route <strong>University Health Centre</strong> /to <strong>PGPR</strong></code> into the CLI
 following the suggestion given.
 
-4. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
+3. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
 below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
+<!-- @@author -->
 
-### 3.3. Check bus route: ```/routemap```
+### 3.1.3. Check bus route: ```/routemap```
 This command displays the full route of the bus that you have specified.
 
 Format: <code>/routemap <strong>bus code</strong></code> <br>
@@ -183,7 +190,7 @@ which is relatively more crowded than other bus stops.<br><br>
 
 3. With this information, you could explore other bus routes to your destination.
 
-### 3.4. Check for buses at a bus stop: ```/bus```
+### 3.1.4. Check for buses at a bus stop: ```/bus```
 This command displays all buses available at a specific bus stop.
 
 Format: <br>
@@ -214,7 +221,7 @@ These are the steps to fix the mistake:
 3. The result will be a message displaying the buses available at the museum.<br><br>
 <img src="UG_Figures/bus1.png"><br>
 
-### 3.5. List all bus available in NUS ```/allbus```
+### 3.1.5. List all bus available in NUS ```/allbus```
 This command lists all buses available in NUS with their respective routes.
 
 The format for this command is as follows:<br> 
@@ -228,7 +235,7 @@ To see the complete list of buses:
 1. Type <code>/allbus</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/allbus1.png" alt="inputCommand" width=700><br>
 
-### 3.6. List all bus stops in NUS: ```/liststops```
+### 3.1.6. List all bus stops in NUS: ```/liststops```
 This command lists all bus stops in NUS.
 
 The format for this command is as follows:<br> 
@@ -242,7 +249,7 @@ To see the description of each location:
 1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 
-### 3.7. List all faculties in NUS: ```/faculty```
+### 3.1.7. List all faculties in NUS: ```/faculty```
 This command lists out all faculties in NUS.
 
 The format of this command is as follows:<br> 
@@ -257,7 +264,10 @@ These are the steps to follow:
 1. Type <code>/faculty</code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/faculty1.png" alt="output" width=600><br>
 
-### 3.8. Search for dining options within a faculty: ```/dine```
+### 3.2. Dine Features
+This section provides the instruction for all features categorised under the main feature of locating dining options.
+
+### 3.2.1. Search for dining options within a faculty: ```/dine```
 This command lists out all dining outlets available within a chosen faculty.
 
 The format of this command is as follows:<br> 
@@ -286,7 +296,7 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 > *  For example, `/dine school` will yield results from both School of Business and School of Computing.
 
 
-### 3.9. Search for specific dining outlet: ```/dineinfo```
+### 3.2.2. Search for specific dining outlet: ```/dineinfo```
 This command finds all dining outlets that contains the keyword, and display their location and operating hours.
 
 The format of this command is as follows:<br>
@@ -309,7 +319,11 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo3.png" alt="output" width=600><br>
 
-### 3.10. Add a favourite command: `/addfav`
+### 3.3. Favourite Features
+This section provides the instruction for all features categorised under the main feature of personalisation of application
+to your needs.
+
+### 3.3.1. Add a favourite command: `/addfav`
 This command adds a valid command with an optional description to your list of favourites
 
 The format of this command is as follows:<br>
@@ -345,7 +359,7 @@ to store the command in to your list of favourites with no description  as shown
 
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 
-### 3.11. List all favourite commands: `/listfav`
+### 3.3.2. List all favourite commands: `/listfav`
 This command displays all the commands in your list of favourite commands, along with their index and description.
 
 The format of this command is as follows:<br>
@@ -360,7 +374,7 @@ These are the steps to follow:
 1. Type <code>/listfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/listfav1.png" alt="output" width=600><br>
 
-### 3.12. Delete a favourite command: `/deletefav`
+### 3.3.3. Delete a favourite command: `/deletefav`
 This command deletes the command that you have specified from the list of favourite commands.
 
 Format: <br>
@@ -376,7 +390,7 @@ To delete this command from your favourites list:
 press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 
-### 3.13. Execute a favourite command: `/execfav`
+### 3.3.4. Execute a favourite command: `/execfav`
 This command executes the specific command in your list of favourite commands.
 
 Format: <br>
@@ -404,8 +418,8 @@ Given you have the list of favourite commands:<br>
 If you attempt to execute the invalid command <code>/Funny command</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br>
 <img src="UG_Figures/execfav4.png"><br>
 
-
-### 3.14. Change the description for a favourite command: `/descfav`
+<!-- @@author wamikamalik -->
+### 3.3.5. Change the description for a favourite command: `/descfav` - Wamika
 This command helps you change the description of a command in your list of favourites.
 
 Format:<br>
@@ -425,8 +439,9 @@ shown in the figure below and press enter. <br>
 
 2. Type <code>/listfav</code> to see the changed description.<br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
+<!-- @@author -->
 
-### 3.15. Clear the list of favourite commands: `/clearfav`
+### 3.3.6. Clear the list of favourite commands: `/clearfav`
 This command clears all the commands stored in your list of favourite commands.
 
 The format of this command is as follows:<br>
@@ -443,8 +458,11 @@ These are the steps to follow:
 1. Type <code>/clearfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
 
+### 3.4. Common Features
+This section provides the instruction for all features categorised under the common features.
 
-### 3.16. Similarity Checks
+<!-- @@author wamikamalik -->
+### 3.4.1. Similarity Checks - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
@@ -461,8 +479,9 @@ as shown in the figure below.<br><br>
 
 >Note: This check is only applicable to bus stop names, so the app performs it only when you enter a 
 ><code>/route</code> command or a <code>/bus</code> command. 
+<!-- @@author -->
 
-### 3.17. Reset frequent search data: ```/reset```
+### 3.4.2. Reset frequent search data: ```/reset```
 This command resets the data set used to display most frequently search bus stop on application start-up.
 
 Format:<code>/reset</code>
@@ -474,7 +493,7 @@ application changes. To create a new data set that will cater to your needs in t
 command <code>/reset</code> to reset the data set and start the application on a clean slate.<br><br>
 <img src="UG_Figures/freq1.png" alt="Correct input message" width=600><br>
 
-### 3.18. Exit the program: ```/exit```
+### 3.4.3. Exit the program: ```/exit```
 This command helps you exit the application.
 
 The format of this command is as follows:<br>
@@ -515,7 +534,9 @@ Command | Format | Example
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
 
-## 6. Glossary
+<!-- @@author wamikamalik -->
+## 6. Glossary - Wamika
 This section defines key technical terms we have used throughout the user guide.
 1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
+<!-- @@author -->

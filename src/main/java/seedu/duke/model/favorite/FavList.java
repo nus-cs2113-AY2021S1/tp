@@ -23,6 +23,11 @@ public class FavList {
         favList.remove(index - 1);
     }
 
+    /**
+     * Calls printFavList() to print the favorites list.
+     *
+     * @throws CustomException thrown if list is empty
+     */
     public static void listFav() throws CustomException {
         if (favList.size() == 0) {
             throw new CustomException(ExceptionType.EMPTY_FAVLIST);
@@ -30,6 +35,9 @@ public class FavList {
         printFavList(favList);
     }
 
+    /**
+     * Deletes all existing entries in the favorites list.
+     */
     public static void clearFav() {
         favList.clear();
         printClearFavMessage();
@@ -58,7 +66,7 @@ public class FavList {
      * @throws CustomException if index is put of bounds or new description is the same as the old description.
      */
     private static String checkIndexAndDesc(int index, String newDesc) throws CustomException {
-        if (index == 0 || index > favList.size()) {
+        if (index <= 0 || index > favList.size()) {
             throw new CustomException(ExceptionType.INVALID_INDEX);
         }
         assert index > 0 && index <= FavList.getList().size() : "Index out of bounds.";

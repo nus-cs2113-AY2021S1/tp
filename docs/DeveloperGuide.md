@@ -25,7 +25,10 @@ enhancements.
   * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
   * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
   * [3.10. Performing similarity checks](#310-performing-similarity-checks)
-- [4. Appendix A: Product scope](#4-appendix-a-product-scope)
+  * [3.11. Displaying most searched bus stop](#311-displaying-most-searched-bus-stop-on-start-up)
+    + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies-of-bus-stops-reset-feature)
+  * [3.12. Removing specific delete command (`/deletefav` Feature)](#312-removing-specific-delete-command-deletefav-feature)
+- [4. Appendix A: Product Scope](#4-appendix-a-product-scope)
   * [4.1. Target user profile](#41-target-user-profile)
   * [4.2. Value Proposition](#42-value-proposition)
 - [5. Appendix B: User Stories](#5-appendix-b-user-stories)
@@ -37,12 +40,13 @@ enhancements.
 
 Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
 
+<!-- @@author wamikamalik -->
 ## 2. Design
 
 This section describes the design and implementation of the product. It has been divided into two sections: Architecture 
 and Implementation. 
 
-### 2.1. Architecture
+### 2.1. Architecture - Wamika
 
 The architecture diagram given in the figure below explains the high-level design of the App. 
 
@@ -111,7 +115,7 @@ The following class diagram briefly explains how different classes in the Storag
 ## 3. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
 
-### 3.1. Finding a direct route (`/route` Feature)
+### 3.1. Finding a direct route (`/route` Feature) - Wamika
 `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
 available from **location1** to **location2**.
 
@@ -164,6 +168,7 @@ bus object contains the list of remaining stops in the route of that bus.
     
 Given the above alternatives, alternative 1 was used considering the implementation of other features of the 
 application.
+<!-- @@author -->
 
 ### 3.2. Full Route Display (`/routemap` Feature)
 
@@ -173,16 +178,34 @@ bus route.
 The class diagram in the figure below shows how different classes used for implementation of the `/routemap` command 
 are linked to each other.
 
-![RouteCommandClass](DG_Diagrams/RouteMapCommandClass.png)
+![RouteCommandClass](DG_Diagrams/RouteMapCommand/RouteMapCommand.png)
 
 The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes the command in the following steps:
-1. Calls `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
+1. Calls `RouteMapCommand#selectAndPrintBusRoute()`to attempt to retrieve user-specified bus code. (Bus code is stored
+as a string variable in the command)
+2. Calls `RouteMapCommand#checkBusCode()` to make sure bus code entered by the user is not empty or a white-space.
+3. Calls static `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
 returned. Else, null is returned.
-2. Calls `Ui#printFullRoute()` to display full route of the specified bus.
+4. Calls `Ui#printFullRoute()` to display full route of the specified bus.
 
-The following sequence diagram explains the above steps when the user searches for the full route of a bus.
+The following sequence diagram explains the above steps when the user enters `/routemap busCode`.
+![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)
+The following sequence diagrams explain the interactions for bus route retrieval.
+![Internal](DG_Diagrams/RouteMapCommand/RouteMapCommandSeq.png)
 
-![Overview](DG_Diagrams/RouteMapCommandSeq.png)
+#### Design Considerations
+##### Aspect: Retrieval of bus routes
+* **Alternative 1 (current choice):** Each bus is an object that contains the bus number and full route as an ArrayList
+of busStops objects.
+    + Pros: It is easy to maintain and updating of bus stops and bus codes are easier to implement.
+    + Cons: Has to loop through the array of bus stops and obtain their individual bus description.
+     
+* **Alternative 2:** The full route of each bus is stored in a string format and is directly accessed.
+    + Pros: It is easier and quicker to print out the full route of a user-specified bus.
+    + Cons: Alot of manual work is needed if the bus route/ bus stop is updated. It is not scalable for large-scale 
+    projects.
+    
+Given the above alternatives, alternative 1 was used considering the scalability of the application.
 
 ###3.3. List All stops (/liststops Feature)
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
@@ -246,7 +269,8 @@ User experience for the first approach will be improved as the command required 
 
 Therefore, choosing commands based on index (first approach) is easier to implement, more efficient, reduces possible bugs encountered and provides better user experience.
 
-### 3.6. Modifying the description of a favourite command (`/descfav` Feature)
+<!-- @@author wamikamalik -->
+### 3.6. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -297,6 +321,7 @@ the description is different from what is already stored.
     
 While alternative 2 would place all checks in one place, it can be tedious to test or debug. Therefore, alternative 1 
 was chosen. It also made the code look neater and more readable. 
+<!-- @@author -->
     
 ### 3.7. Dining options finder (/dine Feature)
 
@@ -321,7 +346,9 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 1. Checks the user input and throws an exception if the input is empty.
 2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
     + Adds any matching data to an ArrayList `searchList`.
-    + Calls `Ui#printDineInfoResult()` method to print the matching results if size of `searchList` is more than 0.
+    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList`.
+        + Prints the matching results if size of `searchList` is more than 0.
+        + Prints 'no match' message if size of `searchList` is 0.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
 ![bus data](DG_Diagrams/DineInfoSequence.png)
@@ -347,7 +374,8 @@ The following sequence diagram illustrates the steps taken by the program when t
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
 
-### 3.10. Performing similarity checks
+<!-- @@author wamikamalik -->
+### 3.10. Performing similarity checks -Wamika
 This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
 instruction or command from the user and runs every time the user enters a `/route` or `/bus` command.<br>
 The following steps explain how the similarity checks are performed.
@@ -367,8 +395,64 @@ Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feat
 
 _Credits: The Levenshtein distance algorithm was adapted from 
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
+<!-- @@author -->
 
-## 4. Appendix A: Product scope
+### 3.11 Displaying most searched bus stop on start-up
+This feature informs the user about their most searched bus stop.
+There is no function to explicitly call it and is executed only during Nav@NUS's start up.
+
+The following steps explain how the search frequencies of each bus are updated.
+1. Whenever the user enters a valid command (`/route` or `/bus`) that requires bus stops, `BusStops#findBusStop()` is 
+called to locate the specified bus stop.
+2. `BusStops#incrementSearchCount()` is called to increase the search count of the bus stop.
+
+The following steps explain how the most searched bus stop is displayed.
+
+1.On start-up, `Ui#printWelcomeMessage()` is called. <br>
+2.`Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
+3.`BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
+
+The following sequence diagram illustrates the steps taken by the program on start-up.
+![Display_Search_Freq_Sequence_Diagram](DG_Diagrams/ResetSearchFreqCommand/DisplaySearchFreq.png)
+#### Design Considerations
+##### Aspect: Implementing search frequencies
+* **Alternative 1 (current choice):** Each value in the BusStops enumeration has a private integer
+variable called searchCount.
+    + Pros: It is easier to maintain and updating of bus stops are easier to implement. It provides a template to be
+    used for locations with many bus stops.
+    + Cons: Has to loop through the array of bus stops and obtain their respective search counts.
+     
+* **Alternative 2:** The search frequency of each bus stop is stored in an array of tuple and is directly accessed.
+    + Pros: It is easier and quicker to obtain the most searched bus stop.
+    + Cons: It does not blend in well with other features that accesses the BusStops class.
+    
+Given the above alternatives, alternative 1 was used considering the integration of other commands.
+
+### 3.11.1 Resetting search frequencies of bus stops (`/reset` Feature)
+This feature allows the user to reset the search frequencies of all bus stops.
+
+The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand Class executes the command in the following steps:
+1.`BusStops#resetSearchFrequency()` is called to re-initialise all search counts of respective bus stops to zero.
+2. `Ui#printResetSearchFreqMessage()` is called to inform the user that all search counts have been reset.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/reset` command.
+![Sequence ](DG_Diagrams/ResetSearchFreqCommand/ResetSearchFreqSeq.png)
+
+### 3.12 Removing specific delete command (`/deletefav` Feature)
+`/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
+user to customise the list of favourite commands to the user's liking.
+
+The DeleteFavCommand#executeCommand() method of DeleteFavCommand Class executes the command in the following steps:
+1.`Parser#extractType()` is called to instantiate `DeleteFavCommand`. During instantiation, if the user specified
+index is empty or blank, an exception would be thrown.
+2.`Ui#printDeleteFavMessage(<index>)` is called to inform the user that the favourite command corresponding to the
+index has been deleted.
+3.`FavList#deleteFav(<index>)` is executed to remove the favourite command from the list of favourite commands.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
+![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
+
+## 4. Appendix A: Product Scope
 
 ### 4.1. Target user profile
 
@@ -386,7 +470,8 @@ Nav@NUS seeks to help the intended audience to achieve the following:
  - Fast viewing of dining options available at other locations
  - Personalised application suited to the user's needs
 
-## 5. Appendix B: User Stories
+<!-- @@author wamikamalik -->
+## 5. Appendix B: User Stories - Wamika
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
@@ -400,12 +485,13 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 
-## 6. Appendix C: Non-Functional Requirements
+## 6. Appendix C: Non-Functional Requirements - Wamika
 
 1. Nav@NUS should be able to work on any _mainstream OS_ which has Java 11 or a higher version of Java installed.
 2. The user is expected to have a basic idea about the places around NUS.
 3. A user comfortable with typing english text should be able to find this application faster and more useful than those
 that require mouse clicks.
+<!-- @@author -->
 
 ## 7. Appendix D: Glossary
 
@@ -425,10 +511,44 @@ This portion contains instructions on how to perform manual testing.
     - Type `/exit` followed by enter key to exit<br>
     Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
 
+<!-- @@author wamikamalik -->
+### E.2 Check for direct bus - Wamika
+> Note: The user can list all bus stop names using the `/liststops` command if unsure of the starting location or 
+>destination.
 
-### E.2 Check for direct bus
+1. Finding a direct route between 2 places in NUS.
+    - Test case: `/route University Town /to PGP`<br>
+    Expected: The buses you can take from **University Town** to **PGP** will be displayed with the intermediate stop 
+    names.
+    - Test case: `/route EA /to Kent Vale`<br>
+    Expected: A message saying no direct bus routes are available will be displayed.
+    - Test case: `/route vivocity /to sentosa`<br>
+    Expected: A message saying that the starting location and destination are not in the bus stops list will be 
+    displayed.
+    - Test case: `/route ent Vale /to pgp`<br>
+    Expected: A message displaying suggestions for **ent Vale** will be displayed.
+    - Test case: `/route  /to pgp`<br>
+    Expected: An appropriate error message will be displayed.
+    - Other incorrect route commands to try: `/route   `, `/route pgp Kent Ridge mrt station`, `/route  /to  `, etc<br>
+    Expected: An appropriate error message will be displayed.      
+<!-- @@author -->
 
-### E.3 Check bus route
+### E.3 Check for full bus route
+1. Executing a route map command to view full route of a selected bus
+- Prerequisites: List all buses available by executing `/allbus` command
+
+- Test case 1: `/routemap AA1`<br>
+Expected: The full route of bus AA1 will be displayed.<br>
+
+- Test case 2: `/routemap AA1000`<br>
+    -Other incorrect test cases includes all invalid bus codes not included in the list of all buses as displayed
+    by the `/allbus` command
+Expected: No bus routes will be displayed as there is no such bus in our database.<br>
+
+- Test case 3: `/routemap`<br>
+Expected: No bus routes will be displayed. Error details will be shown to remind users to type in
+the needed parameter.<br>
+
 
 ### E.4 Check for buses at a bus stop
 1. Checking for the buses available at a bus stop
@@ -443,12 +563,65 @@ This portion contains instructions on how to perform manual testing.
     Expected: Similar to previous.
 
 ### E.5 Search for dining options within a faculty
+1. Searching for dining options within a faculty.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine science`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine sci`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine scienceee` (name of faculty has been misspelled)<br>
+    Expected: Similar to previous.<br>
+
+2. Searching for dining options within faculties with similar names.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine school`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine sch`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine schooool` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br>
 
 ### E.6 Search for specific dining outlet
-
+1. Searching for specific dining outlet.
+    - Test case: `/dineinfo arise & shine`<br>
+    Expected: Dining outlets with the name Arise & Shine will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo arisee & shiine` (name of outlet has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+    
+2. Searching for dining outlets with similar names.
+    - Test case: `/dineinfo cafe`<br>
+    Expected: Dining outlets with names containing 'cafe' will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo caffe` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+    
 ### E.7 Add a favourite command
 
 ### E.8 Delete favourite command from favourite list
+1. Deleting a favourite command from favourite list
+- Prerequisites: List all buses available by executing `/listfav` command. There are existing favourite commands in
+the favourite list.
+
+- Test case 1: `/deletefav 1`<br>
+    - The range of values accepted is the number of favourite commands there are in the list.
+Expected: The favourite command at index 1 will be deleted.<br>
+
+- Test case 2: `/deletefav 0`<br>
+    -Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
+     any string or empty input. 
+Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
+
+- Test case 3: `/deletefav`<br>
+Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
+
+
 
 ### E.9 Execute a favourite command from favourite list
 1. Executing a favourite command in list of favourites.
@@ -460,7 +633,22 @@ This portion contains instructions on how to perform manual testing.
     - Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).<br>
     Expected: Similar to previous.
 
-### E.10 Change description of favourite command in favourite list
+<!-- @@author wamikamalik -->
+### E.10 Change description of favourite command in favourite list - Wamika
+1. Changing the description of a favourite command in the list.
+    - Prerequisites: List all favourite commands by executing `/listfav` command. There is at least one favourite in the 
+    list.
+    - Test case: `/descfav 1 /to I go there often`<br>
+    Expected: The description for the first command will be changed to "I go there often".
+    - Test case: `/descfav 0 /to I go there often`<br>
+    Expected: An error message will be displayed. The list of favourites remains unchanged.
+    - Test case: `/descfav 1 /to I go there often` after running the first test case.<br>
+    Expected: An error message saying the description is the same as before will be displayed.
+    - Test case: `/descfav   /to I go there often`, `/descfav  `, `/descfav 1 I go there`, `/descfav x /to something` 
+    (where x is a number bigger than the number of elements in the list), `/descfav 2e /to something`, etc.<br>
+    Expected: The appropriate error message will be displayed.
+    
+<!-- @@author -->
 
 ### E.11 Saving of favourite list
 1. Data is automatically saved in the `/data/FavList.txt` directory of the jar file's home directory.
