@@ -162,10 +162,20 @@ Shows you a list of all events.
 Format: `list`  
 
 ### Clear events
-Deletes all events in the list.  
 
-Format: `clear`  
+Delete events existing in the list, you can choose to delete all, auto delete or delete events before a certain date:
 
+* Clear all events
+  Format: `clear`
+  
+* Clear events happened one month ago
+  Format: `autoClear`
+  Note that this command will clear all events which happened one month ago no matter they are done or not.
+  
+* Clear events happened before a certain date
+  Format: `clearBefore CLEAR_DATE`
+  
+  Example: `clearBefore 2020-03-10`
 
 ### Mark event as done
 Mark an event that has been completed with `DONE`.  
@@ -192,7 +202,7 @@ the data of your previous AddressBook home folder.
 |Action|Command|Example|
 |------|-------|-------|
 |add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
-|clear|`clear` |`clear`|
+|clear|`clear` OR `autoClear` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit`, then fill in each fields when prompted and press `ENTER` to move on to the next field|`edit 1` `ENTER` `class` `ENTER` `cs2113t` `ENTER` `\l school` `ENTER` `2020-10-26 19:00` `ENTER` `2020-10-26 20:00`|
 |help|`help`||
