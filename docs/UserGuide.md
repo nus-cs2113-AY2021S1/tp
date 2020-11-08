@@ -252,7 +252,7 @@ Format: `help`
 Example of usage:
 'help'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/help.png)
+![image](img/help.png)
 
 ### 3.10 quit the system: `bye`
 quit the system
