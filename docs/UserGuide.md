@@ -629,9 +629,9 @@ Example of usage:
 Expected output:
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
-### 3.10 SUing a grade: `su grade INDEX`
+### 3.10 SU-ing a grade: `su grade INDEX`
 
-SUed a module and want to exclude it from your CAP calculation? The SU grade
+SU-ed a module and want to exclude it from your CAP calculation? The SU grade
 function allows you to do just that through these simple steps.
 
 Instruction: 
@@ -643,6 +643,10 @@ Example of usage:
 
 Expected output:
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
+
+**Warning:**
+* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
+consider deleting the mod and adding a new one.
 
 ### 3.11 Deleting a grade: `delete grade INDEX`
 
