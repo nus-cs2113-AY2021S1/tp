@@ -214,6 +214,41 @@ Output:
     ____________________________________________________________
 ```
 
+### Adding an expense item: `spend`
+Add an expense item into the expense list.
+
+Format: `spend <description> <compulsory arguments> <optional arguments>`
+
+List of `<compulsory arguments>`:
+- `v/<value>` sets the amount of money spent
+
+List of `<optional arguments>`:
+- `currency/<currency>` sets the currency of the expense.
+- `date/<yyyy-MM-dd>` sets the date of the expense.
+
+🚩: By default, the currency is set to "SGD" and date is set to the date when the user executed the `spend` command.
+
+Example of usage:
+
+`spend lunch v/5`
+
+`spend lunch v/5 currency/CNY`
+
+`spend lunch v/5 date/2020-10-28`
+
+`spend lunch v/5 currency/USD date/2020-11-08`
+
+Output:
+
+```
+    ____________________________________________________________
+     Got it. I've added this expense item:
+       lunch (5.00 USD) (date: Sunday, November 8, 2020)
+     Now you have 9 expense items in the list.
+    ____________________________________________________________
+
+```
+
 ### Borrowing a book: `borrow`
 Loan a book and add into the book list 
 
@@ -237,38 +272,6 @@ Output:
      Got it. I've added this book: cooking book
        (Loan Date: 11 Nov 2011)
        (Due Date: 11 Dec 2011)
-    ____________________________________________________________
-```
-
-### Adding an expense item: `spend` (coming soon)
-Add an expense item into the expense list.
-
-Format: `spend <description> <compulsory arguments> <optional arguments>`
-
-List of `<compulsory arguments>`:
-- `v/<value>` sets the amount of money spent
-
-List of `<optional arguments>`:
-- `currency/<currency>` sets the currency of the expense.
-- `date/<dd-MM-yyyy>` sets the date of the expense.
-
-🚩: By default, there is no currency and date, and the currency is set to "SGD".
-
-Example of usage:
-
-`spend lunch v/5`
-
-`spend lunch v/5 currency/CNY`
-
-`spend lunch v/5 currency/USD date/28-10-2020`
-
-Output:
-
-```
-    ____________________________________________________________
-     Got it. I've added this expense item:
-       lunch (5 SGD) (date: 28 Oct 2020)
-     Now you have 4 expense(s) in the list.
     ____________________________________________________________
 ```
 
@@ -432,10 +435,26 @@ Output:
      Total MCs completed: 12
     ____________________________________________________________
 ```
-### Displaying expense items on list: `list` (coming soon)
-List all the expense items in the expense list and shows total amount of money spent for each currency.
 
-Format: `list expenses`
+### Displaying expense items on list: `list`
+List all the expense items in the expense list and shows total amount of money spent for each currency and the current 
+day, week, month, and year.
+
+Format: `list expenses <optional arguments>`
+
+List of `<optional arguments>`:
+- `currency/<currency>` displays all the expense items with currency `CURRENCY` as a list.
+- `date/<yyyy-MM-dd>` displays all the expense items with date in the format of yyyy-MM-dd.
+- `for/{DAY,WEEK,MONTH,YEAR}` Displays all the expense items for today/this week/this month/this year.
+
+🚩: Expense list is sorted based on date (from the most recent to the least recent). If the date of two expense items 
+are the same, the expense list is sorted based on currency lexicographically.
+
+🚩: `currency`, `date`, and `for` arguments can be used together.
+
+🚩: `date` must be in the format of `yyyy-MM-dd`, e.g. `2020-11-08`.
+
+🚩: `for` argument is case-insensitive, e.g. `list expenses for/week`.
 
 Example of usage:
 
@@ -445,15 +464,183 @@ Output:
 
 ```
     ____________________________________________________________
-     Here is a list of your expense(s):
-     
-     lunch (5 SGD) (date: 28 Oct 2020)
-     dinner (10 USD)
+     Here are the expense item(s) in your list:
+
+     dinner (0.60 A) (date: Monday, November 9, 2020)
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+     bottle (3.00 SGD) (date: Saturday, November 7, 2020)
+     pen (1.00 SGD) (date: Saturday, November 7, 2020)
+     earphone (0.30 SGD) (date: Saturday, November 7, 2020)
+     tablet (0.40 USD) (date: Saturday, November 7, 2020)
+
+     Your total expense for today is:
+     0.60 SGD
+     5.20 USD
+
+     Your total expense for this week is:
+     4.90 SGD
+     5.60 USD
+
+     Your total expense for this month is:
+     0.60 A
+     4.90 SGD
+     5.60 USD
+
+     Your total expense for this year is:
+     0.60 A
+     4.90 SGD
+     5.60 USD
     ____________________________________________________________
-     Total money spent:
-     SGD: 5
-     USD: 10
+
+```
+
+`list expenses currency/USD`
+
+Output:
+
+```
     ____________________________________________________________
+     Here are the expense item(s) in your expense list of currency USD:
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+     tablet (0.40 USD) (date: Saturday, November 7, 2020)
+
+     The total amount listed:
+     5.60 USD
+    ____________________________________________________________
+    
+```
+
+`list expenses date/2020-11-08`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list of date Sunday, November 8, 2020:
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+
+     The total amount listed:
+     0.60 SGD
+     5.20 USD
+=======
+     breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
+     bus (1.00 SGD) (date: Saturday, November 7, 2020)
+     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (0.40 USD) (date: Saturday, November 7, 2020)
+
+     Your total expense for today is:
+
+     Your total expense for this week is:
+     4.30 SGD
+     0.40 USD
+
+     Your total expense for this month is:
+     4.30 SGD
+     0.40 USD
+
+     Your total expense for this year is:
+     4.30 SGD
+     0.40 USD
+    ____________________________________________________________
+```
+
+### Displaying expense items on a certain date on list: `list` 
+List all the expense items in the expense list and shows total amount of money spent for each currency.
+
+Format: `list expenses date/YYYY-MM-DD`
+
+Example of usage:
+
+`list expenses date/2020-11-07`
+
+Output:
+```    
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list of date Saturday, November 7, 2020:
+     book (15.00 SGD) (date: Saturday, November 7, 2020)
+
+     The total amount listed:
+     15.00 SGD
+    ____________________________________________________________
+```
+
+### Displaying expense items for a certain time period on list: `list` 
+List all the expense items in the expense list and shows total amount of money spent for each currency.
+
+Format: `list expenses for/<time period>`
+
+🚩: `<time period>` can only be `day`, `week`, `month`, or `year`.
+
+🚩: time period is **case-insensitive**.
+
+Example of usage:
+
+`list expenses for/week`
+
+Output:
+```    
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list for this week:
+     breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
+     bus (1.00 SGD) (date: Saturday, November 7, 2020)
+     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (0.40 USD) (date: Saturday, November 7, 2020)
+
+     The total amount listed:
+     4.30 SGD
+     0.40 USD
+>>>>>>> 462c98736af6349f49405a0cbe8d2e4142f9df08
+    ____________________________________________________________
+
+```  
+
+`list expenses for/WEEK`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list for this week:
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+     bottle (3.00 SGD) (date: Saturday, November 7, 2020)
+     pen (1.00 SGD) (date: Saturday, November 7, 2020)
+     earphone (0.30 SGD) (date: Saturday, November 7, 2020)
+     tablet (0.40 USD) (date: Saturday, November 7, 2020)
+
+     The total amount listed:
+     4.90 SGD
+     5.60 USD
+    ____________________________________________________________
+
+```  
+
+`list expenses for/DAY`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the expense item(s) in your expense list for today:
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+
+     The total amount listed:
+     0.60 SGD
+     5.20 USD
+    ____________________________________________________________
+
 ```
 
 
@@ -570,8 +757,9 @@ Output:
     ____________________________________________________________
 ```
 
-### Deleting an expense item from the list: `delete` (coming soon)
-Deletes an expense item from the list 
+### Deleting an expense item from the list: `delete`
+
+Deletes an expense items from the list.
 
 Format: `delete expense <expenseIndexNumber>`
 
@@ -585,11 +773,88 @@ Output:
 
 ```
     ____________________________________________________________
-     Noted. I've removed this expense item:
-       lunch (5 SGD)
-     Now you have 1 expense(s) in the list.
+     Noted. I've removed all these expense item(s)
+
+     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
     ____________________________________________________________
 
+```
+
+### Deleting all the expense items of a certain currency: `delete`
+
+Delete expense items of the same currency
+
+Format: `delete expenses currency/<currency>`
+
+Example of usage:
+
+`delete expenses currency/SGD`
+
+Output:
+
+```
+    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
+
+     earphone (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (1.00 SGD) (date: Saturday, November 7, 2020)
+     book (0.50 SGD) (date: Sunday, November 8, 2020)
+     bottle (3.00 SGD) (date: Saturday, November 7, 2020)
+    ____________________________________________________________
+
+```
+
+🚩: If there is no expense item to be deleted, the output will be as follows:
+
+```
+    ____________________________________________________________
+     There is no expense item deleted.
+
+    ____________________________________________________________
+
+```
+
+### Deleting all expense items of the same date: `delete`
+
+Deletes expense items of the same date
+
+Format: `delete expenses date/<yyyy-MM-dd>`
+
+🚩: `date` argument must be in the format of `yyyy-MM-dd`, e.g. `2020-11-08`.
+
+Example of usage:
+
+`delete expenses date/2020-11-08`
+
+Output:
+
+```
+    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
+
+     bread (0.20 USD) (date: Sunday, November 8, 2020)
+     lunch (5.00 USD) (date: Sunday, November 8, 2020)
+
+```
+
+### Deleting expense items on a certain date from the list: `delete`
+Deletes an expense item from the list 
+
+Format: `delete expenses date/YYYY-MM-DD`
+
+Example of usage:
+
+`delete expenses date/2020-11-07`
+
+Output: 
+```
+    ____________________________________________________________
+     Noted. I've removed all these expense item(s)
+
+     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
+     pen (0.40 USD) (date: Saturday, November 7, 2020)
+     sandwich (3.00 SGD) (date: Saturday, November 7, 2020)
+    ____________________________________________________________
 ```
 
 ### Marking a task as done: `done`
@@ -745,29 +1010,46 @@ Output:
 ```
 
 ### Searching for tasks with keyword: `find`
-Finds all tasks with matching description.
 
-Format: `find <keyword>`
+Finds all items in the corresponding item list with matching description.
+
+Format: `find {tasks,links,books,expenses,modules} k/<keyword>`
 
 🚩: `<keyword>` is **case-insensitive**.
 
-🚩: `<keyword>` is a **whole word** from the task description, e.g `meeting`, `ip` etc.
+🚩: `<keyword>` can be a **single word** or a **phrase**.
+ 
+🚩: `<keyword>` must contain **whole words** from the item description, e.g `tp meeting`, `ip` etc.
 
-🚩: Incomplete keywords will **not be allowed**. e.g `meet`, `t` etc.
+🚩: Incomplete keywords will **not be matched**. e.g `mee`, `t` etc.
 
 Example of usage:
 
-`find meeting`
+`find tasks k/tp meeting`
 
 Output:
 
 ```
     ____________________________________________________________
-     Here are the matching tasks in your list:
-     1.[T][Y] tP meeting (p:1) (category: cs2113)
-     2.[T][N] iP meeting (p:2) (category: cs2113)
+     Here are the matching items in your list:
+     1.[T][N] tp meeting (p:0) (category: cs2113)
+     2.[T][N] tp meeting 2 (p:0)
     ____________________________________________________________
+
 ```
+
+`find expenses k/dinner`
+
+Output:
+
+```
+    ____________________________________________________________
+     Here are the matching items in your list:
+     1.dinner (0.60 A) (date: Monday, November 9, 2020)
+    ____________________________________________________________
+
+```
+
 ### Clearing all tasks: `clear`
 Clears all tasks, lists, books, modules from the list 
 
@@ -801,26 +1083,28 @@ Output:
      add: Adds a task to the task list.
      Parameters: TASK_NAME <optional arguments>
      List of <optional arguments>
-       - `p/<number>` sets the priority of the task.
-       - `c/<category>` sets the category of the task.
-       - `date/<dd-MM-yyyy>` sets the date of the task.
+       - p/<number> sets the priority of the task.
+       - c/<category> sets the category of the task.
+       - date/<dd-MM-yyyy> sets the date of the task.
      Example: add task example_task <optional arguments>
 
-     addr: Adds a task to the task list.
+     addr: Adds multiple tasks to the list of tasks that occur weekly on a given day.
      Parameters: TASK_NAME <optional/compulsory arguments>
      List of <optional arguments>:
-       - `p/<number>` sets the priority of the task.
-       - `c/<category>` sets the category of the task.
-       - `date/<dd-MM-yyyy>` sets the date of the task.
-     List of `<compulsory arguments>
-       - `s/<dd-MM-yyyy>` start date of recurring tasks (inclusive)
-       - `e/<dd-MM-yyyy>` end date of recurring tasks (inclusive).
-       - `day/<mon/tue/wed/thu/fri/sat/sun>` day of recurring task.
-     Example: addr example_task <optional arguments>
+       - p/<number> sets the priority of the task.
+       - c/<category> sets the category of the task.
+       - date/<dd-MM-yyyy> sets the date of the task.
+     List of <compulsory arguments>:
+       - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)
+       - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).
+       - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.
+     Example: addr example_task <optional/compulsory arguments>
 
      borrow: Adds a book to the book list.
-     Parameters: BOOK_NAME date/DATE
-     Example: borrow example_book  date/10-10-2020
+     Example: borrow example_book  date/DD-MM-YYYY
+
+     bye: Exits the program.
+     Example: bye
 
      calendar: Sets the date of a given task in the list.
      Example: calendar d/<daysToPrint>
@@ -835,7 +1119,8 @@ Output:
      date: Sets the date of a given task in the list.
      Example: date <taskIndex> date/DD-MM-YYYY
 
-     delete: Deletes the task identified by the index number used in the task listing.
+     delete:
+     1. Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
      Example: delete task 1
           Optional parameter 1: p/PRIORITY
@@ -844,41 +1129,76 @@ Output:
           Optional parameter 2: c/CATEGORY
              Deletes all the tasks with CATEGORY.
              Example: delete tasks c/cs2113.
-     Deletes the link identified by the index number used in the link listing.
+     2. Deletes the link identified by the index number used in the link listing.
      Parameters: INDEX
      Example: delete link 1
+     3. Deletes the expense items identified by the index number used in the expense list.
+          Optional parameter 1: currency/CURRENCY
+             Deletes all the expense items with CURRENCY.
+             Example: delete expenses currency/SGD
+          Optional parameter 2: date/yyyy-MM-dd
+             Deletes all the expense items on the date in the format of yyyy-MM-dd
+             Example: delete expenses date/2020-11-07
 
+     done: Marks the task/module identified by the index number used in the listing as done.
+     Parameters: <type> INDEX
+     Accepted <type>: task, module
+     Example: done task 1
 
-     done: Marks the task identified by the index number used in the task listing as done.
-     Parameters: INDEX
-     Example: done 1
-
-     find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
-     Parameters: KEYWORDS
-     Example: find book
+     find: Finds all items whose descriptions containthe specified keywords (case-insensitive) and displays them as a list with index numbers.
+     Parameters: {tasks, links, books, expenses, modules} k/KEYWORDS
+     Example: find expenses k/buy
 
      help: Shows program usage instructions.
      Example: help
 
      list: Displays all items in the list with index numbers.
      Example: list all
-     Displays all items in the list.
+     1. Displays all the tasks in the task list.
           Optional parameter 1: tasks p/PRIORITY
-             Displays all the tasks with PRIORITY as a list.
+             Displays all the tasks with priority PRIORITY as a list.
              Example: list tasks p/1
           Optional parameter 2: tasks c/CATEGORY
-          Displays all the tasks with CATEGORY as a list.
-          Example: list tasks c/cs2113
+             Displays all the tasks with CATEGORY as a list.
+             Example: list tasks c/cs2113
           Optional parameter 3: tasks sorted
-          Displays all the tasks sorted by priority
+             Displays all the tasks sorted by priority     2. Displays all the books in the book list.
+             Example: list books
+     3. Displays all the links in the link list.
+             Example: list links
+     4. Displays all the modules in the module list.
+             Example: list modules
+     5. Displays all the expense items in the expense list.
+          Optional parameter 1: currency/CURRENCY
+             Displays all the expense items with currency CURRENCY as a list.
+             Example: list expenses currency/SGD
+          Optional parameter 2: date/yyyy-MM-dd
+             Displays all the expense items with date in the format of yyyy-MM-dd.
+             Example: list expenses date/2020-11-07
+          Optional parameter 3: for/{DAY, WEEK, MONTH, YEAR}
+             Displays all the expense items for today/this week/this month/this year.
+             Example: list expenses for/YEAR
 
-     bye: Exits the program.
-     Example: bye
+     makefolders: Make folders for your modules in the modulelist
+
+     return: Marks the book identified by the index number used in the book list as returned.
+     Parameters: INDEX
+     Example: return 2
+
+     spend: Adds an expense item to the expense list.
+     Parameters: DESCRIPTION <compulsory/optional argument>
+     List of <compulsory arguments>:
+       - v/<value> sets the value of the expense item.
+     List of <compulsory arguments>:
+       - currency/<currency> sets the currency of the expense item.
+       - date/<yyyy-MM-dd> sets the date of the expense item.
+     Example: spend example_expense_item v/5.0 currency/SGD date/2020-11-07
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY
      Example: set 1 p/2
     ____________________________________________________________
+  
 ```
 
 ### Exiting and saving the program: `bye`
@@ -929,12 +1249,17 @@ List links | `list` | `list links`
 List books | `list` | `list books`
 List modules | `list` | `list modules`
 List expense items | `list` | `list expenses`
+List expense items with currency | `list` | `list expenses currency/USD`
+List expense items with date | `list` | `list expenses date/2020-11-08`
+List expense items with date range | `list` | `list expenses for/WEEK`
 Delete task | `delete task <taskIndexNumber>` | `delete task 2`
 Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
 Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`
 Delete link | `delete link <taskIndexNumber>` | `delete link 2`
 Delete module | `delete module <moduleIndexNumber>` | `delete module 2`
 Delete expense items | `delete expense <expenseIndexNumber>` | `delete expense 2`
+Delete expense items by currency | `delete expenses currency/<currency>` | `delete expenses currency/SGD`
+Delete expense items by date | `delete expenses date/<yyyy-MM-dd>` | `delete expenses date/2020-11-08`
 Mark task as done | `done task <taskIndexNumber>` | `done task 1`
 Mark module as complete | `done module <moduleIndexNumber>` | `done module 1`
 Mark book as returned | `return <taskIndexNumber>` | `return 2`
@@ -942,7 +1267,7 @@ Set priority of task | `set <taskIndexNumber> p/<priority>` | `set 1 p/2`
 Set category of task | `category <taskIndexNumber> c/<category>` | `category 1 c/CCA`
 Set date of task | `date <taskIndexNumber> date/<dd-MM-yyyy>` | `date 1 date/11-11-2020`
 Print calendar | `calendar d/<daysToPrint>` | `calendar d/7`
-Find tasks with matching keyword | `find <keyword>` | `find meeting`
+Find tasks with matching keyword | `find {tasks,links,books,expenses,modules} k/<keyword>` | `find tasks k/tp meeting`
 Clear everything | `clear all` | `clear all`
 Getting help | `help` | `help`
 Exiting the program | `bye` | `bye`

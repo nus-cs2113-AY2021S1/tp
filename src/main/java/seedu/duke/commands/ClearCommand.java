@@ -2,14 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.model.ListType;
 import seedu.duke.model.Model;
-import seedu.duke.model.itemlist.BookList;
-import seedu.duke.model.itemlist.ExpenseList;
-import seedu.duke.model.itemlist.LinkList;
-import seedu.duke.model.itemlist.ModuleList;
-import seedu.duke.model.itemlist.TaskList;
-import seedu.duke.ui.Ui;
 
 // @@author MuhammadHoze
 

@@ -236,6 +236,8 @@ public class CommandCreator {
         }
     }
 
+    // @@author GuoAi
+
     public static Command createFindCommand(String fullCommand, String subRootCommand, String commandString)
             throws DukeException {
         return FindCommand.createFindCommand(fullCommand, subRootCommand, commandString);

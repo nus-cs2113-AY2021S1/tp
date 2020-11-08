@@ -28,6 +28,7 @@ daily expenses and be reminded of any library loans.
 ##### Contributions to Developer Guide:
 1. Implementation of `list`.
 2. Instructions for manual testing.
+3. Command component and Command class diagram.
 
 ##### Contributions to Team-based tasks:
 1. Use issue tracker to add necessary issues.
