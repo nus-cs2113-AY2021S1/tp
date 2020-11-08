@@ -1,8 +1,9 @@
 package exception;
 
-/*
-* Represents the case when the user input a date in clear before command but there is no event before the given date
-* */
+/**
+ * Represents the case when the user input a date in clear before command but there is no event before the given date.
+ */
+
 public class NoDateBeforeException extends NuScheduleException {
     /**
      * Prepare the message to be printed when this exception is experienced.

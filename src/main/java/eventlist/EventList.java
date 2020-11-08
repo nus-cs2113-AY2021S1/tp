@@ -534,7 +534,7 @@ public class EventList {
     }
 
     /**
-     * clear all events before a certain date
+     * Clear all events before a certain date.
      *
      * @param clearDate before which all events to be cleared
      */
