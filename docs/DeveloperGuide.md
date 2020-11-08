@@ -25,15 +25,13 @@ enhancements.
   * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
   * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
   * [3.10. Performing similarity checks](#310-performing-similarity-checks)
-- [4. Appendix A: Product scope](#4-appendix-i-requirements)
-  * [4.1 Product scope](#41-product-scope)
-    + [4.1.1 Target user profile](#411-target-user-profile)
-    + [4.1.2 Value](#412-value)
-  * [4.2. User Stories](#42-user-stories)
-  * [4.3. Non-Functional Requirements](#43-non-functional-requirements)
-  * [4.4. Glossary](#44-glossary)
-- [5. Appendix II: Use Cases](#5-appendix-ii-use-cases) 
-- [6. Appendix III: Instructions for manual testing](#6-appendix-iii-instructions-for-manual-testing)
+- [4. Appendix A: Product scope](#4-appendix-a-product-scope)
+  * [4.1. Target user profile](#41-target-user-profile)
+  * [4.2. Value Proposition](#42-value-proposition)
+- [5. Appendix B: User Stories](#5-appendix-b-user-stories)
+- [6. Appendix C: Non-Functional Requirements](#6-appendix-c-non-functional-requirements)
+- [7. Appendix D: Glossary](#7-appendix-d-glossary)
+- [8. Appendix E: Instructions for manual testing](#8-appendix-e-instructions-for-manual-testing)
 
 ## 1. Setting up, getting started
 
