@@ -17,7 +17,7 @@ Given below are my coding, documentation, and other helpful contributions to the
     * Highlights: This enhancement is an addon to our exisitng product. It required an in-depth analysis of design alternatives. The implementation was challenging as it required additional classes for it to function the way we wanted.
 
 * **Feature**: Added the ability for the program to intelligently process the user's input and display the correct output into the terminal, using the `InputParser` and `UI` classes.
-
+<div style="page-break-after: always;"></div>
 
 * **Code contributed**: [Reposense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=BenardoTang&tabRepo=AY2021S1-CS2113T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
@@ -27,7 +27,7 @@ Given below are my coding, documentation, and other helpful contributions to the
     * Added overall structure for implementation of `InputParser` (PR [#11](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/11))
     * Sections of `InputParser` which some Command functionalities were reliant on (PR [#15](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/15), [#21](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/21))
     * Management of output messages to the user through `UI` class (PR [#70](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/70))
-    * Added functionality in `SearchCommand`, that was initially implemented by teammate [Jiqing](https://github.com/judowha), to be able to recognise case-insensitive or incomplete inputs as keywords. (PR [#193](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/193)
+    * Added functionality in `SearchCommand`, that was initially implemented by teammate [Jiqing](https://github.com/judowha), to be able to recognise case-insensitive or incomplete inputs as keywords. (PR [#193](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/193))
 
 * **Contributions to documentation**:
     * Added table of contents and overall structure for user guide. (PR [#31](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/31) , [#52](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/52))
@@ -49,7 +49,7 @@ Given below are my coding, documentation, and other helpful contributions to the
 
 
 * **Review/mentoring contributions**:
-    * PR reviewed (with non-trivial review comments): [#133](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/133)
+    * PR reviewed (with non-trivial review comments): (PR [#133](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/133))
 
 
 
