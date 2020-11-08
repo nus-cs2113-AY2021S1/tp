@@ -27,18 +27,19 @@ If you plan to use IntelliJ IDEA (highly recommended):
 1. Ensure IntelliJ IDEA is configured to use JDK 11.
     * Open IntelliJ and a welcome screen should appear.
     * Click on `Configure` -> `Structure for New Projects` -> `Project Settings` -> `Project`.
-    * Under the `Project SDK:` section, select **java version "11.0.8"** or higher).
-1. Import the project as a Gradle project.
+    * Under the `Project SDK:` section, select **java version "11.0.8"** or higher). <br>
+
+2. Import the project as a Gradle project.
     * Ensure Gradle plugin is enabled by going to `File` -> `Settings` -> `Plugins`.
     * Under the `Installed` section go to `Build Tools` and enable Gradle. 
     * At the welcome page, click on `Open or Import`.
     * Locate the `build.gradle` file within the folder that contains the clone repo and select it.
     * Choose the `Open as Project` option when asked.
     * Accept all default settings and wait for the project to import. 
-1. Verify the setup.
+3. Verify the setup.
     * Under the `seedu.duke` package, locate the `Duke` class and run it.
     * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113-t14-3.github.io/tp/UserGuide.html).
-    * **Run the tests (NOT SURE ABOUT THIS!) to ensure they all pass**.
+    * **Run the tests (PLEASE ADD THE LINK FOR THIS) to ensure they all pass**.
 
 ### Before writing the code 
 1. Configure the coding style
