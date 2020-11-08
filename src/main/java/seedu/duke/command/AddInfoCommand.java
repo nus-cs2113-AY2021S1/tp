@@ -37,7 +37,9 @@ public class AddInfoCommand extends Command {
             throw new CommandException("invalid add info");
         }
         calendarNumber = CalendarList.convertEventNumberToCalendarNumber(eventNumber, calendarList);
-
+        if (additionalInformation.isEmpty()) {
+            throw new CommandException("missing add info");
+        }
         assert calendarNumber >= 0;
 
         Event event = (Event) calendarList.getItem(calendarNumber);
