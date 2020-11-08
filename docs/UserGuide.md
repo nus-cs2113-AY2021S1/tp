@@ -400,12 +400,22 @@ Do you wish there was a simple, visual way to organise your day and foresee any 
 The timetable mode intends to address these issues, helping you keep track of your work and helping you achieve
 purposeful productivity.
 
-This section contains 5 commands to navigate the Timetable mode —
-* 2.1. Entering timetable mode
-* 2.2. Adding classes
-* 2.3. Adding activities
-* 2.4. Showing links
-* 2.5. Showing schedule
+>**Warning:**
+>* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not able to
+>retrieved the saved data, hence deem the data file corrupted and request to format the data file before you can use the timetable 
+>feature again.
+
+This section contains 10 commands to navigate the Timetable mode:
+* [2.1. Entering timetable mode](#21-entering-timetable-mode-cd-3--cd-timetable)
+* [2.2. Adding classes](#22-adding-classes-add-class)
+* [2.3. Adding activities](#23-adding-activities-add-activity)
+* [2.4. Showing links](#24-showing-links-show-link)
+* [2.5. Showing schedule](#25-showing-schedule-show-schedule)
+* [2.6. Showing activities list](#26-showing-activities-list-list-activity)
+* [2.7. Showing classes list](#27-showing-class-list-list-class)
+* [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
+* [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
+* [2.10.Removing all past event](#210-removing-all-past-event-clean-up)
 
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
@@ -419,13 +429,13 @@ Instruction:
 Expected output:
 ![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the timetable mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the timetable mode easily and quickly!
 
 ### 2.2 Adding classes: `add class`
 
 If you find it hard to keep track of all your Zoom links with an increasing number of online classes, you can now
-arrange your classes in a systematic manner with this feature. Make sure that you are currently in the timetable mode
+arrange your classes in a systematic manner with this feature. Make sure you are currently in the timetable mode
 (refer to 2.1).
 
 Instruction:
@@ -436,11 +446,19 @@ Instruction:
 Expected output:
 ![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
 
+>**Useful Information:**
+>* You can enter the time in both 12hr and 24hr format. Only entering am/pm at the back of the duration will be assumed 
+>as both starting and ending time are in the same period.
+
 If you encounter any errors, take note of the following warning.
 
-**Warning:**
-* Ensure that you follow the format for answering the questions.
-Error will be shown if the questions are not answered in a suitable format.
+>**Warning:**
+>* Ensure that you follow the format for answering the questions.
+>Error will be shown if the questions are not answered in a suitable format.
+>* Adding event that clash with the existing schedule will result in error message. You will need to check through 
+>the schedule and events list and delete the unwanted event accordingly before you can add the new event.
+>* Number of recurring classes are capped at 52 weeks (1year) to ensure effective processing time. Add your class again one year
+>later if your class recur for more than a year.
 
 ### 2.3 Adding activities: `add activity`
 
@@ -455,6 +473,10 @@ Instruction:
 Expected output:
 ![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
 
+>**Useful Information:** 
+>* Currently this feature does not support adding activity past 12am if you wish to schedule an activity overnight, 
+>add the activity in 2 separate sessions.
+
 ### 2.4 Showing links: `show link`
 
 If you find it hard to keep track of all your conference links for your classes or activities, this command will present
@@ -466,18 +488,7 @@ Instruction:
 Expected output:
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
 
-### 2.5 Showing Activities list: 'show activity'
-
-If you wish to see all activities you have input into the system, 
-this command will present all the activities happening chronological order with their starting date and time.
-
-Instruction:
-1. `show activity`
-
-Expected output:
-![To be added]
-
-### 2.6 Showing schedule: `show schedule`
+### 2.5 Showing schedule: `show schedule`
 
 If you wish to view your schedule for the next seven days with all the activities, use this command.
 
@@ -486,6 +497,84 @@ Instruction:
 
 Expected output:
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
+
+### 2.6 Showing Activities list: `list activity`
+
+If you wish to see all activities you have input into the system, 
+this command will present all the activities you have added with their starting date and time, if the activity is 
+online, and the venue/link of the activity.
+
+Instruction:
+1. `list activity`
+
+Expected output:
+
+![To be added]
+
+### 2.7 Showing Class list: `list class`
+
+If you think searching through the time table is too troublesome,
+use this command to see all the classes you have added and other detail of the classes similar to the previous feature.
+
+Instruction:
+1. `list class`
+
+Expected output:
+
+![To be added]
+
+### 2.8 Deleting an activity: `delete activity INDEX`
+
+If you have accidentally added a wrong activity, or an activity you have added got canceled,
+use this command to delete an activity with corresponding index according to the activities list ([refer to 2.6](#26-showing-activities-list-list-activity)).
+
+Instruction:
+1. `delete activity INDEX`
+
+Example of usage: 
+
+`delete activity 1` will delete the first activity in the list.
+
+Expected output:
+
+![To be added]
+
+### 2.9 Deleting a class: `delete class INDEX`
+
+Similar to feature 2.8,
+use this command to delete a class with corresponding index according to the classes list ([refer to 2.7](#27-showing-class-list-list-class)).
+
+Instruction:
+1. `delete class INDEX`
+
+Example of usage: 
+
+`delete class 2` will delete the second class in the list.
+
+Expected output:
+
+![To be added]
+
+>**Warning:**
+>* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
+
+### 2.10 Removing all past event `clean up`
+
+Having too many events added to the application, and the data file is taking up too much space?
+Use this command to remove all the activities that was over more than 7 days ago and all the classes with their last lesson 
+concluded more than 7 days ago.
+
+Instruction:
+1. `clean up`
+
+Expected output:
+
+![To be added]
+
+>**Warning:**
+>* Deletion will be done automatically. All the events that are deleted will not be able to be retrieved. 
+>Only use this if you are sure you do not need your past events.
+
 <!-- @@author -->
 
 ## 3. Academic
@@ -629,9 +718,9 @@ Example of usage:
 Expected output:
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
-### 3.10 SUing a grade: `su grade INDEX`
+### 3.10 SU-ing a grade: `su grade INDEX`
 
-SUed a module and want to exclude it from your CAP calculation? The SU grade
+SU-ed a module and want to exclude it from your CAP calculation? The SU grade
 function allows you to do just that through these simple steps.
 
 Instruction: 
@@ -643,6 +732,10 @@ Example of usage:
 
 Expected output:
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
+
+**Warning:**
+* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
+consider deleting the mod and adding a new one.
 
 ### 3.11 Deleting a grade: `delete grade INDEX`
 
@@ -720,8 +813,9 @@ Expected output:
 If you encounter any errors, take note of the following warning.
 
 **Warning:**
-* “back” cannot be added as an answer for the flashcard.
-This is because “back” is used as a command to exit the test mode later on.
+* “back” and "show answer" cannot be added as an answer for the flashcard.
+This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
+respectively.
 If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 ![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
@@ -760,15 +854,20 @@ Expected output:
 Grading your own work is one of the best ways to revise as it helps you effectively retain information.
 After adding the flashcards, you may wish to revise the content by testing yourself. 
 
+If you are unable to answer a question and wish to refer to the answer, use `show answer`.
 When you are done revising, use `back` to exit the test mode, and return to the flashcard main.
 
 Instruction:
 1. `test`
 2. Answer the questions as prompted
-3. `back`
+3. `show answer` / `back`
 
 Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+
+**Useful information:**
+* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
+the stored answer, the answer will be accepted as the right answer.
 
 ### 4.6 Finding relevant flashcards: `find`
 
