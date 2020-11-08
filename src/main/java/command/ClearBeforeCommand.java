@@ -35,7 +35,10 @@ public class ClearBeforeCommand extends Command {
         ArrayList<Event> filteredEventList = events.filterDateBefore(clearDate);
         if (filteredEventList.size() == 0) {
             throw new NoDateBeforeException();
+        } else {
+            events.clearBefore(clearDate);
+            ui.printClearBefore(clearDate);
         }
-        events.clearBefore(clearDate);
+
     }
 }
