@@ -589,7 +589,7 @@ The following are a few testcases to try out.
        Expected: Starts a quiz successfully ith 2 questions from the topic of [OOP](#34-glossary) and a time limit for 10 seconds for each question.
     2. Test case: `quiz n/2 t/oop` <br>
        Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
-    3. Test case: `quiz n/2 hi t/oop s/5` <br>   
+    3. Test case: `quiz n/2 hi t/oop s/5` <br>
        Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
     4. Other ways to start quiz in wrong format: Use the quiz command but give insufficient inputs or invalid inputs <br>
        Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
