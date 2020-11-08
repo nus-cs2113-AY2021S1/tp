@@ -38,6 +38,10 @@ RemoveCardCommand -> CardList : getAllCards()
 activate CardList
 RemoveCardCommand <-- CardList : cards
 deactivate CardList
+RemoveCardCommand -> CardList : removeCard(removeIndex)
+activate CardList
+RemoveCardCommand <-- CardList
+deactivate CardList
 [<-[hidden]- CardList
 destroy CardList
 RemoveCardCommand -> Storage : saveCards(cards, module, chapter)
