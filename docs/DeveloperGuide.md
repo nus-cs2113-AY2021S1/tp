@@ -129,6 +129,12 @@ The `Command` object:
 The `Storage` class is a class loading data from files when termiNus starts and saving data to files after each command.
 
 <!-- @@author iamchenjiajun -->
+The `Storage` object:
+- Is referenced only by `Model`.
+- Expose functions to allow `Model` to pass in the state and saves it to file.
+- Expose functions to load the state of `Model` from file.
+
+<!-- @@author iamchenjiajun -->
 ### Model Component
 
 ![ModelClassDiagram](./images/ModelClassDiagram.png)
