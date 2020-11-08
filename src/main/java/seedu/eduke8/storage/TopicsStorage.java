@@ -132,7 +132,8 @@ public class TopicsStorage extends LocalStorage {
         return new Question(currentQuestionDescription, optionList, hint, explanation);
     }
 
-    private void checkBlankOrDuplicate(String description, HashSet<String> existingDescriptions) throws Eduke8Exception {
+    private void checkBlankOrDuplicate(String description, HashSet<String> existingDescriptions)
+            throws Eduke8Exception {
         if (description.equals("")) {
             throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
                     + System.lineSeparator() + ERROR_TOPICS_JSON_BLANK);
