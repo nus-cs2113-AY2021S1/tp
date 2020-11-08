@@ -19,9 +19,10 @@ public class FindSubjectCommand extends SubjectCommand {
     /**
      * Find subjects in an instance of the <code>SubjectList</code> that holds a keyword keyed in by the user.
      *
-     * @param subjectList   An instance of the <code>SubjectList</code> class for the user to conduct the search on
-     * @param storage       Does nothing in this case but needed since this method was implemented
-     *                      from an abstract class
+     * @param subjectList               An instance of the <code>SubjectList</code> class for the user to conduct the search on
+     * @param storage                   Does nothing in this case but needed since this method was implemented
+     *                                  from an abstract class
+     * @throws InvalidSubjectException  If the program does not detect any subject title in user input
      */
     public void execute(SubjectList subjectList, Storage storage) throws InvalidSubjectException {
         logger.info("Begin checking string command to get the keyword.");

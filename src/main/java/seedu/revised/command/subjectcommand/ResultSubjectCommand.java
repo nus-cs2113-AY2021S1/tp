@@ -20,9 +20,11 @@ public class ResultSubjectCommand extends SubjectCommand {
     /**
      * Shows results of the quiz of a <code>Subject</code> in a <code>SubjectList</code>.
      *
-     * @param subjectList An instance of the <code>SubjectList</code> class to get the results from
-     * @param storage     Does nothing in this case but needed since this method was implemented
-     *                    from an abstract class
+     * @param subjectList               An instance of the <code>SubjectList</code> class to get the results from
+     * @param storage                   Does nothing in this case but needed since this method was implemented
+     *                                  from an abstract class
+     * @throws InvalidSubjectException  If the program does not detect any subject title in user input
+     * @throws NoSubjectException       If the program does not detect a matching subject title in user input
      */
     public void execute(SubjectList subjectList, Storage storage) throws
             NoSubjectException, InvalidSubjectException {
