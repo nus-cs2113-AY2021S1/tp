@@ -42,8 +42,8 @@ public class EditCommand extends ModificationCommand {
      * @param startTime    the start time of the task being edited.
      * @param endTime      the end time of the task being edited.
      * @param priority     the priority of the task being edited. (1,2 or 3)
-     * @param reminder
-     * @param reminderTime
+     * @param reminder     the reminder being set to on/off
+     * @param reminderTime the reminder time being set
      * @throws InvalidTaskNumberException When index is not a integer.
      * @throws InvalidCommandException    When the start time is more than end time(invalid format).
      */
@@ -78,7 +78,7 @@ public class EditCommand extends ModificationCommand {
      * @throws InvalidTaskNumberException If the task at the index is not found. (Task has not been created)
      * @throws InvalidPriorityException   Priority is not 1,2 or 3.
      * @throws InvalidDatetimeException   Date/time is not in desired format. (eg 2500 or 1236 or abcd).
-     * @throws InvalidReminderException
+     * @throws InvalidReminderException   If wrong reminder format.
      */
     public CommandResult execute(Model model)
             throws InvalidTaskNumberException, InvalidPriorityException,

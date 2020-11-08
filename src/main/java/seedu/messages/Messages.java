@@ -26,6 +26,7 @@ public class Messages {
     public static final String NO_SUCH_FILE = "This ics file does not exist" + LS;
     public static final String INVALID_REMINDER = "Invalid reminder command!" + LS;
     public static final String IO_EXCEPTION = "Check data file!" + LS;
+    public static final String INVALID_FORMAT = "Format entered is not valid! Type 'help' for more info." + LS;
 
 
     public static final String WELCOME_MESSAGE = WELCOME_BORDER + LS
