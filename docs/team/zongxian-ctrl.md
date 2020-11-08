@@ -6,7 +6,8 @@ centralized system via a Command Line Interface (CLI)**. SmartHomeBot is our tea
 **CS2113: Software Engineering & Object Oriented Programming** Module. 
 
 ### Summary of Contributions
-####Code contributed:
+
+#### Code contributed:
 Below is the link to my code contribution for this project: 
 * Code Contribution: [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zongxian-ctrl&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
