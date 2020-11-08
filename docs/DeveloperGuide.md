@@ -284,9 +284,8 @@ The user enters the command: help to view all commands that are available. The m
 ## 5. Testing
 ### To perform manual testing, please follow the instructions bellow
 
-## 3. Features 
 
-### 3.1 Before the order: `[name]/[day of week]/[time]`
+### 5.1 Before the order: `[name]/[day of week]/[time]`
 
 Format: `[name]/[day of week]/[time]`
 
@@ -301,10 +300,10 @@ Result is like this:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/before.png)
 
-### 3.2 Begin the order: `order`
+### 5.2 Begin the order: `order`
 begin the order of a customer
 
-#### 3.2.1 Firstly
+#### 5.2.1 Firstly
 
 Format: `order`
 
@@ -313,7 +312,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/order.png)
 
-#### 3.2.2 The order method will be activated and print open stalls, user just type the corresponding index before the canteen to select canteen. 
+#### 5.2.2 The order method will be activated and print open stalls, user just type the corresponding index before the canteen to select canteen. 
 
 Format: `[number]`
 
@@ -322,7 +321,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/canteen.png)
 
-#### 3.2.3 Then the open stalls in this canteen will be printed, user just type the corresponding index before the stall to select stall. 
+#### 5.2.3 Then the open stalls in this canteen will be printed, user just type the corresponding index before the stall to select stall. 
 
 Format: `[number]`
 
@@ -331,7 +330,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/stall.png)
 
-#### 3.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order.
+#### 5.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order.
 
 Format: `[number]`
 
@@ -340,7 +339,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/num.png)
 
-#### 3.2.5 User chooses dishes in the same way as they select canteen and stall. 
+#### 5.2.5 User chooses dishes in the same way as they select canteen and stall. 
 
 Format: `[number]`
 
@@ -349,7 +348,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/dish.png)
 
-#### 3.2.6 User will be asked whether he wants to see the comment of the dish, just type y/n.
+#### 5.2.6 User will be asked whether he wants to see the comment of the dish, just type y/n.
 
 Format: `y/n`
 
@@ -359,7 +358,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/comment.png)
 
-#### 3.2.7 User choose the order type by typing the corresponding index before the type.
+#### 5.2.7 User choose the order type by typing the corresponding index before the type.
 
 Format: `[number]`
 
@@ -368,7 +367,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/type.png)
 
-### 3.3 delete the specific order: `delete [number]`
+### 5.3 delete the specific order: `delete [number]`
 delete the order based on the number from user
 user needs to input the number of order 
 
@@ -379,7 +378,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/ddlete.png)
 
-### 3.4 find the specific order: `find [dish name]`
+### 5.4 find the specific order: `find [dish name]`
 find the specific dish based on the user input dish name
 from the order list made by the user
 
@@ -390,7 +389,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/findd.png)
 
-### 3.5 list all the orders: `list`
+### 5.5 list all the orders: `list`
 check all the orders made by this user
 
 Format: `list`
@@ -400,7 +399,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/lis.png)
 
-### 3.6 change the order: `change/[number]/[type]`
+### 5.6 change the order: `change/[number]/[type]`
 Change the order type to the type user inputed
 
 Format: `change/[number]/[type]`
@@ -418,17 +417,17 @@ Example of usage:
 
 ![image](
 
-### 3.7 check Canteen Operating Time: `checkcanteen`
+### 5.7 check Canteen Operating Time: `checkcanteen`
 check the operating hours of a canteen 
 
-#### 3.7.1 Firstly
+#### 5.7.1 Firstly
 
 Format: `checkcanteen`
 
 Example of usage:
 'checkcanteen'
 
-#### 3.7.2 User enters the number before canteen to check that specific canteen
+#### 5.7.2 User enters the number before canteen to check that specific canteen
 
 Format: `[number]`
 
@@ -437,24 +436,24 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkcanteen.png)
 
-### 3.8 check Stall Operating Time: `checkstall`
+### 5.8 check Stall Operating Time: `checkstall`
 check the operating hours of a stall 
 
-#### 3.8.1 Firstly
+#### 5.8.1 Firstly
 
 Format: `checkstall`
 
 Example of usage:
 'checkstall'
 
-#### 3.8.2 User enters the number before canteen to check that specific canteen
+#### 5.8.2 User enters the number before canteen to check that specific canteen
 
 Format: `[number]`
 
 Example of usage:
 '3'
 
-#### 3.8.3 User enters the number before stall to check that specific stall
+#### 5.8.3 User enters the number before stall to check that specific stall
 
 Format: `[number]`
 
@@ -463,7 +462,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkstall.png)
 
-### 3.9 view all available commands: `help`
+### 5.9 view all available commands: `help`
 print all the commands with required format that the user can input
 
 Format: `help`
@@ -473,7 +472,7 @@ Example of usage:
 
 ![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/help.png)
 
-### 3.10 quit the system: `bye`
+### 5.10 quit the system: `bye`
 quit the system
 
 Format: `bye`
