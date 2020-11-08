@@ -415,7 +415,7 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.7. Showing classes list](#27-showing-class-list-list-class)
 * [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
-* [2.10.Removing all past event](#210-removing-all-past-event-clean-up)
+* [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
 
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
@@ -558,7 +558,7 @@ Expected output:
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
 
-### 2.10 Removing all past event `clean up`
+### 2.10 Removing all past events: `clean up`
 
 Having too many events added to the application, and the data file is taking up too much space?
 Use this command to remove all the activities that was over more than 7 days ago and all the classes with their last lesson 
@@ -770,13 +770,13 @@ Or a more efficient way to verify your knowledge?
 Perhaps it is also difficult to scour your handwritten notes to find a particular piece of information.
 The flashcard mode aims to tackle these aspects that may hinder your learning process.
 
-This section contains 6 commands to navigate the Flashcard mode —
-* 4.1. Entering flashcard mode
-* 4.2. Adding flashcards
-* 4.3. Listing flashcards
-* 4.4. Deleting flashcards
-* 4.5. Testing content
-* 4.6. Finding relevant flashcards
+This section contains 6 commands to navigate the Flashcard mode:
+* [4.1. Entering flashcard mode](#41-entering-flashcard-mode-cd-5--cd-flashcard)
+* [4.2. Adding flashcards](#42-adding-flashcards-add)
+* [4.3. Listing flashcards](#43-listing-flashcards-list)
+* [4.4. Deleting flashcards](#44-deleting-flashcards-delete)
+* [4.5. Testing content](#45-testing-contenttest)
+* [4.6. Finding relevant flashcards](#46-finding-relevant-flashcards-find)
 
 ### 4.1 Entering flashcard mode: `cd 5` / `cd flashcard`
 
@@ -790,8 +790,8 @@ Instruction:
 Expected output:
 ![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the flashcard mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the flashcard mode easily and quickly!
 
 ### 4.2 Adding flashcards: `add`
 
@@ -812,12 +812,12 @@ Expected output:
 
 If you encounter any errors, take note of the following warning.
 
-**Warning:**
-* “back” and "show answer" cannot be added as an answer for the flashcard.
-This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
-respectively.
-If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
-![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
+>**Warning:**
+>* “back” and "show answer" cannot be added as an answer for the flashcard.
+>This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
+>respectively.
+>If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
 ### 4.3 Listing flashcards: `list`
 
@@ -846,8 +846,8 @@ Example of usage:
 Expected output:
 ![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
 
-**Useful information:**
-* You can use the `list` command to check the card index.
+>**Useful information:**
+>* You can use the `list` command to check the card index.
 
 ### 4.5 Testing content:`test`
 
@@ -865,9 +865,9 @@ Instruction:
 Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
-**Useful information:**
-* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
-the stored answer, the answer will be accepted as the right answer.
+>**Useful information:**
+>* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
+>the stored answer, the answer will be accepted as the right answer.
 
 ### 4.6 Finding relevant flashcards: `find`
 
