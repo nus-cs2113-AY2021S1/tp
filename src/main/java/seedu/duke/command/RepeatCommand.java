@@ -96,7 +96,10 @@ public class RepeatCommand extends Command {
             input = String.join(" ", words);
             return new RepeatCommand(input, COMMANDTYPE_ADD);
         default:
-            String errorMessage = "Wrong number of arguments provided";
+
+
+            String errorMessage = "Wrong number of arguments provided, "
+                    + "Format for repeat is: repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]";
             throw new WrongNumberOfArgumentsException(errorMessage);
         }
 
