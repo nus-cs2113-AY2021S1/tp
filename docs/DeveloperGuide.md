@@ -391,11 +391,11 @@ Given below is an example usage scenario at Admin level and how the access modul
 
 * Step 3: The `go` command creates `GoModuleCommand` which will then be executed.
 
-* Step 4: 
+* Step 4: `GoModuleCommand#goModule()` gets the module via the method `ModuleList#get(int)` based on the index parsed by `GoCommandParser`.
+          
+* Step 5: User's current access level is set to `module` level and a new temporary `CS2113` module object is created via the method `Access#setModule(Module)`.
 
-* Step 5: 
-
-* Step 9: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
+* Step 6: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
 
 The following diagram shows how the add chapter command feature works:
 
