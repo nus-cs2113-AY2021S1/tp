@@ -364,8 +364,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  Expected outcome :
   
 
- <img src = "images/delete/delete.PNG" width = "650">
-
+ <img src = "images/delete/delete.png" width = "450">
 
  &nbsp;
   
