@@ -64,8 +64,8 @@ class CalculatorTest {
         Person harry = new Person("Harry", Gender.MALE, 19, 182, 66, 69, 75, FitnessLevel.LOW);
         Person erica = new Person("Erica", Gender.FEMALE, 20, 168, 52, 50, 45, FitnessLevel.MEDIUM);
         Calculator calculator = new Calculator(new CalculatorData());
-        assertEquals(2728, calculator.calculateRecommendation(harry));
-        assertEquals(1752, calculator.calculateRecommendation(erica));
+        assertEquals(2781, calculator.calculateRecommendation(harry));
+        assertEquals(1729, calculator.calculateRecommendation(erica));
     }
 
     @Test
