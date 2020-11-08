@@ -11,8 +11,8 @@ import java.time.LocalTime;
 //@@author jusufnathanael
 class SavePlannerCommandTest {
 
-    SavePlannerCommand save = new SavePlannerCommand();
-    LoadPlannerCommand load = new LoadPlannerCommand();
+    SavePlannerCommand save = new SavePlannerCommand("save");
+    LoadPlannerCommand load = new LoadPlannerCommand("load");
 
     SavePlannerCommandTest() throws ZoomasterException {
     }

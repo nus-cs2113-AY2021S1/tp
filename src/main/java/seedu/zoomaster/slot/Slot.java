@@ -64,6 +64,7 @@ public class Slot {
         return startTime;
     }
 
+    //@@author jusufnathanael
     public int getStartMinutes() {
         int hours = Integer.parseInt(startTime.toString().substring(0,2));
         int minutes = Integer.parseInt(startTime.toString().substring(3));

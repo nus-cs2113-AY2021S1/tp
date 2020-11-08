@@ -36,7 +36,7 @@ public class ShowTimetableCommand extends Command {
         assert command.startsWith(SHOW_KW) : "command should start with show keyword";
         if (command.compareTo(SHOW_KW) == 0) { // show timetable for all days
             day = "ALL";
-        } else  if (command.charAt(SHOW_KW.length()) != ' ') {
+        } else if (command.charAt(SHOW_KW.length()) != ' ') {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         } else {
             String details = command.substring(SHOW_KW.length() + 1).trim();

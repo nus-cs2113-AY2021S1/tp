@@ -134,9 +134,9 @@ public class Parser {
         } else if (input.startsWith(ShowTimetableCommand.SHOW_KW)) {
             return new ShowTimetableCommand(input);
         } else if (input.startsWith(SavePlannerCommand.SAVE_KW)) {
-            return new SavePlannerCommand();
+            return new SavePlannerCommand(input);
         } else if (input.startsWith(LoadPlannerCommand.LOAD_KW)) {
-            return new LoadPlannerCommand();
+            return new LoadPlannerCommand(input);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
