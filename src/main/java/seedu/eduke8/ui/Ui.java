@@ -2,6 +2,7 @@ package seedu.eduke8.ui;
 
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.note.Note;
@@ -89,6 +90,9 @@ public class Ui {
     private static final String MESSAGE_BOOKMARK_INDICATOR = "Bookmarked this question!";
     private static final String MESSAGE_BOOKMARK_LIST = "This is your list of bookmarks: ";
     private static final String MESSAGE_BOOKMARKED_ALREADY_INDICATOR = "This has already been bookmarked.";
+    private static final String MESSAGE_BOOKMARK_DELETED_PART_ONE = "Bookmark number ";
+    private static final String MESSAGE_BOOKMARK_DELETED_PART_TWO = " will be deleted right away!";
+    private static final String MESSAGE_BOOKMARK_CORRECT_ANS_INDICATOR = " [Correct Answer] ";
     private static final String CLOSE_BRACKET = ") ";
     private static final String OPEN_SQUARE_BRACKET = "[";
     private static final String CLOSE_SQUARE_BRACKET = "] ";
@@ -109,6 +113,7 @@ public class Ui {
             + " to delete?";
     private static final String DELETE_NOTE_SUCCESSFULLY = "The note has been deleted!";
     private static final String DELETE_NOTE_UNSUCCESSFULLY = "The note was not deleted successfully. Try again!";
+    private static final String INVALID_TOPIC = "Please enter a valid topic name";
     private static final String INVALID_TOPIC_INDEX = "Please enter a valid topic index";
     private static final String LIST_NOTE_PROMPT = "Which topic's notes would you like to view?";
     private static final String INPUT_ERROR = "Please provide a valid topic!";
@@ -141,6 +146,8 @@ public class Ui {
     public static final String OS_NAME = "os.name";
     public static final String OS_LINUX = "nux";
     public static final String OS_MAC = "mac";
+    public static final String NUMBERS_ONLY = "[0-9]+";
+    public static final String EMPTY = "";
 
     private static String operatingSystem = null;
 
@@ -195,7 +202,7 @@ public class Ui {
             long startingTime = System.currentTimeMillis();
 
             while (((System.currentTimeMillis() - startingTime) < timeLeft * CONVERSION_FROM_SECONDS_TO_MILLIS)
-                    && System.in.available() ==  0) {
+                    && System.in.available() == 0) {
             }
 
             if (userInput.ready()) {
@@ -204,7 +211,7 @@ public class Ui {
                 return null;
             }
 
-        //This is for the Windows operating system 
+            //This is for the Windows operating system
         } else {
             String userInput;
             Future<String> userInputFuture = EXECUTOR_SERVICE.submit(SCANNER::nextLine);
@@ -229,6 +236,10 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(message);
         System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void printWithoutLines(String message) {
+        System.out.println(message);
     }
 
     public void printGreetMessage() {
@@ -323,29 +334,51 @@ public class Ui {
         printMessage(topicListString);
     }
 
-    public void addNoteInteractions(TopicList topicList) {
+    public void printTopicsError(TopicList topics) {
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(ADD_NOTE_PROMPT_FOR_TOPIC);
+
+        System.out.println(MESSAGE_PRINT_TOPIC_LIST);
+        for (int i = 0; i < topics.getCount(); i++) {
+            Topic topic = topics.get(i);
+            printMessage(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
+                    + topic.getDescription());
+        }
+
+        System.out.println(HORIZONTAL_LINE);
+    }
+
+    public void addNoteInteractions(TopicList topicList) {
+        printMessage(ADD_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine().trim();
         Ui ui = new Ui();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
-                System.out.println(HORIZONTAL_LINE);
-                System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
+                printMessage(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
+
                 String noteName = SCANNER.nextLine().trim();
-                System.out.println(HORIZONTAL_LINE);
-                System.out.println(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
+
+                while (noteName.replace(SPACE, EMPTY).isEmpty()) {
+                    printMessage(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
+                    noteName = SCANNER.nextLine();
+                }
+
+                printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                 String noteBody = SCANNER.nextLine().trim();
-                System.out.println(HORIZONTAL_LINE);
+
+                while (noteBody.replace(SPACE, EMPTY).isEmpty()) {
+                    printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
+                    noteBody = SCANNER.nextLine();
+                }
 
                 Note note = new Note(noteName, noteBody);
                 Topic topic = (Topic) topicList.find(topicName);
                 topic.getNoteList().add(note);
-                System.out.println(ADD_NOTE_SUCCESSFULLY);
-                System.out.println(HORIZONTAL_LINE);
+                printMessage(ADD_NOTE_SUCCESSFULLY);
             } else {
-                printMessage(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
+                printMessage(INVALID_TOPIC);
+                ui.printTopicsError(topicList);
+                printMessage(INPUT_ERROR + "\n" + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
@@ -354,41 +387,46 @@ public class Ui {
 
     public void deleteNoteInteractions(TopicList topicList) {
         Ui ui = new Ui();
+        int noteCount = 0;
+        Topic topic = null;
+        NoteList noteList = null;
 
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(DELETE_NOTE_PROMPT_FOR_TOPIC);
-        String topicName = SCANNER.nextLine().trim();
-
+        printMessage(DELETE_NOTE_PROMPT_FOR_TOPIC);
+        String topicName = SCANNER.nextLine();
+        
         try {
-            if (topicList.doesTopicExist(topicName)) {
-                Topic topic = (Topic) topicList.find(topicName);
-                NoteList noteList = topic.getNoteList();
-                ui.printNoteList(noteList);
-
-                System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
-                String input = SCANNER.nextLine().trim();
-
-                if (input.matches("[0-9]+") && Integer.parseInt(input) > 0
-                        && Integer.parseInt(input) <= noteList.getCount()) {
-                    int index = Integer.parseInt(input);
-                    topic.getNoteList().delete(index - 1);
-                    printMessage(DELETE_NOTE_SUCCESSFULLY);
-                } else {
-                    printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
-                }
-            } else {
-                printMessage(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
-            }
+            topic = (Topic) topicList.find(topicName);
+            noteList = topic.getNoteList();
+            noteCount = noteList.getCount();
         } catch (Eduke8Exception e) {
             ui.printError(e.getMessage());
+        }
+
+        if (topicList.doesTopicExist(topicName) && noteCount > 0) {
+            ui.printNoteList(noteList);
+
+            System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
+            String input = SCANNER.nextLine();
+
+            if (input.matches(NUMBERS_ONLY) && Integer.parseInt(input) > 0
+                    && Integer.parseInt(input) <= noteList.getCount()) {
+                int index = Integer.parseInt(input);
+                topic.getNoteList().delete(index - 1);
+                System.out.println(DELETE_NOTE_SUCCESSFULLY);
+            } else {
+                printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+            }
+        } else {
+            System.out.println(INVALID_TOPIC);
+            ui.printTopicsError(topicList);
+            System.out.println(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
         }
     }
 
     public void listInteraction(TopicList topicList) {
         Ui ui = new Ui();
 
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(LIST_NOTE_PROMPT);
+        printMessage(LIST_NOTE_PROMPT);
         String topicName = SCANNER.nextLine().trim();
 
         try {
@@ -397,6 +435,8 @@ public class Ui {
                 NoteList noteListTopic = topic.getNoteList();
                 ui.printNoteList(noteListTopic);
             } else {
+                printMessage(INVALID_TOPIC);
+                ui.printTopicsError(topicList);
                 printMessage(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
@@ -407,18 +447,18 @@ public class Ui {
     public void printNoteList(NoteList notes) {
 
         if (notes.getCount() == 0) {
-            System.out.println(MESSAGE_PRINT_NOTE_LIST_NONE);
+            printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
-            System.out.println(MESSAGE_PRINT_NOTE_LIST);
+            printMessage(MESSAGE_PRINT_NOTE_LIST);
             for (int i = 0; i < notes.getCount(); i++) {
-                System.out.println(HORIZONTAL_LINE);
-                Note note = notes.get(i);
-                System.out.println((i + 1) + DOT + note.getDescription());
-                System.out.println(note.getNoteText());
+                printWithoutLines(HORIZONTAL_LINE);
+                Note note = (Note) notes.get(i);
+                printWithoutLines((i + 1) + DOT + note.getDescription());
+                printWithoutLines(note.getNoteText());
             }
         }
 
-        System.out.println(HORIZONTAL_LINE);
+        printWithoutLines(HORIZONTAL_LINE);
     }
 
     private void printStartQuizQuestions(int numberOfQuestionsChosen) {
@@ -493,6 +533,12 @@ public class Ui {
         printMessage(MESSAGE_BOOKMARK_LIST + System.lineSeparator() + list);
     }
 
+    public void printDeletedBookmarkIndicator(int deleteIndex) {
+        String messageOutput = MESSAGE_BOOKMARK_DELETED_PART_ONE + deleteIndex + MESSAGE_BOOKMARK_DELETED_PART_TWO;
+
+        printMessage(messageOutput);
+    }
+
     private String listOfBookmarkedQuestions(BookmarkList bookmarks) {
         int i = 1;
         ArrayList<Displayable> allBookmarks;
@@ -504,7 +550,9 @@ public class Ui {
             ArrayList<Displayable> optionsAvailable = properQuestion.getOptionList().getInnerList();
             int j = 1;
             for (Displayable option : optionsAvailable) {
+                Option castedOption = (Option) option;
                 optionOutput += System.lineSeparator() + "    " + j + CLOSE_BRACKET + option.getDescription()
+                        + (castedOption.isCorrectAnswer() ? MESSAGE_BOOKMARK_CORRECT_ANS_INDICATOR : "")
                         + ((j == optionsAvailable.size()) ? System.lineSeparator() : "");
                 j++;
             }
