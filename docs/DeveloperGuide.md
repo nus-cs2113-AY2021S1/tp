@@ -9,6 +9,7 @@
 2. [<b>Setting Up</b>](#2-setting-up)<br>
 2.1. [Prerequisites](#21-prerequisites)<br>
 2.2. [Setting Up the Project in your Computer](#22-setting-up-the-project-in-your-computer)<br>
+2.3. [Verifying the Setup](#23-verifying-the-setup)<br>
 3. [<b>Design (Architecture)</b>](#3-design-architecture)<br>
 3.1. [Ui Component](#31-ui-component)<br>
 3.2. [Logic Component](#32-logic-component)<br>
@@ -65,10 +66,10 @@
 ## 1. Introduction
 
 ### 1.1. Overview
-Kaji is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
+Kaji is a schedule manager that implements Spaced Repetition for students, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. Purpose
-This document contains the specified architecture and features for the application, Kaji.
+This document describes the architecture and system design for the application, Kaji.
 
 ### 1.3. Scope
 This documentation describes the software architecture and software design decisions for the implementation of Kaji. The intended audience of this document is the developers, designers, and software testers of Kaji.
@@ -79,11 +80,11 @@ This documentation describes the software architecture and software design decis
 ## 2. Setting Up
 
 ### 2.1. Prerequisites
-* JDK 11
-* IntelliJ IDEA
+1. JDK 11
+2. IntelliJ IDEA
 
-### 2.2. Setting up the project in your computer
-1. Fork this repository, and clone the fork into your computer.
+### 2.2. Setting up the Project in your Computer
+1. Fork this [repository](https://github.com/AY2021S1-CS2113T-F11-3/tp), and clone the fork into your computer.
 2. Open IntelliJ (if you are not in the welcome screen, click `File` → `Close Project` to close the existing project dialog first).
 3. Set up the correct JDK version for Gradle.
     1. Click `Configure` → `Project Defaults` → `Project Structure`.
@@ -91,7 +92,19 @@ This documentation describes the software architecture and software design decis
 4. Click `Import Project` (or `Open or Import` in newer version of Intellij).
 5. Locate the `build.gradle` file (not the root folder as you would do in a normal importing) and select it. Click `OK`.
 If asked, choose to `Open as Project` (not `Open as File`).
-6. Click `OK` to accept the default settings
+6. Click `OK` to accept the default settings.
+
+### 2.3. Verifying the Setup
+1. In an IntelliJ terminal, run `gradlew build`.
+2. Navigate to the folder `build` > `libs` by executing `cd build/libs/` and then run: `java -jar kaji.jar`.
+    1. To use **Kaji**, type a valid command into the terminal and press the enter key to run the command.<br> 
+    e.g. Typing `help` and pressing the enter key will show the list of commands available.
+    2. Some example commands you can try to get familiar with **Kaji**:
+        * `help`: Lists the commands that **Kaji** supports.
+        * `add CS2113T`: Adds a module **CS2113T**.
+        * `list`: Shows a list of modules available.
+        * `exit`: Exits **Kaji**.
+
 ##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -99,7 +112,10 @@ If asked, choose to `Open as Project` (not `Open as File`).
 ## 3. Design (Architecture)
 (Zeyu)
 
-![Architecture Diagram of Design Component](DG_Images/Architecture.png)
+<p align="center">
+  <img src="DG_Images/Architecture.png" width="600" alt="Architecture Diagram"/>
+  <br/>Figure <>. Architecture Diagram of Kaji 
+</p>
 
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -136,10 +152,10 @@ The Ui component is responsible for:
 ### 3.2. Logic Component 
 (Jane)
 
-The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
+The Logic component consists of the `Parser`, `Command` and `Scheduler` classes as shown in the class diagram below:
 
 <p align="center">
-  <img src="DG_Images/LogicClassDiagram.png" width="600" alt="Logic Class Diagram"/>
+  <img src="DG_Images/LogicClassDiagram.png" width="700" alt="Logic Class Diagram"/>
   <br/>Figure <>. Class diagram of Logic component  
 </p>
 
@@ -152,11 +168,11 @@ The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `parse("edit 1 CS2113T")` API call:
 
 <p align="center">
-  <img src="DG_Images/LogicSequenceDiagram.png" width="600" alt="Logic Sequence Diagram"/>
+  <img src="DG_Images/LogicSequenceDiagram.png" width="800" alt="Logic Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of Logic component  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### 3.3. Model Component
 (Jiayi)
@@ -187,6 +203,7 @@ The Model,
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Implementation
+This section will describe the significant details of how the features in **Kaji** are being implemented.
 
 ### 4.1. Admin Features
 [summary + scenario]
@@ -264,31 +281,38 @@ The edit module name feature is facilitated by `ModuleList` and `Module`. The li
 In addition, it implements the following operations:
 * `ModuleList#getModule()` - Gets a module based on the specified index from the list of modules.
 * `Module#setModuleName()` — Sets the name of the module.
- 
+
+The following diagram shows the class diagram of the edit module name feature:
+
+<p align="center">
+  <img src="DG_Images/EditModuleClassDiagram.png" width="800" alt="Edit Module Class Diagram"/>
+  <br/>Figure <>. Class diagram of edit module name feature  
+</p>
+
 For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `admin` level.
+* Step 1: The user is currently in `admin` level.
 
-Step 2: The user enters `edit 1 CS2113T` command to edit the first module in the list of modules — which in this case is `CS2113`.
+* Step 2: The user enters `edit 1 CS2113T` command to edit the first module in the list of modules — which in this case is `CS2113`.
 
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditModuleCommand` object.
+* Step 3: The user input is parsed by `Parser`, which results in a new `EditModuleCommand` object.
 
-Step 4: `EditModuleCommand` is executed and calls the method `EditModuleCommand#editModule()`.
+* Step 4: `EditModuleCommand` is executed and calls the method `EditModuleCommand#editModule()`.
 
-Step 5: `EditModuleCommand#editModule()` gets the module based on the index provided by the method `ModuleList#getModule()`.
+* Step 5: `EditModuleCommand#editModule()` gets the module based on the index provided by the method `ModuleList#getModule()`.
 
-Step 6: The module name is edited to `CS2113T` by the method `Module#setModuleName()`.
+* Step 6: The module name is edited to `CS2113T` by the method `Module#setModuleName()`.
 
-Step 7: The result message from `EditModuleCommand#editModule()` is returned to `EditModuleCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
+* Step 7: The result message from `EditModuleCommand#editModule()` is returned to `EditModuleCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the edit module name feature works:
 
 <p align="center">
   <img src="DG_Images/EditModuleSequenceDiagram.png" width="800" alt="Edit Module Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of edit module name feature  
+  <br/>Figure <>. Sequence diagram of edit module name feature
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at a destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.1.4. Remove Module Feature
 (Jia Ern)
@@ -442,22 +466,29 @@ The edit module name feature is facilitated by `ChapterList` and `Chapter`. The 
 In addition, it implements the following operations:
 * `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setChapterName()` — Sets the name of the chapter.
+
+The following diagram shows the class diagram of the edit chapter name feature:
+
+<p align="center">
+  <img src="DG_Images/EditChapterClassDiagram.png" width="800" alt="Edit Chapter Class Diagram"/>
+  <br/>Figure <>. Class diagram of edit chapter name feature  
+</p>
  
 For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `CS2113T` at the module level.
+* Step 1: The user is currently in `CS2113T` at the module level.
 
-Step 2: The user enters `edit 1 Chapter 1` command to edit the first chapter in the list of chapters — which in this case is `chap 1`.
+* Step 2: The user enters `edit 1 Chapter 1` command to edit the first chapter in the list of chapters — which in this case is `chap 1`.
 
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditChapterCommand` object.
+* Step 3: The user input is parsed by `Parser`, which results in a new `EditChapterCommand` object.
 
-Step 4: `EditChapterCommand` is executed and calls the method `EditChapterCommand#editChapter()`.
+* Step 4: `EditChapterCommand` is executed and calls the method `EditChapterCommand#editChapter()`.
 
-Step 5: `EditChapterCommand#editModule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.
+* Step 5: `EditChapterCommand#editModule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.
 
-Step 6: The chapter name is edited to `Chapter 1` by the method `Chapter#setChapterName()`.
+* Step 6: The chapter name is edited to `Chapter 1` by the method `Chapter#setChapterName()`.
 
-Step 7: The result message from `EditChapterCommand#editChapter()` is returned to `EditChapterCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
+* Step 7: The result message from `EditChapterCommand#editChapter()` is returned to `EditChapterCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the edit chapter name feature works:
 
@@ -466,7 +497,7 @@ The following sequence diagram shows how the edit chapter name feature works:
   <br/>Figure <>. Sequence diagram of edit chapter name feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.2.4. Remove Chapter Feature
 (Jia Ern)
@@ -519,31 +550,38 @@ The user can add a flashcard with the `add` command, which follows the following
 The add flashcard feature is facilitated by `CardList`. The list of user's flashcards are stored internally as `CardList`.
 In addition, it implements the following operation:
 * `CardList#addCard()` - Adds a flashcard to the list of flashcards.
+
+The following diagram shows the class diagram of the add flashcard feature:
+
+<p align="center">
+  <img src="DG_Images/AddCardClassDiagram.png" width="800" alt="Add Card Class Diagram"/>
+  <br/>Figure <>. Class diagram of add flashcard feature  
+</p>
  
 For instance, the user wants to add a flashcard `[Q] 1+1 | [A] 2` to the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.
+* Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.
 
-Step 2: The user enters `add q:1+1 | a:2` command to add a flashcard to the list of flashcards.
+* Step 2: The user enters `add q:1+1 | a:2` command to add a flashcard to the list of flashcards.
 
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `AddCardCommand` object.
+* Step 3: The user input is parsed by `Parser`, which results in a new `AddCardCommand` object.
 
-Step 4: A `Card` object is created within `AddCardCommand`.
+* Step 4: A `Card` object is created within `AddCardCommand`.
 
-Step 5: `AddCardCommand` is executed and calls the method `AddCardCommand#addCard()`.
+* Step 5: `AddCardCommand` is executed and calls the method `AddCardCommand#addCard()`.
 
-Step 6: `AddCardCommand#addCard()` adds a flashcard to the list of flashcards by calling the method `CardList#addCard()`.
+* Step 6: `AddCardCommand#addCard()` adds a flashcard to the list of flashcards by calling the method `CardList#addCard()`.
 
-Step 7: The result message from `AddCardCommand#addCard()` is returned to `AddCardCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
+* Step 7: The result message from `AddCardCommand#addCard()` is returned to `AddCardCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the add flashcard feature works:
 
 <p align="center">
-  <img src="DG_Images/AddCardSequenceDiagram.png" width="800" alt="Add Card Sequence Diagram"/>
+  <img src="DG_Images/AddCardSequenceDiagram.png" width="600" alt="Add Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of add flashcard feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.2. List Flashcards Feature
 (Zeyu)
@@ -577,24 +615,33 @@ In addition, it implements the following operations:
 * `CardList#getCard()` - Gets a flashcard based on the specified index from the list of flashcards.
 * `Card#setQuestion()` — Sets the question of a flashcard.
 * `Card#setAnswer()` — Sets the answer of a flashcard.
- 
+
+The following diagram shows the class diagram of the edit flashcard content feature:
+
+<p align="center">
+  <img src="DG_Images/EditCardClassDiagram.png" width="800" alt="Edit Flashcard Class Diagram"/>
+  <br/>Figure <>. Class diagram of edit flashcard content feature  
+</p>
+
 For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.
+* Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.
 
-Step 2: The user enters `edit 1 q:1+1 | a:` command to edit the first flashcard in the list of flashcards — which in this case is `[Q] 2*1 | [A] 2`.
+* Step 2: The user enters `edit 1 q:1+1 | a:` command to edit the first flashcard in the list of flashcards — which in this case is `[Q] 2*1 | [A] 2`.
 
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `EditCardCommand` object.
+* Step 3: The user input is parsed by `Parser`, which results in a new `EditCardCommand` object.
 
-Step 4: `EditCardCommand` is executed and calls the method `EditCardCommand#editCard()`.
+* Step 4: `EditCardCommand` is executed and calls the method `EditCardCommand#editCard()`.
 
-Step 5: `EditCardCommand#editCard()` gets the chapter based on the index provided by the method `CardList#getCard()`.
+* Step 5: `EditCardCommand#editCard()` gets the chapter based on the index provided by the method `CardList#getCard()`.
 
-Step 6: The question is edited to `1+1` by the method `Card#setQuestion()`.
+* Step 6: As there is no content to edit the answer, the method `Card#getAnswer()` is called to get the answer of the existing flashcard - which in this case is `2`.
 
-Step 7: As there is no content to edit the answer, the method `Card#setAnswer()` is not called.
+* Step 7: The question is edited to `1+1` by the method `Card#setQuestion()`.
 
-Step 7: The result message from `EditCardCommand#editCard()` is returned to `EditCardCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
+* Step 8: The answer is edited to `2` by the method `Card#setAnswer()`.
+
+* Step 9: The result message from `EditCardCommand#editCard()` is returned to `EditCardCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the edit flashcard content feature works:
 
@@ -603,7 +650,7 @@ The following sequence diagram shows how the edit flashcard content feature work
   <br/>Figure <>. Sequence diagram of edit flashcard content feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.4. Remove Flashcard Feature
 (Jia Ern)
@@ -936,22 +983,29 @@ The reschedule chapter feature is facilitated by `ChapterList` and `Chapter`. Th
 In addition, it implements the following operations:
 * `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setDueBy()` — Sets the due date of the chapter.
+
+The following diagram shows the class diagram of the reschedule chapter feature:
+
+<p align="center">
+  <img src="DG_Images/RescheduleChapterClassDiagram.png" width="800" alt="Reschedule Chapter Class Diagram"/>
+  <br/>Figure <>. Class diagram of reschedule chapter feature  
+</p>
  
 For instance, the user wants to reschedule the due date `2020-12-12` of the chapter `Chapter 1`  from the module `CS2113T`, a detailed description of what happens is shown below:
 
-Step 1: The user is currently in `CS2113T` at the module level.
+* Step 1: The user is currently in `CS2113T` at the module level.
 
-Step 2: The user enters `reschedule 1 2020-12-20` command to reschedule the first chapter in the list of chapters — which in this case is `Chapter 1`.
+* Step 2: The user enters `reschedule 1 2020-12-20` command to reschedule the first chapter in the list of chapters — which in this case is `Chapter 1`.
 
-Step 3: The user input is parsed by `Parser`, and `Parser` creates a `RescheduleCommand` object.
+* Step 3: The user input is parsed by `Parser`, which results in a new `RescheduleCommand` object.
 
-Step 4: `RescheduleCommand` is executed and calls the method `RescheduleCommand#reschedule()`.
+* Step 4: `RescheduleCommand` is executed and calls the method `RescheduleCommand#reschedule()`.
 
-Step 5: `RescheduleCommand#reschedule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.
+* Step 5: `RescheduleCommand#reschedule()` gets the chapter based on the index provided by the method `ChapterList#getChapter()`.
 
-Step 6: The due date of the chapter is rescheduled to `2020-12-20` by the method `Chapter#setDueBy()`.
+* Step 6: The due date of the chapter is rescheduled to `2020-12-20` by the method `Chapter#setDueBy()`.
 
-Step 7: The result message from `RescheduleCommand#reschedule()` is returned to `RescheduleCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
+* Step 7: The result message from `RescheduleCommand#reschedule()` is returned to `RescheduleCommand#execute()` and shown to the user by calling `Ui#showToUser()`.
 
 The following sequence diagram shows how the reschedule chapter feature works:
 
@@ -960,7 +1014,7 @@ The following sequence diagram shows how the reschedule chapter feature works:
   <br/>Figure <>. Sequence diagram of reschedule chapter feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.5.5. View Revision History Feature
 (Zeyu)
@@ -991,13 +1045,14 @@ The following sequence diagram shows how the list chapters feature works:
 ### 5.1. Product Scope
 #### 5.1.1. Target User Profile
 
+* Students who use a computer often, and are reasonably comfortable with the command line interface
 * Needs to have an effective study schedule
+* Willing to keep track of the content they need to study
 * Prefers typing to mouse interactions
-* Is comfortable with the usage of CLI applications
 
 #### 5.1.2. Value Proposition
 
-* Implements Spaced Repetition for the user 
+The application aims to provide students with an effective studying technique. In order to make studying easier for students, the application implements a technique known as spaced repetition, which help with memory retention. Content are scheduled automatically, and information is organised in the form of flashcards which makes it convenient to revise. 
 
 ### 5.2. User Stories
 
@@ -1034,7 +1089,14 @@ The following sequence diagram shows how the list chapters feature works:
 ### 5.4. Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 installed.
-2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Data saved in a session should be persistent and carry forward to the next session of use.
+5. The file containing the saved data should be portable so that the user can transfer to the other machine with any mainstream OS and continuing using the app without any additional configuration.
+6. Application should not crash, application should always recover from error gracefully with an error message.
+7. Should work mostly without the need for the Internet.
+8. Should be designed for a single user.
+9. Should work on both 32-bit and 64-bit environments.
 
 ### 5.5. Glossary
 
