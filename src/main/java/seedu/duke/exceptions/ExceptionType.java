@@ -31,6 +31,7 @@ public enum ExceptionType {
     FREQ_READ_FILE_FAIL("FreqList.txt Read with corrupted data! Re-initialising file!"),
     EMPTY_FAVLIST("Your favourites list is empty!"),
     NO_INPUT("Oh dear! You haven't typed in the index or changed description."),
+    NO_INDEX("Hey there! You haven't typed in the index for your command!"),
     EMPTY_DESCRIPTION("Hmmm, I don't think you would want an empty description."),
     NOT_A_NUMBER("Yikes! That is not even a number."),
     EXTRA_PARAMETERS("Hmm, this function should not be called with parameters."),
