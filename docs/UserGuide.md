@@ -341,7 +341,7 @@ Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
 ```
 
-#### 3.1.10 Exporting data: `export` <a name="export-command"></a>
+#### 3.1.10 Exporting data: `export` (Chin Hang) <a name="export-command"></a>
 
 This command exports all the data of the application to an external file. For more details, see <a href="#export">Exporting Data section</a>.
 
