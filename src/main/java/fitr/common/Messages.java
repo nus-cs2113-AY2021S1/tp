@@ -95,10 +95,9 @@ public class Messages {
     public static final String NULL_STRING = "NULL";
 
     //Error messages
-    public static final String ERROR_INVALID_FORMAT = "Sorry, you have keyed in an invalid format!";
     public static final String ERROR_INVALID_COMMAND = "Sorry, this is an invalid command!";
     public static final String ERROR_IN_FILE = "Sorry, there is an error in the file.";
-    public static final String ERROR_INVALID_CALORIE = "Sorry, invalid calorie amount entered.";
+    public static final String ERROR_INVALID_CALORIE = "Sorry, invalid calorie amount entered. Calorie must be between 0 and 10 000";
     public static final String ERROR_FORMAT_MESSAGE = "Please input in the correct format!";
     public static final String ERROR_INDEX_DOES_NOT_EXIST = "Sorry, that index does not exist in the list";
     public static final String ERROR_INVALID_INDEX = "Invalid index entered!";

@@ -1,14 +1,19 @@
 package fitr.exercise;
 
+import fitr.exception.InvalidRecommendationException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecommenderTest {
     @Test
-    public void recommenderTest() {
+    public void recommenderTest() throws InvalidRecommendationException {
         Recommender recommender = new Recommender();
-        assertEquals(4, recommender.recommend(1).getSize());
+        assertEquals(4, recommender.recommend("upperbody").getSize());
+        assertEquals(4, recommender.recommend("lowebody").getSize());
+        assertEquals(4, recommender.recommend("aerobic").getSize());
+        assertEquals(4, recommender.recommend("stretch").getSize());
+        assertEquals(4, recommender.recommend("").getSize());
     }
 
     @Test
