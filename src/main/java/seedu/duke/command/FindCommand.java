@@ -49,7 +49,7 @@ public class FindCommand extends Command {
         keyword = userInput.replace(command, "").trim();
 
         if (keyword.isEmpty()) {
-            throw new CommandException("keyword not found");
+            throw new CommandException("missing keyword");
         }
 
         int itemCount = 0;
