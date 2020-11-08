@@ -36,6 +36,7 @@ __Output:__
 
 
 <div style="page-break-after: always;"></div>   
+
 # Overview
 ## Main Features
 
@@ -64,7 +65,7 @@ Finance Tools|```financial```|
 Logger|```logger```| 
 Quit|```quit```|
 
-**Main Menu: Exit** <br />
+## Exit from Main Menu
 Exits from the program. If you have an outstanding list, it will be saved automatically as lastSave.txt in
 the saveStates folder. This folder will be automatically created when you first run the program.
 
@@ -77,23 +78,15 @@ the saveStates folder. This folder will be automatically created when you first 
 ![](developerGuide_images/screenshots_mainmenu/main_menu_exit.png)
 
 <div style="page-break-after: always;"></div>  
+
 # Manual Tracker
 Users can manage lists of entries, which are known as ledgers. Each list represents a single date of record.
+
 > Example
     If I wish to record my income and expenditures on 30 October 2020, I will use the program as follows:
     1. Use Manual Tracker to create a ledger of date 20-10-03
     2. Open the ledger of date 20-10-03 
-    3. Use Entry Tracker to create entries to record the transactions for that particular date.
-    
-    
-No. |Content|
-----|------|
-3.2.1|[Add Ledger](#manualTracker1)
-3.2.2|[Remove Ledger](#manualTracker2)
-3.2.3|[Open Ledger](#manualTracker3)
-3.2.4|[Show Ledger List](#manualTracker4)
-3.2.5|[Show commands](#manualTracker5)
-3.2.6|[Exit](#manualTracker6)
+    3. Use Entry Tracker to create entries to record the transactions for that particular date
 
 ## Add ledger
 Add a ledger to the record, representing a date.
@@ -187,7 +180,8 @@ Exit to main menu where users can choose another feature to use.
 ![](developerGuide_images/screenshots_manualtracker/manual_exit.png)
 
 
-<div style="page-break-after: always;"></div>     
+<div style="page-break-after: always;"></div>   
+
 # Entry Tracker
 Subroutine that is subsidiary off the ManualTracker. 
 Users can manage entries associated with the ledger they have opened.
@@ -347,6 +341,7 @@ Exit to Manual tracker where users can choose another ledger.
 ![](developerGuide_images/screenshot_entrytracker/entry_exit.png)
 
 <div style="page-break-after: always;"></div>  
+
 # Recurring Tracker
 Users can manage expenses/income that recurs on a monthly basis e.g. monthly bill or salary.
 
@@ -433,6 +428,7 @@ Exits to main menu.
     exit
 
 <div style="page-break-after: always;"></div>  
+
 # FinanceTools
 FinanceTools contains tools related to financial calculations.
 
@@ -618,6 +614,7 @@ Exit FinanceTools to Main Menu.
 ![Example](screenshots/financetools/Exit(1).PNG)
 
 <div style="page-break-after: always;"></div>  
+
 # Goal Tracker
 Goal Tracker that helps user to track their monthly incomes and expenses goal.
 
@@ -705,6 +702,7 @@ Exit Goal Tracker program and return to FinanceIt main UI.
     exit
 
 <div style="page-break-after: always;"></div>  
+
 # Save Manager
 This utility feature helps to save multiple program states and load them at will.
 
@@ -792,6 +790,7 @@ To reset all data currently used by the program enter "reset"
 
 
 <div style="page-break-after: always;"></div>  
+
 # Summary of Features 
 
 ## Manual Tracker
