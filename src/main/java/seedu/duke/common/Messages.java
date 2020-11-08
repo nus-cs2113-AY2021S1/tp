@@ -80,8 +80,8 @@ public class Messages {
     public static final String MESSAGE_DATE = "Nice! I have set the date of this task:\n       ";
     public static final String MESSAGE_SET_PRIORITY = "Nice! I've set the priority of this task to: ";
 
-    public static final String MESSAGE_FIND = "Here are the matching tasks in your list:";
-    public static final String MESSAGE_NOT_FOUND = "~Info~ There are no matching tasks in your list.";
+    public static final String MESSAGE_FIND = "Here are the matching items in your list:";
+    public static final String MESSAGE_NOT_FOUND = "~Info~ There are no matching items in your list.";
 
     public static final String MESSAGE_EXPENSE_DAY = "Your total expense for today is:";
     public static final String MESSAGE_EXPENSE_WEEK = "Your total expense for this week is:";
@@ -98,6 +98,8 @@ public class Messages {
             + "Please refer to the User Guide.";
     public static final String EXCEPTION_INVALID_CATEGORY = "~Error~ Please input a valid category using the format "
             + "c/CATEGORY.";
+    public static final String EXCEPTION_NO_KEYWORD = "~Error~ Please input the keyword argument in the format of " +
+            "k/KEYWORD";
     public static final String EXCEPTION_ONE_ARGUMENT_ONLY = "~Error~ Please input exactly one correct optional "
             + "argument!";
     public static final String EXCEPTION_NEGATIVE_DAY_COUNT = "~Error~ Your number of days must be positive!";
@@ -176,5 +178,12 @@ public class Messages {
             + "     \"list modules\"\n"
             + "     \"list books\""
             + "     \"list expenses\"";
+    public static final String EXCEPTION_INVALID_FIND_COMMAND = "~Error~ Please input a valid find command "
+            + "using the format: \n\n"
+            + "     \"list tasks k/KEYWORD\"\n"
+            + "     \"list expenses k/KEYWORD\"\n"
+            + "     \"list modules k/KEYWORD\"\n"
+            + "     \"list links k/KEYWORD\"\n"
+            + "     \"list books k/KEYWORD\"\n";
     public static final String EXCEPTION_INVALID_URL = "~Error~ Invalid url entered. Please refer to the User Guide.";
 }

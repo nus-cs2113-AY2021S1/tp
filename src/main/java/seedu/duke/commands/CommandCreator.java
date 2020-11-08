@@ -236,12 +236,8 @@ public class CommandCreator {
         }
     }
 
-    public static Command createFindCommand(String commandString) throws DukeException {
-        if (commandString.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_FIND);
-        } else {
-            return new FindCommand(commandString.toLowerCase().trim());
-        }
+    public static Command createFindCommand(String fullCommand, String subRootCommand, String commandString) throws DukeException {
+        return FindCommand.createFindCommand(fullCommand, subRootCommand, commandString);
     }
 
     // @@author MuhammadHoze

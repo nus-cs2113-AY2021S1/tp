@@ -49,8 +49,11 @@ public class Parser {
         String rootCommand = fullCommand.split(" ")[0];
         String commandString = fullCommand.replaceFirst(rootCommand, "").trim();
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
-        HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
-        checkValidDescription(description);
+        HashMap<String, String> argumentsMap = new HashMap<>();
+        if (!rootCommand.trim().toLowerCase().equals("find")) {
+            argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+            checkValidDescription(description);
+        }
 
         switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
@@ -88,7 +91,9 @@ public class Parser {
         case ReturnCommand.COMMAND_WORD:
             return CommandCreator.createReturnCommand(commandString);
         case FindCommand.COMMAND_WORD:
-            return CommandCreator.createFindCommand(commandString);
+            String subRootCommandFind = commandString.split(" ")[0];
+            commandString = commandString.replaceFirst(subRootCommandFind, "").trim();
+            return CommandCreator.createFindCommand(fullCommand, subRootCommandFind, commandString);
         case MakeFolderCommand.COMMAND_WORD:
             return new MakeFolderCommand();
         case HelpCommand.COMMAND_WORD:
