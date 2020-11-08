@@ -392,23 +392,25 @@ borrowed books tracking, and module-related functions. This increase users' effi
  
 <!-- @@author MuhammadHoze -->
 ### User Stories
-| Version | Priority | As a ... | I want to ... | So that I can ...|
-| -------- | ---------- | ---------- | --------------- | ------------------ |
-| v1.0 | High | student | add tasks into a list | keep track of the things I need to do |
-| v1.0 | High | student | assign priorities to tasks | focus on the more important things first |
-| v1.0 | Medium | student | assign categories to tasks| have a more organised task list |
-| v1.0 | High | student | mark tasks as done| keep track of the remaining tasks to do |
-| v1.0 | Medium | student | list all tasks in my list| have a better overview |
-| v1.0 | High | student | be able to delete unwanted tasks| focus on the tasks which I need |
-| v1.0 | High | student | save all data after using the application| retrieve the data upon running the application |
-| v2.0 | Medium | student | automatically create folders for my modules| I do not have to manually create them |
-| v2.0 | High | student| add recurring tasks| avoid adding the same tasks every week |
-| v2.0 | High | student | have a calendar| I can view my current and upcoming tasks |
-| v2.0 | High |student| be able to set a tracker my borrowed books| avoid overdue fines | 
-| v2.0 | Medium | student | sort my tasks based on highest priority | focus on those tasks first |
-| v2.0 | High | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link | 
-| v2.0 | High | student | add modules and calculate my CAP| have a better projection of my grades and efforts |
-| v2.0 | Low | student | login with a password | my system is protected |
+
+Version | Priority | As a ... | I want to ... | So that I can ...
+------- | -------- | -------- | ------------- | ------------------
+v1.0 | High | student | add tasks into a list | keep track of the things I need to do
+v1.0 | High | student | assign priorities to tasks | focus on the more important things first
+v1.0 | Medium | student | assign categories to tasks | have a more organised task list
+v1.0 | High | student | mark tasks as done | keep track of the remaining tasks to do
+v1.0 | Medium | student | list all tasks in my list | have a better overview
+v1.0 | High | student | be able to delete unwanted tasks | focus on the tasks which I need
+v1.0 | High | student | save all data after using the application | retrieve the data upon running the application
+v2.0 | Medium | student | automatically create folders for my modules | I do not have to manually create them
+v2.0 | High | student| add recurring tasks | avoid adding the same tasks every week
+v2.0 | High | student | have a calendar | I can view my current and upcoming tasks
+v2.0 | High |student| be able to set a tracker my borrowed books | avoid overdue fines
+v2.0 | Medium | student | sort my tasks based on highest priority | focus on those tasks first
+v2.0 | High | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link
+v2.0 | High | student | add modules and calculate my CAP| have a better projection of my grades and efforts
+v2.0 | Low | student | login with a password | my system is protected
+
 <!-- @@author -->
 
 <!-- @@author MuhammadHoze -->
