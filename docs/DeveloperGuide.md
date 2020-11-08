@@ -849,7 +849,7 @@ In addition, it implements the following operations:
 The following diagram shows the class diagram of the revise feature:
 
 <p align="center">
-  <img src="DG_Images/ReviseCommandClassDiagram.png" height="689" width="1023" alt="Class Diagram of Revise"/>
+  <img src="DG_Images/ReviseCommandClassDiagram.png" height="600" width="1023" alt="Class Diagram of Revise"/>
   <br/>Figure <>. Class diagram of revise
 </p>
 
