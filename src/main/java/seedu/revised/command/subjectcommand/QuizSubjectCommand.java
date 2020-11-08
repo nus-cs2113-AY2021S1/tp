@@ -30,6 +30,8 @@ public class QuizSubjectCommand extends SubjectCommand {
      * @param subjectList An instance of the <code>SubjectList</code> class for the user to quiz on
      * @param storage     Does nothing in this case but needed since this method was implemented
      *                    from an abstract class
+     * @throws NoSubjectException    If the program does not detect any subject title in user input
+     * @throws InvalidSubjectException If the program does not detect a matching subject title in user input
      */
     public void execute(SubjectList subjectList, Storage storage) throws NoSubjectException, InvalidSubjectException,
             NoTopicException, NoFlashcardException {
