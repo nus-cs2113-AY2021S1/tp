@@ -26,8 +26,8 @@ enhancements.
   * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
   * [3.10. Performing similarity checks](#310-performing-similarity-checks)
   * [3.11. Displaying most searched bus stop](#311-displaying-most-searched-bus-stop-on-start-up)
-    + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies)
-- [4. Appendix A: Product scope](#4-appendix-a-product-scope)
+    + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies-of-bus-stops-reset-feature)
+- [4. Appendix I: Requirements](#4-appendix-i-requirements)
   * [4.1. Target user profile](#41-target-user-profile)
   * [4.2. Value Proposition](#42-value-proposition)
 - [5. Appendix B: User Stories](#5-appendix-b-user-stories)
@@ -198,8 +198,8 @@ of busStops objects.
     + Cons: Has to loop through the array of bus stops and obtain their individual bus description.
      
 * **Alternative 2:** The full route of each bus is stored in a string format and is directly accessed.
-    + Pros: It is easier and quicker to print out the full route of a user-specfied bus.
-    + Cons: Alot of manual work is needed if the bus route/ bus stop is updated. It is not scaleable for large-scale 
+    + Pros: It is easier and quicker to print out the full route of a user-specified bus.
+    + Cons: Alot of manual work is needed if the bus route/ bus stop is updated. It is not scalable for large-scale 
     projects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
