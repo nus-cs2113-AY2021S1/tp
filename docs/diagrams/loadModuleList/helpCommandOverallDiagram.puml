@@ -6,7 +6,7 @@ participant "<<class>> :Parser" as Parser
 
 participant ":HelpCommand" as HelpCommand
 participant ":Ui" as Ui
-
+activate Zoomaster
 Zoomaster-> Parser : parse(helpCommand)
 activate Parser
 
@@ -98,6 +98,25 @@ else details not Empty
         activate Ui
         deactivate Ui
     Ui -> Ui : printCyan(LaunchNowCommandFormat)
+        activate Ui
+        deactivate Ui
+
+    else details == SHOW_KW
+    Ui -> Ui : printYellow(ShowCommandDetails)
+        activate Ui
+        deactivate Ui
+    Ui -> Ui : printCyan(ShowCommandFormat)
+        activate Ui
+        deactivate Ui
+
+    else details == SET_KW
+    Ui -> Ui : printYellow(SetCommandDetails)
+        activate Ui
+        deactivate Ui
+    Ui -> Ui : printCyan(SetCommandFormat)
+        activate Ui
+        deactivate Ui
+    Ui -> Ui : printGreen(SetCommandExample)
         activate Ui
         deactivate Ui
 
