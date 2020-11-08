@@ -904,10 +904,28 @@ The following are the requirements that the application should satisfy:
 
 * `Revised` - The main class which initiates the whole application.
 * `ui` - Package which contains the Ui class, in charge of user interactions.
-* `task` - Package which contains the task classes.
+* `Ui` - A class which takes care of interaction with the users. Prints the correct output to the console.
+* `card` - Package which contains the quizcard package, task package and the Flashcard,Topic and Subject classes.
+* `quizcard` - Package which contains the Quiz,Result,SubjectQuiz,TopicQuiz classes.
+* `Quiz` - An Abstract class that holds the result, list of flashcards and a list of incorrectAnswers for the 
+SubjectQuiz class and the TopicQuiz class to inherit from.
+* `SubjectQuiz` - Instantiated when the user calls for a quiz on a subject. 
+* `TopicQuiz` - Instantiated when the user calls for a quiz on a topic. 
+* `Result` - A class which stores the marks from a quiz and a description which indicates the performance of the user 
+for that quiz.
+* `taskcard` - Package which contains the task classes.
 * `Task` - An abstract class which Todo, Deadline and Event classes inherit from.
+* `Todo` - A class which refers to a task without deadline.Inherits from the Task class.
 * `Deadline` - A class which refers to a task with a deadline. Inherits from the Task class.
 * `Event` - A class which refers to an event. Inherits from the Task class.
+* `Flashcard` - A class which instantiates the flashcard object.Contains the question and answer feature of the flashcard.
+* `Topic` - A class which is instantiated when the user creates the topic. Holds the title of the topic, an arraylist of
+flashcards and an arraylist of results.
+* `Subject` - A class which instantiates the subject object. Holds the title of the subject and lists of flashcards, 
+results and topics.
+* `command` - A package which holds the 4 command packages: subjectcommand,topiccommand,taskcommand,flashcardcommand.
+* `subjectcommand` - A package which holds the different subjectcommand classes.
+
 * `TaskList` - A class which initialises an ArrayList of tasks.
 * `Storage` - A package which holds the Storage class, which is in charge of storing and loading data
 into the application.
@@ -916,21 +934,11 @@ into the application.
 * `SubjectParser` - A class which reads the user commands to call the relevant Subject command.
 * `TaskParser` - A class which reads the user commands to call the relevant task command.
 * `TopicParser` - A class which reads the user commands to call the relevant topic command.
-* `card` - Package holds the necessary classes for the quiz, subject,topic and flashcard functionality.
-* `quiz` - Package holds the classes for the quiz functionality.
-* `Quiz` - An Abstract class that holds the result, list of flashcards and a list of incorrectAnswers for the 
-SubjectQuiz class and the TopicQuiz class to inherit from.
-* `SubjectQuiz` - Instantiated when the user calls for a quiz on a subject. 
-* `TopicQuiz` - Instantiated when the user calls for a quiz on a topic. 
-* `Result` - A class which stores the marks from a quiz and a description which indicates the performance of the user 
-for that quiz.
+
+
 * `ResultList` - A class which holds an ArrayList of results.
-* `Flashcard` - A class which instantiates the flashcard object.Contains the question and answer feature of the flashcard.
-* `Subject` - A class which instantiates the subject object. Holds the title of the subject and lists of flashcards, 
-results and topics.
+
 * `SubjectList` - A class which holds an ArrayList of Subjects.
-* `Topic` - A class which is instantiated when the user creates the topic. Holds the title of the topic, an arraylist of
-flashcards and an arraylist of results.
 * `TopicList` - A class which holds an ArrayList of Topics.
 
 ## Appendix E: Instructions for Manual Testing
