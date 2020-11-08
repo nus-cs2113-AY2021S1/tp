@@ -18,6 +18,7 @@ import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
 
+import java.awt.print.Book;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +38,7 @@ public class MenuParser implements Parser {
     private static final int LENGTH_OF_QUESTIONS_INDICATOR = 2;
     private static final int LENGTH_OF_TOPIC_INDICATOR = 2;
     private static final int LENGTH_OF_TIMER_INDICATOR = 2;
+    private static final int BOOKMARK_DELETE_COMMANDARR_LENGTH = 3;
     private static final String BOOKMARK_LIST = "listing";
     private static final String COMMAND_ABOUT = "about";
     private static final String COMMAND_HELP = "help";
@@ -67,10 +69,19 @@ public class MenuParser implements Parser {
     @Override
     public Command parseCommand(DisplayableList topicList, String userInput) {
         assert topicList != null;
-
-
         LOGGER.log(Level.INFO, "Begin parsing command.");
         String[] commandArr = userInput.trim().split(" ", 0);
+
+        for (int i = 0; i < commandArr.length - 1; i++) {
+            if (commandArr[i].equals("") || (i > 0 && (commandArr[i].equals(commandArr[i - 1])))) {
+                int j = 1;
+                while (commandArr[i + j].equals("") && ((i + j) < commandArr.length - 1)) {
+                    j++;
+                }
+                commandArr[i] = commandArr[i + j];
+                commandArr[i + j] = "";
+            }
+        }
 
         Ui ui = new Ui();
         switch (commandArr[0]) {
@@ -90,9 +101,13 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             int userTimer = 0;
+            if ((commandArr.length > 4 && (!commandArr[3].contains("/") || commandArr[4].equals("")))
+                    || commandArr.length < 4) {
+                return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
+            }
             try {
                 if (commandArr[1].contains(TIMER_INDICATOR)) {
-                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR))  {
+                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
                         numOfQuestions = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
@@ -161,6 +176,11 @@ public class MenuParser implements Parser {
             return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, userTimer);
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
+            if (commandArr.length == BOOKMARK_DELETE_COMMANDARR_LENGTH) {
+                int deleteIndex = 0;
+                deleteIndex = Integer.parseInt(commandArr[2]);
+                return new BookmarkCommand(deleteIndex, commandArr[1], bookmarks);
+            }
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
         case COMMAND_NOTE:
             try {
