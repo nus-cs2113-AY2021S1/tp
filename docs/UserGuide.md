@@ -222,11 +222,15 @@ Format: `spend <description> <compulsory arguments> <optional arguments>`
 List of `<compulsory arguments>`:
 - `v/<value>` sets the amount of money spent
 
+🚩: value has **no** limit 
+
 List of `<optional arguments>`:
 - `currency/<currency>` sets the currency of the expense.
 - `date/<yyyy-MM-dd>` sets the date of the expense.
 
-🚩: By default, the currency is set to "SGD" and date is set to the date when the user executed the `spend` command.
+🚩: By default, the currency is set to "SGD" and date is set to the date when the user executes the `spend` command.
+
+🚩: Optional and compulsory arguments can be typed in **any** order
 
 Example of usage:
 
@@ -236,7 +240,7 @@ Example of usage:
 
 `spend lunch v/5 date/2020-10-28`
 
-`spend lunch v/5 currency/USD date/2020-11-08`
+`spend lunch v/5 date/2020-11-08 currency/USD `
 
 Output:
 
@@ -440,21 +444,11 @@ Output:
 List all the expense items in the expense list and shows total amount of money spent for each currency and the current 
 day, week, month, and year.
 
-Format: `list expenses <optional arguments>`
+Format: `list expenses`
 
-List of `<optional arguments>`:
-- `currency/<currency>` displays all the expense items with currency `CURRENCY` as a list.
-- `date/<yyyy-MM-dd>` displays all the expense items with date in the format of yyyy-MM-dd.
-- `for/{DAY,WEEK,MONTH,YEAR}` Displays all the expense items for today/this week/this month/this year.
+🚩: Expense list is sorted **based on date** (*from the most recent to the least recent*). If the date of two expense items 
+are the **same**, the expense list is sorted **based on currency lexicographically**.
 
-🚩: Expense list is sorted based on date (from the most recent to the least recent). If the date of two expense items 
-are the same, the expense list is sorted based on currency lexicographically.
-
-🚩: `currency`, `date`, and `for` arguments can be used together.
-
-🚩: `date` must be in the format of `yyyy-MM-dd`, e.g. `2020-11-08`.
-
-🚩: `for` argument is case-insensitive, e.g. `list expenses for/week`.
 
 Example of usage:
 
@@ -496,6 +490,12 @@ Output:
     ____________________________________________________________
 
 ```
+### Displaying expense items by a certain currency on list: `list` 
+List all the expense items in the expense list based on currency and shows total amount of money spent for each currency.
+
+Format: `list expenses currency/currency_name`
+
+Example of usage:
 
 `list expenses currency/USD`
 
@@ -514,6 +514,13 @@ Output:
     
 ```
 
+### Displaying expense items on a certain date on list: `list` 
+List all the expense items in the expense list based on the date and shows total amount of money spent for each currency.
+
+Format: `list expenses date/YYYY-MM-DD`
+
+Example of usage:
+
 `list expenses date/2020-11-08`
 
 Output:
@@ -529,50 +536,10 @@ Output:
      The total amount listed:
      0.60 SGD
      5.20 USD
-=======
-     breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
-     bus (1.00 SGD) (date: Saturday, November 7, 2020)
-     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
-     pen (0.40 USD) (date: Saturday, November 7, 2020)
-
-     Your total expense for today is:
-
-     Your total expense for this week is:
-     4.30 SGD
-     0.40 USD
-
-     Your total expense for this month is:
-     4.30 SGD
-     0.40 USD
-
-     Your total expense for this year is:
-     4.30 SGD
-     0.40 USD
     ____________________________________________________________
 ```
-
-### Displaying expense items on a certain date on list: `list` 
-List all the expense items in the expense list and shows total amount of money spent for each currency.
-
-Format: `list expenses date/YYYY-MM-DD`
-
-Example of usage:
-
-`list expenses date/2020-11-07`
-
-Output:
-```    
-    ____________________________________________________________
-     Here are the expense item(s) in your expense list of date Saturday, November 7, 2020:
-     book (15.00 SGD) (date: Saturday, November 7, 2020)
-
-     The total amount listed:
-     15.00 SGD
-    ____________________________________________________________
-```
-
 ### Displaying expense items for a certain time period on list: `list` 
-List all the expense items in the expense list and shows total amount of money spent for each currency.
+List all the expense items in the expense list based on the time period and shows total amount of money spent for each currency.
 
 Format: `list expenses for/<time period>`
 
@@ -596,52 +563,9 @@ Output:
      The total amount listed:
      4.30 SGD
      0.40 USD
->>>>>>> 462c98736af6349f49405a0cbe8d2e4142f9df08
     ____________________________________________________________
 
 ```  
-
-`list expenses for/WEEK`
-
-Output:
-
-```
-    ____________________________________________________________
-     Here are the expense item(s) in your expense list for this week:
-     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
-     book (0.50 SGD) (date: Sunday, November 8, 2020)
-     bread (0.20 USD) (date: Sunday, November 8, 2020)
-     lunch (5.00 USD) (date: Sunday, November 8, 2020)
-     bottle (3.00 SGD) (date: Saturday, November 7, 2020)
-     pen (1.00 SGD) (date: Saturday, November 7, 2020)
-     earphone (0.30 SGD) (date: Saturday, November 7, 2020)
-     tablet (0.40 USD) (date: Saturday, November 7, 2020)
-
-     The total amount listed:
-     4.90 SGD
-     5.60 USD
-    ____________________________________________________________
-
-```  
-
-`list expenses for/DAY`
-
-Output:
-
-```
-    ____________________________________________________________
-     Here are the expense item(s) in your expense list for today:
-     breakfast (0.10 SGD) (date: Sunday, November 8, 2020)
-     book (0.50 SGD) (date: Sunday, November 8, 2020)
-     bread (0.20 USD) (date: Sunday, November 8, 2020)
-     lunch (5.00 USD) (date: Sunday, November 8, 2020)
-
-     The total amount listed:
-     0.60 SGD
-     5.20 USD
-    ____________________________________________________________
-
-```
 
 
 ### Deleting a task from the list: `delete`
@@ -808,7 +732,7 @@ Output:
 
 ```
     ____________________________________________________________
-     There is no expense item deleted.
+     ~Info~ There is no expense item deleted.
 
     ____________________________________________________________
 
