@@ -412,5 +412,30 @@ that require mouse clicks.
 * **Mainstream OS** - Windows, Linux, Unix, OS-X
 
 ## 8. Appendix E: Instructions for manual testing
+This portion contains instructions on how to perform manual testing.
+
+### E.1 Launch and Shutdown
+
+### E.2 Check for direct bus
+
+### E.3 Check bus route
+
+### E.4 Check for buses at a bus stop
+
+### E.5 Search for dining options within a faculty
+
+### E.6 Search for specific dining outlet
+
+### E.7 Add a favourite command
+
+### E.8 Delete favourite command from favourite list
+
+### E.9 Execute a favourite command from favourite list
+
+### E.10 Change description of favourite command in favourite list
+
+### E.2 Execute Command From FavList
+
+### E.3
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
