@@ -173,13 +173,10 @@ Example of usage:
 * `mode timetable` 
 * `mode planner`
 
->Here are some examples of switching from the main menu of Zoomaster to the various modes.
->* When you are switching to the bookmark mode you would see the message shown below.<br/>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true) <br/><br/> 
->* When you are switching to the timetable mode you would see the message shown below.<br/>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true) <br/><br/> 
->* When you are switching to the planner mode you would see the message shown below.<br/>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
+>Here is an example of switching from the main menu of Zoomaster to the bookmark modes. <br/><br/> 
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/changemodecommand%20main%20menu%20to%20bookmarks.png?raw=true) <br/><br/> 
+>For the other modes, you should see a similar message like "changing to timetable/planner mode".
+
 
 <!-- @@author -->
 
@@ -380,7 +377,7 @@ You will be able to see the timetable for a certain day or the whole week.
 **today** can also be a `DAY` input to show the timetable for the current day based on system time.  
 If your selected timetable is the current day, you should be able to see a
 "current time" indicator with your system local time. 
-Else if you have a lesson ongoing currently, it will instead show a "lesson now" indicator.
+Else if you have a lesson ongoing currently, it will instead show a "lesson now" indicator
 *around* your current lesson.
 
 >  
@@ -400,20 +397,21 @@ Example of usage:
 * `show wed`
 * `show today`
 
->You will see an empty list message if your timetable is empty. <br></br>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20empty%20list.png?raw=true) <br></br><br></br>
->You will see your entire timetable if you use `show` input. <br></br>
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/show%20all%20list.png?raw=true) <br></br><br></br>
->You will see the timetable of your selected day if you use `show {day}` input. 
+>Here are some examples of outcomes you will see on the command line interface <br></br>
+>* You will see an empty list message if your timetable is empty. <br></br>
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20empty%20timetable.png?raw=true) <br></br><br></br>
+>* You will see your entire timetable if you use `show` input. <br></br>
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20all%20timetable.png?raw=true) <br></br><br></br>
+>* You will see the timetable of your selected day if you use `show {day}` input. 
 >This example uses wednesday as its selected day input. <br></br>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20wed%20list.png?raw=true) <br></br><br></br>
->You will see the timetable for today if you use `show today` input. <br></br>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/show%20today%20list.png?raw=true) <br></br><br></br>
->Example of "current time" indicator showing the current time <br></br>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/current%20time%20indicator.png?raw=true) 
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20wed%20timetable.png?raw=true) <br></br><br></br>
+>* You will see the timetable for today if you use `show today` input. <br></br>
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20today%20timetable.png?raw=true) <br></br><br></br>
+>* Example of "current time" indicator showing the current time <br></br>
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20current%20time%20indicator.png?raw=true) 
 ><br></br><br></br>
->Example of "lesson now" indicator hightlighting the current lesson <br></br>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true) <br></br><br></br>
+>* Example of "lesson now" indicator hightlighting the current lesson <br></br>
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20lesson%20now%20indicator.png?raw=true) <br></br><br></br>
 
 <!-- @@author -->
 
