@@ -204,7 +204,7 @@ You can add an examination event to the calendar list by using the following for
 
 Format: `exam <module_name> @<venue> / <date> <time>`
 
-Example of usage:
+Example:
 
 `exam CS1010 @com1-b1-12 / 121220 1700` 
 
@@ -220,7 +220,7 @@ When you have new recurring laboratory events and want to add them to the calend
 
 Format: `lab <module_name> @<venue> -r <number of lab session> / <date> <time>`
 
-Example of usage:
+Example:
 
 `lab CS1010 @com1-b1-14 -r 9 / 210920 1600` 
 
@@ -238,7 +238,7 @@ When you have new recurring lecture events and want to add them to the calendar 
 
 Format: `lect <module_name> @<venue> -r <number of lecture> / <date> <time>`
 
-Example of usage:
+Example:
 
 `lect CS2113 @lt12 -r 10 / 030220 1200` 
 
@@ -256,7 +256,7 @@ When you have new recurring tutorial events and want to add them to the calendar
 
 Format: `tut <module_name> @<venue> -r <number of tutorial> / <date> <time>`
 
-Example of usage:
+Example:
 
 `tut CS1010 @com1-b1-12 -r 5 / 121020 1700` 
 
@@ -280,7 +280,7 @@ the module website for a school event or the things to bring to an event.
 
 Format: `/a <event_number> - <additional information>`
 
-Example of usage:
+Example:
 
 `/a 1 - This is the additional information for event number 1`
 
@@ -300,7 +300,7 @@ After adding the additional information related to the event, you can then view 
 
 Format: `/v <event_number>`
 
-Example of usage:
+Example:
 
 `/v 1` 
 
@@ -316,7 +316,7 @@ Should you have wrongly added any additional information to an event, fret not, 
 
 Format: `/- <event_number> a <additional_information_number>`
 
-Example of usage:
+Example:
 
 `/- 1 a 1`
 
@@ -360,7 +360,7 @@ You can delete a task from your calendar list. You can use this to delete the ta
 
 Format: `-t <task_number>`
 
-Example of usage:
+Example:
  
  `-t 1` 
  
@@ -378,7 +378,7 @@ You can delete an event from your calendar list. Use this to delete the events t
 
 Format: `-e <event_number>`
 
-Example of usage:
+Example:
  
  `-e 1` 
  
@@ -402,7 +402,7 @@ assignment in your calendar.
 
 Format: `/f <keyword>`
 
-Example of usage: 
+Example: 
 
 `/f assignment` 
 
@@ -422,7 +422,7 @@ homework tasks, you can use this feature to exclude any events with description 
 
 Format: `/ft <keyword>`
 
-Example of usage: 
+Example: 
 
 `/ft tuition` 
 
@@ -441,7 +441,7 @@ tasks and events having a similar description. For example, if you are looking f
 
 Format: `/fe <keyword>`
 
-Example of usage: 
+Example: 
 
 `/fe 09-Nov-2020`
 
@@ -461,7 +461,7 @@ If you want to prioritize an important task, you can use `*t <task_number>` to m
     
 Format: `*t <task_number>`
     
-Example of usage: 
+Example: 
 
 `*t 1` 
 
