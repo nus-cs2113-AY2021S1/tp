@@ -411,7 +411,7 @@ borrowed books tracking, and module-related functions. This increase users' effi
 | -------- | ---------- | ---------- |
 | **CI**   | Continuous Integration | Combining parts of a software product to form a whole
 | **SDK**  | Software Development Kit | A set of software tools by software vendors
-| **IntelliJ** |  <h1 align="center">-</h1> | An Integrated Development Environment written in Java 
+| **IntelliJ** | IntelliJ | An Integrated Development Environment written in Java 
 | **UML** | Unified Modeling Language | A modeling language which to visualize the design of a system
 | **CLI** | Command Line Interface | A program that accepts text inputs to execute operating system functions
 | **GUI** | Graphical User Interface | An interface that allows users to interact through graphical icons 
