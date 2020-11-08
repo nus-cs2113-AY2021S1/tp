@@ -247,78 +247,92 @@ public class Calculator {
      * @param person person whose recommended daily calorie intake are to return.
      * @return the value of recommended daily calorie intake.
      */
-    public int calculateRecomendation(Person person) {
+    public int calculateRecommendation(Person person) {
         double requirement = 0;
-        int recomendation;
-        double activityScore = 0;
-        switch (person.getFitnessLevel()) {
-        case NONE:
-            activityScore = 1;
-            break;
-        case LOW:
-            if (person.getGender() == Gender.MALE) {
-                activityScore = 1.11;
-            } else if (person.getGender() == Gender.FEMALE) {
-                activityScore = 1.12;
-            } else {
-                activityScore = 1.115;
-            }
-            break;
-        case MEDIUM:
-            if (person.getGender() == Gender.MALE) {
-                activityScore = 1.26;
-            } else if (person.getGender() == Gender.FEMALE) {
-                activityScore = 1.27;
-            } else {
-                activityScore = 1.265;
-            }
-            break;
-        case HIGH:
-            if (person.getGender() == Gender.MALE) {
-                activityScore = 1.37;
-            } else if (person.getGender() == Gender.FEMALE) {
-                activityScore = 1.36;
-            } else {
-                activityScore = 1.365;
-            }
-            break;
-        case EXTREME:
-            if (person.getGender() == Gender.MALE) {
-                activityScore = 1.48;
-            } else if (person.getGender() == Gender.FEMALE) {
-                activityScore = 1.45;
-            } else {
-                activityScore = 1.465;
-            }
-            break;
-        default:
-            assert activityScore != 0 : "The activityScore should not be 0 if"
-                    + "the activityLevel are one of five given cases.";
-        }
-
+        int recommendation;
+        double fitnessScore;
+        fitnessScore = getFitnessScore(person);
         switch (person.getGender()) {
         case MALE:
-            requirement = 662 - 9.53 * person.getAge() + 15.91 * activityScore * person.getOriginalWeight()
+            requirement = 662 - 9.53 * person.getAge() + 15.91 * fitnessScore * person.getCurrentWeight()
                     + 539.6 * person.getHeight() / 100;
             break;
         case FEMALE:
-            requirement = 354 - 6.91 * person.getAge() + 9.36 * activityScore * person.getOriginalWeight()
+            requirement = 354 - 6.91 * person.getAge() + 9.36 * fitnessScore * person.getCurrentWeight()
                     + 726 * person.getHeight() / 100;
             break;
         case OTHERS:
-            requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getOriginalWeight()
+            requirement = 508 - 8.22 * person.getAge() + 12.635 * fitnessScore * person.getCurrentWeight()
                     + 632.8 * person.getHeight() / 100;
             break;
         default:
             assert requirement != 0 : "The requirement should not be 0 if the gender is "
-                    + "ont of the three given cases.";
+                    + "one of the three given cases.";
         }
-
         if (person.getCurrentWeight() > person.getTargetWeight()) {
-            recomendation = (int) requirement - 300;
+            recommendation = (int) requirement - 300;
         } else {
-            recomendation = (int) requirement + 100;
+            recommendation = (int) requirement + 100;
         }
-        return recomendation;
+        recommendation = checkCaps(recommendation);
+        return recommendation;
+    }
+
+    private double getFitnessScore(Person person) {
+        double fitnessScore = 0;
+        switch (person.getFitnessLevel()) {
+        case NONE:
+            fitnessScore = 1;
+            break;
+        case LOW:
+            if (person.getGender() == Gender.MALE) {
+                fitnessScore = 1.11;
+            } else if (person.getGender() == Gender.FEMALE) {
+                fitnessScore = 1.12;
+            } else {
+                fitnessScore = 1.115;
+            }
+            break;
+        case MEDIUM:
+            if (person.getGender() == Gender.MALE) {
+                fitnessScore = 1.26;
+            } else if (person.getGender() == Gender.FEMALE) {
+                fitnessScore = 1.27;
+            } else {
+                fitnessScore = 1.265;
+            }
+            break;
+        case HIGH:
+            if (person.getGender() == Gender.MALE) {
+                fitnessScore = 1.37;
+            } else if (person.getGender() == Gender.FEMALE) {
+                fitnessScore = 1.36;
+            } else {
+                fitnessScore = 1.365;
+            }
+            break;
+        case EXTREME:
+            if (person.getGender() == Gender.MALE) {
+                fitnessScore = 1.48;
+            } else if (person.getGender() == Gender.FEMALE) {
+                fitnessScore = 1.45;
+            } else {
+                fitnessScore = 1.465;
+            }
+            break;
+        default:
+            assert fitnessScore != 0 : "The activityScore should not be 0 if"
+                    + "the activityLevel are one of five given cases.";
+        }
+        return fitnessScore;
+    }
+
+    private int checkCaps(int recommendation) {
+        if (recommendation < 1000) {
+            recommendation = 1000;
+        } else if (recommendation > 20000) {
+            recommendation = 20000;
+        }
+        return recommendation;
     }
 }
