@@ -461,7 +461,7 @@ Format: `[number]`
 Example of usage:
 '2'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkstall.png)
+![image](img/checkstall.png)
 
 ### 5.9 view all available commands: `help`
 print all the commands with required format that the user can input
@@ -471,7 +471,7 @@ Format: `help`
 Example of usage:
 'help'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/help.png)
+![image](img/help.png)
 
 ### 5.10 quit the system: `bye`
 quit the system
