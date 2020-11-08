@@ -322,6 +322,8 @@ Format: `[number]`
 Example of usage:
 '2'
 
+Result is like this:
+
 ![image](img/canteen.png)
 
 #### 5.2.3 Then the open stalls in this canteen will be printed, user just type the corresponding index before the stall to select stall. 
@@ -353,6 +355,8 @@ Format: `[number]`
 Example of usage:
 '2'
 
+Result is like this:
+
 ![image](img/dish.png)
 
 #### 5.2.6 User will be asked whether he wants to see the comment of the dish, just type y/n.
@@ -361,6 +365,7 @@ Format: `y/n`
 
 Example of usage:
 'y'
+
 'n'
 
 Result is like this:
@@ -411,6 +416,8 @@ Format: `list`
 
 Example of usage:
 'list'
+
+Result is like this:
 
 ![image](img/lis.png)
 
