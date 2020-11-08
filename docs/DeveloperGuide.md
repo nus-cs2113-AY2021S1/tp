@@ -183,7 +183,9 @@ generally indicates whether an operation has failed.
 ```
 
 ### <a name = impl_logic></a>Logic Component
+
 ![](uml_images/images_updated/Logic.png)
+
 **ParamChecker** <br />
 1. Contains a set of public static methods which are used to verify the correctness of `param` in the 
 ```CommandPacket``` instance.
@@ -353,20 +355,18 @@ The Manual Tracker is capable of executing the following states of operation:
 **Creation of Ledger** <br />
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
-1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
-In this case, ```handleCreateLedger()``` will be called.
-1. At ```handleCreateLedger()```, the following processes will be executed:
-    1. A new instance of ```createledgerHandler``` is created. The input String array will be passed into 
-    ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
-    1. A new instance of ```Ledger``` will be instantiated and set to ```createledgerHandler.currLedger```.
+1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br/>In this case, ```handleCreateLedger()``` will be called.
+1. At `handleCreateLedger()`, the following processes will be executed:
+    1. A new instance of ```createledgerHandler``` is created. The input String array will be passed into `createledgerHandler.setRequiredParams()` to set required params for a successful parse.
+    1. A new instance of `Ledger` will be instantiated and set to `createledgerHandler.currLedger`.
     1. ```createledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
         1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
-        1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table1).
+        1. For `createledgerHandler`, the `handleSingleParam` abstract method will be implemented as shown in the [following table](#table1).
         
 1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createledgerHandler``` instance
 and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 
-__<a name = table1></a> Param Handling Behavior:__
+#### <a name = table1></a> Param Handling Behavior
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
@@ -391,7 +391,7 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
             1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
                 * Note that only one of the two params need to be invoked from the input. 
 
-__<a name = table2/></a> Param Handling Behavior:__
+#### <a name = table2/></a> Param Handling Behavior
     
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
@@ -425,7 +425,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
             1. For ```retrieveentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
             1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
-__<a name = table3></a> Param Handling Behavior__
+#### <a name = table3></a> Param Handling Behavior
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
@@ -443,7 +443,7 @@ __<a name = table3></a> Param Handling Behavior__
         1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
         1. For ```editentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
 
-__<a name = table4></a>Param Handling Behavior__           
+#### <a name = table4></a> Param Handling Behavior           
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
