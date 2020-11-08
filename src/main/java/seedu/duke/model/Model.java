@@ -107,7 +107,7 @@ public class Model {
 
     // @@author iamchenjiajun
     /**
-     * Saves the list from file
+     * Saves the list from file.
      *
      * @throws DukeException If there is a problem with the saving.
      */
