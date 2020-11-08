@@ -75,15 +75,6 @@ public enum BusStops {
         this.searchCount++;
     }
 
-    public static String formatName(String input) throws CustomException {
-        for (BusStops info : EnumSet.allOf(BusStops.class)) {
-            if (info.name.equalsIgnoreCase(input)) {
-                return info.name;
-            }
-        }
-        throw new CustomException(ExceptionType.INVALID_BUS_STOP);
-    }
-
     public static BusStops findBusStop(String input) {
         for (BusStops busStop : EnumSet.allOf(BusStops.class)) {
             if (busStop.name.equalsIgnoreCase(input)) {

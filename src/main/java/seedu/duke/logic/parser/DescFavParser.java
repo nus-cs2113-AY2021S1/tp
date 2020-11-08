@@ -10,6 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+/**
+ * Represents the parser for /descfav command.
+ * It makes sense of the user's input by extracting out the index and description for the given message.
+ */
 public class DescFavParser extends Parser {
 
     public static final String DELIMITER = "/to";
@@ -21,6 +25,11 @@ public class DescFavParser extends Parser {
         super(message);
     }
 
+    /**
+     * Extracts the index and description from the user's input message.
+     *
+     * @throws CustomException if user input is empty or number of delimiters is not appropriate.
+     */
     public void parseInput() throws CustomException {
         try {
             if (super.getUserInput().trim().length() == 0) {
@@ -41,7 +50,14 @@ public class DescFavParser extends Parser {
         }
     }
 
+    /**
+     * Checks if either of the components after splitting is empty or still has a delimiter.
+     *
+     * @param components the components that user's message has been split into.
+     * @throws CustomException if both components are empty or any of the components contains the delimiter.
+     */
     private void checkComponents(String[] components) throws CustomException {
+        assert components.length == 2 : "Components are not present";
         if (components[0].trim().isEmpty() & components[1].trim().isEmpty()) {
             logger.warning("All parameters are missing.");
             throw new CustomException(ExceptionType.NO_INPUT);
@@ -52,6 +68,13 @@ public class DescFavParser extends Parser {
         }
     }
 
+    /**
+     * Returns the description after removing extra spaces.
+     *
+     * @param description the raw description input by the user.
+     * @return trimmed description.
+     * @throws CustomException if the description is blank or empty.
+     */
     private String checkDescription(String description) throws CustomException {
         if (description.trim().isBlank() | description.trim().isEmpty()) {
             logger.warning("Description is missing.");
@@ -62,6 +85,13 @@ public class DescFavParser extends Parser {
         return description.trim();
     }
 
+    /**
+     * Returns the index as an int.
+     *
+     * @param index the string index input by the user.
+     * @return the index as an int.
+     * @throws CustomException if the index is not a number.
+     */
     private int checkIndex(String index) throws CustomException {
         try {
             int rawIndex = Integer.parseInt(index.trim());
