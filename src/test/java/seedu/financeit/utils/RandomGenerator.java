@@ -8,7 +8,9 @@ public class RandomGenerator {
     //Reused from https://www.baeldung.com/java-random-string with minor additions
     private static final int MAX_LEN = 50;
     /**
-     * Generates a random string of MAX_LEN 50,
+     * Generates a random string of MAX_LEN 50.
+     * Does not contain ";" character in the
+     * set of possible characters generated.
      *
      * @return Random string containing alphanumeric characters
      *         and some special characters.
@@ -20,7 +22,7 @@ public class RandomGenerator {
         int[] rightLimit = new int[] {126, 58};
         Random random = new Random();
         StringBuilder buffer = new StringBuilder(lengthOfStringGenerated);
-        for(int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++) {
             for (int j = 0; j < lengthOfStringGenerated; j++) {
                 int randomLimitedInt = leftLimit[i] + (int)
                         (random.nextFloat() * (rightLimit[i] - leftLimit[i] + 1));
@@ -45,7 +47,7 @@ public class RandomGenerator {
 
     public static int generateRandomDayOfMonth() {
         int dayOfMonth = generateRandomPositiveIntUntilLimit(31);
-        while(dayOfMonth == 0) {
+        while (dayOfMonth == 0) {
             dayOfMonth = generateRandomPositiveIntUntilLimit(31);
         }
         return dayOfMonth;

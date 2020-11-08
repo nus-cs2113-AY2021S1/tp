@@ -37,7 +37,7 @@ public class SaveManager {
             case "list":
                 listSaves(packet);
                 break;
-            case "add":
+            case "new":
                 if (checkValidity(packet) == true) {
                     addSave(packet);
                 }

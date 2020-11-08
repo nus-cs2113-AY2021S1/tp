@@ -16,7 +16,7 @@ public class TestCommands {
 
     static final String[] sampleValidParamTypes = new String[] {"-e", "/desc", "/amt", "/day", "/notes"};
     static final String[] sampleValidParamArguments = new String[] {"", "Test23123//>?>_+_~#$#@",
-            "3490.34", "15", "OIYH(*^(*ot9w3848(*&(*~~||///"};
+        "3490.34", "15", "OIYH(*^(*ot9w3848(*&(*~~||///"};
 
     public static CommandPacket[] generateCreateEntryMissingParamsCommands() {
         CommandPacket[] packets = new CommandPacket[4];
@@ -27,7 +27,7 @@ public class TestCommands {
             String[] paramArguments = sampleValidParamArguments.clone();
             paramTypes[i] = "missingParam";
             paramArguments[i] = "missingArgument";
-            packets[i] = TestUtil.createCommandPacket("add", paramTypes, paramArguments);
+            packets[i] = TestUtil.createCommandPacket("new", paramTypes, paramArguments);
         }
         return packets;
     }

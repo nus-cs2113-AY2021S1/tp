@@ -1,26 +1,31 @@
 @startuml
 autoactivate on
 
+
 ":FinanceIt" -> "<<class>>\nReminderPrinter"
+note top: <<class>> denotes\n static class.
     "<<class>>\nReminderPrinter" -> "<<class>>\nReminderListGenerator": generateListOfRemindersAsStrings()
         "<<class>>\nReminderListGenerator" -> "<<class>>\nRunHistory": getCurrentDayOfMonth();
         return currentDayOfMonth
         "<<class>>\nReminderListGenerator" -> "<<class>>\nRunHistory": getNumOfDaysInCurrentMonth();
         return lastDayOfMonth
 
-        note over "<<class>>\nReminderListGenerator": ggdfdf
+        note over "<<class>>\nReminderListGenerator": isOverflowToNextMonth indicates\n whether the reminder period\n extends into the next month
         alt isOverflowToNextMonth == false
             "<<class>>\nReminderListGenerator" -> "allRecurringEntries:RecurringEntriesList": getEntriesFromDayXtoY(currentDay, dayToRemindUntil)
             return entriesToRemind
         else isOverflowToNextMonth == true
             "<<class>>\nReminderListGenerator" -> "allRecurringEntries:RecurringEntriesList": getEntriesFromDayXtoY(currentDay, lastDayOfMonth)
+            note right: Entries for\n current month
             return entriesToRemind
              "<<class>>\nReminderListGenerator" -> "allRecurringEntries:RecurringEntriesList": getEntriesFromDayXtoY(1, dayToRemindUntil)
+             note right: Entries for\n next month
             return entriesToRemind
         end
 
         loop For all entries in entriesToRemind
         "<<class>>\nReminderListGenerator" -> "<<class>>\nReminderListGenerator": convertEntryToReminderString(entry)"
+        note right "<<class>>\nReminderListGenerator": Converts information\n in entry to a formatted\n String, ready for printing
         return reminderString
 
         end

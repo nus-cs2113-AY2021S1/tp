@@ -49,16 +49,16 @@ to perform the operation associated with the user input.
 
 __Description__
 
-The Logic Component abstracts logic operations that are dependent on `params` passed via a `CommandPacket` instance.
+The Logic Component executes logic operations passed via a `CommandPacket`, by handling individual params 
+contained in the `CommandPacket`
 
 __API__
 
-* `CommandHandler` classes are used in `LogicManager` classes to handle parts of the operations which are dependent on
-the `params` supplied.
+* Different `CommandHandler` classes are used in `LogicManager` classes to handle various operations e.g. new, edit, delete
 * If `CommandHandler` classes recognises a `param` from the `CommandPacket` instance, it performs a sub-operation
 associated with the `param`. For instance, `/date` will cause `CreateLedgerCommand` instance to set the date of the
-new instantiated ledger.  
-* `ParamChecker` verifies correctness of `params` before it is processed further by a `CommandHandler` class.
+newly created ledger.  
+* `CommandHandler` in turn uses `ParamChecker` to verify validity of inputs before setting.
 
 
 
@@ -75,10 +75,15 @@ __API__
 
 * ```handleInput()``` from the ```UiManager``` class is called from ```Handler``` classes to 
 retrieve the raw string input from the user.
-* ```Parser``` subcomponent classes are responsible for parsing raw String input from the user
-and produce an equivalent ```CommandPacket``` instance.
-* ```Handler``` classes will use the ```CommandPacket``` instance to call the corresponding
-```Command``` classes or perform the next operation.
+* ```Parser``` classes are responsible for parsing raw String input from the user
+and produce a ```CommandPacket```.
+* `CommandPacket` consists of two components
+    * `commandString` which is the command entered by the user
+    * `paramMap` which is a HashMap of param entered - key is param tag and value 
+    is the raw input String.
+    * E.g. if user inputs `new /desc Quick brown fox`, `commandString` will be `"add"`,
+    while paramMap will consist of one key-value pair, key being `"/desc"` and value being
+    `"Quick brown fox"`
 
 ## Model Component
 
@@ -118,75 +123,14 @@ from ```saveHandler```. The saver classes are primarily used by ```saveManager``
 
 # Implementation
 ## Module-level Implementation
-### Logic Manager Component
-![](uml_images/images_updated/Handler.png)
-
-**Execution** <br />
-1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
-to maintain a cycle of 2 processes: User input processing and Command handling.
-**User Input Processing** <br />
-1. Logic Managers depend on InputManager module to read user input, parse user input and produce a 
-meaningful ```CommandPacket``` instance.
-1. The ```CommandPacket``` instance can then be used by the next step of the cycle.
-**Command Handling** <br />
-1. Each Logic Manager will have several methods that are dedicated to handle a single operation. They can
-typically be identified by a specific naming convention: `"handle.....()"`.
-1. These methods use ```CommandHandler``` classes to perform `param` dependent operations, which involves evaluation
-of `paramMap` in the provided `CommandPacket` instance to decide the operation to perform, be it on `Data` or `DataList`.
-**Error Reporting** <br />
-1. While error handling from `param` parsing is handled by `ParamChecker` singleton class, there is a need
-to identify from the execution methods at Logic Managers, whether an exception has been thrown. 
-1. This is handled by a `try-catch block` within the  `"handle.....()"` methods, whereby an exception caught
-will result in an error message printed. The error message will not be specific to the exact error; rather it 
-generally indicates whether an operation has failed.
-
-**Example** <br />
-* Execute Method
-
-```
-    public static void execute() {
-        endTracker = false;
-        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
-        while (!endTracker) {
-            endTracker = false;
-            handleMainMenu();
-        }
-    }
-```
-
-* Operation Methods
-
-```
-    static void handleDeleteLedger() {
-        Ledger deletedLedger;
-        RetrieveLedgerHandler retrieveLedgerHandler = RetrieveLedgerHandler.getInstance();
-        try {
-            // RetrieveledgerHandler instance retrieves the corresponding ledger instance
-            // from the ledgerList instance.
-            retrieveLedgerHandler.handlePacket(packet, ledgerList);
-            deletedLedger = (Ledger) ledgerList.getItemAtCurrIndex();
-
-            // Deletion of ledger.
-            ledgerList.removeItemAtCurrIndex();
-            UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
-                String.format("%s deleted!", deletedLedger.getName()));
-        } catch (InsufficientParamsException | ItemNotFoundException exception) {
-            UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
-                exception.getMessage());
-        } finally {
-            if (!retrieveLedgerHandler.getHasParsedAllRequiredParams()) {
-                UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
-                    "Input failed due to param error.");
-            }
-        }
-    }
-```
-
+* This section describes generalizable implementations that are similar across features.
+* More components described in [Feature-level implementation](#feature-level-implementation) below.
 ### Logic Component
-![](uml_images/images_updated/Logic.png)
-**ParamChecker** <br />
-1. Contains a set of public static methods which are used to verify the correctness of `param` in the 
-```CommandPacket``` instance.
+* Note: Refer to [Logic Component](#logic-component) above for class diagram 
+illustration of the below subsections.
+
+**`ParamChecker`**
+1. Contains a set of public static methods which verifies the validity of the raw input provided
 1. If there is nothing wrong with the ```param```, the method will typically return the `param` supplied without modification.
 1. If the ```param``` fails to pass the tests administered within the method, the following procedures will execute:
     1. Log to log file a corresponding error message with ```WARNING``` level
@@ -195,95 +139,34 @@ generally indicates whether an operation has failed.
         1. The implication is that the range of exceptions that would have been caught in other
         parts of the software with regards to param handling, is now consolidated within a single class in the program.
         The class that uses ParamChecker is only concerned with whether the ```param``` is valid or not.
-1. Example:
-    * The following method checks validity of dates supplied from user input.
-    * It is used by `createledgerHandler` class. 
+&nbsp;  
 
-```
-    public LocalDate checkAndReturnDate(String paramType)
-        throws ParseFailParamException {
-        LocalDate date = null;
-        boolean parseSuccess = false;
+**`ParamHandler`**
+1. `CommandPacket` created from user-input needs to be handled by a particular `ParamHandler` subclass,
+depending on what kind of command it is. E.g. CreateEntryHandler handles creating a new Entry.
 
-        clearErrorMessage();
-
-        LoggerCentre.loggerParamChecker.info("Checking date...");
-        try {
-            String rawDate = packet.getParam(paramType);
-            if (rawDate.trim().length() == 0) {
-                throw new EmptyParamException(paramType);
-            }
-            date = DateTimeParser.parseLocalDate(rawDate);
-            parseSuccess = true;
-        } catch (DateTimeException exception) {
-            LoggerCentre.loggerParamChecker.warning(
-                String.format("Date parsed but not valid... Err: %s", exception.getMessage()));
-
-            errorMessage = getErrorMessageDateDateTimeException();
-        } catch (InvalidParameterException exception) {
-            LoggerCentre.loggerParamChecker.warning(
-                String.format("Date input cannot be parsed... Err: %s", exception.getMessage()));
-
-            errorMessage = getErrorMessageDateInvalidFormat();
-        } catch (EmptyParamException exception) {
-            LoggerCentre.loggerParamChecker.warning(
-                String.format("No date input supplied... Err: %s", exception.getMessage()));
-
-            errorMessage = UiManager.getStringPrintWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
-                exception.getMessage(),
-                "Enter \"commands\" to check format!");
-        } finally {
-            printErrorMessage();
-        }
-        if (!parseSuccess) {
-            throw new ParseFailParamException(paramType);
-        }
-        return date;
-    }
-```
-
-**ParamHandler** <br />
-1. After parsing from user input to produce a ```commandPacket``` instance, the instance needs to be handled by a particular ```ParamHandler``` children class,
-which processes the ```commandPacket``` attributes to perform a specific function. 
-
-1. Handling of params via```handleParams(packet)```:
-    1. Initialize the state of the handler 
-        1. Children class of ```ParamHandler``` call ```setRequiredParams()``` to set required Params that need to be parsed successfully to constitute an overall successful parse.
-        1. Resetting String arrays in the following ```param``` arrays:
-            * ```missingRequiredParams```
-            * ```paramsSuccessfullyParsed```
-        1. Set the ```CommandPacket``` instance in ```ParamChecker``` by calling ```ParamChecker.setPacket(packet)```.
-    1. Call `handleParams()`
-        1. For every```paramType``` in the ```CommandPacket``` instance, execute ```handleSingleParam(packet)``` method. 
-        1. ```handleSingleParam(packet)``` is an abstract method, and it is implemented by children classes of ```ParamHandler``` depending on the needs and requirements of that particular class.
-        1. If the `param` fail to be parsed due to input error, an exception from `ParamChecker`: `ParseFailParamsException` will be caught.
-        The error message from `ParamChecker` will be printed.
-        1. Else if the `param` parses successfully, it will be added to ```paramsSuccessfullyParsed```
-    1. Check if the parse was successful. The condition below that define a successful parse is:
-        1. All ```param``` in ```createledgerHandler.requiredParams``` string array are parsed with no exceptions thrown.
-        That is, all `param` in ```createledgerHandler.requiredParams``` is also in ```paramsSuccessfullyParsed```.
-    1. If parse is successful, the process ends gracefully. Else, throw ```InsufficientParamsException()```.
-
-**CommandHandler** <br />
-1. Extends `ParamHandler` class. Implements ```handleSingleParams()``` fully, depending on the interactions
-between the operation and the `param` that it accepts. 
-1. Typically used within Logic Managers to handle processing of `CommandPacket` instances to decide sub-operations
-to perform to achieve full operation specified by the user. 
-1. Example:`handleDeleteLedger()`
-    1. Uses `retrieveledgerHandler` to interpret the `ledger` instance to deleted, as specified by the user
-    1. Retrieves the `ledger` instance and performs delete within the method.   
+**`CommandHandler`**
+1. Extends `ParamHandler` class. Individual implementation of `handleSingleParams()`
+    * E.g. `CreateEntryHandler` handles `/desc` param, whereas `RetrieveEntryHandler` does not.
+1. Used within Logic Managers to handle processing of `CommandPacket`.  
 
 
-### Input Manager Component
-![](uml_images/images_updated/InputManager.png)
+**Handling of params by `XYZCommandHandler`**:  
+1. Initialize the state of the handler 
+    * `XYZCommandHandler#setRequiredParams()` sets required Params that need to be parsed successfully to 
+    constitute a valid input.
+        * E.g. to create a new `RecurringEntry`, `/desc` and `/day` are two of the required params,
+        whereas editing has no required params (provided that at least one param is present).
+    * Pass `CommandPacket` to `ParamChecker` by calling `ParamChecker.setPacket(packet)`.
+1. Call `ParamHandler#handleParams()`
+    * For every`paramType` in the `CommandPacket` instance, execute `XYZCommandHandler#handleSingleParam(packet)`
+    * If the `param` parses successfully, it will be added to `paramsSuccessfullyParsed`, else an Exception will be thrown
+1. Check if the CommandPacket is valid. The below conditions must be satisfied:
+    * All params set earlier via `setRequiredParams()` are parsed with no exceptions thrown.
+    That is, all params in `requiredParams` is also in `paramsSuccessfullyParsed`.
+1. If all successful, the entry created is returned. Else, throw ```InsufficientParamsException()```.
 
 
-### Model Component
-![](uml_images/images_updated/Data.png)
-
-### Storage Component
-Please refer to the section below:
-[Storage Utility](#storage-utility)
 
 ## Feature-level Implementation
 ### Main Menu
@@ -336,15 +219,50 @@ The Manual Tracker is capable of executing the following states of operation:
 **Architecture in Context** <br />
 
 **Logic Manager and Parser** <br />
+![](uml_images/images_updated/Handler.png)
 
-![](uml_images/images_updated/Handler_Parser.png)
+**Execution** <br />
+1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
+to maintain a cycle of 2 processes: User input processing and Command handling.
+**User Input Processing** <br />
+1. Logic Managers depend on InputManager module to read user input, parse user input and produce a 
+meaningful ```CommandPacket``` instance.
+1. The ```CommandPacket``` instance can then be used by the next step of the cycle.
+**Command Handling** <br />
+1. Each Logic Manager will have several methods that are dedicated to handle a single operation. They can
+typically be identified by a specific naming convention: `"handle.....()"`.
+1. These methods use ```CommandHandler``` classes to perform `param` dependent operations, which involves evaluation
+of `paramMap` in the provided `CommandPacket` instance to decide the operation to perform, be it on `Data` or `DataList`.
+**Error Reporting** <br />
+1. While error handling from `param` parsing is handled by `ParamChecker` singleton class, there is a need
+to identify from the execution methods at Logic Managers, whether an exception has been thrown. 
+1. This is handled by a `try-catch block` within the  `"handle.....()"` methods, whereby an exception caught
+will result in an error message printed. The error message will not be specific to the exact error; rather it 
+generally indicates whether an operation has failed.
 
-|Class| Function |
-|--------|----------|
-|```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.
-|```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.
-|```ManualTracker```| [Refer to section above](#LogicManagerAndHandler).
-|```EntryTracker```| Omitted for brevity.
+**Example** <br />
+* Execute Method
+
+```
+    public static void execute() {
+        endTracker = false;
+        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
+        while (!endTracker) {
+            endTracker = false;
+            handleMainMenu();
+        }
+    }
+```
+
+* Operation Methods
+
+```
+    static void handleDeleteLedger() {
+        //Retrieves ledger and deletes it
+    }
+```
+&nbsp;  
+
 
 **Logic Manager and Data** <br />
 
@@ -375,6 +293,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```editEntryHandler```| Omitted for brevity.
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
+
 
 **Logic Manager and Handler** <br />
 
@@ -500,14 +419,17 @@ depending on whether the entry is an income or expenditure respectively.
 * `amount`
 * `start` and `end` - Which months does the entry apply to. Set to 1 and 12 by 
 default (i.e. occurs every month)
+    * [Proposed] Start-end month feature: User is able to set start and end months. 
+    Reminders will not be generated for months in which entry does not occur.
 * `isAuto` - Indicates whether the entry is automatically deducted/credited from/to account, 
-or manually deducted/credited from/to account
+or manually deducted/credited from/to account. Causes entry to be displayed differently to the user, 
+but does not cause different functionality.
 * `notes` - Any user-specified notes
 
 `RecurringTrackerList` extends ItemList, and supports the following methods on top of inherited methods
 * `addItem(Item)` - Override. Adds item and sorts according to the day in ascending order
 * `getEntriesFromDayXtoY` - Returns an ArrayList of all entries that fall between day X and Y 
-(provided by developer in the code, not by user). Mainly used for reminders
+(provided by developer in the code, not by user). Used for reminders.
 
 **Reminders** <br />
 Upon launching the program, the system date and time is recorded in `RunHistory`.
