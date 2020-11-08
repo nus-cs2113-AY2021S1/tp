@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+//@@author
 public class Timetable {
     private List<Module> modules;
 

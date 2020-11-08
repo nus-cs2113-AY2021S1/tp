@@ -15,6 +15,7 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//@@author
 public class EditSlotCommand extends Command {
     public static final String EDIT_KW = "edit";
 

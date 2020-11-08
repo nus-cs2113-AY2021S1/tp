@@ -3,7 +3,6 @@ package seedu.zoomaster;
 import com.google.gson.JsonParseException;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.ChangeModeCommand;
-import seedu.zoomaster.command.Mode;
 import seedu.zoomaster.settings.SettingsVariable;
 import seedu.zoomaster.settings.UserSettings;
 import seedu.zoomaster.slot.Module;
@@ -14,6 +13,7 @@ import seedu.zoomaster.slot.Timetable;
 import java.io.File;
 import java.io.IOException;
 
+//@@author
 public class Zoomaster {
 
     private Storage<BookmarkList> bookmarkStorage;
