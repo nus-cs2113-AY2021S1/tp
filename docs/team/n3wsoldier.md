@@ -19,7 +19,7 @@
 *   **New Feature:** Added the ability to save and load bookmark data automatically.
     *   What it does: Helps the user to automatically save their bookmark data into the file `bookmark.txt`, and loads the data found in this file automatically when the application is launched.
     *   Justification: Being an application to help users keep track of their anime, the current episodes, and the anime notes, persistent storage would be essential to ensure users would not have to re-enter their bookmark information each time they use the application.
-    *   Highlights: When loading bookmark data, each entry (each line) recorded in `bookmark.txt` would be split into parts that form a bookmark entry. If the object do not properly form each bookmark object, they are deemed corrupted. If the bookmark is corrupted, then only that specific bookmark cannot be loaded, the rest of the bookmark(s) will still be loaded if they are valid.
+    *   Highlights: When loading bookmark data, each entry (each line) recorded in `bookmark.txt` would be split into parts that form a bookmark entry. If the objects do not properly form each bookmark objects, they are deemed corrupted. When the bookmark is corrupted, then only that specific bookmark cannot be loaded, the rest of the bookmark(s) will still be loaded if they are valid.
 
 *   **Code contributed:** [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#search=n3wsoldier&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=n3wsoldier&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
