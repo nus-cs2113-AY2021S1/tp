@@ -31,7 +31,7 @@ public class SetSettingsCommand extends Command {
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_EDIT_INPUT);
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_INPUT);
         }
 
         fieldName = matcher.group("fieldName");
@@ -48,7 +48,6 @@ public class SetSettingsCommand extends Command {
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
-        SettingsVariable[] variable = Zoomaster.userSettings.getVariables();
         SettingsVariable settingsVariable = Zoomaster.userSettings.getSettingsVariable(fieldName);
         settingsVariable.setChosenOption(newValue);
 
