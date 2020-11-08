@@ -48,37 +48,41 @@ public class Financeit {
         UiManager.refreshPage();
         UiManager.printLogo();
         LoggerCentre.loggerSystemMessages.info("\n\n\nLogging from user operations......\n\n\n");
-        while (true) {
-            ReminderPrinter.printReminders();    //Print reminder for all upcoming recurring entries
-            printMainMenu();
-            input = UiManager.handleInput();
-            packet = InputParser.getInstance().parseInput(input);
-            UiManager.refreshPage();
-            switch (packet.getCommandString()) {
-            case "manual":
-                ManualTracker.execute();
-                break;
-            case "recur":
-                RecurringTracker.execute();
-                break;
-            case "goal":
-                GoalTracker.execute();
-                break;
-            case "financial":
-                FinanceTools.execute();
-                break;
-            case "saver":
-                SaveManager.main();
-                break;
-            case "exit":
-                save();
-                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
-                    "Exiting the program. Have a nice day!");
-                return;
-            default:
-                prompt = "Invalid Command";
-                break;
+        try {
+            while (true) {
+                ReminderPrinter.printReminders();    //Print reminder for all upcoming recurring entries
+                printMainMenu();
+                input = UiManager.handleInput();
+                packet = InputParser.getInstance().parseInput(input);
+                UiManager.refreshPage();
+                switch (packet.getCommandString()) {
+                case "manual":
+                    ManualTracker.execute();
+                    break;
+                case "recur":
+                    RecurringTracker.execute();
+                    break;
+                case "goal":
+                    GoalTracker.execute();
+                    break;
+                case "financial":
+                    FinanceTools.execute();
+                    break;
+                case "saver":
+                    SaveManager.main();
+                    break;
+                case "exit":
+                    save();
+                    UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
+                        "Exiting the program. Have a nice day!");
+                    return;
+                default:
+                    prompt = "Invalid Command";
+                    break;
+                }
             }
+        } catch (Exception e) {
+            System.out.println("you are gay");
         }
     }
 
