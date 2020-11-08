@@ -239,18 +239,18 @@ This feature is facilitated by `ListCommand`.
 ##### List tasks with priority
 The list tasks with priority feature allows the user to list tasks of a certain priority.
 This feature is facilitated by `Parser` and `ListCommand`.
-1. The user inputs the command `list tasks p/3`. (Assuming the tasks of CS2113 is not empty)
+1. The user inputs the command `list tasks p/3`. (Assuming the tasks of priority 3 exist.)
 1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `p/`, and returns a `ListCommand` for the task list of priority level 3.
-1. The command is executed and the list of tasks with level 3 priority is displayed.
+1. The command is executed and the list of tasks with priority 3 is displayed.
 
 ##### List tasks with category
 The list tasks with category feature allows the user to list tasks of a certain category.
 This feature is facilitated by `Parser` and `ListCommand`.
-1. The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 is not empty)
+1. The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 exist.)
 1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `c/`, and returns a `ListCommand` for the task list under CS2113 category.
-1. The command is executed and the list of tasks categoried by CS2113 is displayed.
+1. The command is executed and the list of tasks categorized by CS2113 is displayed.
 
 ##### Add links
 The add links feature allows the user to add and save zoom meeting links of modules.
@@ -258,7 +258,7 @@ This feature is faclitated by `Parser`, `AddCommand` and `Storage`.
 1. The user inputs `add links m/CS2113 t/lecture u/https://nus.sg.zoom.us/cs2113/lecture`.
 1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `AddCommand`.
 1. The method `createAddCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, and returns a `AddCommand`.
-1. The command is excuted and the links is added into the link list with module name and online class type.
+1. The command is excuted and the link is added into the link list with module name and online class type.
 1. `Storage` saves the added link by writing it into the `links.txt` file.
 
 ##### List links
@@ -305,6 +305,7 @@ This is done instead of defining a new `Comparator` class as `toCompare` is alre
 
 * *glossary item* - Definition
 
+<!-- @@author Cao-Zeyu -->
 ## Instructions for manual testing
 
 ### Launch and shutdown
