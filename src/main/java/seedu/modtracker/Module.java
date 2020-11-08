@@ -65,16 +65,14 @@ public class Module {
         double roundedTime = Math.round(d * 10.0) / 10.0;
         int i = Integer.parseInt(week);
         double timeDifference = 99 - this.actualTime[i - INDEX_OFFSET];
-        if (timeDifference < roundedTime) {
-            throw new IllegalArgumentException("Total workload cannot be more than 99 hours.");
-        }
+
         if (this.actualTime[i - INDEX_OFFSET] == NO_INPUT) {
             this.actualTime[i - INDEX_OFFSET] = roundedTime;
         } else {
             this.actualTime[i - INDEX_OFFSET] += roundedTime;
         }
-
     }
+
 
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
@@ -120,5 +118,9 @@ public class Module {
 
     public boolean doesHoursExceedTotal(double time, int weekNumber) {
         return (actualTime[weekNumber - INDEX_OFFSET] < time);
+    }
+
+    public boolean doesHoursExceed99(double time, int weekNumber) {
+        return ((actualTime[weekNumber - INDEX_OFFSET] + time) > 99);
     }
 }

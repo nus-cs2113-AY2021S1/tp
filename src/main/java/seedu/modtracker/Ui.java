@@ -422,6 +422,20 @@ public class Ui {
     }
 
     /**
+     * Prints invalid time when time entered is invalid.
+     */
+    public void printInvalidTime() {
+        System.out.println("Please enter a valid time.");
+    }
+
+    /**
+     * Prints the error message when the user wants to add time which totals to more than 99 hours.
+     */
+    public void printHoursExceed() {
+        System.out.println("Total workload cannot be more than 99 hours.");
+    }
+
+    /**
      * Prints out the task list.
      *
      * @param list task list

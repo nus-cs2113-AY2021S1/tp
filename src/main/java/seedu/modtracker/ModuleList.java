@@ -462,12 +462,15 @@ public class ModuleList {
             return;
         }
 
-
+        Module currentModule = new Module(modCode);
+        int index = modList.indexOf(currentModule);
+        int weekNumber = Integer.parseInt(commandInfo[3]);
         if (!checkIfModuleExist(modCode)) {
             ui.printNotExist(modCode, toPrint);
-        } else {
-            Module currentModule = new Module(modCode);
-            int index = modList.indexOf(currentModule);
+        } else if (modList.get(index).doesHoursExceed99(hours, weekNumber)){
+            ui.printHoursExceed();
+            return;
+        }else{
             modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
                 if (hours > 1) {
