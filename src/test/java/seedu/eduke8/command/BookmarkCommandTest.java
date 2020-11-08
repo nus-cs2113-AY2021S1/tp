@@ -51,7 +51,8 @@ public class BookmarkCommandTest extends Eduke8Test {
         try {
             Command command = new BookmarkCommand("listing", bookmarkList);
             command.execute(createTestTopicList(), new Ui());
-        } catch (Eduke8Exception ignored) {
+        } catch (Eduke8Exception ee) {
+            ui.printError(ee.getMessage());
         }
         assertTrue(true);
     }
@@ -62,7 +63,8 @@ public class BookmarkCommandTest extends Eduke8Test {
         try {
             Command command = new BookmarkCommand("badcommand", bookmarkList);
             command.execute(createTestTopicList(), new Ui());
-        } catch (Eduke8Exception ignored) {
+        } catch (Eduke8Exception ee) {
+            ui.printError(ee.getMessage());
         }
         assertTrue(true);
     }
