@@ -36,7 +36,7 @@ public class FavStorage extends Storage {
     }
 
     private void readLine(String entry) {
-        String[] entryWords = entry.split("\\|");
+        String[] entryWords = entry.split("\\|",2);
         if (entryWords.length != 2) {
             isCorrupted = true;
             return;

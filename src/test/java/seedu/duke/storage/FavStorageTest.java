@@ -27,10 +27,11 @@ public class FavStorageTest {
     void corruptedFileReadFile_expectFavListSize3() throws FileNotFoundException, CustomException {
         new FavList();
         corruptedFile.readFile();
-        assertEquals(3, FavList.getSize());
+        assertEquals(4, FavList.getSize());
         assertEquals("test1", FavList.getFav(0).getDesc());
         assertEquals("test2", FavList.getFav(1).getDesc());
         assertEquals("test3", FavList.getFav(2).getDesc());
+        assertEquals("too many delimiters|too many delimiters",FavList.getFav(3).getDesc());
     }
 
     @Test
