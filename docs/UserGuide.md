@@ -104,6 +104,7 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 ### 3.1. Bus Features
 This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
+<!-- @@author wamikamalik -->
 ### 3.1.1. List available help: ```/help```
 This command lists a set of features along with their respective commands available to users.
 
@@ -112,14 +113,13 @@ Format: <code>/help</code>
 The expected outcome is as follows:<br><br>
 <img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
 
-### 3.1.2. Check for direct bus: ```/route```
+### 3.1.2. Check for direct bus: ```/route``` - Wamika
 This command displays all bus routes from one location to another that do not require changing buses.
 
 The format of this command is as follows: <br>
 <code>/route <strong>location_1</strong> /to <strong>location_2 </strong> </code>
 
 #### Examples of Usage
-**<u>Example 1</u>**<br>
 Let's say you are currently at **PGP** and want to find out the buses you can board from **PGP** bus station to get to **NUS IT**.
 
 To find all such bus routes:
@@ -131,24 +131,24 @@ to execute the command as shown in the figure below.<br><br>
 2. The result will be a message displaying the list of buses you can take with their routes as shown in the figure below.<br><br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=650><br>
 
-**<u>Example 2</u>**<br>
+#### Common errors
 Let's say you are currently at **University Health Centre** and you want to go to **PGPR**. But you accidentally type **"Univerity 
 Health Center"** instead. 
 
-These are the steps to follow: 
+Here's what you can do: 
 
-1. You type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
-press <kbd>Enter</kbd> to execute the command as done in example 1.
-
-2. The result will be a message displaying suggestions for possible spelling errors you may have made.<br><br>
+1. When you type <code>/route <strong>Univerity Health Center</strong> /to <strong>PGPR</strong></code> into the CLI and 
+press <kbd>Enter</kbd> to execute the command as done in example 1, the result will be a message displaying suggestions 
+for possible spelling errors you may have made.<br><br>
 <img src="UG_Figures/routeOutput2.png" alt="output" width=550><br>
 
-3. Type <code>/route <strong>University Health Centre</strong> /to <strong>PGPR</strong></code> into the CLI
+2. Type <code>/route <strong>University Health Centre</strong> /to <strong>PGPR</strong></code> into the CLI
 following the suggestion given.
 
-4. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
+3. The result will be a message displaying the list of buses you can take with their routes as shown in the figure 
 below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
+<!-- @@author -->
 
 ### 3.1.3. Check bus route: ```/routemap```
 This command displays the full route of the bus that you have specified.
@@ -418,8 +418,8 @@ Given you have the list of favourite commands:<br>
 If you attempt to execute the invalid command <code>/Funny command</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br>
 <img src="UG_Figures/execfav4.png"><br>
 
-
-### 3.3.5. Change the description for a favourite command: `/descfav`
+<!-- @@author wamikamalik -->
+### 3.3.5. Change the description for a favourite command: `/descfav` - Wamika
 This command helps you change the description of a command in your list of favourites.
 
 Format:<br>
@@ -439,6 +439,7 @@ shown in the figure below and press enter. <br>
 
 2. Type <code>/listfav</code> to see the changed description.<br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
+<!-- @@author -->
 
 ### 3.3.6. Clear the list of favourite commands: `/clearfav`
 This command clears all the commands stored in your list of favourite commands.
@@ -460,7 +461,8 @@ These are the steps to follow:
 ### 3.4. Common Features
 This section provides the instruction for all features categorised under the common features.
 
-### 3.4.1. Similarity Checks
+<!-- @@author wamikamalik -->
+### 3.4.1. Similarity Checks - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
@@ -477,6 +479,7 @@ as shown in the figure below.<br><br>
 
 >Note: This check is only applicable to bus stop names, so the app performs it only when you enter a 
 ><code>/route</code> command or a <code>/bus</code> command. 
+<!-- @@author -->
 
 ### 3.4.2. Reset frequent search data: ```/reset```
 This command resets the data set used to display most frequently search bus stop on application start-up.
@@ -531,7 +534,9 @@ Command | Format | Example
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
 
-## 6. Glossary
+<!-- @@author wamikamalik -->
+## 6. Glossary - Wamika
 This section defines key technical terms we have used throughout the user guide.
 1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
+<!-- @@author -->
