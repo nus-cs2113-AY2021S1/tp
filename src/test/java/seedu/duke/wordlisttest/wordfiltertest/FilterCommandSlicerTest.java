@@ -1,7 +1,8 @@
-package seedu.duke.filters;
+package seedu.duke.wordlisttest.wordfiltertest;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.FilterCommandException;
+import seedu.duke.exceptions.*;
+import seedu.duke.wordlist.wordfilter.FilterCommandSlicer;
 
 import java.util.Arrays;
 
@@ -13,7 +14,7 @@ class FilterCommandSlicerTest {
 
     @Test
     public void getTargetedWordType_adjectiveFilterRecognition_arrayOfAdjectiveType()
-            throws FilterCommandException {
+            throws FilterWordsInvalidWordType, FilterMissingTargetWordTypeException {
         String[] expected = {"adjective"};
         String[] actual = FilterCommandSlicer
                 .getTargetedWordTypes("filter words -continue by\\type -adjective");
@@ -23,7 +24,7 @@ class FilterCommandSlicerTest {
 
     @Test
     public void getTargetedWordType_nounAndVerbFilterRecognition_arrayOfNounAndVerbElements()
-            throws FilterCommandException {
+            throws FilterWordsInvalidWordType, FilterMissingTargetWordTypeException {
         String[] expected = {"verb", "noun"};
         String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -verb -noun");
         assertEquals(2, actual.length);
@@ -32,7 +33,7 @@ class FilterCommandSlicerTest {
 
     @Test
     public void getTargetedWordType_allTypeFilterRecognition_arrayOfAllWordType()
-            throws FilterCommandException {
+            throws FilterWordsInvalidWordType, FilterMissingTargetWordTypeException {
         String[] expected = {"adjective", "verb", "noun"};
         String[] actual = FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -adjective -verb -noun");
         assertEquals(3, actual.length);
@@ -41,12 +42,13 @@ class FilterCommandSlicerTest {
 
     @Test
     public void getTargetedWordType_noWordTypeFound_filterCommandExceptionThrown() {
-        assertThrows(FilterCommandException.class,
+        assertThrows(FilterWordsInvalidWordType.class,
             () -> FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -adverb -preposition"));
     }
 
     @Test
-    public void getTargetedStringTags_oneStringTagNoSpace_success() throws FilterCommandException {
+    public void getTargetedStringTags_oneStringTagNoSpace_success()
+            throws FilterEmptyStringTagException, FilterMissingTargetStringsTagException {
         String[] expected = {"cs"};
         String[] actual = FilterCommandSlicer.getTargetedStringTags("filter words by\\contain -cs");
         assertEquals(1, actual.length);
@@ -54,7 +56,8 @@ class FilterCommandSlicerTest {
     }
 
     @Test
-    public void getTargetedStringTags_oneStringTagHaveSpace_success() throws FilterCommandException {
+    public void getTargetedStringTags_oneStringTagHaveSpace_success()
+            throws FilterEmptyStringTagException, FilterMissingTargetStringsTagException {
         String[] expected = {"cs 2113 t"};
         String[] actual = FilterCommandSlicer.getTargetedStringTags("filter words by\\start -cs 2113 t");
         assertEquals(1, actual.length);
@@ -62,7 +65,8 @@ class FilterCommandSlicerTest {
     }
 
     @Test
-    public void getTargetedStringTags_twoStringTagsNoSpace_success() throws FilterCommandException {
+    public void getTargetedStringTags_twoStringTagsNoSpace_success()
+            throws FilterEmptyStringTagException, FilterMissingTargetStringsTagException {
         String[] expected = {"cs 2113 t", "cs 2101"};
         String[] actual = FilterCommandSlicer
                 .getTargetedStringTags("filter words by\\start -cs 2113 t -cs 2101");
@@ -71,7 +75,8 @@ class FilterCommandSlicerTest {
     }
 
     @Test
-    public void getTargetedStringTags_twoStringTagsHaveSpace_success() throws FilterCommandException {
+    public void getTargetedStringTags_twoStringTagsHaveSpace_success()
+            throws FilterEmptyStringTagException, FilterMissingTargetStringsTagException{
         String[] expected = {"cs2113t", "cs2101"};
         String[] actual = FilterCommandSlicer
                 .getTargetedStringTags("filter words by\\contain -cs2113t -cs2101");
@@ -81,7 +86,7 @@ class FilterCommandSlicerTest {
 
     @Test
     public void getTargetedStringTags_noStringTagProvided_filterCommandExceptionThrown() {
-        assertThrows(FilterCommandException.class,
+        assertThrows(FilterEmptyStringTagException.class,
             () -> FilterCommandSlicer.getTargetedStringTags("filter words by\\start - "));
     }
 
