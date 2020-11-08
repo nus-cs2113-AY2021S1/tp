@@ -278,7 +278,7 @@ After which, the isModuleValid function will analyse the module code entered by 
 valid, FALSE otherwise.
 
 The following sequence diagram further illustrates the above process. 
-![ModuleChecker_SD]()
+![ModuleChecker_SD](images/UML%20for%20DG-ModuleChecker.png)
 
 <!-- @@author Jingming517 -->
 ## Documentation
