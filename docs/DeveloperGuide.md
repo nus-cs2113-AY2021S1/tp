@@ -53,7 +53,8 @@ major sections but still larger than normal paragraphs to distinguish them.
 * [Appendix C: Non-Functional Requirements](#appendix-c)
 * [Appendix D: Glossary](#appendix-d)
 * [Appendix E: Instructions for manual testing](#appendix-e)
-  * [Launch and shutdown](#command-summary)
+  * [Basics](#appendix-e-basic)
+  * [Advanced](#appendix-e-advanced)
 
 <a name="getting-started"></a>
 ## **Getting Started**
@@ -596,6 +597,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 <a name="appendix-e"></a>
 ## **Appendix E: Instructions for manual testing**
 
+<a name="appendix-e-basic"></a>
 **Basics**
 1. Initial launch
     1. Download the jar file and copy into an empty folder.
@@ -625,6 +627,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     7. You can also edit the data in the text files in JSON format and test the loading of data into the Zoomaster by 
     launching the application. You can refer to the class diagrams above for the associations between the classes.
 
+<a name="appendix-e-advanced"></a>
 **Advanced**
 1. Testing global commands (`mode`, `help`, `clear`, `exit`)
     1. Test `mode` command. Enter `mode bookmark` to enter bookmark mode, you should see the message "Changing to bookmark mode". <br></br>

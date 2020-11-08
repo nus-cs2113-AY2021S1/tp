@@ -14,6 +14,7 @@ import seedu.zoomaster.slot.Timetable;
 import java.io.File;
 import java.io.IOException;
 
+//@@author
 public class Zoomaster {
 
     private Storage<BookmarkList> bookmarkStorage;

@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+//@@author
 class SlotTest {
     Slot slotTest;
 
