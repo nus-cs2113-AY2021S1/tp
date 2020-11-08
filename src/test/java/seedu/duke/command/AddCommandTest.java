@@ -4,8 +4,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
+import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.EventAddErrorException;
+import seedu.duke.exception.MissingDescriptionException;
+import seedu.duke.exception.TimeErrorException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -43,11 +47,10 @@ class AddCommandTest {
         Storage storage = new Storage("data", ui);
         String addInput = "zoom;   ; 16/10/20; 4pm";
 
-        Command addCommand = new AddCommand(addInput);
-        addCommand.execute(data, ui, storage);
-
-        assertEquals("This event has an empty description!" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        assertThrows(MissingDescriptionException.class, () -> {
+            Command addCommand = new AddCommand(addInput);
+            addCommand.execute(data, ui, storage);
+        });
 
     }
 
@@ -74,13 +77,12 @@ class AddCommandTest {
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
 
-        // Add zoom event with incorrect number of parameters to data
-        String addInput = "zoom; class meeting; zoom.sg; 17/10/2000";
-        Command addCommand = new AddCommand(addInput);
-        addCommand.execute(data, ui, storage);
-
-        assertEquals("Incorrect number of parameters for Zoom event!" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        // Add zoom event with incorrect number of parameters to date
+        assertThrows(WrongNumberOfArgumentsException.class, () -> {
+            String addInput = "zoom; class meeting; zoom.sg; 17/10/2000";
+            Command addCommand = new AddCommand(addInput);
+            addCommand.execute(data, ui, storage);
+        });
     }
 
     @Test
@@ -89,12 +91,14 @@ class AddCommandTest {
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
 
-        String addInput = "personal; meeting; 16/9/2020; 18:89 PM";
-        Command addCommand = new AddCommand(addInput);
-        addCommand.execute(data, ui, storage);
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
 
-        assertEquals("Something is wrong with the time!" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        assertThrows(TimeErrorException.class, () -> {
+            String addInput = "personal; meeting; 16/9/2020; 18:89 PM";
+            Command addCommand = new AddCommand(addInput);
+            addCommand.execute(data, ui, storage);
+        });
     }
 
     @Test
@@ -103,12 +107,11 @@ class AddCommandTest {
         Ui ui = new Ui();
         Storage storage = new Storage("data", ui);
 
-        String addInput = "personal; meeting; 35/9/2020; 4 PM";
-        Command addCommand = new AddCommand(addInput);
-        addCommand.execute(data, ui, storage);
-
-        assertEquals("Something is wrong with the date!" + System.lineSeparator(),
-                outputStreamCaptor.toString());
+        assertThrows(DateErrorException.class, () -> {
+            String addInput = "personal; meeting; 35/9/2020; 4 PM";
+            Command addCommand = new AddCommand(addInput);
+            addCommand.execute(data, ui, storage);
+        });
     }
 
     @AfterEach

@@ -32,9 +32,7 @@ public class DateTimeParser {
                 i++;
             }
         }
-        throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
-                + "The accepted formats are: dd/mm/yy or yyyy/mm/dd. yy is also accepted." + System.lineSeparator()
-                + "Slashes can be replace with dashes.");
+        throw new DateErrorException();
     }
 
     /**
@@ -65,9 +63,6 @@ public class DateTimeParser {
                 i++;
             }
         }
-        throw new TimeErrorException("Something is wrong with the time!" + System.lineSeparator()
-                + "The accepted formats are:" + System.lineSeparator()
-                + "(12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or " + System.lineSeparator()
-                + "(24 hour) HH:mm, HHmm, HH.");
+        throw new TimeErrorException();
     }
 }

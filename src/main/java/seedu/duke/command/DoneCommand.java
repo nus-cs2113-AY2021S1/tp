@@ -3,8 +3,8 @@ package seedu.duke.command;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidEventDateException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
@@ -97,7 +97,7 @@ public class DoneCommand extends Command {
             }
 
             if (!isDateFound) {
-                throw new DateErrorException("This event does not occur on this date.");
+                throw new InvalidEventDateException();
             }
         }
     }

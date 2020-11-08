@@ -147,40 +147,27 @@ class CheckCommandTest {
         // dots used instead of slashes or dashes
         String inputStringOne = "9/10.2020; 3 pm; 10.10.2020; 5 pm";
 
-        Exception firstE = assertThrows(DateErrorException.class, () -> {
+        assertThrows(DateErrorException.class, () -> {
             Command checkCommand  = new CheckCommand(inputStringOne);
             checkCommand.execute(data, ui, storage);
         });
 
-        String expectedMessage = "Something is wrong with the date!" + System.lineSeparator()
-                + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
-                + System.lineSeparator() + "Dashes may be used in place of slashes.";
-        String actualMessage = firstE.getMessage();
-        assertEquals(expectedMessage, actualMessage);
-
         // comma used instead of slashes or dashes
         String inputStringTwo = "9/10/2020; 3 pm; 10,10,2020; 5 pm";
 
-        Exception secondE = assertThrows(DateErrorException.class, () -> {
+        assertThrows(DateErrorException.class, () -> {
             Command checkCommand  = new CheckCommand(inputStringTwo);
             checkCommand.execute(data, ui, storage);
         });
 
-        actualMessage = secondE.getMessage();
-        assertEquals(expectedMessage, actualMessage);
-
         // Excess fields for date
         String inputStringThree = "5/9/10/2020; 3 pm; 10/10/2020; 5 pm";
 
-        Exception thirdE = assertThrows(DateErrorException.class, () -> {
+        assertThrows(DateErrorException.class, () -> {
             Command checkCommand  = new CheckCommand(inputStringThree);
             checkCommand.execute(data, ui, storage);
         });
 
-        expectedMessage = "Too many fields given for the date!" + System.lineSeparator()
-                + "D/M/YYYY is the longest date format accepted.";
-        actualMessage = thirdE.getMessage();
-        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test

@@ -126,13 +126,10 @@ public class CheckCommand extends Command {
                 date = LocalDate.parse(stringDate, dayMonthYearFormat);
                 return date;
             default:
-                throw new DateErrorException("Too many fields given for the date!" + System.lineSeparator()
-                        + "D/M/YYYY is the longest date format accepted.");
+                throw new DateErrorException();
             }
         } catch (DateTimeParseException e) {
-            throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
-                    + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
-                    + System.lineSeparator() + "Dashes may be used in place of slashes.");
+            throw new DateErrorException();
         }
     }
 
@@ -173,10 +170,7 @@ public class CheckCommand extends Command {
                     throw new TryRegularParserException("HH format time requires hours between 0-24.");
                 }
             } else {
-                throw new TimeErrorException("Something is wrong with the time!" + System.lineSeparator()
-                        + "The accepted formats are:" + System.lineSeparator()
-                        + "(12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or " + System.lineSeparator()
-                        + "(24 hour) HH:mm, HHmm, HH.");
+                throw new TimeErrorException();
             }
         } catch (NumberFormatException | TryRegularParserException e) {
             // if hh:mm, HH:mm or other invalid non integers is given
