@@ -367,12 +367,14 @@ While loading information is passed to the parser manager to prepare the informa
 </p>
 
 During the program, as changes are made to the data, the storageManager saves the data to the hard disk. In case the user force closes the program, the updated data is saved. The sequence diagram below is an example of a note being archived. 
+
 <p align="center">
    <img alt="StorageManagerSaveDuringDiagram" src="diagrams/out/StorageManagerSaveDuring.png"/>
    <br><em>Figure 17</em>
 </p>
 
 When exiting the program, the storageManager saves all the data to the hard disk, in case the user tampers with the txt files while the program is ongoing. Hence, saving the latest version of the data. Below is the sequence diagram of the final saving procedure.
+
 <p align="center">
    <img alt="StorageManagerSaveEndDiagram" src="diagrams/out/StorageManagerSaveEnd.png"/>
    <br><em>Figure 18</em>
