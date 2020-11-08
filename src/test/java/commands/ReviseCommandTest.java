@@ -34,9 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ReviseCommandTest {
-    private static final String INVALID_INPUT = "You have entered an invalid input, please try again.\r\n";
-    private String filePath = "src/test/data/admin";
-
+    public static final String INVALID_INPUT = "You have entered an invalid input, please try again.\r\n";
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
 
@@ -54,6 +52,7 @@ public class ReviseCommandTest {
     @BeforeEach
     public void init() throws IOException {
         ui = new Ui();
+        String filePath = "src/test/data/admin";
         storage = new Storage(filePath);
         card = new Card("1+1", "2", 4, 1);
         ArrayList<Card> cards = new ArrayList<>();
@@ -108,19 +107,8 @@ public class ReviseCommandTest {
 
     @AfterEach
     public void end() {
-        File dueChapterFile = new File(filePath + "/CS2113T/dues/chapter1due.txt");
-        if (dueChapterFile.exists()) {
-            dueChapterFile.delete();
-        }
-        File due = new File(filePath + "/CS2113T/dues");
-        if (due.exists()) {
-            due.delete();
-        }
         if (chapterFile.exists()) {
             chapterFile.delete();
-        }
-        if (chapterFile2.exists()) {
-            chapterFile2.delete();
         }
         if (moduleDir.exists()) {
             moduleDir.delete();

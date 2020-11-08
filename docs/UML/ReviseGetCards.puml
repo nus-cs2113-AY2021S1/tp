@@ -13,14 +13,14 @@ box Storage STORAGE_COLOR_T1
 participant ":Storage" as Storage STORAGE_COLOR
 end box
 
-mainframe "sd get cards"
 activate ReviseCommand
-ReviseCommand -> ReviseCommand : getCards(access, storage, toRevise)
+ReviseCommand -> ReviseCommand : getCards(ui, access, storage)
 activate ReviseCommand
 ReviseCommand -> Storage : loadCard(module, chapter)
 activate Storage
-ReviseCommand <-- Storage :cards
+ReviseCommand <-- Storage
 deactivate Storage
+ReviseCommand <-- Storage : allCards
 ReviseCommand -> Chapter : setCards(allCards)
 activate Chapter
 ReviseCommand <-- Chapter

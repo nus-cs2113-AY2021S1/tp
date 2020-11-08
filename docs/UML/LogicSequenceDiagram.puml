@@ -3,7 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":Parser" as Parser LOGIC_COLOR
-participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant ":EditModuleCommand" as EditModuleCommand LOGIC_COLOR
 end box
 
@@ -14,34 +13,24 @@ end box
 [-> Parser : parse("edit 1 CS2113T")
 activate Parser
 
-create EditCommandParser
-Parser -> EditCommandParser : EditCommandParser()
-activate EditCommandParser
+Parser ->  Parser : prepareEdit("1 CS2113T")
+activate Parser
 
-EditCommandParser --> Parser
-deactivate EditCommandParser
-
-Parser -> EditCommandParser : parse("1 CS2113T")
-activate EditCommandParser
-
-EditCommandParser -> EditCommandParser : prepareEditModule("1 CS2113T")
-activate EditCommandParser
+Parser ->  Parser : prepareEditModule("1 CS2113T")
+activate Parser
 
 create EditModuleCommand
-EditCommandParser -> EditModuleCommand : EditModuleCommand(editIndex, module)
+Parser -> EditModuleCommand : EditModuleCommand()
 activate EditModuleCommand
 
-EditModuleCommand --> EditCommandParser : c
+EditModuleCommand --> Parser : c
 deactivate EditModuleCommand
 
-EditCommandParser --> EditCommandParser : c
-deactivate EditCommandParser
+Parser --> Parser : c
+deactivate Parser
 
-EditCommandParser --> Parser : c
-deactivate EditCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-[<-[hidden]- EditCommandParser
-destroy EditCommandParser
+Parser --> Parser : c
+deactivate Parser
 
 [<-- Parser : c
 deactivate Parser
@@ -49,13 +38,13 @@ deactivate Parser
 [<-[hidden]- Parser
 destroy Parser
 
-[-> EditModuleCommand : execute(access, storage)
+[-> EditModuleCommand : execute(Access, Storage)
 activate EditModuleCommand
 
-EditModuleCommand -> EditModuleCommand : editModule(access, storage)
+EditModuleCommand -> EditModuleCommand : editModule(Access, Storage)
 activate EditModuleCommand
 
-EditModuleCommand -> Module : setModuleName(moduleName)
+EditModuleCommand -> Module : setModuleName(module)
 activate Module
 
 Module --> EditModuleCommand

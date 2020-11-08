@@ -90,9 +90,9 @@ public class StorageLoad {
     }
 
     //@@author Darticune
-    protected static ArrayList<DueChapter> loadAllChaptersAsDueChapters(Ui ui, ArrayList<String> excludedChapters,
-                                                                        ArrayList<DueChapter> dueChapters,
-                                                                        String[] modules, String filePath)
+    protected static ArrayList<DueChapter> checkAllChaptersForDue(Ui ui, ArrayList<String> excludedChapters,
+                                                                  ArrayList<DueChapter> dueChapters,
+                                                                  String[] modules, String filePath)
                                                                   throws FileNotFoundException {
         for (String module : modules) {
             if (module.equals("exclusions.txt")) {
@@ -108,16 +108,16 @@ public class StorageLoad {
                 return dueChapters;
             }
             for (String chapter : chapters) {
-                convertChapterInToDueChapter(ui, excludedChapters, dueChapters, module, chapter, filePath);
+                processChapterForDue(ui, excludedChapters, dueChapters, module, chapter, filePath);
             }
         }
         return dueChapters;
     }
 
     //@@author Darticune
-    private static void convertChapterInToDueChapter(Ui ui, ArrayList<String> excludedChapters,
-                                                     ArrayList<DueChapter> dueChapters, String module, String chapter,
-                                                     String filePath) {
+    private static void processChapterForDue(Ui ui, ArrayList<String> excludedChapters,
+                                             ArrayList<DueChapter> dueChapters, String module, String chapter,
+                                             String filePath) {
         if (chapter.equals("dues")) {
             return;
         }
@@ -204,7 +204,7 @@ public class StorageLoad {
             if (deadline.equals("Does not exist")) {
                 String dirPath = filePath + "/" + module + "/" + "dues";
                 String duePath = filePath + "/" + module + "/" + "dues" + "/" + target + "due" + ".txt";
-                boolean success = Storage.createChapterDue(duePath, dirPath);
+                boolean success = StorageWrite.createChapterDue(duePath, dirPath);
                 if (!success) {
                     throw new IOException("Error creating chapter due file.");
                 }
@@ -226,7 +226,7 @@ public class StorageLoad {
         checkExists(admin);
         String[] modules = admin.list();
         ArrayList<DueChapter> dueChapters = new ArrayList<>();
-        return loadAllChaptersAsDueChapters(ui, excludedChapters, dueChapters, modules, filePath);
+        return checkAllChaptersForDue(ui, excludedChapters, dueChapters, modules, filePath);
     }
 
     //@@author Zhu-Ze-Yu

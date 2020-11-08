@@ -2,6 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
 participant ":RescheduleCommand" as RescheduleCommand LOGIC_COLOR
 end box
 
@@ -20,39 +21,57 @@ box Ui UI_COLOR_T1
 participant ":Ui" as Ui UI_COLOR
 end box
 
-[-> RescheduleCommand : execute(ui, access, storage)
+[-> Parser : parse("reschedule 1 2020-12-20")
+activate Parser
+
+create RescheduleCommand
+Parser -> RescheduleCommand : RescheduleCommand(0, 2020-12-20)
 activate RescheduleCommand
 
-RescheduleCommand -> RescheduleCommand : reschedule(access, storage)
+RescheduleCommand --> Parser : c
+deactivate RescheduleCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> RescheduleCommand : execute(Ui, Access, Storage)
+activate RescheduleCommand
+
+RescheduleCommand -> RescheduleCommand : reschedule(Access, Storage)
 activate RescheduleCommand
 
 RescheduleCommand -> Access : getModule()
 activate Access
 
-Access --> RescheduleCommand : module
+Access --> RescheduleCommand : Module
 deactivate Access
 
 RescheduleCommand -> Module : getChapters()
 activate Module
 
-Module --> RescheduleCommand : chapters
+Module --> RescheduleCommand : ChapterList
 deactivate Module
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 [<-[hidden]- RescheduleCommand
 destroy Module
 
-RescheduleCommand -> ChapterList : getChapter(chapterIndex)
+RescheduleCommand -> ChapterList : getChapter(index)
 activate ChapterList
 
-ChapterList --> RescheduleCommand : chapter
+ChapterList --> RescheduleCommand : Chapter
 deactivate ChapterList
 
-RescheduleCommand -> Chapter : setDueBy(dueBy, storage, access)
+RescheduleCommand -> Chapter : setDueBy(date, Storage, Access)
 activate Chapter
 
-Chapter -> Storage : saveChapterDeadline(dueBy, moduleName, chapterName)
+Chapter -> Storage : saveChapterDeadline(date, moduleName, chapterName)
+activate Chapter
 
 Storage --> Chapter
+deactivate Chapter
 
 Chapter --> RescheduleCommand
 deactivate Chapter

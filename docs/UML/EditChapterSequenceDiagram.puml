@@ -2,6 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
 participant ":EditChapterCommand" as EditChapterCommand LOGIC_COLOR
 end box
 
@@ -20,34 +21,50 @@ box Ui UI_COLOR_T1
 participant ":Ui" as Ui UI_COLOR
 end box
 
-[-> EditChapterCommand : execute(ui, access, storage)
+[-> Parser : parse("edit 1 Chapter 1")
+activate Parser
+
+create EditChapterCommand
+Parser -> EditChapterCommand : EditChapterCommand(0, "Chapter 1")
 activate EditChapterCommand
 
-EditChapterCommand -> EditChapterCommand : editChapter(access, storage)
+EditChapterCommand --> Parser : c
+deactivate EditChapterCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> EditChapterCommand : execute(Ui, Access, Storage)
+activate EditChapterCommand
+
+EditChapterCommand -> EditChapterCommand : editChapter(Access, Storage)
 activate EditChapterCommand
 
 EditChapterCommand -> Access : getModule()
 activate Access
 
-Access --> EditChapterCommand : module
+Access --> EditChapterCommand : Module
 deactivate Access
 
 EditChapterCommand -> Module : getChapters()
 activate Module
 
-Module --> EditChapterCommand : chapters
+Module --> EditChapterCommand : ChapterList
 deactivate Module
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 [<-[hidden]- EditChapterCommand
 destroy Module
 
-EditChapterCommand -> ChapterList : getChapter(chapterIndex)
+EditChapterCommand -> ChapterList : getChapter(editIndex)
 activate ChapterList
 
-ChapterList --> EditChapterCommand : chapter
+ChapterList --> EditChapterCommand : Chapter
 deactivate ChapterList
 
-EditChapterCommand -> Storage : renameChapter(newChapterName, module, chapter)
+EditChapterCommand -> Storage : renameChapter(chapter, Module, Chapter)
 activate Storage
 
 Storage --> EditChapterCommand

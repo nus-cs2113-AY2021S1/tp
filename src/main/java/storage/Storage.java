@@ -153,18 +153,4 @@ public class Storage {
     public boolean removeChapterFromDue(String module, String chapter) {
         return StorageWrite.removeChapterFromDue(module, chapter, filePath);
     }
-
-    public static boolean createChapterDue(String duePath, String dirPath) throws IOException {
-        return StorageWrite.createChapterDue(duePath, dirPath);
-    }
-
-    public static ArrayList<String> loadExclusionFile(String filePath) throws ExclusionFileException {
-        return StorageLoad.loadExclusionFile(filePath);
-    }
-
-    public static String[] loadChaptersFromSpecifiedModule(String moduleName, String filePath)
-            throws FileNotFoundException {
-        return StorageLoad.loadChaptersFromSpecifiedModule(moduleName, filePath);
-    }
-
 }

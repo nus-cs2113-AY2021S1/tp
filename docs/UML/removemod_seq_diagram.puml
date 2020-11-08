@@ -26,17 +26,17 @@ RemoveModuleCommand -> RemoveModuleCommand : removeModule(access, storage)
 activate RemoveModuleCommand
 RemoveModuleCommand -> Access : getAdmin()
 activate Access
-RemoveModuleCommand <-- Access : admin
+RemoveModuleCommand <-- Access
 deactivate Access
 RemoveModuleCommand -> Admin : getModules()
 activate Admin
-RemoveModuleCommand <-- Admin : modules
+RemoveModuleCommand <-- Admin : getModules
 deactivate Admin
 [<-[hidden]- Admin
 destroy Admin
 RemoveModuleCommand -> ModuleList : getAllModules()
 activate ModuleList
-RemoveModuleCommand <-- ModuleList : modules
+RemoveModuleCommand <-- ModuleList : allModules
 deactivate ModuleList
 [<-[hidden]- ModuleList
 destroy ModuleList
@@ -44,7 +44,7 @@ RemoveModuleCommand -> Storage : deleteDirectory(directory)
 activate Storage
 RemoveModuleCommand <-- Storage : isRemoved
 deactivate Storage
-RemoveModuleCommand -> RemoveCommand : prepareResult(type, content, count)
+RemoveModuleCommand -> RemoveCommand : prepareResult(type, module, count)
 activate RemoveCommand
 RemoveModuleCommand <-- RemoveCommand : result
 deactivate RemoveCommand

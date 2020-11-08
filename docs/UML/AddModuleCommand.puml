@@ -8,6 +8,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Access" as Access MODEL_COLOR
+participant ":Admin" as Admin MODEL_COLOR
 participant ":ModuleList" as ModuleList MODEL_COLOR
 participant ":Module" as Module MODEL_COLOR
 end box
@@ -21,26 +22,24 @@ participant ":Storage" as Storage STORAGE_COLOR
 end box
 
 -> AddModuleCommand ++ : execute(ui, access, storage)
+
+
 create Module
-AddModuleCommand -> Module ++ : new(moduleName)
-return module
-AddModuleCommand -> AddModuleCommand ++ : addModule(access, storage, module)
-AddModuleCommand -> Access ++ : getAdmin()
-return newAdmin
-AddModuleCommand -> ModuleList ++ : getModules()
-return modules
-AddModuleCommand -> ModuleList ++ : addModules()
+AddModuleCommand -> Module ++ : new()
 return
+AddModuleCommand -> AddModuleCommand ++ : addModule()
+AddModuleCommand -> Access ++ : getAdmin()
+return admin
+create ModuleList
+AddModuleCommand -> ModuleList ++ : addModules()
+return newAdmin
 AddModuleCommand -> Access ++ : setAdmin(newAdmin)
 return
-destroy ModuleList
-AddModuleCommand -> Storage ++: createModule(moduleName)
+AddModuleCommand -> Storage ++: createModule(String)
 return
-AddModuleCommand -> AddCommand ++: prepareResult(MODULE, moduleName, moduleCount)
-return result
 return result
 AddModuleCommand -> Ui ++ : showToUser(result)
 return
 return
-destroy AddModuleCommand
+
 @enduml

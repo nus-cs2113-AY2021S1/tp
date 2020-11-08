@@ -22,10 +22,10 @@ package Ui <<Rectangle>> {
 Class Ui UI_COLOR
 }
 
-Kaji -up-> Ui
-Model .up.> Ui
-Storage .up.> Ui
-Logic .up.> Ui
+Kaji .up.> Ui
+Model -up-> Ui
+Storage -up-> Ui
+Logic -up-> Ui
 
 Storage -[hidden]left- Model
 Model -[hidden]left- Logic

@@ -11,7 +11,6 @@ participant ":Module" as Module MODEL_COLOR
 participant ":ChapterList" as ChapterList MODEL_COLOR
 end box
 
-mainframe "sd get chapter"
 activate ReviseCommand
 ReviseCommand -> ReviseCommand : getChapter(reviseIndex, access)
 activate ReviseCommand
@@ -31,7 +30,7 @@ ReviseCommand <-- ChapterList : chapter
 deactivate ChapterList
 [<-[hidden]- ChapterList
 destroy ChapterList
-ReviseCommand <-- ReviseCommand : chapter
+ReviseCommand <-- ReviseCommand : toRevise
 deactivate ReviseCommand
 
 @enduml

@@ -2,6 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
 participant ":EditModuleCommand" as EditModuleCommand LOGIC_COLOR
 end box
 
@@ -20,40 +21,56 @@ box Ui UI_COLOR_T1
 participant ":Ui" as Ui UI_COLOR
 end box
 
-[-> EditModuleCommand : execute(ui, access, storage)
+[-> Parser : parse("edit 1 CS2113T")
+activate Parser
+
+create EditModuleCommand
+Parser -> EditModuleCommand : EditModuleCommand(0, "CS2113T")
 activate EditModuleCommand
 
-EditModuleCommand -> EditModuleCommand : editModule(access, storage)
+EditModuleCommand --> Parser : c
+deactivate EditModuleCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> EditModuleCommand : execute(Ui, Access, Storage)
+activate EditModuleCommand
+
+EditModuleCommand -> EditModuleCommand : editModule(Access, Storage)
 activate EditModuleCommand
 
 EditModuleCommand -> Access : getAdmin()
 activate Access
 
-Access --> EditModuleCommand : admin
+Access --> EditModuleCommand : Admin
 deactivate Access
 
 EditModuleCommand -> Admin : getModules()
 activate Admin
 
-Admin --> EditModuleCommand : modules
+Admin --> EditModuleCommand : ModuleList
 deactivate Admin
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 [<-[hidden]- EditModuleCommand
 destroy Admin
 
-EditModuleCommand -> ModuleList : getModule(moduleIndex)
+EditModuleCommand -> ModuleList : getModule(editIndex)
 activate ModuleList
 
-ModuleList --> EditModuleCommand : module
+ModuleList --> EditModuleCommand : Module
 deactivate ModuleList
 
-EditModuleCommand -> Storage : renameModule(newModuleName, module)
+EditModuleCommand -> Storage : renameModule(module, Module)
 activate Storage
 
 Storage --> EditModuleCommand
 deactivate Storage
 
-EditModuleCommand -> Module : setModuleName(moduleName)
+EditModuleCommand -> Module : setModuleName(module)
 activate Module
 
 Module --> EditModuleCommand

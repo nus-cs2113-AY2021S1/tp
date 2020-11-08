@@ -2,6 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
+participant ":Parser" as Parser LOGIC_COLOR
 participant ":EditCardCommand" as EditCardCommand LOGIC_COLOR
 end box
 
@@ -20,62 +21,66 @@ box Ui UI_COLOR_T1
 participant ":Ui" as Ui UI_COLOR
 end box
 
-[-> EditCardCommand : execute(ui, access, storage)
+[-> Parser : parse("edit 1 q:1+1 | a:")
+activate Parser
+
+create EditCardCommand
+Parser -> EditCardCommand : EditCardCommand(0, "1+1", "")
 activate EditCardCommand
 
-EditCardCommand -> EditCardCommand : editCard(access, storage)
+EditCardCommand --> Parser : c
+deactivate EditCardCommand
+
+[<-- Parser : c
+deactivate Parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- Parser
+destroy Parser
+
+[-> EditCardCommand : execute(Ui, Access, Storage)
+activate EditCardCommand
+
+EditCardCommand -> EditCardCommand : editCard(Access, Storage)
 activate EditCardCommand
 
 EditCardCommand -> Access : getChapter()
 activate Access
 
-Access --> EditCardCommand : chapter
+Access --> EditCardCommand : Chapter
 deactivate Access
 
 EditCardCommand -> Chapter : getCards()
 activate Chapter
 
-Chapter--> EditCardCommand : cards
+Chapter--> EditCardCommand : CardList
 deactivate Chapter
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 [<-[hidden]- EditCardCommand
 destroy Chapter
 
-EditCardCommand -> CardList : getCard(cardIndex)
+EditCardCommand -> CardList : getCard(editIndex)
 activate CardList
 
-CardList --> EditCardCommand : card
+CardList --> EditCardCommand : Card
 deactivate CardList
 
-opt questionIsEmpty
-EditCardCommand -> Card : getQuestion()
-activate Card
-
-Card --> EditCardCommand : question
-deactivate Card
-end
-
-opt answerIsEmpty
-EditCardCommand -> Card : getAnswer()
-activate Card
-
-Card --> EditCardCommand : answer
-deactivate Card
-end
-
+opt questionIsNotEmpty
 EditCardCommand -> Card : setQuestion(question)
 activate Card
 
 Card --> EditCardCommand
 deactivate Card
+end
 
+opt answerIsNotEmpty
 EditCardCommand -> Card : setAnswer(answer)
 activate Card
 
 Card --> EditCardCommand
 deactivate Card
+end
 
-EditCardCommand -> Storage : saveCards(cards, module, chapter)
+EditCardCommand -> Storage : saveCards(CardList, moduleName, chapterName)
 activate Storage
 
 Storage --> EditCardCommand
