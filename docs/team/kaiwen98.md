@@ -373,6 +373,7 @@ No. | Feature | Syntax |
 5.|Exit to Main Menu|_exit_|
 
 <div style="page-break-after: always;"></div> 
+
 # Contributions to DG
 
 ## Overview of Architecture
