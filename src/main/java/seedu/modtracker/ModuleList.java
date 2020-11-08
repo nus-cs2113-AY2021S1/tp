@@ -505,7 +505,8 @@ public class ModuleList {
                     modList.get(index).minusActualTime(commandInfo[2], commandInfo[3]);
                     if (toPrint) {
                         ui.printHoursMinus(hours, modCode);
-                        ui.printHoursSummary(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3]), weekNumber);
+                        ui.printHoursSummary(
+                                modList.get(index).getActualTimeInSpecificWeek(commandInfo[3]), weekNumber);
                         storage.appendToFile(input);
                     }
                 } else {

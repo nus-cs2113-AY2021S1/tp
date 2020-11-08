@@ -473,12 +473,12 @@ public class Ui {
     /**
      * Prints summary when edittime, addtime or minustime feature is used.
      *
-     * @param hours  hours input by user
-     * @param week module code input by user
+     * @param hours hours input by user
+     * @param week  module code input by user
      */
     public void printHoursSummary(double hours, String week) {
 
-            System.out.println(hours + " hours have been spent on this module in week " + week + ".");
+        System.out.println(hours + " hours have been spent on this module in week " + week + ".");
     }
 
     /**
@@ -489,14 +489,14 @@ public class Ui {
     }
 
     /**
-     * Prints the error message when the user inputs a number out of the valid range
+     * Prints the error message when the user inputs a number out of the valid range.
      */
     public void printTimeOutOfRangeError() {
         System.out.println("Please input a number between 0 and 99 for time.");
     }
 
     /**
-     * Prints the error message when the user inputs a number out of the valid range
+     * Prints the error message when the user inputs a number out of the valid range.
      */
     public void printNegativeTimeError() {
         System.out.println("Please input a positive number for time.");
@@ -510,7 +510,7 @@ public class Ui {
     }
 
     /**
-     * Prints the error message when the user wants to subtract more time than the current actual workload
+     * Prints the error message when the user wants to subtract more time than the current actual workload.
      */
     public void printHoursMinusExceed() {
         System.out.println("Sorry you are trying to remove too many hours.");
