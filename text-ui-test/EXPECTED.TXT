@@ -119,7 +119,8 @@ Hello from...
              Displays all the tasks with CATEGORY as a list.
              Example: list tasks c/cs2113
           Optional parameter 3: tasks sorted
-             Displays all the tasks sorted by priority     2. Displays all the books in the book list.
+             Displays all the tasks sorted by priority
+     2. Displays all the books in the book list.
              Example: list books
      3. Displays all the links in the link list.
              Example: list links
