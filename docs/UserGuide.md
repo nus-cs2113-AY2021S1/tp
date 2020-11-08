@@ -28,9 +28,9 @@ By utilizing these features, you will be able to manage your study matters effic
 
 The following is a list of common notations and symbols you’ll encounter throughout the user guide:
 
-1. INDEX NUMBER
+1. INDEX_NUMBER
    
-    Words of phrases in full capital indicates that they are inputs that you can define
+    Words of phrases in full capital indicates that they are inputs that you can decide on
    
 1. `command`
 
