@@ -127,7 +127,7 @@ public class BookmarkStorage extends Storage {
         }
 
         if (hasCorruptedBookmark) {
-            return "Not all loaded successfully.";
+            return "Not loaded successfully.";
         } else {
             return "Loaded successfully.";
         }
