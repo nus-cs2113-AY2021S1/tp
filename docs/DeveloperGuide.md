@@ -25,7 +25,7 @@ enhancements.
   * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
   * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
   * [3.10. Performing similarity checks](#310-performing-similarity-checks)
-- [4. Appendix I: Requirements](#4-appendix-i-requirements)
+- [4. Appendix A: Product scope](#4-appendix-i-requirements)
   * [4.1 Product scope](#41-product-scope)
     + [4.1.1 Target user profile](#411-target-user-profile)
     + [4.1.2 Value](#412-value)
@@ -370,11 +370,9 @@ Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feat
 _Credits: The Levenshtein distance algorithm was adapted from 
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
 
-## 4. Appendix I: Requirements
+## 4. Appendix A: Product scope
 
-### 4.1 Product scope
-
-#### 4.1.1 Target user profile
+### 4.1. Target user profile
 
 Nav@NUS targets people who are unfamiliar with the shuttle bus service in NUS Kent Ridge Campus 
 including students, professors and visitors.
@@ -383,14 +381,14 @@ These are people who:
  - prefer a desktop CLI app over other types
  - are new to NUS Kent Ridge Campus
   
-#### 4.1.2 Value 
+### 4.2. Value Proposition
 
 Nav@NUS seeks to help the intended audience to achieve the following:
  - Efficient checking of bus routes in NUS
  - Fast viewing of dining options available at other locations
  - Personalised application suited to the user's needs
 
-### 4.2. User Stories
+## 5. Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
@@ -404,19 +402,17 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 
-### 4.3. Non-Functional Requirements
+## 6. Appendix C: Non-Functional Requirements
 
 1. Nav@NUS should be able to work on any _mainstream OS_ which has Java 11 or a higher version of Java installed.
 2. The user is expected to have a basic idea about the places around NUS.
 3. A user comfortable with typing english text should be able to find this application faster and more useful than those
 that require mouse clicks.
 
-### 4.4. Glossary
+## 7. Appendix D: Glossary
 
 * **Mainstream OS** - Windows, Linux, Unix, OS-X
 
-## 5. Appendix II: Use Cases
-
-## 6. Appendix III: Instructions for manual testing
+## 8. Appendix E: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
