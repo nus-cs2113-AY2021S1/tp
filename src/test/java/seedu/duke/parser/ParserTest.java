@@ -7,7 +7,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.DateCommand;
 import seedu.duke.commands.SetCommand;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -27,9 +27,7 @@ class ParserTest {
     @Test
     void parse_invalidAddCommand_throwsException() {
         String fullCommand = "add";
-        assertThrows(DukeException.class, () -> {
-            Parser.parse(fullCommand);
-        });
+        assertThrows(DukeException.class, () -> Parser.parse(fullCommand));
     }
 
     @Test
@@ -42,9 +40,7 @@ class ParserTest {
     @Test
     void parse_invalidSetCommand_throwsException() {
         String fullCommand = "set p/-1";
-        assertThrows(DukeException.class, () -> {
-            Parser.parse(fullCommand);
-        });
+        assertThrows(DukeException.class, () -> Parser.parse(fullCommand));
     }
 
     @Test
@@ -57,9 +53,7 @@ class ParserTest {
     @Test
     void parse_invalidDateCommand_throwsException() {
         String fullCommandWrongIndex = "date a date/05-05-2020";
-        assertThrows(DukeException.class, () -> {
-            Parser.parse(fullCommandWrongIndex);
-        });
+        assertThrows(DukeException.class, () -> Parser.parse(fullCommandWrongIndex));
     }
 
     @Test
@@ -74,9 +68,7 @@ class ParserTest {
     @Test
     void getArgumentsFromRegex_duplicateArguments_throwsException() {
         String testCommand = "add tP meeting c/cs2113 p/1 p/2";
-        assertThrows(DukeException.class, () -> {
-            Parser.getArgumentsFromRegex(testCommand, Parser.ARGUMENT_REGEX);
-        });
+        assertThrows(DukeException.class, () -> Parser.getArgumentsFromRegex(testCommand, Parser.ARGUMENT_REGEX));
     }
 
     @Test
@@ -112,12 +104,10 @@ class ParserTest {
 
     @Test
     void checkAllowedArguments_argumentNotAllowed_throwsException() {
-        HashSet<String> allowedArguments = new HashSet<>(Arrays.asList("p"));
+        HashSet<String> allowedArguments = new HashSet<>(Collections.singletonList("p"));
         HashMap<String, String> argumentsMap = new HashMap<>();
         argumentsMap.put("p", "1");
         argumentsMap.put("i", "2");
-        assertThrows(DukeException.class, () -> {
-            Parser.checkAllowedArguments(argumentsMap, allowedArguments);
-        });
+        assertThrows(DukeException.class, () -> Parser.checkAllowedArguments(argumentsMap, allowedArguments));
     }
 }

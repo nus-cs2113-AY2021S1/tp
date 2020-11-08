@@ -32,7 +32,7 @@ public class AddRecurringCommand extends AddCommand {
             + "       - p/<number> sets the priority of the task.\n"
             + "       - c/<category> sets the category of the task.\n"
             + "       - date/<dd-MM-yyyy> sets the date of the task.\n"
-            + "     List of `<compulsory arguments>\n"
+            + "     List of <compulsory arguments>:\n"
             + "       - s/<dd-MM-yyyy> start date of recurring tasks (inclusive)\n"
             + "       - e/<dd-MM-yyyy> end date of recurring tasks (inclusive).\n"
             + "       - day/<mon/tue/wed/thu/fri/sat/sun> day of recurring task.\n"

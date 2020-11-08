@@ -67,6 +67,13 @@ public class AddCommand extends Command {
         }
     }
 
+    // @@author iamchenjiajun
+    /**
+     * Adds tasks to Task List.
+     *
+     * @param tasks         task to add
+     * @throws DukeException If arguments in HashMap are invalid.
+     */
     private void executeAddTask(TaskList tasks) throws DukeException {
         if (description.equals("")) {
             throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
@@ -76,6 +83,13 @@ public class AddCommand extends Command {
         tasks.addItem(newTask);
     }
 
+    // @@author Cao-Zeyu
+    /**
+     * Adds links to Link List.
+     *
+     * @param links         Link to add
+     * @throws DukeException If arguments in HashMap are invalid.
+     */
     private void executeAddLink(LinkList links) throws DukeException {
         if (!argumentsMap.containsKey("m") || !argumentsMap.containsKey("t") || !argumentsMap.containsKey("u")) {
             throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
@@ -96,23 +110,30 @@ public class AddCommand extends Command {
         links.addLink(newLink);
     }
 
+    // @@author iamchenjiajun
+    /**
+     * Adds module to Module List.
+     *
+     * @param modules         Module to add
+     * @throws DukeException If arguments in HashMap are invalid.
+     */
     private void executeAddModule(ModuleList modules) throws DukeException {
         int mc;
         boolean isDone = true;
 
         if (!argumentsMap.containsKey("g") || !argumentsMap.containsKey("mc") || !argumentsMap.containsKey("ay")) {
-            throw new DukeException("OOPS!!! g, mc and ay arguments are required!");
+            throw new DukeException("~Error~ g, mc and ay arguments are required!");
         }
 
         try {
             mc = Integer.parseInt(argumentsMap.get("mc"));
         } catch (NumberFormatException e) {
-            throw new DukeException("OOPS!!! Your MCs are invalid!");
+            throw new DukeException("~Error~ Your MCs are invalid!");
         }
 
         if (argumentsMap.containsKey("d")) {
             if (!argumentsMap.get("d").equals("0") && !argumentsMap.get("d").equals("1")) {
-                throw new DukeException("Your done argument is invalid! Valid values: 1 or 0.");
+                throw new DukeException("~Error~ Your done argument is invalid! Valid values: 1 or 0.");
             }
             isDone = Utils.stringToBoolean(argumentsMap.get("d"));
         }
@@ -121,6 +142,7 @@ public class AddCommand extends Command {
         modules.addModule(module);
     }
 
+    // @@author iamchenjiajun
     /**
      * Sets the properties of a given Task.
      *

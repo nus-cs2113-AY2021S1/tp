@@ -26,6 +26,13 @@ public class Ui {
     }
 
     /**
+     * Shows an empty line.
+     */
+    public static void showEmptyLine() {
+        System.out.println();
+    }
+
+    /**
      * Prints messages to the user in a structured format.
      *
      * @param message the messaged to be printed
@@ -41,6 +48,7 @@ public class Ui {
         System.out.println("     " + message);
     }
 
+    // @@author iamchenjiajun
     /**
      * Prints a calendar from a given task list.
      *
@@ -106,6 +114,7 @@ public class Ui {
         dukePrintMultiple(date.getDayOfWeek().toString() + " - " + date.format(Task.DATETIME_PRINT_FORMAT));
     }
 
+    // @@author
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
