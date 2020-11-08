@@ -503,6 +503,16 @@ General steps for manual testing:
 1. Execute an "Add" action.  
 2. Execute a "Delete" / "Find" / "Print" / "Set" / "View" action of the same command type.
 
+Printing the countdown of exams
+1. Prerequisites: add some `exam` events into the `calendarList`.
+2. Test case: `countdown exams`
+
+   Expected: The countdown of the exams will be calculated for you. And the countdown of all upcoming exams will be printed. 
+   
+3. Test case: `countdown 12345678`
+
+   Expected: No countdown will be calculated and printed. Error details will be shown in the exception message given to you.
+
 Refer to [Command Summary](#command-summary) to view the list of actions, command types and command format.   
 Refer to [User Guide](https://ay2021s1-cs2113t-t12-2.github.io/tp/UserGuide.html) to view the other commands and their expected output.
 
