@@ -576,16 +576,17 @@ using `add` command.
 |Term| Meaning | Command Format|
 |--------|----------------|--------|
 |Add|activity event|`act <activity_description> @<venue> / <date> <time>`|
-|Add|additional information for event|`/a <event_number> - <additional_information>`|
+|Add|additional information for an event|`/a <event_number> - <additional_information>`|
 |Add|deadline task|`deadline <task_description>/ <due_date>`|
 |Add|exam event|`exam<module_name> @<venue> / <date> <time>`|
 |Add|lab event|`lab <module_name> @<venue> -r <recurring_number> / <date> <time>`|
 |Add|lecture event|`lect <module_name> @<venue> -r <recurring_number> / <date> <time>`|
 |Add|todo task|`todo <task_description>`|
 |Add|tutorial event|`tut <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Delete|additional information for an event|`/- <event_number> a <additional_information_number>`|
 |Delete|events|`-e <event_number>`|
 |Delete|tasks|`-t <task_number>`|
-|Find|all items|`/f <keyword>`|
+|Find|all calendar items|`/f <keyword>`|
 |Find|events|`/fe <keyword>`|
 |Find|tasks|`/ft <keyword>`|
 |Print|countdown for all items|`countdown`|
