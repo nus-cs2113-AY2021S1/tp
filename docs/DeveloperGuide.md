@@ -198,6 +198,7 @@ NUS students living on campus who would like to track their daily food and nutri
 ## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as `Java 11` is installed in the system.
+1. A user who can type fast and prefer typing over mouse/voice commands should be able to accomplish the same tasks faster when using Command Line Interface, the interface implemented by that DietBook, as compared to other modes of inputs.
 
 ## Glossary
 
