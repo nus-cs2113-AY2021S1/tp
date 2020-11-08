@@ -38,7 +38,8 @@ Here are my contributions to the project.
   - Authored PRs with detailed descriptions to ensure that the team is kept updated with the new changes, especially during refactors.
     - Examples: 
     [Refactoring Model class](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/146),
-    [AddRecurringCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/90).
+    [AddRecurringCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/90),
+    [AddCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/22).
   - Communicated regularly with teammates on issues, bugs and tasks to be done, as well as what I'm currently working on.
   - Advised teammates on how code could be organised better and where potential bugs could arise.
   - Managed and reviewed teammates PRs and wrote comments about code quality.
