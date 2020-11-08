@@ -198,7 +198,7 @@ public class Ui {
 
         operatingSystem = findUserOperatingSystem();
 
-        //This is for Linus and Mac operating systems because Robot doesn't work on WSL
+        //This is for Linux and Mac operating systems because Robot doesn't work on WSL
         if (operatingSystem.contains(OS_LINUX) || operatingSystem.contains(OS_MAC)) {
             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
             long startingTime = System.currentTimeMillis();

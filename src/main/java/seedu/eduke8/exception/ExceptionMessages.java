@@ -26,6 +26,8 @@ public class ExceptionMessages {
     public static final String ERROR_NOTE_WRONG_FORMAT = "Invalid command! The command for note is as follows:"
             + System.lineSeparator() + "'note add' or 'note delete' or 'note list'";
     public static final String ERROR_QUIZ_TIMER_NEGATIVE = "Please choose a timer that is greater than 0!";
+    public static final String ERROR_QUIZ_TIMER_TOO_LONG = "The highest time you can choose is 1000."
+            + System.lineSeparator() + "Please choose something less than or equals to that!";
     public static final String ERROR_TOPICS_JSON_PREFACE = "An issue occurred with loading the questions.";
     public static final String ERROR_TOPICS_JSON_QUESTION = "The question '";
     public static final String ERROR_TOPICS_JSON_TOPIC = "' in the topic '";
@@ -42,5 +44,6 @@ public class ExceptionMessages {
             + "deleted from the list!";
     public static final String ERROR_BOOKMARK_NONE = "You currently do not have any bookmarks stored.";
     public static final String ERROR_BOOKMARK_INCORRECT_COMMAND = "Invalid command! The command for bookmark in the "
-            + "main menu is as follows:" + System.lineSeparator() + "'bookmark list' or 'bookmark delete'";
+            + "main menu is as follows:" + System.lineSeparator()
+            + "'bookmark list' or 'bookmark delete <index number of bookmark to delete>'";
 }
