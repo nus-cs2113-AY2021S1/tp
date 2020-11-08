@@ -23,6 +23,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     - A hashmap is used where each unique tag are the keys and the arraylist of taggable objects that share the same tag are the mapped values.
 1. Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
 1. Implemented `ParserManager` class which manages the creation of different parser objects to parse the user input to the required parameters.
+
+<div style="page-break-after: always;"></div>
+
 1. Implemented `SystemException` class which extends from `Exception` class.
     - Within it, there is an enumeration for all possible types of exception that may occur and each enum value contains a unique string as its message.
 1. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
@@ -57,6 +60,8 @@ Added implementation details for the following:
 1. [Section 2.11 Usage of External Libraries](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#color)
 1. [Section 8.1 List of ParseCommand Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parseXYZCommands)
 1. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
+
+<div style="page-break-after: always;"></div>
 
 ### Community
 1. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.

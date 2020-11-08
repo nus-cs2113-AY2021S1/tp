@@ -24,6 +24,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/31) Added functionality to add note into the notebook with option to add tags, pinned note and archived note.
     * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32) Functionality applies to delete note from the notebook by an index and title of the note.
     * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121) Functionality applies to edit any note content, title and tags stored in the notebook.
+
+<div style="page-break-after: always;"></div>
+
 1. Implemented the following classes
     * `ParserAddNoteCommand`
     * `AddNoteCommand`
@@ -53,6 +56,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/182)
     * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32)
     * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/141)
+
+<div style="page-break-after: always;"></div>
 
 ### Contributions to Developer Guide
 1. Maintain Commands section on:
