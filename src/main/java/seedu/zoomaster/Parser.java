@@ -32,6 +32,7 @@ import seedu.zoomaster.exception.ZoomasterExceptionType;
 /**
  * This class deals with making sense of the user command.
  */
+//@@author xingrong123
 public class Parser {
     /*
      * Variable programMode controls the mode Zoomaster program is in.

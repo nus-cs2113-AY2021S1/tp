@@ -8,7 +8,8 @@ Command Line Interface (CLI) while retaining benefits of a Graphical User Interf
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
 This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
 
-<br/><br/> 
+<br/>
+
 ## 2.0 About this Document
 
 Please take note of the symbols used throughout the document:
@@ -194,7 +195,7 @@ Format: clear
 
 <br/><br/> 
 <a name="launchnow"></a>  
-
+<!-- @@author xingrong123-->
 #### 5.1.4 Launch bookmarks of current lesson: `launch now` (Xing Rong)
 You can launch the bookmarks of a current lesson slot in your timetable. 
 The time depends on the system time of your machine with an additional 5 minutes of buffer, 
@@ -205,9 +206,8 @@ Format: launch now
 ```
 
 You should expect to see the urls of the current or 5 minutes advance lesson slot launching
-in your native browser. Else you should see a message "no lesson now" like the screenshot below.
-
-![]()
+in your native browser. Otherwise, you should see the message `no lesson now`.
+<!-- @@author -->
 
 <br/><br/> 
 <!-- @@author fchensan -->
@@ -350,17 +350,9 @@ Format: launch {INDEX/DESCRIPTION}
 ``` 
 
 Example of usage:  
-* `launch 1`
-![]()
+* `launch 1`  
 * `launch cs2113t-website`  
-![]()
-* `launch abc`
-![]()
-  
-Else you should see a message "No bookmarks contain the specified keyword!" like the screenshot below.
-![]()
-
-
+* `launch abc`  
 
 
 <br/>
@@ -414,7 +406,7 @@ Example of usage:
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20lesson%20now%20indicator.png?raw=true) <br></br><br></br>
 
 <!-- @@author -->
-
+<!-- @@author xingrong123-->
 <br/><br/>
 <a name="showmoduledetails"></a>
 #### 5.3.2 Show module and slot details: `show` (Xing Rong)
@@ -428,23 +420,14 @@ and using the `bookmarks` keyword will show the bookmarks which are saved in the
 >
 ```
 Format (show module details): show {MODULE} bookmarks(optional)
-
-Format (show slot details): show {MODULE} {INDEX} bookmarks(optional)
 ```
 
 Example of usage:   
-* `show cs2113t`
-![]()
+* `show CS2113T`  
+![](images/showTimetableCommand/showmoduleoutput.PNG)  
 
-* `show cs2113t bookmarks`
-![]()
-
-* `show cs2113t 1`
-![]()
-
-* `show cs2113t 1 bookmarks`
-![]()
-
+* `show CS2113T bookmarks`  
+![](images/showTimetableCommand/showmodulebookmarksoutput.PNG)
 
 <br/><br/> 
 <a name="addtimeslot"></a>
@@ -495,42 +478,36 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
 Example of usage:   
 
 * Adding a module  
-input:  
-![](./images/addmoduleinput.PNG)  
+input: `add CS2113T`  
 output:  
-![](./images/addbookmarktomoduleoutput.PNG)  
-
+![](images/addSlotCommand/addmoduleoutput.PNG)  
 
 * Adding a slot to a module  
-input:  
-![](./images/addslottomoduleinput.PNG)  
+input: `add CS2102 tutorial fri 10:00 12:00`  
 output:  
-![](./images/addslottomoduleoutput.PNG)  
+![](images/addSlotCommand/addslottomoduleoutput.PNG)  
 
 * Adding a bookmark to a module  
-input:  
-![](./images/addbookmarktomoduleinput.PNG)  
+input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
 output:  
-![](./images/addbookmarktomoduleoutput.PNG)  
+![](images/addSlotCommand/addbookmarktomoduleoutput.PNG)  
 
 * Adding a bookmark to a slot  
-input:  
-![](./images/addbookmarktoslotinput.PNG)  
+input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
 output:  
-![](./images/addbookmarktoslotoutput.PNG)  
+![](images/addSlotCommand/addbookmarktoslotoutput.PNG)  
 
 * Chaining commands  
-input:  
-![](./images/addchaincommandinputnew.PNG)  
+input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
 output:  
 (The indentation of each line of the output shows the relationships between the components.
 In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
 higher than the previous line. This means that the bookmark is added to that lecture slot.
 Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
 which suggests that the bookmark is added to the module CG2271.)  
-![](./images/addchaincommandoutput.PNG)  
+![](images/addSlotCommand/addchaincommandoutput.PNG)  
 result:  
-![](./images/addresult.PNG)
+![](images/addSlotCommand/addresult.PNG)
   
 
 
@@ -550,7 +527,7 @@ Deletes module, time slot or their bookmarks.
 
 > :bangbang:
 >* You can only delete a module that is listed on the NUSMods website. 
->You can see the [command format](#command_format) for more information.
+> You can see the [command format](#command_format) for more information.
 
 ```
 Format (deleting a module): delete {MODULE}
@@ -565,15 +542,11 @@ Format (deleting bookmarks of a slot of a module): delete {MODULE} {INDEX} bookm
 * Deleting bookmarks will delete all bookmarks associated with the module or slot.
 
 Example of usage:   
-* `delete cs2113t`  
-![]()
-* `delete cs2113t 1` 
-![]()
-* `delete cs2113t bookmarks` 
-![]()
-* `delete cs2113t 1 bookmarks` 
-![]()
-
+* `delete CS2113T` 
+* `delete CG2271 1` 
+* `delete CS2113T bookmarks` 
+* `delete CS2113T 1 bookmarks` 
+<!-- @@author -->
 <br/><br/> 
 
 <a name="edittimeslot"></a>
@@ -606,8 +579,9 @@ Example of usage:
 * `edit time mon 1 fri 10:00 12:00`
 <br/><br/> 
 
+<!-- @@author xingrong123-->
 <a name="launchtimeslot"></a>
-#### 5.3.6 Launch bookmarks from module, slot: `launch`  
+#### 5.3.6 Launch bookmarks from module, slot: `launch` (Xing Rong)  
 Launches the bookmarks of slots or the bookmarks of a module
 
 > :bangbang:
@@ -630,61 +604,65 @@ Example of usage:
 * `launch CS2113`  
 * `launch CS2113 2`
 
+<!-- @@author -->
 
-<a name="plannermode"></a>  
+<br>
+
+
 <a name="plannermode"></a>  
 ### 5.4. Planner Mode  
 
 <a name="loadplanner"></a>  
 #### 5.4.1. Load planner: `load`  
 Loads all the timetables from the `planner` folder and helps you find some common empty slots.
-> :bangbang:
-> * You need to copy the different .txt files manually to the planner folder.
 
 ```
 Format: load
 ```
+* You need to copy the different .txt files manually to the planner folder before entering this command.
+* This command only displays the common empty time slots between.
 
-* This command only displays the common empty time slots.
+<br/>
 
-<br/><br/> 
 <a name="addmeeting"></a>  
 #### 5.4.2. Add meeting: `add`  
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
 
-```
 Format: same as [add time slots](#addtimeslot) command.
-```
 
 * You can only add a new meeting to empty time slots.
 * Note that this command does not automatically store the newly added meeting to the .txt files. 
 * You will need to type `save` to save your changes.
 
-<br/><br/> 
+<br/>
+
 <a name="showplanner"></a>  
 #### 5.4.3. Show planner: `show`
-You will be able to see the empty time slots for a certain day or the whole week.  
-**today** can also be a `DAY` input to show the timetable for the current day based on system time.  
-If your selected timetable is the current day, you should be able to see a
-"current time" indicator with your system local time. 
-Else, if you have a lesson ongoing currently, it will instead show a "lesson now" indicator
-*around* your current lesson.  
-
-> :bangbang:
->* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
->The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
->You can see the [command format](#command_format) for more information.
+You will be able to see the empty time slots for a certain day or the whole week. 
+If your selected timetable is the current day, you should be able to see a 
+"current time" indicator with your system local time. Else, if you have a lesson ongoing currently,
+it will instead show a "lesson now" indicator *around* your current lesson.
 
 ```
 Format: show {DAY(optional)}
 ```
+
+* The valid day inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`, and `today`. 
+* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
+* You can see the [command format](#command_format) for more information.
+
 Example of usage:   
 * `show`
 * `show wed`
 * `show today`
 
-<br/><br/> 
+Output:
+
+<img src="./images/showplannercommand.PNG" width="308" height="328" />
+
+<br/>
+
 <a name="saveplanner"></a>  
 #### 5.4.4. Save planner: `save`  
 Saves the newly added slot(s) to each individual timetables.
@@ -713,7 +691,7 @@ and save the txt file. You can now add the module in Zoomaster.
 ## 7.0 Command Summary
 **Action** | **Format, Examples**
 ------------ | -------------
-**Global**|
+***Global***|
 **help**|`help {COMMAND(optional)}`<br>example: `help`, `help add`
 **mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
 **clear**|`launch now`
@@ -721,13 +699,13 @@ and save the txt file. You can now add the module in Zoomaster.
 **show settings**|`showsettings`
 **set a setting**|`set {SETTING_NAME} {NEW_OPTION}`
 **exit**|`exit`
-**Bookmark Mode**|
+***Bookmark Mode***|
 **show**|`show`
 **add**|`add {DESCRIPTION} {URL}` <br>example: `add cheatsheet www.google.com` <br/><br/>
 **delete**|`delete {INDEX}`<br>example: `delete 2`|
 **find**|`find {MODULE} {DESCRIPTION(optional)}` <br>example: `find CS2113 tutorial`
 **launch**|`launch {MODULE} {DESCRIPTION(optional)}` <br>example: `launch CS2113`
-**Timetable Mode**|
+***Timetable Mode***|
 **show (lessons)**|`show {DAY(optional)}` <br>example: `show`, `show wed`, `show today` 
 **show (bookmarks<br>attatched)**| `show {MODULE} bookmarks(optional)`<br>example: `show CS2113`, `show CS2113 bookmarks`
 **add**|`add {MODULE}` <br>example: `add CS2113T` <br/><br/> `add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME}` <br>example: `add CS2113T tutorial wed 11:00 12:00` <br/><br/>`add {MODULE} {DESCRIPTION} {URL}` <br>example: `add CS2113T tutorial www.yahoo.com` <br/><br/> `add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}` <br>example: `add CS2113T tutorial wed 11:00 12:00 www.yahoo.com` <br/><br/>`add {MODULE} {INDEX} {URL}` <br>example: `add CS2113T 2 www.yahoo.com`

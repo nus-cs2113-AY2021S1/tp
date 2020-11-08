@@ -1,5 +1,3 @@
-//@@author
-
 package seedu.zoomaster.command.timetable;
 
 import seedu.zoomaster.Ui;
@@ -21,12 +19,12 @@ import java.util.List;
 /**
  * Represents the user command exit the Duke program.
  */
+//@@author xingrong123
 public class AddSlotCommand extends Command {
     public static final String ADD_KW = "add";
     public String moduleCode;
     private List<String> commands;
 
-    //@@author xingrong123
     /**
      * Constructs a new AddSlotCommand instance and stores the information of the slot given by the input.
      *

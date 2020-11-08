@@ -20,10 +20,10 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
-//@@author
 /**
  * Executes the help functionality of the program.
  */
+//@@author
 public class HelpCommand extends Command {
     public static final String HELP_KW = "help";
     public String details;
