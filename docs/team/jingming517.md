@@ -57,6 +57,8 @@ Given below are my contributions to the project. <br/>
   ([\#140](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/140),
    [\#141](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/141),
    [\#161](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/161))
+* Added part of the user stories.
+  ([\#287](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/287))
    
 #### Contributions to the User Guide:
 * Documented features `Printing default calendar`,`Printing calendar for the current week`,
