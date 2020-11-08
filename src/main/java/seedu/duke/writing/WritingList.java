@@ -5,6 +5,7 @@ import seedu.duke.database.FileFunctions;
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
 
+import java.lang.invoke.WrongMethodTypeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.io.File;
 import static seedu.duke.Duke.user;
 
 //import static seedu.duke.Duke.writings;
+import static seedu.duke.Duke.writings;
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.TYPE;
 import static seedu.duke.commands.CommandChecker.POEM;
@@ -51,20 +53,17 @@ public class WritingList {
         writingList = new ArrayList<>();
     }
 
-    public int getSize() {
-        return writingList.size();
-    }
-
-    public void add(Writings w) {
+    public static int add(Writings w) {
         writingList.add(w);
         countWritings++;
+        return countWritings;
     }
 
     public Writings get(int i) {
         return writingList.get(i);
     }
 
-    public static void removeWriting(int i) throws FileEmptyException {
+    public static int removeWriting(int i) throws FileEmptyException {
         if (writingList.size() == 0) {
             throw new FileEmptyException();
         } else {
@@ -72,9 +71,10 @@ public class WritingList {
             writingList.remove(i);
             countWritings--;
         }
+        return countWritings;
     }
 
-    public static void removeID(int id) throws FileEmptyException, ItemNotFoundedException {
+    public static int removeID(int id) throws FileEmptyException, ItemNotFoundedException {
         int idExists = 0;
         if (writingList.size() == 0) {
             throw new FileEmptyException();
@@ -92,7 +92,7 @@ public class WritingList {
             if (idExists == 0) {
                 throw new ItemNotFoundedException();
             } else {
-                return;
+                return id;
             }
         }
     }
@@ -103,15 +103,17 @@ public class WritingList {
     }
 
     /** Print the UI message along with number of writings. */
-    public static void printWritingSize() {
+    public static String printWritingSize() {
         System.out.println("In our storage, there is/are currently " + getWritingSize() + " writing(s)");
+        String printResult = "In our storage, there is/are currently " + getWritingSize() + " writing(s)";
+        return printResult;
     }
 
     /**
      *  print all of the current writings in the Arraylist with details.
      *  Triggered when "stats" command is called.
      */
-    public static void printWritings() {
+    public static int printWritings() {
         if (writingList.size() > 0) {
             for (Writings w : writingList) {
                 w.printWritingsProperties();
@@ -124,22 +126,27 @@ public class WritingList {
         } else {
             System.out.println(EMPTY_WRITING_MESSAGE);
         }
+        return writingList.size();
     }
 
-    public static void printAskForType() {
+    public static String printAskForType() {
         System.out.println(ASKING_FOR_TYPE);
+        return ASKING_FOR_TYPE;
     }
 
-    public static void printAskForTitle() {
+    public static String printAskForTitle() {
         System.out.println(ASKING_FOR_TITLE);
+        return ASKING_FOR_TITLE;
     }
 
-    public static void printAskForTopic() {
+    public static String printAskForTopic() {
         System.out.println(ASKING_FOR_TOPIC);
+        return ASKING_FOR_TOPIC;
     }
 
-    public static void printAskForReminderDate() {
+    public static String printAskForReminderDate() {
         System.out.println(ASKING_FOR_REMINDER);
+        return ASKING_FOR_REMINDER;
     }
 
     public static int getWritingSize() {
@@ -150,7 +157,7 @@ public class WritingList {
      * Operate when command "start" is called, embark the process the writing process.
      *
      */
-    public static void checkStart() {
+    public static CommandChecker checkStart(String userInput) {
         Scanner scanner = new Scanner(System.in);
         String newUserInput = null;
         try {
@@ -164,13 +171,14 @@ public class WritingList {
         } catch (Exception e) {
             System.out.println(e);
         }
+        return extractCommandType(userInput);
     }
 
     /**
      * Operate when command "type" is called, allow the user to choose the desire topic.
      *
      */
-    public static void checkType() {
+    public static CommandChecker checkType(String userInput) {
         Scanner scanner = new Scanner(System.in);
         String newUserInput;
         File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
@@ -185,9 +193,10 @@ public class WritingList {
         } catch (Exception e) {
             System.out.println(e);
         }
+        return extractCommandType(userInput);
     }
 
-    private static void getInformation(CommandChecker commandTypeChecker) {
+    public static String getInformation(CommandChecker commandTypeChecker) throws WrongMethodTypeException {
         Scanner scanner = new Scanner(System.in);
         String newUserInput;
         WritingList.printAskForTopic();
@@ -212,8 +221,10 @@ public class WritingList {
             addPoem(title, newId, topic, content, user.getName(), reminderDate);
         } else if (commandTypeChecker == ESSAY) {
             addEssay(title, newId, topic, content, user.getName(), reminderDate);
-        }
+        } else throw new WrongMethodTypeException();
         System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
+        //String contentAdded = title + newId + topic + content + user.getName() + reminderDate;
+        return SUCCESSFUL_ADD_WRITING_TO_DATABASE;
     }
 
     /**
@@ -223,9 +234,6 @@ public class WritingList {
     public static void clearAll() {
         writingList.clear();
         System.out.println(CLEAR_DATA_MESSAGE);
-        //Reset countWritings
-        //File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
-        //recordListToFile(f, writings);
         countWritings = 0;
     }
 

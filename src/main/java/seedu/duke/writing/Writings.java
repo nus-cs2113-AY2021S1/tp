@@ -23,11 +23,6 @@ public abstract class Writings {
         return title;
     }
 
-    public static void createTitle(String input) {
-        String[] words = input.split(" ", 2);
-
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -96,9 +91,9 @@ public abstract class Writings {
 
     public abstract int getNumberOfWords();
 
-    public abstract void printPoemProperties();
+    public abstract String printPoemProperties();
 
-    public abstract void printEssayProperties();
+    public abstract String printEssayProperties();
 
     public void printWritingsProperties() {
         System.out.println("This is a " + getType());
@@ -111,9 +106,11 @@ public abstract class Writings {
                 + getReminderDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
-    public void printWritingsReminder() {
-        System.out.println("  Id: " + getId());
-        System.out.println("  Title: " + getTitle().toUpperCase());
-        System.out.println(PLAIN_TEXT_DIVIDER);
+    public String printWritingsReminder() {
+        String content = "  Id: " + getId() + "\n"
+                            + "  Title: " + getTitle().toUpperCase() + "\n"
+                            + PLAIN_TEXT_DIVIDER;
+        System.out.println(content);
+        return content;
     }
 }

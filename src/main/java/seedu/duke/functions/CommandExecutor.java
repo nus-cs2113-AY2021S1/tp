@@ -32,6 +32,7 @@ import seedu.duke.writing.Writings;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static seedu.duke.Duke.user;
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.wordlist.WordList.wordList;
 import static seedu.duke.Duke.writings;
@@ -192,10 +193,10 @@ public class CommandExecutor {
             WritingList.printWritings();
             break;
         case START:
-            WritingList.checkStart();
+            WritingList.checkStart(userInput);
             break;
         case TYPE:
-            WritingList.checkType();
+            WritingList.checkType(userInput);
             break;
         case COUNT_WRITINGS:
             WritingList.printWritingSize();

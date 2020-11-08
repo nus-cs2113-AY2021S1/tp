@@ -143,10 +143,11 @@ public class WritingsLoader {
      * @param f file to be processed
      * @throws IOException IO error
      */
-    private static void recordFile(File f, WritingList savedWritings) throws IOException {
+    private static String recordFile(File f, WritingList savedWritings) throws IOException {
         FileWriter fw = new FileWriter(f);
-        fw.write("There is/are currently " + savedWritings.getSize() + " writing(s) in our database\n"
-                + WRITING_COMPONENT_DIVIDER + "\n");
+        String databaseInformation = "There is/are currently " + savedWritings.getWritingSize() + " writing(s) in our database\n"
+                + WRITING_COMPONENT_DIVIDER + "\n";
+        fw.write(databaseInformation);
         for (int i = 0; i < WritingList.getCountWritings(); i++) {
             fw.write("*id: " + savedWritings.get(i).getId() + "\n"
                     + "*Author: " + savedWritings.get(i).getAuthor().getName() + "\n"
@@ -159,6 +160,7 @@ public class WritingsLoader {
                     + WRITING_COMPONENT_DIVIDER + "\n");
         }
         fw.close();
+        return databaseInformation;
     }
 
     /**Record the file or print error message.

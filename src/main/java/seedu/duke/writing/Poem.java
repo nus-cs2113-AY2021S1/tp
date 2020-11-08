@@ -10,6 +10,10 @@ public class Poem extends Writings {
     private int numberOfWords;
     private int countPoems;
 
+    public Poem() {
+
+    }
+
     public Poem(String title, int id, String topic, String content, String author, LocalDate reminderDate) {
         setDate();
         setType();
@@ -66,14 +70,16 @@ public class Poem extends Writings {
     }
 
     @Override
-    public void printPoemProperties() {
-        System.out.println("This poem has " + getNumberOfLines() + " line(s)"
-                + " and " + getNumberOfWords() + " word(s)");
+    public String printPoemProperties() {
+        String content = "This poem has " + getNumberOfLines() + " line(s)"
+                + " and " + getNumberOfWords() + " word(s)";
+        System.out.println(content);
+        return content;
     }
 
     @Override
-    public void printEssayProperties() {
-
+    public String printEssayProperties() {
+            return null;
     }
 
     public void setNumberOfWords() {
@@ -84,10 +90,6 @@ public class Poem extends Writings {
             }
             this.numberOfWords = count;
         }
-    }
-
-    public int getCountPoems() {
-        return countPoems;
     }
 
     public void setType() {

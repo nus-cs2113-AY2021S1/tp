@@ -99,7 +99,7 @@ public class ClearLoader {
     }
 
     public static void clearWritingWithID(String idNumber, WritingList writings) throws NullPointerException {
-        if (writings.getSize() == 0) {
+        if (writings.getWritingSize() == 0) {
             throw new NullPointerException();
         } else {
             int element = Integer.parseInt(idNumber);
@@ -133,7 +133,7 @@ public class ClearLoader {
     }
 
     public static void clearWritingWithIndex(String item, WritingList writings) throws NullPointerException {
-        if (writings.getSize() == 0) {
+        if (writings.getWritingSize() == 0) {
             throw new NullPointerException();
         } else {
             int element = Integer.parseInt(item);
