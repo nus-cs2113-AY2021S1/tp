@@ -1,6 +1,5 @@
 package seedu.quotesify.commands.add;
 
-import seedu.quotesify.commands.add.AddCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.store.Storage;

@@ -3,7 +3,6 @@ package seedu.quotesify.commands.add;
 import seedu.quotesify.author.Author;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.commands.add.AddCommand;
 import seedu.quotesify.commands.Command;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
