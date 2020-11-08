@@ -9,6 +9,7 @@
 2. [<b>Setting Up</b>](#2-setting-up)<br>
 2.1. [Prerequisites](#21-prerequisites)<br>
 2.2. [Setting Up the Project in your Computer](#22-setting-up-the-project-in-your-computer)<br>
+2.3. []
 3. [<b>Design (Architecture)</b>](#3-design-architecture)<br>
 3.1. [Ui Component](#31-ui-component)<br>
 3.2. [Logic Component](#32-logic-component)<br>
@@ -65,10 +66,10 @@
 ## 1. Introduction
 
 ### 1.1. Overview
-Kaji is a schedule manager that implements Spaced Repetition, optimised for use via a Command Line Interface (CLI).
+Kaji is a schedule manager that implements Spaced Repetition for students, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. Purpose
-This document contains the specified architecture and features for the application, Kaji.
+This document describes the architecture and system design for the application, Kaji.
 
 ### 1.3. Scope
 This documentation describes the software architecture and software design decisions for the implementation of Kaji. The intended audience of this document is the developers, designers, and software testers of Kaji.
@@ -79,11 +80,11 @@ This documentation describes the software architecture and software design decis
 ## 2. Setting Up
 
 ### 2.1. Prerequisites
-* JDK 11
-* IntelliJ IDEA
+1. JDK 11
+2. IntelliJ IDEA
 
-### 2.2. Setting up the project in your computer
-1. Fork this repository, and clone the fork into your computer.
+### 2.2. Setting up the Project in your Computer
+1. Fork this [repository](https://github.com/AY2021S1-CS2113T-F11-3/tp), and clone the fork into your computer.
 2. Open IntelliJ (if you are not in the welcome screen, click `File` → `Close Project` to close the existing project dialog first).
 3. Set up the correct JDK version for Gradle.
     1. Click `Configure` → `Project Defaults` → `Project Structure`.
@@ -91,7 +92,19 @@ This documentation describes the software architecture and software design decis
 4. Click `Import Project` (or `Open or Import` in newer version of Intellij).
 5. Locate the `build.gradle` file (not the root folder as you would do in a normal importing) and select it. Click `OK`.
 If asked, choose to `Open as Project` (not `Open as File`).
-6. Click `OK` to accept the default settings
+6. Click `OK` to accept the default settings.
+
+### 2.3. Verifying the Setup
+1. In an IntelliJ terminal, run `gradlew build`.
+2. Navigate to the folder `build` > `libs` by executing `cd build/libs/` and then run: `java -jar kaji.jar`.
+    1. To use **Kaji**, type a valid command into the terminal and press the enter key to run the command.<br> 
+    e.g. Typing `help` and pressing the enter key will show the list of commands available.
+    2. Some example commands you can try to get familiar with **Kaji**:
+        * `help`: Lists the commands that **Kaji** supports.
+        * `add CS2113T`: Adds a module **CS2113T**.
+        * `add q:1+1 | a:2`: Adds a flashcard with **1+1** as the question and **2** as the answer.
+        * `exit`: Exits **Kaji**.
+
 ##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -190,6 +203,7 @@ The Model,
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Implementation
+This section will describe the significant details of how the features in **Kaji** are being implemented.
 
 ### 4.1. Admin Features
 [summary + scenario]
@@ -1031,13 +1045,14 @@ The following sequence diagram shows how the list chapters feature works:
 ### 5.1. Product Scope
 #### 5.1.1. Target User Profile
 
+* Students who use a computer often, and are reasonably comfortable with the command line interface
 * Needs to have an effective study schedule
+* Willing to keep track of the content they need to study
 * Prefers typing to mouse interactions
-* Is comfortable with the usage of CLI applications
 
 #### 5.1.2. Value Proposition
 
-* Implements Spaced Repetition for the user 
+The application aims to provide students with an effective studying technique. In order to make studying easier for students, the application implements a technique known as spaced repetition, which help with memory retention. Content are scheduled automatically, and information is organised in the form of flashcards which makes it convenient to revise. 
 
 ### 5.2. User Stories
 
@@ -1074,7 +1089,14 @@ The following sequence diagram shows how the list chapters feature works:
 ### 5.4. Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 installed.
-2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Data saved in a session should be persistent and carry forward to the next session of use.
+5. The file containing the saved data should be portable so that the user can transfer to the other machine with any mainstream OS and continuing using the app without any additional configuration.
+6. Application should not crash, application should always recover from error gracefully with an error message.
+7. Should work mostly without the need for the Internet.
+8. Should be designed for a single user.
+9. Should work on both 32-bit and 64-bit environments.
 
 ### 5.5. Glossary
 
