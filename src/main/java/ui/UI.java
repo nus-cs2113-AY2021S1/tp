@@ -195,8 +195,7 @@ public class UI {
      * @param eventEdited the Event being edited
      */
     public void printEditEventMessage(Event eventEdited) {
-        System.out.println("I've edited this Event to: ");
-        System.out.println(eventEdited.toString());
+        System.out.println("The event has been edited.");
     }
 
     /**
