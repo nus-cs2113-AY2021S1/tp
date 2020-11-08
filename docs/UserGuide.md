@@ -60,25 +60,41 @@ You may want to first have a look at the glossary to be clear on the terminology
 [Jump to top](#fluffle-user-guide)
 
 ## Quick Start
+If you are a first-time user of Fluffle, make use you follow the instruction below:
 
 1. Check that your computer has `Java 11` installed.
-1. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
-1. Copy the file to the folder you want to use as the home folder.
-1. Type in a command prompt `java -jar duke.jar` and press Enter.
-1. Type the `help` command and press Enter to get started.
-1. Some example commands you can try:
+2. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
+3. Copy the file to the folder you want to use as the home folder.
+4. Type in a command prompt `java -jar duke.jar` and press Enter. If the setup is correct, you should see something like below:
+```
+--------------------------------------------------------------
+Write a story with
+  ______ _        __  __ _
+ |  ____| |      / _|/ _| |
+ | |__  | |_   _| |_| |_| | ___
+ |  __| | | | | |  _|  _| |/ _ \
+ | |    | | |_| | | | | | |  __/
+ |_|    |_|\__,_|_| |_| |_|\___|
+--------------------------------------------------------------
+Hello User! Welcome to Fluffle!
+What can I do for you?
+--------------------------------------------------------------
+What is your name?
+```
+5. After entering your name, type the `help` command and press Enter to get started.
+6. Some example commands you can try:
     1. `list words`: List the vocabulary stored in the word list.
     1. `filter bunny g/fantasy`: Filters bunny ideas that are of the fantasy genre.
     1. `exit`: Exits the app.
-1. Refer to the Features below for details of each command.
+7. Refer to the [Features](#features) below for details of each command. A [Command Summry Table](#command-summary) is provided at the end of this User Guide.
 
 [Jump to top](#fluffle-user-guide)
 
 ## Features 
 
 This section includes five subsections which will guide you through all the commands in five main components of Fluffle: 
-`Basic CLI`, `Words list`, `Bunnies list`, `Names list` and `Writings list`. We will adhere to the following format in 
-explaining the syntax of the commands in Fluffle.
+[`Basic CLI`](#basic-cli-commands), [`Words list`](#words-list-commands), [`Bunnies list`](#bunnies-list-commands), [`Names list`](#names-list-commands) and [`Writings list`](#writings-list-commands).
+We will adhere to the following format in explaining the syntax of the commands in Fluffle.
 
 ***
 **Command format**
@@ -104,7 +120,8 @@ Basic CLI commands consist of commands that are standard CLI application command
 Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
 Output:  
 ```
-Type 'help <function name here>' to view help for each command.
+Type 'help FUNCTION_NAME' to view help for each command.
+Available commands:
 - help
 - divider
 - bunny
@@ -140,7 +157,7 @@ Example output:
 help filter name
 --------------------------------------------------------------
 Find all the names from the list of names
-Format: filter name <NAME>
+Format: filter name NAME
 --------------------------------------------------------------
 ```
 
@@ -174,7 +191,7 @@ Changing line divider...
 Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
 
 Format: 
-- `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE _OBJECT` 
+- `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE_OBJECT` 
 
 Example usage:  
 `clear type\word item\-noungrass`  
@@ -266,7 +283,7 @@ you want to print out all the words in the list, or you only want to print out t
     If you provide more than one target string, the strings should be separated by the dash symbol `-`.
 
 **Step-by-step example usages and example outputs:**
-* Suppose you have a word bank of ten words:
+* Suppose you have a word list of ten words:
 ```
 house: a building for people to live in, usually for one family
 grass: a common wild plant with narrow green leaves and stems 
@@ -278,7 +295,7 @@ beautiful: having beauty; giving pleasure to the senses or to the mind
 nice: pleasant or attractive
 meaningful : important and serious
 ```
-* Now you want to get all nouns and adjectives in your word bank. You use the command `filter words by\type -noun -adjective`
+* Now you want to get all nouns and adjectives in your word list. You use the command `filter words by\type -noun -adjective`
 ```
 Printing all 7 word(s) from your filter list:
 - house: a building for people to live in, usually for one family
