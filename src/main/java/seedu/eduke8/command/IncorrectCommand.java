@@ -3,6 +3,9 @@ package seedu.eduke8.command;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.ui.Ui;
 
+/**
+ * Represents a specific command that indicates an error was encountered while parsing the user's input.
+ */
 public class IncorrectCommand extends Command {
     String errorMessage;
 
