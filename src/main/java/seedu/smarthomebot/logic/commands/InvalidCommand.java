@@ -12,12 +12,12 @@ public class InvalidCommand extends Command {
     public final String feedbackToUser;
 
     /**
-     * Constructor for OffCommand.
+     * Constructor for InvalidCommand.
      *
      * @param feedbackToUser Error message to be printed to user.
      */
     public InvalidCommand(String feedbackToUser) {
-        assert feedbackToUser.isEmpty() != true : "InvalidCommand must not accept empty feedbackToUser";
+        assert feedbackToUser.isEmpty() != true  : "InvalidCommand must not accept empty feedbackToUser";
         this.feedbackToUser = feedbackToUser;
     }
 

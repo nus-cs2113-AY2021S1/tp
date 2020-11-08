@@ -12,7 +12,6 @@ import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class DeleteCommandTest {
 
     private LocationList locationList = new LocationList();
