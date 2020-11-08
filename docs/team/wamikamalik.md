@@ -35,7 +35,8 @@ errors. (Pull request [#73](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/73
 * Wrote tests for existing route and description change features and a few tests for Parser. (Pull requests 
 [#11](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/11), 
 [#33](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/33), 
-[#104](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/104))    
+[#104](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/104),
+[#204](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/204))    
 
 #### Contributions to documentation
 * Added documentation for features `/route`and `/descfav`. (Pull request 
@@ -52,13 +53,16 @@ requests [#111](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/111),
 ) 
 * Added details for architecture, architecture diagram and class diagrams for all components. (Pull requests 
 [#68](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/68), 
-[#195](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/195)
-)
+[#195](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/195))
+
+* Added manual testing for direct route and description change features. (Pull request
+[#224](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/224))
 
 #### Contributions to team-based tasks 
 * Managed releases v1.0 and v2.0
 * Set up the GitHub team organisation and repo
 * Added details about the different components in DG.
+* Added user stories to DG.
 * Maintained the issue tracker for specific features and some common tasks.
 
 #### Review/mentoring contributions
@@ -71,7 +75,8 @@ requests [#111](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/111),
 [#74](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/74), 
 [#78](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/78), 
 [#100](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/100), 
-[#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142)
+[#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142),
+[#216](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/216)
 
 #### Contributions beyond the project team
 * Reported bugs and suggestions for other teams in the class (example: 
