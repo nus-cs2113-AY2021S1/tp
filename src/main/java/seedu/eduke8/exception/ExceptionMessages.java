@@ -33,7 +33,7 @@ public class ExceptionMessages {
     public static final String ERROR_TOPICS_JSON_NO_CORRECT = "' has no correct answer.";
     public static final String ERROR_TOPICS_JSON_TOO_MANY_CORRECT = "' should not have more than 1 correct answer.";
     public static final String ERROR_TOPICS_JSON_BLANK = "The topic or question should not be blank.";
-    public static final String ERROR_TOPICS_JSON_DUPLICATE = "The topics should not be duplicated.";
+    public static final String ERROR_TOPICS_JSON_DUPLICATE = "The topics and questions should not be duplicated.";
     public static final String ERROR_USER_JSON_LOAD = "An error with loading user data has occurred due to "
             + "modification of the topics or user data."
             + System.lineSeparator() + "Affected user data will be erased.";

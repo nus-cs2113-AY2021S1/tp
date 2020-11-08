@@ -184,7 +184,9 @@ public class UserStorage extends LocalStorage {
                 questionObject.markAsAnsweredCorrectly();
             }
             if ((boolean) question.get(KEY_BOOKMARKED)) {
-                bookmarkList.add(questionObject);
+                if (!questionObject.isBookmarked()) {
+                    bookmarkList.add(questionObject);
+                }
             }
             if ((boolean) question.get(KEY_HINT)) {
                 questionObject.getHint().markAsShown();
@@ -247,7 +249,7 @@ public class UserStorage extends LocalStorage {
 
         question.put(KEY_DESCRIPTION, questionObject.getDescription());
         question.put(KEY_CORRECT, questionObject.wasAnsweredCorrectly());
-        question.put(KEY_BOOKMARKED, bookmarkList.find(questionObject.getDescription()) != null);
+        question.put(KEY_BOOKMARKED, questionObject.isBookmarked());
         question.put(KEY_HINT, questionObject.wasHintShown());
 
         return question;
