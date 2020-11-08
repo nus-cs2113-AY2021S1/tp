@@ -420,7 +420,7 @@ The output when you search by date is as follows:  <br/>
 #### Add a participant to an event: `addAttendance`
 (By:Ye Yutong)  
 
-Adds an event to the list of events.<br/>
+Adds a participant to an event in the list of events.<br/>
 Format: `event addAttendance /n EVENT_NAME /m MEMBER_NAME`<br/>
  
 > :information_source: Both the `EVENT_NAME` and the `MEMBER_NAME` need to be added into the list of events and members prior to using this feature. <br/>
