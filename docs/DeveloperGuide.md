@@ -366,6 +366,17 @@ While loading information is passed to the parser manager to prepare the informa
    <br><em>Figure 16</em>
 </p>
 
+During the program, as changes are made to the data, the storageManager saves the data to the hard disk. In case the user force closes the program, the updated data is saved. The sequence diagram below is an example of a note being archived. 
+<p align="center">
+   <img alt="StorageManagerSaveDuringDiagram" src="diagrams/out/StorageManagerSaveDuring.png"/>
+   <br><em>Figure 16</em>
+</p>
+
+When exiting the program, the storageManager saves all the data to the hard disk, in case the user tampers with the txt files while the program is ongoing. Hence, saving the latest version of the data. Below is the sequence diagram of the final saving procedure.
+<p align="center">
+   <img alt="StorageManagerSaveEndDiagram" src="diagrams/out/StorageManagerSaveEnd.png"/>
+   <br><em>Figure 16</em>
+</p>
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
 
 The InterfaceManger receives the input from the user which is then processed by ParserManager, as well as printing the output. The class diagram is as follow.
