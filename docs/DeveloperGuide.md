@@ -508,9 +508,45 @@ Expected: The CLI application closes with an exit message. List of favourite com
 ### E.4 Check for buses at a bus stop
 
 ### E.5 Search for dining options within a faculty
+1. Searching for dining options within a faculty.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine science`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine sci`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine scienceee` (name of faculty has been misspelled)<br>
+    Expected: Similar to previous.<br>
+
+2. Searching for dining options within faculties with similar names.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine school`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine sch`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine schooool` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br>
 
 ### E.6 Search for specific dining outlet
-
+1. Searching for specific dining outlet.
+    - Test case: `/dineinfo arise & shine`<br>
+    Expected: Dining outlets with the name Arise & Shine will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo arisee & shiine` (name of outlet has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+    
+2. Searching for dining outlets with similar names.
+    - Test case: `/dineinfo cafe`<br>
+    Expected: Dining outlets with names containing 'cafe' will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo caffe` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+    
 ### E.7 Add a favourite command
 
 ### E.8 Delete favourite command from favourite list
