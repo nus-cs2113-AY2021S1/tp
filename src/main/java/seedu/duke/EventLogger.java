@@ -48,7 +48,7 @@ public class EventLogger {
     }
 
     /**
-     * Function resets the log file to a blank state
+     * Function resets the log file to a blank state.
      */
     public static void clearLog() {
         String[] pathName = {"logging.txt"};

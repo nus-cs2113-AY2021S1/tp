@@ -296,7 +296,7 @@ public class Ui {
     }
 
     /**
-     * Command prints this message if there are signs the users have modified the txt files incorrectly
+     * Command prints this message if there are signs the users have modified the txt files incorrectly.
      */
     public void printStorageLoadingErrorMessage() {
         System.out.println("The file does not exist or has been corrupted!");
