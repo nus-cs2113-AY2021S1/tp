@@ -28,7 +28,8 @@ public class ClearStorageCommand extends StorageCommand {
         }
         projectManager.clearProjects();
         Ui.showToUserLn("All data has been cleared!");
-        assert projectManager.isEmpty() && projectManager.getSelectedProjectIndex() == -1 : "Projects was not cleared or selected project != -1";
+        assert projectManager.isEmpty() && projectManager.getSelectedProjectIndex() == -1 
+                : "Projects was not cleared or selected project != -1";
         ScrumLogger.LOGGER.info("Data clear requested and proceeded, all data has been cleared.");
     }
 }
