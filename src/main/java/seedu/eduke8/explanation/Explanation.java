@@ -17,7 +17,7 @@ public class Explanation implements Displayable {
     /**
      * Returns the explanation of the question.
      *
-     * @return explanation description.
+     * @return Description of Explanation.
      */
     @Override
     public String getDescription() {

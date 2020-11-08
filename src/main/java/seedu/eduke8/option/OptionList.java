@@ -36,6 +36,8 @@ public class OptionList implements DisplayableList {
      * Finds option with the specific description in the OptionList object.
      *
      * @param description Description of option to be found.
+     * @return Displayable Option
+     * @throws Eduke8Exception If the option does not exist.
      */
     @Override
     public Displayable find(String description) throws Eduke8Exception {
@@ -51,6 +53,7 @@ public class OptionList implements DisplayableList {
      * Returns the index of the correct option in the OptionList object.
      *
      * @return Index of the correct option in the OptionList object.
+     * @throws Eduke8Exception If there is no correct answer in the list of options.
      */
     public int findCorrectOptionIndex() throws Eduke8Exception {
         for (int i = 0; i < getCount(); i++) {
