@@ -1,12 +1,13 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Personal;
 import seedu.duke.event.Zoom;
 import seedu.duke.exception.DateErrorException;
-import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidExtractCommandException;
 import seedu.duke.exception.TimeErrorException;
+import seedu.duke.exception.InvalidListException;
 import seedu.duke.parser.DateTimeParser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -15,18 +16,18 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ExtractCommand extends Command {
     private int dateCount;
     private int timeCount;
+    private int zoomLinkCount;
     private String textSubject = null;
     private String textBody = null;
     private String eventType;
-    private String zoomLink;
-    private int zoomLinkCount;
-
+    private static Logger logger = EventLogger.getEventLogger();
 
     /**
      * Constructor for parsing email/texts seedu.duke.
@@ -39,17 +40,21 @@ public class ExtractCommand extends Command {
             textSubject = command.split(";", 2)[0];
         }
         eventType = "Personal";
+        logger.fine("Extract command successfully constructed.");
     }
 
     /**
-     * Extracts dates and timings from any block of text and creates Personal Event.
+     * Extracts dates,timings and zoom links from any block of text and creates Personal Events or Zoom events.
      *
      * @param data    object of UserData class containing user's data.
      * @param ui      containing the responses to print.
      * @param storage with the save file path to write to.
+     * @throws InvalidExtractCommandException The textBody or textSubject is null or empty.
+     * @throws InvalidListException the eventlist that the event added to is not valid (should never occur).
      */
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
+    public void execute(UserData data, Ui ui, Storage storage) throws InvalidExtractCommandException,
+            InvalidListException {
         if (textSubject == null) {
             throw new InvalidExtractCommandException("Text subject was not entered correctly!");
         }
@@ -68,6 +73,7 @@ public class ExtractCommand extends Command {
         }
 
         ArrayList<String> zoomLinkList = detectZoomLink(textBody);
+        String zoomLink = null;
         if (zoomLinkList.size() > 0) {
             eventType = "Zoom";
             zoomLink = chooseZoomLink(zoomLinkList, ui);
@@ -76,22 +82,44 @@ public class ExtractCommand extends Command {
         ArrayList<LocalDate> dateList = detectDate(textBody);
         LocalDate finalDate = chooseFinalDate(dateList, ui);
 
+        ArrayList<LocalTime> timeList = detectTime(textBody);
+        LocalTime finalTime = chooseFinalTime(timeList, ui);
+
+        createEvent(data, ui, finalDate, finalTime, zoomLink);
+
+        ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+        storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+        logger.fine("Extract command successfully executed, a new " + eventType + " event was created.");
+    }
+
+    /**
+     * Creates a personal or zoom event based on if there is a zoom link and the detected fields.
+     *
+     * @param data object of UserData class containing user's data.
+     * @param ui containing the responses to print.
+     * @param finalDate final date chosen by user, may be null if no date detected.
+     * @param finalTime final time chosen by user, may be null if no time detected.
+     * @param zoomLink final zoom link chosen by user, may be null if no zoom link detected.
+     * @throws InvalidListException the eventlist that the event added to is not valid (should never occur).
+     */
+    private void createEvent(UserData data, Ui ui, LocalDate finalDate, LocalTime finalTime, String zoomLink)
+            throws InvalidListException {
         if (finalDate == null) {
             if (eventType.equals("Personal")) {
                 ui.printExtractNoDatePersonalEventMessage();
                 data.addToEventList("Personal", new Personal(textSubject));
             } else if (eventType.equals("Zoom")) {
+                assert zoomLink != null : "Zoom link is not detected after choosing";
                 ui.printExtractNoDateZoomEventMessage();
                 data.addToEventList("Zoom", new Zoom(textSubject, zoomLink));
             }
         } else {
-            ArrayList<LocalTime> timeList = detectTime(textBody);
-            LocalTime finalTime = chooseFinalTime(timeList, ui);
             if (finalTime == null) {
                 if (eventType.equals("Personal")) {
                     ui.printExtractNoTimePersonalEventMessage();
                     data.addToEventList("Personal", new Personal(textSubject, finalDate));
                 } else if (eventType.equals("Zoom")) {
+                    assert zoomLink != null : "Zoom link is not detected after choosing";
                     ui.printExtractNoTimeZoomEventMessage();
                     data.addToEventList("Zoom", new Zoom(textSubject, zoomLink));
                 }
@@ -99,14 +127,19 @@ public class ExtractCommand extends Command {
                 if (eventType.equals("Personal")) {
                     data.addToEventList("Personal", new Personal(textSubject, finalDate, finalTime));
                 } else if (eventType.equals("Zoom")) {
+                    assert zoomLink != null : "Zoom link is not detected after choosing";
                     data.addToEventList("Zoom", new Zoom(textSubject, zoomLink, finalDate, finalTime));
                 }
             }
         }
-        ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-        storage.saveFile(storage.getFileLocation(eventType), data, eventType);
     }
 
+    /**
+     * Detects zoom links from the text the user inputs.
+     *
+     * @param textBody A string of the text body that is scanned through for zoom links.
+     * @return An ArrayList of String with valid zoom links.
+     */
     private ArrayList<String> detectZoomLink(String textBody) {
         ArrayList<String> zoomLinkList = new ArrayList<>();
         Pattern urlPattern = Pattern.compile("https?://(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\."
@@ -123,6 +156,13 @@ public class ExtractCommand extends Command {
         return zoomLinkList;
     }
 
+    /**
+     * Allows the user to choose from Zoom Links detected.
+     *
+     * @param zoomLinkList An ArrayList of type String containing zoom links.
+     * @param ui contains responses to print.
+     * @return The zoom link in String chosen by the user.
+     */
     private String chooseZoomLink(ArrayList<String> zoomLinkList, Ui ui) {
         String zoomLink = null;
         if (zoomLinkCount > 1) {
@@ -136,18 +176,28 @@ public class ExtractCommand extends Command {
                     } else {
                         zoomLink = zoomLinkList.get(zoomLinkNumberChosen - 1);
                         zoomLinkChosen = true;
+                        assert zoomLink != null : "zoomLink is null when chosen in extract";
                     }
                 } catch (NumberFormatException e) {
+                    logger.warning("NumberFormatException occured -- "
+                            + "User chose an invalid zoom link number from list.");
                     ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
         } else {
             zoomLink = zoomLinkList.get(0);
+            assert zoomLink != null : "zoomLink is null when chosen in extract";
             ui.printExtractSingleZoomLinkDetectedMessage(zoomLink);
         }
         return zoomLink;
     }
 
+    /**
+     * Takes in the textBody from the user.
+     *
+     * @param ui is used to receive Strings the user input.
+     * @return String containing the full text body entered.
+     */
     private String receiveTextBody(Ui ui) {
         String bodyLine = "";
         String fullTextBody = "";
@@ -175,15 +225,6 @@ public class ExtractCommand extends Command {
             if (time.contains(".")) {
                 time = time.replaceAll("\\.", ":");
             }
-            if (time.contains("PM") || time.contains("AM")) {
-                if (!time.contains(" ")) {
-                    // adds space between AM/PM for it to work with parser later
-                    time = time.substring(0, time.length() - 2) + " " + time.substring(time.length() - 2);
-                }
-                if (!time.contains(":")) {
-                    time = time.substring(0, time.length() - 3) + ":00 " + time.substring(time.length() - 2);
-                }
-            }
             time = time.toLowerCase();
             timeListInString.add(time);
         }
@@ -208,8 +249,7 @@ public class ExtractCommand extends Command {
                 LocalTime localTime = DateTimeParser.timeParser(timeInString.trim());
                 timeList.add(localTime);
             } catch (TimeErrorException e) {
-                // something went wrong with date parsing
-                // Log something?
+                logger.fine(timeInString + " was detected but could not parsed");
             }
         }
 
@@ -236,8 +276,11 @@ public class ExtractCommand extends Command {
                     } else {
                         finalTime = timeList.get(timeNumberChosen - 1);
                         timeChosen = true;
+                        assert finalTime != null : "time is null when chosen in extract";
                     }
                 } catch (NumberFormatException e) {
+                    logger.warning("NumberFormatException occured -- "
+                            + "User chose an invalid time number from list.");
                     ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
@@ -245,6 +288,7 @@ public class ExtractCommand extends Command {
             ui.printExtractNoFieldMessage("timing");
         } else {
             finalTime = timeList.get(0);
+            assert finalTime != null : "time is null when chosen in extract";
             ui.printExtractSingleTimeDetectedMessage(finalTime);
         }
 
@@ -306,8 +350,7 @@ public class ExtractCommand extends Command {
                 LocalDate localDate = DateTimeParser.dateParser(dateInString);
                 dateList.add(localDate);
             } catch (DateErrorException e) {
-                // something went wrong with date parsing
-                // Log something?
+                logger.fine(dateInString + " was detected but could not be parsed");
             }
         }
 
@@ -334,8 +377,10 @@ public class ExtractCommand extends Command {
                     } else {
                         finalDate = dateList.get(dateNumberChosen - 1);
                         dateChosen = true;
+                        assert finalDate != null : "date is null when chosen in extract";
                     }
                 } catch (NumberFormatException e) {
+                    logger.warning("NumberFormatException occured -- User chose an invalid date number from list.");
                     ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
@@ -343,6 +388,7 @@ public class ExtractCommand extends Command {
             ui.printExtractNoFieldMessage("date");
         } else {
             finalDate = dateList.get(0);
+            assert finalDate != null : "date is null when chosen in extract";
             ui.printExtractSingleDateDetectedMessage(finalDate);
         }
 
@@ -439,9 +485,8 @@ public class ExtractCommand extends Command {
     private String detectYear(String date) {
         String year = date.substring(date.length() - 4);
         try {
-            if (Integer.parseInt(year) > 2100 || Integer.parseInt(year) < 1900) {
-                year = getCurrentYear();
-            }
+            // Test if year is a valid integer
+            Integer.parseInt(year);
         } catch (NumberFormatException e) {
             year = getCurrentYear();
         }
