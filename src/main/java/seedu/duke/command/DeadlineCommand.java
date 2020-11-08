@@ -6,6 +6,7 @@ import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidTimePeriodException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
@@ -73,10 +74,11 @@ public class DeadlineCommand extends Command {
             try {
                 index = parsingNumber(commandSplit[0].trim());
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
+                validDateRange(date);
                 assert date != null : "date is not detected after parsing";
             } catch (DateErrorException e) {
                 logger.warning("DateErrorException encountered -- Deadline date is not in the correct format");
-                throw new DateErrorException("Something is wrong with the date!");
+                throw new DateErrorException();
             } catch (NumberFormatException e) {
                 logger.warning("WrongNumberFormatException encountered -- Deadline index is not numerical");
                 throw new WrongNumberFormatException("Index must be numerical format!");
@@ -87,16 +89,18 @@ public class DeadlineCommand extends Command {
             try {
                 index = parsingNumber(commandSplit[0].trim());
                 date = DateTimeParser.dateParser(commandSplit[1].trim());
+                validDateRange(date);
                 assert date != null : "date is not detected after parsing";
                 String timeString = commandSplit[2].trim();
                 time = DateTimeParser.timeParser(timeString);
+                validTimeRange(time);
                 assert time != null : "time is not detected after parsing";
             } catch (DateErrorException e) {
                 logger.warning("DateErrorException encountered -- Deadline date is not in the correct format");
-                throw new DateErrorException("Something is wrong with the date!");
+                throw new DateErrorException();
             } catch (TimeErrorException e) {
                 logger.warning("TimeErrorException encountered -- Deadline time is not in the correct format");
-                throw new TimeErrorException("Something is wrong with the time!");
+                throw new TimeErrorException();
             } catch (NumberFormatException e) {
                 logger.warning("WrongNumberFormatException encountered -- Deadline index is not numerical");
                 throw new WrongNumberFormatException("Index must be numerical format!");
@@ -108,6 +112,36 @@ public class DeadlineCommand extends Command {
 
         }
 
+    }
+
+    /**
+     * Deadline Date should not be before current date.
+     *
+     * @param date specified by user
+     * @throws InvalidTimePeriodException catch when date is before current
+     */
+    private void validDateRange(LocalDate date) throws InvalidTimePeriodException {
+        LocalDate curr = LocalDate.now();
+        if (date.isBefore(curr)) {
+            logger.warning("InvalidTimePeriodException encountered -- Deadline date is"
+                    + " before today");
+            throw new InvalidTimePeriodException("Deadline date should not be before today!");
+        }
+    }
+
+    /**
+     * Deadline Time should not be before current time.
+     *
+     * @param time specified by user
+     * @throws InvalidTimePeriodException catch when date is before current
+     */
+    private void validTimeRange(LocalTime time) throws InvalidTimePeriodException {
+        LocalTime curr = LocalTime.now();
+        if (time.isBefore(curr)) {
+            logger.warning("InvalidTimePeriodException encountered -- Deadline time is"
+                    + " before now");
+            throw new InvalidTimePeriodException("Deadline time should not be before now!");
+        }
     }
 
     /**

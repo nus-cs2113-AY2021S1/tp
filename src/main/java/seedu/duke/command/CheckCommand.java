@@ -141,14 +141,11 @@ public class CheckCommand extends Command {
                 return date;
             default:
                 logger.warning("DateErrorException: More fields than d/m/yyyy were given.");
-                throw new DateErrorException("Too many fields given for the date!" + System.lineSeparator()
-                        + "D/M/YYYY is the longest date format accepted.");
+                throw new DateErrorException();
             }
         } catch (DateTimeParseException e) {
             logger.warning("DateErrorException: Invalid date was given.");
-            throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
-                    + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
-                    + System.lineSeparator() + "Dashes may be used in place of slashes.");
+            throw new DateErrorException();
         }
     }
 
@@ -198,10 +195,7 @@ public class CheckCommand extends Command {
                 }
             } else {
                 logger.warning("TimeErrorException: Time has more than hh:mm am/pm fields.");
-                throw new TimeErrorException("Something is wrong with the time!" + System.lineSeparator()
-                        + "The accepted formats are:" + System.lineSeparator()
-                        + "(12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or " + System.lineSeparator()
-                        + "(24 hour) HH:mm, HHmm, HH.");
+                throw new TimeErrorException();
             }
         } catch (NumberFormatException | TryRegularParserException e) {
             // if hh:mm, HH:mm or other invalid non integers is given

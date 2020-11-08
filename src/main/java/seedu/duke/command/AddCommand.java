@@ -109,6 +109,7 @@ public class AddCommand extends Command {
             throw new EventAddErrorException("Invalid event type to be added! Valid event types are Personal,"
                     + " Timetable or Zoom");
         }
+
         logger.fine("Add Command executed successfully");
     }
 
@@ -140,6 +141,7 @@ public class AddCommand extends Command {
                 assert localTime != null : "time is not detected after parsing";
                 data.addToEventList("Timetable", new Timetable(argumentWords[0].trim(),
                         argumentWords[1].trim(), localDate, localTime));
+
             }
             logger.fine("Timetable event successfully added.");
         } else {
