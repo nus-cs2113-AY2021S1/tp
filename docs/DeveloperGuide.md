@@ -41,7 +41,7 @@ allows us to create various topics with questions, options, hints and explanatio
 
 ####  2.2.1. Design of TopicList
 
-`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 3 interfaces implemented 
+`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 6 interfaces implemented 
 in the code for E-Duke-8. As such, many of the commands that manipulate the `TopicList` make 
 use of the package `java.util.ArrayList`. 
 
