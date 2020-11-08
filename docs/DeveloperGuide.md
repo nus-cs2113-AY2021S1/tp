@@ -138,7 +138,7 @@ The rest of the App consists of 8 components:
 (Jia Ern)
 
 <p align="center">
-  <img src="DG_Images/ui_component.PNG" width="600" alt="Class Diagram of Ui Component"/>
+  <img src="DG_Images/UiComponent.PNG" width="600" alt="Class Diagram of Ui Component"/>
   <br/>Figure <>. Class diagram of Ui component 
 </p>
 
@@ -350,10 +350,17 @@ For instance, the user wants to start a remove the module `CS2113T`, a detailed 
 
 * Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
 
+The following diagram shows the class diagram of the remove module feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveModuleCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Module"/>
+  <br/>Figure <>. Class diagram of remove module
+</p>
+
 The following sequence diagram shows how the remove module feature works:
 
 <p align="center">
-  <img src="DG_Images/removemod_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Module"/>
+  <img src="DG_Images/RemoveModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Module"/>
   <br/>Figure <>. Sequence diagram of remove module  
 </p>
 
@@ -534,10 +541,17 @@ For instance, the user wants to start a remove the chapter `Chapter 1` from the 
 
 * Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
 
+The following diagram shows the class diagram of the remove chapter feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveChapterCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Chapter"/>
+  <br/>Figure <>. Class diagram of remove chapter
+</p>
+
 The following sequence diagram shows how the remove chapter feature works:
 
 <p align="center">
-  <img src="DG_Images/removechap_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Chapter"/>
+  <img src="DG_Images/RemoveChapterCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Chapter"/>
   <br/>Figure <>. Sequence diagram of remove chapter
 </p>
 
@@ -715,10 +729,17 @@ For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` f
 
 * Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
 
+The following diagram shows the class diagram of the remove flashcard feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveCardCommandClassDiagram.png" width="800" alt="Class Diagram of Remove  Flashcard"/>
+  <br/>Figure <>. Class diagram of remove flashcard
+</p>
+
 The following sequence diagram shows how the remove flashcard feature works:
 
 <p align="center">
-  <img src="DG_Images/removecard_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Flashcard"/>
+  <img src="DG_Images/RemoveCardCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Flashcard"/>
   <br/>Figure <>. Sequence diagram of remove flashcard
 </p>
 
@@ -739,10 +760,17 @@ For instance, the user wants to return to the module level from the chapter he i
 
 * Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
 
-The following sequence diagram shows how the return to module level feature works:
+The following diagram shows the class diagram of the return to module feature:
 
 <p align="center">
-  <img src="DG_Images/returnmod_seq_diagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
+  <img src="DG_Images/BackModuleCommandClassDiagram.png" width="600" alt="Class Diagram of Return to Module"/>
+  <br/>Figure <>. Class diagram of return to module
+</p>
+
+The following sequence diagram shows how the return to module feature works:
+
+<p align="center">
+  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
   <br/>Figure <>. Sequence diagram of return to module
 </p>
 
@@ -818,6 +846,13 @@ In addition, it implements the following operations:
 * `ReviseCommand#rateCard()` — gets user input on difficulty of a flashcard.
 * `ReviseCommand#repeatRevision()` — repeats revision for cards which user could not answer. 
 
+The following diagram shows the class diagram of the revise feature:
+
+<p align="center">
+  <img src="DG_Images/ReviseCommandClassDiagram.png" width="800" alt="Class Diagram of Revise"/>
+  <br/>Figure <>. Class diagram of revise
+</p>
+
 For instance, the user wants to start a revision for `Chapter 1` in the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `CS2113T` at the module level.
@@ -832,7 +867,7 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 
 * Step 6: A success message of completing the revision will be shown to the user through `Ui#showToUser()`.
 
-* Step 7: `Scheduler#computeDeckDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
+* Step 7: `Scheduler#computeChapterDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
 
 * Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer if any.
 
@@ -841,23 +876,20 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 The following sequence diagram shows how the revise feature works:
 
 <p align="center">
-  <img src="DG_Images/revise_seq_diagram.png" width="800" alt="Sequence Diagram of Revise"/>
+  <img src="DG_Images/ReviseCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Revise"/>
   <br/>Figure <>. Sequence diagram of revise
 </p>
 
-* Get Chapter:
 <p align="center">
   <img src="DG_Images/ReviseGetChap.png" width="600" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get chapter for revision
 </p>
 
-* Chapter is not due for revision:
 <p align="center">
   <img src="DG_Images/ReviseNotDue.png" width="600" alt="Sequence Diagram of Revise Not Due"/>
   <br/>Figure <>. Sequence diagram of revise for chapter that is not due
 </p>
  
-* Get Cards:
 <p align="center">
   <img src="DG_Images/ReviseGetCards.png" width="600" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get cards for revision
