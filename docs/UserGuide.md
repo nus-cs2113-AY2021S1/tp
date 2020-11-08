@@ -27,11 +27,10 @@ This quick start section provides a step-by-step procedure to get you started wi
 2. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
 3. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
 4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
-
-> :bulb: **Additional information:** Please resize your window to ensure that the separator lines are not wrapped.
-
 5. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
 6. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
+
+> :bulb: **Additional information:** Please resize your window to ensure that the separator lines are not wrapped.
 
 <p align="center"><img src="images/Figure1.png" width="350"></p>
 <p align="center">Figure 1: Welcome screen of Fitr for new users</p>
@@ -198,6 +197,7 @@ Format: `view food`
 Example of an expected outcome is as follows:	
 
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Here is the list of your food:
 Date: 23/10/2020
 [1] Food: Apple
@@ -237,12 +237,14 @@ Format: `view food dd/MM/yyyy`
 For example, if you would like to view your food entries on 31/10/2020, you may key in `view food 31/10/2020`. The expected outcome should be similar to below:
 
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Here is the list of your food:
 Date: 31/10/2020
 [1] Food: Orange
     Burnt Cal: 52
 [2] Food: Sandwich
     Burnt Cal: 78
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.2.5 Viewing exercise entries
@@ -255,6 +257,7 @@ Format: `view exercise`
 
 Example of an expected outcome is as follows:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Here is the list of your exercises:
 Date: 23/10/2020
 [1] Exercise: Step ups
@@ -293,10 +296,12 @@ Format: `view exercise dd/MM/yyyy`
 
 For example, if you would like to view your exercises on 31/10/2020, you may key in `view exercise 31/10/2020`. The expected outcome should be similar to below:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Here is the list of your exercises:
 Date: 31/10/2020
 [1] Exercise: Side Lying Leg lifts
     Burnt Cal: 23
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.2.6 Viewing goal entries
@@ -311,11 +316,13 @@ Format: `view goal`
 
 Example of an expected outcome is as follows:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Here is the list of your goals:
 1. [E][N] run more (created on: 4/11/2020)
 2. [E][N] Burn more than 4000 calories (created on: 4/11/2020)
 3. [E][1.7%] Burn more than 3000 calories (created on: 6/11/2020)
 4. [F][Y] Eat less than 2000 calories (created on: 5/11/2020)
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.2.7 Viewing calorie summary
@@ -328,6 +335,7 @@ Format: `view summary`
 
 Example of an expected outcome is as follows:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Date: 23/10/2020
 Total calorie consumed:
 52
@@ -362,6 +370,7 @@ Format: `view summary dd/MM/yyyy`
 
 For example, if you would like to view your caloric summary on 31/10/2020, you may key in `view summary 31/10/2020`, and you should get an output similar to below:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Date: 31/10/2020
 Total calorie consumed:
 382
@@ -369,6 +378,7 @@ Total calorie burnt:
 74
 Net calorie:
 308
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ## 2.3 Editing Commands
@@ -511,7 +521,9 @@ Format: `delete food dd/MM/yyyy INDEX_OF_FOOD`
 
 For example, you can enter `delete food 31/10/2020 1`, and you should expect to see the following:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 The following food has been deleted for the 31/10/2020: apple
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.4.2 Deleting an exercise entry
@@ -521,7 +533,9 @@ Format: `delete exercise dd/MM/yyyy INDEX_OF_EXERCISE`
 
 For example, you can enter `delete exercise 31/10/2020 1`, and you should expect to see the following:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 The following exercise has been deleted for the 31/10/2020: Triceps dips
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.4.3 Deleting a goal entry
@@ -534,7 +548,9 @@ Format: `delete goal INDEX`
 
 For example, you can enter `delete goal 1`, and you should expect to see the following:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 The following has been deleted from the list of goals: Burn more than 30000 calories
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ## 2.5 Clearing Commands
