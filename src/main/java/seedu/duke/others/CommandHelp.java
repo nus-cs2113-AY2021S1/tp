@@ -29,7 +29,7 @@ public class CommandHelp extends Command {
                 + "\t20. View financial summary: finance summary\n"
                 + "\t21. Import data: import FILENAME /c finance /name HEADER_NAME /value HEADER_NAME\n"
                 + "\t22. Exit the program: bye\n"
-                +" To access our User Guide: https://ay2021s1-cs2113t-f14-1.github.io/tp/UserGuide.html";
+                + " To access our User Guide: https://ay2021s1-cs2113t-f14-1.github.io/tp/UserGuide.html";
     }
 
     @Override
