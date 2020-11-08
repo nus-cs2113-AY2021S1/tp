@@ -16,7 +16,7 @@ title : Development Practices
 <br>
 
 ## <a name="intro">1. Introduction</a>
-Software Development is a complex topic that has many models and frameworks. This section will explain the methodologies and frameworks used in this project by the development team.
+Software Development is a complex topic that has many models and frameworks. This document will explain the methodologies and frameworks used in this project by the development team.
 
 <br>
 
@@ -37,7 +37,7 @@ GitHub was used as the host for version control with Git, and GitHub's inbuilt f
   <br><em>Figure 1</em>
 </p>
 
-[Kanban boards](https://en.wikipedia.org/wiki/Kanban_board) are a feature used under the Projects section of each GitHub repository, and are extremely useful in providing an overview of, and tracking the work at various stages of the project.
+[Kanban boards](https://en.wikipedia.org/wiki/Kanban_board) are a feature used under the Projects section of each GitHub repository, and are extremely useful in providing an overview of the current state of the project.Additionally, it tracked the work at various stages of the project, giving the team a better sense of what was accomplished and what was left to be done. 
 
 <br>
 
@@ -52,14 +52,14 @@ A Program Evaluation Review Technique (PERT) Chart was created prior to the star
 <br>
 
 ## <a name="uml">5. UML Diagrams</a>
-The development team also made use of [UML Diagrams](https://nus-cs2113-ay2021s1.github.io/website/schedule/week8/topics.html#W8-3) to explain the flow of the logic and how the components interacted with eacg other which can be found in the [Developer Guide](DeveloperGuide.md).
+The development team also made use of [UML Diagrams](https://nus-cs2113-ay2021s1.github.io/website/schedule/week8/topics.html#W8-3) to explain the flow of the logic and how the components interacted with each other which can be found in the [Developer Guide](DeveloperGuide.md).
 
 <br>
 
 ## <a name="code">6. Version Control & Code Review</a>
 In a software development project, [version control](https://nus-cs2113-ay2021s1.github.io/website/schedule/week7/topics.html#W7-8) is highly essential in making sure that the history of code development is logged. Bugs and features are common in the process of upgrading and adding features in the project, so it is essential to retrieve an older, working version of the code is important.
 
-Git is the common and obvious choice to do so, and GitHub is highly convenient site to host the version control. The team also makes use of the [Pull Requests (PRs)](https://nus-cs2113-ay2021s1.github.io/website/schedule/week4/topics.html#W4-8) and the PRs were subjected to peer review from the development team in GitHub to protect the main code located in the master branch.
+Git is the common and obvious choice to do so, and GitHub is a highly convenient site to host the version control. The team also makes use of the [Pull Requests (PRs)](https://nus-cs2113-ay2021s1.github.io/website/schedule/week4/topics.html#W4-8) and the PRs were subjected to peer review from the development team in GitHub to protect the main code located in the master branch.
 
 The advantage in conducting the code reviews is that there are more than one person involved in detecting any problems or bugs faced, ensuring higher quality code. They also aid in identifying any code that violates the [coding standard](https://se-education.org/guides/conventions/java/basic.html). Examples of the Version Control & Code Review practice can be found on the [PR page of this repository](https://github.com/AY2021S1-CS2113-T13-1/tp/pulls).
 
