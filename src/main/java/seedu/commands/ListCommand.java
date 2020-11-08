@@ -14,11 +14,11 @@ public class ListCommand extends ReadOnlyCommand {
     public static final String COMMAND_WORD = "list";
 
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
-        "^(?<dateFlag>-d)?"
-                + "(?<priorityFlag>-p)?"
-                + "(?<displayByWeek>-w)?"
-                + "(?<displayByMonth>-m)?"
-                + "(d/(?<date>\\d{2}-\\d{2}-\\d{4}))?$");
+            "^(?<dateFlag>-d)?"
+                    + "(?<priorityFlag>-p)?"
+                    + "(?<displayByWeek>-w)?"
+                    + "(?<displayByMonth>-m)?"
+                    + "(d/(?<date>\\d{2}-\\d{2}-\\d{4}))?$");
 
     private final boolean dateFlag;
     private final boolean priorityFlag;
@@ -26,7 +26,15 @@ public class ListCommand extends ReadOnlyCommand {
     private final boolean displayByMonth;
     private final String date;
 
-
+    /**
+     * Constructor.
+     *
+     * @param dateFlag       True if user wants to sort by date.
+     * @param priorityFlag   True if user wants to sort by priority.
+     * @param displayByWeek  True if user wants to sort by weekly view.
+     * @param displayByMonth True if user wants to sort by monthly view.
+     * @param date           The date which the user wants to check the tasks for.
+     */
     public ListCommand(boolean dateFlag, boolean priorityFlag, boolean displayByWeek,
                        boolean displayByMonth, String date) {
         this.dateFlag = dateFlag;
@@ -36,6 +44,12 @@ public class ListCommand extends ReadOnlyCommand {
         this.date = date;
     }
 
+    /**
+     * Displays what the user is looking for.
+     *
+     * @param tasks TaskMap of all the tasks in the list.
+     * @return CommandResult object.
+     */
     public CommandResult execute(TaskMap tasks) {
         assert !(dateFlag && priorityFlag);
 
