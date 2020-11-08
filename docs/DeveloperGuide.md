@@ -207,8 +207,8 @@ The diagram below illustrates how the regular expression matches an optional arg
 
 ![RegexDiagram](./images/RegexDiagram.png)
 
-- The regular expression that parses these optional arguments is `([\w]+/[^\s]+)`. This regular expression matches 1 or more
-alphanumeric characters (denoted by `[\w]+`), followed by a forward slash, then 1 or more of any character except whitespace (denoted by `[^\s]+`).
+- The regular expression that parses these optional arguments is `([\w]+/[^\s]+)`. This regular expression matches **1 or more
+alphanumeric characters** (denoted by `[\w]+`), followed by a forward slash, then **1 or more non-whitespace character** (denoted by `[^\s]+`).
 - The expression also uses capturing parenthesis to ensure that the parser does not parse the same argument twice.
 
 #### Design considerations
