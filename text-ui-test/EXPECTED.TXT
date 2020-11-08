@@ -250,7 +250,7 @@ command>The details of the tasks, in descending priority, are as follows:
 	Completion: Incomplete
 	Task have yet to be assigned to anyone
 command>Please create a sprint for Project 1 first.
-command>begin 4, end 6, length 4
+command>Please indicate a valid date in this following format: YYYYMMDD.
 command>[Project ID: 1]
 First Sprint: Project will start along with the newly created sprint
 Project period: 2020-10-10 to 2020-11-08
@@ -614,4 +614,4 @@ command>1. Clear all data. You will be prompted to confirm the decision.
    Format: storage /clear
    Example: storage /clear
 command>The command number is not in the list!
-command>bye
+command>See you again...

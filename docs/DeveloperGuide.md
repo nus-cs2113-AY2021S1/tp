@@ -18,13 +18,16 @@
 1. [Implementation](#implementation) <br>
 &nbsp;&nbsp;4.1. [Project](#project)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.1.1. [Create Project](#create-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [Select Project](#select-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [List Project](#list-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.3. [Select Project](#select-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.4. [View Project](#view-project)<br>
 &nbsp;&nbsp;4.2. [Task](#task)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.1. [Add Task](#add-task)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.2. [View Task](#view-task)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.3. [Delete Task](#delete-task)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Change Task Priority](#change-task-priority)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Mark Task as Complete](#mark-task-as-complete)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Mark Task as Complete](#425-mark-task-as-complete)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.6. [View Task by Descending Priority](#426-view-task-by-descending-priority)<br>
 &nbsp;&nbsp;4.3. [Sprint](#sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Create Sprint](#create-sprint)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [View Sprint](#view-sprint)<br>
@@ -39,36 +42,35 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.1. [When the Program Exits](#when-the-program-exits)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.2. [Changes Made to the Data](#changes-made-to-the-data)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.3. [Serialising Objects to JSON](#serialising-objects-to-json)<br>
-5. [Appendix: Requirements]()<br>
-6. [Others](#target-user-profile)<br>
+1. [Others](#target-user-profile)<br>
 
-## Introduction
-### Background
+## 1. Introduction
+### 1.1. Background
 SCRUMptious is a Java-based command line interface application for you to efficiently manage the development of a project. Leveraging the robust SCRUM/Agile framework, it allows you to delegate tasks to your team members and organize project requirements with ease. As a bonus, if you are a keyboard warrior, you can reach peak efficiency using SCRUMptious to manage your projects.
 
-### Purpose
+### 1.2. Purpose
 This guide illustrates the general architecture, and software design of SCRUMptious.
 
-### Scope
+### 1.3. Scope
 This guide is geared towards developers who wish to enhance or create their own version of SCRUMptious. As such, it contains important information regarding the software architecture and design considerations of SCRUMptious.
 
-## Getting Started
-### Prerequisites
+## 2. Getting Started
+### 2.1. Prerequisites
 1. JDK 11.
 1. IntelliJ IDEA.
 
-### Setting Up
+### 2.2. Setting Up
 1. Use a Git tool to fork this repository, or download the .zip file from GitHub and extract the contents into a new folder.
 1. Right-Click on the folder and select “Open folder as Intellij IDEA Community Edition Project”.
 1. Ensure JDK 11 is selected for Gradle, by navigating to Configure > Structure for New Projects > Project Settings > Project > Project SDK.
 
-### Running the Program
+### 2.3. Running the Program
 This program can be run once it is compiled. If you have built its artifacts (.jar) file, you may run it using java -jar <filename.jar> on your command line.
 
-## Design
+## 3. Design
 This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail.
 SCRUMptious is the main class of the application, and handles the initializing and execution of the appropriate classes.
-### Architecture
+### 3.1. Architecture
 ![Figure X: Architecture Diagram](./image/developerguide/architecturediagram.png "Architecture Diagram UML")  
 The **Architecture Diagram** shown above describes the high level association operations of the application. 
 A quick overview of the components is as follows:
@@ -90,14 +92,14 @@ The other packages are described below:
  
 Each of the modules listed above are a collection of constituent classes, with each handling specialized tasks in-line with the SLAP principle.
 
-### UI Component
+### 3.2. UI Component
 ![Figure X: Simplified class diagram for UI Component](./image/developerguide/UI.png "User Interface")  
 
-### Logic Component
+### 3.3. Logic Component
 The `Logic` component contains the `ParserManager` and its subclasses, and the `Command` class and its subclasses, which mainly handles the commands input by the user. 
-![Figure X: Simplified class diagram for Logic Component](./image/developerguide/parserandcommand.png)
+![Figure X: Simplified class diagram for Logic Component](./image/developerguide/parserManagerClassDiagram.png)
 
-When a user types a command, `SCRUMptious`calls the `ParserManager`. The `ParserManager` then parses commands from the user. Subsequently, 
+When a user types a command, `SCRUMptious` calls the `ParserManager`. The `ParserManager` then parses commands from the user. Subsequently, 
 the `ParserManager` passes the commands on to the respective exceptions parsers which inherit from the `ExceptionsParser` interface. 
 The exceptions parsers consist of:  
 &nbsp; &nbsp; &nbsp; &nbsp; 1. `ProjectParser`<br>
@@ -106,32 +108,31 @@ The exceptions parsers consist of:
 &nbsp; &nbsp; &nbsp; &nbsp; 4. `SprintParser`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; 5. `HelpParser`<br>
 
-1. The `ProjectParser` validates the parameters of the command. If the command is valid, it returns the respective `ProjectCommandXYZ` to the `ParserManager`.
+1. The `ProjectParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZProjectCommand` to the `ParserManager`.
 If the command is invalid, the `ProjectParser` returns an appropriate warning message to the user.  
 
-1. The `MemberParser` validates the parameters of the command. If the command is valid, it returns the respective `MemberCommandXYZ` to the `ParserManager`.
+1. The `MemberParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZMemberCommand` to the `ParserManager`.
 If the command is invalid, the `TaskParser` returns an appropriate warning message to the user.  
 
-1. The `TaskParser` validates the parameters of the command. If the command is valid, it returns the respective `TaskCommandXYZ` to the `ParserManager`.
+1. The `TaskParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZTaskCommand` to the `ParserManager`.
 If the command is invalid, the `TaskParser` returns an appropriate warning message to the user.  
 
-1. The `SprintParser` validates the parameters of the command. If the command is valid, it returns the respective `SprintCommandXYZ` to the `ParserManager`.
+1. The `SprintParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZSprintCommand` to the `ParserManager`.
 If the command is invalid, the `SprintParser` returns an appropriate warning message to the user.  
 
-1. The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `HelpParserCommandXYZ` to the `ParserManager`.
+1. The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZHelpParserCommand` to the `ParserManager`.
 If the command is invalid, the `HelpParser` returns an appropriate warning message to the user.
 
+![Figure X: Simplified class diagram for Logic Component](./image/developerguide/commandClassDiagram.png)
+
 The subcommand classes `XYZHelpCommand`, `XYZProjectCommand`, `XYZMemberCommand`, `XYZTaskCommand`, `XYZSprintCommand` all inherit from an abstract `Command` class, 
-which has an execute function.
+which has an execute function and its respective constructors.
 
 The `ParserManager` then returns the command back to `SCRUMptious`, which then executes the command.
 
-![Figure X: Simplified class diagram for Command Component](./image/developerguide/commandClassDiagram.png "Command
- Class Diagram")  
 
-A detailed list of the subcommand classes is described in the diagram above.
 
-### Model Component
+### 3.4. Model Component
 ![Figure X: Simplified class diagram for Model Component](./image/developerguide/modelcomponent.png "Storage Component UML")  
 [Model Package](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/model)  
 The Model package defines all the object classes that are used by SCRUMptious and this section will explain how these objects interact with other components and each other.
@@ -159,13 +160,13 @@ When a `Command` from the [Logic component](#logic-component) is executed, it wi
     * `SprintManager` to facilitate the management of `Sprint` iterations that belongs to the `Project`.
     * `TaskManager` to facilitate the management of `Tasks` that are broken down from the `Project`.
 ##### Members Operations
-* `ProjectMembers` facilitate the management of multiple `Members` instances and is dependant on the `Project` that initialises it.
+* `ProjectMembers` facilitate the management of multiple `Members` instances and is dependent on the `Project` that initialises it.
     * Creation of `Member` adds an entry to `ProjectMembers`.
     * Deletion of `Member` removes an entry from `ProjectMembers`.
 * `Member` contain the Member's user ID.
 
 ##### Task Operations
-* `TaskManager` facilitate the management of multiple `Task` instances and is dependant on the `Project` that initialises it.
+* `TaskManager` facilitate the management of multiple `Task` instances and is dependent on the `Project` that initialises it.
     * Creation of `Task` adds an entry to `TaskManager`.
     * Deletion of `Task` removes an entry from `TaskManager`.
 * `Task` contain necessary information about the task such as:
@@ -188,7 +189,7 @@ When a `Command` from the [Logic component](#logic-component) is executed, it wi
     * Sprint End Date
 * `Sprint` contain one additional ArrayList that are initialise upon its creation:
     * ArrayList of Task IDs to keep track `Tasks` that are allocated to the `Sprint`.
-### Storage Component
+### 3.5. Storage Component
 ![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML") 
 API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/storage/StorageManager.java)  
 The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
@@ -206,11 +207,11 @@ This requires the model classes to implement two methods required for JSON seria
 - `toJson()`: Contains logic required to convert the model object into JSON string.  
 - `fromJson()`: Contains logic required to convert JSON object into its respective model class.    
 
-## Implementation
-### Project
+## 4. Implementation
+### 4.1. Project
 ![Figure X: Project Class Diagram](./image/developerguide/ProjectClassDiagram.png
  "Project Class Diagram")
-#### Create Project
+#### 4.1.1. Create Project
 ![Figure X: Sequence diagram of CreateProjectCommand](./image/developerguide/createProjectSequenceDiagram.png
  "Add Project Sequence Diagram") 
  Link: [CreateProjectCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/project/CreateProjectCommand.java) 
@@ -239,7 +240,7 @@ Implementation:
     `printCreatedProject()` is then called to output the newly created Project in `addProj.toString` via `Ui
     .showToUserLn()`
 
-#### List Project
+#### 4.1.2. List Project
 All the projects added by the user are shown as an output.
 Before execution:
 1. Parse user input `project /list` into Command
@@ -261,7 +262,7 @@ Implementation:
     `proj.getTitle()` and `proj.getDescription()` is then called to output all the projects in `ProjectManager` via
      `Ui.showToUserLn()`.
 
-#### Select Project
+#### 4.1.3. Select Project
 Select the project on which all the commands are executed.
 
 Before execution:
@@ -285,10 +286,10 @@ Implementation:
      `Ui.showToUserLn()`.
 
 
-#### View Project
+#### 4.1.4. View Project
 View the details of the project on which the user is currently working on.
 Before execution:
-1. Parse user input `project /vuew` into Command
+1. Parse user input `project /view` into Command
 
     SCRUMptious will receive user input using the `Ui` class and parse it into `ViewProjectCommand` with `Parser` and
      `ProjectParser`.
@@ -305,54 +306,147 @@ Implementation:
     
     The project is shown to the user by `proj.toString()` via `Ui.showToUserLn()`
 
-### Task
-#### Add Task
+### 4.2. Task
+#### 4.2.1. Add Task
 A task is created following the creation of a project, with a clear title, description 
-and priority of the task.
-Command executed by user `task /add -title <title> -desc <description> -priority <priority>`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the input format is valid and if a project exists, and executes a corresponding AddTaskCommand 
-object.
-* A new task is created, and added to project manager.
+and priority of the task. `TaskManager` stores all the tasks in an array list.
+
+Prerequisites:
+1. There must be at least one project.
+
+Before execution:
+
+1. Parse user input `task /add -title <title> -desc <description> -priority <priority>` into Command
+
+    SCRUMptious will receive user input using the `Ui` class and parse it into CreateTaskCommand using `Parser` and `TaskParser`.
+
+1. Check whether a project exists. If there are no projects, an error is displayed and no tasks are created.   
     
-#### View Task
-#### Delete Task
-An existing task is deleted when the user wishes to remove a completed or unnecessary task. The task
-ID is provided.
-Command executed by user `task /del -id`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the id entered is valid, and executes a corresponding DeleteTaskCommand 
-    object.
-* The corresponding task is deleted from the program.
+1. Execute AddTaskCommand
+
+    SCRUMptious calls `Command.execute()` which will execute the command.    
+
+Implementation:
+
+1. Prepare parameters
+    1. Extracts required fields, to be passed as parameters for task creation.
+    1. Checks the title for duplicates. If duplicate found, an error is displayed and the task is not created.
     
-#### Change Task Priority
-An existing task can have its priority changed when the user wishes to re-rank the urgency of the task. The task
-ID and the new priority are provided.
-Command executed by user `task /priority -priority HIGH -id 1`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the id and priority entered is valid, and executes a corresponding ChangeTaskPriorityCommand 
-    object.
-* The corresponding task will have its priority updated in the program.
+1. `taskManager.addTask()` adds a task using the provided parameters.
+
+1. User output
+    The overridden function `toString()` is called to output the new Task using Ui.showToUserLn().
     
-#### Mark Task as Complete    
-An existing task can be marked as complete when the user completes the task. The task
-ID is provided.
-Command executed by user `task /done -id`
-is passed, the following operations are implemented:
-* UI receives user input and passes it to Parser class.
-* Parser checks if the id entered is valid, and executes a corresponding DoneTaskCommand 
-    object.
-* The corresponding task is marked as done in the program.
+#### 4.2.2. View Task
+![Figure X: Sequence diagram of ViewTaskCommand](./image/developerguide/viewTask.png
+ "Add Project Sequence Diagram") 
+ 
+ The user specifies one or more task IDs to view the corresponding tasks. 
+ 
+ Prerequisites:
+ 1. There must be at least one project.
+ 
+ Before execution:
+ 
+ 1. Parse user input `task /view <taskid> [<taskid>...]` into Command
+ 
+     SCRUMptious will receive user input using the `Ui` class and parse it into ViewTaskCommand using `Parser` and `TaskParser`.
+ 
+ 1. Check whether a project exists. If there are no projects, an error is displayed.   
+     
+ 1. Execute ViewTaskCommand
+ 
+     SCRUMptious calls `Command.execute()` which will execute the command.    
+
+Implementation:
+
+1. Prepare parameters
+    1. Extracts the task IDs, to be passed as integers for task viewing.
+    1. Checks IDs for invalid IDs. Any entry of invalid IDs will show corresponding errors.
     
-### Sprint
+1. Obtain task list
+    1. The task list is obtained from the project.
+
+1. User output
+    The overridden function `toString()` is called to output the requested Tasks in the task list using Ui.showToUserLn().
+    
+#### 4.2.3. Delete Task
+
+Users may choose to delete tasks that are deemed unnecessary or incorrect.
+The task IDs are provided.
+
+Prerequisites:
+1. There must be at least one project.
+1. There must be at least one task for the command to delete.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute DeleteTaskCommand
+    1. Check all IDs are valid. Invalid IDs will display corresponding errors.
+    1. On TaskList
+        1. Delete the task from the task list
+    1. On sprints
+        1. De-link the task from all sprints.
+    1. UI output to user
+          
+    
+#### 4.2.4. Change Task Priority
+
+A user can change the priority of an existing task after changes to project requirements.
+The task ID and new priority are provided.
+
+Prerequisites:
+1. There must be at least one project.
+1. There must be at least one task for the command to edit its priority.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute ChangeTaskPriorityCommand
+    1. Check the new priority is valid. If not valid, an error will be displayed.
+    1. Check all IDs are valid. Invalid IDs will display corresponding errors.
+    1. The corresponding task will be updated its priority
+    1. UI output to user
+
+#### 4.2.5. Mark Task as Complete    
+The user can mark tasks as complete when the team completes the task. The task
+IDs are provided.
+
+Prerequisites:
+1. There must be at least one project.
+1. There must be at least one task for the command to be marked complete.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute DoneTaskCommand
+    1. Check all IDs are valid. Invalid IDs will display corresponding errors.
+    1. The corresponding tasks will be marked as complete.
+    1. UI output to user
+
+#### 4.2.6. View Task by Descending Priority
+A user may choose to view all tasks in order of priority associated with the project. No parameters are supplied.
+
+Prerequisites:
+1. There must be at least one project.
+
+Implementation:
+
+1. UI receives user input
+1. Parser parse user input
+1. Execute PriorityViewCommand
+    1. UI output to user
+    
+### 4.3. Sprint
 In SCRUMptious, a Project will be broken down into smaller iterations known as Sprints. The Sprint will contain information about the Tasks allocated for that iteration and Members that are assigned to complete the Tasks.
 
 The following section will explain how the management of Sprints is implemented in the program.
 
-#### Create Sprint
+#### 4.3.1. Create Sprint
 
 ![Figure X: Sequence diagram of CreateSprintCommand](./image/developerguide/createSprint.png "Create Sprint Sequence Diagram")  
   
@@ -410,7 +504,7 @@ Usage scenario:
     `printCreatedSprint()` is then called to output the newly created Sprint in `createdSprint.toString()` via `Ui
     .showToUserLn()`
 
-#### View Sprint
+#### 4.3.2. View Sprint
 
 Link: [ViewSprintCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/ViewSprintCommand.java) 
 
@@ -426,7 +520,7 @@ Implementation:
     1. Get Sprint from SprintList
     1. UI output to user
 
-#### Add Task to Sprint
+#### 4.3.3. Add Task to Sprint
 
 Link: [AddSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/AddSprintTaskCommand.java) 
 
@@ -447,7 +541,7 @@ Implementation:
     1. UI output to user
 
 
-#### Remove Task from Sprint
+#### 4.3.4. Remove Task from Sprint
 
 Link: [RemoveSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/RemoveSprintTaskCommand.java) 
 
@@ -467,7 +561,7 @@ Implementation:
         1. Remove Sprint Number from sprintAllocatedTo
     1. UI output to user
 
-#### Allocate Sprint Tasks to Members   
+#### 4.3.5. Allocate Sprint Tasks to Members   
 
 Link: [AllocateSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/AllocateSprintTaskCommand.java) 
  
@@ -487,18 +581,18 @@ Implementation:
         1. Add Task ID into allocatedTaskIds
 
 
-### Storage
+### 4.4. Storage
 To make the data persistent and portable, JSON has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium which stores the program. JSON is also **human-readable** which allows users to directly modify the data file easily. 
 This can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 
-#### Location  
+#### 4.4.1. Location  
 ![Figure X: Running the Jar](image/developerguide/storage_save_directory.png "Running the Jar")  
 _Figure X: Running the Jar or in IDE_
 
 As shown in the above diagram, the program will save the data as _"data.json"_. The data file is saved in the _“data/”_ folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the _“data/”_ folder will be in the root of the project folder.  
 When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the program.  
 
-#### Loading Data
+#### 4.4.2. Loading Data
 ![Figure X: Loading Data](image/developerguide/storage_load.png "Loading Data")  
 
 The program will only load the data file in the persistent storage during the initialisation process of the program. With reference to the sequence diagram above, the flow of the logic is as follows:  
@@ -515,7 +609,7 @@ The program will fail to load the data file if **any of the following conditions
 * Conversion error due to missing properties.
 * Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
 
-#### Converting and Mapping of JSON to Objects
+#### 4.4.2.1. Converting and Mapping of JSON to Objects
 Due to the limitations of the library, parsing of the JSON string only converts it into either JsonObject or JsonArray objects which requires additional operations to map the data back to the respective model classes.  
   
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `fromJson()`, which is used to implement the logic for **converting and mapping of JSON to objects of their respective type**.  
@@ -534,24 +628,24 @@ As explained in [Storage Component](#storage-component), each model class except
 * `Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
  the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
 
-#### Saving Data
+#### 4.4.3. Saving Data
 ![Figure X: Saving Data](image/developerguide/storage_save.png "Saving Data")  
 
 Data will be saved under two scenarios: 
 1. When the program exits. 
 1. Changes made to the data. 
 
-##### When the Program Exits
+##### 4.4.3.1. When the Program Exits
 `Scrumptious` will call `destroy()` which calls `save()` before it returns.
 
-##### Changes Made to the Data
+##### 4.4.3.2. Changes Made to the Data
 Changes made to the data during the runtime of the program can only be made by executing a command.
    
 As shown in the diagram above, each command class inherits the `shouldSave` property from `Command` class. `shouldSave` is a boolean variable and is initialised inside the constructor. `shouldSave` will be set to `true` if the command results in a change of data (e.g. adding a task, creating a sprint etc.), otherwise it is set to `false` (e.g. viewing projects, sprints etc.).
 
 After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` is set to `true`.
 
-##### Serialising Objects to JSON
+##### 4.4.3.3. Serialising Objects to JSON
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `toJson()`, which is used to implement the logic for **serialising objects into JSON string**.  
 When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize()` of the _**json.simple**_, passing in the `ProjectManager` and `FileWriter` (points to the data file) object as the parameters. The library will automatically serialise the objects and sub-objects into JSON string depending on the type of the objects:
  1. **Primitive and Standard Types (e.g. `int`, `String`, `Collection`)**: The library can directly serialise these types into JSON string.
@@ -609,4 +703,3 @@ The terms listed in this glossary are in alphabetical order.
 1. Open a new terminal window and navigate to the same directory where the SCRUMptious.jar is located.
 1. Enter the command `java -jar SCRUMptious.jar` into the terminal window to launch the application. The application
  should now be running.
-1. 
