@@ -1,5 +1,3 @@
-//@@author fchensan
-
 package seedu.zoomaster.command.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -13,6 +11,7 @@ import seedu.zoomaster.slot.Timetable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//@@author fchensan
 public class EditBookmarkCommand extends Command {
     public static final String EDIT_KW = "edit";
 
@@ -57,10 +56,16 @@ public class EditBookmarkCommand extends Command {
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         Bookmark bookmark = null;
+
+        if (bookmarks.getSize() == 0) {
+            throw new ZoomasterException(ZoomasterExceptionType.EMPTY_BOOKMARK_LIST);
+        }
+
         try {
             bookmark = bookmarks.getBookmark(bookmarkIndex);
-        } catch (ZoomasterException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS,
+                Integer.toString(bookmarks.getSize()));
         }
         String message;
 

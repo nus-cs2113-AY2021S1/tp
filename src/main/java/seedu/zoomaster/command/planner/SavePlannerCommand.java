@@ -1,5 +1,3 @@
-//@@author jusufnathanael
-
 package seedu.zoomaster.command.planner;
 
 import com.google.gson.Gson;
@@ -10,6 +8,7 @@ import seedu.zoomaster.Zoomaster;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.Command;
 import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
 import seedu.zoomaster.slot.Timetable;
@@ -21,11 +20,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//@@author jusufnathanael
 public class SavePlannerCommand extends Command {
 
     public static final String SAVE_KW = "save";
 
-    public SavePlannerCommand() throws ZoomasterException {
+    public SavePlannerCommand(String command) throws ZoomasterException {
+        if (command.compareTo(SAVE_KW) != 0) {
+            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
+        }
     }
 
     /**
@@ -34,7 +37,7 @@ public class SavePlannerCommand extends Command {
      * @param bookmarks The list of bookmarks
      * @param planner The timetable
      * @param ui The user interface
-     * @throws ZoomasterException Some exception // ADD MORE COMMENTS
+     * @throws ZoomasterException Some exceptions
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable planner, Ui ui) throws ZoomasterException {
@@ -50,6 +53,13 @@ public class SavePlannerCommand extends Command {
         ui.print("Planner saved." + System.lineSeparator());
     }
 
+    /**
+     * Writes the newly added meeting to each individual timetables.
+     *
+     * @param planner The planner timetable
+     * @param timetable The individual timetable
+     * @throws ZoomasterException Some exceptions
+     */
     void writeToFile(Timetable planner, Timetable timetable) throws ZoomasterException {
         for (Module m : planner.getFullModuleList()) {
             if (!m.getModuleCode().equals("EMPTY")) {

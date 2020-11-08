@@ -1,5 +1,3 @@
-//@@author jusufnathanael
-
 package seedu.zoomaster.command.planner;
 
 import seedu.zoomaster.Storage;
@@ -8,6 +6,7 @@ import seedu.zoomaster.Zoomaster;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.Command;
 import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Day;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
@@ -17,11 +16,15 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//@@author jusufnathanael
 public class LoadPlannerCommand extends Command {
     public static final String LOAD_KW = "load";
     private Storage<Timetable> storage;
 
-    public LoadPlannerCommand() throws ZoomasterException {
+    public LoadPlannerCommand(String command) throws ZoomasterException {
+        if (command.compareTo(LOAD_KW) != 0) {
+            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
+        }
     }
 
     /**
@@ -45,6 +48,13 @@ public class LoadPlannerCommand extends Command {
         }
     }
 
+
+    /**
+     * Initialises the empty slots for the empty timetable.
+     *
+     * @param timetable The timetable that is initialised with the empty slots
+     * @return The module "EMPTY" that contains all the empty slots
+     */
     public Module initialiseEmptySlots(Timetable timetable) {
         ArrayList<ArrayList<Integer>> array = new ArrayList<>(7);
         for (int i = 0; i < 7; i++) {
@@ -59,6 +69,14 @@ public class LoadPlannerCommand extends Command {
         return module;
     }
 
+    /**
+     * Marks a 5-minutes slot as full.
+     *
+     * @param array An array that represents 5-minutes slots.
+     * @param start The start time of the slot.
+     * @param end The end time of the slot.
+     * @param day The day of the slot.
+     */
     private static void markAsFull(ArrayList<ArrayList<Integer>> array, int start, int end, String day) {
         int count = 0;
         for (Day d: Day.values()) {
@@ -71,6 +89,12 @@ public class LoadPlannerCommand extends Command {
         }
     }
 
+    /**
+     * Generates the empty slots and add it to the "EMPTY" module.
+     *
+     * @param array An array that represents 5-minutes slots.
+     * @param module The "EMPTY" module.
+     */
     private static void generateEmptySlots(ArrayList<ArrayList<Integer>> array, Module module) {
         int count = 0;
         for (Day d: Day.values()) {

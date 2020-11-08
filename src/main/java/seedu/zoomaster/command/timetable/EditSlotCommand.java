@@ -1,5 +1,3 @@
-//@@author fchensan
-
 package seedu.zoomaster.command.timetable;
 
 import seedu.zoomaster.Ui;
@@ -15,7 +13,7 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//@@author
+//@@author fchensan
 public class EditSlotCommand extends Command {
     public static final String EDIT_KW = "edit";
 

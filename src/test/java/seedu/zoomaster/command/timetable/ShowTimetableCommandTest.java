@@ -9,6 +9,7 @@ import seedu.zoomaster.slot.Timetable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author
 public class ShowTimetableCommandTest {
     static Timetable time1 = new Timetable();
 

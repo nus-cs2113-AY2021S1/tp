@@ -1,5 +1,3 @@
-//@@author jusufnathanael
-
 package seedu.zoomaster.command.planner;
 
 import org.junit.jupiter.api.Test;
@@ -11,10 +9,10 @@ import seedu.zoomaster.slot.Module;
 
 import java.time.LocalTime;
 
-
+//@@author jusufnathanael
 class LoadPlannerCommandTest {
 
-    LoadPlannerCommand command = new LoadPlannerCommand();
+    LoadPlannerCommand command = new LoadPlannerCommand("load");
 
     LoadPlannerCommandTest() throws ZoomasterException {
     }

@@ -1,5 +1,3 @@
-//@@author Speedweener
-
 package seedu.zoomaster.command.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -9,6 +7,7 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
+//@@author Speedweener
 public class FindBookmarkCommand extends Command {
     public static final String FIND_KW = "find";
     private final String description;

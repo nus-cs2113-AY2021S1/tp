@@ -3,6 +3,7 @@ package seedu.zoomaster.exception;
 /**
  * Enumeration of all the types of DukeException.
  */
+//@@author
 public enum ZoomasterExceptionType {
     UNKNOWN_INPUT,
     UNKNOWN_HELP_COMMAND,
@@ -29,7 +30,7 @@ public enum ZoomasterExceptionType {
     CONNECTION_ERROR,
     JSON_PARSE_ERROR,
     EMPTY_FOLDER,
+    INVALID_SETTING_INPUT,
     INVALID_SETTING_OPTION,
-    INVALID_SETTING_NUMBER,
     INVALID_SETTING_FIELD
 }

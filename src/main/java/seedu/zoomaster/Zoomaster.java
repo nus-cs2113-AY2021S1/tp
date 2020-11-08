@@ -3,7 +3,6 @@ package seedu.zoomaster;
 import com.google.gson.JsonParseException;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.ChangeModeCommand;
-import seedu.zoomaster.command.Mode;
 import seedu.zoomaster.settings.SettingsVariable;
 import seedu.zoomaster.settings.UserSettings;
 import seedu.zoomaster.slot.Module;
