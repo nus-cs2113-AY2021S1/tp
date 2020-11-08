@@ -472,8 +472,8 @@ This portion contains instructions on how to perform manual testing.
 
 3. Dealing with corrupted data
     - Prerequisite: `FavList.txt` exists
-    - Test case: Corrupted data line has more than 1 delimiter "`|`"<br>
-        Step 1. add lines with more than 1 delimiter, "`|`" to the `FavList.txt` file.<br>
+    - Test case: Corrupted data line has no delimiter "`|`"<br>
+        Step 1. add lines with no delimiter, "`|`" to the `FavList.txt` file.<br>
         Step 2. Run the jar file<br>
         Expected output: Message detailing corrupted data detailed at start and corrupted data removed from FavList.
 
