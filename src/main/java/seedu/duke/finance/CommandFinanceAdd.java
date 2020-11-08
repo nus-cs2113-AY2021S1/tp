@@ -36,7 +36,8 @@ public class CommandFinanceAdd extends Command {
         }
         try {
             for (int i = 0; i < contents[length - 1].length(); i++) {
-                if (!Character.isDigit(contents[length - 1].charAt(i)) && contents[length - 1].charAt(i) != '.') {
+                if (!Character.isDigit(contents[length - 1].charAt(i)) && contents[length - 1].charAt(i) != '.'
+                    && contents[length - 1].charAt(i) != '-') {
                     logger.warning("The number in the end is missing...\n");
                     throw new DukeNotNumberException();
                 }
