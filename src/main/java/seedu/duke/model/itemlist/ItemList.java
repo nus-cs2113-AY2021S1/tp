@@ -19,8 +19,6 @@ import java.util.Collections;
 public abstract class ItemList<T extends Item> {
 
     protected ArrayList<T> items;
-    //protected ArrayList<Link> links;
-
 
     /**
      * Constructs an item list with the given items.
