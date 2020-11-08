@@ -316,12 +316,14 @@ The JSON format was chosen as it is a well-known standard which is easy to parse
 #### 2.4.1. Design of TopicsStorage
 
 Given data for the topics and questions is loaded automatically from JSON files in the data folder. This is mainly facilitated through the `TopicsStorage` 
-class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects. The class diagram below shows this relationship.
+class which handles accessing the file as well as converting from JSON into `Topic`, `Question` and `Option` objects.
+The class diagram below shows this relationship.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
 The format of the JSON file is important as it is loaded in a particular way. This format has been designed as an array 
-of topics that hold the different properties for questions, options, hints and explanations. An example is as such:
+of topics that hold the different properties for questions, options, hints and explanations.
+An example is as such:
 
 ```json
 [
@@ -363,23 +365,26 @@ and there must be one and only one option chosen as the correct answer by specif
 
 #### 2.4.2. Implementation of TopicsStorage
 
-When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load` method which will return an `ArrayList` of  `Topic` objects.
+When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load()` method which will return an `ArrayList` of  `Topic` objects.
 The following sequence diagram shows how the load operation works, focusing on how options are marked as correct:
 
 ![TopicsStorage::load Sequence Diagram](./images/TopicsStorage_load.png)
 
 As there is a high level of nesting in the JSON file, many methods are called in loops to parse each section and return them as objects which are then used to build the next object at a higher level.
 In the diagram above, the `Option` objects within each `Topic` has to be constructed with a description from the file.
-They are then marked as the correct answer with `markAsCorrectAnswer` if the value of the key `correct` was `true` in the given data.
+They are then marked as the correct answer with `markAsCorrectAnswer()` if the value of the key `correct` was `true` in the given data.
 More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
 
 #### 2.4.3. Design of UserStorage
 
-In order to save and load attributes specific to each user, such as the questions attempted, answered correctly or bookmarked, a `UserStorage` class is used to selectively store these attributes into a JSON file, `user.json`. This class requires access to the main `TopicList` and `BookmarkList` from the Model component in order to extract these attributes. The class diagram below shows this relationship.
+In order to save and load attributes specific to each user, such as the questions attempted, answered correctly or bookmarked, a `UserStorage` class is used to selectively store these attributes into a JSON file, `user.json`.
+This class requires access to the main `TopicList` and `BookmarkList` from the Model component in order to extract these attributes. The class diagram below shows this relationship.
 
 ![UserStorage Class Diagram](./images/UserStorage.png)
 
-The attributes will be saved in the JSON file tied to each question in a topic and is identified by its description. A question's presence in the file represents that it has been attempted before while other attributes are stored as boolean values. An example is given below.
+The attributes will be saved in the JSON file tied to each question in a topic and is identified by its description.
+A question's presence in the file represents that it has been attempted before while other attributes are stored as boolean values.
+An example is given below.
 
 ```json
 [
@@ -421,17 +426,21 @@ program will continue to run.
 #### 2.4.4. Implementation of UserStorage
 
 Unlike `TopicsStorage` which constructs objects, `UserStorage` accesses existing objects in order to extract their attributes.
-The following sequence diagram shows an example of getting the topic description from a `Topic` object within the `TopicList`.
+The following sequence diagram shows an example of getting the topic description from a `Topic` object within the `TopicList` in order to save attributes for that particular `Topic` object.
 
 ![UserStorage::save Sequence Diagram](./images/UserStorage_save.png)
 
 It can be noted here that the `Topic` object is the same one constructed by `TopicsStorage` and continues to persist until the program shuts down.
+
 A similar method is used to extract the attributes from each `Question` object inside the `Topic` object.
-For example, the `wasAnsweredCorrectly` method is called on the `Question` object to check if it was answered
+For example, the `wasAnsweredCorrectly()` method is called on the `Question` object to check if it was answered
 correctly by the user or not.
 This value is then stored as an attribute of the question in the JSON file.
-Loading back the user data is done in reverse. If the boolean value of the key `correct` is true for a
-particular question, then the `markAsAnsweredCorrectly` method is called on the corresponding `Question` object.
+
+Loading back the user data is done in reverse. If the boolean value of the key `correct` is `true` for a
+particular question, then the `markAsAnsweredCorrectly()` method is called on the corresponding `Question` object. This is depicted below in the sequence diagram.
+
+![UserStorage::load Sequence Diagram](./images/UserStorage_load.png)
 
 ### 2.5. UI Component
 
