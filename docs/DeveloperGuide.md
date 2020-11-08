@@ -294,7 +294,7 @@ For instance, the user wants to edit the module `CS2113`, a detailed description
 The following sequence diagram shows how the edit module name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditModuleSequenceDiagram.png" width="700" alt="Edit Module Sequence Diagram"/>
+  <img src="DG_Images/EditModuleSequenceDiagram.png" width="800" alt="Edit Module Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit module name feature
 </p>
 
@@ -479,7 +479,7 @@ For instance, the user wants to edit the chapter `chap 1` from the module `CS211
 The following sequence diagram shows how the edit chapter name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditChapterSequenceDiagram.png" width="700" alt="Edit Chapter Sequence Diagram"/>
+  <img src="DG_Images/EditChapterSequenceDiagram.png" width="800" alt="Edit Chapter Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit chapter name feature  
 </p>
 
@@ -632,7 +632,7 @@ For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the ch
 The following sequence diagram shows how the edit flashcard content feature works:
 
 <p align="center">
-  <img src="DG_Images/EditCardSequenceDiagram.png" width="700" alt="Edit Card Sequence Diagram"/>
+  <img src="DG_Images/EditCardSequenceDiagram.png" width="800" alt="Edit Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit flashcard content feature  
 </p>
 
