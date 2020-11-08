@@ -1,4 +1,4 @@
-# YILUN NI - Project Portfolio Page for Quotesify
+# NI YILUN - Project Portfolio Page for Quotesify
 
 ## Overview
 I am part of a team of 5 software engineering students, and we were tasked to design and implement a
