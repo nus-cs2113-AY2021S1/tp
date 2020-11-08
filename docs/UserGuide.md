@@ -1,7 +1,7 @@
 # User Guide
 
 ## Table of content
-### [1. Introduction](#1-Introduction1)
+### [1. Introduction](#1-Introduction-1)
 ### [2. Quick start](#2-Quick-start1)
 ### [3. Features](#3-Features1)
 #### [3.1 Before the order](#31-Before-the-order1)
