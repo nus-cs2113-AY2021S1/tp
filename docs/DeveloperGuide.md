@@ -180,6 +180,20 @@ The Model,
 ### 3.4. Storage Component 
 (Lucas)
 
+The Storage component consists of the `Storage`, `StorageWrite`, `StorageParser` and `StorageLoad` classes.
+
+<p align="center">
+  <img src="DG_Images/storage.png" width="600" alt="Storage Class Diagram"/>
+  <br/>Figure <>. Class diagram of Storage component  
+</p>
+
+The Storage component
+* can save the User's database of Modules, Chapters and Cards as directories, text files and text within the data directory respectively.
+* Can parse the contents of the database stored in the data directory back into the software to load the User's database back into KAJI as Modules, Chapters and Cards
+* can save the due dates for a Chapter into a text file within the dues directory located in the Module directory that contains it 
+* can parse the due dates into LocalDate objects from the dues directory so that KAJI can load utilise them.
+* can save the exclusions from the scheduling feature into a text file "exclusions.txt" within the "admin" directory.
+* can parse the exclusions into an ArrayList<String> so that KAJI can determine which chapters are excluded.
 
 
 ### 3.5. Common Classes
@@ -499,8 +513,34 @@ The following sequence diagram shows how the remove chapter feature works:
 #### 4.2.5. Access Chapter Level Feature
 (Lucas)
 
+***Implementation***
+
+If a user wishes to go to the Chapter Level from the Module Level by accessing a Chapter within the Module he is currently in, he can do so with the Access Chapter Level Feature.
+
+To execute this feature, the following class was created:
+* `GoChapterCommand` - extends the abstract class `GoCommand`, brings the User down to the Chapter level if the target Chapter exists.
+
+To support the Access Chapter Level Feature, `GoChapterCommand` implements the following operations:
+* `GoChapterCommand#goChapter()` - Parses through the Module that the User is currently on to search for the specified Chapter. If the Chapter is found but not empty, there will be no output message, while if the found Chapter is empty, a message prompting the user to add Cards to the Chapter will be returned.
+* `GoChapterCommand#execute()` - Calls `GoChapterCommand#goChapter()` and prints the output message returned if there is one.
+
+The following sequence Diagrams illustrates how the Access Chapter Level Feature is executed:
+
+
 #### 4.2.6. Return to Admin Level Feature
 (Lucas)
+
+***Implementation***
+
+If a user has completed the tasks he has on the Module Level and wish to edit Modules from the Admin level, he can do so with the return to Admin Level Feature.
+
+To execute this feature, the following class was created:
+* `BackAdminCommand` - Extends the abstract class `BackCommand`, returns the User to the Admin Level
+
+To support the Return to Admin Level Feature, `BackAdminCommand` implements the following operation:
+* `BackAdminCommand#execute()` - Calls `Access#setModuleLevel()` to set the `Access` Object's `level` attribute's value to `adminLevel` if its current value is the `moduleLevel`
+
+The following sequence Diagrams illustrates how the Return to Admin Level Feature is executed:
 
 #### 4.2.7. Example of the Module Feature
 
@@ -881,37 +921,55 @@ The following sequence Diagrams illustrates how the Preview Upcoming Dues Proces
 
 ***Implementation***
 
-KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of Chapters that KAJI will ignore as it parses for Chapters that are due in the `due` and `preview` commands. This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
+***Implementation***
 
-To support this feature, the following command was added to KAJI:
-* `exclude` - A command that excludes more or less `Chapters` from the Exclusion List.
-A corresponding Class `ExecuteCommand` was also created to carry out the functions related to the command.
+KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of `Chapter`s that KAJI will ignore as it parses for `Chapter`s that are due in the `due` and `preview` commands. 
 
-The `exclude` command can be called with either `exclude more` or `exclude less`, which adds to or removes from the Exclusion List respectively. Furthermore, both modes can be used to edit the Exclusion List a single `Chapter` at a time or every `Chapter` belonging to a `Module` at a time as a secondary option.
+This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
 
-To determine if the Exclusion List is going to be modified by a single `Chapter` or by an entire `Module`, `ExcludeCommand` implements an operation each for `exclude more` and `exclude less`.
-* For `exclude more`:
-    * `ExcludeCommand#addingToExclusion()` - calls `ExcludeCommand#addChapterToExclusion()` if user inputs "chapter", `ExcludeCommand#addModuleToExclusion()` if user inputs "module"
-* For `exclude less`:
-    * `ExcludeCommand#addingToExclusion()` - calls `ExcludeCommand#removeChapterFromExclusion()` if user inputs "chapter", `ExcludeCommand#removeModuleFromExclusion()` if user inputs "module"
+
+To support this feature, the following commands were added to KAJI:
+* `exclude` - A command that adds `Chapter`s to the Exclusion List.
+* `include` - A command that removes `Chapter`s from the Exclusion List.
+Two corresponding Classes `ExecuteCommand` and `IncludeCommand` were also created to carry out the functions related to the commands.
 
 To load and store the Exclusion List, a Exclusion File is created and maintained using these two methods from the `Storage` Class:
 * `Storage#loadExclusionFile()` - Reads the contents of the Exclusion File, parses it into the Exclusion List, stored as a `ArrayList<String>`, and returns it.
 * `Storage#updateExclusionFile()` - Writes the `ArrayList<String>` Exclusion List into the Exclusion File.
 
-The `ArrayList<String>` Exclusion List is modified using four pairs of commands in both `ExcludeCommand` and `Storage`:
+The `exclude` command can be called with either `exclude chapter` or `exclude module`, which adds a `Chapter` or every `Chapter` from a `Module` to the Exclusion List respectively. 
 
+To determine if a single `chapter` or an entire `module` is to be added to the Exclusion List, `excludecommand` implements the operation `excludecommand#attemptToExclude()`.
+* `excludecommand#attemptToExclude()` - responds to various forms of `exclude` command input as follows:
+    * calls `excludecommand#addChapterToExclusion()` if `exclude chapter` is entered
+    * calls `excludecommand#addModuleToExclusion()` if `exclude module` is entered
+    * or throws an exception if the specified command argument is invalid.
+
+Items are added into the `ArrayList<String>` Exclusion List using two pairs of commands in both `ExcludeCommand` and
+ `Storage`:
 * Excluding a Chapter from Scheduling
     * `ExcludeCommand#addChapterToExclusion()` - gets the name of the `Chapter` to be excluded and the name of the `Module` it belongs to, and calls `Storage#appendChapterToExclusionFile()`
     * `Storage#appendChapterToExclusionFile()` - appends the target `Chapter` to the Exclusion File if the target `Chapter` exists and is not already in the Exclusion File
 * Excluding a Module from Scheduling
     * `ExcludeCommand#addModuleToExclusion()` - gets the name of the `Module` to be excluded, and calls `Storage#appendModuleToExclusionFile()`
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
+
+<br>
+On the other hand, the `include` command can be called with `include chapter` or `include module` which removes a `Chapter` or every `Chapter` from a `Module` from the Exclusion List.
+
+Similarly, to determine if a single `chapter` or an entire `module` is to be removed from the Exclusion List, `includecommand` implements the operation `includecommand#attemptToInclude()`.
+* `includecommand#attemptToInclude()`. - responds to various forms of `exclude` command input as follows:
+    * calls `includecommand#addChapterToExclusion()` if `exclude chapter` is entered
+    * calls `includecommand#addModuleToExclusion()` if `exclude module` is entered
+    * or throws an exception if the specified command argument is invalid.
+    
+Items are removed from the `ArrayList<String>` Exclusion List using two pairs of commands in both `IncludeCommand
+` and `Storage`:
 * Including a Chapter from Scheduling
-    * `ExcludeCommand#removeChapterFromExclusion()` - gets the name of the `Chapter` to be included and the name of the `Module` it belongs to, and calls `Storage#removeChapterFromExclusionFile()`
+    * `IncludeCommand#removeChapterFromExclusion()` - gets the name of the `Chapter` to be included and the name of the `Module` it belongs to, and calls `Storage#removeChapterFromExclusionFile()`
     * `Storage#removeChapterFromExclusionFile()` - removes the target `Chapter` from the Exclusion File if the target `Chapter` is in the Exclusion File
 * Including a Module from Scheduling
-    * `ExcludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
+    * `IncludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
     * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
 
 The following sequence Diagrams illustrates how the Exclusion Process is executed:
