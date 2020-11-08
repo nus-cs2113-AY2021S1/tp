@@ -58,6 +58,7 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     [#127](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/127)
     [#126](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/126))
 * **Review/mentoring contributions:** Pull requests: 
+[#151](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/151)
 [#146](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/146)
 [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124)
  [#86](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/86)
