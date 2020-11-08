@@ -1,3 +1,6 @@
+//@@author GuoAi-reused
+//Reused from https://github.com/GuoAi/ip with minor modifications
+
 package seedu.duke.model.item;
 
 /**
@@ -28,6 +31,7 @@ public class Task extends Item implements Comparable<Task> {
         super(description, isDone, priority);
     }
 
+    // @@author iamchenjiajun
     /**
      * Retrieves the priority of a task.
      *
@@ -37,6 +41,7 @@ public class Task extends Item implements Comparable<Task> {
         return priority;
     }
 
+    // @@author GuoAi
     /**
      * Retrieves the category of a task.
      *
@@ -46,6 +51,7 @@ public class Task extends Item implements Comparable<Task> {
         return category;
     }
 
+    // @@author iamchenjiajun
     /**
      * Sets the priority of a task.
      *
@@ -56,6 +62,7 @@ public class Task extends Item implements Comparable<Task> {
         this.priority = priority;
     }
 
+    //@@author GuoAi
     public void setCategory(String category) {
         this.category = category;
     }
@@ -81,6 +88,7 @@ public class Task extends Item implements Comparable<Task> {
         return returnString;
     }
 
+    // @@author iamchenjiajun
     /**
      * Converts the attributes of the task into a formatted string to be saved into the storage file.
      *
@@ -94,6 +102,8 @@ public class Task extends Item implements Comparable<Task> {
         return "T | " + isDoneString + " | " + description + " | " + priority + " | " + categoryString + " | "
                 + dateString;
     }
+
+    //@@author GuoAi
 
     /**
      * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no
