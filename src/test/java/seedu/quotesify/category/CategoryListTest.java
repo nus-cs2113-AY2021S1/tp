@@ -21,6 +21,7 @@ public class CategoryListTest {
     private Quote quote1;
     private QuoteList quoteList;
     private Category category1;
+    private CategoryList categoryList;
 
     @BeforeEach
     public void setUp() {
@@ -40,20 +41,19 @@ public class CategoryListTest {
         category1 = new Category("romance");
         category1.setBookList(bookList);
         category1.setQuoteList(quoteList);
+
+        categoryList = new CategoryList();
+        categoryList.add(category1);
     }
 
     @Test
     public void isExistingCategory_invalidName() {
-        CategoryList categoryList = new CategoryList();
-        categoryList.add(category1);
         assertFalse(categoryList.isExistingCategory("action"));
         assertTrue(categoryList.isExistingCategory("romance"));
     }
 
     @Test
     public void getCategoryByName_invalidName_throwsQuotesifyException() {
-        CategoryList categoryList = new CategoryList();
-        categoryList.add(category1);
         Throwable exception = assertThrows(QuotesifyException.class, () -> {
             categoryList.getCategoryByName("action");
         });
@@ -62,9 +62,24 @@ public class CategoryListTest {
 
     @Test
     public void findByKeyword_invalidKeyword() {
-        CategoryList categoryList = new CategoryList();
-        categoryList.add(category1);
         assertTrue(categoryList.findByKeyword("act").getList().isEmpty());
         assertFalse(categoryList.findByKeyword("man").getList().isEmpty());
+    }
+
+    @Test
+    public void removeEmptyCategory_test() throws QuotesifyException {
+        Category category = new Category("fantasy");
+        categoryList.add(category);
+        assertEquals(category, categoryList.getCategoryByName("fantasy"));
+        categoryList.removeEmptyCategories();
+        Throwable exception = assertThrows(QuotesifyException.class, () -> {
+            categoryList.getCategoryByName("fantasy");
+        });
+        assertEquals("Category [fantasy] does not exist!", exception.getMessage());
+    }
+
+    @Test
+    public void equals() {
+        assertEquals("1. romance - (2 items)\n", categoryList.toString());
     }
 }

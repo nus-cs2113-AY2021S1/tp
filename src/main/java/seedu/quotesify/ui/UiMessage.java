@@ -71,9 +71,9 @@ public class UiMessage {
     public static final String PRINT_RANDOM_QUOTE = "Before you continue, here's something:";
     public static final String EDIT_QUOTE_MESSAGE = "The quote has been edited from: [%s] to [%s]!";
     public static final String FIND_QUOTE_SUCCESS = "Here are the results of my search:";
-    public static final String FIND_QUOTE_FAIL = "None of your quotes matches the keyword";
-    public static final String ADD_QUOTE_REFLECTION = "Reflection has added been to quote: %s" + System.lineSeparator()
-            + "Reflection: %s";
+    public static final String FIND_QUOTE_FAIL = "None of your quotes matches the keyword!";
+    public static final String ADD_QUOTE_REFLECTION = "Reflection has added been to quote!" + System.lineSeparator()
+            + "Quote: %s" + System.lineSeparator() + "Reflection: %s";
     public static final String LIST_QUOTE_REFLECTION = "Here is the reflection you are looking for!"
             + System.lineSeparator() + "Quote: %s" + System.lineSeparator() + "Reflection: %s";
     public static final String LIST_QUOTE_NO_REFLECTION = "That quote does not have any reflection attached!";
