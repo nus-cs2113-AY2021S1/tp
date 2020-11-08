@@ -1,6 +1,6 @@
 @startuml
 mainframe **sd** execute description changer
-skinparam BoxPadding 10
+skinparam BoxPadding 50
 box Logic
 [->":DescFavCommand":executeCommand()
 activate ":DescFavCommand"
