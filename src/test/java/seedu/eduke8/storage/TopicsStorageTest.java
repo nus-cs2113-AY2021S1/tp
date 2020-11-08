@@ -66,6 +66,24 @@ class TopicsStorageTest extends Eduke8Test {
     }
 
     @Test
+    void load_duplicateTopicsJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/duplicate_topics.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
+    void load_blankTopicTitleJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/blank_topic_title.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
+    void load_blankQuestionDescriptionJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/blank_question_description.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
     void load_exampleJson_returnsTopicsFromJson() throws IOException, ParseException, Eduke8Exception {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_TOPICS_JSON);
 

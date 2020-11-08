@@ -2,6 +2,8 @@
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [Object-oriented Programming (OOP)](#7-glossary) principles** through a gamified
@@ -14,6 +16,8 @@ On E-Duke-8, you can earn points for yourself as you attempt the quizzes! You ca
 Challenge your friends to see who can earn the most points on E-Duke-8!
 
 Understand more about E-Duke-8, and how you can use it to aid your learning, through this User Guide.
+
+<div style="page-break-after: always;"></div>
 
 ## 2. Quick Start
 
@@ -34,11 +38,14 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 
 9. Refer to the section on **Features** below for the full list of commands you can use and the details of each.
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Features 
 
 ℹ️ Notes about the command format:
 - Words in UPPER_CASE are the parameters that you can specify for your usage.
 - e.g. in `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`, 'TOPIC' is a parameter that allows you to choose the topic you want the quiz to be based on, 'NUM_QUESTIONS' specifies the number of questions you want to have in your quiz, and 'TIMER' specifies the number of seconds given to complete each question. 
+
 
 ### 3.1. Loading Data 
 
@@ -58,11 +65,14 @@ If have trouble opening E-Duke-8 and received the following warning message, the
 
 ![data error](./images/data_error.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.2. Welcome Page
 
 Upon successful startup, you should be greeted with a screen like this:
 
 ![welcome](./images/welcome.png)
+
 
 ### 3.3. Viewing E-Duke-8 information: `about`
 
@@ -91,6 +101,7 @@ What you should see:
 
 ![help](./images/help.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.5. Listing all topics: `topics`
 
@@ -121,6 +132,7 @@ What you should see:
 
 ![textbook](./images/textbook.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.7. Starting a quiz: `quiz`
 
@@ -150,6 +162,8 @@ quiz t/OOP n/5 s/10
 ```
 - This will start a quiz that contains 5 randomly-chosen questions from the topic on OOP. Each question will have to be completed within 10 seconds. 
 
+<div style="page-break-after: always;"></div>
+
 What you should see:
 
 ![quiz](./images/quiz.png)
@@ -178,6 +192,8 @@ After attempting all of the questions, the quiz will automatically end:
 
 After the quiz ends, you will be prompted to enter in a new command. At this point, you are free to choose any feature of E-Duke-8 you want to access, or you can also start a new quiz!
 
+<div style="page-break-after: always;"></div>
+
 ### 3.8. Showing a hint: `hint`
 
 Shows a hint to the current question.
@@ -196,6 +212,8 @@ Note:
 - When a hint is used, getting the question correct will earn you 1 point instead of 2.
 - Refer to [**FAQ**](#4-faq) Q4 to understand why you should use hint despite the penalties.
 
+<div style="page-break-after: always;"></div>
+
 ### 3.9. Bookmarking a question: `bookmark`
 
 Stores any question encountered in a quiz in a list.
@@ -208,11 +226,13 @@ Example of usage:
 bookmark
 ```
 
-What you should see:
+What you should see: 
 
-![bookmark](./images/bookmark_store.jpg)
+![bookmark](./images/bookmark_store.png)
 
-### 3.10. Listing out all bookmarked questions: `bookmark`
+<div style="page-break-after: always;"></div>
+
+### 3.10. Listing out all bookmarked questions: `bookmark list`
 
 Lists out all the bookmarked questions and each of their four options.
 
@@ -222,28 +242,35 @@ Note:
 
 Example of usage:
 ```
-bookmark
+bookmark list
 ```
 
 What you should see:
 
 ![data saving](./images/bookmark_list.jpg)
 
-### 3.11. Deleting a bookmark: `bookmark delete <index number>`
+<div style="page-break-after: always;"></div>
+
+### 3.11. Deleting a bookmark: `bookmark delete`
 
 Lists out all the bookmarked questions and each of their four options.
 
 Note:
 - Listing out all bookmarked questions can only be done in the main menu
 
+Input format: `bookmark delete INDEX`
+
 Example of usage:
 ```
 bookmark delete 2
 ```
+<div style="page-break-after: always;"></div>
 
 What you should see:
 
 ![bookmark](./images/bookmark_delete.jpg)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.12. Displaying stats: `stats`
 
@@ -260,6 +287,9 @@ If you are a new user, this is what you should see:
 
 ![stats_no_progress](./images/stats_No_Progress.png)
 
+<div style="page-break-after: always;"></div>
+
+
 If you have attempted the quizzes on E-Duke-8, you would be able to see your own stats. 
 
 This is an example of what you should see:
@@ -267,6 +297,8 @@ This is an example of what you should see:
 ![stats_with_progress](./images/stats_Some_Progress.png)
 
 - Refer to [**FAQ**](#4-faq) for more information about the point system in E-Duke-8.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.13. Adding a note: `note add`
 
@@ -285,6 +317,7 @@ What you should see:
 
 ![noteadd](./images/noteadd.png)
 
+
 ### 3.14. Deleting a note: `note delete`
 
 Deletes a note from a specific topic.
@@ -297,6 +330,8 @@ note delete
 What you should see:
 
 ![notedelete](./images/notedelete.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.15. Listing out notes: `note list`
 
@@ -311,6 +346,7 @@ What you should see:
 
 ![notelist](./images/notelist.png)
 
+
 ### 3.16. Exiting the program: `exit`
 
 Exits E-Duke-8.
@@ -323,6 +359,8 @@ exit
 ```
 
 ![exit](./images/exit.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.17. Saving user data
 
@@ -341,6 +379,8 @@ This is stored in the `user.json` file in the `data` folder and can be transferr
 history. Please do not attempt to edit this file as it will disrupt the running of application (Refer to [**FAQ**](#4-faq) Q7).
 If you want a better score you can always reattempt a quiz!
 
+<div style="page-break-after: always;"></div>
+
 ## 4. FAQ
 
 **Q1**: Am I be able to re-attempt the same question after my quiz ends?
@@ -358,8 +398,8 @@ A correct answer in a future quiz attempt would also mean that you have come to 
 
 **Q4**: Using hints will limit the total points that I can earn to build up my stats, so why should I still use hint?
 
-**A4**: While points you earn will indeed be lesser, you are still encouraged to use hint when answering questions to spur your thinking, or to confirm your thoughts. 
-Hints might give you an alternative perspective to think about the question at hand, which may be helpful to how you answer similar questions in the future.
+**A4**: While points you earn will indeed be lesser, you are still encouraged to use hints when you have any doubts while answering questions, as they help to spur your thinking, or to confirm your thoughts. 
+Furthermore, hints might give you an alternative perspective to think about the question at hand, which may be helpful to how you answer similar questions in the future.
 
 **Q5**: How are the points awarded for correct answers?
 
@@ -410,6 +450,8 @@ Note:
 `correct` field. 
 - If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
+- The title of a topic cannot be blank or repeated.
+- The description of a question cannot be blank.
 - Do refrain from adding duplicate questions because you can already re-attempt the same question if you start a quiz from the topic the question is from.
 - If duplicate questions are added, then you might find that the same question might appear more than once in your quiz.
 
@@ -421,6 +463,8 @@ receive the following message, and the affected user data will be erased.
 ![user data error](./images/user_data_error.png)
 
 Therefore, it is recommended that you do not modify the user data. Do build up your stats by attempting more quizzes! 
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
@@ -440,6 +484,8 @@ Therefore, it is recommended that you do not modify the user data. Do build up y
 | Listing out notes | `note list` | 
 | Exit        | `exit`                                                 |
 
+<div style="page-break-after: always;"></div>
+
 ## 6. Troubleshooting
 
 If you have trouble starting the application there could be two sources of error for loading data.
@@ -457,6 +503,8 @@ A new file will be created on start up.
 
 If the above fixes do not work please download `data.zip` from the [release page](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases) again and use its contents as the `data`
 folder.
+
+<div style="page-break-after: always;"></div>
 
 ## 7. Glossary
 

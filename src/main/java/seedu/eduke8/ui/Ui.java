@@ -2,7 +2,6 @@ package seedu.eduke8.ui;
 
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
-import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.note.Note;
@@ -27,6 +26,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * Represents the UI class.
+ */
 public class Ui {
     private static final int LAST_OPTION = 4;
     private static final int CONVERSION_FROM_SECONDS_TO_MILLIS = 1000;
@@ -60,10 +62,10 @@ public class Ui {
             + System.lineSeparator() + "3) topics"
             + System.lineSeparator() + "4) textbook"
             + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
-            + System.lineSeparator() + "6) bookmark"
+            + System.lineSeparator() + "6) bookmark / bookmark delete <index number of bookmark to delete>"
             + System.lineSeparator() + "7) stats"
             + System.lineSeparator() + "8) note add / note delete / note list"
-            + System.lineSeparator() + "9) exit (saves your data too!)";
+            + System.lineSeparator() + "9) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
             + System.lineSeparator() + "Hope you have learnt something new!"
@@ -335,22 +337,18 @@ public class Ui {
     }
 
     public void printTopicsError(TopicList topics) {
-        System.out.println(HORIZONTAL_LINE);
 
-        System.out.println(MESSAGE_PRINT_TOPIC_LIST);
+        printWithoutLines(MESSAGE_PRINT_TOPIC_LIST);
         for (int i = 0; i < topics.getCount(); i++) {
             Topic topic = topics.get(i);
-            printMessage(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
+            printWithoutLines(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
                     + topic.getDescription());
         }
-
-        System.out.println(HORIZONTAL_LINE);
     }
 
-    public void addNoteInteractions(TopicList topicList) {
+    public void printAddNote(TopicList topicList) {
         printMessage(ADD_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine().trim();
-        Ui ui = new Ui();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
@@ -377,55 +375,52 @@ public class Ui {
                 printMessage(ADD_NOTE_SUCCESSFULLY);
             } else {
                 printMessage(INVALID_TOPIC);
-                ui.printTopicsError(topicList);
+                printTopicsError(topicList);
                 printMessage(INPUT_ERROR + "\n" + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
-            ui.printError(e.getMessage());
+            printError(e.getMessage());
         }
     }
 
-    public void deleteNoteInteractions(TopicList topicList) {
-        Ui ui = new Ui();
+    public void printDeleteNote(TopicList topicList) {
         int noteCount = 0;
         Topic topic = null;
         NoteList noteList = null;
 
         printMessage(DELETE_NOTE_PROMPT_FOR_TOPIC);
-        String topicName = SCANNER.nextLine();
-        
+        String topicName = SCANNER.nextLine().trim();
+
         try {
             topic = (Topic) topicList.find(topicName);
             noteList = topic.getNoteList();
             noteCount = noteList.getCount();
         } catch (Eduke8Exception e) {
-            ui.printError(e.getMessage());
+            printError(e.getMessage());
         }
 
         if (topicList.doesTopicExist(topicName) && noteCount > 0) {
-            ui.printNoteList(noteList);
+            showNotes(noteList);
 
             System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
-            String input = SCANNER.nextLine();
+            String input = SCANNER.nextLine().trim();
 
             if (input.matches(NUMBERS_ONLY) && Integer.parseInt(input) > 0
                     && Integer.parseInt(input) <= noteList.getCount()) {
                 int index = Integer.parseInt(input);
                 topic.getNoteList().delete(index - 1);
-                System.out.println(DELETE_NOTE_SUCCESSFULLY);
+                printWithoutLines(DELETE_NOTE_SUCCESSFULLY);
             } else {
                 printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
         } else {
-            System.out.println(INVALID_TOPIC);
-            ui.printTopicsError(topicList);
-            System.out.println(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
+            printWithoutLines(INVALID_TOPIC);
+            printTopicsError(topicList);
+            printWithoutLines(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
         }
     }
 
-    public void listInteraction(TopicList topicList) {
-        Ui ui = new Ui();
-
+    public void printListNote(TopicList topicList) {
         printMessage(LIST_NOTE_PROMPT);
         String topicName = SCANNER.nextLine().trim();
 
@@ -433,23 +428,25 @@ public class Ui {
             if (topicList.doesTopicExist(topicName)) {
                 Topic topic = (Topic) topicList.find(topicName);
                 NoteList noteListTopic = topic.getNoteList();
-                ui.printNoteList(noteListTopic);
+                showNotes(noteListTopic);
             } else {
                 printMessage(INVALID_TOPIC);
-                ui.printTopicsError(topicList);
+                printTopicsError(topicList);
                 printMessage(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
-            ui.printError(e.getMessage());
+            printError(e.getMessage());
         }
     }
 
-    public void printNoteList(NoteList notes) {
+    public void showNotes(NoteList notes) {
 
         if (notes.getCount() == 0) {
-            printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
+            printWithoutLines(HORIZONTAL_LINE);
+            printWithoutLines(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
-            printMessage(MESSAGE_PRINT_NOTE_LIST);
+            printWithoutLines(HORIZONTAL_LINE);
+            printWithoutLines(MESSAGE_PRINT_NOTE_LIST);
             for (int i = 0; i < notes.getCount(); i++) {
                 printWithoutLines(HORIZONTAL_LINE);
                 Note note = (Note) notes.get(i);
@@ -457,7 +454,6 @@ public class Ui {
                 printWithoutLines(note.getNoteText());
             }
         }
-
         printWithoutLines(HORIZONTAL_LINE);
     }
 

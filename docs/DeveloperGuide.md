@@ -2,6 +2,8 @@
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 ### 1.1. Software Overview
@@ -26,6 +28,8 @@ You are recommended to use Intellij IDEA to edit the program.
 2. **Import the project as a Gradle project**: Choose the option to import the project as a Gradle project when prompted.
 3. **Verify the setup**: Enter some commands to ensure E-Duke-8 functions as expected. Refer to our [User Guide](https://ay2021s1-cs2113t-f12-3.github.io/tp/UserGuide.html) for more information.
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Design & implementation
 
 ### 2.1. Architecture
@@ -34,6 +38,8 @@ The high-level design of our program is based on a 3-tier architecture which con
 
 ![Architecture](images/Architecture.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2. Model Component
 
 The data model is centered around `DisplayableList` objects which hold `Displayable` objects. This implementation 
@@ -41,17 +47,18 @@ allows us to create various topics with questions, options, hints and explanatio
 
 ####  2.2.1. Design of TopicList
 
-`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 3 interfaces implemented 
+`TopicList` is an ArrayList of type `Displayable`, which is 1 of the 6 interfaces implemented 
 in the code for E-Duke-8. As such, many of the commands that manipulate the `TopicList` make 
 use of the package `java.util.ArrayList`. 
 
-The `TopicList` is used to store `Topics`. `Topics` themselves implement the interface `Displayable`. 
+The `TopicList` is used to store `Topic` objects. `Topic` objects themselves implement the interface `Displayable`. 
 
 ![TopicList](images/TopicListClassDiagram.png)
 
 There is just 1 command that manipulates the `TopicList`, which is `topics`. The `topics` command shows all the 
 `Topic` objects in the current `TopicList`.
 
+<div style="page-break-after: always;"></div>
 
 #### 2.2.2. Implementation of TopicList
 
@@ -70,6 +77,7 @@ Step 2. The `TopicList.showTopics()` method then calls the method `Ui.printTopic
 Step 3: The `Ui.printTopicList()` method then prints out the number of questions in each topic,
         along with the description of each topic in the `TopicList`. 
 
+<div style="page-break-after: always;"></div>
 
 #### 2.2.3. Design of NoteList
 
@@ -79,6 +87,8 @@ that manipulate the `NoteList` also make use of the package `java.util.ArrayList
 Each topic has an attribute of type `NoteList`, which contains `Note` objects.
 
 ![NoteListClass](images/NoteListClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 2.2.4. Implementation of Notes
 
@@ -97,32 +107,35 @@ This task is performed by the `NoteList.add()` method.
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.addNoteInteractions()` 
 method. 
 
-Step 2: The `Ui.addNoteInteractions()` method uses the user's input to create a `Note` object. 
+Step 2: The `Ui.printAddNote()` method uses the user's input to create a `Note` object. 
 
-Step 3: The `Ui,addNoteInteractions()` method then calls the method `NoteList.add()`, passing the created `Note` object 
+Step 3: The `Ui.printAddNote()` method then calls the method `NoteList.add()`, passing the created `Note` object 
 into this method. `NoteList.add()` makes use of the package `java.util.ArrayList`, specifically the `ArrayList.add()` 
 method, to add the `Note` object into the specified `NoteList` object.
 
 **Listing out all notes in a topic:**
 
-This task is performed by the `Ui.printNoteList()` method.
+This task is performed by the `Ui.showNotes()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. The topic's `NoteList` object is passed into this method.
+and calls the `Ui.printListNote` method. The topic's `NoteList` object is passed into this method.
 
-Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` object is passed into 
-this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` object.
+Step 2: The `Ui.printListNote` method calls the `Ui.showNotes()` method. The topic's `NoteList` object is passed into 
+this method. `Ui.showNotes()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` 
+object.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.deleteNoteInteractions` method. 
-An integer provided by the user's input is passed into this method. This integer is interpreted as the index of the `Note` object to be deleted in the
-specified `NoteList` object.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.printDeleteNote` 
+method. An integer provided by the user's input is passed into this method. This integer is interpreted as the index of 
+the `Note` object to be deleted in the specified `NoteList` object.
 
-Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the `ArrayList.remove()` method, to 
-delete the specified `Note` object in the specified `NoteList` object.
+Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the 
+`ArrayList.remove()` method, to delete the specified `Note` object in the specified `NoteList` object.
+
+<div style="page-break-after: always;"></div>
 
 #### 2.2.5. Design of Option and OptionList 
 
@@ -136,6 +149,8 @@ The `Option` class implements the `Displayable` interface while the `OptionList`
 
 The `Option` object stores the description of one option from a question. It also indicates if the option is the correct answer for the question by using the `isCorrectAnswer` boolean. 
 The `OptionList` object stores all 4 options of the same question. 
+
+<div style="page-break-after: always;"></div>
 
 #### 2.2.6. Implementation of Option and OptionList
 
@@ -153,6 +168,8 @@ Step 3. The `SingleTopicQuiz` object then calls the `OptionList` class using the
 
 Step 4. The `SingleTopicQuiz` object then calls the `Ui` to print out all 4 options using the `printOption(options.get(i), i+1)` method. 
 The `options.get(i)` parameter will get the description of the specific option and the `i+1` parameter will handle the numbering of the options.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.3. Logic Component
 
@@ -173,11 +190,13 @@ class depends on the input typed into the command line, and so since `parseComma
 various specific `Command` classes, the `MenuParser` which has the `parseCommand()` method is dependent on all these 
 specific `Command` classes.
 
+<div style="page-break-after: always;"></div>
+
 #### 2.3.2. Implementation of MenuParser
 
 Below is the sequence diagram for how the Parser component of `Eduke8` works with commands to show output to the user.
 
-![Parser Sample Sequence](./images/ParserSampleSequence.jpg)
+![Parser Sample Sequence](./images/ParserSampleSequence.png)
 
 The command parsing feature is our program’s way of reading the user’s input into the command line. It makes use of a 
 single method `parseCommand` that identifies what command the user is calling for and then calls the command. There are 
@@ -205,6 +224,8 @@ Step 4. Each subsequent string separated by a space is stored in a string array 
 Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
         options available. As such, the contents of the case with reference “help” is run, which is a return statement 
         containing a new `HelpCommand()`. This leads to the execution of the `help` command.
+     
+<div style="page-break-after: always;"></div>
         
 #### 2.3.3. Design of QuizQuestionsManager
 
@@ -219,6 +240,8 @@ An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duk
 The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager`, by passing into its constructor `QuizQuestionsManager(:int, :ArrayList<Displayable>)`, `numberOfQuestions` for its first parameter and an ArrayList of questions from the `Topic` object for its second parameter. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method, where the first parameter will take in `numberOfQuestions` and its second parameter will take in the ArrayList of questions from the `Topic` object passed into the `QuizQuestionsManager` object. 
 
 Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
+
+<div style="page-break-after: always;"></div>
 
 #### 2.3.4. Implementation of QuizQuestionsManager
 
@@ -237,7 +260,9 @@ To ensure that no two of the same question is selected, the selected `randomQues
 
 An ArrayList of `Question` objects stores all the selected questions meant for the quiz.
 
-#### 2.3.5 Design of Stats Feature
+<div style="page-break-after: always;"></div>
+
+#### 2.3.5. Design of Stats Feature
 
 E-Duke-8 allows for user’s stats to be shown to the user when requested. These statistics correspond to the results of the user’s past attempts of the quiz. An aggregate result, followed by topical results of the quiz will be displayed. 
 
@@ -255,6 +280,8 @@ An object of `UserStatsCalculator` class is responsible for calculating the aggr
 
 On the other hand, an object of `TopicalStatsCalculator` is used by the object of `Stats` class to calculate the topical results. In its constructor, the `TopicalStatsCalculator` object uses the single `Topic` object passed into it to retrieve its specific `QuestionList` object. Thereafter, by iterating through the questions for the particular `QuestionList` object, the results for individual topics can be calculated with its methods.
 
+<div style="page-break-after: always;"></div>
+
 #### 2.3.6. Implementation of Stats Feature
 
 The current implementation of the stats feature is such that the object of `Stats` class controls what is shown to the user when the `stats` command is received. It calls on methods of a `UserStatsCalculator` object and a `TopicalStatsCalculator` object to calculate and retrieve the statistics of the user’s previous attempts of quizzes in E-Duke-8, before displaying them.
@@ -267,6 +294,8 @@ Through the logic in the object of `UserStatsCalculator`, necessary information 
 
 A similar procedure is being employed by the `TopicalStatsCalculator` object to calculate the topic-level statistics for the user. The only difference between the objects of these two classes is that instead of iterating through all the topics available, the `TopicalStatsCalculator` object only deals with a particular topic at any point of time. By iterating through the questions of the single topic, it calculates statistics for the topic and returns it back to the `Stats` object, which will then pass them to the `Ui` object to display them to the user. As such, in order to display the user’s statistics for each and every topic, a loop is done in the `Stats` object to repeatedly calculate the topic-level information for all of the topics and displaying them concurrently. 
 
+<div style="page-break-after: always;"></div>
+
 #### 2.3.7. Implementation of Timer Feature
 
 E-Duke-8 has a timer feature for the quiz. The users are able to choose how much time (in seconds) they require to complete each question. 
@@ -274,37 +303,38 @@ The timer would start as soon as the options are being printed out.
 If the user has typed in a valid answer, the timer would stop and move on to the next question. 
 If the time is up, it will be regarded as an `IncompleteCommand` and it will be deemed as a wrong answer as well. 
 
-The diagram below only illustrates the implementation of the timer feature, it does not show the full sequence diagram of the `SingleTopicQuiz()` method. 
+The diagram and explanation below only illustrates the implementation of the timer feature, 
+it does not show the full sequence diagram and explanation of the `SingleTopicQuiz()` method. 
 
 ![Timer_Sequence_Diagram](./images/Timer.png)
 
 When a quiz is started, the `startQuiz(ui)` method will be called. 
-Some details has been omitted here for simplicity. 
 After the options of a particular question has been printed out, the timer would begin.
 The `getCommand(ui, optionList, userTimer)` method is first called. The `userTimer` parameter used here is the time that the user has set at the start of the quiz. 
-The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. 
-For simplicity, some details in this method has been omitted. 
-The `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
-There are some details omitted here as well for simplicity. 
-The `command` object will be returned. 
+The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. The timer continues to count down as it waits for the users' input. 
+After the user has written an input, the `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
+If the user did not write in any input and the time is up, the `Ui` will return `null` string back to the `SingleTopicQuiz` object instead. 
+The `Command` object will be returned. 
 
-For example, if the user entered a string (that is not "hint" or "bookmark" and not a number), then the `command` returned will be one of `IncorrectCommand`. 
+For example, if the user entered a string (that is not "hint" or "bookmark" and not a number from 1 to 4), then the `Command` returned will be one of `IncorrectCommand`. 
 If the user entered any number from 1 to 4, it will be an `AnswerCommand`. 
-If the user did not input anything and the time is up, the `command` returned will be `IncompleteCommand`. 
+If the user did not input anything and the time is up, the `Command` returned will be `IncompleteCommand`. 
 
-It will then enter into a loop. If the `command` is not an `AnswerCommand` or `IncompleteCommand`, it will continue in this loop. 
-The `SingleTopicQuiz` object will then call the respective `Command` object, using the `execute(optionList, ui)` method. 
+It will then enter into a loop and remain in this loop unless the user has input a valid answer or the time is up for that question. 
+In the loop, the `SingleTopicQuiz` object will then call the respective `Command` object, using the `execute(optionList, ui)` method. 
 
 For example, if it is a `HintCommand`, then the execution would mean that the hint will be printed out by the `Ui` class to show the user the hint for the particular question. 
-However, some details were omitted so that the sequence diagram is easier to understand. 
+However, some details were omitted here so that the sequence diagram is easier to understand. 
 
 The `SingleTopicQuiz` object will then call the `Ui` class using the `printQuizInputMessage()` method to print the prompt for the users to enter in their input. 
 The `getCommand(ui, optionList, userTimer - timePassed)` method will be called again. However, this `getCommand()` method is different from the one that was used initially. 
-This `getCommand()` method takes in the time left on the timer (`userTimer - timePassed`) instead of the timer set by the user. This is because, we want to avoid the situation where the user is able to extend the timer by entering in any random value (except number 1 to 4) as this would cause the timer to reset everytime. 
+This `getCommand()` method takes in the time left on the timer (`userTimer - timePassed`) instead of the timer set by the user. 
+This is because, we want to avoid the situation where the user is able to extend the timer by entering in any random value (except number 1 to 4) as this would cause the timer to reset everytime. 
 Hence, in order to prevent this bug, for this `getCommand()` method, we have to use the time left on the timer instead. 
 The subsequent steps are similar to the one stated above. 
 
-If the `command` is an instance of `AnswerCommand` and `IncompleteCommand`, the loop will end and the `SingleTopicQuiz` object will proceed to execute the `Command` for the last time, using the `execute(optionList, ui)` method.
+The loop will end if the user has written an input or the time is up for that question. 
+The `SingleTopicQuiz` object will then proceed to execute the `Command` for the last time, using the `execute(optionList, ui)` method.
 
 It will then enter another loop that checks if the user has pressed on the "Enter" button on the computer. 
 This feature was implemented so that they have sufficient time to read through and understand the explanation before moving on to the next question. 
@@ -312,6 +342,8 @@ The `Ui` class will be called by the `getEnterFromUser()` method. This method wi
 The `Ui` class will then return the boolean `enterIsUsed`. 
 If the user has pressed on any keys other than "Enter", the boolean `enterIsUsed` is set to false and it will remain in the loop. 
 If the user has pressed on the "Enter" button, the boolean `enterIsUsed` is set to true and it will exit out of the loop and proceed to the next question. 
+
+<div style="page-break-after: always;"></div>
 
 ### 2.4. Storage Component
 
@@ -326,9 +358,12 @@ The class diagram below shows this relationship.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
+<div style="page-break-after: always;"></div>
+
 The format of the JSON file is important as it is loaded in a particular way. This format has been designed as an array 
 of topics that hold the different properties for questions, options, hints and explanations.
 An example is as such:
+
 
 ```json
 [
@@ -368,6 +403,8 @@ Users may choose to edit this data as well and are provided with the following r
 and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
 `correct` key.
 
+<div style="page-break-after: always;"></div>
+
 #### 2.4.2. Implementation of TopicsStorage
 
 When the user launches the app, the main program will initialize a `TopicsStorage` object and call the `load()` method which will return an `ArrayList` of  `Topic` objects.
@@ -380,12 +417,16 @@ In the diagram above, the `Option` objects within each `Topic` has to be constru
 They are then marked as the correct answer with `markAsCorrectAnswer()` if the value of the key `correct` was `true` in the given data.
 More properties can easily be added to the classes and the storage component in a similar way, by parsing in loops.
 
+<div style="page-break-after: always;"></div>
+
 #### 2.4.3. Design of UserStorage
 
 In order to save and load attributes specific to each user, such as the questions attempted, answered correctly or bookmarked, a `UserStorage` class is used to selectively store these attributes into a JSON file, `user.json`.
 This class requires access to the main `TopicList` and `BookmarkList` from the Model component in order to extract these attributes. The class diagram below shows this relationship.
 
 ![UserStorage Class Diagram](./images/UserStorage.png)
+
+<div style="page-break-after: always;"></div>
 
 The attributes will be saved in the JSON file tied to each question in a topic and is identified by its description.
 A question's presence in the file represents that it has been attempted before while other attributes are stored as boolean values.
@@ -428,6 +469,8 @@ Unlike `topics.json`, users should not be editing the `user.json` file as it is 
 If the user edits this file and does not follow the correct format then the affected parts of the data will be lost but the 
 program will continue to run.
 
+<div style="page-break-after: always;"></div>
+
 #### 2.4.4. Implementation of UserStorage
 
 Unlike `TopicsStorage` which constructs objects, `UserStorage` accesses existing objects in order to extract their attributes.
@@ -446,6 +489,8 @@ Loading back the user data is done in reverse. If the boolean value of the key `
 particular question, then the `markAsAnsweredCorrectly()` method is called on the corresponding `Question` object. This is depicted below in the sequence diagram.
 
 ![UserStorage::load Sequence Diagram](./images/UserStorage_load.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 2.5. UI Component
 
@@ -466,6 +511,8 @@ The user inputs the number of questions that he wants to answer and also the top
 The `Ui` will go through printStartQuizQuestions() to print out the number of questions that the user has chosen. 
 Afterwards, the `Ui` will go through printStartQuizTopics() to print out the topics that the user has chosen. 
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Product scope
 
 ### 3.1. Target user profile
@@ -480,6 +527,8 @@ platform and enhances their learning experience.
 It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the Command Line Interface (CLI), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
 Students can earn points for themselves as they answer questions in the quizzes, and they can view their quizzes' statistics to gauge their level of mastery of the topics in CS2113/T.
+
+<div style="page-break-after: always;"></div>
 
 ## 4. User Stories
 
@@ -496,6 +545,7 @@ Students can earn points for themselves as they answer questions in the quizzes,
 |v2.0|busy, lazy user|take note of key concepts|refer to it easily at a later time|
 |v2.0|frequent disorganized user|view the percentage of error in each topic|tell how well I understand the content|
 
+<div style="page-break-after: always;"></div>
 
 ## 5. Non-Functional Requirements
 
