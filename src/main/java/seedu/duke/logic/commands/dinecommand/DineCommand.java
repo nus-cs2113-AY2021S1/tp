@@ -34,9 +34,10 @@ public class DineCommand extends Command {
 
     /**
      * Checks for any match between the user input and the data.
-     * Calls printDineResult() if there is a match, else prints 'no match' message
+     * Calls printDineResult() if there is any match.
      *
      * @param foodPlaceList contains data of all dining options
+     * @throws CustomException thrown if no match found
      */
     private void checkFaculty(ArrayList<FoodPlace> foodPlaceList) throws CustomException {
         assert foodPlaceList != null : "Data not available.";
