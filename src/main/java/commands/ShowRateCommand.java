@@ -39,7 +39,7 @@ public class ShowRateCommand extends Command {
 
 
     /**
-     * Manage the execution of ShowRateCommand and display the calculated result to user.
+     * Manages the execution of ShowRateCommand and display the calculated result to user.
      *
      * @param ui user interface of Kaji
      * @param access temporary access data about user's current access level
@@ -61,7 +61,7 @@ public class ShowRateCommand extends Command {
     }
 
     /**
-     * Compute the percentage of card at each master level in a chapter
+     * Computes the percentage of card at each master level in a chapter
      *
      * @param chapter blueprint of chapter that user is currently accessing
      * @return number of card in the chapter
