@@ -288,7 +288,7 @@ The following sequence diagram shows how the edit module name feature works:
   <br/>Figure <>. Sequence diagram of edit module name feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at a destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.1.4. Remove Module Feature
 (Jia Ern)

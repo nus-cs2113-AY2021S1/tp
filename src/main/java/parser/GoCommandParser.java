@@ -1,10 +1,17 @@
 package parser;
 
-import commands.*;
+import commands.GoChapterCommand;
+import commands.GoCommand;
+import commands.GoModuleCommand;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 
-import static common.Messages.*;
+import static common.Messages.ADMIN;
+import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_INCORRECT_ACCESS_AT_CHAPTER_LEVEL;
+import static common.Messages.MESSAGE_MISSING_INDEX;
+import static common.Messages.MESSAGE_NON_INTEGER;
+import static common.Messages.MODULE;
 
 //@@author gua-guargia
 public class GoCommandParser {
@@ -13,7 +20,7 @@ public class GoCommandParser {
         int moduleIndex;
         String type = "";
         String messageUsage = "";
-        switch(accessLevel) {
+        switch (accessLevel) {
         case ADMIN:
             type = MODULE;
             messageUsage = GoModuleCommand.MESSAGE_USAGE;
