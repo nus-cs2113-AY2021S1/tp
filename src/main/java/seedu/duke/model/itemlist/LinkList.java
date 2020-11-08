@@ -2,10 +2,8 @@
 
 package seedu.duke.model.itemlist;
 
-import seedu.duke.Duke;
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.model.item.Book;
 import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
@@ -19,10 +17,6 @@ public class LinkList extends ItemList<Link> {
      */
     public LinkList() {
         links = new ArrayList<>();
-    }
-
-    @Override
-    public void addTodo(String description) {
     }
 
     /**
@@ -41,14 +35,6 @@ public class LinkList extends ItemList<Link> {
      */
     public ArrayList<Link> getLinks() {
         return links;
-    }
-
-    /**
-     * Clears all the links in the list.
-     */
-    public void clearList() {
-        links = new ArrayList<>();
-
     }
 
     /**

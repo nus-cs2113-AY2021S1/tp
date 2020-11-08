@@ -77,12 +77,11 @@ public class TaskList extends ItemList<Task> {
     }
 
     /**
-     * Adds a todo task to the task list.
+     * Adds a todo task to the task list with given description.
      *
      * @param description the description of the todo task
      */
-    @Override
-    public void addTodo(String description) {
+    public void addTaskFromString(String description) {
         Task newTask = new Task(description);
         items.add(newTask);
         Ui.dukePrint(Messages.MESSAGE_ADD_TASK + newTask.toString() + Messages.MESSAGE_STATUS_FIRST
