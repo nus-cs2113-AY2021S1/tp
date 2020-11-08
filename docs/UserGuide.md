@@ -560,8 +560,8 @@ Output:
      Here are the expense item(s) in your expense list for this week:
      breakfast (3.00 SGD) (date: Saturday, November 7, 2020)
      bus (1.00 SGD) (date: Saturday, November 7, 2020)
-     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
-     pen (0.40 USD) (date: Saturday, November 7, 2020)
+     pencil (0.30 SGD) (date: Saturday, November 8, 2020)
+     pen (0.40 USD) (date: Saturday, November 9, 2020)
 
      The total amount listed:
      4.30 SGD
