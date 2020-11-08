@@ -180,7 +180,7 @@ public class Parser {
     private Command prepareDeleteCommand(String argument) {
         try {
             if (isEmptyInput(argument)) {
-                throw new EmptyParameterException ();
+                throw new EmptyParameterException();
             }
             return new DeleteCommand(argument);
         } catch (EmptyParameterException e) {
