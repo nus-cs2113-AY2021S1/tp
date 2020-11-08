@@ -41,7 +41,7 @@ and provides an interface for the user to append or remove ```Goals```.
 * ```Finance Tools``` class provides an interface for users to utilize an array of 
 finance calculator tools within it.
 * All ```LogicManager``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
-to perform the operation associated with the user input.
+to perform the operation associated with the param handling.
 
 ## Logic Component
 
@@ -77,8 +77,8 @@ __API__
 retrieve the raw string input from the user.
 * ```Parser``` subcomponent classes are responsible for parsing raw String input from the user
 and produce an equivalent ```CommandPacket``` instance.
-* ```Handler``` classes will use the ```CommandPacket``` instance to call the corresponding
-```Command``` classes or perform the next operation.
+* ```LogicManager``` classes will use the ```CommandPacket``` instance to call the corresponding
+```CommandHandler``` classes or perform the next operation.
 
 ## Model Component
 
@@ -91,13 +91,19 @@ by user input can be performed upon.
 
 __API__
 
-* ```EntryTracker``` and ```ManualTracker``` classes can interact with ```LedgerList``` and ```EntryList```
+* ```EntryTracker```, ```RecurringEntryTracker``` and ```ManualTracker``` classes can interact with ```LedgerList``` and ```EntryList```
 instances to perform add, remove or edit operations on the ```Ledgers``` or ```Entry``` instances in it.
 * ```Storage``` component interact with ```DataList``` classes for save and load operations.
     * For save, ```Storage``` component uses the ```EntryTracker``` and ```ManualTracker``` instances in the program
     at the point of save to write to a series of text files that persists after the program closes.
     * For load, ```Storage``` component writes data from the text files to ```EntryTracker``` and ```ManualTracker``` respectively.
-     
+* Utility Model sub-components
+    * Goal
+        * Used by the `GoalTracker`. The user can set their income or expense goals by creating a `Goal` instance. They can then be compared against with total entry amounts recorded by the user, whereby the `GoalTracker` will report the progress of the user towards the `Goal` that they set. 
+        * More information can be found in the [GoalTracker section](#goalTracker).
+    * AccountSaver
+        * Stores account information of the user.
+        * More details can be found in the [FinanceTools section](#financeTools).
 
 ## Storage Component
 
@@ -521,7 +527,7 @@ The sequence diagram below shows how it works:
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
 
 <!-- @@author bqxy -->
-### FinanceTools
+### <a name = financeTools></a> FinanceTools
 **Overview** <br />
 FinanceTools consists of the following features
 1. Simple Interest Calculator
@@ -703,7 +709,7 @@ The commands are stored in the ```ArrayList``` before the params are handled and
 The results from calculation is stored in the ```ArrayList``` when the implementation has finished executed.
 <!-- @@author -->
 
-### Goal Tracker
+### <a name = goalTracker></a> Goal Tracker
 **Set Expense Goal Feature** <br />
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
