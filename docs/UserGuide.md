@@ -110,7 +110,6 @@ List of `<compulsory arguments>`:
 
 🚩: Optional and compulsory arguments can be typed in **any** order.
 
-
 🚩: Duplicate entry of recurring tasks are **allowed**. 
 
 
@@ -224,11 +223,16 @@ List of `<compulsory arguments>`:
 
 🚩: value has **no** limit 
 
+🚩: value must be **non-negative**.
+
 List of `<optional arguments>`:
 - `currency/<currency>` sets the currency of the expense.
 - `date/<yyyy-MM-dd>` sets the date of the expense.
 
 🚩: By default, the currency is set to "SGD" and date is set to the date when the user executes the `spend` command.
+
+🚩: `currency` is user defined. It does not have to be a legal currency in the world.
+
 
 🚩: Optional and compulsory arguments can be typed in **any** order
 
