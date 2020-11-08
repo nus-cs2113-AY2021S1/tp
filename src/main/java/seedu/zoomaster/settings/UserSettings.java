@@ -2,10 +2,8 @@
 
 package seedu.zoomaster.settings;
 
-import seedu.zoomaster.command.Mode;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
-import seedu.zoomaster.slot.Day;
 
 /**
  * Stores the user's settings as a series of SettingsVariable instances.
