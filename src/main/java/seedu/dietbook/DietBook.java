@@ -49,7 +49,7 @@ public class DietBook {
         try {
             loadPerson.load("resources/UserInfo.txt");
             FitnessLevel fitLvl = FitnessLevel.NONE;
-            int fitLvlInt = loadPerson.getActivityLevel();
+            int fitLvlInt = loadPerson.getFitnessLevel();
             if (fitLvlInt == 1) {
                 fitLvl = FitnessLevel.NONE;
             } else if (fitLvlInt == 2) {
