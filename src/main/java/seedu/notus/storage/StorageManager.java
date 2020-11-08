@@ -118,7 +118,9 @@ public class StorageManager {
         File directory = new File(path);
         if (!directory.exists()) {
             directory.mkdir();
-            LOGGER.log(Level.INFO, "Created directory: " + directory);
+            if (!path.equals(LOGS_DIR)) {
+                LOGGER.log(Level.INFO, "Created directory: " + directory);
+            }
         }
     }
 
