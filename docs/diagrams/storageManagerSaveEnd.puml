@@ -1,0 +1,40 @@
+@startuml
+hide footbox
+
+participant ":NotUS" as NotUS
+participant ":StorageManager" as StorageManager
+participant ":Timetable" as Timetable
+
+create NotUS
+activate NotUS
+
+
+create StorageManager
+activate StorageManager
+
+NotUS -> StorageManager: saveAll()
+StorageManager -> StorageManager : saveTimetable ()
+activate StorageManager
+activate Timetable
+StorageManager -> Timetable : getEvents ()
+Timetable --> StorageManager : ArrayList <Event> events
+loop events
+StorageManager -> StorageManager: getEventsAsSaveString (Event event)
+Activate StorageManager
+StorageManager --> StorageManager: String EventDetails
+Deactivate StorageManager
+Deactivate StorageManager
+
+NotUS -> StorageManager: saveAllNoteDetails (isArchive false)
+ref over StorageManager, NotUS: As mentioned in the sequence diagram above
+StorageManager --> NotUS
+
+
+NotUS -> StorageManager: saveAllNoteDetails (isArchive true)
+ref over StorageManager, NotUS: As mentioned in the sequence diagram above
+StorageManager --> NotUS
+
+destroy NotUS
+destroy StorageManager
+destroy Timetable
+@enduml

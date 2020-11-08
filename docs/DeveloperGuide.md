@@ -10,7 +10,7 @@ title : Developer Guide
 #### [2. Design & Implementation](#design)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser and ParserManager](#parserManager)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser & ParserManager](#parserManager)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
@@ -65,7 +65,7 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 #### <a id="overview"><ins>2.1 Architecture Overview</ins></a>
 
 <p align="center">
-  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_OverviewV2.png" />
+  <img alt="NotUS Architecture Overview" src="diagrams/out/Architecture_OverviewV3.png" />
   <br><em>Figure 1</em>
 </p>
 
@@ -90,7 +90,7 @@ NotUS manages the flow of the application. On launch, it will create the necessa
 
 💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document.
 
-#### <a id="parserManager"><ins>2.3 Parser and ParserManager</ins></a>
+#### <a id="parserManager"><ins>2.3 Parser & ParserManager</ins></a>
 
 The ParserManager manages the creation of specific parser objects based on the type of command. The parser then makes sense of the user input and calls the respective commands into action. The class diagram is as follows.
 
@@ -99,7 +99,7 @@ The ParserManager manages the creation of specific parser objects based on the t
   <br><em>Figure 3</em>
 </p>
 
-💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands).
+💡 Note that variables and methods in the Command class is empty as it will be covered under [Commands](#commands). <br>
 💡 For a full list of ParseXYZCommand, see [Appendix 8.1 List of ParseCommand Classes](#parseXYZCommands)
 
 1. The ParserManager receives the user input message as a whole.
@@ -132,7 +132,7 @@ The Command classes update the Notebook and Timetable accordingly. The class dia
   <br><em>Figure 6</em>
 </p>
 
-💡 Different XYZCommand has different additional variables which are omitted in Figure 6.
+💡 Different XYZCommand has different additional variables which are omitted in Figure 6. <br>
 💡 For a full list of XYZCommand classes, see [Appendix 8.2 List of Command Classes](#XYZCommands)
 
 <!--
@@ -366,25 +366,38 @@ While loading information is passed to the parser manager to prepare the informa
    <br><em>Figure 16</em>
 </p>
 
+During the program, as changes are made to the data, the storageManager saves the data to the hard disk. In case the user force closes the program, the updated data is saved. The sequence diagram below is an example of a note being archived. 
+
+<p align="center">
+   <img alt="StorageManagerSaveDuringDiagram" src="diagrams/out/StorageManagerSaveDuring.png"/>
+   <br><em>Figure 17</em>
+</p>
+
+When exiting the program, the storageManager saves all the data to the hard disk, in case the user tampers with the txt files while the program is ongoing. Hence, saving the latest version of the data. Below is the sequence diagram of the final saving procedure.
+
+<p align="center">
+   <img alt="StorageManagerSaveEndDiagram" src="diagrams/out/StorageManagerSaveEnd.png"/>
+   <br><em>Figure 18</em>
+</p>
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
 
 The InterfaceManger receives the input from the user which is then processed by ParserManager, as well as printing the output. The class diagram is as follow.
 
 <p align="center">
    <img alt="InterfaceManager" src="diagrams/out/InterfaceManagerClass.png"/>
-   <br><em>Figure 17</em>
+   <br><em>Figure 19</em>
 </p>
 
 The Formatter class handles the formatting of the Note(s), Event(s) and message(s) into a String which is then passed to InterfaceManager to be printed out through NotUS. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 18</em>
+   <br><em>Figure 20</em>
 </p>
 
 There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.
 
-A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSCI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
+A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
 
@@ -393,7 +406,7 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure 18</em>
+   <br><em>Figure 21</em>
 </p>
 
 💡 As there are various types of exception, the diagram is split into two.
@@ -412,7 +425,7 @@ Figure 19 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 19</em>
+ <br><em>Figure 22</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>
