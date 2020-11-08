@@ -21,7 +21,7 @@ alt try reading from local file
     end loop
 
     opt moduleList is empty
-    Storage -> Storage : throws exception FileNotFoundException
+    note right of Storage : throws FileNotFoundException
     end opt
 
 

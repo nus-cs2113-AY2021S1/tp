@@ -557,6 +557,7 @@ The sequence diagram below explains how this feature is executed:
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
 *<center/> Figure 2.20 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
+### Module List feature (Jusuf)
 
 ### Planner feature (Jusuf)
 
