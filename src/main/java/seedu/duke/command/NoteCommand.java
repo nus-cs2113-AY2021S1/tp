@@ -116,12 +116,12 @@ public class NoteCommand extends Command {
         LocalDateTime now = LocalDateTime.now();
         String timestamp = "---------" + now + "---------";
         existingNotes.add(timestamp);
-        additionalNotes = convertSemiColonToBlank(additionalNotes);
+        additionalNotes = indicateNewLineUsingDelimeter(additionalNotes);
         existingNotes.addAll(additionalNotes);
         return existingNotes;
     }
 
-    private ArrayList<String> convertSemiColonToBlank(ArrayList<String> notes) {
+    private ArrayList<String> indicateNewLineUsingDelimeter(ArrayList<String> notes) {
         ArrayList<String> convertedList = new ArrayList<>();
 
         for (String note : notes) { //after splitting up the lines based on `, add them
