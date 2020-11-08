@@ -54,32 +54,32 @@ class BookmarkTest {
     @Test
     void extractModuleDescriptionAndUrl_missingParameter_throwsZoomasterException() {
         String missingDescription = "www.google.com";
-        ZoomasterException e = assertThrows(ZoomasterException.class,
-                () -> Bookmark.extractDescriptionAndUrl(missingDescription));
+        ZoomasterException e = assertThrows(ZoomasterException.class, () ->
+                Bookmark.extractDescriptionAndUrl(missingDescription));
         assertEquals(ZoomasterExceptionType.INVALID_ADD_BOOKMARK_INPUT, e.getError());
 
         String missingUrl = "description";
-        ZoomasterException e2 = assertThrows(ZoomasterException.class,
-                () -> Bookmark.extractDescriptionAndUrl(missingUrl));
+        ZoomasterException e2 = assertThrows(ZoomasterException.class, () ->
+                Bookmark.extractDescriptionAndUrl(missingUrl));
         assertEquals(ZoomasterExceptionType.INVALID_ADD_BOOKMARK_INPUT, e2.getError());
     }
 
     @Test
     void extractModuleDescriptionAndUrl_invalidUrl_throwsZoomasterException() {
         String invalidUrl = "CS2113T google.com";
-        ZoomasterException e = assertThrows(ZoomasterException.class,
-                () -> Bookmark.extractDescriptionAndUrl(invalidUrl));
+        ZoomasterException e = assertThrows(ZoomasterException.class, () ->
+                Bookmark.extractDescriptionAndUrl(invalidUrl));
         assertEquals(ZoomasterExceptionType.INVALID_URL, e.getError());
 
         String additionalParameter = "description www.google.com additional_word";
-        ZoomasterException e2 = assertThrows(ZoomasterException.class,
-                () -> Bookmark.extractDescriptionAndUrl(additionalParameter));
+        ZoomasterException e2 = assertThrows(ZoomasterException.class, () ->
+                Bookmark.extractDescriptionAndUrl(additionalParameter));
         assertEquals(ZoomasterExceptionType.INVALID_URL, e2.getError());
     }
 
     @Test
     void launch() throws ZoomasterException {
-        assertEquals("  [desc] www.google.com" , bookmarkTest.launch());
+        assertEquals("  [desc] www.google.com", bookmarkTest.launch());
     }
 
     @Test
