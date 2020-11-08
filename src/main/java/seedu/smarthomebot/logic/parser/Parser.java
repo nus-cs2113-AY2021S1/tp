@@ -124,8 +124,8 @@ public class Parser {
     /**
      * Parses arguments into AddCommand format.
      *
-     * @param arguments parameters of AddComand
-     * @return the prepared AddCommand
+     * @param arguments parameters of AddComand.
+     * @return the prepared AddCommand.
      */
     private static Command prepareAddCommand(String arguments) {
         int indexLocation = arguments.indexOf("l/");
