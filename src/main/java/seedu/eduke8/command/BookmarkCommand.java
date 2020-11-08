@@ -1,13 +1,12 @@
 package seedu.eduke8.command;
 
 import seedu.eduke8.bookmark.BookmarkList;
-import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.ui.Ui;
 
-import java.util.ArrayList;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_NONE;
 
 public class BookmarkCommand extends Command {
     private static final String BOOKMARK_LIST = "listing";
@@ -37,14 +36,14 @@ public class BookmarkCommand extends Command {
         this.typeOfBookmarkCommand = typeOfBookmarkCommand;
         this.bookmarkList = bookmarkList;
         if (bookmarkList.getCount() == 0) {
-            throw new Eduke8Exception("You currently do not have any bookmarks stored.");
+            throw new Eduke8Exception(ERROR_BOOKMARK_NONE);
         }
     }
 
     public BookmarkCommand(int deleteIndex, String typeOfBookmarkCommand, BookmarkList bookmarkList)
             throws Eduke8Exception {
         if (bookmarkList.getCount() == 0) {
-            throw new Eduke8Exception("You currently do not have any bookmarks stored.");
+            throw new Eduke8Exception(ERROR_BOOKMARK_NONE);
         }
         this.typeOfBookmarkCommand = typeOfBookmarkCommand;
         this.bookmarkList = bookmarkList;
