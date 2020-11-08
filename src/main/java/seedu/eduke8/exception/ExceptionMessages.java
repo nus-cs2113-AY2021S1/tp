@@ -35,4 +35,7 @@ public class ExceptionMessages {
     public static final String ERROR_USER_JSON_LOAD = "An error with loading user data has occurred due to "
             + "modification of the topics or user data."
             + System.lineSeparator() + "Affected user data will be erased.";
+    public static final String ERROR_BOOKMARK_DELETE_NFE = "Please type in an integer into the index number field!";
+    public static final String ERROR_BOOKMARK_DELETE_IOB_ERROR = "Please choose an appropriate index number to be "
+            + "deleted from the list!";
 }

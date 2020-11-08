@@ -22,10 +22,7 @@ import java.awt.print.Book;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
-import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NEGATIVE;
+import static seedu.eduke8.exception.ExceptionMessages.*;
 
 /**
  * Parses user input from the main menu, in order to execute the correct option.
@@ -53,10 +50,10 @@ public class MenuParser implements Parser {
     private static final String COMMAND_NOTE_DELETE = "delete";
     private static final String COMMAND_NOTE_LIST = "list";
 
-    private BookmarkList bookmarks;
+    private BookmarkList bookmarkList;
 
-    public MenuParser(BookmarkList bookmarks) {
-        this.bookmarks = bookmarks;
+    public MenuParser(BookmarkList bookmarkList) {
+        this.bookmarkList = bookmarkList;
     }
 
     /**
@@ -173,15 +170,21 @@ public class MenuParser implements Parser {
             }
 
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
-            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, userTimer);
+            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarkList, userTimer);
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
             if (commandArr.length == BOOKMARK_DELETE_COMMANDARR_LENGTH) {
                 int deleteIndex = 0;
-                deleteIndex = Integer.parseInt(commandArr[2]);
-                return new BookmarkCommand(deleteIndex, commandArr[1], bookmarks);
+                try {
+                    deleteIndex = Integer.parseInt(commandArr[2]);
+                    return new BookmarkCommand(deleteIndex, commandArr[1], bookmarkList);
+                } catch (NumberFormatException nfe) {
+                    return new IncorrectCommand(ERROR_BOOKMARK_DELETE_NFE);
+                } catch (IndexOutOfBoundsException iobe) {
+                    return new IncorrectCommand(ERROR_BOOKMARK_DELETE_IOB_ERROR);
+                }
             }
-            return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
+            return new BookmarkCommand(BOOKMARK_LIST, bookmarkList);
         case COMMAND_NOTE:
             try {
                 if (commandArr[1].equalsIgnoreCase(COMMAND_NOTE_ADD) || commandArr[1]

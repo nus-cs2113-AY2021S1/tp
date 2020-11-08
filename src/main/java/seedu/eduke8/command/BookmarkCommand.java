@@ -13,43 +13,41 @@ public class BookmarkCommand extends Command {
     private static final String BOOKMARK_STORE = "storing";
     private static final String BOOKMARK_DELETE = "delete";
 
-    private BookmarkList bookmarks;
+    private BookmarkList bookmarkList;
     private Question question;
     private boolean alreadyBookmarked = false;
     private int deleteIndex = 0;
     String typeOfBookmarkCommand = "";
 
-    public BookmarkCommand(Question question, String typeOfBookmarkCommand, BookmarkList bookmarks) {
+    public BookmarkCommand(Question question, String typeOfBookmarkCommand, BookmarkList bookmarkList) {
         super();
-        assert bookmarks != null;
+        assert bookmarkList != null;
         this.question = question;
         if (question.isBookmarked()) {
             alreadyBookmarked = true;
         } else {
-            bookmarks.add(question);
+            bookmarkList.add(question);
         }
-        this.bookmarks = bookmarks;
+        this.bookmarkList = bookmarkList;
         this.typeOfBookmarkCommand = typeOfBookmarkCommand;
     }
 
-    public BookmarkCommand(String typeOfBookmarkCommand, BookmarkList bookmarks) {
+    public BookmarkCommand(String typeOfBookmarkCommand, BookmarkList bookmarkList) {
         this.typeOfBookmarkCommand = typeOfBookmarkCommand;
-        this.bookmarks = bookmarks;
+        this.bookmarkList = bookmarkList;
     }
 
-    public BookmarkCommand(int deleteIndex, String typeOfBookmarkCommand, BookmarkList bookmarks) {
+    public BookmarkCommand(int deleteIndex, String typeOfBookmarkCommand, BookmarkList bookmarkList) {
         this.typeOfBookmarkCommand = typeOfBookmarkCommand;
-        this.bookmarks = bookmarks;
+        this.bookmarkList = bookmarkList;
         this.deleteIndex = deleteIndex;
-        ArrayList<Displayable> bookmarkList = bookmarks.getInnerList();
-        bookmarkList.remove(deleteIndex - 1);
+        bookmarkList.delete(deleteIndex - 1);
     }
-
 
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
         if (typeOfBookmarkCommand.equals(BOOKMARK_LIST)) {
-            ui.printListOfBookmarkedQuestions(bookmarks);
+            ui.printListOfBookmarkedQuestions(bookmarkList);
         } else if (typeOfBookmarkCommand.equals(BOOKMARK_STORE)) {
             if (alreadyBookmarked) {
                 ui.printAlreadyBookmarkedIndicator();
