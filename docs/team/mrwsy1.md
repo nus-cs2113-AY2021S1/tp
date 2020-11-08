@@ -52,7 +52,7 @@ Given below are my contributions to the project.
     + Helped to fix formatting issues and typos.
 * Developer guide:
     + Added implementation details and UML diagrams for the following features: `/dine`, `/dineinfo`. ([#114](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/114), [#186](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/186))
-    + Added manual testing details for the following features: `/dine`, `/dineinfo`.
+    + Added manual testing details for the following features: `/dine`, `/dineinfo`. ([#219](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/219))
 
 #### Review/mentoring contributions:
 * PRs reviewed (with non-trivial review comments): [#205](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/205)
