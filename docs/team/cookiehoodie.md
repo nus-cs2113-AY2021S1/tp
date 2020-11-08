@@ -39,6 +39,7 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     * [Storage](https://ay2021s1-cs2113t-w13-1.github.io/tp/DeveloperGuide.html#storage) section under design (along with its class diagram).
     * [Storing, loading, and exporting data](https://ay2021s1-cs2113t-w13-1.github.io/tp/DeveloperGuide.html#storage) sections
     under implementation (along with all the sequence diagrams contained in them).
+    * [List](https://ay2021s1-cs2113t-w13-1.github.io/tp/DeveloperGuide.html#list) section and its class diagram.
     * Restructuring of whole DG; improvement on setting up the project section, logging, testing, user stories,
     non-functional requirements, manual testing. (Pull requests: 
     [#142](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/142)
@@ -57,6 +58,7 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     [#127](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/127)
     [#126](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/126))
 * **Review/mentoring contributions:** Pull requests: 
+[#146](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/146)
 [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124)
  [#86](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/86)
  [#82](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/82)
