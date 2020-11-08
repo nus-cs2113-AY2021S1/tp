@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+
+package controller {
+class Controller
+
+Controller --> api.StockPriceFetcher
+Controller --> model.PortfolioManager
+Controller --> parser.Parser
+Controller --> ui.Ui
+}
+
+package command {
+abstract class Command
+class BuyCommand extends Command
+class SellCommand extends Command
+class ByeCommand extends Command
+class InvalidCommand extends Command
+class SearchCommand extends Command
+class ViewCommand extends Command
+class WalletCommand extends Command
+}
+
+package model {
+class Portfolio
+class PortfolioManager
+class Stock
+class Transaction
+enum TransactionType
+class Wallet
+
+PortfolioManager --> Portfolio
+Portfolio --> Stock
+Portfolio --> Wallet
+Stock --> Transaction
+Transaction --> TransactionType
+}
+
+@enduml
