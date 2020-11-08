@@ -341,7 +341,9 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 1. Checks the user input and throws an exception if the input is empty.
 2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
     + Adds any matching data to an ArrayList `searchList`.
-    + Calls `Ui#printDineInfoResult()` method to print the matching results if size of `searchList` is more than 0.
+    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList`.
+        + Prints the matching results if size of `searchList` is more than 0.
+        + Prints 'no match' message if size of `searchList` is 0.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
 ![bus data](DG_Diagrams/DineInfoSequence.png)
