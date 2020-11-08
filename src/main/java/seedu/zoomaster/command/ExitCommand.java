@@ -13,6 +13,7 @@ public class ExitCommand extends Command {
     /**
      * Constructs a new ExitCommand instance and sets isExitCommand to true.
      */
+    //@@author xingrong123
     public ExitCommand() {
         isExitCommand = true;
     }

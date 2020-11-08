@@ -14,6 +14,7 @@ public abstract class Command {
     /**
      * Execution of command depends on which command subclass the command belongs to.
      */
+    //@@author xingrong123
     public abstract void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException;
 
     /**

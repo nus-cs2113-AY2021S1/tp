@@ -404,7 +404,7 @@ If so, it sets **day** variable as that of input parameter and moves on to the E
     additional keyword troublesome.
 
 <!-- @@author -->
-
+<!-- @@author xingrong123-->
 <a name="add-module-slot"></a>
 ### Add Module and Slot feature (Xing Rong)
 This feature allows the user to add modules and lesson slots into the timetable.
@@ -497,7 +497,7 @@ There are four options:
     3. Delete all bookmarks associated with the module.
     4. Delete all bookmarks contained in a slot from the module.  
     
-
+<!-- @@author -->
 
 ### Edit Slot feature (Francisco)
 

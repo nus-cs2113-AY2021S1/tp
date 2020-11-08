@@ -412,7 +412,7 @@ Example of usage:
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/lesson%20now%20indicator.png?raw=true) <br></br><br></br>
 
 <!-- @@author -->
-
+<!-- @@author xingrong123-->
 <br/><br/>
 <a name="showmoduledetails"></a>
 #### 5.3.2 Show module and slot details: `show` (Xing Rong)
@@ -571,7 +571,7 @@ Example of usage:
 ![]()
 * `delete cs2113t 1 bookmarks` 
 ![]()
-
+<!-- @@author -->
 <br/><br/> 
 
 <a name="edittimeslot"></a>

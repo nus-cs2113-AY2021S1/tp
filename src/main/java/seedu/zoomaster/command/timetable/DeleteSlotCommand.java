@@ -21,7 +21,7 @@ public class DeleteSlotCommand extends Command {
      * @param command The user input command.
      * @throws ZoomasterException if input command is invalid.
      */
-    //@@ xingrong123
+    //@@author xingrong123
     public DeleteSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(DEL_KW);
 

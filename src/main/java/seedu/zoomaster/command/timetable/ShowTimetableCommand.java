@@ -31,6 +31,7 @@ public class ShowTimetableCommand extends Command {
      *
      * @param command The command sent by the user.
      */
+    //@@author xingrong123
     public ShowTimetableCommand(String command) throws ZoomasterException {
         assert command.startsWith(SHOW_KW) : "command should start with show keyword";
         if (command.compareTo(SHOW_KW) == 0) {
