@@ -25,13 +25,13 @@ public class NoteCommand extends Command {
     public void execute(DisplayableList displayableList, Ui ui) {
         switch (typeOfNoteCommand) {
         case (NOTE_ADD):
-            ui.addNoteInteractions(topics);
+            ui.printAddNote(topics);
             break;
         case (NOTE_DELETE):
-            ui.deleteNoteInteractions(topics);
+            ui.printDeleteNote(topics);
             break;
         case (NOTE_LIST):
-            ui.listInteraction(topics);
+            ui.printListNote(topics);
             break;
         default:
             break;

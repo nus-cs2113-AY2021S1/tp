@@ -332,19 +332,16 @@ public class Ui {
     }
 
     public void printTopicsError(TopicList topics) {
-        System.out.println(HORIZONTAL_LINE);
 
-        System.out.println(MESSAGE_PRINT_TOPIC_LIST);
+        printWithoutLines(MESSAGE_PRINT_TOPIC_LIST);
         for (int i = 0; i < topics.getCount(); i++) {
             Topic topic = topics.get(i);
-            printMessage(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
+            printWithoutLines(OPEN_SQUARE_BRACKET + topic.getQuestionList().getCount() + CLOSE_SQUARE_BRACKET
                     + topic.getDescription());
         }
-
-        System.out.println(HORIZONTAL_LINE);
     }
 
-    public void addNoteInteractions(TopicList topicList) {
+    public void printAddNote(TopicList topicList) {
         printMessage(ADD_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine().trim();
         Ui ui = new Ui();
@@ -382,7 +379,7 @@ public class Ui {
         }
     }
 
-    public void deleteNoteInteractions(TopicList topicList) {
+    public void printDeleteNote(TopicList topicList) {
         Ui ui = new Ui();
         int noteCount = 0;
         Topic topic = null;
@@ -400,7 +397,7 @@ public class Ui {
         }
 
         if (topicList.doesTopicExist(topicName) && noteCount > 0) {
-            ui.printNoteList(noteList);
+            ui.showNotes(noteList);
 
             System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
             String input = SCANNER.nextLine();
@@ -420,7 +417,7 @@ public class Ui {
         }
     }
 
-    public void listInteraction(TopicList topicList) {
+    public void printListNote(TopicList topicList) {
         Ui ui = new Ui();
 
         printMessage(LIST_NOTE_PROMPT);
@@ -430,7 +427,7 @@ public class Ui {
             if (topicList.doesTopicExist(topicName)) {
                 Topic topic = (Topic) topicList.find(topicName);
                 NoteList noteListTopic = topic.getNoteList();
-                ui.printNoteList(noteListTopic);
+                ui.showNotes(noteListTopic);
             } else {
                 printMessage(INVALID_TOPIC);
                 ui.printTopicsError(topicList);
@@ -441,12 +438,14 @@ public class Ui {
         }
     }
 
-    public void printNoteList(NoteList notes) {
+    public void showNotes(NoteList notes) {
 
         if (notes.getCount() == 0) {
-            printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
+            printWithoutLines(HORIZONTAL_LINE);
+            printWithoutLines(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
-            printMessage(MESSAGE_PRINT_NOTE_LIST);
+            printWithoutLines(HORIZONTAL_LINE);
+            printWithoutLines(MESSAGE_PRINT_NOTE_LIST);
             for (int i = 0; i < notes.getCount(); i++) {
                 printWithoutLines(HORIZONTAL_LINE);
                 Note note = (Note) notes.get(i);
