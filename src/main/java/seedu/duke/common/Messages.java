@@ -115,9 +115,9 @@ public class Messages {
             + "     Example: mon, tue, wed, thu, fri, sat, sun";
     public static final String EXCEPTION_EMPTY_PRIORITY = "~Error~ The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = "~Error~ The category cannot be empty.";
-    public static final String EXCEPTION_EMPTY_VALUE = ":( OOPS!!! The value of an expense item cannot be empty.";
-    public static final String EXCEPTION_EMPTY_CURRENCY = ":( OOPS!!! The currency of an expense item cannot be empty.";
-    public static final String EXCEPTION_EMPTY_DATE = ":( OOPS!!! The date of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_VALUE = "~Error~ The value of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_CURRENCY = "~Error~ The currency of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_DATE = "~Error~ The date of an expense item cannot be empty.";
     public static final String EXCEPTION_INVALID_INDEX = "~Error~ Please input a valid index.";
     public static final String EXCEPTION_INVALID_LINK_INDEX = "~Error~ Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
