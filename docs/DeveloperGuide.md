@@ -752,6 +752,7 @@ The following diagram shows how you can initiate the quiz for a topic.
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
 >show the score obtained by the user.
 
+
 ### 4.5 Sorting tasks
 The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
 while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist
