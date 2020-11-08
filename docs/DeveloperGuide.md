@@ -199,7 +199,7 @@ Below is the sequence diagram for how the Parser component of `Eduke8` works wit
 ![Parser Sample Sequence](./images/ParserSampleSequence.png)
 
 The command parsing feature is our program’s way of reading the user’s input into the command line. It makes use of a 
-single method `parseCommand` that identifies what command the user is calling for and then calls the command. There are 
+single method `parseCommand()` that identifies what command the user is calling for and then calls the command. There are 
 two parsers in our program that implements a single `Parser` interface. One parser is for choosing menu options and is 
 named `MenuParser`. The other parser is used during quizzes, in order to answer questions or request for hints, and is 
 called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
