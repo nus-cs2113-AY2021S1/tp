@@ -12,6 +12,8 @@ import seedu.quotesify.ui.TextUi;
 
 import java.util.logging.Level;
 
+//@@author chloesyy
+
 /**
  * Represents the command to add books to Quotesify's booklist.
  */

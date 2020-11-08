@@ -61,47 +61,101 @@ public class TextUi {
         System.out.println(message);
     }
 
+    //@@author chloesyy
+
+    /**
+     * Prints successful add book message.
+     *
+     * @param book Book which was added.
+     */
     public void printAddBook(Book book) {
         System.out.printf(UiMessage.ADD_BOOK_MESSAGE + "\n", book.toString());
     }
 
+    /**
+     * Prints successful delete book message.
+     *
+     * @param book Book which was deleted.
+     */
     public void printDeleteBook(Book book) {
         System.out.printf(UiMessage.DELETE_BOOK_MESSAGE + "\n", book.toString());
     }
 
+    /**
+     * Prints successful edit book message.
+     *
+     * @param oldTitle Old title of book.
+     * @param newTitle New title of book.
+     */
     public void printEditBook(String oldTitle, String newTitle) {
         System.out.printf(UiMessage.EDIT_BOOK_MESSAGE + "\n", oldTitle, newTitle);
     }
 
+    /**
+     * Prints successful done book message.
+     *
+     * @param book Book which was marked as done.
+     */
     public void printDoneBook(Book book) {
         System.out.printf(UiMessage.DONE_BOOK_MESSAGE + "\n", book.toString());
     }
 
+    /**
+     * Prints the list of completed books.
+     *
+     * @param bookList BookList of books which are completed.
+     */
     public void printListDoneBook(BookList bookList) {
         System.out.println(UiMessage.LIST_DONE_BOOK_MESSAGE);
         System.out.print(bookList.toStringWithIndex());
     }
 
+    /**
+     * Prints the list of undone books.
+     *
+     * @param bookList BookList of books which are not completed.
+     */
     public void printListUndoneBook(BookList bookList) {
         System.out.println(UiMessage.LIST_UNDONE_BOOK_MESSAGE);
         System.out.print(bookList.toStringWithIndex());
     }
 
+    /**
+     * Prints a list of all existing books.
+     * @param bookList BookList of books.
+     */
     public void printAllBooks(BookList bookList) {
         System.out.println(UiMessage.LIST_BOOKS_MESSAGE);
         System.out.print(bookList.toStringWithIndex());
     }
 
+    /**
+     * Prints the book details of a specified book.
+     *
+     * @param book Book which details are to be printed.
+     */
     public void printBookDetails(Book book) {
         System.out.println(UiMessage.LIST_BOOK_DETAIL_MESSAGE);
         System.out.print(book.getBookDetailString());
     }
 
+    /**
+     * Prints a list of books by the author name.
+     *
+     * @param bookList BookList of books with the author name.
+     * @param authorName Author name of books.
+     */
     public void printBooksByAuthor(BookList bookList, String authorName) {
         System.out.printf(UiMessage.LIST_BOOKS_BY_AUTHOR_MESSAGE + "\n", authorName);
         System.out.print(bookList.toStringWithIndex());
     }
 
+    /**
+     * Prints a list of books containing a keyword.
+     *
+     * @param bookList BookList of books with the keyword.
+     * @param keyword Keyword.
+     */
     public void printBooksByKeyword(BookList bookList, String keyword) {
         System.out.printf(UiMessage.LIST_BOOKS_BY_KEYWORD_MESSAGE + "\n", keyword);
         System.out.print(bookList.toStringWithIndex());
