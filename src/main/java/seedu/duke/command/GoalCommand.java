@@ -10,9 +10,9 @@ import seedu.duke.ui.Ui;
  */
 public class GoalCommand extends Command {
     /**
-     * Constructor for setting goals seedu.duke
+     * Constructor for goal command.
      *
-     * @param command from user input
+     * @param command user input.
      */
     public GoalCommand(String command) {
         assert command != null : "String for goal command should not be null";
@@ -36,7 +36,6 @@ public class GoalCommand extends Command {
                 data.setGoal(goal);
             }
             ui.printChangeGoalMessage(goal);
-            //update storage
             storage.saveFile(storage.getFileLocation("Goal"), data, "Goal");
         }
     }

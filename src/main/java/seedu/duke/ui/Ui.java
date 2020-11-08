@@ -99,6 +99,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the number dates to list in the calendar and the number of events not in the calendar.
+     *
+     * @param size  number of unique dates in the calendar.
+     * @param count number of events not in the calendar.
+     */
     public void printCalendarStart(int size, int count) {
         System.out.println("Calendar has " + size + " dates to display");
         if (count > 1) {
@@ -108,11 +114,17 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the end of the calendar.
+     */
     public void printCalendarEnd() {
         printCalendarDivider();
         System.out.println("End of calendar");
     }
 
+    /**
+     * Prints a message to tell the user instructions to continue or to exit the calendar.
+     */
     public void printContinueQuery() {
         printCalendarDivider();
         System.out.println("Enter 'q' to exit or enter to continue...");
@@ -171,7 +183,8 @@ public class Ui {
 
     /**
      * Printing reminder.
-     * @param eventsWithTime events that have time.
+     *
+     * @param eventsWithTime    events that have time.
      * @param eventsWithoutTime events without time.
      */
     public void printReminder(ArrayList<Event> eventsWithTime, ArrayList<Event> eventsWithoutTime) {
@@ -184,7 +197,8 @@ public class Ui {
 
     /**
      * Printing events according to events that have time and without time.
-     * @param eventsWithTime events that have time.
+     *
+     * @param eventsWithTime    events that have time.
      * @param eventsWithoutTime events without time.
      */
     private void printReminderEvents(ArrayList<Event> eventsWithTime, ArrayList<Event> eventsWithoutTime) {
