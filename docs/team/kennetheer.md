@@ -1,22 +1,60 @@
 # Kenneth Eer - Project Portfolio Page
 
-## Project: ModTracker
+## Overview
+_ModTracker_ is a desktop app for NUS students to track the time spent 
+as well as tasks to do for each of their modules.
+It helps students to prioritise their work and 
+balance their time spent amongst their modules. 
+This app uses a Command Line Interface (CLI).
 
-ModTracker is a desktop application for NUS students to track the time spent on their modules and tasks. 
+## Summary of Contributions
+This section details my contribution in this project. The detailed contributions can be found in subsequent sections.
 
-### Summary of contributions to the project.
+### Code contributed 
+The code I have contributed to the project can be found [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=KennethEer&tabRepo=AY2021S1-CS2113T-F12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
-* **Enhancements implemented**: 
-  * Added an addMod command that allows the user to input modules.
-  * Added a deleteMod command that allows the user to delete modules.
+### Enhancements implemented 
+Summary of my implemented app functionalities:
+1. Addition of module and its expected workload
+2. Deletion of module, its expected workload and actual time.
+3. Notification feature to notify users of their progress
 
-* **Code contributed**: [RepoSense link to be replaced with own link]()
+Details: 
+* Addition and Deletion of modules and its contents: 
+  * Highlights: To support these core features, I created `ModuleList` and `Module` classes, 
+  which manages the list of modules and each module details respectively. 
+  These laid the foundation so all functionalities in the app are implemented by building upon these basic classes.
 
-* **Documentation**:
+* Notification feature <br/>
+  * What it does: When the user starts the app, it notifies him if he is spending too little/just right/too much amount of time on the module 
+  and displays a randomised encouraging message.
+  * Justification: This is a notable enhancement that helps ModTracker achieve its objectives by immediately highlighting to the user the modules that require more attention upon the start of the app. 
+  Also, displaying randomised encouraging messages improves the overall user experience significantly.
+  It motivates and interests the user with these random messages, personifying ModTracker as a buddy that helps 
+  him with managing his module workload. This is key to differentiating ModTracker from other existing applications.
+  * Highlights: Integration with the analytics feature to determine user's progress for each module. 
+  The app lacks an explicit indication of the user's current week number, 
+  which is needed for a comparison to determine the user's progress. Hence, I implemented the logic to derive this value.
+
+### Documentation
   * User Guide:
-    * Added documentation for the features `addMod` and `deleteMod`
+    * I added documentations for the features `addmod`, `deletemod`, `addexp`, `deleteexp`, `open`, `deletetime`
+    * I fixed the links in the Table of Contents and formatted the tables [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109), 
+    [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/)
 
   * Developer Guide:
-    * Added implementation details of the `addMod` feature.
+    * Under the Design section, I did the following components
+        * Architecture component (including architecture diagram and high level sequence diagram exemplifying the interaction between different components)
+        * UI component  
+        * Model Component (including class diagram)
+    * I wrote implementation details of the `addMod` feature and drew activity and sequence diagrams to illustrate.
+    * I also contributed to the target user profile, value proposition and user stories.
+
+### Contributions to Team-based Tasks
+I conducted manual testing, reported bugs and helped to fix bugs in my team's code and refactor the code: [42](https://github.com/AY2021S1-CS2113T-F12-4/tp/issues/42) (reported bugs), ([#43](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/43) (fixed mismatch in object equality and optimised code), [#123](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/123) (use regex to implement module validity)
+I enabled java assertions, set up the milestones and labels in the issue tracker.
+
+### Contributions Beyond the Project Team
+I provided feedback to the other teams' code and developer's guide. 
+I also tested and reported major bugs for other teams: [#6](https://github.com/KennethEer/ped/issues/6), [#8](https://github.com/KennethEer/ped/issues/8)
     
-* (to be updated)
