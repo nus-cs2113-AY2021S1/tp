@@ -121,7 +121,8 @@ class CheckCommandTest {
             checkCommand.execute(data, ui, storage);
         });
 
-        String expectedMessage = "Remember to separate input fields with a ';'.";
+        String expectedMessage = "Remember to separate input fields with a ';'." + System.lineSeparator()
+                + "The format for check is: \"check [<START_DATE>]; [<START_TIME>]; [<END_DATE>]; [<END_TIME>]\".";
         String actualMessage = e.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -137,7 +138,8 @@ class CheckCommandTest {
         });
 
         String expectedMessage = "Insufficient fields provided to check events. "
-                + "Remember to put a semicolon even for blank fields.";
+                + "Remember to put a semicolon even for blank fields." + System.lineSeparator()
+                + "The format for check is: \"check [<START_DATE>]; [<START_TIME>]; [<END_DATE>]; [<END_TIME>]\".";
         String actualMessage = e.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }

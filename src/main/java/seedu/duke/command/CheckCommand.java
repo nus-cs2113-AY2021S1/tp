@@ -60,7 +60,8 @@ public class CheckCommand extends Command {
         logger.fine("Start executing check command: \"" + command + "\"");
         if (!command.contains(";")) {
             logger.warning("MissingSemicolonException: User input fields was not separated with semicolon.");
-            throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
+            throw new MissingSemicolonException("Remember to separate input fields with a ';'." + System.lineSeparator()
+                    + "The format for check is: \"check [<START_DATE>]; [<START_TIME>]; [<END_DATE>]; [<END_TIME>]\".");
         }
 
         String[] datesAndTime = command.split(";");
@@ -96,7 +97,8 @@ public class CheckCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException e) { // if datesAndTime[x] is unable to be accessed
             logger.warning("WrongNumberOfArgumentsException: Not enough date/time fields were given to be processed.");
             throw new WrongNumberOfArgumentsException("Insufficient fields provided to check events. "
-                    + "Remember to put a semicolon even for blank fields.");
+                    + "Remember to put a semicolon even for blank fields." + System.lineSeparator()
+                    + "The format for check is: \"check [<START_DATE>]; [<START_TIME>]; [<END_DATE>]; [<END_TIME>]\".");
         }
     }
 

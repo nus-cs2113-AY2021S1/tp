@@ -49,14 +49,16 @@ public class DoneCommand extends Command {
 
         if (!input.contains(";")) {
             logger.warning("MissingSemicolonException: User input fields was not separated with semicolon.");
-            throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
+            throw new MissingSemicolonException("Remember to separate input fields with a ';'." + System.lineSeparator()
+                    + "The format for done is: \"done <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".");
         }
 
         String[] inputParameters = input.trim().split(";", 2);
 
         if (inputParameters[0].isBlank() || inputParameters[1].isBlank()) {
             logger.warning("WrongNumberOfArgumentsException: User did not provide event type or event index.");
-            throw new WrongNumberOfArgumentsException("Event type or index is missing.");
+            throw new WrongNumberOfArgumentsException("Event type or index is missing." + System.lineSeparator()
+                    + "The format for done is: \"done <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".");
         }
 
         String listType = capitaliseFirstLetter(inputParameters[0].trim());
@@ -67,7 +69,8 @@ public class DoneCommand extends Command {
             Integer.parseInt(eventIdentifierArray[0]);
         } catch (NumberFormatException e) {
             logger.warning("WrongNumberFormatException: Event index given is not an integer.");
-            throw new WrongNumberFormatException("Event index given is not an integer.");
+            throw new WrongNumberFormatException("Event index given is not an integer." + System.lineSeparator()
+                    + "The format for done is: \"done <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".");
         }
 
         logger.fine("Successfully parsed input and created DoneCommand.");

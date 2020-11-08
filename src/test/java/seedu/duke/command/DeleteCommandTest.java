@@ -137,7 +137,8 @@ class DeleteCommandTest {
             deleteCommand.execute(data, ui, storage);
         });
 
-        String expectedStringThree = "Remember to separate input fields with a ';'.";
+        String expectedStringThree = "Remember to separate input fields with a ';'." + System.lineSeparator()
+                + "The format for delete is: \"delete <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".";
         String actualStringThree = thirdE.getMessage();
         assertEquals(expectedStringThree, actualStringThree);
 
@@ -148,7 +149,8 @@ class DeleteCommandTest {
             deleteCommand.execute(data, ui, storage);
         });
 
-        String expectedStringFour = "Event type or index is missing.";
+        String expectedStringFour = "Event type or index is missing." + System.lineSeparator()
+                + "The format for delete is: \"delete <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".";
         String actualStringFour = fourthE.getMessage();
         assertEquals(expectedStringFour, actualStringFour);
 
@@ -159,7 +161,8 @@ class DeleteCommandTest {
             deleteCommand.execute(data, ui, storage);
         });
 
-        String expectedStringFive = "Event index given is not an integer.";
+        String expectedStringFive = "Event index given is not an integer." + System.lineSeparator()
+                + "The format for delete is: \"delete <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".";
         String actualStringFive = fifthE.getMessage();
         assertEquals(expectedStringFive, actualStringFive);
     }
