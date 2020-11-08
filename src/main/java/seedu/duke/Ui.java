@@ -521,6 +521,10 @@ public class Ui {
             System.out.println(
                     "Error: Please key in the additional information in this format: /a <event number> - information");
             break;
+        case "missing add info":
+            System.out.println(
+                    "Error: The additional information should not be empty!");
+            break;
         case "invalid view info":
             System.out.println(
                     "Error: To view the additional information of the event: /v <event number>");
