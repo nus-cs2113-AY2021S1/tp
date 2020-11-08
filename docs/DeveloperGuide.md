@@ -188,8 +188,12 @@ NUS students living on campus who would like to track their daily food and nutri
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0 v2.0|person with an ideal weight in mind|input my target weight and relevant information|get daily calorie intake recommendations|
+|v1.0|clumsy or long term user|be able to view my personal information|make changes when necessary|
+|v2.0|clumsy user|be able to edit my personal information|make changes if I input the wrong information|
+|v2.0|potential long term user|be able to edit my personal information|make changes to information like age, weight and fitness level as it can changes over time|
+|v2.0|user that wants to track weight changes|be able to view the weight I started off with, my current weight and the weight I desire|take note of my progress|
+
 
 ## Non-Functional Requirements
 
