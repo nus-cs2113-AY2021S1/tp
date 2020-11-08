@@ -63,7 +63,7 @@ class CheckCommandTest {
 
     @Test
     void execute_someEventsInTimeRange_printEventsInTimeRange() throws DukeException {
-        // Execute check command
+        // Check 4 May 2020 1:15 pm to 5 May 2:30 pm
         String inputString = "04/05/20; 13:15; 05/05/20; 14:30";
 
         Command checkCommand  = new CheckCommand(inputString);
@@ -78,7 +78,7 @@ class CheckCommandTest {
 
     @Test
     void execute_repeatedEventInsideTimeRange_printEventInTimeRange() throws DukeException {
-        // Execute check command
+        // Check 10 Oct 2020 12 pm to 10 Oct 2020 5 pm
         String inputString = "10/10/2020; 12 pm; 10/10/20; 17";
 
         Command checkCommand  = new CheckCommand(inputString);
@@ -91,7 +91,7 @@ class CheckCommandTest {
 
     @Test
     void execute_eventsOutsideTimeRange_printEventsInTimeRange() throws DukeException {
-        // Execute check command
+        // Check 20 Oct 2020 1 pm to current date and time
         String inputStringOne = "20/10/20; 13:00; ; ";
 
         Command checkCommand  = new CheckCommand(inputStringOne);
@@ -100,7 +100,8 @@ class CheckCommandTest {
         String expectedString = "You have no coinciding events!";
         assertEquals(expectedString, outputStreamCaptor.toString().trim());
 
-        String inputStringTwo = "11/20; 13:00; 20; ";
+        // Check 15 Oct 2020 1 pm to current date in 2020 at current time
+        String inputStringTwo = "15/10/20; 13:00; 20; ";
 
         checkCommand  = new CheckCommand(inputStringTwo);
         checkCommand.execute(data, ui, storage);
@@ -143,7 +144,7 @@ class CheckCommandTest {
 
     @Test
     void execute_invalidDateFormatGiven_DateErrorExceptionThrown() {
-        // First invalid date format
+        // dots used instead of slashes or dashes
         String inputStringOne = "9/10.2020; 3 pm; 10.10.2020; 5 pm";
 
         Exception firstE = assertThrows(DateErrorException.class, () -> {
@@ -157,7 +158,7 @@ class CheckCommandTest {
         String actualMessage = firstE.getMessage();
         assertEquals(expectedMessage, actualMessage);
 
-        // Second invalid date format
+        // comma used instead of slashes or dashes
         String inputStringTwo = "9/10/2020; 3 pm; 10,10,2020; 5 pm";
 
         Exception secondE = assertThrows(DateErrorException.class, () -> {
@@ -168,7 +169,7 @@ class CheckCommandTest {
         actualMessage = secondE.getMessage();
         assertEquals(expectedMessage, actualMessage);
 
-        // Third invalid date format
+        // Excess fields for date
         String inputStringThree = "5/9/10/2020; 3 pm; 10/10/2020; 5 pm";
 
         Exception thirdE = assertThrows(DateErrorException.class, () -> {
@@ -184,7 +185,7 @@ class CheckCommandTest {
 
     @Test
     void execute_invalidTimeFormatGiven_TimeErrorExceptionThrown() {
-        // dot used in date instead of dash or slash
+        // dot used in time instead of colon
         String inputStringOne = "9/10/2020; 3.00 pm; 10/10/2020; 5.00 pm";
 
         Exception firstE = assertThrows(TimeErrorException.class, () -> {
