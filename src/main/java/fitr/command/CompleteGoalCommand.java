@@ -12,9 +12,10 @@ import java.io.IOException;
 
 import static fitr.common.Commands.COMMAND_COMPLETE;
 import static fitr.common.Commands.COMMAND_GOAL;
-import static fitr.common.Messages.ERROR_INVALID_INDEX;
+import static fitr.common.Messages.ERROR_INDEX_DOES_NOT_EXIST;
 import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
+import static fitr.common.Messages.SYMBOL_YES;
 
 /**
  * Marks a particular goal as complete.
@@ -43,10 +44,12 @@ public class CompleteGoalCommand extends Command {
                 }
                 Goal completedGoal = listManager.getGoal(completedGoalIndex);
                 if (completedGoal.getStatus(completedGoal, listManager.getFoodList(),
-                        listManager.getExerciseList(), user) == "Y") {
+                        listManager.getExerciseList(), user) == SYMBOL_YES) {
                     Ui.printCustomError("This goal has already been completed.");
                     return;
                 }
+                listManager.getGoalList().deleteGoal(completedGoalIndex);
+                listManager.getGoalList().addGoal(completedGoal);
                 completedGoal.markAsCompleted();
                 storageManager.writeGoalList(listManager.getGoalList(), listManager.getFoodList(),
                         listManager.getExerciseList(), user);
@@ -56,7 +59,7 @@ public class CompleteGoalCommand extends Command {
                 throw new FitrException();
             }
         } catch (IndexOutOfBoundsException e) {
-            Ui.printCustomError(ERROR_INVALID_INDEX);
+            Ui.printCustomError(ERROR_INDEX_DOES_NOT_EXIST);
         } catch (NumberFormatException e) {
             Ui.printCustomError("Sorry, deletion index must be an positive integer.");
         } catch (IOException e) {
