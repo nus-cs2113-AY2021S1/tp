@@ -503,6 +503,9 @@ public class Ui {
         case "done":
             System.out.println("Error: Please key in the command in this format: done <task number>");
             break;
+        case "task done":
+            System.out.println("The task has already been marked as done!");
+            break;
         case "delete":
             System.out.println("Error: Please key in the command in this format: -t <task number> "
                     + "OR -e <event number>");
