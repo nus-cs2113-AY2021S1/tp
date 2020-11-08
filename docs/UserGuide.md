@@ -223,7 +223,7 @@ The types of events available to be added include:
 - NUS timetable/lessons: Timetable
 - Personal Events: Personal
 
-General format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
+General Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
 - `EVENT_TYPE` specify the type of event you want to add. These include "zoom", "timetable" and "personal".
 - `EVENT_DESCRIPTION` is the description or name of the event.
@@ -243,7 +243,7 @@ Zoom events can contain:
 - Description and link 
 - Description, link, date and time
 
-Zoom Format: `add Zoom; EVENT_DESCRIPTION; LOCATION; [DD/MM/YY]; [HH:MM AM/PM]`
+Zoom Format: `add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Personal events can contain: 
 - Description 
@@ -840,11 +840,14 @@ As shown above, the user can choose the date/time they want for the event as lon
 > * The extract feature has the ability to attach the current year to the date if it is not specified in the text.
 > * The text body can include multiple paragraphs that are copy and pasted from emails.
 > * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected. 
+> * Unlike some other commands, 24 Hour time without "." or ":" will not be detected. 
+> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for the time and zoom links too.
 
 > **Warning!**
 > * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
 > * It is not advised to copy and paste text containing emojis into the command line because the command line may crash. It is recommended to remove these emojis by editing the text in a text editor first like the Notepad app.
-> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for the time and zoom links too.
+
+
 
 
 
@@ -877,7 +880,7 @@ In this section, you can find some frequently asked questions(FAQ).
 
 | Action | Format, Examples |
 |--------|------------------|
-|Add|add EVENT_TYPE; EVENT_DESCRIPTION; DD/MM/YY <br> Eg: add personal; Family Meeting; 18/09/20 <br> <br> add EVENT_TYPE; EVENT_DESCRIPTION; LINK; DD/MM/YY; HH:MM <br> Eg: add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> add EVENT_TYPE; EVENT_DESCRIPTION; LOCATION; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable; CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
+|Add|Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add personal; Family Meeting; 18/09/20 <br> <br> Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable; CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
 |List|list all <br> <br> list TYPE <br> Eg: list Zoom <br> <br> list from sd/DD/MM/YY to ed/DD/MM/YY <br> Eg: list from sd/12/04/20 to ed/19/04/20 <br>|
 |Check|check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME] <br> Eg: check 20/08/20; 15:05; 25/8/2020; 1 pm; <br>|
 |Repeat|repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT] <br> Eg: repeat timetable 2 weekly 4 <br>|

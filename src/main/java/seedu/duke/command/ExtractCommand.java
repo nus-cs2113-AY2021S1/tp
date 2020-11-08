@@ -485,9 +485,8 @@ public class ExtractCommand extends Command {
     private String detectYear(String date) {
         String year = date.substring(date.length() - 4);
         try {
-            if (Integer.parseInt(year) > 2100 || Integer.parseInt(year) < 1900) {
-                year = getCurrentYear();
-            }
+            // Test if year is a valid integer
+            Integer.parseInt(year);
         } catch (NumberFormatException e) {
             year = getCurrentYear();
         }

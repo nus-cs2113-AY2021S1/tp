@@ -475,6 +475,19 @@ The following sequence diagram shows how the Extract Feature works in general:
 
 ![Sequence Diagram for Extract Command](./diagrams/extractCommand.jpg)
 
+Design considerations:
+
+For the detection of date, the Regex pattern used detects dates in the DD/Month Name/YYYY format or Month name/DD/YYYY format. The current year can also be added automatically if no year was detected.
+It can also detect if the day portion of the date has any suffixes. This does not detect dates written in other formats like DD/MM/YYYY or DD/MM/YY because upon
+looking at many of the emails sent to us, we found most were of the Regex pattern we chose. However, this could be implemented in the future. 
+
+For the detection of time, the Regex pattern used detects time in the 12 or 24 hour format. It can detect time with AM/PM behind it too. However, it cannot detect 24 hour timings
+with no "." or ":" in it unlike some commands above. This is because it may result in detecting a lot of false timings like if a 4 digit number like 2020 for a date was detected as a time and a year.
+
+For the detection of zoom link, the Regex pattern used first detects any URL starting with https:// or http://. It then checks whether the URL contains ".zoom." which we found the be common in most zoom links.
+
+
+
 
 
 
