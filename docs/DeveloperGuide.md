@@ -218,9 +218,17 @@ For example: user input: `delete aircon1`. `prepareRemoveCommand(aircon1)` will 
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_On.png)
 
+When the user enters the ‘on’ command, the 
+`prepareOnCommand(argument)` is called. It will check if the user inputs a p/ for the argument. 
+
+The name can either be a Location, or an Appliance name. If there is a parameter, the program will then check if the command is an integer,
+if it isn’t an error is thrown. If there is no parameter inputted, an empty string. Finally, a new OnCommand(name,parameter) will be returned.
+
 #### Sequence Diagram for `off`
 
 ![Parser Model Component](images/diagrams/Sequence_Parser_Off.png) 
+
+`prepareOffCommand(argument)` is called. The name can be an Appliance or a Location. A new OffCommand is created: OffCommand(name).
 
 #### Sequence Diagram for `list`
 
