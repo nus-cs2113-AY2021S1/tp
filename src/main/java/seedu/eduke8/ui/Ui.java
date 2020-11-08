@@ -62,7 +62,7 @@ public class Ui {
             + System.lineSeparator() + "3) topics"
             + System.lineSeparator() + "4) textbook"
             + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
-            + System.lineSeparator() + "6) bookmark / bookmark delete <index number of bookmark to delete>"
+            + System.lineSeparator() + "6) bookmark list / bookmark delete <index number of bookmark to delete>"
             + System.lineSeparator() + "7) stats"
             + System.lineSeparator() + "8) note add / note delete / note list"
             + System.lineSeparator() + "9) exit";
