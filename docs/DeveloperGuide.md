@@ -67,7 +67,8 @@ Before you start: Please ensure you have Java 11 installed in you computer.
 ## 3. Design
 
 ### 3.1 Architecture
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/arch%20dia.png)
+![image](img/arch%20dia.png)
+
 Figure 1. Architecture Diagram
 
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
