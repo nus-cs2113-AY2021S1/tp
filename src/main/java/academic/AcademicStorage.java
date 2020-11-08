@@ -30,9 +30,11 @@ public class AcademicStorage {
             System.out.println("data/academic.txt is not found, creating a new file now!");
         } catch (StringIndexOutOfBoundsException | NumberFormatException
                 | InvalidEmailException | RepeatedGradeException e) {
+            listOfGrades.clear();
+            listOfPerson.clear();
             File f = new File(filePath);
             f.createNewFile();
-            System.out.println("data/academic.txt is corrupted, invalid entries have been removed.");
+            System.out.println("data/academic.txt is corrupted, your data will be reformatted.");
         }
     }
 

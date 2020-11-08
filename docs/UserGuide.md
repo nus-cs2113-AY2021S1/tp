@@ -415,7 +415,7 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.7. Showing classes list](#27-showing-class-list-list-class)
 * [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
-* [2.10.Removing all past event](#210-removing-all-past-event-clean-up)
+* [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
 
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
@@ -509,7 +509,7 @@ Instruction:
 
 Expected output:
 
-![To be added]
+![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png)
 
 ### 2.7 Showing Class list: `list class`
 
@@ -521,7 +521,7 @@ Instruction:
 
 Expected output:
 
-![To be added]
+![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png)
 
 ### 2.8 Deleting an activity: `delete activity INDEX`
 
@@ -537,7 +537,7 @@ Example of usage:
 
 Expected output:
 
-![To be added]
+![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png)
 
 ### 2.9 Deleting a class: `delete class INDEX`
 
@@ -553,12 +553,12 @@ Example of usage:
 
 Expected output:
 
-![To be added]
+![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png)
 
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
 
-### 2.10 Removing all past event `clean up`
+### 2.10 Removing all past events: `clean up`
 
 Having too many events added to the application, and the data file is taking up too much space?
 Use this command to remove all the activities that was over more than 7 days ago and all the classes with their last lesson 
@@ -584,6 +584,21 @@ Academic tracker provides a convenient experience where you can store
 all the information you need in one place! To access the academic tracker, 
 follow the instructions below.
 
+This section contains 12 commands to navigate the academic mode:
+* [3.1 Entering Academic Mode](#31-entering-academic-mode-cd-4--cd-academic)
+* [3.2 Adding a contact](#32-adding-a-contact-add-contact-ccontact_details-mmobile_number--eemail)
+* [3.3 Listing all contacts](#33-listing-all-contacts-list-contact)
+* [3.4 Starring a contact](#34-starring-a-contact-star-contact-index)
+* [3.5 Deleting a contact](#35-deleting-a-contact-delete-contact-index)
+* [3.6 Adding a grade](#36-adding-a-grade-add-grade-nmodule_name--mmc--ggrade)
+* [3.7 Listing all grades](#37-listing-all-grades-list-grade)
+* [3.8 Checking current cap](#38-checking-current-cap-check-cap)
+* [3.9 Starring a grade](#39-starring-a-grade-star-grade-index)
+* [3.10 SU-ing a grade](#310-su-ing-a-grade-su-grade-index)
+* [3.11 Deleting a grade](#311-deleting-a-grade-delete-grade-index)
+* [3.12 Listing all the starred items in academic](#312-listing-all-the-starred-items-in-academic-list-star)
+
+
 ### 3.1 Entering Academic Mode: `cd 4` / `cd academic`
 
 This command allows you to enter academic tracker mode from the main menu or from the other modes.
@@ -596,8 +611,8 @@ Instruction:
 Expected output:
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the academic mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the academic mode easily and quickly!
 
 ### 3.2 Adding a contact: `add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
@@ -614,8 +629,8 @@ will add a contact with the name Prof Lim, mobile number 81234567, and email E76
 Expected output:  
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
-**Warning:**
-* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
+>**Warning:**
+>* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
 
 ### 3.3 Listing all contacts: `list contact`
 
@@ -675,10 +690,10 @@ will add a grade with the title CS2101 that has 4 credits and scored an A-.
 Expected output:  
 ![Academic_3_6](Images/AcademicUG/Academic_3_6.png)
 
-**Warning:**
-* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
-Note that there this program doesn't cap how many MCs a module can have.
-* This application is not synced to a module database, so any valid input will be accepted as a module name.
+>**Warning:**
+>* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+>* This program doesn't cap how many MCs a module can have.
+>* This application is not synced to a module database, so any valid input will be accepted as a module name.
 
 ### 3.7 Listing all grades: `list grade`
 
@@ -718,9 +733,9 @@ Example of usage:
 Expected output:
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
-### 3.10 SUing a grade: `su grade INDEX`
+### 3.10 SU-ing a grade: `su grade INDEX`
 
-SUed a module and want to exclude it from your CAP calculation? The SU grade
+SU-ed a module and want to exclude it from your CAP calculation? The SU grade
 function allows you to do just that through these simple steps.
 
 Instruction: 
@@ -732,6 +747,10 @@ Example of usage:
 
 Expected output:
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
+
+>**Warning:**
+>* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
+>consider deleting the mod and adding a new one.
 
 ### 3.11 Deleting a grade: `delete grade INDEX`
 
@@ -766,13 +785,13 @@ Or a more efficient way to verify your knowledge?
 Perhaps it is also difficult to scour your handwritten notes to find a particular piece of information.
 The flashcard mode aims to tackle these aspects that may hinder your learning process.
 
-This section contains 6 commands to navigate the Flashcard mode —
-* 4.1. Entering flashcard mode
-* 4.2. Adding flashcards
-* 4.3. Listing flashcards
-* 4.4. Deleting flashcards
-* 4.5. Testing content
-* 4.6. Finding relevant flashcards
+This section contains 6 commands to navigate the Flashcard mode:
+* [4.1. Entering flashcard mode](#41-entering-flashcard-mode-cd-5--cd-flashcard)
+* [4.2. Adding flashcards](#42-adding-flashcards-add)
+* [4.3. Listing flashcards](#43-listing-flashcards-list)
+* [4.4. Deleting flashcards](#44-deleting-flashcards-delete)
+* [4.5. Testing content](#45-testing-contenttest)
+* [4.6. Finding relevant flashcards](#46-finding-relevant-flashcards-find)
 
 ### 4.1 Entering flashcard mode: `cd 5` / `cd flashcard`
 
@@ -786,8 +805,8 @@ Instruction:
 Expected output:
 ![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the flashcard mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the flashcard mode easily and quickly!
 
 ### 4.2 Adding flashcards: `add`
 
@@ -808,11 +827,12 @@ Expected output:
 
 If you encounter any errors, take note of the following warning.
 
-**Warning:**
-* “back” cannot be added as an answer for the flashcard.
-This is because “back” is used as a command to exit the test mode later on.
-If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
-![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
+>**Warning:**
+>* “back” and "show answer" cannot be added as an answer for the flashcard.
+>This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
+>respectively.
+>If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
 ### 4.3 Listing flashcards: `list`
 
@@ -841,23 +861,28 @@ Example of usage:
 Expected output:
 ![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
 
-**Useful information:**
-* You can use the `list` command to check the card index.
+>**Useful information:**
+>* You can use the `list` command to check the card index.
 
 ### 4.5 Testing content:`test`
 
 Grading your own work is one of the best ways to revise as it helps you effectively retain information.
 After adding the flashcards, you may wish to revise the content by testing yourself. 
 
+If you are unable to answer a question and wish to refer to the answer, use `show answer`.
 When you are done revising, use `back` to exit the test mode, and return to the flashcard main.
 
 Instruction:
 1. `test`
 2. Answer the questions as prompted
-3. `back`
+3. `show answer` / `back`
 
 Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+
+>**Useful information:**
+>* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
+>the stored answer, the answer will be accepted as the right answer.
 
 ### 4.6 Finding relevant flashcards: `find`
 
