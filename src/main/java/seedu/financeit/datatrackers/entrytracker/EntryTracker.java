@@ -17,7 +17,7 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 
 /**
- * Class to handle routine for manual entry management.
+ * LogicManager Class to handle routine for manual entry management.
  */
 public class EntryTracker {
     private static Ledger currLedger;
@@ -40,7 +40,9 @@ public class EntryTracker {
         handleCreateEntry();
     }
 
-
+    public static EntryList getEntryList() {
+        return entryList;
+    }
 
     public static void setCurrLedger(Ledger ledger) {
         currLedger = ledger;
@@ -54,10 +56,6 @@ public class EntryTracker {
         }
     }
 
-    public static EntryList getEntryList() {
-        return entryList;
-    }
-
     private static void handleMainMenu() {
         String input;
 
@@ -69,11 +67,14 @@ public class EntryTracker {
                 "Input \"commands\" for list of commands."
         );
 
+        // If under test, the method should not expect any user input.
+        // Hence, skip this block of code.
         if (!isUnderTest) {
             input = UiManager.handleInput();
             UiManager.refreshPage();
             packet = InputParser.getInstance().parseInput(input);
         }
+
         switch (packet.getCommandString()) {
         case "edit":
             handleEditEntry();
@@ -132,9 +133,8 @@ public class EntryTracker {
     }
 
     static void handleCreateEntry(Boolean... isPrintGoalInput) {
-        boolean isPrintGoal = (isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false)
-            ? false
-            : true;
+        boolean isPrintGoal = !(isPrintGoalInput.length > 0 && isPrintGoalInput[0] == false);
+
         CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
 
         Entry entry;

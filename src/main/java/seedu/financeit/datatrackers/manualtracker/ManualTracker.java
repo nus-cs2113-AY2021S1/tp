@@ -21,7 +21,6 @@ public class ManualTracker {
     private static CommandPacket packet;
     private static boolean isUnderTest = false;
     private static boolean endTracker;
-    private static GoalTracker goalTrack = new GoalTracker();
 
     public static void setTestPacket(CommandPacket inputPacket) {
         packet = inputPacket;
@@ -44,6 +43,7 @@ public class ManualTracker {
         packet = p;
     }
 
+    // Allow Save Manager to use the method.
     public static void createLedger() {
         handleCreateLedger();
     }

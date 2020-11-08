@@ -29,16 +29,25 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.WARNING;
         LoggerCentre.getInstance().setLevel(mode);
-        setLog();
-        RunHistory.setCurrentRunDateTime();    //Grabs the System DateTime and stores it. Used for reminders
+        LoggerCentre.createLog();
+        LoggerCentre.loggerSystemMessages.info("\n\n\nLogging from Load states......\n\n\n");
+        //Grabs the System DateTime and stores it. Used for reminders
+        RunHistory.setCurrentRunDateTime();
+
         ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
         GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
         AutoTrackerSaver.getInstance("./data", "./data/saveAt.txt");
         load();
-        loadLastRunDateTime();                 //Loads the dateTime when the program was last ran
-        saveCurrentRunDateTimeAsLastRun();     //Updates last run dateTime to current dateTime
+
+        //Loads the dateTime when the program was last ran
+        loadLastRunDateTime();
+
+        //Updates last run dateTime to current dateTime
+        saveCurrentRunDateTimeAsLastRun();
+
         UiManager.refreshPage();
         UiManager.printLogo();
+        LoggerCentre.loggerSystemMessages.info("\n\n\nLogging from user operations......\n\n\n");
         while (true) {
             ReminderPrinter.printReminders();    //Print reminder for all upcoming recurring entries
             printMainMenu();
@@ -70,14 +79,6 @@ public class Financeit {
                 prompt = "Invalid Command";
                 break;
             }
-        }
-    }
-
-
-    public static void setLog() {
-        if (LoggerCentre.logCreated == false) {
-            LoggerCentre.createLog();
-            LoggerCentre.logCreated = true;
         }
     }
 

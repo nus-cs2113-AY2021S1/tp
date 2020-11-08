@@ -17,7 +17,7 @@ public class TestUtil {
 
     /**
      * Creates a command packet. Assumes that paramTypes and paramArguments are of the same length.
-     * @param commandString
+     * @param commandString Command String of command
      * @param paramTypes
      * @param paramArguments
      * @return CommandPacket created

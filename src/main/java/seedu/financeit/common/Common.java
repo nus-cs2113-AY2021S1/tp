@@ -1,18 +1,17 @@
 package seedu.financeit.common;
 
 public class Common {
-    public static final String[] DEFAULT_EXP_CAT = {"TRANSPORT", "FOOD", "TRAVEL", "SHOPPING", "BILLS"};
-    public static final String[] DEFAULT_INC_CAT = {"ALLOWANCE", "WAGES", "BONUS"};
-    public static final String[] DEFAULT_PARAMS_PREFIX = {"/", "-"};
+    public static final String[] DEFAULT_PARAM_TYPE_PREFIX = {"/", "-"};
 
-    public static final String PLACEHOLDER_DATE = "2020-01-01";
-    public static final String PLACEHOLDER_TIME = "00:00";
     public static final int MAX_PARTITION_LINE_LEN = 60;
     public static final int MAX_ARRAY_LEN = 20;
 
     public static final String[] MONTHS_LESS_THAN_31_DAYS = {"Feb", "Apr", "Jun", "Sept", "Nov"};
     public static final String[] MONTHS_LESS_THAN_30_DAYS = {"Feb"};
 
+    /**
+     * Types of entry, limited to Income and Expense.
+     */
     public enum EntryType {
 
         EXP("Expense"),
@@ -28,6 +27,9 @@ public class Common {
         }
     }
 
+    /**
+     * Types of print messages on the console.
+     */
     public enum PrintType {
         ERROR_MESSAGE("ERROR"),
         INSTRUCTION("TODO"),
@@ -58,9 +60,4 @@ public class Common {
         }
         return paramString;
     }
-
-
-
-    // Regex detects the following: <whitespace>/<word><whitespace>
-
 }
