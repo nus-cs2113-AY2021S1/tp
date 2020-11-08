@@ -3,6 +3,7 @@ package timetable;
 import exceptions.InvalidDayOfTheWeekException;
 import exceptions.InvalidTimeException;
 
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -174,8 +175,10 @@ public class TimeTableCommand {
         isInvalid = true;
         String start;
         String end;
-        int startTime = 0;
-        int endTime = 0;
+        int startTime;
+        int endTime;
+        LocalDateTime startDateTime = null;
+        LocalDateTime endDateTime = null;
         while (isInvalid) {
             System.out.println("Please enter the time of your activity (e.g. 6-9pm): ");
             String time = in.nextLine();
@@ -190,7 +193,7 @@ public class TimeTableCommand {
                     } else if (start.contains("am") && startTime == 12) {
                         startTime = 0;
                     }
-                    if (end.contains("pm") && startTime != 12) {
+                    if (end.contains("pm") && endTime != 12) {
                         endTime += 12;
                     } else if (end.contains("am") && startTime == 12) {
                         startTime = 0;
@@ -205,16 +208,18 @@ public class TimeTableCommand {
                 }
                 if (startTime < endTime) {
                     isInvalid = false;
+                    startDateTime = date.plusHours(startTime);
+                    endDateTime = date.withHour(endTime);
                 } else {
                     System.out.println("You have entered an ending time that is not later than the starting time."
                             + " Please try again ");
                 }
-            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException | DateTimeException e) {
                 System.out.println("You have entered an invalid time. Please try again");
+                isInvalid = true;
             }
         }
-        LocalDateTime startDateTime = date.plusHours(startTime);
-        LocalDateTime endDateTime = date.withHour(endTime);
+
         Duration duration = new Duration(startDateTime, endDateTime);
         return new Activity(activityName, isOnline, linkOrVenue, duration);
     }
