@@ -33,9 +33,9 @@ public class OptionList implements DisplayableList {
     }
 
     /**
-     * Finds option with the specific description in the OptionList object
+     * Finds option with the specific description in the OptionList object.
      *
-     * @param description Description of option to be found
+     * @param description Description of option to be found.
      */
     @Override
     public Displayable find(String description) throws Eduke8Exception {
