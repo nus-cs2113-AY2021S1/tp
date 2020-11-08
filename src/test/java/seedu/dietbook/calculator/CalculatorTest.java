@@ -67,4 +67,13 @@ class CalculatorTest {
         assertEquals(2728, calculator.calculateRecomendation(harry));
         assertEquals(1752, calculator.calculateRecomendation(erica));
     }
+
+    @Test
+    void calculateRecomendedCalorieIntakeReachingCaps_aPerson_recomendationOfCalorieIntake() {
+        Person henry = new Person("Henry", Gender.MALE, 99, 92, 30, 28, 27, FitnessLevel.NONE);
+        Person florence = new Person("Florence", Gender.FEMALE, 20, 300, 500, 500, 500, FitnessLevel.EXTREME);
+        Calculator calculator = new Calculator(new CalculatorData());
+        assertEquals(1000, calculator.calculateRecomendation(henry));
+        assertEquals(9279, calculator.calculateRecomendation(florence));
+    }
 }
