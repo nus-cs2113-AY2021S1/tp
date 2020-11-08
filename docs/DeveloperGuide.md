@@ -298,8 +298,11 @@ If no corresponding items, the functions will return null.
 ### Print countdown feature
 This feature is facilitated by `CountdownCommand`.
 
-The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
+The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams and deadlines:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
+
+The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_deadlines_exams_SD.jpg" alt="" width="750"/><br/>
 
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
