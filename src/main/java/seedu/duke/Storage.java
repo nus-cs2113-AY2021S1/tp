@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -123,8 +124,7 @@ public class Storage {
                 break;
             case "D":
                 if (num == 5) {
-                    date = LocalDate.parse(taskInFile[TASK_DATE].trim());
-                    item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
+                    item = readDeadlineTask(taskInFile);
                 }
                 break;
             case "ACT":
@@ -132,9 +132,7 @@ public class Storage {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
-                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                    item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
+                    item = readActivity(taskInFile);
                 }
                 break;
             case "LEC":
@@ -142,9 +140,7 @@ public class Storage {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
-                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                    item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                    item = readLectureEvent(taskInFile);
                 }
                 break;
             case "TUT":
@@ -152,9 +148,7 @@ public class Storage {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
-                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                    item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                    item = readTutorialEvent(taskInFile);
                 }
                 break;
             case "LAB":
@@ -162,9 +156,7 @@ public class Storage {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
-                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                    item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                    item = readLabEvent(taskInFile);
                 }
                 break;
             case "EXAM":
@@ -172,9 +164,7 @@ public class Storage {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
                         break;
                     }
-                    date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
-                    time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
-                    item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+                    item = readExamEvent(taskInFile);
                 }
                 break;
             default:
@@ -191,6 +181,124 @@ public class Storage {
             loadAdditionInformation(item, taskInFile, num);
 
         }
+    }
+
+    /**
+     * Reads exam event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
+    private static CalendarItem readExamEvent(String[] taskInFile) {
+        CalendarItem item = null;
+        LocalTime time;
+        LocalDate date;
+        try {
+            date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+            time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+            item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+        } catch (DateTimeException e) {
+            System.out.println("Invalid date");
+        }
+        return item;
+    }
+
+    /**
+     * Reads lab event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
+    private static CalendarItem readLabEvent(String[] taskInFile) {
+        CalendarItem item = null;
+        LocalTime time;
+        LocalDate date;
+        try {
+            date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+            time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+            item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+        } catch (DateTimeException e) {
+            System.out.println("Invalid date");
+        }
+        return item;
+    }
+
+    /**
+     * Reads tutorial event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
+    private static CalendarItem readTutorialEvent(String[] taskInFile) {
+        CalendarItem item = null;
+        LocalTime time;
+        LocalDate date;
+        try {
+            date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+            time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+            item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+        } catch (DateTimeException e) {
+            System.out.println("Invalid date");
+        }
+        return item;
+    }
+
+    /**
+     * Reads lecture event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
+    private static CalendarItem readLectureEvent(String[] taskInFile) {
+        CalendarItem item = null;
+        LocalTime time;
+        LocalDate date;
+        try {
+            date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+            time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+            item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
+        } catch (DateTimeException e) {
+            System.out.println("Invalid date");
+        }
+        return item;
+    }
+
+    /**
+     * Reads activity event to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
+    private static CalendarItem readActivity(String[] taskInFile) {
+        CalendarItem item = null;
+        LocalTime time;
+        LocalDate date;
+        try {
+            date = LocalDate.parse(taskInFile[EVENT_DATE].trim());
+            time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
+            item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
+        } catch (DateTimeException e) {
+            System.out.println("Invalid date");
+        }
+        return item;
+    }
+
+    /**
+     * Reads deadline task to app.
+     *
+     * @param taskInFile the data to read.
+     * @return item to add.
+     */
+    private static CalendarItem readDeadlineTask(String[] taskInFile) {
+        CalendarItem item = null;
+        LocalDate date;
+        try {
+            date = LocalDate.parse(taskInFile[TASK_DATE].trim());
+            item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
+        } catch (DateTimeException e) {
+            System.out.println("Invalid date");
+        }
+        return item;
     }
 
     /**
