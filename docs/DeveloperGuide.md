@@ -110,12 +110,12 @@ functionality. Here are the list of the main packages:
 ### 3.1 Card Package <a name="card"></a>
 The Card package consists of different classes that holds information on the main functionalities of the application,
 and is split into 2 packages, quiz and task, as well as Subject, Topic and Flashcard classes.
-- Quiz Package
+- quizcard package
     * Quiz class
     * Result class
     * TopicQuiz class
     * SubjectQuiz class
-- Task Package
+- taskcard package
     * Deadline class
     * Event class
     * Task class
@@ -133,8 +133,8 @@ The `quizcard` package holds the necessary classes for the quiz functionality of
 the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
 
 #### Quiz <a name="Qclass"></a>
-`Quiz` class is an abstract class in the `quizcard` package. It holds the `result ` variable to track the result of the quiz,
-the  `flashcards ` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
+`Quiz` class is an abstract class in the `quizcard` package. It holds the `result` variable to track the result of the quiz,
+the  `flashcards` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
 The list stores the questions which the user did not answer correctly, along with the correct answer for the question and the answer
 provided by the user. The Quiz class also contains a `startQuiz` method and a `checkAnswer` method.
  
