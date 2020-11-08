@@ -15,14 +15,14 @@ Below is the link to view all the codes that I contributed to SmartHomeBot Proje
 * [RepoSense](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ang-cheng-jun&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 #### Enhancements implemented
-I created a ListCommand filter which allows the users to list all the appliances in that particular location. 
-In addition, to add ease to the typing of command, I design a logic function in OnCommand which allows users to key you `on [APPLIANCE_NAME]` or 
+1. I created a ListCommand filter which allows the users to list all the appliances in that particular location. 
+   * Implementation of ListCommand filter
+      * I used stream method to store all the Appliance Class which stores the filtered location into a new ArrayList and display the list to user. 
+
+2. In addition, to add ease to the typing of command, I design a logic function in OnCommand which allows users to key you `on [APPLIANCE_NAME]` or 
 `on [APPLIANCE_NAME]` which allows user to switch on an appliance or a group of appliance in the location.This logic function is
 also implement in the OffCommand.  
-
-* Implementation of ListCommand filter
-    * I used stream method to store all the Appliance Class which stores the filtered location into a new ArrayList and display the list to user. 
-* Implementation of logic function which ease the typing of command for OnCommand and OffCommand 
+   * Implementation of logic function which ease the typing of command for OnCommand and OffCommand 
      * For the logic function, I assume that argument that the user typed is an appliance initially. In the function, it will check if any of the Appliance Class in
      the ApplianceList has the location similar to the argument that user typed.
      * If there is similar location in the Appliance Class, then we know that the argument is a location. All Appliance Class with the similar location will store in a new ArrayList 
@@ -37,6 +37,9 @@ also implement in the OffCommand.
 Initially, I did the overall layout of the UserGuide which allowing all the team member including me to know where to input their content of the function that they have implemented.
 In addition, I have added images to the UserGuide for better illustration to the users.
 When all the team members have completed their subsection, I reviewed their content to check for any wrong information in the content. 
+Refer to the link below to view the UserGuide.
+
+* [UserGuide](https://ay2021s1-cs2113-t14-1.github.io/tp/UserGuide.html)
 
 #### Contributions to the DeveloperGuide
 Initially, the whole group including me brainstormed to decide on the user stories which is used in the DeveloperGuide. You can refer to the link below on Trello to see the contribution
@@ -46,7 +49,9 @@ in the user stories.
 
  
 I also write and design the Sequence Diagram for ListCommand, HelpCommand, InvalidCommand and ExitCommand. All the information and design 
-follow the textbook standard provided to us. You can refer to the Appendix 2 to see my contributions to Developer Guide.   
+follow the textbook standard provided to us. You can refer to the Appendix 1 to see my contributions to DeveloperGuide or the link below to view the DeveloperGuide.
+
+* [DeveloperGuide](https://ay2021s1-cs2113-t14-1.github.io/tp/DeveloperGuide.html)
 
 #### Review/mentoring contributions:
 Provided feedback to team members on their code through pull request and also private messaging. Refer the link below on some of my feedback 

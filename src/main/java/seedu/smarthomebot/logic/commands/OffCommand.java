@@ -30,7 +30,7 @@ public class OffCommand extends Command {
      * @param argument Appliance or Location 's name to be off.
      */
     public OffCommand(String argument) {
-        assert !argument.isEmpty() : "OffCommand must not accept empty argument";
+        assert argument.isEmpty() != true : "OffCommand must not accept empty argument";
         this.argument = argument;
     }
 
@@ -79,6 +79,7 @@ public class OffCommand extends Command {
         String outputResult = offAppliance(toOffAppliance, true);
         assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
+
         return new CommandResult(outputResult);
     }
 
@@ -88,7 +89,6 @@ public class OffCommand extends Command {
     private CommandResult offByLocation(ArrayList<Appliance> toOffAppliance) {
         offApplianceByLoop(toOffAppliance);
         String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
-        assert !outputResult.isEmpty() : "outputResult must contains String";
         commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
@@ -121,7 +121,6 @@ public class OffCommand extends Command {
                 outputResult = toOffAppliance.getName() + MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
             }
         }
-        assert !outputResult.isEmpty() : "outputResult must contains String";
         return outputResult;
     }
 }

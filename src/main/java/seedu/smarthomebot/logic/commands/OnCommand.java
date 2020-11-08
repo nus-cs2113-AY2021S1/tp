@@ -40,7 +40,7 @@ public class OnCommand extends Command {
      * @param parameter To set Appliance's parameter: only valid for fan and aircon.
      */
     public OnCommand(String argument, String parameter) {
-        assert argument.isEmpty() != true : "OnCommand must not accept empty argument";
+        assert !argument.isEmpty() : "OnCommand must not accept empty argument";
         this.argument = argument;
         this.parameter = parameter;
     }

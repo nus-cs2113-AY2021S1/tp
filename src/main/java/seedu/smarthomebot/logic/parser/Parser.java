@@ -40,6 +40,7 @@ public class Parser {
     private static final String LOCATION_TYPE = "location";
 
     //@@author zongxian-ctrl
+
     /**
      * Parses user input into command for execution.
      *
@@ -274,6 +275,7 @@ public class Parser {
     }
 
     //@@author fanceso
+
     /**
      * Checks if the parameter is numerical value.
      *

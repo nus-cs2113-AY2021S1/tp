@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
      * @param name Appliance name to be deleted.
      */
     public DeleteCommand(String name) {
-        assert name.isEmpty() != true : "DeleteCommand must not accept empty name";
+        assert !name.isEmpty() : "DeleteCommand must not accept empty name";
         this.userEnteredName = name;
     }
 
