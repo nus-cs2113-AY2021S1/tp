@@ -64,8 +64,8 @@ class CalculatorTest {
         Person harry = new Person("Harry", Gender.MALE, 19, 182, 66, 69, 75, FitnessLevel.LOW);
         Person erica = new Person("Erica", Gender.FEMALE, 20, 168, 52, 50, 45, FitnessLevel.MEDIUM);
         Calculator calculator = new Calculator(new CalculatorData());
-        assertEquals(2728, calculator.calculateRecomendation(harry));
-        assertEquals(1752, calculator.calculateRecomendation(erica));
+        assertEquals(2728, calculator.calculateRecommendation(harry));
+        assertEquals(1752, calculator.calculateRecommendation(erica));
     }
 
     @Test
@@ -73,7 +73,7 @@ class CalculatorTest {
         Person henry = new Person("Henry", Gender.MALE, 99, 92, 30, 28, 27, FitnessLevel.NONE);
         Person florence = new Person("Florence", Gender.FEMALE, 20, 300, 500, 500, 500, FitnessLevel.EXTREME);
         Calculator calculator = new Calculator(new CalculatorData());
-        assertEquals(1000, calculator.calculateRecomendation(henry));
-        assertEquals(9279, calculator.calculateRecomendation(florence));
+        assertEquals(1000, calculator.calculateRecommendation(henry));
+        assertEquals(9279, calculator.calculateRecommendation(florence));
     }
 }

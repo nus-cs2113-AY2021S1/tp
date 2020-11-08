@@ -247,9 +247,38 @@ public class Calculator {
      * @param person person whose recommended daily calorie intake are to return.
      * @return the value of recommended daily calorie intake.
      */
-    public int calculateRecomendation(Person person) {
+    public int calculateRecommendation(Person person) {
         double requirement = 0;
-        int recomendation;
+        int recommendation;
+        double activityScore = 0;
+        activityScore = getActivityScore(person);
+        switch (person.getGender()) {
+        case MALE:
+            requirement = 662 - 9.53 * person.getAge() + 15.91 * activityScore * person.getOriginalWeight()
+                    + 539.6 * person.getHeight() / 100;
+            break;
+        case FEMALE:
+            requirement = 354 - 6.91 * person.getAge() + 9.36 * activityScore * person.getOriginalWeight()
+                    + 726 * person.getHeight() / 100;
+            break;
+        case OTHERS:
+            requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getOriginalWeight()
+                    + 632.8 * person.getHeight() / 100;
+            break;
+        default:
+            assert requirement != 0 : "The requirement should not be 0 if the gender is "
+                    + "one of the three given cases.";
+        }
+        if (person.getCurrentWeight() > person.getTargetWeight()) {
+            recommendation = (int) requirement - 300;
+        } else {
+            recommendation = (int) requirement + 100;
+        }
+        recommendation = checkCaps(recommendation);
+        return recommendation;
+    }
+
+    private double getActivityScore(Person person) {
         double activityScore = 0;
         switch (person.getFitnessLevel()) {
         case NONE:
@@ -295,35 +324,15 @@ public class Calculator {
             assert activityScore != 0 : "The activityScore should not be 0 if"
                     + "the activityLevel are one of five given cases.";
         }
+        return activityScore;
+    }
 
-        switch (person.getGender()) {
-        case MALE:
-            requirement = 662 - 9.53 * person.getAge() + 15.91 * activityScore * person.getOriginalWeight()
-                    + 539.6 * person.getHeight() / 100;
-            break;
-        case FEMALE:
-            requirement = 354 - 6.91 * person.getAge() + 9.36 * activityScore * person.getOriginalWeight()
-                    + 726 * person.getHeight() / 100;
-            break;
-        case OTHERS:
-            requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getOriginalWeight()
-                    + 632.8 * person.getHeight() / 100;
-            break;
-        default:
-            assert requirement != 0 : "The requirement should not be 0 if the gender is "
-                    + "ont of the three given cases.";
+    private int checkCaps(int recommendation) {
+        if (recommendation < 1000) {
+            recommendation = 1000;
+        } else if (recommendation > 20000) {
+            recommendation = 20000;
         }
-
-        if (person.getCurrentWeight() > person.getTargetWeight()) {
-            recomendation = (int) requirement - 300;
-        } else {
-            recomendation = (int) requirement + 100;
-        }
-        if (recomendation < 1000) {
-            recomendation = 1000;
-        } else if (recomendation > 20000) {
-            recomendation = 20000;
-        }
-        return recomendation;
+        return recommendation;
     }
 }
