@@ -13,8 +13,8 @@
     
 *   **New Feature**: Added the ability to add, list, delete a bookmark. With extended features to view, edit the episode, add a note and remove a note for a bookmark entry.
     *   What it does: Allows the user to track the anime of their interest, with additional personalisation like specifying the current episode or adding notes to the bookmark entry.
-    *   Justification: This bookmarking feature was designed to be a shortcut to the anime information they require, then extended features then allow the bookmark to keep additional information for particular anime that is useful to the translators.
-    *   Highlights: The biggest challenge was the requirement for all bookmark features to share a single bookmark command, bookmark command has to accommodate seven bookmark actions without being too complicated to the users. This is done using multiple parameters and different combinations of variable signature types. Additionally, the bookmark parser and bookmark command logic are branched by the type of bookmark action to perform with various checks and validations.
+    *   Justification: This bookmarking feature was designed to be a shortcut to the anime information they require, the extended features then allow the bookmark to keep additional information for particular anime that is useful to the translators.
+    *   Highlights: The biggest challenge was the requirement for all bookmark features to share a single bookmark command, it has to accommodate seven bookmark actions without being too complicated to the users. This is done using multiple parameters and different combinations of variable signature types. Additionally, the bookmark parser and bookmark command logic are branched by the type of bookmark action to perform with various checks and validations.
 
 *   **New Feature:** Added the ability to save and load bookmark data automatically.
     *   What it does: Helps the user to automatically save their bookmark data into the file `bookmark.txt`, and loads the data found in this file automatically when the application is launched.
