@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DatedFoodEntry extends FoodEntry implements Comparable<DatedFoodEntry> {
 
-    protected final LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HHmm");
 
     /** 
@@ -54,7 +54,10 @@ public class DatedFoodEntry extends FoodEntry implements Comparable<DatedFoodEnt
 
     }
 
-    protected LocalDateTime getDateTime() {
+    /**
+     * Getter method for LocalDateTime object.
+     */
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 

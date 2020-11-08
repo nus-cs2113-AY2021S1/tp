@@ -16,6 +16,50 @@ The `UI` component,
 
 The UI has a dependency with two enumeration class, [`ActivityLevel`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/ActivityLevel.java) and [`Gender`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Gender.java) as descriptions of each [`ActivityLevel`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/ActivityLevel.java) and [`Gender`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Gender.java) is required. Increased coupling was sacrificed to reduce code duplicates and increase ease of code extension/editing.
 
+
+### Model Component
+
+Data of the user's diet is stored in the app's memory via the model: a `FoodList`.
+**API**: [`FoodList.java`] (https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/list/FoodList.java) 
+
+`FoodList` provides the following functions:
+* Stores data on entries made into the dietbook app: portion size, details on the food, and the time of consumption.
+* Provides string representations of the data so that the UI can be updated.
+* Allows selective retrieval and simple calculations of the data without modifying the stored data.
+
+Additionally, it is not dependent on the other components listed. Instead, it is dependent on a common `Food` class, which is used by serval components, including the storage, database, and calculator.
+
+<details>
+    <summary>A more detailed class diagram is availble here</summary>
+
+![Class diagram of FoodList](diagrams/FoodList_Overall_class.png)
+
+</details>
+
+
+The above functions and the lack of dependency are met through the following means:
+* `FoodList` stores new information added via the creation and maintenance of a list of `FoodEntry` objects. These encapsulate the data being stored. In practice, the objects in the list are `DatedFoodEntry` objects, which additionally support the storage of the date and time.
+* A `FoodListManager` is used to perform logical operations on the list of `FoodEntry` objects. A `FoodManager` is also used as a fascade that obscures calculations and prevents modification of `Food` data stored.
+* The result of an operation is typically a `String` that is meant to be supplied to the UI. In other data retrieval operations, such as those required by calculator, a list of `Food` objects is supplied as a means of data transfer between the components. Other lists of java data types such as `LocalDateTime` and `Integer` are also provided to the storage component.
+
+<details>
+    <summary> Fascade pattern of `FoodListManager`</summary>
+
+![Class diagram of FoodListManager](diagrams/FoodList_Manager_class.png)
+
+`FoodListManager` obscures the operations performed on the individual items of the list of `FoodEntry` objects. These operations are performed using a functional programming paradigm to reduce code repetition, since all operations typically take the form of a list mapping or filtering.
+
+It is only within `FoodListManager` that forced type conversions from `FoodEntry` to `DatedFoodEntry` are performed. Hence, only `FoodListManager` needs to be aware of the functions in `FoodEntry` and `DatedFoodEntry`.
+
+</details>
+
+<details>
+    <summary> Fascade pattern of `FoodManager`</summary>
+
+`FoodManger` obscures the existence of the class `OptionalFood` from `FoodEntry`.
+
+</details>
+
 ## Implementation
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
@@ -89,7 +133,14 @@ Aspect: Changing attribute values in `Person` object or creating new `Person` ob
 * **Alternative 2**: Creating new `Person` object
     * Pros: Ability to write tests as method chains.
     * Cons: Creation of many objects, which take up memory spaces and ensure that only the correct `Person` instance is kept and referred to.
-    
+
+### [Proposed] Supporting missing fields in a user entry
+
+
+
+
+
+
 ## Save/Load Feature
 
 The Save/Load feature is implemented by the saveload package.
