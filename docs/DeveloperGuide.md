@@ -105,6 +105,86 @@ The `Ui` component:
 The `Parser` class is a class forming part of the logic of termiNus. The `Parser` parses user commands and
 returns a `Command` subclass which corresponds to the full command with arguments.
 
+<!-- @@author iamchenjiajun -->
+### Command component
+
+The `Command` component represents an abstract object with state corresponding to a single line of the user's input.
+
+<!-- @@author Cao-Zeyu -->
+![CommandClassDiagram](./images/CommandClassDiagram.png)
+Every basic command inherits the abstract `Command` class, with their own attributes and execute operations. After 
+user input is parsed by `Parser`, `CommandCreator` will create and return the corresponding command to be execute.
+
+<!-- @@author iamchenjiajun -->
+The `Command` object:
+- Modifies the state of `Model` object which depends on the state and type of `Command` object.
+- Exposes its `execute()` method so that it can be passed around before the `Command` is executed.
+- Is executed by the `Duke` object.
+- Prints the output to the user through the `Ui` component.
+
+<!-- @@author GuoAi -->
+### Storage component  
+
+The `Storage` class is a class loading data from files when termiNus starts and saving data to files after each command.
+
+<!-- @@author iamchenjiajun -->
+The `Storage` object:
+- Is referenced only by `Model`.
+- Expose functions to allow `Model` to pass in the state and saves it to file.
+- Expose functions to load the state of `Model` from file.
+
+<!-- @@author iamchenjiajun -->
+### Model Component
+
+![ModelClassDiagram](./images/ModelClassDiagram.png)
+
+The `Model` component represents the state of the various lists stored in memory.
+
+The `Model` component:
+- Stores and loads program state to file using the `Storage` API.
+- Expose references to its `ItemList` objects so that other objects such as `Command` can modify it.
+
+<!-- @@author -->
+## Product scope
+### Target user profile
+Undergraduate students of National University of Singapore who:
+- require help to better manage their school work.
+- forgets to return their loan books to the library on time.
+- wants a timetable planner for easy reference.
+- are lazy to create separate module folders every semester.
+- wish to calculate their CAP.
+
+### Value proposition
+termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
+borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
+
+## User Stories
+|Version|Priority| As a ... | I want to ... | So that I can ...|
+|--------|----------|----------|---------------|------------------|
+|v1.0|***|student|add tasks into a list|keep track of the things I need to do|
+|v1.0|***|student|assign priorities to tasks|focus on the more important things first|
+|v1.0|**|student|assign categories to tasks|have a more organised task list|
+|v1.0|***|student|mark tasks as done|keep track of the remaining tasks to do|
+|v1.0|**|student|list all tasks in my list|have a better overview|
+|v1.0|***|student|be able to delete unwanted tasks|focus on the tasks which I need|
+|v1.0|***|student|save all data after using the application|retrieve the data upon running the application
+|v2.0|**|student|automatically create folders for my modules|I do not have to manually create them|
+|v2.0|***|student|add recurring tasks|avoid adding the same tasks every week
+|v2.0|***|student|have a calendar|I can view my current and upcoming tasks
+|v2.0|***|student|be able to set a tracker my borrowed books|avoid overdue fines
+|v2.0|**|student|sort my tasks based on highest priority|focus on those tasks first
+|v2.0|***|student|save zoom links in a centralized place|easily attend my online classes instead of looking through my email for the link 
+|v2.0|***|student|add modules and calculate my CAP|have a better projection of my grades and efforts
+|v2.0|*|student|login with a password|my system is protected 
+
+## Implementation
+This section describes how certain features are implemented.
+
+<!-- @@author iamchenjiajun -->
+### Parser
+
+This section describes how the `Parser` class works.
+
 #### High level description
 
 The `Parser.parse()` method takes in `fullCommand` as an argument, which is the full command entered by the user.
@@ -124,8 +204,6 @@ In some commands, the optional arguments may be compulsory and is checked by the
 The `parse` method parses the `fullCommand` into these parts before passing them as arguments to `CommandCreator`
 methods and returns a `Command` object with the corresponding arguments.
 
-#### Implementation details
-
 The following sequence diagram shows how the `Parser` works.
 
 ![DukeSequenceDiagram](./images/ParserSequenceDiagram.png)
@@ -133,6 +211,8 @@ The following sequence diagram shows how the `Parser` works.
 The following diagram shows how a command should be parsed into its separate parts.
 
 ![CommandParseDiagram](./images/CommandParseDiagram.png)
+
+#### Implementation details
 
 1. The `parse` method of `Parser` is invoked by the calling object. In termiNus, the only object that invokes this
 method is `Duke`. The `fullCommand` is passed an argument, which is the full command entered by the user.
@@ -171,27 +251,10 @@ different key-value pairs. This ensures that the code follows DRY principles.
 - The regular expressions parsing means that we do not need to manually parse every different command with different
 arguments, thus reducing code complexity and SLOC.
 
-<!-- @@author iamchenjiajun -->
-### Command component
-
-The `Command` component represents an abstract object with state corresponding to a single line of the user's input.
-
-<!-- @@author Cao-Zeyu -->
-![CommandClassDiagram](./images/CommandClassDiagram.png)
-Every basic command inherits the abstract `Command` class, with their own attributes and execute operations. After 
-user input is parsed by `Parser`, `CommandCreator` will create and return the corresponding command to be execute.
-
-<!-- @@author iamchenjiajun -->
-The `Command` object:
-- Modifies the state of `Model` object which depends on the state and type of `Command` object.
-- Exposes its `execute()` method so that it can be passed around before the `Command` is executed.
-- Is executed by the `Duke` object.
-- Prints the output to the user through the `Ui` component.
-
 <!-- @@author GuoAi -->
-### Storage component  
+### Storage
 
-The `Storage` class is a class loading data from files when termiNus starts and saving data to files after each command.
+This section describes how the `Storage` class works
 
 #### High level description
 
@@ -262,21 +325,6 @@ The following sequence diagram shows how the `Storage` works.
 sequentially. Each loading method calls the corresponding helper method (i.e. `loadTaskFromLine()`, `loadBookFromLine()`, 
 `loadLinkFromLine()`, `loadModuleFromLine()`) to load `Item`s from each line in the file. 
 3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
-
-<!-- @@author iamchenjiajun -->
-### Model Component
-
-![ModelClassDiagram](./images/ModelClassDiagram.png)
-
-The `Model` component represents the state of the various lists stored in memory.
-
-The `Model` component:
-- Stores and loads program state to file using the `Storage` API.
-- Expose references to its `ItemList` objects so that other objects such as `Command` can modify it.
-<!-- @@author -->
-
-## Implementation
-This section describes how certain features are implemented.
 
 ### List feature
 
