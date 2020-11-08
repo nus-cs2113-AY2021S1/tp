@@ -336,29 +336,56 @@ The following sequence diagram explains the interactions omitted in the main dia
 This feature informs the user about their most searched bus stop.
 There is no function to explicitly call it and is executed only during Nav@NUS's start up.
 
-The following steps explain how the most searched bus stop is displayed.
-1.On start-up, `Ui#printWelcomeMessage()` is called. <br>
-2.`Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
-3.`BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
-
 The following steps explain how the search frequencies of each bus are updated.
 1. Whenever the user enters a valid command (`/route` or `/bus`) that requires bus stops, `BusStops#findBusStop()` is 
 called to locate the specified bus stop.
 2. `BusStops#incrementSearchCount()` is called to increase the search count of the bus stop.
 
+The following steps explain how the most searched bus stop is displayed.
 
-### 3.11.1 Resetting search frequencies of bus stops
+1.On start-up, `Ui#printWelcomeMessage()` is called. <br>
+2.`Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
+3.`BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
+
+The following sequence diagram illustrates the steps taken by the program on start-up.
+![Display_Search_Freq_Sequence_Diagram](DG_Diagrams/ResetSearchFreqCommand/DisplaySearchFreq.png)
+#### Design Considerations
+##### Aspect: Implementing search frequencies
+* **Alternative 1 (current choice):** Each value in the BusStops enumeration has a private integer
+variable called searchCount.
+    + Pros: It is easier to maintain and updating of bus stops are easier to implement. It provides a template to be
+    used for locations with many bus stops.
+    + Cons: Has to loop through the array of bus stops and obtain their respective search counts.
+     
+* **Alternative 2:** The search frequency of each bus stop is stored in an array of tuple and is directly accessed.
+    + Pros: It is easier and quicker to obtain the most searched bus stop.
+    + Cons: It does not blend in well with other features that accesses the BusStops class.
+    
+Given the above alternatives, alternative 1 was used considering the integration of other commands.
+
+### 3.11.1 Resetting search frequencies of bus stops (`/reset` Feature)
 This feature allows the user to reset the search frequencies of all bus stops.
 
 The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand Class executes the command in the following steps:
 1.`BusStops#resetSearchFrequency()` is called to re-initialise all search counts of respective bus stops to zero.
-2. `Ui#printResetSearchFreqMessage()` is called to inform the user that all search counts have been resetted.
+2. `Ui#printResetSearchFreqMessage()` is called to inform the user that all search counts have been reset.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/reset` command.
+![Sequence ](DG_Diagrams/ResetSearchFreqCommand/ResetSearchFreqSeq.png)
 
 ### 3.12 Removing specific delete command (`/deletefav` Feature)
 `/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
 user to customise the list of favourite commands to the user's liking.
 
+The DeleteFavCommand#executeCommand() method of DeleteFavCommand Class executes the command in the following steps:
+1.`Parser#extractType()` is called to instantiate `DeleteFavCommand`. During instantiation, if the user specified
+index is empty or blank, an exception would be thrown.
+2.`Ui#printDeleteFavMessage(<index>)` is called to inform the user that the favourite command corresponding to the
+index has been deleted.
+3.`FavList#deleteFav(<index>)` is executed to remove the favourite command from the list of favourite commands.
+
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
+![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
 
 ## 4. Appendix I: Requirements
 
