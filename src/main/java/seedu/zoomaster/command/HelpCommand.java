@@ -3,21 +3,31 @@ package seedu.zoomaster.command;
 import seedu.zoomaster.Parser;
 import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.BookmarkList;
+
 import seedu.zoomaster.command.bookmark.AddBookmarkCommand;
 import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
 import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
 import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
+import seedu.zoomaster.command.bookmark.EditBookmarkCommand;
+
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
 import seedu.zoomaster.command.planner.SavePlannerCommand;
+
+import seedu.zoomaster.command.settings.SetSettingsCommand;
+import seedu.zoomaster.command.settings.ShowSettingsCommand;
+
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
 import seedu.zoomaster.command.timetable.EditSlotCommand;
 import seedu.zoomaster.command.timetable.LaunchModuleAndSlotBookmark;
+
 import seedu.zoomaster.command.planner.AddMeetingCommand;
+
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
+
 import seedu.zoomaster.slot.Timetable;
 
 /**
@@ -79,14 +89,17 @@ public class HelpCommand extends Command {
         if (details.compareToIgnoreCase(ClearCommand.CLEAR_KW) == 0
             || details.compareToIgnoreCase(ChangeModeCommand.MODE_KW) == 0
             || details.compareToIgnoreCase(ExitCommand.EXIT_KW) == 0
-            || details.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0) {
+            || details.compareToIgnoreCase(LaunchNowCommand.LAUNCH_NOW_KW) == 0
+            || details.compareToIgnoreCase(ShowSettingsCommand.SHOW_KW) == 0
+            || details.compareToIgnoreCase(SetSettingsCommand.SET_KW) == 0) {
             isValid = true;
         } else if (Parser.getProgramMode() == 1) {
             if (details.compareToIgnoreCase(AddBookmarkCommand.ADD_KW) == 0
                     || details.compareToIgnoreCase(DeleteBookmarkCommand.DEL_KW) == 0
                     || details.compareToIgnoreCase(ShowBookmarkCommand.SHOW_KW) == 0
                     || details.compareToIgnoreCase(FindBookmarkCommand.FIND_KW) == 0
-                    || details.compareToIgnoreCase(LaunchBookmarkCommand.LAUNCH_KW) == 0) {
+                    || details.compareToIgnoreCase(LaunchBookmarkCommand.LAUNCH_KW) == 0
+                    || details.compareToIgnoreCase(EditBookmarkCommand.EDIT_KW) == 0) {
                 isValid =  true;
             }
         } else if (Parser.getProgramMode() == 2) {

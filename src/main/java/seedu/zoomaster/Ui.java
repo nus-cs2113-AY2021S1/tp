@@ -10,9 +10,12 @@ import seedu.zoomaster.command.bookmark.DeleteBookmarkCommand;
 import seedu.zoomaster.command.bookmark.FindBookmarkCommand;
 import seedu.zoomaster.command.bookmark.LaunchBookmarkCommand;
 import seedu.zoomaster.command.bookmark.ShowBookmarkCommand;
+import seedu.zoomaster.command.bookmark.EditBookmarkCommand;
 import seedu.zoomaster.command.planner.AddMeetingCommand;
 import seedu.zoomaster.command.planner.LoadPlannerCommand;
 import seedu.zoomaster.command.planner.SavePlannerCommand;
+import seedu.zoomaster.command.settings.SetSettingsCommand;
+import seedu.zoomaster.command.settings.ShowSettingsCommand;
 import seedu.zoomaster.command.timetable.AddSlotCommand;
 import seedu.zoomaster.command.timetable.DeleteSlotCommand;
 import seedu.zoomaster.command.timetable.ShowTimetableCommand;
@@ -381,7 +384,9 @@ public class Ui {
                     + "1) " + ChangeModeCommand.MODE_KW + " bookmark/timetable/planner" + NEW_LINE
                     + "2) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "3) " + LaunchNowCommand.LAUNCH_NOW_KW + NEW_LINE
-                    + "4) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "4) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "5) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "6) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else if (Parser.programMode == 1) {
             printYellowWithBorder("Available inputs in Bookmark mode are" + NEW_LINE
                     + "1) " + AddBookmarkCommand.ADD_KW + NEW_LINE
@@ -389,9 +394,12 @@ public class Ui {
                     + "3) " + ShowBookmarkCommand.SHOW_KW + NEW_LINE
                     + "4) " + FindBookmarkCommand.FIND_KW + NEW_LINE
                     + "5) " + LaunchBookmarkCommand.LAUNCH_KW + NEW_LINE
-                    + "6) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "7) " + ChangeModeCommand.MODE_KW + " timetable/planner" + NEW_LINE
-                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "6) " + EditBookmarkCommand.EDIT_KW + NEW_LINE
+                    + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
+                    + "8) " + ChangeModeCommand.MODE_KW + " timetable/planner" + NEW_LINE
+                    + "8) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "9) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "10) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else if (Parser.programMode == 2) {
             printYellowWithBorder("Available inputs in Timetable mode are" + NEW_LINE
                     + "1) " + AddSlotCommand.ADD_KW + NEW_LINE
@@ -401,7 +409,9 @@ public class Ui {
                     + "5) " + LaunchModuleAndSlotBookmark.LAUNCH_KW + NEW_LINE
                     + "6) " + ChangeModeCommand.MODE_KW + " bookmark/planner" + NEW_LINE
                     + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "8) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "9) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "10) " + ExitCommand.EXIT_KW + NEW_LINE);
         } else {
             printYellowWithBorder("Available inputs in Planner mode are" + NEW_LINE
                     + "1) " + LoadPlannerCommand.LOAD_KW + NEW_LINE
@@ -410,7 +420,9 @@ public class Ui {
                     + "4) " + SavePlannerCommand.SAVE_KW + NEW_LINE
                     + "6) " + ChangeModeCommand.MODE_KW + " bookmark/timetable" + NEW_LINE
                     + "7) " + ClearCommand.CLEAR_KW + NEW_LINE
-                    + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
+                    + "8) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
+                    + "9) " + SetSettingsCommand.SET_KW + NEW_LINE
+                    + "10) " + ExitCommand.EXIT_KW + NEW_LINE);
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
@@ -432,6 +444,15 @@ public class Ui {
         } else if (input.equals(LaunchNowCommand.LAUNCH_NOW_KW)) {
             printYellow("Launches bookmarks for lessons happening at the current time" + NEW_LINE);
             printCyan("Format: launch now" + NEW_LINE);
+            System.out.println(LINE);
+        } else if (input.equals(ShowSettingsCommand.SHOW_KW)) {
+            printYellow("Shows your Zoomaster's settings" + NEW_LINE);
+            printCyan("Format: showsettings" + NEW_LINE);
+            System.out.println(LINE);
+        } else if (input.equals(SetSettingsCommand.SET_KW)) {
+            printYellow("Set a setting to a new value" + NEW_LINE);
+            printCyan("Format: set {setting name} {new value}" + NEW_LINE);
+            printGreen("eg. set def_mode timetable" + NEW_LINE);
             System.out.println(LINE);
         } else if (Parser.programMode == 1) {
             printModeOneExtendedHelp(input);
@@ -475,6 +496,13 @@ public class Ui {
                     + " or index " + NEW_LINE);
             printCyan("Format: launch {keyword} " + NEW_LINE
                     + "Format: launch {index} " + NEW_LINE);
+            System.out.println(LINE);
+            break;
+        case EditBookmarkCommand.EDIT_KW:
+            System.out.println(LINE);
+            printYellow("Edit a bookmark's description or URL" + NEW_LINE);
+            printCyan("Format: edit {desc/url} {index} {new value}" + NEW_LINE);
+            printGreen("eg. edit url 3 www.amazon.com" + NEW_LINE);
             System.out.println(LINE);
             break;
         default:
