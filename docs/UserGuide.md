@@ -247,7 +247,7 @@ bookmark list
 
 What you should see:
 
-![data saving](./images/bookmark_list.jpg)
+![data saving](./images/bookmark_list.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -268,7 +268,7 @@ bookmark delete 2
 
 What you should see:
 
-![bookmark](./images/bookmark_delete.jpg)
+![bookmark](./images/bookmark_delete.png)
 
 <div style="page-break-after: always;"></div>
 

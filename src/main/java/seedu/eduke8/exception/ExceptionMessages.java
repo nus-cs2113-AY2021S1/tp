@@ -40,4 +40,5 @@ public class ExceptionMessages {
     public static final String ERROR_BOOKMARK_DELETE_NFE = "Please type in an integer into the index number field!";
     public static final String ERROR_BOOKMARK_DELETE_IOB_ERROR = "Please choose an appropriate index number to be "
             + "deleted from the list!";
+    public static final String ERROR_BOOKMARK_NONE = "You currently do not have any bookmarks stored.";
 }
