@@ -247,7 +247,7 @@ After a quiz has started, by making use of `QuizQuestionsManager`'s `getNextQues
 
 As mentioned earlier in the section on the design of the quiz system, a `QuizQuestionsManager` object will randomly select the indicated number of questions from the list of questions in the `Topic` object, and these will form the quiz questions for the user.
 
-The sequence diagram below shows how `QuizQuestionsManager` is implemented to achieve this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on OOP, which translates to the `setQuizQuestions(5, questionsInTopic)` call:
+The sequence diagram below shows how `QuizQuestionsManager` is implemented to achieve this for the scenario where the user indicates that he wants to attempt 5 questions from the topic on [OOP](#34-glossary), which translates to the `setQuizQuestions(5, questionsInTopic)` call:
 
 
 ![QuizQuestionsManager::setQuizQuestions_Sequence_Diagram](./images/QuizQuestionsManager_setQuizQuestions.png)
@@ -523,7 +523,7 @@ CS2113/T Students
 
 #### 3.1.2. Value proposition
 
-To help CS2113/T students learn and understand software engineering and Object-oriented Programming (OOP) principles through a gamified
+To help CS2113/T students learn and understand software engineering and Object-oriented Programming [(OOP)](#34-glossary) principles through a gamified
 platform and enhances their learning experience. 
 
 It is a desktop application where CS2113/T students can attempt bite-sized quizzes, through the Command Line Interface (CLI), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
@@ -581,3 +581,29 @@ The following are a few testcases to try out.
        Expected: Application will not launch properly and error message will be displayed.
     5. Other ways to corrupt the data files: Remove other keys or mess up the JSON format (remove the outer array) <br>
        Expected: Similar to previous.
+       
+#### 3.5.2. Starting a quiz
+
+1. Giving quiz commands with different input formats
+    1. Test case: `quiz n/2 t/oop s/10` <br>
+       Expected: Starts a quiz successfully ith 2 questions from the topic of [OOP](#34-glossary) and a time limit for 10 seconds for each question.
+    2. Test case: `quiz n/2 t/oop` <br>
+       Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
+    3. Test case: `quiz n/2 hi t/oop s/5` <br>   
+       Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
+    4. Other ways to start quiz in wrong format: Use the quiz command but give insufficient inputs or invalid inputs <br>
+       Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
+       
+2. Trying to start a quiz with invalid inputs
+   1. Test case: `quiz n/2 t/oop a/10` <br>
+      Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
+   2. Test case: `quiz n/2 t/oop s/0` <br>
+      Expected: Quiz will not start. Error message will show to prompt user to give a valid time limit.
+   3. Test case: `quiz n/2 t/none s/5` <br>
+      Expected: Quiz will not start. Error message will tell user that the topic does not exist in E-Duke-8 and where they can find the available topics.
+   4. Test case: `quiz n/0 t/oop s/5` <br>
+      Expected: Quiz will not start. Error message will tell user to specify more than 0 quiz questions.
+   5. Other ways to start quiz in wrong format: Use the quiz command but give insufficient inputs or invalid inputs <br>
+      Expected: Similar to previous.
+
+
