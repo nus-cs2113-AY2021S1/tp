@@ -1,42 +1,52 @@
 package parser;
 
-import commands.Command;
-import commands.GoChapterCommand;
-import commands.GoCommand;
-import commands.GoModuleCommand;
+import commands.*;
 import exception.IncorrectAccessLevelException;
 import exception.InvalidInputException;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static common.Messages.ADMIN;
-import static common.Messages.MESSAGE_ALPHANUMERIC_CHARACTERS;
-import static common.Messages.MESSAGE_MISSING_ARGS;
-import static common.Messages.MODULE;
+import static common.Messages.*;
 
 //@@author gua-guargia
 public class GoCommandParser {
-    private static final String MESSAGE_INCORRECT_ACCESS = "Go command can only be called at admin and module level.\n";
-
-    public Command parse(String commandArgs, String accessLevel)
+    public GoCommand parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
-        if (!ParserUtil.checkAlphanumericOnly(commandArgs)) {
-            throw new InvalidInputException(String.format(MESSAGE_ALPHANUMERIC_CHARACTERS, GoCommand.COMMAND_WORD));
+        int moduleIndex;
+        String type = "";
+        String messageUsage = "";
+        switch(accessLevel) {
+        case ADMIN:
+            type = MODULE;
+            messageUsage = GoModuleCommand.MESSAGE_USAGE;
+            break;
+        case MODULE:
+            type = CHAPTER;
+            messageUsage = GoChapterCommand.MESSAGE_USAGE;
+            break;
+        default:
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS_AT_CHAPTER_LEVEL,
+                    GoCommand.COMMAND_WORD));
         }
+
+        if (commandArgs.isEmpty()) {
+            throw new InvalidInputException(String.format(MESSAGE_MISSING_INDEX, type)
+                    + messageUsage);
+        }
+
+        try {
+            moduleIndex = Integer.parseInt(commandArgs) - 1;
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(String.format(MESSAGE_NON_INTEGER, type)
+                    + messageUsage);
+        }
+
         switch (accessLevel) {
         case ADMIN:
-            if (commandArgs.isEmpty()) {
-                throw new InvalidInputException(MESSAGE_MISSING_ARGS + GoModuleCommand.MESSAGE_USAGE);
-            }
-            return new GoModuleCommand(commandArgs);
+            return new GoModuleCommand(moduleIndex);
         case MODULE:
-            if (commandArgs.isEmpty()) {
-                throw new InvalidInputException(MESSAGE_MISSING_ARGS + GoChapterCommand.MESSAGE_USAGE);
-            }
-            return new GoChapterCommand(commandArgs);
+            return new GoChapterCommand(moduleIndex);
         default:
-            throw new IncorrectAccessLevelException(MESSAGE_INCORRECT_ACCESS);
+            throw new IncorrectAccessLevelException(String.format(MESSAGE_INCORRECT_ACCESS_AT_CHAPTER_LEVEL,
+                    GoCommand.COMMAND_WORD));
         }
     }
 

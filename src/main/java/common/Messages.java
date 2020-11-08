@@ -17,6 +17,8 @@ public class Messages {
     public static final String MESSAGE_MISSING_ARGS = "The arguments are missing.\n";
     public static final String MESSAGE_INCORRECT_ACCESS = "%s command can only be called at admin, "
             + "module and chapter level.";
+    public static final String MESSAGE_INCORRECT_ACCESS_AT_CHAPTER_LEVEL = "%s command can only be called at admin, "
+            + "module.";
     public static final String MESSAGE_EXTRA_ARGS = "There should not be any arguments for %s.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "The format for %s command is wrong.\n";
     public static final String MESSAGE_MISSING_INDEX = "The index for %s is missing.\n";

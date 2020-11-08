@@ -1,6 +1,7 @@
 package commands;
 
 import access.Access;
+import common.KajiLog;
 import manager.card.Card;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
@@ -9,16 +10,22 @@ import ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
+import static common.Messages.CHAPTER;
+import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
 public class GoChapterCommand extends GoCommand {
+    private static Logger logger = KajiLog.getLogger(GoChapterCommand.class.getName());
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Goes to chapter level. \n"
             + "Parameters:" + CHAPTER_PARAMETERS + "\n"
-            + "Example: " + COMMAND_WORD + " Chapter 1\n";
+            + "Example: " + COMMAND_WORD + " 1\n";
 
-    private String chapter;
+    private final int chapterIndex;
 
-    public GoChapterCommand(String chapter) {
-        this.chapter = chapter;
+    public GoChapterCommand(int chapterIndex) {
+        this.chapterIndex = chapterIndex;
     }
 
     @Override
@@ -31,32 +38,29 @@ public class GoChapterCommand extends GoCommand {
     }
 
     private String goChapter(Access access, Storage storage) {
-        boolean isLevelExist = false;
+        assert access.isModuleLevel() : "Not module level";
         String result = "";
-        String currentChapter = this.chapter;
-        ChapterList chapters = access.getModule().getChapters();
-        ArrayList<Chapter> allChapters = chapters.getAllChapters();
-        for (Chapter chapter : allChapters) {
-            String chapterName = chapter.getChapterName();
-            if (currentChapter.equalsIgnoreCase(chapterName)) {
-                access.setChapterLevel(chapterName);
-                isLevelExist = true;
-                try {
-                    ArrayList<Card> allCards = storage.loadCard(access.getModuleLevel(), chapter.getChapterName());
-                    if (allCards.size() == 0) {
-                        result = "This is a new chapter, you can try to add flashcards inside!";
-                    }
-                    chapter.setCards(allCards);
-                    access.setChapter(chapter);
-                } catch (FileNotFoundException e) {
-                    result = "The chapter file cannot be found.";
-                }
-                break;
+        try {
+            ChapterList chapters = access.getModule().getChapters();
+            ArrayList<Chapter> allChapters = chapters.getAllChapters();
+            Chapter chapter = allChapters.get(chapterIndex);
+            logger.info("Going into chapter: " + chapter.toString());
+            access.setChapterLevel(chapter.getChapterName());
+            access.setChapter(chapter);
+            ArrayList<Card> allCards = storage.loadCard(access.getModuleLevel(), chapter.getChapterName());
+            if (allCards.size() == 0) {
+                result = "This is a new chapter, you can try to add flashcards inside!";
             }
+            chapter.setCards(allCards);
+            return result;
+        } catch (IndexOutOfBoundsException e) {
+            result = String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER);
+            logger.info(result);
+            return result;
+        } catch (FileNotFoundException e) {
+            result = "The chapter file cannot be found.";
+            logger.info(result);
+            return result;
         }
-        if (!isLevelExist) {
-            result = "Sorry, I cannot find this chapter, please add this chapter first";
-        }
-        return result;
     }
 }
