@@ -24,13 +24,13 @@ end box
 
 [-> ReviseCommand : execute(ui, access, storage)
 activate ReviseCommand
-ref over ReviseCommand, ChapterList : Get Chapter
+ref over ReviseCommand, ChapterList : get chapter
 [<-[hidden]- ReviseCommand
-ref over ReviseCommand, Ui : Chapter is not due for revision
+ref over ReviseCommand, Ui : chapter is not due for revision
 [<-[hidden]- ReviseCommand
 
-ref over ReviseCommand, Chapter: Get Cards
-ReviseCommand -> Ui : showToUser(cardCount)
+ref over ReviseCommand, Chapter: get cards
+ReviseCommand -> Ui : showToUser(message)
 activate Ui
 ReviseCommand <-- Ui
 deactivate Ui
@@ -39,28 +39,29 @@ activate Ui
 ReviseCommand <-- Ui
 deactivate Ui
 loop all cards
-    ReviseCommand -> ReviseCommand : reviseCard(count, c, ui, repeatCards)
+    ReviseCommand -> ReviseCommand : reviseCard(count, c, ui, repeatCards, scanner)
     activate ReviseCommand
-    ReviseCommand -> ReviseCommand : rateCard(ui, repeatCards, c, input)
+    ReviseCommand -> ReviseCommand : rateCard(ui, repeatCards, c, input, scanner)
     activate ReviseCommand
     deactivate ReviseCommand
     ReviseCommand --> ReviseCommand : count
     deactivate ReviseCommand
+
 end
-ReviseCommand -> ReviseCommand : repeatRevision(ui, repeatCards, count)
+ReviseCommand -> ReviseCommand : repeatRevision(ui, repeatCards, count, scanner)
 activate ReviseCommand
 deactivate ReviseCommand
 ReviseCommand -> Ui : showToUser(message)
 activate Ui
 ReviseCommand <-- Ui
 deactivate Ui
-ReviseCommand -> Scheduler : computeDeckDeadline(cards)
+ReviseCommand -> Scheduler : computeChapterDeadline(cards)
 activate Scheduler
 ReviseCommand <-- Scheduler : date
 deactivate Scheduler
 [<-[hidden]- Scheduler
 destroy Scheduler
-ReviseCommand -> Chapter : setDueBy(date, storage, access)
+ReviseCommand -> Chapter : setDueBy(dueBy, storage, access)
 activate Chapter
 ReviseCommand <-- Chapter
 deactivate Chapter
@@ -70,7 +71,7 @@ ReviseCommand -> Storage : saveCards(cards, module, chapter)
 activate Storage
 ReviseCommand <-- Storage
 deactivate Storage
-ReviseCommand -> HistoryCommand : addHistory(ui, access, storage, reviseIndex)
+ReviseCommand -> HistoryCommand : addHistory(access, storage, reviseIndex)
 activate HistoryCommand
 ReviseCommand <-- HistoryCommand
 deactivate HistoryCommand
