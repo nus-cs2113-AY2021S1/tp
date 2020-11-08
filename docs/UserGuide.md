@@ -461,6 +461,12 @@ Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]`
 
 When the optional arguments of `[UNIT]` and `[COUNT]` are omitted in the code, repeat will instead display the repeat status of the event.  
 
+> **Note!**
+>
+> When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
+> In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on
+> In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on
+
 #### How to use? 
 
 We will use the example of repeating a personal event named “Dental Appointment” for 3 months from the start date. 

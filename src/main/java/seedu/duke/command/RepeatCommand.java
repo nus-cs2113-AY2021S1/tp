@@ -4,12 +4,7 @@ import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.exception.DukeException;
-import seedu.duke.exception.InvalidTimeUnitException;
-import seedu.duke.exception.MissingDeadlineRepeatException;
-import seedu.duke.exception.MissingRepeatListException;
-import seedu.duke.exception.WrongNumberFormatException;
-import seedu.duke.exception.WrongNumberOfArgumentsException;
+import seedu.duke.exception.*;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -27,6 +22,7 @@ public class RepeatCommand extends Command {
     private static final String COMMANDTYPE_ERROR = "error";
     private String commandType;
     private static Logger logger = EventLogger.getEventLogger();
+    private static final int MAXIMUM_SIZE = 1000;
 
 
     /**
@@ -188,6 +184,10 @@ public class RepeatCommand extends Command {
      */
     private void repeat(Event eventToRepeat, LocalDate startDate, String repeatType, int count) throws DukeException {
         ArrayList<Event> repeatEventList = new ArrayList<>();
+        if (count > MAXIMUM_SIZE) {
+            throw new NumberOverflowException("Repeat amount is too large, please limit to only "
+                    + Integer.toString(MAXIMUM_SIZE) + " repetitions.");
+        }
         for (int i = 1; i <= count; i++) {
             LocalDate repeatDate;
             logger.fine("Repeat repetition number" + Integer.toString(i));

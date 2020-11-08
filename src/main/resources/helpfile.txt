@@ -47,6 +47,25 @@ LINK/LOCATION is the website link or the location of the event. This is applicab
 DD/MM/YY is the date associated with the event in the format DD/MM/YY.
 HH:MM AM/PM is the time of the event. It can be written in 12 or 24 hour format.
 
+Timetable events can contain:
+- Description, date and time
+- Description, location, date and time
+
+Timetable Format: `add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
+
+Zoom events can contain:
+- Description and link
+- Description, link, date and time
+
+Zoom Format: `add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
+
+Personal events can contain:
+- Description
+- Description and date
+- Description, date and time
+
+Personal Format: `add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
+
 end add
 
 begin deadline
