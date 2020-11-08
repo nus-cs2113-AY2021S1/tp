@@ -223,15 +223,15 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         
 #### 2.3.3. Design of QuizQuestionsManager
 
-To start a quiz in E-Duke-8, apart from the time limit for each question, the user will have to indicate the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
+To start a quiz in E-Duke-8, the user will have to give some inputs, and these include the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
 
-The class diagram given below explains the high-level design of the Quiz system in E-Duke-8. Given below it is a quick overview of each component.
+The class diagram given below explains the high-level design of the quiz system in E-Duke-8. Given below it is a quick overview of each component.
 
 ![QuizQuestionsManager_Class_Diagram](./images/QuizQuestionsManager.png)
 
 An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duke-8. Its `numberOfQuestions` attribute and `Topic` object correspond to the user's specified number of questions and topic for the quiz respectively.
 
-The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager`, by passing into its constructor `QuizQuestionsManager(:int, :ArrayList<Displayable>)`, `numberOfQuestions` for its first parameter and an ArrayList of questions from the `Topic` object for its second parameter. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method, where the first parameter will take in `numberOfQuestions` and its second parameter will take in the ArrayList of questions from the `Topic` object passed into the `QuizQuestionsManager` object. 
+The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager`, by passing into its constructor `QuizQuestionsManager(:int, :ArrayList<Displayable>)` the arguments `numberOfQuestions` for its first parameter and an ArrayList of questions from the `Topic` object for its second parameter. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method, where the first parameter will take in `numberOfQuestions` and its second parameter will take in the ArrayList of questions from the `Topic` object passed into the `QuizQuestionsManager` object. The questions' selection process will be further explained in the subsequence section on the [Implementation of QuizQuestionsManager](#234-implementation-of-quizquestionsmanager).
 
 Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
 
