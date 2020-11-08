@@ -84,6 +84,12 @@ class TopicsStorageTest extends Eduke8Test {
     }
 
     @Test
+    void load_duplicateQuestionsJson_expectEduke8Exception() {
+        TopicsStorage topicsStorage = new TopicsStorage("data/test/duplicate_questions.json");
+        assertThrows(Eduke8Exception.class, topicsStorage::load);
+    }
+
+    @Test
     void load_exampleJson_returnsTopicsFromJson() throws IOException, ParseException, Eduke8Exception {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_TOPICS_JSON);
 
