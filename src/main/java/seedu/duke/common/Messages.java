@@ -118,7 +118,7 @@ public class Messages {
     public static final String EXCEPTION_EMPTY_VALUE = ":( OOPS!!! The value of an expense item cannot be empty.";
     public static final String EXCEPTION_EMPTY_CURRENCY = ":( OOPS!!! The currency of an expense item cannot be empty.";
     public static final String EXCEPTION_EMPTY_DATE = ":( OOPS!!! The date of an expense item cannot be empty.";
-    public static final String EXCEPTION_INVALID_INDEX = "~Error~ Please input a valid task index.";
+    public static final String EXCEPTION_INVALID_INDEX = "~Error~ Please input a valid index.";
     public static final String EXCEPTION_INVALID_LINK_INDEX = "~Error~ Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
     public static final String EXCEPTION_INVALID_VALUE = "Please input a valid value.";
@@ -176,7 +176,7 @@ public class Messages {
             + "     \"list tasks c/CATEGORY\"\n"
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
-            + "     \"list books\""
+            + "     \"list books\"\n"
             + "     \"list expenses\"";
     public static final String EXCEPTION_INVALID_FIND_COMMAND = "~Error~ Please input a valid find command "
             + "using the format: \n\n"

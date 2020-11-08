@@ -31,13 +31,11 @@ Here are my contributions to the project.
 - Code enhancements:
   - Apply SLAP and DRY principles to refactor duplicated code in the code base, moving code to new functions where necessary, thus reducing SLOC.
   - Applied software design patterns like facade to refactor and repackage code into new classes and make the code more OOP.
-  - Used functional programming and wrote declarative code where applicable.
+  - Used functional programming and wrote declarative code where applicable (while maintaining OOP).
 
 - Project management:
-  - Managed issue tracker on GitHub, adding issues where necessary.
-  - Managed releases `v1.0` and `v2.0` on GitHub.
+  - Managed issue tracker and releases `v1.0` and `v2.0` on GitHub.
   - Authored PRs with detailed descriptions to ensure that the team is kept updated with the new changes, especially during refactors.
-
     - Examples: 
     [Refactoring Model class](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/146),
     [AddRecurringCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/90),
@@ -54,9 +52,12 @@ Here are my contributions to the project.
 
 - Documentation:
   - User Guide:
-    - Added documentation for tasks and module features.
+    - Added user guide sections for tasks and module features.
     - Added quick command reference section as a summary of commands.
   - Developer Guide:
     - Added an overall architecture diagram for the major components.
-    - Added sequence diagrams for several components generated with PlantUML.
-    - Described implementation details of regular expression parsing of arguments.
+    - Explained usage for `Duke`, `Parser`, `Ui` and `Command` components.
+    - Added sequence diagrams for `Duke` and `Parser` generated with PlantUML.
+    - Added UML diagrams for `Model` generated with PlantUML.
+    - Described implementation details of regular expression parsing of arguments and the calendar command.
+  - [Configured](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/173) project to use Kramdown so that we could have an automatically generated Table of Contents through [suggestions](https://github.com/nus-cs2113-AY2021S1/forum/issues/108#issuecomment-716930261) on module forum.

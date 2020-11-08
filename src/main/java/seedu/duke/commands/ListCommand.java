@@ -32,7 +32,7 @@ public class ListCommand extends Command {
             + "             Displays all the tasks with CATEGORY as a list.\n"
             + "             Example: " + COMMAND_WORD + " tasks c/cs2113\n"
             + "          Optional parameter 3: tasks sorted\n"
-            + "             Displays all the tasks sorted by priority"
+            + "             Displays all the tasks sorted by priority\n"
             + "     2. Displays all the books in the book list.\n"
             + "             Example: " + COMMAND_WORD + " books\n"
             + "     3. Displays all the links in the link list.\n"
