@@ -285,7 +285,7 @@ public class Storage<T> {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(f));
 
-            while ((s = bufferedReader.readLine()) != null) {
+            while ((s = bufferedReader.readLine()) != null && !s.isBlank()) {
                 moduleList.add(s);
             }
             if (moduleList.isEmpty()) {
@@ -297,7 +297,7 @@ public class Storage<T> {
 
             moduleList = nusModuleListFromNusMods();
 
-            if (moduleList != null) { // If moduleList is successfully filled, store the list locally
+            if (moduleList != null) { // If modul  eList is successfully filled, store the list locally
                 saveModuleList(moduleListPath, moduleList);
             }
             return moduleList;
