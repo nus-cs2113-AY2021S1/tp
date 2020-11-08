@@ -25,7 +25,7 @@ public class StudyIt {
     }
 
     /**
-     * Sets up each mode (bookmark,timetable,flashcard,academic)
+     * Sets up each mode (bookmark,timetable,flashcard,academic).
      */
     public StudyIt() {
         StudyItLog.setUpLogger();
@@ -39,7 +39,7 @@ public class StudyIt {
 
     /**
      * Main method for Study It. Initializes Study It and enter the running process.
-     * @param args
+     * @param args arguments
      */
     public static void main(String[] args) {
         StudyIt studyIt = new StudyIt();
@@ -49,7 +49,7 @@ public class StudyIt {
 
     /**
      * Main running program of Study it. Keeps the program in a constant loop
-     * until the exit command is called. It'll take in user input and process them
+     * until the exit command is called. It'll take in user input and process them.
      */
     public void run() {
         CommandType commandType;

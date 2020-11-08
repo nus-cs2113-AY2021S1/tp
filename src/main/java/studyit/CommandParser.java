@@ -5,7 +5,7 @@ import exceptions.InvalidModeException;
 public class CommandParser {
 
     /**
-     * Standardize the command to lowercase and trimmed
+     * Standardize the command to lowercase and trimmed.
      *
      * @param text String text
      * @return the standardized command
@@ -15,7 +15,7 @@ public class CommandParser {
     }
 
     /**
-     * Identifies the general commands
+     * Identifies the general commands.
      * @param command raw string of the user input
      * @return the command type of the command
      */
@@ -40,11 +40,11 @@ public class CommandParser {
     }
 
     /**
-     * Parses which mode to switch to for "cd" command
+     * Parses which mode to switch to for "cd" command.
      *
      * @param command raw string of user input
      * @return the destination mode
-     * @throws InvalidModeException
+     * @throws InvalidModeException The mode index inserted is not available
      */
     public static Mode getDestinationMode(String command) throws InvalidModeException {
         String commandModified = standardizeCommand(command);

@@ -13,7 +13,6 @@ public class Command {
 
     /**
      * Handles the user input command.
-     *
      * It executes the command if it is a general command. Otherwise, it will
      * pass the command to each respective mode to handle under handleNonGeneralCommand()
      *
@@ -50,7 +49,7 @@ public class Command {
     }
 
     /**
-     * Handles the non-general command such as commands under different modes
+     * Handles the non-general command such as commands under different modes.
      *
      * @param command raw string of the user input
      * @param commandType identifies the command type
