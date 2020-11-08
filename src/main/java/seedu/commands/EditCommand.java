@@ -33,6 +33,20 @@ public class EditCommand extends ModificationCommand {
     private final String reminder;
     private final String reminderTime;
 
+    /**
+     * Constructor.
+     *
+     * @param keyString    the index of the task being edited.
+     * @param description  the description of the task being edited.
+     * @param date         the date of the task being edited.
+     * @param startTime    the start time of the task being edited.
+     * @param endTime      the end time of the task being edited.
+     * @param priority     the priority of the task being edited. (1,2 or 3)
+     * @param reminder
+     * @param reminderTime
+     * @throws InvalidTaskNumberException When index is not a integer.
+     * @throws InvalidCommandException    When the start time is more than end time(invalid format).
+     */
     public EditCommand(String keyString, String description, String date, String startTime, String endTime,
                        String priority, String reminder, String reminderTime)
             throws InvalidTaskNumberException, InvalidCommandException {
@@ -56,6 +70,14 @@ public class EditCommand extends ModificationCommand {
         }
     }
 
+    /**
+     * @param model Contains TaskMap and stack(for undo function)
+     * @return CommandResult object.
+     * @throws InvalidTaskNumberException If the task at the index is not found. (Task has not been created)
+     * @throws InvalidPriorityException   Priority is not 1,2 or 3.
+     * @throws InvalidDatetimeException   Date/time is not in desired format. (eg 2500 or 1236 or abcd).
+     * @throws InvalidReminderException
+     */
     public CommandResult execute(Model model)
             throws InvalidTaskNumberException, InvalidPriorityException,
             InvalidDatetimeException, InvalidReminderException {

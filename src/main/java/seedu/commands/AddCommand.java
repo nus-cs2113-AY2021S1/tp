@@ -33,7 +33,18 @@ public class AddCommand extends ModificationCommand {
     private final String reminder;
     private final String reminderTime;
 
-
+    /**
+     * Constructor.
+     *
+     * @param description  name/description of task
+     * @param date         date of task being created
+     * @param startTime    start time of task.
+     * @param endTime      end time of task.
+     * @param priority     1,2 or 3.(low/med/high)
+     * @param reminder
+     * @param reminderTime
+     * @throws InvalidCommandException throws this when start time is at a later timing in the day than end time
+     */
     public AddCommand(String description, String date, String startTime, String endTime, String priority,
                       String reminder, String reminderTime) throws InvalidCommandException {
         this.description = description;
@@ -51,6 +62,16 @@ public class AddCommand extends ModificationCommand {
         }
     }
 
+    /**
+     * Adds a task. Updates the model with new list of tasks.
+     *
+     * @param model Contains the TaskMap and stack(for the undo function)
+     * @return the CommandResult object, which shows the task added message.
+     * @throws InvalidPriorityException if priority given is not 1,2 or 3.
+     * @throws InvalidDatetimeException if wrong date or time format
+     * @throws MaxNumTaskException      if tasks size == 10000
+     * @throws InvalidReminderException
+     */
     public CommandResult execute(Model model)
             throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
