@@ -109,10 +109,6 @@ public class Note extends TaggableObject {
         isPinned = !isPinned;
     }
 
-    public void setPinned(Boolean pinned) {
-        isPinned = pinned;
-    }
-
     public void toggleArchived() {
         isArchived = !isArchived;
     }
