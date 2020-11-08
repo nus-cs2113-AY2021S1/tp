@@ -73,3 +73,6 @@ Steps for publishing documentation to the public:
 1. References were made to [addressbook-level2](https://se-education.org/addressbook-level2/) for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
 1. Used [Jcolor](https://github.com/dialex/JColor) 3rd-party library.
 1. Used [jansi](https://fusesource.github.io/jansi/) 3rd-party library.
+1. 'NotUS' ASCII art code adapted from [http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS](http://patorjk.com/software/taag/#p=display&f=Ghost&t=NotUS)
+1. 'Bye' ASCII art code adapted from [https://patorjk.com/software/taag/#p=display&f=Ghost&t=Bye](https://patorjk.com/software/taag/#p=display&f=Ghost&t=Bye)
+1. Casper ASCII art code referenced from [https://www.asciiart.eu/cartoons/casper](https://www.asciiart.eu/cartoons/casper)
