@@ -125,11 +125,15 @@ On exiting Fluffle, all components will be saved to the storage.
 ### Writings class family
 #### Constitution (member classes)
 WritingList: Represent the objects which are particular lists of Writings to be used in the application.
+
 Writings: Represent the objects of the writings, created from user’s input and stored in a database as text. 
+
 This Writings class is also the parent of 2 subclasses which are Poem and Essay.
-Poem: Represents the Writings objects which have type is Poem.
-Essay: Represents the Writings objects which have type is Essay.
+- Poem: Represents the Writings objects which have type is Poem.
+- Essay: Represents the Writings objects which have type is Essay.
+
 User: Represents the Users registered to the System
+
 ![UML Class diagram for WritingList family](graphics/diagrams/classDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 2: WritingList family UML diagram</b></i></p>
 
@@ -229,7 +233,7 @@ exception, it is thrown from the methods in NamesDB class and Names class and ha
 
 ## Testing
 
-Put methods of testing here !!! JUnit test, Unit testing, integrated testing, ...
+Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
 
 ## Appendices
 
@@ -253,14 +257,20 @@ The application aims to provide the writer with the following services:
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
 |v1.0|writer with a lot of fleeting ideas|a place I can temporarily store all my short ideas |find them easily when I need them|
-|v1.0|As a user, I would like an to hold a word bank|
-|v1.0|As a writer, I can choose the name of the character generated from the database|
-|v1.0|As a writer, I would like to have an app that randomly generate the words that help me to brainstorm for my writings|
-|v1.0|As a writer, I would like to clear and edit the saved writings in my storage|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-|v2.0|As a writer, I would like to have an app that list all the statistics from my past writings|
-|v2.0|As a user, I would like to get the inspiration from the app|
-|v2.0|As a user, I would like to have a database to refer to my scripts for future references|
+|v1.0|user|I would like the app to have a word list|keep my list of favorite words and refer to them in my writings|
+|v1.0|writer|choose the name of the character generated from the database|write without thinking a lot about my character's name|
+|v1.0|writer|clear and edit the saved writings in my storage|easily change them later on|
+|v1.0|writer|generate words from my word list based on word type or some substrings|find the ideas to continue my writings|
+|v1.0|writer|continue to filter on my last filter list|narrow down the words I want to use|
+|v2.0|user|check my spelling automatically|don't spell wrongly|
+|v2.0|writer|have an app that list all the statistics from my past writings|
+|v2.0|user|get the inspiration from the app|improve my creative writing skills|
+|v2.0|user|have a database of my writings|refer to them in the future|
+|v2.0|writer who uses the filter function in v1.0|limit the filter words printed out on the screen|view them easily if the filter list has a lot of words|
+|v2.0|writer who is bad at sticking to an upload schedule|be reminded by the app which pieces I need to work on next|continue to hold my writing spirit|
+|v2.0|writer who frequently uses the app|save the words to local storage and load them when I start the app|save more words than usual|
+|v2.0|writer facing writers block|generate a random idea from my bunny storage|warm up or brainstorms on my writings|
+|v2.0|writer facing writers block|have an app that randomly generate the words|brainstorm for my writings based on those words|
 
 ### Appendix D: Non-Functional Requirements
 
