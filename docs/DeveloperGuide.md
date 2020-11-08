@@ -51,7 +51,7 @@ allows us to create various topics with questions, options, hints and explanatio
 in the code for E-Duke-8. As such, many of the commands that manipulate the `TopicList` make 
 use of the package `java.util.ArrayList`. 
 
-The `TopicList` is used to store `Topic`. `Topic` themselves implement the interface `Displayable`. 
+The `TopicList` is used to store `Topic` objects. `Topic` objects themselves implement the interface `Displayable`. 
 
 ![TopicList](images/TopicListClassDiagram.png)
 
@@ -107,32 +107,33 @@ This task is performed by the `NoteList.add()` method.
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.addNoteInteractions()` 
 method. 
 
-Step 2: The `Ui.addNoteInteractions()` method uses the user's input to create a `Note` object. 
+Step 2: The `Ui.printAddNote()` method uses the user's input to create a `Note` object. 
 
-Step 3: The `Ui,addNoteInteractions()` method then calls the method `NoteList.add()`, passing the created `Note` object 
+Step 3: The `Ui.printAddNote()` method then calls the method `NoteList.add()`, passing the created `Note` object 
 into this method. `NoteList.add()` makes use of the package `java.util.ArrayList`, specifically the `ArrayList.add()` 
 method, to add the `Note` object into the specified `NoteList` object.
 
 **Listing out all notes in a topic:**
 
-This task is performed by the `Ui.printNoteList()` method.
+This task is performed by the `Ui.showNotes()` method.
 
 Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then instantiates an Ui object
-and calls the `Ui.listInteraction` method. The topic's `NoteList` object is passed into this method.
+and calls the `Ui.printListNote` method. The topic's `NoteList` object is passed into this method.
 
-Step 2: The `Ui.listInteraction` method calls the `Ui.printNoteList()` method. The topic's `NoteList` object is passed into 
-this method. `Ui.printNoteList()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` object.
+Step 2: The `Ui.printListNote` method calls the `Ui.showNotes()` method. The topic's `NoteList` object is passed into 
+this method. `Ui.showNotes()` prints out the descriptions and texts of all the `Note` objects in the topic's `NoteList` 
+object.
 
 **Deleting a note:**
 
 This task is performed by the `NoteList.delete()` method.
 
-Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.deleteNoteInteractions` method. 
-An integer provided by the user's input is passed into this method. This integer is interpreted as the index of the `Note` object to be deleted in the
-specified `NoteList` object.
+Step 1: The `parseCommand()` method instantiates a `NoteCommand` object which then calls the `Ui.printDeleteNote` 
+method. An integer provided by the user's input is passed into this method. This integer is interpreted as the index of 
+the `Note` object to be deleted in the specified `NoteList` object.
 
-Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the `ArrayList.remove()` method, to 
-delete the specified `Note` object in the specified `NoteList` object.
+Step 2: The `NoteList.delete()` method makes use of the `java.util.ArrayList` package, specifically the 
+`ArrayList.remove()` method, to delete the specified `Note` object in the specified `NoteList` object.
 
 <div style="page-break-after: always;"></div>
 
@@ -172,17 +173,22 @@ The `options.get(i)` parameter will get the description of the specific option a
 
 ### 2.3. Logic Component
 
-The main application logic, such as provisioning quizes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
+The main application logic, such as provisioning quizzes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
 
 #### 2.3.1. Design of Parser
 
 ![Parser Diagram](./images/ParserDiagram.png)
 
-1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
+1. After constructing a new `MenuParser` in the `Eduke8` class, the `parseCommand()` method is used to parse the 
    user command.
-2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
+2. This results in a `Command` object, which is executed by `Command` class itself, using the `execute()` method.
 3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
 to be completed as per the user input.
+
+It should be made clear that `parseCommand()` returns a new object from the child class of `Command`. The object's exact 
+class depends on the input typed into the command line, and so since `parseCommand()` returns all these objects from the 
+various specific `Command` classes, the `MenuParser` which has the `parseCommand()` method is dependent on all these 
+specific `Command` classes.
 
 <div style="page-break-after: always;"></div>
 
@@ -199,7 +205,7 @@ named `MenuParser`. The other parser is used during quizzes, in order to answer 
 called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
 when the user types in input to get help in order to see what commands are available to the user.
 
-Step 1. The user launches the program for the first time. The `MenuParser()` will be initialised and awaiting the user’s
+Step 1. The user launches the program for the first time. The `MenuParser` will be initialised and awaiting the user’s
         input to proceed.
         
 Step 2. The user types in "help" into the command line interface and presses enter. This user input “help” is stored as 
@@ -211,8 +217,8 @@ Step 3. The user input string is subjected to the `lang.string.trim()` and `lang
         in the input. The `lang.string.split()` function uses a blank space string, “ “, as the delimiter to split the 
         string into its individual components.
         
-Step 4. Each subsequent string separated by a space is stored in a string array named `commandArr`. The 0th index of the 
-        `commandArr` array is the first word, the 1st index is the second word, and so on. In this case there is only 
+Step 4. Each subsequent string separated by a space is stored in a string array `commandArr[]`. The 0th index of the 
+        `commandArr[]` array is the first word, the 1st index is the second word, and so on. In this case there is only 
         one word stored in the array, at the 0th index, which is “help”.
         
 Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
