@@ -145,7 +145,8 @@ public class WritingsLoader {
      */
     private static String recordFile(File f, WritingList savedWritings) throws IOException {
         FileWriter fw = new FileWriter(f);
-        String databaseInformation = "There is/are currently " + savedWritings.getWritingSize() + " writing(s) in our database\n"
+        String databaseInformation = "There is/are currently " + savedWritings.getWritingSize()
+                + " writing(s) in our database\n"
                 + WRITING_COMPONENT_DIVIDER + "\n";
         fw.write(databaseInformation);
         for (int i = 0; i < WritingList.getCountWritings(); i++) {

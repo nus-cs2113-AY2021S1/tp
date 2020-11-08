@@ -221,7 +221,9 @@ public class WritingList {
             addPoem(title, newId, topic, content, user.getName(), reminderDate);
         } else if (commandTypeChecker == ESSAY) {
             addEssay(title, newId, topic, content, user.getName(), reminderDate);
-        } else throw new WrongMethodTypeException();
+        } else {
+            throw new WrongMethodTypeException();
+        }
         System.out.println(SUCCESSFUL_ADD_WRITING_TO_DATABASE);
         //String contentAdded = title + newId + topic + content + user.getName() + reminderDate;
         return SUCCESSFUL_ADD_WRITING_TO_DATABASE;

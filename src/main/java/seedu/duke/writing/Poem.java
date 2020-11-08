@@ -79,7 +79,7 @@ public class Poem extends Writings {
 
     @Override
     public String printEssayProperties() {
-            return null;
+        return null;
     }
 
     public void setNumberOfWords() {

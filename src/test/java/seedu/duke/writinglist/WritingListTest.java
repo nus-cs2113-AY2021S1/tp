@@ -13,8 +13,14 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.duke.commands.CommandChecker.*;
-import static seedu.duke.constants.FluffleMessages.*;
+import static seedu.duke.commands.CommandChecker.START;
+import static seedu.duke.commands.CommandChecker.TYPE;
+import static seedu.duke.commands.CommandChecker.extractCommandType;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TITLE;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TOPIC;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_TYPE;
+import static seedu.duke.constants.FluffleMessages.ASKING_FOR_REMINDER;
+
 import static seedu.duke.constants.Logos.PLAIN_TEXT_DIVIDER;
 
 public class WritingListTest {
@@ -117,15 +123,15 @@ public class WritingListTest {
         try {
             assertEquals(5, writings.removeWriting(3));
         } catch (FileEmptyException e) {
-
-        };
+            System.out.println("This file is empty");
+        }
         assertThrows(ItemNotFoundedException.class, () -> writings.removeID(356));
         try {
             assertEquals(4, writings.removeID(23));
         } catch (FileEmptyException e) {
-
+            System.out.println("This file is empty");
         } catch (ItemNotFoundedException e) {
-
+            System.out.println("There is no such element in our database");
         }
     }
 
