@@ -17,6 +17,11 @@ public class EventLogger {
     private static FileHandler fh;
     private static Ui userInterface;
 
+    /**
+     * Function initialise the logger and inform it to write all messages to a text file.
+     *
+     * @param ui UserInterface object for printing out messages should the logger file fail to load
+     */
     public static void initEventLogger(Ui ui) {
         String logging = "logging.txt";
         userInterface = ui;
@@ -42,6 +47,9 @@ public class EventLogger {
         return logger;
     }
 
+    /**
+     * Function resets the log file to a blank state
+     */
     public static void clearLog() {
         String[] pathName = {"logging.txt"};
         Path fileName = createPath(pathName);
