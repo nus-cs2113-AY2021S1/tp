@@ -186,9 +186,9 @@ Here are some key pointers:
 Example: <br>
 For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
 * Step 1: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`: <br>
-![Remove Module 1](images/RemoveMod2.PNG)
+![Remove Module 1](UG_Images/RemoveMod1.PNG)
 * Step 2: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown: <br>
-![Remove Module 2](images/RemoveMod3.PNG)
+![Remove Module 2](UG_Images/RemoveMod2.PNG)
 
 #### 3.1.5. Accessing the module level: `go`
 (by Jiayi)
@@ -333,9 +333,9 @@ Here are some key pointers:
 Example: <br>
 For instance, you are currently at the module level `CS2113T` and want to remove the chapter `Chapter 1`, the steps to do so are shown below:
 * Step 1: Enter the command `remove 1` to remove the first chapter in the list which in this case is `Chapter 1`: <br>
-![Remove Chapter 1](images/RemoveChap2.PNG)
+![Remove Chapter 1](UG_Images/RemoveChap1.PNG)
 * Step 2: The chapter and the flashcards in it are removed, and the output message below will be shown: <br>
-![Remove Chapter 2](images/RemoveChap3.PNG)
+![Remove Chapter 2](UG_Images/RemoveChap2.PNG)
 
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
@@ -536,11 +536,11 @@ Here are some key pointers:
 * Index provided **must be a positive integer** 1, 2, 3, ...
 
 Example: <br>
-For instance, you are currently at the chapter level `Chapter 1` and want to remove the flashcard `[Q] 1+1= | [A] 2`, the steps to do so are shown below:
-* Step 1: Enter the command `remove 1` to remove the first flashcard in the list which in this case is `[Q] 1+1= | [A] 2`: <br>
-![Remove Card 1](images/RemoveCard2.PNG)
+For instance, you are currently at the chapter level `Chapter 1` and want to remove the flashcard `[Q] 1+1 | [A] 2`, the steps to do so are shown below:
+* Step 1: Enter the command `remove 1` to remove the first flashcard in the list which in this case is `[Q] 1+1 | [A] 2`: <br>
+![Remove Card 1](UG_Images/RemoveCard1.PNG)
 * Step 2: The flashcard is removed, and the output message below will be shown: <br>
-![Remove Card 2](images/RemoveCard3.PNG)
+![Remove Card 2](UG_Images/RemoveCard2.PNG)
 
 #### 3.3.5. Returning to module level: `back`
 (by Jia Ern)
@@ -552,9 +552,9 @@ Format: `back`
 Example: <br>
 For instance, you are currently in chapter level `Chapter 1` and want to return to the module level `CS2113T`, the steps to do so are shown below:
 * Step 1: Enter the command `back` to return to the previous level which is the module level: <br>
-![Back Module 1](images/BackMod2.PNG)
+![Back Module 1](UG_Images/BackMod1.PNG)
 * Step 2: You should return to the module level as shown below: <br>
-![Back Module 2](images/BackMod3.PNG)
+![Back Module 2](UG_Images/BackMod2.PNG)
 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
