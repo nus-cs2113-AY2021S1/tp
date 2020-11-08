@@ -14,8 +14,9 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class SelectProjectCommandTest {
+public class ListProjectCommandTest {
 
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
@@ -29,29 +30,33 @@ class SelectProjectCommandTest {
         Ui.setOutStream(new PrintStream(testOut));
     }
 
+
     private ProjectManager generateProject() {
         ProjectManager projectManager = new ProjectManager();
-        projectManager.addProject("project1", "project1", 50, 10);
-        projectManager.addProject("project2", "project2", 50, 10);
         projectManager.addProject("project3", "project3", 50, 10);
-        assert projectManager.getProjectList().size() == 3 : "Dummy projects not added!";
+        projectManager.addProject("project1", "project1", 50, 10);
+        assert projectManager.getProjectList().size() == 2 : "Dummy projects not added!";
         return projectManager;
     }
 
     @Test
-    void selectProject_validParameters_noError() {
+    void listProject_noError() {
 
         Hashtable<String, String> parameters = new Hashtable<>();
+        ProjectManager projectManager = generateProject();
         parameters.put("0", "1");
 
-        ProjectManager projectManager;
-        projectManager = generateProject();
-
-        SelectProjectCommand command = new SelectProjectCommand(parameters, projectManager);
+        ListProjectCommand command = new ListProjectCommand(parameters, projectManager);
         command.execute();
-        String expectedOutput = "Project 1 has been selected." + System.lineSeparator();
+        assertTrue(projectManager.size() == 2);
+        String expectedOutput = "Following are the added projects: " + System.lineSeparator()
+                + "\tID Title \t\tDescription" + System.lineSeparator()
+                + "\t1) project3 \t\tproject3" + System.lineSeparator()
+                + "\t2) project1 \t\tproject1" + System.lineSeparator();
+
         assertEquals(expectedOutput, getOutput());
     }
+
 
 
     @AfterEach
