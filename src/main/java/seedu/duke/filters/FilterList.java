@@ -29,28 +29,32 @@ public class FilterList {
             return;
         }
 
+        if (filteredWords.size() == 0) {
+            System.out.println(FluffleMessages.NO_FILTER_RESULT);
+            return;
+        }
+
         if (printLimit == -1) {
             //the user didn't specify the print limit so the program prints out all the words in the list
             System.out.println(FluffleMessages.PRINT_LIMIT_NOT_FOUND);
             System.out.printf(FluffleMessages.FILTER_MESSAGE, filteredWords.size());
+            int wordCount = 0;
             for (Words word : filteredWords) {
-                System.out.println("- " + word.getDescription() + ": " + word.getDefinition());
+                System.out.println("   " + (wordCount + 1) + ". " + word.getDescription()
+                        + ": " + word.getDefinition());
+                wordCount++;
             }
-            return;
-        }
-
-        if (filteredWords.size() == 0) {
-            UI.printDivider();
-            System.out.println(FluffleMessages.NO_FILTER_RESULT);
-            UI.printDivider();
             return;
         }
 
         if (filteredWords.size() <= printLimit) {
             UI.printDivider();
             System.out.printf(FluffleMessages.FILTER_MESSAGE, filteredWords.size());
+            int wordCount = 0;
             for (Words word : filteredWords) {
-                System.out.println("- " + word.getDescription() + ": " + word.getDefinition());
+                System.out.println("   " + (wordCount + 1) + ". " + word.getDescription()
+                        + ": " + word.getDefinition());
+                wordCount++;
             }
             UI.printDivider();
             return;
@@ -64,8 +68,11 @@ public class FilterList {
         if (userInput.trim().equalsIgnoreCase(Tags.YES) || userInput.trim().equalsIgnoreCase(Tags.Y)) {
             UI.printDivider();
             System.out.printf(FluffleMessages.FILTER_MESSAGE, filteredWords.size());
+            int wordCount = 0;
             for (Words word : filteredWords) {
-                System.out.println("- " + word.getDescription() + ": " + word.getDefinition());
+                System.out.println("   " + (wordCount + 1) + ". " + word.getDescription()
+                        + ": " + word.getDefinition());
+                wordCount++;
             }
             UI.printDivider();
         } else if (userInput.trim().equalsIgnoreCase(Tags.N) || userInput.trim().equalsIgnoreCase(Tags.NO)) {
@@ -73,7 +80,7 @@ public class FilterList {
             System.out.printf(FluffleMessages.FILTER_MESSAGE_LIMIT, printLimit, filteredWords.size());
             for (int i = 0; i < printLimit; i++) {
                 Words word = filteredWords.get(i);
-                System.out.println("- " + word.getDescription() + ": " + word.getDefinition());
+                System.out.println("   " + (i + 1) + ". " + word.getDescription() + ": " + word.getDefinition());
             }
             UI.printDivider();
         } else {

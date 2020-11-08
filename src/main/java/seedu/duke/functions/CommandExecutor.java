@@ -1,5 +1,6 @@
 package seedu.duke.functions;
 
+import seedu.duke.bunny.Bunny;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
@@ -191,13 +192,19 @@ public class CommandExecutor {
             WritingList.checkStart(writings);
             break;
         case TYPE:
-            WritingList.checkType(writings);
+            WritingList.checkType();
             break;
         case COUNT_WRITINGS:
             WritingList.printWritingSize();
             break;
         case RESET_WRITINGS:
             WritingList.clearAll(writings);
+            break;
+        case RESET_WORDS:
+            WordList.clearAllWords();
+            break;
+        case RESET_BUNNY:
+            BunnyList.clearAllBunny();
             break;
         case CLEAR:
             try {

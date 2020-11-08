@@ -6,6 +6,7 @@ import seedu.duke.exceptions.ClearLoaderException;
 import seedu.duke.exceptions.InvalidClearFormat;
 import seedu.duke.exceptions.ItemNotFoundedException;
 
+import seedu.duke.ui.UI;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Words;
 import seedu.duke.writing.WritingList;
@@ -159,10 +160,10 @@ public class ClearLoader {
     public static void clearingWord(String item, ArrayList<Words> wordList) throws InvalidClearFormat {
         if (item.contains("-noun")) {
             String word = item.substring("-noun".length());
-            //System.out.println(word);
             try {
                 try {
                     clearingWordNoun(word, wordList);
+                    UI.printClearCommandSuccess("noun", word);
                 } catch (NullPointerException e) {
                     System.out.println("There is nothing in your word list inventory");
                 }
@@ -174,6 +175,7 @@ public class ClearLoader {
             try {
                 try {
                     clearingWordAdjective(word, wordList);
+                    UI.printClearCommandSuccess("adjective", word);
                 } catch (NullPointerException e) {
                     System.out.println("There is nothing in your word list inventory");
                 }
@@ -185,6 +187,7 @@ public class ClearLoader {
             try {
                 try {
                     clearingWordVerb(word, wordList);
+                    UI.printClearCommandSuccess("verb", word);
                 } catch (NullPointerException e) {
                     System.out.println("There is nothing in your word list inventory");
                 }
@@ -228,7 +231,7 @@ public class ClearLoader {
             int wordFounded = 0;
             int i = 0;
             while (i < wordList.size()) {
-                if (wordList.get(i).getType().equals("adj")
+                if (wordList.get(i).getType().equals("adjective")
                         && wordList.get(i).getDescription().trim().equalsIgnoreCase(word)) {
                     wordList.remove(i);
                     wordFounded = 1;

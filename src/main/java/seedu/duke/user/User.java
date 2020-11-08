@@ -27,14 +27,15 @@ public class User {
     }
 
     public void setRegisteredDate() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy");
         LocalDateTime now = LocalDateTime.now();
-        this.registeredDate = now.toString().substring(0, LENGTH_OF_DATE);
+        this.registeredDate = now.format(dtf);
     }
 
     public void greetUser() {
         System.out.println("Hello " + this.name + ". Welcome to Fluffle!");
-        System.out.println("Your registration has been recorded on " + registeredDate);
+        System.out.println("Your registration has been recorded on "
+                + registeredDate);
     }
 
     public void printInstruction() {

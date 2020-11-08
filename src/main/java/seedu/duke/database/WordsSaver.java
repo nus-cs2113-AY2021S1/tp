@@ -31,11 +31,13 @@ public class WordsSaver {
                 textToSave = textToSave.concat("adjective | " + w.getDescription() + " | "
                         + w.getDefinition() + System.lineSeparator());
             } else {
+                LOGGER.log(Level.WARNING, "Invalid class instance was passed to saveWordsToFile method!");
                 System.out.println("Word type error.");
             }
         }
 
         try {
+            LOGGER.log(Level.INFO, "Saving words to words.txt");
             writeToFile(textToSave);
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Program can not write to file");
