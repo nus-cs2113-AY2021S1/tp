@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ * Stores the search frequencies of all the bus stops present.
+ */
 public class FreqStorage extends Storage {
     private File file;
     private static final Logger LOGGER = Logger.getLogger(FreqStorage.class.getName());

@@ -17,13 +17,19 @@ public class DeleteFavCommand extends Command {
             throw new CustomException(ExceptionType.NO_INDEX);
         }
         int indexNum = 0;
+        indexNum = checkIndex(index);
+        this.index = indexNum;
+        super.isValid = false;
+    }
+
+    private int checkIndex(String index) throws CustomException {
+        int indexNum;
         try {
             indexNum = Integer.parseInt(index.trim());
         } catch (NumberFormatException e) {
             throw new CustomException(ExceptionType.NOT_A_NUMBER);
         }
-        this.index = indexNum;
-        super.isValid = false;
+        return indexNum;
     }
 
     @Override
