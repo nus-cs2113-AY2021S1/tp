@@ -2,7 +2,6 @@ package seedu.duke.model;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.InvalidCommand;
-import seedu.duke.command.SearchCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

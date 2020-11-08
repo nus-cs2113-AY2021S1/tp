@@ -2,8 +2,9 @@ package seedu.duke.model;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.api.StockPriceFetcher;
-import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InsufficientQtyException;
+import seedu.duke.exception.NegativeQtyException;
+import seedu.duke.exception.PaperTradeException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -13,7 +14,7 @@ class PortfolioTest {
     void searchStock_invalidStock_expectException() {
         StockPriceFetcher stockPriceFetcher = new StockPriceFetcher();
         String symbol = "zzzzzzz";
-        assertThrows(DukeException.class, () -> {
+        assertThrows(PaperTradeException.class, () -> {
             stockPriceFetcher.fetchLatestStockData(symbol);
         });
     }
@@ -25,7 +26,7 @@ class PortfolioTest {
         String symbol = "abcdefg";
         int quantity = 1;
         // Use a lambda
-        assertThrows(DukeException.class, () -> {
+        assertThrows(PaperTradeException.class, () -> {
             portfolio.sellStock(symbol, quantity, stockPriceFetcher.fetchLatestPrice(symbol));
         });
     }
@@ -44,6 +45,21 @@ class PortfolioTest {
             portfolio.buyStock(symbol, buyQuantity, stockPriceFetcher.fetchLatestPrice(symbol));
             // attempt to sell 2 aapl stock
             portfolio.sellStock(symbol, sellQuantity, stockPriceFetcher.fetchLatestPrice(symbol));
+        });
+    }
+
+    @Test
+    void sellNegativeQuantity() {
+        Portfolio portfolio = new Portfolio();
+        StockPriceFetcher stockPriceFetcher = new StockPriceFetcher();
+        String symbol = "aapl";
+
+        // Use a lambda
+        assertThrows(NegativeQtyException.class, () -> {
+            // buy 1 aapl stock
+            portfolio.buyStock(symbol, 1, stockPriceFetcher.fetchLatestPrice(symbol));
+            // attempt to sell -10 aapl stock
+            portfolio.sellStock(symbol, -10, stockPriceFetcher.fetchLatestPrice(symbol));
         });
     }
 }

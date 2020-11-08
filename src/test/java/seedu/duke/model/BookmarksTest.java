@@ -1,7 +1,7 @@
 package seedu.duke.model;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exception.DukeException;
+import seedu.duke.exception.PaperTradeException;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ class BookmarksTest {
         ArrayList<String> bookmarkedStocks = new ArrayList<>();
         bookmarkedStocks.add(symbol);
         Bookmarks bookmarks = new Bookmarks(bookmarkedStocks);
-        assertThrows(DukeException.class, () -> {
+        assertThrows(PaperTradeException.class, () -> {
             bookmarks.addToBookmarks(symbol);
         });
     }
@@ -25,7 +25,7 @@ class BookmarksTest {
         String symbol = "aapl";
         ArrayList<String> bookmarkedStocks = new ArrayList<String>();
         Bookmarks bookmarks = new Bookmarks(bookmarkedStocks);
-        assertThrows(DukeException.class, () -> {
+        assertThrows(PaperTradeException.class, () -> {
             bookmarks.removeBookmark(symbol);
         });
     }

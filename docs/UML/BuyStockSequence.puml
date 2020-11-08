@@ -62,6 +62,9 @@ Portfolio --> PortfolioManager :
 deactivate Portfolio
 
 PortfolioManager -> PortfolioManager : save()
+activate PortfolioManager
+PortfolioManager --> PortfolioManager :
+deactivate PortfolioManager
 
 PortfolioManager --> Controller :
 deactivate PortfolioManager
