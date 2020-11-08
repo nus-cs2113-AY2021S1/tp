@@ -33,7 +33,9 @@ public class CountdownCommand extends Command {
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         if (userInput.equals("countdown")) {
-            countdownExamsDeadlines(calendarList);
+            countdownDeadlines(calendarList);
+            Ui.printBorder(false);
+            countdownExams(calendarList);
         } else if (userInput.equals("countdown deadlines")) {
             countdownDeadlines(calendarList);
         } else if (userInput.equals("countdown exams")) {
@@ -41,17 +43,6 @@ public class CountdownCommand extends Command {
         } else {
             throw new CommandException("invalid countdown");
         }
-    }
-
-    /**
-     * Calculates the countdown for both exams event and deadline tasks.
-     *
-     * @param calendarList the calendarList to calculate the countdown for.
-     */
-    public void countdownExamsDeadlines(CalendarList calendarList) {
-        countdownDeadlines(calendarList);
-        Ui.printBorder(false);
-        countdownExams(calendarList);
     }
 
     /**
