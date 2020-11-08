@@ -196,9 +196,9 @@ public class EventList {
     public static String searchEvents(String keyword) {
         String output = "";
         try {
-            if (checkIfEventNameMatch(keyword)) {
+            if (checkEventNameMatch(keyword)) {
                 output = output.concat(printFilteredEventsByName(keyword));
-            } else if (checkIfEventDateMatch(keyword)) {
+            } else if (checkEventDateMatch(keyword)) {
                 output = output.concat(printFilteredEventsByDate(keyword));
             } else {
                 output = output.concat(COMMAND_KEYWORD_NOT_FOUND);
@@ -216,7 +216,7 @@ public class EventList {
      * @param keyword The word used for search.
      * @return returns true if at least one event contains the event name.
      */
-    public static boolean checkIfEventNameMatch(String keyword) {
+    public static boolean checkEventNameMatch(String keyword) {
         boolean hasMatchedTask = false;
         for (Event event : events) {
             if (event.containsNameKeyword(keyword)) {
@@ -234,7 +234,7 @@ public class EventList {
      * @param keyword The word used for search.
      * @return returns true if at least one event contains the event date
      */
-    public static boolean checkIfEventDateMatch(String keyword) {
+    public static boolean checkEventDateMatch(String keyword) {
         assert keyword != null;
         LocalDate date = LocalDate.parse(keyword);
         boolean hasMatchedTask = false;

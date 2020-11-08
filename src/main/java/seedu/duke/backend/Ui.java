@@ -38,7 +38,7 @@ public class Ui {
     private Parser parser;
     private static ArrayList<Command> commandList = new ArrayList<>();
     private static boolean shutdown = false;
-    private static final String UNDERSCORES = "____________________________________________________________";
+    private static final String UNDERSCORES = "_".repeat(100);
 
     public Ui() {
         sc = new Scanner(System.in);

@@ -4,10 +4,10 @@
 activate ":CommandSearchEvent"
 
 activate ":EventList"
-":EventList" -> ":EventList" : checkIfEventNameMatch()
+":EventList" -> ":EventList" : checkEventNameMatch()
 activate ":EventList"
 return output
-":EventList" -> ":EventList" : checkIfEventDateMatch()
+":EventList" -> ":EventList" : checkEventDateMatch()
 activate ":EventList"
 return output
 ":EventList" -> ":EventList" : printFilteredEvents()
