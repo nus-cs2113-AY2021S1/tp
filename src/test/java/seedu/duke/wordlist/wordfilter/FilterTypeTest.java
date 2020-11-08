@@ -1,4 +1,4 @@
-package seedu.duke.wordlisttest.wordfiltertest;
+package seedu.duke.wordlist.wordfilter;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.wordexceptions.FilterCommandException;
