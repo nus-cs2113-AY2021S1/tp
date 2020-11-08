@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Container for storing tasks in <Integer, Task> pairs.
+ * Container for storing tasks in (Integer, Task) pairs.
  */
 public class TaskMap {
     public static final int MAX_NUM_TASKS = 10000;
@@ -44,7 +44,7 @@ public class TaskMap {
     }
 
     /**
-     * Adds a task to a TaskMap
+     * Adds a task to a TaskMap.
      * @param task to be added.
      */
     public void addTask(Task task) {

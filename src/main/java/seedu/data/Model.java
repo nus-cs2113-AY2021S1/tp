@@ -13,7 +13,7 @@ public class Model {
 
     /**
      * Creates a new data model with taskMap.
-     * @param taskMap
+     * @param taskMap taskMap with existing tasks.
      */
     public Model(TaskMap taskMap) {
         this.taskMap = taskMap;
