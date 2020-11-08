@@ -257,8 +257,7 @@ The sequence diagram of changing information of a finance log entry is shown bel
 (By: Varsha)<br/>
 The diagram below shows the overall architecture for Event feature. 
 
-![](EventDiagram/EventArchi.png)
-
+![](EventDiagram/eventArchi.png)
 
 
 There are a total of 9 commands under Event feature.
