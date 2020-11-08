@@ -1,6 +1,6 @@
 # Lu Ziyi - Project Portfolio Page
 
-## Project: Study it
+## Overview
 
 Study It is an interactive desktop app that helps students manage their study related matters, 
 optimized for use via a Command Line Interface (CLI). 

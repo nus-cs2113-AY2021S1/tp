@@ -1,12 +1,15 @@
 package timetable;
 
+import exceptions.ClashScheduleException;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DateList {
     public List<EventList> dateList;
-    public List<Event> lessons;
-    public List<Event> activities;
+    public List<Lesson> lessons;
+    public List<Activity> activities;
 
     public DateList() {
         dateList = new ArrayList<>();
@@ -33,11 +36,6 @@ public class DateList {
                 dateList.add(newList);
             }
         }
-        if (event.eventType.equals(EventType.L)) {
-            lessons.add(event);
-        } else if (event.eventType.equals(EventType.A)) {
-            activities.add(event);
-        }
     }
 
     public boolean clashDetection(Duration duration, EventList eventList) {
@@ -55,4 +53,64 @@ public class DateList {
 
     }
 
+    public void deleteActivity(int index, TimeTableStorage storage) {
+        activities.remove(index - 1);
+        dateList.clear();
+        storage.wipeFile();
+        for (Lesson lesson: lessons) {
+            try {
+                addEvent(lesson);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(lesson);
+        }
+        for (Activity activity: activities) {
+            try {
+                addEvent(activity);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(activity);
+        }
+    }
+
+    public void deleteLesson(int index, TimeTableStorage storage) {
+        lessons.remove(index - 1);
+        dateList.clear();
+        storage.wipeFile();
+        for (Lesson lesson: lessons) {
+            try {
+                addEvent(lesson);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(lesson);
+        }
+        for (Activity activity: activities) {
+            try {
+                addEvent(activity);
+            } catch (ClashScheduleException e) {
+                System.out.println("There is a clash in schedule");
+            }
+            storage.writeFile(activity);
+        }
+    }
+
+    public void cleanUpEvent(TimeTableStorage storage) {
+        for (int i = 0; i < activities.size(); i++) {
+            if (activities.get(i).periods.get(0).endDateTime.isBefore(LocalDateTime.now().minusDays(7))) {
+                deleteActivity(i + 1, storage);
+                i--;
+            }
+        }
+        for (int i = 0; i < lessons.size(); i++) {
+            int periodLastIndex = lessons.get(i).periods.size() - 1;
+            LocalDateTime lastDate = lessons.get(i).periods.get(periodLastIndex).endDateTime;
+            if (lastDate.isBefore(LocalDateTime.now().minusDays(7))) {
+                deleteActivity(i + 1, storage);
+                i--;
+            }
+        }
+    }
 }

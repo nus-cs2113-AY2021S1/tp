@@ -266,7 +266,7 @@ With reference to above, it can be observed that whenever a command modifies the
 The contact features are facilitated by `Personbook`, which further make use of `Person`. 
 In terms of general structure, it is largely similar to that of `GradeBook`'s.
 
-
+<!-- @@author hailqueenflo -->
 ### **Flashcard Component**
 
 
@@ -291,7 +291,7 @@ the `FlashcardDeck` class. As an add card command is given by the user, `Flashca
 command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
 it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
 answer of the flashcard that have been created.
-
+<!-- @@author -->
 ## Documentation, logging, testing, configuration, dev-ops
 ### Testing guide
 Running tests:  

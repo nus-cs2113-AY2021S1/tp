@@ -3,6 +3,9 @@ package academic;
 import userinterface.Ui;
 import java.util.ArrayList;
 
+/**
+ * Text UI for academic mode.
+ */
 public class AcademicUi extends Ui {
     public static void printStarList(ArrayList<Grade> currentGrades, ArrayList<Person> listOfPerson) {
         int listIndex = 1;
