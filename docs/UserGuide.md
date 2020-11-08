@@ -37,7 +37,7 @@ During peak hours, people may not be able to know the dining situation and the d
 ## 2. Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `CanteenHelper` from [here](http://link.to/duke).
+1. Down the latest version of `CanteenHelper` from [here](https://github.com/AY2021S1-CS2113-T16-2/tp/releases/tag/v2.1).
 
 
 ## 3. Features 
