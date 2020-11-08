@@ -45,14 +45,6 @@ public class CheckCommand extends Command {
      * @param data    object of UserData class containing user's data.
      * @param ui      containing the responses to print.
      * @param storage with the save file path to write to.
-     * @throws DukeException if insufficient fields are given after the "check" keyword
-     */
-    /**
-     * Execute function for the command to state user's availability in a given period.
-     *
-     * @param data    object of UserData class containing user's data.
-     * @param ui      containing the responses to print.
-     * @param storage with the save file path to write to.
      * @throws MissingSemicolonException if the input does not contain any semicolons to separate input fields.
      * @throws DateErrorException the date is not input in a valid format
      * @throws TimeErrorException the time is not input in a valid format

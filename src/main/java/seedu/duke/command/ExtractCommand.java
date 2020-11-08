@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Personal;
 import seedu.duke.event.Zoom;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +28,7 @@ public class ExtractCommand extends Command {
     private String eventType;
     private String zoomLink;
     private int zoomLinkCount;
-
+    private static Logger logger = EventLogger.getEventLogger();
 
     /**
      * Constructor for parsing email/texts seedu.duke.
@@ -42,11 +44,12 @@ public class ExtractCommand extends Command {
     }
 
     /**
-     * Extracts dates and timings from any block of text and creates Personal Event.
+     * Extracts dates,timings and zoom links from any block of text and creates Personal Events or Zoom events.
      *
      * @param data    object of UserData class containing user's data.
      * @param ui      containing the responses to print.
      * @param storage with the save file path to write to.
+     * @throws DukeException Various exceptions can be thrown which extend from DukeException.
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
@@ -103,6 +106,7 @@ public class ExtractCommand extends Command {
                 }
             }
         }
+
         ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
         storage.saveFile(storage.getFileLocation(eventType), data, eventType);
     }

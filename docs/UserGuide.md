@@ -223,7 +223,7 @@ The types of events available to be added include:
 - NUS timetable/lessons: Timetable
 - Personal Events: Personal
 
-Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
+General format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
 - `EVENT_TYPE` specify the type of event you want to add. These include "zoom", "timetable" and "personal".
 - `EVENT_DESCRIPTION` is the description or name of the event.
@@ -237,14 +237,20 @@ Timetable events can contain:
 - Description, date and time 
 - Description, location, date and time
 
+Timetable Format: `add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
+
 Zoom events can contain: 
 - Description and link 
 - Description, link, date and time
+
+Zoom Format: `add Zoom; EVENT_DESCRIPTION; LOCATION; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Personal events can contain: 
 - Description 
 - Description and date 
 - Description, date and time
+
+Personal Format: `add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Examples: 
 - `add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` 
