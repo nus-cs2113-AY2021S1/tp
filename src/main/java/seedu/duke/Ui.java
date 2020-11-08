@@ -49,15 +49,20 @@ public class Ui {
                 + "14. /fe <keyword of event>\n"
                 + "15. print tasks\n"
                 + "16. print events\n"
-                + "17. print timeline <week/month/>\n"
-                + "18. print progress\n"
-                + "19. print *\n"
-                + "20. countdown exams\n"
-                + "21. countdown deadlines\n"
-                + "22. /a <event number> - information\n"
-                + "23. /v <event number>\n"
-                + "24. /- <event_number> a <additional_information_number>\n"
-                + "25. suggestion"
+                + "17. print timeline \n"
+                + "18. print timeline week\n"
+                + "19. print timeline month\n"
+                + "20. print timeline date <ddMMyy>\n"
+                + "21. print progress\n"
+                + "22. print *\n"
+                + "23. countdown\n"
+                + "24. countdown exams\n"
+                + "25. countdown deadlines\n"
+                + "26. /a <event number> - information\n"
+                + "27. /v <event number>\n"
+                + "28. /- <event_number> a <additional_information_number>\n"
+                + "29. suggestion\n"
+                + "30. bye"
         );
     }
 
@@ -264,7 +269,7 @@ public class Ui {
             calendarItem = "task";
             if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Deadline
                     && calendarList.getCalendarList().get(lastCalendarItemIndex).getDate().isBefore(LocalDate.now())) {
-                System.out.println("WARNING! The deadline has already passed! "
+                System.out.println("WARNING! The deadline has already passed!"
                         + "May be you want to double confirm? Good Luck!\n");
             }
         } else {
@@ -525,6 +530,12 @@ public class Ui {
             break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
+            break;
+        case "find":
+            System.out.println("Error: Please key in the find command in this format: \n"
+                    + "1. /f <keyword>\n"
+                    + "2. /ft <task_number>\n"
+                    + "3. /fe <event_number");
             break;
         case "file not found":
             System.out.println("The file can not be found.");
