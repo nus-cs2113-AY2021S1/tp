@@ -413,6 +413,8 @@ public class Ui {
             } else {
                 printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
+        } else if (noteCount == 0) {
+            printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
             printWithoutLines(INVALID_TOPIC);
             printTopicsError(topicList);
