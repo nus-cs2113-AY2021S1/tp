@@ -144,12 +144,12 @@ Format: `deadline <task_description> / <due_date>`
 
 Example of a passed deadline:
 
-`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020, 
+`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020 (a past date), 
 as illustrated by the figure below.
 ![deadline_command_passed](images/deadline_command.png)
 
 Example of a proper deadline:
-`deadline project video demo /090922` adds a deadline task of project video demo which is due on 09 September 2022, as illustrated 
+`deadline project video demo /090922` adds a deadline task of project video demo which is due on 09 September 2022 (a future date), as illustrated 
 by the figure below.
 ![deadline_command_proper](images/deadline_command_proper.png)
 
@@ -192,9 +192,9 @@ Format: `exam <module_name> @<venue> / <date> <time>`
 
 Example of usage:
 
-`exam CS1010 @com1-b1-12 / 121020 1700` - adds CS1010 exam at 2020-10-20 5p.m. to the event list. The venue is com1-b1-12.
+`exam CS1010 @com1-b1-12 / 121220 1700` - adds CS1010 exam at 2020-12-12 5p.m. to the event list. The venue is com1-b1-12.
 
-`exam CS2113T @MPSH2 / 221120 1100` - adds CS2113T exam at 2020-11-22 11a.m. to the event list. The venue is MPSH2.
+![exam_command](images/exam_command.PNG)
 
 #### Adding recurring laboratory session events:
 
@@ -208,9 +208,9 @@ Format: `lab <module_name> @<venue> -r <number of lab session> / <date> <time>`
 
 Example of usage:
 
-`lab CS1010 @com1-b1-14 -r 9 / 200920 1600` - adds CS1010 lab at 2020-09-20 4p.m.  to the event list, the venue is com1-b1-14 and the lab will happen for the next 9 weeks.
+`lab CS1010 @com1-b1-14 -r 9 / 210920 1600` - adds CS1010 lab at 2020-09-21 4p.m.  to the event list, the venue is com1-b1-14 and the lab will happen for the next 9 weeks.
 
-`lab CG2028 @com2-2112 -r 9 / 220920 1300` - adds CG2028 lab at 2020-09-22 1p.m. to the event list, the venue is com2-2112 and the lab will happen for the next 9 weeks.
+![lab_command](images/lab_command.PNG)
 
 #### Adding recurring lecture events:
 
@@ -224,9 +224,9 @@ Format: `lect <module_name> @<venue> -r <number of lecutre> / <date> <time>`
 
 Example of usage:
 
-`lect CS2113 @lt12 -r 10 / 020220 1600` - adds CS2113 lecture at 2020-02-02 4p.m. to the event list, the venue is lt12 and the lecture will happen for the next 10 weeks.
+`lect CS2113 @lt12 -r 10 / 030220 1200` - adds CS2113 lecture at 2020-02-03 12p.m. to the event list, the venue is lt12 and the lecture will happen for the next 10 weeks.
 
-`lect CS2100 @lt11 -r 5 / 101020 1300` - adds CS2100 lecture at 2020-10-10 1p.m. to the event list, the venue is lt11 and the lecture will happen for the next 5 weeks.
+![lect_command](images/lect_command.PNG)
 
 #### Adding recurring tutorial events:
 
@@ -242,7 +242,7 @@ Example of usage:
 
 `tut CS1010 @com1-b1-12 -r 5 / 121020 1700` - adds CS1010 lab at 2020-10-20 5p.m. to the event list, the venue is com1-b1-12 and the tutorial will happen for the next 5 weeks.
 
-`tut CS2100 @com1-1111 -r 5 / 151020 1400` - adds CS2100 lab at 2020-10-15 2p.m. to the event list, the venue is com1-1111 and the tutorial will happen for the next 5 weeks.
+![tut_command](images/tut_command.PNG)
 
 ![warning_event_date](images/warning_event_format.PNG)
 
@@ -260,9 +260,16 @@ Example of usage:
 
 `/a 1 - This is the additional information for event number 1`
 
+![additional_info_command](images/additional_info_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have a different event stored in the event index number 1.
+
 You may then view the additional information using the view additional information feature below.
 ![tip_additional_info](images/tip_additional_info.PNG)
+
 ![warning_add_info](images/warning_add_info.PNG)
+
 #### Viewing the additional information of an event:
 After adding the additional information related to the event, you can then view the list of additional information 
  pertaining to that event. Use this feature to recall what you need to do before the event!
@@ -273,7 +280,12 @@ Example of usage:
 
 `/v 1` 
 
+![view_additional_info_command](images/view_addit_info_command.PNG)
+
 You will be able to see all the additional information that you have added for event number 1 in a form of a list.
+
+Note: The above figure is for illustration purpose only. The desired output will differ if you have a different event 
+or different additional information stored in the event index number 1.
 
 #### Deleting the additional information of an event:
 Should you have wrongly added any additional information to an event, fret not, you can delete them using this feature.
@@ -282,10 +294,15 @@ Format: `/- <event_number> a <additional_information_number>`
 
 Example of usage:
 
-`/- 1 a 2`
+`/- 1 a 1`
+
+![delete_additional_info_command](images/delete_additional_info_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will differ if you have a different event 
+or different additional information stored in the event index number 1.
 
 When you view the additional information for event number 1, you will not be able to see additional information
- number 2 that you have just deleted.
+ number 1 that you have just deleted.
  
 ### Marking a task as done:
 
@@ -321,7 +338,12 @@ Example of usage:
  
  `-t 1` 
  
+ ![delete_task_command](images/delete_task_command.PNG)
+ 
  After executing this command, notice that task number 1 has been removed from your calendar.
+ 
+ Note: The above figure is for illustration purpose only. The desired output will
+ differ if you have a different task stored in the task index number 1.
 
 #### Deleting an event:
 
@@ -332,52 +354,76 @@ Format: `-e <event_number>`
 Example of usage:
  
  `-e 1` 
+ 
+ ![delete_event_command](images/delete_event_command.PNG)
+ 
  After executing this command, notice that event number 1 has been removed from your calendar.
 
+ Note: The above figure is for illustration purpose only. The desired output will
+ differ if you have a different event stored in the event index number 1.
+ 
 ### Finding a calendar item:
 
 If you have a long list of calendar items, you may use this feature to find a calendar item based on a specific
- keyword of the item’s description. Additionally, for a more specific search, you may search based on whether
-  it is a task or an event. 
+keyword of the item’s description. Additionally, for a more specific search, you may search based on whether
+it is a task or an event. 
 
 #### Finding an item from the calendar list:
 
 You can search the entire calendar based on a keyword. For example, you might want to search for the due date of an
- assignment in your calendar.
+assignment in your calendar.
 
 Format: `/f <keyword>`
 
 Example of usage: 
 
 `/f assignment` 
+
+![find_item_command](images/find_item_command.PNG)
+
 You should be able to see the lists of items (both tasks and events) containing the keyword “assignment”.
+
+Note: The above figure is for illustration purpose only. The desired output depends on the items stored in the program.
+
 ![tip_find](images/tip_find.PNG)
 
 #### Finding an item from the task list: 
 
 You can also search from your task list based on a keyword. This will be useful if you need to narrow your search to
- just your list of tasks instead of both tasks and events. For example, if you are just searching for your tuition
-  homework tasks, you can use this feature to exclude any events with description containing “tuition”!
+just your list of tasks instead of both tasks and events. For example, if you are just searching for your tuition
+homework tasks, you can use this feature to exclude any events with description containing “tuition”!
 
 Format: `/ft <keyword>`
 
 Example of usage: 
 
 `/ft tuition` 
+
+![find_task_command](images/find_task_command.PNG)
+
 You should be able to see only the lists of tasks containing the keyword “tuition”.
+
+Note: The above figure is for illustration purpose only. The desired output depends on the tasks stored in the program.
+
 
 #### Finding an item from the event list: 
 
 Likewise, you can also search your event list based on a keyword. This is especially useful if you have multiple
- tasks and events having a similar description. For example, if you are looking for events happening on the same date
- , you can use this feature to exclude all deadline tasks with the same date!
+tasks and events having a similar description. For example, if you are looking for events happening on the same date
+, you can use this feature to exclude all deadline tasks with the same date!
 
 Format: `/fe <keyword>`
 
 Example of usage: 
 
-`/fe 30-Oct-2020`
-You should be able to see only the lists of events containing the keyword “30-Oct-2020”.
+`/fe 09-Nov-2020`
+
+![find_event_command](images/find_event_command.PNG)
+
+You should be able to see only the lists of events containing the keyword “09-Nov-2020”.
+
+Note: The above figure is for illustration purpose only. The desired output depends on the events stored in the program.
+
 
 ![tip_find_event](images/tip_find_event.PNG)
 
@@ -392,6 +438,11 @@ Example of usage:
 
 `*t 1` - marks the first task in the task list as important.
 
+![prioritizing_command](images/prioritizing_command.PNG)
+
+ Note: The above figure is for illustration purpose only. The desired output will
+ differ if you have a different task stored in the task index number 1.
+
 ![warning_prioritizing](images/warning_prioritizing.PNG)
 
 ### Printing tasks:
@@ -405,7 +456,7 @@ Format: `print tasks`
 ![printTasks](images/printTasks_command.png)
 
 Note: The above figure is for illustration purpose only. The desired output will
-differ if you have different items stored in the calendar list.
+differ if you have different tasks stored in the calendar list.
 
 ![tips_printtask](images/tip_printTasks.PNG)
 
@@ -419,7 +470,7 @@ Format: `print events`
 ![printEvents](images/printEvents_command.png)
 
 Note: The above figure is for illustration purpose only. The desired output will
-differ if you have different items stored in the calendar list.
+differ if you have different events stored in the calendar list.
 
 ![tips_printevents](images/tip_printEvents.PNG)
 
@@ -433,7 +484,7 @@ Format: `print *`
 ![print*](images/printImportant_command..PNG)
 
 Note: The above figure is for illustration purpose only. The desired output will
-differ if you have different items stored in the calendar list.
+differ if you have different tasks stored in the calendar list.
 
 ### Printing progress: 
 
@@ -445,7 +496,7 @@ Format: `print progress`
 ![print_progress](images/printProgress_command.PNG)
 
 Note: The above figure is for illustration purpose only. The desired output will
-differ if you have different items stored in the calendar list.
+differ if you have completed different number of tasks.
 
 ### Giving suggestion: 
 
@@ -527,6 +578,13 @@ The remaining date for the exams is printed in ascending order.
 
 Format: `countdown exams`
 
+![countdown_exams_command](images/countdown_exam_command.PNG)
+
+ Note: The above figure is for illustration purpose only. The desired output will
+ differ if you have different items stored in the calendar list.
+
+![warning_countdown](images/warning_countdown.PNG)
+
 #### Printing countdown for deadline tasks only: 
 
 If you type `countdown deadlines`, you can see the countdown of all unfinished deadlines.
@@ -536,7 +594,13 @@ The remaining dates for the deadlines are printed in ascending order.
 
 Format: `countdown deadlines`
 
+![countdown_deadlines_command](images/countdown_deadlines_command.PNG)
+
+ Note: The above figure is for illustration purpose only. The desired output will
+ differ if you have different items stored in the calendar list.
+
 ![warning_countdown](images/warning_countdown.PNG)
+
 
 ### Saving the data
 
