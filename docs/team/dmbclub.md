@@ -7,7 +7,7 @@ Fitr is a command-line application, helping you keep track of your food intake a
 ## Summary of Contributions
 
 ### Code contributed
-https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=dmbclub&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
+[Link to code contributed](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=dmbclub&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 ### Enhancements implemented
 - give a tip to the user every time the user opens the app.
@@ -39,5 +39,6 @@ Contributed to the following team-based tasks:
 Because our PR must be reviewed by other members before get merged, everyone reviews a lot of PRs.
 
 ### Contributions beyond the project team
+- Found 4 bugs during PE Dry Run [Link](https://github.com/dmbclub/ped/issues)
 - Wrote a unsupervised machine learning to give recommendations, which is not used in our code yet.
-This is the github link to the code: https://github.com/dmbclub/exercise_recommendation.
+This is the github link to the code: [Link](https://github.com/dmbclub/exercise_recommendation).
