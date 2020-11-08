@@ -6,6 +6,7 @@ import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
 import seedu.duke.words.Words;
 import seedu.duke.writing.WritingList;
+import seedu.duke.writing.Writings;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,31 +31,31 @@ public class ClearLoaderTest {
 
     @Test
     public void clearAll_getWritingSize() {
-        WritingList.clearAll(writings);
+        WritingList.clearAll();
         initializeTestDatabaseForWriting();
         assertEquals(5, WritingList.getWritingSize());
-        WritingList.clearAll(writings);
+        WritingList.clearAll();
         assertEquals(0, WritingList.getWritingSize());
     }
 
     @Test
     public void removeID_removeAll_noneOfWritingLeft() {
-        WritingList.clearAll(writings);
+        WritingList.clearAll();
         initializeTestDatabaseForWriting();
         assertEquals(5, WritingList.getWritingSize());
         try {
-            writings.removeID(12);
+            WritingList.removeID(12);
         } catch (FileEmptyException e) {
             System.out.println("Empty file of Writing!");
         } catch (ItemNotFoundedException e) {
             System.out.println("Item not found in the writing archive");
         }
-        assertEquals(0, writings.getWritingSize());
+        assertEquals(0, WritingList.getWritingSize());
     }
 
     @Test
     public void clearItems_clearThirdWriting() {
-        WritingList.clearAll(writings);
+        WritingList.clearAll();
         initializeTestDatabaseForWriting();
         String userInput1 = "clear type\\writing item\\3";
         /*try {
@@ -82,7 +83,7 @@ public class ClearLoaderTest {
 
     @Test
     public void initializeAnEmptyWritingList_FileEmptyExceptionThrown() {
-        WritingList.clearAll(writings);
+        WritingList.clearAll();
         String userInput = "clear type\\writing item\\0";
         assertThrows(NullPointerException.class, () -> ClearLoader.clearWritingWithID("0", writings));
     }

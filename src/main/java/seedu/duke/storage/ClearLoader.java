@@ -9,6 +9,7 @@ import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.ui.UI;
 import seedu.duke.words.Words;
 import seedu.duke.writing.WritingList;
+import seedu.duke.writing.Writings;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -98,7 +99,7 @@ public class ClearLoader {
     }
 
     public static void clearWritingWithID(String idNumber, WritingList writings) throws NullPointerException {
-        if (writings.getSize() == 0) {
+        if (writings.getWritingSize() == 0) {
             throw new NullPointerException();
         } else {
             int element = Integer.parseInt(idNumber);
@@ -132,7 +133,7 @@ public class ClearLoader {
     }
 
     public static void clearWritingWithIndex(String item, WritingList writings) throws NullPointerException {
-        if (writings.getSize() == 0) {
+        if (writings.getWritingSize() == 0) {
             throw new NullPointerException();
         } else {
             int element = Integer.parseInt(item);

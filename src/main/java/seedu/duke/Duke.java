@@ -68,7 +68,7 @@ public class Duke {
             //echoInput(userInput); //for testing only
             printDivider();
             commandChecker = extractCommandType(userInput);
-            executeCommand(commandChecker, userInput, writings);
+            executeCommand(commandChecker, userInput);
             printDivider();
         }
         File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
