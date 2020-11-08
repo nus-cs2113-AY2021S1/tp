@@ -51,9 +51,10 @@ public class FindQuoteCommand extends FindCommand {
             if (findResultList.isEmpty()) {
                 ui.printFindQuoteFail();
                 quotesifyLogger.log(Level.INFO, "no quotes with matching keyword!");
+            } else {
+                ui.printFindQuoteSuccess(findResultList);
+                quotesifyLogger.log(Level.INFO, "quotes with matching keyword found!");
             }
-            ui.printFindQuoteSuccess(findResultList);
-            quotesifyLogger.log(Level.INFO, "quotes with matching keyword found!");
         } catch (QuotesifyException e) {
             ui.printErrorMessage(ERROR_FIND_KEYWORD_MISSING);
             quotesifyLogger.log(Level.WARNING, e.getMessage());
