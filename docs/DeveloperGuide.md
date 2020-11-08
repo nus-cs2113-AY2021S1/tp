@@ -232,8 +232,8 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     - The `AddFavCommand#createFav()` method calls the contains method within Favlist to check for any duplicate
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
-
-### 3.5. Favourite command executor (`/execfav` Feature)
+<!-- @@author EthanWong22 -->
+### 3.5. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
 `/execfav <index>` is the command to execute a command with the specific index in the list of favourite commands. <br>
 
 The command is executed in the following steps:
@@ -249,7 +249,7 @@ The command is executed in the following steps:
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand/ExecFavCommand.png)
-
+<!-- @@author -->
 #### Design Considerations
 ##### Aspect: Choice of command object in FavList to execute
 |**Approach** |**Choosing command by index in list (Current choice)**|**Choosing command by description in list**|
@@ -353,7 +353,8 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
 ![bus data](DG_Diagrams/DineInfoSequence.png)
 
-### 3.9. Bus at bus stop finder (`/bus` Feature)
+<!-- @@author EthanWong22 -->
+### 3.9. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
 
 `/bus <bus stop>` is the command to execute to see buses which stop at a specific bus stop.<br>
 
@@ -373,6 +374,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
+<!-- @@author -->
 
 <!-- @@author wamikamalik -->
 ### 3.10. Performing similarity checks -Wamika
@@ -623,8 +625,8 @@ Expected: No command executed.Error details will be shown to remind users to typ
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
 
 
-
-### E.9 Execute a favourite command from favourite list
+<!-- @@author EthanWong22 -->
+### E.9 Execute a favourite command from favourite list - Wong Heng Chin
 1. Executing a favourite command in list of favourites.
     - Prerequisites: List all favourite commands by executing `/listfav` command
     - Test case: `/execfav 1`<br>
@@ -633,6 +635,7 @@ Expected: No command executed.Error details will be shown to remind users to typ
     Expected: No command executed. Error details will be shown. List of favourites will not be modified.<br>
     - Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).<br>
     Expected: Similar to previous.
+<!-- @@author -->
 
 <!-- @@author wamikamalik -->
 ### E.10 Change description of favourite command in favourite list - Wamika
@@ -651,7 +654,8 @@ Expected: No command executed.Error details will be shown to remind users to typ
     
 <!-- @@author -->
 
-### E.11 Saving of favourite list
+<!-- @@author EthanWong22-->
+### E.11 Saving of favourite list - Wong Heng Chin
 1. Data is automatically saved in the `/data/FavList.txt` directory of the jar file's home directory.
 
 2. Loading FavList
@@ -665,4 +669,4 @@ Expected: No command executed.Error details will be shown to remind users to typ
         Step 1. add lines with no delimiter, "`|`" to the `FavList.txt` file.<br>
         Step 2. Run the jar file<br>
         Expected output: Message detailing corrupted data detailed at start and corrupted data removed from FavList.
-
+<!-- @@author -->
