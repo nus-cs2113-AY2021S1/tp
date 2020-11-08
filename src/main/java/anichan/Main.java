@@ -34,6 +34,7 @@ public class Main {
         ui = new Ui();
         parser = new Parser();
         storageManager = new StorageManager(ANICHAN_STORAGE_DIRECTORY);
+
         displayWelcome();
         userSetup();
         animeDataSetup();
@@ -134,6 +135,7 @@ public class Main {
             Workspace workspace = new Workspace(workspaceName, watchlistList, bookmark);
             workspaceList.add(workspace);
         }
+
         return workspaceList;
     }
 

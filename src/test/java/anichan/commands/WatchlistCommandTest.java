@@ -55,18 +55,18 @@ class WatchlistCommandTest {
     @Test
     void execute_invalidOption_throwsAniException() {
         // Invalid option
-        WatchlistCommand invalidOption = new WatchlistCommand("invalid", "invalid", 0);
+        WatchlistCommand invalidOption = new WatchlistCommand("invalid", "invalid");
         assertThrows(AniException.class, () -> invalidOption.execute(animeData, storageManager, user));
     }
 
     @Test
     void execute_nullParameters_throwsAssertionError() {
         // Null option, watchlist name, and watchlist index
-        WatchlistCommand nullOption = new WatchlistCommand(null, null, 0);
+        WatchlistCommand nullOption = new WatchlistCommand(null, null);
         assertThrows(AssertionError.class, () -> nullOption.execute(animeData, storageManager, user));
 
         // Null WatchlistList
-        WatchlistCommand nullWatchlistList = new WatchlistCommand("n", "First", 0);
+        WatchlistCommand nullWatchlistList = new WatchlistCommand("n", "First");
         activeWorkspace.setWatchlistList(null);
         assertThrows(AssertionError.class, () -> nullWatchlistList.execute(animeData, storageManager, user));
     }
@@ -75,22 +75,21 @@ class WatchlistCommandTest {
 
     @Test
     void execute_validParametersForCreateWatchlist_success() throws AniException {
-        WatchlistCommand createWatchlist = new WatchlistCommand("n", "Test", 0);
+        WatchlistCommand createWatchlist = new WatchlistCommand("n", "Test");
         createWatchlist.execute(animeData, storageManager, user);
         assertEquals(4, activeWorkspace.getWatchlistList().size());
     }
 
     @Test
     void execute_notUniqueWatchlistNameForCreateWatchlist_throwsAniException() {
-        WatchlistCommand createWatchlist = new WatchlistCommand("n", "First", 0);
+        WatchlistCommand createWatchlist = new WatchlistCommand("n", "First");
         assertThrows(AniException.class, () -> createWatchlist.execute(animeData, storageManager, user));
     }
 
     @Test
     void execute_watchlistNameMoreThan30CharactersForCreateWatchlist_throwsAniException() {
         WatchlistCommand createWatchlist = new WatchlistCommand("n",
-                                                                "averylongwatchnamethatwouldfail",
-                                                                0);
+                                                                "averylongwatchnamethatwouldfail");
         assertThrows(AniException.class, () -> createWatchlist.execute(animeData, storageManager, user));
     }
 
@@ -98,14 +97,14 @@ class WatchlistCommandTest {
 
     @Test
     void execute_validParametersForListAllWatchlist_success() throws AniException {
-        WatchlistCommand listAllWatchlist = new WatchlistCommand("l", "", 0);
+        WatchlistCommand listAllWatchlist = new WatchlistCommand("l");
         String emptyListMessage = "Uhh.. You have no watchlist to list..";
         assertNotEquals(emptyListMessage, listAllWatchlist.execute(animeData, storageManager, user));
     }
 
     @Test
     void execute_emptyWatchlistListForListAllWatchlist_emptyListMessage() throws AniException {
-        WatchlistCommand listAllWatchlist = new WatchlistCommand("l", "", 0);
+        WatchlistCommand listAllWatchlist = new WatchlistCommand("l");
         activeWorkspace.setWatchlistList(new ArrayList<>());
         String expected = "Uhh.. You have no watchlist..";
         assertEquals(expected, listAllWatchlist.execute(animeData, storageManager, user));
@@ -115,7 +114,7 @@ class WatchlistCommandTest {
 
     @Test
     void execute_validParametersForSelectWatchlistList_success() throws AniException {
-        WatchlistCommand selectWatchlist = new WatchlistCommand("s", "", 3);
+        WatchlistCommand selectWatchlist = new WatchlistCommand("s", 3);
         selectWatchlist.execute(animeData, storageManager, user);
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         Watchlist selectedWatchlist = activeWorkspace.getWatchlistList().get(2);
@@ -125,16 +124,16 @@ class WatchlistCommandTest {
     @Test
     void execute_emptyWatchlistListForSelectWatchlist_throwsAniException() {
         activeWorkspace.setWatchlistList(new ArrayList<>());
-        WatchlistCommand selectWatchlist = new WatchlistCommand("s", "", 1);
+        WatchlistCommand selectWatchlist = new WatchlistCommand("s", 1);
         assertThrows(AniException.class, () -> selectWatchlist.execute(animeData, storageManager, user));
     }
 
     @Test
     void execute_invalidWatchlistIndexForSelectWatchlist_throwsAniException() {
-        WatchlistCommand selectWithNegativeIndex = new WatchlistCommand("s", "", -2);
+        WatchlistCommand selectWithNegativeIndex = new WatchlistCommand("s", -2);
         assertThrows(AniException.class, () -> selectWithNegativeIndex.execute(animeData, storageManager, user));
 
-        WatchlistCommand deleteWithOutOfRangeIndex = new WatchlistCommand("s", "", 999);
+        WatchlistCommand deleteWithOutOfRangeIndex = new WatchlistCommand("s", 999);
         assertThrows(AniException.class, () -> deleteWithOutOfRangeIndex.execute(animeData, storageManager, user));
     }
 
@@ -145,7 +144,7 @@ class WatchlistCommandTest {
         activeWorkspace.setWatchlistList(watchlistList);
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
-        WatchlistCommand selectWatchlist = new WatchlistCommand("s", "", 1);
+        WatchlistCommand selectWatchlist = new WatchlistCommand("s", 1);
         assertThrows(AniException.class, () -> selectWatchlist.execute(animeData, storageManager, user));
     }
 
@@ -155,12 +154,12 @@ class WatchlistCommandTest {
     void execute_validParametersForDeleteWatchlistList_success() throws AniException {
         // Delete active watchlist
         activeWorkspace.setActiveWatchlist(activeWorkspace.getWatchlistList().get(2));
-        WatchlistCommand deleteActiveWatchlist = new WatchlistCommand("d", "", 3);
+        WatchlistCommand deleteActiveWatchlist = new WatchlistCommand("d", 3);
         deleteActiveWatchlist.execute(animeData, storageManager, user);
         assertEquals(activeWorkspace.getWatchlistList().get(0), activeWorkspace.getActiveWatchlist());
 
         // Delete non-active watchlist
-        WatchlistCommand deleteWatchlist = new WatchlistCommand("d", "", 2);
+        WatchlistCommand deleteWatchlist = new WatchlistCommand("d", 2);
         deleteWatchlist.execute(animeData, storageManager, user);
         assertEquals(1, activeWorkspace.getWatchlistList().size());
     }
@@ -168,16 +167,16 @@ class WatchlistCommandTest {
     @Test
     void execute_emptyWatchlistListForDeleteWatchlist_throwsAniException() {
         activeWorkspace.setWatchlistList(new ArrayList<>());
-        WatchlistCommand deleteWatchlist = new WatchlistCommand("d", "", 1);
+        WatchlistCommand deleteWatchlist = new WatchlistCommand("d", 1);
         assertThrows(AniException.class, () -> deleteWatchlist.execute(animeData, storageManager, user));
     }
 
     @Test
     void execute_invalidWatchlistIndexForDeleteWatchlist_throwsAniException() {
-        WatchlistCommand deleteWithNegativeIndex = new WatchlistCommand("d", "", -2);
+        WatchlistCommand deleteWithNegativeIndex = new WatchlistCommand("d", -2);
         assertThrows(AniException.class, () -> deleteWithNegativeIndex.execute(animeData, storageManager, user));
 
-        WatchlistCommand selectWithOutOfRangeIndex = new WatchlistCommand("d", "", 999);
+        WatchlistCommand selectWithOutOfRangeIndex = new WatchlistCommand("d", 999);
         assertThrows(AniException.class, () -> selectWithOutOfRangeIndex.execute(animeData, storageManager, user));
     }
 
@@ -188,7 +187,7 @@ class WatchlistCommandTest {
         activeWorkspace.setWatchlistList(watchlistList);
         activeWorkspace.setActiveWatchlist(watchlistList.get(0));
 
-        WatchlistCommand deleteWatchlist = new WatchlistCommand("d", "", 1);
+        WatchlistCommand deleteWatchlist = new WatchlistCommand("d", 1);
         assertThrows(AniException.class, () -> deleteWatchlist.execute(animeData, storageManager, user));
     }
 }

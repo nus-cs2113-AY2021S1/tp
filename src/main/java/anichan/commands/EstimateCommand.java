@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * Represents the command to estimate the time needed to translate a script.
  */
 public class EstimateCommand extends Command {
-    private static final int NO_WORDS_PER_HOUR_PROVIDED = -1;
+    private static final int DEFAULT_WORDS_PER_HOUR = -1;
     private static final int MINUTES_PER_HOUR = 60;
     private static final String SPLIT_WHITESPACE = " ";
 
@@ -36,6 +36,7 @@ public class EstimateCommand extends Command {
     public EstimateCommand(String scriptFileName, int wordsPerHour) {
         this.scriptFileName = scriptFileName;
         this.wordsPerHour = wordsPerHour;
+        LOGGER.log(Level.INFO, "EstimateCommand object is created.");
     }
 
     /**
@@ -58,12 +59,9 @@ public class EstimateCommand extends Command {
         int wordCount = fileContent.split(SPLIT_WHITESPACE).length;
         LOGGER.log(Level.INFO, wordCount + " words in the script (" + scriptFileName + ").");
 
-        if (wordsPerHour == 0) {
-            throw new AniException("Please provide a valid words per hour value!");
-        }
-
+        assert (wordsPerHour > 0 || wordsPerHour == DEFAULT_WORDS_PER_HOUR) : "Words per hour value cannot be zero!";
         StringBuilder commandResult = new StringBuilder();
-        if (wordsPerHour != NO_WORDS_PER_HOUR_PROVIDED) {
+        if (wordsPerHour != DEFAULT_WORDS_PER_HOUR) {
             double timeNeeded = wordCount / (double) wordsPerHour;
             commandResult.append("You would need ");
             commandResult.append(timeNeededToString(timeNeeded));

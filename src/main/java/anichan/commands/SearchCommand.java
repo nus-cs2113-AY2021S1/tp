@@ -34,9 +34,9 @@ public class SearchCommand extends Command {
     private int searchType;
 
     public SearchCommand(String searchTerm, String searchGenre, int searchType) {
-        this.searchTerm = searchTerm;
-        this.searchGenre = searchGenre;
-        this.searchType = searchType;
+        setSearchTerm(searchTerm);
+        setSearchType(searchType);
+        setSearchGenre(searchGenre);
         result = INIT_STRING;
     }
 
@@ -137,5 +137,9 @@ public class SearchCommand extends Command {
 
     public void setSearchType(int searchType) {
         this.searchType = searchType;
+    }
+
+    public void setSearchGenre(String searchGenre) {
+        this.searchGenre = searchGenre;
     }
 }

@@ -22,6 +22,7 @@ public class User extends Human {
     private static final String HONORIFIC_FEMALE = "-chan";
     private static final String HONORIFIC_NEUTRAL = "-san";
     private static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
+    private static final String EXCEPTION_WORKSPACE_ALREADY_EXIST = "Workspace already exist!";
 
     private Gender gender;
     private Workspace activeWorkspace;
@@ -187,7 +188,7 @@ public class User extends Human {
         assert name != null : ASSERTION_INVALID_MESSAGE;
 
         if (findWorkspace(name) != null) {
-            throw new AniException("Workspace already exist!");
+            throw new AniException(EXCEPTION_WORKSPACE_ALREADY_EXIST);
         } else {
             checkWorkspaceName(name.toLowerCase());
             Workspace newWorkspace = new Workspace(name);
@@ -206,7 +207,7 @@ public class User extends Human {
      * @throws AniException if Workspace is unable to be deleted
      */
     public void deleteWorkspace(String toDeleteWorkspace) throws AniException {
-        assert toDeleteWorkspace != null : "Workspace details should not have any null.";
+        assert toDeleteWorkspace != null : ASSERTION_INVALID_MESSAGE;
 
         Workspace targetWorkspace = findWorkspace(toDeleteWorkspace);
 
