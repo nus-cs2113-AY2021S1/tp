@@ -59,7 +59,7 @@ Minor enhancement: Wrote the logger setup to allow teammates to perform logging 
 #### Contributions to team-based tasks: 
 * Set up Team repo's issue tracker and milestones for `v1.0`, `v2.0` and `v2.1`. 
 * Some examples of providing feedback to team member's pull requests: e.g [#208](https://github.com/AY2021S1-CS2113-T14-1/tp/pull/208), [#210](https://github.com/AY2021S1-CS2113-T14-1/tp/pull/210) 
-* In addition, our group meets up regularly to update and discuss the developments of SmartHomeBot
+* In addition, meets up regularly with my team to update and discuss the developments of SmartHomeBot
 through Zoom, and our group personal Telegram group. 
 
 #### Contributions beyond the project team: 
