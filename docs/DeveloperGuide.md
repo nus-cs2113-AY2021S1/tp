@@ -40,7 +40,6 @@ If you plan to use IntelliJ IDEA (highly recommended):
 3. Verify the setup.
     * Under the `seedu.duke` package, locate the `Duke` class and run it.
     * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113-t14-3.github.io/tp/UserGuide.html).
-    * **Run the tests (PLEASE ADD THE LINK FOR THIS) to ensure they all pass**.
 
 ### Before writing the code 
 1. Configure the coding style
@@ -274,39 +273,7 @@ The `Model` component represents the state of the various lists stored in memory
 The `Model` component:
 - Stores and loads program state to file using the `Storage` API.
 - Expose references to its `ItemList` objects so that other objects such as `Command` can modify it.
-
 <!-- @@author -->
-## Product scope
-### Target user profile
-Undergraduate students of National University of Singapore who:
-- require help to better manage their school work.
-- forgets to return their loan books to the library on time.
-- wants a timetable planner for easy reference.
-- are lazy to create separate module folders every semester.
-- wish to calculate their CAP.
-
-### Value proposition
-termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
-borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
-
-## User Stories
-|Version|Priority| As a ... | I want to ... | So that I can ...|
-|--------|----------|----------|---------------|------------------|
-|v1.0|***|student|add tasks into a list|keep track of the things I need to do|
-|v1.0|***|student|assign priorities to tasks|focus on the more important things first|
-|v1.0|**|student|assign categories to tasks|have a more organised task list|
-|v1.0|***|student|mark tasks as done|keep track of the remaining tasks to do|
-|v1.0|**|student|list all tasks in my list|have a better overview|
-|v1.0|***|student|be able to delete unwanted tasks|focus on the tasks which I need|
-|v1.0|***|student|save all data after using the application|retrieve the data upon running the application
-|v2.0|**|student|automatically create folders for my modules|I do not have to manually create them|
-|v2.0|***|student|add recurring tasks|avoid adding the same tasks every week
-|v2.0|***|student|have a calendar|I can view my current and upcoming tasks
-|v2.0|***|student|be able to set a tracker my borrowed books|avoid overdue fines
-|v2.0|**|student|sort my tasks based on highest priority|focus on those tasks first
-|v2.0|***|student|save zoom links in a centralized place|easily attend my online classes instead of looking through my email for the link 
-|v2.0|***|student|add modules and calculate my CAP|have a better projection of my grades and efforts
-|v2.0|*|student|login with a password|my system is protected 
 
 ## Implementation
 This section describes how certain features are implemented.
@@ -411,23 +378,21 @@ borrowed books tracking, and module-related functions. This increase users' effi
 ### User Stories
 | Version | Priority | As a ... | I want to ... | So that I can ...|
 | -------- | ---------- | ---------- | --------------- | ------------------ |
-| v1.0 | *** | student | add tasks into a list | keep track of the things I need to do |
-| v1.0 | *** | student | assign priorities to tasks | focus on the more important things first |
-| v1.0 | ** | student | assign categories to tasks| have a more organised task list |
-| v1.0 | *** | student | mark tasks as done| keep track of the remaining tasks to do |
-| v1.0 | ** | student | list all tasks in my list| have a better overview |
-| v1.0 | *** | student | be able to delete unwanted tasks| focus on the tasks which I need |
-| v1.0 | *** | student | save all data after using the application| retrieve the data upon running the application |
-| v2.0 | ** | student | automatically create folders for my modules| I do not have to manually create them |
-| v2.0 | *** | student| add recurring tasks| avoid adding the same tasks every week |
-| v2.0 | *** | student | have a calendar| I can view my current and upcoming tasks |
-| v2.0 | *** |student| be able to set a tracker my borrowed books| avoid overdue fines | 
-| v2.0 | ** | student | sort my tasks based on highest priority | focus on those tasks first |
-| v2.0 | *** | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link | 
-| v2.0 | *** | student | add modules and calculate my CAP| have a better projection of my grades and efforts |
-| v2.0 | * | student | login with a password | my system is protected |
-
-**Take note** : `*` Low priority (Unlikely to implement) , `**` Medium priority (Consider implementing) ,  `***` High priority (Must implement)
+| v1.0 | High | student | add tasks into a list | keep track of the things I need to do |
+| v1.0 | High | student | assign priorities to tasks | focus on the more important things first |
+| v1.0 | Medium | student | assign categories to tasks| have a more organised task list |
+| v1.0 | High | student | mark tasks as done| keep track of the remaining tasks to do |
+| v1.0 | Medium | student | list all tasks in my list| have a better overview |
+| v1.0 | High | student | be able to delete unwanted tasks| focus on the tasks which I need |
+| v1.0 | High | student | save all data after using the application| retrieve the data upon running the application |
+| v2.0 | Medium | student | automatically create folders for my modules| I do not have to manually create them |
+| v2.0 | High | student| add recurring tasks| avoid adding the same tasks every week |
+| v2.0 | High | student | have a calendar| I can view my current and upcoming tasks |
+| v2.0 | High |student| be able to set a tracker my borrowed books| avoid overdue fines | 
+| v2.0 | Medium | student | sort my tasks based on highest priority | focus on those tasks first |
+| v2.0 | High | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link | 
+| v2.0 | High | student | add modules and calculate my CAP| have a better projection of my grades and efforts |
+| v2.0 | Low | student | login with a password | my system is protected |
 <!-- @@author -->
 
 <!-- @@author MuhammadHoze -->
@@ -442,192 +407,215 @@ borrowed books tracking, and module-related functions. This increase users' effi
 
 <!-- @@author MuhammadHoze -->
 ### Glossary
-
-**CI** - Continuous Integration <br>
-**SDK** - Software Development Kit <br>
-**IntelliJ** - An Integrated Development Environment written in Java <br> 
-**UML** - Unified Modeling Language <br>
-**CLI** - Command Line Interface <br>
-**GUI** - Graphical User Interface <br>
-**Mainstream OS** - Windows, Linux, Unix, OS-X <br>
-**SLOC** - Source Lines of Code <br>
-**DRY** - Don't Repeat Yourself *(Every piece of knowledge must have a single, unambiguous, authoritative representation within a system)* <br>
-**CAP** - Cumulative Average Point
+|Acronym | Full form | Meaning |
+| -------- | ---------- | ---------- |
+| **CI**   | Continuous Integration | Combining parts of a software product to form a whole
+| **SDK**  | Software Development Kit | A set of software tools by software vendors
+| **IntelliJ** | - | An Integrated Development Environment written in Java 
+| **UML** | Unified Modeling Language | A modeling language which to visualize the design of a system
+| **CLI** | Command Line Interface | A program that accepts text inputs to execute operating system functions
+| **GUI** | Graphical User Interface | An interface that allows users to interact through graphical icons 
+| **Mainstream OS** | Windows, Linux, Unix, OS-X | Operating systems 
+| **SLOC** | Source Lines of Code | The number of lines in a program's source code
+| **DRY** | Don't Repeat Yourself | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
+| **CAP** | Cumulative Average Point | The weighted average grade point of all modules taken by a student
  <!-- @@author -->
-
+ 
+<!-- @@author Cao-Zeyu -->
 ## Appendix: Instructions for manual testing
 Below are the steps required for manual testing of termiNus
 
-### Initial launch and shutdown
-
-1. Initial Launch
-    a. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) and copy the jar file to a new folder.
-
-    b. Launch termiNus by typing `java -jar termiNus.jar` and press enter.
-
-    c. To get a detailed description, refer to [User Guide](UserGuide.md).
-
-
-2. Shutdown 
-    a. Once testing is conducted, exit the program by entering `bye`.
-
-### Features and functions
-
-<!-- @@author Cao-Zeyu -->
-## Instructions for manual testing
-
 ### Launch and shutdown
-1. Initial launch
-    1. Download the jar file and copy to an empty folder.
-    2. Open a command line window in the same directory and type `java -jar termiNus.jar` to launch.
-2. Shutdown
-    1. Input `bye` to exit the program.
+1. Initial launch <br> 
+    - Download the jar file and copy to an empty folder.
+    - Open a command line window in the same directory and type `java -jar termiNus.jar` to launch.
+    
+2. Shutdown <br>
+    - Input `bye` to exit the program.
 
 ### Adding items
 1. Adding a task
-    - Test case: `add task tP submission c/CS2113 p/1 date/09-11-2020`
+    - Test case: `add task tP submission c/CS2113 p/1 date/09-11-2020` <br>
       Expected: task `tP submission` is added to the task list, with priority of `1`, categroy of `CS2113`, and 
       a date of `09 Nov 2020`.
+      
 2. Adding a recurring task
-    - Test case: `addr tP meeting s/26-10-2020 e/27-11-2020 day/tue c/CS2113 p/2`
+    - Test case: `addr tP meeting s/26-10-2020 e/27-11-2020 day/tue c/CS2113 p/2` <br>
       Expected: recurring tasks `tP meeting` are added to the task list, with priority of `2`, category of `CS2113`,
       and the recurring dates of the Tuesdays during the start and end period.
-    - Test case: addr game club c/CCA
+      
+    - Test case: addr game club c/CCA <br>
       Expected: an error message is printed since the compulsory arguments `s/`, `e/`, `day/` are all required for 
       a recurring task.
+      
 3. Adding a module 
-    - Test case: `add module CS1010 d/1 g/A+ mc/4 ay/1920S1`
+    - Test case: `add module CS1010 d/1 g/A+ mc/4 ay/1920S1` <br>
       Expected: module `CS1010` completed in `AY1920S1` is added to the module list, with the grade `A+` and MCs of `4`.
-    - Test case: `add module STT233 d/1 g/A+ mc/4 ay/1920S1`
+    
+    - Test case: `add module STT233 d/1 g/A+ mc/4 ay/1920S1` <br>
       Expected: an error message is printed since the module name is in incorrect format.
-    - Test case: `add module ST2334 mc/4 ay/1920S1`
+    
+    - Test case: `add module ST2334 mc/4 ay/1920S1` <br>
       Expected: an error message is printed since the compulsory arguments `g/`, `mc/`, `ay/` are all required for 
       a module.
+      
 4. Adding a link
-    - Test case: `add link m/CS2113 t/lecture u/https://cs2113lecture.zoom.com`
+    - Test case: `add link m/CS2113 t/lecture u/https://cs2113lecture.zoom.com` <br>
       Expected: the Zoom meeting link for `lecture` of module `CS2113` is added to the link list.
-    - Test case: `add link m/CS2113 t/meeting u/https://cs2113meeting.zoom.com`
+    
+    - Test case: `add link m/CS2113 t/meeting u/https://cs2113meeting.zoom.com` <br>
       Expected: an error message is printed since the input for `t/` argument can only be `lecture`, `tutorial`, `lab`, 
       or `project`.
+      
 5. borrowing a book
-    - Test case: `borrow Harry Potter date/10-11-2020`
+    - Test case: `borrow Harry Potter date/10-11-2020` <br>
       Expected: the book `Harry Potter` is added to the book list with the loan date `10 Nov 2020` and due date 
       `10 Dec 2020`.
+      
 6. Adding an expense item
-    - Test case: `spend ....`
+    - Test case: `spend ....` <br>
       Expected: ...
       
 ### Creating module folders
-- Test case: `makefolders`
+- Test case: `makefolders` <br>
   Expected: sub-folders (`Lecture Notes` and `Tutorials`) are created at the output directories for each module in 
   the module list.
   
 ### Displaying items
 1. Displaying tasks
-    - Test case: `list tasks`
+    - Test case: `list tasks` <br>
       Expected: the complete list of tasks is displayed.
-    - Test case: `list tasks p/1`
+      
+    - Test case: `list tasks p/1` <br>
       Expected: the list of tasks under priority `1` is displayed.
-    - Test case: `list tasks p/-1`
+      
+    - Test case: `list tasks p/-1` <br>
       Expected: an error message is printed, since the priority of a task can only be a non-zero integer.
-    - Test case: `list tasks p/4`
+    
+    - Test case: `list tasks p/4` <br>
       Expected: an error message is printed, since there is no task of this priority.
-    - Test case: `list tasks c/CS2113`
+    
+    - Test case: `list tasks c/CS2113` <br>
       Expected: the list of tasks under category `CS2113` is displayed.
-    - Test case: `list tasks c/work`
+      
+    - Test case: `list tasks c/work` <br>
       Expected: an error message is printed, since there is no task of this category.
+      
 2. Displaying modules
-    - Test case: `list modules`
+    - Test case: `list modules` <br>
       Expected: the complete list of modules is displayed.
+      
 3. Displaying links
-    - Test case: `list links`
+    - Test case: `list links` <br>
       Expected: the complete list of links is displayed.
+      
 4. Displaying books
-    - Test case: `list books`
+    - Test case: `list books` <br>
       Expected: the complete list of books is displayed.
+      
 5. Displaying expenses
-    - Test case: `list expenses`
+    - Test case: `list expenses` <br>
       Expected: the complete list of expenses is displayed.
 
 ### Deleting items
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
+
 1. Deleting a task/tasks
-    - Test case: `delete task 1`
+    - Test case: `delete task 1` <br>
       Expected: the first task in the task list is deleted.
-    - Test case: `delete tasks p/1`
+      
+    - Test case: `delete tasks p/1` <br>
       Expected: the tasks that under priority `1` are deleted.
-    - Test case: `delete task p/0`
+      
+    - Test case: `delete task p/0` <br>
       Expected: an error message is printed indicating invalid index, since the delete command for tasks under a certain 
       priority should use `tasks` instead of `task` in the input.
-    - Test case: `delete tasks p/10`
+    
+    - Test case: `delete tasks p/10` <br>
       Expected: an error message is printed indicating invalid index, since there is no task of priority `10` 
       in the list.
-    - Test case: `delete tasks c/CS2113`
+   
+    - Test case: `delete tasks c/CS2113` <br>
       Expected: the tasks that under category `CS2113` are deleted.
-    - Test case: `delete task c/CS2113` 
+   
+    - Test case: `delete task c/CS2113` <br>
       Expected: an error message is printed indicating invalid index, since the delete command for tasks under a certain 
       category should use `tasks` instead of `task` in the input.
-    - Test case: `delete tasks c/work`
+    
+    - Test case: `delete tasks c/work` <br>
       Expected: an error message is printed indicating invalid category, since there is no task of category `work` 
       in the list.
+      
 2. Deleting a module
-    - Test case: `delete module 2`
+    - Test case: `delete module 2` <br>
       Expected: the second module in the module list is deleted.
-    - Test case: `delete module 8`
+      
+    - Test case: `delete module 8` <br>
       Expected: an error message is printed, since the module index does not exist.
+      
 3. Deleting a link
-    - Test case: `delete link 1`
+    - Test case: `delete link 1` <br>
       Expected: the first link in the link list is deleted.
-    - Test case: `delete link 7`
+      
+    - Test case: `delete link 7` <br>
       Expected: an error message is printed, since the link index does not exist.
+      
 4. Deleting an expense
-    - Test case: `delete expense 1`
+    - Test case: `delete expense 1` <br>
       Expected: the first expense in the expense list is deleted.
-    - Test case: `delete expense 10`
+      
+    - Test case: `delete expense 10` <br>
       Expected: an error message is printed, since the expense index does not exist.
 
 ### Marking an item as done
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
+
 1. Marking a task as done
-    - Test case: `done task 1`
+    - Test case: `done task 1` <br>
       Expected: the first task in the task list is marked as done `Y`.
+      
 2. Marking a module as completed
-    - Test case: `done module 1`
+    - Test case: `done module 1` <br>
       Expected: the first module in the module list is marked as completed `CM`.
+      
 3. Marking a book as returned
-    - Test case: `return 2`
+    - Test case: `return 2` <br>
       Expected: the second book in the book list is marked as returned `R`.
 
 ### Setting the priority of a task
 Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
-- Test case: `set 3 p/2`
+
+- Test case: `set 3 p/2` <br>
   Expected: the priority of the third task in the task list is set as `2`.
   
 ### Setting the category of a task
 Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
-- Test case: `category 2 c/CS2113`
+
+- Test case: `category 2 c/CS2113` <br>
   Expected: the category of the second task in the task list is set as `CS2113`.
 
 ### Setting the date of a task
 Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
-- Test case: `date 2 date/02-01-2021`
+
+- Test case: `date 2 date/02-01-2021` <br>
   Expected: the date of the second task in the task list iis set as `02 Jan 2021`.
   
 ### Printing the task calendar
-- Test case: `calendar d/3`
+- Test case: `calendar d/3` <br>
   Expected: the tasks for the current day and for the next `3` days are output separately as a calendar.
 
 ### Searching for tasks with keywords
-- Test case: `find tP`
+- Test case: `find tP` <br>
   Expected: the tasks containting the keyword `tP` are displayed.
-- Test case: `find t`
+  
+- Test case: `find t` <br>
   Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
   any task in the list and incomplete keywords are not allowed.
 
 ### Clearing all items
-- Test case: `clear all`
+- Test case: `clear all` <br>
   Expected: all the tasks, modules, links, books, and expenses are removed.
   
 ### Getting help
-- Test case: `help`
-  Expected: all the available commands and their usages are displayed in the help message.
+- Test case: `help` <br>
+  Expected: all the available commands, and their usages are displayed in the help message.
