@@ -98,8 +98,8 @@ public class Messages {
             + "Please refer to the User Guide.";
     public static final String EXCEPTION_INVALID_CATEGORY = "~Error~ Please input a valid category using the format "
             + "c/CATEGORY.";
-    public static final String EXCEPTION_NO_KEYWORD = "~Error~ Please input the keyword argument in the format of " +
-            "k/KEYWORD";
+    public static final String EXCEPTION_NO_KEYWORD = "~Error~ Please input the keyword argument in the format of "
+            + "k/KEYWORD";
     public static final String EXCEPTION_ONE_ARGUMENT_ONLY = "~Error~ Please input exactly one correct optional "
             + "argument!";
     public static final String EXCEPTION_NEGATIVE_DAY_COUNT = "~Error~ Your number of days must be positive!";

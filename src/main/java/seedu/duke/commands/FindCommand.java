@@ -63,7 +63,7 @@ public class FindCommand extends Command {
 
     @Override
     public void execute(Model model) throws DukeException {
-        switch(listType) {
+        switch (listType) {
         case TASK_LIST:
             TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
             tasks.findItem(keyword);
