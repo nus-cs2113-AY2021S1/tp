@@ -3,7 +3,7 @@
 * Table of Contents
 {:toc}
 
-## Introduction
+## Introduction 
 
 **Welcome to Study It User Guide!**
 
@@ -28,9 +28,9 @@ By utilizing these features, you will be able to manage your study matters effic
 
 The following is a list of common notations and symbols you’ll encounter throughout the user guide:
 
-1. INDEX NUMBER
+1. INDEX_NUMBER
    
-    Words of phrases in full capital indicates that they are inputs that you can define
+    Words of phrases in full capital indicates that they are inputs that you can decide on
    
 1. `command`
 
@@ -46,34 +46,42 @@ Let’s get started with using Study It! This section will show you how you can 
 
 Firstly, please ensure that your computer fulfills the following requirement:
 * Has Java 11.0.8
-  * You may refer to this website to download the Java 11.0.8 installer
+  * You may refer to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to download the Java 11.0.8 installer
   * The installation guide can be found in the following websites:
-    * Windows
-    * Linux 
-    * MacOS
+    * [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
+    * [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
+    * [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 Once you are done installing Java 11.0.8 onto your PC, you may follow these procedures to start using Study It:
 
-1. Download the tP.jar file from our Github release and place it in an empty folder
+1. Download the tP.jar file from our [Github release](https://github.com/AY2021S1-CS2113T-T12-1/tp/releases) and place it in an empty folder
 1. Open your computer’s command prompt
    1. Windows: press Windows key + R, type “cmd” and press Enter
    1. MacOS: press Command - spacebar to launch Spotlight and type "Terminal," then double-click the search result
    1. Linux Ubuntu: press Ctrl + Alt + T
 1. Change the directory of the command prompt to the folder containing tP.jar file
-1. Type java -jar tp.jar into the command prompt and press Enter to execute it
+1. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 1. If the application runs successfully, you’ll be greeted by the following welcome message:
 
 ![WelcomeMessage](Images/GeneralUG/welcomemessage.png)
 
-Congratulations! You are now able to run Study It. To access its various functionalities, \
+Congratulations! You are now able to run Study It. To access its various functionalities,
 you would need to type in the command at the Command Prompt and press Enter. 
-Whenever you feel lost, refer to the following sections of this User Guide or call the help function in the app 
+
+Whenever you feel lost, refer to the following sections of this User Guide or call the `help` function in the app 
 for guidance. We hope that you have fun using our app!
 
 ## General Commands
 
 The following section details the general commands you can use in the app. 
 These commands can be used anywhere in the app to help you navigate around the app.
+
+This section contains the following commands:
+* 1. : [Prints help message](#1-prints-help-message-help)
+* 2. : [Changes the current mode](#2-changes-the-current-mode-cd-mode_name-or-mode_index)
+* 3. : [Shows the current location](#3-shows-the-current-location-location)
+* 4. : [Prints starred items](#4-prints-starred-items-highlight)
+* 5. : [Exits the current mode or application](#5-exits-the-current-mode-or-application-exit)
 
 ### 1. Prints help message: `help`
 
@@ -87,24 +95,26 @@ Instruction:
 Expected output:
 
 At menu:
+
 ![HelpMessage](Images/GeneralUG/help.png)
 
 At bookmark mode:
+
 ![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
 
-**Useful information:**
-* The message varies in different modes to show you the commands at that mode. 
-Try the command at other modes when you are using the application!
+>**Useful information:**
+>* The message varies in different modes to show you the commands at that mode. 
+>Try the command at other modes when you are using the application!
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
 
 You can change to different modes of the app by using this command! 
 The following are the modes currently available in the app and their corresponding index:
-1. Menu
-1. Bookmark
-1. Timetable
-1. Academic
-1. Flashcard
+1. menu
+1. bookmark
+1. timetable
+1. academic
+1. flashcard
 
 Instruction:
 1. Type `cd` followed by the `MODE_NAME` or `MODE_INDEX`
@@ -120,15 +130,15 @@ Command: `cd academic`
 
 ![CDAcademic](Images/GeneralUG/cdacademic.png)
 
-**Warning**
-* An error message will appear when you type an invalid mode index or mode name
+>**Warning**
+>* An error message will appear when you type an invalid mode index or mode name
+>
+>![WrongModeIndex](Images/GeneralUG/wrongmodeindex.png)
+>
+>* Ensure that your index is within range or you spelt the mode names correctly when using this command!
 
-![WrongModeIndex](Images/GeneralUG/wrongmodeindex.png)
-
-* Ensure that your index is within range or you spelt the mode names correctly when using this command!
-
-**Useful information:**
-* You can use this command anywhere in the app to switch between modes quickly!
+>**Useful information:**
+>* You can use this command anywhere in the app to switch between modes quickly!
 
 ### 3. Shows the current location: `location`
 
@@ -155,6 +165,7 @@ Instruction:
 1. Type `highlight` and press Enter
 
 Expected output:
+
 ![](Images/GeneralUG/highlight.png)
 
 ### 5. Exits the current mode or application: `exit`
@@ -405,12 +416,22 @@ Do you wish there was a simple, visual way to organise your day and foresee any 
 The timetable mode intends to address these issues, helping you keep track of your work and helping you achieve
 purposeful productivity.
 
-This section contains 5 commands to navigate the Timetable mode —
-* 2.1. Entering timetable mode
-* 2.2. Adding classes
-* 2.3. Adding activities
-* 2.4. Showing links
-* 2.5. Showing schedule
+>**Warning:**
+>* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not able to
+>retrieved the saved data, hence deem the data file corrupted and request to format the data file before you can use the timetable 
+>feature again.
+
+This section contains 10 commands to navigate the Timetable mode:
+* [2.1. Entering timetable mode](#21-entering-timetable-mode-cd-3--cd-timetable)
+* [2.2. Adding classes](#22-adding-classes-add-class)
+* [2.3. Adding activities](#23-adding-activities-add-activity)
+* [2.4. Showing links](#24-showing-links-show-link)
+* [2.5. Showing schedule](#25-showing-schedule-show-schedule)
+* [2.6. Showing activities list](#26-showing-activities-list-list-activity)
+* [2.7. Showing classes list](#27-showing-class-list-list-class)
+* [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
+* [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
+* [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
 
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
@@ -424,13 +445,13 @@ Instruction:
 Expected output:
 ![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the timetable mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the timetable mode easily and quickly!
 
 ### 2.2 Adding classes: `add class`
 
 If you find it hard to keep track of all your Zoom links with an increasing number of online classes, you can now
-arrange your classes in a systematic manner with this feature. Make sure that you are currently in the timetable mode
+arrange your classes in a systematic manner with this feature. Make sure you are currently in the timetable mode
 (refer to 2.1).
 
 Instruction:
@@ -441,11 +462,19 @@ Instruction:
 Expected output:
 ![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
 
+>**Useful Information:**
+>* You can enter the time in both 12hr and 24hr format. Only entering am/pm at the back of the duration will be assumed 
+>as both starting and ending time are in the same period.
+
 If you encounter any errors, take note of the following warning.
 
-**Warning:**
-* Ensure that you follow the format for answering the questions.
-Error will be shown if the questions are not answered in a suitable format.
+>**Warning:**
+>* Ensure that you follow the format for answering the questions.
+>Error will be shown if the questions are not answered in a suitable format.
+>* Adding event that clash with the existing schedule will result in error message. You will need to check through 
+>the schedule and events list and delete the unwanted event accordingly before you can add the new event.
+>* Number of recurring classes are capped at 52 weeks (1year) to ensure effective processing time. Add your class again one year
+>later if your class recur for more than a year.
 
 ### 2.3 Adding activities: `add activity`
 
@@ -460,6 +489,10 @@ Instruction:
 Expected output:
 ![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
 
+>**Useful Information:** 
+>* Currently this feature does not support adding activity past 12am if you wish to schedule an activity overnight, 
+>add the activity in 2 separate sessions.
+
 ### 2.4 Showing links: `show link`
 
 If you find it hard to keep track of all your conference links for your classes or activities, this command will present
@@ -471,18 +504,7 @@ Instruction:
 Expected output:
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
 
-### 2.5 Showing Activities list: 'show activity'
-
-If you wish to see all activities you have input into the system, 
-this command will present all the activities happening chronological order with their starting date and time.
-
-Instruction:
-1. `show activity`
-
-Expected output:
-![To be added]
-
-### 2.6 Showing schedule: `show schedule`
+### 2.5 Showing schedule: `show schedule`
 
 If you wish to view your schedule for the next seven days with all the activities, use this command.
 
@@ -491,6 +513,84 @@ Instruction:
 
 Expected output:
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
+
+### 2.6 Showing Activities list: `list activity`
+
+If you wish to see all activities you have input into the system, 
+this command will present all the activities you have added with their starting date and time, if the activity is 
+online, and the venue/link of the activity.
+
+Instruction:
+1. `list activity`
+
+Expected output:
+
+![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png)
+
+### 2.7 Showing Class list: `list class`
+
+If you think searching through the time table is too troublesome,
+use this command to see all the classes you have added and other detail of the classes similar to the previous feature.
+
+Instruction:
+1. `list class`
+
+Expected output:
+
+![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png)
+
+### 2.8 Deleting an activity: `delete activity INDEX`
+
+If you have accidentally added a wrong activity, or an activity you have added got canceled,
+use this command to delete an activity with corresponding index according to the activities list ([refer to 2.6](#26-showing-activities-list-list-activity)).
+
+Instruction:
+1. `delete activity INDEX`
+
+Example of usage: 
+
+`delete activity 1` will delete the first activity in the list.
+
+Expected output:
+
+![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png)
+
+### 2.9 Deleting a class: `delete class INDEX`
+
+Similar to feature 2.8,
+use this command to delete a class with corresponding index according to the classes list ([refer to 2.7](#27-showing-class-list-list-class)).
+
+Instruction:
+1. `delete class INDEX`
+
+Example of usage: 
+
+`delete class 2` will delete the second class in the list.
+
+Expected output:
+
+![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png)
+
+>**Warning:**
+>* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
+
+### 2.10 Removing all past events: `clean up`
+
+Having too many events added to the application, and the data file is taking up too much space?
+Use this command to remove all the activities that was over more than 7 days ago and all the classes with their last lesson 
+concluded more than 7 days ago.
+
+Instruction:
+1. `clean up`
+
+Expected output:
+
+![To be added]
+
+>**Warning:**
+>* Deletion will be done automatically. All the events that are deleted will not be able to be retrieved. 
+>Only use this if you are sure you do not need your past events.
+
 <!-- @@author -->
 
 ## 3. Academic
@@ -499,6 +599,21 @@ or sweat over your calculator when trying to estimate your CAPS this semester?
 Academic tracker provides a convenient experience where you can store 
 all the information you need in one place! To access the academic tracker, 
 follow the instructions below.
+
+This section contains 12 commands to navigate the academic mode:
+* [3.1 Entering Academic Mode](#31-entering-academic-mode-cd-4--cd-academic)
+* [3.2 Adding a contact](#32-adding-a-contact-add-contact-ccontact_details-mmobile_number--eemail)
+* [3.3 Listing all contacts](#33-listing-all-contacts-list-contact)
+* [3.4 Starring a contact](#34-starring-a-contact-star-contact-index)
+* [3.5 Deleting a contact](#35-deleting-a-contact-delete-contact-index)
+* [3.6 Adding a grade](#36-adding-a-grade-add-grade-nmodule_name--mmc--ggrade)
+* [3.7 Listing all grades](#37-listing-all-grades-list-grade)
+* [3.8 Checking current cap](#38-checking-current-cap-check-cap)
+* [3.9 Starring a grade](#39-starring-a-grade-star-grade-index)
+* [3.10 SU-ing a grade](#310-su-ing-a-grade-su-grade-index)
+* [3.11 Deleting a grade](#311-deleting-a-grade-delete-grade-index)
+* [3.12 Listing all the starred items in academic](#312-listing-all-the-starred-items-in-academic-list-star)
+
 
 ### 3.1 Entering Academic Mode: `cd 4` / `cd academic`
 
@@ -512,8 +627,8 @@ Instruction:
 Expected output:
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the academic mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the academic mode easily and quickly!
 
 ### 3.2 Adding a contact: `add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
@@ -530,8 +645,8 @@ will add a contact with the name Prof Lim, mobile number 81234567, and email E76
 Expected output:  
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
-**Warning:**
-* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
+>**Warning:**
+>* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
 
 ### 3.3 Listing all contacts: `list contact`
 
@@ -591,10 +706,10 @@ will add a grade with the title CS2101 that has 4 credits and scored an A-.
 Expected output:  
 ![Academic_3_6](Images/AcademicUG/Academic_3_6.png)
 
-**Warning:**
-* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
-Note that there this program doesn't cap how many MCs a module can have.
-* This application is not synced to a module database, so any valid input will be accepted as a module name.
+>**Warning:**
+>* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+>* This program doesn't cap how many MCs a module can have.
+>* This application is not synced to a module database, so any valid input will be accepted as a module name.
 
 ### 3.7 Listing all grades: `list grade`
 
@@ -634,9 +749,9 @@ Example of usage:
 Expected output:
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
-### 3.10 SUing a grade: `su grade INDEX`
+### 3.10 SU-ing a grade: `su grade INDEX`
 
-SUed a module and want to exclude it from your CAP calculation? The SU grade
+SU-ed a module and want to exclude it from your CAP calculation? The SU grade
 function allows you to do just that through these simple steps.
 
 Instruction: 
@@ -648,6 +763,10 @@ Example of usage:
 
 Expected output:
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
+
+>**Warning:**
+>* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
+>consider deleting the mod and adding a new one.
 
 ### 3.11 Deleting a grade: `delete grade INDEX`
 
@@ -682,13 +801,13 @@ Or a more efficient way to verify your knowledge?
 Perhaps it is also difficult to scour your handwritten notes to find a particular piece of information.
 The flashcard mode aims to tackle these aspects that may hinder your learning process.
 
-This section contains 6 commands to navigate the Flashcard mode —
-* 4.1. Entering flashcard mode
-* 4.2. Adding flashcards
-* 4.3. Listing flashcards
-* 4.4. Deleting flashcards
-* 4.5. Testing content
-* 4.6. Finding relevant flashcards
+This section contains 6 commands to navigate the Flashcard mode:
+* [4.1. Entering flashcard mode](#41-entering-flashcard-mode-cd-5--cd-flashcard)
+* [4.2. Adding flashcards](#42-adding-flashcards-add)
+* [4.3. Listing flashcards](#43-listing-flashcards-list)
+* [4.4. Deleting flashcards](#44-deleting-flashcards-delete)
+* [4.5. Testing content](#45-testing-contenttest)
+* [4.6. Finding relevant flashcards](#46-finding-relevant-flashcards-find)
 
 ### 4.1 Entering flashcard mode: `cd 5` / `cd flashcard`
 
@@ -702,8 +821,8 @@ Instruction:
 Expected output:
 ![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the flashcard mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the flashcard mode easily and quickly!
 
 ### 4.2 Adding flashcards: `add`
 
@@ -724,11 +843,12 @@ Expected output:
 
 If you encounter any errors, take note of the following warning.
 
-**Warning:**
-* “back” cannot be added as an answer for the flashcard.
-This is because “back” is used as a command to exit the test mode later on.
-If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
-![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
+>**Warning:**
+>* “back” and "show answer" cannot be added as an answer for the flashcard.
+>This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
+>respectively.
+>If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
 ### 4.3 Listing flashcards: `list`
 
@@ -757,23 +877,28 @@ Example of usage:
 Expected output:
 ![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
 
-**Useful information:**
-* You can use the `list` command to check the card index.
+>**Useful information:**
+>* You can use the `list` command to check the card index.
 
 ### 4.5 Testing content:`test`
 
 Grading your own work is one of the best ways to revise as it helps you effectively retain information.
 After adding the flashcards, you may wish to revise the content by testing yourself. 
 
+If you are unable to answer a question and wish to refer to the answer, use `show answer`.
 When you are done revising, use `back` to exit the test mode, and return to the flashcard main.
 
 Instruction:
 1. `test`
 2. Answer the questions as prompted
-3. `back`
+3. `show answer` / `back`
 
 Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+
+>**Useful information:**
+>* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
+>the stored answer, the answer will be accepted as the right answer.
 
 ### 4.6 Finding relevant flashcards: `find`
 
@@ -811,5 +936,7 @@ The following table is a compiled list of all available commands in our applicat
 
 The commands listed under the sections besides “General” can only be called when you are in that specific mode, 
 which you can access using the cd command!
+
+Table: Command Cheatsheet for Study It
 
 ![](Images/cheatsheet.png)
