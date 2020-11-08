@@ -7,21 +7,26 @@ import seedu.eduke8.command.Command;
 import seedu.eduke8.command.ExitCommand;
 import seedu.eduke8.command.HelpCommand;
 import seedu.eduke8.command.IncorrectCommand;
-import seedu.eduke8.command.StatsCommand;
-import seedu.eduke8.command.TopicsCommand;
-import seedu.eduke8.command.TextbookCommand;
 import seedu.eduke8.command.NoteCommand;
 import seedu.eduke8.command.QuizCommand;
+import seedu.eduke8.command.StatsCommand;
+import seedu.eduke8.command.TextbookCommand;
+import seedu.eduke8.command.TopicsCommand;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.eduke8.exception.ExceptionMessages.*;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_IOB_ERROR;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_NFE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NEGATIVE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
+
 
 /**
  * Parses user input from the main menu, in order to execute the correct option.
@@ -106,73 +111,38 @@ public class MenuParser implements Parser {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
             try {
-                if (commandArr[1].contains(TIMER_INDICATOR)) {
-                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
-                        numOfQuestions = Integer.parseInt(commandArr[2].substring(
-                                commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
-                        topicName = commandArr[3].substring(
-                                commandArr[3].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        userTimer = Integer.parseInt(commandArr[1].substring(
-                                commandArr[1].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
+                boolean isUserTimerSet = false;
+                boolean isTopicNameSet = false;
+                boolean isNumOfQuestionsSet = false;
 
-                    } else if (commandArr[2].contains(TOPIC_INDICATOR)) {
-                        numOfQuestions = Integer.parseInt(commandArr[3].substring(
-                                commandArr[3].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
-                        topicName = commandArr[2].substring(
-                                commandArr[2].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        userTimer = Integer.parseInt(commandArr[1].substring(
-                                commandArr[1].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
-                    }
-
-                } else if (commandArr[1].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
-                    if (commandArr[2].contains(TIMER_INDICATOR)) {
-                        numOfQuestions = Integer.parseInt(commandArr[1].substring(
-                                commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
-                        topicName = commandArr[3].substring(
-                                commandArr[3].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        userTimer = Integer.parseInt(commandArr[2].substring(
-                                commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
-
-                    } else if (commandArr[2].contains(TOPIC_INDICATOR)) {
-                        numOfQuestions = Integer.parseInt(commandArr[1].substring(
-                                commandArr[1].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
-                        topicName = commandArr[2].substring(
-                                commandArr[2].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        userTimer = Integer.parseInt(commandArr[3].substring(
-                                commandArr[3].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
-                    }
-
-                } else if (commandArr[1].contains(TOPIC_INDICATOR)) {
-                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
-                        numOfQuestions = Integer.parseInt(commandArr[2].substring(
-                                commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
-                        topicName = commandArr[1].substring(
-                                commandArr[1].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        userTimer = Integer.parseInt(commandArr[3].substring(
-                                commandArr[3].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
-
-                    } else if (commandArr[2].contains(TIMER_INDICATOR)) {
-                        numOfQuestions = Integer.parseInt(commandArr[3].substring(
-                                commandArr[3].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
-                        topicName = commandArr[1].substring(
-                                commandArr[1].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
-                        userTimer = Integer.parseInt(commandArr[2].substring(
-                                commandArr[2].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
+                for (int i = 1; i < 4; i++) {
+                    if (commandArr[i].contains(TIMER_INDICATOR) && !isUserTimerSet) {
+                        userTimer = Integer.parseInt(commandArr[i].substring(
+                                commandArr[i].indexOf(TIMER_INDICATOR) + LENGTH_OF_TIMER_INDICATOR));
+                        isUserTimerSet = true;
+                    } else if (commandArr[i].contains(TOPIC_INDICATOR) && !isTopicNameSet) {
+                        topicName = commandArr[i].substring(
+                                commandArr[i].indexOf(TOPIC_INDICATOR) + LENGTH_OF_TOPIC_INDICATOR);
+                        isTopicNameSet = true;
+                    } else if (commandArr[i].contains(NUMBER_OF_QUESTIONS_INDICATOR) && !isNumOfQuestionsSet) {
+                        numOfQuestions = Integer.parseInt(commandArr[i].substring(
+                                commandArr[i].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
+                        isNumOfQuestionsSet = true;
                     }
                 }
+
+                if (!(isUserTimerSet && isNumOfQuestionsSet && isTopicNameSet)) {
+                    return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
+                }
+
+                if (userTimer < 1) {
+                    return new IncorrectCommand(ERROR_QUIZ_TIMER_NEGATIVE);
+                }
+                LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
+                return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarkList, userTimer);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
-            try {
-                if (userTimer < 1) {
-                    throw new Eduke8Exception(ERROR_QUIZ_TIMER_NEGATIVE);
-                }
-            } catch (Eduke8Exception e) {
-                return new IncorrectCommand(ERROR_QUIZ_TIMER_NEGATIVE);
-            }
-
-            LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
-            return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarkList, userTimer);
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark list command chosen.");
             if (commandArr.length >= BOOKMARK_DELETE_COMMAND_ARR_SIZE &&
