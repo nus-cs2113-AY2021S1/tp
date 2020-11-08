@@ -84,14 +84,14 @@ rectangle "CommandHandlers"    {
     "Entry CommandHandlers"    -[hidden]- p4
     ParamChecker -[hidden]- ParamHandler
 }
-note top of ParamChecker : dfdfd
+
 "CommandHandlers"    -[hidden]down- Logic
 
-ParamChecker "1" <.[norank]. createLedgerCommand #line:blue;text:black
-ParamChecker "1" <.[norank]. retrieveLedgerCommand #line:blue;text:black
-ParamChecker "1" <.[norank]. createEntryCommand #line:blue;text:black
-ParamChecker "1" <.[norank]. editEntryHandler #line:blue;text:black
-ParamChecker "1" <.[norank]. retrieveEntryHandler #line:blue;text:black
+ParamChecker "1" <.... createLedgerCommand #line:blue;text:black
+ParamChecker "1" <...[norank]. retrieveLedgerCommand #line:blue;text:black
+ParamChecker "1" <...[norank]. createEntryCommand #line:blue;text:black
+ParamChecker "1" <...[norank]. editEntryHandler #line:blue;text:black
+ParamChecker "1" <...[norank]. retrieveEntryHandler #line:blue;text:black
 ParamHandler <|-[norank]- createLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- retrieveLedgerCommand #line:purple;line.bold;text:red
 ParamHandler <|-[norank]- createEntryCommand #line:purple;line.bold;text:red

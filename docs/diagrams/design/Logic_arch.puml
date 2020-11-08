@@ -5,6 +5,7 @@ skinparam classAttributeIconSize 0
 skinparam BoxPadding 20
 skinparam shadowing false
 scale 1049 width
+
 skinparam package<<Layout>> {
   borderColor Transparent
   backgroundColor Transparent
@@ -16,6 +17,10 @@ skinparam package<<Layout>> {
 
 rectangle LogicManager{
 }
+rectangle InputManager {
+    class CommandPacket {
+    }
+}
 
 rectangle Logic {
 
@@ -25,7 +30,7 @@ rectangle Logic {
     }
 
 
-rectangle CommandHandlers {
+    rectangle CommandHandlers {
 
     class ParamHandler <<abstract>> {
         requiredParams: HashSet<String>
@@ -44,10 +49,11 @@ rectangle CommandHandlers {
 
 
     XYZCommandHandler --|> ParamHandler
-
     XYZCommandHandler ..right> "1"  ParamChecker #line:blue;text:black : > Checks validity of params using
-    note top of XYZCommandHandler: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
+    note top of XYZCommandHandler: Includes: \n* FinanceTools Calculator functions\n* EditEntryCommand\n* CreateLedgerCommand\netc.
 }
+
+XYZCommandHandler ...> CommandPacket : Processes \ndata from >
 
 LogicManager -> XYZCommandHandler : > Passes CommandPacket to
 note top of ParamChecker: Contains methods that \ncheck validity of params supplied\n e.g. check that user has entered\n a valid integer without alphabets\n or decimal point for a param\n which expects int
