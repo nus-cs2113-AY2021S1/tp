@@ -1,7 +1,6 @@
 package seedu.duke.parser;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.project.ViewProjectCommand;
 import seedu.duke.command.task.AddTaskCommand;
 import seedu.duke.command.task.ChangeTaskPriorityCommand;
 import seedu.duke.command.task.DeleteTaskCommand;
@@ -9,7 +8,6 @@ import seedu.duke.command.task.DoneTaskCommand;
 import seedu.duke.command.task.PriorityViewCommand;
 import seedu.duke.command.task.ViewTaskCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.ui.Ui;
 import seedu.duke.model.project.ProjectManager;
 
 import java.util.Hashtable;
