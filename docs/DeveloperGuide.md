@@ -282,7 +282,8 @@ to perform to achieve full operation specified by the user.
 ![](uml_images/images_updated/Data.png)
 
 ### Storage Component
-(FILL ME)
+Please refer to the section below:
+[Storage Utility](### Storage Utility)
 
 ## Feature-level Implementation
 ### Main Menu
