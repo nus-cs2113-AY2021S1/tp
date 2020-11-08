@@ -353,7 +353,7 @@ to be on the 7th October 2020 at 11:20 PM.
 
 Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`
 
-Step 3. After obtaining the event using `Event#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
+Step 3. After obtaining the event using `EventList#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
 
 The following sequence diagram shows how the deadline operation works: <br>
 
@@ -477,7 +477,10 @@ The view feature allows user to see the notes they have created for a particular
 
 The following is the class diagram for reminder command:
 
-![Class diagram for view command execute](./diagrams/ViewCommandClass.png)
+<p align="center">
+  <img width="414" height="562" src="./diagrams/ViewCommandClass.png">
+</p>
+
 
 The view feature is implemented using `ViewCommand` class. `ViewCommand` accesses the `Events` to get the event specified by the user and show the notes created to users. It implements the following operations:
 
@@ -770,7 +773,7 @@ Scheduler--; prints an error message and use case ends.
         
 
 ### Viewing note for an event 
-1. Add a new note for an event
+1. View note for an event
     1. Load the program
     1. Type `add personal dental appointment; 18/09/2020`
     1. Type `note personal; 1`
