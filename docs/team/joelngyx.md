@@ -12,8 +12,12 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
   - Justification: Necessary for the compartmentalization of data
 
 - **New Feature:** Implemented the NoteCommand component
-  - What it does: This command is a type Command object. Entering an input containing the following formats: ``note add``, ``note delete``, ``note list`` will throw this command and process the instruction provided.
+  - What it does: This command is a type Command object. Entering an input containing the following formats: `note add`, 
+  `note delete`, `note list` will throw this command and process the instruction provided.
   - Justification: Necessary to add/delete/list notes.
+  - Highlight: This feature required the use of logic, as well as interactions with various classes such as `TopicList`, 
+  `Ui`, `NoteList` and `Note`. Methods were added to the `Ui` class to allow for a more user-friendly way of providing 
+  inputs when it comes to creating/deleting/listing out `Note` objects in the specified `NoteList` object.
 
 - **New Feature:** Implemented the Note and NoteList components.
   - What it does: The NoteList components store Note objects, and contains methods that can modify the NoteList object.
