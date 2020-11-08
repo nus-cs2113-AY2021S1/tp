@@ -15,6 +15,7 @@ import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.Messages.ERROR_INDEX_DOES_NOT_EXIST;
 import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.PHRASE_EXTRA_PARAMETERS;
+import static fitr.common.Messages.SPACE_STRING;
 import static fitr.common.Messages.SYMBOL_YES;
 
 /**
@@ -28,16 +29,16 @@ public class CompleteGoalCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
-            if (command.split(" ", 2)[0].equals(COMMAND_GOAL)) {
-                if (command.split(" ").length < 2) {
+            if (command.split(SPACE_STRING, 2)[0].equals(COMMAND_GOAL)) {
+                if (command.split(SPACE_STRING).length < 2) {
                     Ui.printCustomError("No index specified!");
                     return;
                 }
-                if (command.split(" ").length > 2) {
+                if (command.split(SPACE_STRING).length > 2) {
                     Ui.printFormatError(PHRASE_EXTRA_PARAMETERS);
                     return;
                 }
-                command = command.split(" ", 2)[1];
+                command = command.split(SPACE_STRING, 2)[1];
                 int completedGoalIndex = Integer.parseInt(command) - 1;
                 if (completedGoalIndex < -1) {
                     throw new NumberFormatException();

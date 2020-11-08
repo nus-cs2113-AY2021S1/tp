@@ -13,6 +13,7 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
+        assert command != null;
         Ui.printHelpMessage();
     }
 
