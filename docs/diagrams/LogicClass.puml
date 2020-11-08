@@ -8,58 +8,66 @@ class Parser {
 abstract class Command {
     +{abstract}{method} execute(TaskMap): CommandResult
 }
-class Add {
+class AddCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
-class Bye {
+class ByeCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
-class Clear {
+class ClearCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
-class Delete {
+class DeleteCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
-class Edit {
+class EditCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
-class Help {
+class HelpCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
-class List {
+class ListCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
-class Search {
+class SearchCommand {
     +{field} commandWord: String
     +{field} commandPattern: Pattern
     +{method} execute(TaskMap): CommandResult
 }
+
+class UndoCommand {
+    +{field} commandWord: String
+    +{field} commandPattern: Pattern
+    +{method} execute(TaskMap): CommandResult
+}
+
 class CommandResult
 
 Command -[dashed]> CommandResult
 Command -[dashed]> TaskMap
 Parser -[dashed]> Command
 
-Command <|-- Add
-Command <|-- Bye
-Command <|--- Clear
-Command <|--- Delete
-Command <|--- Edit
-Command <|--- Help
-Command <|-- List
-Command <|-- Search
+Command <|-- AddCommand
+Command <|-- ByeCommand
+Command <|--- ClearCommand
+Command <|--- DeleteCommand
+Command <|--- EditCommand
+Command <|--- HelpCommand
+Command <|--- ListCommand
+Command <|-- SearchCommand
+Command <|-- UndoCommand
 @enduml

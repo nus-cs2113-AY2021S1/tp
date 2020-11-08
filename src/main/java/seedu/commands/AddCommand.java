@@ -2,17 +2,18 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.MaxNumTaskException;
-import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;
+import seedu.exceptions.MaxNumTaskException;
 import seedu.task.Task;
 
 import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.ADD_MESSAGE;
 
-public class Add extends ModificationCommand {
+public class AddCommand extends ModificationCommand {
     public static final String COMMAND_WORD = "add";
     // Default date: day that the task is created, default priority: 0 (low to high: 0 - 2)
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
@@ -32,9 +33,20 @@ public class Add extends ModificationCommand {
     private final String reminder;
     private final String reminderTime;
 
-
-    public Add(String description, String date, String startTime, String endTime, String priority,
-               String reminder, String reminderTime) {
+    /**
+     * Constructor.
+     *
+     * @param description  name/description of task
+     * @param date         date of task being created
+     * @param startTime    start time of task.
+     * @param endTime      end time of task.
+     * @param priority     1,2 or 3.(low/med/high)
+     * @param reminder
+     * @param reminderTime
+     * @throws InvalidCommandException throws this when start time is at a later timing in the day than end time
+     */
+    public AddCommand(String description, String date, String startTime, String endTime, String priority,
+                      String reminder, String reminderTime) throws InvalidCommandException {
         this.description = description;
         this.date = date;
         this.startTime = startTime;
@@ -42,10 +54,26 @@ public class Add extends ModificationCommand {
         this.priority = priority;
         this.reminder = reminder;
         this.reminderTime = reminderTime;
+
+        if (startTime != null && endTime != null) {
+            if (Integer.parseInt(startTime) >= Integer.parseInt(endTime)) {
+                throw new InvalidCommandException();
+            }
+        }
     }
 
+    /**
+     * Adds a task. Updates the model with new list of tasks.
+     *
+     * @param model Contains the TaskMap and stack(for the undo function)
+     * @return the CommandResult object, which shows the task added message.
+     * @throws InvalidPriorityException if priority given is not 1,2 or 3.
+     * @throws InvalidDatetimeException if wrong date or time format
+     * @throws MaxNumTaskException      if tasks size == 10000
+     * @throws InvalidReminderException
+     */
     public CommandResult execute(Model model)
-        throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidReminderException {
+            throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
         assert description != null;
         // Handle collision by generating new taskID if the value is in use.
@@ -64,6 +92,6 @@ public class Add extends ModificationCommand {
         tasks.addTask(task);
         // update stack
         model.pushAndUpdate(tasks);
-        return new CommandResult(ADD_MESSAGE,task);
+        return new CommandResult(ADD_MESSAGE, task);
     }
 }

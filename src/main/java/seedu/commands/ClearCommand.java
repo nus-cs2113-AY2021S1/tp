@@ -7,9 +7,14 @@ import seedu.data.Timers;
 
 import static seedu.messages.Messages.CLEAR_MESSAGE;
 
-public class Clear extends ModificationCommand {
+public class ClearCommand extends ModificationCommand {
     public static final String COMMAND_WORD = "clear";
 
+    /**
+     * Clears the current list of all tasks and updates the stack.
+     * @param model contains TaskMap and stack.
+     * @return CommandResult object.
+     */
     public CommandResult execute(Model model) {
         TaskMap tasks = model.getTaskMap();
         tasks.clear();

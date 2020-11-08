@@ -2,17 +2,18 @@ package seedu.commands;
 
 import seedu.data.Model;
 import seedu.data.TaskMap;
-import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.InvalidPriorityException;
+import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDatetimeException;
+import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.InvalidReminderException;
+import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
 
 import java.util.regex.Pattern;
 
 import static seedu.messages.Messages.EDIT_MESSAGE;
 
-public class Edit extends ModificationCommand {
+public class EditCommand extends ModificationCommand {
     public static final String COMMAND_WORD = "edit";
     public static final Pattern COMMAND_PATTERN = Pattern.compile(
             "^(?<key>\\d+)"
@@ -32,9 +33,23 @@ public class Edit extends ModificationCommand {
     private final String reminder;
     private final String reminderTime;
 
-    public Edit(String keyString, String description, String date, String startTime, String endTime, String priority,
-                String reminder, String reminderTime)
-            throws InvalidTaskNumberException {
+    /**
+     * Constructor.
+     *
+     * @param keyString    the index of the task being edited.
+     * @param description  the description of the task being edited.
+     * @param date         the date of the task being edited.
+     * @param startTime    the start time of the task being edited.
+     * @param endTime      the end time of the task being edited.
+     * @param priority     the priority of the task being edited. (1,2 or 3)
+     * @param reminder
+     * @param reminderTime
+     * @throws InvalidTaskNumberException When index is not a integer.
+     * @throws InvalidCommandException    When the start time is more than end time(invalid format).
+     */
+    public EditCommand(String keyString, String description, String date, String startTime, String endTime,
+                       String priority, String reminder, String reminderTime)
+            throws InvalidTaskNumberException, InvalidCommandException {
         try {
             key = Integer.parseInt(keyString);
         } catch (NumberFormatException e) {
@@ -47,10 +62,26 @@ public class Edit extends ModificationCommand {
         this.priority = priority;
         this.reminder = reminder;
         this.reminderTime = reminderTime;
+
+        if (startTime != null && endTime != null) {
+            if (Integer.parseInt(startTime) >= Integer.parseInt(endTime)) {
+                throw new InvalidCommandException();
+            }
+        }
     }
 
+    /**
+     * Changed the required field of the task.
+     *
+     * @param model Contains TaskMap and stack(for undo function)
+     * @return CommandResult object.
+     * @throws InvalidTaskNumberException If the task at the index is not found. (Task has not been created)
+     * @throws InvalidPriorityException   Priority is not 1,2 or 3.
+     * @throws InvalidDatetimeException   Date/time is not in desired format. (eg 2500 or 1236 or abcd).
+     * @throws InvalidReminderException
+     */
     public CommandResult execute(Model model)
-        throws InvalidTaskNumberException, InvalidPriorityException,
+            throws InvalidTaskNumberException, InvalidPriorityException,
             InvalidDatetimeException, InvalidReminderException {
         TaskMap tasks = model.getTaskMap();
         Task task = tasks.get(key);
@@ -59,7 +90,7 @@ public class Edit extends ModificationCommand {
         }
 
         Task editedTask = new Task(key, task.getDescription(), task.getDate(), task.getStartTime(),
-            task.getEndTime(), task.getPriority(), task.newReminder());
+                task.getEndTime(), task.getPriority(), task.newReminder());
 
         // Set field
         if (description != null) {
@@ -84,6 +115,6 @@ public class Edit extends ModificationCommand {
         tasks.delete(key);
         tasks.addTask(editedTask);
         model.pushAndUpdate(tasks);
-        return new CommandResult(EDIT_MESSAGE,editedTask);
+        return new CommandResult(EDIT_MESSAGE, editedTask);
     }
 }

@@ -7,11 +7,18 @@ import seedu.messages.Messages;
 import seedu.ui.Ui;
 
 
-public class Undo extends ModificationCommand {
+public class UndoCommand extends ModificationCommand {
     // Currently unable to redo undo
     public static final String COMMAND_WORD = "undo";
 
-
+    /**
+     * Pops the latest version of the TaskMap from the stack
+     * Updates the current list of tasks to the previous version.
+     *
+     * @param model Contains TaskMap and stack.
+     * @return A CommandResult, depending on whether there was an undo.
+     * @throws EmptyDataStackException if stack is empty.
+     */
     public CommandResult execute(Model model) throws EmptyDataStackException {
         DataStack dataStack = model.getDataStack();
         if (dataStack.size() == 1) {

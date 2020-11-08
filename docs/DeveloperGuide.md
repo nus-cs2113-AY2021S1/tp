@@ -38,16 +38,23 @@ Just before the main program exits, Storage component saves the content in the T
 
 Commons provide utility functions and messages to be used by other components.
 
-The sequence diagram below shows a typical workflow the program.
+The sequence diagrams below shows a typical workflow the program.
+
+
+![LoadAndSaveTasks](diagrams/Startup.png)
+
+
+At the start of the app, tasks are loaded using loadTasks function from Storage class, 
+and writeTasksToFile function is called when the program stops. 
 
 
 ![ComponentsSeq](diagrams/ComponentsSeq.png)
 
 
-In the example above, after the programs starts, User inputs "delete 2173",
+In the example above, after the programs starts, User inputs "add meeting",
 the input is captured by the Ui component, then it calls the processRaw 
 function from the Logic component, to extract useful information from the input. 
-Logic component verified the command is valid and calls the remove function 
+Logic component verified the command is valid and calls the addTask function 
 from the TaskMap, then TaskMap carries out the operation, and a message is
 return to the Ui from the Logic component.
 
@@ -65,14 +72,15 @@ writeTasksToFile() function in Storage and saves the data.
 The diagram above is a class diagram of the Ui component.
 Other than the usual InputStream and OutputStream, the Ui component has a
 DisplayDateStructure. This abstract class prepares the content to be 
-printed when the DisplayMode is WEEK or MONTH. The content is generated
-using generateScreen function, which writes the intended content into
-the 2-D array of characters. After that, the array will be shown to the user
-by Ui class via the OutputStream. 
+printed when the DisplayMode is DAY, WEEK or MONTH. The content is generated
+using generateContent function, which writes the intended content into
+the 2-D array of characters for weekly and monthly view. After that, 
+the array will be shown to the user by Ui class via the OutputStream. 
 
-Moreover, WeekStructure and MonthStructure extends the DisplayDateStructure.
-These classes will generate a different size of the 2-D array mentioned
-in the previous paragraph due the difference in number of days displayed.
+Moreover, DayStructure, WeekStructure and MonthStructure extends the DisplayDateStructure.
+DayStructure generate content in tableformat while the other two class will generate 
+a different size of the 2-D array mentioned in the previous paragraph 
+due the difference in number of days displayed.
 
 ### Logic component
 
@@ -110,7 +118,7 @@ It is chosen because it allows efficient access to an element (Task) using the
 unique identifier (Integer). Another reason of using LinkedHashMap is because 
 it is ordered, this allows the container to be sorted. DateSorter and 
 PrioritySorter implements the Task comparator, they are used in the TaskMap
-functions sortByDate() and sortByPriority().
+functions sortListByDate() and sortListByPriority().
 
 
 ### Storage component
@@ -208,14 +216,15 @@ Main success scenario
 2. PLANus changes the task details
 3. PLANus shows the task edited message. 
 
-Use case ends.
+Use case ends.  
 
-Extensions
-   - 1a. User inputs an invalid index
-Shows invalid command message
-   - 1b. User inputs wrong details format
-Shows invalid command message
-
+Extensions    
+1a. User inputs an invalid index   
+    1a1. Shows invalid command message  
+    Use case ends.  
+1b. User inputs wrong details format  
+    1b1. Shows invalid command message  
+    Use case ends.  
 
 ### Use case: Help
 
@@ -238,8 +247,9 @@ Main success scenario
 Use case ends.
 
 Extensions
-   - 2a. PLANus is unable to find any matches
-Shows no tasks found message
+2a. PLANus is unable to find any matches
+2a1. Shows no tasks found message
+Use case ends.
 
 
 ### Use case: Delete
@@ -253,8 +263,9 @@ Main success scenario
 Use case ends.
 
 Extensions 
-   - 1a. User inputs invalid index
-PLANus shows invalid task number message
+1a. User inputs invalid index
+1a1. PLANus shows invalid task number message
+Use case ends.
 
 
 ### Use case: Clear 

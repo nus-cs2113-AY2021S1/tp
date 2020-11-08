@@ -11,17 +11,21 @@ abstract class DisplayDateStructure {
     #{method}{abstract} generateScreen(TaskMap)
 }
 
+class DayStructure {
+    #{method} generateContent(TaskMap)
+}
+
 class WeekStructure {
     -{static}{field} DISPLAY_HEIGHT: int=11
-    #{method} generateScreen(TaskMap)
+    #{method} generateContent(TaskMap)
     -{method} generateScreenBorder()
 
 }
 
 class MonthStructure {
-    -{static}{field} DISPLAY_HEIGHT: int=51
+    -{static}{field} DISPLAY_HEIGHT: int=53
     -{static}{field} ROW_NUM_OFFSET: int=2
-    #{method} generateScreen(TaskMap)
+    #{method} generateContent(TaskMap)
     -{method} generateScreenBorder()
 }
 
@@ -29,12 +33,14 @@ enum DisplayMode {
     ALL
     WEEK
     MONTH
+    DAY
 }
 
-InputStream "1"-"1" Ui
-Ui "1"-"1" OutputStream
-Ui "1"--"1" DisplayDateStructure
+InputStream "1"<->"1" Ui
+Ui "1"<->"1" OutputStream
+Ui --> DisplayDateStructure
 DisplayDateStructure -[dashed]-> DisplayMode
+DisplayDateStructure <|-- DayStructure
 DisplayDateStructure <|-- WeekStructure
 DisplayDateStructure <|-- MonthStructure
 

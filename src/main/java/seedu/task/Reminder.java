@@ -2,7 +2,7 @@ package seedu.task;
 
 import seedu.commands.Command;
 import seedu.commands.CommandResult;
-import seedu.commands.DisplayReminder;
+import seedu.commands.DisplayReminderCommand;
 import seedu.data.Timers;
 import seedu.ui.Ui;
 
@@ -12,6 +12,11 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class represents a reminder for a specific task, stores the time and timer needed to start a reminder.
+ * An instance of this object is automatically created when a Task object is created.
+ *
+ */
 public class Reminder {
     private LocalTime time;
     private boolean isOn;
@@ -41,7 +46,10 @@ public class Reminder {
         return timer;
     }
 
-
+    /**
+     * Starts a timer and sets a schedule to print a specific task at a specified time.
+     * @param task The task that is associated with the reminder.
+     */
     public void startReminder(Task task) {
         if (!getIsOn()) {
             return;
@@ -55,7 +63,7 @@ public class Reminder {
         getTimer().schedule(new TimerTask() {
             @Override
             public void run() {
-                Command display = new DisplayReminder(task);
+                Command display = new DisplayReminderCommand(task);
                 CommandResult result = display.execute();
                 Ui ui = new Ui();
                 ui.interpretCommandResult(result);
