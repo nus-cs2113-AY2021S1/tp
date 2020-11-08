@@ -104,7 +104,7 @@ public class ParserManager {
      */
     public static boolean isStringIntParsable(String s) {
         try {
-            assert Integer.parseInt(s) > 0;
+            assert Integer.parseInt(s) >= 0;
             Integer.parseInt(s);
             return true;
         } catch (NumberFormatException e) {
