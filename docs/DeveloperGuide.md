@@ -117,6 +117,15 @@ On exiting Fluffle, all components will be saved to the storage.
 ### Bunny Manager Component
 
 ### Word Manager Component
+Given below is the general architecture of our Word Manager Component.
+
+![WordManagerComponent](graphics/diagrams/WordManagerComponent.PNG)
+<p align = "center"><i><b>Figure 2: Word Manager Architecture</b></i></p>
+
+In Fluffle, the words list is stored in the local hard drive location `data/words.txt`. Fluffle can hold three types of word: `Noun`, `Verb` and `Adjective`. The operations that can be done on the words list are:
+- Viewing the words list.
+- Getting three random words.
+- Filtering words (by word types or by substrings).
 
 ### Name Manager Component
 
@@ -125,13 +134,17 @@ On exiting Fluffle, all components will be saved to the storage.
 ### Writings class family
 #### Constitution (member classes)
 WritingList: Represent the objects which are particular lists of Writings to be used in the application.
+
 Writings: Represent the objects of the writings, created from user’s input and stored in a database as text. 
+
 This Writings class is also the parent of 2 subclasses which are Poem and Essay.
-Poem: Represents the Writings objects which have type is Poem.
-Essay: Represents the Writings objects which have type is Essay.
+- Poem: Represents the Writings objects which have type is Poem.
+- Essay: Represents the Writings objects which have type is Essay.
+
 User: Represents the Users registered to the System
+
 ![UML Class diagram for WritingList family](graphics/diagrams/classDiagram_WritingList.png)
-<p align = "center"><i><b>Figure 2: WritingList family UML diagram</b></i></p>
+<p align = "center"><i><b>Figure 3: WritingList family UML diagram</b></i></p>
 
 The above class diagram describes the overall architecture of Writings class functionalities and associations within 
 the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() 
@@ -140,39 +153,57 @@ into the database. During this process, the user has the ability of choosing the
 either poem or essay at this stage)
 
 ![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
-<p align = "center"><i><b>Figure 3: General interactions between member classes when generating a new writing</b></i></p>
+<p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
 
-### Filter words class family / Word family
+### Word Features
+
+#### Adding a noun
+
+#### Adding a verb 
+
+#### Adding an adjective
+
+#### Listing words
+
+#### Generating three random words
+
+#### Filtering words
+This feature allows users to getting words as they wish. The diagram below shows the overall architecture of filter words functionality.
+
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
-<p align = "center"><i><b>Figure 4: Filter word UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 5: Filter word UML Class Diagram</b></i></p>
 
-The above class diagram describes the overall architecture of the filter words functionality. `FilterExecutor` class has 
-the static void method `executeFilterCommand` that will be called first when the user enters a filter command. 
-In the `executeFilterCommand` method, it will make use of the enumeration `FilterType` to get the filter type (by `WORD_TYPE`, 
-`STARTING STRING` or `INCLUDING_STRING`). After that, the method will use the `FilterCommandSlicer` static methods `isNewFilter` 
-to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word bank. 
-`executeFilterCommand` will also check whether the user has entered a print limit using `FilterCommandSlicer`'s method 
-`getWordPrintLimitFromFilterCommand`. Subsequently, depending on the filter mode, `getTargetedWordTypes` or `getTargetedStringTags` will be called 
-and the returned array of strings will be passed to `WordsFilter`’s static methods `filterByType`, `filterByStartingString` and `filterByIncludedString`.
-Lastly, `filterCommandExecutor` will call the method `printFilterList`.
+**Implementation**
 
-The following sequence diagram shows how the components interact with each other for the scenario where the user issues 
-the command `filter -continue by\start limit\10 -cs -cg.`
+1. `FilterExecutor` class has the static void method `executeFilterCommand` that will be called first when the user enters a `filter words` command. 
+1. In the `executeFilterCommand` method, the program will:
+    1. Use the `getTypeOfFilter` method in enumeration `FilterType` to get the filter type (`WORD_TYPE`, `STARTING_STRING` or `INCLUDING_STRING`). 
+    1. Use the `FilterCommandSlicer` static methods `isNewFilter` to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word list. 
+    1. check whether the user has entered a print limit using `FilterCommandSlicer`'s method `getWordPrintLimitFromFilterCommand`. 
+    1. Depending on the filter type, `getTargetedWordTypes` or `getTargetedStringTags` will be called to get an array of strings containing the word types or strings required for the filter process.
+    1. The array of strings will be passed to either one of `WordsFilter`’s static methods `filterByType` `filterByStartingString` and `filterByIncludedString` to process the filtering.
+    1. Call the method `printFilterList` to print out the result.
+
+The following sequence diagram shows how the components interact with each other for the scenario where the user issues the command `filter -continue by\start limit\10 -cs -cg.`
 
 ![UML Filter word sequence diagram](graphics/diagrams/Sequence_FilterWords.png)
 
-<p align = "center"><i><b>Figure 5: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
+<p align = "center"><i><b>Figure 6: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
 
-In **Figure 5** above, the flow of the program is as follow:
+In **Figure 6** above, the flow of the program is as follow:
 1. After getting the `filter words` command, the `CommandExecutor` calls `executeFilterCommand` in `FilterExecutor` class.
 1. In the method `executeFilterCommand`, the method `getTypeOfFilter` of `FilterType` class is called to get the filter mode, which is `START`.
 1. Then, `FilterCommandSlicer`'s methods `isNewFilter`, `getWordPrintLimitFromFilterCommand`, `getTargetedStringTags` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
+    1. The returned result of `isNewFilter` method is `true`.
+    1. The returned result of `getWordPrintLimitFromFilterCommand` method is an integer `10`.
+    1. The returned result of `getTargetedStringTags` method is the array `["cs", "cg"]`
 1. The method `filterByStartString` in `WordsFilter` class in called to execute the main filter process.
-1. Filter list is printed by `printFilterList` method in `FilterList` class. The filter mode ends here.
+1. Filter list is printed by `printFilterList` method in `FilterList` class.
+1. The filter process ends.
    
 ### Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<center><i>Figure 6:  Bunny ideas UML Class Diagram</i></center>
+<center><i>Figure 7:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
@@ -192,7 +223,10 @@ generates an integer between 0 and the max number of `Bunny` idea in the `bunnie
 `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<center><i>Figure 7:  Bunny list UML Sequence Diagram</i></center>
+<center><i>
+  
+  
+  8:  Bunny list UML Sequence Diagram</i></center>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
 the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
@@ -229,7 +263,7 @@ exception, it is thrown from the methods in NamesDB class and Names class and ha
 
 ## Testing
 
-Put methods of testing here !!! JUnit test, Unit testing, integrated testing, ...
+Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
 
 ## Appendices
 
@@ -252,20 +286,84 @@ The application aims to provide the writer with the following services:
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
+|v1.0|user|I would like the app to have a word list|keep my list of favorite words and refer to them in my writings|
+|v1.0|writer|choose the name of the character generated from the database|write without thinking a lot about my character's name|
+|v1.0|writer|clear and edit the saved writings in my storage|easily change them later on|
+|v1.0|writer|generate words from my word list based on word type or some substrings|find the ideas to continue my writings|
+|v1.0|writer|continue to filter on my last filter list|narrow down the words I want to use|
 |v1.0|writer with a lot of fleeting ideas|a place I can temporarily store all my short ideas |find them easily when I need them|
-|v1.0|As a user, I would like an to hold a word bank|
-|v1.0|As a writer, I can choose the name of the character generated from the database|
-|v1.0|As a writer, I would like to have an app that randomly generate the words that help me to brainstorm for my writings|
-|v1.0|As a writer, I would like to clear and edit the saved writings in my storage|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-|v2.0|As a writer, I would like to have an app that list all the statistics from my past writings|
-|v2.0|As a user, I would like to get the inspiration from the app|
-|v2.0|As a user, I would like to have a database to refer to my scripts for future references|
+|v2.0|user|check my spelling automatically|don't spell wrongly|
+|v2.0|writer|have an app that list all the statistics from my past writings|
+|v2.0|user|get the inspiration from the app|improve my creative writing skills|
+|v2.0|user|have a database of my writings|refer to them in the future|
+|v2.0|writer who uses the filter function in v1.0|limit the filter words printed out on the screen|view them easily if the filter list has a lot of words|
+|v2.0|writer who is bad at sticking to an upload schedule|be reminded by the app which pieces I need to work on next|continue to hold my writing spirit|
+|v2.0|writer who frequently uses the app|save the words to local storage and load them when I start the app|save more words than usual|
+|v2.0|writer facing writers block|generate a random idea from my bunny storage|warm up or brainstorms on my writings|
+|v2.0|writer facing writers block|have an app that randomly generate the words|brainstorm for my writings based on those words|
 
 ### Appendix D: Non-Functional Requirements
 
-{Give non-functional requirements}
+- Should be a Command-line Interface application.
+- Should work on any common Operating System (Windows, Linux or OS-X platform) as long as Java 11 is installed in the system.
+- Should be user-friendly to new and expert creative writers with average typing speed.
+- Should help creative writers do their tasks faster by commands rather than any other programs that uses mouses and other pointing devices.
+- Should display characters in ISO basic Latin alphabet and basic numbers correctly.
+- Should have local storage of editable text files (.txt).
+- Should work without requiring an installer.
+- Should work for single user.
+- Should work without Internet connection.
 
 ## Instructions for manual testing
+Given below are the instructions to test Fluffle manually.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing/ Summary of UG}
+### Launch and Shutdown
+Following are the instructions to launch and shutdown Fluffle
+
+1. Verify that you have `Java11` or above version installed by typing `java --version` to your computer's terminal (Command Prompt for Windows, Terminal for MacOS)
+2. Get the lastest version of **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v2.0).
+3. Copy the file to the folder you want to use as the home folder for Fluffle.
+4. Type in the terminal `java -jar duke.jar` and press Enter. If the setup is correct, you should see something like below:
+```
+--------------------------------------------------------------
+Write a story with
+  ______ _        __  __ _
+ |  ____| |      / _|/ _| |
+ | |__  | |_   _| |_| |_| | ___
+ |  __| | | | | |  _|  _| |/ _ \
+ | |    | | |_| | | | | | |  __/
+ |_|    |_|\__,_|_| |_| |_|\___|
+--------------------------------------------------------------
+Hello User! Welcome to Fluffle!
+What can I do for you?
+--------------------------------------------------------------
+What is your name?
+```
+5. After entering your name, try typing the `help` command and press Enter to get started.
+6. Some example commands you can try:
+    1. `noun computer d\ a smart machine`: to add a noun to your word list.
+    1. `list word`: to view your word list.
+7. If you want to shutdown Fluffle, use the command `exit`.
+
+Following are the commands to help you test Fluffle manually.
+
+### Basic commands
+
+### Words list command
+
+### Bunnies list command
+
+### Names list command
+
+### Writings list command
+#### Getting reminders for your writings schedules for a specific day: `remind`
+* Test case: `remind 01/12/2020`. 
+* Expected output:
+```
+On 01/12/2020, you should continue on the following writing(s):
+1.
+  Id: 222
+  Title: CS2113T Final
+```
+
+For a more specific explanation of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).

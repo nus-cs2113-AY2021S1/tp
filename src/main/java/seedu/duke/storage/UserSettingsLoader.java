@@ -1,7 +1,7 @@
 package seedu.duke.storage;
 
 import seedu.duke.exceptions.SettingObjectWrongFormatException;
-import seedu.duke.parsers.Parsers;
+import seedu.duke.common.Parsers;
 
 import java.io.FileNotFoundException;
 

@@ -1,10 +1,10 @@
 package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
-import seedu.duke.exceptions.CommandInvalidException;
-import seedu.duke.exceptions.MissingFilterOptionsException;
+import seedu.duke.exceptions.bunnyexceptions.CommandInvalidException;
+import seedu.duke.exceptions.bunnyexceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.MissingParamsException;
-import seedu.duke.exceptions.NoFilteredItemsException;
+import seedu.duke.exceptions.bunnyexceptions.NoFilteredItemsException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import static seedu.duke.constants.Tags.GENRE_TAG;
 import static seedu.duke.constants.Tags.IDEA_TAG;
-import static seedu.duke.parsers.Parsers.parseSingleCharacterTaggedParamsFromUserInput;
+import static seedu.duke.common.Parsers.parseSingleCharacterTaggedParamsFromUserInput;
 import static seedu.duke.ui.UI.printFilteredBunny;
 
 public class BunnyFilter {

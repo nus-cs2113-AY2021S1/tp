@@ -2,11 +2,11 @@ package seedu.duke.wordlist.wordfilter;
 
 import seedu.duke.constants.FluffleMessages;
 import seedu.duke.constants.Tags;
-import seedu.duke.exceptions.FilterCommandException;
-import seedu.duke.exceptions.FilterEmptyStringTagException;
-import seedu.duke.exceptions.FilterMissingTargetStringsTagException;
-import seedu.duke.exceptions.FilterMissingTargetWordTypeException;
-import seedu.duke.exceptions.FilterWordsInvalidWordType;
+import seedu.duke.exceptions.wordexceptions.FilterCommandException;
+import seedu.duke.exceptions.wordexceptions.FilterEmptyStringTagException;
+import seedu.duke.exceptions.wordexceptions.FilterMissingTargetStringsTagException;
+import seedu.duke.exceptions.wordexceptions.FilterMissingTargetWordTypeException;
+import seedu.duke.exceptions.wordexceptions.FilterWordsInvalidWordType;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@ package seedu.duke.wordlist.wordfilter;
 
 import seedu.duke.constants.FluffleMessages;
 import seedu.duke.constants.Tags;
-import seedu.duke.parsers.Parsers;
+import seedu.duke.common.Parsers;
 import seedu.duke.ui.UI;
 import seedu.duke.words.Words;
 

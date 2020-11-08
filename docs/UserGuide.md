@@ -714,28 +714,28 @@ The following table summarizes all the commands that you need to know when using
 |--------------|-------------------------------------------------------------------------------------------------------|
 | divider      | `divider DIVIDER_OPTION` <br>Example: `divider 2` <br> The list of dividers is: <br>   1. -------------------------------------------------------------- <br>  2. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^= <br>  3. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ |  
 | help         | `help` <br> Look through help guide
-| clear        | `clear`<br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`</br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list</br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  |
+| clear        | `clear`<br>`clear type\[TYPE_OF_ITEM] item\[SPECIFICATION_MARK_OF_THE _OBJECT]`<br>TYPE_OF_ITEM:<br>- word: specify that you are trying to clear a word from word list<br>- Writing: specify that you are trying to clear a writing from writing list<br>SPECIFICATION_MARK<br>- If the object is a word, then clear with the respective name<br>- If the object is a writing, then clear with respective id|                                  |
 | exit         | `exit`<br>Exits the program.  
 | noun         | `noun [WORD] d\[DESCRIPTION]`<br>Example: `noun bus d\vehicle`                                       |
 | verb         | `verb [WORD] d\[DESCRIPTION]`<br>Example: `verb eat d\to consume`                                    |
 | adjective    | `adj [WORD] d\[DESCRIPTION]`<br>Example: `adj hungry d\having the desire to consume food`            |
 | three words  | `three words`<br>Generates three random words from the word list in the program.                     |
 | list words   | `list words`<br>Lists all the words stored in the program.
-| filter words | `filter [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -TARGET_STRING...  `<br>`-continue` (optional): If you want to continue with your last filter list, provide this argument in your command.</br><br>`limit\PRINT_LIMIT` (optional): indicate number of words that you want to print from your filter list</br><br>`by\TYPE_OF_FILTER`:<br>- type: arguments can be `-verb`, `-noun` and `-adjective`<br>- start: arguments can be -STRING<br>- include: arguments can be -STRING|
-| list filter words  | `list filter [limit\PRINT_LIMIT]`<br>Print the filter list with a limited number of words indicated by `PRINT_LIMIT` (optional parameter)</br>|
+| filter words | `filter [-continue] [limit\PRINT_LIMIT] by\TYPE_OF_FILTER -TARGET_STRING...  `<br>`-continue` (optional): If you want to continue with your last filter list, provide this argument in your command.<br>`limit\PRINT_LIMIT` (optional): indicate number of words that you want to print from your filter list<br>`by\TYPE_OF_FILTER`:<br>- type: arguments can be `-verb`, `-noun` and `-adjective`<br>- start: arguments can be -STRING<br>- include: arguments can be -STRING|
+| list filter words  | `list filter [limit\PRINT_LIMIT]`<br>Print the filter list with a limited number of words indicated by `PRINT_LIMIT` (optional parameter)|
 | bunny        | `bunny i\IDEA g\[GENRE]`<br>Adds a bunny idea to the list of bunnies in the current run.             |
 | list bunny   | `list bunny`<br>Lists all the bunny ideas.                                                           |
 | filter bunny | `filter bunny i\IDEA g\[GENRE]`<br>Filters bunny by terms in idea or genre (must have at least 1 filter parameter)|
 | save bunny   | `save bunny`<br>Saves all the bunny ideas into a text file.                                          |
-| delete bunny | `delete bunny BUNNY_INDEX` </br>Deletes a selected bunny from the list. <\br>`BUNNY_INDEX` is the index of the bunny in the list|
+| delete bunny | `delete bunny BUNNY_INDEX` <br>Deletes a selected bunny from the list. <br>`BUNNY_INDEX` is the index of the bunny in the list|
 | random bunny | `random bunny` <br>Selects a random bunny from the list.|
 | name         | `name`<br>Generates a random name.                                                                   |
 | list name    | `list name`<br>List all the stored names.                                                            |
 | filter name  | `filter name <NAME>`<br>Gets the list of names after filtering.                                      |
 | add name     | `add name <NAME>`<br>Adds a name to the list of stored names.                                        |
 | delete name  | `delete name <INDEX>`<br>Removes a name from the list of stored names given the index.               |
-| stats        | `stats`<br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..</br>This is a poem  <br>Written by Goethe</br>Id: 5 <br> DER ERLKÖNIG</br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.</br>This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
-| remind       | `remind DATE`<br> Show you which writings are scheduled on a specific day.</br><br> Example usage: `remind 30/10/2020`|
+| stats        | `stats`<br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..<br>This is a poem  <br>Written by Goethe<br>Id: 5 <br> DER ERLKÖNIG<br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.<br>This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
+| remind       | `remind DATE`<br> Show you which writings are scheduled on a specific day.<br> Example usage: `remind 30/10/2020`|
 | list         | `list`                                                                                                |
 | reset        | `reset <NAME_OF_CATEGORY>`<br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |                                                                                  |    
 

@@ -1,7 +1,7 @@
 package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
-import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
+import seedu.duke.exceptions.bunnyexceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;

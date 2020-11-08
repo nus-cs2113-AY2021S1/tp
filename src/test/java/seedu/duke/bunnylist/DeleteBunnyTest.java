@@ -1,7 +1,7 @@
 package seedu.duke.bunnylist;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
+import seedu.duke.exceptions.bunnyexceptions.BunnyIndexOutOfBoundsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.bunnylist.BunnyList.bunniesList;

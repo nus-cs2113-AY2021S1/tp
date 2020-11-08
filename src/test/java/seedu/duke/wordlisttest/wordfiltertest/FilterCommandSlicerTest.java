@@ -1,10 +1,10 @@
 package seedu.duke.wordlisttest.wordfiltertest;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.FilterEmptyStringTagException;
-import seedu.duke.exceptions.FilterMissingTargetStringsTagException;
-import seedu.duke.exceptions.FilterMissingTargetWordTypeException;
-import seedu.duke.exceptions.FilterWordsInvalidWordType;
+import seedu.duke.exceptions.wordexceptions.FilterEmptyStringTagException;
+import seedu.duke.exceptions.wordexceptions.FilterMissingTargetStringsTagException;
+import seedu.duke.exceptions.wordexceptions.FilterMissingTargetWordTypeException;
+import seedu.duke.exceptions.wordexceptions.FilterWordsInvalidWordType;
 import seedu.duke.wordlist.wordfilter.FilterCommandSlicer;
 
 import java.util.Arrays;
