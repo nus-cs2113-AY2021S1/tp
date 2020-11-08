@@ -24,6 +24,8 @@ enhancements.
   * [3.7. Dining options finder (`/dine` Feature)](#37-dining-options-finder-dine-feature)
   * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
   * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
+  * [3.11. Displaying most searched bus stop](#311-displaying-most-searched-bus-stop-on-start-up)
+    + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies)
 - [4. Appendix I: Requirements](#4-appendix-i-requirements)
   * [4.1 Product scope](#41-product-scope)
     + [4.1.1 Target user profile](#411-target-user-profile)
@@ -152,16 +154,34 @@ bus route.
 The class diagram in the figure below shows how different classes used for implementation of the `/routemap` command 
 are linked to each other.
 
-![RouteCommandClass](DG_Diagrams/RouteMapCommandClass.png)
+![RouteCommandClass](DG_Diagrams/RouteMapCommand/RouteMapCommand.png)
 
 The `RouteMapCommand#executeCommand()` method of RouteMapCommand Class executes the command in the following steps:
-1. Calls `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
+1. Calls `RouteMapCommand#selectAndPrintBusRoute()`to attempt to retrieve user-specified bus code. (Bus code is stored
+as a string variable in the command)
+2. Calls `RouteMapCommand#checkBusCode()` to make sure bus code entered by the user is not empty or a white-space.
+3. Calls static `BusData#selectBus()` to find the user-specified bus in the bus data list. If found, the Bus object will be 
 returned. Else, null is returned.
-2. Calls `Ui#printFullRoute()` to display full route of the specified bus.
+4. Calls `Ui#printFullRoute()` to display full route of the specified bus.
 
-The following sequence diagram explains the above steps when the user searches for the full route of a bus.
+The following sequence diagram explains the above steps when the user enters `/routemap busCode`.
+![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)
+The following sequence diagrams explain the interactions for bus route retrieval.
+![Internal](DG_Diagrams/RouteMapCommand/RouteMapCommandSeq.png)
 
-![Overview](DG_Diagrams/RouteMapCommandSeq.png)
+#### Design Considerations
+##### Aspect: Retrieval of bus routes
+* **Alternative 1 (current choice):** Each bus is an object that contains the bus number and full route as an ArrayList
+of busStops objects.
+    + Pros: It is easy to maintain and updating of bus stops and bus codes are easier to implement.
+    + Cons: Has to loop through the array of bus stops and obtain their individual bus description.
+     
+* **Alternative 2:** The full route of each bus is stored in a string format and is directly accessed.
+    + Pros: It is easier and quicker to print out the full route of a user-specfied bus.
+    + Cons: Alot of manual work is needed if the bus route/ bus stop is updated. It is not scaleable for large-scale 
+    projects.
+    
+Given the above alternatives, alternative 1 was used considering the scalability of the application.
 
 ###3.3. List All stops (/liststops Feature)
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
@@ -311,6 +331,34 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
+
+### 3.11 Displaying most searched bus stop on start-up
+This feature informs the user about their most searched bus stop.
+There is no function to explicitly call it and is executed only during Nav@NUS's start up.
+
+The following steps explain how the most searched bus stop is displayed.
+1.On start-up, `Ui#printWelcomeMessage()` is called. <br>
+2.`Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
+3.`BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
+
+The following steps explain how the search frequencies of each bus are updated.
+1. Whenever the user enters a valid command (`/route` or `/bus`) that requires bus stops, `BusStops#findBusStop()` is 
+called to locate the specified bus stop.
+2. `BusStops#incrementSearchCount()` is called to increase the search count of the bus stop.
+
+
+### 3.11.1 Resetting search frequencies of bus stops
+This feature allows the user to reset the search frequencies of all bus stops.
+
+The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand Class executes the command in the following steps:
+1.`BusStops#resetSearchFrequency()` is called to re-initialise all search counts of respective bus stops to zero.
+2. `Ui#printResetSearchFreqMessage()` is called to inform the user that all search counts have been resetted.
+
+### 3.12 Removing specific delete command (`/deletefav` Feature)
+`/deletefav <index>` is the command to remove a favourite command in the user's list of favourite commands. It allows the
+user to customise the list of favourite commands to the user's liking.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
 
 ## 4. Appendix I: Requirements
 
