@@ -56,6 +56,12 @@ public class BusData {
         return null;
     }
 
+    /**
+     *  Get Buses which bus routes contain particular busStop.
+     *
+     * @param busStop busStop name to search for the routes of buses
+     * @return arraylist of buses which stop at particular busStop
+     */
     public static ArrayList<Bus> getBusAtStop(String busStop) {
         ArrayList<Bus> busList = new ArrayList<>();
         for (Bus bus : buses) {
@@ -74,6 +80,11 @@ public class BusData {
         return buses;
     }
 
+    /**
+     * Gets all search counts of each bus stop to be stored for future use.
+     *
+     * @return allSearchCount ArrayList of integers
+     */
     public static ArrayList<Integer> getAllSearchCount() {
         ArrayList<Integer> allSearchCount = new ArrayList<Integer>();
         for (BusStops busStop : EnumSet.allOf(BusStops.class)) {

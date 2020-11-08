@@ -32,6 +32,12 @@ public class DineInfoCommand extends Command {
         printLine();
     }
 
+    /**
+     * Checks for any match between the user input and the data, and adds the matching data to searchList.
+     * Calls printDineInfoResult() to print the data in searchList.
+     *
+     * @param foodPlaceList contains data of all dining options
+     */
     private void checkFoodPlace(ArrayList<FoodPlace> foodPlaceList) {
         assert foodPlaceList != null : "Data not available.";
         ArrayList<DiningOptions> searchList = new ArrayList<>();

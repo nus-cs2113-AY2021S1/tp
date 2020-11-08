@@ -12,7 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * Stores FavList in txt file.
+ */
 public class FavStorage extends Storage {
     private static final String FILE_READ = "FavList.txt Read with no issues";
     private File file;
@@ -25,7 +27,11 @@ public class FavStorage extends Storage {
         file = getFile();
     }
 
-
+    /**
+     * Reads file and prints corrupted file message if file corrupted.
+     *
+     * @throws FileNotFoundException if file not found
+     */
     @Override
     public void readFile() throws FileNotFoundException {
         Scanner s = new Scanner(file);
@@ -39,6 +45,11 @@ public class FavStorage extends Storage {
         System.out.println(FILE_READ);
     }
 
+    /**
+     * Reads line in txt file and adds required Fav objects to FavList.
+     *
+     * @param entry if number of delimiter not 1 or command does not contain "/"
+     */
     private void readLine(String entry) {
         String[] entryWords = entry.split("\\|",2);
         if (entryWords.length != 2 || entryWords[1].isBlank()) {
@@ -65,6 +76,12 @@ public class FavStorage extends Storage {
         boolean isValidCommand = VALID_COMMANDS.contains(commandType);
         return isValidCommand;
     }
+
+    /**
+     * Updates file based on FavList.
+     *
+     * @throws IOException if file cannot be updated
+     */
 
     @Override
     public void updateFile() throws IOException {

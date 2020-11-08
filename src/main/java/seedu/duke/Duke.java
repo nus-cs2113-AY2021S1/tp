@@ -36,6 +36,10 @@ public class Duke {
         Ui.printWelcomeMessage();
         parser = new Parser(DUMMY_PARAM);
         boolean isOngoing = true;
+        executeCommand(isOngoing);
+    }
+
+    private static void executeCommand(boolean isOngoing) throws IOException {
         while (isOngoing) {
             try {
                 String fullCommand = Ui.getCommand();

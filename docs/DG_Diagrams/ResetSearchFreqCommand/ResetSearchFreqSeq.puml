@@ -1,0 +1,49 @@
+@startuml
+skinparam BoxPadding 5
+box logic #B6D8F2
+participant ":Parser"
+participant ":ResetSearchFreqCommand"
+end box
+box model #9AC8EB
+participant "<<class>>\n:BusStops"
+end box
+box Ui #5784BA
+participant "<<class>>\n:Ui"
+end box
+[-> ":Parser" : setUserInput("/reset")
+activate ":Parser"
+[<-- ":Parser"
+deactivate ":Parser"
+
+[-> ":Parser" : extractType()
+activate ":Parser"
+create ":ResetSearchFreqCommand"
+":Parser" -> ":ResetSearchFreqCommand"
+activate ":ResetSearchFreqCommand"
+":ResetSearchFreqCommand" --> ":Parser"
+deactivate ":ResetSearchFreqCommand"
+":Parser" -> ":ResetSearchFreqCommand" : executeCommand()
+activate ":ResetSearchFreqCommand"
+
+":ResetSearchFreqCommand" -> "<<class>>\n:BusStops" : resetSearchFrequency()
+activate "<<class>>\n:BusStops"
+loop number of bus stops
+"<<class>>\n:BusStops" -> "<<class>>\n:BusStops" : setCount(0);
+activate "<<class>>\n:BusStops"
+ "<<class>>\n:BusStops" --> "<<class>>\n:BusStops"
+ deactivate "<<class>>\n:BusStops"
+end
+"<<class>>\n:BusStops" --> ":ResetSearchFreqCommand"
+deactivate "<<class>>\n:BusStops"
+
+":ResetSearchFreqCommand" -> "<<class>>\n:Ui" :printResetSearchFreqMessage()
+activate "<<class>>\n:Ui"
+"<<class>>\n:Ui" --> ":ResetSearchFreqCommand"
+deactivate "<<class>>\n:Ui"
+
+":ResetSearchFreqCommand" --> ":Parser"
+deactivate ":ResetSearchFreqCommand"
+[<--":Parser" : Boolean isOngoing
+deactivate ":Parser"
+
+@enduml
