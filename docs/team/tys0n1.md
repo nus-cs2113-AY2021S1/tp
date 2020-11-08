@@ -16,7 +16,8 @@ It also allows unified inputs in each mode which reduces the number of commands 
 The **show** command allows users to view the changes they had made to their timetable to see if they made correct changes. They can also and view upcoming lessons and get prepared for them ahead of time.
 *	Highlights: The **mode** enhancement works with existing as well as future commands. 
 The logic of the App is modularized such that additional modes can be added easily. 
-The **show** command to view the timetable is unified with viewing bookmarks attached to lesson slots. The algorithm searches for keywords which differentiates the two different features.
+The **show** command to view the timetable is unified with the command to view bookmarks attached to lesson slots. 
+The algorithm searches for keywords within the input command to decode if it is to view the timetable or the bookmarks.
 
 **Code contributed:** Please click these links to see a sample of my code: [Functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=w11&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=TYS0n1&tabRepo=AY2021S1-CS2113T-W11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code) 
 [Test code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=w11&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=TYS0n1&tabRepo=AY2021S1-CS2113T-W11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code)
@@ -25,7 +26,7 @@ The **show** command to view the timetable is unified with viewing bookmarks att
 * Project management:
     * There was a total of 3 releases, from version 1.0 to 2.1. I managed release version 2.0 on GitHub.
 * Enhancements to existing features:
-    * Adjusted colour scheme of a few print statements to allow users to see better against a dark background: 
+    * Adjusted colour scheme of a few print statements to allow users to see text better against a dark background: 
     [#174](https://github.com/AY2021S1-CS2113T-W11-1/tp/pull/174), [#176](https://github.com/AY2021S1-CS2113T-W11-1/tp/pull/176)
 * Documentation:
     * Created navigation links to different sections for table of content to allow quick navigation by the readers: 
