@@ -182,7 +182,7 @@ generally indicates whether an operation has failed.
     }
 ```
 
-### Logic Component
+### <a name = impl_logic></a>Logic Component
 ![](uml_images/images_updated/Logic.png)
 **ParamChecker** <br />
 1. Contains a set of public static methods which are used to verify the correctness of `param` in the 
@@ -321,8 +321,8 @@ instead of ```Ledger```. Entry Tracker is initialized when a ```Ledger``` instan
 the Entry Tracker facilitate the manipulation of the collection of ```Entry``` instances that are associated with
 that particular ```Ledger``` instance.
 
-For the sake of brevity, this section will focus on the discussion of the Manual Tracker. Section [2.2.2.3] (#2.2.2.3) will describe
-the edit operation of the Entry Tracker, which is sufficiently unique to Manual Tracker operations to merit detailed discussion.
+For the sake of brevity, this section will focus on the discussion of the Manual Tracker. 
+The edit operation of the Entry Tracker will be discussed at the [end of this section](#entryseq); it is sufficiently unique to Manual Tracker operations to merit detailed discussion.
 
 The Manual Tracker is capable of executing the following states of operation:
 
@@ -335,7 +335,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 **Architecture in Context** <br />
 
-**Logic Manager and Parser** <br />
+**<a name = logicManager_parser></a>Logic Manager and Parser** <br />
 
 ![](uml_images/images_updated/Handler_Parser.png)
 
@@ -343,16 +343,16 @@ The Manual Tracker is capable of executing the following states of operation:
 |--------|----------|
 |```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.
 |```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.
-|```ManualTracker```| [Refer to section above](#LogicManagerAndHandler).
+|```ManualTracker```| [Refer to section](#logicManager_handler).
 |```EntryTracker```| Omitted for brevity.
 
-**Logic Manager and Data** <br />
+**<a name = logic_data></a>Logic Manager and Data** <br />
 
 ![](uml_images/images_updated/Handler_Data.png)
 
 |Class| Function |
 |--------|--------|
-|```ManualTracker```| [Refer to section above](#LogicManagerAndHandler).
+|```ManualTracker```| [Refer to section](#LogicManagerAndHandler).
 |```EntryTracker```| Omitted for brevity.
 |```EntryList```| Omitted for brevity.
 |```Entry```| Omitted for brevity.
@@ -362,7 +362,7 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DateTimeItem```| Abstract class that extends ```Item``` class; instances will have ```LocalDate``` or ```LocalTime``` attributes and corresponding helper methods.
 |```Item```| Abstract class to define behavior of entities that need are stored in ```ItemList``` instances.
 
-**Handler and Logic** <br />
+**<a name = handler_logic></a>Handler and Logic** <br />
 
 ![](uml_images/images_updated/Commands_Logic.png)
 
@@ -376,14 +376,14 @@ The Manual Tracker is capable of executing the following states of operation:
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
 
-**Logic Manager and Handler** <br />
+**<a name = logicManagers_handler></a>Logic Manager and Handler** <br />
 
 ![](uml_images/images_updated/Handler_Commands.png)
 
 |Class| Function |
 |--------|----------|
-|```retrieveledgerHandler```| [Refer to section above](#handlerAndLogic).
-|```createledgerHandler```| [Refer to section above](#handlerAndLogic).
+|```retrieveledgerHandler```| [Refer to section](#handler_logic).
+|```createledgerHandler```| [Refer to section](#handler_logic).
 |```retrieveEntryHandler```| Omitted for brevity.
 |```createentryHandler```| Omitted for brevity.
 |```editEntryHandler```| Omitted for brevity.
@@ -403,7 +403,7 @@ In this case, ```handleCreateLedger()``` will be called.
     ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
     1. A new instance of ```Ledger``` will be instantiated and set to ```createledgerHandler.currLedger```.
     1. ```createledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-        1. Refer to the [section on Param Handling](#paramHandling) for more details pertaining to general param handling. 
+        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
         1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
         
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
@@ -427,7 +427,7 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
         1. A new instance of ```retrieveledgerHandler``` is created. The input String array will be passed into 
         ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```deleteledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
+            1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
             1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
                 * Note that only one of the two params need to be invoked from the input. 
             
@@ -442,19 +442,19 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
 
 ![](uml_images/images_updated/manualTrackerDeleteLedgerSeqDiagram.png)
 
-**Entry Tracker: Edit of entries** <br />
+**<a name = entryseq></a>Entry Tracker: Edit of entries** <br />
 The editing of details within the entry is performed in two phases: Entry Retrieval and Entry Edit.
 1. __Phase 0: Instruction retrieval__ 
     1. At ```EntryTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
-    1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
+    1. Input is parsed by ```InputParser.parseInput()```, and ```EntryTracker.packet``` is set to the returned ```CommandPacket``` instance.
     1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
     In this case, ```handleEditEntry()``` will be called.
 1. __Phase 1: Entry retrieval__
     1. At ```handleEditEntry()```, the following processes will be executed:
-        1. A singleton instance of ```retrieveentryHandler``` is retrieved. The input String array will be passed into 
+        1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
         ```retrieveentryHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```retrieveentryHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
+            1. Refer to the section on [Param Handling](#impl_logicg) for more details pertaining to general param handling. 
             1. For ```retrieveentryHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
             
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
@@ -465,11 +465,11 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 
 1. __Phase 2: Entry edit__
     1. Following Phase 1, the following processes will be executed:
-        1. The singleton instance of ```editentryHandler``` is retrieved. There is no need to call ```editentryHandler.setRequiredParams()```
+        1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
         1. `editeEntryHandler.setPacket(packet)` is called to set packet.
     1. ```editentryHandler.handlePacket()``` is called to handle params in the packet.
-        1. Refer to the section on [Param Handling](#paramHandling) for more details pertaining to general param handling. 
+        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
         1. For ```editentryHandler```, the ```handleSingleParam``` abstract method will be implemented as follows:
             
 |ParamType|ParamType String| Expected Param | Operation | Verification method |

@@ -1,4 +1,5 @@
 @startuml
+scale 1094 width
 hide circle
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 20

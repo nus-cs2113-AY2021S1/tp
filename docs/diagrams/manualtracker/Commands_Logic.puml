@@ -1,6 +1,7 @@
 @startuml
 left to right direction
 hide circle
+scale 1094 width
 skinparam classAttributeIconSize 0
 skinparam BoxPadding 20
 skinparam shadowing false

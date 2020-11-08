@@ -2,79 +2,22 @@
 autoactivate on
 actor User
 skinparam shadowing false
-
+scale 1094 width
 skinparam sequence {
-ActorBorderColor white
-
-ActorBackgroundColor white
-ActorFontColor white
-ActorFontSize 17
-ActorFontName ""
+    ActorBorderColor white
+    
+    ActorBackgroundColor white
+    ActorFontColor white
+    ActorFontSize 17
+    ActorFontName ""
 }
 
-User -> ":EntryTracker": Create Entry
-":EntryTracker" ->":EntryTracker": handleCreateEntry()
-    create "command:createEntryHandler"
-   ":EntryTracker"-> "command:createEntryHandler" : createEntryHandler()
-    return createEntryHandler.handler
-
-   ":EntryTracker"-> "command:createEntryHandler" : handlePacket
-
-        create "entry:Entry"
-        "command:createEntryHandler" -> "entry:Entry" : Entry()
-        return
-        == Handling of Params in packet ==
-        "command:createEntryHandler" -> "command:createEntryHandler" : handleParams
-            "command:createEntryHandler" -> ":ParamChecker" : setPacket(packet)
-            return
-            loop For all paramType in the command packet
-                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
-                "command:createEntryHandler" -> "command:createEntryHandler" : handleSingleParam
-                    alt "paramType = PARAM_TIME"
-                        "command:createEntryHandler" ->":ParamChecker": checkAndReturnTime(paramType)
-                        return time
-                        "command:createEntryHandler" -> "entry:Entry" : setTime(time)
-                        return
-                    else "paramType = PARAM_AMOUNT"
-                        "command:createEntryHandler" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
-                        return amount
-                        "command:createEntryHandler" -> "entry:Entry" : setAmount(amount)
-                        return
-                    else "paramType = PARAM_INC"
-                        "command:createEntryHandler" -> "entry:Entry" : setEntryType(EntryType.INC)
-                        return
-                    else "paramType = PARAM_EXP"
-                        "command:createEntryHandler" -> "entry:Entry" : setEntryType(EntryType.EXP)
-                        return
-                    else "paramType = PARAM_DESCRIPTION"
-                        "command:createEntryHandler" -> "entry:Entry" : setDescription(description)
-                        return
-                    else "paramType = PARAM_CATEGORY"
-                        "command:createEntryHandler" ->":ParamChecker": checkAndReturnCategory(paramType)
-                        return
-                        "command:createEntryHandler" -> "entry:Entry" : setCategory()
-                        return
-                    end
-                return
-            end
-        return
-   return
-   == Retrieval of newly created entry from the command instance ==
-   ":EntryTracker"-> "command:createEntryHandler" : getCurrEntry()
-   return entry
-   == Storing of entry into entryList ==
-   ":EntryTracker"-> "entryList:EntryList" : addItem(entry)
-    return
-
-return state
-return
-
 box "Data Tracker " #LightYellow
-participant ":EntryTracker"
+participant ":EntryTracker" as entryTracker <<class>>
 endBox
 
 box "Logic" #LightBlue
-participant "command:createEntryHandler"
+participant ":CreateEntryHandler"
 participant ":ParamChecker"
 endBox
 
@@ -82,4 +25,62 @@ box "Data" #LightGreen
 participant "entry:Entry"
 participant "entryList:EntryList"
 endBox
+
+User -> entryTracker: Create Entry
+entryTracker ->entryTracker: handleCreateEntry()
+   entryTracker-> ":CreateEntryHandler" : getInstance()
+    return handler
+
+   entryTracker-> ":CreateEntryHandler" : handlePacket
+
+        create "entry:Entry"
+        ":CreateEntryHandler" -> "entry:Entry" : Entry()
+        return
+        == Handling of Params in packet ==
+        ":CreateEntryHandler" -> ":CreateEntryHandler" : handleParams
+            ":CreateEntryHandler" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                ":CreateEntryHandler" -> ":CreateEntryHandler" : handleSingleParam
+                    alt "paramType = PARAM_TIME"
+                        ":CreateEntryHandler" ->":ParamChecker": checkAndReturnTime(paramType)
+                        return time
+                        ":CreateEntryHandler" -> "entry:Entry" : setTime(time)
+                        return
+                    else "paramType = PARAM_AMOUNT"
+                        ":CreateEntryHandler" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
+                        return amount
+                        ":CreateEntryHandler" -> "entry:Entry" : setAmount(amount)
+                        return
+                    else "paramType = PARAM_INC"
+                        ":CreateEntryHandler" -> "entry:Entry" : setEntryType(EntryType.INC)
+                        return
+                    else "paramType = PARAM_EXP"
+                        ":CreateEntryHandler" -> "entry:Entry" : setEntryType(EntryType.EXP)
+                        return
+                    else "paramType = PARAM_DESCRIPTION"
+                        ":CreateEntryHandler" -> "entry:Entry" : setDescription(description)
+                        return
+                    else "paramType = PARAM_CATEGORY"
+                        ":CreateEntryHandler" ->":ParamChecker": checkAndReturnCategory(paramType)
+                        return
+                        ":CreateEntryHandler" -> "entry:Entry" : setCategory()
+                        return
+                    end
+                return
+            end
+        return
+   return
+   == Retrieval of newly created entry from the command instance ==
+   entryTracker-> ":CreateEntryHandler" : getCurrEntry()
+   return entry
+   == Storing of entry into entryList ==
+   entryTracker-> "entryList:EntryList" : addItem(entry)
+    return
+
+return 
+return
+
+
 @enduml
