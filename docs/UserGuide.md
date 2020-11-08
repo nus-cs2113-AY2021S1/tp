@@ -283,8 +283,9 @@ Expected output:
 
 If you encounter any errors, take note of the following warnings. 
 
-**Warning:** 
-* Ensure that the category name is not empty. Error will be shown if the category name is empty. 
+>**Warning:** 
+>* Ensure that the category name is not empty. Error will be shown if the category name is empty. 
+>* You can only add unique category name.
 
 ### 1.4 Deleting a category:  `delete CATEGORY_NUMBER`  
 
