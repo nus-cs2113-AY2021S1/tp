@@ -3,6 +3,8 @@ package seedu.modtracker;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Represents a module list. A <code>ModuleList</code> object corresponds to
@@ -29,8 +31,8 @@ public class ModuleList {
     private static final int MAX_TIME_HOURS = 99;
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
-    private static final int EMPTY = 0;
     public static double NO_INPUT = -1.0;
+    private static Logger logger = Logger.getLogger(ModuleList.class.getName());
 
 
     /**
@@ -256,6 +258,7 @@ public class ModuleList {
      */
     public void addExp(String input, boolean toPrint, Storage storage) {
         try {
+            logger.setLevel(Level.INFO);
             String[] modInfo = input.trim().split(" ", 3);
             String modCode = modInfo[1];
             String expTime = modInfo[2];
@@ -299,6 +302,7 @@ public class ModuleList {
             ui.printAddExpError(toPrint);
             ui.printEmptyline(toPrint);
         } catch (NumberFormatException nfe) {
+            logger.log(Level.INFO, "Invalid number format");
             ui.printAddExpNfe(toPrint);
         }
     }
