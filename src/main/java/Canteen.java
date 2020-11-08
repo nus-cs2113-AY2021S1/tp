@@ -40,7 +40,7 @@ public class Canteen {
      * @return int
      */
     public int getCloseTime(int dayOfWeek) {
-        return closeTime.get(dayOfWeek-1);
+        return closeTime.get(dayOfWeek);
     }
 
     /**
