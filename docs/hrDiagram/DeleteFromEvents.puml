@@ -1,5 +1,5 @@
 @startuml
--> ":MemberList" : deleteFromEvents()
+-> ":MemberList" : deleteFromEvents(memberName)
 activate ":MemberList"
 loop eventSize
 ":MemberList" -> ":EventList"
@@ -10,7 +10,10 @@ activate ":Event"
 deactivate ":Event"
 ":EventList" --> ":MemberList" : eventName
 deactivate ":EventList"
-":MemberList" -> ":EventList" : deleteAttendance()
+":MemberList" -> ":EventList" : deleteAttendance(eventName, memberName)
+ref over ":MemberList", ":EventList", ":Event"
+deleteAttendance(eventName, memberName)
+end ref
 activate ":EventList"
 ":EventList" --> ":MemberList"
 deactivate ":EventList"

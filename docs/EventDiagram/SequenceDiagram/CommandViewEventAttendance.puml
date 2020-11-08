@@ -2,13 +2,13 @@
  -> ":CommandViewEventAttendance": execute()
 
 activate ":CommandViewEventAttendance"
-":CommandViewEventAttendance" -> ":EventList" : listAttendance()
+":CommandViewEventAttendance" -> ":EventList" : listAttendance(eventName)
 activate ":EventList"
-":EventList" -> ":EventList" : checkEventExistence()
-opt eventExists
-    ":EventList" -> ":Event" : findEventByName()
+":EventList" -> ":EventList" : checkEventExistence(eventName)
+opt isEventExists
+    ":EventList" -> ":Event" : findEventByName(eventName)
     activate ":Event"
-    return e
+    return
     ":EventList" -> ":Event" : printEventParticipant()
     activate ":Event"
     return output

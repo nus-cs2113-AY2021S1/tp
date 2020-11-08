@@ -3,22 +3,20 @@
  -> ":CommandDelMember": execute()
 activate ":CommandDelMember"
 activate ":MemberList"
-":CommandDelMember" -> ":MemberList" : deleteFromList()
+":CommandDelMember" -> ":MemberList" : deleteFromList(index)
 activate ":MemberList"
 ":MemberList" -> ":Member" : toString()
 activate ":Member"
 ref over ":Member", ":MemberList"
-    updateEventAttendance
+    updateEventAttendance(memberName)
 end ref
 return output
+
 
 ref over ":MemberList", ":Member", ":EventList", ":Event"
-    deleteFromEvents
+    deleteFromEvents(memberName)
 end ref
-
-":MemberList" -> ":Member": remove()
-activate ":Member"
-return output
+":MemberList" -> ":Member" !!
 return output
 deactivate ":MemberList"
 <-- ":CommandDelMember" : output

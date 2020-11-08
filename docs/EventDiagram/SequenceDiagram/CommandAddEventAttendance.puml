@@ -2,46 +2,48 @@
  -> ":CommandAddEventAttendance": execute()
 
 activate ":CommandAddEventAttendance"
-":CommandAddEventAttendance" -> ":EventList" : addAttendance()
+":CommandAddEventAttendance" -> ":EventList" : addAttendance(eventName, memberName)
 activate ":EventList"
+":EventList" -> ":EventList" : checkEventExistence(eventName)
 opt event does not exist
-":EventList" -> ":EventList" : checkEventExistence()
 ":EventList" --> ":CommandAddEventAttendance" : output
 <-- ":CommandAddEventAttendance" : output
 end
-
-opt member does not exist
-":EventList" -> ":MemberList" : checkMemberExistence()
+":EventList" -> ":MemberList" : checkMemberExistence(memberName)
 activate ":MemberList"
-return
+":MemberList" -> ":EventList"
+deactivate ":MemberList"
+opt member does not exist
 ":EventList" --> ":CommandAddEventAttendance" : output
 <-- ":CommandAddEventAttendance" : output
 end
 
 activate ":EventList"
-":EventList" -> ":Event" : findEventByName()
+":EventList" -> ":Event" : findEventByName(eventName)
 activate ":Event"
 return
 
-opt member exists in event
-":EventList" -> ":MemberList" : checkEventExistence()
+":EventList" -> ":MemberList" : checkEventExistence(eventName)
+activate ":MemberList"
 ":MemberList" --> ":EventList"
 ":EventList" -> ":Event" : getEventParticipants()
 activate ":Event"
 return
+opt participant exists in event
+
 ":EventList" --> ":CommandAddEventAttendance" : output
 <-- ":CommandAddEventAttendance" : output
 end
 
 activate ":MemberList"
-":EventList" -> ":MemberList" :findMemberByName()
+":EventList" -> ":MemberList" :findMemberByName(memberName)
 activate ":MemberList"
-":MemberList" -> ":Member" : findEventByName()
+":MemberList" -> ":Member" : findEventByName(eventName)
 activate ":Member"
 return
 return
 
-":EventList" -> ":Event" : setEventParticipants()
+":EventList" -> ":Event" : setEventParticipants(m)
 activate ":Event"
 return
 

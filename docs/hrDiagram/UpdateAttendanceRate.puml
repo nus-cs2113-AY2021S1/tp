@@ -1,21 +1,21 @@
 @startuml
- -> ":MemberList" : updateAttendanceRate()
+ -> ":MemberList" : updateAttendanceRate(memberName)
  activate ":MemberList"
  loop eventSize
- ":MemberList" -> ":MemberList" : checkMemberExistence()
+ ":MemberList" -> ":MemberList" : checkMemberExistence(memberName)
  activate ":MemberList"
  ":MemberList" --> ":MemberList"
  deactivate ":MemberList"
  end
- ":MemberList" -> ":MemberList" : calculateAttendanceRate()
+ ":MemberList" -> ":MemberList" : calculateAttendanceRate(attended, shouldAttend)
  activate ":MemberList"
  ":MemberList" --> ":MemberList"
  deactivate ":MemberList"
- ":MemberList" -> ":Member" : findMemberByName()
+ ":MemberList" -> ":Member" : findMemberByName(memberName)
  activate ":Member"
  return
  deactivate ":Member"
- ":MemberList" -> ":Member" :setAttendanceRate()
+ ":MemberList" -> ":Member" :setAttendanceRate(attendanceRate)
  activate ":Member"
  return
  deactivate ":Member"
