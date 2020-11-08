@@ -20,6 +20,10 @@ public class Deadline extends Task {
         this.by = by;
         this.taskType = "D";
         this.isImportant = getIsImportant();
+        if (by.isBefore(LocalDate.now())) {
+            System.out.println("WARNING! The deadline has already passed! "
+                    + "May be you want to double confirm? Good Luck!\n");
+        }
     }
 
     /**

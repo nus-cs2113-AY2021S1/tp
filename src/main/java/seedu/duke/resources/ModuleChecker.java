@@ -3,11 +3,15 @@ package seedu.duke.resources;
 import com.alibaba.fastjson.JSON;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,20 +23,22 @@ public class ModuleChecker {
     private static final String LINE_SEPARATOR = " ";
 
     private boolean isValid;
+    private boolean isOnWifi;
 
     public ModuleChecker() {
         this.isValid = false;
+        this.isOnWifi = isConnectedToWifi();
     }
 
     /**
-     * Check if a given module code is valid with reference to NUSMod API.
+     * Check if a given module code is valid with reference to the module list provided by NUSMod API.
      *
      * @param moduleCode the module code provided by the user.
      * @return isValid   true if it is valid, false otherwise.
      */
     public boolean isModuleValid(String moduleCode) {
         HashMap<String, NusModule> modListMap = new HashMap<>();
-        modListMap = generateNusModsMap(LINK);
+        modListMap = generateNusModsMap();
 
         isValid = modListMap.containsKey(moduleCode.toUpperCase());
 
@@ -40,17 +46,60 @@ public class ModuleChecker {
     }
 
     /**
+     * Generate the NUS module HashMap using 2 different methods.
+     * If there is internet connection, NUS module HashMap is generated from the NUSMod API directly.
+     * If there is no internet, NUS module HashMap is generated from the local data file.
+     *
+     * @return NUS module HashMap.
+     */
+    private HashMap<String, NusModule> generateNusModsMap() {
+        if (isOnWifi) {
+            return generateNusModsMapFromOnlineApi();
+        } else {
+            return generateNusModsMapUsingLocalData();
+        }
+    }
+
+    /**
+     * Checks if the user's computer is connected to wifi and make sure the HTTP request to NUSMod API is successful.
+     *
+     * @return TRUE if there is internet connect, FALSE otherwise.
+     */
+    private boolean isConnectedToWifi() {
+        int httpEcho;
+        try {
+            URL url = new URL(LINK);
+            URLConnection myConnection = url.openConnection();// try to connect and echo back
+            HttpURLConnection httpUrlConnection = (HttpURLConnection) myConnection;
+            httpEcho = httpUrlConnection.getResponseCode();
+            if (httpEcho != HttpURLConnection.HTTP_OK) {
+                System.out.println("Cannot connect website!");
+                isOnWifi = false;
+            }
+        } catch (UnknownHostException e) {
+            System.out.println("No internet connection! Verifying module code using local data....\n");
+            isOnWifi = false;
+        } catch (NoRouteToHostException e) {
+            System.out.println("No internet connection! Verifying module code using local data....\n");
+            isOnWifi = false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            isOnWifi = false;
+        }
+        return isOnWifi;
+    }
+
+    /**
      * Generate a hashmap which maps the module code to a NusModule object/class.
      *
-     * @param onlineLink the URL link to the JSON file generated from NUSMod's API.
      * @return generatedNusModsList  a hash map containing the module code information only.
      */
-    private static HashMap<String, NusModule> generateNusModsMap(String onlineLink) {
+    private HashMap<String, NusModule> generateNusModsMapFromOnlineApi() {
         HashMap<String, NusModule> mappedNusModuleList = new HashMap<>();
         int httpEcho;
         String generatedNusModsList;
         try {
-            URL url = new URL(onlineLink);
+            URL url = new URL(LINK);
             URLConnection myConnection = url.openConnection();// try to connect and echo back
             HttpURLConnection httpUrlConnection = (HttpURLConnection) myConnection;
             httpEcho = httpUrlConnection.getResponseCode();
@@ -76,43 +125,47 @@ public class ModuleChecker {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            isOnWifi = false;
         }
+
         return mappedNusModuleList;
     }
+
+    /**
+     * Generate a hashmap which maps the module code to a NusModule object/class.
+     *
+     * @return generatedNusModsList  a hash map containing the module code information only.
+     */
+    private HashMap<String, NusModule> generateNusModsMapUsingLocalData() {
+        HashMap<String, NusModule> mappedNusModuleListWithLocalData = new HashMap<>();
+        String content = "";
+        try {
+            FileReader fileReader = new FileReader("NUS_Mod_info.json");
+            BufferedReader reader = new BufferedReader(fileReader);
+            StringBuffer buffer = new StringBuffer();
+            String line;
+            line = reader.readLine();
+
+            while (line != null) {
+                buffer.append(line);
+                buffer.append(LINE_SEPARATOR);
+                line = reader.readLine();
+            }
+
+            content = buffer.toString();
+            List<NusModule> modulesList = JSON.parseArray(content, NusModule.class);// extractModules(jsonStr);
+            for (NusModule a : modulesList) {
+                mappedNusModuleListWithLocalData.put(a.getModuleCode(), a);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("The Json data file does not exist! Please make sure you read the User Guide"
+                    + " and download\nthe Json data file from our Github page!\n"
+                    + "The Json data file and the JAR file must be placed in the same folder!\n"
+                    + "Please omit the error message below and carry out the above mentioned steps!\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mappedNusModuleListWithLocalData;
+    }
 }
-
-
-//the following method only reads the JSON file as a string and cannot be used for parser
-//    private static String generateNusModsString(String onlineLink) {
-//        int httpEcho;
-//        JSONArray modList;
-//        JSONParser parser = new JSONParser();
-//        String generatedNusModsList = "";
-//        try {
-//            URL url = new URL(onlineLink);// create new url
-//            URLConnection myConnection = url.openConnection();// try to connect and echo back
-//            HttpURLConnection httpUrlConnection = (HttpURLConnection) myConnection;
-//            httpEcho = httpUrlConnection.getResponseCode();
-//            if (httpEcho != HttpURLConnection.HTTP_OK) {
-//                System.out.println("Cannot connect website!");
-//            } else {
-//                BufferedReader in = new BufferedReader((new InputStreamReader(myConnection.getInputStream())));
-//                Object obj = parser.parse(in);
-//                modList = (JSONArray) obj;
-//                generatedNusModsList = modList.toString();
-//                return generatedNusModsList;
-//            }
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return generatedNusModsList;
-//    }
-//}
-
-
-
