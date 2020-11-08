@@ -12,8 +12,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 - Code quality: Looks after code quality, ensures adherence to coding standards, etc.
 - Documentation: Responsible for the quality of various project documents.
 - Integration: Worked with Jun Xiang for the versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
-- Scheduling and tracking: In charge of defining, assigning, and tracking project tasks.
-- In charge of `list-n`,`archive-n`, `unarchive-n`, `find-n`, of the code: In charge of the code that deals with parsing and UI
+- Scheduling and Tracking: In charge of defining, assigning, and tracking project tasks.
+- In charge of `list-n`,`archive-n`, `unarchive-n`, `find-n`, of the code: In charge of the code that deals with lsiting, archiving/unarchiving, and finding notes.
 
 ## Summary of Contributions
 ### Features implemented
@@ -52,39 +52,40 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 1. Added a couple of `formatNotes` methods into the `Formatter` class.
 
 ### Enhancements to existing features
-1. Added ASCII art to make the application more user-friendly.
-1. Refactored code to abstract out the successful/unsuccessful execution messages from the individual command classes to its own `CommandMessage` class.
+1. Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)) to make the application more user-friendly. 
+1. Refactored code to abstract out the successful/unsuccessful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) from the individual command classes to its own `CommandMessage` class.
 
 ### Code contributed
-[Reposense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=r-ramana&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+[RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=r-ramana&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
 
 ### Contributions to Team Based Task
 1. Setting up the GitHub team organization and repository.
-1. Maintained Issues and Reviewed PR alongside Jun Xiang.
+1. Maintained Issues and Reviewed almost all PRs alongside Jun Xiang.
 1. Updating of User/Developer documents that are not feature specific.
-1. Maintained Gantt Chart.
-1. Created a Development Practices Document.
+1. Set up [PERT Chart](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert).
+1. Set up and maintained [Gantt Chart]https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert.
+1. Created a [Development Practices Document](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md).
 
 ### Contributions to User Guide
-Created the first draft of the User Guide and provided a template for the rest to follow. Also in charge of the overall formatting for the User Guide.
-Filled up the following:
-1. Introduction
-1. Quick Start
-1. Initial draft of the features, including description and example codes.
-1. FAQ
-1. Command Summary
+Created the first draft of the [User Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md) and provided a template for the rest to follow. Also in charge of the overall formatting for the User Guide.
+Filled up the following(https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89):
+1. [Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
+1. [Quick Start](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
+1. [Initial draft of the features](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), including description and example codes
+1. [FAQ](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
+1. [Command Summary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
 
 ### Contributions to Developer Guide
-Created the first draft of the Developer Guide and provided a template for the rest to follow. Also in charge of the overall formatting for the Developer Guide.
+Created the first draft of the [Developer Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DeveloperGuide.md) and provided a template for the rest to follow. Also in charge of the overall formatting for the Developer Guide.
 Filled up the following:
-1. Introduction
-1. Initial draft of architecture overview including the architecture overview and PERT chart diagrams 
-1. Product Scope (Target User Persona, Target User Profile and Value Proposition)
-1. User Stories
-1. Non-functional requirements
-1. Glossary
-1. Initial manual testing draft
+1. [Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55)
+1. Initial draft of [architecture overview](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
+1. [Product Scope](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55) (Target User Persona, Target User Profile and Value Proposition)
+1. [User Stories](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55)
+1. [Non-functional requirements](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103)
+1. [Glossary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103)
+1. Initial [manual testing draft](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/119)
 
 ### Community
-- [PRs reviewed](https://github.com/AY2021S1-CS2113-T13-1/tp/pulls?page=3&q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me) (with non-trivial review comments): #33, #36, #37, #40, #45, #46, #47, #49, #52, #53, #58, #61, #65, #83, #88, #104, #107, #108, #111, #114, #116, #117, #120, #121, #126, #177, #180, #182, #189, #192, #195, #196
+- [PRs reviewed](https://github.com/AY2021S1-CS2113-T13-1/tp/pulls?page=3&q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me) (with non-trivial review comments): [#33](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#36](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/36), [#37](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37), [#40](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/40), [#45](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/45), [#46](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/46), [#47](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47), [#49](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/49), [#52](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/52), [#53](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/53), [#58](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/58), [#61](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [#65](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/65), [#83](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/83), [#88](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88), [#104](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/104), [#107](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/107), [#108](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/108), [#111](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [#114](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#116](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#117](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/114), [#120](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/120), [#121](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121), [#126](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#177](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#180](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#182](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/126), [#189](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/189), [#192](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/192), [#195](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/195), [#196](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/196), [#203](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/203).
     - [Comment History](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html)
