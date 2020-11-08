@@ -6,7 +6,12 @@ import event.Class;
 import event.Event;
 import event.PersonalEvent;
 import event.SelfStudy;
-import exception.*;
+import exception.ExistingEventInListException;
+import exception.UndefinedEventException;
+import exception.EndBeforeStartEventException;
+import exception.EditNoEndTimeException;
+import exception.EmptyEventListException;
+import exception.NoClassWeekException;
 import location.Location;
 import location.OnlineLocation;
 
