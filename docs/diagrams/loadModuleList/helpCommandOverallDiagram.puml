@@ -1,0 +1,128 @@
+@startuml
+hide footbox
+skinparam ParticipantPadding 20
+participant ":Zoomaster" as Zoomaster
+participant "<<class>> :Parser" as Parser
+
+participant ":HelpCommand" as HelpCommand
+participant ":Ui" as Ui
+
+Zoomaster-> Parser : parse(helpCommand)
+activate Parser
+
+
+
+create HelpCommand
+Parser-> HelpCommand : HelpCommand(details)
+activate HelpCommand
+
+opt details isNotEmpty
+opt details isNotValidCommand
+note right of HelpCommand : throws exception
+end opt
+end opt
+
+HelpCommand--> Parser : command
+deactivate HelpCommand
+Parser--> Zoomaster : command
+deactivate Parser
+
+Zoomaster-> HelpCommand : execute(bookmarks, timetable, ui)
+activate HelpCommand
+
+alt details isEmpty
+
+    HelpCommand -> Ui : printHelpMessage()
+    activate Ui
+    Ui -> Parser :
+    activate Parser
+    Parser --> Ui : programMode
+    deactivate Parser
+
+    alt programMode == 0
+    Ui -> Ui : printYellowWithBorder(MainMenuCommands)
+        activate Ui
+        deactivate Ui
+
+    else programMode == 1
+    Ui -> Ui : printYellowWithBorder(BookmarkModeCommands)
+            activate Ui
+            deactivate Ui
+
+    else programMode == 2
+    Ui -> Ui : printYellowWithBorder(TimetableModeCommands)
+            activate Ui
+            deactivate Ui
+
+    else programMode == 3
+    Ui -> Ui : printYellowWithBorder(PlannerModeCommands)
+            activate Ui
+            deactivate Ui
+
+    end alt
+    deactivate Ui
+
+
+
+else details not Empty
+
+    HelpCommand -> Ui : printHelpMessage(details)
+    activate Ui
+    Ui -> Parser :
+    activate Parser
+    Parser --> Ui : programMode
+    deactivate Parser
+
+
+
+    alt details == CLEAR_KW
+    Ui -> Ui : printYellowWithBorder(ClearCommandDetails)
+        activate Ui
+        deactivate Ui
+
+    else details == EXIT_KW
+    Ui -> Ui : printYellowWithBorder(ExitCommandDetails)
+        activate Ui
+        deactivate Ui
+
+    else details == MODE_KW
+    Ui -> Ui : printYellow(ModeCommandDetails)
+        activate Ui
+        deactivate Ui
+    Ui -> Ui : printCyan(ModeCommandFormat)
+        activate Ui
+        deactivate Ui
+
+    else details == LAUNCH_NOW_KW
+    Ui -> Ui : printYellow(LaunchNowCommandDetails)
+        activate Ui
+        deactivate Ui
+    Ui -> Ui : printCyan(LaunchNowCommandFormat)
+        activate Ui
+        deactivate Ui
+
+    else programMode == 1
+    Ui -> Ui : printModeOneExtendedHelp(details)
+            activate Ui
+            deactivate Ui
+
+    else programMode == 2
+    Ui -> Ui : printModeTwoExtendedHelp(details)
+            activate Ui
+            deactivate Ui
+
+    else programMode == 3
+    Ui -> Ui : printModeThreeExtendedHelp(details)
+            activate Ui
+            deactivate Ui
+
+    end alt
+    deactivate Ui
+
+end alt
+
+
+
+destroy HelpCommand
+
+@enduml

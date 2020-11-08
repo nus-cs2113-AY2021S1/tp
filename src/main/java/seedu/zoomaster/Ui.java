@@ -350,14 +350,15 @@ public class Ui {
 
     public void printHelpMessage() {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
-        if (Parser.programMode == 0) {
+        int mode = Parser.programMode;
+        if (mode == 0) {
             System.out.println(LINE);
             printYellowWithBorder("Available inputs in Main menu are" + NEW_LINE
                     + "1) " + ChangeModeCommand.MODE_KW + " bookmark/timetable/planner" + NEW_LINE
                     + "2) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "3) " + LaunchNowCommand.LAUNCH_NOW_KW + NEW_LINE
                     + "4) " + ExitCommand.EXIT_KW + NEW_LINE);
-        } else if (Parser.programMode == 1) {
+        } else if (mode == 1) {
             printYellowWithBorder("Available inputs in Bookmark mode are" + NEW_LINE
                     + "1) " + AddBookmarkCommand.ADD_KW + NEW_LINE
                     + "2) " + DeleteBookmarkCommand.DEL_KW + NEW_LINE
@@ -367,7 +368,7 @@ public class Ui {
                     + "6) " + ClearCommand.CLEAR_KW + NEW_LINE
                     + "7) " + ChangeModeCommand.MODE_KW + " timetable/planner" + NEW_LINE
                     + "8) " + ExitCommand.EXIT_KW + NEW_LINE);
-        } else if (Parser.programMode == 2) {
+        } else if (mode == 2) {
             printYellowWithBorder("Available inputs in Timetable mode are" + NEW_LINE
                     + "1) " + AddSlotCommand.ADD_KW + NEW_LINE
                     + "2) " + DeleteSlotCommand.DEL_KW + NEW_LINE
@@ -392,30 +393,31 @@ public class Ui {
     }
 
     //@@author Speedweener
-    public void printHelpMessage(String input) {
+    public void printHelpMessage(String details) {
         assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
-        if (input.equals(ClearCommand.CLEAR_KW)) {
+        int mode = Parser.programMode;
+        if (details.equals(ClearCommand.CLEAR_KW)) {
             printYellowWithBorder("Clears the visible command line screen" + NEW_LINE);
-        } else if (input.equals(ExitCommand.EXIT_KW)) {
+        } else if (details.equals(ExitCommand.EXIT_KW)) {
             printYellowWithBorder("Exits the application. What else did you expect ^_^" + NEW_LINE);
-        } else if (input.equals(ChangeModeCommand.MODE_KW)) {
+        } else if (details.equals(ChangeModeCommand.MODE_KW)) {
             System.out.println(LINE);
             printYellow("Changes the current mode. You can change to Bookmark, "
                     + "Timetable or Planner mode" + NEW_LINE);
             printCyan("Format: mode {bookmark/timetable/planner}" + NEW_LINE);
             System.out.println(LINE);
-        } else if (input.equals(LaunchNowCommand.LAUNCH_NOW_KW)) {
+        } else if (details.equals(LaunchNowCommand.LAUNCH_NOW_KW)) {
             printYellow("Launches bookmarks for lessons happening at the current time" + NEW_LINE);
             printCyan("Format: launch now" + NEW_LINE);
             System.out.println(LINE);
-        } else if (Parser.programMode == 1) {
-            printModeOneExtendedHelp(input);
+        } else if (mode == 1) {
+            printModeOneExtendedHelp(details);
 
-        } else if (Parser.programMode == 2) {
-            printModeTwoExtendedHelp(input);
+        } else if (mode == 2) {
+            printModeTwoExtendedHelp(details);
 
-        } else if (Parser.programMode == 3) {
-            printModeThreeExtendedHelp(input);
+        } else if (mode == 3) {
+            printModeThreeExtendedHelp(details);
         }
 
     }

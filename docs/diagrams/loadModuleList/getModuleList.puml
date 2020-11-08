@@ -4,7 +4,7 @@ skinparam ParticipantPadding 20
 
 participant ":Zoomaster" as Zoomaster
 participant ":Storage" as Storage
-participant ":Module" as Module
+participant "<<class>> :Module" as Module
 
 
 activate Zoomaster
