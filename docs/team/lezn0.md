@@ -28,10 +28,10 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Created the Nav@NUS logo to be displayed during the welcome message.
   * Set word limit for bus route output. (Pull Request: [\#52](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/52))
-  * Added bus stops enum class. (Pull Request: [\#28](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/28))
   * Wrote additional tests for /addfav feature. (Pull Request: [\#109](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/109))
   
 * **Contributions to team-based tasks**:
+  * Added bus stops enum class. (Pull Request: [\#28](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/28))
   * Maintained the issue tracker for specific features and bugs.
 
 * **Documentation**:
