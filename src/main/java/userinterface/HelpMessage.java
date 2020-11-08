@@ -43,9 +43,11 @@ public class HelpMessage extends Ui {
             + "cat CATEGORY_NAME            - add category to bookmark list\n"
             + "rm LINK_INDEX                - remove a bookmark link into a specific category\n"
             + "delete CATEGORY_INDEX        - remove a bookmark category\n"
-            + "list                         - prints the list of categories and\n"
+            + "list                         - prints the list of links in your current mode\n"
+            + "list -s                      - prints the list of starred bookmarks\n"
+            + "list -c                      - prints the list of categories available\n"
+            + "list -a                      - prints the list of categories and\n"
             + "                               respective list of links\n"
-            + "list star                    - prints the list of starred bookmarks\n"
             + "star LINK_NUMBER             - mark the bookmark link as star";
 
     private static final String timetableCommands =  "Here are the timetable commands available:\n"
