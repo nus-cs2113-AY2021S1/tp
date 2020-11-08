@@ -1,14 +1,66 @@
-# Developer Guide
+<h1 align="center">termiNus Developer Guide</h1>
 {:.no_toc}
 
 * Table of contents
 {:toc}
 
-## Design & implementation
+<!-- @@author MuhammadHoze -->
+## Introduction
+
+termiNus is an interactive Command Line Interface (CLI) task manager for undergraduate students in NUS. 
+This program will help them achieve a better grip on their school life as well as assist in better management of their 
+daily expenses and be reminded of any library loans. 
+
+This guide gives an overview understanding of the architectural design and implementation of termiNus. It will
+assist developers in the knowledge they require to further build upon this application. We hope you have a clearer picture
+after reading through our Developer Guide. <br>
+
+**Pre-requisite:** Proficient in comprehending UML diagrams and notations.   
+
+## Setting up, Getting Started
+
+### Setting up the project in your local machine 
+Ensure that you have JDK 11 or above installed on your computer. 
+
+First, **fork** this [repo](https://github.com/AY2021S1-CS2113-T14-3/tp), and **clone** the fork to your local machine. 
+
+If you plan to use IntelliJ IDEA (highly recommended):
+1. Ensure IntelliJ IDEA is configured to use JDK 11.
+    * Open IntelliJ and a welcome screen should appear.
+    * Click on `Configure` -> `Structure for New Projects` -> `Project Settings` -> `Project`.
+    * Under the `Project SDK:` section, select **java version "11.0.8"** or higher). <br>
+
+2. Import the project as a Gradle project.
+    * Ensure Gradle plugin is enabled by going to `File` -> `Settings` -> `Plugins`.
+    * Under the `Installed` section go to `Build Tools` and enable Gradle. 
+    * At the welcome page, click on `Open or Import`.
+    * Locate the `build.gradle` file within the folder that contains the clone repo and select it.
+    * Choose the `Open as Project` option when asked.
+    * Accept all default settings and wait for the project to import. 
+3. Verify the setup.
+    * Under the `seedu.duke` package, locate the `Duke` class and run it.
+    * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113-t14-3.github.io/tp/UserGuide.html).
+    * **Run the tests (PLEASE ADD THE LINK FOR THIS) to ensure they all pass**.
+
+### Before writing the code 
+1. Configure the coding style
+    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
+1. Set up CI
+    * This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
+    it will run the CI for the project automatically at each push to the `master` branch or to any PR.
+    **No setup is required for this**.
+    
+1. Learn the design
+   * When you are ready to start coding, we recommend that you refer to [termiNus's architecture](#architecture-diagram)
+   to get a better idea of the overall design.
+<!-- @@author --> 
+ 
+## Design
+
 <!-- @@author iamchenjiajun -->
 ### Architecture
 
-##### Architecture Diagram
+#### Architecture Diagram
 Below is an architecture diagram of termiNus.
 
 ![ArchitectureDiagram](./images/ArchitectureDiagram.png)
@@ -21,7 +73,7 @@ Below is an architecture diagram of termiNus.
 - `Command` object modifies the state of `Model`, which consists of multiple lists for different types of `Items`.
 - `Storage` takes the state of `Model` and stores it to file.
 
-##### Sequence Diagram
+#### Sequence Diagram
 Below is a sequence diagram of how the main program functions.
 
 ![DukeSequenceDiagram](./images/DukeSequenceDiagram.png)
@@ -135,12 +187,12 @@ The `Command` object:
 <!-- @@author GuoAi -->
 ### Storage component  
 
-The `Storage` class is a class loading data from files when Duke starts and saving data to files after each command.
+The `Storage` class is a class loading data from files when termiNus starts and saving data to files after each command.
 
 #### High level description
 
-Methods handling data loading (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadCredit()`, `loadModule()` methods) 
-return an `ArrayList` of `Item`s (i.e. `Task`, `Book`, `Link`, `Credit`, `Module`). These will be the initial values of 
+Methods handling data loading (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()` methods) 
+return an `ArrayList` of `Item`s (i.e. `Task`, `Book`, `Link`, `Module`). These will be the initial values of 
 the `ItemList`. The `save()` method takes an `ItemList` and a `String` specifying the path to which the file will be 
 saved. The `ItemList` will be parsed and saved into files (each `ItemList` will be saved to a separate file) at the 
 specified path.  
@@ -157,7 +209,7 @@ There are 6 fields stored for each `Task`:
 5. Category of the `Task`
 6. Date of the `Task`  
   
-All the fields are separated by ` | ` with a leading and a trailing space. Each `Task` is stored as one line.  
+All the fields are separated by `|` with a leading and a trailing space. Each `Task` is stored as one line.  
   
 Example: `T | 0 | borrow book | 1 | book | 28-10-2020`  
   
@@ -170,7 +222,7 @@ There are 5 fields stored for each `Book`:
 4. Borrow date of the `Book`  
 5. Return date of the `Book`  
 
-All the fields are separated by ` | ` with a leading and a trailing space. Each `Book` is stored as one line.  
+All the fields are separated by `|` with a leading and a trailing space. Each `Book` is stored as one line.  
   
 Example: `B | 0 | cooking book | 11-11-2011 | 11-12-2011`  
   
@@ -178,10 +230,10 @@ Example: `B | 0 | cooking book | 11-11-2011 | 11-12-2011`
 
 There are 3 fields stored for each `Link`:  
 1. Module of the `Link`  
-2. Type of the `Link`  
+2. Use of the `Link`  
 3. URL of the `Link`  
   
-All the fields are separated by ` | ` with a leading and a trailing space. Each `Link` is stored as one line.  
+All the fields are separated by `|` with a leading and a trailing space. Each `Link` is stored as one line.  
 
 Example: `CS2113 | lecture | https://cs2113Lecture.zoom.com`  
   
@@ -193,7 +245,7 @@ There are 4 fields for each `Module`:
 3. Modular credits  
 4. Academic year and semester  
 
-All the fields are separated by ` | ` with a leading and a trailing space. Each `Module` is stored as one line.  
+All the fields are separated by `|` with a leading and a trailing space. Each `Module` is stored as one line.  
   
 #### Implementation details
 
@@ -202,9 +254,9 @@ The following sequence diagram shows how the `Storage` works.
 ![StorageSequenceDiagram](./images/StorageSequenceDiagram.png)
   
 1. At the start of `Duke`, a new `Storage` object will be created.
-2. `Duke` calls loading methods (i.e. `loadTask()`, `loadBook()`, `loadCredit()`, `loadLinks()`, `loadModule()`) 
+2. `Duke` calls loading methods (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()`) 
 sequentially. Each loading method calls the corresponding helper method (i.e. `loadTaskFromLine()`, `loadBookFromLine()`, 
-`loadCreditFromLine()`, `loadLinkFromLine()`, `loadModuleFromLine()`) to load `Item`s from each line in the file. 
+`loadLinkFromLine()`, `loadModuleFromLine()`) to load `Item`s from each line in the file. 
 3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
 
 <!-- @@author iamchenjiajun -->
@@ -252,9 +304,12 @@ borrowed books tracking, and module-related functions. This increase users' effi
 |v2.0|*|student|login with a password|my system is protected 
 
 ## Implementation
+This section describes how certain features are implemented.
+
+### List feature
 
 <!-- @@author Cao-Zeyu -->
-##### List tasks
+#### List tasks
 The list tasks feature allows the user to list all the tasks tracked.
 This feature is facilitated by `ListCommand`. 
 1. The user inputs the command `list tasks`. (Assuming the task list is not empty)
@@ -262,7 +317,7 @@ This feature is facilitated by `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks`, and returns a `ListCommand` for the whole task list.
 1. The command is executed and the complete list of all the tracked tasks is displayed.
 
-##### List tasks with priority
+#### List tasks with priority
 The list tasks with priority feature allows the user to list tasks of a certain priority.
 This feature is facilitated by `Parser` and `ListCommand`.
 1. The user inputs the command `list tasks p/3`. (Assuming the tasks of CS2113 is not empty)
@@ -270,7 +325,7 @@ This feature is facilitated by `Parser` and `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `p/`, and returns a `ListCommand` for the task list of priority level 3.
 1. The command is executed and the list of tasks with level 3 priority is displayed.
 
-##### List tasks with category
+#### List tasks with category
 The list tasks with category feature allows the user to list tasks of a certain category.
 This feature is facilitated by `Parser` and `ListCommand`.
 1. The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 is not empty)
@@ -278,7 +333,7 @@ This feature is facilitated by `Parser` and `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `c/`, and returns a `ListCommand` for the task list under CS2113 category.
 1. The command is executed and the list of tasks categoried by CS2113 is displayed.
 
-##### Add links
+#### Add links
 The add links feature allows the user to add and save zoom meeting links of modules.
 This feature is faclitated by `Parser`, `AddCommand` and `Storage`.
 1. The user inputs `add links m/CS2113 t/lecture u/https://nus.sg.zoom.us/cs2113/lecture`.
@@ -287,16 +342,19 @@ This feature is faclitated by `Parser`, `AddCommand` and `Storage`.
 1. The command is excuted and the links is added into the link list with module name and online class type.
 1. `Storage` saves the added link by writing it into the `links.txt` file.
 
-##### List links
+#### List links
 The list link feature allows the user to list all the zoom meeting links.
 This feature is facilitated by `Parser` and `AddCommand`.
 1. The user inputs `list links`. (Assuming the link list is not empty).
 1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `links`, and returns a `ListCommand` for the link list.
 1. The command is excuted and the complete list of links is displayed.
+<!-- @@author -->
+
+### Calendar feature
 
 <!-- @@author iamchenjiajun -->
-##### Calendar command
+#### Calendar command
 The calendar command allows users to print out a calendar view of their tasks within the next `X` days, where `X` is a parameter passed by the user.
 
 1. `CalendarCommand` obtains a list of tasks from `TaskList` by using its `getTaskList` method, which returns an `ArrayList` of `Task` objects.
@@ -322,15 +380,94 @@ The sorting of tasks by date is done using this code, which is also called on a 
 
 This sorts the stream using a `Comparator` which is defined inline. The `Comparator` makes use of the `Task.getDate()` method to do the comparisons.
 This is done instead of defining a new `Comparator` class as `toCompare` is already implemented in the `LocaDate` API, and doing this simplifies the code.
+<!-- @@author -->
 
-## Non-Functional Requirements
+## Appendix: Requirements
 
-{Give non-functional requirements}
+### Product scope
 
-## Glossary
+<!-- @@author MuhammadHoze -->
+#### Target user profile
+Undergraduate students of National University of Singapore who:
+- require help to better manage their school work.
+- forgets to return their loan books to the library on time.
+- wants a timetable planner for easy reference.
+- are lazy to create separate module folders every semester.
+- wish to calculate their CAP.
+<!-- @@author -->
 
-* *glossary item* - Definition
+<!-- @@author MuhammadHoze -->
+#### Value proposition
+termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
+borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
+<!-- @@author -->
+ 
+<!-- @@author MuhammadHoze -->
+### User Stories
+| Version | Priority | As a ... | I want to ... | So that I can ...|
+| -------- | ---------- | ---------- | --------------- | ------------------ |
+| v1.0 | *** | student | add tasks into a list | keep track of the things I need to do |
+| v1.0 | *** | student | assign priorities to tasks | focus on the more important things first |
+| v1.0 | ** | student | assign categories to tasks| have a more organised task list |
+| v1.0 | *** | student | mark tasks as done| keep track of the remaining tasks to do |
+| v1.0 | ** | student | list all tasks in my list| have a better overview |
+| v1.0 | *** | student | be able to delete unwanted tasks| focus on the tasks which I need |
+| v1.0 | *** | student | save all data after using the application| retrieve the data upon running the application |
+| v2.0 | ** | student | automatically create folders for my modules| I do not have to manually create them |
+| v2.0 | *** | student| add recurring tasks| avoid adding the same tasks every week |
+| v2.0 | *** | student | have a calendar| I can view my current and upcoming tasks |
+| v2.0 | *** |student| be able to set a tracker my borrowed books| avoid overdue fines | 
+| v2.0 | ** | student | sort my tasks based on highest priority | focus on those tasks first |
+| v2.0 | *** | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link | 
+| v2.0 | *** | student | add modules and calculate my CAP| have a better projection of my grades and efforts |
+| v2.0 | * | student | login with a password | my system is protected |
 
-## Instructions for manual testing
+**Take note** : `*` Low priority (Unlikely to implement) , `**` Medium priority (Consider implementing) ,  `***` High priority (Must implement)
+<!-- @@author -->
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+<!-- @@author MuhammadHoze -->
+### Non-Functional Requirements
+
+1. Should work on any *mainstream OS* as long as it has `Java 11` or above installed.
+
+2. Should be able to respond to any command in less than 2 seconds.
+
+3. A user should be able to complete majority of tasks faster using CLI than GUI.
+<!-- @@author -->
+
+<!-- @@author MuhammadHoze -->
+### Glossary
+
+**CI** - Continuous Integration <br>
+**SDK** - Software Development Kit <br>
+**IntelliJ** - An Integrated Development Environment written in Java <br> 
+**UML** - Unified Modeling Language <br>
+**CLI** - Command Line Interface <br>
+**GUI** - Graphical User Interface <br>
+**Mainstream OS** - Windows, Linux, Unix, OS-X <br>
+**SLOC** - Source Lines of Code <br>
+**DRY** - Don't Repeat Yourself *(Every piece of knowledge must have a single, unambiguous, authoritative representation within a system)* <br>
+**CAP** - Cumulative Average Point
+ <!-- @@author -->
+
+## Appendix: Instructions for manual testing
+Below are the steps required for manual testing of termiNus
+
+### Initial launch and shutdown
+
+1. Initial Launch
+    a. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) and copy the jar file to a new folder.
+
+    b. Launch termiNus by typing `java -jar termiNus.jar` and press enter.
+
+    c. To get a detailed description, refer to [User Guide](UserGuide.md).
+
+
+2. Shutdown 
+    a. Once testing is conducted, exit the program by entering `bye`.
+
+### Features and functions
+
+1. Add task function `add task`
+
+    
