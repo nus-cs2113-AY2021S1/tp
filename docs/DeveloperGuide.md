@@ -519,39 +519,34 @@ Refer to [User Guide](https://ay2021s1-cs2113t-t12-2.github.io/tp/UserGuide.html
 ### Command summary
 The following table contains the list of commands available in the application.
 
-|Action| Command Type | Command Format | 
-|--------|----------|----------|
+|Term| Meaning | Command Format|
+|--------|----------------|--------|
 |Add|activity event|`act <activity_description> @<venue> / <date> <time>`|
-|Add|additional information for event|`/a <event_number> - <additional_information>`|
-|Add|deadline task|`deadline <task_description>/ <due_date>`|
-|Add| exam event | `exam<module_name> @<venue> / <date> <time>` | 
-|Add| lab event  | `lab <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|Add| lecture event | `lect <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|Add| todo task | `todo <task_description>` | 
-|Add| tutorial event | `tut <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|Delete| events | `-e <event_number>` |
+|Add|additional information for an event|`/a <event_number> - <additional_information>`|
+|Add|deadline task|`deadline <task_description> / <due_date>`|
+|Add|exam event|`exam <module_name> @<venue> / <date> <time>`|
+|Add|lab event|`lab <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Add|lecture event|`lect <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Add|todo task|`todo <task_description>`|
+|Add|tutorial event|`tut <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Delete|additional information for an event|`/- <event_number> a <additional_information_number>`|
+|Delete|events|`-e <event_number>`|
 |Delete|tasks|`-t <task_number>`|
-|Delete|additional information for event|`/- <event_number> a <additional_information_number>`|
-|Find|all items|`/f <keyword>`|
+|Find|all calendar items|`/f <keyword>`|
 |Find|events|`/fe <keyword>`|
 |Find|tasks|`/ft <keyword>`|
-|Print |countdown for all items|`countdown`|
-|Print |countdown for deadlines|`countdown deadlines`|
-|Print |countdown for exams|`countdown exams`|
-|Print |events|`print events`|
-|Print |important tasks|`print *`|
-|Print |progress|`print progress`|
-|Print |tasks|`print tasks`|
+|Print|countdown for all items|`countdown`|
+|Print|countdown for deadlines|`countdown deadlines`|
+|Print|countdown for exams|`countdown exams`|
+|Print|events|`print events`|
+|Print|important tasks|`print *`|
+|Print|progress|`print progress`|
+|Print|tasks|`print tasks`|
 |Print|timeline (default)|`print timeline`|
-|Print|timeline before a date|`print timeline date <DATE>`|
-|Print|timeline for current month|`print timeline month`|
-|Print|timeline for current week|`print timeline week`|
-|Set|tasks as done|`done <task number>`|
-|Set|tasks as important|`*t <task_number>`|
-|View|additional information|`/v <event_number>`|
-|View|available commands|`help`|
-|View|suggestions|`suggestion`|
-|Quit|exit the program|`bye`|
+|Print|timeline before a date|`print timeline date <date>`|
+|Print|timeline for the next 31 days|`print timeline month`|
+|Print|timeline for the next 7 days|`print timeline week`|
+|Quit|exit the application|`bye`|
 
 
 
