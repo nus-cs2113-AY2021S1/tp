@@ -2,10 +2,13 @@ package seedu.duke.wordlist.wordfilter;
 
 import seedu.duke.constants.FluffleMessages;
 import seedu.duke.constants.Tags;
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.FilterCommandException;
+import seedu.duke.exceptions.FilterEmptyStringTagException;
+import seedu.duke.exceptions.FilterMissingTargetStringsTagException;
+import seedu.duke.exceptions.FilterMissingTargetWordTypeException;
+import seedu.duke.exceptions.FilterWordsInvalidWordType;
 
 import java.util.ArrayList;
-import java.util.logging.Filter;
 
 public class FilterCommandSlicer {
 
