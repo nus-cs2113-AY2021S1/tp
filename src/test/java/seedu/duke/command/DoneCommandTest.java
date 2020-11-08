@@ -4,8 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
-import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidEventDateException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.WrongNumberFormatException;
@@ -126,7 +126,7 @@ class DoneCommandTest {
 
         // Event does not fall on the provided date
         String inputStringTwo = "zoom; 1; 5/10/2020";
-        Exception secondE = assertThrows(DateErrorException.class, () -> {
+        Exception secondE = assertThrows(InvalidEventDateException.class, () -> {
             Command doneCommand  = DoneCommand.parse(inputStringTwo);
             doneCommand.execute(data, ui, storage);
         });

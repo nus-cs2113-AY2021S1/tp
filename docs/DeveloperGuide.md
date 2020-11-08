@@ -365,6 +365,8 @@ The deadline feature is implemented using `DeadlineCommand` class. `DeadlineComm
 
 - `DeadlineCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, date/time given by the user
 - `DeadlineCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+- `DeadlineCommand#validDateRange(date)` -- Check whether date specified by user is equal or after current date
+- `DeadlineCommand#validTimeRange(time)` -- Check whether time specified by user is equal or after current time 
 
 These operations are not exposed, and are used as private methods within the `DeadlineCommand`.
 
@@ -373,9 +375,13 @@ Given below is an example usage scenario and how the deadline feature functions.
 Step 1. The user executes `deadline 1; 7/10/20; 11:20 PM` command to set the deadline for the 1st event in Personal event list
 to be on the 7th October 2020 at 11:20 PM. 
 
-Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`
+Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`.
 
-Step 3. After obtaining the event using `EventList#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
+Step 3. Event is obtained using `EventList#getEventByIndex(index)`
+
+Step 4. `DeadlineCommand#validDateRange(date)` and `DeadlineCommand#validTimeRange(time)` are used to check if the user specified date and time is valid. 
+
+Step 5. After validating the date and time, `Event#setDate(date)` and `Event#setTime(time)` are used to add/update the deadline.
 
 The following sequence diagram shows how the deadline operation works: <br>
 

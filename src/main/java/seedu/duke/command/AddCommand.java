@@ -81,33 +81,31 @@ public class AddCommand extends Command {
             throw new EventAddErrorException("Invalid event type to be added!");
         }
 
-        try {
-            String[] argumentWords = argument.split(";");
-            if (argumentWords[0].trim().equals("")) {
-                throw new MissingDescriptionException("This event has an empty description!");
-            }
-            switch (eventType) {
-            case "Personal":
-                addPersonal(data, ui, argumentWords);
-                ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-                storage.saveFile(storage.getFileLocation(eventType), data, eventType);
-                break;
-            case "Zoom":
-                addZoom(data, ui, argumentWords);
-                ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-                storage.saveFile(storage.getFileLocation(eventType), data, eventType);
-                break;
-            case "Timetable":
-                addTimetable(data, ui, argumentWords);
-                ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
-                storage.saveFile(storage.getFileLocation(eventType), data, eventType);
-                break;
-            default:
-                throw new EventAddErrorException("Invalid event type to be added!");
-            }
-        } catch (DukeException e) {
-            e.printErrorMessage();
+
+        String[] argumentWords = argument.split(";");
+        if (argumentWords[0].trim().equals("")) {
+            throw new MissingDescriptionException("This event has an empty description!");
         }
+        switch (eventType) {
+        case "Personal":
+            addPersonal(data, ui, argumentWords);
+            ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+            storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+            break;
+        case "Zoom":
+            addZoom(data, ui, argumentWords);
+            ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+            storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+            break;
+        case "Timetable":
+            addTimetable(data, ui, argumentWords);
+            ui.printEventAddedMessage(data.getEventList(eventType).getNewestEvent());
+            storage.saveFile(storage.getFileLocation(eventType), data, eventType);
+            break;
+        default:
+            throw new EventAddErrorException("Invalid event type to be added!");
+        }
+
         logger.fine("Add Command executed successfully");
     }
 
@@ -135,10 +133,10 @@ public class AddCommand extends Command {
                     data.addToEventList("Timetable", new Timetable(argumentWords[0].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
                     logger.warning("DateErrorException encountered -- Timetable date is not in the correct format");
-                    throw new DateErrorException("Something is wrong with the date!");
+                    throw new DateErrorException();
                 } catch (TimeErrorException e) {
                     logger.warning("TimeErrorException encountered -- Timetable time is not in the correct format");
-                    throw new TimeErrorException("Something is wrong with the time!");
+                    throw new TimeErrorException();
                 }
             } else {
                 try {
@@ -150,10 +148,10 @@ public class AddCommand extends Command {
                             argumentWords[1].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
                     logger.warning("DateErrorException encountered -- Timetable date is not in the correct format");
-                    throw new DateErrorException("Something is wrong with the date!");
+                    throw new DateErrorException();
                 } catch (TimeErrorException e) {
                     logger.warning("TimeErrorException encountered -- Timetable time is not in the correct format");
-                    throw new TimeErrorException("Something is wrong with the time!");
+                    throw new TimeErrorException();
                 }
             }
             logger.fine("Timetable event successfully added.");
@@ -173,35 +171,21 @@ public class AddCommand extends Command {
      * @throws WrongNumberOfArgumentsException the number of arguments cannot create a valid personal event.
      * @throws InvalidListException the eventlist that the event added to is not valid (should never occur).
      */
-    private void addPersonal(UserData data, Ui ui, String[] argumentWords) throws DateErrorException,
-            TimeErrorException, WrongNumberOfArgumentsException, InvalidListException {
+    private void addPersonal(UserData data, Ui ui, String[] argumentWords) throws DukeException {
         if (argumentWords.length >= 1 && argumentWords.length <= 3) {
             // 3 cases: only description, description and date, description and date and time
             if (argumentWords.length == 1) {
                 data.addToEventList("Personal", new Personal(argumentWords[0].trim()));
             } else if (argumentWords.length == 2) {
-                try {
-                    LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
-                    assert localDate != null : "date is not detected after parsing";
-                    data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate));
-                } catch (DateErrorException e) {
-                    logger.warning("DateErrorException encountered -- Personal date is not in the correct format");
-                    throw new DateErrorException("Something is wrong with the date!");
-                }
+                LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
+                assert localDate != null : "date is not detected after parsing";
+                data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate));
             } else {
-                try {
-                    LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
-                    assert localDate != null : "date is not detected after parsing";
-                    LocalTime localTime = DateTimeParser.timeParser(argumentWords[2].trim());
-                    assert localTime != null : "time is not detected after parsing";
-                    data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate, localTime));
-                } catch (DateErrorException e) {
-                    logger.warning("DateErrorException encountered -- Personal date is not in the correct format");
-                    throw new DateErrorException("Something is wrong with the date!");
-                } catch (TimeErrorException e) {
-                    logger.warning("TimeErrorException encountered -- Personal time is not in the correct format");
-                    throw new TimeErrorException("Something is wrong with the time!");
-                }
+                LocalDate localDate = DateTimeParser.dateParser(argumentWords[1].trim());
+                assert localDate != null : "date is not detected after parsing";
+                LocalTime localTime = DateTimeParser.timeParser(argumentWords[2].trim());
+                assert localTime != null : "time is not detected after parsing";
+                data.addToEventList("Personal", new Personal(argumentWords[0].trim(), localDate, localTime));
             }
             logger.fine("Personal event successfully added.");
         } else {
@@ -236,10 +220,10 @@ public class AddCommand extends Command {
                             argumentWords[1].trim(), localDate, localTime));
                 } catch (DateErrorException e) {
                     logger.warning("DateErrorException encountered -- Zoom date is not in the correct format");
-                    throw new DateErrorException("Something is wrong with the date!");
+                    throw new DateErrorException();
                 } catch (TimeErrorException e) {
                     logger.warning("TimeErrorException encountered -- Zoom time is not in the correct format");
-                    throw new TimeErrorException("Something is wrong with the time!");
+                    throw new TimeErrorException();
                 }
             }
         } else {
