@@ -4,6 +4,7 @@ import seedu.duke.CommandException;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.calendar.CalendarList;
+import seedu.duke.calendar.task.Task;
 
 /**
  * Sets the task of task number specified by the user as done.
@@ -35,6 +36,10 @@ public class DoneCommand extends Command {
             throw new CommandException("invalid task action");
         }
         int calendarNumberCompleted = CalendarList.convertTaskNumberToCalendarNumber(taskNumberCompleted, calendarList);
+
+        if (((Task) calendarList.getItem(calendarNumberCompleted)).getIsDone()) {
+            throw new CommandException("task done");
+        }
 
         assert calendarNumberCompleted >= 0;
 
