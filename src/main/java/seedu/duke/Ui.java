@@ -493,10 +493,12 @@ public class Ui {
             System.out.println("Error: invalid countdown. Countdown is only for exams and deadlines.");
             break;
         case "invalid task action":
-            System.out.println("Error: Total task(s): " + calendarList.getTotalTasks());
+            System.out.println(
+                    "Error: Total task(s): " + calendarList.getTotalTasks() + ". Please key in a valid task number.");
             break;
         case "invalid event action":
-            System.out.println("Error: Total event(s): " + calendarList.getTotalEvents());
+            System.out.println("Error: Total event(s): " + calendarList.getTotalEvents()
+                    + ". Please key in a valid event number.");
             break;
         case "done":
             System.out.println("Error: Please key in the command in this format: done <task number>");
@@ -520,6 +522,10 @@ public class Ui {
         case "invalid add info":
             System.out.println(
                     "Error: Please key in the additional information in this format: /a <event number> - information");
+            break;
+        case "missing add info":
+            System.out.println(
+                    "Error: The additional information should not be empty!");
             break;
         case "invalid view info":
             System.out.println(

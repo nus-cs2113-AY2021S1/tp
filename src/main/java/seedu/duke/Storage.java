@@ -197,7 +197,7 @@ public class Storage {
      * Adds an item into the calendar list.
      *
      * @param calendarList the calendar list we want to add our item to.
-     * @param item the item we want to add to the calendar list.
+     * @param item         the item we want to add to the calendar list.
      */
     private static void addItemToCalendarList(CalendarList calendarList, CalendarItem item) {
         if (item instanceof Task) {
@@ -210,7 +210,7 @@ public class Storage {
     /**
      * Marks a task as important.
      *
-     * @param item the task we need to mark as important.
+     * @param item       the task we need to mark as important.
      * @param taskInFile the data stored in the local file.
      */
     private static void markTaskAsImportant(CalendarItem item, String[] taskInFile) {
@@ -224,7 +224,7 @@ public class Storage {
     /**
      * Marks an event as over.
      *
-     * @param item the event we need to mark as over.
+     * @param item       the event we need to mark as over.
      * @param taskInFile the data stored in the local file.
      */
     private static void markEventAsOver(CalendarItem item, String[] taskInFile) {
@@ -238,7 +238,7 @@ public class Storage {
     /**
      * Marks a task as done.
      *
-     * @param item the task that we need to mark as done.
+     * @param item       the task that we need to mark as done.
      * @param taskInFile the data stored in local file.
      */
     private static void markTaskAsDone(CalendarItem item, String[] taskInFile) {
@@ -252,9 +252,9 @@ public class Storage {
     /**
      * Loads the additional information stored in the local file.
      *
-     * @param item the event we need to add the additional information.
+     * @param item       the event we need to add the additional information.
      * @param taskInFile the data in the local file.
-     * @param num the total splitting number.
+     * @param num        the total splitting number.
      */
     private static void loadAdditionInformation(CalendarItem item, String[] taskInFile, int num) {
         if (item instanceof Event) {
