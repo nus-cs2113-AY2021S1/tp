@@ -1,7 +1,10 @@
 package seedu.duke.wordlisttest.wordfiltertest;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.FilterEmptyStringTagException;
+import seedu.duke.exceptions.FilterMissingTargetStringsTagException;
+import seedu.duke.exceptions.FilterMissingTargetWordTypeException;
+import seedu.duke.exceptions.FilterWordsInvalidWordType;
 import seedu.duke.wordlist.wordfilter.FilterCommandSlicer;
 
 import java.util.Arrays;
@@ -76,7 +79,7 @@ class FilterCommandSlicerTest {
 
     @Test
     public void getTargetedStringTags_twoStringTagsHaveSpace_success()
-            throws FilterEmptyStringTagException, FilterMissingTargetStringsTagException{
+            throws FilterEmptyStringTagException, FilterMissingTargetStringsTagException {
         String[] expected = {"cs2113t", "cs2101"};
         String[] actual = FilterCommandSlicer
                 .getTargetedStringTags("filter words by\\contain -cs2113t -cs2101");
