@@ -7,6 +7,8 @@ import seedu.duke.model.item.TotalExpenseType;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -57,6 +59,14 @@ public class ExpenseList extends ItemList<Expense> {
             Ui.dukePrintMultiple(expense.toString());
         }
         Ui.showLine();
+        Ui.showEmptyLine();
+    }
+
+    /**
+     * Clears all the expense items in the list.
+     */
+    public void clearExpense() {
+        items = new ArrayList<>();
     }
 
     /**
@@ -71,53 +81,155 @@ public class ExpenseList extends ItemList<Expense> {
         Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST);
         items.forEach(expense -> Ui.dukePrintMultiple(expense.toString()));
+        ArrayList<Expense> selectedExpenses = new ArrayList<>();
         try {
+            Ui.showEmptyLine();
             Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_DAY);
-            HashMap<String, Double> dayMap = getTotalExpense(TotalExpenseType.DAY);
+            selectedExpenses = getExpenseItems(TotalExpenseType.DAY);
+            HashMap<String, Double> dayMap = getTotalExpense(selectedExpenses);
             for (String currency : dayMap.keySet()) {
-                Ui.dukePrintMultiple(dayMap.get(currency) + " " + currency);
+                Ui.dukePrintMultiple(String.format("%.2f %s", dayMap.get(currency), currency));
             }
+            Ui.showEmptyLine();
             Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_WEEK);
-            HashMap<String, Double> weekMap = getTotalExpense(TotalExpenseType.WEEK);
+            selectedExpenses = getExpenseItems(TotalExpenseType.WEEK);
+            HashMap<String, Double> weekMap = getTotalExpense(selectedExpenses);
             for (String currency : weekMap.keySet()) {
-                Ui.dukePrintMultiple(weekMap.get(currency) + " " + currency);
+                Ui.dukePrintMultiple(String.format("%.2f %s", weekMap.get(currency), currency));
             }
+            Ui.showEmptyLine();
             Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_MONTH);
-            HashMap<String, Double> monthMap = getTotalExpense(TotalExpenseType.MONTH);
+            selectedExpenses = getExpenseItems(TotalExpenseType.MONTH);
+            HashMap<String, Double> monthMap = getTotalExpense(selectedExpenses);
             for (String currency : monthMap.keySet()) {
-                Ui.dukePrintMultiple(monthMap.get(currency) + " " + currency);
+                Ui.dukePrintMultiple(String.format("%.2f %s", monthMap.get(currency), currency));
             }
+            Ui.showEmptyLine();
             Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_YEAR);
-            HashMap<String, Double> yearMap = getTotalExpense(TotalExpenseType.YEAR);
+            selectedExpenses = getExpenseItems(TotalExpenseType.YEAR);
+            HashMap<String, Double> yearMap = getTotalExpense(selectedExpenses);
             for (String currency : yearMap.keySet()) {
-                Ui.dukePrintMultiple(yearMap.get(currency) + " " + currency);
+                Ui.dukePrintMultiple(String.format("%.2f %s", yearMap.get(currency), currency));
             }
+            Ui.showLine();
+            Ui.showEmptyLine();
         } catch (DukeException e) {
             Ui.dukePrintMultiple(e.toString());
         }
     }
 
     /**
-     * Gets the total value of expenses during a time period for each currency.
+     * Lists all the expense items with the given currency.
      *
-     * @param totalExpenseType a {@code TotalExpenseType} value, i.e. DAY, WEEK, MONTH, or YEAR
-     * @return a hashmap where the key is the currency and value is the total value of expenses for the currency.
-     * @throws DukeException when the {@code totalExpenseType} is not valid.
+     * @param currency the currency to be used to select expense items to be listed
      */
-    public HashMap<String, Double> getTotalExpense(TotalExpenseType totalExpenseType) throws DukeException {
-        ArrayList<Expense> selectedItems = new ArrayList<>();
-        HashMap<String, Double> totalMap = new HashMap<>();
-        try {
-            selectedItems = getExpenseItems(totalExpenseType);
-        } catch (DukeException e) {
-            throw new DukeException(e.toString());
+    public void listExpense(String currency) {
+        ArrayList<Expense> expensesListed = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getCurrency().equals(currency)) {
+                expensesListed.add(items.get(i));
+            }
         }
-        for (Expense item : selectedItems) {
+        if (expensesListed.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_EXPENSE_LIST);
+            return;
+        }
+        Ui.showLine();
+        Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST_CURRENCY + currency + ":");
+        expensesListed.forEach(expense -> Ui.dukePrintMultiple(expense.toString()));
+        printSummary(expensesListed);
+        Ui.showLine();
+        Ui.showEmptyLine();
+    }
+
+    /**
+     * Lists all the expense items with the given date.
+     *
+     * @param date the date to be used to select expense items to be listed
+     */
+    public void listExpense(LocalDate date) {
+        ArrayList<Expense> expensesListed = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getDate().toString().equals(date.toString())) {
+                expensesListed.add(items.get(i));
+            }
+        }
+        if (expensesListed.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_EXPENSE_LIST);
+            return;
+        }
+        Ui.showLine();
+        Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST_DATE
+                + date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + ":");
+        expensesListed.forEach(expense -> Ui.dukePrintMultiple(expense.toString()));
+        printSummary(expensesListed);
+        Ui.showLine();
+        Ui.showEmptyLine();
+    }
+
+    /**
+     * Lists all the expense items wit the given totalExpenseType
+     *
+     * @param totalExpenseType the {@code TotalExpenseType} to be used to select expense items to be listed
+     * @throws DukeException if totalExpenseType if invalid.
+     */
+    public void listExpense(TotalExpenseType totalExpenseType) throws DukeException {
+        ArrayList<Expense> expensesListed = getExpenseItems(totalExpenseType);
+        if (expensesListed.size() == 0) {
+            Ui.dukePrint(Messages.MESSAGE_EMPTY_EXPENSE_LIST);
+            return;
+        }
+        Ui.showLine();
+        switch (totalExpenseType) {
+        case DAY:
+            Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST_DATERANGE + "today:");
+            break;
+        case WEEK:
+            Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST_DATERANGE + "this week:");
+            break;
+        case MONTH:
+            Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST_DATERANGE + "this month:");
+            break;
+        case YEAR:
+            Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST_DATERANGE + "this year:");
+            break;
+        default:
+            throw new DukeException(Messages.EXCEPTION_EXPENSE_DATERANGE);
+        }
+        expensesListed.forEach(expense -> Ui.dukePrintMultiple(expense.toString()));
+        printSummary(expensesListed);
+        Ui.showLine();
+        Ui.showEmptyLine();
+    }
+
+    /**
+     * Prints the total amount of all the expense items listed.
+     *
+     * @param expensesListed the expense list to be listed
+     */
+    public void printSummary(ArrayList<Expense> expensesListed) {
+        Ui.showEmptyLine();
+        HashMap<String, Double> currencyMap = getTotalExpense(expensesListed);
+        Ui.dukePrintMultiple(Messages.MESSAGE_TOTAL_EXPENSE);
+        for (String key : currencyMap.keySet()) {
+            Ui.dukePrintMultiple(String.format("%.2f %s", currencyMap.get(key), key));
+        }
+    }
+
+    /**
+     * Gets the total value of expenses for each currency.
+     *
+     * @param selectedExpenses An ArrayList of Expense representing the expenses items selected
+     * @return a hashmap where the key is the currency and value is the total value of expenses for the currency.
+     */
+    public HashMap<String, Double> getTotalExpense(ArrayList<Expense> selectedExpenses) {
+        HashMap<String, Double> totalMap = new HashMap<>();
+        for (Expense item : selectedExpenses) {
             if (!totalMap.containsKey(item.getCurrency())) {
                 // Currency does not exist in the hashmap
                 totalMap.put(item.getCurrency(), item.getValue());
             } else {
-                totalMap.put(item.getCurrency(), totalMap.get(item.getValue()) + item.getValue());
+                totalMap.put(item.getCurrency(), totalMap.get(item.getCurrency()) + item.getValue());
             }
         }
         return totalMap;

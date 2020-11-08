@@ -28,7 +28,13 @@ public class Messages {
 
     public static final String MESSAGE_TASK_LIST = "Here are the task(s) in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the book(s) in your list:\n";
-    public static final String MESSAGE_EXPENSE_LIST = "Here are the expense items in your list:\n";
+    public static final String MESSAGE_EXPENSE_LIST = "Here are the expense item(s) in your list:\n";
+    public static final String MESSAGE_EXPENSE_LIST_CURRENCY = "Here are the expense item(s) in your expense list of "
+            + "currency ";
+    public static final String MESSAGE_EXPENSE_LIST_DATE = "Here are the expense item(s) in your expense list of "
+            + "date ";
+    public static final String MESSAGE_EXPENSE_LIST_DATERANGE = "Here are the expense item(s) in your expense list "
+            + "for ";
     public static final String MESSAGE_LIST_WITH_PRIORITY = "Here are the task(s) of this priority in your list:";
     public static final String MESSAGE_LIST_WITH_CATEGORY = "Here are the task(s) of this category in your list:";
     public static final String MESSAGE_EMPTY_TASK_LIST = "~Info~ There are no tasks in your list. "
@@ -39,8 +45,8 @@ public class Messages {
     public static final String MESSAGE_LINK_LIST = "Here are the links in your list:\n";
     public static final String MESSAGE_EMPTY_BOOK_LIST = "~Info~ There are no books in your list. "
             + "Your book list is empty.";
-    public static final String MESSAGE_EMPTY_EXPENSE_LIST = "There are no expense items in your list. "
-            + "Your expense list is empty.";
+    public static final String MESSAGE_EMPTY_EXPENSE_LIST = "There are no expense items to be listed in your expense "
+            + "list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_PRIORITY = "~Info~ There are no tasks of this priority in your "
             + "list. ";
     public static final String MESSAGE_EMPTY_LIST_WITH_CATEGORY = "~Info~ There are no tasks of this category in your "
@@ -81,16 +87,19 @@ public class Messages {
     public static final String MESSAGE_EXPENSE_WEEK = "Your total expense for this week is:";
     public static final String MESSAGE_EXPENSE_MONTH = "Your total expense for this month is:";
     public static final String MESSAGE_EXPENSE_YEAR = "Your total expense for this year is:";
+    public static final String MESSAGE_TOTAL_EXPENSE = "The total amount listed:";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means. "
             + "Please enter valid commands :-(";
 
     public static final String EXCEPTION_DUPLICATE_ARGUMENTS = "~Error~ You have duplicate arguments! ";
     public static final String EXCEPTION_INVALID_ARGUMENTS = "~Error~ You have invalid argument(s). "
             + "Please refer to the User Guide.";
-    public static final String EXCEPTION_EMPTY_DESCRIPTION = "~Error~ The description of a task cannot be empty. "
+    public static final String EXCEPTION_EMPTY_DESCRIPTION = "~Error~ The description of an item cannot be empty. "
             + "Please refer to the User Guide.";
     public static final String EXCEPTION_INVALID_CATEGORY = "~Error~ Please input a valid category using the format "
             + "c/CATEGORY.";
+    public static final String EXCEPTION_ONE_ARGUMENT_ONLY = "~Error~ Please input exactly one correct optional "
+            + "argument!";
     public static final String EXCEPTION_NEGATIVE_DAY_COUNT = "~Error~ Your number of days must be positive!";
     public static final String EXCEPTION_INVALID_DAY_COUNT = "~Error~ Your number of days is an invalid integer!";
     public static final String EXCEPTION_RECURRING_ARGUMENTS = "~Error~ All compulsory arguments (s/, e/ and day/) "
@@ -165,6 +174,7 @@ public class Messages {
             + "     \"list tasks c/CATEGORY\"\n"
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
-            + "     \"list books\"";
+            + "     \"list books\""
+            + "     \"list expenses\"";
     public static final String EXCEPTION_INVALID_URL = "~Error~ Invalid url entered. Please refer to the User Guide.";
 }

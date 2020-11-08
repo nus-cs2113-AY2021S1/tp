@@ -63,7 +63,7 @@ public class CommandCreator {
      * @param fullCommand  Full command given by the user.
      * @param argumentsMap HashMap containing optional arguments.
      * @return SetCommand with given arguments.
-     * @throws DukeException When invalid arguments are given.
+     * @throws DukeException  When invalid arguments are given.
      */
     public static Command createSetCommand(String fullCommand, HashMap<String, String> argumentsMap)
             throws DukeException {
@@ -123,6 +123,8 @@ public class CommandCreator {
             return new ListModuleCommand();
         case "books":
             return new ListCommand(false, false, true);
+        case "expenses":
+           return ListExpenseCommand.createListExpenseCommand(commandString);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }

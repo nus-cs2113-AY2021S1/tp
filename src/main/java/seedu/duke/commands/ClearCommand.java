@@ -2,9 +2,10 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
+import seedu.duke.model.Model;
 import seedu.duke.model.itemlist.BookList;
+import seedu.duke.model.itemlist.ExpenseList;
 import seedu.duke.model.itemlist.LinkList;
 import seedu.duke.model.itemlist.ModuleList;
 import seedu.duke.model.itemlist.TaskList;
@@ -32,6 +33,7 @@ public class ClearCommand extends Command {
         BookList books = (BookList) model.getList(ListType.BOOK_LIST);
         LinkList links = (LinkList) model.getList(ListType.LINK_LIST);
         ModuleList modules = (ModuleList) model.getList(ListType.MODULE_LIST);
+        ExpenseList expenses = (ExpenseList) model.getList(ListType.EXPENSE_LIST);
 
         if (description.isEmpty() | !description.equals("all")) {
             throw new DukeException(Messages.EXCEPTION_INVALID_CLEAR);
@@ -42,6 +44,7 @@ public class ClearCommand extends Command {
             books.clearBook();
             links.clearList();
             modules.clearModule();
+            expenses.clearExpense();
             Ui.dukePrint(Messages.MESSAGE_CLEAR);
 
         } else {
