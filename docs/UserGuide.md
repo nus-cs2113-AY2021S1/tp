@@ -485,6 +485,12 @@ In this way, you can have a better picture of the tasks on hand!
 
 Format: `print tasks`
 
+Example:
+
+`print tasks`
+
+This prints all tasks stored in the application.
+
 ![printTasks](images/printTasks_command.png)
 
 Note: The above figure is for illustration purpose only. The desired output will
@@ -498,6 +504,12 @@ If you want to delete past events or to add additional information to a certain 
 to display all events saved in the application. This feature will definitely save your brain space wasted on memorising them.
 
 Format: `print events`
+
+Example:
+
+`print events`
+
+This prints all events stored in the application.
 
 ![printEvents](images/printEvents_command.png)
 
@@ -513,6 +525,12 @@ you can type `print *` command to view the list of important tasks together with
                                                     
 Format: `print *`
 
+Example:
+
+`print *`
+
+This prints all important tasks in the application.
+
 ![print*](images/printImportant_command..PNG)
 
 Note: The above figure is for illustration purpose only. The desired output will
@@ -524,6 +542,12 @@ If you have a lot of tasks and want to trace the progress of how many of the tas
 you can type  `print progress` command to see the fraction and percentage proportion of the finished tasks among all the tasks.
 
 Format: `print progress`
+
+Example:
+
+`print progress`
+
+This displays your current progress.
 
 ![print_progress](images/printProgress_command.PNG)
 
@@ -537,6 +561,12 @@ This application can select several important and urgent tasks in the task list 
 you can type the `suggestion` command to see the recommended tasks together with their information.  
     
 Format: `suggestion`
+
+Example:
+
+`suggestion`
+
+This prints the more urgent items for you.
 
 ![suggestion_command](images/suggestion_command.PNG)
 
@@ -555,6 +585,12 @@ Print the personal calendar including all calendar items, with todo items (which
 
 Format: `print timeline`
 
+Example:
+
+`print timeline`
+
+This prints the default calendar for you.
+
 ![print_timeline](images/printTimeline_command.PNG)
 
 Note: The above figure is for illustration purpose only. The desired output will
@@ -562,23 +598,57 @@ differ if you have different items stored in the calendar list.
 
 #### Printing calendar for the next 7 days: 
 
-Print the personal calendar for the next 7 days.
+Wanting to find out what is going to happen in the next 7 days? `print timeline week` can be of great help.
 
 Format: `print timeline week`
 
+Example:
+
+`print timeline week`
+
+This prints the personal calendar fot the next 7 days.
+
+![print_timeline_week](images/printTimeline_week_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
+
+
 #### Printing calendar for the next 31 days: 
 
-Print the personal calendar for the next 31 days.
+Wanting to find out what is going to happen in the next 31 days? `print timeline month` can be of great help.
 
 Format: `print timeline month`
+
+Example:
+
+`print timeline month`
+
+This prints the personal calendar fot the next 31 days.
+
+![print_timeline_month](images/printTimeline_month_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
 
 ![tip_timeline_month](images/warning_timeline_month.PNG)
 
 #### Printing calendar before a specific date:
 
-Print the calendar before a specific date.
+Wanting to find out what is going to happen before a specific date? `print timeline date <date>` can be of great help.
 
 Format: `print timeline date <date>`
+
+Example:
+
+`print timeline date <date>`
+
+This prints the personal calendar before a specific date.
+
+![print_timeline_date](images/printTimeline_date_command.PNG)
+
+Note: The above figure is for illustration purpose only. The desired output will
+differ if you have different items stored in the calendar list.
 
 ![warning_timeline_date](images/warning_timeline_date.PNG)
 
@@ -596,6 +666,12 @@ The item with the closest date will be printed first.
 All the unfinished deadlines will be printed before all the upcoming exams.
 
 Format: `countdown`
+
+Example:
+
+`countdown`
+
+This shows you the countdown to your deadlines and exams.
  
  ![countdown](images/countdown_command.PNG)
  
@@ -610,6 +686,12 @@ The exam with the closest date will be printed first.
 
 Format: `countdown exams`
 
+Example:
+
+`countdown exams`
+
+This displays the countdown for examinations only.
+
 ![countdown_exams_command](images/countdown_exam_command.PNG)
 
  Note: The above figure is for illustration purpose only. The desired output will
@@ -623,8 +705,13 @@ If you type `countdown deadlines`, you can see the countdown of all unfinished d
 
 The deadline with the closest due date will be printed first.
 
-
 Format: `countdown deadlines`
+
+Example:
+
+`countdown deadlines`
+
+This prints the countdown for the deadlines only.
 
 ![countdown_deadlines_command](images/countdown_deadlines_command.PNG)
 
@@ -650,6 +737,12 @@ If you want to exit the application, you can always type `bye` in the terminal t
 automatically for your future use. 
 
 Format: `bye`
+
+Example:
+
+`bye`
+
+This exits the application for you.
 
 ![bye_command](images/bye_command.png)
 
