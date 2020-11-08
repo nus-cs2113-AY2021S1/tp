@@ -415,7 +415,7 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.7. Showing classes list](#27-showing-class-list-list-class)
 * [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
-* [2.10.Removing all past event](#210-removing-all-past-event-clean-up)
+* [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
 
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
@@ -558,7 +558,7 @@ Expected output:
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
 
-### 2.10 Removing all past event `clean up`
+### 2.10 Removing all past events: `clean up`
 
 Having too many events added to the application, and the data file is taking up too much space?
 Use this command to remove all the activities that was over more than 7 days ago and all the classes with their last lesson 
