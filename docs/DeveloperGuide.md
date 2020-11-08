@@ -1,47 +1,47 @@
 # Developer Guide
 
 ## Table of Contents
-1. [Introduction](#1-introduction)<br>
-&nbsp;&nbsp;1.1. [Background](#11-background)<br>
-&nbsp;&nbsp;1.2. [Purpose](#12-purpose)<br>
-&nbsp;&nbsp;1.3. [Scope](#13-scope)<br>
-1. [Getting Started](#2-getting-started)<br>
-&nbsp;&nbsp;2.1. [Prerequisites](#21-prerequisites)<br>
-&nbsp;&nbsp;2.2. [Setting Up](#22-setting-up)<br>
-&nbsp;&nbsp;2.3. [Running the Program](#23-running-the-program)<br>
-1. [Design](#3-design)<br>
-&nbsp;&nbsp;3.1. [Architecture](#31-architecture)<br>
-&nbsp;&nbsp;3.2. [UI Component](#32-ui-component)<br>
-&nbsp;&nbsp;3.3. [Logic Component](#33-logic-component)<br>
-&nbsp;&nbsp;3,4. [Model Component](#34-model-component)<br>
-&nbsp;&nbsp;3.5. [Storage Component](#35-storage-component)<br>
-1. [Implementation](#4-implementation) <br>
-&nbsp;&nbsp;4.1. [Project](#41-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1.1. [Create Project](#411-create-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [List Project](#412-list-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1.3. [Select Project](#413-select-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1.4. [View Project](#414-view-project)<br>
-&nbsp;&nbsp;4.2. [Task](#42-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.1. [Add Task](#421-add-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.2. [View Task](#422-view-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.3. [Delete Task](#423-delete-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Change Task Priority](#424-change-task-priority)<br>
+1. [Introduction](#introduction)<br>
+&nbsp;&nbsp;1.1. [Background](#background)<br>
+&nbsp;&nbsp;1.2. [Purpose](#purpose)<br>
+&nbsp;&nbsp;1.3. [Scope](#scope)<br>
+1. [Getting Started](#getting-started)<br>
+&nbsp;&nbsp;2.1. [Prerequisites](#prerequisites)<br>
+&nbsp;&nbsp;2.2. [Setting Up](#setting-up)<br>
+&nbsp;&nbsp;2.3. [Running the Program](#running-the-program)<br>
+1. [Design](#design)<br>
+&nbsp;&nbsp;3.1. [Architecture](#architecture)<br>
+&nbsp;&nbsp;3.2. [UI Component](#ui-component)<br>
+&nbsp;&nbsp;3.3. [Logic Component](#logic-component)<br>
+&nbsp;&nbsp;3,4. [Model Component](#model-component)<br>
+&nbsp;&nbsp;3.5. [Storage Component](#storage-component)<br>
+1. [Implementation](#implementation) <br>
+&nbsp;&nbsp;4.1. [Project](#project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.1. [Create Project](#create-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [List Project](#list-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.3. [Select Project](#select-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.4. [View Project](#view-project)<br>
+&nbsp;&nbsp;4.2. [Task](#task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.1. [Add Task](#add-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.2. [View Task](#view-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.3. [Delete Task](#delete-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Change Task Priority](#change-task-priority)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Mark Task as Complete](#425-mark-task-as-complete)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.6. [View Task by Descending Priority](#426-view-task-by-descending-priority)<br>
-&nbsp;&nbsp;4.3. [Sprint](#43-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Create Sprint](#431-create-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [View Sprint](#432-view-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.3. [Add Task to Sprint](#433-add-task-to-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.4. [Remove Task from Sprint](#434-remove-task-from-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.5. [Allocate Sprint Tasks to Members](#435-allocate-sprint-tasks-to-members)        <br>
-&nbsp;&nbsp;4.4. [Storage](#44-storage)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Location](#441-location)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4.2. [Loading Data](#442-loading-data)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.2.1. [Converting and Mapping of JSON to Objects](#4421-converting-and-mapping-of-json-to-objects)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4.3. [Saving Data](#443-saving-data)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.1. [When the Program Exits](#4431-when-the-program-exits)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.2. [Changes Made to the Data](#4432-changes-made-to-the-data)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.3. [Serialising Objects to JSON](#4433-serialising-objects-to-json)<br>
+&nbsp;&nbsp;4.3. [Sprint](#sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Create Sprint](#create-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [View Sprint](#view-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.3. [Add Task to Sprint](#add-task-to-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.4. [Remove Task from Sprint](#remove-task-from-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.5. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        <br>
+&nbsp;&nbsp;4.4. [Storage](#storage)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Location](#location)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.2. [Loading Data](#loading-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.2.1. [Converting and Mapping of JSON to Objects](#converting-and-mapping-of-json-to-objects)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.3. [Saving Data](#saving-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.1. [When the Program Exits](#when-the-program-exits)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.2. [Changes Made to the Data](#changes-made-to-the-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.3. [Serialising Objects to JSON](#serialising-objects-to-json)<br>
 1. [Others](#target-user-profile)<br>
 
 ## 1. Introduction
