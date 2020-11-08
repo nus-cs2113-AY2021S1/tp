@@ -319,6 +319,11 @@ public class Calculator {
         } else {
             recomendation = (int) requirement + 100;
         }
+        if (recomendation < 1000) {
+            recomendation = 1000;
+        } else if (recomendation > 20000) {
+            recomendation = 20000;
+        }
         return recomendation;
     }
 }
