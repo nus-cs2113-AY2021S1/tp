@@ -347,7 +347,6 @@ public class Ui {
     public void printAddNote(TopicList topicList) {
         printMessage(ADD_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine().trim();
-        Ui ui = new Ui();
 
         try {
             if (topicList.doesTopicExist(topicName)) {
@@ -374,16 +373,15 @@ public class Ui {
                 printMessage(ADD_NOTE_SUCCESSFULLY);
             } else {
                 printMessage(INVALID_TOPIC);
-                ui.printTopicsError(topicList);
+                printTopicsError(topicList);
                 printMessage(INPUT_ERROR + "\n" + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
-            ui.printError(e.getMessage());
+            printError(e.getMessage());
         }
     }
 
     public void printDeleteNote(TopicList topicList) {
-        Ui ui = new Ui();
         int noteCount = 0;
         Topic topic = null;
         NoteList noteList = null;
@@ -396,11 +394,11 @@ public class Ui {
             noteList = topic.getNoteList();
             noteCount = noteList.getCount();
         } catch (Eduke8Exception e) {
-            ui.printError(e.getMessage());
+            printError(e.getMessage());
         }
 
         if (topicList.doesTopicExist(topicName) && noteCount > 0) {
-            ui.showNotes(noteList);
+            showNotes(noteList);
 
             System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
             String input = SCANNER.nextLine();
@@ -409,20 +407,18 @@ public class Ui {
                     && Integer.parseInt(input) <= noteList.getCount()) {
                 int index = Integer.parseInt(input);
                 topic.getNoteList().delete(index - 1);
-                System.out.println(DELETE_NOTE_SUCCESSFULLY);
+                printWithoutLines(DELETE_NOTE_SUCCESSFULLY);
             } else {
                 printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
         } else {
-            System.out.println(INVALID_TOPIC);
-            ui.printTopicsError(topicList);
-            System.out.println(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
+            printWithoutLines(INVALID_TOPIC);
+            printTopicsError(topicList);
+            printWithoutLines(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
         }
     }
 
     public void printListNote(TopicList topicList) {
-        Ui ui = new Ui();
-
         printMessage(LIST_NOTE_PROMPT);
         String topicName = SCANNER.nextLine().trim();
 
@@ -430,14 +426,14 @@ public class Ui {
             if (topicList.doesTopicExist(topicName)) {
                 Topic topic = (Topic) topicList.find(topicName);
                 NoteList noteListTopic = topic.getNoteList();
-                ui.showNotes(noteListTopic);
+                showNotes(noteListTopic);
             } else {
                 printMessage(INVALID_TOPIC);
-                ui.printTopicsError(topicList);
+                printTopicsError(topicList);
                 printMessage(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
-            ui.printError(e.getMessage());
+            printError(e.getMessage());
         }
     }
 
@@ -456,7 +452,6 @@ public class Ui {
                 printWithoutLines(note.getNoteText());
             }
         }
-
         printWithoutLines(HORIZONTAL_LINE);
     }
 
