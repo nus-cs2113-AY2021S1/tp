@@ -53,7 +53,7 @@ public class deliveryOrder extends Order {
     @Override
     public String toString() {
         if (isDeliveryOrder) {
-            return super.toString();
+            return super.toString() + "(Delivery)";
         }
         else {
             return super.toString() + "(Not Delivery Order)";
