@@ -137,7 +137,7 @@ public class Ui {
      * Prints when user changes the content of the file.
      */
     public static void printWrongStorageInput() {
-        System.out.println("The content of the file is changed by user, cannot load");
+        System.out.println("The content of the file is changed by user, cannot load one of the line");
     }
 
     /**
