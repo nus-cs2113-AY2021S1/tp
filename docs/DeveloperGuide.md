@@ -40,12 +40,13 @@ enhancements.
 
 Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
 
+<!-- @@author wamikamalik -->
 ## 2. Design
 
 This section describes the design and implementation of the product. It has been divided into two sections: Architecture 
 and Implementation. 
 
-### 2.1. Architecture
+### 2.1. Architecture - Wamika
 
 The architecture diagram given in the figure below explains the high-level design of the App. 
 
@@ -114,7 +115,7 @@ The following class diagram briefly explains how different classes in the Storag
 ## 3. Implementation
 This section provides details of how the main features of Nav@NUS have been implemented.
 
-### 3.1. Finding a direct route (`/route` Feature)
+### 3.1. Finding a direct route (`/route` Feature) - Wamika
 `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
 available from **location1** to **location2**.
 
@@ -167,6 +168,7 @@ bus object contains the list of remaining stops in the route of that bus.
     
 Given the above alternatives, alternative 1 was used considering the implementation of other features of the 
 application.
+<!-- @@author -->
 
 ### 3.2. Full Route Display (`/routemap` Feature)
 
@@ -267,7 +269,8 @@ User experience for the first approach will be improved as the command required 
 
 Therefore, choosing commands based on index (first approach) is easier to implement, more efficient, reduces possible bugs encountered and provides better user experience.
 
-### 3.6. Modifying the description of a favourite command (`/descfav` Feature)
+<!-- @@author wamikamalik -->
+### 3.6. Modifying the description of a favourite command (`/descfav` Feature) - Wamika
 `/descfav <index> /to <newDescription>` command allows the user to change the current description of their favourite command
 at location **index** in the list to **newDescription**.
 
@@ -318,6 +321,7 @@ the description is different from what is already stored.
     
 While alternative 2 would place all checks in one place, it can be tedious to test or debug. Therefore, alternative 1 
 was chosen. It also made the code look neater and more readable. 
+<!-- @@author -->
     
 ### 3.7. Dining options finder (/dine Feature)
 
@@ -368,7 +372,8 @@ The following sequence diagram illustrates the steps taken by the program when t
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
 
-### 3.10. Performing similarity checks
+<!-- @@author wamikamalik -->
+### 3.10. Performing similarity checks -Wamika
 This feature provides the user with suggestions for possible spelling errors, if any. It does not require any explicit 
 instruction or command from the user and runs every time the user enters a `/route` or `/bus` command.<br>
 The following steps explain how the similarity checks are performed.
@@ -388,6 +393,7 @@ Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feat
 
 _Credits: The Levenshtein distance algorithm was adapted from 
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
+<!-- @@author -->
 
 ### 3.11 Displaying most searched bus stop on start-up
 This feature informs the user about their most searched bus stop.
@@ -462,7 +468,8 @@ Nav@NUS seeks to help the intended audience to achieve the following:
  - Fast viewing of dining options available at other locations
  - Personalised application suited to the user's needs
 
-## 5. Appendix B: User Stories
+<!-- @@author wamikamalik -->
+## 5. Appendix B: User Stories - Wamika
 
 |Version| As a ... | I want to ... | So that ...|
 |--------|----------|---------------|------------------|
@@ -476,12 +483,13 @@ Nav@NUS seeks to help the intended audience to achieve the following:
 |v2.0|frequent user|view my most searched bus stop|it can promptly remind me of the bus stop to key in|
 |v2.0|frequent user|be able to change how I describe my favorite commands|I know when and why I usually use that command and so that I can use it accordingly later.|
 
-## 6. Appendix C: Non-Functional Requirements
+## 6. Appendix C: Non-Functional Requirements - Wamika
 
 1. Nav@NUS should be able to work on any _mainstream OS_ which has Java 11 or a higher version of Java installed.
 2. The user is expected to have a basic idea about the places around NUS.
 3. A user comfortable with typing english text should be able to find this application faster and more useful than those
 that require mouse clicks.
+<!-- @@author -->
 
 ## 7. Appendix D: Glossary
 
@@ -501,8 +509,27 @@ Expected: The CLI application will run with the Nav@NUS logo.
 - Type `/exit` followed by enter key to exit<br><br>
 Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
 
+<!-- @@author wamikamalik -->
+### E.2 Check for direct bus - Wamika
+> Note: The user can list all bus stop names using the `/liststops` command if unsure of the starting location or 
+>destination.
 
-### E.2 Check for direct bus
+1. Finding a direct route between 2 places in NUS.
+    - Test case: `/route University Town /to PGP`<br>
+    Expected: The buses you can take from **University Town** to **PGP** will be displayed with the intermediate stop 
+    names.
+    - Test case: `/route EA /to Kent Vale`<br>
+    Expected: A message saying no direct bus routes are available will be displayed.
+    - Test case: `/route vivocity /to sentosa`<br>
+    Expected: A message saying that the starting location and destination are not in the bus stops list will be 
+    displayed.
+    - Test case: `/route ent Vale /to pgp`<br>
+    Expected: A message displaying suggestions for **ent Vale** will be displayed.
+    - Test case: `/route  /to pgp`<br>
+    Expected: An appropriate error message will be displayed.
+    - Other incorrect route commands to try: `/route   `, `/route pgp Kent Ridge mrt station`, `/route  /to  `, etc<br>
+    Expected: An appropriate error message will be displayed.      
+<!-- @@author -->
 
 ### E.3 Check bus route
 
@@ -526,7 +553,19 @@ Expected: No command executed. Error details will be shown. List of favourites w
 - Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).
 Expected: Similar to previous.
 
-### E.10 Change description of favourite command in favourite list
-
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+<!-- @@author wamikamalik -->
+### E.10 Change description of favourite command in favourite list - Wamika
+1. Changing the description of a favourite command in the list.
+    - Prerequisites: List all favourite commands by executing `/listfav` command. There is at least one favourite in the 
+    list.
+    - Test case: `/descfav 1 /to I go there often`
+    Expected: The description for the first command will be changed to "I go there often".
+    - Test case: `/descfav 0 /to I go there often`
+    Expected: An error message will be displayed. The list of favourites remains unchanged.
+    - Test case: `/descfav 1 /to I go there often` after running the first test case.
+    Expected: An error message saying the description is the same as before will be displayed.
+    - Test case: `/descfav   /to I go there often`, `/descfav  `, `/descfav 1 I go there`, `/descfav x /to something` 
+    (where x is a number bigger than the number of elements in the list), `/descfav 2e /to something`, etc.
+    Expected: The appropriate error message will be displayed.
+    
+<!-- @@author -->
