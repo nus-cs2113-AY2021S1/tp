@@ -22,8 +22,8 @@ class AddCommandTest {
     Parser parser = new Parser();
 
     @Test
-    public void constructor_noRawInput_throws_InvalidCommandException() {
-        assertThrows(InvalidCommandException.class, () -> parser.processRaw("add" + ""));
+    public void constructor_noRawInput_throws_InvalidFormatException() {
+        assertThrows(InvalidFormatException.class, () -> parser.processRaw("add" + ""));
     }
 
     @Test
@@ -31,7 +31,7 @@ class AddCommandTest {
         final String[] invalidInputs = {"", " ", "1231242345", "&*^%*&^", "abc"};
         for (int i = 0; i < invalidInputs.length; i++) {
             int finalI = i;
-            assertThrows(InvalidCommandException.class, () ->
+            assertThrows(InvalidFormatException.class, () ->
                     parser.processRaw("add task1 st/" + invalidInputs[finalI]));
         }
     }
@@ -41,7 +41,7 @@ class AddCommandTest {
         final String[] invalidInputs = {"", " ", "1231242345", "&*^%*&^", "abc"};
         for (int i = 0; i < invalidInputs.length; i++) {
             int finalI = i;
-            assertThrows(InvalidCommandException.class, () ->
+            assertThrows(InvalidFormatException.class, () ->
                     parser.processRaw("add task1 et/" + invalidInputs[finalI]));
         }
     }
@@ -51,7 +51,7 @@ class AddCommandTest {
         final String[] invalidInputs = {"", " ", "1231242345", "&*^%*&^", "abc"};
         for (int i = 0; i < invalidInputs.length; i++) {
             int finalI = i;
-            assertThrows(InvalidCommandException.class, () ->
+            assertThrows(InvalidFormatException.class, () ->
                     parser.processRaw("add task1 d/" + invalidInputs[finalI]));
         }
     }
@@ -61,7 +61,7 @@ class AddCommandTest {
         final String[] invalidInputs = {"", " ", "1231242345", "&*^%*&^", "abc"};
         for (int i = 0; i < invalidInputs.length; i++) {
             int finalI = i;
-            assertThrows(InvalidCommandException.class, () ->
+            assertThrows(InvalidFormatException.class, () ->
                     parser.processRaw("add task1 p/" + invalidInputs[finalI]));
         }
     }
