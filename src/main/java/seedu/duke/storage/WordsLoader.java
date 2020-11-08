@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Adjective;

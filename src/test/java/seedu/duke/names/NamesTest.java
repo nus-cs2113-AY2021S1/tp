@@ -1,7 +1,7 @@
 package seedu.duke.names;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.database.NamesDB;
+import seedu.duke.storage.NamesDB;
 import seedu.duke.exceptions.NameException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

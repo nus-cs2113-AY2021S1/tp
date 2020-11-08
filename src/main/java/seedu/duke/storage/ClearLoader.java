@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
@@ -7,7 +7,6 @@ import seedu.duke.exceptions.InvalidClearFormat;
 import seedu.duke.exceptions.ItemNotFoundedException;
 
 import seedu.duke.ui.UI;
-import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Words;
 import seedu.duke.writing.WritingList;
 
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.parsers.Parsers.getUserInput;
-import static seedu.duke.wordlist.WordList.listWords;
 
 public class ClearLoader {
     private static Scanner scanner = new Scanner(System.in);

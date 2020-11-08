@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import seedu.duke.exceptions.SettingObjectWrongFormatException;
 import seedu.duke.parsers.Parsers;
@@ -7,8 +7,8 @@ import java.io.FileNotFoundException;
 
 import static seedu.duke.constants.FilePaths.DEFAULT_USER_SETTINGS_FILE_PATH;
 import static seedu.duke.constants.Tags.USERNAME_TAG;
-import static seedu.duke.database.FileFunctions.autoCreateNewFile;
-import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
+import static seedu.duke.storage.FileFunctions.autoCreateNewFile;
+import static seedu.duke.storage.FileFunctions.readFileUntilLineContainsString;
 
 import java.io.File;
 import java.util.ArrayList;
