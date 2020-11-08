@@ -155,10 +155,15 @@ This section describes how some of the features in Fitr are implemented.
 ### 4.1 Edit command
 
 When the user enters an edit command, it first passes through `Parser`. Once the input is parsed as an edit command, it is then passed to `EditCommandParser`, where it further parses the user's input. As the user is able to edit either the individual profile characteristics, food or exercise entries, the `EditCommandParser` is able parse what the user intends to edit. For example, if the user intends to edit a food entry, the input is then passed to `EditEntryCommand`, which parses the remaining arguments, and performs the required edit.
-Figure 5 below shows the sequence diagram when the user enters `edit exercise 25/10/2020 1 push ups /100`.
+Figure 5a below shows the sequence diagram when the user enters `edit exercise 25/10/2020 1 push ups /100`.
 
 <p align="center"><img src="images/EditExerciseSequenceDiagram.png"></p>
-<p align="center">Figure 5: Sequence diagram for <code>edit</code> command</p>
+<p align="center">Figure 5a: Sequence diagram for <code>edit</code> command</p>
+
+If an edit command is passed to change individual profile characteristics, the `EditCommandParser` will pass the
+ input to `EditProfileCommand` instead. Figure 5b below shows the sequence diagram when the user enters `edit name Tom`.
+<p align="center"><img src="images/EditProfileSequenceDiagram.png"></p>
+<p align="center">Figure 5b: Sequence diagram for <code>edit</code> command</p>
 
 ### 4.2 Help command
 
@@ -170,10 +175,23 @@ Figure 6 below shows the sequence diagram when the user enters `help`.
 
 ### 4.3 View command
 
-When the user enters a view command, the `Ui` class reads it and passes it through `Parser`. Once the input is parsed as a view command, it is then passed to `ViewCommand`, where it is handled based on the type of view command. Then the respective view method is called to output the messages via the `Ui` class. For example, if you intend to view your goal entry, the input is passed to `ViewCommand`, which checks the arguments after 'view' and calls the `viewGoal()` method. It then performs the required steps to retrieve the goal status for each entry and prints the results using the `printCustomMessage()` method in the `Ui` class.
+The view command allows user to view certain information available in the `User` class and `ListManager` class. When
+the user enters a view command, the `Ui` class reads it and passes it through `Parser`. Once the input is parsed as
+a view command, it is then passed to `ViewCommand`, where it is handled based on the type of view command. 
+Then the respective view method is called to output the messages via the `Ui` class.
+
+For example, as illustrated in Figure 7a, if you intend to view your goal entry, the input is passed to `ViewCommand`
+, which checks the arguments after 'view' and calls the `viewGoal()` method. It then performs the required steps to
+retrieve the goal status for each entry and prints the results using the `printCustomMessage()` method in the `Ui` class.
 
 <p align="center"><img src="images/ViewGoalSequenceDiagram.png"></p>
-<p align="center">Figure 7: Sequence diagram for <code>view goal</code> command</p>
+<p align="center">Figure 7a: Sequence diagram for <code>view goal</code> command</p>
+
+The sequence diagram in Figure 7b below shows how the `ViewCommand` class can interact with the `User` class when the
+user keys in `view profile`.
+ 
+ <p align="center"><img src="images/ViewProfileSequenceDiagram.png"></p>
+ <p align="center">Figure 7b: Sequence diagram for <code>view profile</code> command</p>
 
 ### 4.4 Clear command
 
