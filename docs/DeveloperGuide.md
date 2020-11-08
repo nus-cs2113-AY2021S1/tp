@@ -22,7 +22,7 @@
     <br/>&nbsp;4.7 [Breakdown and analysis](#4.7)
     <br/>&nbsp;4.8 [Add Task](#4.8)
     <br/>&nbsp;4.9 [Mark Task as Done](#4.9)
-1. [Documentation, logging, testing, configuration, dev-ops](#5)
+1. [Documentation, logging, testing, dev-ops](#5)
 1. [Appendix: Requirements](#6)
     <br/>&nbsp;6.1 [Product Scope](#6.1)
     <br/>&nbsp;6.2 [User Stories](#6.2)
