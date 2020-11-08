@@ -137,12 +137,12 @@ class EditCommandTest {
         event.Event existing = new PersonalEvent("existing", location, start, end);
         events.addEvent(existing);
 
-        String[] editInformation = {"","","","",""};
         start = LocalDateTime.parse("2020-02-02T19:00");
         end = LocalDateTime.parse("2020-02-02T22:00");
         LocalDateTime[] startEnd = new LocalDateTime[2];
         startEnd[0] = start;
         startEnd[1] = end;
+        String[] editInformation = {"","","","",""};
         events.editEvent(0, editInformation, startEnd,null,null);
         Assertions.assertEquals(events.get(0).getStartDateTime(),start);
         Assertions.assertEquals(events.get(0).getEndDateTime(), end);
