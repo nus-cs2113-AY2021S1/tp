@@ -92,11 +92,9 @@ At menu:
 At bookmark mode:
 ![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
 
----
 **Useful information:**
 * The message varies in different modes to show you the commands at that mode. 
 Try the command at other modes when you are using the application!
----
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
 
