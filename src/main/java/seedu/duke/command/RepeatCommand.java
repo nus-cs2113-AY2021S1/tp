@@ -17,9 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-/**
- * Command to repeat task.
- */
+
 public class RepeatCommand extends Command {
     public static final String DAILY = "DAILY";
     public static final String WEEKLY = "WEEKLY";
@@ -29,12 +27,13 @@ public class RepeatCommand extends Command {
     private static final String COMMANDTYPE_ERROR = "error";
     private String commandType;
     private static Logger logger = EventLogger.getEventLogger();
-    
+
 
     /**
      * Constructor for the repeat command.
      *
-     * @param command user input with the format eventIndex; eventType; timeInterval; NumberofIterations
+     * @param command String containing the user arguments to repeat an event
+     * @param commandType Can be add, list or null. Tells repeat what to execute with the arguments
      */
     public RepeatCommand(String command, String commandType) {
         this.isExit = false;
@@ -42,6 +41,14 @@ public class RepeatCommand extends Command {
         this.commandType = commandType;
     }
 
+    /**
+     * Executes the repeat command according to the user input stored in the command object.
+     *
+     * @param data    object of UserData class containing user's data.
+     * @param ui      object of UI class which helps to print out instructions or responses on the terminal
+     * @param storage object of Storage class that helps save information to a location on the computer
+     * @throws DukeException if any errors occurs with repeating an event occurs
+     */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
         switch (commandType) {
@@ -110,6 +117,7 @@ public class RepeatCommand extends Command {
      * Checks if the string can be converted to an integer.
      *
      * @param number String containing the String form of an integer
+     * @throws DukeException if the number given by the users is not written in numeric format
      */
     private static void isValidNumber(String number) throws DukeException {
         try {
@@ -125,6 +133,7 @@ public class RepeatCommand extends Command {
      *
      * @param data location where all user event information is stored
      * @param ui   User Interface class for printing on screens
+     * @throws DukeException if there are no list of repeated event to show or if there are errors in user inputs
      */
     private void executeList(UserData data, Ui ui) throws DukeException {
         logger.fine("Begin executeList in Repeat");
@@ -145,8 +154,8 @@ public class RepeatCommand extends Command {
      * @param data    location where all user event information is stored
      * @param ui      User Interface class for printing on screens
      * @param storage File storage location on computer
+     * @throws DukeException if there is an error processing the user input for adding repeated events
      */
-
     private void executeAdd(UserData data, Ui ui, Storage storage) throws DukeException {
         logger.fine("Begin executeAdd in Repeat");
         String[] words = command.split(" ");
@@ -165,6 +174,15 @@ public class RepeatCommand extends Command {
         storage.saveFile(storage.getFileLocation(eventList.getName()), data, eventList.getName());
     }
 
+    /**
+     * Private function that helps to record repeated events in a list to be stored under the original event.
+     *
+     * @param eventToRepeat Event object that is to be repeated over a period of time
+     * @param startDate Date of the original eventToRepeat object
+     * @param repeatType String containing the time unit to advance. Can be daily, weekly or monthly
+     * @param count Integer containing how many times to advance by repeatType
+     * @throws DukeException if there are errors occur while repeating the event such as incorrect arguments given
+     */
     private void repeat(Event eventToRepeat, LocalDate startDate, String repeatType, int count) throws DukeException {
         ArrayList<Event> repeatEventList = new ArrayList<>();
         for (int i = 1; i <= count; i++) {
@@ -205,6 +223,13 @@ public class RepeatCommand extends Command {
         logger.fine("All cloned event list stored in original event");
     }
 
+    /**
+     * Function does nothing. Usually occurs if there are errors in the user input detected by parser.
+     *
+     * @param data    object of UserData class containing user's data.
+     * @param ui      object of UI class which helps to print out instructions or responses on the terminal
+     * @param storage object of Storage class that helps save information to a location on the computer
+     */
     private void executeNull(UserData data, Ui ui, Storage storage) {
         //do nothing
         logger.warning("There was an error in the user input. Command does nothing");

@@ -23,6 +23,7 @@
     * [Undone](#undone-feature)
     * [Delete](#delete-feature)
     * [Note](#note-feature)
+    * [View](#view-feature)
     * [Reminder](#reminder-feature)
     * [Extract](#extract-feature)    
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -44,9 +45,11 @@
     * [Checking schedule availability](#checking-schedule-availability)
     * [Adding deadline to event](#adding-deadline-to-event)
     * [Setting reminder](#setting-reminder)
-    
-## Introduction
+    * [Adding new note for event](#adding-note-for-an-event)
+    * [View note](#viewing-note-for-an-event)
 
+
+## Introduction
 
 ## Setting up, getting started
 1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
@@ -358,18 +361,33 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 #### Deadline feature
 
-The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
+The deadline feature is implemented using `DeadlineCommand` class. `DeadlineCommand` accesses the Personal `Events` to get the event specified by the user and change the date of the event. It implements the following operations:
+
+- `DeadlineCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, date/time given by the user
+- `DeadlineCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+
+These operations are not exposed, and are used as private methods within the `DeadlineCommand`.
+
+Given below is an example usage scenario and how the deadline feature functions.
+
+Step 1. The user executes `deadline 1; 7/10/20; 11:20 PM` command to set the deadline for the 1st event in Personal event list
 to be on the 7th October 2020 at 11:20 PM. 
-The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. <br>
+
+Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`
+
+Step 3. After obtaining the event using `Event#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
+
+The following sequence diagram shows how the deadline operation works: <br>
+
+![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.png)
+
 Given below is how the deadline command behave: <br>
 
 <p align="center">
   <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
 </p>
 
-The following sequence diagram shows how the deadline operation works: <br>
 
-![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.jpg)
 
 #### Check feature
 
@@ -444,10 +462,96 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 (WIP)
 
 #### Note feature
-(WIP)
+The note feature is implemented using `NoteCommand` class. `NoteCommand` accesses the `Events` to get the event specified by the user and add notes to the event. It implements the following operations:
+
+- `NoteCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, event type given by the user
+- `NoteCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+- `NoteCommand#getNotesFromUser(Ui)` -- Calls `Ui#receiveCommand()` to get user's input for notes
+- `NoteCommand#updatingNotesWithTimestamp(existingNotes,newNotes)` -- Include a timestamp of the time that user create a note
+- `NoteCommand#indicateNewLineUsingDelimeter(notes)` -- ` is used to indicate a new line and form the array list into a string of note
+
+These operations are not exposed, and are used as private methods within the `NoteCommand`.
+
+Given below is an example usage scenario and how the deadline feature functions.
+
+Step 1. The user executes `note personal; 1` command to create the note for the 1st event in Personal event list.
+
+Step 2. `NoteCommand#execute()` is called. The command string is then parsed to `NoteCommand#parseUserCommand(command)`
+
+Step 3. After obtaining the event using `Event#getEventByIndex(index)`,  using the user input we have obtained from `NoteCommand#getNotesFromUser(Ui)` create a note for the event. 
+
+Step 4. Before storing the note, notes have to be tagged with timestamp using `NoteCommand#updatingNotesWithTimestamp(existingNotes,newNotes)` and `NoteCommand#indicateNewLineUsingDelimeter(notes)` reformat notes to use ` as an indicator for new line.
+
+The following sequence diagram shows how the note operation works: <br>
+
+![Sequence Diagram for Note Command](./diagrams/NoteCommandSequenceDiagram.png)
+
+Given below is how the note command behave: <br>
+
+<p align="center">
+  <img width="414" height="562" src="./diagrams/NoteCommandScenario.png">
+</p>
+
+
+#### View feature
+
+The view feature allows user to see the notes they have created for a particular event.
+
+The following is the class diagram for reminder command:
+
+![Class diagram for view command execute](./diagrams/ViewCommandClass.png)
+
+The view feature is implemented using `ViewCommand` class. `ViewCommand` accesses the `Events` to get the event specified by the user and show the notes created to users. It implements the following operations:
+
+- `ViewCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, event type given by the user
+- `ViewCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+
+These operations are not exposed, and are used as private methods within the `ViewCommand`.
+
+Given below is an example usage scenario and how the reminder feature functions.
+
+Step 1. The user executes `view` command to show events happening today.
+
+Step 2. `ViewCommand#execute()` is called. 
+
+Step 3. After obtaining the event using `EventList#getEventByIndex(index)`, the user notes can be obtained using `Event#getNotes()`
+
+The following sequence diagram shows how the view operation works: <br>
+
+![Sequence diagram for view command execute](./diagrams/ViewCommandSequenceDiagram.png)
+
 
 #### Reminder feature
-(WIP)
+
+The reminder feature allows user list to the user the events that are happening today. Events are sorted according to time if applicable. The remind feature would called at every start of the program.
+
+The following is the class diagram for reminder command:
+
+![Class diagram for reminder command execute](./diagrams/ReminderCommandClass.png)
+
+The reminder feature is implemented using `ReminderCommand` class. `ReminderCommand` accesses `EventList` to get all event and filter out events happening today and sort them according to with/without time. It implements the following operations:
+
+- `ReminderCommand#filterTodayEvents(eventlist)` -- Filter out the events happening today and return an array list of events
+- `ReminderCommand#checkingRepeatedEvent(event)` -- Check for events that have been repeated and is happening today
+
+These operations are not exposed, and are used as private methods within the `ReminderCommand`.
+
+Given below is an example usage scenario and how the reminder feature functions.
+
+Step 1. The user executes `reminder` command to show events happening today.
+
+Step 2. `ReminderCommand#execute()` is called. 
+
+Step 3. After obtaining all the event using `UserData#getAllEventLists()`,  `ReminderCommand#filterTodayEvents(eventlist)` will be called to check event if they are happening today and store the events in an ArrayList if they are. 
+
+Step 4. While checking if the events fall on today in `ReminderCommand#filterTodayEvents(eventlist)`, `ReminderCommand#checkingRepeatedEvent(event)` will also check if there are repeated events that fall on the same day.
+
+Step 5. After getting all the events happening today, `ReminderCommand#execute()` would then sort the events into 2 ArrayList, one with time and one without time.
+
+The following sequence diagram shows how the reminder operation works: <br>
+
+![Sequence diagram for reminder command execute](./diagrams/ReminderCommandSequenceDiagram.png)
+
 
 #### Extract feature
 The extract feature allows users to copy and paste a body of text like emails and it will help users create either
@@ -711,3 +815,32 @@ Scheduler--; prints an error message and use case ends.
     1. Type `add personal birthday; <<current date that test is run>>`
     1. Test Case: `reminder`
         The program should show that the personal birthday event is the event that you have for today. 
+
+### Adding note for an event
+1. Add a new note for an event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Test Case:  `note personal; 1`
+        1. Upon Scheduler prompt , type the following
+            ```
+           Teeth polished
+           Cost: 100
+           noteend
+           ```
+        The program should show that the note has been successfully created with the content of the note printed.
+        
+
+### Viewing note for an event 
+1. Add a new note for an event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `note personal; 1`
+        1. Upon Scheduler prompt , type the following
+            ```
+           Teeth polished
+           Cost: 100
+           noteend
+           ```
+    1. Test Case: `view personal; 1`
+         The program should show that the notes for the dental appointment that you previously created
+        
