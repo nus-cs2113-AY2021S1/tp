@@ -131,7 +131,7 @@ In Fluffle, the words list is stored in the local hard drive location `data/word
 
 ## Implementation
 
-### Writings class family
+### Writing Features
 #### Constitution (member classes)
 WritingList: Represent the objects which are particular lists of Writings to be used in the application.
 
@@ -155,6 +155,17 @@ either poem or essay at this stage)
 ![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
 
+#### Getting reminder for writings scheduled on a specific date
+This feature allows users to be reminded of which writings they should continue on a specific date.
+
+**Implementation**
+When the user keys in the command `remind DATE`, where `DATE` is the date the user wants to be reminded about in form of `dd/MM/yyyy`, the program will check the validity of the command by using `CommandChecker.extractCommandType()`. Since the command is recognized, enumeration `REMIND` is returned. Then, the program flow is as follows:
+
+1. `WritingReminder.filterWritingsOnADate()` is called by `CommandExecutor.executeCommand()`.
+1. In `WritingReminder.filterWritingsOnADate()`, the `DATE` will be parsed by `LocalDate.parse()`.
+1. The Java stream is used to filter the list of writings and get which ones are scheduled for that `DATE`.
+1. Private `WritingReminder.printWritingsOnADate()` will be called to print out the result.
+
 ### Word Features
 
 #### Adding a noun
@@ -175,14 +186,16 @@ This feature allows users to getting words as they wish. The diagram below shows
 
 **Implementation**
 
-1. `FilterExecutor` class has the static void method `executeFilterCommand` that will be called first when the user enters a `filter words` command. 
-1. In the `executeFilterCommand` method, the program will:
-    1. Use the `getTypeOfFilter` method in enumeration `FilterType` to get the filter type (`WORD_TYPE`, `STARTING_STRING` or `INCLUDING_STRING`). 
-    1. Use the `FilterCommandSlicer` static methods `isNewFilter` to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word list. 
-    1. check whether the user has entered a print limit using `FilterCommandSlicer`'s method `getWordPrintLimitFromFilterCommand`. 
-    1. Depending on the filter type, `getTargetedWordTypes` or `getTargetedStringTags` will be called to get an array of strings containing the word types or strings required for the filter process.
-    1. The array of strings will be passed to either one of `WordsFilter`’s static methods `filterByType` `filterByStartingString` and `filterByIncludedString` to process the filtering.
-    1. Call the method `printFilterList` to print out the result.
+When the user enters a `filter words` command, the program will check the validity of the command by using `CommandChecker.extractCommandType()`. Since the command is recognized, `FILTER_WORDS` will be returned. Then, the program flow is as follows:
+
+1. `FilterExecutor.executeFilterCommand()` will be called by `CommandExecutor.executeCommand()``. 
+1. In `FilterExecutor.executeFilterCommand()` method, the program will:
+    1. Call `FilterType.getTypeOfFilter()` to get the filter type enumeration (`WORD_TYPE`, `STARTING_STRING` or `INCLUDING_STRING`). 
+    1. Call `FilterCommandSlicer.isNewFilter()` to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word list. 
+    1. Check whether the user has entered a print limit using `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()`. 
+    1. Depending on the filter type, `FilterCommandSlicer.getTargetedWordTypes()` or `FilterCommandSlicer.getTargetedStringTags()` will be called to get an array of strings containing the word types or strings required for the filter process.
+    1. The array of strings will be passed to either one of the three methods `WordsFilter.filterByType()`, `WordsFilter.filterByStartingString()` or `WordsFilter.filterByIncludedString()` to process the filtering.
+    1. Call `FilterList.printFilterList()` to print out the result.
 
 The following sequence diagram shows how the components interact with each other for the scenario where the user issues the command `filter -continue by\start limit\10 -cs -cg.`
 
@@ -190,16 +203,16 @@ The following sequence diagram shows how the components interact with each other
 
 <p align = "center"><i><b>Figure 6: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
 
-In **Figure 6** above, the flow of the program is as follow:
-1. After getting the `filter words` command, the `CommandExecutor` calls `executeFilterCommand` in `FilterExecutor` class.
-1. In the method `executeFilterCommand`, the method `getTypeOfFilter` of `FilterType` class is called to get the filter mode, which is `START`.
-1. Then, `FilterCommandSlicer`'s methods `isNewFilter`, `getWordPrintLimitFromFilterCommand`, `getTargetedStringTags` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
-    1. The returned result of `isNewFilter` method is `true`.
-    1. The returned result of `getWordPrintLimitFromFilterCommand` method is an integer `10`.
-    1. The returned result of `getTargetedStringTags` method is the array `["cs", "cg"]`
-1. The method `filterByStartString` in `WordsFilter` class in called to execute the main filter process.
-1. Filter list is printed by `printFilterList` method in `FilterList` class.
-1. The filter process ends.
+In **Figure 6** above, the flow of the program after it enters the filter process is as follows:
+1. The `CommandExecutor` calls `FilterExecutor.executeFilterCommand()`.
+1. In the method `executeFilterCommand`, `FilterType.getTypeOfFilter()` is called to get the filter mode, which is `START`.
+1. Then, `FilterCommandSlicer.isNewFilter()`, `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()`, `FilterCommandSlicer.getTargetedStringTags()` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
+    1. The returned result of `FilterCommandSlicer.isNewFilter()` is `true`.
+    1. The returned result of `FilterCommandSlicer.getWordPrintLimitFromFilterCommand()` is an integer `10`.
+    1. The returned result of `FilterCommandSlicer.getTargetedStringTags()` is the array `["cs", "cg"]`
+1. Since the filter type is `START`, the method `WordsFilter.filterByStartString()` class is called to execute the main filter process.
+1. Filter list is printed by calling `FilterList.printFilterList()`.
+1. The filter process terminates.
    
 ### Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
