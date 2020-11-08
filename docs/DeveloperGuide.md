@@ -120,6 +120,62 @@ Aspect: Changing attribute values in `Person` object or creating new `Person` ob
     * Pros: Ability to write tests as method chains.
     * Cons: Creation of many objects, which takes up memory space. Have to ensure that only the correct `Person` instance is kept and referred to.
 
+### Edit user information feature
+
+#### Implementation
+
+**This feature utilises the following command word**
+
+* [`editinfo`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#editing-user-information-editinfo): Edits the user information stored in the application. 
+
+**Main classes and methods used** 
+
+* [`Person`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Person.java): Stores all user information provided.
+    * `Person#setName(String newName)`: Updates the name the `Person` object.
+    * `Person#setGender(Gender newGender)`: Updates the gender of the `Person` object.
+    * `Person#setAge(int newAge)`: Updates the age of the `Person` object.
+    * `Person#setHeight(int newHeight)`: Updates the height of the `Person` object.
+    * `Person#setOriginalWeight(int newOriginalWeight)`: Updates the original of the `Person` object.
+    * `Person#setCurrentWeight(int newCurrentWeight)`: Updates the current weight of the `Person` object.                                             
+    * `Person#setTargetWeight(int newTargetWeight)`: Updates the target weight of the `Person` object.    
+    * `Person#setFitnessLevel(FitnessLevel newFitnessLevel)`: Updates the fitness level of the `Person` object                                       
+                                        
+**Example usage scenario and how the feature work**<br/>
+_Summary_: Only one instance of `Person` is ever instantiated. A default person is instantiated at the start
+ with default attribute values and when the user enters their information for the first time during the set up, all the default values would be updated to the inputted values. Therefore, the command to enter the user information will result in a change in the attribute values and not the creation of a new `Person` object.
+
+**Step 1**. When the user launches the application for the first time. A default `Person` object will be initialised by `Manager` and the user will be prompted to enter their name.
+ 
+_Object Diagram:_<br/>
+![Enter Info Step1](diagrams/Enter Info Step1.png)
+ 
+**Step 2**. The user inputs `name Jack` command to enter their name into DietBook. The `name` command calls `Manager#setName(Jack)`, to store the name in `Manager` first. After which, user will be prompted to enter all other details.
+
+_Object Diagram:_<br/>
+![Enter Info Step2](diagrams/Enter Info Step2.png)
+
+_Sequence Diagram:_<br/>
+![Name sequence diagram](diagrams/Name sequence diagram.png)
+  
+**Step 3**. The user inputs a command like the following `info g/M a/21 h/175 o/85 c/85 t/75 f/2` to enter all other personal information including age, gender, height, fitness level, original, current and target weight. The `info` command then calls `Parse#executeProcessedInfo(info g/M a/21 h/175 o/85 c/85 t/75 f/2, manager)` before calling `Manager#setPerson(Jack, Gender.MALE, 21, 175, 85, 85, 75, FitnessLevel.LOW)` which proceeds to call `Person#setAll(Jack, Gender.MALE, 21, 175, 85, 85, 75, Fitness.LOW)`.
+
+_Object Diagram:_<br/>
+![Enter Info Step3](diagrams/Enter Info Step3.png) 
+
+_Sequence Diagram:_<br/>
+![Info sequence diagram](diagrams/Info sequence diagram.png)
+   
+#### Design considerations:
+
+Aspect: Whether to enter name and other information separately or together
+
+* **Alternative 1 (current choice)**: Enter name and other information separately
+    * Pros: Increase user interaction and engagement.
+    * Cons: Enter information using two commands.
+
+* **Alternative 2**: Enter name and other information together
+    * Pros: Enter all information at once.
+    * Cons: Decrease user interaction and engagement.
     
 ## Save/Load Feature
 
