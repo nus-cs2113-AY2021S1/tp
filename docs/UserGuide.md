@@ -1,7 +1,7 @@
 # <img src="images/smarthomebot-logo.png" width="50"> SmartHomeBot User Guide 
 
 SmartHomeBot is a **desktop application that consolidates all home appliance’s control into a 
-centralized system via a Command Line Interface (CLI)**. It isis designed to assist disabled individuals with 
+centralized system via a Command Line Interface (CLI)**. It is designed to assist disabled individuals with 
 difficulties to perform tasks like switching On/Off Appliances at home.  Users can also 
 review and monitor electricity usage; having a clearer picture of their electrical usage patterns.
 SmartHomeBot has an auto-save feature that will automatically save all the appliances' data
