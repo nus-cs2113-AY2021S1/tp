@@ -17,7 +17,7 @@ class SetCommandTest extends CommandTest {
         argumentsMap.put("p", Integer.toString(newPriority));
         Command setCommand = new SetCommand(1, argumentsMap);
 
-        tasks.addTodo(TEST_DESCRIPTION);
+        tasks.addTaskFromString(TEST_DESCRIPTION);
         assertEquals(initialPriority, tasks.get(0).getPriority());
         setCommand.execute(model);
         assertEquals(newPriority, tasks.get(0).getPriority());
@@ -31,7 +31,7 @@ class SetCommandTest extends CommandTest {
         argumentsMap.put("p", Integer.toString(newPriority));
         Command setCommand = new SetCommand(1, argumentsMap);
 
-        tasks.addTodo(TEST_DESCRIPTION);
+        tasks.addTaskFromString(TEST_DESCRIPTION);
         assertThrows(DukeException.class, () -> setCommand.execute(model));
     }
 
@@ -43,7 +43,7 @@ class SetCommandTest extends CommandTest {
         argumentsMap.put("p", newPriority);
         Command setCommand = new SetCommand(1, argumentsMap);
 
-        tasks.addTodo(TEST_DESCRIPTION);
+        tasks.addTaskFromString(TEST_DESCRIPTION);
         assertThrows(DukeException.class, () -> setCommand.execute(model));
     }
 }

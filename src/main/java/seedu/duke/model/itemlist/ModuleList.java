@@ -24,16 +24,6 @@ public class ModuleList extends ItemList<Module> {
         items = modules;
     }
 
-    /**
-     * Adds an item into the list.
-     *
-     * @param description the description of the item
-     */
-    @Override
-    public void addTodo(String description) {
-    }
-
-
     public void addModule(Module module) throws DukeException {
         checkModuleAlreadyExists(module);
         items.add(module);
@@ -79,14 +69,6 @@ public class ModuleList extends ItemList<Module> {
         Ui.dukePrintMultiple(String.format("Projected CAP: %.2f", projectedCap));
         Ui.dukePrintMultiple(String.format("Total MCs completed: %d", totalMcs));
         Ui.showLine();
-    }
-
-    /**
-     * Clears all the links in the list.
-     */
-    public void clearModule() {
-        items = new ArrayList<>();
-
     }
 
     /**
