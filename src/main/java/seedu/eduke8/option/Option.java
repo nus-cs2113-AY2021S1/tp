@@ -18,26 +18,47 @@ public class Option implements Displayable {
         wasShown = false;
     }
 
+    /**
+     * Returns the description of the option.
+     *
+     * @return Option description.
+     */
     @Override
     public String getDescription() {
         markAsShown();
         return description;
     }
 
+    /**
+     * Marks this option as shown.
+     */
     @Override
     public void markAsShown() {
         wasShown = true;
     }
 
+    /**
+     * Returns a boolean variable indicating if the option was shown before.
+     *
+     * @return Indication of whether the option was shown before.
+     */
     @Override
     public boolean wasShown() {
         return this.wasShown;
     }
 
+    /**
+     * Returns a boolean variable indicating if the option is the correct answer.
+     *
+     * @return Indication of whether the option is the correct answer.
+     */
     public boolean isCorrectAnswer() {
         return this.isCorrectAnswer;
     }
 
+    /**
+     * Marks this option as the correct answer.
+     */
     public void markAsCorrectAnswer() {
         isCorrectAnswer = true;
     }
