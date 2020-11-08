@@ -849,7 +849,7 @@ In addition, it implements the following operations:
 The following diagram shows the class diagram of the revise feature:
 
 <p align="center">
-  <img src="DG_Images/ReviseCommandClassDiagram.png" height="1000" width="500" alt="Class Diagram of Revise"/>
+  <img src="DG_Images/ReviseCommandClassDiagram.png" height="500" width="1000" alt="Class Diagram of Revise"/>
   <br/>Figure <>. Class diagram of revise
 </p>
 
@@ -876,7 +876,7 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 The following sequence diagram shows how the revise feature works:
 
 <p align="center">
-  <img src="DG_Images/ReviseCommandSeqDiagram.png" height="1200" width="900" alt="Sequence Diagram of Revise"/>
+  <img src="DG_Images/ReviseCommandSeqDiagram.png" height="900" width="1200" alt="Sequence Diagram of Revise"/>
   <br/>Figure <>. Sequence diagram of revise
 </p>
 
