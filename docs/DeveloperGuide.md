@@ -169,8 +169,9 @@ and these classes are stored in the seedu.commons package.
 |v1.0|Student with many tasks|search for tasks|find what i want quickly|
 |v1.0|Student with many tasks|delete tasks|old tasks don’t clutter up the display|
 |v1.0|Busy student|clear all tasks|don’t waste time deleting one by one|
-|v2.0|Busy student|View tasks in a weekly and monthly view|I know what i have due for that time period|
-
+|v2.0|Busy student|view tasks in a weekly and monthly view|I know what i have due for that time period|
+|v2.0|Lazy student|revert operation|easily undo if delete all tasks accidentally|
+|v2.0|Forgetful student|be reminded of important tasks|attend the event on time|
 
 ## Use cases
 
