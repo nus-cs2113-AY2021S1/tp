@@ -13,15 +13,15 @@ return userInput
 
 ":Fitr" -> "<<class>>\n:Parser" : parse(userInput)
 activate "<<class>>\n:Parser"
-create ":AddFoodCommand"
-"<<class>>\n:Parser" -> ":AddFoodCommand"
-activate ":AddFoodCommand"
-return
-|||
-return command
+    create ":AddFoodCommand"
+    "<<class>>\n:Parser" -> ":AddFoodCommand"
+    activate ":AddFoodCommand"
+    return
+    return command
 deactivate "<<class>>\n:Parser"
 
 participant ":Food"
+participant ":ListManager"
 participant ":FoodList"
 participant ":StorageManager"
 
@@ -33,20 +33,26 @@ create ":Food"
 activate ":Food"
 return food
 
-":AddFoodCommand" -> ":FoodList" : addFood(food)
-activate ":FoodList"
-|||
+":AddFoodCommand" -> ":ListManager" : addFood(food)
+activate ":ListManager"
+    ":ListManager" -> ":FoodList" : addFood(food)
+    activate ":FoodList"
+    return
 return
 
 ":AddFoodCommand" -> ":StorageManager" : writeFoodList(foodList)
 activate ":StorageManager"
-|||
+    ":StorageManager" -> ":FoodStorage" : writeFoodList(foodList)
+    activate ":FoodStorage"
+    return
 return
-|||
+
 ":AddFoodCommand" --> ":Fitr"
 deactivate ":AddFoodCommand"
 ":AddFoodCommand" -[hidden]-> ":Fitr"
 destroy ":AddFoodCommand"
+
+deactivate ":Fitr"
 
 hide footbox
 @enduml

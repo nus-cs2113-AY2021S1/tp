@@ -3,6 +3,8 @@
 * Table of Contents
 {:toc}
 
+<!-- @@author -->
+
 # 1. Introduction
 **Fitr** is a command line application, helping you keep track of your food intake and exercises. 
 Fitr is targeted at university students, who want a comprehensive application to track your food consumption and exercises. 
@@ -26,7 +28,7 @@ This quick start section provides a step-by-step procedure to get you started wi
 1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
 2. Open the command prompt/terminal on your computer, and navigate to the location where you stored `fitr.jar`.
 3. Run the command `java -jar {filename}.jar` e.g., `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
-4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1
+4. If you have performed the previous steps correctly, you should see a welcome screen, shown below in Figure 1.
 5. Follow the setup process by entering your name, age, height, weight, gender, and your fitness level. Note that the height is in metres and weight is in kilograms.
 6. Once done, you are ready to use Fitr. You can type `help` to find out what commands are supported in Fitr.
 
@@ -40,6 +42,8 @@ This section introduces the features available in Fitr, explaining how you can u
 
 ## 2.1 Adding Commands
 You can add various types of entries to Fitr, such as your food intake, exercise completed and goals you wish to achieve. These features are documented below.
+
+<!-- @@author sixletters -->
 
 ### 2.1.1 Adding a food entry
 You can add a food entry to keep track of what you have eaten, and the calories consumed from that food.
@@ -70,6 +74,8 @@ Name of Exercise: push ups
 Burnt Cal: 500
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+<!-- @@author hui444 -->
 
 ### 2.1.3 Adding a food goal
 
@@ -148,6 +154,8 @@ Okay! The following goal has been added:
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
+<!-- @@author -->
+
 ## 2.2 Viewing Commands
 You can view various aspects of Fitr, such as commands the application supports and its usages, your profile details, previous food and exercise entries, and your goals. These features are documented below.
 
@@ -155,6 +163,8 @@ You can view various aspects of Fitr, such as commands the application supports 
 If you are unsure of what commands the application supports or the format and usage of them, you can use this command.
 
 Format: `help`
+
+<!-- @@author gohsonghan98 -->
 
 ### 2.2.2 Viewing your profile	
 If you want to check your profile, you can use this command. The profile includes your name, age, gender, height, weight, and your fitness level.	
@@ -187,6 +197,7 @@ Example of an expected outcome is as follows:
 Your BMI is: 15.00
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
 ### 2.2.4 Viewing food entries	
 You can view the past food entries you have previously added to Fitr. All food entries will be grouped by their dates and displayed in a list form within their groups.	
 
@@ -229,6 +240,8 @@ Tip: You may also view food entries by day using the format "view food dd/MM/yyy
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
+<!-- @@author dmbclub -->
+
 #### 2.2.4.1 Viewing food entries on a specific date
 To view food entries for a specific day, you may enter the date at the back of the `view food` command. 
 
@@ -246,6 +259,8 @@ Date: 31/10/2020
     Burnt Cal: 78
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+<!-- @@author gohsonghan98 -->
 
 ### 2.2.5 Viewing exercise entries
 You can view the past exercise entries you have previously added to Fitr. All exercise entries will be grouped by their 
@@ -289,6 +304,8 @@ Tip: You may also view exercise entries by day using the format "view exercise d
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
+<!-- @@author dmbclub -->
+
 #### 2.2.5.1 Viewing exercise entries on a specific date
 To view exercises for a specific day, you may enter the date at the back of the `view exercise` command. 
 
@@ -303,6 +320,8 @@ Date: 31/10/2020
     Burnt Cal: 23
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+<!-- @@author hui444 -->
 
 ### 2.2.6 Viewing goal entries
 You can view the goals you have previously set for yourself and track your progress using this command. 
@@ -324,6 +343,8 @@ Here is the list of your goals:
 4. [F][Y] Eat less than 2000 calories (created on: 5/11/2020)
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+<!-- @@author gohsonghan98 -->
 
 ### 2.2.7 Viewing calorie summary
 If you want to see the calories you consumed from food or burnt from exercise, you can use this command. 
@@ -363,6 +384,9 @@ Net calorie:
 Tip: You may also view summary by day using the format "view summary dd/MM/yyyy"
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+<!-- @@author dmbclub -->
+
 #### 2.2.7.1 Viewing calorie summary of a specific date
 You may also choose to view the summary for a specific day by specifying a date at the back of `view summary`.
 
@@ -381,8 +405,12 @@ Net calorie:
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
+<!-- @@author -->
+
 ## 2.3 Editing Commands
 You can edit various aspects of Fitr, such as your profile, previous food and exercise entries, and your goals. These features are documented below.
+
+<!-- @@author gohsonghan98 -->
 
 ### 2.3.1 Editing your profile
 You can edit your name, age, gender, height, weight, and fitness level in your profile using commands within sections 2.3.1.1 to 2.3.1.6.
@@ -490,7 +518,7 @@ Successfully edited exercise to: Push ups, calories burnt: 500
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-<!-- @@author -->
+<!-- @@author hui444 -->
 
 ### 2.3.4 Editing a goal entry
 You can edit your previous goal entries, for example, if you previously made a mistake when entering the type or description of a goal.
@@ -509,10 +537,14 @@ Successfully edited goal to: [E] run 2.4km
 > * By editing the goal entry, it will reset the status of the goal
 > * Smart goals will be updated based on the created date's calorie intake and calories burnt
 
+<!-- @@author -->
+
 ## 2.4 Deleting Commands
 If you would like to delete a particular entry, you can utilise the various delete commands as listed below. 
 
 > :warning: **Warning:** The delete action is irreversible.
+
+<!-- @@author sixletters -->
 
 ### 2.4.1 Deleting a food entry
 You can delete a food entry using this command. You would need to know the index of that particular food entry as well as the date in which you wish to delete. You can try to use the view food command to find the index of the food before deleting.
@@ -553,6 +585,8 @@ The following has been deleted from the list of goals: Burn more than 30000 calo
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
+<!-- @@author -->
+
 ## 2.5 Clearing Commands
 Want to start anew? Instead of deleting entries one by one, you can clear all your entries in just one command. These features are documented below.
 
@@ -584,7 +618,7 @@ Exercise list is cleared!
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-<!-- @@author -->
+<!-- @@author hui444 -->
 
 ### 2.5.3 Clearing all goal entries
 If you do decide to reset your whole goal list (i.e. removing all goal entries stored), you can utilise this command.
@@ -616,6 +650,8 @@ Food, exercise and goal lists are all cleared!
 
 ## 2.6 Other Commands
 Other than the commands mentioned above, Fitr is also able to give you a workout to do, mark your goal as complete and if you have finished using the application, you can exit as well. The following documents the other commands available. 
+
+<!-- @@author sixletters -->
 
 ### 2.6.1 Getting a recommended workout
 If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it.
@@ -683,7 +719,6 @@ The following exercise has been added:
 ```
 
 If you decide you only want exercise 2 and 4 to be added, you can key in `2 4` and you will see as follows:
-
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
 The following exercise has been added:
@@ -693,6 +728,8 @@ The following exercise has been added:
     Burnt Cal: 5
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+<!-- @@author hui444 -->
 
 ### 2.6.2 Marking a goal as complete
 After completing a goal, you can mark it as complete. However, if it is a smart goal, Fitr will mark it as complete according to your calorie intake or calorie burnt.
@@ -724,12 +761,14 @@ Format: `bye`
 Your profile, food consumed and exercises done are saved automatically after any command that changes the data.
 There is no need to save manually. All your data will be saved in the same location as `fitr.jar`.
 
-<!-- @@author -->
+<!-- @@author dmbclub -->
 
-## 2.8 Tip of the Day
+## 2.8 Displaying Tip of the Day
 Fitr will tell you a fun fact every time when you open the application. It can be an exercise tip or an interesting trivia, which can give you some motivation to do exercise! An example is shown below:
 
 <p align="center"><img src="images/WelcomeScreen.png" width="800"></p>
+
+<!-- @@author -->
 
 # 3. FAQ
 In this section, you can find answers to some of the frequently asked questions (FAQs).
@@ -737,6 +776,10 @@ In this section, you can find answers to some of the frequently asked questions 
 **Q: How do I transfer my data to another computer?**
 
 A: Install Fitr on another computer, and overwrite the empty data files that it creates with the files with your data files.
+
+**Q: Can I edit the text files created by Fitr?**
+
+A: Yes, you can edit the text files. Note that if the entries are not recognised by Fitr, it will be ignored and deleted subsequently.
 
 # 4. Command Summary
 Table 1 below summarises the commands Fitr understands and how they can be used. Examples are also provided for your reference.
