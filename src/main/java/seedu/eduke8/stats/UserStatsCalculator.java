@@ -61,6 +61,13 @@ public class UserStatsCalculator extends StatsCalculator {
                 calculateTotalPointsAvailable());
     }
 
+
+    /**
+     * Determines if user's progress is over fifty percent so that a different message can be
+     * displayed to the user depending on his level of progress.
+     *
+     * @return A boolean variable indicating if the user's progress is over half.
+     */
     public boolean isProgressionOverHalf() {
         return calculateOverallProgressionPercentage() >= 50;
     }
