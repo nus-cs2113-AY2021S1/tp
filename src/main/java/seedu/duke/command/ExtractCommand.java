@@ -107,6 +107,12 @@ public class ExtractCommand extends Command {
         storage.saveFile(storage.getFileLocation(eventType), data, eventType);
     }
 
+    /**
+     * Detects zoom links from the text the user inputs.
+     *
+     * @param textBody A string of the text body that is scanned through for zoom links.
+     * @return An ArrayList of String with valid zoom links.
+     */
     private ArrayList<String> detectZoomLink(String textBody) {
         ArrayList<String> zoomLinkList = new ArrayList<>();
         Pattern urlPattern = Pattern.compile("https?://(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\."
@@ -123,6 +129,13 @@ public class ExtractCommand extends Command {
         return zoomLinkList;
     }
 
+    /**
+     * Allows the user to choose from Zoom Links detected.
+     *
+     * @param zoomLinkList An ArrayList of type String containing zoom links.
+     * @param ui contains responses to print.
+     * @return The zoom link in String chosen by the user.
+     */
     private String chooseZoomLink(ArrayList<String> zoomLinkList, Ui ui) {
         String zoomLink = null;
         if (zoomLinkCount > 1) {
@@ -148,6 +161,12 @@ public class ExtractCommand extends Command {
         return zoomLink;
     }
 
+    /**
+     * Takes in the textBody from the user.
+     *
+     * @param ui is used to receive Strings the user input.
+     * @return String containing the full text body entered.
+     */
     private String receiveTextBody(Ui ui) {
         String bodyLine = "";
         String fullTextBody = "";
