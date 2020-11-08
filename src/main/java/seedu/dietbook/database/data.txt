@@ -38,10 +38,15 @@ Ayam Penyet Set|699|0|0|0
 Steamed Chicken Set |475|0|0|0
 Ikan Grouper Penyet Set|669|0|0|0
 &%UP
-Michelin Star Restaurant
-Bouillabaisse with cock crab and poached lobster|520|45|35|56
-Chicken wings with Reblochon pomme purée|450|25|32|66
-Sea bass with prawn tortellini, fennel purée and white wine sauce|530|76|25|43
+Korean
+kimchi fried rice|520|45|35|56
+ginseng chicken|450|25|32|66
+ramen|530|76|25|43
+&%UP
+Gong Cha
+gong cha green tea|100|0|0|0
+gong cha ooloong tea|100|0|0|0
+gong cha bubble tea|200|0|0|0
 &%UP
 &%UP
 &%STOP
