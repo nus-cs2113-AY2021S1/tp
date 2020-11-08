@@ -110,7 +110,6 @@ To run Scheduler--;, your computer must meet these minimum system requirements
 1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases) 
 1. Copy the file to the folder you want to use as the folder for the Scheduler— 
 1. Open the command prompt by entering `cmd` into the search bar and press enter 
-1. Type `chcp 65001` into the command prompt and press enter 
 1. Navigate to the folder where you saved the jar file using the command prompt 
 1. Right click the top of the command prompt window, go to 'properties' and change the font to NSimSun to support ticks and crosses used in Scheduler--;. 
 1. Type `java -jar scheduler.jar` into the command prompt and press enter. 

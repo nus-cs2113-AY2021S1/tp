@@ -42,23 +42,25 @@ public class AddCommand extends Command {
             isInvalidEventType = true;
         } else {
             String[] commandWords = command.split(";");
-            String tempEventType = commandWords[0].toLowerCase().trim();
-            switch (tempEventType) {
-            case "zoom":
-                eventType = "Zoom";
-                break;
-            case "personal":
-                eventType = "Personal";
-                break;
-            case "timetable":
-                eventType = "Timetable";
-                break;
-            default:
-                isInvalidEventType = true;
-                break;
+            if (!(commandWords.length == 0)) {
+                String tempEventType = commandWords[0].toLowerCase().trim();
+                switch (tempEventType) {
+                case "zoom":
+                    eventType = "Zoom";
+                    break;
+                case "personal":
+                    eventType = "Personal";
+                    break;
+                case "timetable":
+                    eventType = "Timetable";
+                    break;
+                default:
+                    isInvalidEventType = true;
+                    break;
+                }
+                String[] argumentWords = Arrays.copyOfRange(commandWords, 1, commandWords.length);
+                argument = String.join(";", argumentWords);
             }
-            String[] argumentWords = Arrays.copyOfRange(commandWords, 1, commandWords.length);
-            argument = String.join(";", argumentWords);
             logger.fine("Add Command constructed");
         }
     }
@@ -80,7 +82,7 @@ public class AddCommand extends Command {
         if (isInvalidEventType) {
             logger.warning("EventAddErrorException -- Invalid event type was entered.");
             throw new EventAddErrorException("Invalid event type to be added! Valid event types are Personal,"
-                    + " Timetable or Zoom");
+                    + " Timetable or Zoom.");
         }
 
         String[] argumentWords = argument.split(";");
