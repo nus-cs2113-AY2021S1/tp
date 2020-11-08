@@ -506,7 +506,7 @@ The program will only load the data file in the persistent storage during the in
 2. A `StorageManager` object will be instantiated with the reference to a `ProjectManager` object that is used during load and save operations.
 3. `load()` will read the data file from the persistent storage, deserialise it into a `JsonObject` object and attempt to convert the object into its respective types.  
   
-##### Failure to Load
+**Failure to Load**  
 If the program fails to load the data file, it will proceed in an empty state. Any subsequent saves invoked by any command that changes the empty state, or exiting the program using `bye` will cause the erroneous data file **to be deleted**.  
 
 The program will fail to load the data file if **any of the following conditions are met**:
