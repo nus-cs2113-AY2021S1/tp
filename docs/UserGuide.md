@@ -7,17 +7,17 @@
 - [2. About this User Guide](#2-about-this-user-guide)
 - [3. Quick Start](#3-quick-start)
 - [4.Features](#4features)
-    - [Command Format](#command-format)
+  - [Command Format](#command-format)
   - [4.1 Help `help`](#41-help-help)
   - [4.2 Exit the program: `bye`](#42-exit-the-program-bye)
   - [4.3 HR features `HR`](#43-hr-features-hr)
     - [Add members: `addMember`](#add-members-addmember)
     - [Delete members: `delMember`](#delete-members-delmember)
-    - [list members: `listMember`](#list-members-listmember)
-    - [change member information: `changeInfo`](#change-member-information-changeinfo)
-    - [search members: `search`](#search-members-search)
-    - [view contacts of prof/admin: `list prof&admin`](#view-contacts-of-profadmin-list-profadmin)
-    - [view contacts of connections: `list connections`](#view-contacts-of-connections-list-connections)
+    - [List members: `listMember`](#list-members-listmember)
+    - [Change member information: `changeInfo`](#change-member-information-changeinfo)
+    - [Search members: `search`](#search-members-search)
+    - [View contacts of prof/admin: `list prof&admin`](#view-contacts-of-profadmin-list-profadmin)
+    - [View contacts of connections: `list connections`](#view-contacts-of-connections-list-connections)
   - [4.4 Event features`event`](#44-event-featuresevent)
     - [Add an event: `addEvent`](#add-an-event-addevent)
     - [Delete an event: `delEvent`](#delete-an-event-delevent)
@@ -149,7 +149,7 @@ Example of usage: <br/>
   
   [Return to the top](#user-guide)
 
-#### list members: `listMember`
+#### List members: `listMember`
 (By:Ye Yutong)  
 
 Prints the list of members, based on the order in which they are added into the list. 
@@ -166,7 +166,7 @@ Example of usage: <br/>
  
  [Return to the top](#user-guide)
 
-#### change member information: `changeInfo`
+#### Change member information: `changeInfo`
 (By:Ye Yutong)  
 
 Changes contacts and role of member in the list, based on the given member name. 
@@ -184,7 +184,7 @@ Example of usage: <br/>
  
  [Return to the top](#user-guide)
 
-#### search members: `search`  
+#### Search members: `search`  
 (by: Wang Zixin)  
 Search the members whose information matches user input.  
 :bulb: If a member's information matches any of the conditions that the user inputs, 
@@ -207,7 +207,7 @@ Expected outcomes:
 [Return to the top](#user-guide)  
 
 
-#### view contacts of prof/admin: `list prof&admin`  
+#### View contacts of prof/admin: `list prof&admin`  
 (by: Wang Zixin)  
 List the contacts of the professors and administrators.  
 :bulb: Professor/prof and administrator/admin are roles of members.  
@@ -227,7 +227,7 @@ Expected outcome:
 [Return to the top](#user-guide)  
 
 
-#### view contacts of connections: `list connections`  
+#### View contacts of connections: `list connections`  
 (by: Wang Zixin)  
 List the contacts of connections(alumni, speakers).  
 :bulb: Alumni and speaker are roles of members.  
@@ -257,7 +257,7 @@ Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 > :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 > :information_source: The EVENT_DATE entered should be in the format YYYY-MM-DD. <br/>
-> :information_source: The EVENT_TIME entered should be in the 24-hour clock format. <br/>
+> :information_source: The EVENT_TIME entered should be in the 24-hour clock format (HH-mm). <br/>
 
 Shorthand Format : <br/>
 event --> e <br/>
@@ -280,7 +280,7 @@ Expected Outcome:
 (By: Varsha)
 
  Allows you to delete an event from the list of events  <br/>
- Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
+ Format: `event delEvent EVENT_INDEX` <br/>
  It Deletes the event at the specified EVENT_INDEX.<br/>
  
 > :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
@@ -306,7 +306,7 @@ Expected Outcome:
 (By: Varsha)
 
 Allows you to clear all events from the list of events <br/>
-Format to clear all events in the list: `event delEvent all`
+Format: `event delEvent all`
 
 Example of usage:
 `event delEvent all` <br/>
@@ -326,7 +326,7 @@ Expected Outcome:
 #### List events: `listEvent`
 (By: Varsha)
 
-This command prints the list of events, based on the order in which they are added into the list. 
+This command prints the list of events, based on the order in which they are added into the list. <br/>
 Format: `event listEvent` <br/>
 
 Shorthand Format : <br/>
@@ -368,7 +368,7 @@ Expected Outcome:
 #### Mark an event as completed `done`
 (By: Varsha)
 
-Allows you to mark an event as done. 
+Allows you to mark an event as done. <br/>
 Format: `event done EVENT_INDEX` <br/>
 
 > :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
@@ -381,7 +381,11 @@ Example of usage: <br/>
 `event done 1` <br/>
 `e done 1` <br/>
 
-Expected Outcome:
+Example scenario : <br/>
+Let's say you have added one event and the event is over. You can mark it as complete by entering `event done 1`. The status will change 
+from `Up-coming` to `Done` as shown below.
+
+Expected Outcome: <br/>
 
 ![](userGuidePic/eventMarkAsDone.PNG)
 
@@ -390,7 +394,7 @@ Expected Outcome:
 #### Search for an Event `search`
 (By: Varsha)
 
-Allows you to search for a particular event by name or date.
+Allows you to search for a particular event by name or date. <br/>
 Format: 'event search /s KEYWORD' <br/>
 
 Shorthand Format : <br/>
@@ -472,7 +476,7 @@ Expected Outcome:
 Adds an entry into the finance log.  
 Format: `finance addLog ITEM_NAME ITEM_VALUE`  
 
-Shorthand format:  
+Shorthand Format:  
 `finance` -> `f`  
 `addLog` -> `add` or `a`  
 
@@ -492,7 +496,7 @@ Expected outcomes:
 Removes an entry from finance log.  
 Format: `finance delLog ITEM_INDEX`  
 
-Shorthand format:  
+Shorthand Format:  
 `finance` -> `f`  
 `delLog` -> `del` or `d`
 
@@ -512,7 +516,7 @@ Expected outcomes:
 Brings up a summary of the financial log and shows the total amount of money expended.  
 Format: `finance summary`  
 
-Shorthand format:  
+Shorthand Format:  
 `finance` -> `f`  
 `summary` -> `s`
 
@@ -529,7 +533,7 @@ Expected Outcome:
 Change the finance log entry's name and budget amount.  
 Format: `finance changeLog /i INDEX /n ITEM_NAME ITEM_VALUE`  
 
-Shorthand format:  
+Shorthand Format:  
 `finance` -> `f`  
 `changeLog` -> `c`
 
