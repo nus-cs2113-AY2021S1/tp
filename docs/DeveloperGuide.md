@@ -151,6 +151,8 @@ can be accessed in the `logs` folder.
 * This section describes generalizable implementations that are similar across features.
 * More components described in [Feature-level implementation](#feature-level-implementation) below.
 
+&nbsp;  
+
 ### Input Manager
 * Note: Refer to [Input Manager Component](#input-manager-component) above for class diagram 
 illustration of the below subsections.
@@ -210,6 +212,8 @@ __ParamsParser class__
         * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
         * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
+&nbsp;  
+
 ### Logic Managers
 * Note: Refer to [Logic Manager Component](#logic-manager-component) above for class diagram 
 illustration of the below subsections.
@@ -259,7 +263,7 @@ generally indicates whether an operation has failed.
 ```
 &nbsp;  
 
-### Logic Component
+### Logic 
 * Note: Refer to [Logic Component](#logic-component) above for class diagram 
 illustration of the below subsections.
 
@@ -273,8 +277,6 @@ illustration of the below subsections.
         1. The implication is that the range of exceptions that would have been caught in other
         parts of the software with regards to param handling, is now consolidated within a single class in the program.
         The class that uses ParamChecker is only concerned with whether the ```param``` is valid or not.
-
-&nbsp;  
 
 **`ParamHandler`**
 1. `CommandPacket` created from user-input needs to be handled by a particular `ParamHandler` subclass,
@@ -303,11 +305,13 @@ depending on what kind of command it is. E.g. CreateEntryHandler handles creatin
 <div style="page-break-after: always;"></div>
 
 ## Feature-level Implementation
+&nbsp;  
 ### Main Menu
 - Loading up user data
 - Access to various features
 - Saving outstanding user data to respective save files
 
+&nbsp;  
 ### Manual Tracker & Entry Tracker
 **Overview** <br />
 
@@ -387,11 +391,11 @@ The Manual Tracker is capable of executing the following states of operation:
 
 |Class| Function |
 |--------|----------|
-|```retrieveledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
-|```createledgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
+|```RetrieveLedgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance, then retrieves the instance from the existing ```LedgerList```.
+|```CreateLedgerHandler```| Process ```paramTypes```-```param``` pairs from the ```CommandPacket``` instance to identify specified ```Ledger``` instance to be created, then creates the instance and append to existing ```LedgerList```.
 |```retrieveEntryHandler```| Omitted for brevity.
-|```createentryHandler```| Omitted for brevity.
-|```editEntryHandler```| Omitted for brevity.
+|```CreateEntryHandler```| Omitted for brevity.
+|```EditEntryHandler```| Omitted for brevity.
 |```ParamChecker```| Class contains a collection of methods that verify the correctness of the ```param``` supplied. <br><br> For instance, ```ParamChecker.checkAndReturnIndex``` checks if the index provided is out of bounds relative to the specified list, and throws the relevant exception if the input index is invalid. 
 |```ParamHandler```| Abstract class that outlines the general param handling behavior of ```commands``` instances and other classes that need to handle ```params``` in its operation.  
 
@@ -402,11 +406,11 @@ The Manual Tracker is capable of executing the following states of operation:
 
 |Class| Function |
 |--------|----------|
-|```retrieveledgerHandler```| [Refer to section](#handler_logic).
-|```createledgerHandler```| [Refer to section](#handler_logic).
+|```RetrieveLedgerHandler```| [Refer to section](#handler_logic).
+|```CreateLedgerHandler```| [Refer to section](#handler_logic).
 |```retrieveEntryHandler```| Omitted for brevity.
-|```createentryHandler```| Omitted for brevity.
-|```editEntryHandler```| Omitted for brevity.
+|```CreateEntryHandler```| Omitted for brevity.
+|```EditEntryHandler```| Omitted for brevity.
 |```ManualTracker```| Implements Manual Tracker. Contains handler methods that implements a particular operation capable by the Manual Tracker. <br><br> These methods use the above ```command``` instances for param handling operations from user input.
 |```EntryTracker```| Omitted for brevity.
 
@@ -418,13 +422,13 @@ The Manual Tracker is capable of executing the following states of operation:
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br/>In this case, ```handleCreateLedger()``` will be called.
 1. At `handleCreateLedger()`, the following processes will be executed:
-    1. A new instance of ```createledgerHandler``` is created. The input String array will be passed into `createledgerHandler.setRequiredParams()` to set required params for a successful parse.
-    1. A new instance of `Ledger` will be instantiated and set to `createledgerHandler.currLedger`.
-    1. ```createledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
+    1. A new instance of ```CreateLedgerHandler``` is created. The input String array will be passed into `CreateLedgerHandler.setRequiredParams()` to set required params for a successful parse.
+    1. A new instance of `Ledger` will be instantiated and set to `CreateLedgerHandler.currLedger`.
+    1. ```CreateLedgerHandler.handlePacket(packet)``` is called to handle params in the packet.
         1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
-        1. For `createledgerHandler`, the `handleSingleParam` abstract method will be implemented as shown in the [following table](#table1).
+        1. For `CreateLedgerHandler`, the `handleSingleParam` abstract method will be implemented as shown in the [following table](#table1).
         
-1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```createledgerHandler``` instance
+1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```CreateLedgerHandler``` instance
 and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 
 #### <a name = table1></a> Param Handling Behavior
@@ -446,11 +450,11 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
     In this case, ```handleDeleteLedger()``` will be called.
 1. __Phase 1: Ledger retrieval__
     1. At ```handleDeleteLedger()```, the following processes will be executed:
-        1. A new instance of ```retrieveledgerHandler``` is created. The input String array will be passed into 
-        ```createledgerHandler.setRequiredParams()``` to set required params for a successful parse.
-        1. ```deleteledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
+        1. A new instance of ```RetrieveLedgerHandler``` is created. The input String array will be passed into 
+        ```CreateLedgerHandler.setRequiredParams()``` to set required params for a successful parse.
+        1. ```RetrieveledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
             1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
-            1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
+            1. For ```CreateLedgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
                 * Note that only one of the two params need to be invoked from the input. 
 1. __Phase 2: Ledger Deletion__
     1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
@@ -479,10 +483,10 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 1. __Phase 1: Entry retrieval([Sequence Diagram](#diag3))__
     1. At ```handleEditEntry()```, the following processes will be executed:
         1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
-        ```retrieveentryHandler.setRequiredParams()``` to set required params for a successful parse.
-        1. ```retrieveentryHandler.handlePacket(packet)``` is called to handle params in the packet.
+        ```retrieveEntryHandler.setRequiredParams()``` to set required params for a successful parse.
+        1. ```retrieveEntryHandler.handlePacket(packet)``` is called to handle params in the packet.
             1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
-            1. For ```retrieveentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
+            1. For ```retrieveEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
             1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
 #### <a name = table3></a> Param Handling Behavior
@@ -500,15 +504,15 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
         1. `editeEntryHandler.setPacket(packet)` is called to set packet.
-    1. ```editentryHandler.handlePacket()``` is called to handle params in the packet.
+    1. ```EditEntryHandler.handlePacket()``` is called to handle params in the packet.
         1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
-        1. For ```editentryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
+        1. For ```EditEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
 
 #### <a name = table4></a> Param Handling Behavior           
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
-|```PARAM.AMOUNT```|"/amt"|Double in 2 decimal places|Call ```entryList.setAmount()``` to set amount | ```ParamChecker.checkAndReturnDoubleSigned(packet)```|
+|```PARAM.AMOUNT```|"/amt"|Positive Double in 2 decimal places|Call ```entryList.setAmount()``` to set amount | ```ParamChecker.checkAndReturnDoubleSigned(packet)```|
 |```PARAM.TIME```|"/time"|Various format of time in string, eg. "15:00"|Call ```entryList.setTime()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnTime(packet)```|
 |```PARAM.INC```|"-i"|Income entry type flag|Call ```entryList.setEntryType(EntryType.INC)``` to set index of retrieved item. | ```nil```|
 |```PARAM.EXP```|"-e"|Expense entry type flag|Call ```entryList.setEntryType(EntryType.EXP)``` to set index of retrieved item. | ```nil```|
@@ -521,6 +525,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 
 <div style="page-break-after: always;"></div>
 
+&nbsp;  
 ### Recurring Tracker
 **Overview** <br />
 Recurring Tracker handles the creation, deletion and editing of recurring entries.
@@ -595,6 +600,8 @@ The sequence diagram below shows how it works:
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
 
 <div style="page-break-after: always;"></div>
+
+&nbsp;  
 
 <!-- @@author bqxy -->
 ### <a name = financeTools></a> FinanceTools
@@ -780,7 +787,9 @@ The results from calculation is stored in the ```ArrayList``` when the implement
 
 <div style="page-break-after: always;"></div>
 
-<!-- @@author @dixoncwc-->
+<!-- @@author-->
+
+&nbsp;  
 
 ### <a name = goalTracker></a> Goal Tracker
 **Set Expense Goal Feature** <br />
@@ -816,6 +825,8 @@ This sequence diagram will show the flow of setting of expense goal:
 
 <div style="page-break-after: always;"></div>
 
+&nbsp;  
+
 ### Storage Utility
 **What it does** <br />
 Storage utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
@@ -847,6 +858,8 @@ terminated.
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
 
 <div style="page-break-after: always;"></div>
+
+&nbsp;  
 
 # Product scope
 ## Target user profile
@@ -884,6 +897,8 @@ bill payments
 
 <div style="page-break-after: always;"></div>
 
+&nbsp;  
+
 # User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
@@ -909,6 +924,8 @@ bill payments
 
 <div style="page-break-after: always;"></div>
 
+&nbsp;  
+
 # Non-Functional Requirements
 
 * _Constraint_ - Single User Product. 
@@ -916,6 +933,8 @@ bill payments
 * _User_ - Users should prefer typing on CLI
 * _Program_ - Platform independent (Windows/Mac/Linux)
 * _Program_ - Works without needing an installer
+
+&nbsp;  
 
 # Glossary
 * __General__
@@ -934,6 +953,8 @@ bill payments
 
 <div style="page-break-after: always;"></div>
 
+&nbsp;  
+
 # Future implementations
 
 1. **Integrate Goal Tracker with Recurring Tracker**  <br/>
@@ -947,6 +968,8 @@ spending habits in a more detailed and categorised manner. Perhaps a tabulated s
 would be helpful in assisting the users in meaningfully monitoring their spending habits.
 
 <div style="page-break-after: always;"></div>
+
+&nbsp;  
 
 # Instructions for Manual Testing
 

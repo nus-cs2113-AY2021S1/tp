@@ -18,7 +18,7 @@ participant ":EntryTracker" as entryTracker <<class>>
 endBox
 
 box "Logic" #LightBlue
-participant ":RetrieveEntryHandler"
+participant "retrieveEntryHandler:RetrieveEntryHandler"
 participant ":ParamChecker"
 endBox
 
@@ -26,20 +26,20 @@ box "Data" #LightGreen
 participant "entryList:EntryList"
 endBox
 group "sd [handlePacket (Phase 1)]"
-       entryTracker-> ":RetrieveEntryHandler" : handlePacket
+       entryTracker-> "retrieveEntryHandler:RetrieveEntryHandler" : handlePacket
 
             == Handling of Params in packet \nfor retrieval ==
-            ":RetrieveEntryHandler" -> ":RetrieveEntryHandler" : handleParams
-                ":RetrieveEntryHandler" -> ":ParamChecker" : setPacket(packet)
+            "retrieveEntryHandler:RetrieveEntryHandler" -> "retrieveEntryHandler:RetrieveEntryHandler" : handleParams
+                "retrieveEntryHandler:RetrieveEntryHandler" -> ":ParamChecker" : setPacket(packet)
                 return
                 loop For all paramType in the command packet
                     note left: "Note: The entry to be edited is first retrieved \nusing the retrieve command."
-                    ":RetrieveEntryHandler" -> ":RetrieveEntryHandler" : handleSingleParam
+                    "retrieveEntryHandler:RetrieveEntryHandler" -> "retrieveEntryHandler:RetrieveEntryHandler" : handleSingleParam
                         alt "paramType = PARAM_INDEX"
-                            ":RetrieveEntryHandler" ->":ParamChecker": checkAndReturnIndex(paramType, entryList.getItems())
+                            "retrieveEntryHandler:RetrieveEntryHandler" ->":ParamChecker": checkAndReturnIndex(paramType, entryList.getItems())
                             return index
                             note left: "Note: Set index to modify at entry list\nso that the entry of interest can be retrieved \nvia regular getter methods from entrylist"
-                            ":RetrieveEntryHandler" -> "entryList:EntryList" : setIndexToModify(index)
+                            "retrieveEntryHandler:RetrieveEntryHandler" -> "entryList:EntryList" : setIndexToModify(index)
                             return
                         end
                     return
