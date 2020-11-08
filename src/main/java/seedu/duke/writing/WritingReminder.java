@@ -1,6 +1,7 @@
 package seedu.duke.writing;
 
 import seedu.duke.constants.FluffleMessages;
+import seedu.duke.exceptions.writingexceptions.InvalidReminderDateException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
