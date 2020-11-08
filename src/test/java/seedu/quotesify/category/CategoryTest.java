@@ -15,7 +15,6 @@ public class CategoryTest {
     private BookList bookList;
     private Quote quote1;
     private QuoteList quoteList;
-
     @BeforeEach
     public void setUp() {
         bookList = new BookList();
@@ -38,8 +37,11 @@ public class CategoryTest {
         assertEquals(2, category.getSize());
         assertEquals("book1 by me", category.getBookList().getBook(0).toString());
         assertEquals("\"quote1\"", category.getQuoteList().getQuote(0).toString());
+        assertEquals("romance - (2 items)", category.toString());
 
         bookList.delete(0);
         assertEquals(1, category.getSize());
+        category.setCategoryName("love");
+        assertEquals("love", category.getCategoryName());
     }
 }
