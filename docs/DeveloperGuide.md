@@ -70,6 +70,12 @@ The flow for the edit command is shown in the sequence diagram below:
 
 <div style="page-break-after: always;"></div><br><br>
 
+#### Delete Patient Command
+The flow for the delete patient command is shown in the sequence diagram below:
+![image info](./pictures/DeletePatientSeqDiagram.png)
+
+<div style="page-break-after: always;"></div><br><br>
+
 ## Product scope
 ### Target user profile
 
