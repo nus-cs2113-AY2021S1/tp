@@ -34,15 +34,15 @@ activate E
             activate U
             U --> E : chapterName
             deactivate U
-            E -> S : appendChapterToExclusionFile()
+            E -> S : appendChapterToExclusionFile(moduleName, chapterName)
             activate S
-                S -> SW : appendChapterToExclusionFile()
+                S -> SW : appendChapterToExclusionFile(moduleName, chapterName)
                 activate SW
                     SW -> SL : loadExclusionFile()
                     activate SL
                     SL --> SW : excludedChapters
                     deactivate SL
-                    SW -> SW : addEntryToExclusionFile()
+                    SW -> SW : addEntryToExclusionFile(moduleName, chapterName)
                     activate SW
                     deactivate SW
                     SW -> SW : updateExclusionFile()
@@ -60,20 +60,20 @@ activate E
             activate U
             U --> E : moduleName
             deactivate U
-            E -> S : appendModuleToExclusionFile()
+            E -> S : appendModuleToExclusionFile(moduleName)
             activate S
-                S -> SW : appendModuleToExclusionFile()
+                S -> SW : appendModuleToExclusionFile(moduleName)
                 activate SW
                     SW -> SL : loadExclusionFile()
                     activate SL
                     SL --> SW : excludedChapters
                     deactivate SL
-                    SW -> SL : loadChaptersFromSpecifiedModule()
+                    SW -> SL : loadChaptersFromSpecifiedModule(moduleName)
                     activate SL
                     SL --> SW : chaptersInModule
                     deactivate SL
                     loop for chapter in chaptersInModule
-                    SW -> SW : addEntryToExclusionFile(chapter)
+                    SW -> SW : addEntryToExclusionFile(moduleName, chapter)
                     activate SW
                     deactivate SW
                     end

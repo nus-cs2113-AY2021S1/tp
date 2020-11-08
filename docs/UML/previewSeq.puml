@@ -2,7 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":ListDueCommand" as L LOGIC_COLOR
+participant ":PreviewCommand" as P LOGIC_COLOR
 end box
 
 box Ui UI_COLOR_T1
@@ -18,35 +18,35 @@ skinparam sequence {
   GroupBodyBackgroundColor Transparent
 }
 
--> L : execute()
-activate L
-    L -> L : loadAllDueChapters()
-    activate L
-    L -> S : loadAllDueChapters()
+-> P : execute()
+activate P
+    P -> P : loadAllDueChapters()
+    activate P
+    P -> S : loadAllDueChapters()
     activate S
     S -> SL : loadAllChaptersAsDueChapters()
     activate SL
     SL --> S : allDueChapters
     deactivate SL
-    S --> L : allDueChapters
+    S --> P : allDueChapters
     deactivate S
-    deactivate L
+    deactivate P
     loop for increment from 0 to 6
-        L -> L : setDueDueChapters()
-        activate L
-        deactivate L
+        P -> P : setDueDueChapters()
+        activate P
+        deactivate P
         alt if increment equals 0
-            L -> U : printDueByTodayMessage()
+            P -> U : printDueByTodayMessage()
             activate U
-            U --> L
+            U --> P
             deactivate U
         else increment larger than 0
-            L -> U : printDueByIncrementMessage()
+            P -> U : printDueByIncrementMessage()
         end
-        L -> U : printDueChapters(DueDueChapters)
+        P -> U : printDueChapters(DueDueChapters)
         activate U
-        U --> L
+        U --> P
         deactivate U
     end
-deactivate L
+deactivate P
 @enduml

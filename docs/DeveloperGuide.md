@@ -524,6 +524,23 @@ To support the Access Chapter Level Feature, `GoChapterCommand` implements the f
 * `GoChapterCommand#goChapter()` - Parses through the Module that the User is currently on to search for the specified Chapter. If the Chapter is found but not empty, there will be no output message, while if the found Chapter is empty, a message prompting the user to add Cards to the Chapter will be returned.
 * `GoChapterCommand#execute()` - Calls `GoChapterCommand#goChapter()` and prints the output message returned if there is one.
 
+***Example***
+
+For instance, the user is currently in the Module `CS2113T` and would like to go to the Chapter 'Chapter 1' on the Chapter level. A detailed description of what happens is shown below:
+
+Step 1: The user enters `go 1`.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `GoCommandParser` object, which in turn
+ creates a `GoChapterCommand` object, with `1` as the command argument.
+
+Step 3: `GoChapterCommand` is executed, and `GoChapterCommand#goChapter()` is called.
+
+Step 4: `GoChapterCommand#goChapter()` calls `Access#getModule()`, `Access#getChapters()` and `ChapterList#getAllChapters()` to obtain an ArrayList of Chapters.
+
+Step 5: Using the command argument as the `chapterIndex`, and all the Cards within the Chapter are loaded with `Storage#loadCard()` into an ArrayList of Cards.
+ 
+Step 6: Lastly, to finish the transition into the Chapter level, `Access#setChapterLevel()`, `Chapter#setCards()` and `Access#setChapter` are called.
+
 The following sequence Diagrams illustrates how the Access Chapter Level Feature is executed:
 
 
@@ -539,6 +556,19 @@ To execute this feature, the following class was created:
 
 To support the Return to Admin Level Feature, `BackAdminCommand` implements the following operation:
 * `BackAdminCommand#execute()` - Calls `Access#setModuleLevel()` to set the `Access` Object's `level` attribute's value to `adminLevel` if its current value is the `moduleLevel`
+
+***Example***
+
+For instance, the user is currently in the Module `CS2113T` and would like to return to the Admin Level.  A detailed description of what happens is shown below:
+
+Step 1: The user enters `back`.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `BackCommandParser` object, which in turn
+ creates a `BackAdminCommand` object
+
+Step 3: `BackAdminCommand` is executed, and `Access#setModuleLevel()` is called.
+
+Step 4: `Access#setModuleLevel()` verifies that the user is not on the Admin level at the moment, and calls `Access#setBackAdminLevel()`, which sets the user back into the Admin Level.
 
 The following sequence Diagrams illustrates how the Return to Admin Level Feature is executed:
 
@@ -829,26 +859,6 @@ To support this feature, `Scheduler` implements the following operations:
 
 `Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` and `Scheduler#computeHardInterval()` are exposed in the `ReviseCommand` class as `ReviseCommand#rateCard()` while `Scheduler#computeDeckDeadline()` is exposed as `ReviseCommand#execute()`.
 
-***Example***
-Given below is an example usage scenario on how the Scheduler mechanism behaves at each step when: 
-`revise 1` is called in a `Module` that contains only one `Chapter` with three `Card`s in its `CardList` attribute and confirmation is given to proceed with revision.
-
-\<OBJECT DIAGRAMS\>
-
-Step 1:
-* The user enters `revise 1` within the `Module` and `ReviseCommand` is instantiated. 
-* Upon confirmation to revise and a check that `CardList` of the designated `Chapter` is not empty is complete, `ReviseCommand` proceeds to create a `ArrayList<Card> allCards` comprising of all `Card`s within in the `CardList`.
-
-Step 2:
-* For each `Card` in `allCards`, `ReviseCommand#reviseCard()` is called upon completion of either `ReviseCommand#execute()` or `ReviseCommand#repeateRevision()`.
-* This operation then calls `Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` or `Scheduler#computeHardInterval()` depending on the user input to compute and update the new value of `previousInteral` for each card.
-
-Step 3:
-* Upon completion of all revision, `ReviseCommand#execute()` will call `Scheduler#computeDeckDeadline()`, which in turn calls `Scheduler#computeDeckInterval()`. `Scheduler#computeDeckInterval()` computes `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of each `Card` in `allCards,` and returns it to `Scheduler#computeDeckDeadline()`.
-
-Step 4:
-* Using `deckInterval`, `Scheduler#computeDeckDeadline()` computes the new value of `dueBy` for the Chapter, which is then returned to `ReviseCommand#execute()`, where it will then update the value of `dueBy` for the `Chapter` that was just revised.
-
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.5. Viewing and Customising the Schedule Feature
@@ -886,6 +896,21 @@ On top of that, `Storage` implements the following operations:
 * `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
 
+***Example***
+
+For instance, the user wants to check what Chapters are due at the moment.  A detailed description of what happens is shown below:
+
+Step 1: The user enters `due`.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `ListDueCommand` object.
+
+Step 3: `ListDueCommand` is executed and calls the method `ListDueCommand#loadAllDueChapters()`, which will call `Storage#loadAllDueChapters()`, which will then call `StorageLoad#loadAllChaptersAsDueChapters()`. The name of every  Chapter, their deadlines, and the name of the Module that they belong to, will be stored as a `DueChapter` and be returned to `ListDueCommand`.
+
+Step 4: `ListDueCommand` will then call `ListDueCommand#setDueDueChapters()` to parse each `DueChapter` for those
+ that are already due by the current date, and add them to its `dueDueChapters` attribute.
+ 
+Step 5: `ListDueCommand` will then call `Ui#printDueByTodayMessage()` to print the prompt, and then call `Ui#printDueChapters()`, to print out the contents of `dueDueChapters`
+
 The following sequence Diagrams illustrates how the View Due Chapters Process is executed:
 
 <p align="center">
@@ -918,6 +943,31 @@ On top of that, the following operations from `Storage` are used:
 * `Storage#checkChapterDeadline()` - Reads the deadline for each `Chapter`, prompts if they are corrupted, and adds a `DueChapter` formed with the `Chapter` into `ArrayList<DueChapter> allDueChapters`
 * `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
+
+***Example***
+
+For instance, the user wants to check what Chapters are due on in the upcoming week.  A detailed description of what happens is shown below:
+
+Step 1: The user enters `preview`.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `PreviewCommand` object.
+
+Step 3: `PreviewCommand` is executed and calls the method `PreviewCommand#loadAllDueChapters()`, which will call
+ `Storage#loadAllDueChapters()`, which will then call `StorageLoad#loadAllChaptersAsDueChapters()`. The name of every
+  Chapter, their deadlines, and the name of the Module that they belong to, will be stored as a `DueChapter` and be
+   returned back to `PreviewCommand`.
+
+Step 4: To check for each day in the upcoming week, `PreviewCommand` runs a for loop with to carry out the following
+ steps for `increment` of value from 0 to 6
+ 
+Step 5: `PreviewCommand` will then call `PreviewCommand#setDueDueChapters()` to parse each `DueChapter` for those
+ that are already due on the current date + `increment` days, and add them to its `dueDueChapters` attribute.
+ 
+Step 5: `PreviewCommand` will then call `Ui#printDueByTodayMessage()` to print the prompt if the value of `increment` is 0, and `Ui#printDueByIncrementMessage()` to print the prompt if the value of `increment` is from 1 to 6.
+
+Step 6: `PreviewCommand` will then finally call `Ui#printDueChapters()`, to print out the contents of `dueDueChapters` for the current iteration.
+
+Step 7: Increment the value of `increment` by 1, and go back to Step 4 if the value of `increment` is smaller than 7.
 
 The following sequence Diagrams illustrates how the Preview Upcoming Dues Process is executed:
 
@@ -964,7 +1014,34 @@ Items are added into the `ArrayList<String>` Exclusion List using two pairs of c
     * `ExcludeCommand#addModuleToExclusion()` - gets the name of the `Module` to be excluded, and calls `Storage#appendModuleToExclusionFile()`
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
 
-The following sequence Diagrams illustrates how the "include" command is executed:
+***Example***
+
+For instance, the user wants to exclude the Module `CS2113T` from his schedule. A detailed description of what happens is shown below:
+
+Step 1: The user enters `exclude module`
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `ExcludeCommand` object.
+
+Step 3: `ExcludeCommand` is executed and calls the method `ExcludeCommand#attemptToExclude()`.
+
+Step 4: `ExcludeCommand#attemptToExclude()` checks the command argument, `module` for the `exclude` command and calls
+ `ExcludeCommand#addModuleToExclusion()`
+
+Step 5: `ExcludeCommand` calls `Ui#getExcludedModuleName()` to obtain the name of the module that is to be excluded from the scheduling process, so the user will enter `CS2113T` here
+
+Step 6: `ExcludeCommand` will then call `Storage#appendModuleToExclusionFile()`, which will in turn call
+ `StorageWrite#appendModuleToExclusionFile()` to begin the process of Updating the Exclusion File.
+ 
+Step 7: `StorageWrite` will load the contents of the Exclusion File into `excludedChapters` using `StorageLoad#loadExclusionFile()` and
+ load the Chapters of the `CS2113T` by calling `StorageLoad#loadChaptersFromSpecifiedModule()`.
+ 
+Step 8: `StorageWrite` will then check through the contents of the Exclusion file for each of the Chapters in `CS2113T`, and
+ add them into `excludedChapters` if it is not already in it.
+ 
+Step 9: After the inclusion of every Chapter in the `CS2113T` into `excludedChapters`, the contents of it are
+ written back by `StorageWrite` into the Exclusion File by calling `StorageWrite#updateExclusionFile()`.
+ 
+The following sequence Diagrams illustrates how the "exclude" command is executed:
 
 <p align="center">
   <img src="DG_Images/excludeSeq.png" width="800" alt="Sequence Diagram of the exclude command"/>
@@ -988,6 +1065,33 @@ Items are removed from the `ArrayList<String>` Exclusion List using two pairs of
 * Including a Module from Scheduling
     * `IncludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
     * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
+
+***Example***
+
+For instance, the user wants to include the Module `CS2113T` back into his schedule. A detailed description of what happens is shown below:
+
+Step 1: The user enters `include module`
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `IncludeCommand` object.
+
+Step 3: `IncludeCommand` is executed and calls the method `IncludeCommand#attemptToInclude()`.
+
+Step 4: `IncludeCommand#attemptToInclude()` checks the command argument, `module` for the `include` command and calls
+ `IncludeCommand#removeModuleFromExclusion()`
+
+Step 5: `IncludeCommand` calls `Ui#getIncludedModuleName()` to obtain the name of the module that is to be included back into the scheduling process, so the user will enter `CS2113T` here
+
+Step 6: `IncludeCommand` will then call `Storage#removeModuleFromExclusionFile()`, which will in turn call
+ `StorageWrite#removeModuleFromExclusionFile()` to begin the process of Updating the Exclusion File.
+ 
+Step 7: `StorageWrite` will load the contents of the Exclusion File into `excludedChapters` using `StorageLoad#loadExclusionFile()` and
+ load the Chapters of the `CS2113T` by calling `StorageLoad#loadChaptersFromSpecifiedModule()`.
+ 
+Step 8: `StorageWrite` will then check through the contents of the Exclusion file for each of the Chapters in `CS2113T`, and
+ remove them from `excludedChapters` if found.
+ 
+Step 9: After the removal of every Chapter in the `CS2113T` from `excludedChapters`, the contents of it are
+ written back by `StorageWrite` into the Exclusion File by calling `StorageWrite#updateExclusionFile()`.
 
 The following sequence Diagrams illustrates how the "include" command is executed:
 
