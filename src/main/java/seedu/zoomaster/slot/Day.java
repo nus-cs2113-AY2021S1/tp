@@ -81,6 +81,26 @@ public enum Day {
         return isDay;
     }
 
+    public static int getDayValue(String day) {
+        int value;
+        if (day.compareToIgnoreCase(MON.toString()) == 0) {
+            value = 1;
+        } else if (day.compareToIgnoreCase(TUE.toString()) == 0) {
+            value = 2;
+        } else if (day.compareToIgnoreCase(WED.toString()) == 0) {
+            value = 3;
+        } else if (day.compareToIgnoreCase(THU.toString()) == 0) {
+            value = 4;
+        } else if (day.compareToIgnoreCase(FRI.toString()) == 0) {
+            value = 5;
+        } else if (day.compareToIgnoreCase(SAT.toString()) == 0) {
+            value = 6;
+        } else {
+            value = 7;
+        }
+        return value;
+    }
+
     @Override
     public String toString() {
         String day;

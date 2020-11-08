@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//@@author
+//@@author xingrong123
 public class Timetable {
     private List<Module> modules;
 
@@ -43,6 +43,7 @@ public class Timetable {
         return slotList;
     }
 
+    //@@author jusufnathanael
     public void clearAllModule() {
         modules.removeAll(modules);
     }
@@ -72,11 +73,9 @@ public class Timetable {
         return null;
     }
 
-    //@@author
     public void deleteModule(Module module) {
         modules.remove(module);
     }
-
 
     //@@author TYS0n1
     public boolean isOverlapTimeSlot(String day, LocalTime startTime, LocalTime endTime) {
@@ -153,7 +152,6 @@ public class Timetable {
         newModule.addSlot(slot);
     }
 
-    //@@author
     public boolean isEmpty() {
         return modules.isEmpty();
     }

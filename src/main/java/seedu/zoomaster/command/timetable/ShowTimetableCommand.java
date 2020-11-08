@@ -87,7 +87,7 @@ public class ShowTimetableCommand extends Command {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
             }
             Module matchedModule = timetable.getModule(module);
-            message += matchedModule.getBookmarks();
+            message += matchedModule.getBookmarksToString();
         }
         ui.print(message);
     }

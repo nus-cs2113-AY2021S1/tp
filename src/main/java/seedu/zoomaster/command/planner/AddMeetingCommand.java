@@ -73,7 +73,7 @@ public class AddMeetingCommand extends AddSlotCommand {
             Slot newSlot;
             List<Slot> slots = timetable.getFullSlotList();
             if (isAvailable(day, startTime, endTime, slots, timetable)) {
-                newSlot = module.createSlotNew(lesson, day, startTime, endTime);
+                newSlot = new Slot(startTime, endTime, day, lesson);
                 module.addSlot(newSlot);
                 message +=  "  " + lesson + " slot added\n";
                 message += checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, newSlot);

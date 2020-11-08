@@ -129,7 +129,7 @@ public class AddSlotCommand extends Command {
                             "  Slot clash. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")"
                             + " Please check timetable.");
                 } else {
-                    newSlot = module.createSlotNew(lesson, day, startTime, endTime);
+                    newSlot = new Slot(startTime, endTime, day, lesson);
                     module.addSlot(newSlot);
                     message +=  "  " + lesson + " slot added" + System.lineSeparator();
                 }
