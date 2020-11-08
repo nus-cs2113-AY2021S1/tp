@@ -145,8 +145,8 @@ public class MenuParser implements Parser {
             }
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark list command chosen.");
-            if (commandArr.length >= BOOKMARK_DELETE_COMMAND_ARR_SIZE &&
-                    commandArr[1].trim().equalsIgnoreCase(COMMAND_BOOKMARK_DELETE)) {
+            if (commandArr.length >= BOOKMARK_DELETE_COMMAND_ARR_SIZE
+                    && commandArr[1].trim().equalsIgnoreCase(COMMAND_BOOKMARK_DELETE)) {
                 int deleteIndex;
                 try {
                     deleteIndex = Integer.parseInt(commandArr[2]);
