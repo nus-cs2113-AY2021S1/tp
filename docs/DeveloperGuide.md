@@ -591,7 +591,7 @@ This can be useful in certain scenarios such as fixing the data file in the even
 _Figure X: Running the Jar or in IDE_
 
 As shown in the above diagram, the program will save the data as _"data.json"_. The data file is saved in the _“data/”_ folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the _“data/”_ folder will be in the root of the project folder.  
-When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the program.  
+When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the data.  
 
 #### 4.4.2. Loading Data
 ![Figure X: Loading Data](image/developerguide/storage_load.png "Loading Data")  
@@ -603,11 +603,11 @@ The program will only load the data file in the persistent storage during the in
 3. `load()` will read the data file from the persistent storage, deserialise it into a `JsonObject` object and attempt to convert the object into its respective types.  
   
 **Failure to Load**  
-If the program fails to load the data file, it will proceed in an empty state. Any subsequent saves invoked by any command that changes the empty state, or exiting the program using `bye` will cause the erroneous data file **to be deleted**.  
+If the program fails to load the data file, it will proceed in an empty state. Any subsequent saves invoked by any command that changes the empty state, or exiting the program using `bye` will cause the erroneous data file (if any) **to be deleted**.  
 
 The program will fail to load the data file if **any of the following conditions are met**:
 * I/O error trying to read the file.
-* Error parsing the fail as JSON format.
+* Error parsing due to incorrect JSON format.
 * Conversion error due to missing properties.
 * Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
 
@@ -630,7 +630,7 @@ As explained in [Storage Component](#storage-component), each model class except
       3. Call `fromJson()` of the newly created object, passing the property as the parameter (e.g. `Sprint.fromJson()`).
       4. New object's `fromJson()` will **repeat the same process again under Step 4** for its own properties.  
       
-* `Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
+\*`Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
  the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
 
 #### 4.4.3. Saving Data
@@ -649,7 +649,7 @@ Changes made to the data during the runtime of the program can only be made by e
    
 As shown in the diagram above, each command class inherits the `shouldSave` property from `Command` class. `shouldSave` is a boolean variable and is initialised inside the constructor. `shouldSave` will be set to `true` if the command results in a change of data (e.g. adding a task, creating a sprint etc.), otherwise it is set to `false` (e.g. viewing projects, sprints etc.).
 
-After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` is set to `true`.
+After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` property is set to `true`.
 
 ##### 4.4.3.3. Serialising Objects to JSON  
 ![Figure X: Serialising Sequence](image/developerguide/storage_save_serialise.png "Serialising Sequence")  
@@ -658,9 +658,9 @@ _Figure X: Serialising Sequence_
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `toJson()`, which is used to implement the logic for **serialising objects into JSON string**.  
 When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize()` of the _**json.simple**_, passing in the `ProjectManager` and `FileWriter` (points to the data file) object as the parameters. The library will automatically serialise the objects and sub-objects into JSON string depending on the type of the objects:
  1. **Primitive and Standard Types (e.g. `int`, `String`, `Collection`)**: The library can directly serialise these types into JSON string.
- 2. **Scrumptious Model Types (e.g. `Project`, `Task`)**: The library will serialise these types by calling its `toJson()` method which contains the logic for the serialisation.  
+ 2. **\*Scrumptious Model Types (e.g. `Project`, `Task`)**: The library will serialise these types by calling its `toJson()` method which contains the logic for the serialisation.  
     
-* `Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String
+\*`Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String
 ` representation.
     
 
