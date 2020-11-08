@@ -352,7 +352,7 @@ The Manual Tracker is capable of executing the following states of operation:
 
 **Functions with Sequence Diagrams** <br />
 
-**Creation of Ledger** <br />
+**Creation of Ledger([Sequence Diagram](#diag1))** <br />
 1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
 1. Input is parsed by ```InputParser.parseInput()```, and ```ManualTracker.packet``` is set to the returned ```CommandPacket``` instance.
 1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br/>In this case, ```handleCreateLedger()``` will be called.
@@ -372,10 +372,12 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```currLedger.setDate()``` to set date for the ```Ledger``` instance. | ```ParamChecker.checkAndReturnDate(packet)```|
 
+#### <a name = diag1></a> Sequence Diagram
+
 ![](uml_images/images_updated/manualTrackerCreateLedgerSeqDiagram.png)
 
 
-**Deletion of Ledger** <br />
+**Deletion of Ledger ([Sequence Diagram](#diag2))** <br />
 The deletion of a specified ledger is performed in two phases: Ledger Retrieval and Ledger Delete.
 1. __Phase 0: Instruction retrieval__ 
     1. At ```ManualTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
@@ -390,6 +392,8 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
             1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
             1. For ```createledgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
                 * Note that only one of the two params need to be invoked from the input. 
+1. __Phase 2: Ledger Deletion__
+    1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
 
 #### <a name = table2/></a> Param Handling Behavior
     
@@ -398,8 +402,7 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
 |```PARAM.DATE```|"/date"|Various format of date in string, eg. "2020-03-02"| Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDate(packet)```|
 |```PARAM.INDEX```|"/index"|Valid index on the list from 1 onwards.|Call ```ledgerList.setIndexToModify()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
-1. __Phase 2: Ledger Deletion__
-    1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
+#### <a name = diag2></a> Sequence Diagram
 
 ![](uml_images/images_updated/manualTrackerDeleteLedgerSeqDiagram.png)
 
@@ -413,10 +416,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
     1. Input is parsed by ```InputParser.parseInput()```, and ```EntryTracker.packet``` is set to the returned ```CommandPacket``` instance.
     1. The ```commandString``` of the ```CommandPacket``` instance is evaluated, and the corresponding handle method() is executed.<br>
     In this case, ```handleEditEntry()``` will be called.
-1. __Phase 1: Entry retrieval__
-
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
-
+1. __Phase 1: Entry retrieval([Sequence Diagram](#diag3))__
     1. At ```handleEditEntry()```, the following processes will be executed:
         1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
         ```retrieveentryHandler.setRequiredParams()``` to set required params for a successful parse.
@@ -431,10 +431,11 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 |---------|----------------|----------------|-----------|---------------------|
 |```PARAM.INDEX```|"/index"|Valid index on the list <br/>from 1 onwards.|Call ```entryList.setIndexToModify()``` <br/>to set index of retrieved item. | ```ParamChecker.checkAndReturnIndex(packet)```|
 
-1. __Phase 2: Entry edit__
+#### <a name = diag3></a> Sequence Diagram 
 
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
 
+1. __Phase 2: Entry edit ([Sequence Diagram](#diag4))__ 
     1. Following Phase 1, the following processes will be executed:
         1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
@@ -453,10 +454,10 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 |```PARAM.EXP```|"-e"|Expense entry type flag|Call ```entryList.setEntryType(EntryType.EXP)``` to set index of retrieved item. | ```nil```|
 |```PARAM.DESCRIPTION```|"/desc"|Description in string, ';' character is illegal.|Call ```entryList.setDescription()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnDescription(packet)```|
 |```PARAM.CATEGORY```|"/cat"|A set of strings that corresponds with entry type|Call ```entryList.setCategory()``` to set index of retrieved item. | ```ParamChecker.checkAndReturnCategories(packet)```|
-            
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram.png)
 
+#### <a name = diag4></a> Sequence Diagram 
 
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
 
 
 ### Recurring Tracker
