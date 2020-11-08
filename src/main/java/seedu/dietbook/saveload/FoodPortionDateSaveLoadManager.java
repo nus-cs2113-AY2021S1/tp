@@ -1,15 +1,17 @@
 package seedu.dietbook.saveload;
 
 import seedu.dietbook.food.Food;
+import seedu.dietbook.list.FoodList;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /***
  * this class takes care of saving and loading of food, portion and date
  */
 public class FoodPortionDateSaveLoadManager {
-    private static final int DEFAULT_SAVER_WIDTH = 8;
+    private static final int DEFAULT_SAVER_WIDTH = 11;
     private static final int DEFAULT_SAVER_HEIGHT = 10;
 
     private static final int FOOD_NAME_INDEX = 1;
@@ -76,6 +78,41 @@ public class FoodPortionDateSaveLoadManager {
      */
     public void readySaver(Integer numEntry){
         saver.resetSize(DEFAULT_SAVER_WIDTH, numEntry);
+    }
+
+    // ------- top layer save loading -------
+
+    /**
+     * Constructs the food list from stored data
+     * Note : call load function before calling this function or else it will throw illegalAccessException
+     *
+     * @return the completed food list
+     */
+    public FoodList getFoodList() throws IllegalAccessException {
+        FoodList foodlist = new FoodList();
+        for (int i = 1; i < fileLoader.getHeight() + 1; i++){
+            foodlist.addFoodAtDateTime(this.getPortionSize(i), this.getFood(i), this.getDateTime(i));
+        }
+        return foodlist;
+    }
+
+    /**
+     * Takes in a food list object and saves all of it's contents to the specified file name
+     * The number of entries is equal to the number of items on the food list
+     * @param foodlist food list
+     */
+    public void saveFoodList(FoodList foodlist, String fileName) {
+        List<Food> foods = foodlist.getFoods();
+        List<Integer> portions = foodlist.getPortionSizes();
+        List<LocalDateTime> datetimes = foodlist.getDateTimes();
+        int numEntry = foods.size();
+        readySaver(numEntry);
+        for (int i = 1; i < numEntry + 1; i++){
+            setFood(foods.get(i-1), i);
+            setDateTime(datetimes.get(i-1), i);
+            setPortionSize(portions.get(i-1),i);
+        }
+        save(fileName);
     }
 
     // ------- setters and getters ----------

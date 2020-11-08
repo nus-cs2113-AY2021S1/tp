@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class PersonSaveLoadManagerTest {
 
     @BeforeEach
-    private void setUp() {
+    public void setUp() {
         PersonSaveLoadManager pslTest = new PersonSaveLoadManager();
         pslTest.setName("Victor Chng");
         pslTest.setActivityLevel(0);
@@ -24,17 +24,17 @@ class PersonSaveLoadManagerTest {
     }
 
     @Test
-    private void load_noSuchFile_expectFileNotFoundException() {
+    public void load_noSuchFile_expectFileNotFoundException() {
         PersonSaveLoadManager localpslTest = new PersonSaveLoadManager();
         assertThrows(FileNotFoundException.class, () -> localpslTest.load("pie die pie"));
     }
 
     @Test
-    private void load_correctFile_allContentsCorrect() throws Exception {
+    public void load_correctFile_allContentsCorrect() throws Exception {
         PersonSaveLoadManager localpslTest = new PersonSaveLoadManager();
         localpslTest.load("pslTest");
         assertEquals("Victor Chng", localpslTest.getName());
-        assertEquals("Unknown", localpslTest.getGender());
+        assertEquals("UnKnown", localpslTest.getGender());
         assertEquals(200, localpslTest.getOriginalWeight());
         assertEquals(100, localpslTest.getAge());
         assertEquals(300, localpslTest.getCurrentWeight());
