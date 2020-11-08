@@ -34,6 +34,7 @@ public class Main {
         ui = new Ui();
         parser = new Parser();
         storageManager = new StorageManager(ANICHAN_STORAGE_DIRECTORY);
+
         displayWelcome();
         userSetup();
         animeDataSetup();
@@ -71,7 +72,7 @@ public class Main {
      */
     private void displayWelcome() {
         ui.printWelcomeMessage();
-        LOGGER.log(Level.INFO, "AniChan started! Initializing...");
+        LOGGER.log(Level.INFO, "AniChan started! Initializing..");
         ui.printHorizontalLine();
     }
 
@@ -134,6 +135,7 @@ public class Main {
             Workspace workspace = new Workspace(workspaceName, watchlistList, bookmark);
             workspaceList.add(workspace);
         }
+
         return workspaceList;
     }
 

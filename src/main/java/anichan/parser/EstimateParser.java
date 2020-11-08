@@ -19,7 +19,7 @@ public class EstimateParser extends CommandParser {
     private static final String REGEX_LAST_DOT = "\\.(?=[^.]*$)";
 
     private static final String NO_SCRIPT_FILE_SPECIFIED_ERROR = "No script file specified!";
-    private static final String SPECIFIED_PATH_TO_SCRIPT_FILE_ERROR = "Only specify the script file name!";
+    private static final String SPECIFIED_PATH_TO_SCRIPT_FILE_ERROR = "Please specify only the script file name!";
     private static final String INVALID_SCRIPT_FILE_FORMAT_ERROR = "Only \".txt\" script files are accepted!";
     private static final String INVALID_PARAMETER_ERROR = "Estimate command only accepts the parameter: -wph.";
     private static final String ESTIMATE_COMMAND_TOO_MUCH_FIELDS_ERROR = "Estimate command" + TOO_MUCH_FIELDS;

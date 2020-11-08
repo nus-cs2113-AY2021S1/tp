@@ -22,8 +22,51 @@ import static anichan.logger.AniLogger.getAniLogger;
  */
 public class AnimeStorage {
 
-    private static final String FILE_RESOURCE_ERROR = "File within resource stream could not be found!";
+    //Constant Param
+    private static final int FIRST_FILE_INDEX = 1;
+    private static final int LAST_FILE_INDEX = 6;
+    private static final String EMPTY_STRING = "";
+    private static final int DEFAULT_PARAM = 0;
+
+    //Resource stream folder and extension
+    private static final String ANIME_STORAGE_FILE_EXTENSION = ".json";
+    private static final String ANIME_STORAGE_FILE_HEADER = "/AniListData/AniList-Data";
+
+    //Logger messages
+    private static final String ANIME_STORAGE_EXTRACTION_HEADER = "Extraction of " + ANIME_STORAGE_FILE_HEADER;
+    private static final String ANIME_STORAGE_EXTRACTION_TRAILER = ANIME_STORAGE_FILE_EXTENSION + " successful";
+    private static final String ANIME_STORAGE_PARSE_MESSAGE = "Parsing Json data.";
+    private static final String ANIME_STORAGE_PARSE_SUCCESSFUL = "Parse Successful.";
+    private static final String ANIME_STORAGE_PARSING_FAILED = "Parsing file failed!";
+    private static final String ANIME_STORAGE_RETRIEVE_MESSAGE = "Retrieving information from DataSource.";
+    private static final String ANIME_STORAGE_CURRENT_HEADER = "Currently extracting from " + ANIME_STORAGE_FILE_HEADER;
+    public static final String ANIME_STORAGE_SUCCESSFUL_MESSAGE = "Retrieval and Parsing for anime object"
+            + " in DataSource Successful.";
+
+    //JSON field title
+    private static final String DATA_JSON_FIELD = "data";
+    private static final String MEDIA_JSON_FIELD = "Media";
+    private static final String ENGLISH_JSON_FIELD = "english";
+    private static final String ROMAJI_JSON_FIELD = "romaji";
+    private static final String EPISODES_JSON_FIELD = "episodes";
+    private static final String START_DATE_JSON_FIELD = "startDate";
+    private static final String YEAR_JSON_FIELD = "year";
+    private static final String MONTH_JSON_FIELD = "month";
+    private static final String DAY_JSON_FIELD = "day";
+    private static final String AVERAGE_SCORE_JSON_FIELD = "averageScore";
+    private static final String GENRES_JSON_FIELD = "genres";
+    private static final String DURATION_JSON_FIELD = "duration";
+    private static final String TITLE_JSON_FIELD = "title";
+
+    //Error messages
+    private static final String GENRE_NULL_ERROR = "Genre should not be null.";
+    private static final String RELEASE_DATE_NULL_ERROR = "Release date should not be null.";
+    private static final String ANIME_NAME_NULL_ERROR = "Anime Name should not be null.";
+    private static final String FILENAME_NULL_ERROR = "Filename should not be null.";
+    private static final String FILE_RESOURCE_NULL_ERROR = "File within resource stream could not be found!";
+
     private static final Logger LOGGER = getAniLogger(Anime.class.getName());
+
 
     /**
      * Read anime data from offline database.
@@ -32,17 +75,17 @@ public class AnimeStorage {
      * @throws AniException if have error reading file
      */
     public ArrayList<Anime> readAnimeDatabase() throws AniException {
-        LOGGER.log(Level.INFO, "Retrieving information from DataSource.");
+        LOGGER.log(Level.INFO, ANIME_STORAGE_RETRIEVE_MESSAGE);
         ArrayList<Anime> animeDataList = new ArrayList<>();
-        for (int i = 1; i < 6; i++) {
-            LOGGER.log(Level.INFO, "Currently extracting from /AniListData/AniList-Data" + i + ".json");
-            String fileData = getDataFromJarFile("/AniListData/AniList-Data" + i + ".json");
-            LOGGER.log(Level.INFO, "Extraction of /AniListData/AniList-Data" + i + ".json successful");
-            LOGGER.log(Level.INFO, "Parsing Json data.");
+        for (int i = FIRST_FILE_INDEX; i < LAST_FILE_INDEX; i++) {
+            LOGGER.log(Level.INFO, ANIME_STORAGE_CURRENT_HEADER + i + ANIME_STORAGE_FILE_EXTENSION);
+            String fileData = getDataFromJarFile(ANIME_STORAGE_FILE_HEADER + i + ANIME_STORAGE_FILE_EXTENSION);
+            LOGGER.log(Level.INFO, ANIME_STORAGE_EXTRACTION_HEADER + i + ANIME_STORAGE_EXTRACTION_TRAILER);
+            LOGGER.log(Level.INFO, ANIME_STORAGE_PARSE_MESSAGE);
             parseJson(animeDataList, fileData);
-            LOGGER.log(Level.INFO, "Parse Successful.");
+            LOGGER.log(Level.INFO, ANIME_STORAGE_PARSE_SUCCESSFUL);
         }
-        LOGGER.log(Level.INFO, "Retrieval and Parsing for anime object in DataSource Successful.");
+        LOGGER.log(Level.INFO, ANIME_STORAGE_SUCCESSFUL_MESSAGE);
         return animeDataList;
     }
 
@@ -60,65 +103,66 @@ public class AnimeStorage {
             jsonList = (JSONArray) parser.parse(fileData);
 
         } catch (ParseException e) {
-            LOGGER.log(Level.WARNING, "Parsing file failed!");
+            LOGGER.log(Level.WARNING, ANIME_STORAGE_PARSING_FAILED);
             e.printStackTrace();
 
         }
 
         Iterator iterator = jsonList.iterator();
-        JSONObject jsonObject = new JSONObject();
+        JSONObject jsonObject;
         while (iterator.hasNext()) {
             String animeName;
-            int animeEpisode = 0;
-            int animeRating = 0;
-            int animeDuration = 0;
+            int animeEpisode = DEFAULT_PARAM;
+            int animeRating = DEFAULT_PARAM;
+            int animeDuration = DEFAULT_PARAM;
 
             //Advance the Iterator
             jsonObject = (JSONObject) iterator.next();
-            jsonObject = (JSONObject) jsonObject.get("data");
-            jsonObject = (JSONObject) jsonObject.get("Media");
+            jsonObject = (JSONObject) jsonObject.get(DATA_JSON_FIELD);
+            jsonObject = (JSONObject) jsonObject.get(MEDIA_JSON_FIELD);
 
             //Getting anime name
-            JSONObject jsonTitle = (JSONObject) jsonObject.get("title");
-            if (jsonTitle.get("english") == null) {
-                animeName = (String) jsonTitle.get("romaji");
+            JSONObject jsonTitle = (JSONObject) jsonObject.get(TITLE_JSON_FIELD);
+            if (jsonTitle.get(ENGLISH_JSON_FIELD) == null) {
+                animeName = (String) jsonTitle.get(ROMAJI_JSON_FIELD);
             } else {
-                animeName = (String) jsonTitle.get("english");
+                animeName = (String) jsonTitle.get(ENGLISH_JSON_FIELD);
             }
-            assert animeName != null : "Anime Name should not be null.";
+            assert animeName != null : ANIME_NAME_NULL_ERROR;
             //getting anime episode
 
-            if (jsonObject.get("episodes") != null) {
-                animeEpisode = (int) (long) jsonObject.get("episodes");
+            if (jsonObject.get(EPISODES_JSON_FIELD) != null) {
+                animeEpisode = (int) (long) jsonObject.get(EPISODES_JSON_FIELD);
             }
 
             //getting start date
-            JSONObject jsonDate = (JSONObject) jsonObject.get("startDate");
+            JSONObject jsonDate = (JSONObject) jsonObject.get(START_DATE_JSON_FIELD);
             String[] animeReleaseDate;
-            animeReleaseDate = new String[]{String.valueOf((long) jsonDate.get("year")),
-                    String.valueOf((long) jsonDate.get("month")), String.valueOf((long) jsonDate.get("day"))};
-            assert animeReleaseDate != null : "Release date should not be null.";
+            animeReleaseDate = new String[]{String.valueOf((long) jsonDate.get(YEAR_JSON_FIELD)),
+                    String.valueOf((long) jsonDate.get(MONTH_JSON_FIELD)),
+                    String.valueOf((long) jsonDate.get(DAY_JSON_FIELD))};
+            assert animeReleaseDate != null : RELEASE_DATE_NULL_ERROR;
 
             //getting rating
-            if (jsonObject.get("averageScore") != null) {
-                animeRating = (int) (long) jsonObject.get("averageScore");
+            if (jsonObject.get(AVERAGE_SCORE_JSON_FIELD) != null) {
+                animeRating = (int) (long) jsonObject.get(AVERAGE_SCORE_JSON_FIELD);
             }
 
             //getting genre
             ArrayList<String> animeGenre;
             animeGenre = new ArrayList<>();
-            JSONArray jsonGenre = (JSONArray) jsonObject.get("genres");
+            JSONArray jsonGenre = (JSONArray) jsonObject.get(GENRES_JSON_FIELD);
             for (Object genre : jsonGenre) {
                 animeGenre.add((String) genre);
             }
             String[] animeGenreArray;
             animeGenreArray = new String[animeGenre.size()];
             animeGenreArray = animeGenre.toArray(animeGenreArray);
-            assert animeGenreArray != null : "Genre should not be null.";
+            assert animeGenreArray != null : GENRE_NULL_ERROR;
 
             //getting duration
-            if (jsonObject.get("duration") != null) {
-                animeDuration = (int) (long) jsonObject.get("duration");
+            if (jsonObject.get(DURATION_JSON_FIELD) != null) {
+                animeDuration = (int) (long) jsonObject.get(DURATION_JSON_FIELD);
             }
 
             Anime anime = new Anime(animeName, animeReleaseDate, animeRating, animeGenreArray, animeDuration,
@@ -135,13 +179,13 @@ public class AnimeStorage {
      * @throws AniException if error reading resourse stream file
      */
     public String getDataFromJarFile(String filename) throws AniException {
-        assert filename != null : "Filename should not be null.";
+        assert filename != null : FILENAME_NULL_ERROR;
         try {
             InputStream inputStream = AnimeStorage.class.getResourceAsStream(filename);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String fileLine = "";
-            String fileData = "";
+            String fileLine;
+            String fileData = EMPTY_STRING;
 
             while ((fileLine = bufferedReader.readLine()) != null) {
                 fileData += fileLine;
@@ -151,8 +195,8 @@ public class AnimeStorage {
             inputStream.close();
             return fileData;
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, FILE_RESOURCE_ERROR);
-            throw new AniException(FILE_RESOURCE_ERROR);
+            LOGGER.log(Level.SEVERE, FILE_RESOURCE_NULL_ERROR);
+            throw new AniException(FILE_RESOURCE_NULL_ERROR);
         }
 
     }
