@@ -68,7 +68,11 @@ Hello from
 ____________________________________________________________
 Hello! I'm revisED
 ____________________________________________________________
+____________________________________________________________
 Alright, What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Type help for all available commands
 ____________________________________________________________
 ```
 
@@ -108,6 +112,11 @@ functionality. Here are the list of the main packages:
 * <a href="#storage">storage</a>
 
 ### 3.1 Card Package <a name="card"></a>
+
+![cardUML](https://user-images.githubusercontent.com/50734854/98472577-f2aa0200-222e-11eb-9b00-c23280986366.png)
+
+<sub>***Figure 3.1** UML class diagram for card package. quizcard package is omitted.*</sub>
+
 The Card package consists of different classes that holds information on the main functionalities of the application,
 and is split into 2 packages, quiz and task, as well as Subject, Topic and Flashcard classes.
 - quizcard package
@@ -128,41 +137,49 @@ Each of the classes in the card package contains:
 * Getters and Setters of its own attributes
 * Methods that alter an instance of its own class
 
-#### quizcard Package <a name="quiz"></a>
+#### 3.1.1 quizcard Package <a name="quiz"></a>
+
+![QuizUML](https://user-images.githubusercontent.com/50734854/98472580-f76eb600-222e-11eb-92c4-d721895cfd41.png)
+
+<sub>***Figure 3.1.1** UML class diagram for list package*</sub>
+
 The `quizcard` package holds the necessary classes for the quiz functionality of this application. The following are
 the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
 
-#### Quiz <a name="Qclass"></a>
+#### 3.1.1.1 Quiz <a name="Qclass"></a>
 `Quiz` class is an abstract class in the `quizcard` package. It holds the `result` variable to track the result of the quiz,
 the  `flashcards` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
 The list stores the questions which the user did not answer correctly, along with the correct answer for the question and the answer
 provided by the user. The Quiz class also contains a `startQuiz` method and a `checkAnswer` method.
- 
- 
 
-#### SubjectQuiz <a name="Qsubject"></a>
+#### 3.1.1.2 SubjectQuiz <a name="Qsubject"></a>
 `SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz for a subject.It also contains a `setupQuiz`method.
 
-#### TopicQuiz <a name="Qtopic"></a>
+#### 3.1.1.3 TopicQuiz <a name="Qtopic"></a>
 `TopicQuiz` class inherits from the `Quiz` class and initiates the quiz for a topic.It also contains a `setupQuiz`method.
 
-##### Result <a name="Qresult"></a>
+##### 3.1.1.4 Result <a name="Qresult"></a>
 `Result` class  stores the result of a quiz . It has three instance variables, namely the `score` variable
 which tracks the score during the quiz, the  `maxScore` variable which is the maximum score that you can get from doing the 
 quiz, while the  `description` variable will be a grade given to you depending on your performance.
 The  `UpdateResult` method  updates the score of the quiz during the quiz and changes the grade of the quiz. 
 
-#### taskcard Package <a name="task"></a>
+#### 3.1.2 taskcard Package <a name="task"></a>
+
+![TaskUML](https://user-images.githubusercontent.com/50734854/98472584-fb023d00-222e-11eb-8513-eb9493cae215.png)
+
+<sub>***Figure 3.1.2** UML class diagram for taskcard package*</sub>
+
 The `taskcard` package holds the necessary classes for the Task functionality of this application. The following are
 the classes in the package. A `Task` class, a `Todo` class, a `Deadline` class and an `Event` class.
 
-##### Task <a name="Ttask"></a>
+##### 3.1.2.1 Task <a name="Ttask"></a>
 The `Task` class is the superclass of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
 and an attribute to check if the task is completed-`Boolean`. It holds basic getters for its attributes, getters such as getting the 
 status icon to check if a Task is done-`String`, and getters for the DateTime features of the Deadline and Event classes. It also has
  a toString methods to print the Task.
  
-###### Todo <a name="Ttodo"></a>
+##### 3.1.2.2 Todo <a name="Ttodo"></a>
 The `Todo` class is the class to store information on basic tasks of the user. It contains methods and attributes similar to the
 ones found in its superclass `Task`. It has an additional Override toString method, to differentiate between itself and other
 tasks, such as Deadline and Event.
@@ -176,7 +193,7 @@ Now you have 1 task in the list.
 ____________________________________________________________
 ```
 
-###### Deadline <a name="Tdeadline"></a>
+##### 3.1.2.3 Deadline <a name="Tdeadline"></a>
 The `Deadline` class is the class to store information on tasks of the user that has a deadline. It contains methods and attributes similar to the
 ones found in its superclass `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
 to keep track of the deadline of the task-`LocalDateTime`, an Override toString method, to differentiate between itself and other tasks, such as Deadline 
@@ -192,7 +209,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-###### Event <a name="Tevent"></a>
+##### 3.1.2.4 Event <a name="Tevent"></a>
 The `Event` class is the class to store information of tasks of the user that is an event with a specific date and time occurrence. 
 It contains methods and attributes similar to the ones found in its superclass `Task`, and additional attributes to make it a `Deadline`
 Task, such as an additional dateTime attribute to keep track of the date and time of the event-`LocalDateTime`, an Override toString method,
@@ -208,18 +225,18 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-#### Flashcard  <a name="flashcard"></a>
+#### 3.1.3 Flashcard  <a name="flashcard"></a>
 The `Flashcard` class is a class to store information of flashcards. It has attributes such as the question
 and answer of each flashcard, a constructor, as well as getters for both question and answer of the flashcards.
 
 
-#### Subject <a name="subject"></a>
+#### 3.1.4 Subject <a name="subject"></a>
 The `Subject` class is a class to store information of subjects. It has various attributes such as the title of the 
 subject-`String`, a list of various topics in a subject-`TopicList`, a list of various tasks present in a subject-`TaskList`
 and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
 attributes in the `Subject` class and a toString method to return the title of the subject.
 
-#### Topic <a name="topic"></a>
+#### 3.1.5 Topic <a name="topic"></a>
 The `Topic` class is a class to store information of topics. It has various attributes such as the title of the subject-`String`,
 a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
 contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
@@ -470,6 +487,7 @@ to the user.
 A sequence diagram of the SorryTopicCommand can be seen below.
 ![SorryTopicSequenceDiagram](https://user-images.githubusercontent.com/47527482/98228071-105b3b00-1f93-11eb-827f-80723a24bfe9.png)
  <sub>***Figure 3.3.1** UML class diagram for list package*</sub>
+ 
 The isExit() method determines whether the program exits. The `SorryTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
 
 ##### TopicCommand
@@ -766,6 +784,23 @@ by assigning the `LocalDateTime` variable to be `LocalDateTimeMax`.
 The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.
 There are three categories of descriptions: `Fail` for getting a score which is lesser than half of the maximum score, `Pass`
 for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
+
+### 4.7 Implementation of `list all` command
+While the syntax of the `list all` command is the same on the main, subject and topic levels,
+there are 3 separate ListAll___Commands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
+the 3 classes are kept separate so that `printAll()` can recognise what object the user is accessing.
+
+The following sequence diagram shows how you can proccess the `list all` command from the subject level.
+
+![ListAllTopicSequenceDiagram](https://user-images.githubusercontent.com/50734854/98481821-11f95d00-2238-11eb-90c6-9bb081956da5.png)
+<sub>***Figure 4.7** UML sequence diagram for list all at topic level*</sub>
+
+If the `list all` command is given at the topic level, `printTreeTopic()` will check if each topic is the active topic each loop,
+instead of `Ui.printAll` checking each subject.
+
+> 📝️ **_NOTE:_** This command uses unicode characters such as "├" and "└". You may consider changing the characters to ASCII
+> characters only for the sake of compatibility.
+
 
 ## 5. Logging <a name = "logging"> </a>
 We use [java.util.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/package-summary.html) 
