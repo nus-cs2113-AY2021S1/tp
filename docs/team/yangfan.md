@@ -35,7 +35,7 @@ I also actively take part in reviewing my teammates code through GitHub:
 * [Pull Request 1](https://github.com/AY2021S1-CS2113-T14-1/tp/pull/31)
 * [Pull Request 2](https://github.com/AY2021S1-CS2113-T14-1/tp/pull/223)
 
-In addition, we often meet up on Zoom and other communication channels. I will be the one who takes care of admin issues and note down the to do list for the tea,.
+In addition, we often meet up on Zoom and other communication channels. I will be the one who takes care of admin issues and note down the to do list for the team.
 
 #### Contributions beyond the project team:
 
