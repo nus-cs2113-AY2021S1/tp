@@ -32,7 +32,7 @@ _addtime_, _minustime_ and _edittime_ features (Section 2.4, 2.10, 2.11) in the 
 I contributed to the _documentation_ (Section 5) part of the developer guide. I 
 added the implementations of the _addtime_ (Section 4.3), _minustime_ (Section 4.4) and _edittime_ (Section 4.5)
 features. 
-I also added one sequence diagram under these implementations. 
+I also added two sequence diagrams under these implementations. 
 
 #### Contributions to Team-based Tasks
 I tested our team's app to find bugs and helped managed errors in codes when our functions conflict with each

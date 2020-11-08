@@ -17,10 +17,11 @@
     <br/>&nbsp;4.2 [Add Module](#4.2) 
     <br/>&nbsp;4.3 [Add Time](#4.3)
     <br/>&nbsp;4.4 [Minus Time](#4.4)
-    <br/>&nbsp;4.5 [View modules](#4.5)
-    <br/>&nbsp;4.6 [Breakdown and analysis](#4.6)
-    <br/>&nbsp;4.7 [Add Task](#4.7)
-    <br/>&nbsp;4.8 [Mark Task as Done](#4.8)
+    <br/>&nbsp;4.5 [Edit Time](#4.5)
+    <br/>&nbsp;4.6 [View modules](#4.6)
+    <br/>&nbsp;4.7 [Breakdown and analysis](#4.7)
+    <br/>&nbsp;4.8 [Add Task](#4.8)
+    <br/>&nbsp;4.9 [Mark Task as Done](#4.9)
 1. [Documentation, logging, testing, configuration, dev-ops](#5)
 1. [Appendix: Requirements](#6)
     <br/>&nbsp;6.1 [Product Scope](#6.1)
@@ -319,6 +320,16 @@ hours spent in the respective academic weeks.
 
 The feature will implement the same checks as the add module feature as shown earlier.
 
+The feature will also implement two additional checks namely:
+
+`checkIfTimeValid` - checks if the time input is valid. For instance, the time input cannot have alphabets 
+neither can it be too large.
+
+`checkIfWeekValid` - checks if the week input is valid. For instance, the week input cannot be more than two
+digits or contain alphabets.
+
+`doesTimeExceed99` - checks if the time the user wishes to add will cause the total time to exceed 99 hours.
+
 If the module code is valid and exists the add time feature will proceed to add time from the module
 as indicated by the user.
 
@@ -340,11 +351,22 @@ Step.3 Within the `addTime()` function, it will first check if the module code i
 Step.4 Within the `addTime()` function, it will then check if the module exists in the module list storage by calling
 `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
-Step.5 A time of `2` hours in academic week `4` will now be added to the actual workload of the `CS2113T` module. 
+Step.5 Within the `addTime()` function, it will then check if the time input is valid by calling
+`checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
 
-Step.6 The system will print the string `2 hours have been added to CS2113T`
+Step.6 Within the `addTime()` function, it will then check if the week input is valid by calling
+`checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
 
-Step.7 The actual workload is updated in storage.
+Step.7 Within the `addTime()` function, it will then check if the hours the user wishes to add will cause the total time
+to exceed 99 hours by 
+calling the `doesTimeExceed99()` function. If the time does exceed 99, the `doesTimeExceed99()`
+function will return true.
+
+Step.8 A time of `2` hours in academic week `4` will now be added to the actual workload of the `CS2113T` module. 
+
+Step.9 The system will print the string `2 hours have been added to CS2113T`
+
+Step.10 The actual workload is updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `addTime CS2113T 2 4`.
 
@@ -367,7 +389,7 @@ hours spent in the respective academic weeks. This feature is the opposite of th
 
 #### Current Implementation
 
-The feature will implement the same checks as the add module feature as shown earlier.
+The feature will implement the same checks as the add time feature as shown earlier in _section 4.3_.
 
 As the command now is minus time, there would be two additional checks implemented.
 
@@ -401,24 +423,28 @@ Step.4 Within the `minusTime()` function, it will first check if the module code
 Step.5 Within the `minusTime()` function, it will then check if the module exists in the module list storage by calling
 `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
-Step.6 Within the `minusTime()` function, it will then check if there is an existing actual workload for this module by
+Step.5 Within the `minusTime()` function, it will then check if the time input is valid by calling
+`checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
+
+Step.6 Within the `minusTime()` function, it will then check if the week input is valid by calling
+`checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
+
+Step.7 Within the `minusTime()` function, it will then check if there is an existing actual workload for this module by
 calling the `doesActualTimeExist()` function. If the module has an existing workload, the `doesActualTimeExist()`
 function will return true.
 
-Step.7 Within the `minusTime()` function, it will then check if the hours the user wish to remove is more than the
+Step.8 Within the `minusTime()` function, it will then check if the hours the user wish to remove is more than the
 existing hours by
 calling the `doesHoursExceedTotal()` function. If the module has an existing workload, the `doesHoursExceedTotal()`
 function will return true.
 
-Step.8 A time of `2` hours in academic week `4` will now be removed from the actual workload of the `CS2113T` module. 
+Step.9 A time of `2` hours in academic week `4` will now be removed from the actual workload of the `CS2113T` module. 
 
-Step.9 The system will print the string `2 hours have been removed from CS2113T`
+Step.10 The system will print the string `2 hours have been removed from CS2113T`
 
-Step.10 The actual workload is updated in storage.
+Step.11 The actual workload is updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `minusTime CS2113T 2 4`.
-
-[insert diagram here]
 
 
 #### Design Considerations
@@ -429,8 +455,62 @@ The following sequence diagram illustrates what happens when a user executes `mi
 * **Alternative 2**: minus time in totality 
     * Pros: Able to cumulatively remove time and manage workload based on overall total time spent.
     * Cons: May not be useful to know total time spent as workload may be better managed weekly.
+    
+ ### 4.5 Edit Time <a name="4.5"></a>
+ The edit time feature edits the actual workload for a specific module as indicated by the user. 
+ This is done by replacing the time spent on the module. The actual workload is broken down into academic weeks and
+ hours spent in the respective academic weeks.
+ 
+ #### Current Implementation
+ 
+ The feature will implement the same checks as the add time module feature as shown earlier in _section 4.3_.
+ 
+ If the module code is valid and exists the edit time feature will proceed to edit the time from the module
+ as indicated by the user.
+ 
+ Given below is an example usage scenario and how the edit time command behaves at each step.
+ 
+ Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
+ to a list of modules. This is done by inputting the command `addMod CS2113T`.
+ 
+ Step.2 The user now types in a command: `editTime CS2113T 2 4`. This calls the edit time command from `Parser`.
+ `Parser` then calls the `editTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
+ method. 
+ > **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
+ >updated.
+ >
+ 
+ Step.3 Within the `editTime()` function, it will first check if the module code is valid by calling
+ `checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
+ 
+ Step.4 Within the `editTime()` function, it will then check if the module exists in the module list storage by calling
+ `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
-### 4.5 View modules <a name="4.5"></a>
+ Step.5 Within the `editTime()` function, it will then check if the time input is valid by calling
+ `checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
+
+ Step.6 Within the `editTime()` function, it will then check if the week input is valid by calling
+ `checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
+ 
+ Step.7 A time of `2` hours in academic week `4` will now be the new actual workload of the `CS2113T` module. 
+ 
+ Step.8 The system will print the string 
+ 
+ `2 hours have been added to CS2113T`
+ `2 hours have been spent on this module in week 4`
+ 
+ Step.9 The actual workload is updated in storage.
+ 
+#### Design Considerations
+
+* **Alternative 1 (current choice)**: time input is rounded off to 1 decimal place.
+    * Pros: Easy to store and easier for user to view. Also provides conistency throughout the app.
+    * Cons: User might prefer to manage his time spent super precisely with high number of decimal places
+* **Alternative 2**: time input is left unedited.
+    * Pros: User input is what exactly what he or she inputted.
+    * Cons: May not be easy to view the time spent when it has too many decimal places.
+
+### 4.6 View modules <a name="4.6"></a>
 
 #### Current Implementation
 
@@ -469,7 +549,7 @@ The following sequence diagram shows how the view module command works.
 
 
 
-### 4.6 Breakdown and Analysis <a name="4.6"></a>
+### 4.7 Breakdown and Analysis <a name="4.7"></a>
 
 #### Current Implementation
 
@@ -518,7 +598,7 @@ The following sequence diagram shows how the analysis command works.
     * Cons: Difficult to implement as it requires external libraries.
     * Cons: Difficult to test due to additional dependencies on external libraries. 
 
-### 4.7 Add Task <a name="4.7"></a>
+### 4.8 Add Task <a name="4.8"></a>
 The add task feature allows user to add a task under an existing module. 
 
 #### Current Implementation
@@ -554,7 +634,7 @@ user input into 4 sections, with `Section 4` as the expected time required to co
 used in the future implementation of mark task as done feature, as further illustrated in the [mark task as done](#mark-task-as-done)
 section.
 
-### 4.8 Mark Task as Done <a name="4.8"></a>
+### 4.9 Mark Task as Done <a name="4.9"></a>
 The mark task as done feature allows user to mark an existing task as done.
 
 #### Current Implementation
@@ -588,12 +668,11 @@ to add the expected time required to complete the task to the actual time spent 
     implementation of the `addTask` method to be passed as a parameter to the `setDone` method and then to the 
     `addTime` method.
 
-## 5. Documentation, Logging, Testing, Configuration, Dev-Ops <a name="5"></a>
+## 5. Documentation, Logging, Testing, Dev-Ops <a name="5"></a>
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
 
