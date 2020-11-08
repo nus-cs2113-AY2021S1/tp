@@ -58,7 +58,8 @@ Result is like this:
 
 ![image](img/before.png)
 
-### 3.2 Begin the order: `order`
+### 3.2 Begin the order:
+`order`
 begin the order of a customer
 
 #### 3.2.1 Firstly
@@ -138,7 +139,8 @@ Result is like this:
 
 ![image](img/type.png)
 
-### 3.3 delete the specific order: `delete [number]`
+### 3.3 delete the specific order: 
+`delete [number]`
 delete the order based on the number from user
 user needs to input the number of order 
 
@@ -151,7 +153,8 @@ Result is like this:
 
 ![image](img/ddlete.png)
 
-### 3.4 find the specific order: `find [dish name]`
+### 3.4 find the specific order: 
+`find [dish name]`
 find the specific dish based on the user input dish name
 from the order list made by the user
 
@@ -164,7 +167,8 @@ Result is like this:
 
 ![image](img/findd.png)
 
-### 3.5 list all the orders: `list`
+### 3.5 list all the orders: 
+`list`
 check all the orders made by this user
 
 Format: `list`
@@ -176,7 +180,8 @@ Result is like this:
 
 ![image](img/lis.png)
 
-### 3.6 change the order: `change/[number]/[type]`
+### 3.6 change the order: 
+`change/[number]/[type]`
 Change the order type to the type user inputed
 
 Format: `change/[number]/[type]`
@@ -196,7 +201,8 @@ Result is like this:
 
 ![image](img/changeorderr.png)
 
-### 3.7 check Canteen Operating Time: `checkcanteen`
+### 3.7 check Canteen Operating Time: 
+`checkcanteen`
 check the operating hours of a canteen 
 
 #### 3.7.1 Firstly
@@ -217,7 +223,8 @@ Result is like this:
 
 ![image](img/checkcanteen.png)
 
-### 3.8 check Stall Operating Time: `checkstall`
+### 3.8 check Stall Operating Time: 
+`checkstall`
 check the operating hours of a stall 
 
 #### 3.8.1 Firstly
@@ -245,7 +252,8 @@ Result is like this:
 
 ![image](img/checkstall.png)
 
-### 3.9 view all available commands: `help`
+### 3.9 view all available commands: 
+`help`
 print all the commands with required format that the user can input
 
 Format: `help`
@@ -255,7 +263,8 @@ Example of usage:
 
 ![image](img/help.png)
 
-### 3.10 quit the system: `bye`
+### 3.10 quit the system: 
+`bye`
 quit the system
 
 Format: `bye`
