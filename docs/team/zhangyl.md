@@ -77,8 +77,8 @@ Given below are my contributions to the project. <br/>
   ([\#171](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/171))
   
 #### Contributions to the User Guide:
-* Documented features `saving the data`, as well as feature `print countdown deadlines` and feature `print countdown exams` 
-  in `printing countdown`.
+* Documented features `saving the data`, as well as feature `countdown deadlines`, feature `countdown exams`, and feature `countdown` 
+  in printing countdown.
   ([\#169](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/169))
 * Documented the FAQ part of user guide.
   ([\#169](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/169))
