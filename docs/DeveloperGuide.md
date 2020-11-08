@@ -413,7 +413,7 @@ They implement the following operations:
 Given below is an example usage scenario and how add/delete event participants function behaves at each step.  
 
 Step 1. After a `event addEvent` command, the user has created a `EventList` with some `Event`. Assuming there is an `Event` in the list, 
-with the name arduino course on 30 December 2020 at 8pm and the second `Event` has the name Autodesk course on 25 May 2021 from 10-12pm.
+with the name arduino course on 30 December 2020 at 1800 and the second `Event` has the name Autodesk course on 25 May 2021 at 1200.
         
 ![](EventDiagram/EventSteps/6Step1.png)
 
@@ -464,7 +464,7 @@ It implements the following operation:
 Given below is an example usage scenario and how the program list the participants.  
 
 Step 1. After a `event addEvent` commands, the user has created a `EventList` with a `Event`. 
-        The`Event` has the name arduino course on 30 December 2020 at 8pm.
+        The`Event` has the name arduino course on 30 December 2020 at 1800.
         
 ![](EventDiagram/EventSteps/7Step1.png)
 
