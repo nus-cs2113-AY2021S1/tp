@@ -61,5 +61,5 @@ Given below are my contributions to the project.
    [\#78](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/78), 
    [\#195](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/195),
    [\#205](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/205)
-  * Reported bugs and suggestions for other teams ([Click here](https://github.com/Johnson-Yee/ped/issues)
-  * Reviewed developer guide for team DomNUS ([Click here](https://github.com/nus-cs2113-AY2021S1/tp/pull/8/files/65a23531bf8d85984e3d339cfc455cedb7e0cccc)
+  * Reported bugs and suggestions for other teams ([Click here])(https://github.com/Johnson-Yee/ped/issues)
+  * Reviewed developer guide for team DomNUS ([Click here])(https://github.com/nus-cs2113-AY2021S1/tp/pull/8/files/65a23531bf8d85984e3d339cfc455cedb7e0cccc)
