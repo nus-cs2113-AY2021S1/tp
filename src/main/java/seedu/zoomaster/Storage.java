@@ -218,13 +218,13 @@ public class Storage<T> {
             if (responseCode != 200) { //Unable to connect
                 return null;
             }
-            String jsonAsString = "";
+            StringBuilder jsonAsString = new StringBuilder();
             Scanner sc = new Scanner(url.openStream());
             while (sc.hasNext()) { // if line is empty, means finish reading
-                jsonAsString += sc.nextLine();
+                jsonAsString.append(sc.nextLine());
             }
 
-            return jsonToArrayList(jsonAsString);
+            return jsonToArrayList(jsonAsString.toString());
 
         } catch (IOException e) {
             throw new ZoomasterException(ZoomasterExceptionType.CONNECTION_ERROR, weblink);
@@ -291,7 +291,6 @@ public class Storage<T> {
                 throw new FileNotFoundException();
             }
             return moduleList;
-
 
         } catch (FileNotFoundException e) {
 
