@@ -47,8 +47,8 @@ class ArchiveNoteCommandTest {
         storageManager = new StorageManager(timetable, parserManager, notebook, tagManager);
         try {
             storageManager.createFiles();
-        } catch (SystemException e){
-
+        } catch (SystemException e) {
+            // not sure what to do here
         }
 
         content = new ArrayList<>();
@@ -74,10 +74,14 @@ class ArchiveNoteCommandTest {
         notebook.addNote(testNote3);
         notebook.addNote(testNote4);
 
-        try{
+        try {
             storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/Default.txt");
-        } catch (IOException e){
+            storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/TestNote1.txt");
+            storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/TestNote2.txt");
+            storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/Random Text.txt");
 
+        } catch (IOException e) {
+            // not sure what to do here
         }
     }
 
