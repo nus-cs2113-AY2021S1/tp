@@ -9,7 +9,7 @@
 2. [<b>Setting Up</b>](#2-setting-up)<br>
 2.1. [Prerequisites](#21-prerequisites)<br>
 2.2. [Setting Up the Project in your Computer](#22-setting-up-the-project-in-your-computer)<br>
-2.3. []
+2.3. [Verifying the Setup](#23-verifying-the-setup)<br>
 3. [<b>Design (Architecture)</b>](#3-design-architecture)<br>
 3.1. [Ui Component](#31-ui-component)<br>
 3.2. [Logic Component](#32-logic-component)<br>
@@ -102,7 +102,7 @@ If asked, choose to `Open as Project` (not `Open as File`).
     2. Some example commands you can try to get familiar with **Kaji**:
         * `help`: Lists the commands that **Kaji** supports.
         * `add CS2113T`: Adds a module **CS2113T**.
-        * `add q:1+1 | a:2`: Adds a flashcard with **1+1** as the question and **2** as the answer.
+        * `list`: Shows a list of modules available.
         * `exit`: Exits **Kaji**.
 
 ##### <a href="#top">Back to Top ^</a>
