@@ -450,7 +450,8 @@ Note:
 `correct` field. 
 - If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
-- The title of a topic cannot contain a backslash, be blank or repeated (not case-sensitive).
+- The title of a topic cannot be blank or repeated (not case-sensitive).
+- If the title includes a backslash, you may not be able to use the title anywhere else.
 - The description of a question cannot be blank or repeated (not case-sensitive).
 - If you want to re-attempt the same question, you can simply start a new quiz with the topic that the question is from.
 
