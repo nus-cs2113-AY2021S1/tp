@@ -549,8 +549,8 @@ Expected: No bus routes will be displayed as there is no such bus in our databas
 Expected: No bus routes will be displayed. Error details will be shown to remind users to type in
 the needed parameter.<br>
 
-
-### E.4 Check for buses at a bus stop
+<!-- @@author EthanWong22 -->
+### E.4 Check for buses at a bus stop - Wong Heng Chin
 1. Checking for the buses available at a bus stop
     * Prerequisites: Nill
     * Test case: `/bus Museum`<br>
@@ -561,6 +561,7 @@ the needed parameter.<br>
     Expected: Error details will be shown<br>
     * Other incorrect data to test: `/bus`
     Expected: Similar to previous.
+<!-- @@author -->
 
 ### E.5 Search for dining options within a faculty
 1. Searching for dining options within a faculty.
