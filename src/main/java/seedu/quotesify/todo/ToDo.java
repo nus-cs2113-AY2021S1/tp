@@ -94,7 +94,6 @@ public class ToDo implements JsonSerializer {
             formattedDeadline = LocalDate.parse(deadline);
             isDeadlineFormatted = true;
         } catch (DateTimeParseException e) {
-            formattedDeadline = LocalDate.parse("3000-12-31");
             isDeadlineFormatted = false;
         }
     }
