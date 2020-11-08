@@ -71,7 +71,7 @@ public class TopicsStorage extends LocalStorage {
     }
 
     private Topic parseToTopicObject(JSONObject topic) throws Eduke8Exception {
-        currentTopicTitle = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
+        currentTopicTitle = ((String) topic.get(KEY_TOPIC)).trim().replaceAll(" ", "_");
 
         checkIfBlankOrDuplicate(currentTopicTitle, topicTitles);
 
@@ -90,7 +90,7 @@ public class TopicsStorage extends LocalStorage {
     }
 
     private Question parseToQuestionObject(JSONObject question) throws Eduke8Exception {
-        currentQuestionDescription = (String) question.get(KEY_DESCRIPTION);
+        currentQuestionDescription = ((String) question.get(KEY_DESCRIPTION)).trim();
 
         checkIfBlankOrDuplicate(currentQuestionDescription, questionDescriptions);
 
@@ -121,11 +121,11 @@ public class TopicsStorage extends LocalStorage {
 
         OptionList optionList = new OptionList(optionsAsObjects);
 
-        String hintDescription = (String) question.get(KEY_HINT);
+        String hintDescription = ((String) question.get(KEY_HINT)).trim();
 
         Hint hint = new Hint(hintDescription);
 
-        String explanationDescription = (String) question.get(KEY_EXPLANATION);
+        String explanationDescription = ((String) question.get(KEY_EXPLANATION)).trim();
 
         Explanation explanation = new Explanation(explanationDescription);
 
@@ -150,7 +150,7 @@ public class TopicsStorage extends LocalStorage {
     }
 
     private Option parseToOptionObject(JSONObject option) throws Eduke8Exception {
-        String optionDescription = (String) option.get(KEY_DESCRIPTION);
+        String optionDescription = ((String) option.get(KEY_DESCRIPTION)).trim();
         boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT);
 
         Option optionAsObject = new Option(optionDescription);

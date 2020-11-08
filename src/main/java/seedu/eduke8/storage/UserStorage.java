@@ -108,7 +108,7 @@ public class UserStorage extends LocalStorage {
         JSONArray notes;
 
         try {
-            String topicDescription = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
+            String topicDescription = ((String) topic.get(KEY_TOPIC)).trim().replaceAll(" ", "_");
             topicObject = (Topic) topicList.find(topicDescription);
             questions = (JSONArray) topic.get(KEY_QUESTIONS);
         } catch (Eduke8Exception | NullPointerException | ClassCastException e) {
@@ -155,8 +155,8 @@ public class UserStorage extends LocalStorage {
         String noteDescription;
         String text;
         try {
-            noteDescription = (String) note.get(KEY_DESCRIPTION);
-            text = (String) note.get(KEY_TEXT);
+            noteDescription = ((String) note.get(KEY_DESCRIPTION)).trim();
+            text = ((String) note.get(KEY_TEXT)).trim();
         } catch (NullPointerException | ClassCastException e) {
             return null;
         }
@@ -177,7 +177,7 @@ public class UserStorage extends LocalStorage {
     private Question parseFromQuestionJson(QuestionList questionList, JSONObject question) {
         Question questionObject;
         try {
-            String questionDescription = (String) question.get(KEY_DESCRIPTION);
+            String questionDescription = ((String) question.get(KEY_DESCRIPTION)).trim();
             questionObject = (Question) questionList.find(questionDescription);
             questionObject.markAsShown();
             if ((boolean) question.get(KEY_CORRECT)) {
