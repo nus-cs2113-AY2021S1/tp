@@ -55,6 +55,22 @@ public class MenuParserTest extends Eduke8Test {
 
         noteBadCommand = menuParser.parseCommand(topicList, "quiz n/1 bad t/OOP");
         assertTrue(noteBadCommand instanceof IncorrectCommand);
+
+        bookmarks.delete(0);
+        bookmarks.delete(0);
+        bookmarks.delete(0);
+        System.out.println(bookmarks.getCount());
+
+
+        badCommand = menuParser.parseCommand(topicList, "bookmark delete fifty");
+        assertTrue(badCommand instanceof IncorrectCommand);
+
+        badCommand = menuParser.parseCommand(topicList, "bookmark");
+        assertTrue(badCommand instanceof IncorrectCommand);
+
+        badCommand = menuParser.parseCommand(topicList, "bookmark delete 1");
+        assertTrue(badCommand instanceof IncorrectCommand);
+
     }
 
     @Test
@@ -110,6 +126,17 @@ public class MenuParserTest extends Eduke8Test {
 
         Command statsCommand = menuParser.parseCommand(topicList, "stats");
         assertTrue(statsCommand instanceof StatsCommand);
+    }
+
+    @Test
+    void menuParser_wrongNumOfBookmarks_expectAssertionErrorThrown() {
+        BookmarkList bookmarks = createTestBookmarkList();
+        TopicList topicList = createTestTopicList();
+        MenuParser menuParser = new MenuParser(bookmarks);
+
+        assertThrows(AssertionError.class, () -> {
+            menuParser.parseCommand(topicList, "bookmark delete 500");
+        });
     }
 
     @Test

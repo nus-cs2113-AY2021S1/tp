@@ -1,9 +1,11 @@
 package seedu.eduke8.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.eduke8.Eduke8;
 import seedu.eduke8.Eduke8Test;
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
+import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.ui.Ui;
 
@@ -46,16 +48,24 @@ public class BookmarkCommandTest extends Eduke8Test {
     @Test
     void execute_normal_listBookmarks() {
         BookmarkList bookmarkList = createTestBookmarkList();
-        Command command = new BookmarkCommand("listing", bookmarkList);
-        command.execute(createTestTopicList(), new Ui());
+        try {
+            Command command = new BookmarkCommand("listing", bookmarkList);
+            command.execute(createTestTopicList(), new Ui());
+        } catch (Eduke8Exception ee) {
+            ui.printError(ee.getMessage());
+        }
         assertTrue(true);
     }
 
     @Test
     void execute_badCommand_nothingHappens() {
         BookmarkList bookmarkList = createTestBookmarkList();
-        Command command = new BookmarkCommand("badcommand", bookmarkList);
-        command.execute(createTestTopicList(), new Ui());
+        try {
+            Command command = new BookmarkCommand("badcommand", bookmarkList);
+            command.execute(createTestTopicList(), new Ui());
+        } catch (Eduke8Exception ee) {
+            ui.printError(ee.getMessage());
+        }
         assertTrue(true);
     }
 }

@@ -41,11 +41,6 @@ public class BookmarkListTest extends Eduke8Test {
         assertThrows(AssertionError.class, () -> {
             bookmarkList.delete(100);
         });
-
-        assertThrows(AssertionError.class, () -> {
-            bookmarkList.delete(0);
-        });
-
     }
 
     @Test

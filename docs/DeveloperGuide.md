@@ -8,10 +8,10 @@
 
 ### 1.1. Software Overview
 
-E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [Object-oriented Programming (OOP)](#6-glossary) principles** through a gamified
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [Object-oriented Programming (OOP)](#34-glossary) principles** through a gamified
 platform and enhances their learning experience. 
 
-On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the [Command Line Interface (CLI)](#6-glossary), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the [Command Line Interface (CLI)](#34-glossary), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
 E-Duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
 
@@ -173,17 +173,22 @@ The `options.get(i)` parameter will get the description of the specific option a
 
 ### 2.3. Logic Component
 
-The main application logic, such as provisioning quizes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
+The main application logic, such as provisioning quizzes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
 
 #### 2.3.1. Design of Parser
 
 ![Parser Diagram](./images/ParserDiagram.png)
 
-1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
+1. After constructing a new `MenuParser` in the `Eduke8` class, the `parseCommand()` method is used to parse the 
    user command.
-2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
+2. This results in a `Command` object, which is executed by `Command` class itself, using the `execute()` method.
 3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
 to be completed as per the user input.
+
+It should be made clear that `parseCommand()` returns a new object from the child class of `Command`. The object's exact 
+class depends on the input typed into the command line, and so since `parseCommand()` returns all these objects from the 
+various specific `Command` classes, the `MenuParser` which has the `parseCommand()` method is dependent on all these 
+specific `Command` classes.
 
 <div style="page-break-after: always;"></div>
 
@@ -200,7 +205,7 @@ named `MenuParser`. The other parser is used during quizzes, in order to answer 
 called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
 when the user types in input to get help in order to see what commands are available to the user.
 
-Step 1. The user launches the program for the first time. The `MenuParser()` will be initialised and awaiting the user’s
+Step 1. The user launches the program for the first time. The `MenuParser` will be initialised and awaiting the user’s
         input to proceed.
         
 Step 2. The user types in "help" into the command line interface and presses enter. This user input “help” is stored as 
@@ -212,8 +217,8 @@ Step 3. The user input string is subjected to the `lang.string.trim()` and `lang
         in the input. The `lang.string.split()` function uses a blank space string, “ “, as the delimiter to split the 
         string into its individual components.
         
-Step 4. Each subsequent string separated by a space is stored in a string array named `commandArr`. The 0th index of the 
-        `commandArr` array is the first word, the 1st index is the second word, and so on. In this case there is only 
+Step 4. Each subsequent string separated by a space is stored in a string array `commandArr[]`. The 0th index of the 
+        `commandArr[]` array is the first word, the 1st index is the second word, and so on. In this case there is only 
         one word stored in the array, at the 0th index, which is “help”.
         
 Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
@@ -508,13 +513,15 @@ Afterwards, the `Ui` will go through printStartQuizTopics() to print out the top
 
 <div style="page-break-after: always;"></div>
 
-## 3. Product scope
+## 3. Appendix
 
-### 3.1. Target user profile
+### 3.1. Product scope
+
+#### 3.1.1. Target user profile
 
 CS2113/T Students
 
-### 3.2. Value proposition
+#### 3.1.2. Value proposition
 
 To help CS2113/T students learn and understand software engineering and Object-oriented Programming (OOP) principles through a gamified
 platform and enhances their learning experience. 
@@ -525,7 +532,7 @@ Students can earn points for themselves as they answer questions in the quizzes,
 
 <div style="page-break-after: always;"></div>
 
-## 4. User Stories
+### 3.2. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -542,12 +549,12 @@ Students can earn points for themselves as they answer questions in the quizzes,
 
 <div style="page-break-after: always;"></div>
 
-## 5. Non-Functional Requirements
+### 3.3. Non-Functional Requirements
 
-- Should work on any mainstream [Operating System (OS)](#6-glossary) as long as it has Java 11 or above installed.
+- Should work on any mainstream [Operating System (OS)](#34-glossary) as long as it has Java 11 or above installed.
 - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## 6. Glossary
+### 3.4. Glossary
 
 - **Command Line Interface (CLI):** CLI is a text-based interface that allows users to respond to visual prompts by typing single commands into the interface and receiving a reply in the same way. (From [techopedia](https://www.techopedia.com/definition/3337/command-line-interface-cli))
 
@@ -555,8 +562,22 @@ Students can earn points for themselves as they answer questions in the quizzes,
 
 - **Mainstream Operating Systems (OS)**: Windows, Linux, Unix, OS-X
 
-## 7. Appendix
+<div style="page-break-after: always;"></div>
 
-### 7.1. Instructions for manual testing
+### 3.5. Instructions for manual testing
 
 To test the product please refer to the E-Duke-8 [User Guide](https://ay2021s1-cs2113t-f12-3.github.io/tp/UserGuide.html).
+The following are a few testcases to try out.
+
+#### 3.5.1. Loading data
+
+1. Dealing with missing/corrupted data files
+    1. Find `topics.json` inside `data/main`.
+    2. Test case: Delete the file <br>
+       Expected: Application will not launch properly and error message will be displayed.
+    3. Test case: Change a topic title <br>
+       Expected: Application will launch successfully but related user data will be erased.
+    4. Test case: Remove the `questions` key from a topic <br>
+       Expected: Application will not launch properly and error message will be displayed.
+    5. Other ways to corrupt the data files: Remove other keys or mess up the JSON format (remove the outer array) <br>
+       Expected: Similar to previous.

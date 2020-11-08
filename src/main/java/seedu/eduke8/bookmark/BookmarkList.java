@@ -29,7 +29,7 @@ public class BookmarkList implements DisplayableList, EditableList {
 
     @Override
     public Displayable delete(int index) {
-        assert (index > 0 && index < bookmarks.size());   // Exception in future if user can delete question
+        assert (index >= 0 && index < bookmarks.size());   // Exception in future if user can delete question
         return bookmarks.remove(index);
     }
 
