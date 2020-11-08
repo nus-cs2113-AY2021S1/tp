@@ -162,7 +162,7 @@ The main application logic, such as provisioning quizzes, is handled by the Logi
 
 ![Parser Diagram](./images/ParserDiagram.png)
 
-1. After constructing a new `MenuParser()` in the `Eduke8` class, the `parseCommand()` method is used to parse the 
+1. After constructing a new `MenuParser` in the `Eduke8` class, the `parseCommand()` method is used to parse the 
    user command.
 2. This results in a `Command` object, which is executed by `Command` class itself, using the `execute()` method.
 3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
@@ -186,7 +186,7 @@ named `MenuParser`. The other parser is used during quizzes, in order to answer 
 called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
 when the user types in input to get help in order to see what commands are available to the user.
 
-Step 1. The user launches the program for the first time. The `MenuParser()` will be initialised and awaiting the user’s
+Step 1. The user launches the program for the first time. The `MenuParser` will be initialised and awaiting the user’s
         input to proceed.
         
 Step 2. The user types in "help" into the command line interface and presses enter. This user input “help” is stored as 
@@ -198,8 +198,8 @@ Step 3. The user input string is subjected to the `lang.string.trim()` and `lang
         in the input. The `lang.string.split()` function uses a blank space string, “ “, as the delimiter to split the 
         string into its individual components.
         
-Step 4. Each subsequent string separated by a space is stored in a string array named `commandArr`. The 0th index of the 
-        `commandArr` array is the first word, the 1st index is the second word, and so on. In this case there is only 
+Step 4. Each subsequent string separated by a space is stored in a string array `commandArr[]`. The 0th index of the 
+        `commandArr[]` array is the first word, the 1st index is the second word, and so on. In this case there is only 
         one word stored in the array, at the 0th index, which is “help”.
         
 Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
