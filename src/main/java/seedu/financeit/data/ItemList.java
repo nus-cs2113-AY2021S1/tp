@@ -56,20 +56,6 @@ public abstract class ItemList {
         items.sort(comparator);
     }
 
-    public Item getCurrItem() {
-        return this.currItem;
-    }
-
-    public void setCurrItem(Item item) {
-        this.currItem = item;
-    }
-
-    public Item popCurrItem() {
-        Item tempItem = this.currItem;
-        this.currItem = null;
-        return tempItem;
-    }
-
     public int getListSize() {
         return this.items.size();
     }

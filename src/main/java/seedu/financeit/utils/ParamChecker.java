@@ -373,7 +373,7 @@ public class ParamChecker {
 
     /**
      * Checks if user-inputted value is a valid positive integer.
-     * 
+     *
      * @param paramType Param type that expects a positive integer
      * @return int entered by user, if it is a valid positive integer.
      * @throws ParseFailParamException If user entered an invalid input

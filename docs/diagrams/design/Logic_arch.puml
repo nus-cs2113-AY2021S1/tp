@@ -12,6 +12,8 @@ skinparam package<<Layout>> {
   stereotypeFontColor Transparent
 }
 
+!define ABSTRACT &#123;abstract&#125;
+
 rectangle LogicManager{
 }
 
@@ -25,19 +27,31 @@ rectangle Logic {
 
 rectangle CommandHandlers {
 
+    class ParamHandler <<abstract>> {
+        requiredParams: HashSet<String>
+        paramsSuccessfullyParsed: hashSet<String>
+        missingRequiredParams: hashSet<String>
+        hasParsedAllRequiredParams: boolean
+        handleParams()
+        checkParseFailedParams()
+        handleSingleParam() ABSTRACT
+    }
     class XYZCommandHandlers {
+        setRequiredParams()
+        handlePacket()
+        handleSingleParam()
+
     }
 
 
+    XYZCommandHandlers --|> ParamHandler
 
-
-    XYZCommandHandlers ..right> "1"  ParamChecker #line:blue;text:black : < Checks param validity for
-
+    XYZCommandHandlers ..right> "1"  ParamChecker #line:blue;text:black : < Checks validity of params for
     note top of XYZCommandHandlers: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
 }
 
 LogicManager -> XYZCommandHandlers : < Performs param-dependent \noperations for
-note top of ParamChecker: Contains methods that \ncheck validity of params supplied
+note top of ParamChecker: Contains methods that \ncheck validity of params supplied\n e.g. check that user has entered\n a valid integer without alphabets\n or decimal point for a param\n which expects int
 
 
 
