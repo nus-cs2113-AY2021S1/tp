@@ -190,8 +190,9 @@ When a `Command` from the [Logic component](#logic-component) is executed, it wi
 * `Sprint` contain one additional ArrayList that are initialise upon its creation:
     * ArrayList of Task IDs to keep track `Tasks` that are allocated to the `Sprint`.
 ### 3.5. Storage Component
-![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML") 
+![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML")  
 API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/storage/StorageManager.java)  
+
 The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
 As shown in the diagram above, `JsonableObject` and `JsonableArray` are interfaces which inherits the `Jsonable` interface. The following model class inherits only one of the two interfaces:  
 - ProjectManager  
