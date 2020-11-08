@@ -8,13 +8,37 @@
 ### UI component
 ![Ui component](diagrams/Ui component.png)
 
-**API**: [`Ui.java`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/Ui.java)
+**API**: [`Ui.java`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/ui/Ui.java)
 
-The `UI` component,
-* Takes in user command and passes to the `Logic` components for command execution.
-* Updates the user about any changes in the data after executing the command or errors encountered when executing the commands.
+The `UI` component makes use of the following classes:
 
-The UI has a dependency with two enumeration class, [`ActivityLevel`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/ActivityLevel.java) and [`Gender`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Gender.java) as descriptions of each [`ActivityLevel`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/ActivityLevel.java) and [`Gender`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Gender.java) is required. Increased coupling was sacrificed to reduce code duplicates and increase ease of code extension/editing.
+* [`Ui`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/ui/Ui.java): Responsible for communication between the other classes in the `UI` component and with the `Logic` component.
+* [`UiHelper`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/ui/UiHelper.java): Responsible for providing helper methods to the other classes in the `UI` component.
+* [`UiInput`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/ui/UiInput.java): Responsible for reading in the user commands and checking if it is empty.
+* [`UiOuput`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/ui/UiOutput.java): Responsible for printing the outputs.
+* [`UiMessage`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/ui/UiMessage.java): Responsible for storing output messages in methods so that they can be retrieved and printed when necessary.
+    
+The `UiMessage` class has **dependencies** with the following enumeration classes:
+
+* **Rationale**: Increased coupling was sacrificed to reduce code duplicates and increase ease of code extension/editing.
+* [`FitnessLevel`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/FitnessLevel.java): Descriptions of the five `FitnessLevel` are required in `UiMessage#getAskForUserInfoMessage(String name)` as shown in the code snippet below.
+```             
++ "- Your fitness level, represented by a number from 1 to 5." + UiHelper.LINE_SEPARATOR
+   + "  1 = " + FitnessLevel.NONE.getDescription() + UiHelper.LINE_SEPARATOR
+   + "  2 = " + FitnessLevel.LOW.getDescription() + UiHelper.LINE_SEPARATOR
+   + "  3 = " + FitnessLevel.MEDIUM.getDescription() + UiHelper.LINE_SEPARATOR
+   + "  4 = " + FitnessLevel.HIGH.getDescription() + UiHelper.LINE_SEPARATOR
+   + "  5 = " + FitnessLevel.EXTREME.getDescription() + UiHelper.LINE_SEPARATOR             
+```
+* [`Gender`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Gender.java): Descriptions of the three `Gender` are required in `UiMessage#getAskForUserInfoMessage(String name)`as shown in the code snippet below.
+```             
+ "- Your gender either F for " + Gender.FEMALE.getDescription() + " or M for "
+ + Gender.MALE.getDescription() + " or O for " + Gender.OTHERS.getDescription() + "."
+```
+
+In summary, the `UI` component,
+* Takes in user command, ensure that it is not empty before passing it to the `Logic` component for command execution.
+* Updates the user about any changes in the data after executing the command or errors encountered when executing the commands as instructed by the `Logic` component.
 
 ## Implementation
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
