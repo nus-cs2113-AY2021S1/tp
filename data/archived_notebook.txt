@@ -1,1 +1,1 @@
-/t Random Text /pin true /tag NUS BLUE /tag CEG YELLOW 
+/t random text /pin true /tag NUS BLUE /tag CEG YELLOW 

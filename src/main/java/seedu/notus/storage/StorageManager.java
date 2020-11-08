@@ -50,7 +50,7 @@ public class StorageManager {
     public static final String LOGS_DIR = "logs";
     public static final String FOLDER_DIR = "data";
     public static final String NOTES_DIR = "/notes";
-    private static final String ARCHIVED_NOTES_DIR = "/archived";
+    public static final String ARCHIVED_NOTES_DIR = "/archived";
 
     /** Default file path. */
     public static final String NOTEBOOK_FILE_PATH = "/notebook.txt";

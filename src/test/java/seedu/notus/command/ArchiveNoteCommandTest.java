@@ -42,13 +42,13 @@ class ArchiveNoteCommandTest {
     Tag tagNus;
 
     @BeforeEach
-    void setup() {
+    void setup() throws Exception {
         notebook = new Notebook();
         storageManager = new StorageManager(timetable, parserManager, notebook, tagManager);
         try {
             storageManager.createFiles();
         } catch (SystemException e) {
-            // not sure what to do here
+            throw new Exception(e.getMessage());
         }
 
         content = new ArrayList<>();
@@ -80,7 +80,7 @@ class ArchiveNoteCommandTest {
             storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/TestNote2.txt");
             storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/random text.txt");
         } catch (IOException e) {
-            // not sure what to do here
+            throw new Exception(e.getMessage());
         }
     }
 
