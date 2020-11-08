@@ -99,7 +99,10 @@ If asked, choose to `Open as Project` (not `Open as File`).
 ## 3. Design (Architecture)
 (Zeyu)
 
-![Architecture Diagram of Design Component](DG_Images/Architecture.png)
+<p align="center">
+  <img src="DG_Images/Architecture.png" width="600" alt="Architecture Diagram"/>
+  <br/>Figure <>. Architecture Diagram of Kaji 
+</p>
 
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -136,10 +139,10 @@ The Ui component is responsible for:
 ### 3.2. Logic Component 
 (Jane)
 
-The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
+The Logic component consists of the `Parser`, `Command` and `Scheduler` classes as shown in the class diagram below:
 
 <p align="center">
-  <img src="DG_Images/LogicClassDiagram.png" width="80%" alt="Logic Class Diagram"/>
+  <img src="DG_Images/LogicClassDiagram.png" width="600" alt="Logic Class Diagram"/>
   <br/>Figure <>. Class diagram of Logic component  
 </p>
 
@@ -152,7 +155,7 @@ The Logic component consists of the `Parser`, `Command` and `Scheduler` classes.
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `parse("edit 1 CS2113T")` API call:
 
 <p align="center">
-  <img src="DG_Images/LogicSequenceDiagram.png" width="80%" alt="Logic Sequence Diagram"/>
+  <img src="DG_Images/LogicSequenceDiagram.png" width="800" alt="Logic Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of Logic component  
 </p>
 
@@ -264,7 +267,14 @@ The edit module name feature is facilitated by `ModuleList` and `Module`. The li
 In addition, it implements the following operations:
 * `ModuleList#getModule()` - Gets a module based on the specified index from the list of modules.
 * `Module#setModuleName()` — Sets the name of the module.
- 
+
+The following diagram shows the class diagram of the edit module name feature:
+
+<p align="center">
+  <img src="DG_Images/EditModuleClassDiagram.png" width="600" alt="Edit Module Class Diagram"/>
+  <br/>Figure <>. Class diagram of edit module name feature  
+</p>
+
 For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `admin` level.
@@ -284,7 +294,7 @@ For instance, the user wants to edit the module `CS2113`, a detailed description
 The following sequence diagram shows how the edit module name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditModuleSequenceDiagram.png" width="80%" alt="Edit Module Sequence Diagram"/>
+  <img src="DG_Images/EditModuleSequenceDiagram.png" width="700" alt="Edit Module Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit module name feature
 </p>
 
@@ -442,6 +452,13 @@ The edit module name feature is facilitated by `ChapterList` and `Chapter`. The 
 In addition, it implements the following operations:
 * `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setChapterName()` — Sets the name of the chapter.
+
+The following diagram shows the class diagram of the edit chapter name feature:
+
+<p align="center">
+  <img src="DG_Images/EditChapterClassDiagram.png" width="700" alt="Edit Chapter Class Diagram"/>
+  <br/>Figure <>. Class diagram of edit chapter name feature  
+</p>
  
 For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:
 
@@ -462,7 +479,7 @@ For instance, the user wants to edit the chapter `chap 1` from the module `CS211
 The following sequence diagram shows how the edit chapter name feature works:
 
 <p align="center">
-  <img src="DG_Images/EditChapterSequenceDiagram.png" width="80%" alt="Edit Chapter Sequence Diagram"/>
+  <img src="DG_Images/EditChapterSequenceDiagram.png" width="700" alt="Edit Chapter Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit chapter name feature  
 </p>
 
@@ -519,6 +536,13 @@ The user can add a flashcard with the `add` command, which follows the following
 The add flashcard feature is facilitated by `CardList`. The list of user's flashcards are stored internally as `CardList`.
 In addition, it implements the following operation:
 * `CardList#addCard()` - Adds a flashcard to the list of flashcards.
+
+The following diagram shows the class diagram of the add flashcard feature:
+
+<p align="center">
+  <img src="DG_Images/AddCardClassDiagram.png" width="600" alt="Add Card Class Diagram"/>
+  <br/>Figure <>. Class diagram of add flashcard feature  
+</p>
  
 For instance, the user wants to add a flashcard `[Q] 1+1 | [A] 2` to the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
 
@@ -539,7 +563,7 @@ For instance, the user wants to add a flashcard `[Q] 1+1 | [A] 2` to the chapter
 The following sequence diagram shows how the add flashcard feature works:
 
 <p align="center">
-  <img src="DG_Images/AddCardSequenceDiagram.png" width="80%" alt="Add Card Sequence Diagram"/>
+  <img src="DG_Images/AddCardSequenceDiagram.png" width="600" alt="Add Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of add flashcard feature  
 </p>
 
@@ -577,7 +601,14 @@ In addition, it implements the following operations:
 * `CardList#getCard()` - Gets a flashcard based on the specified index from the list of flashcards.
 * `Card#setQuestion()` — Sets the question of a flashcard.
 * `Card#setAnswer()` — Sets the answer of a flashcard.
- 
+
+The following diagram shows the class diagram of the edit flashcard content feature:
+
+<p align="center">
+  <img src="DG_Images/EditCardClassDiagram.png" width="600" alt="Edit Flashcard Class Diagram"/>
+  <br/>Figure <>. Class diagram of edit flashcard content feature  
+</p>
+
 For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`.
@@ -601,7 +632,7 @@ For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the ch
 The following sequence diagram shows how the edit flashcard content feature works:
 
 <p align="center">
-  <img src="DG_Images/EditCardSequenceDiagram.png" width="80%" alt="Edit Card Sequence Diagram"/>
+  <img src="DG_Images/EditCardSequenceDiagram.png" width="700" alt="Edit Card Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of edit flashcard content feature  
 </p>
 
@@ -938,6 +969,13 @@ The reschedule chapter feature is facilitated by `ChapterList` and `Chapter`. Th
 In addition, it implements the following operations:
 * `ChapterList#getChapter()` - Gets a chapter based on the specified index from the list of chapters.
 * `Chapter#setDueBy()` — Sets the due date of the chapter.
+
+The following diagram shows the class diagram of the reschedule chapter feature:
+
+<p align="center">
+  <img src="DG_Images/RescheduleChapterClassDiagram.png" width="600" alt="Reschedule Chapter Class Diagram"/>
+  <br/>Figure <>. Class diagram of reschedule chapter feature  
+</p>
  
 For instance, the user wants to reschedule the due date `2020-12-12` of the chapter `Chapter 1`  from the module `CS2113T`, a detailed description of what happens is shown below:
 
@@ -958,7 +996,7 @@ For instance, the user wants to reschedule the due date `2020-12-12` of the chap
 The following sequence diagram shows how the reschedule chapter feature works:
 
 <p align="center">
-  <img src="DG_Images/RescheduleChapterSequenceDiagram.png" width="80%" alt="Reschedule Chapter Sequence Diagram"/>
+  <img src="DG_Images/RescheduleChapterSequenceDiagram.png" width="800" alt="Reschedule Chapter Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of reschedule chapter feature  
 </p>
 
