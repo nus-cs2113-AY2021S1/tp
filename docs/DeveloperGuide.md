@@ -2,6 +2,9 @@
 
 * Table of Contents
 {:toc}
+
+<div style="page-break-after: always;"></div>
+
 # Design
 
 ## Overview of Architecture
@@ -127,12 +130,71 @@ __API__
 * ```manualTrackerSaver```, ```goalTrackerSaver``` and ```autoTrackerSaver``` inherits some common methods
 from ```saveHandler```. The saver classes are primarily used by ```saveManager``` for file input output operations.
 
-
+<div style="page-break-after: always;"></div>
 
 # Implementation
 ## Module-level Implementation
 * This section describes generalizable implementations that are similar across features.
 * More components described in [Feature-level implementation](#feature-level-implementation) below.
+
+### Input Manager
+* Note: Refer to [Input Manager Component](#input-manager-component) above for class diagram 
+illustration of the below subsections.
+
+__Input Conventions__
+* The user input is composed of the following format:
+```
+    <command> <param type> <parameter> <param type> <parameter> ...
+```
+* The ```command``` string determines the current state of the Finite State Machine, and
+hence the function executed. 
+* The remainder of the string includes a series of  ```param type``` - ```param``` combinations, whereby
+```param type``` indicates the type of the parameter which is to be identified by the user class,
+and ```param``` indicates the parameter that is associated with the ```param type```. 
+
+* Param types are restricted to two types: 
+    * ```/<string>```, requires a corresponding parameter.
+        * Eg. ```param type```: ```/date```
+              <br>  ```param``` : ```2020-04-04```
+    * ```-<string>```, does not require a corresponding parameter. 
+        * Reserved for param types which are used to specify a property to be true/false
+        * Eg. ```-auto```, to specify if an entry has automatic deduction. 
+        
+<a name="commandPacket"></a> __CommandPacket class__ 
+* A helper class. Contains two particular attributes to store the user input in an organised fashion.
+    * ```commandString``` :  ```String``` Store the command string from the input.
+    * ```paramMap``` : ```HashMap``` Store the pairs of ```param type``` and ```param``` present in the input string.
+        * Key: ```param type```
+        * Value:  ```param```
+
+__InputParser class__
+* A helper class. Parses the input string and returns a corresponding [```commandPacket```](#commandPacket).
+    * ```parseInput()```: 
+        * Initializes a ```commandPacket``` and populates the ```commandString``` attribute.
+        * Calls ParamParser instance to parse the segment of the input string
+        that corresponds with the sequence of ```param type``` - ```param``` pairs, and
+        return a HashMap populated with the aforementioned pairs.
+        * Returns a fully populated ```commandPacket``` to be used by user classes.
+         
+__ParamsParser class__
+* A helper class. Parses the subsequence of the input string that corresponds with sequence of 
+```param type``` - ```param``` pairs.
+    * Parsing of input for params via ```parseParams()```:
+        * __Step 1__: Use a regex helper class ```RegexMatcher``` to identify and extract ```param type``` that matches the 
+        pattern specified in "Input conventions":
+        
+            * Param types are restricted to two types: 
+                * `/abcd`, requires a corresponding parameter.
+                    * Example: <br>param type: `/date`, param: `2020-04-04`
+                * `-abcd`, does not require a corresponding parameter. 
+                    * Reserved for param types which are used to specify a property to be true/false
+                    * Example: <br>`-auto`, to specify if an entry has automatic deduction. 
+        
+        * __Step 2__: Identify the substring of the rest of the input string before the next ```param type``` or end-of-line, 
+        as the ```param``` to the previously identified ```param type```. Extract it from the input string.
+        * __Step 3__: Put the ```param type``` - ```param``` pair into a ```HashMap```.
+        * __Step 4__: Repeat steps 1 to 4 until there is the input string is fully extracted.
+        * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
 ### Logic Managers
 * Note: Refer to [Logic Manager Component](#logic-manager-component) above for class diagram 
@@ -223,6 +285,8 @@ depending on what kind of command it is. E.g. CreateEntryHandler handles creatin
     * All params set earlier via `setRequiredParams()` are parsed with no exceptions thrown.
     That is, all params in `requiredParams` is also in `paramsSuccessfullyParsed`.
 1. If all successful, the entry created is returned. Else, throw ```InsufficientParamsException()```.
+
+<div style="page-break-after: always;"></div>
 
 ## Feature-level Implementation
 ### Main Menu
@@ -441,6 +505,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram3.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Recurring Tracker
 **Overview** <br />
@@ -514,6 +579,8 @@ to `MenuPrinter`, who will pass it to `UiManager` to print.
 The sequence diagram below shows how it works:
 
 ![](uml_images/recurringtracker/images/reminderSeqDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author bqxy -->
 ### <a name = financeTools></a> FinanceTools
@@ -696,7 +763,10 @@ The following sequence diagram shows how the Account Storage feature works:
 To store the commands inputted by user and results from calculations in FinanceTools, an ```ArrayList``` is used.
 The commands are stored in the ```ArrayList``` before the params are handled and implementation is executed. 
 The results from calculation is stored in the ```ArrayList``` when the implementation has finished executed.
-<!-- @@author -->
+
+<div style="page-break-after: always;"></div>
+
+<!-- @@author @dixoncwc-->
 
 ### <a name = goalTracker></a> Goal Tracker
 **Set Expense Goal Feature** <br />
@@ -730,6 +800,8 @@ This sequence diagram will show the flow of setting of expense goal:
 
 ![ExpenseSequenceDiagram](uml_images/goaltracker/SetExpenseGoalSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Storage Utility
 **What it does** <br />
 Storage utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
@@ -759,6 +831,8 @@ terminated.
 **Save Manager Sequence Diagram** <br />
 
 ![SaveManagerSequenceDiagram](uml_images/saveManager/SequenceSaveManager.png)
+
+<div style="page-break-after: always;"></div>
 
 # Product scope
 ## Target user profile
@@ -794,6 +868,8 @@ bill payments
 * Calculate miles credit earned
 * Save account information for reference
 
+<div style="page-break-after: always;"></div>
+
 # User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
@@ -817,26 +893,46 @@ bill payments
 |v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
 |v2.0|user|display expense/income goal for specific month|keep track of my progress|
 
+<div style="page-break-after: always;"></div>
+
 # Non-Functional Requirements
 
-* _Constraint_ - Single User Product
-* _Performance_ - JAR file does not exceed 100Mb
+* _Constraint_ - Single User Product. 
+* _Performance_ - JAR file does not exceed 100Mb.
 * _User_ - Users should prefer typing on CLI
 * _Program_ - Platform independent (Windows/Mac/Linux)
 * _Program_ - Works without needing an installer
 
 # Glossary
+* __General__
+    * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
+    * _CLI_ - Command Line Interface
+    * _UML_ - Unified Modeling Language
+* __Manual Tracker and Entry Tracker__
+    * _Entries_ - The class designed to represent a unit of transaction of the user. 
+    * _Ledger_ - A collection of entries which are incurred on the same day.
+    * _Entry Type_ - Whether an entry is an Income or Expense.
+    * _Entry Category_ - Type of entry along the following choices:
+        * _Expense Entry_ - Transport, Food, Travel, Shopping, Bills, Others
+        * _Income Entry_ - Allowance, Salary, Others
+    * _Entry Amount_ - Amount of money associated with the transaction.
+    * _Entry Description_ - Text for users to identify the transaction. Can include general transaction details.
 
-* _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
-* _CLI_ - Command Line Interface
-* _UML_ - Unified Modeling Language
+<div style="page-break-after: always;"></div>
 
 # Future implementations
 
-**Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
-In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
+1. **Integrate Goal Tracker with Recurring Tracker**  <br/>
+In the next version, the Goal tracker will be used to keep track not only the manual tracker but also the recurring 
 tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
 the goal tracker progress to better aid the user in managing their finances.
+
+1. **Entry Categories used for analysis** <br />
+In the next version, entry categories can be recorded and used in meaningful calculations to represent the user's 
+spending habits in a more detailed and categorised manner. Perhaps a tabulated summary of entries by each category
+would be helpful in assisting the users in meaningfully monitoring their spending habits.
+
+<div style="page-break-after: always;"></div>
 
 # Instructions for Manual Testing
 
