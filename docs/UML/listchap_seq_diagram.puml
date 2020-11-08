@@ -2,7 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":Parser" as Parser LOGIC_COLOR
 participant ":ListChaptersCommand" as ListChaptersCommand LOGIC_COLOR
 end box
 
@@ -16,22 +15,6 @@ end box
 box Ui UI_COLOR_T1
 participant ":Ui" as Ui UI_COLOR
 end box
-
-[-> Parser : parse("list")
-activate Parser
-
-create ListChaptersCommand
-Parser -> ListChaptersCommand : ListChaptersCommand()
-activate ListChaptersCommand
-
-ListChaptersCommand --> Parser : c
-deactivate ListChaptersCommand
-
-[<-- Parser : c
-deactivate Parser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-[<-[hidden]- Parser
-destroy Parser
 
 [-> ListChaptersCommand : execute(Ui, Access, Storage)
 activate ListChaptersCommand

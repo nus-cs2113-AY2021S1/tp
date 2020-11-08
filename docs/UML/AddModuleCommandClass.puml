@@ -5,11 +5,11 @@ skinparam arrowThickness 1.1
 
 class "{abstract} \n AddCommand" as AddCommand LOGIC_COLOR {
     + prepareResult() : String
-    + isExist() : boolean
+    + isExit() : boolean
 }
 
 class "{abstract} \n Command" as Command LOGIC_COLOR {
-    + {abstract} isExist() : String
+    + {abstract} isExit() : String
     + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
 }
 

@@ -126,8 +126,8 @@ Welcome to the first feature of Kaji! In order to use this program, you will fir
 
 ##### Key Pointers:
 * Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message
-* Kaji is not case-sensitive, therefore, a new module named `module`  will be treated equally to a module named `MODULE`. 
-* Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113 CS2050` will creates a module named `CS2113 CS2050`, instead of two separated modules named `CS2113` and `CS2050` respectively.
+* Kaji is not case-sentive, therefore, a new module named `module`  will be treated equally as module named `MODULE`. 
+
 
 ##### Example: 
 Input: add CS2113
@@ -193,32 +193,30 @@ Here are some key pointers:
 
 Example: <br>
 For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
-* Step 1: Ensure you are at the admin level: <br>
-![Remove Module 1](images/RemoveMod1.PNG)
-* Step 2: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`: <br>
-![Remove Module 2](images/RemoveMod2.PNG)
-* Step 3: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown: <br>
-![Remove Module 3](images/RemoveMod3.PNG)
+* Step 1: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`: <br>
+![Remove Module 1](UG_Images/RemoveMod1.PNG)
+* Step 2: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown: <br>
+![Remove Module 2](UG_Images/RemoveMod2.PNG)
 
 #### 3.1.5. Accessing the module level: `go`
 (by Jiayi)
 
 Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go \MODULE_CODE`.
 
-##### Format: `go \MODULE_INDEX`
-\MODULE_INDEX is the index of the module that you can find in the list command, such as `1`, `2` or `3`. 
+##### Format: `go \MODULE_CODE`
+\MODULE_CODE is the name of the module that you have created, such as `CS2113`, `Module 1` or `Biology`. 
 
 ##### Key Pointers:
-* Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
-* Kaji does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
+* Kaji only allow access to the existing modules that are shown in the list, therefore, module code that is deleted or has never been created will result in an error message.
+* Kaji is not case-sentive, therefore, a module named `module`  will be treated equally as module named `MODULE`. 
 
 ##### Example: 
-Input: `go 1`
+Input: `go CS2113`
 Output:
 ```
 ---------------------------------------------------------------------
 admin
-Enter command here: go 1
+Enter command here: go CS2113
 Command Type: go
 This is a new module, you can try to add chapters inside!
 ---------------------------------------------------------------------
@@ -241,7 +239,7 @@ You are now at the module level! This command allows you to create a new chapter
 
 ##### Key Pointers:
 * Similar to module, Kaji does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
-* Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
+* Kaji is not case-sentive, therefore, a new chapter named `chapter`  will be treated equally as module named `CHAPTER`. 
 
 ##### Example 1: 
 Input:
@@ -345,12 +343,10 @@ Here are some key pointers:
 
 Example: <br>
 For instance, you are currently at the module level `CS2113T` and want to remove the chapter `Chapter 1`, the steps to do so are shown below:
-* Step 1: Ensure you are at the module level: <br>
-![Remove Chapter 1](images/BackMod1.PNG)
-* Step 2: Enter the command `remove 1` to remove the first chapter in the list which in this case is `Chapter 1`: <br>
-![Remove Chapter 2](images/RemoveChap2.PNG)
-* Step 3: The chapter and the flashcards in it are removed, and the output message below will be shown: <br>
-![Remove Chapter 3](images/RemoveChap3.PNG)
+* Step 1: Enter the command `remove 1` to remove the first chapter in the list which in this case is `Chapter 1`: <br>
+![Remove Chapter 1](UG_Images/RemoveChap1.PNG)
+* Step 2: The chapter and the flashcards in it are removed, and the output message below will be shown: <br>
+![Remove Chapter 2](UG_Images/RemoveChap2.PNG)
 
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
@@ -418,24 +414,23 @@ Here are some key pointers:
 
 Example: <br>
 For instance, you are currently in the module level `CS2113T` and want to start a revision for `Chapter 1`, the steps to do so are shown below:
-* Step 1: Ensure you are at the module level: <br>
-![Revise 1](images/BackMod1.PNG)
-* Step 2: Enter the command `revise 1` to start a revision on the first chapter in the list which in this case is `Chapter 1`: <br>
-![Revise 2](images/Revise2.PNG)
-* Step 3: If the chapter is not due for revision yet, you will be shown the below message: <br>
-![Revise 3](images/Revise3.PNG)
-* Step 4: Enter `Y` to start the revision.
-* Step 5: The message below will be shown at the start of the revision: <br>
-![Revise 4](images/Revise4.PNG)
-* Step 6: The question of the flashcard will be shown: <br>
-![Revise 5](images/Revise5.PNG)
-* Step 7: Enter `s` to see the answer for the flashcard: <br>
-![Revise 6](images/Revise6.PNG)
-* Step 8: Based on the difficulty of the flashcard, you may enter either `e`/`m`/`h`/`c` to rate the flashcard as shown below: <br>
-![Revise 7](images/Revise7.PNG)
-* Step 9: If you entered `c`, the same flashcard will be shown again after your last flashcard, and the process will repeat until you enter `e`/`m`/`h` for the particular flashcard you could not answer for.  
-* Step 10: Once all the flashcards have been revised, the output message below will be shown: <br>
-![Revise 8](images/Revise8.PNG)
+* Step 1: Enter the command `revise 1` to start a revision on the first chapter in the list which in this case is `Chapter 1`: <br>
+![Revise 1](UG_Images/Revise1.png)
+* Step 2: If the chapter is not due for revision yet, you will be shown the below message: <br>
+![Revise 2](UG_Images/Revise2.PNG)
+* Step 3: Enter `Y` to start the revision.
+![Revise 3](UG_Images/Revise3.PNG)
+* Step 4: The message below will be shown at the start of the revision: <br>
+![Revise 4](UG_Images/Revise4.PNG)
+* Step 5: The question of the flashcard will be shown as well: <br>
+![Revise 5](UG_Images/Revise5.PNG)
+* Step 6: Enter `s` to see the answer for the flashcard: <br>
+![Revise 6](UG_Images/Revise6.PNG)
+* Step 7: Based on the difficulty of the flashcard, you may enter either `e`/`m`/`h`/`c` to rate the flashcard as shown below: <br>
+![Revise 7](UG_Images/Revise7.PNG)
+* Step 8: If you entered `c`, the same flashcard will be shown again after your last flashcard, and the process will repeat until you enter `e`/`m`/`h` for the particular flashcard you could not answer for.  
+* Step 9: Once all the flashcards have been revised, the output message below will be shown: <br>
+![Revise 8](UG_Images/Revise8.PNG)
 
 #### 3.2.8. Rescheduling a chapter: `reschedule`
 (by Jane)
@@ -558,13 +553,11 @@ Here are some key pointers:
 * Index provided **must be a positive integer** 1, 2, 3, ...
 
 Example: <br>
-For instance, you are currently at the chapter level `Chapter 1` and want to remove the flashcard `[Q] 1+1= | [A] 2`, the steps to do so are shown below:
-* Step 1: Ensure you are at the chapter level: <br>
-![Remove Card 1](images/RemoveCard1.PNG)
-* Step 2: Enter the command `remove 1` to remove the first flashcard in the list which in this case is `[Q] 1+1= | [A] 2`: <br>
-![Remove Card 2](images/RemoveCard2.PNG)
-* Step 3: The flashcard is removed, and the output message below will be shown: <br>
-![Remove Card 3](images/RemoveCard3.PNG)
+For instance, you are currently at the chapter level `Chapter 1` and want to remove the flashcard `[Q] 1+1 | [A] 2`, the steps to do so are shown below:
+* Step 1: Enter the command `remove 1` to remove the first flashcard in the list which in this case is `[Q] 1+1 | [A] 2`: <br>
+![Remove Card 1](UG_Images/RemoveCard1.PNG)
+* Step 2: The flashcard is removed, and the output message below will be shown: <br>
+![Remove Card 2](UG_Images/RemoveCard2.PNG)
 
 #### 3.3.5. Returning to module level: `back`
 (by Jia Ern)
@@ -575,17 +568,15 @@ Format: `back`
  
 Example: <br>
 For instance, you are currently in chapter level `Chapter 1` and want to return to the module level `CS2113T`, the steps to do so are shown below:
-* Step 1: Ensure you are at the chapter level: <br>
-![Back Module 1](images/ReturnMod1.PNG)
-* Step 2: Enter the command `back` to return to the previous level which is the module level: <br>
-![Back Module 2](images/BackMod2.PNG)
-* Step 3: You should return to the module level as shown below: <br>
-![Back Module 3](images/BackMod3.PNG)
+* Step 1: Enter the command `back` to return to the previous level which is the module level: <br>
+![Back Module 1](UG_Images/BackMod1.PNG)
+* Step 2: You should return to the module level as shown below: <br>
+![Back Module 2](UG_Images/BackMod2.PNG)
 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
 
-Congratulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
+Congradulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
 
 It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. 
 
@@ -593,10 +584,9 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 
 
 ##### Key Pointers:
-* This command is only accessible in the chapter level. You will get an error message if you are in the wrong access level.
-* Only overall performance of your current chapter level will be computed.
-* Cards that has yet be answered will be label as <cannot answer>, therefore, if you find a `1.0` for `the percentage of cards that is labeled <cannot answer>`, don't panic, it will be updated as soon as you finish your first revision session of this particular chapter.
->:information_source: <b>Note:</b> As you now know, it is the level which you can add/edit/delete cards.
+* This command is only accessible in the chapter level. You will gets an error message if you are in the wrong access level.
+* Only overall performance of your current chapter level is computed.
+>:information_source: <b>Note:</b> As you now know, it is the level that you can add/edit/delete cards.
 
 ##### Example: 
 Input: showrate
