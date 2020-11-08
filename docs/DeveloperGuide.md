@@ -159,6 +159,7 @@ either poem or essay at this stage)
 This feature allows users to be reminded of which writings they should continue on a specific date.
 
 **Implementation**
+
 When the user keys in the command `remind DATE`, where `DATE` is the date the user wants to be reminded about in form of `dd/MM/yyyy`, the program will check the validity of the command by using `CommandChecker.extractCommandType()`. Since the command is recognized, enumeration `REMIND` is returned. Then, the program flow is as follows:
 
 1. `WritingReminder.filterWritingsOnADate()` is called by `CommandExecutor.executeCommand()`.
