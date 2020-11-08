@@ -89,9 +89,9 @@ To get started on this application, please perform the following steps:
 1. Open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
 ![Welcome screen](images/kaji.PNG)
 1. Type the command in the command window and press Enter to execute it. 
-   e.g. typing `help` and pressing Enter will open the help window.<br>
+   e.g. typing `help` and pressing Enter will show the list of commands available.<br>
    Some example commands you can try:
-   * `help` : List commands available
+   * `help` : Lists all commands available.
    * `exit` : Exits the app.
 1. Refer to [Features](#3-features) below for details of each command.
 
@@ -105,6 +105,7 @@ In explaining the syntax, do take note of the following command format which app
 * Parameters cannot be given in any order.
     * <b>Example:</b> In `edit MODULE_INDEX MODULE_NAME`, entering `edit CS2113 1` will result in an error as 
       the `MODULE_INDEX` and `MODULE_NAME` parameters are in the wrong order.
+* 
 
 ### 3.1. Admin Level
 
