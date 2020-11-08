@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 //@@author xingrong123
 public class Module {
@@ -19,14 +20,7 @@ public class Module {
     private BookmarkList bookmarks;
     private List<Slot> slots;
     private static ArrayList<String> moduleList; //List of all NUS module codes
-
-    public static ArrayList<String> getModuleList() {
-        return moduleList;
-    }
-
-    public static void setModuleList(ArrayList<String> moduleList) {
-        Module.moduleList = moduleList;
-    }
+    private static Logger logger = Logger.getLogger(Module.class.getName());
 
     public Module(String moduleCode) {
         this.moduleCode = moduleCode.toUpperCase();
@@ -66,6 +60,32 @@ public class Module {
         return slots.contains(slot);
     }
 
+    public boolean isModule(String moduleCode) {
+        boolean isModule = false;
+        if (this.moduleCode.compareToIgnoreCase(moduleCode) == 0) {
+            isModule = true;
+        }
+        return isModule;
+    }
+
+    public void addBookmark(Bookmark bookmark) {
+        bookmarks.addBookmark(bookmark);
+    }
+
+    public void removeSlot(Slot slot) {
+        assert slots.contains(slot) : "Use getSlot to get reference of slot to be deleted before calling this method";
+        slots.remove(slot);
+    }
+
+    public void removeAllBookmarks() {
+        bookmarks = new BookmarkList();
+    }
+
+    public String launchBookmarks() {
+        String message = bookmarks.launchAllBookmarks();
+        return message;
+    }
+
     public Slot getSlot(String lesson, String day, LocalTime startTime, LocalTime endTime) {
         for (Slot slot : slots) {
             if (slot.match(lesson, day, startTime, endTime)) {
@@ -86,27 +106,6 @@ public class Module {
             throw new ZoomasterException(ZoomasterExceptionType.INVALID_SLOT_NUMBER, "" + slots.size());
         }
         return slot;
-    }
-
-    public void removeSlot(Slot slot) {
-        assert slots.contains(slot) : "Use getSlot to get reference of slot to be deleted before calling this method";
-        slots.remove(slot);
-    }
-
-    public boolean isModule(String moduleCode) {
-        boolean isModule = false;
-        if (this.moduleCode.compareToIgnoreCase(moduleCode) == 0) {
-            isModule = true;
-        }
-        return isModule;
-    }
-
-    public void addBookmark(Bookmark bookmark) {
-        bookmarks.addBookmark(bookmark);
-    }
-
-    public void removeAllBookmarks() {
-        bookmarks = new BookmarkList();
     }
 
     public List<Slot> getSlotList() {
@@ -140,12 +139,16 @@ public class Module {
         return message;
     }
 
-    public String launchBookmarks() {
-        String message = bookmarks.launchAllBookmarks();
-        return message;
-    }
-
     public String getModuleCode() {
         return moduleCode;
+    }
+
+    //@@author Speedweener
+    public static ArrayList<String> getModuleList() {
+        return moduleList;
+    }
+
+    public static void setModuleList(ArrayList<String> moduleList) {
+        Module.moduleList = moduleList;
     }
 }

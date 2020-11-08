@@ -36,7 +36,7 @@ import java.util.Scanner;
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */
-//@@author
+//@@author fchensan
 public class Storage<T> {
 
     private final String filePath;
@@ -48,7 +48,6 @@ public class Storage<T> {
      * @param path The pathname of the file.
      */
     public Storage(String path, Class<T> storageClass) {
-        Runtime rt = Runtime.getRuntime();
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("mac")) {
             this.filePath = path.replace("./", File.separator);
@@ -59,7 +58,6 @@ public class Storage<T> {
         this.storageClass = storageClass;
     }
 
-    //@@author fchensan
     /**
      * Returns the tasks found within the file.
      *

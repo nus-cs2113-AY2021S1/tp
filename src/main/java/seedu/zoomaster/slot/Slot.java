@@ -2,12 +2,10 @@ package seedu.zoomaster.slot;
 
 import seedu.zoomaster.bookmark.Bookmark;
 import seedu.zoomaster.bookmark.BookmarkList;
-import seedu.zoomaster.exception.ZoomasterException;
-import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import java.time.LocalTime;
 
-//@@author
+//@@author fchensan
 public class Slot {
     private LocalTime startTime;
     private LocalTime endTime;
@@ -31,17 +29,6 @@ public class Slot {
             return true;
         }
         return false;
-    }
-
-    public Bookmark getBookmark(int index) throws ZoomasterException {
-        Bookmark bookmark;
-        try {
-            bookmark = bookmarks.getBookmark(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.BOOKMARK_NUMBER_OUT_OF_BOUNDS, ""
-                                         + bookmarks.getSize());
-        }
-        return bookmark;
     }
 
     public BookmarkList getBookmarkList() {
