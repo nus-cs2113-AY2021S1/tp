@@ -41,8 +41,8 @@ public class AddCommand extends ModificationCommand {
      * @param startTime    start time of task.
      * @param endTime      end time of task.
      * @param priority     1,2 or 3.(low/med/high)
-     * @param reminder
-     * @param reminderTime
+     * @param reminder     remind on/off
+     * @param reminderTime time set for reminder
      * @throws InvalidCommandException throws this when start time is at a later timing in the day than end time
      */
     public AddCommand(String description, String date, String startTime, String endTime, String priority,
@@ -70,7 +70,7 @@ public class AddCommand extends ModificationCommand {
      * @throws InvalidPriorityException if priority given is not 1,2 or 3.
      * @throws InvalidDatetimeException if wrong date or time format
      * @throws MaxNumTaskException      if tasks size == 10000
-     * @throws InvalidReminderException
+     * @throws InvalidReminderException if wrong reminder format
      */
     public CommandResult execute(Model model)
             throws InvalidPriorityException, InvalidDatetimeException, MaxNumTaskException, InvalidReminderException {
