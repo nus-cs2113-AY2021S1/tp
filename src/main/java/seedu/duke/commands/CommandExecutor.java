@@ -131,7 +131,7 @@ public class CommandExecutor {
             }
             break;
         case REMIND:
-            WritingReminder.printReminderOnADay(userInput);
+            WritingReminder.filterWritingsOnADate(userInput);
             break;
         case GEN_NAME:
             try {
