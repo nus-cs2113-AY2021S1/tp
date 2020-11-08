@@ -1,3 +1,4 @@
+import command.AutoClearCommand;
 import command.Command;
 import eventlist.EventList;
 import exception.CreatingFileException;
@@ -59,6 +60,8 @@ public class NuSchedule {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
                 int size = events.getSize();
+                //Command auto_clear = new AutoClearCommand();
+                //auto_clear.execute(events, locations, busStops, ui, storage);
                 Command c = Parser.parse(fullCommand, locations, size);
                 c.execute(events, locations, busStops, ui, storage);
                 isExit = c.isExit();

@@ -16,6 +16,9 @@ import command.PrintLocationCommand;
 import command.ReminderCommand;
 import command.RepeatCommand;
 import command.SortCommand;
+import command.AutoClearCommand;
+import command.ClearBeforeCommand;
+
 import command.StudyTimeCommand;
 import command.UserInfoCommand;
 import event.Assignment;
@@ -53,6 +56,7 @@ import exception.UndefinedEventException;
 import exception.UnknownErrorException;
 import exception.WrongCommandException;
 import exception.WrongEditFormatException;
+import exception.EmptyClearDateException;
 import location.Building;
 import location.Hostel;
 import location.LectureTheatre;
@@ -98,6 +102,9 @@ public abstract class Parser {
     public static final String SELF_STUDY = "selfStudy";
     public static final String REPEAT = "repeat";
     public static final String ALL = "all";
+    public static final String AUTO_CLEAR = "autoclear";
+    public static final String CLEAR_BEFORE = "clearbefore";
+
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -113,20 +120,22 @@ public abstract class Parser {
         fullCommand = fullCommand.trim();
         // this block deals with single word command
         switch (fullCommand) {
-        case EXIT:
-            return new ExitCommand();
-        case PRINT_EVENT_LIST:
-            return new PrintFullListCommand();
-        case PRINT_LOCATION_LIST:
-            return new PrintLocationCommand();
-        case HELP:
-            return new HelpCommand();
-        case CLEAR:
-            return new ClearCommand();
-        case REMIND:
-            return new ReminderCommand();
-        default:
-            break;
+            case EXIT:
+                return new ExitCommand();
+            case PRINT_EVENT_LIST:
+                return new PrintFullListCommand();
+            case PRINT_LOCATION_LIST:
+                return new PrintLocationCommand();
+            case HELP:
+                return new HelpCommand();
+            case CLEAR:
+                return new ClearCommand();
+            case REMIND:
+                return new ReminderCommand();
+            case AUTO_CLEAR:
+                return new AutoClearCommand();
+            default:
+                break;
         }
 
         String[] words = fullCommand.split(SINGLE_SPACE);
@@ -252,6 +261,18 @@ public abstract class Parser {
                     throw new RepeatIndexFormatException();
                 }
                 return new RepeatCommand(index - 1, numWeeks);
+            }
+        }
+
+        //this block deals with clear before
+        if (words[0].equalsIgnoreCase(CLEAR_BEFORE)) {
+            if (fullCommand.substring(11).isBlank()) {
+                throw new EmptyClearDateException();
+            }
+            try {
+                return new ClearBeforeCommand(LocalDate.parse(fullCommand.substring(12)));
+            } catch (DateTimeParseException e) {
+                throw new DateFormatException();
             }
         }
 

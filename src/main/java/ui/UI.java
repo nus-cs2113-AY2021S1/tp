@@ -381,5 +381,22 @@ public class UI {
     public void printRepeatEvent(int numWeeks) {
         System.out.println("The selected event has been repeated for " + numWeeks + " weeks.");
     }
+
+    /**
+     * Print the success message after the user input auto clear
+     *
+     */
+    public void printAutoClearOn() {
+        System.out.println("Great! All events happened one month ago are cleared :)");
+    }
+
+    /**
+     * Print the success message after the user successfully clear all events before a certain date
+     *
+     */
+    public void printClearBefore(LocalDate clearDate) {
+        System.out.println("Great! You have cleared all events before " + clearDate.toString());
+    }
+
 }
 
