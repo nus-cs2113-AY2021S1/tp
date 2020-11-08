@@ -588,7 +588,7 @@ To support the Access Chapter Level Feature, `GoChapterCommand` implements the f
 
 For instance, the user is currently in the Module `CS2113T` and would like to go to the Chapter 'Chapter 1' on the Chapter level. A detailed description of what happens is shown below:
 
-Step 1: The user enters `go 1`.
+Step 1: The user enters `go 1` as `CS2113T` is the first Module in list.
 
 Step 2: The user input is parsed by `Parser`, and `Parser` creates a `GoCommandParser` object, which in turn
  creates a `GoChapterCommand` object, with `1` as the command argument.
@@ -603,6 +603,10 @@ Step 6: Lastly, to finish the transition into the Chapter level, `Access#setChap
 
 The following sequence Diagrams illustrates how the Access Chapter Level Feature is executed:
 
+<p align="center">
+  <img src="DG_Images/goChapter.png" width="600" alt="Go Chapter Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of Access Chapter Level Feature
+</p>
 
 #### 4.2.6. Return to Admin Level Feature
 (Lucas)
@@ -631,6 +635,11 @@ Step 3: `BackAdminCommand` is executed, and `Access#setModuleLevel()` is called.
 Step 4: `Access#setModuleLevel()` verifies that the user is not on the Admin level at the moment, and calls `Access#setBackAdminLevel()`, which sets the user back into the Admin Level.
 
 The following sequence Diagrams illustrates how the Return to Admin Level Feature is executed:
+
+<p align="center">
+  <img src="DG_Images/backAdmin.png" width="600" alt="Back Admin Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of Return to Admin Level Feature
+</p>
 
 #### 4.2.7. Example of the Module Feature
 
