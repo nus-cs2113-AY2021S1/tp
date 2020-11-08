@@ -1,0 +1,59 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+
+!define ABSTRACT &#123;abstract&#125;
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+
+rectangle Data {
+
+    class "{abstract}\nItem" {
+    }
+
+    class "{abstract}\nItemList" {
+        addItemAndSort(Item, Comparator)
+    }
+
+    class RecurringEntry {
+        day: int
+        description: String
+        entryType: Common.entryType
+        amount: double
+        isAuto: boolean
+        notes: String
+    }
+
+    rectangle DataList {
+        class RecurringEntryList {
+            addItem(Item)
+            getEntriesFromDayXtoY(int, int)
+        }
+        note left: addItem(Item) calls \naddItemAndSort(Item)\nof ItemList
+    }
+
+    RecurringEntry --|> "{abstract}\nItem"
+    RecurringEntryList --|> "{abstract}\nItemList"
+    RecurringEntryList --> "*" RecurringEntry : contains >
+
+}
+
+rectangle LogicManagers {
+    class RecurringEntryTracker{
+        {static} handleCreateEntry()
+        {static} handleEditEntry()
+        {static} handleDeleteEntry()
+    }
+
+    RecurringEntryTracker --> RecurringEntryList : stores entries with >
+}
+
+@enduml
