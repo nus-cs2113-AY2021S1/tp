@@ -18,6 +18,7 @@ Please take note of the symbols used throughout the document:
 | :bangbang: | Alert on important thing to take note of |
 |:information_source: | Useful tip to know |
 
+<a name="command_format"></a>
 Please also take note of the labels on command formatting:
 
 | Label | Meaning |
