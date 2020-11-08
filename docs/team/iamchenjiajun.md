@@ -37,8 +37,20 @@ Here are my contributions to the project.
   - Managed issue tracker on GitHub, adding issues where necessary.
   - Managed releases `v1.0` and `v2.0` on GitHub.
   - Authored PRs with detailed descriptions to ensure that the team is kept updated with the new changes, especially during refactors.
-    - PR: [Refactoring Model class](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/146)
-  - Reviewed teammates PRs and wrote comments about code quality.
+
+    - Examples: 
+    [Refactoring Model class](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/146),
+    [AddRecurringCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/90),
+    [AddCommand](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/22).
+  - Communicated regularly with teammates on issues, bugs and tasks to be done, as well as what I'm currently working on.
+  - Advised teammates on how code could be organised better and where potential bugs could arise.
+  - Managed and reviewed teammates PRs and wrote comments about code quality.
+    - Examples:
+    [#89](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/89),
+    [#93](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/93),
+    [#155](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/155),
+    [#168](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/168),
+    [#179](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/179).
 
 - Documentation:
   - User Guide:
