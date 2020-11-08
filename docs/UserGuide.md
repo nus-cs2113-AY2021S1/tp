@@ -88,7 +88,7 @@ The app should print out a list of different commands. <br/><br/>
 ## 5.0 Features   
 
 This section will explain to you the different features of Zoomaster and how you can interact with it. 
-
+<!-- @@author fchensan -->
 Zoomaster has three different modes:
 * **Bookmark mode**
     In this mode, Zoomaster stores all of your bookmarks that are not related to any modules.
@@ -98,6 +98,7 @@ Zoomaster has three different modes:
     Have you ever had diffulties deciding when to have a meeting as all of your groupmates have different classes? In Planner mode, Zoomaster can help you find common free timings by allowing you to import your teammates' timetables.
 
 Each mode has its own different sets of features and commands, which will be explained in sections 5.2, 5.3, and 5.4.
+<!-- @@author -->
 
 <a name="global"></a> 
 ### 5.1 Global Commands
@@ -209,6 +210,7 @@ in your native browser. Else you should see a message "no lesson now" like the s
 ![]()
 
 <br/><br/> 
+<!-- @@author fchensan -->
 <a name="showsettings"></a>  
 #### 5.1.5. Show settings: `showsettings` (Francisco)
 Once you are comfortable using Zoomaster, this command, along with the `set` command, helps you customise Zoomaster's behaviour.
@@ -232,6 +234,7 @@ While `showsettings` shows you the settings, this command lets you change one of
 
 For example, let's say that you want Zoomaster to enter `bookmark` mode when you start it. You can type in `set def_mode bookmark` and Zoomaster will change your settings. The next time you run Zoomaster, you will automatically enter bookmark mode.
 
+<!-- @@author -->
 <br/><br/> 
 <a name="exit"></a>  
 #### 5.1.7 Exit the app: `exit`  
