@@ -10,15 +10,48 @@ termiNus is an interactive Command Line Interface (CLI) task manager for undergr
 This program will help them achieve a better grip on their school life as well as assist in better management of their 
 daily expenses and be reminded of any library loans. 
 
-This document gives an overview understanding of the architectural design and implementation of termiNus. This will
+This guide gives an overview understanding of the architectural design and implementation of termiNus. It will
 assist developers in the knowledge they require to further build upon this application. We hope you have a clearer picture
-after reading through after developer guide. <br>
+after reading through our Developer Guide. <br>
 
 **Pre-requisite:** Proficient in comprehending UML diagrams and notations.   
 
 ## Setting up, Getting Started
 
+### Setting up the project in your local machine 
+Ensure that you have JDK 11 or above installed on your computer. 
 
+First, **fork** this [repo](https://github.com/AY2021S1-CS2113-T14-3/tp), and **clone** the fork to your local machine. 
+
+If you plan to use IntelliJ IDEA (highly recommended):
+1. Ensure IntelliJ IDEA is configured to use JDK 11.
+    * Open IntelliJ and a welcome screen should appear.
+    * Click on `Configure` -> `Structure for New Projects` -> `Project Settings` -> `Project`.
+    * Under the `Project SDK:` section, select **java version "11.0.8"** or higher).
+1. Import the project as a Gradle project.
+    * Ensure Gradle plugin is enabled by going to `File` -> `Settings` -> `Plugins`.
+    * Under the `Installed` section go to `Build Tools` and enable Gradle. 
+    * At the welcome page, click on `Open or Import`.
+    * Locate the `build.gradle` file within the folder that contains the clone repo and select it.
+    * Choose the `Open as Project` option when asked.
+    * Accept all default settings and wait for the project to import. 
+1. Verify the setup.
+    * Under the `seedu.duke` package, locate the `Duke` class and run it.
+    * Try a few commands. You may want to refer to the [user guide](https://ay2021s1-cs2113-t14-3.github.io/tp/UserGuide.html).
+    * **Run the tests (NOT SURE ABOUT THIS!) to ensure they all pass**.
+
+### Before writing the code 
+1. Configure the coding style
+    * If using IntelliJ IDEA, follow this [guide](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
+1. Set up CI
+    * This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, 
+    it will run the CI for the project automatically at each push to the `master` branch or to any PR.
+    **No setup is required for this**.
+    
+1. Learn the design
+   * When you are ready to start coding, we recommend that you refer to [termiNus's architecture] (#LINK TO DG ARCHITECTURE DESIGN)
+   to get a better idea of the overall design.
+   
 ## Design
 
 <!-- @@author iamchenjiajun -->
