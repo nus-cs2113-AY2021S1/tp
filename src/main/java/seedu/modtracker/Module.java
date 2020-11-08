@@ -8,8 +8,8 @@ import java.util.Arrays;
  */
 public class Module {
 
-    public static final double NO_INPUT = -1.0;
-    public static final int INDEX_OFFSET = 1;
+    private static final double NO_INPUT = -1.0;
+    private static final int INDEX_OFFSET = 1;
     private String moduleCode;
     private double expected = NO_INPUT;
     private final double[] actualTime = new double[13];
@@ -64,8 +64,6 @@ public class Module {
         double d = Double.parseDouble(time);
         double roundedTime = Math.round(d * 10.0) / 10.0;
         int i = Integer.parseInt(week);
-        double timeDifference = 99 - this.actualTime[i - INDEX_OFFSET];
-
         if (this.actualTime[i - INDEX_OFFSET] == NO_INPUT) {
             this.actualTime[i - INDEX_OFFSET] = roundedTime;
         } else {

@@ -19,10 +19,10 @@ class ModuleListTest {
 
     @Test
     public void checkIfModuleValid_validModules_true() {
-        assertTrue(modulesTest.checkIfModuleValid("CS2113", true));
-        assertTrue(modulesTest.checkIfModuleValid("CS2113T", true));
-        assertTrue(modulesTest.checkIfModuleValid("GER1000", true));
-        assertTrue(modulesTest.checkIfModuleValid("GES1000T", true));
+        assertTrue(modulesTest.checkIfModuleValid("CS2113"));
+        assertTrue(modulesTest.checkIfModuleValid("CS2113T"));
+        assertTrue(modulesTest.checkIfModuleValid("GER1000"));
+        assertTrue(modulesTest.checkIfModuleValid("GES1000T"));
     }
 
     @Test
@@ -138,7 +138,7 @@ class ModuleListTest {
 
     @Test
     public void checkIfModuleValid_invalidModule_false() {
-        assertFalse(modulesTest.checkIfModuleValid("AAAAAA", true));
+        assertFalse(modulesTest.checkIfModuleValid("AAAAAA"));
     }
 
     @Test

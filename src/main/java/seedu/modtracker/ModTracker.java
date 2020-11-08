@@ -4,6 +4,7 @@ package seedu.modtracker;
  * Main entry-point for the java.seedu.modtracker application.
  */
 public class ModTracker {
+    private static final String FILE_PATH = "data/modtracker.txt";
     private Ui ui;
     private ModuleList modList;
     private Storage storage;
@@ -14,7 +15,7 @@ public class ModTracker {
     public static void main(String[] args) {
         ModTracker modTracker;
         do {
-            modTracker = new ModTracker("data/modtracker.txt");
+            modTracker = new ModTracker(FILE_PATH);
             modTracker.run();
         } while (modTracker.toRestart());
     }
