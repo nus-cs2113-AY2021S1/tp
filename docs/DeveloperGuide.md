@@ -99,7 +99,10 @@ If asked, choose to `Open as Project` (not `Open as File`).
 ## 3. Design (Architecture)
 (Zeyu)
 
-![Architecture Diagram of Design Component](DG_Images/Architecture.png)
+<p align="center">
+  <img src="DG_Images/Architecture.png" width="600" alt="Architecture Diagram of Design Component"/>
+  <br/>Figure <>. Architecture Diagram of Design Component
+</p>
 
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -250,8 +253,15 @@ For instance, the user wants to list all modules available in `admin`, a detaile
 
 * Step 2: The user enters `list` command to list all modules in `admin` level. 
 
+The following diagram shows the class diagram of the list modules feature:
+
+
 The following sequence diagram shows how the list modules feature works:
-![Sequence Diagram of List Modules](UML/listmod_seq_diagram.png)
+
+<p align="center">
+  <img src="UML/listmod_seq_diagram.png" width="800" alt="Sequence Diagram of list modules"/>
+  <br/>Figure <>. Sequence Diagram of list modules
+</p>
 
 #### 4.1.3. Edit Module Name Feature
 (Jane)
@@ -429,7 +439,11 @@ For instance, the user wants to list all chapters available in `CS2113T` (module
 * Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
 
 The following sequence diagram shows how the list chapters feature works:
-![Sequence Diagram of List Chapters](UML/listchap_seq_diagram.png)
+
+<p align="center">
+  <img src="UML/listchap_seq_diagram.png" width="800" alt="Sequence Diagram of list chapters"/>
+  <br/>Figure <>. Sequence Diagram of list chapters
+</p>
 
 #### 4.2.3. Edit Chapter Name Feature
 (Jane)
@@ -563,7 +577,11 @@ For instance, the user wants to list all flashcards available in `Chapter 1` (ch
 * Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
 
 The following sequence diagram shows how the list flashcards feature works:
-![Sequence Diagram of List Cards](UML/listcard_seq_diagram.png)
+
+<p align="center">
+  <img src="UML/listcard_seq_diagram.png" width="800" alt="Sequence diagram of list cards"/>
+  <br/>Figure <>. Sequence diagram of list cards
+</p>
 
 #### 4.3.3. Edit Flashcard Content Feature
 (Jane)
@@ -981,7 +999,11 @@ Step 1: The user launches the application and is currently in the admin level.
 Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
 
 The following sequence diagram shows how the list chapters feature works:
-![Sequence Diagram of List History](UML/listhistory_seq_diagram.png)
+
+<p align="center">
+  <img src="UML/listhistory_seq_diagram.png" width="800" alt="Sequence Diagram of List History"/>
+  <br/>Figure <>. Sequence diagram of list history 
+</p>
 
 ##### <a href="#top">Back to Top ^</a>
 
