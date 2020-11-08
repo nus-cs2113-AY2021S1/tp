@@ -1,9 +1,10 @@
 # Developer Guide
 
-* Table of Contents
+## 1. Table of contents
 
+* Table of contents
 {:toc}
-
+<br>
 
 ## Introduction
 This section provides an introduction to the developer guide for *25HoursADay*.
