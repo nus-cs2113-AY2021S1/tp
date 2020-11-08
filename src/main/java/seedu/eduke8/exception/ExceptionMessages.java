@@ -32,6 +32,8 @@ public class ExceptionMessages {
     public static final String ERROR_TOPICS_JSON_NOT_FOUR_OPTIONS = "' does not have exactly 4 options.";
     public static final String ERROR_TOPICS_JSON_NO_CORRECT = "' has no correct answer.";
     public static final String ERROR_TOPICS_JSON_TOO_MANY_CORRECT = "' should not have more than 1 correct answer.";
+    public static final String ERROR_TOPICS_JSON_TITLE_BLANK = "The title of a topic cannot be blank.";
+    public static final String ERROR_TOPICS_JSON_TITLE_DUPLICATE = "The title of a topic cannot be duplicated.";
     public static final String ERROR_USER_JSON_LOAD = "An error with loading user data has occurred due to "
             + "modification of the topics or user data."
             + System.lineSeparator() + "Affected user data will be erased.";

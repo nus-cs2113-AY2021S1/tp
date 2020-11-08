@@ -450,6 +450,7 @@ Note:
 `correct` field. 
 - If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
+- The title of a topic should not be blank or repeated.
 - Do refrain from adding duplicate questions because you can already re-attempt the same question if you start a quiz from the topic the question is from.
 - If duplicate questions are added, then you might find that the same question might appear more than once in your quiz.
 
