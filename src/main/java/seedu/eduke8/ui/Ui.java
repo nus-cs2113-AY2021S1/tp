@@ -392,7 +392,7 @@ public class Ui {
         NoteList noteList = null;
 
         printMessage(DELETE_NOTE_PROMPT_FOR_TOPIC);
-        String topicName = SCANNER.nextLine();
+        String topicName = SCANNER.nextLine().trim();
 
         try {
             topic = (Topic) topicList.find(topicName);
