@@ -46,11 +46,21 @@ public class Ui {
         System.out.println(event);
     }
 
+    /**
+     * Informs users of repeat command repeating the event as per instructed.
+     *
+     * @param event Event object that is being repeated for the specified time by the user
+     */
     public void printRepeatAdd(Event event) {
         System.out.println(event);
         System.out.println("is now repeating " + event.getRepeatType() + " for " + event.getRepeatCount() + " times.");
     }
 
+    /**
+     * Informs users about the current repeat status of the event.
+     *
+     * @param event Event object that contains repeated event information that will be printed by the UI
+     */
     public void printRepeatList(Event event) {
         System.out.println(event + " is also on:");
         ArrayList<Event> repeatEventList = event.getRepeatEventList();
@@ -271,14 +281,23 @@ public class Ui {
 
     }
 
+    /**
+     * The program prints out this message to indicate the successful saving of the event information to a file.
+     */
     public void printStorageSavedMessage() {
         System.out.println("The file has successfully been saved!");
     }
 
+    /**
+     * The program prints out this message to indicate the successful loading of event information for a file.
+     */
     public void printStorageLoadMessage() {
         System.out.println("The file has successfully been loaded!");
     }
 
+    /**
+     * Command prints this message if there are signs the users have modified the txt files incorrectly.
+     */
     public void printStorageLoadingErrorMessage() {
         System.out.println("The file does not exist or has been corrupted!");
     }
