@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
@@ -7,11 +8,14 @@ import seedu.duke.ui.Ui;
 import seedu.duke.data.UserData;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Command to list events.
  */
 public class ListCommand extends Command {
+    private static Logger logger = EventLogger.getEventLogger();
+
     /**
      * Constructor for listing events seedu.duke
      *
@@ -31,6 +35,7 @@ public class ListCommand extends Command {
         } else {
             ui.printList(data.getEventList(command));
         }
+        logger.fine("List command finished running successfully.");
     }
 
     private void listAll(Ui ui, ArrayList<EventList> eventLists) {
@@ -44,6 +49,12 @@ public class ListCommand extends Command {
         }
     }
 
+    /**
+     * Static parser for list command creation.
+     *
+     * @param input user input.
+     * @return ListCommand with input formatted.
+     */
     public static Command parse(String input) {
         if (input.isBlank()) {
             return new ListCommand(null);

@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.WrongNumberFormatException;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import static seedu.duke.parser.DateTimeParser.dateParser;
 
 public class UndoneCommand extends Command {
-    private String listType;
+    private final String listType;
 
     /**
      * Constructor for setting event to undone.
@@ -46,8 +47,8 @@ public class UndoneCommand extends Command {
 
         String[] inputParameters = input.trim().split(";", 2);
 
-        if (inputParameters.length < 2) {
-            throw new WrongNumberOfArgumentsException("Event type or index not provided.");
+        if (inputParameters[0].isBlank() || inputParameters[1].isBlank()) {
+            throw new WrongNumberOfArgumentsException("Event type or index is missing.");
         }
 
         String listType = capitaliseFirstLetter(inputParameters[0].trim());
@@ -84,13 +85,19 @@ public class UndoneCommand extends Command {
             ui.printEventMarkedUndoneMessage(undoneEvent);
         } else if (eventIdentifierArray.length == 2 && undoneEvent.getRepeatType() != null) { // event is a repeat task
             LocalDate undoneEventDate = dateParser(eventIdentifierArray[1].trim());
+            boolean isDateFound;
 
             if (undoneEventDate.isEqual(undoneEvent.getDate())) {
+                isDateFound = true;
                 undoneEvent.markAsUndone();
                 ui.printEventMarkedUndoneMessage(undoneEvent);
             } else {
                 ArrayList<Event> repeatEventList = undoneEvent.getRepeatEventList();
-                scanRepeatList(repeatEventList, undoneEventDate, ui);
+                isDateFound = scanRepeatList(repeatEventList, undoneEventDate, ui);
+            }
+
+            if (!isDateFound) {
+                throw new DateErrorException("This event does not occur on this date.");
             }
         }
     }
@@ -112,13 +119,17 @@ public class UndoneCommand extends Command {
      * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
      * @param undoneEventDate the date of the sub repeat event to be marked done.
      * @param ui containing the responses to print.
+     * @return boolean stating if an event matching the date given was found
      */
-    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate undoneEventDate, Ui ui) {
+    private boolean scanRepeatList(ArrayList<Event> repeatEventList, LocalDate undoneEventDate, Ui ui) {
+        boolean isDateFound = false;
         for (Event e: repeatEventList) {
             if (e.getDate().isEqual(undoneEventDate)) {
+                isDateFound = true;
                 e.markAsUndone();
                 ui.printEventMarkedUndoneMessage(e);
             }
         }
+        return isDateFound;
     }
 }
