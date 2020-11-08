@@ -506,7 +506,7 @@ The view feature allows user to see the notes they have created for a particular
 The following is the class diagram for reminder command:
 
 <p align="center">
-  <img width="414" height="562" src="./diagrams/ViewCommandClass.png">
+  <img width="462" height="522" src="./diagrams/ViewCommandClass.png">
 </p>
 
 

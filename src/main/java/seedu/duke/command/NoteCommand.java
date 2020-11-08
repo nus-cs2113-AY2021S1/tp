@@ -84,7 +84,9 @@ public class NoteCommand extends Command {
         } else {
             logger.warning("WrongNumberOfArgumentsException encountered "
                     + "-- Note have incorrect number of arguments");
-            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Note!");
+            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Note!"
+                            + System.lineSeparator()
+                            + "The format for Note is : \"note <EVENT_TYPE>; <EVENT_INDEX>;\" ");
         }
     }
 
