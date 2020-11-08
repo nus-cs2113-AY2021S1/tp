@@ -15,7 +15,7 @@
 
 **WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
 **WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
-<br>It additionally serves as a tracker to limit your weekly watch time to help you better manage your time.
+<br>It additionally serves as a tracker to limit your daily watch time to help you better manage your time.
 <br>For students, **WatchNext** serves the same purpose of tracking your learning progress for lectures and webcasts.
 <br><br>This motivated our team to create an application that would not only help track all your shows and lectures, 
 but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
@@ -37,6 +37,16 @@ The features can be found in [Section 4: “Features”](#4-features-br).
 
 Interested in using **WatchNext**? Jump to [Section 2: “Quick Start”](#2-quick-start) to get started now!
 <br><br>
+
+### 1.d. How to use this guide?
+Links like [this](#1c-what-will-this-guide-do) help you navigate to different parts of the document.
+
+Text that are in a `monospace font` represent either the user input or the program output.
+
+>  **[NOTE]**
+>  The notes section contains additional information that may be helpful to you if you encounter any issues.
+
+
 ## 2. Quick Start
 
 Prerequisite: Ensure that you have Java 11 installed in your Computer.
@@ -55,11 +65,13 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 &nbsp;  
 
-If you are unfamilar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
+If you are unfamiliar with the CLI (Command Line Interface), do give this helpful [guide](https://www.cs.princeton.edu/courses/archive/spring14/cos126/precepts/CommandPromptTutorial.pdf) by Princeton a quick read!
 
 ## 3. Command Format
 
 * Words in `UPPER_CASE` and within the `<>` field are the inputs that need to be supplied by the user e.g. rating `<SCORE>`.
+
+* The commands to be entered by the user are case-insensitive (For example, using both `Help` and `help` will work).
 
 * The maximum length for a Show `SHOWNAME` is 100 characters.
 
@@ -125,9 +137,12 @@ Expected outcome:
   The duration of each episode is `25` minutes.<br>
  <img src = "images/addCommandUG/addInput.PNG" width = "450">
   &nbsp;<br>
+  
  After keying in the input as shown in the image above, the next image shows the expected output.<br>
+ 
  <img src = "images/addCommandUG/addResponse.PNG" width = "450">
   &nbsp;<br>
+  
  If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
  
  If you already have an entry with the same name in your list, the program will prompt you as follows:
@@ -147,9 +162,11 @@ friends was added to your watchlist.
 <br>
  
  If you replied `n`:
- 
- `The process is terminated. Your existing data is kept`
- 
+ ```
+________________________________________________________________________________
+The process is terminated. Your existing data is kept
+ ```
+
  >  **[NOTE]**
  >  * The overwrite prompt is not present in v2.0 of **WatchNext**, but will be available in future iterations.
  >
@@ -167,7 +184,7 @@ friends was added to your watchlist.
  of an episode depending on the input of the user when prompted.
   
  
-* Suppose you want to edit details for your favorite show, friends.
+* Suppose you would like to edit details for your favorite show, friends.
   Format:
      `edit <SHOWNAME>`
      
@@ -184,40 +201,53 @@ friends was added to your watchlist.
  
 Format:
     `name <SHOWNAME>`, `season <NUMBER OF SEASONS>`, `episode <NUMBER OF EPISODES PER SEASON,SEPERATED BY COMMAS>`, `duration <DURATION OF EPISODE>`
+> **[NOTE]**
+>   * You do not need to edit all the fields, you can just pick and choose which fields you would like to update
 
 * Suppose you would like to update the name of the show
+
 Example of usage:
      `name F.r.i.e.n.d.s` 
      
-* A new season of F.r.i.e.n.d.s just started airing and you would like to update your show details from 1 season to 2.
+* A new season of F.r.i.e.n.d.s just started airing, and you would like to update your show details from 1 season to 2.
+
 Example of usage:
      `season 2`
      
-* Suppose the first season has 10 episodes and the new season of F.r.i.e.n.d.s has 11 episodes.
+* Suppose the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
+
 Example of usage:
      `episode 10,11`
      
 * The duration of each episode of F.r.i.e.n.d.s is extended to 30 minutes
+
 Example of usage:
      `duration 30`
      
 * When you have completed all changes, input `done`.
+
 Example of usage:
     `done`
- 
+    
+* After your changes are successfully updated, the program will acknowledge the changes and print out the update details.
+
+Expected outcome:
+   
+  <img src = "images/edit.PNG" width = "550">
+   
+  &nbsp;
+  
+  
 > **[NOTE]**
+>  * If you use edit to add new season(s) but did not edit the episodes numbers to reflect the change, 
+>the new season(s) will be initialised to 1 episode.
 >
->  * The `<DURATION OF EPISODE>` can either be inputted in minutes, such as `duration 30` or in hours and minutes
+>  * The `<DURATION OF EPISODE>` can either be inputted in minutes, such as `duration 85` or in hours and minutes
 > such as `duration 1h25m` .
 >
 >  * The program will wait for your command to edit the show details until you input `done`.
 
  
- Expected outcome:
-  
- <img src = "images/edit.PNG" width = "550">
-  
- &nbsp;
  
  To help you better understand the flow of this command we have included a program flow diagram to illustrate the process.
  
@@ -227,7 +257,27 @@ Example of usage:
 
  &nbsp;
  
-### 4.d. `addreview` - Adding a review
+### 4.d. `list` - Displays all your shows in the list
+
+The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
+season that you are currently at.
+
+The rating of your show will also be shown if you have added it using the [addreview](#4d-addreview---adding-a-review) command.
+
+   Format:
+    `list`
+    
+   Example of usage:
+   `list`
+   
+   Expected outcome:
+    
+   <img src = "images/list.PNG" width = "500">
+    
+   &nbsp;
+
+ 
+### 4.e. `addreview` - Adding a review
 
 The `addreview` command allows you to add a review for a show, including adding a rating.
 
@@ -248,7 +298,12 @@ The `addreview` command allows you to add a review for a show, including adding 
 
    &nbsp;
    
-### 4.e. `changereview` - Changing a review
+   Checking with the `list` command: 
+   
+   <img src = "images/addreviewlist.PNG" width = "450">
+   
+   
+### 4.f. `changereview` - Changing a review
 
 The `changereview` command allows you to change a review for a show that is already in the show list.
 
@@ -266,8 +321,13 @@ The `changereview` command allows you to change a review for a show that is alre
    Expected outcome:
    
   <img src = "images/changereview.PNG" width = "450">
-     
-### 4.f. `deletereview` - Deletes a review
+  
+  Checking with the `list` command:
+  
+  <img src = "images/changereviewlist.PNG" width = "450">
+  
+
+### 4.g. `deletereview` - Deletes a review
 
 The `deletereview` command allows you to delete a review for a show that is already in the show list.
 
@@ -281,24 +341,6 @@ The `deletereview` command allows you to delete a review for a show that is alre
    
   <img src = "images/deletereview.PNG" width = "450">
  
-### 4.g. `list` - Displays all your shows in the list
-
-The `list` command displays all existing shows in your watchlist in an easy-to-read format, including the episode and
-season that you are currently at.
-
-The rating of your show will also be shown if you have added it using the [addreview](#4d-addreview---adding-a-review) command.
-
-   Format:
-    `list`
-    
-   Example of usage:
-   `list`
-   
-   Expected outcome:
-    
-   <img src = "images/list.PNG" width = "500">
-    
-   &nbsp;
 
 ### 4.h. `delete` - Deletes your show
 
@@ -361,7 +403,11 @@ The `changerating` command changes the rating for an existing show which already
  <img src = "images/changerating.PNG" width = "400">
   
  &nbsp;
-
+ 
+ Checking with the `list` command :
+ 
+ <img src = "images/changeratinglist.PNG" width = "450">
+ 
 
 ### 4.k. `season` - Changes the season of the show you are currently watching
 
@@ -371,7 +417,7 @@ The `season` command updates the current season of an existing show in your watc
 >
 > * This command changes the current season that you are watching in your watch history. To change the number of episodes a show has, use the [edit](#4c-edit---edits-your-show-details) command. 
 
-
+If you would only like to change the current season:
  Format:
   `season <SHOWNAME> <SEASON>`
   
@@ -393,7 +439,11 @@ The `season` command updates the current season of an existing show in your watc
   
  &nbsp;
 
+If you would like to change both the current season and current episode:
 
+ Format:
+  `season <SHOWNAME> <SEASON> <EPISODE>`
+  
 ### 4.l. `episode` - Changes the episode of the show you are currently watching
 
 The `episode` command updates the current episode of an existing show in your watchlist.
@@ -437,7 +487,7 @@ The `episode` command updates the current episode of an existing show in your wa
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
  
-### 4.m.a. `watch` - Watch a show in your watchlist
+### 4.m.a. `watch` - Watch a show in your list
 
 The `watch` command updates the watching progress for your show, and automatically updates your watch time limit.
 
@@ -457,8 +507,9 @@ The `watch` command updates the watching progress for your show, and automatical
  
  <img src = "images/watch_before.PNG" width = "800">
  &nbsp;
+ 
  To illustrate the change in your watch time limit, we have added the time limit to 120 minutes.
- The duration of the show friends is 60 minutes. the change in time limit can be seen in the expected outcome below. 
+ The duration of `friends` is 60 minutes. the change in time limit can be seen in the expected outcome below. 
  
  
  Expected outcome:
@@ -474,25 +525,44 @@ The `watch` command updates the watching progress for your show, and automatical
  
 ### 4.m.b. `updatetimelimit` - update your watch time limit
 
-The `updatetimelimit` command updates your current watch time limit.
+The `updatetimelimit` command updates your daily watch time limit.
 
  Format:
   `updatetimelimit <DURATION LIMIT> `
+ 
+  Example of usage:
+  Let's say you want to set your daily watch time limit to 120 minutes, or 2 hours. If you have not set your watch time limit yet, your application will look like this on startup: <br><br>
+  <img src = "images/updatetimelimitbefore.PNG" width = "600"> <br> &nbsp;
   
+  Note the prompt above the red line, which signals to the user that the time limit has not been set yet.
+  
+  Now, we input `updatetimelimit 120` into the application. which updates your daily limit to 120 minutes.
+ 
+ Expected outcome:
+  
+ <img src = "images/updatetimelimit.PNG" width = "800"> 
+
+ &nbsp;
+ 
  > **[NOTE]**
+ > * Your set duration will be reset to zero after the end of each day.
  >
  > * `<DURATION LIMIT>` should be entered in minutes. Your set duration will be stored until the next day.
  >
  > * If you have watched a show before updating your time limit, it will automatically be taken into account after you enter the `updatetimelimit` command.
+
+ As seen from the expected outcome, you now have a limit of 2 hours to spend on watching shows.To use the allocated limit, use the [watch command](#4ma-watch---watch-a-show-in-your-list) above.
+
+If you have **used up** your allocated time, a prompt will be displayed to you as seen below:<br> 
+ <img src = "images/useduptimelimit.PNG" width = "800"> <br>  &nbsp;
+
+If you have **exceeded** your allocated time, a prompt will be displayed to you as seen below:<br> 
+ <img src = "images/exceededlimit.PNG" width = "800"> <br>  &nbsp;
  
- Example of usage:
- `updatetimelimit 120 `
- 
- Expected outcome:
-  
- <img src = "images/updatetimelimit.PNG" width = "800">
-  
- &nbsp;
+The underlined portion shows the prompt to the user, and the circled portion details the amount of time that the user has exceeded.
+
+ > **[NOTE]**
+ > * To allocate more time for yourself, simply use the `updatetimelimit` command again with a longer duration limit.
 
 ### 4.n. `search` - search a show in the watchlist  
 
@@ -507,7 +577,7 @@ The `search` command helps you search for a specific show in the watchlist and p
  
  > **[NOTE]**
  >
- > * The `<SHOWNAME>` is case-sensitive.
+ > * The `<SHOWNAME>` is case-insensitive.
 
  Input:
    
@@ -540,7 +610,7 @@ Expected outcome:
  
 &nbsp;
 
-### 5. FAQ 
+## 5. FAQ 
 <br>
 
 **Q**: Is my watchlist saved after I exit the program?  
@@ -565,7 +635,7 @@ Expected outcome:
 
 <br>
 
-### 6. Command Summary
+## 6. Command Summary
 
 This section showcases the list of available features and usage examples for your reference.
              
@@ -586,7 +656,7 @@ This section showcases the list of available features and usage examples for you
 |Update episode |`episode <SHOWNAME> <EPISODE>`|  `episode Friends 10`|
 |Update season |`season <SHOWNAME> <SEASON>`|   `season Friends 3`|
 |Watch a show  |`watch <SHOWNAME>`|  `watch Friends`|
-|Update watch time limit |`updatetimelimit <DURATION LIMIT>`|   `updatetimelimit 100`|
+|Update watch time limit |`updatetimelimit <DURATION LIMIT>`|   `updatetimelimit 120`|
 |Search a show |`search <SHOWNAME>`|  `search Friends`|
 |Exit program |`bye`|   `bye`|
 

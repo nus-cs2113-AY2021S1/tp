@@ -1,5 +1,7 @@
 @startuml
 
+hide circle
+skinparam classAttributeIconSize 0
 class Duke
 class Storage
 interface SaveState
@@ -25,7 +27,7 @@ class WatchTime {
 + saveStateFormat():String
 }
 
-interface SaveState {
+interface "<<interface>> \n SaveState" {
 +saveState():void
 +loadState():ShowList
 }

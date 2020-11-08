@@ -19,8 +19,8 @@ activate Storage
 create ": WatchTime" as WatchTime LOGIC_COLOR
 Storage -> WatchTime
 activate WatchTime
-Storage --> Storage :
-deactivate WatchTime
+WatchTime --> Storage
+
 deactivate Storage
 
 create "shows :ShowList" as ShowList LOGIC_COLOR
@@ -41,22 +41,13 @@ loop !isByTime
 Duke -> Storage : saveState()
 participant "__showList: ShowList__" as showList LOGIC_COLOR
 activate showList
-Storage -> showList : getName()
-showList --> Storage : showName
-Storage -> showList : getSeason()
-showList --> Storage : season
-Storage -> showList : getEpisodes()
-showList --> Storage : episodes
-Storage -> showList : getRating()
-showList --> Storage : rating
-Storage -> showList : getReview()
-showList --> Storage : review
-Storage -> showList : getDuration()
-showList --> Storage : duration
-Storage -> showList : getCurrentSeason()
-showList --> Storage : currentSeason
-Storage -> showList : getCurrentEpisode()
-showList --> Storage : currentEpisode
+
+Storage -> showList : get show information
+showList --> Storage : return show information
+
+Storage -> WatchTime: get watchTime information
+WatchTime -> Storage: return watchTime information
+deactivate WatchTime
 
 deactivate showList
 [<-- Storage : userData.txt

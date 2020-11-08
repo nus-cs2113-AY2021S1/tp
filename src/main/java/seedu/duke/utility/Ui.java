@@ -136,6 +136,9 @@ public class Ui {
                 + "<DURATION OF EPISODE>\n"
                 + " \n"
                 + ("edit") + " -> edit <SHOWNAME>\n"
+                + "Thereafter you will be prompted which fields you would like to change.\n"
+                + "For example: \nname <SHOWNAME> \nseason <SEASON>  "
+                + "\nepisode <NUMBER OF EPISODES PER SEASON SEPARATED BY COMMAS>  \nduration <DURATION OF EPISODE>\n"
                 + " \n"
                 + ("list") + " -> list\n"
                 + "\n"
@@ -192,8 +195,17 @@ public class Ui {
     }
 
     /**
+     * Prints out the details of a particular show.
+     * @param showName the name of the show
+     */
+    public static void printShow(String showName) {
+        Show show = ShowList.getShow(showName);
+        System.out.println("\t" + show.toString());
+    }
+    /**
      * Prints the watch list of the user.
      */
+
     public static void printShowList() {
         printLine();
         System.out.println("Your watchlist:");
@@ -247,8 +259,9 @@ public class Ui {
 
     public static void printEditPrompt() {
         printLine();
-        System.out.println("Input the detail of the show you want to change {name,season,episode,"
+        System.out.println("Input the fields of the show you want to change such as {name,season,episode,"
                 + "duration} ");
+        System.out.println("Followed by the new value(s)");
         System.out.println("To finish editing, type 'done'.");
     }
 
@@ -408,6 +421,7 @@ public class Ui {
     }
 
     public static void printTerminated() {
+        Ui.printLine();
         System.out.println("The process is terminated. Your existing data is kept");
     }
 

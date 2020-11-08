@@ -23,4 +23,22 @@ public class TimeParserTest {
         final String input = "onehour";
         assertEquals(-1,parser.parseTime(input));
     }
+
+    @org.junit.jupiter.api.Test
+    public void parseInvalidNegativeInput() {
+        final String input = "-10";
+        assertEquals(-1,parser.parseTime(input));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void parseInvalidExceededInput() {
+        final String input = "48h5m";
+        assertEquals(-1,parser.parseTime(input));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void parseInvalidNegativeMinutesInput() {
+        final String input = "1h-5m";
+        assertEquals(-1,parser.parseTime(input));
+    }
 }
