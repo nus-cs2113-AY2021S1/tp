@@ -1214,7 +1214,116 @@ The application aims to provide students with an effective studying technique. I
 
 ### 5.3. Use Cases
 
+This section will describe the use cases of Kaji. 
 
+(For all use cases below, the **System** is the `Kaji` application and the **Actor** is the `user`, unless specified otherwise.)
+
+#### Use Case: `add` a new `module`
+**MSS**
+1. User requests to add a new `module`.
+2. Kaji creates and saves the new `module` with the `module` name specified by the user.
+
+    Use case ends.
+    
+#### Use Case: `list` all current `module`s
+**MSS**
+1. User requests to list all current `module`s.
+2. Kaji shows a list of `module`s available.
+
+    Use case ends.
+    
+#### Use Case: `edit` a `module`
+**MSS**
+1. User requests to edit a `module`.
+2. Kaji makes the changes and saves the `module` with the new `module` name specified by the user.
+
+    Use case ends.
+   
+#### Use Case: `remove` a `module` from the current list of `module`s
+**MSS**
+1. User requests to remove an existing `module`.
+2. Kaji deletes the `module` from the list of `module`s.
+
+    Use case ends.
+    
+#### Use Case: `access` a `module` level
+**MSS**
+1. User requests to access a `module` level.
+2. Kaji changes the current `admin` level of the user to the `module` level specified by the user.
+
+    Use case ends.
+    
+#### Use Case: `revise` a `chapter` from the current list of `chapter`s in a particular `module`
+**MSS**
+1. User requests to revise a `chapter` from the current list of `chapter`s in a particular `module`.
+2. Kaji starts a revision session for the user.
+
+    Use case ends.
+    
+**Extensions**
+
+User will be prompted to acknowledge that he wants to start a revision session for a `chapter` that is not due. <br>
+There will be no revision for an empty `chapter`.
+
+#### Use Case: view a list of `chapter`s which are `due`
+**MSS**
+1. User requests to view a list of `chapter`s which are `due`.
+2. Kaji shows a list of `chapter`s that are `due` to the user.
+
+    Use case ends.
+    
+#### Use Case: `preview` a list of `chapter`s that are `due` in the week
+**MSS**
+1. User requests to `preview` a list of `chapter`s that are `due` in the week.
+2. Kaji shows a list of `chapter`s that are `due` in the week to the user.
+
+    Use case ends.
+    
+#### Use Case: `exclude` an existing `module` or `chapter` 
+**MSS**
+1. User requests to `exclude` a `module` or `chapter`.
+2. Kaji `exclude`s the `module` or `chapter` specified by the user so that it will no longer be scheduled for revision.
+
+    Use case ends.
+    
+#### Use Case: `include` an existing `module` or `chapter` 
+**MSS**
+1. User requests to `include` a `module` or `chapter`.
+2. Kaji `include`s the `module` or `chapter` specified by the user so that it will be scheduled for revision once again.
+
+    Use case ends.
+    
+#### Use Case: `reschedule` the due date of an existing `chapter` 
+**MSS**
+1. User requests to `reschedule` the due date of an existing `chapter`.
+2. Kaji `reschedule`s the due date of the `chapter` specified by the user.
+
+    Use case ends.
+    
+#### Use Case: view the `history` of revision completed in a day 
+**MSS**
+1. User requests to view the `history` of revision completed in a day.
+2. Kaji shows the `history` of revision completed by the user in a day.
+
+    Use case ends.
+    
+#### Use Case: check overall performance for an existing chapter using `showrate` 
+**MSS**
+1. User requests to check overall performance for an existing chapter using `showrate`.
+2. Kaji shows the list of number of cards that were rated easy/medium/hard in the chapter to the user.
+
+    Use case ends.
+   
+**Extensions**
+
+There will only be changes to the rating after a revision session. 
+
+#### Use Case: view the list of commands available using `help`
+**MSS**
+1. User requests to view the list of commands available using `help`.
+2. Kaji shows the list of commands available to the user.
+
+    Use case ends.
 
 ### 5.4. Non-Functional Requirements
 
