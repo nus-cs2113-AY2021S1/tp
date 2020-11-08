@@ -1,0 +1,30 @@
+@startuml
+box Logic
+[-> ":Parser": setUserInput("/routemap bus code")
+activate ":Parser"
+[<--":Parser"
+deactivate ":Parser"
+
+[-> ":Parser": extractType()
+activate ":Parser"
+create ":RouteMapCommand"
+":Parser" -> ":RouteMapCommand":new RouteMapCommand("bus code")
+activate ":RouteMapCommand"
+
+":Parser" <-- ":RouteMapCommand"
+deactivate ":RouteMapCommand"
+
+":Parser" -> ":RouteMapCommand":executeCommand()
+activate ":RouteMapCommand"
+
+ref over ":RouteMapCommand"
+full bus route retrieval
+end
+
+":Parser" <-- ":RouteMapCommand"
+deactivate ":RouteMapCommand"
+[<-- ":Parser": boolean isOngoing
+deactivate ":Parser"
+
+
+@enduml
