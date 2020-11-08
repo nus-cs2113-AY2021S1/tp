@@ -1,12 +1,14 @@
 package seedu.eduke8.command;
 
 import seedu.eduke8.bookmark.BookmarkList;
+import seedu.eduke8.common.Displayable;
 import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.ui.Ui;
 
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_NONE;
+
 
 public class BookmarkCommand extends Command {
     private static final String BOOKMARK_LIST = "listing";
@@ -49,6 +51,14 @@ public class BookmarkCommand extends Command {
         this.bookmarkList = bookmarkList;
         this.deleteIndex = deleteIndex;
 
+        int currentIndex = 0;
+        for (Displayable question : bookmarkList.getInnerList()) {
+            currentIndex++;
+            if (currentIndex == deleteIndex) {
+                Question castedQuestion = (Question) question;
+                castedQuestion.markAsNotBookmarked();
+            }
+        }
         bookmarkList.delete(deleteIndex - 1);
     }
 
