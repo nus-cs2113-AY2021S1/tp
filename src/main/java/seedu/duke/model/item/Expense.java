@@ -79,7 +79,7 @@ public class Expense extends Item implements Comparable<Expense> {
      *
      * @param otherExpense The other expense item to compare to
      * @return negative integer if this expense item precedes the argument expense item, positive integer if this
-     * expense item follows the argument expense item, 0 otherwise.
+     *     expense item follows the argument expense item, 0 otherwise.
      */
     @Override
     public int compareTo(Expense otherExpense) {

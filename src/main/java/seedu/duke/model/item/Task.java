@@ -101,7 +101,7 @@ public class Task extends Item implements Comparable<Task> {
      *
      * @param otherItem The other task to compare to.
      * @return negative integer if this task precedes the argument task, positive integer if this task follows the
-     * argument task, 0 otherwise.
+     *     argument task, 0 otherwise.
      */
     @Override
     public int compareTo(Task otherItem) {
