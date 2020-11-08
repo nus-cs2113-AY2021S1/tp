@@ -247,10 +247,10 @@ Personal events can contain:
 - Description, date and time
 
 Examples: 
-- `add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` <br>
-- `add personal; Family Meeting; 18/09/20`  <br>
-- `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm` <br>
-- `add zoom; Team meeting; nus.sg.zoom.sg` <br>
+- `add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` 
+- `add personal; Family Meeting; 18/09/20`  
+- `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm` 
+- `add zoom; Team meeting; nus.sg.zoom.sg` 
 - `add timetable; math class; 10/10/2020; 12pm`
 
 Expected Output:
@@ -279,11 +279,8 @@ _________________________________
 >
 > * When giving the event type, take note that it is case-insensitive:
 > `add Zoom` is the same as `add zoom`
->
 > * Only the full word will be recognized as the event type:
->   add z` will NOT add a zoom event
->
-> * Remember to add the ':' for the time, this is because `4 PM` will not be valid but `4:00 PM` will be.
+>   `add z` will NOT add a zoom event
 
 > **Warning!**
 >
@@ -782,31 +779,32 @@ The extract feature detects dates in the DD/Month Name/YYYY format or the Month 
 It will detect time in 12 and 24 Hour formats, with ":" or "." in between the time. It can detect time in the format of HH AM/PM too. <br>
 If a valid zoom link is detected (links containing '.zoom.' and start with 'https://' or 'http://'), it will try to create a Zoom event for you. 
 
-
-This feature needs a 3 step process to function, please press your enter key (denoted by `<enter key>`) in between all 3 steps for it to work properly.
-
-Format: `extract TEXT_SUBJECT;` `<enter key>` `TEXT_BODY` `<enter key>` `extractend` `<enter key>`
+Format: `extract TEXT_SUBJECT;`
 - `TEXT_SUBJECT` is the subject of the email or the name you want your event to be.
-- `TEXT_BODY` is the body of the email of the text to be scanned through for dates and times.
 
-
-Example: `extract CG2271 Quiz 2;` `<enter key>` <br>
-`Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
-The link is at https://nus-sg.zoom.us/j/2226375MG` `<enter key>`<br>
-`extractend` `<enter key>`
-
-Expected Output:
-
-After `extract CG2271 Quiz 2;` `<enter key>`:
+#### How to use?
+An example will be used to explain how this feature works.
+##### Step 1: Type the command into the terminal
+```
+extract CG2271 Quiz 2;
+```
+##### Step 2: Scheduler will prompt you to copy and paste or enter the text you want to extract from.
 ````
 _________________________________
 Copy and paste or enter the body of the text you want to extract from!
 At the end of your text, press enter to go to the next line, enter 'extractend' with no quotation marks and press enter once more.
 _________________________________
 ````
-After `Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. The link is at https://nus-sg.zoom.us/j/2226375MG` `<enter key>`
-and `extractend` `<enter key>`:
-
+##### Step 3: Copy and paste or type in the text you want to extract from.
+````
+Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
+The link is at https://nus-sg.zoom.us/j/2226375MG`
+````
+##### Step 4: Tell Scheduler you are done by typing `extractend` on a new line.
+````
+extractend
+````
+##### Step 5: Choose from the multiple zoom link/date/time detected if applicable.
 ````
 One zoom link detected and chosen: https://nus-sg.zoom.us/j/2226375MG
 We have detected 2 dates in this text body!
@@ -840,7 +838,7 @@ As shown above, the user can choose the date/time they want for the event as lon
 > **Warning!**
 > * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
 > * It is not advised to copy and paste text containing emojis into the command line because the command line may crash. It is recommended to remove these emojis by editing the text in a text editor first like the Notepad app.
-> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for time and zoom links too.
+> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for the time and zoom links too.
 
 
 
