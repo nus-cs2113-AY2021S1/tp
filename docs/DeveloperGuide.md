@@ -117,6 +117,15 @@ On exiting Fluffle, all components will be saved to the storage.
 ### Bunny Manager Component
 
 ### Word Manager Component
+Given below is the general architecture of our Word Manager Component.
+
+![WordManagerComponent](graphics/diagrams/WordManagerComponent.PNG)
+<p align = "center"><i><b>Figure 2: Word Manager Architecture</b></i></p>
+
+In Fluffle, the words list is stored in the local hard drive location data/words.txt. Fluffle can hold three types of word: Noun, Verb and Adjective. The operations that can be done on the words list are:
+- Viewing the words list.
+- Getting three random words.
+- Filtering words (by word types or by substrings).
 
 ### Name Manager Component
 
@@ -135,7 +144,7 @@ This Writings class is also the parent of 2 subclasses which are Poem and Essay.
 User: Represents the Users registered to the System
 
 ![UML Class diagram for WritingList family](graphics/diagrams/classDiagram_WritingList.png)
-<p align = "center"><i><b>Figure 2: WritingList family UML diagram</b></i></p>
+<p align = "center"><i><b>Figure 3: WritingList family UML diagram</b></i></p>
 
 The above class diagram describes the overall architecture of Writings class functionalities and associations within 
 the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() 
@@ -144,11 +153,11 @@ into the database. During this process, the user has the ability of choosing the
 either poem or essay at this stage)
 
 ![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
-<p align = "center"><i><b>Figure 3: General interactions between member classes when generating a new writing</b></i></p>
+<p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
 
 ### Filter words class family / Word family
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
-<p align = "center"><i><b>Figure 4: Filter word UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 5: Filter word UML Class Diagram</b></i></p>
 
 The above class diagram describes the overall architecture of the filter words functionality. `FilterExecutor` class has 
 the static void method `executeFilterCommand` that will be called first when the user enters a filter command. 
@@ -165,9 +174,9 @@ the command `filter -continue by\start limit\10 -cs -cg.`
 
 ![UML Filter word sequence diagram](graphics/diagrams/Sequence_FilterWords.png)
 
-<p align = "center"><i><b>Figure 5: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
+<p align = "center"><i><b>Figure 6: Interactions between components for the command filter -continue by\start limit\10 -cs -cg</b></i></p>
 
-In **Figure 5** above, the flow of the program is as follow:
+In **Figure 6** above, the flow of the program is as follow:
 1. After getting the `filter words` command, the `CommandExecutor` calls `executeFilterCommand` in `FilterExecutor` class.
 1. In the method `executeFilterCommand`, the method `getTypeOfFilter` of `FilterType` class is called to get the filter mode, which is `START`.
 1. Then, `FilterCommandSlicer`'s methods `isNewFilter`, `getWordPrintLimitFromFilterCommand`, `getTargetedStringTags` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
@@ -176,7 +185,7 @@ In **Figure 5** above, the flow of the program is as follow:
    
 ### Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<center><i>Figure 6:  Bunny ideas UML Class Diagram</i></center>
+<center><i>Figure 7:  Bunny ideas UML Class Diagram</i></center>
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
@@ -196,7 +205,10 @@ generates an integer between 0 and the max number of `Bunny` idea in the `bunnie
 `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<center><i>Figure 7:  Bunny list UML Sequence Diagram</i></center>
+<center><i>
+  
+  
+  8:  Bunny list UML Sequence Diagram</i></center>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
 the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
