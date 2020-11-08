@@ -7,6 +7,7 @@ import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
+import seedu.duke.ui.Ui;
 
 import java.util.Hashtable;
 import java.util.regex.Matcher;
@@ -38,7 +39,7 @@ public class ParserManager {
      */
     public Command parser(String userInput, ProjectManager projectListManager) {
         if (userInput.equals(BYE)) {
-            System.out.println(BYE);
+            Ui.showToUserLn("See you again...");
             exit = true;
             ScrumLogger.LOGGER.info("Exit SCRUMptious");
             return new EmptyCommand(parameters);
