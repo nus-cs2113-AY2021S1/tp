@@ -423,22 +423,34 @@ public class UI {
      */
     public static void changeOrder(Customer customer,String input,ArrayList<Order> Order)
     {
-        System.out.println("____________________________________________________________\n");
-        System.out.println("Noted. I've changed this order:  \n");
-        String[] inputWords = input.split("/"); //split the input message
-        String orderNumberchenged = inputWords[1];
-        int orderNumberchanged = Integer.parseInt(orderNumberchenged) - 1;
-        String changedtype = inputWords[2];
-        System.out.println(Order.get(orderNumberchanged) + "\n");
-        Canteen can = Order.get(orderNumberchanged).getCanteen();
-        Stall stall = Order.get(orderNumberchanged).getStall();
-        List<Dish> dishes = Order.get(orderNumberchanged).getDish();
-        Order changedOrder = customer.order(can,stall,dishes,changedtype);
-        Order.set(orderNumberchanged,changedOrder);
+        try{
+            String[] inputWords = input.split("/"); //split the input message
+            if(!inputWords[0].equals("change")){
+                throw new Exception();
+            }
+            String orderNumberchenged = inputWords[1];
+            int orderNumberchanged = Integer.parseInt(orderNumberchenged) - 1;
+            if(orderNumberchanged>=Order.size()||orderNumberchanged<0){
+                throw new Exception();
+            }
+            String changedtype = inputWords[2];
+            System.out.println("____________________________________________________________\n");
+            System.out.println("Noted. I've changed this order:  \n");
+            System.out.println(Order.get(orderNumberchanged) + "\n");
+            Canteen can = Order.get(orderNumberchanged).getCanteen();
+            Stall stall = Order.get(orderNumberchanged).getStall();
+            List<Dish> dishes = Order.get(orderNumberchanged).getDish();
+            Order changedOrder = customer.order(can,stall,dishes,changedtype);
+            Order.set(orderNumberchanged,changedOrder);
 
-        System.out.println("to \n");
-        System.out.println(Order.get(orderNumberchanged) + "\n");
-        System.out.println("____________________________________________________________\n");
+            System.out.println("to \n");
+            System.out.println(Order.get(orderNumberchanged) + "\n");
+            System.out.println("____________________________________________________________\n");
+        }catch(Exception e){
+            System.out.println("____________________________________________________________\n");
+            System.out.println("  OOPS!!! Error! Please enter again. :-(\n");
+            System.out.println("____________________________________________________________\n");
+        }
 
     }
 

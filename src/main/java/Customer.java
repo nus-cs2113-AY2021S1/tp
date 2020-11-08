@@ -1,3 +1,5 @@
+import exception.OrderTypeException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -131,7 +133,7 @@ public class Customer {
      * @param typeOfOrder
      * @return
      */
-    public Order order(Canteen canteen,Stall stall,List<Dish> dish, String typeOfOrder) {
+    public Order order(Canteen canteen,Stall stall,List<Dish> dish, String typeOfOrder) throws OrderTypeException {
 
         if(typeOfOrder.compareTo("Delivery")==0){
             return new deliveryOrder(canteen,stall,dish,this,true);
@@ -141,8 +143,9 @@ public class Customer {
         }
         if(typeOfOrder.compareTo("Take away")==0){
             return new takeAwayOrder(canteen,stall,dish,this,true);
+        }else{
+            throw new OrderTypeException();
         }
-        return  null;
     }
 
     @Override
