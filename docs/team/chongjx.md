@@ -26,9 +26,9 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 <div style="page-break-after: always;"></div>
 
-1. Implemented `SystemException` class which extends from `Exception` class.
+6. Implemented `SystemException` class which extends from `Exception` class.
     - Within it, there is an enumeration for all possible types of exception that may occur and each enum value contains a unique string as its message.
-1. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
+7. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
     
 ### Code contributed
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -62,7 +62,7 @@ Added implementation details for the following:
 
 <div style="page-break-after: always;"></div>
 
-1. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
+9. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
 
 ### Community
 1. Reviewed most of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the programme.
