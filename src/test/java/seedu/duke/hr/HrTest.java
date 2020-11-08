@@ -1,10 +1,6 @@
 package seedu.duke.hr;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.event.Event;
-import seedu.duke.event.EventList;
-import seedu.duke.hr.Member;
-import seedu.duke.hr.MemberList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -99,7 +95,32 @@ public class HrTest {
                 + "|attendance rate: 0%";
         String actual11 = MemberList.changeMemberInfo(m, "1234567890", "harry_potter@gmail.com", "president");
         assertEquals(expected11, actual11);
-
+        MemberList.deleteFromList(0);
+        String non = MemberList.addToList(new Member("Suzuhara ruru",24342434,"2434@gmail.com","member"));
+        non = MemberList.addToList(new Member("Niji Sanji",114514,"hololiveshutdown@gmail.com","president"));
+        non = MemberList.addToList(new Member("Lize",1141919810,"lize@yagoo.com","speaker"));
+        non = MemberList.addToList(new Member("Tony Parker",22711019,"tp9@outlook.com","Admin"));
+        non = MemberList.addToList(new Member("Tim Duncan",10152113,"TD21@gmail.com","Alumni"));
+        String expected12 = "I have found 2 result for you:\n"
+                + "2.name: Niji Sanji |phone: 114514 |email: hololiveshutdown@gmail.com "
+                + "|role: president |attendance rate: 0%\n"
+                + "3.name: Lize |phone: 1141919810 |email: lize@yagoo.com |role: speaker |attendance rate: 0%\n";
+        String actual12 = MemberList.search(true,false,false,false,false,"114",
+                null,null,null,null);
+        String expected13 = "I have found 1 result for you:\n"
+                + "4.name: Tony Parker |phone: 22711019 |email: tp9@outlook.com |role: Admin |attendance rate: 0%\n";
+        String actual13 = MemberList.searchProfAdmin();
+        String expected14 = "I have found 2 result for you:\n"
+                + "3.name: Lize |phone: 1141919810 |email: lize@yagoo.com |role: speaker |attendance rate: 0%\n"
+                + "5.name: Tim Duncan |phone: 10152113 |email: TD21@gmail.com |role: Alumni |attendance rate: 0%\n";
+        String actual14 = MemberList.searchConnection();
+        assertEquals(expected12,actual12);
+        assertEquals(expected13,actual13);
+        assertEquals(expected14,actual14);
+        MemberList.deleteFromList(0);
+        MemberList.deleteFromList(0);
+        MemberList.deleteFromList(0);
+        MemberList.deleteFromList(0);
         MemberList.deleteFromList(0);
     }
 
