@@ -97,17 +97,17 @@ class CheckCommandTest {
         Command checkCommand  = new CheckCommand(inputStringOne);
         checkCommand.execute(data, ui, storage);
 
-        String expectedStringOne = "You have no coinciding events!";
-        assertEquals(expectedStringOne, outputStreamCaptor.toString().trim());
+        String expectedString = "You have no coinciding events!";
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
 
         String inputStringTwo = "11/20; 13:00; 20; ";
 
         checkCommand  = new CheckCommand(inputStringTwo);
         checkCommand.execute(data, ui, storage);
 
-        String expectedStringTwo = "You have no coinciding events!";
-        assertEquals(expectedStringOne + System.lineSeparator()
-                + expectedStringTwo, outputStreamCaptor.toString().trim());
+        expectedString = expectedString + System.lineSeparator()
+                +  "You have no coinciding events!";
+        assertEquals(expectedString, outputStreamCaptor.toString().trim());
     }
 
     @Test
