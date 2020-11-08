@@ -16,11 +16,6 @@ public class Assignment extends Event {
 
     protected LocalDateTime by;
 
-    public void setBy(LocalDateTime by) {
-        this.by = by;
-    }
-
-
     /**
      * Convert the information about this assignment to a string that is to be stored in a file.
      *
@@ -68,6 +63,10 @@ public class Assignment extends Event {
         return LocalDateTime.from(by);
     }
 
+    public LocalDateTime getStartDateTime() {
+        return getEndDateTime();
+    }
+
     /**
      * Prepare the string to be printed in the list.
      *
@@ -93,5 +92,23 @@ public class Assignment extends Event {
         }
 
         return isEqual;
+    }
+
+    public void setDateTime(LocalDateTime newDateTime) {
+        this.by = newDateTime;
+    }
+
+    /**
+     * A copy constructor.
+     *
+     * @param anotherAssignment the assignment to be copied.
+     */
+    public Assignment(Assignment anotherAssignment) {
+        super(anotherAssignment);
+        this.by = anotherAssignment.by;
+    }
+
+    public Assignment clone() {
+        return new Assignment(this);
     }
 }

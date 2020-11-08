@@ -10,14 +10,19 @@ import exception.EditNoEndTimeException;
 import exception.EmptyEventListException;
 import exception.ExistingEventInListException;
 import exception.EndBeforeStartEventException;
+import exception.NoClassWeekException;
 import exception.UndefinedEventException;
 import location.Location;
 import location.OnlineLocation;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Locale;
 
 
 import static java.util.stream.Collectors.toList;
@@ -175,9 +180,12 @@ public class EventList {
             }
             break;
         case "class":
+            assert end != null;
             if (newLocation != null) {
+
                 newEvent = new Class(newDescription, newLocation, start, end);
             } else {
+
                 newEvent = new Class(newDescription, newOnlineLocation, start, end);
             }
             break;
@@ -244,34 +252,34 @@ public class EventList {
         // set new time
         if (events.get(index) instanceof Assignment) {
             if (startEnd[0] != null) {
-                ((Assignment) events.get(index)).setBy(startEnd[0]);
+                (events.get(index)).setDateTime(startEnd[0]);
             }
         } else if (events.get(index) instanceof PersonalEvent) {
             if (startEnd[0] != null) {
-                ((PersonalEvent) events.get(index)).setAt(startEnd[0]);
+                (events.get(index)).setDateTime(startEnd[0]);
             }
             if (startEnd[1] != null) {
-                ((PersonalEvent) events.get(index)).setEnd(startEnd[1]);
+                (events.get(index)).setEndDateTime(startEnd[1]);
             }
-            if (editInformation[4].equals("nil")) {
-                ((PersonalEvent) events.get(index)).setEnd(null);
+            if (editInformation[4].equalsIgnoreCase("nil")) {
+                (events.get(index)).setEndDateTime(null);
             }
         } else if (events.get(index) instanceof Class) {
             if (startEnd[0] != null) {
-                ((Class) events.get(index)).setAt(startEnd[0]);
+                (events.get(index)).setDateTime(startEnd[0]);
             }
             if (startEnd[1] != null) {
-                ((Class) events.get(index)).setEnd(startEnd[1]);
+                (events.get(index)).setEndDateTime(startEnd[1]);
             }
         } else if (events.get(index) instanceof SelfStudy) {
             if (startEnd[0] != null) {
-                ((SelfStudy) events.get(index)).setAt(startEnd[0]);
+                (events.get(index)).setDateTime(startEnd[0]);
             }
             if (startEnd[1] != null) {
-                ((SelfStudy) events.get(index)).setEnd(startEnd[1]);
+                (events.get(index)).setEndDateTime(startEnd[1]);
             }
-            if (editInformation[4].equals("nil")) {
-                ((SelfStudy) events.get(index)).setEnd(null);
+            if (editInformation[4].equalsIgnoreCase("nil")) {
+                (events.get(index)).setEndDateTime(null);
             }
         }
     }
@@ -448,5 +456,72 @@ public class EventList {
                 .filter(s -> ((!s.isDone()) && (s.getEndDate().isEqual(date))))
                 .collect(toList());
         return filteredEventList;
+    }
+
+    /**
+     * Add all the classes happening in the current week for several weeks into the list.
+     *
+     * @param numWeeks number of weeks to repeat.
+     */
+    public void repeatAllClasses(int numWeeks) throws NoClassWeekException {
+        ArrayList<Event> filteredClassList;
+        //the filtered list are all the classes happening in the current week
+        try {
+            filteredClassList = (ArrayList<Event>) events.stream()
+                    .filter(s -> ((isLocalDateInTheSameWeek(s.getDate(), LocalDate.now()))
+                            && s instanceof Class))
+                    .collect(toList());
+        } catch (NullPointerException e) {
+            throw new NoClassWeekException();
+        }
+        if (filteredClassList.size() == 0) {
+            throw new NoClassWeekException();
+        }
+
+        ArrayList<Event> copyList = new ArrayList<>();
+
+        for (int i = 1; i <= numWeeks; i++) {
+            filteredClassList.forEach(s -> copyList.add(s.clone()));
+            int finalI = i;
+            copyList.forEach(s -> s.setDateTime(s.getStartDateTime().plusWeeks(finalI)));
+            copyList.forEach(s -> s.setEndDateTime(s.getEndDateTime().plusWeeks(finalI)));
+            events.addAll(copyList);
+            copyList.clear();
+        }
+    }
+
+    //@@author Sunil Katti-reused
+    //Reused from https://stackoverflow.com/a/56246095 with minor modifications
+
+    /**
+     * Check whether 2 dates are of the same week.
+     *
+     * @param date1 the first date
+     * @param date2 the second date
+     * @return ture if they are of the same week. false otherwise.
+     */
+    public static boolean isLocalDateInTheSameWeek(LocalDate date1, LocalDate date2) {
+        assert date1 != null;
+        assert date2 != null;
+        LocalDate mondayBeforeDate1 = date1.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate sundayAfterDate1 = date1.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+        return ((date2.isEqual(mondayBeforeDate1) || date2.isAfter(mondayBeforeDate1))
+                && (date2.isEqual(sundayAfterDate1) || date2.isBefore(sundayAfterDate1)));
+    }
+    //@@author
+
+    /**
+     * Add the selected event for several weeks into the list.
+     *
+     * @param numWeeks number of weeks to repeat.
+     */
+    public void repeatEvent(int eventIndex, int numWeeks) {
+        Event newEvent;
+        for (int i = 1; i <= numWeeks; i++) {
+            newEvent = events.get(eventIndex).clone();
+            newEvent.setDateTime(newEvent.getStartDateTime().plusWeeks(i));
+            newEvent.setEndDateTime(newEvent.getEndDateTime().plusWeeks(i));
+            events.add(newEvent);
+        }
     }
 }

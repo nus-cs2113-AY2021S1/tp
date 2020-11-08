@@ -16,13 +16,14 @@ public class Class extends Event {
     protected LocalDateTime at;
     protected LocalDateTime end;
 
-    public void setEnd(LocalDateTime end) {
+    public void setDateTime(LocalDateTime at) {
+        this.at = at;
+    }
+
+    public void setEndDateTime(LocalDateTime end) {
         this.end = end;
     }
 
-    public void setAt(LocalDateTime at) {
-        this.at = at;
-    }
 
     public Class(String description, Location location, LocalDateTime at, LocalDateTime end)
             throws EndBeforeStartEventException {
@@ -112,5 +113,20 @@ public class Class extends Event {
         }
 
         return isEqual;
+    }
+
+    /**
+     * A copy constructor.
+     *
+     * @param anotherClass the class to be copied.
+     */
+    public Class(Class anotherClass) {
+        super(anotherClass);
+        this.at = anotherClass.at;
+        this.end = anotherClass.end;
+    }
+
+    public Class clone() {
+        return new Class(this);
     }
 }

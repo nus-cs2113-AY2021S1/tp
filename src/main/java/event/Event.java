@@ -22,6 +22,17 @@ public abstract class Event {
     protected Location location = null;
     protected OnlineLocation link = null;
 
+    public Event(Event anotherEvent) {
+        this.description = anotherEvent.description;
+        this.isDone = anotherEvent.isDone;
+        this.location = anotherEvent.location;
+        this.link = anotherEvent.link;
+    }
+
+    public Event clone() {
+        return null;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -97,6 +108,12 @@ public abstract class Event {
 
     public LocalDate getEndDate() {
         return null;
+    }
+
+    public void setDateTime(LocalDateTime newDateTime) {
+    }
+
+    public void setEndDateTime(LocalDateTime newDateTime) {
     }
 
     /**

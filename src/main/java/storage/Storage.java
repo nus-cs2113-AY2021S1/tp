@@ -140,22 +140,24 @@ public class Storage {
     public ArrayList<Event> loadEvents(LocationList locations) throws LoadingException, EndBeforeStartEventException {
         ArrayList<Event> events = new ArrayList<>();
         File dataFile = new File(filePaths[0]);
+        String description;
         try {
             Scanner s = new Scanner(dataFile);
             while (s.hasNext()) {
                 String[] words = s.nextLine().split(REGEX_IN_FILE);
+                description = words[2].trim();
                 switch (words[0]) {
                 case "C":
                     try {
                         if (!words[5].equalsIgnoreCase(ONLINE)) {
-                            events.add(new Class(words[2], Parser.parseLocation(words[5], locations),
+                            events.add(new Class(description, Parser.parseLocation(words[5], locations),
                                     LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                         } else {
                             if (words.length >= 8) {
-                                events.add(new Class(words[2], new OnlineLocation(words[6], words[7]),
+                                events.add(new Class(description, new OnlineLocation(words[6], words[7]),
                                         LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             } else {
-                                events.add(new Class(words[2], new OnlineLocation(words[6]),
+                                events.add(new Class(description, new OnlineLocation(words[6]),
                                         LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             }
                         }
@@ -169,10 +171,10 @@ public class Storage {
                 case "A":
                     try {
                         if (!words[4].equalsIgnoreCase(ONLINE)) {
-                            events.add(new Assignment(words[2], Parser.parseLocation(words[4], locations),
+                            events.add(new Assignment(description, Parser.parseLocation(words[4], locations),
                                     LocalDateTime.parse(words[3])));
                         } else {
-                            events.add(new Assignment(words[2], new OnlineLocation(words[5]),
+                            events.add(new Assignment(description, new OnlineLocation(words[5]),
                                     LocalDateTime.parse(words[3])));
                         }
                     } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
@@ -186,31 +188,31 @@ public class Storage {
                     try {
                         switch (words.length) {
                         case 5:
-                            events.add(new PersonalEvent(words[2], Parser.parseLocation(words[4], locations),
+                            events.add(new PersonalEvent(description, Parser.parseLocation(words[4], locations),
                                     LocalDateTime.parse(words[3])));
                             break;
                         case 6:
                             if (!words[4].equalsIgnoreCase(ONLINE)) {
-                                events.add(new PersonalEvent(words[2], Parser.parseLocation(words[5], locations),
+                                events.add(new PersonalEvent(description, Parser.parseLocation(words[5], locations),
                                         LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             } else {
-                                events.add(new PersonalEvent(words[2], new OnlineLocation(words[5]),
+                                events.add(new PersonalEvent(description, new OnlineLocation(words[5]),
                                         LocalDateTime.parse(words[3])));
                             }
                             break;
                         case 7:
                             if (words[4].equalsIgnoreCase(ONLINE)) {
-                                events.add(new PersonalEvent(words[2], new OnlineLocation(words[5], words[6]),
+                                events.add(new PersonalEvent(description, new OnlineLocation(words[5], words[6]),
                                         LocalDateTime.parse(words[3])));
                             } else if (words[5].equalsIgnoreCase(ONLINE)) {
-                                events.add(new PersonalEvent(words[2], new OnlineLocation(words[6]),
+                                events.add(new PersonalEvent(description, new OnlineLocation(words[6]),
                                         LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             } else {
                                 throw new LoadingException();
                             }
                             break;
                         case 8:
-                            events.add(new PersonalEvent(words[2], new OnlineLocation(words[6], words[7]),
+                            events.add(new PersonalEvent(description, new OnlineLocation(words[6], words[7]),
                                     LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             break;
                         default:
@@ -224,35 +226,35 @@ public class Storage {
                         events.get(events.size() - 1).markAsDone();
                     }
                     break;
-                case "E":
+                case "S":
                     try {
                         switch (words.length) {
                         case 5:
-                            events.add(new SelfStudy(words[2], Parser.parseLocation(words[4], locations),
+                            events.add(new SelfStudy(description, Parser.parseLocation(words[4], locations),
                                     LocalDateTime.parse(words[3])));
                             break;
                         case 6:
                             if (!words[4].equalsIgnoreCase(ONLINE)) {
-                                events.add(new SelfStudy(words[2], Parser.parseLocation(words[5], locations),
+                                events.add(new SelfStudy(description, Parser.parseLocation(words[5], locations),
                                         LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             } else {
-                                events.add(new SelfStudy(words[2], new OnlineLocation(words[5]),
+                                events.add(new SelfStudy(description, new OnlineLocation(words[5]),
                                         LocalDateTime.parse(words[3])));
                             }
                             break;
                         case 7:
                             if (words[4].equalsIgnoreCase(ONLINE)) {
-                                events.add(new SelfStudy(words[2], new OnlineLocation(words[5], words[6]),
+                                events.add(new SelfStudy(description, new OnlineLocation(words[5], words[6]),
                                         LocalDateTime.parse(words[3])));
                             } else if (words[5].equalsIgnoreCase(ONLINE)) {
-                                events.add(new SelfStudy(words[2], new OnlineLocation(words[6]),
+                                events.add(new SelfStudy(description, new OnlineLocation(words[6]),
                                         LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             } else {
                                 throw new LoadingException();
                             }
                             break;
                         case 8:
-                            events.add(new SelfStudy(words[2], new OnlineLocation(words[6], words[7]),
+                            events.add(new SelfStudy(description, new OnlineLocation(words[6], words[7]),
                                     LocalDateTime.parse(words[3]), LocalDateTime.parse(words[4])));
                             break;
                         default:
