@@ -650,7 +650,10 @@ As shown in the diagram above, each command class inherits the `shouldSave` prop
 
 After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` is set to `true`.
 
-##### 4.4.3.3. Serialising Objects to JSON
+##### 4.4.3.3. Serialising Objects to JSON  
+![Figure X: Serialising Sequence](image/developerguide/storage_save_serialise.png "Serialising Sequence")  
+_Figure X: Serialising Sequence_  
+
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `toJson()`, which is used to implement the logic for **serialising objects into JSON string**.  
 When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize()` of the _**json.simple**_, passing in the `ProjectManager` and `FileWriter` (points to the data file) object as the parameters. The library will automatically serialise the objects and sub-objects into JSON string depending on the type of the objects:
  1. **Primitive and Standard Types (e.g. `int`, `String`, `Collection`)**: The library can directly serialise these types into JSON string.
