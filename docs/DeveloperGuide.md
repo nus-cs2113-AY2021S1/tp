@@ -444,7 +444,7 @@ index has been deleted.
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
 ![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
 
-## 4. Appendix A: Requirements
+## 4. Appendix A: Product Scope
 
 ### 4.1. Target user profile
 
