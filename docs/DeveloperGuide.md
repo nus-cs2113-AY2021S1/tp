@@ -366,20 +366,33 @@ While loading information is passed to the parser manager to prepare the informa
    <br><em>Figure 16</em>
 </p>
 
+During the program, as changes are made to the data, the storageManager saves the data to the hard disk. In case the user force closes the program, the updated data is saved. The sequence diagram below is an example of a note being archived. 
+
+<p align="center">
+   <img alt="StorageManagerSaveDuringDiagram" src="diagrams/out/StorageManagerSaveDuring.png"/>
+   <br><em>Figure 17</em>
+</p>
+
+When exiting the program, the storageManager saves all the data to the hard disk, in case the user tampers with the txt files while the program is ongoing. Hence, saving the latest version of the data. Below is the sequence diagram of the final saving procedure.
+
+<p align="center">
+   <img alt="StorageManagerSaveEndDiagram" src="diagrams/out/StorageManagerSaveEnd.png"/>
+   <br><em>Figure 18</em>
+</p>
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
 
 The InterfaceManger receives the input from the user which is then processed by ParserManager, as well as printing the output. The class diagram is as follow.
 
 <p align="center">
    <img alt="InterfaceManager" src="diagrams/out/InterfaceManagerClass.png"/>
-   <br><em>Figure 17</em>
+   <br><em>Figure 19</em>
 </p>
 
 The Formatter class handles the formatting of the Note(s), Event(s) and message(s) into a String which is then passed to InterfaceManager to be printed out through NotUS. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
 
 <p align="center">
    <img alt="Formatter" src="diagrams/out/Formatter.png"/>
-   <br><em>Figure 18</em>
+   <br><em>Figure 20</em>
 </p>
 
 There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.
@@ -393,7 +406,7 @@ The System Exception Enumeration contains all the possible types of exception wi
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
    <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
-   <br><em>Figure 18</em>
+   <br><em>Figure 21</em>
 </p>
 
 💡 As there are various types of exception, the diagram is split into two.
@@ -412,7 +425,7 @@ Figure 19 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 19</em>
+ <br><em>Figure 22</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>
