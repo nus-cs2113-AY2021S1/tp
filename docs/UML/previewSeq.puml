@@ -34,7 +34,6 @@ activate L
     loop for increment from 0 to 6
         L -> L : setDueDueChapters()
         activate L
-        L --> L : DueDueChapters
         deactivate L
         alt if increment equals 0
             L -> U : printDueByTodayMessage()

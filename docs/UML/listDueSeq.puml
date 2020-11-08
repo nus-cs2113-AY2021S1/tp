@@ -33,7 +33,6 @@ activate L
     deactivate L
     L -> L : setDueDueChapters()
     activate L
-    L --> L : DueDueChapters
     deactivate L
     L -> U : printDueByTodayMessage()
     activate U
