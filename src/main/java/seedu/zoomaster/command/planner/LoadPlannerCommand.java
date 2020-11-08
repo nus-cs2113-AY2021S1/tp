@@ -44,6 +44,13 @@ public class LoadPlannerCommand extends Command {
         }
     }
 
+
+    /**
+     * Initialises the empty slots for the empty timetable.
+     *
+     * @param timetable The timetable that is initialised with the empty slots
+     * @return The module "EMPTY" that contains all the empty slots
+     */
     public Module initialiseEmptySlots(Timetable timetable) {
         ArrayList<ArrayList<Integer>> array = new ArrayList<>(7);
         for (int i = 0; i < 7; i++) {
@@ -58,6 +65,14 @@ public class LoadPlannerCommand extends Command {
         return module;
     }
 
+    /**
+     * Marks a 5-minutes slot as full.
+     *
+     * @param array An array that represents 5-minutes slots.
+     * @param start The start time of the slot.
+     * @param end The end time of the slot.
+     * @param day The day of the slot.
+     */
     private static void markAsFull(ArrayList<ArrayList<Integer>> array, int start, int end, String day) {
         int count = 0;
         for (Day d: Day.values()) {
@@ -70,6 +85,12 @@ public class LoadPlannerCommand extends Command {
         }
     }
 
+    /**
+     * Generates the empty slots and add it to the "EMPTY" module.
+     *
+     * @param array An array that represents 5-minutes slots.
+     * @param module The "EMPTY" module.
+     */
     private static void generateEmptySlots(ArrayList<ArrayList<Integer>> array, Module module) {
         int count = 0;
         for (Day d: Day.values()) {

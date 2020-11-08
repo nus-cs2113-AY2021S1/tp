@@ -33,7 +33,7 @@ public class SavePlannerCommand extends Command {
      * @param bookmarks The list of bookmarks
      * @param planner The timetable
      * @param ui The user interface
-     * @throws ZoomasterException Some exception // ADD MORE COMMENTS
+     * @throws ZoomasterException Some exceptions
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable planner, Ui ui) throws ZoomasterException {
@@ -48,6 +48,14 @@ public class SavePlannerCommand extends Command {
         }
         ui.print("Planner saved." + System.lineSeparator());
     }
+
+    /**
+     * Writes the newly added meeting to each individual timetables.
+     *
+     * @param planner The planner timetable
+     * @param timetable The individual timetable
+     * @throws ZoomasterException Some exceptions
+     */
 
     void writeToFile(Timetable planner, Timetable timetable) throws ZoomasterException {
         for (Module m : planner.getFullModuleList()) {

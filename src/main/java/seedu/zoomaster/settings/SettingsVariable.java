@@ -68,7 +68,7 @@ public class SettingsVariable<T> {
             }
         }
 
-        throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_OPTION);
+        throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_OPTION, optionAsString);
     }
 
     public T getChosenOption() {

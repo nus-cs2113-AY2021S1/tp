@@ -43,6 +43,15 @@ public class AddMeetingCommand extends AddSlotCommand {
         super.execute(bookmarks, timetable, ui);
     }
 
+    /**
+     * Creates a new slot.
+     *
+     * @param command The add command.
+     * @param module The module of the slot.
+     * @param timetable The planner timetable.
+     * @return Ui messages whether the adding process is successful or not.
+     * @throws ZoomasterException Some exceptions.
+     */
     @Override
     protected String create(String command, Module module, Timetable timetable) throws ZoomasterException {
         String message = "";
@@ -75,6 +84,16 @@ public class AddMeetingCommand extends AddSlotCommand {
         return message;
     }
 
+    /**
+     * Checks if the slot can be added.
+     *
+     * @param day The day of the slot.
+     * @param startTime The start time of the slot.
+     * @param endTime The end time of the slot.
+     * @param slots The list of empty slots.
+     * @param localTimetable The planner timetable.
+     * @return True if the slot can be added.
+     */
     private boolean isAvailable(String day, LocalTime startTime, LocalTime endTime,
                                 List<Slot> slots, Timetable localTimetable) {
         for (Slot s: slots) {
@@ -87,6 +106,14 @@ public class AddMeetingCommand extends AddSlotCommand {
         return false;
     }
 
+    /**
+     * Add the slot and update the list of empty slots.
+     *
+     * @param slot The new slot.
+     * @param startTime The start time of the slot.
+     * @param endTime The end time of the slot.
+     * @param localTimetable The planner timetable.
+     */
     private void updateEmptySlot(Slot slot, LocalTime startTime, LocalTime endTime, Timetable localTimetable) {
         Slot slot1;
         Slot slot2;
