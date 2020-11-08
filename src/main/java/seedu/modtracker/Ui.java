@@ -120,7 +120,7 @@ public class Ui {
      * Greets the user by his/ her name.
      */
     public void printGreeting(String name) {
-        System.out.println("");
+        System.out.println();
         System.out.println("Hello " + name + "!");
         System.out.println("What can I do for you?" + System.lineSeparator());
     }

@@ -13,7 +13,6 @@ public class ModView {
     private static final int MIN_WEEK_VALUE = 1;
     private static final int MAX_WEEK_VALUE = 13;
     public static final String WEEK_NUMBER_PADDING_CHAR = "0";
-    private static final int FACTOR = 10;
     private static final int INDEX_OFFSET = 1;
     private static final String REPLACE_BY_WEEK_NUMBER = "WK";
     private static final String REPLACE_BY_MODULE_CODE = "XXXXXX";

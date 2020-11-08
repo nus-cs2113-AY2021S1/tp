@@ -1,9 +1,9 @@
 package seedu.modtracker;
 
-import static seedu.modtracker.ModuleList.modList;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+import static seedu.modtracker.ModuleList.modList;
 
 public class Notification {
 
@@ -87,7 +87,7 @@ public class Notification {
     public void printNotification(ModuleList list) {
         numOfNotification = getNumNotification(list);
         if (numOfNotification == 0 || currentWeek == 0) {
-            System.out.println(String.format(ON_TRACK, currentWeek));
+            System.out.printf((ON_TRACK) + "%n", currentWeek);
             randomise(lines);
             return;
         }
@@ -100,11 +100,11 @@ public class Notification {
                 analysis = breakDown.computeAnalysisOfTimeSpent(mod, currentWeek);
                 switch (analysis) {
                 case tooMuchTimeSpent:
-                    System.out.println(String.format(TOO_MUCH_TIME, mod.getModuleCode(), currentWeek));
+                    System.out.printf((TOO_MUCH_TIME) + "%n", mod.getModuleCode(), currentWeek);
                     System.out.println();
                     break;
                 case tooLittleTimeSpent:
-                    System.out.println(String.format(TOO_LITTLE_TIME, mod.getModuleCode(), currentWeek));
+                    System.out.printf((TOO_LITTLE_TIME) + "%n", mod.getModuleCode(), currentWeek);
                     System.out.println();
                     isBehind = true;
                     break;
