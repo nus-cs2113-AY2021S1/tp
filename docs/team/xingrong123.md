@@ -10,7 +10,7 @@ in a quick and convenient way, and has a feature to help students plan for group
 #### Code contributed:   
 Click 
 [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=xingrong123&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) 
-to view my code contribution on the tP Code Dashboard.  
+to view my code contributions on the tP Code Dashboard.  
 As the Dashboard is unable to detect some of my commits, click 
 [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/pulls?q=is%3Apr+author%3Axingrong123) 
 to see my pull requests to the team Github repository.
@@ -22,17 +22,18 @@ entering the details one line at a time, allowing fast typists to set up their t
 * Support for launching URLs on the different operating systems such as Windows, macOS, Linux and Unix.
 
 #### Contributions to the UG:  
-* Instructions for commands in the bookmark mode  
-    * 
-* Instructions for commands in the timetable mode  
-    * 
+* Instructions for commands  
+    * launch now (Global Commands)
+    * Show module and slot details (timetable mode)
+    * Delete module, slot and bookmarks (timetable mode)
+    * Launch bookmarks from modules and slots (timetable mode)
+
 
 #### Contributions to the DG:  
 * The descriptions of the implementation of addSlotCommand and deleteSlotCommand. 
-* Added class and sequence diagrams to explain the implementation of both commands.
+* Added sequence diagrams to explain the implementation of both commands.
 
-#### Contributions to team-based tasks:
+#### Other contributions:
 
-Review/mentoring contributions:  
-Links to PRs reviewed, instances of helping team members in other ways
-work in progress
+Click [here](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html#159-tey-xing-rong-xingrong123-0-comments) 
+to see view my comments on issues in the team repository.  

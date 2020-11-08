@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+//@@author xingrong123
 public class ShowTimetableCommand extends Command {
     public static final String SHOW_KW = "show";
     private String day;
@@ -31,32 +32,33 @@ public class ShowTimetableCommand extends Command {
      *
      * @param command The command sent by the user.
      */
-    //@@author xingrong123
     public ShowTimetableCommand(String command) throws ZoomasterException {
         assert command.startsWith(SHOW_KW) : "command should start with show keyword";
-        if (command.compareTo(SHOW_KW) == 0) {
+        if (command.compareTo(SHOW_KW) == 0) { // show timetable for all days
             day = "ALL";
+        } else  if (command.charAt(SHOW_KW.length()) != ' ') {
+            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         } else {
-            if (command.charAt(SHOW_KW.length()) != ' ') {
-                throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
-            }
             String details = command.substring(SHOW_KW.length() + 1).trim();
-            if (details.toLowerCase().equals("today")) {
+            if (details.toLowerCase().compareToIgnoreCase("today") == 0) {
                 day = Day.getDayToday();
-            }
-            if (Day.isDay(details)) {
+            } else if (Day.isDay(details)) {
                 day = Day.getDayFromCommand(details);
             } else {
-                String[] something = details.split("\\s+", 2);
-                module = something[0];
-                if (something.length == 2) {
-                    if (something[1].compareTo("bookmarks") == 0) {
-                        showBookmarks = true;
-                    } else {
-                        throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
-                    }
-                }
+                getModuleInfo(details);
             }
+        }
+    }
+
+    private void getModuleInfo(String details) throws ZoomasterException {
+        String[] input = details.split("\\s+", 2);
+        if (input.length == 1) {
+            module = input[0];
+        } else if (input[1].compareTo("bookmarks") == 0) {
+            module = input[0];
+            showBookmarks = true;
+        } else {
+            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
         }
     }
 
