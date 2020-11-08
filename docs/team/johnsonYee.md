@@ -51,7 +51,7 @@ Given below are my contributions to the project.
     * Added implementation details, class diagrams and sequence diagrams for the `/routemap`, `/deletefav` and `/reset`
      features. ([#116](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/116)) 
      !!!!!Remember to update after you finish!!!!
-     * Updated target user profile and value proposition. ([#91](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/91))
+     * Updated target user profile and value proposition. (Pull request[#91](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/91))
      
 
 * **Community**:
