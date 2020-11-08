@@ -89,9 +89,9 @@ To get started on this application, please perform the following steps:
 1. Open a command window in the folder you saved Kaji and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
 ![Welcome screen](images/kaji.PNG)
 1. Type the command in the command window and press Enter to execute it. 
-   e.g. typing `help` and pressing Enter will open the help window.<br>
+   e.g. typing `help` and pressing Enter will show the list of commands available.<br>
    Some example commands you can try:
-   * `help` : List commands available
+   * `help` : Lists all commands available.
    * `exit` : Exits the app.
 1. Refer to [Features](#3-features) below for details of each command.
 
@@ -105,8 +105,16 @@ In explaining the syntax, do take note of the following command format which app
 * Parameters cannot be given in any order.
     * <b>Example:</b> In `edit MODULE_INDEX MODULE_NAME`, entering `edit CS2113 1` will result in an error as 
       the `MODULE_INDEX` and `MODULE_NAME` parameters are in the wrong order.
+* The `INDEX` that is used for various commands is a number used to identify a module/chapter/flashcard within the list.
+The `INDEX` of a module/chapter/flashcard is shown one the left of each module/chapter/flashcard whenever a `list` command is used.
+    * <b>Example of index:<b><br>
+    <img src="UG_Images/Index.png" width="600" alt="Index"/>
+    
 
 ### 3.1. Admin Level
+This section introduces the syntax and usages of the commands for the features that are available at the **Admin Level**.<br>
+Ensure that you are at the **Admin Level** before trying the commands in the next few sections:<br>
+<img src="UG_Images/AdminLevel.png" width="600" alt="Admin Level"/>
 
 #### 3.1.1. Adding a module: `add`
 (by Jiayi)
@@ -157,13 +165,13 @@ Example of usage:
 
 This command modifies the module name you want to change.
 
-Format: `edit INDEX MODULE_NAME`
+Format: `edit MODULE_INDEX MODULE_NAME`
 
 Here are some key points:
 * You can only edit content on the level below the one you are on.
-* Edit the name / content at the specified `INDEX`.
-* The index refers to the index number shown in the displayed content list.
-* The index **must be a positive integer** 1, 2, 3, …
+* Edit the name / content at the specified `MODULE_INDEX`.
+* The `MODULE_INDEX` refers to the index number shown in the displayed content list.
+* The `MODULE_INDEX` **must be a positive integer** 1, 2, 3, …
 
 Example of usage: 
 * At Admin Level: enter `edit 1 CS2113T` changes current Module name at index 1 to CS2113T.
@@ -217,6 +225,9 @@ Enter command here:
 ```
 
 ### 3.2. Module level
+This section introduces the syntax and usages of the commands for the features that are available at the **Module Level**.<br>
+Ensure that you are at the **Module Level** before trying the commands in the next few sections:<br>
+<img src="UG_Images/ModuleLevel.png" width="600" alt="Module Level"/>
 
 #### 3.2.1. Adding a chapter: `add`
 (by Jiayi)
@@ -309,13 +320,13 @@ and must be a valid index number for a chapter as displayed from the list of cha
 **Example:**
 
 Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap 1`.
-1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+* Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/EditChapter1.png" width="600" alt="Edit Chapter 1"/>
-2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
+* Step 2: From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
 <img src="UG_Images/EditChapter2.png" width="600" alt="Edit Chapter 2"/>
-3. Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.<br>
+* Step 3: Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/>
-4. After the chapter name has been successfully edited, the result will be displayed as shown.<br>
+* Step 4: After the chapter name has been successfully edited, the result will be displayed as shown.<br>
 <img src="UG_Images/EditChapter4.png" width="600" alt="Edit Chapter 4"/>
 
 #### 3.2.4. Removing a chapter: `remove`
@@ -439,16 +450,19 @@ and must be a valid index number for a chapter as displayed from the list of cha
 **Example:**
 
 Let's say you want to reschedule the due date to `2020-12-20` for the chapter `Chapter 1`.
-1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+* Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/RescheduleChapter1.png" width="600" alt="Reschedule Chapter 1"/>
-2. From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
+* Step 2: From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
 <img src="UG_Images/RescheduleChapter2.png" width="600" alt="Reschedule Chapter 2"/>
-3. Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.<br>
+* Step 3: Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/RescheduleChapter3.png" width="600" alt="Reschedule Chapter 3"/>
-4. After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown.<br>
+* Step 4: After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown.<br>
 <img src="UG_Images/RescheduleChapter4.png" width="600" alt="Reschedule Chapter 4"/>
 
 ### 3.3. Chapter Level
+This section introduces the syntax and usages of the commands for the features that are available at the **Chapter Level**.<br>
+Ensure that you are at the **Chapter Level** before trying the commands in the next few sections:<br>
+<img src="UG_Images/ChapterLevel.png" width="600" alt="Chapter Level"/>
 
 #### 3.3.1. Adding a flashcard: `add`
 (by Jane)
@@ -468,9 +482,9 @@ Here are some key pointers:
 **Example:**
 
 Let's say you want to add a new flashcard with `1+1` as the `QUESTION` and `2` as the `ANSWER`:
-1. Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.<br>
+* Step 1: Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/AddCard1.png" width="600" alt="Add Card 1"/>
-2. After the flashcard has been successfully added to the chapter, the result will be displayed as shown.<br>
+* Step 2: After the flashcard has been successfully added to the chapter, the result will be displayed as shown.<br>
 <img src="UG_Images/AddCard2.png" width="600" alt="Add Card 2"/>
 
 #### 3.3.2. Listing flashcards available: `list`
@@ -487,9 +501,9 @@ Here are some key pointers:
 **Example:**
 
 Let's say you want to view all the flashcards for a chapter:
-1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+* Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/ListCard1.png" width="600" alt="List Card 1"/>
-2. The result for the list of flashcards will be displayed as shown.<br>
+* Step 2: The result for the list of flashcards will be displayed as shown.<br>
 <img src="UG_Images/ListCard2.png" width="600" alt="List Card 2"/>
 
 #### 3.3.3. Editing a flashcard content: `edit`
@@ -498,7 +512,10 @@ Let's say you want to view all the flashcards for a chapter:
 You can edit the question and/or answer of an existing flashcard from the list of flashcards.
 You can do so by using the `edit` command, followed by the details of the flashcard.
 
-**Format:** `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER`
+**Format:** <br>
+Editing question and answer: `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER`<br>
+Editing question only: `edit FLASHCARD_INDEX q:QUESTION | a:`<br>
+Editing answer only: `edit FLASHCARD_INDEX q: | a:ANSWER`<br>
 
 Here are some key pointers:
 * `FLASHCARD_INDEX` **must be a positive integer** 1, 2, 3, ...,
@@ -514,13 +531,13 @@ you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
 **Example:**
 
 Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
-1. Type `list` into the command prompt and press `Enter` to execute it.<br>
+* Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/EditCard1.png" width="600" alt="Edit Card 1"/>
-2. From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.<br>
+* Step 2: From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.<br>
 <img src="UG_Images/EditCard2.png" width="600" alt="Edit Card 2"/>
-3. Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.<br>
+* Step 3: Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/EditCard3.png" width="600" alt="Edit Card 3"/>
-4. After the flashcard has been successfully edited, the result will be displayed as shown.<br>
+* Step 4: After the flashcard has been successfully edited, the result will be displayed as shown.<br>
 <img src="UG_Images/EditCard4.png" width="600" alt="Edit Card 4"/>
 
 #### 3.3.4. Removing a flashcard: `remove`
@@ -591,6 +608,8 @@ Enter command here:
 ```
 
 ### 3.4. General
+This section introduces the syntax and usages of the commands for the features that are available at **All Levels**.<br>
+You can use the commands in the next few sections at **Admin, Module and Chapter Level.**
 
 #### 3.4.1. Showing a list of commands available: `help`
 (by Zeyu)
@@ -915,9 +934,9 @@ Example of ***`exclude chapter`***
 
 | Action | Format, Examples |
 |--------|------------------|
-| Add Module | `add MODULE_NAME` <br> e.g. `add CS2113` |
+| Add Module | `add MODULE_NAME` <br> e.g. `add CS2113T` |
 | List Modules | `list` |
-| Edit Module Name | `edit INDEX MODULE_NAME` <br> e.g. `edit 1 CS2113` |
+| Edit Module Name | `edit MODULE_INDEX MODULE_NAME` <br> e.g. `edit 1 CS2113` |
 | Remove Module | `remove MODULE_INDEX` <br> e.g. `remove 1` |
 | Access Module Level | `go MODULE_NAME` <br> e.g. `go CS2113` |
 
@@ -938,9 +957,9 @@ Example of ***`exclude chapter`***
 
 | Action | Format, Examples |
 |--------|------------------|
-| Add Flashcard | `add q:QUESTION I a:ANSWER` <br> e.g. `add q:1+1 I a:2` |
+| Add Flashcard | `add q:QUESTION | a:ANSWER` <br> e.g. `add q:1+1 | a:2` |
 | List Flashcards | `list` |
-| Edit Flashcard | `edit INDEX q:QUESTION I a:ANSWER` <br> e.g. `edit 1 q:2*1 I a:2` |
+| Edit Flashcard | `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER` <br> e.g. `edit 1 q:2*1 | a:2` |
 | Remove Flashcard | `remove FLASHCARD_INDEX` <br> e.g. `remove 1` |
 | Return Module Level | `back` |
 | Show Rate | `showrate` |
