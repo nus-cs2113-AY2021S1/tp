@@ -411,8 +411,6 @@ v2.0 | High | student | save zoom links in a centralized place | easily attend m
 v2.0 | High | student | add modules and calculate my CAP| have a better projection of my grades and efforts
 v2.0 | Low | student | login with a password | my system is protected
 
-<!-- @@author -->
-
 <!-- @@author MuhammadHoze -->
 ### Non-Functional Requirements
 
@@ -425,19 +423,19 @@ v2.0 | Low | student | login with a password | my system is protected
 
 <!-- @@author MuhammadHoze -->
 ### Glossary
-|Acronym | Full form | Meaning |
-| -------- | ---------- | ---------- |
-| **CI**   | Continuous Integration | Combining parts of a software product to form a whole
-| **SDK**  | Software Development Kit | A set of software tools by software vendors
-| **IntelliJ** | IntelliJ | An Integrated Development Environment written in Java 
-| **UML** | Unified Modeling Language | A modeling language which to visualize the design of a system
-| **CLI** | Command Line Interface | A program that accepts text inputs to execute operating system functions
-| **GUI** | Graphical User Interface | An interface that allows users to interact through graphical icons 
-| **Mainstream OS** | Windows, Linux, Unix, OS-X | Operating systems 
-| **SLOC** | Source Lines of Code | The number of lines in a program's source code
-| **DRY** | Don't Repeat Yourself | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
-| **CAP** | Cumulative Average Point | The weighted average grade point of all modules taken by a student
- <!-- @@author -->
+
+Acronym | Full form | Meaning
+-------- | ---------- | ----------
+**CI**   | Continuous Integration | Combining parts of a software product to form a whole
+**SDK**  | Software Development Kit | A set of software tools by software vendors
+**IntelliJ** | IntelliJ | An Integrated Development Environment written in Java
+**UML** | Unified Modeling Language | A modeling language which to visualize the design of a system
+**CLI** | Command Line Interface | A program that accepts text inputs to execute operating system functions
+**GUI** | Graphical User Interface | An interface that allows users to interact through graphical icons
+**Mainstream OS** | Windows, Linux, Unix, OS-X | Operating systems
+**SLOC** | Source Lines of Code | The number of lines in a program's source code
+**DRY** | Don't Repeat Yourself | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
+**CAP** | Cumulative Average Point | The weighted average grade point of all modules taken by a student
  
 <!-- @@author Cao-Zeyu -->
 ## Appendix: Instructions for manual testing
