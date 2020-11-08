@@ -69,7 +69,7 @@ Before you start: Please ensure you have Java 11 installed in you computer.
 ### 3.1 Architecture
 ![image](img/arch%20dia.png)
 
-Figure 1. Architecture Diagram
+Figure 1.Architecture Diagram
 
 The Architecture Diagram given above explains the high-level design of our App. Below are the main components of our product.
 
@@ -98,8 +98,8 @@ The CanteenHelper consists of six classes:
 * `Exception`
 
 #### 3.2.1 Logic class
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/logic%20dia.png)
-Figure 2. Main Logic Diagram
+![image](img/logic%20dia.png)
+Figure 2.Main Logic Diagram
 
 Main logic of the whole app.
 
@@ -198,24 +198,24 @@ Exceptions that can catch user unexpected input.
 
 ### 3.3 Overall Sequence Diagram
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/overall.png)
+![image](img/overall.png)
 
-Figure 3. Overall Sequence diagram 
+Figure 3.Overall Sequence diagram 
 
 
 ## 4. Implementation
 #### Feature: order
 The user types command “order” to make an order from a stall in a canteen. The order method will be activated and print open stalls through checkOpenCanteens method in Customer class in this manner:
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image1.png)
+![image](img/image1.png)
  
 User just type the corresponding index before the canteen to select canteen. Then the open stalls in this canteen will be printed through checkOpenStalls method in Customer class in this manner:
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image2.png)
+![image](img/image2.png)
  
 User just type the corresponding index before the stall to select stall. Then the available dishes and price in this stall will be printed through getDish() method in Stall class in this manner:
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image3.png)
+![image](img/image3.png)
  
 User just type number of dishes he wants to order and chooses dishes in the same way as they select canteen and stall. 
 
@@ -227,56 +227,56 @@ Finally, after choosing dine in, take away or delivery, an order object will be 
 The user enters the command: delete [number] to delete an order in the order list. The main will enable the deleteOrder () method. The Parser will make sense of the command and delete the corresponding order from the order list. 
 e.g. delete 1 means delete the first order in the order list.
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/delete.png)
+![image](img/delete.png)
 
-Figure 4. Sequence diagram for deleteOrder()
+Figure 4.Sequence diagram for deleteOrder()
 
 #### Feature: find order
 The user enters the command: find [dish name] to find the order contains this dish in the order list. The main will enable the findDishinOrder() method. The Parser will make sense of the command and iterate the order list and dish list to print the order containing this dish. 
 e.g. find chicken rice means find all orders containing chicken rice in the order list.
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/find.png)
+![image](img/find.png)
 
-Figure 5. Sequence diagram for findDishinOrder()
+Figure 5.Sequence diagram for findDishinOrder()
 
 #### Feature: list order
 The user enters the command: list to print all the orders in the order list . The main will enable the printOrder() method. The printOrder() method will iterate the whole order list and print all the orders
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/print.png)
+![image](img/print.png)
 
-Figure 6. Sequence diagram for printOrder()
+Figure 6.Sequence diagram for printOrder()
 
 #### Feature: change order (change dine in, take away or delivery)
 The user enters the command: change/number/type to change the order type of one order in the order list. The main will enable the changeOrder() method. The Parser will make sense of the command and change the corresponding order’s order type. 
 e.g. change/1/Dine in: change order 1 to dine in
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/changeorder.png)
+![image](img/changeorder.png)
 
-Figure 7. Sequence diagram for changeOrder()
+Figure 7.Sequence diagram for changeOrder()
 
 #### Feature: check Canteen Operating Time
 The user enters the command: checkcanteen to check the operating time of an open canteen. The main will enable the checkCanteenOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image1.png)
+![image](img/image1.png)
 
 User can type the number before the canteen name to check its operating time.
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopencanteen.png)
+![image](img/checkopencanteen.png)
 
-Figure 8. Sequence diagram for checkCanteenOperatingTime()
+Figure 8.Sequence diagram for checkCanteenOperatingTime()
 
 #### Feature: check Stall Operating Time
 The user enters the command: checkstall to check the operating time of an open stall. The main will enable the checkStallOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
  
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/image1.png)
+![image](img/image2.png)
 
 User can type the number before the canteen name to display the stalls inside the canteen in this manner.
  
 User can type the number before the stall name to check its operating time.
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkopenstall.png)
+![image](img/checkopenstall.png)
 
-Figure 9. Sequence diagram for checkStallOperatingTime()
+Figure 9.Sequence diagram for checkStallOperatingTime()
 
 #### Feature: help
 The user enters the command: help to view all commands that are available. The main will enable the help() method. It prints all available commands.
@@ -299,7 +299,7 @@ Example of usage:
 
 Result is like this:
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/before.png)
+![image](img/before.png)
 
 ### 5.2 Begin the order: `order`
 begin the order of a customer
@@ -311,7 +311,9 @@ Format: `order`
 Example of usage:
 'order'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/order.png)
+Result is like this:
+
+![image](img/order.png)
 
 #### 5.2.2 The order method will be activated and print open stalls, user just type the corresponding index before the canteen to select canteen. 
 
@@ -320,7 +322,9 @@ Format: `[number]`
 Example of usage:
 '2'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/canteen.png)
+Result is like this:
+
+![image](img/canteen.png)
 
 #### 5.2.3 Then the open stalls in this canteen will be printed, user just type the corresponding index before the stall to select stall. 
 
@@ -329,7 +333,9 @@ Format: `[number]`
 Example of usage:
 '1'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/stall.png)
+Result is like this:
+
+![image](img/stall.png)
 
 #### 5.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order.
 
@@ -338,7 +344,9 @@ Format: `[number]`
 Example of usage:
 '2'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/num.png)
+Result is like this:
+
+![image](img/num.png)
 
 #### 5.2.5 User chooses dishes in the same way as they select canteen and stall. 
 
@@ -347,17 +355,20 @@ Format: `[number]`
 Example of usage:
 '2'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/dish.png)
+Result is like this:
+
+![image](img/dish.png)
 
 #### 5.2.6 User will be asked whether he wants to see the comment of the dish, just type y/n.
 
 Format: `y/n`
 
 Example of usage:
-'y'
-'n'
+'y', 'n'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/comment.png)
+Result is like this:
+
+![image](img/comment.png)
 
 #### 5.2.7 User choose the order type by typing the corresponding index before the type.
 
@@ -366,7 +377,9 @@ Format: `[number]`
 Example of usage:
 '2'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/type.png)
+Result is like this:
+
+![image](img/type.png)
 
 ### 5.3 delete the specific order: `delete [number]`
 delete the order based on the number from user
@@ -377,7 +390,9 @@ Format: `delete [number]`
 Example of usage:
 'delete 1'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/ddlete.png)
+Result is like this:
+
+![image](img/ddlete.png)
 
 ### 5.4 find the specific order: `find [dish name]`
 find the specific dish based on the user input dish name
@@ -388,7 +403,9 @@ Format: `find [dish name]`
 Example of usage:
 'find Hawaiian'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/findd.png)
+Result is like this:
+
+![image](img/findd.png)
 
 ### 5.5 list all the orders: `list`
 check all the orders made by this user
@@ -398,7 +415,9 @@ Format: `list`
 Example of usage:
 'list'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/lis.png)
+Result is like this:
+
+![image](img/lis.png)
 
 ### 5.6 change the order: `change/[number]/[type]`
 Change the order type to the type user inputed
@@ -416,7 +435,9 @@ Example of usage:
 
 * order type is case sensitive
 
-![image](
+Result is like this:
+
+![image](img/changeorderr.png)
 
 ### 5.7 check Canteen Operating Time: `checkcanteen`
 check the operating hours of a canteen 
@@ -435,7 +456,9 @@ Format: `[number]`
 Example of usage:
 '4'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkcanteen.png)
+Result is like this:
+
+![image](img/checkcanteen.png)
 
 ### 5.8 check Stall Operating Time: `checkstall`
 check the operating hours of a stall 
@@ -461,7 +484,9 @@ Format: `[number]`
 Example of usage:
 '2'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/checkstall.png)
+Result is like this:
+
+![image](img/checkstall.png)
 
 ### 5.9 view all available commands: `help`
 print all the commands with required format that the user can input
@@ -471,7 +496,9 @@ Format: `help`
 Example of usage:
 'help'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/help.png)
+Result is like this:
+
+![image](img/help.png)
 
 ### 5.10 quit the system: `bye`
 quit the system
@@ -481,7 +508,9 @@ Format: `bye`
 Example of usage:
 'bye'
 
-![image](https://github.com/AY2021S1-CS2113-T16-2/tp/blob/master/src/img/bye.png)
+Result is like this:
+
+![image](img/bye.png)
 
 
 ## 6. Appendix: Requirements
