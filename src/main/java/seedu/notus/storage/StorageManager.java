@@ -416,7 +416,7 @@ public class StorageManager {
         LOGGER.setLevel(Level.INFO);
 
         try {
-            FileHandler fileHandler = new FileHandler(LOGS_DIR + "storage.log");
+            FileHandler fileHandler = new FileHandler(LOGS_DIR + "/storage.log");
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);
             LOGGER.addHandler(fileHandler);
