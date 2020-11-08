@@ -111,15 +111,30 @@ Hello from...
 
      list: Displays all items in the list with index numbers.
      Example: list all
-     Displays all items in the list.
+     1. Displays all the tasks in the task list.
           Optional parameter 1: tasks p/PRIORITY
-             Displays all the tasks with PRIORITY as a list.
+             Displays all the tasks with priority PRIORITY as a list.
              Example: list tasks p/1
           Optional parameter 2: tasks c/CATEGORY
              Displays all the tasks with CATEGORY as a list.
              Example: list tasks c/cs2113
           Optional parameter 3: tasks sorted
-             Displays all the tasks sorted by priority
+             Displays all the tasks sorted by priority     2. Displays all the books in the book list.
+             Example: list books
+     3. Displays all the links in the link list.
+             Example: list links
+     4. Displays all the modules in the module list.
+             Example: list modules
+     5. Displays all the expense items in the expense list.
+          Optional parameter 1: currency/CURRENCY
+             Displays all the expense items with currency CURRENCY as a list.
+             Example: list expenses currency/SGD
+          Optional parameter 2: date/yyyy-MM-dd
+             Displays all the expense items with date in the format of yyyy-MM-dd.
+             Example: list expenses date/2020-11-07
+          Optional parameter 3: for/{DAY, WEEK, MONTH, YEAR}
+             Displays all the expense items for today/this week/this month/this year.
+             Example: list expenses for/YEAR
 
      return: Marks the book identified by the index number used in the book list as returned.
      Parameters: INDEX

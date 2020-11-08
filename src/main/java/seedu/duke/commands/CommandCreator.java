@@ -124,7 +124,7 @@ public class CommandCreator {
         case "books":
             return new ListCommand(false, false, true);
         case "expenses":
-           return ListExpenseCommand.createListExpenseCommand(commandString);
+            return ListExpenseCommand.createListExpenseCommand(commandString);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }

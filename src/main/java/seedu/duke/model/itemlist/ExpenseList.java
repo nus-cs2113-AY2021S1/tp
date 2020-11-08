@@ -168,7 +168,7 @@ public class ExpenseList extends ItemList<Expense> {
     }
 
     /**
-     * Lists all the expense items wit the given totalExpenseType
+     * Lists all the expense items wit the given totalExpenseType.
      *
      * @param totalExpenseType the {@code TotalExpenseType} to be used to select expense items to be listed
      * @throws DukeException if totalExpenseType if invalid.
