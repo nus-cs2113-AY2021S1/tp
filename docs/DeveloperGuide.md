@@ -773,6 +773,10 @@ bill payments
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
+|v1.0|Financially prudent user|Keep record of my spendings of the day|I can keep track of my spending habits on a daily basis.|
+|v1.0|As a student who mistypes easily|Edit my transaction details using one line commands|I can correct my mis-types in a easy and intuitive way.|
+|v1.0|As a university student who may have difficulty keeping track of his finances|Monitor my spending habits and income according to various categories of expenditure|I can identify which particular category of spending forms the majority of my daily expenditures.|
+|v1.0|As a person who spends a lot of time in front of a computer|Record my expenses and income using one-line commands|I can monitor my spending habits conveniently and hassle-free.|
 |v1.0|user|calculate interest over a principal amount|know how much interest I can earn|
 |v1.0|user|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
 |v1.0|user|calculate cashback earned|know how much cashback I can earn|
@@ -802,6 +806,13 @@ bill payments
 * _CLI_ - Command Line Interface
 * _UML_ - Unified Modeling Language
 
+# Future implementations
+
+**Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
+In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
+tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
+the goal tracker progress to better aid the user in managing their finances.
+
 # Instructions for Manual Testing
 
 1. Download the executable from our [latest release](https://github.com/AY2021S1-CS2113-T16-1/tp/releases/)
@@ -812,17 +823,11 @@ bill payments
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
 ## Main Menu
-1. Accessing a feature:
-    1. ```ManualTracker```
-        1. Enter ```manual``` into the console.
-            You should see the following: 
+1. Accessing a feature (Using ManualTracker as example):
+    1. Enter ```manual``` into the console.
+    You should see the following: 
             
-    ![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
-
-    1. ```RecurringTracker```
-    1. ```GoalTracker```
-    1. ```SaveManager```
-    1. ```FinanceTools```
+![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
 
 1. Exiting the main menu and quit the program: 
     1. Enter ```exit``` into the console.
@@ -857,11 +862,11 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list.png)
 
-    * Observe that there is currently one ledger in the list, of date 2020-05-05.
-1. Refer to [7.2.1](#7.2.1) to create another ledger of date 2020-06-06 using the command: 
+> Observe that there is currently one ledger in the list, of date 2020-05-05.
+1. Refer to the above section on creating ledgers to create another ledger of date 2020-06-06 using the command: 
 ```new /date 200606```. 
 1. Enter ```list``` into the console. 
-    * Observe that there are now two ledgers in the list.
+> Observe that there are now two ledgers in the list.
 You should see the following: 
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list2.png)
@@ -875,7 +880,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
 
-    * Observe there is now one ledger on the list.
+> Observe there is now one ledger on the list.
 
 **Open Ledger** <br />
 1. Enter ```open /date 200707``` into the console.
@@ -883,9 +888,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_open.png)
 
-    * Note that the ledger of date 2020-07-07 was not created beforehand. 
-    However, the ledger will be automatically created by the operation, and
-    will resume as per normal. 
+> Note that the ledger of date 2020-07-07 was not created beforehand. However, the ledger will be automatically created by the operation, and will resume as per normal. 
 
 ## EntryTracker
 1. The following testing guide assumes that testing at [7.2](#7.2) is completed.
@@ -902,6 +905,7 @@ You should see the following:
 ![](developerGuide_images/screenshots_entrytracker/entry_cat.png)
 
 **Create Entry** <br />
+**Positive Test** <br />
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -e``` into the console.
 You should see the following:
 
@@ -911,11 +915,12 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create2.png)
 
+**Negative Test** <br />
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -i``` into the console.
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create_err1.png)
-    * Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
+> Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
     considered an expenditure, and `-e` should have been used instead.
 
 **Testing Show Entry List** <br />
@@ -923,7 +928,7 @@ You should see the following:
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_list.png)
-    * Note that the number of entries is now __2__.
+> Note that the number of entries is now __2__.
 
 **Testing Edit Entry** <br />
 
@@ -933,7 +938,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_edit_list.png)
 
-* Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
+> Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
 
 **Testing Delete Entry** <br />
 1. Enter ```delete /id 2``` into the console.
@@ -942,15 +947,19 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_delete_list.png)
 
-* Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
+> Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
 removed from the list.
 
 ## RecurringTracker
 1. Enter `recur` in the Main Menu. You should see the following:
+
 ![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
+
 **Show Command List** <br />
 1. Enter `commands`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/commands.png)
+
 **Testing Add Entry** <br />
 **Positive Test 1: Normal Entry** <br />
 1. Enter `add -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
@@ -958,39 +967,50 @@ removed from the list.
 
 **Entry with special day of month** <br />
 1. Enter `add -e /desc Drinks /amt 58.45 /day 31`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_day_31.png)
 
 **Negative Test** <br />
 1. Enter `add /desc OIH()(&%* /amt 343243`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_no_day_i&e.png)
 
 **Testing List Entries** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
 Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list.png)
 
 **Testing Edit Entry** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
+
 **Positive Test** <br />
 1. Enter `edit /id 1 /day 29 -i`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
 1. Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
 
 **Negative Test: No Params to Edit** <br />
 1. Enter `edit /id 1`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
+
 <br />
 **Negative Test: No Such Index** <br />
 1. Enter `edit /id 4 /desc Hello Bubble`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
 
 **Testing Delete Entry** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
 1. Enter `delete /id 2`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/delete_entry.png)
+
 1. Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
 
 **Testing Reminders** <br />
@@ -1012,6 +1032,7 @@ Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/reminders.png)
 
 1. Enter `exit` to quit the program. Run the .jar file again. Reminders are printed below the logo and above the Main Menu prompt.
+
 ![](developerGuide_images/screenshots_recurringtracker/reminders_launch.png)
 
 ## GoalTracker
@@ -1074,11 +1095,6 @@ You should see the following:
 **Goal Status Update** <br />
 When a user make a new entry, the goal status will update and display as output as shown:
 ![GoalStatusUpdate](developerGuide_images/screenshot_goaltracker/GoalStatusUpdate.png)
-
-**Integrate Goal Tracker with Recurring Tracker** [Coming in v3.0] <br />
-In the next version, goal tracker will be used to keep track not only the manual tracker but also the recurring 
-tracker. With this feature being implemented, those fixed monthly income and expenditure will also be included into 
-the goal tracker progress to better aid the user in managing their finances.
 
 ## SaveManager
 **Add Save** <br />
