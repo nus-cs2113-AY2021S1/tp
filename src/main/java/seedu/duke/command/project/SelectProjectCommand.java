@@ -16,7 +16,9 @@ public class SelectProjectCommand extends ProjectCommand {
     }
 
     public void execute() {
-        projectManager.selectProject(Integer.parseInt(parameters.get("0")));
+        int id = Integer.parseInt(parameters.get("0"));
+        assert projectManager.getProject(id) != null : "Project exists in list but null";
+        projectManager.selectProject(id);
         Ui.showToUserLn("Project " + parameters.get("0") + " has been selected.");
         logExecution();
     }

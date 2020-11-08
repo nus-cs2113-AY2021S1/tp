@@ -23,6 +23,7 @@ public class ViewProjectCommand extends ProjectCommand {
             Ui.showError("No projects are created.");
             ScrumLogger.LOGGER.warning("No project added to the project manager");
         } else {
+            assert projectManager.getSelectedProject() != null : "Selected project is null \n.";
             Project project = projectManager.getSelectedProject();
             assert project != null : "The project is null";
             Ui.showToUserLn(project.toString());

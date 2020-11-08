@@ -24,10 +24,7 @@ public class ListProjectCommand extends ProjectCommand {
         Ui.showToUserLn("\tID Title \t\tDescription");
         TreeMap<Integer, Project> sortedProject = new TreeMap<>(projectManager.getProjectList());
         for (Map.Entry<Integer, Project> entry: sortedProject.entrySet()) {
-            Project proj = entry.getValue();
-            Integer id = entry.getKey();
-            String output = String.format("%d) %s \t\t%s", id, proj.getTitle(), proj.getDescription());
-            Ui.showToUserLn("\t" + output);
+            displayToUser(entry.getValue(), entry.getKey());
         }
         logExecution();
     }
@@ -37,7 +34,14 @@ public class ListProjectCommand extends ProjectCommand {
         ScrumLogger.LOGGER.info("Projects added shown in ascending order.");
     }
 
-
-
+    /**
+     * Displays all added project to the users in an order.
+     * @param proj Project to be displayed to the user
+     * @param id Identifying id of the corresponding project
+     */
+    private void displayToUser(Project proj, Integer id) {
+        String output = String.format("%d) %s \t\t%s", id, proj.getTitle(), proj.getDescription());
+        Ui.showToUserLn("\t" + output);
+    }
 
 }

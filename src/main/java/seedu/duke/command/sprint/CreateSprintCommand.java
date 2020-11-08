@@ -1,5 +1,6 @@
 package seedu.duke.command.sprint;
 
+import seedu.duke.Duke;
 import seedu.duke.exception.DukeException;
 import seedu.duke.logger.ScrumLogger;
 import seedu.duke.model.project.ProjectManager;
@@ -9,8 +10,6 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.Hashtable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static seedu.duke.parser.DateTimeParser.catchDateFormat;
 
@@ -27,7 +26,7 @@ public class CreateSprintCommand extends SprintCommand {
      */
     public CreateSprintCommand(Hashtable<String, String> parameters, ProjectManager projectList) {
         super(parameters, projectList, true);
-        this.sprintStart = LocalDate.now();
+        this.sprintStart = LocalDate.now(Duke.getClock());
     }
 
     /**

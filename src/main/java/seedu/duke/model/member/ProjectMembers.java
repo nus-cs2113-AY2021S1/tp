@@ -26,6 +26,10 @@ public class ProjectMembers implements JsonableArray {
         return this.memberList;
     }
 
+    /**Return required member if present in the projectMember.
+     * @param userid Id of the member added
+     * @return Member object if found, else null
+     */
     public Member getMember(String userid) {
         for (Member mem : memberList) {
             if (mem.getUserId().equals(userid)) {
@@ -39,18 +43,7 @@ public class ProjectMembers implements JsonableArray {
         memberList.add(m);
     }
 
-    //add comparator for removing object
-    public void deleteMember(List<String> userId) {
-        for (String s : userId) {
-            if (memberList.contains(new Member(s))) {
-                memberList.remove(new Member(s));
-                System.out.println("The user associated with " + s + " has been removed from the project");
-            } else {
-                System.out.println("This member is not associated with this project: " + new Member(s).getUserId());
-            }
-        }
-    }
-
+    //To check if a project contains a member
     public boolean containMember(Member member) {
         return memberList.contains(member);
     }
