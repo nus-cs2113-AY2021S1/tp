@@ -268,7 +268,7 @@ differ if you have a different event stored in the event index number 1.
 You may then view the additional information using the view additional information feature below.
 ![tip_additional_info](images/tip_additional_info.PNG)
 
-![warning_add_info](images/warning_add_info.PNG)
+![warning_add_info](images/warning_add_info.png)
 
 #### Viewing the additional information of an event:
 After adding the additional information related to the event, you can then view the list of additional information 
