@@ -33,6 +33,7 @@ import static org.fusesource.jansi.Ansi.Color.WHITE;
 import static org.fusesource.jansi.Ansi.Color.YELLOW;
 import static org.fusesource.jansi.Ansi.ansi;
 
+//@@author
 /**
  * Represents the user interface on the command line and deals with interactions with the user.
  */
@@ -377,8 +378,9 @@ public class Ui {
 
 
     public void printHelpMessage() {
-        assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
-        if (Parser.programMode == 0) {
+        int mode = Parser.programMode;
+        assert (mode >= 0) && (mode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
+        if (mode == 0) {
             System.out.println(LINE);
             printYellowWithBorder("Available inputs in Main menu are" + NEW_LINE
                     + "1) " + ChangeModeCommand.MODE_KW + " bookmark/timetable/planner" + NEW_LINE
@@ -387,7 +389,7 @@ public class Ui {
                     + "4) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
                     + "5) " + SetSettingsCommand.SET_KW + NEW_LINE
                     + "6) " + ExitCommand.EXIT_KW + NEW_LINE);
-        } else if (Parser.programMode == 1) {
+        } else if (mode == 1) {
             printYellowWithBorder("Available inputs in Bookmark mode are" + NEW_LINE
                     + "1) " + AddBookmarkCommand.ADD_KW + NEW_LINE
                     + "2) " + DeleteBookmarkCommand.DEL_KW + NEW_LINE
@@ -400,7 +402,7 @@ public class Ui {
                     + "8) " + ShowSettingsCommand.SHOW_KW + NEW_LINE
                     + "9) " + SetSettingsCommand.SET_KW + NEW_LINE
                     + "10) " + ExitCommand.EXIT_KW + NEW_LINE);
-        } else if (Parser.programMode == 2) {
+        } else if (mode == 2) {
             printYellowWithBorder("Available inputs in Timetable mode are" + NEW_LINE
                     + "1) " + AddSlotCommand.ADD_KW + NEW_LINE
                     + "2) " + DeleteSlotCommand.DEL_KW + NEW_LINE
@@ -430,7 +432,8 @@ public class Ui {
 
     //@@author Speedweener
     public void printHelpMessage(String input) {
-        assert (Parser.programMode >= 0) && (Parser.programMode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
+        int mode = Parser.programMode;
+        assert (mode >= 0) && (mode <= 3) : "only modes of Zoomaster are 0, 1, 2, 3";
         if (input.equals(ClearCommand.CLEAR_KW)) {
             printYellowWithBorder("Clears the visible command line screen" + NEW_LINE);
         } else if (input.equals(ExitCommand.EXIT_KW)) {
@@ -454,13 +457,13 @@ public class Ui {
             printCyan("Format: set {setting name} {new value}" + NEW_LINE);
             printGreen("eg. set def_mode timetable" + NEW_LINE);
             System.out.println(LINE);
-        } else if (Parser.programMode == 1) {
+        } else if (mode == 1) {
             printModeOneExtendedHelp(input);
 
-        } else if (Parser.programMode == 2) {
+        } else if (mode == 2) {
             printModeTwoExtendedHelp(input);
 
-        } else if (Parser.programMode == 3) {
+        } else if (mode == 3) {
             printModeThreeExtendedHelp(input);
         }
 
