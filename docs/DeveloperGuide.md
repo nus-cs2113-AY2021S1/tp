@@ -325,6 +325,8 @@ There are two ways to run tests.
 - Method 2: Using Gradle
   - Open a console and run the command gradlew checkstyleMain (Mac/Linux: ./gradlew checkstyleMain)  
 
+<!-- @@author -->
+
 ### Logging guide
 
 - We are using the java.util.logging package for logging.
@@ -338,7 +340,7 @@ There are two ways to run tests.
   - INFO : Information showing the noteworthy actions by the App
   - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-<!-- @@author -->
+
 
 ## DevOps guide
 
@@ -372,7 +374,7 @@ This project uses GitHub Actions for CI. The project comes with the necessary Gi
 Here are the stpes to create a new release after you have implemented new features.
 
 1. Update the version number in `Main.java`.
-1. Generate a fat JAR file using Gradle (i.e. `gradle shadow`).
+1. Generate a fat JAR file using Gradle (i.e. `gradlew shadow`).
 1. Tag the repo with the version number e.g: `V2.0`.
 1. [Create a new release using Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository).
 1. Upload the JAR file you created.
