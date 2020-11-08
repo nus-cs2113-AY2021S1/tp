@@ -95,9 +95,9 @@ Each of the modules listed above are a collection of constituent classes, with e
 
 ### Logic Component
 The `Logic` component contains the `ParserManager` and its subclasses, and the `Command` class and its subclasses, which mainly handles the commands input by the user. 
-![Figure X: Simplified class diagram for Logic Component](./image/developerguide/parserandcommand.png)
+![Figure X: Simplified class diagram for Logic Component](./image/developerguide/parserManagerClassDiagram.png)
 
-When a user types a command, `SCRUMptious`calls the `ParserManager`. The `ParserManager` then parses commands from the user. Subsequently, 
+When a user types a command, `SCRUMptious` calls the `ParserManager`. The `ParserManager` then parses commands from the user. Subsequently, 
 the `ParserManager` passes the commands on to the respective exceptions parsers which inherit from the `ExceptionsParser` interface. 
 The exceptions parsers consist of:  
 &nbsp; &nbsp; &nbsp; &nbsp; 1. `ProjectParser`<br>
@@ -106,30 +106,29 @@ The exceptions parsers consist of:
 &nbsp; &nbsp; &nbsp; &nbsp; 4. `SprintParser`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; 5. `HelpParser`<br>
 
-1. The `ProjectParser` validates the parameters of the command. If the command is valid, it returns the respective `ProjectCommandXYZ` to the `ParserManager`.
+1. The `ProjectParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZProjectCommand` to the `ParserManager`.
 If the command is invalid, the `ProjectParser` returns an appropriate warning message to the user.  
 
-1. The `MemberParser` validates the parameters of the command. If the command is valid, it returns the respective `MemberCommandXYZ` to the `ParserManager`.
+1. The `MemberParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZMemberCommand` to the `ParserManager`.
 If the command is invalid, the `TaskParser` returns an appropriate warning message to the user.  
 
-1. The `TaskParser` validates the parameters of the command. If the command is valid, it returns the respective `TaskCommandXYZ` to the `ParserManager`.
+1. The `TaskParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZTaskCommand` to the `ParserManager`.
 If the command is invalid, the `TaskParser` returns an appropriate warning message to the user.  
 
-1. The `SprintParser` validates the parameters of the command. If the command is valid, it returns the respective `SprintCommandXYZ` to the `ParserManager`.
+1. The `SprintParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZSprintCommand` to the `ParserManager`.
 If the command is invalid, the `SprintParser` returns an appropriate warning message to the user.  
 
-1. The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `HelpParserCommandXYZ` to the `ParserManager`.
+1. The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZHelpParserCommand` to the `ParserManager`.
 If the command is invalid, the `HelpParser` returns an appropriate warning message to the user.
 
+![Figure X: Simplified class diagram for Logic Component](./image/developerguide/commandClassDiagram.png)
+
 The subcommand classes `XYZHelpCommand`, `XYZProjectCommand`, `XYZMemberCommand`, `XYZTaskCommand`, `XYZSprintCommand` all inherit from an abstract `Command` class, 
-which has an execute function.
+which has an execute function and its respective constructors.
 
 The `ParserManager` then returns the command back to `SCRUMptious`, which then executes the command.
 
-![Figure X: Simplified class diagram for Command Component](./image/developerguide/commandClassDiagram.png "Command
- Class Diagram")  
 
-A detailed list of the subcommand classes is described in the diagram above.
 
 ### Model Component
 ![Figure X: Simplified class diagram for Model Component](./image/developerguide/modelcomponent.png "Storage Component UML")  
