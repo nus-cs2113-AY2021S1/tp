@@ -175,7 +175,7 @@ public class MenuParser implements Parser {
             LOGGER.log(Level.INFO, "Parsing complete: quiz command chosen.");
             return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, userTimer);
         case COMMAND_BOOKMARK:
-            LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
+            LOGGER.log(Level.INFO, "Parsing complete: bookmark list command chosen.");
             if (commandArr.length == BOOKMARK_DELETE_COMMANDARR_LENGTH) {
                 int deleteIndex = 0;
                 deleteIndex = Integer.parseInt(commandArr[2]);

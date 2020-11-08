@@ -60,10 +60,10 @@ public class Ui {
             + System.lineSeparator() + "3) topics"
             + System.lineSeparator() + "4) textbook"
             + System.lineSeparator() + "5) quiz t/<topic> n/<number of questions> s/<time given to complete 1 question>"
-            + System.lineSeparator() + "6) bookmark"
+            + System.lineSeparator() + "6) bookmark list / bookmark delete"
             + System.lineSeparator() + "7) stats"
             + System.lineSeparator() + "8) note add / note delete / note list"
-            + System.lineSeparator() + "9) exit (saves your data too!)";
+            + System.lineSeparator() + "9) exit";
     private static final String MESSAGE_QUIZ_START = "Start of quiz:";
     private static final String MESSAGE_QUIZ_END = "This is the end of the quiz!"
             + System.lineSeparator() + "Hope you have learnt something new!"
@@ -401,7 +401,7 @@ public class Ui {
             showNotes(noteList);
 
             System.out.println(DELETE_NOTE_PROMPT_FOR_INDEX);
-            String input = SCANNER.nextLine();
+            String input = SCANNER.nextLine().trim();
 
             if (input.matches(NUMBERS_ONLY) && Integer.parseInt(input) > 0
                     && Integer.parseInt(input) <= noteList.getCount()) {
