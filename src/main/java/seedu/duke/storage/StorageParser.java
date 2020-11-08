@@ -179,6 +179,9 @@ public class StorageParser {
         }
 
         String location = activity.getLocation();
+        if (location == null) {
+            location = "";
+        }
         //obtain the name of the event
         String name = activity.getDescription();
         words.add(name);
@@ -299,7 +302,7 @@ public class StorageParser {
             LocalDate date = DateTimeParser.dateParser(info[1]);
             LocalTime time = DateTimeParser.timeParser(info[2]);
             Timetable t = new Timetable(info[0], date, time);
-            if (!info[5].equals("0")) { //location provided
+            if (!info[5].equals("")) { //location provided
                 t.setLocation(info[5]);
             }
             setDone(t, statuses[0]);
