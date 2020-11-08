@@ -1,0 +1,58 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+left to right direction
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle "Storage Output" {
+    rectangle "Save files in *.txt" {
+    }
+}
+
+note as N1
+    Arrow direction: 
+    A ----> B
+    A uses B
+end note
+rectangle FinanceIt {
+    rectangle ReminderGenerator {
+    }
+
+    rectangle InputManager {
+    }
+
+    rectangle LogicManager {
+    }
+
+    rectangle Storage {
+    }
+
+    rectangle Logic {
+    }
+
+    rectangle Model {
+    }
+
+    ReminderGenerator --> Model : Generates recurring entry\n reminders with
+    LogicManager --> Model: Manipulates data \nrepresented in Model
+    Storage <--- Model #blue :  Performs save and \nload operations
+    LogicManager ...> InputManager : Receives processed input
+    LogicManager ...> Logic : Handles logic of \nparam-dependent operations
+    Storage <.. "Storage Output" : Handles saving of \nprogram state \ninto text files
+
+}
+rectangle User {
+}
+
+User -> InputManager : Supply \ninput \nstring
+FinanceIt -[hidden]right User
+
+@enduml

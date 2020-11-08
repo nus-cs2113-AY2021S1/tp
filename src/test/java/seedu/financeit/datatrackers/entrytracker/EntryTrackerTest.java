@@ -52,7 +52,7 @@ public class EntryTrackerTest {
             EntryTracker.setTestPacket(testPacket);
             EntryTracker.handleCreateEntry(false);
         }
-        assertEquals(numCorrectEntries, EntryTracker.entryList.getItemsSize());
+        assertEquals(numCorrectEntries, EntryTracker.entryList.getListSize());
         EntryTracker.entryList.removeAllItems();
     }
 
@@ -64,7 +64,7 @@ public class EntryTrackerTest {
             EntryTracker.setTestPacket(testPacket);
             EntryTracker.handleCreateEntry(false);
         }
-        int actualListNum = EntryTracker.entryList.getItemsSize();
+        int actualListNum = EntryTracker.entryList.getListSize();
         for (int i = 1; i <= 20; i++) {
             switch (i % 4) {
             case 0:
@@ -84,7 +84,7 @@ public class EntryTrackerTest {
             EntryTracker.setTestPacket(testPacket);
             EntryTracker.handleDeleteEntry();
         }
-        int expectedListNum = EntryTracker.entryList.getItemsSize();
+        int expectedListNum = EntryTracker.entryList.getListSize();
         assertEquals(actualListNum, expectedListNum);
     }
 
@@ -102,7 +102,7 @@ public class EntryTrackerTest {
         CommandPacket testPacket = generateEditEntryCorrectCommand(commonSeed);
         EntryTracker.setTestPacket(testPacket);
         EntryTracker.handleEditEntry();
-        Entry actualEntry = (Entry) EntryTracker.entryList.getItemAtCurrIndex(0);
+        Entry actualEntry = (Entry) EntryTracker.entryList.getItemAtIndex(0);
 
         assertEquals(actualEntry, expectedEntry);
         EntryTracker.entryList.removeAllItems();
@@ -120,7 +120,7 @@ public class EntryTrackerTest {
             EntryTracker.setTestPacket(testPacket);
             EntryTracker.handleCreateEntry(false);
         }
-        assertEquals(2, EntryTracker.entryList.getItemsSize());
+        assertEquals(2, EntryTracker.entryList.getListSize());
         EntryTracker.entryList.removeAllItems();
     }
 }

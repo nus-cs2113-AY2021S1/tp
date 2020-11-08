@@ -46,9 +46,9 @@ public class AutoTrackerSaver extends SaveHandler {
         }
         RecurringEntryList entries = RecurringTracker.getEntries();
         StringBuilder saveString = new StringBuilder();
-        int size = entries.getItemsSize();
+        int size = entries.getListSize();
         for (int i = 0; i < size; i++) {
-            RecurringEntry entry = (RecurringEntry) entries.getItemAtCurrIndex(i);
+            RecurringEntry entry = (RecurringEntry) entries.getItemAtIndex(i);
             saveString.append(entry.toSave() + System.lineSeparator());
         }
         FileWriter fileWriter = new FileWriter(paths.length == 2 ? paths[1] : fullPath);

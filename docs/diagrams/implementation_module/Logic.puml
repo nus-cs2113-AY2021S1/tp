@@ -1,0 +1,112 @@
+@startuml
+left to right direction
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+skinparam linetype ortho
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle Logic {
+
+
+
+    package p2 <<Layout>> {
+    }
+
+    class ParamChecker <<Singleton>>{
+        + checkAndReturnDate(paramType : String) : LocalDate
+        + checkAndReturnTime(paramType : String) : LocalTime
+        + checkAndReturnIndex(paramType : String, list : ArrayList) : Integer
+        + checkAndReturnDouble(paramType : String) : Double
+        + checkAndReturnInt(paramType : String) : Integer
+        + checkAndReturnCategory(paramType : String) : String
+    }
+
+
+rectangle CommandHandlers {
+    abstract class "{abstract}\nParamHandler" {
+        # paramChecker : ParamChecker
+        # hasParsedAllParams : boolean
+        + handleParams(packet : CommandPacket) : void
+        + getHasParsedAllRequiredParams() : boolean
+        + setRequiredParams(paramTypes : String...) : void
+        # checkParamRequirementSatisfied(param : String) : boolean
+        + {abstract} handleSingleParam(packet : CommandPacket, paramType : String)
+    }
+
+    rectangle "Ledger CommandHandlers" {
+        class createLedgerHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveLedgerHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+    }
+
+    rectangle XYZCommands {
+    }
+
+
+
+    rectangle "Entry CommandHandlers" {
+        class createEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class editEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        class retrieveEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : CommandPacket) : void
+        }
+        package p4 <<Layout>> {
+        }
+
+        package p5 <<Layout>> {
+        }
+
+        p4 -[hidden]- p5
+        p5 -[hidden]- "{abstract}\nParamHandler"
+    }
+
+
+
+
+    ParamChecker "1" <.[norank]. createLedgerHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. retrieveLedgerHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. createEntryHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. editEntryHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. retrieveEntryHandler #line:blue;text:black
+    ParamChecker "1" <.[norank]. XYZCommands #line:blue;text:black
+    "{abstract}\nParamHandler" <|-[norank]- createLedgerHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- retrieveLedgerHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- createEntryHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- retrieveEntryHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- editEntryHandler #line:purple;line.bold;text:red
+    "{abstract}\nParamHandler" <|-[norank]- XYZCommands #line:purple;line.bold;text:red
+
+    note bottom of XYZCommands: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
+}
+
+note right of ParamChecker: Contains methods that check validity of params supplied
+
+
+
+
+
+@enduml

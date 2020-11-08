@@ -17,8 +17,12 @@ public class RecurringTracker {
     static String DirectoryMainMenu = "[ MAIN_MENU -> RECURRING_TRACKER ]";
     static RecurringEntryList entries = new RecurringEntryList();
 
-    public static RecurringEntryList getRecurringEntryList() {
+    public static RecurringEntryList getEntries() {
         return entries;
+    }
+
+    public static void loadEntry(CommandPacket packet) {
+        handleNewEntry(packet);
     }
 
     public static void execute() {
@@ -55,25 +59,17 @@ public class RecurringTracker {
         } while (!endTracker);
     }
 
-    public static RecurringEntryList getEntries() {
-        return entries;
-    }
-
-    public static void loadEntry(CommandPacket packet) {
-        handleNewEntry(packet);
-    }
-
     public static RecurringEntry handleNewEntry(CommandPacket packet) {
         RecurringEntry entry = null;
         CreateEntryHandler createEntryHandler = CreateEntryHandler.getInstance();
         try {
             createEntryHandler.handlePacket(packet);
-            entry = createEntryHandler.getCurrEntry();
+            entry = createEntryHandler.getEntry();
             entries.addItem(entry);
             String entryName = entry.getName();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entryName));
-        } catch (InsufficientParamsException exception) {
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
         } finally {
@@ -109,7 +105,7 @@ public class RecurringTracker {
         return entry;
     }
 
-    static RecurringEntry handleEditEntry(CommandPacket packet) {
+    public static RecurringEntry handleEditEntry(CommandPacket packet) {
         RecurringEntry entry = null;
         RetrieveEntryHandler retrieveEntryHandler = RetrieveEntryHandler.getInstance();
         EditEntryHandler editEntryHandler = EditEntryHandler.getInstance();
@@ -145,10 +141,12 @@ public class RecurringTracker {
                             + ">/amt {AMOUNT} >/day {DAY_OF_MONTH} >[/notes {NOTES}];Use -auto for "
                             + "income/expenses that are auto-credited into/auto-deducted from bank "
                             + "account/credit card");
-        TablePrinter.addRow("2.;Edit entry;edit /id {INDEX} {parameter to edit};");
-        TablePrinter.addRow("3.;List entries;list;");
-        TablePrinter.addRow("4.;Delete entry;delete /id {INDEX};");
-        TablePrinter.addRow("5.;Exit to main menu;exit;");
+        TablePrinter.addRow("2.;Edit entry;edit /id {INDEX} {parameter to edit};At least 1 param to edit required. "
+                            + "Will overwrite previous value");
+
+        TablePrinter.addRow("3.;List entries;list; ");
+        TablePrinter.addRow("4.;Delete entry;delete /id {INDEX}; ");
+        TablePrinter.addRow("5.;Exit to main menu;exit; ");
         TablePrinter.printList();
     }
 

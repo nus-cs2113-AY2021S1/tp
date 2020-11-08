@@ -30,17 +30,16 @@ public class Financeit {
         Level mode = Level.WARNING;
         LoggerCentre.getInstance().setLevel(mode);
         setLog();
-        RunHistory.setCurrentRunDateTime();
-        //Grabs the System DateTime and stores it. Used for reminders
+        RunHistory.setCurrentRunDateTime();    //Grabs the System DateTime and stores it. Used for reminders
         ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
         GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
         AutoTrackerSaver.getInstance("./data", "./data/saveAt.txt");
         load();
         loadLastRunDateTime();                 //Loads the dateTime when the program was last ran
         saveCurrentRunDateTimeAsLastRun();     //Updates last run dateTime to current dateTime
+        UiManager.refreshPage();
+        UiManager.printLogo();
         while (true) {
-            UiManager.refreshPage();
-            UiManager.printLogo();
             ReminderPrinter.printReminders();    //Print reminder for all upcoming recurring entries
             printMainMenu();
             input = UiManager.handleInput();

@@ -1,5 +1,9 @@
 package seedu.financeit.utils;
 
+import seedu.financeit.common.Common;
+
+import java.util.ArrayList;
+
 public class DateTimeHelper {
 
     /**
@@ -21,6 +25,16 @@ public class DateTimeHelper {
         case 2: return day + "nd";
         case 3: return day + "rd";
         default: return day + "th";
+        }
+    }
+
+    public static String[] monthsWithoutDayOfMonth(int dayOfMonth) {
+        if (dayOfMonth <= 28) {
+            return new String[0];
+        } else if (dayOfMonth < 30) {
+            return Common.MONTHS_LESS_THAN_30_DAYS;
+        } else {
+            return Common.MONTHS_LESS_THAN_31_DAYS;
         }
     }
 }

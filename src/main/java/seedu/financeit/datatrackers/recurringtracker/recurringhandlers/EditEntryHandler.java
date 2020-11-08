@@ -37,11 +37,18 @@ public class EditEntryHandler extends ParamHandler {
         this.recurringEntry = recurringEntry;
     }
 
-    public void handlePacket(CommandPacket packet) throws InsufficientParamsException {
-        try {
-            handleParams(packet);
-        } catch (ItemNotFoundException exception) {
-            // Fall-through
+    public RecurringEntry getEntry() {
+        return recurringEntry;
+    }
+
+    public void handlePacket(CommandPacket packet)
+            throws InsufficientParamsException, ItemNotFoundException {
+        handleParams(packet);
+
+        //If only param provided is /id or no params provided
+        if (packet.getParamTypes().size() <= 1) {
+            assert packet.getParam("/id") != null;
+            throw new InsufficientParamsException("At least 1 param required for edit!");
         }
     }
 
@@ -49,7 +56,7 @@ public class EditEntryHandler extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case ParamChecker.PARAM_DAY:
-            int day = ParamChecker.getInstance().checkAndReturnInt(paramType);
+            int day = ParamChecker.getInstance().checkAndReturnDayOfMonth(paramType);
             recurringEntry.setDay(day);
             break;
         case ParamChecker.PARAM_AMOUNT:
@@ -58,19 +65,23 @@ public class EditEntryHandler extends ParamHandler {
             break;
         case ParamChecker.PARAM_INC:
             recurringEntry.setEntryType(Common.EntryType.INC);
+            //Need to update expenditureAmount and incomeAmount, since type has changed.
+            recurringEntry.convertAttributesToString();
             break;
         case ParamChecker.PARAM_EXP:
             recurringEntry.setEntryType(Common.EntryType.EXP);
+            //Need to update expenditureAmount and incomeAmount, since type has changed.
+            recurringEntry.convertAttributesToString();
             break;
         case ParamChecker.PARAM_DESCRIPTION:
-            String description = packet.getParam(paramType);
+            String description = ParamChecker.getInstance().checkAndReturnDescription(paramType);
             recurringEntry.setDescription(description);
             break;
         case ParamChecker.PARAM_AUTO:
             recurringEntry.setAuto(true);
             break;
         case ParamChecker.PARAM_NOTES:
-            String notes = packet.getParam(paramType);
+            String notes = ParamChecker.getInstance().checkAndReturnDescription(paramType);
             recurringEntry.setNotes(notes);
             break;
         default:

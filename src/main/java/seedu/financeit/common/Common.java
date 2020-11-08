@@ -10,6 +10,9 @@ public class Common {
     public static final int MAX_PARTITION_LINE_LEN = 60;
     public static final int MAX_ARRAY_LEN = 20;
 
+    public static final String[] MONTHS_LESS_THAN_31_DAYS = {"Feb", "Apr", "Jun", "Sept", "Nov"};
+    public static final String[] MONTHS_LESS_THAN_30_DAYS = {"Feb"};
+
     public enum EntryType {
 
         EXP("Expense"),

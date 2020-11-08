@@ -1,37 +1,6 @@
-logger
 manual
-commands
-ledger new /date 200404
-ledger list
-ledger new /date 200504
-ledger list
-ledger delete /id 2
-ledger list
-ledger open /date 200303
-exit
-ledger open /id
-ledger list
-ledger new /date 200404
-ledger new /date 200504
-ledger open /date 202020
-ledger list
-ledger open /date 200404
-commands
-cat
-entry new /time /desc /cat /amt 1500
-entry new /time 1500 /desc Go to the poll -i /cat tpt /amt 1500
-entry new /time 1500 /desc Go to the poll -i /cat tpt /amt 1600
-entry new /time 1500 /desc Go to the poll where>1.the rainbow used to be nice>2. and colorful, haha -i /cat tpt /amt 1503
-entry new /time 1500 /desc Go to the pole -i /cat tpt /amt 1501
-entry new /time 1500 /desc Go to the pole -i /cat tpt /amt 1501
-entry list
-entry edit /id 1 /time 1600
-entry list
-entry delete /id 1
-entry list
-exit
-ledger open /date 200404
-entry list
+open /id 1
+new /time 1600 /desc assadad /cat tpt /amt -23243432432432434324324 -i
 exit
 exit
 exit

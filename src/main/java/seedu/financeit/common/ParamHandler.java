@@ -6,8 +6,10 @@ import seedu.financeit.common.exceptions.ParseFailParamException;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.ParamChecker;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Defines a Logic class that handles user-inputted params.

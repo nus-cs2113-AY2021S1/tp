@@ -51,11 +51,11 @@ public class RetrieveLedgerHandler extends ParamHandler {
         case ParamChecker.PARAM_DATE:
             LocalDate date = ParamChecker.getInstance().checkAndReturnDate(paramType);
             index = this.ledgerList.getIndexFromDate(date);
-            this.ledgerList.setIndexToModify(index);
+            this.ledgerList.setIndexToModify(index, paramType);
             return;
         case ParamChecker.PARAM_INDEX:
             index = ParamChecker.getInstance().checkAndReturnIndex(paramType, this.ledgerList.getItems());
-            this.ledgerList.setIndexToModify(index);
+            this.ledgerList.setIndexToModify(index, paramType);
             return;
         default:
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,

@@ -191,10 +191,10 @@ public class ManualTracker {
     private static void printCommandList() {
         TablePrinter.setTitle("List of Commands");
         TablePrinter.addRow("No.;Command            ;Input Format                  ");
-        TablePrinter.addRow("1.;Open ledger;open /date {YYMMDD}");
+        TablePrinter.addRow("1.;Open ledger;open /date {YYMMDD} or open /id {INTEGER}");
         TablePrinter.addRow("2.;New ledger;new /date {YYMMDD}");
         TablePrinter.addRow("3.;list ledgers;list");
-        TablePrinter.addRow("4.;delete ledgers;delete /date {YYMMDD}");
+        TablePrinter.addRow("4.;delete ledgers;delete /date {YYMMDD} or delete /id {INTEGER}");
         TablePrinter.addRow("5.;exit to main menu;exit");
         TablePrinter.printList();
     }

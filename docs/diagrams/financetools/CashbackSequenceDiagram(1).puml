@@ -1,0 +1,44 @@
+@startuml
+autoactivate on
+actor User
+
+"User" -> ":Handler": Input command in FinanceTools.main()
+":Handler" ->":Handler": handleCashback(packet)
+
+   ":Handler"-> ":Cashback" : handlePacket(packet)
+
+        == Handling of Params in packet ==
+        ":Cashback" -> ":Cashback" : handleParams
+            ":Cashback" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                ":Cashback" -> ":Cashback" : handleSingleParam
+                    alt "paramType = /a"
+                        ":Cashback" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
+                        return amount
+                        ":Cashback" -> ":Cashback" : getParam(paramType)
+                        return
+                    else "paramType = /r"
+                        ":Cashback" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
+                        return amount
+                        ":Cashback" -> ":Cashback" : getParam(paramType)
+                        return
+                    else "paramType = /c"
+                        ":Cashback" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
+                        return amount
+                        ":Cashback" -> ":Cashback" : getParam(paramType)
+                        return
+                    end
+                return
+            end
+        return
+
+return state
+
+
+box "Logic" #LightBlue
+participant ":Cashback"
+participant ":ParamChecker"
+endBox
+@enduml

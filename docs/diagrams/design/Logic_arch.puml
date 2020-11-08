@@ -1,0 +1,60 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+!define ABSTRACT &#123;abstract&#125;
+
+rectangle LogicManager{
+}
+
+rectangle Logic {
+
+
+    class ParamChecker <<Singleton>>{
+
+    }
+
+
+rectangle CommandHandlers {
+
+    class ParamHandler <<abstract>> {
+        requiredParams: HashSet<String>
+        paramsSuccessfullyParsed: hashSet<String>
+        missingRequiredParams: hashSet<String>
+        hasParsedAllRequiredParams: boolean
+        handleParams()
+        checkParseFailedParams()
+        handleSingleParam() ABSTRACT
+    }
+    class XYZCommandHandlers {
+        setRequiredParams()
+        handlePacket()
+        handleSingleParam()
+
+    }
+
+
+    XYZCommandHandlers --|> ParamHandler
+
+    XYZCommandHandlers ..right> "1"  ParamChecker #line:blue;text:black : < Checks validity of params for
+    note top of XYZCommandHandlers: Includes FinanceTools Calculator functions\n, RecurringEntry Commands, etc.
+}
+
+LogicManager -> XYZCommandHandlers : < Performs param-dependent \noperations for
+note top of ParamChecker: Contains methods that \ncheck validity of params supplied\n e.g. check that user has entered\n a valid integer without alphabets\n or decimal point for a param\n which expects int
+
+
+
+
+
+@enduml

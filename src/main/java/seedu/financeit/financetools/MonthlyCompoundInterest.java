@@ -1,3 +1,5 @@
+//@@author bqxy
+
 package seedu.financeit.financetools;
 
 import seedu.financeit.common.CommandPacket;
@@ -88,16 +90,16 @@ public class MonthlyCompoundInterest extends ParamHandler {
     public void handleSingleParam(CommandPacket packet, String paramType) throws ParseFailParamException {
         switch (paramType) {
         case "/a":
-            this.amount = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.amount = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/r":
-            this.interestRate = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.interestRate = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         case "/p":
-            this.calculationPeriod = ParamChecker.getInstance().checkAndReturnInt(paramType);
+            this.calculationPeriod = ParamChecker.getInstance().checkAndReturnIntSigned(paramType);
             break;
         case "/d":
-            this.monthlyDeposit = ParamChecker.getInstance().checkAndReturnDouble(paramType);
+            this.monthlyDeposit = ParamChecker.getInstance().checkAndReturnDoubleSigned(paramType);
             break;
         default:
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,

@@ -1,0 +1,67 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 20
+skinparam shadowing false
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+rectangle "LogicManagers" {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+    }
+}
+
+rectangle "CommandHandlers" {
+    rectangle "Ledger CommandHandlers" {
+        class createLedgerHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : HandlerPacket) : void
+        }
+        class retrieveLedgerHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : HandlerPacket) : void
+        }
+        ManualTracker ..> "1" createLedgerHandler
+        ManualTracker ..> "1" retrieveLedgerHandler
+    }
+
+    rectangle "Entry CommandHandlers" {
+        class createEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : HandlerPacket) : void
+        }
+        class editEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : HandlerPacket) : void
+        }
+        class retrieveEntryHandler <<Singleton>>{
+            + handlePacket() : void
+            + handleSingleParams(paramType : String) : void
+            + handleParams(packet : HandlerPacket) : void
+        }
+        EntryTracker ..> "1" createEntryHandler
+        EntryTracker ..> "1" retrieveEntryHandler
+        EntryTracker ..> "1" editEntryHandler
+
+    }
+}
+
+@enduml

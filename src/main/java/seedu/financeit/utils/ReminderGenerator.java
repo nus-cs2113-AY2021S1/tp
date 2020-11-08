@@ -10,11 +10,11 @@ import java.util.HashMap;
 
 public class ReminderGenerator {
     private static final int REMIND_DAYS_IN_ADVANCE = 5;
+
     /**
      * Prints a reminder for upcoming recurring entries, within X days from
      * current system date. X is currently set to 5.
      */
-
     public static ArrayList<String> generateListOfRemindersAsStrings() {
         int currentDay = RunHistory.getCurrentDayOfMonth();
         int lastDayOfMonth = RunHistory.getNumOfDaysInCurrentMonth();

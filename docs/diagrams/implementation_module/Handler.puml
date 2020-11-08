@@ -1,0 +1,65 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+skinparam BoxPadding 50
+skinparam shadowing false
+left to right direction
+
+
+skinparam package<<Layout>> {
+  borderColor Transparent
+  backgroundColor Transparent
+  fontColor Transparent
+  stereotypeFontColor Transparent
+}
+
+
+
+
+rectangle Model {
+    class LedgerList {
+    }
+}
+
+rectangle InputManager {
+}
+
+
+
+rectangle LogicManagers {
+    class ManualTracker {
+        ~ {static} handleCreateLedger() : State
+        ~ {static} handleOpenLedger() : State
+        ~ {static} handleDeleteLedger() : State
+        + {static} execute()
+    }
+
+    class EntryTracker {
+        ~ {static} handleCreateEntry() : State
+        ~ {static} handleEditEntry() : State
+        ~ {static} handleDeleteEntry() : State
+        + {static} execute()
+    }
+
+    class GoalTracker {
+        + {static} execute()
+    }
+
+    class FinanceTools{
+        + {static} execute()
+    }
+
+    EntryTracker --> Model : stores entries with >
+    ManualTracker --> Model : stores ledgers with >
+}
+
+ManualTracker --> InputManager : Handles input <
+EntryTracker --> InputManager : Handles input <
+
+GoalTracker --> LedgerList : Compares ledger entries \nagainst input goal >
+GoalTracker <-- EntryTracker : < Provides entry updates to
+
+
+
+
+@enduml
