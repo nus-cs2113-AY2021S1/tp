@@ -54,12 +54,12 @@ public class Power {
      */
     public boolean onAppliance() {
         if (!status) {
-            // if Appliance has not been turned ON
             status = true;
             onTime = getCurrentTime();
+            assert !onTime.isEmpty() : "onTime must not accept empty value";
             return true;
         } else {
-            // if Appliance has been turned ON previously
+            // Appliance has been turned ON previously
             return false;
         }
     }
@@ -72,13 +72,11 @@ public class Power {
      */
     public boolean offAppliance() {
         if (status) {
-            // if Appliance has not been turned OFF
             status = false;
             offTime = getCurrentTime();
             computeTotalPower();
             return true;
         } else {
-            // if Appliance has been turned OFF previously
             return false;
         }
     }
@@ -134,11 +132,11 @@ public class Power {
         double timeUsed = 0;
 
         if (onTime != null) {
+            assert !onTime.isEmpty() : "onTime must not accept empty value";
             onTimeValue = timeFormat.parse(onTime);
             if (!status) {
                 offTimeValue = timeFormat.parse(offTime);
                 timeUsed = offTimeValue.getTime() - onTimeValue.getTime();
-                // System time cannot be negative time
                 assert timeUsed >= 0 : "System Time is not correct! " + timeUsed;
                 onTime = offTime;
             } else {

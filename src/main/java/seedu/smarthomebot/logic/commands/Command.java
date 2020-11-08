@@ -34,8 +34,9 @@ public abstract class Command {
     }
 
     //@@author fanceso
+
     /**
-     * Gets the longest length of name and location in the appliance class.
+     * Computing the longest length of name and location in the appliance class.
      */
     protected void autoFormattingStringIndex() {
         for (Appliance a : applianceList.getAllAppliance()) {
@@ -48,6 +49,9 @@ public abstract class Command {
         }
     }
 
+    /**
+     * Abstract Method for executing Command.
+     */
     public abstract CommandResult execute();
 
 }

@@ -24,6 +24,8 @@ public class Lights extends Appliance {
      *                     Appliance will only be created when:
      *                     1. location inputted is present in the locationList.
      *                     2. User inputted name does not exist in locationList.
+     * @throws InvalidApplianceNameException When name already exists in LocationList.
+     * @throws LocationNotFoundException     When Location does not exist in LocationList.
      */
     public Lights(String name, String location, String wattage, LocationList locationList)
             throws InvalidApplianceNameException, LocationNotFoundException {

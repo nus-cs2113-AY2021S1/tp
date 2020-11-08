@@ -2,8 +2,6 @@ package seedu.smarthomebot.data.appliance;
 
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.commons.exceptions.DuplicateDataException;
-import seedu.smarthomebot.data.location.LocationList;
-import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
 
@@ -20,17 +18,18 @@ public class ApplianceList {
      * Constructor of ApplianceList.
      */
     public ApplianceList() {
-        this.applianceList = new ArrayList<>();
+        applianceList = new ArrayList<>();
     }
 
     /**
      * Method to add a new Appliance to the ApplianceList.
      *
      * @param appliance Appliance to add.
+     * @throws DuplicateDataException Appliance name is already in the List.
      */
     public void addAppliance(Appliance appliance) throws DuplicateDataException {
         if (!isApplianceExist(appliance.getName())) {
-            this.applianceList.add(appliance);
+            applianceList.add(appliance);
         } else {
             throw new DuplicateDataException();
         }
@@ -40,11 +39,12 @@ public class ApplianceList {
      * Method to delete a Appliance from the ApplianceList.
      *
      * @param userEnteredName Appliance to remove.
+     * @throws ApplianceNotFoundException When keyed name is not found in ApplianceList.
      */
     public Appliance deleteAppliance(String userEnteredName) throws ApplianceNotFoundException {
-        for (Appliance appliance : this.getAllAppliance()) {
+        for (Appliance appliance : getAllAppliance()) {
             if (appliance.getName().equals(userEnteredName)) {
-                this.applianceList.remove(appliance);
+                applianceList.remove(appliance);
                 return appliance;
             }
         }
@@ -89,24 +89,28 @@ public class ApplianceList {
      * Method to remove Appliances located in the user selected location in the ApplianceList.
      *
      * @param usersEnteredLocation Appliance to check.
+     * @throws ApplianceNotFoundException When keyed name is not found in ApplianceList.
      */
     public void deleteByLocation(String usersEnteredLocation) throws ApplianceNotFoundException {
         for (int x = getAllAppliance().size() - 1; x >= 0; x--) {
-            if (this.getAppliance(x).getLocation().equals(usersEnteredLocation)) {
-                this.deleteAppliance((this.getAppliance(x).getName()));
+            if (getAppliance(x).getLocation().equals(usersEnteredLocation)) {
+                deleteAppliance((getAppliance(x).getName()));
             }
         }
     }
 
-    public int getApplianceIndex(String argument, LocationList locationList)
-            throws ApplianceNotFoundException, NoApplianceInLocationException {
+    /**
+     * Method to return the index of the Appliance from the input argument.
+     *
+     * @param argument Name of Appliance to find in the List.
+     * @throws ApplianceNotFoundException When keyed name is not found in ApplianceList.
+     */
+    public int getApplianceIndex(String argument)
+            throws ApplianceNotFoundException {
         for (Appliance appliance : applianceList) {
             if (appliance.getName().equals((argument))) {
                 return applianceList.indexOf(appliance);
             }
-        }
-        if (locationList.isLocationCreated(argument)) {
-            throw new NoApplianceInLocationException();
         }
         throw new ApplianceNotFoundException();
     }

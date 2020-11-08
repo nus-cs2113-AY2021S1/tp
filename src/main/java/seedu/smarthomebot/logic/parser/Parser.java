@@ -40,6 +40,7 @@ public class Parser {
     private static final String LOCATION_TYPE = "location";
 
     //@@author zongxian-ctrl
+
     /**
      * Parses user input into command for execution.
      *
@@ -124,8 +125,8 @@ public class Parser {
     /**
      * Parses arguments into AddCommand format.
      *
-     * @param arguments parameters of AddComand
-     * @return the prepared AddCommand
+     * @param arguments parameters of AddComand.
+     * @return the prepared AddCommand.
      */
     private static Command prepareAddCommand(String arguments) {
         int indexLocation = arguments.indexOf("l/");
@@ -223,7 +224,7 @@ public class Parser {
         }
     }
 
-    //@@author leonlowzd
+    //@@author Ang-Cheng-Jun
 
     /**
      * Parses arguments into OffCommand format.
@@ -248,7 +249,7 @@ public class Parser {
         }
     }
 
-    //@@author Ang_Cheng_Jun
+    //@@author Ang-Cheng-Jun
 
     /**
      * Parses arguments into ListCommand format.
@@ -274,6 +275,7 @@ public class Parser {
     }
 
     //@@author fanceso
+
     /**
      * Checks if the parameter is numerical value.
      *

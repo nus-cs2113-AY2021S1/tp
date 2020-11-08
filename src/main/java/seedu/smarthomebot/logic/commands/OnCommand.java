@@ -4,10 +4,10 @@ import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.type.AirConditioner;
 import seedu.smarthomebot.data.appliance.type.Fan;
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 import seedu.smarthomebot.logic.commands.exceptions.ParameterFoundException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
@@ -16,7 +16,7 @@ import static seedu.smarthomebot.commons.Messages.MESSAGE_NO_PARAMETER_IN_ON_BY_
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_TEMPERATURE_AC;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_INVALID_FAN_SPEED;
 
-//@@author Ang_Cheng_Jun
+//@@author leonlowzd
 
 /**
  * Represent the Command to turn on Appliance(s).
@@ -34,18 +34,19 @@ public class OnCommand extends Command {
     private final String parameter;
 
     /**
-     * Constructor for On Command.
+     * Constructor for OnCommand.
      *
      * @param argument  Appliance or Location 's name to be on.
      * @param parameter To set Appliance's parameter: only valid for fan and aircon.
      */
     public OnCommand(String argument, String parameter) {
+        assert !argument.isEmpty() : "OnCommand must not accept empty argument";
         this.argument = argument;
         this.parameter = parameter;
     }
 
     /**
-     * Executing the On Command.
+     * Executing the OnCommand.
      */
     @Override
     public CommandResult execute() {
@@ -71,21 +72,29 @@ public class OnCommand extends Command {
                 return new CommandResult("Invalid Format");
             }
         } catch (ApplianceNotFoundException e) {
-            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            if (locationList.isLocationCreated(argument)) {
+                commandLogger.log(Level.WARNING, "There are no Appliances in \"" + argument + "\".");
+                return new CommandResult("There are no Appliances in \"" + argument + "\".");
+            } else {
+                commandLogger.log(Level.WARNING, MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+                return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            }
         } catch (ParameterFoundException e) {
+            commandLogger.log(Level.WARNING, MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
             return new CommandResult(MESSAGE_NO_PARAMETER_IN_ON_BY_LOCATION);
-        } catch (NoApplianceInLocationException e) {
-            return new CommandResult("There are no Appliances in \"" + argument + "\".");
         }
     }
 
     /**
      * Method to on Appliance by the name.
+     *
+     * @throws ApplianceNotFoundException when keyed Appliance is not found in ApplianceList.
      */
-    private CommandResult onByApplianceName() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        int toOnApplianceIndex = applianceList.getApplianceIndex(argument, locationList);
+    private CommandResult onByApplianceName() throws ApplianceNotFoundException {
+        int toOnApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOnAppliance = applianceList.getAppliance(toOnApplianceIndex);
         String outputResult = onAppliance(toOnAppliance, true);
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -117,6 +126,8 @@ public class OnCommand extends Command {
 
     /**
      * Method to On Appliance by the Location.
+     *
+     * @throws ParameterFoundException When entered Parameter is Invalid.
      */
     private CommandResult onByLocation(ArrayList<Appliance> toOnAppliance) throws ParameterFoundException {
         if (!parameter.isEmpty()) {
@@ -124,6 +135,7 @@ public class OnCommand extends Command {
         } else {
             onApplianceByLoop(toOnAppliance);
             String outputResult = "All Appliances in \"" + argument + "\" are turned on ";
+            commandLogger.log(Level.INFO, outputResult);
             return new CommandResult(outputResult);
         }
     }

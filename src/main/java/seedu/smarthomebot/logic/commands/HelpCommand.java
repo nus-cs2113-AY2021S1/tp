@@ -3,6 +3,7 @@ package seedu.smarthomebot.logic.commands;
 import static seedu.smarthomebot.commons.Messages.LINE;
 
 //@@author zongxian-ctrl
+
 /**
  * Represent the command for showing help instructions.
  */
@@ -23,6 +24,9 @@ public class HelpCommand extends Command {
             + "\t10. " + ResetCommand.MESSAGE_USAGE + "\n"
             + "\t11. " + ExitCommand.MESSAGE_USAGE + "\n";
 
+    /**
+     * Executing the HelpCommand.
+     */
     @Override
     public CommandResult execute() {
         return new CommandResult(MESSAGE_HELP);

@@ -7,14 +7,16 @@ import seedu.smarthomebot.logic.commands.exceptions.LocationNotFoundException;
 import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_APPLIANCES;
+import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_APPLIANCES;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_NO_LOCATIONS;
-import static seedu.smarthomebot.commons.Messages.MESSAGE_LIST_LOCATIONS;
 
-//@@author Ang_Cheng_Jun
+//@@author Ang-Cheng-Jun
+
 /**
  * Represent the command to list LocationList or ApplianceList to the user.
  */
@@ -36,66 +38,102 @@ public class ListCommand extends Command {
     private final String argument;
     private final String filteredLocation;
 
+    /**
+     * Constructor for List Command.
+     *
+     * @param argument         to determine ListLocation or ListAppliance.
+     * @param filteredLocation input location filter for ListAppliance.
+     */
     public ListCommand(String argument, String filteredLocation) {
-        assert argument.isEmpty() != true : "InvalidCommand must not accept empty argument";
+        assert argument.isEmpty() != true : "ListCommand must not accept empty argument";
         this.argument = argument;
         this.filteredLocation = filteredLocation;
     }
 
+    /**
+     * Executing the ListCommand.
+     */
     @Override
     public CommandResult execute() {
         try {
-            int index = 1;
             switch (argument) {
             case LOCATION_TYPE:
-                return listLocation(index);
+                return listLocation();
             case APPLIANCE_TYPE:
                 return listAppliance();
             default:
+                commandLogger.log(Level.WARNING, "Invalid Format");
                 return new CommandResult("Invalid Format");
             }
         } catch (EmptyApplianceListException e) {
+            commandLogger.log(Level.WARNING, "Unable to list: Empty Appliance List");
             return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
         } catch (LocationNotFoundException e) {
+            commandLogger.log(Level.WARNING, "Location: \"" + filteredLocation + "\" does not exist.");
             return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
         } catch (NoApplianceInLocationException e) {
+            commandLogger.log(Level.WARNING, "There is no Appliance in \"" + filteredLocation + "\".");
             return new CommandResult("There is no Appliance in \"" + filteredLocation + "\".");
         } catch (EmptyLocationListException e) {
+            commandLogger.log(Level.WARNING, MESSAGE_LIST_NO_LOCATIONS);
             return new CommandResult(MESSAGE_LIST_NO_LOCATIONS);
         }
     }
 
+    /**
+     * Method to list all the appliances or appliances in filteredLocation.
+     *
+     * @return the Appliance List in String.
+     */
     private CommandResult listAppliance() throws LocationNotFoundException, EmptyApplianceListException,
             NoApplianceInLocationException {
         String outputResult;
         ArrayList<Appliance> outputApplianceList = applianceList.getAllAppliance();
-
         if (filteredLocation.equals("")) {
-            if (outputApplianceList.size() == 0) {
-                throw new EmptyApplianceListException();
-            }
-            String header = MESSAGE_LIST_APPLIANCES;
-            outputResult = displayOutput(header, outputApplianceList);
+            outputResult = listAllAppliances(outputApplianceList);
         } else {
-            ArrayList<Appliance> filterApplianceList =
-                    (ArrayList<Appliance>) outputApplianceList.stream()
-                            .filter((s) -> s.getLocation().equals(filteredLocation))
-                            .collect(toList());
-
-            if (filterApplianceList.isEmpty()) {
-                if (locationList.isLocationCreated(filteredLocation)) {
-                    throw new NoApplianceInLocationException();
-                }
-                throw new LocationNotFoundException();
-            }
-            String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
-            outputResult = displayOutput(header, filterApplianceList);
+            outputResult = listApplianceByLocation(outputApplianceList);
         }
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
-    private CommandResult listLocation(int index) throws EmptyLocationListException {
 
+    private String listAllAppliances(ArrayList<Appliance> outputApplianceList) throws EmptyApplianceListException {
+        if (outputApplianceList.size() == 0) {
+            throw new EmptyApplianceListException();
+        }
+        String outputResult = displayOutput(MESSAGE_LIST_APPLIANCES, outputApplianceList);
+        commandLogger.log(Level.INFO, outputResult);
+        return outputResult;
+    }
+
+    private String listApplianceByLocation(ArrayList<Appliance> outputApplianceList)
+            throws LocationNotFoundException, NoApplianceInLocationException {
+        ArrayList<Appliance> filterApplianceList =
+                (ArrayList<Appliance>) outputApplianceList.stream()
+                        .filter((s) -> s.getLocation().equals(filteredLocation))
+                        .collect(toList());
+
+        if (filterApplianceList.isEmpty()) {
+            if (locationList.isLocationCreated(filteredLocation)) {
+                throw new NoApplianceInLocationException();
+            }
+            throw new LocationNotFoundException();
+        }
+        String header = ("Here are the Appliances in \"" + filteredLocation + "\"");
+        String outputResult = displayOutput(header, filterApplianceList);
+        commandLogger.log(Level.INFO, outputResult);
+        return outputResult;
+    }
+
+    /**
+     * Method to list all the locations.
+     *
+     * @return the Location List in String.
+     */
+    private CommandResult listLocation() throws EmptyLocationListException {
+        int index = 1;
         ArrayList<String> outputLocationList = locationList.getAllLocations();
 
         if (outputLocationList.size() == 0) {
@@ -106,9 +144,16 @@ public class ListCommand extends Command {
             outputResult = outputResult.concat(System.lineSeparator() + index + ": " + location);
             index++;
         }
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
+    /**
+     * Method to format the displayList.
+     *
+     * @param displayList Appliance List to display.
+     * @return the formatted Appliance List in String.
+     */
     private String displayOutput(String header, ArrayList<Appliance> displayList) {
         autoFormattingStringIndex();
         int index = 1;
@@ -125,8 +170,7 @@ public class ListCommand extends Command {
                     a.getName(), a.getLocation(), a.getStatus(), a.getWattage(), a.getType(), a.getParameter(true)));
             index++;
         }
-
+        commandLogger.log(Level.INFO, outputResult);
         return outputResult;
     }
-
 }

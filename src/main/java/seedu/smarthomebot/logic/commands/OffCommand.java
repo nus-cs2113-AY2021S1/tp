@@ -2,15 +2,15 @@ package seedu.smarthomebot.logic.commands;
 
 import seedu.smarthomebot.commons.exceptions.ApplianceNotFoundException;
 import seedu.smarthomebot.data.appliance.Appliance;
-import seedu.smarthomebot.commons.exceptions.NoApplianceInLocationException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static java.util.stream.Collectors.toList;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST;
 import static seedu.smarthomebot.commons.Messages.MESSAGE_APPLIANCE_PREVIOUSLY_OFF;
 
-//@@Ang_Cheng_Jun
+//@@author Ang-Cheng-Jun
 
 /**
  * Represent the Command to turn off Appliance(s).
@@ -25,17 +25,17 @@ public class OffCommand extends Command {
     private final String argument;
 
     /**
-     * Constructor for Off Command.
+     * Constructor for OffCommand.
      *
      * @param argument Appliance or Location 's name to be off.
      */
     public OffCommand(String argument) {
-        assert argument.isEmpty() != true : "InvalidCommand must not accept empty arguments";
+        assert argument.isEmpty() != true : "OffCommand must not accept empty argument";
         this.argument = argument;
     }
 
     /**
-     * Executing the Off Command.
+     * Executing the OffCommand.
      */
     @Override
     public CommandResult execute() {
@@ -58,19 +58,28 @@ public class OffCommand extends Command {
                 return new CommandResult("Invalid Format");
             }
         } catch (ApplianceNotFoundException e) {
-            return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
-        } catch (NoApplianceInLocationException e) {
-            return new CommandResult("There is no appliance in \"" + argument + "\".");
+            if (locationList.isLocationCreated(argument)) {
+                commandLogger.log(Level.WARNING, "There are no Appliances in \"" + argument + "\".");
+                return new CommandResult("There are no Appliances in \"" + argument + "\".");
+            } else {
+                commandLogger.log(Level.WARNING, MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+                return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+            }
         }
     }
 
     /**
      * Method to off Appliance by the name.
+     *
+     * @throws ApplianceNotFoundException when keyed Appliance is not found in ApplianceList.
      */
-    private CommandResult offByApplianceName() throws ApplianceNotFoundException, NoApplianceInLocationException {
-        int toOffApplianceIndex = applianceList.getApplianceIndex(argument, locationList);
+    private CommandResult offByApplianceName() throws ApplianceNotFoundException {
+        int toOffApplianceIndex = applianceList.getApplianceIndex(argument);
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, true);
+        assert !outputResult.isEmpty() : "outputResult must contains String";
+        commandLogger.log(Level.INFO, outputResult);
+
         return new CommandResult(outputResult);
     }
 
@@ -80,6 +89,7 @@ public class OffCommand extends Command {
     private CommandResult offByLocation(ArrayList<Appliance> toOffAppliance) {
         offApplianceByLoop(toOffAppliance);
         String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -96,7 +106,7 @@ public class OffCommand extends Command {
      * Method to switch off Appliance.
      *
      * @param toOffAppliance Appliance to switch off in Appliance.
-     * @param isList        flag to return its corresponding output message.
+     * @param isList         flag to return its corresponding output message.
      * @return the corresponding output Message in String if isList is true.
      */
     private String offAppliance(Appliance toOffAppliance, boolean isList) {
