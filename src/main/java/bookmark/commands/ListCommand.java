@@ -67,7 +67,6 @@ public class ListCommand extends BookmarkCommand {
             ui.showCorrectCommand("list -s");
         } else {
             ui.showStarBookmarks(categories);
-            printCurrentMode(ui, categories);
         }
     }
 
