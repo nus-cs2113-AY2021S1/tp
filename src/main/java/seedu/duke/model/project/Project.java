@@ -2,6 +2,7 @@ package seedu.duke.model.project;
 
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
+import seedu.duke.Duke;
 import seedu.duke.model.member.ProjectMembers;
 import seedu.duke.storage.JsonableObject;
 import seedu.duke.model.sprint.SprintManager;
@@ -129,7 +130,7 @@ public class Project implements JsonableObject {
     
     //Setters
     public void setStartDate() {
-        setStartDate(LocalDate.now());
+        setStartDate(LocalDate.now(Duke.getClock()));
     }
 
     public void setStartDate(LocalDate startDate) {

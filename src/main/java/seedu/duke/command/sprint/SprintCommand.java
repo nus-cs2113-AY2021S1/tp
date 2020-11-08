@@ -1,5 +1,6 @@
 package seedu.duke.command.sprint;
 
+import seedu.duke.Duke;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.model.member.Member;
@@ -69,7 +70,7 @@ public abstract class SprintCommand extends Command {
             if (this.projOwner.getSprintList().updateCurrentSprint()) {
                 selectedSprint = this.projOwner.getSprintList().getCurrentSprintIndex();
             } else {
-                throw new DukeException("No ongoing sprint today (" + LocalDateTime.now().toLocalDate()
+                throw new DukeException("No ongoing sprint today (" + LocalDateTime.now(Duke.getClock()).toLocalDate()
                         + "). Maybe you can specify using -sprint tag");
             }
         }
