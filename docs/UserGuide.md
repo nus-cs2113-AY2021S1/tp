@@ -798,7 +798,7 @@ No. | Feature | Syntax |
 1.|Open Ledger|_open /date {YYMMDD} or delete /id {INDEX}_|
 2.|New Ledger|_new /date {YYMMDD}_|
 3.|List Ledgers|_list_|
-4.|Delete Ledgers|_delete /date {YYMMDD} or delete /id {INDEX}_ |;
+4.|Delete Ledgers|_delete /date {YYMMDD} or delete /id {INDEX}_ |
 5.|Exit to Main Menu|_exit_|
 
 ## Entry tracker
