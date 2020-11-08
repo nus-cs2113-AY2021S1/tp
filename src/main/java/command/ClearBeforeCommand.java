@@ -1,7 +1,9 @@
 package command;
+
 import event.Event;
 import eventlist.EventList;
-import exception.*;
+import exception.NoDateBeforeException;
+import exception.EmptyEventListException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
@@ -31,7 +33,8 @@ public class ClearBeforeCommand extends Command {
      * @throws EmptyEventListException the exceptions when the user try to clear an empty list.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws NoDateBeforeException, EmptyEventListException {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+            throws NoDateBeforeException, EmptyEventListException {
         ArrayList<Event> filteredEventList = events.filterDateBefore(clearDate);
         if (filteredEventList.size() == 0) {
             throw new NoDateBeforeException();

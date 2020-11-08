@@ -120,22 +120,22 @@ public abstract class Parser {
         fullCommand = fullCommand.trim();
         // this block deals with single word command
         switch (fullCommand) {
-            case EXIT:
-                return new ExitCommand();
-            case PRINT_EVENT_LIST:
-                return new PrintFullListCommand();
-            case PRINT_LOCATION_LIST:
-                return new PrintLocationCommand();
-            case HELP:
-                return new HelpCommand();
-            case CLEAR:
-                return new ClearCommand();
-            case REMIND:
-                return new ReminderCommand();
-            case AUTO_CLEAR:
-                return new AutoClearCommand();
-            default:
-                break;
+        case EXIT:
+            return new ExitCommand();
+        case PRINT_EVENT_LIST:
+            return new PrintFullListCommand();
+        case PRINT_LOCATION_LIST:
+            return new PrintLocationCommand();
+        case HELP:
+            return new HelpCommand();
+        case CLEAR:
+            return new ClearCommand();
+        case REMIND:
+            return new ReminderCommand();
+        case AUTO_CLEAR:
+            return new AutoClearCommand();
+        default:
+            break;
         }
 
         String[] words = fullCommand.split(SINGLE_SPACE);

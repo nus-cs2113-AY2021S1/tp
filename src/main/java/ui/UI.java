@@ -391,7 +391,7 @@ public class UI {
     }
 
     /**
-     * Print the success message after the user input auto clear
+     * Print the success message after the user input auto clear.
      *
      */
     public void printAutoClearOn() {
@@ -399,7 +399,7 @@ public class UI {
     }
 
     /**
-     * Print the success message after the user successfully clear all events before a certain date
+     * Print the success message after the user successfully clear all events before a certain date.
      *
      */
     public void printClearBefore(LocalDate clearDate) {
