@@ -190,6 +190,15 @@ sequentially. Each loading method calls the corresponding helper method (i.e. `l
 `loadCreditFromLine()`, `loadLinkFromLine()`, `loadModuleFromLine()`) to load `Item`s from each line in the file. 
 3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
 
+### Model Component
+
+![ModelClassDiagram](./images/ModelClassDiagram.png)
+
+The `Model` component represents the state of the various lists stored in memory.
+
+The `Model` component:
+- Stores and loads program state to file using the `Storage` API.
+- Expose references to its `ItemList` objects so that other objects such as `Command` can modify it.
 
 ## Product scope
 ### Target user profile
