@@ -11,6 +11,7 @@ import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -48,15 +49,20 @@ public class Ui {
                 + "14. /fe <keyword of event>\n"
                 + "15. print tasks\n"
                 + "16. print events\n"
-                + "17. print timeline <week/month/>\n"
-                + "18. print progress\n"
-                + "19. print *\n"
-                + "20. countdown exams\n"
-                + "21. countdown deadlines\n"
-                + "22. /a <event number> - information\n"
-                + "23. /v <event number>\n"
-                + "24. /- <event_number> a <additional_information_number>\n"
-                + "25. suggestion"
+                + "17. print timeline \n"
+                + "18. print timeline week\n"
+                + "19. print timeline month\n"
+                + "20. print timeline date <ddMMyy>\n"
+                + "21. print progress\n"
+                + "22. print *\n"
+                + "23. countdown\n"
+                + "24. countdown exams\n"
+                + "25. countdown deadlines\n"
+                + "26. /a <event number> - information\n"
+                + "27. /v <event number>\n"
+                + "28. /- <event_number> a <additional_information_number>\n"
+                + "29. suggestion\n"
+                + "30. bye"
         );
     }
 
@@ -136,7 +142,7 @@ public class Ui {
      * Prints when user changes the content of the file.
      */
     public static void printWrongStorageInput() {
-        System.out.println("The content of the file is changed by user, cannot load");
+        System.out.println("The content of the file is changed by user, cannot load one of the line");
     }
 
     /**
@@ -256,15 +262,21 @@ public class Ui {
     public static void printAddMessage(CalendarList calendarList, boolean isTask) {
         assert calendarList != null;
         String calendarItem;
+        /* - 1 is catered for array list's index starting from 0. */
+        int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
+
         if (isTask) {
             calendarItem = "task";
+            if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Deadline
+                    && calendarList.getCalendarList().get(lastCalendarItemIndex).getDate().isBefore(LocalDate.now())) {
+                System.out.println("WARNING! The deadline has already passed!"
+                        + "May be you want to double confirm? Good Luck!\n");
+            }
         } else {
             calendarItem = "event";
         }
         System.out.println("Got it. I've added this " + calendarItem + ":");
 
-        /* - 1 is catered for array list's index starting from 0. */
-        int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
         /* condition checker; only Lecture, Lab and Tutorial will print the recurring description*/
         if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Lecture) {
             System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex).getRecurringDescription());

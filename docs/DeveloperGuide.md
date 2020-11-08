@@ -278,7 +278,7 @@ After which, the isModuleValid function will analyse the module code entered by 
 valid, FALSE otherwise.
 
 The following sequence diagram further illustrates the above process. 
-![ModuleChecker_SD]()
+![ModuleChecker_SD](images/UML%20for%20DG-ModuleChecker.png)
 
 <!-- @@author Jingming517 -->
 ## Documentation
@@ -331,9 +331,8 @@ There are two ways to run tests.
   - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
 <!-- @@author -->
-### Configuration guide
 
-### DevOps guide
+## DevOps guide
 
 ### 1. Build automation
 This project uses Gradle for **build automation and dependency management.**
@@ -365,7 +364,7 @@ This project uses GitHub Actions for CI. The project comes with the necessary Gi
 Here are the stpes to create a new release after you have implemented new features.
 
 1. Update the version number in `Main.java`.
-1. Generate a fat JAR file using Gradle (i.e. `gradle shadow`).
+1. Generate a fat JAR file using Gradle (i.e. `gradlew shadow`).
 1. Tag the repo with the version number e.g: `V2.0`.
 1. [Create a new release using Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository).
 1. Upload the JAR file you created.
@@ -412,6 +411,8 @@ This section describes the user stories considered when implementing the feature
 |v2.0|NUS student|add information about my classes|locate all the information about my class on this app|
 |v2.0|NUS student|delete information about my classes|can keep the information about my class relevant at all times |
 |v2.0|user|mark my tasks as important|distinguish important tasks and the ordinary tasks|
+|v2.0|user|print calendar in timeline format|have a visual overview of all the items I have|
+|v2.0|user|print timeline before a certain date|have an overview of current tasks and better manage my time|
 |v2.0|user|get some suggestions when I do not know what to do|prepare for important and urgent tasks first|
 |v2.0|NUS student|add my school events recursively|save my time typing out the events one by one|
 |v2.0|NUS student|see the exam and deadline countdown|be conscious about the coming exams and deadlines and manage my time more wisely|
