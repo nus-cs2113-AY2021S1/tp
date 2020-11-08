@@ -594,6 +594,7 @@ When you start the program, the program will load the data file from its respect
 
 #### 4.4.2. Loading Data
 ![Figure X: Loading Data](image/developerguide/storage_load.png "Loading Data")  
+_Figure X: Loading Data_  
 
 The program will only load the data file in the persistent storage during the initialisation process of the program. With reference to the sequence diagram above, the flow of the logic is as follows:  
 1. When the user starts the program, it will first call `init()` to initialise the program. 
@@ -630,6 +631,7 @@ As explained in [Storage Component](#storage-component), each model class except
 
 #### 4.4.3. Saving Data
 ![Figure X: Saving Data](image/developerguide/storage_save.png "Saving Data")  
+_Figure X: Saving Data_  
 
 Data will be saved under two scenarios: 
 1. When the program exits. 
