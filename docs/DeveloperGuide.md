@@ -54,38 +54,36 @@ In summary, the `UI` component,
 **Main classes and methods used** 
 
 * [`Manager`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/Manager.java): Stores a `Person` object.
-    * `Manager#setPerson(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight
-    , int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel)`: Calls a method in `Person` class (listed below) to set the attribute values of the `Person` object.
+    * `Manager#setPerson(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, FitnessLevel newFitnessLevel)`: Calls a method in `Person` class (listed below) to set the attribute values of the `Person` object.
 * [`Person`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Person.java): Stores all user information provided.
-    * `Person#setAll(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, ActivityLevel newActivityLevel)`: Updates the attribute values of the `Person` object.
+    * `Person#setAll(String newName, Gender newGender, int newAge, int newHeight, int newOriginalWeight, int newCurrentWeight, int newTargetWeight, FitnessLevel newFitnessLevel)`: Updates the attribute values of the `Person` object.
                                              
 
 **Example usage scenario and how the feature work**<br/>
 _Summary_: Only one instance of `Person` is ever instantiated. A default person is instantiated at the start
  with default attribute values and when the user enters their information for the first time during the set up, all the default values would be updated to the inputted values. Therefore, the command to enter the user information will result in a change in the attribute values and not the creation of a new `Person` object.
 
-Step 1. When the user launches the application for the first time. A default `Person` object will be initialised by `Manager` and the user will be prompted to enter their name.
+**Step 1**. When the user launches the application for the first time. A default `Person` object will be initialised by `Manager` and the user will be prompted to enter their name.
  
+_Object Diagram:_<br/>
 ![Enter Info Step1](diagrams/Enter Info Step1.png)
  
-Step 2. The user executes `name Jack` command to enter their name into DietBook. The `name` command calls `Manager#setName(Jack)`, to store the name in `Manager` first. After which, user will be prompted to enter all other details.
-  
+**Step 2**. The user inputs `name Jack` command to enter their name into DietBook. The `name` command calls `Manager#setName(Jack)`, to store the name in `Manager` first. After which, user will be prompted to enter all other details.
+
+_Object Diagram:_<br/>
 ![Enter Info Step2](diagrams/Enter Info Step2.png)
-  
-Step 3. The user executes a command like the following `info g/M a/21 h/175 o/85 c/85 t/75 l/2` to enter all other personal information including age, gender, height, activity level, original, current and target weight. The `info` command then calls `Parse#executeProcessedInfo(info g/M a/21 h/175 o/85 c/85 t/75 l/2, manager)` which would parse the user command, check input validity by using methods in `InputChecker` and calls `Manager#setPerson(Jack, Gender.MALE, 21, 175, 85, 85, 75, ActivityLevel.LOW)` which proceeds to call `Person#setAll(Jack, Gender.MALE, 21, 175, 85, 85, 75, ActivityLevel.LOW)`.
 
-![Enter Info Step3](diagrams/Enter Info Step3.png)
-   
-The following sequence diagrams shows how the feature works.
-
-`name` command
-
+_Sequence Diagram:_<br/>
 ![Name sequence diagram](diagrams/Name sequence diagram.png)
-   
-`info` command
+  
+**Step 3**. The user inputs a command like the following `info g/M a/21 h/175 o/85 c/85 t/75 f/2` to enter all other personal information including age, gender, height, fitness level, original, current and target weight. The `info` command then calls `Parse#executeProcessedInfo(info g/M a/21 h/175 o/85 c/85 t/75 f/2, manager)` before calling `Manager#setPerson(Jack, Gender.MALE, 21, 175, 85, 85, 75, FitnessLevel.LOW)` which proceeds to call `Person#setAll(Jack, Gender.MALE, 21, 175, 85, 85, 75, Fitness.LOW)`.
 
+_Object Diagram:_<br/>
+![Enter Info Step3](diagrams/Enter Info Step3.png) 
+
+_Sequence Diagram:_<br/>
 ![Info sequence diagram](diagrams/Info sequence diagram.png)
-
+   
 #### Design considerations:
 
 Aspect: Whether to enter name and other information separately or together
@@ -118,7 +116,8 @@ Aspect: Changing attribute values in `Person` object or creating new `Person` ob
 
 * **Alternative 2**: Creating new `Person` object
     * Pros: Ability to write tests as method chains.
-    * Cons: Creation of many objects, which take up memory spaces and ensure that only the correct `Person` instance is kept and referred to.
+    * Cons: Creation of many objects, which takes up memory space. Have to ensure that only the correct `Person` instance is kept and referred to.
+
     
 ## Save/Load Feature
 
