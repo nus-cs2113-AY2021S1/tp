@@ -53,7 +53,7 @@ public class AddFoodCommand extends Command {
                     throw new FitrException();
                 }
                 int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
-                if( amountOfFood < 0 || amountOfFood > 1000){
+                if (amountOfFood < 0 || amountOfFood > 1000) {
                     throw new FitrException();
                 }
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(individualCalorie)
