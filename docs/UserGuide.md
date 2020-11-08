@@ -166,7 +166,7 @@ Project 2 has been selected.
 
 ### 3.2. <a id="project-member-codemembercode">Project Member `member`</a>
 #### 3.2.1. <a id="add-team-members">Add Team Members</a>
-Add team member(s) into the project.  
+Add team members into the project.  
 ##### Format: `member /add <username> [<username> ...]`
 ##### Constraints:
 * At least one username must be specified
@@ -180,7 +180,7 @@ mary has been added to the project.
 
 
 #### 3.2.2. <a id="remove-team-members">Remove Team Members</a>
-Remove team member(s) from the project
+Remove team members from the project
 ##### Format: `member /del <username> [<username> ...]`
 ##### Constraints:
 * At least one username must be specified
@@ -216,7 +216,7 @@ Task successfully created.
         Task have yet to be assigned to anyone
 ```
 
-#### 3.3.2. <a id="view-task">View Task(s)</a>
+#### 3.3.2. <a id="view-task">View Tasks</a>
 Display the information of the specified task.
 ##### Format: `task /view <taskid> [<taskid>...]`
 ##### Constraints:
@@ -248,7 +248,7 @@ The details of the tasks are as follows:
     Completion: Completed
  ```
 
-#### 3.3.3. <a id="delete-tasks">Delete Task(s)</a>
+#### 3.3.3. <a id="delete-tasks">Delete Tasks</a>
 Delete the specified task from the project backlog.
 ##### Format: `task /del <taskid> [<taskid>...]`
 ##### Constraints:
@@ -279,7 +279,7 @@ The task Add parser has its priority changed to:
         High priority
 ```
 
-#### 3.3.5. <a id="mark-task-as-complete">Mark Task(s) as Complete</a>
+#### 3.3.5. <a id="mark-task-as-complete">Mark Tasks as Complete</a>
 Mark specified task as complete.
 ##### Format: `task /done <taskid> [<taskid>...]`
 ##### Example: `task /done 1 2 3`
