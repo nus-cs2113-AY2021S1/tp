@@ -10,6 +10,9 @@ import seedu.duke.ui.Ui;
 public class RouteMapCommand extends Command {
     private String busCode;
 
+    /**
+     * Represents the route map command to display full bus route of selected bus code.
+     */
     public RouteMapCommand(String busCode) {
         this.busCode = busCode.trim();
     }
