@@ -214,6 +214,9 @@ public class Ui {
         case BOOKMARK_NUMBER_OUT_OF_BOUNDS:
             printUseValidBookmarkNumberMessage(e.getInfo());
             break;
+        case ZERO_SLOTS_IN_MODULE:
+            printRedWithBorder("Module has no slots" + NEW_LINE);
+            break;
         case INVALID_URL:
             printInvalidUrl();
             break;

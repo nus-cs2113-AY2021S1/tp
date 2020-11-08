@@ -171,7 +171,7 @@ class BookmarkListTest {
     @Test
     void launchAllBookmark_emptyBookmarkList_returnEmptyListMessage() {
         BookmarkList bookmarks = new BookmarkList();
-        assertEquals("Empty List" + lineSeparator,
+        assertEquals("No bookmarks saved" + lineSeparator,
                 bookmarks.launchAllBookmarks());
     }
 }
