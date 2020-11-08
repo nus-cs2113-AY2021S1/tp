@@ -1,6 +1,6 @@
 package fitr.storage;
 
-import fitr.exception.InvalidFileFormatException;
+import fitr.ui.Ui;
 import fitr.user.User;
 
 import java.io.File;
@@ -25,15 +25,13 @@ public class UserStorage {
         }
     }
 
-
     /**
      * Reads the user's data from the text file.
      *
      * @return an User object with data from the text file
      * @throws FileNotFoundException if the file is not found
-     * @throws InvalidFileFormatException if the file format is invalid
      */
-    public User loadUserProfile() throws FileNotFoundException, InvalidFileFormatException {
+    public User loadUserProfile() throws FileNotFoundException {
         LOGGER.fine("Attempting to read file: " + USER_PROFILE_PATH);
 
         File file = new File(USER_PROFILE_PATH);
@@ -49,16 +47,25 @@ public class UserStorage {
 
         String[] arguments = line.split(COMMA_SEPARATOR);
 
-        if (arguments.length != 6) {
-            throw new InvalidFileFormatException();
-        }
+        String name;
+        String gender;
+        int age;
+        double height;
+        double weight;
+        int userFitnessLevel;
 
-        String name = arguments[0];
-        String gender = arguments[1];
-        int age = Integer.parseInt(arguments[2]);
-        double height = Double.parseDouble(arguments[3]);
-        double weight = Double.parseDouble(arguments[4]);
-        int userFitnessLevel = Integer.parseInt(arguments[5]);
+        if (isValidEntry(arguments)) {
+            name = arguments[0];
+            gender = arguments[1];
+            age = Integer.parseInt(arguments[2]);
+            height = Double.parseDouble(arguments[3]);
+            weight = Double.parseDouble(arguments[4]);
+            userFitnessLevel = Integer.parseInt(arguments[5]);
+        } else {
+            LOGGER.fine("Invalid data found in user profile, new user created.");
+            Ui.printCustomError("Error: Invalid user file - creating a new user!");
+            return new User();
+        }
 
         LOGGER.fine("User profile file read successfully.");
         return new User(name, age, height, weight, gender, userFitnessLevel);
@@ -85,5 +92,47 @@ public class UserStorage {
 
         LOGGER.fine("User profile file written successfully.");
         file.close();
+    }
+
+    private boolean isValidEntry(String[] arguments) {
+        if (arguments.length != 6) {
+            return false;
+        }
+
+        String name = arguments[0];
+        if (name.isBlank()) {
+            return false;
+        }
+
+        String gender = arguments[1];
+        if (!gender.equals("Male") && !gender.equals("Female")) {
+            return false;
+        }
+
+        try {
+            int age = Integer.parseInt(arguments[2]);
+            if (age < 1 || age > 130) {
+                return false;
+            }
+
+            double height = Double.parseDouble(arguments[3]);
+            if (height < 0.50 || height > 4.00) {
+                return false;
+            }
+
+            double weight = Double.parseDouble(arguments[4]);
+            if (weight < 2.0 || weight > 1000.00) {
+                return false;
+            }
+
+            int fitnessLevel = Integer.parseInt(arguments[5]);
+            if (fitnessLevel != 0 && fitnessLevel != 1 && fitnessLevel != 2) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
     }
 }

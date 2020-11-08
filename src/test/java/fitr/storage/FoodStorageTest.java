@@ -2,13 +2,13 @@ package fitr.storage;
 
 import fitr.calorie.Calorie;
 import fitr.common.DateManager;
+import fitr.exercise.Exercise;
 import fitr.food.Food;
 import fitr.exception.InvalidFileFormatException;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,12 +33,13 @@ class FoodStorageTest {
     }
 
     @Test
-    public void loadFoodList_invalidFoodData_exceptionThrown() throws Exception {
+    public void loadFoodList_invalidFoodData_invalidDataRemoved() throws Exception {
         FoodStorage foodStorage = new FoodStorage("src/test/data/StorageTest/InvalidFoodData.txt");
-        assertThrows(InvalidFileFormatException.class, foodStorage::loadFoodList);
+        ArrayList<Food> actualFoodList = foodStorage.loadFoodList();
+        assertEquals(0, actualFoodList.size());
     }
 
-    private ArrayList<Food> getValidFoodList() throws ParseException {
+    private ArrayList<Food> getValidFoodList() {
         ArrayList<Food> foodList = new ArrayList<>();
         foodList.add(new Food("Test Food 1", new Calorie(100), 1,
                 LocalDate.parse("23/10/2020", DateManager.formatter)));

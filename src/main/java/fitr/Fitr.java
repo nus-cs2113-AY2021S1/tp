@@ -13,8 +13,6 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
-import static fitr.common.Commands.COMMAND_BYE;
-import static fitr.common.Messages.DASH;
 import static fitr.common.Messages.SEPARATOR_LINE;
 
 public class Fitr {

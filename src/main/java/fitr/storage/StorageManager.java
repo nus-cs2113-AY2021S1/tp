@@ -33,8 +33,9 @@ public class StorageManager {
 
     public ArrayList<Exercise> loadExerciseList() throws IOException {
         try {
+            exerciseStorage.writeExerciseList(new ExerciseList(exerciseStorage.loadExerciseList()));
             return exerciseStorage.loadExerciseList();
-        } catch (InvalidFileFormatException | DateTimeParseException | NumberFormatException e) {
+        } catch (DateTimeParseException | NumberFormatException e) {
             Ui.printCustomError("Error: Invalid exercise file - new exercise list created!");
             exerciseStorage.writeExerciseList(new ExerciseList());
             return new ArrayList<>();
@@ -47,8 +48,9 @@ public class StorageManager {
 
     public ArrayList<Food> loadFoodList() throws IOException {
         try {
+            foodStorage.writeFoodList(new FoodList(foodStorage.loadFoodList()));
             return foodStorage.loadFoodList();
-        } catch (InvalidFileFormatException | DateTimeParseException | NumberFormatException e) {
+        } catch (DateTimeParseException | NumberFormatException e) {
             Ui.printCustomError("Error: Invalid food file - new food list created!");
             foodStorage.writeFoodList(new FoodList());
             return new ArrayList<>();
@@ -62,7 +64,7 @@ public class StorageManager {
     public User loadUserProfile() throws FileNotFoundException {
         try {
             return userStorage.loadUserProfile();
-        } catch (InvalidFileFormatException | NumberFormatException e) {
+        } catch (NumberFormatException e) {
             Ui.printCustomError("Error: Invalid user file - creating a new user!");
             return new User();
         }
