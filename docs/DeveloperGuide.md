@@ -202,7 +202,10 @@ NUS students living on campus who would like to track their daily food and nutri
 
 ## Glossary
 
-* *Mainstream OD* - Windows, Linux, Unix, OS-X
-* *Food items* - Includes both food and drinks 
+* _Mainstream OD_ - Windows, Linux, Unix, OS-X
+* _Food items_ - Includes both food and drinks 
+* _Nutrient / Nutritional intake_ - Includes carbohydrates, fats, proteins and calories
+* _Personal information_ - Includes name, age, gender, height, fitness level, original, current and target weight.
+* _Database_ - Contains a list of commonly found food items in the National University of Singapore
 
 ## Instructions for manual testing
