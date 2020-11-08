@@ -5,14 +5,20 @@
 * <a href="#setting-up">2. Setting up the Project</a>
 * <a href="#design">3. Design</a> 
     * <a href="#card">3.1 Card Package</a> 
-        * <a href="#quiz">Quiz Package</a> 
-        * <a href="#task">Task Package</a> 
     * <a href="#command">3.2 Command Package</a> 
     * <a href="#list">3.3 List Package</a> 
     * <a href="#parser">3.4 Parser Package</a> 
     * <a href="#ui">3.5 Ui Package</a> 
     * <a href="#storage">3.6 Storage Package</a> 
 * <a href="#implementation">4. Implementation</a>
+    * <a href="#store-imp">4.1 Storing data implementation</a> 
+    * <a href="#load-imp">4.2 Loading data implementation</a> 
+    * <a href="#export-imp">4.3 Exporting data implementation</a>
+    * <a href="#quiz-imp">4.4 Quiz implementation</a>  
+    * <a href="#sort-imp">4.5 Sorting tasks implementation</a>
+    * <a href="#results-imp">4.6 Results implementation</a> 
+    * <a href="#adding-imp">4.7 Adding objects implementation</a> 
+    * <a href="#accessing-imp">4.8 Accessing subjects/topics implementation</a> 
 * <a href="#logging">5. Logging</a>
 * <a href="#documentation">6. Documentation</a>
 * <a href="#testing">7. Testing</a>
@@ -137,8 +143,6 @@ the classes in the package. An abstract`Quiz` class, a `Result` class, a `Subjec
 the  `flashcards ` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
 The list stores the questions which the user did not answer correctly, along with the correct answer for the question and the answer
 provided by the user. The Quiz class also contains a `startQuiz` method and a `checkAnswer` method.
- 
- 
 
 #### SubjectQuiz <a name="Qsubject"></a>
 `SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz for a subject.It also contains a `setupQuiz`method.
@@ -527,7 +531,7 @@ when the application launches. On the other hand, exporting of data happens when
 ## 4. Implementation <a name="implementation"></a>
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Storing data <a name="store-imp"></a>
+### 4.1 Storing data implementation <a name="store-imp"></a>
 
 `Storage` class stores the data following the same logical structure (subject -> topic) of the application to 
 make the stored data more presentable to the user. `Subject` and `Topic` data are stored as nested directories, while 
@@ -634,7 +638,7 @@ deleted since the rest of the method calls only replace or create data.
 > when the application exits, not to mention the (most of the time) needless deletion of all data before each save. 
 > To speed up the process, the implementation can be changed such that data is saved right after each user command that involves data manipulation.
 
-### 4.2 Loading data
+### 4.2 Loading data implementation <a name="load-imp"></a>
 
 For the data stored in json format, they are loaded using the same [Gson](https://github.com/google/gson/blob/master/UserGuide.md)
 library, whereas for the data `tasks.txt`, they are parsed line by line and converted into corresponding `Task` objects.
@@ -653,7 +657,7 @@ order. This is because subjects and topics are stored as directories, and the or
 guaranteed by the Java, so the sorting is just to fix the inconsistency of the order. The rest of the data, on the
 other hand, is guarenteed to have the same order every time they are loaded, so they are not sorted. 
 
-### 4.3 Exporting data
+### 4.3 Exporting data implementation <a name="export-imp"></a>
 
 The user can export all data of the application to the pre-defined `export/data.json` in the same directory where 
 the application runs. An example of the file content is shown below.
@@ -715,13 +719,13 @@ This content format is a result of converting a list of `Subject` objects with p
 > future versions. However, it may not be straightforward as type conversion is needed to convert the data into the
 > right types 
 > (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
-### 4.4 Implementation of the Quiz class
+### 4.4 Quiz implementation <a name="quiz-imp"></a>
 The abstract quiz class  contains a checkAnswer() method that checks the answer that the user had given with the correct answer of the quiz. 
 If the user enters the correct answer, the existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
 the user are transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
 questions that the users did not answer correctly, along the the answer that was provided by the user.
 
-####4.4.1 Initiating a subject quiz
+#### 4.4.1 Initiating a subject quiz
 You can start a subject quiz by entering `quiz NAMEOFSUBJECT`. Subsequently, the application retrieves the QuizSubjectCommand
 after parsing the command and calls for the `startQuiz` method.
 The `startQuiz` method calls for the  `setupQuiz` method checks for the presence of topics or flashcards. Else, the application throws the `NoTopicException` for the former, and the 
@@ -752,16 +756,62 @@ The following diagram shows how you can initiate the quiz for a topic.
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
 >show the score obtained by the user.
 
-
-### 4.5 Sorting tasks
+### 4.5 Sorting tasks implementation <a name="sort-imp"></a>
 The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
 while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist
 by assigning the `LocalDateTime` variable to be `LocalDateTimeMax`.
 
-### 4.6 Implementation of Results
+### 4.6 Results implementation <a name="results-imp"></a>
 The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.
 There are three categories of descriptions: `Fail` for getting a score which is lesser than half of the maximum score, `Pass`
 for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
+
+### 4.7 Adding objects implementation <a name="adding-imp"></a>
+Each of the add commands have an execute() method. The execute() method for AddSubjectCommand add subjects into the subject list, the execute() method for AddTopicCommand 
+add topics in a subject, while the execute() method for AddTodoCommand, AddDeadlineCommand and AddEventCommand adds tasks in a subject.
+subject.
+
+#### 4.7.1 Adding a subject
+You can add a subject by entering `add [SUBJECT_NAME]`. The subject will be added to a `SubjectList` created when the program initialises. 
+After the program initialises, the program will ask for user input. The `Ui` will read the user input using the readCommand() method, then the 
+the `SubjectParser` will parse the command. Since the user input is `add [TOPIC_NAME]`, the program will register it as a command to add a `Subject`, 
+and will create a new `AddSubjectCommand`. This `AddSubjectCommand` is then passed back to the main function, where its execute() method will run. 
+The execute method decodes the user input. If the `[SUBJECT_NAME]` is not a title of another `Subject` already on the list, it will create a new `Subject`, 
+and add that new `Subject` created into the `SubjectList` that was created during initialisation of the program. The `Ui` will then print the adding of the 
+`Subject` into the list. The program then returns to the main function, where it waits for next user input.
+
+A Sequence diagram of adding a `Subject` Maths is shown below.
+![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98213500-1c89cd00-1f80-11eb-9b0c-9da37446b530.png)
+
+#### 4.7.2 Adding a topic/task
+you can add a `Topic` by entering `add [TOPIC_NAME]`. Additionally, you can add a `Todo` task by entering `todo [DESCRIPTION]`, add a `Deadline` 
+task by entering `deadline [DESCRIPTION] /by [TIME]`, and add an `Event` task by entering `event [DESCRIPTION] /at [TIME]`. This command can only 
+be entered in the subject level of the program, which can be accessed using the command `subject [SUBJECT_NAME]`. The documentation of the 
+implementation and how to access a subject can be found in <a href="#accessing-imp">4.8 Accessing subjects/topics implementation</a>.
+
+Otherwise, adding topics and tasks follows the same implementation as adding a subject.
+
+### 4.8 Accessing levels implementation <a name="accessing-imp"></a>
+Each of the access commands have an execute() method and a goToSubject()/goToTopic() method. The AccessSubjectCommand class allows users to 
+access the subject level of a subject specified in the user input from the main level, while the AccessTopicCommand class allows users to access the topic level 
+of a topic specified in the user input from a subject level.
+
+#### 4.8.1 Accessing a subject
+You can access a subject by entering `subject [SUBJECT_NAME]`. The subject needs to be a subject that already exists in the list, and you can 
+add the `Subject` into the `SubjectList` by using the `add [SUBJECT_NAME]` feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
+For example, after adding a `Subject` CS2101, the CS2101 `Subject` can be accessed by entering `access CS2101`. The application first reads the command using 
+the Ui class, then parses the user input using the `SubjectParser` class, similar to adding a subject. The program will register the user input as a command to 
+access a subject. The SubjectParser will create a new AccessSubjectCommand class, and this class will be returned to the main function. 
+The main program will run the execute() method of AccessSubjectCommand. The execute() method checks for subjects in the `SubjectList` whose title 
+matches the `[SUBJECT_NAME]`, and if a subject matches, the subject will be passed as a parameter to the goToSubject() method. The goToSubject() method will then 
+have a loop that reads user inputs and parse these inputs to create new TopicCommand or TaskCommand classes to execute.
+
+The sequence diagram of accessing a `Subject` Maths is shown below.
+![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
+
+#### 4.8.2 Accessing a Topic
+You can access a topic by entering `topic [TOPIC_NAME]`. The topic needs to be a topic that already exists in the list, and you can 
+add the `Topic` into the `TopicList` of a `Subject` by using the `add [TOPIC_NAME]` feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
 
 ## 5. Logging <a name = "logging"> </a>
 We use [java.util.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/package-summary.html) 
