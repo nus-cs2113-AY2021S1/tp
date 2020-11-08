@@ -1,5 +1,6 @@
 package parser;
 
+import commands.Command;
 import commands.GoChapterCommand;
 import commands.GoCommand;
 import commands.GoModuleCommand;
@@ -15,7 +16,7 @@ import static common.Messages.MODULE;
 
 //@@author gua-guargia
 public class GoCommandParser {
-    public GoCommand parse(String commandArgs, String accessLevel)
+    public Command parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
         int moduleIndex;
         String type = "";

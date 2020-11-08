@@ -46,14 +46,14 @@ public class GoModuleCommand extends GoCommand {
             ModuleList modules = access.getAdmin().getModules();
             ArrayList<Module> allModules = modules.getAllModules();
             Module module = allModules.get(moduleIndex);
-            logger.info("Going into module: " + module.toString());
-            access.setModuleLevel(module.getModuleName());
             ArrayList<Chapter> chapters = storage.loadChapter(module.getModuleName());
             if (chapters.size() == 0) {
                 result = "This is a new module, you can try to add chapters inside!";
             }
+            access.setModuleLevel(module.getModuleName());
             module.setChapters(chapters);
             access.setModule(module);
+            logger.info("Going into module: " + module.toString());
             return result;
         } catch (IndexOutOfBoundsException e) {
             result = String.format(MESSAGE_INVALID_INDEX_RANGE, MODULE);

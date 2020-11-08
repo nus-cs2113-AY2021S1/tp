@@ -44,14 +44,14 @@ public class GoChapterCommand extends GoCommand {
             ChapterList chapters = access.getModule().getChapters();
             ArrayList<Chapter> allChapters = chapters.getAllChapters();
             Chapter chapter = allChapters.get(chapterIndex);
-            logger.info("Going into chapter: " + chapter.toString());
-            access.setChapterLevel(chapter.getChapterName());
             ArrayList<Card> allCards = storage.loadCard(access.getModuleLevel(), chapter.getChapterName());
             if (allCards.size() == 0) {
                 result = "This is a new chapter, you can try to add flashcards inside!";
             }
+            access.setChapterLevel(chapter.getChapterName());
             chapter.setCards(allCards);
             access.setChapter(chapter);
+            logger.info("Going into chapter: " + chapter.toString());
             return result;
         } catch (IndexOutOfBoundsException e) {
             result = String.format(MESSAGE_INVALID_INDEX_RANGE, CHAPTER);
