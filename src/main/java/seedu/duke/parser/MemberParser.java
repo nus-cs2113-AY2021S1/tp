@@ -24,10 +24,8 @@ public class MemberParser implements ExceptionsParser {
         }
         switch (action.toLowerCase()) {
         case ADD:
-            assert parameters.get("0") != null : "Invalid Input";
             return new AddMemberCommand(parameters, projectListManager);
         case DELETE:
-            assert parameters.get("0") != null : "Invalid Input";
             return new DeleteMemberCommand(parameters, projectListManager);
         default:
             throw new DukeException("Invalid action!");
