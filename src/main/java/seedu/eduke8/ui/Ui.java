@@ -2,7 +2,6 @@ package seedu.eduke8.ui;
 
 import seedu.eduke8.bookmark.BookmarkList;
 import seedu.eduke8.common.Displayable;
-import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.note.Note;
@@ -27,6 +26,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * Represents the UI class.
+ */
 public class Ui {
     private static final int LAST_OPTION = 4;
     private static final int CONVERSION_FROM_SECONDS_TO_MILLIS = 1000;
