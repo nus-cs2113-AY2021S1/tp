@@ -15,6 +15,7 @@ public class CategoryTest {
     private BookList bookList;
     private Quote quote1;
     private QuoteList quoteList;
+
     @BeforeEach
     public void setUp() {
         bookList = new BookList();
