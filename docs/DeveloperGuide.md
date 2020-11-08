@@ -190,8 +190,8 @@ retrieve the goal status for each entry and prints the results using the `printC
 The sequence diagram in Figure 7b below shows how the `ViewCommand` class can interact with the `User` class when the
 user keys in `view profile`.
  
- <p align="center"><img src="images/ViewProfileSequenceDiagram.png"></p>
- <p align="center">Figure 7b: Sequence diagram for <code>view profile</code> command</p>
+<p align="center"><img src="images/ViewProfileSequenceDiagram.png"></p>
+<p align="center">Figure 7b: Sequence diagram for <code>view profile</code> command</p>
 
 ### 4.4 Clear command
 
@@ -268,9 +268,9 @@ _Table 1: User stories_
 
 1. Initial launch
     1. Download the latest version of `Fitr` from [here](https://github.com/AY2021S1-CS2113T-W13-2/tp/releases).
-    1. Open Command Prompt / Terminal
-    1. Run the command java -jar {filename}.jar e.g., java -jar Fitr.jar (i.e., run the command in the same folder as the jar file).
-    1. If the setup is correct, you should see something like the below:
+    1. Open Command Prompt / Terminal.
+    1. Run the command `java -jar fitr.jar` (i.e., run the command in the same folder as the jar file).
+    1. If the setup is correct, you should see something like below:
        ``` 
         _______   __   __
        |    ___| |__| |  |_  .----.

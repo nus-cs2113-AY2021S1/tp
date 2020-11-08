@@ -29,6 +29,19 @@ return
 activate ":EditEntryCommand"
 ":EditEntryCommand" -> ":EditEntryCommand" ++ : editExercise()
 return
+
+":EditEntryCommand" -> "<<class>>\n:Ui" ++ : printCustomMessage()
+return
+
+":EditEntryCommand" -> ":StorageManager" ++ : writeExerciseList()
+return
+
+":EditEntryCommand" -> ":StorageManager" ++ : writeFoodList()
+return
+
+":EditEntryCommand" -> ":StorageManager" ++ : writeGoalList()
+return
+
 ":EditEntryCommand" --> ":Fitr"
 deactivate ":EditEntryCommand"
 'To position the delete symbol below activation bar
