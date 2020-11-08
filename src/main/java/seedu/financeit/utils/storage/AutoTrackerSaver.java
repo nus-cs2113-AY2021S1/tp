@@ -38,6 +38,13 @@ public class AutoTrackerSaver extends SaveHandler {
         RecurringTracker.getEntries().removeAllItems();
     }
 
+    /**
+     * This method obtains RecurringEntryList from RecurringTracker and use that to get a list of
+     * entries to be stored onto a text file from the default or specified location.
+     * @param paths Can be called with no param or 2 params depending on whether you wish to specify
+     *              a directory path and a file path or use the default paths.
+     * @throws IOException File creation may throw this exception if file path is invalid
+     */
     public void save(String... paths) throws IOException {
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);
@@ -56,6 +63,14 @@ public class AutoTrackerSaver extends SaveHandler {
         fileWriter.close();
     }
 
+    /**
+     * This method reads from default or specified text file and the contents are converted into
+     * the correct format to be parsed by parseInput and the resulting command packet is used to
+     * load each entry.
+     * @param paths Can be called with no param or 2 params depending on whether you wish to specify
+     *              a directory path and a file path or use the default paths.
+     * @throws IOException File creation may throw this exception if file path is invalid
+     */
     public void load(String... paths) throws IOException {
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);

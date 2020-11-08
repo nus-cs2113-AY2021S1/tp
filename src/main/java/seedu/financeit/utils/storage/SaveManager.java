@@ -66,6 +66,12 @@ public class SaveManager {
         }
     }
 
+    /**
+     * This method checks if the entered command is valid and adds the
+     * appropriate prompt to the status bar.
+     * @param packet packet containing parsed command from user
+     * @return If true, run the command, if false, report status to the user and don't run the command.
+     */
     private static boolean checkValidity(CommandPacket packet) {
         if (packet.getParam("/name") == null) {
             prompt = "Invalid Command";
@@ -116,6 +122,11 @@ public class SaveManager {
         RecurringTracker.getEntries().removeAllItems();
     }
 
+    /**
+     * This method prints a list of backup saves using the names provided
+     * in text file names.txt
+     * @param packet packet containing parsed command from user
+     */
     private static void listSaves(CommandPacket packet) {
         try {
             menu = false;
@@ -140,6 +151,13 @@ public class SaveManager {
         }
     }
 
+    /**
+     * This method creates a backup save in data/backup directory. This save consists of
+     * 3 text files ending with _gt, _mt, _at and an entry in the names.txt file. If entered
+     * name already exist, then the function overwrites the existing save, otherwise, new
+     * save will be created.
+     * @param packet packet containing parsed command from user
+     */
     public static void addSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");
@@ -167,6 +185,14 @@ public class SaveManager {
         }
     }
 
+    /**
+     * This method searches for a matching name entry in names.txt. Once found, it will
+     * use this name to access contents of 3 text files containing saved data for Goal
+     * Tracker, Manual Tracker and Auto Tracker respectively. The 3 text files in ./data/backup
+     * directory is subsequently copied to the main save found in ./data directory where it
+     * is then loaded using the load method.
+     * @param packet packet containing parsed command from user
+     */
     public static void loadSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");
@@ -224,6 +250,11 @@ public class SaveManager {
         ManualTrackerSaver.clear();
     }
 
+    /**
+     * This method deletes the given entry in names.txt as well as the save files
+     * associated with that name.
+     * @param packet packet containing parsed command from user
+     */
     public static void deleteSave(CommandPacket packet) {
         try {
             String name = packet.getParam("/name");

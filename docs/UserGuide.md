@@ -810,7 +810,7 @@ No. | Feature | Syntax |
 1.|Open Ledger|_ledger open /date {YYMMDD}_|
 2.|New Ledger|_ledger new /date {YYMMDD}_|
 3.|List Ledgers|_ledger list_|
-4.|Delete Ledgers|_ledger delete /date {YYMMDD}_|;
+4.|Delete Ledgers|_ledger delete /date {YYMMDD}_|
 5.|Exit to Main Menu|_exit_|
 
 ## Entry tracker
@@ -825,6 +825,7 @@ No. | Feature | Syntax |
 6.|Exit to Manual Tracker|_exit_|
 
 <!-- @@author bqxy -->
+
 ## FinanceTools
 
 No. | Feature | Syntax |
@@ -839,7 +840,8 @@ No. | Feature | Syntax |
 8.|Clear All Account Information|_clearinfo_|
 9.|Command and Calculation History|_history_|
 10.|Exit to Main Menu|_exit_|
- <!-- @@author -->
+
+<!-- @@author -->
 
 ## Goal Tracker
 

@@ -44,6 +44,13 @@ public class ManualTrackerSaver extends SaveHandler {
         ManualTracker.getLedgerList().removeAllItems();
     }
 
+    /**
+     * This method obtains ledger list from manual tracker and use this list to capture all objects
+     * in the list in String format and store them in ./data/saveMt.txt
+     * @param paths Can be called with no param or 2 params depending on whether you wish to specify
+     *              a directory path and a file path or use the default paths.
+     * @throws IOException File creation may throw this exception if file path is invalid
+     */
     public void save(String... paths) throws IOException {
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);
@@ -68,6 +75,14 @@ public class ManualTrackerSaver extends SaveHandler {
         fileWriter.close();
     }
 
+    /**
+     * This method reads from default or specified save file and rearrange the inputs from each line
+     * into the correct format to be parsed by parseInput(). parseInput() will provide command packet
+     * that is used to create each entry or ledger.
+     * @param paths Can be called with no param or 2 params depending on whether you wish to specify
+     *              a directory path and a file path or use the default paths.
+     * @throws IOException File creation may throw this exception if file path is invalid
+     */
     public void load(String... paths) throws IOException {
         Scanner scanner = null;
 
