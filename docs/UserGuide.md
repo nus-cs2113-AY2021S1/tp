@@ -1,26 +1,8 @@
 # User Guide
 
-## Introduction
-
-**_25HoursADay_** is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **_25HoursADay_** can 
-schedule your tasks and events faster than traditional GUI applications.
-
-## Foreword
-
-**_25HoursADay_** is targeted towards students from National University of Singapore (NUS). This user guide is designed 
-to provide documentation for potential users who will use **_25HoursADay_** on a day-to-day basis. This document will provide a 
-step-by-step guide to show you how to access following features of the application:
-
-1)	View available commands of the application
-2)	Add tasks and events to the application
-3)	View your personalized calendar and the items available
-4)	Search an item in the application
-5)	Prioritize your tasks and keep track of your progress
-
-After familiarizing with all the functionalities, you will definitely be able to better manage your day-to-day matters. Feeling excited? Let’s begin!
-
 ## Table of Contents
+* [Introduction](#introduction)
+* [Foreword](#foreword)
 * [Important Notes](#important-notes)
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -63,6 +45,26 @@ After familiarizing with all the functionalities, you will definitely be able to
     * [Exiting the application](#exiting-the-application)
 * [Frequently Asked Questions (FAQ)](#faq)
 * [Command summary](#command-summary)
+
+## Introduction
+
+**_25HoursADay_** is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **_25HoursADay_** can 
+schedule your tasks and events faster than traditional GUI applications.
+
+## Foreword
+
+**_25HoursADay_** is targeted towards students from National University of Singapore (NUS). This user guide is designed 
+to provide documentation for potential users who will use **_25HoursADay_** on a day-to-day basis. This document will provide a 
+step-by-step guide to show you how to access following features of the application:
+
+1)	View available commands of the application
+2)	Add tasks and events to the application
+3)	View your personalized calendar and the items available
+4)	Search an item in the application
+5)	Prioritize your tasks and keep track of your progress
+
+After familiarizing with all the functionalities, you will definitely be able to better manage your day-to-day matters. Feeling excited? Let’s begin!
 
 ## Important Notes
 
