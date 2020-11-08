@@ -59,10 +59,10 @@ public class OffCommand extends Command {
             }
         } catch (ApplianceNotFoundException e) {
             if (locationList.isLocationCreated(argument)) {
-                commandLogger.log(Level.WARNING, "Unable to Off: There are no Appliances in \"" + argument + "\".");
+                commandLogger.log(Level.WARNING, "There are no Appliances in \"" + argument + "\".");
                 return new CommandResult("There are no Appliances in \"" + argument + "\".");
             } else {
-                commandLogger.log(Level.WARNING, "Unable to Off: " + MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
+                commandLogger.log(Level.WARNING, MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
                 return new CommandResult(MESSAGE_APPLIANCE_OR_LOCATION_NOT_EXIST);
             }
         }
@@ -78,7 +78,7 @@ public class OffCommand extends Command {
         Appliance toOffAppliance = applianceList.getAppliance(toOffApplianceIndex);
         String outputResult = offAppliance(toOffAppliance, true);
         assert !outputResult.isEmpty() : "outputResult must contains String";
-        commandLogger.log(Level.INFO, "Appliance Off with output message: " + outputResult);
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 
@@ -89,7 +89,7 @@ public class OffCommand extends Command {
         offApplianceByLoop(toOffAppliance);
         String outputResult = "All Appliances in \"" + argument + "\" are turned off ";
         assert !outputResult.isEmpty() : "outputResult must contains String";
-        commandLogger.log(Level.INFO, "Location Off with output message: " + outputResult);
+        commandLogger.log(Level.INFO, outputResult);
         return new CommandResult(outputResult);
     }
 

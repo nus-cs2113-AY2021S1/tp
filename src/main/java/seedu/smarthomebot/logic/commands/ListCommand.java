@@ -69,13 +69,13 @@ public class ListCommand extends Command {
             commandLogger.log(Level.WARNING, "Unable to list: Empty Appliance List");
             return new CommandResult(MESSAGE_LIST_NO_APPLIANCES);
         } catch (LocationNotFoundException e) {
-            commandLogger.log(Level.WARNING, "Unable to list: Location: \"" + filteredLocation + "\" does not exist.");
+            commandLogger.log(Level.WARNING, "Location: \"" + filteredLocation + "\" does not exist.");
             return new CommandResult("Location: \"" + filteredLocation + "\" does not exist.");
         } catch (NoApplianceInLocationException e) {
-            commandLogger.log(Level.WARNING, "Unable to list: There is no Appliance in \"" + filteredLocation + "\".");
+            commandLogger.log(Level.WARNING, "There is no Appliance in \"" + filteredLocation + "\".");
             return new CommandResult("There is no Appliance in \"" + filteredLocation + "\".");
         } catch (EmptyLocationListException e) {
-            commandLogger.log(Level.WARNING, "Unable to list: Empty Location List");
+            commandLogger.log(Level.WARNING, MESSAGE_LIST_NO_LOCATIONS);
             return new CommandResult(MESSAGE_LIST_NO_LOCATIONS);
         }
     }
