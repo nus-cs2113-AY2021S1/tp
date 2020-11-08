@@ -46,6 +46,8 @@ In summary, the `UI` component,
 
 #### Implementation
 
+This feature and its associated command words is **only used during the initial setup of the application**. Any subsequent editing of the user information can be done using the [Edit user information feature](#edit-user-information-feature).
+
 **This feature utilises two commands words**
 
 * [`name`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#entering-username-name): Saves the user's name or nickname into the application. 
