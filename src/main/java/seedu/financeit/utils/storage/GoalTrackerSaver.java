@@ -37,6 +37,13 @@ public class GoalTrackerSaver extends SaveHandler {
         GoalTracker.getTotalGoalList().getGoal().clear();
     }
 
+    /**
+     * This method reads items in TotalGoaList onto a text file from the default or specified
+     * file path.
+     * @param paths Can be called with no param or 2 params depending on whether you wish to specify
+     *              a directory path and a file path or use the default paths.
+     * @throws IOException File creation may throw this exception if file path is invalid
+     */
     public void save(String... paths) throws IOException {
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);
@@ -61,6 +68,12 @@ public class GoalTrackerSaver extends SaveHandler {
         fileWriter.close();
     }
 
+    /**
+     * This method read from default or specified file and pass the contents into setGoals().
+     * @param paths Can be called with no param or 2 params depending on whether you wish to specify
+     *              a directory path and a file path or use the default paths.
+     * @throws IOException File creation may throw this exception if file path is invalid
+     */
     public void load(String... paths) throws IOException {
         if (paths.length == 2) {
             buildFile(paths[0], paths[1]);
