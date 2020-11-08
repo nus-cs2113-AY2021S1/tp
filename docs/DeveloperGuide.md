@@ -364,7 +364,7 @@ This project uses GitHub Actions for CI. The project comes with the necessary Gi
 Here are the stpes to create a new release after you have implemented new features.
 
 1. Update the version number in `Main.java`.
-1. Generate a fat JAR file using Gradle (i.e. `gradle shadow`).
+1. Generate a fat JAR file using Gradle (i.e. `gradlew shadow`).
 1. Tag the repo with the version number e.g: `V2.0`.
 1. [Create a new release using Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository).
 1. Upload the JAR file you created.
