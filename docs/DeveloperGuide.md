@@ -696,4 +696,3 @@ The terms listed in this glossary are in alphabetical order.
 1. Open a new terminal window and navigate to the same directory where the SCRUMptious.jar is located.
 1. Enter the command `java -jar SCRUMptious.jar` into the terminal window to launch the application. The application
  should now be running.
-1. 
