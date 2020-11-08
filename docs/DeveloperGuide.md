@@ -395,7 +395,7 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
 1. __Phase 2: Ledger Deletion__
     1. From ```ManualTracker```, call ```ledgerList.RemoveItemAtCurrIndex()``` to remove the ledger specified by the index set to modify earlier.
 
-#### <a name = table2/></a> Param Handling Behavior
+#### <a name = table2></a> Param Handling Behavior
     
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
