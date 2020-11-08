@@ -1,15 +1,12 @@
 package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
-import seedu.duke.constants.FluffleMessages;
 import seedu.duke.database.FileFunctions;
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
-import seedu.duke.ui.UI;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
@@ -38,12 +35,11 @@ import static seedu.duke.constants.FluffleMessages.TYPE_COMMAND_INSTRUCTION;
 import static seedu.duke.functions.CommandExecutor.executeCommand;
 import static seedu.duke.parsers.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
-import static seedu.duke.database.WritingsLoader.recordListToFile;
 
 
 public class WritingList {
 
-    public static ArrayList<Writings> writinglist = new ArrayList<>();
+    public static ArrayList<Writings> writingList = new ArrayList<>();
     //Used to clear all of writings when resetting database
     static int countWritings = 0;
     private static String topic;
@@ -52,44 +48,44 @@ public class WritingList {
     private static String type;
 
     public WritingList() {
-        writinglist = new ArrayList<>();
+        writingList = new ArrayList<>();
     }
 
     public int getSize() {
-        return writinglist.size();
+        return writingList.size();
     }
 
     public void add(Writings w) {
-        writinglist.add(w);
+        writingList.add(w);
         countWritings++;
     }
 
     public Writings get(int i) {
-        return writinglist.get(i);
+        return writingList.get(i);
     }
 
     public static void removeWriting(int i) throws FileEmptyException {
-        if (writinglist.size() == 0) {
+        if (writingList.size() == 0) {
             throw new FileEmptyException();
         } else {
-            assert (i <= writinglist.size() && i >= 0) : "Your item is out of bound";
-            writinglist.remove(i);
+            assert (i <= writingList.size() && i >= 0) : "Your item is out of bound";
+            writingList.remove(i);
             countWritings--;
         }
     }
 
     public static void removeID(int id) throws FileEmptyException, ItemNotFoundedException {
         int idExists = 0;
-        if (writinglist.size() == 0) {
+        if (writingList.size() == 0) {
             throw new FileEmptyException();
         } else {
-            for (int i = 0; i < writinglist.size(); i++) {
+            for (int i = 0; i < writingList.size(); i++) {
                 //Use "while" loop to clean out the same IDs
-                while (i < writinglist.size() && writinglist.get(i).getId() == id) {
-                    System.out.println("This writing: " + writinglist.get(i).getTitle() + " has been deleted");
-                    writinglist.remove(i);
+                while (i < writingList.size() && writingList.get(i).getId() == id) {
+                    System.out.println("This writing: " + writingList.get(i).getTitle() + " has been deleted");
+                    writingList.remove(i);
                     idExists = 1;
-                    System.out.println("You have " + writinglist.size() + " items remain");
+                    System.out.println("You have " + writingList.size() + " items remain");
                     countWritings--;
                 }
             }
@@ -103,7 +99,7 @@ public class WritingList {
 
     /** Get the number of writings available in the storage. */
     public static int getCountWritings() {
-        return writinglist.size();
+        return writingList.size();
     }
 
     /** Print the UI message along with number of writings. */
@@ -116,12 +112,12 @@ public class WritingList {
      *  Triggered when "stats" command is called.
      */
     public static void printWritings() {
-        if (writinglist.size() > 0) {
-            for (Writings w : writinglist) {
+        if (writingList.size() > 0) {
+            for (Writings w : writingList) {
                 w.printWritingsProperties();
-                if (w.getType().equals(POEM)) {
+                if (w.getType().equals("Poem")) {
                     w.printPoemProperties();
-                } else if (w.getType().equals(ESSAY)) {
+                } else if (w.getType().equals("Essay")) {
                     w.printEssayProperties();
                 }
             }
@@ -147,15 +143,14 @@ public class WritingList {
     }
 
     public static int getWritingSize() {
-        return writinglist.size();
+        return writingList.size();
     }
 
     /**
      * Operate when command "start" is called, embark the process the writing process.
      *
-     * @param writings the list of writings to be modified (in this case: added new item)
      */
-    public static void checkStart(WritingList writings) {
+    public static void checkStart() {
         Scanner scanner = new Scanner(System.in);
         String newUserInput = null;
         try {
@@ -165,7 +160,7 @@ public class WritingList {
                 newUserInput = getUserInput(scanner);
                 commandStartChecker = extractCommandType(newUserInput);
             }
-            executeCommand(commandStartChecker, newUserInput, writings);
+            executeCommand(commandStartChecker, newUserInput);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -225,12 +220,12 @@ public class WritingList {
      * Clear all data stored in writing.txt.
      * To be associated with command "reset writing".
      */
-    public static void clearAll(WritingList writings) {
-        writinglist.clear();
+    public static void clearAll() {
+        writingList.clear();
         System.out.println(CLEAR_DATA_MESSAGE);
         //Reset countWritings
-        File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
-        recordListToFile(f, writings);
+        //File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);
+        //recordListToFile(f, writings);
         countWritings = 0;
     }
 
@@ -238,7 +233,7 @@ public class WritingList {
     public static void addPoem(String title, int id, String topic, String content, String author, LocalDate reminder) {
         assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
         Poem toBeAdded = new Poem(title, id, topic, content, author, reminder);
-        writinglist.add(toBeAdded);
+        writingList.add(toBeAdded);
         System.out.println("This Poem, " + title +  " has been added");
         countWritings++;
     }
@@ -247,7 +242,7 @@ public class WritingList {
     public static void addEssay(String title, int id, String topic, String content, String author, LocalDate reminder) {
         assert (id <= MAX_NUM_WRITINGS && id >= 0) : ASSERTION_ID_ERROR;
         Essay toBeAdded = new Essay(title, id, topic, content, author, reminder);
-        writinglist.add(toBeAdded);
+        writingList.add(toBeAdded);
         System.out.println("This Essay, " + title +  " has been added");
         countWritings++;
     }

@@ -15,20 +15,20 @@ public class WritingListTest {
 
     private static void initializeTestDatabase() {
         LocalDate date = LocalDate.parse("28/10/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        WritingList.addPoem("fantasy", 1, "thih", "sdfa", "jdkfa", date);
-        WritingList.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
-        WritingList.addPoem("fantasy", 20, "thih", "sdfa", "jdkfa", date);
-        WritingList.addEssay("fantasy", 23, "thih", "sdfa", "jdkfa", date);
-        WritingList.addEssay("fantasy", 13, "thih", "sdfa", "jdkfa", date);
+        writings.addPoem("fantasy", 1, "thih", "sdfa", "jdkfa", date);
+        writings.addPoem("fantasy", 12, "thih", "sdfa", "jdkfa", date);
+        writings.addPoem("fantasy", 20, "thih", "sdfa", "jdkfa", date);
+        writings.addEssay("fantasy", 23, "thih", "sdfa", "jdkfa", date);
+        writings.addEssay("fantasy", 13, "thih", "sdfa", "jdkfa", date);
     }
 
     @Test
     public void clearAll_getTheNumberOfItemsAfterDeleted() {
-        WritingList.clearAll(writings);
+        writings.clearAll();
         initializeTestDatabase();
-        assertEquals(5, WritingList.getWritingSize());
-        WritingList.clearAll(writings);
-        assertEquals(0, WritingList.getWritingSize());
+        assertEquals(5, writings.getWritingSize());
+        writings.clearAll();
+        assertEquals(0, writings.getWritingSize());
     }
 }
 

@@ -1,6 +1,5 @@
 package seedu.duke.functions;
 
-import seedu.duke.bunny.Bunny;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
@@ -28,11 +27,15 @@ import seedu.duke.reminder.WritingReminder;
 import seedu.duke.ui.UI;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
+import seedu.duke.writing.Writings;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.wordlist.WordList.wordList;
+import static seedu.duke.Duke.writings;
+
 import static seedu.duke.database.BunnySaver.saveAllBunny;
 import static seedu.duke.database.WordsSaver.saveWordsToFile;
 import static seedu.duke.filters.BunnyFilter.filterBunny;
@@ -42,7 +45,7 @@ import static seedu.duke.ui.UI.printHelpMessage;
 
 
 public class CommandExecutor {
-    public static void executeCommand(CommandChecker commandChecker, String userInput, WritingList writings) {
+    public static void executeCommand(CommandChecker commandChecker, String userInput) {
         switch (commandChecker) {
         case HELP:
             String[] command = userInput.split(" ", 2);
@@ -189,7 +192,7 @@ public class CommandExecutor {
             WritingList.printWritings();
             break;
         case START:
-            WritingList.checkStart(writings);
+            WritingList.checkStart();
             break;
         case TYPE:
             WritingList.checkType();
@@ -198,7 +201,7 @@ public class CommandExecutor {
             WritingList.printWritingSize();
             break;
         case RESET_WRITINGS:
-            WritingList.clearAll(writings);
+            WritingList.clearAll();
             break;
         case RESET_WORDS:
             WordList.clearAllWords();

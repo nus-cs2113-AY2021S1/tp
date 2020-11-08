@@ -84,7 +84,7 @@ public class Essay extends Writings {
 
     @Override
     public void printEssayProperties() {
-        System.out.println("This essay has " + getNumberOfSentences()
-                + " and " + getNumberOfWords());
+        System.out.println("This essay has " + getNumberOfSentences() + " sentence(s)"
+                + " and " + getNumberOfWords() + " word(s)");
     }
 }

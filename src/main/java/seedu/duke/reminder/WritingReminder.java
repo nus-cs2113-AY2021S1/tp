@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import static seedu.duke.constants.InputFormat.INPUT_DATE_FORMAT;
 
 public class WritingReminder {
-    private static ArrayList<Writings> writings = WritingList.writinglist;
+    private static ArrayList<Writings> writings = WritingList.writingList;
 
     public static void printReminderOnADay(String command) {
         String[] words = command.split(" ", 2);

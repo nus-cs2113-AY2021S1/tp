@@ -60,6 +60,10 @@ public class WritingsLoader {
         try {
             while (s.hasNext()) {
                 String currentLine = s.nextLine();
+
+                // skip the first two line for the information of total number of writings in the list
+                currentLine = s.nextLine();
+                currentLine = s.nextLine();
                 //Reset the content to blank
                 content = "";
                 while (!currentLine.equals(WRITING_COMPONENT_DIVIDER)) {
@@ -141,6 +145,8 @@ public class WritingsLoader {
      */
     private static void recordFile(File f, WritingList savedWritings) throws IOException {
         FileWriter fw = new FileWriter(f);
+        fw.write("There is/are currently " + savedWritings.getSize() + " writing(s) in our database\n"
+                + WRITING_COMPONENT_DIVIDER + "\n");
         for (int i = 0; i < WritingList.getCountWritings(); i++) {
             fw.write("*id: " + savedWritings.get(i).getId() + "\n"
                     + "*Author: " + savedWritings.get(i).getAuthor().getName() + "\n"

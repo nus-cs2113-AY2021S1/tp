@@ -67,8 +67,8 @@ public class Poem extends Writings {
 
     @Override
     public void printPoemProperties() {
-        System.out.println("This poem has " + getNumberOfLines()
-                + " and " + getNumberOfWords());
+        System.out.println("This poem has " + getNumberOfLines() + " line(s)"
+                + " and " + getNumberOfWords() + " word(s)");
     }
 
     @Override
