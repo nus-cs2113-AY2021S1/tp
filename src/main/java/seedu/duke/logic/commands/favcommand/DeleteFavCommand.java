@@ -23,6 +23,7 @@ public class DeleteFavCommand extends Command {
             throw new CustomException(ExceptionType.NOT_A_NUMBER);
         }
         this.index = indexNum;
+        super.isValid = false;
     }
 
     @Override
