@@ -326,7 +326,7 @@ differ if you have a different task stored in the task index number 1.
 
 You may delete any calendar item you have added wrongly or any items that have become obsolete. It is advisable
  for you to use this feature frequently to keep your task and event lists uncluttered!
- ![warning_cal_delete](images/warning_cal_delete.PNG)
+ ![warning_cal_delete](images/warning_cal_delete.png)
 
 #### Deleting a task:
 
