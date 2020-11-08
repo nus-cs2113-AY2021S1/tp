@@ -97,10 +97,12 @@ Words that are highlighted in grey, in upper case and are surrounded by square b
 ## 2. Quick Start
 
 ### 2.1 System Requirements
-To run Scheduler--;, your computer must meet these minimum system requirements 
+To run Scheduler--;, your computer must meet these minimum system requirements:
 
 - Operating System: Windows 7 and above, Mac OS X or Linux 
 - Java 11 installed on computer 
+
+You can install version 11 of Java from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 
 ### 2.2 Setup Instructions
 
