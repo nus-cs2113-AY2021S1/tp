@@ -9,7 +9,7 @@ box Ui UI_COLOR_T1
 participant ":Ui" as Ui UI_COLOR
 end box
 
-mainframe "sd chapter is not due for revision"
+mainframe sd chapter is not due for revision
 opt chapter not due
     ReviseCommand -> ReviseCommand : promptNotDue(ui, toRevise, scanner)
     activate ReviseCommand
