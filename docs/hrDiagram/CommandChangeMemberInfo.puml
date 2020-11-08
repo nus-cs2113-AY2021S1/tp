@@ -3,11 +3,11 @@
  -> ":CommandChangeMemberInfo": execute()
 activate ":CommandChangeMemberInfo"
 
-":CommandChangeMemberInfo" -> ":MemberList" : findMemberByName()
+":CommandChangeMemberInfo" -> ":MemberList" : findMemberByName(memberName)
 activate ":MemberList"
 ":MemberList" --> ":CommandChangeMemberInfo"
 deactivate ":MemberList"
-":CommandChangeMemberInfo" -> ":MemberList" : changeMemberInfo()
+":CommandChangeMemberInfo" -> ":MemberList" : changeMemberInfo(m, newPhone, newEmail, newRole)
 activate ":MemberList"
 ":MemberList" -> ":Member" : toString()
 activate ":Member"

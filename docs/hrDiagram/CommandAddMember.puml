@@ -3,7 +3,7 @@
 
 
 activate ":CommandAddMember"
-":CommandAddMember" -> ":MemberList" : addToList()
+":CommandAddMember" -> ":MemberList" : addToList(m)
 activate ":MemberList"
 ":MemberList" -> ":Member": add()
 activate ":Member"
