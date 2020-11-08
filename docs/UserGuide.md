@@ -204,11 +204,18 @@ Now you have learnt how to create, edit and delete the module deck, let's move t
 * Kaji does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
 
 ##### Example: 
-For instance, 
+In this example, you are going to access the module `CS2113T` that you have created in the previous sections.
+Below are steps of using this `go` command:
+* Step 1: Uses `list` command to check the index of the module that you would like to access.
 ![Go Module 1](UG_Images/goModule1.PNG)
+* Step 2: In this example, the module you would like to access is `CS2113T` and its index is `2` as shown as the diagram below.
 ![Go Module 2](UG_Images/goModule2.PNG)
+* Step 3: You can type `go 2` to access this module.
 ![Go Module 3](UG_Images/goModule3.PNG)
+* Step 4: As shown below, you are now 
 ![Go Module 4](UG_Images/goModule4.PNG)
+* Step 5: You may double check your access using the command prompt directory displayed on top of `Enter command here:`. As shown as the diagram, your current access directory is under `Admin/CS2113T`.
+![Go Module 5](UG_Images/goModule5.PNG)
 
 ### 3.2. Module level
 
@@ -225,10 +232,15 @@ You are now at the module level! This command allows you to create a new chapter
 * Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
 
 ##### Example 1: 
-For instance, 
+In this example, you are going to add a new chapter called `Chapter 1`.
+Below are steps of using this `add` command:
+* Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`.
 ![Add Chapter 1](UG_Images/addChapter1.PNG)
+* Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses!
 ![Add Chapter 2](UG_Images/addChapter2.PNG)
+* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji.
 ![Add Chapter 3](UG_Images/addChapter3.PNG)
+* Step 4: You have just created a new chapter! Good Job!
 ![Add Chapter 4](UG_Images/addChapter4.PNG)
 
 #### 3.2.2. Listing chapters available: `list`
@@ -521,7 +533,6 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 
 ##### Format: `showrate`
 
-
 ##### Key Pointers:
 * This command is only accessible in the chapter level. You will get an error message if you are in the wrong access level.
 * Only overall performance of your current chapter level will be computed.
@@ -533,7 +544,7 @@ For instance, you would like to check your overall performance after completing 
 Below are steps of using this `showrate` command.
 * Step 1: Type "showrate" into the command prompt while you are in a chapter level.
 ![showrate 1](UG_Images/showrate1.PNG)
-* Step 2: Kaji calculates the percentage of card in different master level (i.e. <easy>, <medium>, <hard>, <cannot answer>).
+* Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
 ![showrate 2](UG_Images/showrate2.PNG)
 
 ### 3.4. General
