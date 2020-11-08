@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
@@ -14,6 +15,7 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Command to repeat task.
@@ -26,6 +28,7 @@ public class RepeatCommand extends Command {
     private static final String COMMANDTYPE_ADD = "add";
     private static final String COMMANDTYPE_ERROR = "error";
     private String commandType;
+    private static Logger logger = EventLogger.getEventLogger();
     
 
     /**
@@ -69,13 +72,16 @@ public class RepeatCommand extends Command {
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].trim();
         }
+        logger.fine("Arguments for Repeat processed");
         switch (words.length) {
         case 2:
+            logger.fine("List Repeat command initiated");
             words[0] = formatListName(words[0]);
             isValidNumber(words[1]);
             input = String.join(" ", words);
             return new RepeatCommand(input, COMMANDTYPE_LIST);
         case 4:
+            logger.fine("Add Repeat command initiated");
             words[0] = formatListName(words[0]);
             isValidNumber(words[1]);
             words[2] = words[2].toUpperCase();
@@ -109,6 +115,7 @@ public class RepeatCommand extends Command {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
+            logger.warning("Number provided by user was not in numerical format");
             throw new WrongNumberFormatException("Numbers must be in numerical format");
         }
     }
@@ -120,11 +127,13 @@ public class RepeatCommand extends Command {
      * @param ui   User Interface class for printing on screens
      */
     private void executeList(UserData data, Ui ui) throws DukeException {
+        logger.fine("Begin executeList in Repeat");
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
         int index = Integer.parseInt(words[1]) - 1;
         Event repeatEvent = eventList.getEventByIndex(index);
         if (repeatEvent.getRepeatEventList() == null) {
+            logger.warning("Event has no repeated stuff to list out");
             throw new MissingRepeatListException();
         }
         ui.printRepeatList(repeatEvent);
@@ -139,12 +148,14 @@ public class RepeatCommand extends Command {
      */
 
     private void executeAdd(UserData data, Ui ui, Storage storage) throws DukeException {
+        logger.fine("Begin executeAdd in Repeat");
         String[] words = command.split(" ");
         EventList eventList = data.getEventList(words[0]);
         int index = Integer.parseInt(words[1]) - 1;
         Event eventToRepeat = eventList.getEventByIndex(index);
         LocalDate startDate = eventToRepeat.getDate();
         if (startDate == null) {
+            logger.warning("User provided event had no deadline");
             throw new MissingDeadlineRepeatException();
         }
         String repeatType = words[2];
@@ -158,14 +169,18 @@ public class RepeatCommand extends Command {
         ArrayList<Event> repeatEventList = new ArrayList<>();
         for (int i = 1; i <= count; i++) {
             LocalDate repeatDate;
+            logger.fine("Repeat repetition number" + Integer.toString(i));
             switch (repeatType) {
             case MONTHLY:
+                logger.fine("Event date incremented monthly");
                 repeatDate = startDate.plusMonths(i);
                 break;
             case WEEKLY:
+                logger.fine("Event date incremented weekly");
                 repeatDate = startDate.plusWeeks(i);
                 break;
             case DAILY:
+                logger.fine("Event date incremented daily");
                 repeatDate = startDate.plusDays(i);
                 break;
             default:
@@ -176,16 +191,22 @@ public class RepeatCommand extends Command {
             Event repeatEvent;
             try {
                 repeatEvent = eventToRepeat.clone();
+                logger.fine("Event for " + Integer.toString(i) + " has been cloned");
             } catch (CloneNotSupportedException e) {
+                logger.warning("Event cannot be cloned");
                 throw new DukeException("Cant clone");
             }
             repeatEvent.setDate(repeatDate);
+            logger.fine("Cloned event incremented date set");
             repeatEventList.add(repeatEvent);
+            logger.fine("Cloned event added to repeat event list");
         }
         eventToRepeat.setRepeatEventList(repeatEventList);
+        logger.fine("All cloned event list stored in original event");
     }
 
     private void executeNull(UserData data, Ui ui, Storage storage) {
         //do nothing
+        logger.warning("There was an error in the user input. Command does nothing");
     }
 }
