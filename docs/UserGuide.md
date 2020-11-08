@@ -955,11 +955,6 @@ certain time limit. There are two types of quizzes :
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
 You have 2 minutes to complete the quiz.
 
-Format: `quiz NAMEOFSUBJECT`<br>
-Example: `quiz Maths`
-
-Expected output: `You are about to begin the quiz for maths.You have 2 minutes.`
-
 ##### Topic quiz
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
 You have 1 minute to complete the quiz.
@@ -1035,7 +1030,7 @@ The data is stored under the `data/` folder in the same folder where you run the
 
 Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `CS2113T` subject and a `Java` topic under it, a
-`CS2113T/` folder will be created under the `data/` folder and an `Java` folder will be created under the `Maths/`
+`CS2113T/` folder will be created under the `data/` folder and an `Java` folder will be created under the `CS2113T/`
 folder, as shown in figure 3.4.1 below. 
 
 <pre>
@@ -1218,7 +1213,7 @@ ____________________________________________________________
 Adding the following deadline by `deadline project /by 18:00 07-11-2020` and using the `list` command would yield this output.
 <pre><code>
 ____________________________________________________________
-Here are the tasks(s) under maths: 
+Here are the tasks(s) under CS2113T: 
 1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
 2. [D][✘] project (by: 6:00 PM 7 Nov 2020)
 3. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
