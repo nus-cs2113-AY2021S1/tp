@@ -20,12 +20,10 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     * `InterfaceManager`
     * `SystemException`
     * `PrefixSyntax`
-    
 1. Completed the following features and test code for
     * [`add-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/31) Added functionality to add note into the notebook with option to add tags, pinned note and archived note.
     * [`delete-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/32) Functionality applies to delete note from the notebook by an index and title of the note.
     * [`edit-n`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121) Functionality applies to edit any note content, title and tags stored in the notebook.
-    
 1. Implemented the following classes
     * `ParserAddNoteCommand`
     * `AddNoteCommand`
@@ -33,22 +31,15 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     * `DeleteNoteCommand`
     * `ParserEditNoteCommand`
     * `EditNoteCommand`
-    
 1. Implemented test code for the following classes
     * [`AddNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
     * [`DeleteNoteCommandTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
     * [`ParserManagerTest`](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61)
-    
 1. Maintained Notebook and Note classes.
-    
 1. Created inputContent() function for `add-n` and `edit-n` in `Parser`.
-
 1. Added formatNote method into the Formatter class.
-    
 1. Implemented prefix handling method used in all Parser classes with Jun Xiang. Prefix are able to be called in any order.
-    
 1. Set up demo commands and bug testing for v1.0 and v2.1.
-
 1. Edited v1.0 and v2.1 demo videos.
 
 ### Enhancements to existing features
@@ -66,11 +57,10 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ### Contributions to Developer Guide
 1. Maintain Commands section on:
     * [AddNoteCommand](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/109)
-    
 1. [Notebook](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/128)
 
 ### Community
-- Reviewed some of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the program
+- Reviewed some of the PRs to ensure the Classes and functions follow the project architecture as well code logic of the program.
 [#29](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/29)
 [#47](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47)
 [#51](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/51)

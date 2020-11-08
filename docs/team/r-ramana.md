@@ -13,7 +13,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 - Documentation: Responsible for the quality of various project documents.
 - Integration: Worked with Jun Xiang for the versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 - Scheduling and Tracking: In charge of defining, assigning, and tracking project tasks.
-- In charge of `list-n`,`archive-n`, `unarchive-n`, `find-n`, of the code: In charge of the code that deals with lsiting, archiving/unarchiving, and finding notes.
+- In charge of `list-n`,`archive-n`, `unarchive-n`, `find-n`, of the code: In charge of the code that deals with listing, archiving/unarchiving, and finding notes.
 
 ## Summary of Contributions
 ### Features implemented
@@ -35,7 +35,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     - `unarchive-n`
         - Allows the user to unarchive a note in an event the user wants to view/make changes to such a note.
         - Allows a convenient way for the user to sort notes by order of importance during a particular time in point.
-1. In the `Notebook` class, the following methods were created
+1. In the `Notebook` class, the following methods were created:
     - `archivedNotes`
     - `unarchivedNotes`
     - `getArchivedNotes`
@@ -45,7 +45,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     - `getPinnedNotes`
     - `getUnpinnedNotes`
     - `findNotes`
-1. In the `Note` class, the following methods were created
+1. In the `Note` class, the following methods were created:
     - `toggleArchived`
     - `getIsArchived`
     - `getPinned`
@@ -63,12 +63,12 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 1. Maintained Issues and Reviewed almost all PRs alongside Jun Xiang.
 1. Updating of User/Developer documents that are not feature specific.
 1. Set up [PERT Chart](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert).
-1. Set up and maintained [Gantt Chart]https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert.
+1. Set up and maintained [Gantt Chart](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert).
 1. Created a [Development Practices Document](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md).
 
 ### Contributions to User Guide
 Created the first draft of the [User Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md) and provided a template for the rest to follow. Also in charge of the overall formatting for the User Guide.
-Filled up the following(https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89):
+Filled up the following:
 1. [Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
 1. [Quick Start](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
 1. [Initial draft of the features](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), including description and example codes
@@ -87,5 +87,5 @@ Filled up the following:
 1. Initial [manual testing draft](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/119)
 
 ### Community
-- [PRs reviewed](https://github.com/AY2021S1-CS2113-T13-1/tp/pulls?page=3&q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me) (with non-trivial review comments): [#33](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#36](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/36), [#37](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37), [#40](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/40), [#45](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/45), [#46](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/46), [#47](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47), [#49](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/49), [#52](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/52), [#53](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/53), [#58](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/58), [#61](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [#65](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/65), [#83](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/83), [#88](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88), [#104](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/104), [#107](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/107), [#108](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/108), [#111](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [#114](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#116](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#117](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/114), [#120](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/120), [#121](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121), [#126](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#177](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#180](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#182](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/126), [#189](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/189), [#192](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/192), [#195](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/195), [#196](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/196), [#203](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/203).
+- [PRs reviewed](https://github.com/AY2021S1-CS2113-T13-1/tp/pulls?q=is%3Apr+is%3Aclosed) (with non-trivial review comments): [#33](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#36](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/36), [#37](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37), [#40](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/40), [#45](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/45), [#46](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/46), [#47](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/47), [#49](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/49), [#52](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/52), [#53](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/53), [#58](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/58), [#61](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/61), [#65](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/65), [#83](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/83), [#88](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/88), [#104](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/104), [#107](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/107), [#108](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/108), [#111](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/111), [#114](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#116](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#117](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/114), [#120](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/120), [#121](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/121), [#126](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#177](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#180](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/33), [#182](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/126), [#189](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/189), [#192](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/192), [#195](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/195), [#196](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/196), [#203](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/203), [#205](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/205), [#207](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/207), [#213](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/213).
     - [Comment History](https://nus-cs2113-ay2021s1.github.io/dashboards/contents/tp-comments.html)
