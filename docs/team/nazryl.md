@@ -1,6 +1,6 @@
 ---
 layout : page
-title : Nazryl - Project Portfolio Page
+title : Nazryl Bin Khairil Idham Lim - Project Portfolio Page
 ---
 
 ## Overview
