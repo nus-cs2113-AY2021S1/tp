@@ -176,7 +176,7 @@ public class Messages {
             + "     \"list tasks c/CATEGORY\"\n"
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
-            + "     \"list books\""
+            + "     \"list books\"\n"
             + "     \"list expenses\"";
     public static final String EXCEPTION_INVALID_FIND_COMMAND = "~Error~ Please input a valid find command "
             + "using the format: \n\n"

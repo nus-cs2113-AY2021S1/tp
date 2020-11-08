@@ -58,7 +58,9 @@ public class Model {
         }
     }
 
-    // @@author
+    /**
+     * Loads the lists from file.
+     */
     public void load() {
         boolean errorMessage = false;
         try {
@@ -103,6 +105,12 @@ public class Model {
         }
     }
 
+    // @@author iamchenjiajun
+    /**
+     * Saves the list from file.
+     *
+     * @throws DukeException If there is a problem with the saving.
+     */
     public void save() throws DukeException {
         storage.save(listMap.get(ListType.TASK_LIST), Storage.TASK_STORAGE_FILEPATH);
         storage.save(listMap.get(ListType.BOOK_LIST), Storage.BOOK_STORAGE_FILEPATH);
