@@ -1,7 +1,5 @@
 package seedu.duke.event;
 
-import seedu.duke.exception.DukeException;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -40,18 +38,38 @@ public abstract class Event implements Cloneable {
         this.description = description;
     }
 
+    /**
+     * Sets event's date.
+     *
+     * @param date of event.
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Sets event's time.
+     *
+     * @param time of event.
+     */
     public void setTime(LocalTime time) {
         this.time = time;
     }
 
+    /**
+     * Sets event's repeatType.
+     *
+     * @param repeatType of event.
+     */
     public void setRepeatType(String repeatType) {
         this.repeatType = repeatType;
     }
 
+    /**
+     * Sets event's repeatEventList.
+     *
+     * @param repeatEventList to set to.
+     */
     public void setRepeatEventList(ArrayList<Event> repeatEventList) {
         this.repeatEventList = repeatEventList;
     }
@@ -72,6 +90,7 @@ public abstract class Event implements Cloneable {
 
     /**
      * Set notes for event.
+     *
      * @param notes for event.
      */
     public void setNotes(ArrayList<String> notes) {
@@ -87,7 +106,11 @@ public abstract class Event implements Cloneable {
         return (isDone) ? "O" : "X";
     }
 
-
+    /**
+     * Returns the event's description.
+     *
+     * @return event's description.
+     */
     public String getDescription() {
         return this.description;
     }
@@ -110,10 +133,20 @@ public abstract class Event implements Cloneable {
         return this.time;
     }
 
+    /**
+     * Returns an ArrayList of Event containing the Events that are repeated from this Event.
+     *
+     * @return RepeatEventList as an ArrayList of Event.
+     */
     public ArrayList<Event> getRepeatEventList() {
         return repeatEventList;
     }
 
+    /**
+     * Returns the repeatType of the event.
+     *
+     * @return repeatType of event.
+     */
     public String getRepeatType() {
         if (repeatType == null) {
             return null;
@@ -122,6 +155,11 @@ public abstract class Event implements Cloneable {
         }
     }
 
+    /**
+     * Returns the repeatCount of the event.
+     *
+     * @return repeatCount of event.
+     */
     public int getRepeatCount() {
         if (repeatEventList == null) {
             return 0;
@@ -131,6 +169,7 @@ public abstract class Event implements Cloneable {
 
     /**
      * Get notes for event.
+     *
      * @return list of notes.
      */
     public ArrayList<String> getNotes() {
@@ -147,6 +186,11 @@ public abstract class Event implements Cloneable {
         return "[" + getStatus() + "] " + getDescription();
     }
 
+    /**
+     * Returns a String representation of the event details formatted for calendar output.
+     *
+     * @return String representation of event in calendar format.
+     */
     public String toCalendarString() {
         return String.format("%s | ", time.format(DateTimeFormatter.ofPattern("h:mm a")))
                 + String.format("%s | ", getStatus())

@@ -44,6 +44,12 @@ public class ListCommand extends Command {
         }
     }
 
+    /**
+     * Static parser for list command creation.
+     *
+     * @param input user input.
+     * @return ListCommand with input formatted.
+     */
     public static Command parse(String input) {
         if (input.isBlank()) {
             return new ListCommand(null);

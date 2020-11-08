@@ -1,10 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DateErrorException;
-import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidListException;
+import seedu.duke.exception.InvalidTimePeriodException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.TryRegularParserException;
@@ -19,9 +20,6 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-
-
-import seedu.duke.data.UserData;
 
 import static seedu.duke.parser.DateTimeParser.timeParser;
 
@@ -45,15 +43,16 @@ public class CheckCommand extends Command {
      * @param data    object of UserData class containing user's data.
      * @param ui      containing the responses to print.
      * @param storage with the save file path to write to.
-     * @throws MissingSemicolonException if the input does not contain any semicolons to separate input fields.
+     * @throws MissingSemicolonException if the input does not contain any semicolons to separate input fields
      * @throws DateErrorException the date is not input in a valid format
      * @throws TimeErrorException the time is not input in a valid format
-     * @throws InvalidListException the event list indicated is not valid
+     * @throws InvalidTimePeriodException the start of the time period is after the end
+     * @throws InvalidListException the event list indicated is not valid (should not be thrown in normal operation)
      * @throws WrongNumberOfArgumentsException if insufficient fields are given after the "check" keyword
      */
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) throws MissingSemicolonException,
-            DateErrorException, TimeErrorException, InvalidListException, WrongNumberOfArgumentsException {
+    public void execute(UserData data, Ui ui, Storage storage) throws MissingSemicolonException, DateErrorException,
+            TimeErrorException, InvalidTimePeriodException, InvalidListException, WrongNumberOfArgumentsException  {
         if (!command.contains(";")) {
             throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
         }
@@ -71,6 +70,12 @@ public class CheckCommand extends Command {
             assert startTime != null : "null time read for startTime";
             assert endTime != null : "null time read for endTime";
 
+            boolean isTimePeriodValid = verifyValidStartEndDateTime(startDate, endDate, startTime, endTime);
+
+            if (!isTimePeriodValid) {
+                throw new InvalidTimePeriodException("The start of the time period should be earlier than the end.");
+            }
+
             ArrayList<Event> eventsInTimeRange = new ArrayList<>();
             String[] eventTypes = new String[]{"Personal", "Timetable", "Zoom"};
             for (String type: eventTypes) {
@@ -80,8 +85,9 @@ public class CheckCommand extends Command {
             EventList coinciding = new EventList("coinciding", eventsInTimeRange);
 
             ui.printList(coinciding);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new WrongNumberOfArgumentsException("Insufficient fields provided to check events.");
+        } catch (ArrayIndexOutOfBoundsException e) { // if datesAndTime[x] is unable to be accessed
+            throw new WrongNumberOfArgumentsException("Insufficient fields provided to check events. "
+                    + "Remember to put a semicolon even for blank fields.");
         }
     }
 
@@ -93,8 +99,8 @@ public class CheckCommand extends Command {
      * @throws DateErrorException if stringDate does not correspond to a valid date format
      */
     private LocalDate getDate(String stringDate) throws DateErrorException {
-
-        String[] dateFields = stringDate.replace("-","/").split("/");
+        stringDate = stringDate.replace("-","/");
+        String[] dateFields = stringDate.split("/");
 
         LocalDate date;
         LocalDate currentDate = LocalDate.now();
@@ -120,10 +126,13 @@ public class CheckCommand extends Command {
                 date = LocalDate.parse(stringDate, dayMonthYearFormat);
                 return date;
             default:
-                throw new DateErrorException("Too many fields given for the date!");
+                throw new DateErrorException("Too many fields given for the date!" + System.lineSeparator()
+                        + "D/M/YYYY is the longest date format accepted.");
             }
         } catch (DateTimeParseException e) {
-            throw new DateErrorException("Something is wrong with the date!");
+            throw new DateErrorException("Something is wrong with the date!" + System.lineSeparator()
+                    + "The accepted formats are: d/m/yyyy, m/yyyy or yyyy. yyyy can be shortened to yy."
+                    + System.lineSeparator() + "Dashes may be used in place of slashes.");
         }
     }
 
@@ -153,7 +162,7 @@ public class CheckCommand extends Command {
                     time = timeParser(givenTwelveHour + ":00 " + amPmIndicator); // default to minute 00
                     return time;
                 } else {
-                    throw new TryRegularParserException("hh a format time requires hours between 1-12.");
+                    throw new TryRegularParserException("12 hour format (h) requires hours between 1-12.");
                 }
             } else if (stringTimeArray.length == 1) { // 24 hour format HH
                 int givenTwentyFourHour = Integer.parseInt(stringTimeArray[0]);
@@ -161,16 +170,46 @@ public class CheckCommand extends Command {
                     time = timeParser(givenTwentyFourHour + ":00"); // default to minute 00
                     return time;
                 } else {
-                    throw new TryRegularParserException("HH format time requires hours between 0-23.");
+                    throw new TryRegularParserException("HH format time requires hours between 0-24.");
                 }
             } else {
-                throw new TimeErrorException("Something is wrong with the time!");
+                throw new TimeErrorException("Something is wrong with the time!" + System.lineSeparator()
+                        + "The accepted formats are:" + System.lineSeparator()
+                        + "(12 hour) hh:mm am/pm, hhmm am/pm, hh am/pm or " + System.lineSeparator()
+                        + "(24 hour) HH:mm, HHmm, HH.");
             }
         } catch (NumberFormatException | TryRegularParserException e) {
             // if hh:mm, HH:mm or other invalid non integers is given
             time = timeParser(stringTime); // exception will be thrown if invalid non-integer is given
             return time;
         }
+    }
+
+    /**
+     * Checks to make sure the start of the time period is not after the end.
+     *
+     * @param startDate the start date of the time period
+     * @param endDate the end date of the time period
+     * @param startTime the start time of the time period
+     * @param endTime the end time of the time period
+     * @return boolean showing if the time period is valid i.e. the start is before the end
+     */
+    private boolean verifyValidStartEndDateTime(LocalDate startDate, LocalDate endDate,
+                                                LocalTime startTime, LocalTime endTime) {
+        boolean isStartAndEndValid;
+        boolean isStartBeforeEnd;
+        boolean isStartDateBeforeEndDate = startDate.isBefore(endDate);
+
+        if (isStartDateBeforeEndDate) { // if start date is before end date start is before end
+            isStartBeforeEnd = true;
+        } else if (startDate.isEqual(endDate)) { // if start time before end time when start date equal end date
+            isStartBeforeEnd = startTime.isBefore(endTime);
+        } else {
+            isStartBeforeEnd = false;
+        }
+
+        isStartAndEndValid = isStartBeforeEnd;
+        return isStartAndEndValid;
     }
 
     /**
@@ -193,27 +232,27 @@ public class CheckCommand extends Command {
             }
 
             boolean eventIsBetweenDate = event.getDate().isAfter(startDate) && event.getDate().isBefore(endDate);
-            boolean eventIsBetweenTime;
+            boolean eventIsWithinTimePeriod;
 
-            if (eventIsBetweenDate) {
-                eventIsBetweenTime = true;
-            } else if (event.getDate().isEqual(startDate)) {
-                if (event.getTime() == null) {
-                    eventIsBetweenTime = true;
-                } else {
-                    eventIsBetweenTime = !(event.getTime().isBefore(startTime));
+            if (eventIsBetweenDate) { // if an event is after start date and before end date, it is in the time period
+                eventIsWithinTimePeriod = true;
+            } else if (event.getDate().isEqual(startDate)) { // if an event is on the start date check event time
+                if (event.getTime() == null) { // if the event has no time, by default count it as coinciding
+                    eventIsWithinTimePeriod = true;
+                } else { // if the event is before the start time, it is not within the time period
+                    eventIsWithinTimePeriod = !(event.getTime().isBefore(startTime));
                 }
-            } else if (event.getDate().isEqual(endDate)) {
-                if (event.getTime() == null) {
-                    eventIsBetweenTime = true;
-                } else {
-                    eventIsBetweenTime = !(event.getTime().isAfter(endTime));
+            } else if (event.getDate().isEqual(endDate)) { // if an event is on the end date check event time
+                if (event.getTime() == null) { // if the event has no time, by default count it as coinciding
+                    eventIsWithinTimePeriod = true;
+                } else { // if the event is after the end time, it is not within the time period
+                    eventIsWithinTimePeriod = !(event.getTime().isAfter(endTime));
                 }
             } else {
-                eventIsBetweenTime = false;
+                eventIsWithinTimePeriod = false;
             }
 
-            if (eventIsBetweenTime) {
+            if (eventIsWithinTimePeriod) {
                 eventsInTimeRange.add(event);
             }
 
@@ -221,7 +260,6 @@ public class CheckCommand extends Command {
                 eventsInTimeRange.addAll(checkEventsInTimeRange(event.getRepeatEventList(),
                         startDate, endDate, startTime, endTime));
             }
-
         }
 
         return eventsInTimeRange;

@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.WrongNumberFormatException;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import static seedu.duke.parser.DateTimeParser.dateParser;
 
 public class DoneCommand extends Command {
-    private String listType;
+    private final String listType;
 
     /**
      * Constructor for setting event to done.
@@ -46,8 +47,8 @@ public class DoneCommand extends Command {
 
         String[] inputParameters = input.trim().split(";", 2);
 
-        if (inputParameters.length < 2) {
-            throw new WrongNumberOfArgumentsException("Event type or index not provided.");
+        if (inputParameters[0].isBlank() || inputParameters[1].isBlank()) {
+            throw new WrongNumberOfArgumentsException("Event type or index is missing.");
         }
 
         String listType = capitaliseFirstLetter(inputParameters[0].trim());
@@ -84,13 +85,19 @@ public class DoneCommand extends Command {
             ui.printEventMarkedDoneMessage(doneEvent);
         } else if (eventIdentifierArray.length == 2 && doneEvent.getRepeatType() != null) { // event is a repeat task
             LocalDate doneEventDate = dateParser(eventIdentifierArray[1].trim());
+            boolean isDateFound;
 
             if (doneEventDate.isEqual(doneEvent.getDate())) {
+                isDateFound = true;
                 doneEvent.markAsDone();
                 ui.printEventMarkedDoneMessage(doneEvent);
             } else {
                 ArrayList<Event> repeatEventList = doneEvent.getRepeatEventList();
-                scanRepeatList(repeatEventList, doneEventDate, ui);
+                isDateFound = scanRepeatList(repeatEventList, doneEventDate, ui);
+            }
+
+            if (!isDateFound) {
+                throw new DateErrorException("This event does not occur on this date.");
             }
         }
     }
@@ -112,13 +119,17 @@ public class DoneCommand extends Command {
      * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
      * @param doneEventDate the date of the sub repeat event to be marked done.
      * @param ui containing the responses to print.
+     * @return boolean stating if an event matching the date given was found
      */
-    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate doneEventDate, Ui ui) {
+    private boolean scanRepeatList(ArrayList<Event> repeatEventList, LocalDate doneEventDate, Ui ui) {
+        boolean isDateFound = false;
         for (Event e: repeatEventList) {
             if (e.getDate().isEqual(doneEventDate)) {
+                isDateFound = true;
                 e.markAsDone();
                 ui.printEventMarkedDoneMessage(e);
             }
         }
+        return isDateFound;
     }
 }
