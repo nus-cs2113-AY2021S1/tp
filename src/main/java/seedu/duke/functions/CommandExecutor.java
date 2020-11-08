@@ -36,7 +36,7 @@ import static seedu.duke.wordlist.WordList.wordList;
 import static seedu.duke.Duke.writings;
 import static seedu.duke.storage.BunnySaver.saveAllBunny;
 import static seedu.duke.storage.WordsSaver.saveWordsToFile;
-import static seedu.duke.filters.BunnyFilter.filterBunny;
+import static seedu.duke.bunnylist.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.changeLineDivider;
 import static seedu.duke.ui.UI.printHelpMessage;
 //import static seedu.duke.database.ClearLoader.clearItems;

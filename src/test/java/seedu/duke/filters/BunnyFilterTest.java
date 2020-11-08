@@ -2,6 +2,7 @@ package seedu.duke.filters;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.duke.bunnylist.BunnyFilter;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
