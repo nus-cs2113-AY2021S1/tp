@@ -185,11 +185,17 @@ public class MenuParser implements Parser {
                     return new BookmarkCommand(deleteIndex, commandArr[1], bookmarkList);
                 } catch (NumberFormatException nfe) {
                     return new IncorrectCommand(ERROR_BOOKMARK_DELETE_NFE);
+                } catch (Eduke8Exception e) {
+                    return new IncorrectCommand(e.getMessage());
                 } catch (IndexOutOfBoundsException iobe) {
                     return new IncorrectCommand(ERROR_BOOKMARK_DELETE_IOB_ERROR);
                 }
             }
-            return new BookmarkCommand(BOOKMARK_LIST, bookmarkList);
+            try {
+                return new BookmarkCommand(BOOKMARK_LIST, bookmarkList);
+            } catch (Eduke8Exception e) {
+                return new IncorrectCommand(e.getMessage());
+            }
         case COMMAND_NOTE:
             try {
                 if (commandArr[1].equalsIgnoreCase(COMMAND_NOTE_ADD) || commandArr[1]
