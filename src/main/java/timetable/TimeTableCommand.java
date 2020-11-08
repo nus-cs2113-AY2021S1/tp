@@ -1,9 +1,9 @@
 package timetable;
 
-import exceptions.InvalidBookmarkException;
 import exceptions.InvalidDayOfTheWeekException;
 import exceptions.InvalidTimeException;
 
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -43,8 +43,18 @@ public class TimeTableCommand {
         final String linkOrVenue = in.nextLine();
         System.out.println("What are the days and time of the lesson?\n(e.g. Monday 5-8pm, Tuesday 6-9pm)");
         final String [] periods = in.nextLine().split(", ");
-        System.out.println("How many weeks is the lesson?");
-        int repeat = Integer.parseInt(in.nextLine());
+        isInvalid = true;
+        int repeat = 0;
+        while (isInvalid) {
+            System.out.println("How many weeks is the lesson?");
+            repeat = Integer.parseInt(in.nextLine());
+            if (repeat < 54) {
+                isInvalid = false;
+            } else {
+                System.out.println("Your lesson should not last for more than a year "
+                        + "Please enter a number less than 53");
+            }
+        }
         isInvalid = true;
         LocalDateTime startDay = null;
         while (isInvalid) {
@@ -165,8 +175,10 @@ public class TimeTableCommand {
         isInvalid = true;
         String start;
         String end;
-        int startTime = 0;
-        int endTime = 0;
+        int startTime;
+        int endTime;
+        LocalDateTime startDateTime = null;
+        LocalDateTime endDateTime = null;
         while (isInvalid) {
             System.out.println("Please enter the time of your activity (e.g. 6-9pm): ");
             String time = in.nextLine();
@@ -181,7 +193,7 @@ public class TimeTableCommand {
                     } else if (start.contains("am") && startTime == 12) {
                         startTime = 0;
                     }
-                    if (end.contains("pm") && startTime != 12) {
+                    if (end.contains("pm") && endTime != 12) {
                         endTime += 12;
                     } else if (end.contains("am") && startTime == 12) {
                         startTime = 0;
@@ -196,16 +208,18 @@ public class TimeTableCommand {
                 }
                 if (startTime < endTime) {
                     isInvalid = false;
+                    startDateTime = date.plusHours(startTime);
+                    endDateTime = date.withHour(endTime);
                 } else {
                     System.out.println("You have entered an ending time that is not later than the starting time."
                             + " Please try again ");
                 }
-            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException | DateTimeException e) {
                 System.out.println("You have entered an invalid time. Please try again");
+                isInvalid = true;
             }
         }
-        LocalDateTime startDateTime = date.plusHours(startTime);
-        LocalDateTime endDateTime = date.withHour(endTime);
+
         Duration duration = new Duration(startDateTime, endDateTime);
         return new Activity(activityName, isOnline, linkOrVenue, duration);
     }
@@ -233,7 +247,7 @@ public class TimeTableCommand {
                 }
             }
         }
-        if (exist = false) {
+        if (!exist) {
             System.out.println("You do not have anything scheduled in the next two hours");
         }
     }
@@ -243,7 +257,8 @@ public class TimeTableCommand {
         for (Activity activity: dateList.activities) {
             index++;
             System.out.println(index + ". " + activity.name + " "
-                    + activity.periods.get(0).startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                    + activity.periods.get(0).startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+                    + (activity.isOnline ? " online link: " : " offline venue: ") + activity.linkOrVenue);
         }
         if (index == 0) {
             System.out.println("There is no activity in the list");
@@ -267,6 +282,8 @@ public class TimeTableCommand {
             } catch (IndexOutOfBoundsException e) {
                 System.out.print("\n");
             }
+            System.out.println((lesson.isOnline ? " online link:" : " offline venue: ")
+                    + lesson.linkOrVenue);
         }
         if (index == 0) {
             System.out.println("There is no classes in the list");
