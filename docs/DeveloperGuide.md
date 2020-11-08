@@ -669,13 +669,14 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
 <a name="appendix-e-advanced"></a>
 **Advanced**
 1. Testing global commands (`mode`, `help`, `clear`, `exit`)
-    1. Test `mode` command. Enter `mode bookmark` to enter bookmark mode, you should see the message "Changing to bookmark mode". <br></br>
-    Enter `mode timetable` to enter bookmark mode, you should see the message "Changing to timetable mode". <br></br>
-    Enter `mode planner` to enter bookmark mode, you should see the message "Changing to planner mode". <br></br>
-    2. Test `help` command. In bookmark mode, enter `help`, you should see message "Available inputs in Bookmark mode are" and the list available commands. <br></br>
+    1. Test `mode` command. Enter `mode bookmark` to enter bookmark mode, you should see the message "Changing to bookmark mode". <br>
+    Enter `mode timetable` to enter bookmark mode, you should see the message "Changing to timetable mode". <br>
+    Enter `mode planner` to enter bookmark mode, you should see the message "Changing to planner mode". <br>
+    2. Test `help` command. In bookmark mode, enter `help`, you should see message "Available inputs in Bookmark mode are" and the list available commands.
     Then, enter `help add`, you should see message "Adds a bookmark to the bookmark list URL must start with www or https:// or http:// Format: add {description} {URL}".
     3. Test `clear`. Enter `clear`, you should see your screen is cleared.
     4. Test `exit`. Enter `Exit`, you should see message "Bye. Hope to see you again soon!" and the program is terminated.
+    
 2. Testing bookmark commands (`add`, `show`, `delete`, `find`, `launch`)
     1. Test `add`. Enter `add google www.google.com`, you should see message "Added bookmark: [google] www.google.com".
     2. Test `show`. Enter `show`, if you did not add any other bookmark except that of step 1, you should see message
@@ -683,6 +684,7 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     3. Test `find`. Enter `find google`, you should see message "Here are your matching bookmarks 1.[google] www.google.com". 
     4. Test `delete`. Enter `delete 1`, you should see message "I've deleted this bookmark!: [google] www.google.com".
     5. Test `launch`. Re-add bookmark from step 1 and enter `launch 1`, you should see www.google.com launched in your browser.
+    
 3. Testing timetable commands (`add`, `show`, `edit`, `delete`, `launch`)
     1. Test `add`. Enter `add cs2113t lecture fri 16:00 18:00 www.github.com`, you should see message 
     "CS2113T added lecture slot added bookmark added to CS2113T lecture".
@@ -694,8 +696,13 @@ Hence, Zoomaster helps to organise students’ Zoom links for easy access to the
     you should see message "Slot title changed to tutorial". Enter `edit time fri 2 thu 17:00 18:00`, you should see message "Slot time changed to thu 17:00 18:00".
     4. Test `delete`. Enter `delete cs2113 1`, you should see message "deleted 17:00-18:00 tutorial from cs2113".
     5. Test `launch`. Re-add slot from step 1 and enter `launch cs2113t 1`, you should see www.github.com launched in your browser.
-4. Testing planner commands ()
-    <jusuf please add the test procedures for planner mode, you can copy what i have writen in step bookmark and timetable just specified for planner mode>
+    
+4. Testing planner commands (`load`, `add`, `show`, `save`)
+    1. Test `load`. First, manually copy your teammates' timetable to the `/data/planner/` folder. Enter `load` and you should see a `planner loaded` message if successful.
+    2. Test `show`. Enter `show` and you should see the list of empty time slots. Enter `show fri`, and you should see the list of empty slots on Friday.
+    3. Test `add`. Enter `add cs2113t lecture fri 16:00 18:00 www.github.com`, you should see message "CS2113T added lecture slot added bookmark added to CS2113T lecture".
+    4. Test `save`. Enter `save` and you should see a `planner saved` message.
+
 5. Testing `launch now`
     1. First, get your current system time. You can view this via your clock app on your device.
     2. Secondly, in timetable mode, use the `add` command to create a new slot with period overlapping with your current system time.
