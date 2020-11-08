@@ -110,11 +110,11 @@ At bookmark mode:
 
 You can change to different modes of the app by using this command! 
 The following are the modes currently available in the app and their corresponding index:
-1. Menu
-1. Bookmark
-1. Timetable
-1. Academic
-1. Flashcard
+1. menu
+1. bookmark
+1. timetable
+1. academic
+1. flashcard
 
 Instruction:
 1. Type `cd` followed by the `MODE_NAME` or `MODE_INDEX`
@@ -916,5 +916,7 @@ The following table is a compiled list of all available commands in our applicat
 
 The commands listed under the sections besides “General” can only be called when you are in that specific mode, 
 which you can access using the cd command!
+
+Table: Command Cheatsheet for Study It
 
 ![](Images/cheatsheet.png)
