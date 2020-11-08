@@ -17,7 +17,8 @@ public class FavStorage extends Storage {
     private static final String FILE_READ = "FavList.txt Read with no issues";
     private File file;
     private boolean isCorrupted = false;
-    private static final List <String> VALID_COMMANDS = Arrays.asList("/help", "/route", "/routemap", "/bus", "allbus", "liststops", "/faculty", "/dine", "/dineinfo", "/reset");
+    private static final List<String> VALID_COMMANDS = Arrays.asList("/help", "/route", "/routemap", "/bus",
+            "allbus", "liststops", "/faculty", "/dine", "/dineinfo", "/reset");
 
     public FavStorage(String dir) {
         super(dir);
@@ -40,7 +41,7 @@ public class FavStorage extends Storage {
 
     private void readLine(String entry) {
         String[] entryWords = entry.split("\\|",2);
-        if (entryWords.length != 2) {
+        if (entryWords.length != 2 || entryWords[1].isBlank()) {
             isCorrupted = true;
             return;
         }
