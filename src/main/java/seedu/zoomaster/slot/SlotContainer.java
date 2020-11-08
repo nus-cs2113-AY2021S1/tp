@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Stores an ArrayList of Slots and Strings.
  * Used to help produce a sorted timetable of Slots and its associated module code.
  */
+//@@author TYS0n1
 public class SlotContainer {
     private ArrayList<Slot> thisDaySlots;
     private ArrayList<String> thisDayModuleCodesList;

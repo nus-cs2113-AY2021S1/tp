@@ -76,6 +76,8 @@ public class Timetable {
         modules.remove(module);
     }
 
+
+    //@@author TYS0n1
     public boolean isOverlapTimeSlot(String day, LocalTime startTime, LocalTime endTime) {
         boolean isOverlap = false;
         List<Slot> slotList = getFullSlotList();
@@ -94,6 +96,8 @@ public class Timetable {
         return isOverlap;
     }
 
+
+    //@@author TYS0n1
     public boolean isTimeAGreaterEqualsTimeB(LocalTime timeA, LocalTime timeB) {
         boolean isGreaterEquals = false;
         if (timeA.isAfter(timeB) || timeA.equals(timeB)) {
