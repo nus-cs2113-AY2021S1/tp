@@ -35,7 +35,7 @@ public class AddFoodCommand extends Command {
             command = command.split("/", 2)[1].trim();
             if (command.split(" ").length == 1) {
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(command.split(" ")[0]));
-                if (amountOfCalories.get() < 0) {
+                if (amountOfCalories.get() < 0 || amountOfCalories.get() > 10000) {
                     throw new NumberFormatException();
                 }
                 listManager.addFood(new Food(nameOfFood, amountOfCalories, getCurrentDate()));
@@ -53,6 +53,9 @@ public class AddFoodCommand extends Command {
                     throw new FitrException();
                 }
                 int amountOfFood = Integer.parseInt(command.split(" ", 2)[1]);
+                if( amountOfFood < 0 || amountOfFood > 1000){
+                    throw new FitrException();
+                }
                 Calorie amountOfCalories = new Calorie(Integer.parseInt(individualCalorie)
                         * amountOfFood);
                 listManager.addFood(new Food(nameOfFood, amountOfCalories, amountOfFood, getCurrentDate()));
@@ -68,7 +71,7 @@ public class AddFoodCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printFormatError(COMMAND_FOOD);
         } catch (FitrException e) {
-            Ui.printCustomError("Sorry, quantity should be a positive integer!");
+            Ui.printCustomError("Sorry, quantity should be a positive integer less than 1000!");
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
         }
