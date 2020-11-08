@@ -26,6 +26,7 @@ public class RepeatCommand extends Command {
     private static final String COMMANDTYPE_ADD = "add";
     private static final String COMMANDTYPE_ERROR = "error";
     private String commandType;
+    
 
     /**
      * Constructor for the repeat command.
