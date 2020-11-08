@@ -1,74 +1,76 @@
 # Developer Guide
 
 ## Table of Contents
-1. [Introduction](#introduction)<br>
-&nbsp;&nbsp;1.1. [Background](#background)<br>
-&nbsp;&nbsp;1.2. [Purpose](#purpose)<br>
-&nbsp;&nbsp;1.3. [Scope](#scope)<br>
-1. [Getting Started](#getting-started)<br>
-&nbsp;&nbsp;2.1. [Prerequisites](#prerequisites)<br>
-&nbsp;&nbsp;2.2. [Setting Up](#setting-up)<br>
-&nbsp;&nbsp;2.3. [Running the Program](#running-the-program)<br>
-1. [Design](#design)<br>
-&nbsp;&nbsp;3.1. [Architecture](#architecture)<br>
-&nbsp;&nbsp;3.2. [UI Component](#ui-component)<br>
-&nbsp;&nbsp;3.3. [Logic Component](#logic-component)<br>
-&nbsp;&nbsp;3,4. [Model Component](#model-component)<br>
-&nbsp;&nbsp;3.5. [Storage Component](#storage-component)<br>
-1. [Implementation](#implementation) <br>
-&nbsp;&nbsp;4.1. [Project](#project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1.1. [Create Project](#create-project)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [Select Project](#select-project)<br>
-&nbsp;&nbsp;4.2. [Task](#task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.1. [Add Task](#add-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.2. [View Task](#view-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.3. [Delete Task](#delete-task)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Change Task Priority](#change-task-priority)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Mark Task as Complete](#mark-task-as-complete)<br>
-&nbsp;&nbsp;4.3. [Sprint](#sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Create Sprint](#create-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [View Sprint](#view-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.3. [Add Task to Sprint](#add-task-to-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.4. [Remove Task from Sprint](#remove-task-from-sprint)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.5. [Allocate Sprint Tasks to Members](#allocate-sprint-tasks-to-members)        <br>
-&nbsp;&nbsp;4.4. [Storage](#storage)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Location](#location)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4.2. [Loading Data](#loading-data)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.2.1. [Converting and Mapping of JSON to Objects](#converting-and-mapping-of-json-to-objects)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;4.4.3. [Saving Data](#saving-data)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.1. [When the Program Exits](#when-the-program-exits)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.2. [Changes Made to the Data](#changes-made-to-the-data)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.3. [Serialising Objects to JSON](#serialising-objects-to-json)<br>
-5. [Appendix: Requirements]()<br>
-6. [Others](#target-user-profile)<br>
+1. [Introduction](#1-introduction)<br>
+&nbsp;&nbsp;1.1. [Background](#11-background)<br>
+&nbsp;&nbsp;1.2. [Purpose](#12-purpose)<br>
+&nbsp;&nbsp;1.3. [Scope](#13-scope)<br>
+1. [Getting Started](#2-getting-started)<br>
+&nbsp;&nbsp;2.1. [Prerequisites](#21-prerequisites)<br>
+&nbsp;&nbsp;2.2. [Setting Up](#22-setting-up)<br>
+&nbsp;&nbsp;2.3. [Running the Program](#23-running-the-program)<br>
+1. [Design](#3-design)<br>
+&nbsp;&nbsp;3.1. [Architecture](#31-architecture)<br>
+&nbsp;&nbsp;3.2. [UI Component](#32-ui-component)<br>
+&nbsp;&nbsp;3.3. [Logic Component](#33-logic-component)<br>
+&nbsp;&nbsp;3,4. [Model Component](#34-model-component)<br>
+&nbsp;&nbsp;3.5. [Storage Component](#35-storage-component)<br>
+1. [Implementation](#4-implementation) <br>
+&nbsp;&nbsp;4.1. [Project](#41-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.1. [Create Project](#411-create-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.2. [List Project](#412-list-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.3. [Select Project](#413-select-project)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1.4. [View Project](#414-view-project)<br>
+&nbsp;&nbsp;4.2. [Task](#42-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.1. [Add Task](#421-add-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.2. [View Task](#422-view-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.3. [Delete Task](#423-delete-task)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.4. [Change Task Priority](#424-change-task-priority)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.5. [Mark Task as Complete](#425-mark-task-as-complete)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2.6. [View Task by Descending Priority](#426-view-task-by-descending-priority)<br>
+&nbsp;&nbsp;4.3. [Sprint](#43-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. [Create Sprint](#431-create-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. [View Sprint](#432-view-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.3. [Add Task to Sprint](#433-add-task-to-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.4. [Remove Task from Sprint](#434-remove-task-from-sprint)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.5. [Allocate Sprint Tasks to Members](#435-allocate-sprint-tasks-to-members)        <br>
+&nbsp;&nbsp;4.4. [Storage](#44-storage)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Location](#441-location)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.2. [Loading Data](#442-loading-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.2.1. [Converting and Mapping of JSON to Objects](#4421-converting-and-mapping-of-json-to-objects)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.4.3. [Saving Data](#443-saving-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.1. [When the Program Exits](#4431-when-the-program-exits)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.2. [Changes Made to the Data](#4432-changes-made-to-the-data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.3.3. [Serialising Objects to JSON](#4433-serialising-objects-to-json)<br>
+1. [Others](#target-user-profile)<br>
 
-## Introduction
-### Background
+## 1. Introduction
+### 1.1. Background
 SCRUMptious is a Java-based command line interface application for you to efficiently manage the development of a project. Leveraging the robust SCRUM/Agile framework, it allows you to delegate tasks to your team members and organize project requirements with ease. As a bonus, if you are a keyboard warrior, you can reach peak efficiency using SCRUMptious to manage your projects.
 
-### Purpose
+### 1.2. Purpose
 This guide illustrates the general architecture, and software design of SCRUMptious.
 
-### Scope
+### 1.3. Scope
 This guide is geared towards developers who wish to enhance or create their own version of SCRUMptious. As such, it contains important information regarding the software architecture and design considerations of SCRUMptious.
 
-## Getting Started
-### Prerequisites
+## 2. Getting Started
+### 2.1. Prerequisites
 1. JDK 11.
 1. IntelliJ IDEA.
 
-### Setting Up
+### 2.2. Setting Up
 1. Use a Git tool to fork this repository, or download the .zip file from GitHub and extract the contents into a new folder.
 1. Right-Click on the folder and select “Open folder as Intellij IDEA Community Edition Project”.
 1. Ensure JDK 11 is selected for Gradle, by navigating to Configure > Structure for New Projects > Project Settings > Project > Project SDK.
 
-### Running the Program
+### 2.3. Running the Program
 This program can be run once it is compiled. If you have built its artifacts (.jar) file, you may run it using java -jar <filename.jar> on your command line.
 
-## Design
+## 3. Design
 This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail.
 SCRUMptious is the main class of the application, and handles the initializing and execution of the appropriate classes.
-### Architecture
+### 3.1. Architecture
 ![Figure X: Architecture Diagram](./image/developerguide/architecturediagram.png "Architecture Diagram UML")  
 The **Architecture Diagram** shown above describes the high level association operations of the application. 
 A quick overview of the components is as follows:
@@ -90,10 +92,10 @@ The other packages are described below:
  
 Each of the modules listed above are a collection of constituent classes, with each handling specialized tasks in-line with the SLAP principle.
 
-### UI Component
+### 3.2. UI Component
 ![Figure X: Simplified class diagram for UI Component](./image/developerguide/UI.png "User Interface")  
 
-### Logic Component
+### 3.3. Logic Component
 The `Logic` component contains the `ParserManager` and its subclasses, and the `Command` class and its subclasses, which mainly handles the commands input by the user. 
 ![Figure X: Simplified class diagram for Logic Component](./image/developerguide/parserManagerClassDiagram.png)
 
@@ -130,7 +132,7 @@ The `ParserManager` then returns the command back to `SCRUMptious`, which then e
 
 
 
-### Model Component
+### 3.4. Model Component
 ![Figure X: Simplified class diagram for Model Component](./image/developerguide/modelcomponent.png "Storage Component UML")  
 [Model Package](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/model)  
 The Model package defines all the object classes that are used by SCRUMptious and this section will explain how these objects interact with other components and each other.
@@ -187,7 +189,7 @@ When a `Command` from the [Logic component](#logic-component) is executed, it wi
     * Sprint End Date
 * `Sprint` contain one additional ArrayList that are initialise upon its creation:
     * ArrayList of Task IDs to keep track `Tasks` that are allocated to the `Sprint`.
-### Storage Component
+### 3.5. Storage Component
 ![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML") 
 API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/storage/StorageManager.java)  
 The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
@@ -205,11 +207,11 @@ This requires the model classes to implement two methods required for JSON seria
 - `toJson()`: Contains logic required to convert the model object into JSON string.  
 - `fromJson()`: Contains logic required to convert JSON object into its respective model class.    
 
-## Implementation
-### Project
+## 4. Implementation
+### 4.1. Project
 ![Figure X: Project Class Diagram](./image/developerguide/ProjectClassDiagram.png
  "Project Class Diagram")
-#### Create Project
+#### 4.1.1. Create Project
 ![Figure X: Sequence diagram of CreateProjectCommand](./image/developerguide/createProjectSequenceDiagram.png
  "Add Project Sequence Diagram") 
  Link: [CreateProjectCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/project/CreateProjectCommand.java) 
@@ -238,7 +240,7 @@ Implementation:
     `printCreatedProject()` is then called to output the newly created Project in `addProj.toString` via `Ui
     .showToUserLn()`
 
-#### List Project
+#### 4.1.2. List Project
 All the projects added by the user are shown as an output.
 Before execution:
 1. Parse user input `project /list` into Command
@@ -260,7 +262,7 @@ Implementation:
     `proj.getTitle()` and `proj.getDescription()` is then called to output all the projects in `ProjectManager` via
      `Ui.showToUserLn()`.
 
-#### Select Project
+#### 4.1.3. Select Project
 Select the project on which all the commands are executed.
 
 Before execution:
@@ -284,7 +286,7 @@ Implementation:
      `Ui.showToUserLn()`.
 
 
-#### View Project
+#### 4.1.4. View Project
 View the details of the project on which the user is currently working on.
 Before execution:
 1. Parse user input `project /view` into Command
@@ -304,8 +306,8 @@ Implementation:
     
     The project is shown to the user by `proj.toString()` via `Ui.showToUserLn()`
 
-### Task
-#### Add Task
+### 4.2. Task
+#### 4.2.1. Add Task
 A task is created following the creation of a project, with a clear title, description 
 and priority of the task. `TaskManager` stores all the tasks in an array list.
 
@@ -335,7 +337,7 @@ Implementation:
 1. User output
     The overridden function `toString()` is called to output the new Task using Ui.showToUserLn().
     
-#### View Task
+#### 4.2.2. View Task
 ![Figure X: Sequence diagram of ViewTaskCommand](./image/developerguide/viewTask.png
  "Add Project Sequence Diagram") 
  
@@ -368,7 +370,7 @@ Implementation:
 1. User output
     The overridden function `toString()` is called to output the requested Tasks in the task list using Ui.showToUserLn().
     
-#### Delete Task
+#### 4.2.3. Delete Task
 
 Users may choose to delete tasks that are deemed unnecessary or incorrect.
 The task IDs are provided.
@@ -390,7 +392,7 @@ Implementation:
     1. UI output to user
           
     
-#### Change Task Priority
+#### 4.2.4. Change Task Priority
 
 A user can change the priority of an existing task after changes to project requirements.
 The task ID and new priority are provided.
@@ -409,7 +411,7 @@ Implementation:
     1. The corresponding task will be updated its priority
     1. UI output to user
 
-#### Mark Task as Complete    
+#### 4.2.5. Mark Task as Complete    
 The user can mark tasks as complete when the team completes the task. The task
 IDs are provided.
 
@@ -426,7 +428,7 @@ Implementation:
     1. The corresponding tasks will be marked as complete.
     1. UI output to user
 
-#### View Task by Descending Priority
+#### 4.2.6. View Task by Descending Priority
 A user may choose to view all tasks in order of priority associated with the project. No parameters are supplied.
 
 Prerequisites:
@@ -439,12 +441,12 @@ Implementation:
 1. Execute PriorityViewCommand
     1. UI output to user
     
-### Sprint
+### 4.3. Sprint
 In SCRUMptious, a Project will be broken down into smaller iterations known as Sprints. The Sprint will contain information about the Tasks allocated for that iteration and Members that are assigned to complete the Tasks.
 
 The following section will explain how the management of Sprints is implemented in the program.
 
-#### Create Sprint
+#### 4.3.1. Create Sprint
 
 ![Figure X: Sequence diagram of CreateSprintCommand](./image/developerguide/createSprint.png "Create Sprint Sequence Diagram")  
   
@@ -502,7 +504,7 @@ Usage scenario:
     `printCreatedSprint()` is then called to output the newly created Sprint in `createdSprint.toString()` via `Ui
     .showToUserLn()`
 
-#### View Sprint
+#### 4.3.2. View Sprint
 
 Link: [ViewSprintCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/ViewSprintCommand.java) 
 
@@ -518,7 +520,7 @@ Implementation:
     1. Get Sprint from SprintList
     1. UI output to user
 
-#### Add Task to Sprint
+#### 4.3.3. Add Task to Sprint
 
 Link: [AddSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/AddSprintTaskCommand.java) 
 
@@ -539,7 +541,7 @@ Implementation:
     1. UI output to user
 
 
-#### Remove Task from Sprint
+#### 4.3.4. Remove Task from Sprint
 
 Link: [RemoveSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/RemoveSprintTaskCommand.java) 
 
@@ -559,7 +561,7 @@ Implementation:
         1. Remove Sprint Number from sprintAllocatedTo
     1. UI output to user
 
-#### Allocate Sprint Tasks to Members   
+#### 4.3.5. Allocate Sprint Tasks to Members   
 
 Link: [AllocateSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/AllocateSprintTaskCommand.java) 
  
@@ -579,18 +581,18 @@ Implementation:
         1. Add Task ID into allocatedTaskIds
 
 
-### Storage
+### 4.4. Storage
 To make the data persistent and portable, JSON has been chosen as the format for data to be saved to a persistent storage such as storage drives, thumb drives and any other storage medium which stores the program. JSON is also **human-readable** which allows users to directly modify the data file easily. 
 This can be useful in certain scenarios such as fixing the data file in the event of data corruption.
 
-#### Location  
+#### 4.4.1. Location  
 ![Figure X: Running the Jar](image/developerguide/storage_save_directory.png "Running the Jar")  
 _Figure X: Running the Jar or in IDE_
 
 As shown in the above diagram, the program will save the data as _"data.json"_. The data file is saved in the _“data/”_ folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the _“data/”_ folder will be in the root of the project folder.  
 When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the program.  
 
-#### Loading Data
+#### 4.4.2. Loading Data
 ![Figure X: Loading Data](image/developerguide/storage_load.png "Loading Data")  
 
 The program will only load the data file in the persistent storage during the initialisation process of the program. With reference to the sequence diagram above, the flow of the logic is as follows:  
@@ -603,7 +605,7 @@ The program will exit immediately with an **exit code 1** if any of the conditio
 - Conversion error due to missing properties.
 - Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
 
-#### Converting and Mapping of JSON to Objects
+#### 4.4.2.1. Converting and Mapping of JSON to Objects
 Due to the limitations of the library, parsing of the JSON string only converts it into either JsonObject or JsonArray objects which requires additional operations to map the data back to the respective model classes.  
   
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `fromJson()`, which is used to implement the logic for **converting and mapping of JSON to objects of their respective type**.  
@@ -622,24 +624,24 @@ As explained in [Storage Component](#storage-component), each model class except
 * `Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
  the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
 
-#### Saving Data
+#### 4.4.3. Saving Data
 ![Figure X: Saving Data](image/developerguide/storage_save.png "Saving Data")  
 
 Data will be saved under two scenarios: 
 1. When the program exits. 
 1. Changes made to the data. 
 
-##### When the Program Exits
+##### 4.4.3.1. When the Program Exits
 `Scrumptious` will call `destroy()` which calls `save()` before it returns.
 
-##### Changes Made to the Data
+##### 4.4.3.2. Changes Made to the Data
 Changes made to the data during the runtime of the program can only be made by executing a command.
    
 As shown in the diagram above, each command class inherits the `shouldSave` property from `Command` class. `shouldSave` is a boolean variable and is initialised inside the constructor. `shouldSave` will be set to `true` if the command results in a change of data (e.g. adding a task, creating a sprint etc.), otherwise it is set to `false` (e.g. viewing projects, sprints etc.).
 
 After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` is set to `true`.
 
-##### Serialising Objects to JSON
+##### 4.4.3.3. Serialising Objects to JSON
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `toJson()`, which is used to implement the logic for **serialising objects into JSON string**.  
 When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize()` of the _**json.simple**_, passing in the `ProjectManager` and `FileWriter` (points to the data file) object as the parameters. The library will automatically serialise the objects and sub-objects into JSON string depending on the type of the objects:
  1. **Primitive and Standard Types (e.g. `int`, `String`, `Collection`)**: The library can directly serialise these types into JSON string.
@@ -696,4 +698,3 @@ The terms listed in this glossary are in alphabetical order.
 1. Open a new terminal window and navigate to the same directory where the SCRUMptious.jar is located.
 1. Enter the command `java -jar SCRUMptious.jar` into the terminal window to launch the application. The application
  should now be running.
-1. 
