@@ -346,7 +346,9 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 1. Checks the user input and throws an exception if the input is empty.
 2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
     + Adds any matching data to an ArrayList `searchList`.
-    + Calls `Ui#printDineInfoResult()` method to print the matching results if size of `searchList` is more than 0.
+    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList`.
+        + Prints the matching results if size of `searchList` is more than 0.
+        + Prints 'no match' message if size of `searchList` is 0.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
 ![bus data](DG_Diagrams/DineInfoSequence.png)
@@ -551,9 +553,45 @@ the needed parameter.<br>
 ### E.4 Check for buses at a bus stop
 
 ### E.5 Search for dining options within a faculty
+1. Searching for dining options within a faculty.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine science`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine sci`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine scienceee` (name of faculty has been misspelled)<br>
+    Expected: Similar to previous.<br>
+
+2. Searching for dining options within faculties with similar names.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine school`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine sch`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine schooool` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br>
 
 ### E.6 Search for specific dining outlet
-
+1. Searching for specific dining outlet.
+    - Test case: `/dineinfo arise & shine`<br>
+    Expected: Dining outlets with the name Arise & Shine will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo arisee & shiine` (name of outlet has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+    
+2. Searching for dining outlets with similar names.
+    - Test case: `/dineinfo cafe`<br>
+    Expected: Dining outlets with names containing 'cafe' will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo caffe` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+    
 ### E.7 Add a favourite command
 
 ### E.8 Delete favourite command from favourite list
