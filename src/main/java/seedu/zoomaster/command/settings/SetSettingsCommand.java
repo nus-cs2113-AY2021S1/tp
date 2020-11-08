@@ -31,7 +31,7 @@ public class SetSettingsCommand extends Command {
         Matcher matcher = pattern.matcher(command);
 
         if (!matcher.matches()) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_EDIT_INPUT);
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_SETTING_INPUT);
         }
 
         fieldName = matcher.group("fieldName");
