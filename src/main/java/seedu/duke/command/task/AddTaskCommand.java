@@ -22,7 +22,6 @@ public class AddTaskCommand extends TaskCommand {
     }
 
     public void execute() {
-        assert !projectManager.isEmpty() : "No project\n";
         if (projectManager.isEmpty()) {
             handleMissingProject("No project : add task.");
             return;

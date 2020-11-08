@@ -17,8 +17,6 @@ public class DoneTaskCommand extends TaskCommand {
     }
 
     public void execute() {
-
-        assert !projectListManager.isEmpty() : "No project\n";
         if (projectListManager.isEmpty()) {
             handleMissingProject("No project : task completion.");
             return;

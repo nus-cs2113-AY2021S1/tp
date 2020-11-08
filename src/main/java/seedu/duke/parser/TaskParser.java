@@ -49,7 +49,6 @@ public class TaskParser implements ExceptionsParser {
                 return new AddTaskCommand(parameters, projectListManager);
             }
         case DELETE:
-            assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
                 throw new DukeException("Missing parameters or dashes were input. "
                         + "Please do not enter dashes for this command.");
@@ -60,7 +59,6 @@ public class TaskParser implements ExceptionsParser {
                 return new DeleteTaskCommand(parameters, projectListManager);
             }
         case DONE:
-            assert parameters.get("0") != null : "Invalid Input";
             if (parameters.get("0") == null) {
                 throw new DukeException("Missing parameters or dashes were input. "
                         + "Please do not enter dashes for this command.");

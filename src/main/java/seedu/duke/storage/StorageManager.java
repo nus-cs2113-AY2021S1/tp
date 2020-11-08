@@ -41,10 +41,12 @@ public class StorageManager {
      * File name of the data file is specified when the StorageManager object is instantiated
      */
     public void save() throws IOException {
+        assert filepath != null : "File path is null.";
         try {
             if (!Files.exists(filepath.getParent())) {
                 initDataDir();
             }
+            assert Files.exists(filepath.getParent()) : "Data directory is still not created";
             FileWriter fw = new FileWriter((filepath.toFile()));
             Jsoner.serialize(projectManager, fw);
             fw.close();
@@ -63,6 +65,7 @@ public class StorageManager {
      * @throws IOException Thrown when there is error opening the file or reading to the file.
      */
     public void load() throws IOException, JsonException {
+        assert filepath != null : "File path is null.";
         if (!Files.exists(filepath)) {
             return; //file does not exist, start from a new
         }
@@ -89,6 +92,7 @@ public class StorageManager {
     }
 
     private void initDataDir() throws IOException {
+        assert filepath != null : "File path is null.";
         Path path = filepath.getParent();
         if (!Files.exists(path)) {
             ScrumLogger.LOGGER.info("Data directory does not exist, creating a data directory");
@@ -97,6 +101,7 @@ public class StorageManager {
     }
 
     private String loadRawData() throws IOException {
+        assert filepath != null && Files.exists(filepath) : "File path is null or the file does not exist.";
         return Files.readString(filepath);
     }
 }
