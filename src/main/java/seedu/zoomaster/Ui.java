@@ -411,7 +411,7 @@ public class Ui {
     }
 
     private void printInvalidSettingOption(String invalidSettingOption) {
-        printRedWithBorder("Invalid setting option: \"" + invalidSettingOption + " is not in the list." + NEW_LINE);
+        printRedWithBorder("Invalid setting option: \"" + invalidSettingOption + "\" is not in the list." + NEW_LINE);
     }
 
     //@@author Speedweener
