@@ -38,11 +38,11 @@ public class FindCommand extends Command {
         try {
             command = userInput.split(" ", 2);
             findCommand = command[0];
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new CommandException("find");
         }
 
-        switch(findCommand){
+        switch (findCommand) {
         case COMMAND_FIND_EVENT:
             find(COMMAND_FIND_EVENT, calendarList);
             break;
@@ -63,7 +63,7 @@ public class FindCommand extends Command {
         try {
             split = userInput.split(" ", 2);
             keyword = split[1].trim();
-            if(keyword.isEmpty()){
+            if (keyword.isEmpty()) {
                 throw new Exception();
             }
         } catch (Exception e) {
