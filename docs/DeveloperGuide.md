@@ -8,10 +8,10 @@
 
 ### 1.1. Software Overview
 
-E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [Object-oriented Programming (OOP)](#6-glossary) principles** through a gamified
+E-Duke-8 (pronounced "Educate") helps CS2113/T students **learn and understand software engineering and [Object-oriented Programming (OOP)](#34-glossary) principles** through a gamified
 platform and enhances their learning experience. 
 
-On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the [Command Line Interface (CLI)](#6-glossary), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
+On this desktop application, CS2113/T students can attempt bite-sized quizzes, through the [Command Line Interface (CLI)](#34-glossary), to test their understanding of the concepts taught, and serves to consolidate key concepts for easy revision.
 
 E-Duke-8, comprises of a Logic component, UI component, Storage component, and Model component. Each component comprises of multiple classes that work in tandem, to fulfil the purpose of our program. 
 
@@ -507,13 +507,15 @@ Afterwards, the `Ui` will go through printStartQuizTopics() to print out the top
 
 <div style="page-break-after: always;"></div>
 
-## 3. Product scope
+## 3. Appendix
 
-### 3.1. Target user profile
+### 3.1. Product scope
+
+#### 3.1.1. Target user profile
 
 CS2113/T Students
 
-### 3.2. Value proposition
+#### 3.1.2. Value proposition
 
 To help CS2113/T students learn and understand software engineering and Object-oriented Programming (OOP) principles through a gamified
 platform and enhances their learning experience. 
@@ -524,7 +526,7 @@ Students can earn points for themselves as they answer questions in the quizzes,
 
 <div style="page-break-after: always;"></div>
 
-## 4. User Stories
+### 3.2. User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -541,12 +543,12 @@ Students can earn points for themselves as they answer questions in the quizzes,
 
 <div style="page-break-after: always;"></div>
 
-## 5. Non-Functional Requirements
+### 3.3. Non-Functional Requirements
 
-- Should work on any mainstream [Operating System (OS)](#6-glossary) as long as it has Java 11 or above installed.
+- Should work on any mainstream [Operating System (OS)](#34-glossary) as long as it has Java 11 or above installed.
 - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-## 6. Glossary
+### 3.4. Glossary
 
 - **Command Line Interface (CLI):** CLI is a text-based interface that allows users to respond to visual prompts by typing single commands into the interface and receiving a reply in the same way. (From [techopedia](https://www.techopedia.com/definition/3337/command-line-interface-cli))
 
@@ -554,8 +556,22 @@ Students can earn points for themselves as they answer questions in the quizzes,
 
 - **Mainstream Operating Systems (OS)**: Windows, Linux, Unix, OS-X
 
-## 7. Appendix
+<div style="page-break-after: always;"></div>
 
-### 7.1. Instructions for manual testing
+### 3.5. Instructions for manual testing
 
 To test the product please refer to the E-Duke-8 [User Guide](https://ay2021s1-cs2113t-f12-3.github.io/tp/UserGuide.html).
+The following are a few testcases to try out.
+
+#### 3.5.1. Loading data
+
+1. Dealing with missing/corrupted data files
+    1. Find `topics.json` inside `data/main`.
+    2. Test case: Delete the file <br>
+       Expected: Application will not launch properly and error message will be displayed.
+    3. Test case: Change a topic title <br>
+       Expected: Application will launch successfully but related user data will be erased.
+    4. Test case: Remove the `questions` key from a topic <br>
+       Expected: Application will not launch properly and error message will be displayed.
+    5. Other ways to corrupt the data files: Remove other keys or mess up the JSON format (remove the outer array) <br>
+       Expected: Similar to previous.
