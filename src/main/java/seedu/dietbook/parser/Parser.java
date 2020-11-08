@@ -48,9 +48,9 @@ public class Parser {
 
         InputChecker.checkEmpty(userInput, command);
         try {
-            return Integer.parseInt(userInput.split(" ")[1]);
+            return Integer.parseInt(userInput.split("\\s+")[1]);
         } catch (NumberFormatException e) {
-            throw new DietException("OOPS!!! No integer index detected!");
+            throw new DietException("No integer index detected!");
         }
     }
 

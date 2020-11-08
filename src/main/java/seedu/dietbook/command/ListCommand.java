@@ -31,10 +31,13 @@ public class ListCommand extends Command {
             ui.printFoodList(manager.getFoodList().toDatedString());
         } else {
             if (processedInput.length == 2) {
+                InputChecker.checkDateValidity(processedInput[1]);
                 startTime = LocalDateTime.parse(processedInput[1]);
                 InputChecker.checkFutureDate(startTime);
                 ui.printFoodList(foodList.getAfterDateTimeToString(startTime), startTime);
             } else if (processedInput.length == 3) {
+                InputChecker.checkDateValidity(processedInput[1]);
+                InputChecker.checkDateValidity(processedInput[2]);
                 startTime = LocalDateTime.parse(processedInput[1]);
                 endTime = LocalDateTime.parse(processedInput[2]);
                 InputChecker.checkFutureDate(startTime);

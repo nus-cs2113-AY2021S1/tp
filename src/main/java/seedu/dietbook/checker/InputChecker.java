@@ -240,6 +240,19 @@ public class InputChecker {
     }
 
     /**
+     * Takes in user input to check if the format of the delete is correct.
+     *
+     * @param userInput user input.
+     * @throws DietException when format of delete command is wrong.
+     */
+    public static void checkDeleteCommand(String userInput) throws DietException {
+        String[] processedInput = userInput.split("\\s+");
+        if (processedInput.length > 2) {
+            throw new DietException("Wrong delete command format!");
+        }
+    }
+
+    /**
      * Takes in user input to check if the expected number of parameter is present for the calculate command.
      *
      * @param param parameter part of user input.
@@ -247,7 +260,7 @@ public class InputChecker {
      */
     public static void checkCalculateParam(String[] param) throws DietException {
         if (param.length > 3) {
-            throw new DietException("Incorrect calculate statement");
+            throw new DietException("Incorrect calculate command format!");
         }
     }
 
@@ -273,7 +286,7 @@ public class InputChecker {
      */
     public static void checkList(String[] param) throws DietException {
         if (param.length > 3) {
-            throw new DietException("Incorrect list statement");
+            throw new DietException("Incorrect list command format!");
         }
     }
 

@@ -122,7 +122,7 @@ public class Manager {
         case COMMAND_DATA:
             return new DataCommand(userInput);
         case COMMAND_DELETE:
-            return new DeleteCommand(Parser.getCommandIndex(userInput));
+            return new DeleteCommand(userInput, Parser.getCommandIndex(userInput));
         case COMMAND_EDIT_INFO:
             return new EditInfoCommand(userInput);
         case COMMAND_EXIT:

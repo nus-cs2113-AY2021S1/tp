@@ -44,6 +44,7 @@ public class CalculateCommand extends Command {
             if (processedParam.length == 1) {
                 ui.printAllIntake(this.calorie, this.carb, this.protein, this.fat);
             } else if (processedParam.length == 2) {
+                InputChecker.checkDateValidity(processedParam[1]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 calorie = manager.getCalculator().calculateCalorie(startTime);
@@ -52,6 +53,8 @@ public class CalculateCommand extends Command {
                 fat = manager.getCalculator().calculateFat(startTime);
                 ui.printAllIntake(calorie, carb, protein, fat, startTime);
             } else if (processedParam.length == 3) {
+                InputChecker.checkDateValidity(processedParam[1]);
+                InputChecker.checkDateValidity(processedParam[2]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
@@ -68,11 +71,14 @@ public class CalculateCommand extends Command {
             if (processedParam.length == 1) {
                 ui.printCalorieIntake(this.calorie);
             } else if (processedParam.length == 2) {
+                InputChecker.checkDateValidity(processedParam[1]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 calorie = manager.getCalculator().calculateCalorie(startTime);
                 ui.printCalorieIntake(calorie, startTime);
             } else if (processedParam.length == 3) {
+                InputChecker.checkDateValidity(processedParam[1]);
+                InputChecker.checkDateValidity(processedParam[2]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
@@ -85,11 +91,14 @@ public class CalculateCommand extends Command {
             if (processedParam.length == 1) {
                 ui.printCarbIntake(this.carb);
             } else if (processedParam.length == 2) {
+                InputChecker.checkDateValidity(processedParam[1]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 carb = manager.getCalculator().calculateCarb(startTime);
                 ui.printCarbIntake(carb, startTime);
             } else if (processedParam.length == 3) {
+                InputChecker.checkDateValidity(processedParam[1]);
+                InputChecker.checkDateValidity(processedParam[2]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
@@ -102,11 +111,14 @@ public class CalculateCommand extends Command {
             if (processedParam.length == 1) {
                 ui.printProteinIntake(this.protein);
             } else if (processedParam.length == 2) {
+                InputChecker.checkDateValidity(processedParam[1]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 protein = manager.getCalculator().calculateProtein(startTime);
                 ui.printProteinIntake(protein, startTime);
             } else if (processedParam.length == 3) {
+                InputChecker.checkDateValidity(processedParam[1]);
+                InputChecker.checkDateValidity(processedParam[2]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
@@ -119,11 +131,14 @@ public class CalculateCommand extends Command {
             if (processedParam.length == 1) {
                 ui.printFatIntake(this.fat);
             } else if (processedParam.length == 2) {
+                InputChecker.checkDateValidity(processedParam[1]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 fat = manager.getCalculator().calculateFat(startTime);
                 ui.printFatIntake(fat, startTime);
             } else if (processedParam.length == 3) {
+                InputChecker.checkDateValidity(processedParam[1]);
+                InputChecker.checkDateValidity(processedParam[2]);
                 startTime = LocalDateTime.parse(processedParam[1]);
                 InputChecker.checkFutureDate(startTime);
                 endTime = LocalDateTime.parse(processedParam[2]);
