@@ -254,19 +254,27 @@ public class UI {
      * Relevant command information with reference to the current user guide draft.
      */
     public void printHelp() {
-        System.out.println("Current version: v2.0");
+        System.out.println("Current version: v2.1");
         System.out.println("Below are all the commands and brief descriptions of their functions in the form of "
                 + "command - function: ");
         System.out.println("help - view all the commands");
         System.out.println("assignment - add an assignment event with content, deadline and location");
         System.out.println("class - add a class event with content, deadline and location");
         System.out.println("personalEvent - add a personal event with content, deadline and location");
+        System.out.println("selfStudy - add a self directed study event");
         System.out.println("edit - edit event information");
         System.out.println("locate - find location information");
         System.out.println("locations - view all the locations available");
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
         System.out.println("reminder - show events of the day");
+        System.out.println("autoClear - clear all events one month ago");
+        System.out.println("clearBefore - clear all events before the date input");
+        System.out.println("studyTime - show the amount of study time detected by the program of the day");
+        System.out.println("sort - sort all events according to the criteria given");
+        System.out.println("repeat - repeat events that have previously happened");
+        System.out.println("done - mark a certain task/event as done");
+        System.out.println("date - show all events on the date given");
         System.out.println("There will be more upcoming features in later versions.");
         System.out.println("For more information, please refer to detailed user guide: "
                 + "https://ay2021s1-cs2113t-f14-4.github.io/tp/");
@@ -381,5 +389,22 @@ public class UI {
     public void printRepeatEvent(int numWeeks) {
         System.out.println("The selected event has been repeated for " + numWeeks + " weeks.");
     }
+
+    /**
+     * Print the success message after the user input auto clear.
+     *
+     */
+    public void printAutoClearOn() {
+        System.out.println("Great! All events happened one month ago are cleared :)");
+    }
+
+    /**
+     * Print the success message after the user successfully clear all events before a certain date.
+     *
+     */
+    public void printClearBefore(LocalDate clearDate) {
+        System.out.println("Great! You have cleared all events before " + clearDate.toString());
+    }
+
 }
 
