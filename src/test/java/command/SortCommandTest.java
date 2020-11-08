@@ -38,13 +38,12 @@ class SortCommandTest {
         Location location = new Location("location");
         String[] descriptions = {"eeeee", "ddddd", "ccccc", "bbbbb", "aaaaa"};
         LocalDateTime by = LocalDateTime.parse("2020-02-02T20:00");
-
-        for (int i = 0; i< 5; i++) {
+        for (int i = 0; i < 5; i++) {
             events.addEvent(new Assignment(descriptions[i], location, by));
         }
         events.sortEvent("description");
         Arrays.sort(descriptions);
-        for (int i = 0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             Assertions.assertEquals(descriptions[i], events.get(i).getDescription());
         }
     }
@@ -55,14 +54,12 @@ class SortCommandTest {
         Location location = new Location("location");
         LocalDateTime[] bys = {LocalDateTime.parse("2020-02-02T20:00"), LocalDateTime.parse("2020-02-02T19:00"),
                 LocalDateTime.parse("2020-02-02T18:00")};
-
-
-        for (int i = 0; i< 3; i++) {
+        for (int i = 0; i < 3; i++) {
             events.addEvent(new Assignment("description", location, bys[i]));
         }
         events.sortEvent("time");
         Arrays.sort(bys);
-        for (int i = 0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             Assertions.assertEquals(bys[i], events.get(i).getStartDateTime());
         }
     }
@@ -72,11 +69,12 @@ class SortCommandTest {
         EventList events = new EventList();
         Location[] locations = {new Location("cccc"), new Location("bbbb"), new Location("aaaa")};
         OnlineLocation[] onlineLocation = {new OnlineLocation("cccc.com"), new OnlineLocation("bbbb.com"),
-                new OnlineLocation("aaaa.com")};
+            new OnlineLocation("aaaa.com")};
         LocalDateTime start = LocalDateTime.parse("2020-02-02T20:00");
         LocalDateTime end = LocalDateTime.parse("2020-02-02T21:00");
-        int j = 0, k = 0;
-        for (int i = 0; i< 6; i++) {
+        int j = 0;
+        int k = 0;
+        for (int i = 0; i < 6; i++) {
             if (i % 2 == 0) {
                 events.addEvent(new Class("description", locations[j], start, end));
                 j++;
