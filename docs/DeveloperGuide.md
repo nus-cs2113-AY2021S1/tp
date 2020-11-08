@@ -100,6 +100,7 @@ When a valid command is keyed in, the `Parser` class returns a `Command` object 
 
 The Command component consists of an abstract `Command` class and the various different commands that inherit the `Command` class.
 Each type of command class (e.g. `addFoodCommand`, `addExerciseCommand` etc) implements an abstract `execute()` method that carries out the command. 
+Referring to figure 3, `XYZCommand` = HelpCommand, RecommendCommand etc.
 
 <p align="center"><img src="images/CommandClass.png"></p>
 <p align="center">Figure 3: <code>Command</code> class diagram</p>
@@ -239,15 +240,15 @@ The `Recommender` class then returns a list of type `StandardExerciseList`. The 
 
 <p align="center"><img src="images/RecommendCommandSequenceDiagram.png"></p>
 
-<p align="center">Figure 9: Sequence diagram for <code>recommend</code> command</p>
+<p align="center">Figure 12: Sequence diagram for <code>recommend</code> command</p>
 
 
 ### 4.7 Add Exercise and Add Food Command
 
 The `AddFoodCommand` and `AddExerciseCommand` are similar in implementation. It simply adds the user input into either the `ExerciseList` or the `Foodlist` using the ListManager.
 
-<p align="center"><img src="images/AddExerciseCommandSequenceDiagram.png"></p>
-<p align="center">Figure 10: Sequence diagram for <code>AddExerciseCommand</code></p>
+<p align="center"><img src="images/AddExerciseCommandSequence.png"></p>
+<p align="center">Figure 13: Sequence diagram for <code>AddExerciseCommand</code></p>
 
 ### 4.8 Tip of the day
 
@@ -255,10 +256,10 @@ Fitr can give an interesting fact or a tip of exercise every time the user opens
 
 When the user opens the program, a `TipList` is automatically created by `Fitr`, which loads the tipList from `StorageManger` and passes it to `Fitr`. Then `Fitr` creates a `TipManager` and passes the tipList to `TipManager` to generate a random tip. Finally, the tip is passed to `Ui` and printed in yellow using `printMessageInYellow()`.
 
-Figure 13 below shows the sequence diagram for giving a tip.
+Figure 14 below shows the sequence diagram for giving a tip.
 
 <p align="center"><img src="images/TipCommandSequenceDiagram.png"></p>
-<p align="center">Figure 13: Sequence diagram for giving a tip</p>
+<p align="center">Figure 14: Sequence diagram for giving a tip</p>
 
 ## Appendix A: Product Scope
 ### Target user profile
