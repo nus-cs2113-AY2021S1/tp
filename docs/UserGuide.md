@@ -268,7 +268,7 @@ differ if you have a different event stored in the event index number 1.
 You may then view the additional information using the view additional information feature below.
 ![tip_additional_info](images/tip_additional_info.PNG)
 
-![warning_add_info](images/warning_add_info.PNG)
+![warning_add_info](images/warning_add_info.png)
 
 #### Viewing the additional information of an event:
 After adding the additional information related to the event, you can then view the list of additional information 
@@ -326,7 +326,7 @@ differ if you have a different task stored in the task index number 1.
 
 You may delete any calendar item you have added wrongly or any items that have become obsolete. It is advisable
  for you to use this feature frequently to keep your task and event lists uncluttered!
- ![warning_cal_delete](images/warning_cal_delete.PNG)
+ ![warning_cal_delete](images/warning_cal_delete.png)
 
 #### Deleting a task:
 
@@ -653,16 +653,17 @@ using `add` command.
 |Term| Meaning | Command Format|
 |--------|----------------|--------|
 |Add|activity event|`act <activity_description> @<venue> / <date> <time>`|
-|Add|additional information for event|`/a <event_number> - <additional_information>`|
+|Add|additional information for an event|`/a <event_number> - <additional_information>`|
 |Add|deadline task|`deadline <task_description>/ <due_date>`|
 |Add|exam event|`exam<module_name> @<venue> / <date> <time>`|
 |Add|lab event|`lab <module_name> @<venue> -r <recurring_number> / <date> <time>`|
 |Add|lecture event|`lect <module_name> @<venue> -r <recurring_number> / <date> <time>`|
 |Add|todo task|`todo <task_description>`|
 |Add|tutorial event|`tut <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Delete|additional information for an event|`/- <event_number> a <additional_information_number>`|
 |Delete|events|`-e <event_number>`|
 |Delete|tasks|`-t <task_number>`|
-|Find|all items|`/f <keyword>`|
+|Find|all calendar items|`/f <keyword>`|
 |Find|events|`/fe <keyword>`|
 |Find|tasks|`/ft <keyword>`|
 |Print|countdown for all items|`countdown`|

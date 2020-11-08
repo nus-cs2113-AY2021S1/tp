@@ -16,7 +16,7 @@ class FindCommandTest {
         try {
             findCommand.execute(calendarList, storage);
         } catch (Exception e) {
-            assertEquals("keyword not found", e.getMessage());
+            assertEquals("missing keyword", e.getMessage());
         }
     }
 
