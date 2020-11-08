@@ -38,7 +38,7 @@
         * Add short writeup to introduce **AniChan** and provide useful links to pages like user guide and developer guide.
     *   User Guide: 
         *   Contributed to writeup on Quick Start.
-        *   Documented guide on `Workspace` management.
+        *   Documented guide on `Workspace` management: [#185](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/185), [#162](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/162), [#302](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/302).
     *   Developer Guide:
         *   Contributed to writeup on `User` architecture and diagram.
         *   Contributed to `Workspace` related user stories and manual testing guide: [#285](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/285).
