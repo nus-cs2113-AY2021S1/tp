@@ -4,7 +4,7 @@
 ### [1. Introduction](#1-Introduction-1)
 ### [2. Quick start](#2-Quick-start-1)
 ### [3. Features](#3-Features-1)
-#### [3.1 Before the order](#31-before-the-order-1)
+#### [3.1 Before the order](#31-Before-the-order-1)
 #### [3.2 Begin the order](#32-Begin-the-order-1)
 ##### [3.2.1 Firstly](#321-Firstly-1)
 ##### [3.2.2 The order method will be activated and print open stalls, user just type the corresponding index before the canteen to select canteen](#322-The-order-method-will-be-activated-and-print-open-stalls,-user-just-type-the-corresponding-index-before-the-canteen-to-select-canteen-1)
@@ -42,7 +42,8 @@ During peak hours, people may not be able to know the dining situation and the d
 
 ## 3. Features 
 
-### 3.1 Before the order: `[name]/[day of week]/[time]`
+### 3.1 Before the order: 
+`[name]/[day of week]/[time]`
 
 Format: `[name]/[day of week]/[time]`
 
