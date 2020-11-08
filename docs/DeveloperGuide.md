@@ -155,22 +155,36 @@ either poem or essay at this stage)
 ![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
 <p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
 
-### Filter words class family / Word family
+### Word Features
+
+#### Adding a noun
+
+#### Adding a verb 
+
+#### Adding an adjective
+
+#### Listing words
+
+#### Generating three random words
+
+#### Filtering words
+This feature allows users to getting words as they wish. The diagram below shows the overall architecture of filter words functionality.
+
 ![UML Filter word class diagram](graphics/diagrams/classDiagram_FilterWords.png)
 <p align = "center"><i><b>Figure 5: Filter word UML Class Diagram</b></i></p>
 
-The above class diagram describes the overall architecture of the filter words functionality. `FilterExecutor` class has 
-the static void method `executeFilterCommand` that will be called first when the user enters a filter command. 
-In the `executeFilterCommand` method, it will make use of the enumeration `FilterType` to get the filter type (by `WORD_TYPE`, 
-`STARTING STRING` or `INCLUDING_STRING`). After that, the method will use the `FilterCommandSlicer` static methods `isNewFilter` 
-to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word bank. 
-`executeFilterCommand` will also check whether the user has entered a print limit using `FilterCommandSlicer`'s method 
-`getWordPrintLimitFromFilterCommand`. Subsequently, depending on the filter mode, `getTargetedWordTypes` or `getTargetedStringTags` will be called 
-and the returned array of strings will be passed to `WordsFilter`’s static methods `filterByType`, `filterByStartingString` and `filterByIncludedString`.
-Lastly, `filterCommandExecutor` will call the method `printFilterList`.
+**Implementation**
 
-The following sequence diagram shows how the components interact with each other for the scenario where the user issues 
-the command `filter -continue by\start limit\10 -cs -cg.`
+1. `FilterExecutor` class has the static void method `executeFilterCommand` that will be called first when the user enters a `filter words` command. 
+1. In the `executeFilterCommand` method, the program will:
+    1. Use the `getTypeOfFilter` method in enumeration `FilterType` to get the filter type (`WORD_TYPE`, `STARTING_STRING` or `INCLUDING_STRING`). 
+    1. Use the `FilterCommandSlicer` static methods `isNewFilter` to determine whether the user wants to continue on the last filtered list or start a new filter on an entire word list. 
+    1. check whether the user has entered a print limit using `FilterCommandSlicer`'s method `getWordPrintLimitFromFilterCommand`. 
+    1. Depending on the filter type, `getTargetedWordTypes` or `getTargetedStringTags` will be called to get an array of strings containing the word types or strings required for the filter process.
+    1. The array of strings will be passed to either one of `WordsFilter`’s static methods `filterByType` `filterByStartingString` and `filterByIncludedString` to process the filtering.
+    1. Call the method `printFilterList` to print out the result.
+
+The following sequence diagram shows how the components interact with each other for the scenario where the user issues the command `filter -continue by\start limit\10 -cs -cg.`
 
 ![UML Filter word sequence diagram](graphics/diagrams/Sequence_FilterWords.png)
 
@@ -180,8 +194,12 @@ In **Figure 6** above, the flow of the program is as follow:
 1. After getting the `filter words` command, the `CommandExecutor` calls `executeFilterCommand` in `FilterExecutor` class.
 1. In the method `executeFilterCommand`, the method `getTypeOfFilter` of `FilterType` class is called to get the filter mode, which is `START`.
 1. Then, `FilterCommandSlicer`'s methods `isNewFilter`, `getWordPrintLimitFromFilterCommand`, `getTargetedStringTags` is called to check whether the program should continue on the last filter list and to get print limit as well as the strings used for filtering.
+    1. The returned result of `isNewFilter` method is `true`.
+    1. The returned result of `getWordPrintLimitFromFilterCommand` method is an integer `10`.
+    1. The returned result of `getTargetedStringTags` method is the array `["cs", "cg"]`
 1. The method `filterByStartString` in `WordsFilter` class in called to execute the main filter process.
-1. Filter list is printed by `printFilterList` method in `FilterList` class. The filter mode ends here.
+1. Filter list is printed by `printFilterList` method in `FilterList` class.
+1. The filter process ends.
    
 ### Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
