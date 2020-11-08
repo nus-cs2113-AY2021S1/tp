@@ -463,10 +463,20 @@ or manually deducted/credited from/to account. Causes entry to be displayed diff
 but does not cause different functionality.
 * `notes` - Any user-specified notes
 
-`RecurringTrackerList` extends ItemList, and supports the following methods on top of inherited methods
+`RecurringEntryList` extends ItemList, and supports the following methods on top of inherited methods
 * `addItem(Item)` - Override. Adds item and sorts according to the day in ascending order
 * `getEntriesFromDayXtoY` - Returns an ArrayList of all entries that fall between day X and Y 
 (provided by developer in the code, not by user). Used for reminders.
+
+![](uml_images/images_updated/recurringTrackerClassDiagram.png)
+
+**Logic Manager and Handler**
+
+`RecurringTracker`, like `EntryTracker`, utilizes 3 handlers - `CreateEntryHandler`, `EditEntryHandler` and `DeleteEntryHandler`.
+
+
+
+
 
 **Reminders** <br />
 Upon launching the program, the system date and time is recorded in `RunHistory`.
