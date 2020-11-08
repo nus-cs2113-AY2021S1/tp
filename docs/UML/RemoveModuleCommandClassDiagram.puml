@@ -1,0 +1,57 @@
+@startuml
+
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract} \n Command" as Command LOGIC_COLOR {
+  + {abstract} execute(ui : Ui, access : Access,
+  storage : Storage) : void
+}
+
+Class "{abstract} \n RemoveCommand" as RemoveCommand LOGIC_COLOR {
+  + {abstract} execute(ui : Ui, access : Access,
+  storage : Storage) : void
+  # prepareResult(type : String, content : String,
+  count : int) : String
+}
+
+Class "RemoveModuleCommand" as RemoveModuleCommand LOGIC_COLOR {
+    + RemoveModuleCommand(removeIndex : int)
+    - removeIndex : int
+    + execute(ui : Ui , access : Access, storage : Storage) : void
+    - removeModule(access Access, storage Storage) : String
+}
+
+Class "Access" as Access MODEL_COLOR {
+    + getAdmin() : Admin
+}
+
+Class "Admin" as Admin MODEL_COLOR {
+    + getModules() : ModuleList
+}
+
+Class "ModuleList" as ModuleList MODEL_COLOR {
+    + getAllModules() : ArrayList<Module>
+}
+
+Class "Ui" as Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+Class "Storage" as Storage STORAGE_COLOR {
+    + deleteDirectory(directoryToBeDeleted : File) : boolean
+}
+
+RemoveCommand -left[LOGIC_COLOR_T4]-|> Command
+RemoveModuleCommand -up[LOGIC_COLOR_T4]-|> RemoveCommand
+RemoveModuleCommand .down[LOGIC_COLOR_T4].> Storage
+RemoveModuleCommand .left[LOGIC_COLOR_T4].> Ui
+RemoveModuleCommand .up[LOGIC_COLOR_T4].> Access
+RemoveModuleCommand .right[LOGIC_COLOR_T4].> Admin
+RemoveModuleCommand .right[LOGIC_COLOR_T4].> ModuleList
+Access *-down[MODEL_COLOR]-> "           1" Admin
+Admin *-down[MODEL_COLOR]-> "   0..1" ModuleList
+Storage -right[HIDDEN]-> ModuleList
+
+@enduml

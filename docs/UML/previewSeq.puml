@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":ListDueCommand" as L LOGIC_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant "ui:Ui" as U UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "storage:Storage" as S STORAGE_COLOR
+participant ":StorageLoad" as SL STORAGE_COLOR
+end box
+
+skinparam sequence {
+  GroupBodyBackgroundColor Transparent
+}
+
+-> L : execute()
+activate L
+    L -> L : loadAllDueChapters()
+    activate L
+    L -> S : loadAllDueChapters()
+    activate S
+    S -> SL : loadAllChaptersAsDueChapters()
+    activate SL
+    SL --> S : allDueChapters
+    deactivate SL
+    S --> L : allDueChapters
+    deactivate S
+    deactivate L
+    loop for increment from 0 to 6
+        L -> L : setDueDueChapters()
+        activate L
+        deactivate L
+        alt if increment equals 0
+            L -> U : printDueByTodayMessage()
+            activate U
+            U --> L
+            deactivate U
+        else increment larger than 0
+            L -> U : printDueByIncrementMessage()
+        end
+        L -> U : printDueChapters(DueDueChapters)
+        activate U
+        U --> L
+        deactivate U
+    end
+deactivate L
+@enduml

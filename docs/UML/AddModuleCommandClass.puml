@@ -1,52 +1,52 @@
 @startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
 
-hide circle
-skinparam classAttributeIconSize 0
-
-class "{abstract} \n AddCommand"{
-  + prepareResult() : String
-  + isExist() : boolean
+class "{abstract} \n AddCommand" as AddCommand LOGIC_COLOR {
+    + prepareResult() : String
+    + isExist() : boolean
 }
 
-class "{abstract} \n Command"{
-  + isExist() : String {abstract}
-  + execute() : void {abstract}
+class "{abstract} \n Command" as Command LOGIC_COLOR {
+    + {abstract} isExist() : String
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
 }
 
-class "Kaji" {
-    + run() : void
-}
-
-class "Access" {
+class Access MODEL_COLOR {
     + getAdmin() : Admin
     + setAdmin(Admin) : void
 }
 
-class "Storage" {
+class Storage STORAGE_COLOR {
     + createModule(String) : void
 }
 
-class "ModuleList" {
+class ModuleList MODEL_COLOR {
     + addModule(Module) : void
     + getModuleCount() : int
 }
 
-class "Ui" {
+class Module MODEL_COLOR {
+}
+
+class Ui UI_COLOR {
     + showToUser(String) : void
 }
 
-"{abstract} \n AddCommand" <|-- AddModuleCommand
-AddModuleCommand : - module : String
-AddModuleCommand : - addModule(Access, Storage, Module)
+class AddModuleCommand LOGIC_COLOR {
+    - module : String
+    - addModule(Access, Storage, Module)
+}
 
-"{abstract} \n Command" <|-- "{abstract} \n AddCommand"
+AddCommand <|-right[LOGIC_COLOR_T4]- AddModuleCommand
+Command <|-right[LOGIC_COLOR_T4]- AddCommand
 
-Kaji *- "{abstract} \n Command"
-
-AddModuleCommand ..> Access
-AddModuleCommand ..> Storage
-AddModuleCommand ..> ModuleList
-AddModuleCommand ..> Ui
+AddModuleCommand .down[LOGIC_COLOR_T4].> Access
+AddModuleCommand .right[LOGIC_COLOR_T4].> Storage
+AddModuleCommand -down[LOGIC_COLOR_T4]-> "0..1" ModuleList
+AddModuleCommand .up[LOGIC_COLOR_T4].> Ui
+AddModuleCommand -down[LOGIC_COLOR_T4]-> "1" Module
 
 
 @enduml
