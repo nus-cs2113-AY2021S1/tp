@@ -21,10 +21,12 @@ public class EventLogger {
         String logging = "logging.txt";
         userInterface = ui;
         try {
+            logger.setUseParentHandlers(false);
             fh = new FileHandler(logging);
             logger.addHandler(fh);
             logger.setLevel(Level.ALL);
             logger.fine("Logger created");
+
         } catch (IOException e) {
             ui.printErrorMessage("log file was not created");
         }
