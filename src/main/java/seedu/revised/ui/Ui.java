@@ -198,7 +198,7 @@ public class Ui {
                     System.out.println(DIVIDER);
                 }
                 Ui.printSubjectMatch(subjectPresent);
-                System.out.println(subject);
+                System.out.println("  " + subject);
                 subjectPresent = 1;
             }
         }
@@ -233,7 +233,7 @@ public class Ui {
 
     public static void printBackToSubjects() {
         System.out.println(DIVIDER);
-        System.out.println("Going back to the subjects list.");
+        System.out.println("Going back to the main menu.");
         System.out.println(DIVIDER);
 
     }
@@ -351,13 +351,13 @@ public class Ui {
 
     public static void printStartSubjectQuiz(Subject subject) {
         System.out.println(DIVIDER);
-        System.out.println("You are about to begin the quiz for " + subject + ".You have 2 minutes.");
+        System.out.println("You are about to begin the quiz for " + subject + ". You have 2 minutes.");
         System.out.println(DIVIDER);
     }
 
     public static void printStartTopicQuiz(Topic topic) {
         System.out.println(DIVIDER);
-        System.out.println("You are about to begin the quiz for " + topic + ".You have 1 minute.");
+        System.out.println("You are about to begin the quiz for " + topic + ". You have 1 minute.");
         System.out.println(DIVIDER);
     }
 
@@ -490,10 +490,6 @@ public class Ui {
         }
     }
 
-    public static String repeatedDateTimeException(Task task) {
-        return "There is another task at that date and time:\n" + task;
-    }
-
     public static String fileSyntaxErrorMsg(String dataType, String fileLocation) {
         return String.format("Error reading the %s data under %s. Make sure the syntax is correct "
                 + "if you changed it manually. Proceeding with empty %ss.", dataType, fileLocation, dataType);
@@ -584,56 +580,72 @@ public class Ui {
      * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
      */
     public static void printAll(List<Subject> subjects, Subject activeSubject, Topic activeTopic) {
-        System.out.println("Here's a list of all subjects, topics, tasks, and flashcards:");
+        assert !(activeSubject != null && activeTopic != null);
+        System.out.println(DIVIDER);
+        System.out.println("Here's a list of all items:");
         if (activeSubject == null && activeTopic == null) {
             System.out.println("(You are currently here)");
         }
 
         int i = 1;
         for (Subject s : subjects) {
-            boolean isLast = (i == subjects.size()
-                    && s.getTasks().getList().size() == 0
-                    && s.getTopics().getList().size() == 0);
-            System.out.println((isLast ? "└─ " : "├─ ")
+            boolean isLastSubject = i == subjects.size();
+            System.out.println((isLastSubject ? "└─ " : "├─ ")
                     + (i++) + ". " + s.toString()
                     + ((activeSubject != null && s == activeSubject) ? " (You are currently here)" : ""));
-            printAllTopics(s, activeTopic);
+            printAllUnderSubject(isLastSubject, s, activeTopic);
         }
+        System.out.println(DIVIDER);
     }
 
     /**
-     * Prints a subtree of all topics under a subject.
-     * If the user is lookking at a topic, tells which topic the user is currently looking at.
+     * Prints a subtree of all items under a subject.
+     * If the user is looking at a topic, tells which topic the user is currently looking at.
      *
-     * @param subject     the subject containing all the topics to be printed
-     * @param activeTopic Topic that the user is currently looking at. null if user is not looking at a topic
+     * @param isLastSubject Whether the subject containing the topics is the last subject in the list
+     * @param subject       The subject containing all the topics to be printed
+     * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
      */
-    public static void printAllTopics(Subject subject, Topic activeTopic) {
+    public static void printAllUnderSubject(boolean isLastSubject, Subject subject, Topic activeTopic) {
+        // Print topics
         int i = 1;
         TopicList topicList = subject.getTopics();
         List<Topic> topics = topicList.getList();
+        String subjectTreeSymbol = (isLastSubject ? " " : "│");
 
-        System.out.println("│  Topics");
+        if (topics.size() == 0) {
+            System.out.println(subjectTreeSymbol + "  ├─ No topics");
+        } else {
+            System.out.println(subjectTreeSymbol + "  │  Topics");
+        }
+
         for (Topic topic : topics) {
-            boolean isLastTopic = i == topics.size();
-            System.out.println("│  " + (isLastTopic ? "└─ " : "├─ ")
+            System.out.println(subjectTreeSymbol + "  ├─ "
                     + (i++) + ". " + topic.toString()
                     + (activeTopic != null && topic == activeTopic ? " (You are currently here)" : ""));
             int numberOfFlashcards = topic.getFlashcards().size();
             if (numberOfFlashcards != 0) {
-                System.out.println("│  "
-                        + (isLastTopic ? " " : "│")
-                        + "  └─ " + numberOfFlashcards
+                System.out.println(subjectTreeSymbol
+                        + "  │  └─ "
+                        + numberOfFlashcards
                         + (numberOfFlashcards == 1 ? " Flashcard" : " Flashcards"));
             }
         }
+
+        // Print tasks
         i = 1;
         TaskList taskList = subject.getTasks();
         List<Task> tasks = taskList.getList();
 
-        System.out.println("│  Tasks");
+        if (tasks.size() == 0) {
+            System.out.println(subjectTreeSymbol + "  └─ No tasks");
+        } else {
+            System.out.println(subjectTreeSymbol + "  │  Tasks");
+        }
         for (Task task : tasks) {
-            System.out.println("│  " + ((i == tasks.size()) ? "└─ " : "├─ ")
+            System.out.println(subjectTreeSymbol
+                    + "  "
+                    + ((i == tasks.size()) ? "└─ " : "├─ ")
                     + (i++) + ". " + task.toString());
         }
     }
