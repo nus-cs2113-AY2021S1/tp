@@ -125,7 +125,7 @@ public class Ui {
         printLine();
     }
 
-    private static void printMostSearchedBusStop() {
+    public static void printMostSearchedBusStop() {
         if (BusStops.mostSearchedBusStop() != null) {
             System.out.println("Your most searched bus stop is: " + BusStops.mostSearchedBusStop().getName());
         } else {

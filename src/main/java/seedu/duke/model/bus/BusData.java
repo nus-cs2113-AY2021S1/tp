@@ -64,6 +64,11 @@ public class BusData {
         return buses;
     }
 
+    /**
+     * Gets all search counts of each bus stop to be stored for future use.
+     *
+     * @return allSearchCount ArrayList of integers
+     */
     public static ArrayList<Integer> getAllSearchCount() {
         ArrayList<Integer> allSearchCount = new ArrayList<Integer>();
         for (BusStops busStop : EnumSet.allOf(BusStops.class)) {
