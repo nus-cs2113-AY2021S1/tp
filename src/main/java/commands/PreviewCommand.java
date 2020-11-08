@@ -40,13 +40,13 @@ public class PreviewCommand extends Command {
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws ExclusionFileException {
         loadAllDueChapters(storage, ui);
-        for (int i = 0; i < 7; i++) {
+        for (int increment = 0; increment < 7; increment++) {
             dueDueChapters = new ArrayList<>();
-            setDueDueChapters(i);
-            if (i == 0) {
+            setDueDueChapters(increment);
+            if (increment == 0) {
                 ui.printDueByTodayMessage(dueDueChapters.size(), COMMAND_WORD);
             } else {
-                ui.printDueByIncrementMessage(dueDueChapters.size(), Scheduler.getIncrementedDate(i));
+                ui.printDueByIncrementMessage(dueDueChapters.size(), Scheduler.getIncrementedDate(increment));
             }
             ui.printDueChapters(dueDueChapters);
         }
