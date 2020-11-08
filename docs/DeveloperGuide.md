@@ -305,16 +305,17 @@ it does not show the full sequence diagram and explanation of the `SingleTopicQu
 When a quiz is started, the `startQuiz(ui)` method will be called. 
 After the options of a particular question has been printed out, the timer would begin.
 The `getCommand(ui, optionList, userTimer)` method is first called. The `userTimer` parameter used here is the time that the user has set at the start of the quiz. 
-The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. 
-The `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
+The `getQuizInputFromUser(userTimer)` method will then call the `Ui` class to read in the users' input. The timer continues to count down as it waits for the users' input. 
+After the user has written an input, the `Ui` will return the `userInput` string back to the `SingleTopicQuiz` object. 
+If the user did not write in any input and the time is up, the `Ui` will return `null` string back to the `SingleTopicQuiz` object instead. 
 The `Command` object will be returned. 
 
-For example, if the user entered a string (that is not "hint" or "bookmark" and not a number), then the `Command` returned will be one of `IncorrectCommand`. 
+For example, if the user entered a string (that is not "hint" or "bookmark" and not a number from 1 to 4), then the `Command` returned will be one of `IncorrectCommand`. 
 If the user entered any number from 1 to 4, it will be an `AnswerCommand`. 
 If the user did not input anything and the time is up, the `Command` returned will be `IncompleteCommand`. 
 
-It will then enter into a loop. If the `Command` is not an `AnswerCommand` or `IncompleteCommand`, it will continue in this loop. 
-The `SingleTopicQuiz` object will then call the respective `Command` object, using the `execute(optionList, ui)` method. 
+It will then enter into a loop and remain in this loop unless the user has input a valid answer or the time is up for that question. 
+In the loop, the `SingleTopicQuiz` object will then call the respective `Command` object, using the `execute(optionList, ui)` method. 
 
 For example, if it is a `HintCommand`, then the execution would mean that the hint will be printed out by the `Ui` class to show the user the hint for the particular question. 
 However, some details were omitted here so that the sequence diagram is easier to understand. 
@@ -326,7 +327,8 @@ This is because, we want to avoid the situation where the user is able to extend
 Hence, in order to prevent this bug, for this `getCommand()` method, we have to use the time left on the timer instead. 
 The subsequent steps are similar to the one stated above. 
 
-If the `Command` is an instance of `AnswerCommand` and `IncompleteCommand`, the loop will end and the `SingleTopicQuiz` object will proceed to execute the `Command` for the last time, using the `execute(optionList, ui)` method.
+The loop will end if the user has written an input or the time is up for that question. 
+The `SingleTopicQuiz` object will then proceed to execute the `Command` for the last time, using the `execute(optionList, ui)` method.
 
 It will then enter another loop that checks if the user has pressed on the "Enter" button on the computer. 
 This feature was implemented so that they have sufficient time to read through and understand the explanation before moving on to the next question. 
