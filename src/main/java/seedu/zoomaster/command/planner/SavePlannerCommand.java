@@ -8,6 +8,7 @@ import seedu.zoomaster.Zoomaster;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.Command;
 import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
 import seedu.zoomaster.slot.Timetable;
@@ -24,7 +25,10 @@ public class SavePlannerCommand extends Command {
 
     public static final String SAVE_KW = "save";
 
-    public SavePlannerCommand() throws ZoomasterException {
+    public SavePlannerCommand(String command) throws ZoomasterException {
+        if (command.compareTo(SAVE_KW) != 0) {
+            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
+        }
     }
 
     /**
@@ -56,7 +60,6 @@ public class SavePlannerCommand extends Command {
      * @param timetable The individual timetable
      * @throws ZoomasterException Some exceptions
      */
-
     void writeToFile(Timetable planner, Timetable timetable) throws ZoomasterException {
         for (Module m : planner.getFullModuleList()) {
             if (!m.getModuleCode().equals("EMPTY")) {

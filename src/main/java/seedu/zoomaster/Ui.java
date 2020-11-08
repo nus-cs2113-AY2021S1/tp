@@ -596,6 +596,7 @@ public class Ui {
         }
     }
 
+    //@@author jusufnathanael
     private void printModeThreeExtendedHelp(String input) {
         switch (input) {
         case AddMeetingCommand.ADD_KW:
