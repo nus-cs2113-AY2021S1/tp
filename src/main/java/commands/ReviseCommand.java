@@ -50,7 +50,7 @@ public class ReviseCommand extends Command {
         this.reviseIndex = reviseIndex;
     }
 
-    public Chapter getChapter(int reviseIndex, Access access) throws IndexOutOfBoundsException {
+    private Chapter getChapter(int reviseIndex, Access access) throws IndexOutOfBoundsException {
         Chapter chapter;
         try {
             chapter = access.getModule().getChapters().getChapter(reviseIndex);
@@ -142,7 +142,7 @@ public class ReviseCommand extends Command {
         return notRevising;
     }
 
-    public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards,
+    private ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards,
                                            Card c, String input, Scanner scanner) {
         boolean isInvalid = true;
         while (isInvalid) {
