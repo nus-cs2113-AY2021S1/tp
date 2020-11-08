@@ -4,6 +4,7 @@ package seedu.notus.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.notus.data.exception.SystemException;
 import seedu.notus.data.notebook.Note;
 import seedu.notus.data.notebook.Notebook;
 import seedu.notus.data.notebook.NotebookStub;
@@ -14,18 +15,22 @@ import seedu.notus.storage.StorageManager;
 import seedu.notus.ui.Formatter;
 import seedu.notus.util.parser.ParserManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.notus.storage.StorageManager.FOLDER_DIR;
+import static seedu.notus.storage.StorageManager.NOTES_DIR;
+import static seedu.notus.util.CommandMessage.ARCHIVE_NOTE_SUCCESSFUL_MESSAGE;
 import static seedu.notus.util.CommandMessage.INDEX_OUT_OF_RANGE_MESSAGE;
 import static seedu.notus.util.CommandMessage.NOTE_DOES_NOT_EXIST_MESSAGE;
 
 class ArchiveNoteCommandTest {
 
-    Notebook notebook;
-    Timetable timetable;
-    TagManager tagManager;
-    ParserManager parserManager;
+    Notebook notebook = new Notebook();
+    Timetable timetable = new Timetable();
+    TagManager tagManager = new TagManager();
+    ParserManager parserManager = new ParserManager();
     StorageManager storageManager;
 
     ArrayList<String> content;
@@ -40,6 +45,11 @@ class ArchiveNoteCommandTest {
     void setup() {
         notebook = new Notebook();
         storageManager = new StorageManager(timetable, parserManager, notebook, tagManager);
+        try {
+            storageManager.createFiles();
+        } catch (SystemException e){
+
+        }
 
         content = new ArrayList<>();
         tagImpt = new Tag("Impt", Tag.COLOR_RED_STRING);
@@ -63,17 +73,23 @@ class ArchiveNoteCommandTest {
         notebook.addNote(testNote2);
         notebook.addNote(testNote3);
         notebook.addNote(testNote4);
+
+        try{
+            storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/Default.txt");
+        } catch (IOException e){
+
+        }
     }
 
     @Test
     void execute_validIndex_returnsArchiveMessage() {
-        /*int index = 1;
+        int index = 1;
         String title = NotebookStub.getArchiveNoteTitle(index);
 
-        String expected = Formatter.formatString("hola" + title);
+        String expected = Formatter.formatString(ARCHIVE_NOTE_SUCCESSFUL_MESSAGE + title);
         String result = getCommandExecutionString(notebook, index - 1);
 
-        assertEquals(expected, result);*/
+        assertEquals(expected, result);
     }
 
     @Test
@@ -88,12 +104,12 @@ class ArchiveNoteCommandTest {
 
     @Test
     void execute_validTitle_returnsArchiveMessage() {
-        /*String title = "random text";
+        String title = "random text";
 
-        String expected = Formatter.formatString("hola" + title);
+        String expected = Formatter.formatString(ARCHIVE_NOTE_SUCCESSFUL_MESSAGE + title);
         String result = getCommandExecutionString(notebook, title);
 
-        assertEquals(expected, result);*/
+        assertEquals(expected, result);
     }
 
     @Test
