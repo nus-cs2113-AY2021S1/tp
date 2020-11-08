@@ -43,7 +43,7 @@ public class TimeTableCommand {
         final String linkOrVenue = in.nextLine();
         System.out.println("What are the days and time of the lesson?\n(e.g. Monday 5-8pm, Tuesday 6-9pm)");
         final String [] periods = in.nextLine().split(", ");
-        isInvalid=true;
+        isInvalid = true;
         int repeat = 0;
         while (isInvalid) {
             System.out.println("How many weeks is the lesson?");
@@ -258,7 +258,7 @@ public class TimeTableCommand {
             index++;
             System.out.println(index + ". " + activity.name + " "
                     + activity.periods.get(0).startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-                    + (activity.isOnline?" online link:":" offline venue: ") + activity.linkOrVenue);
+                    + (activity.isOnline ? " online link: " : " offline venue: ") + activity.linkOrVenue);
         }
         if (index == 0) {
             System.out.println("There is no activity in the list");
@@ -282,7 +282,7 @@ public class TimeTableCommand {
             } catch (IndexOutOfBoundsException e) {
                 System.out.print("\n");
             }
-            System.out.println((lesson.isOnline?" online link:":" offline venue: ")
+            System.out.println((lesson.isOnline ? " online link:" : " offline venue: ")
                     + lesson.linkOrVenue);
         }
         if (index == 0) {
