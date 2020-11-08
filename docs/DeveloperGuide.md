@@ -864,7 +864,7 @@ the goal tracker progress to better aid the user in managing their finances.
         1. Enter ```manual``` into the console.
             You should see the following: 
             
-    ![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
+![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
 
     1. ```RecurringTracker```
     1. ```GoalTracker```
@@ -904,11 +904,11 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list.png)
 
-    * Observe that there is currently one ledger in the list, of date 2020-05-05.
-1. Refer to [7.2.1](#7.2.1) to create another ledger of date 2020-06-06 using the command: 
+> Observe that there is currently one ledger in the list, of date 2020-05-05.
+1. Refer to the above section on creating ledgers to create another ledger of date 2020-06-06 using the command: 
 ```new /date 200606```. 
 1. Enter ```list``` into the console. 
-    * Observe that there are now two ledgers in the list.
+> Observe that there are now two ledgers in the list.
 You should see the following: 
 
 ![](developerGuide_images/screenshots_manualtracker/manual_list2.png)
@@ -922,7 +922,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_delete1.png)
 
-    * Observe there is now one ledger on the list.
+> Observe there is now one ledger on the list.
 
 **Open Ledger** <br />
 1. Enter ```open /date 200707``` into the console.
@@ -930,9 +930,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_manualtracker/manual_open.png)
 
-    * Note that the ledger of date 2020-07-07 was not created beforehand. 
-    However, the ledger will be automatically created by the operation, and
-    will resume as per normal. 
+> Note that the ledger of date 2020-07-07 was not created beforehand. However, the ledger will be automatically created by the operation, and will resume as per normal. 
 
 ## EntryTracker
 1. The following testing guide assumes that testing at [7.2](#7.2) is completed.
@@ -962,7 +960,7 @@ You should see the following:
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create_err1.png)
-    * Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
+> Note that the error is thrown because category ```tpt``` is not considered an income, `-i`. Instead, it is 
     considered an expenditure, and `-e` should have been used instead.
 
 **Testing Show Entry List** <br />
@@ -970,7 +968,7 @@ You should see the following:
 You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_list.png)
-    * Note that the number of entries is now __2__.
+> Note that the number of entries is now __2__.
 
 **Testing Edit Entry** <br />
 
@@ -980,7 +978,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_edit_list.png)
 
-* Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
+> Observe that the entry of entry number 1 is not $0.50 under the __Amount__ column.
 
 **Testing Delete Entry** <br />
 1. Enter ```delete /id 2``` into the console.
@@ -989,15 +987,19 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_delete_list.png)
 
-* Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
+> Observe the entry that is the latter to be added, entry with __Entry Type = Income__, is now
 removed from the list.
 
 ## RecurringTracker
 1. Enter `recur` in the Main Menu. You should see the following:
+
 ![](developerGuide_images/screenshots_recurringtracker/enter_tracker.png)
+
 **Show Command List** <br />
 1. Enter `commands`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/commands.png)
+
 **Testing Add Entry** <br />
 **Positive Test 1: Normal Entry** <br />
 1. Enter `add -e /desc Netflix /amt 36.20 /day 27 /notes Cancel when finished watching Black Mirror`. Output:
@@ -1005,39 +1007,50 @@ removed from the list.
 
 **Entry with special day of month** <br />
 1. Enter `add -e /desc Drinks /amt 58.45 /day 31`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_day_31.png)
 
 **Negative Test** <br />
 1. Enter `add /desc OIH()(&%* /amt 343243`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/add_entry_no_day_i&e.png)
 
 **Testing List Entries** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
 Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list.png)
 
 **Testing Edit Entry** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
+
 **Positive Test** <br />
 1. Enter `edit /id 1 /day 29 -i`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
 1. Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
 
 **Negative Test: No Params to Edit** <br />
 1. Enter `edit /id 1`. Output:
 
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_no_params.png)
+
 <br />
 **Negative Test: No Such Index** <br />
 1. Enter `edit /id 4 /desc Hello Bubble`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry_invalid_index.png)
 
 **Testing Delete Entry** <br />
 * The following testing guide assumes that the testing of show command list is completed. <br />
 1. Enter `delete /id 2`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/delete_entry.png)
+
 1. Enter `list`. Output:
+
 ![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
 
 **Testing Reminders** <br />
@@ -1059,6 +1072,7 @@ Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/reminders.png)
 
 1. Enter `exit` to quit the program. Run the .jar file again. Reminders are printed below the logo and above the Main Menu prompt.
+
 ![](developerGuide_images/screenshots_recurringtracker/reminders_launch.png)
 
 ## GoalTracker
