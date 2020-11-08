@@ -7,8 +7,8 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/***
- * this class takes care of saving and loading of food, portion and date
+/**
+ * This class takes care of saving and loading of food, portion and date.
  */
 public class FoodPortionDateSaveLoadManager {
     private static final int DEFAULT_SAVER_WIDTH = 11;
@@ -28,20 +28,17 @@ public class FoodPortionDateSaveLoadManager {
 
     private static final String DEFAULT_FOOD_NAME = "No Food Name";
     private static final String DEFAULT_FOOD_CALORIE = "0";
-    private static final String DEFAULT_FOOD_CARBOHYDRATE= "0";
-    private static final String DEFAULT_FOOD_PROTEIN= "0";
+    private static final String DEFAULT_FOOD_CARBOHYDRATE = "0";
+    private static final String DEFAULT_FOOD_PROTEIN = "0";
     private static final String DEFAULT_FOOD_FAT = "0";
     private static final String DEFAULT_PORTION_SIZE = "1";
     private static final String DEFAULT_DAY = "1";
-    private static final String DEFAULT_MONTH= "1";
+    private static final String DEFAULT_MONTH = "1";
     private static final String DEFAULT_YEAR = "2000";
     private static final String DEFAULT_MINUTE = "0";
     private static final String DEFAULT_HOUR = "0";
 
     private static final String FOOD_FOLDER_NAME = "Food##PORTION###dDATE##folder";
-
-    private static final String DEFAULT_NAME = "MISSING NAME";
-    private static final String DEFAULT_NUTRITION_VALUE = "0";
 
     private Saver saver;
     private Loader fileLoader;
@@ -66,39 +63,40 @@ public class FoodPortionDateSaveLoadManager {
         this.fileLoader = Loader.loadEmpty();
     }
 
-    public void save(String fileName){
+    public void save(String fileName) {
         this.saver.save(FOOD_FOLDER_NAME, fileName);
     }
 
     /**
-     * Clears the saver and sets the number of entries it can take
-     * call this function at the start of a series of functions to store data
+     * Clears the saver and sets the number of entries it can take.
+     * call this function at the start of a series of functions to store data.
      *
      * @param numEntry num of entries
      */
-    public void readySaver(Integer numEntry){
+    public void readySaver(Integer numEntry) {
         saver.resetSize(DEFAULT_SAVER_WIDTH, numEntry);
     }
 
     // ------- top layer save loading -------
 
     /**
-     * Constructs the food list from stored data
-     * Note : call load function before calling this function or else it will throw illegalAccessException
+     * Constructs the food list from stored data.
+     * Note : call load function before calling this function or else it will throw illegalAccessException.
      *
      * @return the completed food list
      */
     public FoodList getFoodList() throws IllegalAccessException {
         FoodList foodlist = new FoodList();
-        for (int i = 1; i < fileLoader.getHeight() + 1; i++){
+        for (int i = 1; i < fileLoader.getHeight() + 1; i++) {
             foodlist.addFoodAtDateTime(this.getPortionSize(i), this.getFood(i), this.getDateTime(i));
         }
         return foodlist;
     }
 
     /**
-     * Takes in a food list object and saves all of it's contents to the specified file name
-     * The number of entries is equal to the number of items on the food list
+     * Takes in a food list object and saves all of it's contents to the specified file name.
+     * The number of entries is equal to the number of items on the food list.
+     *
      * @param foodlist food list
      */
     public void saveFoodList(FoodList foodlist, String fileName) {
@@ -107,17 +105,17 @@ public class FoodPortionDateSaveLoadManager {
         List<LocalDateTime> datetimes = foodlist.getDateTimes();
         int numEntry = foods.size();
         readySaver(numEntry);
-        for (int i = 1; i < numEntry + 1; i++){
-            setFood(foods.get(i-1), i);
-            setDateTime(datetimes.get(i-1), i);
-            setPortionSize(portions.get(i-1),i);
+        for (int i = 1; i < numEntry + 1; i++) {
+            setFood(foods.get(i - 1), i);
+            setDateTime(datetimes.get(i - 1), i);
+            setPortionSize(portions.get(i - 1),i);
         }
         save(fileName);
     }
 
     // ------- setters and getters ----------
 
-    public void setFood(Food food, int entryNumber){
+    public void setFood(Food food, int entryNumber) {
         setFoodName(food.getName(), entryNumber);
         setFoodCalorie(food.getCalorie(), entryNumber);
         setFoodCarbohydrate(food.getCarbohydrate(), entryNumber);
@@ -134,7 +132,7 @@ public class FoodPortionDateSaveLoadManager {
         return new Food(name, calorie, carbohydrate, protein, fat);
     }
 
-    public void setDateTime(LocalDateTime dateTime, int entryNumber){
+    public void setDateTime(LocalDateTime dateTime, int entryNumber) {
         setDay(dateTime.getDayOfMonth(), entryNumber);
         setMonth(dateTime.getMonthValue(), entryNumber);
         setYear(dateTime.getYear(), entryNumber);
@@ -153,7 +151,7 @@ public class FoodPortionDateSaveLoadManager {
 
     // ------ Basic setters and getters -------
 
-    private void setFoodCarbohydrate( int carbohydrate, int entryNumber) {
+    private void setFoodCarbohydrate(int carbohydrate, int entryNumber) {
         saver.add(Integer.toString(carbohydrate),  FOOD_CARBOHYDRATE_INDEX, entryNumber);
     }
 
@@ -165,35 +163,35 @@ public class FoodPortionDateSaveLoadManager {
         saver.add(Integer.toString(calorie), FOOD_CALORIE_INDEX, entryNumber);
     }
 
-    private void setFoodProtein(int protein, int entryNumber){
+    private void setFoodProtein(int protein, int entryNumber) {
         saver.add(Integer.toString(protein), FOOD_PROTEIN_INDEX, entryNumber);
     }
 
-    private void setFoodFat(int fat, int entryNumber){
+    private void setFoodFat(int fat, int entryNumber) {
         saver.add(Integer.toString(fat), FOOD_FAT_INDEX, entryNumber);
     }
 
-    public void setPortionSize(int portionSize, Integer entryNumber){
+    public void setPortionSize(int portionSize, Integer entryNumber) {
         saver.add(Integer.toString(portionSize), PORTION_SIZE_INDEX, entryNumber);
     }
 
-    public void setDay(int day, int entryNumber){
+    public void setDay(int day, int entryNumber) {
         saver.add(Integer.toString(day), DAY_INDEX, entryNumber);
     }
 
-    public void setMonth(int month, int entryNumber){
+    public void setMonth(int month, int entryNumber) {
         saver.add(Integer.toString(month), MONTH_INDEX, entryNumber);
     }
 
-    public void setYear(int year, int entryNumber){
+    public void setYear(int year, int entryNumber) {
         saver.add(Integer.toString(year), YEAR_INDEX, entryNumber);
     }
 
-    public void setHour(int hour, int entryNumber){
+    public void setHour(int hour, int entryNumber) {
         saver.add(Integer.toString(hour), HOUR_INDEX, entryNumber);
     }
 
-    public void setMinute(int minute, int entryNumber){
+    public void setMinute(int minute, int entryNumber) {
         saver.add(Integer.toString(minute), MINUTE_INDEX, entryNumber);
     }
 

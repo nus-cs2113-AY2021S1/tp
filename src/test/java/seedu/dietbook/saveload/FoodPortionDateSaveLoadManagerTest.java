@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FoodPortionDateSaveLoadManagerTest {
     FoodPortionDateSaveLoadManager test;
@@ -17,7 +17,7 @@ class FoodPortionDateSaveLoadManagerTest {
     FoodPortionDateSaveLoadManager test2;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         test = new FoodPortionDateSaveLoadManager();
         LocalDateTime testDateTime1 = LocalDateTime.of(2020, 10, 12, 16, 30);
         Food testFood1 = new Food("Banana", 100, 50, 30, 20);
@@ -36,13 +36,16 @@ class FoodPortionDateSaveLoadManagerTest {
         test.setPortionSize(testPortionSize2, 10);
         test.save("testFoodFile");
 
-        LocalDateTime testDateTime3 = LocalDateTime.of(1982, 3, 14, 20, 59);
-        Food testFood3 = new Food("Bacon", 300, 10, 450, 310);
-        int testPortionSize3 = 3;
+
 
         testfl = new FoodList();
         testfl.addFoodAtDateTime(testPortionSize1, testFood1, testDateTime1);
         testfl.addFoodAtDateTime(testPortionSize2, testFood2, testDateTime2);
+
+        LocalDateTime testDateTime3 = LocalDateTime.of(1982, 3, 14, 20, 59);
+        Food testFood3 = new Food("Bacon", 300, 10, 450, 310);
+        int testPortionSize3 = 3;
+
         testfl.addFoodAtDateTime(testPortionSize3, testFood3, testDateTime3);
 
         test2 = new FoodPortionDateSaveLoadManager();
@@ -85,9 +88,9 @@ class FoodPortionDateSaveLoadManagerTest {
     public void data_loadFoodList_returnsCorrectSavedData() throws FileNotFoundException, IllegalAccessException {
         test2.load("testFoodListFile");
         FoodList testfl2 = test2.getFoodList();
-        List<LocalDateTime> testfl2datetimes= testfl2.getDateTimes();
-        List<Integer> testfl2portions = testfl2.getPortionSizes();
-        List<Food> testfl2foods = testfl2.getFoods();
+        final List<LocalDateTime> testfl2datetimes = testfl2.getDateTimes();
+        final List<Integer> testfl2portions = testfl2.getPortionSizes();
+        final List<Food> testfl2foods = testfl2.getFoods();
         assertEquals(1982, testfl2datetimes.get(2).getYear());
         assertEquals(3, testfl2datetimes.get(2).getMonthValue());
         assertEquals(14, testfl2datetimes.get(2).getDayOfMonth());
