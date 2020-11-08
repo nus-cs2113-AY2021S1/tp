@@ -3,7 +3,7 @@
 * Table of Contents
 {:toc}
 
-## Introduction
+## Introduction 
 
 **Welcome to Study It User Guide!**
 
@@ -28,9 +28,9 @@ By utilizing these features, you will be able to manage your study matters effic
 
 The following is a list of common notations and symbols you’ll encounter throughout the user guide:
 
-1. INDEX NUMBER
+1. INDEX_NUMBER
    
-    Words of phrases in full capital indicates that they are inputs that you can define
+    Words of phrases in full capital indicates that they are inputs that you can decide on
    
 1. `command`
 
@@ -46,34 +46,42 @@ Let’s get started with using Study It! This section will show you how you can 
 
 Firstly, please ensure that your computer fulfills the following requirement:
 * Has Java 11.0.8
-  * You may refer to this website to download the Java 11.0.8 installer
+  * You may refer to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to download the Java 11.0.8 installer
   * The installation guide can be found in the following websites:
-    * Windows
-    * Linux 
-    * MacOS
+    * [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
+    * [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
+    * [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 Once you are done installing Java 11.0.8 onto your PC, you may follow these procedures to start using Study It:
 
-1. Download the tP.jar file from our Github release and place it in an empty folder
+1. Download the tP.jar file from our [Github release](https://github.com/AY2021S1-CS2113T-T12-1/tp/releases) and place it in an empty folder
 1. Open your computer’s command prompt
    1. Windows: press Windows key + R, type “cmd” and press Enter
    1. MacOS: press Command - spacebar to launch Spotlight and type "Terminal," then double-click the search result
    1. Linux Ubuntu: press Ctrl + Alt + T
 1. Change the directory of the command prompt to the folder containing tP.jar file
-1. Type java -jar tp.jar into the command prompt and press Enter to execute it
+1. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 1. If the application runs successfully, you’ll be greeted by the following welcome message:
 
 ![WelcomeMessage](Images/GeneralUG/welcomemessage.png)
 
-Congratulations! You are now able to run Study It. To access its various functionalities, \
+Congratulations! You are now able to run Study It. To access its various functionalities,
 you would need to type in the command at the Command Prompt and press Enter. 
-Whenever you feel lost, refer to the following sections of this User Guide or call the help function in the app 
+
+Whenever you feel lost, refer to the following sections of this User Guide or call the `help` function in the app 
 for guidance. We hope that you have fun using our app!
 
 ## General Commands
 
 The following section details the general commands you can use in the app. 
 These commands can be used anywhere in the app to help you navigate around the app.
+
+This section contains the following commands:
+* 1. : [Prints help message](#1-prints-help-message-help)
+* 2. : [Changes the current mode](#2-changes-the-current-mode-cd-mode_name-or-mode_index)
+* 3. : [Shows the current location](#3-shows-the-current-location-location)
+* 4. : [Prints starred items](#4-prints-starred-items-highlight)
+* 5. : [Exits the current mode or application](#5-exits-the-current-mode-or-application-exit)
 
 ### 1. Prints help message: `help`
 
@@ -87,24 +95,26 @@ Instruction:
 Expected output:
 
 At menu:
+
 ![HelpMessage](Images/GeneralUG/help.png)
 
 At bookmark mode:
+
 ![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
 
-**Useful information:**
-* The message varies in different modes to show you the commands at that mode. 
-Try the command at other modes when you are using the application!
+>**Useful information:**
+>* The message varies in different modes to show you the commands at that mode. 
+>Try the command at other modes when you are using the application!
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
 
 You can change to different modes of the app by using this command! 
 The following are the modes currently available in the app and their corresponding index:
-1. Menu
-1. Bookmark
-1. Timetable
-1. Academic
-1. Flashcard
+1. menu
+1. bookmark
+1. timetable
+1. academic
+1. flashcard
 
 Instruction:
 1. Type `cd` followed by the `MODE_NAME` or `MODE_INDEX`
@@ -120,15 +130,15 @@ Command: `cd academic`
 
 ![CDAcademic](Images/GeneralUG/cdacademic.png)
 
-**Warning**
-* An error message will appear when you type an invalid mode index or mode name
+>**Warning**
+>* An error message will appear when you type an invalid mode index or mode name
+>
+>![WrongModeIndex](Images/GeneralUG/wrongmodeindex.png)
+>
+>* Ensure that your index is within range or you spelt the mode names correctly when using this command!
 
-![WrongModeIndex](Images/GeneralUG/wrongmodeindex.png)
-
-* Ensure that your index is within range or you spelt the mode names correctly when using this command!
-
-**Useful information:**
-* You can use this command anywhere in the app to switch between modes quickly!
+>**Useful information:**
+>* You can use this command anywhere in the app to switch between modes quickly!
 
 ### 3. Shows the current location: `location`
 
@@ -155,6 +165,7 @@ Instruction:
 1. Type `highlight` and press Enter
 
 Expected output:
+
 ![](Images/GeneralUG/highlight.png)
 
 ### 5. Exits the current mode or application: `exit`
@@ -920,5 +931,7 @@ The following table is a compiled list of all available commands in our applicat
 
 The commands listed under the sections besides “General” can only be called when you are in that specific mode, 
 which you can access using the cd command!
+
+Table: Command Cheatsheet for Study It
 
 ![](Images/cheatsheet.png)
