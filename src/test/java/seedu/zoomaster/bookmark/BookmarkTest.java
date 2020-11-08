@@ -70,34 +70,4 @@ class BookmarkTest {
         assertEquals(expectedString, bookmark.getBookmarkAsString());
     }
 
-//    @Test
-//    void getExport_returnsDescriptionAndUrl() {
-//        String description = "something";
-//        String url = "www.google.com";
-//        Bookmark bookmark = new Bookmark(description, url);
-//        String expectedString = description + " | " + url;
-//        assertEquals(expectedString, bookmark.getExport());
-//    }
-//
-//    @Test
-//    void initBookmark_validDataString_returnsBookmark() throws ZoomasterException {
-//        String data = "tutorial | www.google.com";
-//        String description = "tutorial";
-//        String url = "www.google.com";
-//        Bookmark expectedBookmark = new Bookmark(description, url);
-//        assertEquals(expectedBookmark.getBookmarkAsString(), Bookmark.initBookmark(data).getBookmarkAsString());
-//    }
-//
-//    @Test
-//    void initBookmark_missingSeparator_throwsIndexOutOfBoundsException() {
-//        String data = "tutorial www.google.com";
-//        assertThrows(IndexOutOfBoundsException.class, () -> Bookmark.initBookmark(data));
-//    }
-//
-//    @Test
-//    void initBookmark_invalidUrl_throwsZoomasterException() {
-//        String data = "tutorial | google com";
-//        ZoomasterException e = assertThrows(ZoomasterException.class, () -> Bookmark.initBookmark(data));
-//        assertEquals(ZoomasterExceptionType.INVALID_URL, e.getError());
-//    }
 }

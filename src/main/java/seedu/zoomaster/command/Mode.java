@@ -1,5 +1,6 @@
 package seedu.zoomaster.command;
 
+//@@author
 public enum Mode {
     BOOKMARK,
     TIMETABLE,

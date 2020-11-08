@@ -1,5 +1,3 @@
-//@@author xingrong123
-
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -12,6 +10,7 @@ import java.util.logging.Logger;
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
  */
+//@@author xingrong123
 public class BookmarkList {
     private ArrayList<Bookmark> bookmarks;
     private static Logger logger = Logger.getLogger(BookmarkList.class.getName());

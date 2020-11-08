@@ -1,5 +1,3 @@
-//@@author xingrong123
-
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.exception.ZoomasterException;
@@ -14,10 +12,10 @@ import java.util.List;
  * It stores the URL and a description of the webpage.
  * It also contains a method which can extract the URL and description from a given string in a certain format.
  */
+//@@author xingrong123
 public class Bookmark {
     private String description;
     private String url;
-    private static final String SEPARATOR = " | ";
 
     /**
      * Constructs a bookmark object containing a URL and description of the webpage.

@@ -6,7 +6,7 @@ import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.slot.Timetable;
 
-
+//@@author xingrong123
 public abstract class Command {
 
     protected boolean isExitCommand = false;
@@ -14,7 +14,6 @@ public abstract class Command {
     /**
      * Execution of command depends on which command subclass the command belongs to.
      */
-    //@@author xingrong123
     public abstract void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException;
 
     /**

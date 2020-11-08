@@ -1,5 +1,3 @@
-//@@author jusufnathanael
-
 package seedu.zoomaster.command.planner;
 
 import com.google.gson.Gson;
@@ -21,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//@@author jusufnathanael
 public class SavePlannerCommand extends Command {
 
     public static final String SAVE_KW = "save";

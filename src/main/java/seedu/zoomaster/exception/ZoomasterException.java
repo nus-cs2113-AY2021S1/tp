@@ -1,10 +1,10 @@
 package seedu.zoomaster.exception;
 
-//@@author
 /**
  * The class DukeException is a subclass of Exception.
  * It is thrown when an error specific to Duke occurs.
  */
+//@@author xingrong123
 public class ZoomasterException extends Exception {
     private ZoomasterExceptionType zoomasterExceptionType;
     private String info;

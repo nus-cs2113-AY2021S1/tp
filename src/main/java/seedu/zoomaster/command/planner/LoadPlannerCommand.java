@@ -1,5 +1,3 @@
-//@@author jusufnathanael
-
 package seedu.zoomaster.command.planner;
 
 import seedu.zoomaster.Storage;
@@ -17,6 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//@@author jusufnathanael
 public class LoadPlannerCommand extends Command {
     public static final String LOAD_KW = "load";
     private Storage<Timetable> storage;

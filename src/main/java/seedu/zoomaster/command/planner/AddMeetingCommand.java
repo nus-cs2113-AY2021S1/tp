@@ -1,5 +1,3 @@
-//@@author jusufnathanael
-
 package seedu.zoomaster.command.planner;
 
 import seedu.zoomaster.Ui;
@@ -16,6 +14,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
+//@@author jusufnathanael
 public class AddMeetingCommand extends AddSlotCommand {
     public static final String ADD_KW = "add";
 
