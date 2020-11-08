@@ -257,7 +257,7 @@ Figure 7.Sequence diagram for changeOrder()
 #### Feature: check Canteen Operating Time
 The user enters the command: checkcanteen to check the operating time of an open canteen. The main will enable the checkCanteenOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
 
-![image](/img/image1.png)
+![image](img/image1.png)
 
 User can type the number before the canteen name to check its operating time.
 
@@ -364,9 +364,7 @@ Result is like this:
 Format: `y/n`
 
 Example of usage:
-'y'
-
-'n'
+'y', 'n'
 
 Result is like this:
 
