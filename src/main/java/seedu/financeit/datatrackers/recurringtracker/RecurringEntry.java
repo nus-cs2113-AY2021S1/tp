@@ -52,16 +52,6 @@ public class RecurringEntry extends Item {
         this.description = description;
     }
 
-    public void setStartMonth(int month) {
-        assert month <= 12 && month >= 1;
-        start = Month.of(month);
-    }
-
-    public void setEndMonth(int month) {
-        assert month <= 12 && month >= 1;
-        end = Month.of(month);
-    }
-
     @Override
     public String getName() {
         return String.format("Entry: [ %s ] on day [ %s ] ",
