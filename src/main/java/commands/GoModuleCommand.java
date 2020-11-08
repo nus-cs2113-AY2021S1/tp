@@ -8,6 +8,7 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +17,6 @@ import java.util.logging.Logger;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MODULE;
 
-/**
- * Access an existing module level from admin level.
- */
 public class GoModuleCommand extends GoCommand {
     private static Logger logger = KajiLog.getLogger(GoModuleCommand.class.getName());
 
@@ -41,14 +39,6 @@ public class GoModuleCommand extends GoCommand {
         ui.showToUser(result);
     }
 
-    /**
-     * Goes to a module level.
-     *
-     * @param access temporary access data about user's current access level
-     * @param storage file storage and file management of Kaji
-     * @return result to be displayed
-     * @throws IOException if there is an error writing to the storage file
-     */
     private String goModule(Access access, Storage storage) throws IOException {
         assert access.isAdminLevel() : "Not admin level";
         String result = "";
