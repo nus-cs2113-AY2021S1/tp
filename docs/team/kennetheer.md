@@ -21,40 +21,40 @@ Summary of my implemented app functionalities:
 
 Details: 
 * Addition and Deletion of modules and its contents: 
-  * Highlights: To support these core features, I created `ModuleList` and `Module` classes, 
+  - Highlights: To support these core features, I created `ModuleList` and `Module` classes, 
   which manages the list of modules and each module details respectively. 
   These laid the foundation so all functionalities in the app are implemented by building upon these basic classes.
 
 * Notification feature <br/>
-  * What it does: When the user starts the app, it notifies him if he is spending too little/just right/too much amount of time on the module 
+  - What it does: When the user starts the app, it notifies him if he is spending too little/just right/too much amount of time on the module 
   and displays a randomised encouraging message.
-  * Justification: This is a notable enhancement that helps ModTracker achieve its objectives by immediately highlighting to the user the modules that require more attention upon the start of the app. 
+  - Justification: This is a notable enhancement that helps ModTracker achieve its objectives by immediately highlighting to the user the modules that require more attention upon the start of the app. 
   Also, displaying randomised encouraging messages improves the overall user experience significantly.
   It motivates and interests the user with these random messages, personifying ModTracker as a buddy that helps 
   him with managing his module workload. This is key to differentiating ModTracker from other existing applications.
-  * Highlights: Integration with the analytics feature to determine user's progress for each module. 
+  - Highlights: Integration with the analytics feature to determine user's progress for each module. 
   The app lacks an explicit indication of the user's current week number, 
-  which is needed for a comparison to determine the user's progress. Hence, I implemented the logic to derive this value.
+  which is needed for a comparison to determine the user's progress. Hence, I implemented the logic to derive this value based on the latest week with at least one actual time input.
 
 ### Documentation
   * User Guide:
-    * I added documentations for the features `addmod`, `deletemod`, `addexp`, `deleteexp`, `open`, `deletetime`
-    * I fixed the links in the Table of Contents and formatted the tables [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109), 
-    [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/)
+    - I added documentations for the features `addmod`, `deletemod`, `addexp`, `deleteexp`, `open`, `deletetime`
+    - I fixed the links in the Table of Contents and formatted the tables: [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/), [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109) 
+    
 
   * Developer Guide:
-    * Under the Design section, I did the following components
+    - Under the Design section, I did the following components
         * Architecture component (including architecture diagram and high level sequence diagram exemplifying the interaction between different components)
         * UI component  
         * Model Component (including class diagram)
-    * I wrote implementation details of the `addMod` feature and drew activity and sequence diagrams to illustrate.
-    * I also contributed to the target user profile, value proposition and user stories.
+    - I wrote implementation details of the `addMod` feature and drew activity and sequence diagrams to illustrate.
+    - I also contributed to the target user profile, value proposition and user stories.
 
 ### Contributions to Team-based Tasks
-I conducted manual testing, reported bugs and helped to fix bugs in my team's code and refactor the code: [42](https://github.com/AY2021S1-CS2113T-F12-4/tp/issues/42) (reported bugs), ([#43](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/43) (fixed mismatch in object equality and optimised code), [#123](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/123) (use regex to implement module validity)
-I enabled java assertions, set up the milestones and labels in the issue tracker.
+- I conducted manual testing, reported bugs, helped to fix bugs in my team's code and refactor the code: [#42](https://github.com/AY2021S1-CS2113T-F12-4/tp/issues/42) (reported bugs), [#43](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/43) (fixed mismatch in object equality and optimised code), [#123](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/123) (used regex to implement module validity)
+- I enabled java assertions, set up the milestones and labels in the issue tracker.
 
 ### Contributions Beyond the Project Team
-I provided feedback to the other teams' code and developer's guide. 
-I also tested and reported major bugs for other teams: [#6](https://github.com/KennethEer/ped/issues/6), [#8](https://github.com/KennethEer/ped/issues/8)
+- I provided feedback to the other teams' code and developer's guide. 
+- I also tested and reported major bugs for other teams: [#6](https://github.com/KennethEer/ped/issues/6), [#8](https://github.com/KennethEer/ped/issues/8)
     
