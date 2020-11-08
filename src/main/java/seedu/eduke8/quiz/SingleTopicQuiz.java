@@ -104,7 +104,7 @@ public class SingleTopicQuiz implements Quiz {
                 command = getCommand(ui, optionList, (int) (userTimer - timePassed));
 
                 if (command instanceof IncorrectCommand) {
-                    LOGGER.log(Level.INFO, "Invalid answer given for question");
+                    LOGGER.log(Level.INFO, "Incorrect command given");
                 } else if (command instanceof HintCommand) {
                     LOGGER.log(Level.INFO, "Hint shown");
                 } else if (command instanceof BookmarkCommand) {
@@ -116,9 +116,9 @@ public class SingleTopicQuiz implements Quiz {
 
             command.execute(optionList, ui);
 
-            //User has to press enter so that the next question will be shown / quiz will end
+            //User has to press enter so that the next question will be shown 
             boolean enterIsUsed = false;
-            while (!enterIsUsed) {
+            while (!enterIsUsed && !quizQuestionsManager.areAllQuestionsAnswered()) {
                 enterIsUsed = ui.getEnterFromUser();
             }
         }

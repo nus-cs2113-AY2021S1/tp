@@ -32,7 +32,15 @@ public class ExceptionMessages {
     public static final String ERROR_TOPICS_JSON_NOT_FOUR_OPTIONS = "' does not have exactly 4 options.";
     public static final String ERROR_TOPICS_JSON_NO_CORRECT = "' has no correct answer.";
     public static final String ERROR_TOPICS_JSON_TOO_MANY_CORRECT = "' should not have more than 1 correct answer.";
+    public static final String ERROR_TOPICS_JSON_BLANK = "The topic or question should not be blank.";
+    public static final String ERROR_TOPICS_JSON_DUPLICATE = "The topics should not be duplicated.";
     public static final String ERROR_USER_JSON_LOAD = "An error with loading user data has occurred due to "
             + "modification of the topics or user data."
             + System.lineSeparator() + "Affected user data will be erased.";
+    public static final String ERROR_BOOKMARK_DELETE_NFE = "Please type in an integer into the index number field!";
+    public static final String ERROR_BOOKMARK_DELETE_IOB_ERROR = "Please choose an appropriate index number to be "
+            + "deleted from the list!";
+    public static final String ERROR_BOOKMARK_NONE = "You currently do not have any bookmarks stored.";
+    public static final String ERROR_BOOKMARK_INCORRECT_COMMAND = "Invalid command! The command for bookmark in the "
+            + "main menu is as follows:" + System.lineSeparator() + "'bookmark list' or 'bookmark delete'";
 }

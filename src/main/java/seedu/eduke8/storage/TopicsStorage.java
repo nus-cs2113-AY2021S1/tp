@@ -15,8 +15,11 @@ import seedu.eduke8.topic.Topic;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_BLANK;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_DUPLICATE;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_NOT_FOUR_OPTIONS;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_NO_CORRECT;
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_PREFACE;
@@ -28,12 +31,14 @@ public class TopicsStorage extends LocalStorage {
     private boolean wasCorrectAnswerMarked;
     private String currentQuestionDescription;
     private String currentTopicTitle;
+    private final HashSet<String> topicTitles;
 
     public TopicsStorage(String filePath) {
         super(filePath);
         wasCorrectAnswerMarked = false;
         currentQuestionDescription = "";
         currentTopicTitle = "";
+        topicTitles = new HashSet<>();
     }
 
     /**
@@ -44,6 +49,7 @@ public class TopicsStorage extends LocalStorage {
      * @throws ParseException  If the file contents cannot be parsed as a JSON.
      * @throws ClassCastException If the the nesting of arrays and objects in the JSON is wrong
      * @throws NullPointerException If the keys required are not present in the file.
+     * @throws Eduke8Exception      If the file has been tampered with wrongly.
      */
     @Override
     public ArrayList<Displayable> load()
@@ -65,6 +71,15 @@ public class TopicsStorage extends LocalStorage {
     private Topic parseToTopicObject(JSONObject topic) throws Eduke8Exception {
         currentTopicTitle = ((String) topic.get(KEY_TOPIC)).replaceAll(" ", "_");
 
+        checkIfBlank(currentTopicTitle);
+
+        boolean isNotDuplicate = topicTitles.add(currentTopicTitle.toLowerCase());
+
+        if (!isNotDuplicate) {
+            throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
+                    + System.lineSeparator() + ERROR_TOPICS_JSON_DUPLICATE);
+        }
+
         JSONArray questionsAsJsonArray = (JSONArray) topic.get(KEY_QUESTIONS);
 
         ArrayList<Displayable> questionsAsObjects = new ArrayList<>();
@@ -81,6 +96,9 @@ public class TopicsStorage extends LocalStorage {
 
     private Question parseToQuestionObject(JSONObject question) throws Eduke8Exception {
         currentQuestionDescription = (String) question.get(KEY_DESCRIPTION);
+
+        checkIfBlank(currentQuestionDescription);
+
         JSONArray optionsAsJsonArray = (JSONArray) question.get(KEY_OPTIONS);
 
         wasCorrectAnswerMarked = false;
@@ -117,6 +135,16 @@ public class TopicsStorage extends LocalStorage {
         Explanation explanation = new Explanation(explanationDescription);
 
         return new Question(currentQuestionDescription, optionList, hint, explanation);
+    }
+
+    private void checkIfBlank(String description)
+            throws Eduke8Exception {
+        if (description.equals("")) {
+            throw new Eduke8Exception(ERROR_TOPICS_JSON_PREFACE
+                    + System.lineSeparator() + ERROR_TOPICS_JSON_BLANK);
+        }
+
+
     }
 
     private Option parseToOptionObject(JSONObject option) throws Eduke8Exception {
