@@ -614,4 +614,4 @@ command>1. Clear all data. You will be prompted to confirm the decision.
    Format: storage /clear
    Example: storage /clear
 command>The command number is not in the list!
-command>bye
+command>See you again...
