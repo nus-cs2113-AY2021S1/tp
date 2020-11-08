@@ -1,5 +1,3 @@
-// @@author GuoAi
-
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;

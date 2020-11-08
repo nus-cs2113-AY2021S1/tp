@@ -127,8 +127,6 @@ public class Storage {
         return modules;
     }
 
-    //@@author GuoAi
-
     /**
      * Loads the expense list data from the storage.
      *
@@ -177,8 +175,6 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_SAVE_FILE);
         }
     }
-
-    //@@author
 
 
     /**
@@ -306,8 +302,6 @@ public class Storage {
         }
     }
 
-    //@@author GuoAi
-
     /**
      * Returns an expense item corresponding to arguments from a line loaded from file.
      *
@@ -340,6 +334,4 @@ public class Storage {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
     }
-
-    //@@author
 }

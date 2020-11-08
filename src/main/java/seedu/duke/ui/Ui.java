@@ -125,8 +125,6 @@ public class Ui {
                 + "commands and their usage.");
     }
 
-    // @@author GuoAi
-
     /**
      * Prints the goodbye message after the termination of the application.
      */
@@ -163,6 +161,4 @@ public class Ui {
         String returnString = formattedDateTime.format(outputFormatter);
         return returnString;
     }
-
-    // @@author
 }

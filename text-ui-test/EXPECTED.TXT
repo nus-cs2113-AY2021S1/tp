@@ -119,8 +119,7 @@ Hello from...
              Displays all the tasks with CATEGORY as a list.
              Example: list tasks c/cs2113
           Optional parameter 3: tasks sorted
-             Displays all the tasks sorted by priority
-     2. Displays all the books in the book list.
+             Displays all the tasks sorted by priority     2. Displays all the books in the book list.
              Example: list books
      3. Displays all the links in the link list.
              Example: list links
@@ -137,20 +136,9 @@ Hello from...
              Displays all the expense items for today/this week/this month/this year.
              Example: list expenses for/YEAR
 
-     makefolders: Make folders for your modules in the modulelist
-
      return: Marks the book identified by the index number used in the book list as returned.
      Parameters: INDEX
      Example: return 2
-
-     spend: Adds an expense item to the expense list.
-     Parameters: DESCRIPTION <compulsory/optional argument>
-     List of <compulsory arguments>:
-       - v/<value> sets the value of the expense item.
-     List of <compulsory arguments>:
-       - currency/<currency> sets the currency of the expense item.
-       - date/<yyyy-MM-dd> sets the date of the expense item.
-     Example: spend example_expense_item v/5.0 currency/SGD date/2020-11-07
 
      set: Sets the task identified by the index number used in the task listing to the new priority.
      Parameters: INDEX p/PRIORITY

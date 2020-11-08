@@ -1,6 +1,3 @@
-//@@author GuoAi-reused
-//Reused from https://github.com/GuoAi/ip with minor modifications
-
 package seedu.duke;
 
 import seedu.duke.commands.Command;
@@ -48,5 +45,3 @@ public class Duke {
         new Duke().run();
     }
 }
-
-//@@author

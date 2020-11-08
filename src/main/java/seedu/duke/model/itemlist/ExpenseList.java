@@ -1,5 +1,3 @@
-// @@author GuoAi
-
 package seedu.duke.model.itemlist;
 
 import seedu.duke.DukeException;
@@ -84,11 +82,7 @@ public class ExpenseList extends ItemList<Expense> {
         items = sortExpenseList(items);
         Ui.showLine();
         Ui.dukePrintMultiple(Messages.MESSAGE_EXPENSE_LIST);
-        int count = 0;
-        for (Expense expense : items) {
-            count++;
-            Ui.dukePrintMultiple(count + ". " + expense.toString());
-        }
+        items.forEach(expense -> Ui.dukePrintMultiple(expense.toString()));
         ArrayList<Expense> selectedExpenses = new ArrayList<>();
         try {
             Ui.showEmptyLine();

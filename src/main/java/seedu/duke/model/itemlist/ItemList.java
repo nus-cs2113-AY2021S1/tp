@@ -14,8 +14,6 @@ import java.util.Collections;
  */
 public abstract class ItemList<T extends Item> {
 
-    // @@author GuoAi
-
     protected ArrayList<T> items;
 
     /**
@@ -148,8 +146,6 @@ public abstract class ItemList<T extends Item> {
     public void clearItems() {
         items = new ArrayList<>();
     }
-
-    // @@author GuoAi
 
     /**
      * Marks the item, identified by the index of the item in the item list, as done (for tasks) or returned (for
