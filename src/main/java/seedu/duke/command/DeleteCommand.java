@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
+import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.WrongNumberFormatException;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import static seedu.duke.parser.DateTimeParser.dateParser;
 
 public class DeleteCommand extends Command {
-    private String listType;
+    private final String listType;
 
     public DeleteCommand(String listType, String command) {
         this.isExit = false;
@@ -41,8 +42,8 @@ public class DeleteCommand extends Command {
 
         String[] inputParameters = input.trim().split(";", 2);
 
-        if (inputParameters.length < 2) {
-            throw new WrongNumberOfArgumentsException("Event type or index not provided.");
+        if (inputParameters[0].isBlank() || inputParameters[1].isBlank()) {
+            throw new WrongNumberOfArgumentsException("Event type or index is missing.");
         }
 
         String listType = capitaliseFirstLetter(inputParameters[0].trim());
@@ -79,13 +80,19 @@ public class DeleteCommand extends Command {
             ui.printEventDeletedMessage(deleteEvent);
         } else if (eventIdentifierArray.length == 2 && deleteEvent.getRepeatType() != null) { // event is a repeat task
             LocalDate deleteEventDate = dateParser(eventIdentifierArray[1].trim());
+            boolean isDateFound;
 
             if (deleteEventDate.isEqual(deleteEvent.getDate())) {
+                isDateFound = true;
                 eventList.getEvents().remove(deleteEvent);
                 ui.printEventDeletedMessage(deleteEvent);
             } else {
                 ArrayList<Event> repeatEventList = deleteEvent.getRepeatEventList();
-                scanRepeatList(repeatEventList, deleteEventDate, ui);
+                isDateFound = scanRepeatList(repeatEventList, deleteEventDate, ui, deleteEvent);
+            }
+
+            if (!isDateFound) {
+                throw new DateErrorException("This event does not occur on this date.");
             }
         }
     }
@@ -101,13 +108,30 @@ public class DeleteCommand extends Command {
         return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
-    private void scanRepeatList(ArrayList<Event> repeatEventList, LocalDate deleteEventDate, Ui ui) {
+    /**
+     * Scans the repeat event array list of a repeat event for an event matching the given date and deletes it.
+     *
+     * @param repeatEventList the array list containing all the repeated sub events under the main repeat event.
+     * @param deleteEventDate the date of the sub repeat event to be deleted.
+     * @param ui containing the responses to print.
+     * @param deleteEvent the main repeat event.
+     * @return
+     */
+    private boolean scanRepeatList(ArrayList<Event> repeatEventList, LocalDate deleteEventDate,
+                                   Ui ui, Event deleteEvent) {
+        boolean isDateFound = false;
         for (Event e: repeatEventList) {
             if (e.getDate().isEqual(deleteEventDate)) {
+                isDateFound = true;
                 repeatEventList.remove(e);
                 ui.printEventDeletedMessage(e);
                 break;
             }
         }
+        if (repeatEventList.size() == 0) {
+            deleteEvent.setRepeatType(null);
+            deleteEvent.setRepeatEventList(null);
+        }
+        return isDateFound;
     }
 }
