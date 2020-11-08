@@ -18,6 +18,7 @@ import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
 
+import java.awt.print.Book;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +38,7 @@ public class MenuParser implements Parser {
     private static final int LENGTH_OF_QUESTIONS_INDICATOR = 2;
     private static final int LENGTH_OF_TOPIC_INDICATOR = 2;
     private static final int LENGTH_OF_TIMER_INDICATOR = 2;
+    private static final int BOOKMARK_DELETE_COMMANDARR_LENGTH = 3;
     private static final String BOOKMARK_LIST = "listing";
     private static final String COMMAND_ABOUT = "about";
     private static final String COMMAND_HELP = "help";
@@ -92,7 +94,7 @@ public class MenuParser implements Parser {
             int userTimer = 0;
             try {
                 if (commandArr[1].contains(TIMER_INDICATOR)) {
-                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR))  {
+                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
                         numOfQuestions = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
@@ -161,6 +163,11 @@ public class MenuParser implements Parser {
             return new QuizCommand((TopicList) topicList, numOfQuestions, topicName, ui, bookmarks, userTimer);
         case COMMAND_BOOKMARK:
             LOGGER.log(Level.INFO, "Parsing complete: bookmark command chosen.");
+            if (commandArr.length == BOOKMARK_DELETE_COMMANDARR_LENGTH) {
+                int deleteIndex = 0;
+                deleteIndex = Integer.parseInt(commandArr[2]);
+                return new BookmarkCommand(deleteIndex, commandArr[1], bookmarks);
+            }
             return new BookmarkCommand(BOOKMARK_LIST, bookmarks);
         case COMMAND_NOTE:
             try {
@@ -169,9 +176,9 @@ public class MenuParser implements Parser {
                     LOGGER.log(Level.INFO, "Parsing complete: note command chosen");
                     return new NoteCommand(commandArr[1], (TopicList) topicList);
                 } else {
-                    throw new Eduke8Exception(ERROR_NOTE_WRONG_FORMAT);
+                    break;
                 }
-            } catch (IndexOutOfBoundsException | Eduke8Exception e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 return new IncorrectCommand(ERROR_NOTE_WRONG_FORMAT);
             }
         case COMMAND_EXIT:
