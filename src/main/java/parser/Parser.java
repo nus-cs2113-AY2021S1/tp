@@ -102,8 +102,8 @@ public abstract class Parser {
     public static final String SELF_STUDY = "selfStudy";
     public static final String REPEAT = "repeat";
     public static final String ALL = "all";
-    public static final String AUTO_CLEAR = "autoclear";
-    public static final String CLEAR_BEFORE = "clearbefore";
+    public static final String AUTO_CLEAR = "autoClear";
+    public static final String CLEAR_BEFORE = "clearBefore";
 
 
     /**
