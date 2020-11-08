@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class SearchCommand extends Command {
     ArrayList<String> inputs;
 
-
     public SearchCommand(String description, ArrayList<String> inputs) throws NullPointerException {
         super(description);
         this.inputs = inputs;
