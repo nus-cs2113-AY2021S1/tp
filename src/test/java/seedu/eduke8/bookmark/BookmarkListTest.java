@@ -36,19 +36,16 @@ public class BookmarkListTest extends Eduke8Test {
     }
 
     @Test
-    void deleteBookmark_deleteNonExistentHighNumberBookmark_assertionErrorThrown() {
+    void deleteBookmark_deleteWrongBookmarkNumber_assertionErrorThrown() {
+
         assertThrows(AssertionError.class, () -> {
             bookmarkList.delete(100);
-            ;
         });
-    }
 
-    @Test
-    void deleteBookmark_deleteBookmarkZero_assertionErrorThrown() {
         assertThrows(AssertionError.class, () -> {
             bookmarkList.delete(0);
-            ;
         });
+
     }
 
     @Test

@@ -29,44 +29,29 @@ public class QuizParserTest extends Eduke8Test {
     }
 
     @Test
-    void quizParser_wrongStringInput_expectIncorrectCommandReturn1() {
+    void quizParser_wrongStringInput_expectIncorrectCommandReturn() {
         Command badCommand = quizParser.parseCommand(optionList, "one");
         assertTrue(badCommand instanceof IncorrectCommand);
-    }
 
-    @Test
-    void quizParser_wrongStringInput_expectIncorrectCommandReturn2() {
-        Command badCommand = quizParser.parseCommand(optionList, "back");
+        badCommand = quizParser.parseCommand(optionList, "back");
         assertTrue(badCommand instanceof IncorrectCommand);
-    }
 
-    @Test
-    void quizParser_wrongStringInput_expectIncorrectCommandReturn3() {
-        Command badCommand = quizParser.parseCommand(optionList, null);
+        badCommand = quizParser.parseCommand(optionList, null);
         assertTrue(badCommand instanceof IncompleteCommand);
-    }
 
-    @Test
-    void quizParser_wrongStringInput_expectIncorrectCommandReturn4() {
-        Command badCommand = quizParser.parseCommand(optionList, "6");
+        badCommand = quizParser.parseCommand(optionList, "6");
         assertTrue(badCommand instanceof IncorrectCommand);
     }
 
     @Test
-    void quizParser_correctStringInput_expectAnswerCommand() {
+    void quizParser_correctStringInput_correctInput() {
         Command resultCommand = quizParser.parseCommand(optionList, "1");
         assertTrue(resultCommand instanceof AnswerCommand);
-    }
 
-    @Test
-    void quizParser_correctStringInput_expectHintCommand() {
-        Command resultCommand = quizParser.parseCommand(optionList, "hint");
+        resultCommand = quizParser.parseCommand(optionList, "hint");
         assertTrue(resultCommand instanceof HintCommand);
-    }
 
-    @Test
-    void quizParser_correctStringInput_expectBookmarkCommand() {
-        Command resultCommand = quizParser.parseCommand(optionList, "bookmark");
+        resultCommand = quizParser.parseCommand(optionList, "bookmark");
         assertTrue(resultCommand instanceof BookmarkCommand);
     }
 }

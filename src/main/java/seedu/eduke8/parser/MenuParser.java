@@ -92,7 +92,7 @@ public class MenuParser implements Parser {
             int userTimer = 0;
             try {
                 if (commandArr[1].contains(TIMER_INDICATOR)) {
-                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR))  {
+                    if (commandArr[2].contains(NUMBER_OF_QUESTIONS_INDICATOR)) {
                         numOfQuestions = Integer.parseInt(commandArr[2].substring(
                                 commandArr[2].indexOf(NUMBER_OF_QUESTIONS_INDICATOR) + LENGTH_OF_QUESTIONS_INDICATOR));
                         topicName = commandArr[3].substring(
