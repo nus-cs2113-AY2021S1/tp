@@ -10,8 +10,13 @@ import seedu.duke.ui.Ui;
 public class RouteMapCommand extends Command {
     private String busCode;
 
+    /**
+     * Represents the route map command to display full bus route of selected bus code.
+     */
     public RouteMapCommand(String busCode) {
+
         this.busCode = busCode.trim();
+        super.isValid = true;
     }
 
     @Override
@@ -45,9 +50,11 @@ public class RouteMapCommand extends Command {
      */
     private void checkBusCode(String userBusRouteSelection) throws CustomException {
         if (userBusRouteSelection.isEmpty()) {
+            super.isValid = false;
             throw new CustomException(ExceptionType.MISSING_BUS_CODE);
         }
         if (userBusRouteSelection.isBlank()) {
+            super.isValid = false;
             throw new CustomException(ExceptionType.MISSING_BUS_CODE);
         }
     }

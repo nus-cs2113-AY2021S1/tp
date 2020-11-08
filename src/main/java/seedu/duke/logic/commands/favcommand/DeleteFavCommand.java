@@ -6,6 +6,9 @@ import seedu.duke.model.favorite.FavList;
 import seedu.duke.logic.commands.commons.Command;
 import seedu.duke.ui.Ui;
 
+/**
+ * Represents the command to delete a user-specified favourite command from the favourite list.
+ */
 public class DeleteFavCommand extends Command {
     public int index;
 
@@ -20,6 +23,7 @@ public class DeleteFavCommand extends Command {
             throw new CustomException(ExceptionType.NOT_A_NUMBER);
         }
         this.index = indexNum;
+        super.isValid = false;
     }
 
     @Override

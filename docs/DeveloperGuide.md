@@ -531,7 +531,22 @@ Expected: The CLI application closes with an exit message. List of favourite com
     Expected: An appropriate error message will be displayed.      
 <!-- @@author -->
 
-### E.3 Check bus route
+### E.3 Check for full bus route
+1. Executing a route map command to view full route of a selected bus
+- Prerequisites: List all buses available by executing `/allbus` command
+
+- Test case 1: `/routemap AA1`<br>
+Expected: The full route of bus AA1 will be displayed.<br>
+
+- Test case 2: `/routemap AA1000`<br>
+    -Other incorrect test cases includes all invalid bus codes not included in the list of all buses as displayed
+    by the `/allbus` command
+Expected: No bus routes will be displayed as there is no such bus in our database.<br>
+
+- Test case 3: `/routemap`<br>
+Expected: No bus routes will be displayed. Error details will be shown to remind users to type in
+the needed parameter.<br>
+
 
 ### E.4 Check for buses at a bus stop
 
@@ -542,6 +557,23 @@ Expected: The CLI application closes with an exit message. List of favourite com
 ### E.7 Add a favourite command
 
 ### E.8 Delete favourite command from favourite list
+1. Deleting a favourite command from favourite list
+- Prerequisites: List all buses available by executing `/listfav` command. There are existing favourite commands in
+the favourite list.
+
+- Test case 1: `/deletefav 1`<br>
+    - The range of values accepted is the number of favourite commands there are in the list.
+Expected: The favourite command at index 1 will be deleted.<br>
+
+- Test case 2: `/deletefav 0`<br>
+    -Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
+     any string or empty input. 
+Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
+
+- Test case 3: `/deletefav`<br>
+Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
+
+
 
 ### E.9 Execute a favourite command from favourite list
 1. Executing a favourite command in list of favourites.
