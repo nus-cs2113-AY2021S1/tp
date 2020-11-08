@@ -93,33 +93,61 @@ Example of usage:
 `class CS2113 Lecture /t 2020-09-23 10:00 /e 12:00 /l LT27`
 
 ### Edit an event
-With this command, you can edit existing tasks to change their description, start/end date, location and even the
-event type. You can start using this command by entering `edit INDEX`, where INDEX is the number of the task you want to
-edit.  
+The `edit` command allows you to edit the event type, description, start/end date and location for an existing 
+event. You can start using this command by entering `edit INDEX`, where INDEX is the number of the task you want to
+edit. 
 
-Format: `edit INDEX`
+Format: `edit INDEX`  
 
-Example:
+Example:  
+
+Let's say you have one event stored in NuSchedule currently:  
+
+![edit1](diagrams/edit1.png)
+  
+Suppose you entered the timing incorrectly and would like to edit it to the correct timing. Enter the following command
+to edit the event:  
+
+![edit2](diagrams/edit2.png) 
 
 Next, you will be prompted to enter the new values for the 5 fields which are type, description, location start and end 
-date respectively. Enter your desired changes and press the `ENTER` key to go through the fields.
+date respectively. Enter your desired changes and press the `ENTER` key to go through the fields. You can leave a field 
+blank and simply press enter if you do not want to make any changes.  
 
-If you do not wish to make any changes to any specific field, you can just leave the field empty and just press
-enter. The field will then remain unchanged.
+![edit3](diagrams/edit3.png)
 
+Expected Outcome:  
+![edit4](diagrams/edit4.png)
+
+![edit5](diagrams/edit5.png)
 
 
 ### Sort events
-With this command, you can sort all events by either their end time or their description. When sorting by time, events
+With this command, you can sort all events by either their end time, location or their description. When sorting by time, events
 will be sorted in a chronological order. Events with an earlier end date will be sorted on top of events with later end
 dates. This way, you can prioritize the events that are due soon.   
 
 When sorting by description, the events will be sorted in alphabetical order according to their descriptions. Events 
 with descriptions starting with 'a' will be sorted on top of events with descriptions starting with 'z' for example.  
 
+When sorting by location, the events will be sorted in alphabetical order according to their location. Events with
+offline locations will be sorted on top of locations with online locations.  
+
 Format: `sort SORT_CRITERIA`  
 
 Example: `sort description`
+
+Before sorting:  
+![sort1](diagrams/sort1.png)
+
+After sorting:  
+![sort2](diagrams/sort2.png)
+
+Sort by time:  
+![sort3](diagrams/sort3.png)
+
+Sort by location:  
+![sort4](diagrams/sort4.png)
 
 ### Find a location
 Shows you the location of the specified event/task.  
