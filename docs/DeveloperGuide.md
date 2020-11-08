@@ -26,7 +26,7 @@ The design of the software can be split into 5 distinct components:
 __Description__
 
 The Logic Manager component serves as the bridge between user interface and program operations.
-It includes 4 classes: 
+<br />It includes 5 classes: 
 * ```ManualTracker```
 * ```EntryTracker```
 * ```RecurringTracker```
@@ -50,7 +50,7 @@ to perform the operation associated with the param handling.
 __Description__
 
 The Logic Component executes logic operations passed via a `CommandPacket`, by handling individual params 
-contained in the `CommandPacket`
+contained in the `CommandPacket`.
 
 __API__
 
@@ -133,6 +133,56 @@ from ```saveHandler```. The saver classes are primarily used by ```saveManager``
 ## Module-level Implementation
 * This section describes generalizable implementations that are similar across features.
 * More components described in [Feature-level implementation](#feature-level-implementation) below.
+
+### Logic Managers
+* Note: Refer to [Logic Manager Component](#logic-manager-component) above for class diagram 
+illustration of the below subsections.
+
+**Execution** <br />
+1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
+to maintain a cycle of 2 processes: User input processing and Command handling.
+
+**User Input Processing** <br />
+1. Logic Managers depend on InputManager module to read user input, parse user input and produce a 
+meaningful ```CommandPacket``` instance.
+1. The ```CommandPacket``` instance can then be used by the next step of the cycle.
+
+**Command Handling** <br />
+1. Each Logic Manager will have several methods that are dedicated to handle a single operation. They can
+typically be identified by a specific naming convention: `"handle.....()"`.
+1. These methods use ```CommandHandler``` classes to perform `param` dependent operations, which involves evaluation
+of `paramMap` in the provided `CommandPacket` instance to decide the operation to perform, be it on `Data` or `DataList`.
+
+**Error Reporting** <br />
+1. While error handling from `param` parsing is handled by `ParamChecker` singleton class, there is a need
+to identify from the execution methods at Logic Managers, whether an exception has been thrown. 
+1. This is handled by a `try-catch block` within the  `"handle.....()"` methods, whereby an exception caught
+will result in an error message printed. The error message will not be specific to the exact error; rather it 
+generally indicates whether an operation has failed.
+
+**Example** <br />
+* Execute Method
+
+```
+    public static void execute() {
+        endTracker = false;
+        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
+        while (!endTracker) {
+            endTracker = false;
+            handleMainMenu();
+        }
+    }
+```
+
+* Operation Methods
+
+```
+    static void handleDeleteLedger() {
+        //Retrieves ledger and deletes it
+    }
+```
+&nbsp;  
+
 ### Logic Component
 * Note: Refer to [Logic Component](#logic-component) above for class diagram 
 illustration of the below subsections.
@@ -229,50 +279,13 @@ The Manual Tracker is capable of executing the following states of operation:
 
 ![](uml_images/images_updated/Handler.png)
 
-**Execution** <br />
-1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
-to maintain a cycle of 2 processes: User input processing and Command handling.
+|Class| Function |	
+|--------|----------|	
+|```InputParser```| Breaks input string by user into ```commandString``` and a sequence of ```paramTypes```-```param``` pairs. <br><br> The latter subsequence of the string is passed into ParamParser for further processing. <br><br> Information obtained from input parsing will be used to populate an instantiated ```CommandPacket``` instance, which will then be passed to the entity that called the parsing function.	
+|```ParamParser```| Process the sequence of ```paramTypes```-```param``` pairs and populate the ```paramMap``` in the instantiated ```CommandPacket``` instance.	
+|```ManualTracker```| [Refer to section](#logicManager_handler).
+|```EntryTracker```| Omitted for brevity.
 
-**User Input Processing** <br />
-1. Logic Managers depend on InputManager module to read user input, parse user input and produce a 
-meaningful ```CommandPacket``` instance.
-1. The ```CommandPacket``` instance can then be used by the next step of the cycle.
-
-**Command Handling** <br />
-1. Each Logic Manager will have several methods that are dedicated to handle a single operation. They can
-typically be identified by a specific naming convention: `"handle.....()"`.
-1. These methods use ```CommandHandler``` classes to perform `param` dependent operations, which involves evaluation
-of `paramMap` in the provided `CommandPacket` instance to decide the operation to perform, be it on `Data` or `DataList`.
-
-**Error Reporting** <br />
-1. While error handling from `param` parsing is handled by `ParamChecker` singleton class, there is a need
-to identify from the execution methods at Logic Managers, whether an exception has been thrown. 
-1. This is handled by a `try-catch block` within the  `"handle.....()"` methods, whereby an exception caught
-will result in an error message printed. The error message will not be specific to the exact error; rather it 
-generally indicates whether an operation has failed.
-
-**Example** <br />
-* Execute Method
-
-```
-    public static void execute() {
-        endTracker = false;
-        UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG, "Welcome to Manual Tracker!");
-        while (!endTracker) {
-            endTracker = false;
-            handleMainMenu();
-        }
-    }
-```
-
-* Operation Methods
-
-```
-    static void handleDeleteLedger() {
-        //Retrieves ledger and deletes it
-    }
-```
-&nbsp;  
 
 **<a name = logic_data></a>Logic Manager and Data** <br />
 
