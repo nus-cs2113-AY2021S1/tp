@@ -172,13 +172,9 @@ Example of usage:
 * `mode timetable` 
 * `mode planner`
 
->Here are some examples of switching from the main menu of Zoomaster to the various modes.
->* When you are switching to the bookmark mode you would see the message shown below.<br/>
+>Here are an example of switching from the main menu of Zoomaster to the bookmark modes.
 >![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%201.png?raw=true) <br/><br/> 
->* When you are switching to the timetable mode you would see the message shown below.<br/>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%202.png?raw=true) <br/><br/> 
->* When you are switching to the planner mode you would see the message shown below.<br/>
->![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/mode%203.png?raw=true)
+
 
 <!-- @@author -->
 

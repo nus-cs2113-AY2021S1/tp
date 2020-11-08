@@ -275,7 +275,7 @@ This feature extends Command class with a way to toggle between different modes 
 
 Given below is a sequence diagram of how changing between modes occur.
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20seq%20dia.png?raw=true) <br/><br/>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20seq%20dia%20new1.png?raw=true) <br/><br/>
 
 *<center/>Figure 2.01 sequence diagram for ChangeModeCommand</center> <br/></br>*
 
