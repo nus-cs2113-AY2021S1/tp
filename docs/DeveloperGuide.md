@@ -268,7 +268,7 @@ Figure 8.Sequence diagram for checkCanteenOperatingTime()
 #### Feature: check Stall Operating Time
 The user enters the command: checkstall to check the operating time of an open stall. The main will enable the checkStallOperatingTime() method. It prints open canteens through checkOpenCanteens method in Customer class in this manner:
  
-![image](img/image1.png)
+![image](img/image2.png)
 
 User can type the number before the canteen name to display the stalls inside the canteen in this manner.
  
