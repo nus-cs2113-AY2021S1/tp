@@ -176,7 +176,7 @@ public class BookmarkList {
     public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + Ui.NEW_LINE;
+            message = "No bookmarks saved" + Ui.NEW_LINE;
         } else {
             message = launchBookmarksFromList();
             if (!message.isEmpty()) {
