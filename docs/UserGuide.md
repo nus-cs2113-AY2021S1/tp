@@ -46,7 +46,7 @@ Welcome to **CCA Manager!**
 CCA Manager is a revolutionary tool that changes the way you can manage interest groups with unrivaled efficiency and simplicity. Its lightweight Command Line Interface (CLI) allows administrators to breeze through tasks quickly and easily while offering powerful features to advanced users.
 
 ### 2. About this User Guide 
-(By:Varsha)
+(By: Varsha)
 
 This user guide provides a quick start guide for you to easily setup install CCA manager, 
 documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
@@ -61,13 +61,11 @@ Additionally, throughout this user guide, there will be various icons used as de
 
 > : [Hyperlinked]() : Leads you to the appropriate section
 
-## 3. Quick Start
-(By:Varsha)
 
-This user guide provides a quick start guide for you to easily setup install CCA manager, 
-documentation of all the features that CCA manager offers, frequently asked questions and a summary of the available commands.
-To navigate between the different sections, you could use the table of contents above.
- 
+## 3. Quick Start
+(By: Varsha)
+
+The following steps will guide you through the process of running CCA Manager.  <br/>
  :one: Ensure that you have Java 11 or above installed.
   > :bulb: To check the version of Java on your computer, follow the instructions [here](https://www.wikihow.com/Check-Your-Java-Version-in-the-Windows-Command-Line). <br>
   > :bulb: To download the latest version of Java on your computer, visit [here](https://www.oracle.com/java/technologies/javase-downloads.html). <br>
@@ -93,7 +91,11 @@ to see the commands of all features at a glance.
 #### Command Format 
 
 Words in UPPER CASE are the parameters to be supplied by user.
-> :information_source: Our program also supports shorthand commands. 
+> :information_source: Our program also supports shorthand commands.  You can use shorthand command format for faster access. Instead of typing the word in its entirety, you can use the shorthand replacement instead.
+For example, as shown in the picture below, instead of typing `event`, you can type just the letter `e`. Both serve the same functionality.
+
+![](userGuidePic/shorthandexample.PNG)
+
 
 ### 4.1 Help `help`
 Shows a list of available commands<br/>
@@ -189,7 +191,7 @@ Search the members whose information matches user input.
 it will return this member.  
 Format: `hr search ITEM (/n ITEM) (/p ITEM) (/e ITEM) (/r ITEM)`  
 
-Shorhand format:  
+Shorthand format:  
 `hr` -> `h`  
 `search` -> `s`  
 
@@ -231,7 +233,7 @@ List the contacts of connections(alumni, speakers).
 :bulb: Alumni and speaker are roles of members.  
 Format: `hr list connections`  
 
-Shorhand format:  
+Shorthand format:  
 `hr` -> `h`  
 `list` -> `l`  
 `connections` -> `c`  
@@ -246,10 +248,10 @@ Expected outcome:
 
 
 ### 4.4 Event features`event` 
-(By:Varsha)
+(By: Varsha)
 
 #### Add an event: `addEvent`
-Adds an event to the list of events.<br/>
+Allows you to add an event to the list of events.<br/>
 Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 
 > :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
@@ -257,7 +259,7 @@ Format: `event addEvent /n EVENT_NAME /d EVENT_DATE /t EVENT_TIME`<br/>
 > :information_source: The EVENT_DATE entered should be in the format YYYY-MM-DD. <br/>
 > :information_source: The EVENT_TIME entered should be in the 24-hour clock format. <br/>
 
-Shorthand Command : <br/>
+Shorthand Format : <br/>
 event --> e <br/>
 addEvent --> add/a <br/>
 
@@ -275,16 +277,16 @@ Expected Outcome:
 [Return to the top](#user-guide)
  
 #### Delete an event: `delEvent`
-(By:Varsha)
+(By: Varsha)
 
- Deletes an event from the list of events  <br/>
+ Allows you to delete an event from the list of events  <br/>
  Format to clear a particular event: `event delEvent EVENT_INDEX` <br/>
- Deletes the event at the specified EVENT_INDEX.<br/>
+ It Deletes the event at the specified EVENT_INDEX.<br/>
  
 > :information_source: The EVENT_INDEX refers to the index number shown in the list of events.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
- Shorthand Command : <br/>
+ Shorthand Format : <br/>
  event --> e <br/>
  addEvent --> del/d <br/>
  
@@ -301,15 +303,15 @@ Expected Outcome:
  [Return to the top](#user-guide)
 
 #### Clear all events: `delEvent all`
-(By:Varsha)
+(By: Varsha)
 
-Clear all events from the list of events <br/>
+Allows you to clear all events from the list of events <br/>
 Format to clear all events in the list: `event delEvent all`
 
 Example of usage:
 `event delEvent all` <br/>
 
-Shorthand Command : <br/>
+Shorthand Format : <br/>
 event --> e <br/>
 delEvent --> del/d <br/>
 
@@ -322,12 +324,12 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### List events: `listEvent`
-(By:Varsha)
+(By: Varsha)
 
-Prints the list of events, based on the order in which they are added into the list. 
+This command prints the list of events, based on the order in which they are added into the list. 
 Format: `event listEvent` <br/>
 
-Shorthand Command : <br/>
+Shorthand Format : <br/>
 event --> e <br/>
 listEvent --> l <br/>
 
@@ -343,12 +345,12 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Countdown events `countdown`
-(By:Varsha)
+(By: Varsha)
 
-lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
+This command lists the events with the number of days left. It also sorts them so that the event due first will be displayed first.<br/>
 Format: `event countdown` <br/>
 
-Shorthand Command : <br/>
+Shorthand Format : <br/>
 event --> e <br/>
 countdown --> c <br/>
 
@@ -364,15 +366,15 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Mark an event as completed `done`
-(By:Varsha)
+(By: Varsha)
 
-Mark an event as done. 
+Allows you to mark an event as done. 
 Format: `event done EVENT_INDEX` <br/>
 
 > :information_source: The EVENT_INDEX refers to the index number of the event that is to be marked as completed.<br/>
 > :information_source: The EVENT_INDEX must be an integer greater than 0. <br/>
 
-Shorthand Command : <br/>
+Shorthand Format : <br/>
 event --> e <br/>
 
 Example of usage: <br/>
@@ -386,12 +388,12 @@ Expected Outcome:
 [Return to the top](#user-guide)
 
 #### Search for an Event `search`
-(By:Varsha)
+(By: Varsha)
 
-Search for a particular event by name or date.
+Allows you to search for a particular event by name or date.
 Format: 'event search /s KEYWORD' <br/>
 
-Shorthand Command : <br/>
+Shorthand Format : <br/>
 event --> e <br/>
 search --> s <br/>
 
@@ -403,8 +405,10 @@ Example of usage:
 
 Expected Outcome:
 
+The output when you search by name is as follows: <br/>
 ![EventSearchByName](userGuidePic/eventSearch1.PNG) 
 
+The output when you search by date is as follows:  <br/>
 ![EventSearchByDate](userGuidePic/eventSearchBydate.PNG)
 
 [Return to the top](#user-guide)
@@ -561,7 +565,7 @@ The expected outcome is as follows:
 [Return to the top](#user-guide)
 
 ### 4.7 Saving the data
-(By:Varsha)
+(By: Varsha)
 
 CCA Manager saves all your data after every command. There is no need to save manually.
 
@@ -575,13 +579,19 @@ This section details the frequently asked questions (FAQ) regarding the use of t
 **A** Install CCA Manager in the other computer and overwrite the empty data files it creates with the file that contains the data from your previous computer. <br/>
 
 **Q** Is CCA Manager optimized for all Operating Systems(OS)? <br/>
-**A** CCA Manager id available for doenload on all major Operating Systems such as Windows, Mac and Linux.
+**A** CCA Manager is available for download on all major Operating Systems such as Windows, Mac and Linux.
+
+**Q** Where can I find the release?
+**A** You can find it here [add v2.1 here]().
+
 
 
 
 [Return to the top](#user-guide)
 
 ## 6. Command Summary
+
+The following table provides a summary of all features and command formats.
 
 
 Command | Format | Example
@@ -617,7 +627,10 @@ summary | `finance summary` |   -
 
 ## 7. Glossary
 
+This section explains certain technical terms used in the guide which may require more detail.
+
 CCA - Co-curricular Activity <br/>
-CSV - Comma-seperated values <br/>
+CSV - Comma-separated values <br/>
 Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text. <br/>
+HR - Human Resource <br/>
 OS - Operating Systems <br/>
