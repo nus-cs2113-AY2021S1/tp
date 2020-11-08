@@ -319,7 +319,7 @@ Expected output:
 You are about to begin the quiz for CS2113T.You have 2 minutes.
 ```
 
-#### 3.1.8 Viewing results for quizzes on a subject: `results`
+#### 3.1.9 Viewing results for quizzes on a subject: `results`
 
 This command allows you to look at the results for a subject. For more details, see <a href="#result">result</a>.
 
@@ -341,7 +341,7 @@ Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
 ```
 
-#### 3.1.9 Exporting data: `export` <a name="export-command"></a>
+#### 3.1.10 Exporting data: `export` <a name="export-command"></a>
 
 This command exports all the data of the application to an external file. For more details, see <a href="#export">Exporting Data section</a>.
 
@@ -775,7 +775,7 @@ Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
 ```
 
-#### 3.2.14 Exiting the subject: `exit`
+#### 3.2.15 Exiting the subject: `exit`
 
 Exit the subjects and returns to the main level.
 
