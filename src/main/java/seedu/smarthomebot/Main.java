@@ -30,6 +30,7 @@ public class Main {
     private static final String FILE_PATH = "data/SmartHomeBot.txt";
     private final ApplianceList applianceList = new ApplianceList();
     private final LocationList locationList = new LocationList();
+    private final Parser parser = new Parser();
     private WriteStorageFile writeFile = new WriteStorageFile(FILE_PATH, applianceList, locationList);
     private ReadStorageFile readFile = new ReadStorageFile(FILE_PATH, applianceList, locationList);
     private final Logger logger = Logger.getLogger("SmartHomeBotLogger");
@@ -73,7 +74,7 @@ public class Main {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
+            command = parser.parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             writeFile.execute();
             if (result != null) {
