@@ -91,6 +91,7 @@ Below is a sequence diagram of how the main program functions.
 
 <!-- @@author iamchenjiajun -->
 ### Ui component
+The Ui component is a user interface which reads user input command and output interacting messages.
 
 The `Ui` component represents a `Ui` class and acts as an interface between `Duke` and the user.
 
@@ -173,6 +174,9 @@ arguments, thus reducing code complexity and SLOC.
 
 <!-- @@author iamchenjiajun -->
 ### Command component
+![CommandClassDiagram](./images/CommandClassDiagram.png)
+Every basic command inherits the abstract `Command` class, with their own attributes and execute operations. After 
+user input is parsed by `Parser`, `CommandCreator` will create and return the corresponding command to be execute.
 
 The `Command` component represents an abstract object with state that corresponds to a single line of the user's input.
 
@@ -320,18 +324,18 @@ This feature is facilitated by `ListCommand`.
 #### List tasks with priority
 The list tasks with priority feature allows the user to list tasks of a certain priority.
 This feature is facilitated by `Parser` and `ListCommand`.
-1. The user inputs the command `list tasks p/3`. (Assuming the tasks of CS2113 is not empty)
+1. The user inputs the command `list tasks p/3`. (Assuming the tasks of priority 3 exist.)
 1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `p/`, and returns a `ListCommand` for the task list of priority level 3.
-1. The command is executed and the list of tasks with level 3 priority is displayed.
+1. The command is executed and the list of tasks with priority 3 is displayed.
 
 #### List tasks with category
 The list tasks with category feature allows the user to list tasks of a certain category.
 This feature is facilitated by `Parser` and `ListCommand`.
-1. The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 is not empty)
+1. The user inputs the command `list tasks c/CS2113`. (Assuming the tasks of CS2113 exist.)
 1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `ListCommand`.
 1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` and `c/`, and returns a `ListCommand` for the task list under CS2113 category.
-1. The command is executed and the list of tasks categoried by CS2113 is displayed.
+1. The command is executed and the list of tasks categorized by CS2113 is displayed.
 
 #### Add links
 The add links feature allows the user to add and save zoom meeting links of modules.
@@ -339,7 +343,7 @@ This feature is faclitated by `Parser`, `AddCommand` and `Storage`.
 1. The user inputs `add links m/CS2113 t/lecture u/https://nus.sg.zoom.us/cs2113/lecture`.
 1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create a `AddCommand`.
 1. The method `createAddCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, and returns a `AddCommand`.
-1. The command is excuted and the links is added into the link list with module name and online class type.
+1. The command is excuted and the link is added into the link list with module name and online class type.
 1. `Storage` saves the added link by writing it into the `links.txt` file.
 
 #### List links
@@ -468,6 +472,161 @@ Below are the steps required for manual testing of termiNus
 
 ### Features and functions
 
-1. Add task function `add task`
+<!-- @@author Cao-Zeyu -->
+## Instructions for manual testing
 
-    
+### Launch and shutdown
+1. Initial launch
+    1. Download the jar file and copy to an empty folder.
+    2. Open a command line window in the same directory and type `java -jar termiNus.jar` to launch.
+2. Shutdown
+    1. Input `bye` to exit the program.
+
+### Adding items
+1. Adding a task
+    - Test case: `add task tP submission c/CS2113 p/1 date/09-11-2020`
+      Expected: task `tP submission` is added to the task list, with priority of `1`, categroy of `CS2113`, and 
+      a date of `09 Nov 2020`.
+2. Adding a recurring task
+    - Test case: `addr tP meeting s/26-10-2020 e/27-11-2020 day/tue c/CS2113 p/2`
+      Expected: recurring tasks `tP meeting` are added to the task list, with priority of `2`, category of `CS2113`,
+      and the recurring dates of the Tuesdays during the start and end period.
+    - Test case: addr game club c/CCA
+      Expected: an error message is printed since the compulsory arguments `s/`, `e/`, `day/` are all required for 
+      a recurring task.
+3. Adding a module 
+    - Test case: `add module CS1010 d/1 g/A+ mc/4 ay/1920S1`
+      Expected: module `CS1010` completed in `AY1920S1` is added to the module list, with the grade `A+` and MCs of `4`.
+    - Test case: `add module STT233 d/1 g/A+ mc/4 ay/1920S1`
+      Expected: an error message is printed since the module name is in incorrect format.
+    - Test case: `add module ST2334 mc/4 ay/1920S1`
+      Expected: an error message is printed since the compulsory arguments `g/`, `mc/`, `ay/` are all required for 
+      a module.
+4. Adding a link
+    - Test case: `add link m/CS2113 t/lecture u/https://cs2113lecture.zoom.com`
+      Expected: the Zoom meeting link for `lecture` of module `CS2113` is added to the link list.
+    - Test case: `add link m/CS2113 t/meeting u/https://cs2113meeting.zoom.com`
+      Expected: an error message is printed since the input for `t/` argument can only be `lecture`, `tutorial`, `lab`, 
+      or `project`.
+5. borrowing a book
+    - Test case: `borrow Harry Potter date/10-11-2020`
+      Expected: the book `Harry Potter` is added to the book list with the loan date `10 Nov 2020` and due date 
+      `10 Dec 2020`.
+6. Adding an expense item
+    - Test case: `spend ....`
+      Expected: ...
+      
+### Creating module folders
+- Test case: `makefolders`
+  Expected: sub-folders (`Lecture Notes` and `Tutorials`) are created at the output directories for each module in 
+  the module list.
+  
+### Displaying items
+1. Displaying tasks
+    - Test case: `list tasks`
+      Expected: the complete list of tasks is displayed.
+    - Test case: `list tasks p/1`
+      Expected: the list of tasks under priority `1` is displayed.
+    - Test case: `list tasks p/-1`
+      Expected: an error message is printed, since the priority of a task can only be a non-zero integer.
+    - Test case: `list tasks p/4`
+      Expected: an error message is printed, since there is no task of this priority.
+    - Test case: `list tasks c/CS2113`
+      Expected: the list of tasks under category `CS2113` is displayed.
+    - Test case: `list tasks c/work`
+      Expected: an error message is printed, since there is no task of this category.
+2. Displaying modules
+    - Test case: `list modules`
+      Expected: the complete list of modules is displayed.
+3. Displaying links
+    - Test case: `list links`
+      Expected: the complete list of links is displayed.
+4. Displaying books
+    - Test case: `list books`
+      Expected: the complete list of books is displayed.
+5. Displaying expenses
+    - Test case: `list expenses`
+      Expected: the complete list of expenses is displayed.
+
+### Deleting items
+Prerequisite: list the desired item list using `list` command. Multiple items in the list.
+1. Deleting a task/tasks
+    - Test case: `delete task 1`
+      Expected: the first task in the task list is deleted.
+    - Test case: `delete tasks p/1`
+      Expected: the tasks that under priority `1` are deleted.
+    - Test case: `delete task p/0`
+      Expected: an error message is printed indicating invalid index, since the delete command for tasks under a certain 
+      priority should use `tasks` instead of `task` in the input.
+    - Test case: `delete tasks p/10`
+      Expected: an error message is printed indicating invalid index, since there is no task of priority `10` 
+      in the list.
+    - Test case: `delete tasks c/CS2113`
+      Expected: the tasks that under category `CS2113` are deleted.
+    - Test case: `delete task c/CS2113` 
+      Expected: an error message is printed indicating invalid index, since the delete command for tasks under a certain 
+      category should use `tasks` instead of `task` in the input.
+    - Test case: `delete tasks c/work`
+      Expected: an error message is printed indicating invalid category, since there is no task of category `work` 
+      in the list.
+2. Deleting a module
+    - Test case: `delete module 2`
+      Expected: the second module in the module list is deleted.
+    - Test case: `delete module 8`
+      Expected: an error message is printed, since the module index does not exist.
+3. Deleting a link
+    - Test case: `delete link 1`
+      Expected: the first link in the link list is deleted.
+    - Test case: `delete link 7`
+      Expected: an error message is printed, since the link index does not exist.
+4. Deleting an expense
+    - Test case: `delete expense 1`
+      Expected: the first expense in the expense list is deleted.
+    - Test case: `delete expense 10`
+      Expected: an error message is printed, since the expense index does not exist.
+
+### Marking an item as done
+Prerequisite: list the desired item list using `list` command. Multiple items in the list.
+1. Marking a task as done
+    - Test case: `done task 1`
+      Expected: the first task in the task list is marked as done `Y`.
+2. Marking a module as completed
+    - Test case: `done module 1`
+      Expected: the first module in the module list is marked as completed `CM`.
+3. Marking a book as returned
+    - Test case: `return 2`
+      Expected: the second book in the book list is marked as returned `R`.
+
+### Setting the priority of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+- Test case: `set 3 p/2`
+  Expected: the priority of the third task in the task list is set as `2`.
+  
+### Setting the category of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+- Test case: `category 2 c/CS2113`
+  Expected: the category of the second task in the task list is set as `CS2113`.
+
+### Setting the date of a task
+Prerequisite: list the complete task list using `list` command. Multiple tasks in the list.
+- Test case: `date 2 date/02-01-2021`
+  Expected: the date of the second task in the task list iis set as `02 Jan 2021`.
+  
+### Printing the task calendar
+- Test case: `calendar d/3`
+  Expected: the tasks for the current day and for the next `3` days are output separately as a calendar.
+
+### Searching for tasks with keywords
+- Test case: `find tP`
+  Expected: the tasks containting the keyword `tP` are displayed.
+- Test case: `find t`
+  Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
+  any task in the list and incomplete keywords are not allowed.
+
+### Clearing all items
+- Test case: `clear all`
+  Expected: all the tasks, modules, links, books, and expenses are removed.
+  
+### Getting help
+- Test case: `help`
+  Expected: all the available commands and their usages are displayed in the help message.

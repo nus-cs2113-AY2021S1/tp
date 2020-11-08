@@ -98,6 +98,7 @@ public abstract class ItemList<T extends Item> {
         Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST
                 + (items.size()) + Messages.MESSAGE_STATUS_LAST);
         Ui.showLine();
+        System.out.println();
     }
 
     /**
