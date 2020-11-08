@@ -1,7 +1,21 @@
-# Developer Guide
+<h1 align="center">termiNus Developer Guide</h1>
 {:.no_toc}
+
 * Table of contents
 {:toc}
+
+## Introduction
+
+termiNus is an interactive Command Line Interface (CLI) task manager for undergraduate students in NUS. 
+This program will help them achieve a better grip on their school life as well as assist in better management of their 
+daily expenses and be reminded of any library loans. 
+
+This document gives an overview understanding of the architectural design and implementation of termiNus. This will
+assist developers in the knowledge they require to further build upon this application if needed. <br>
+**Pre-requisite:** Proficient in comprehending UML diagrams and notations.   
+
+## Setting up, Getting Started
+
 
 ## Design
 
@@ -319,11 +333,12 @@ borrowed books tracking, and module-related functions. This increase users' effi
 
 ### Glossary
 
+**UML** - Unified Modeling Language <br>
 **CLI** - Command Line Interface <br>
 **GUI** - Graphical User Interface <br>
 **Mainstream OS** - Windows, Linux, Unix, OS-X <br>
 **SLOC** - Source Lines of Code <br>
-**DRY** - Don't Repeat Yourself *(Every piece of knowledge must have a single, unambiguous, authoritative representation within a system )* <br>
+**DRY** - Don't Repeat Yourself *(Every piece of knowledge must have a single, unambiguous, authoritative representation within a system)* <br>
 **CAP** - Cumulative Average Point
 
 ## Appendix: Instructions for manual testing
