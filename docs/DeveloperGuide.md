@@ -506,10 +506,14 @@ The program will only load the data file in the persistent storage during the in
 2. A `StorageManager` object will be instantiated with the reference to a `ProjectManager` object that is used during load and save operations.
 3. `load()` will read the data file from the persistent storage, deserialise it into a `JsonObject` object and attempt to convert the object into its respective types.  
   
-The program will exit immediately with an **exit code 1** if any of the conditions are met:
-- Error trying to read the file.
-- Conversion error due to missing properties.
-- Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
+##### Failure to Load
+If the program fails to load the data file, it will proceed in an empty state. Any subsequent saves invoked by any command that changes the empty state, or exiting the program using `bye` will cause the erroneous data file **to be deleted**.  
+
+The program will fail to load the data file if **any of the following conditions are met**:
+* Input/Output error trying to read the file.
+* Error parsing the fail as JSON format.
+* Conversion error due to missing properties.
+* Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
 
 #### Converting and Mapping of JSON to Objects
 Due to the limitations of the library, parsing of the JSON string only converts it into either JsonObject or JsonArray objects which requires additional operations to map the data back to the respective model classes.  
