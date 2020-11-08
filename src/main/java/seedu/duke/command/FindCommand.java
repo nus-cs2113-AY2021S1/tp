@@ -33,7 +33,12 @@ public class FindCommand extends Command {
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         assert userInput.startsWith(COMMAND_FIND_EVENT_OR_TASK) : "Find command invalid but passes";
-
+//        String command[];
+//        try {
+//            command = userInput.split(" ", 2);
+//            String findCommand = command[0];
+//            keyword = command[1].trim();
+//        }
         if (userInput.startsWith(COMMAND_FIND_EVENT)) {
             find(COMMAND_FIND_EVENT, calendarList);
         } else if (userInput.startsWith(COMMAND_FIND_TASK)) {
@@ -46,7 +51,13 @@ public class FindCommand extends Command {
 
     private void find(String command, CalendarList calendarList) throws CommandException {
         boolean isFound = false;
-        keyword = userInput.replace(command, "").trim();
+//        String split[];
+//        try {
+//            split = userInput.split(" ", 2);
+//            keyword = split[1].trim();
+//        } catch (Exception e){
+//            throw new CommandException("missing keyword");
+//        }
 
         if (keyword.isEmpty()) {
             throw new CommandException("missing keyword");
