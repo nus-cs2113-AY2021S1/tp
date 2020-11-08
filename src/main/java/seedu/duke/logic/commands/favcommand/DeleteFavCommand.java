@@ -23,10 +23,10 @@ public class DeleteFavCommand extends Command {
     }
 
     /**
-     * Checks validity of index
+     * Checks validity of index.
      *
-     * @throws CustomException If index is not a valid number
      * @return indexNum Integer of valid index
+     * @throws CustomException If index is not a valid number
      */
     private int checkIndex(String index) throws CustomException {
         int indexNum;
