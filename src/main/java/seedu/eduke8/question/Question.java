@@ -113,10 +113,18 @@ public class Question implements Displayable {
         wasAnsweredCorrectly = true;
     }
 
+    /**
+     * Returns a boolean variable indicating if the question was bookmarked before by the user.
+     *
+     * @return Indication of whether the question was bookmarked.
+     */
     public boolean isBookmarked() {
         return isBookmarked;
     }
 
+    /**
+     * Marks this question as bookmarked by the user.
+     */
     public boolean markAsBookmarked() {
         return isBookmarked = true;
     }

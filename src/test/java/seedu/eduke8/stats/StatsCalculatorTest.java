@@ -63,10 +63,21 @@ class StatsCalculatorTest extends Eduke8Test {
         });
     }
 
+    @Test
+    void calculateProgressionPercentage_validUserProgressAsZero_returnsPercentageAsZero() {
+        assertEquals(0, statsCalculator.calculateProgressionPercentage(0,
+                TOTAL_PROGRESS_LEVEL_SCORE));
+    }
 
     @Test
-    void calculateProgressionPercentage_validProgress_returnsPercentageAsFifty() {
+    void calculateProgressionPercentage_validUserProgressAsHalf_returnsPercentageAsFifty() {
         assertEquals(50, statsCalculator.calculateProgressionPercentage(HALF_PROGRESS_LEVEL_SCORE,
+                TOTAL_PROGRESS_LEVEL_SCORE));
+    }
+
+    @Test
+    void calculateProgressionPercentage_validUserProgressAsFull_returnsPercentageAsHundred() {
+        assertEquals(100, statsCalculator.calculateProgressionPercentage(TOTAL_PROGRESS_LEVEL_SCORE,
                 TOTAL_PROGRESS_LEVEL_SCORE));
     }
 
@@ -80,7 +91,7 @@ class StatsCalculatorTest extends Eduke8Test {
     @Test
     void calculateProgressionPercentage_invalidTotalAvailableProgress_expectsAssertionError() {
         assertThrows(AssertionError.class, () -> {
-            statsCalculator.calculateProgressionPercentage(HALF_PROGRESS_LEVEL_SCORE, -1);
+            statsCalculator.calculateProgressionPercentage(HALF_PROGRESS_LEVEL_SCORE, 0);
         });
     }
 
