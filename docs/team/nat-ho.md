@@ -39,7 +39,7 @@ Users will also be reminded of saved quotes, resurfacing and reminding them so t
 2. Quote Reflection feature in Quotesify.
     
 **What it does:**
-* The user may use the `add -qr` command to add a reflection to an existing quote in Quotesify.
+* The user may use the `add -qr` command to add a reflection to an existing quote.
 * The user may use the `edit -qr` or `delete -qr` command to edit or delete an existing reflection for a specified quote.
 * The user may use the `list -qr` command to list the reflection of a specified quote.
 
@@ -49,7 +49,7 @@ By making it more interactive and allowing users to actively engage with the con
 and summary, users are far more likely to internalize the content and remember it in the long run. 
 
 ### Contributions to the UG:
-* I have contributed to all parts relating to Quote Management and Quote Reflection in the UG.
+* I have contributed to all parts relating to Quote Management and Reflection in the UG.
 * Additionally, I also contributed to the FAQ section of the UG.
 
 ### Contributions to the DG:
@@ -57,5 +57,5 @@ and summary, users are far more likely to internalize the content and remember i
 * I also contributed to other sections including Product Scope and User Stories.
 
 ### Contributions to team-based tasks and contributions beyond the project:
-* General formatting of UG and DG, provided suggestions during discussions. I also identified bugs and provided suggestions 
+* General formatting of UG and DG, provided suggestions during discussions. I also identified bugs and gave suggestions 
 for other team's DG during the DG review and PE tests.
