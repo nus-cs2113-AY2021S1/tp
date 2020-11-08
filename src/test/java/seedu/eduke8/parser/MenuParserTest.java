@@ -109,7 +109,10 @@ public class MenuParserTest extends Eduke8Test {
         Command textbookCommand = menuParser.parseCommand(topicList, "textbook");
         assertTrue(textbookCommand instanceof TextbookCommand);
 
-        Command bookmarkCommand = menuParser.parseCommand(topicList, "bookmark");
+        Command bookmarkCommand = menuParser.parseCommand(topicList, "bookmark list");
+        assertTrue(bookmarkCommand instanceof BookmarkCommand);
+
+        bookmarkCommand = menuParser.parseCommand(topicList, "bookmark delete 1");
         assertTrue(bookmarkCommand instanceof BookmarkCommand);
 
         Command noteCommand = menuParser.parseCommand(topicList, "note list");
