@@ -849,7 +849,7 @@ In addition, it implements the following operations:
 The following diagram shows the class diagram of the revise feature:
 
 <p align="center">
-  <img src="DG_Images/ReviseCommandClassDiagram.png" width="1185" alt="Class Diagram of Revise"/>
+  <img src="DG_Images/ReviseCommandClassDiagram.png" height="1000" width="500" alt="Class Diagram of Revise"/>
   <br/>Figure <>. Class diagram of revise
 </p>
 
@@ -876,22 +876,22 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 The following sequence diagram shows how the revise feature works:
 
 <p align="center">
-  <img src="DG_Images/ReviseCommandSeqDiagram.png" width="940" alt="Sequence Diagram of Revise"/>
+  <img src="DG_Images/ReviseCommandSeqDiagram.png" height="1200" width="900" alt="Sequence Diagram of Revise"/>
   <br/>Figure <>. Sequence diagram of revise
 </p>
 
 <p align="center">
-  <img src="DG_Images/ReviseGetChap.png" width="424" alt="Sequence Diagram of Revise Get Chapter"/>
+  <img src="DG_Images/ReviseGetChap.png" width="500" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get chapter for revision
 </p>
 
 <p align="center">
-  <img src="DG_Images/ReviseNotDue.png" width="500" alt="Sequence Diagram of Revise Not Due"/>
+  <img src="DG_Images/ReviseNotDue.png" width="400" alt="Sequence Diagram of Revise Not Due"/>
   <br/>Figure <>. Sequence diagram of revise for chapter that is not due
 </p>
  
 <p align="center">
-  <img src="DG_Images/ReviseGetCards.png" width="319" alt="Sequence Diagram of Revise Get Chapter"/>
+  <img src="DG_Images/ReviseGetCards.png" width="500" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get cards for revision
 </p>
 
