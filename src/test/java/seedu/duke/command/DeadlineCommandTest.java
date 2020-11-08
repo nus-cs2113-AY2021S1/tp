@@ -4,8 +4,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
+import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
@@ -117,6 +119,38 @@ class DeadlineCommandTest {
         assertThrows(WrongNumberFormatException.class, () -> {
             DeadlineCommand testDeadlineWithInvalidIndex = new DeadlineCommand("a; 7/10/20; 11:20 PM");
             testDeadlineWithInvalidIndex.execute(data, ui, storage);
+        });
+    }
+
+    @Test
+    public void execute_withInvalidDateFormat_DateErrorException() throws DukeException {
+        String input = "personal; sleep";
+        Command addPersonalEvent = new AddCommand(input);
+        addPersonalEvent.execute(data, ui, storage);
+
+
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        assertThrows(DateErrorException.class, () -> {
+            DeadlineCommand testDeadlineWithInvalidDateFormat = new DeadlineCommand("1; 40/30/10; 11:20 PM");
+            testDeadlineWithInvalidDateFormat.execute(data, ui, storage);
+        });
+    }
+
+    @Test
+    public void execute_withInvalidTimeFormat_DateErrorException() throws DukeException {
+        String input = "personal; sleep";
+        Command addPersonalEvent = new AddCommand(input);
+        addPersonalEvent.execute(data, ui, storage);
+
+
+        PrintStream outputLoc = new PrintStream(outputStreamCaptor);
+        System.setOut(outputLoc);
+
+        assertThrows(TimeErrorException.class, () -> {
+            DeadlineCommand testDeadlineWithInvalidTimeFormat = new DeadlineCommand("1; 7/10/10; 23:20 PM");
+            testDeadlineWithInvalidTimeFormat.execute(data, ui, storage);
         });
     }
 

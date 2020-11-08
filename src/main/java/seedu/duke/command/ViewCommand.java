@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
@@ -12,6 +13,7 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Command to view notes.
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class ViewCommand extends Command {
     private int index;
     private String event;
+    private static Logger logger = EventLogger.getEventLogger();
 
     /**
      * Constructor for viewing.
@@ -40,15 +43,13 @@ public class ViewCommand extends Command {
      */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) throws DukeException {
-
         parseUserCommand(command);
         EventList list = data.getEventList(event);
         Event eventRequested = list.getEventByIndex(index - 1);
         if (eventRequested != null) {
             ArrayList<String> existingNotes = eventRequested.getNotes();
             ui.printViewNote(existingNotes);
-        } else {
-            throw new InvalidIndexException("Error, no such index is available!");
+            logger.fine("View Command executed");
         }
 
     }
@@ -61,9 +62,12 @@ public class ViewCommand extends Command {
                 index = parsingNumber(commandSplit[1].trim());
                 event = commandSplit[0].trim();
             } catch (NumberFormatException e) {
+                logger.warning("WrongNumberFormatException encountered -- View index is not a number");
                 throw new WrongNumberFormatException("Index must be numerical format!");
             }
         } else {
+            logger.warning("WrongNumberOfArgumentsException encountered "
+                    + "-- View have incorrect number of arguments");
             throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Note!");
         }
     }

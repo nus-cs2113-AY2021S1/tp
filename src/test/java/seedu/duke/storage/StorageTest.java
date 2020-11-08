@@ -90,7 +90,8 @@ class StorageTest {
                         + "    2. 2010-03-01 12:00 [X]" + System.lineSeparator()
                         + "    3. 2010-04-01 12:00 [O]" + System.lineSeparator()
                         + "    4. 2010-05-01 12:00 [X]" + System.lineSeparator()
-                        + "2. [T][O] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator(),
+                        + "2. [T][O] computing, Location: COM2 on 2010-01-01, 12:00" + System.lineSeparator()
+                        + "3. [T][O] history on 2009-08-01, 03:00" + System.lineSeparator(),
                 outputStreamCaptor.toString());
 
         outputStreamCaptor.reset();
