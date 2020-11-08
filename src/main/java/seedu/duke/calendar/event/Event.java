@@ -61,9 +61,18 @@ public abstract class Event extends CalendarItem {
     }
 
 
+    /**
+     * Returns the venue of the event and additional information indicator for the event.
+     *
+     * @return a string containing the above mentioned information.
+     */
     @Override
     public String getDescription() {
-        return " (" + venue + ")";
+        String additionalInformationIndicator = "";
+        if (additionalInformationCount != 0) {
+            additionalInformationIndicator = " #info";
+        }
+        return " (" + venue + ")" + additionalInformationIndicator;
     }
 
     public void setAdditionalInformation(String additionalInformation) {
