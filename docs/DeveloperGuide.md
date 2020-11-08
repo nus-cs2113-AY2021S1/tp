@@ -610,7 +610,10 @@ The program will fail to load the data file if **any of the following conditions
 * Conversion error due to missing properties.
 * Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
 
-#### 4.4.2.1. Converting and Mapping of JSON to Objects
+#### 4.4.2.1. Converting and Mapping of JSON to Objects  
+![Figure X: Parsing Sequence](image/developerguide/storage_load_parse.png "Parsing Sequence")
+_Figure X: Parsing Sequence_ 
+ 
 Due to the limitations of the library, parsing of the JSON string only converts it into either JsonObject or JsonArray objects which requires additional operations to map the data back to the respective model classes.  
   
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `fromJson()`, which is used to implement the logic for **converting and mapping of JSON to objects of their respective type**.  
