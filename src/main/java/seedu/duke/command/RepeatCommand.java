@@ -4,7 +4,13 @@ import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
-import seedu.duke.exception.*;
+import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidTimeUnitException;
+import seedu.duke.exception.MissingDeadlineRepeatException;
+import seedu.duke.exception.MissingRepeatListException;
+import seedu.duke.exception.NumberOverflowException;
+import seedu.duke.exception.WrongNumberFormatException;
+import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
