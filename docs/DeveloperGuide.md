@@ -224,7 +224,7 @@ Step 5. The string at the 0th index is then used in a switch statement, where ea
         
 #### 2.3.3. Design of QuizQuestionsManager
 
-To start a quiz in E-Duke-8, the user will have to give some inputs, and these include the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all them are attempted. 
+To start a quiz in E-Duke-8, the user will have to give some inputs, and these include the number of questions that he wants to attempt, as well as the topic to get the questions from. Thereafter, questions will be shown to the user one by one until all of them are attempted. 
 
 The class diagram given below explains the high-level design of the quiz system in E-Duke-8. Given below it is a quick overview of each component.
 
@@ -234,7 +234,7 @@ An object of `SingleTopicQuiz` class represents an instance of the quiz in E-Duk
 
 The `startQuiz(:Ui)` method call from the `SingleTopicQuiz` object initializes an object of `QuizQuestionsManager`, by passing into its constructor `QuizQuestionsManager(:int, :ArrayList<Displayable>)` the arguments `numberOfQuestions` for its first parameter and an ArrayList of questions from the `Topic` object for its second parameter. The `QuizQuestionsManager` object will then randomly select `numberOfQuestions` questions from the topic the user has chosen, using its `setQuizQuestions(:int, :ArrayList<Displayable>)` method, where the first parameter will take in `numberOfQuestions` and its second parameter will take in the ArrayList of questions from the `Topic` object passed into the `QuizQuestionsManager` object. The questions' selection process will be further explained in the subsequent section on the [Implementation of QuizQuestionsManager](#234-implementation-of-quizquestionsmanager).
 
-Thereafter, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
+After a quiz has started, by making use of `QuizQuestionsManager`'s `getNextQuestion()` and `areAllQuestionsAnswered()` method calls, the `goThroughQuizQuestions(:Ui, :QuizQuestionsManager)` will loop through the questions until the user has answered all of them on the command line interface.
 
 <div style="page-break-after: always;"></div>
 
@@ -249,7 +249,7 @@ The sequence diagram below shows how `QuizQuestionsManager` is implemented to ac
 
 `nextInt(5)` is a method call to an object of the `Random` class. It returns a random integer `randomQuestionIndex` where its value is between 0 (inclusive) and the number passed in as argument, 5 in this scenario, exclusive. 
 
-Using the `Arraylist`'s method of `get(randomQuestionIndex)`, a random question will be selected from the list of questions in the `Topic` object.
+Using the `Arraylist`'s method of `get(randomQuestionIndex)`, a random question will be selected from the list of questions in the `Topic` object. This process is done repeatedly in a loop until the correct number of questions are selected.
 
 To ensure that no two of the same question is selected, the selected `randomQuestionIndex` is checked to see if it is repeated. To determine if `randomQuestionIndex` is not selected before, an integer `ArrayList` is initialized to record all the selected integers. By checking against this collection of integers, it can be determined if a currently selected integer is repeated or not, and if it is, no question will be added for that iteration of the loop. 
 
