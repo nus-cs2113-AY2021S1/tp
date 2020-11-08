@@ -42,7 +42,7 @@ public class WritingListTest {
                 + "Er hat den Knaben wohl in dem Arm,\n"
                 + "Er faßt ihn sicher, er hält ihn warm.\n";
         String author = "Goethe";
-        writings.addPoem("Der Erlkönig",123,"ghost story", content, author, date);
+        writings.addPoem("Der Erlkonig",123,"ghost story", content, author, date);
     }
 
     private static void initializeLoremEssay() {
@@ -82,7 +82,7 @@ public class WritingListTest {
         String reminderDate = "28/10/2020";
         assertEquals(reminderDate, writings.writingList.get(0).getReminderDateString());
         String thisWritingReminder = "  Id: " + 123 + "\n"
-                + "  Title: " + "DER ERLKÖNIG" + "\n"
+                + "  Title: " + "DER ERLKONIG" + "\n"
                 + PLAIN_TEXT_DIVIDER;
         assertEquals(thisWritingReminder, writings.writingList.get(0).printWritingsReminder());
         assertEquals("ghost story", writings.writingList.get(0).getTopic());
