@@ -859,17 +859,11 @@ the goal tracker progress to better aid the user in managing their finances.
 ![](developerGuide_images/screenshots_mainmenu/main_menu.png)
 
 ## Main Menu
-1. Accessing a feature:
-    1. ```ManualTracker```
-        1. Enter ```manual``` into the console.
-            You should see the following: 
+1. Accessing a feature (Using ManualTracker as example):
+    1. Enter ```manual``` into the console.
+    You should see the following: 
             
 ![](developerGuide_images/screenshots_mainmenu/main_menu_manual.png)
-
-    1. ```RecurringTracker```
-    1. ```GoalTracker```
-    1. ```SaveManager```
-    1. ```FinanceTools```
 
 1. Exiting the main menu and quit the program: 
     1. Enter ```exit``` into the console.
@@ -947,6 +941,7 @@ You should see the following:
 ![](developerGuide_images/screenshots_entrytracker/entry_cat.png)
 
 **Create Entry** <br />
+**Positive Test** <br />
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -e``` into the console.
 You should see the following:
 
@@ -956,6 +951,7 @@ You should see the following:
 
 ![](developerGuide_images/screenshots_entrytracker/entry_create2.png)
 
+**Negative Test** <br />
 1. Enter ```new /time 1500 /cat tpt /amt $16.30 /desc Riding the bus back home -i``` into the console.
 You should see the following:
 
