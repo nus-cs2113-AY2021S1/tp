@@ -469,7 +469,7 @@ public class Ui {
 
                 if (task.getDateTime() != null) {
                     if (task.getDateTime().isBefore(nextWeek) & task.getDateTime().isAfter(LocalDateTime.now())
-                            & ! task.getIsDone()) {
+                            & !task.getIsDone()) {
                         taskList.add(task);
                         if (firstTask == 0) {
                             System.out.println("Here are the upcoming tasks for next week!");
@@ -488,10 +488,6 @@ public class Ui {
 
             taskList.clear();
         }
-    }
-
-    public static String repeatedDateTimeException(Task task) {
-        return "There is another task at that date and time:\n" + task;
     }
 
     public static String fileSyntaxErrorMsg(String dataType, String fileLocation) {
@@ -584,7 +580,7 @@ public class Ui {
      * @param activeTopic   Topic that the user is currently looking at. null if user is not looking at a topic
      */
     public static void printAll(List<Subject> subjects, Subject activeSubject, Topic activeTopic) {
-        assert ! (activeSubject != null && activeTopic != null);
+        assert !(activeSubject != null && activeTopic != null);
         System.out.println(DIVIDER);
         System.out.println("Here's a list of all items:");
         if (activeSubject == null && activeTopic == null) {
