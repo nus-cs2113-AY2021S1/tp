@@ -1,8 +1,12 @@
-package seedu.duke.filters;
+package seedu.duke.wordlist.wordfilter;
 
 import seedu.duke.constants.FluffleMessages;
 import seedu.duke.constants.Tags;
 import seedu.duke.exceptions.FilterCommandException;
+import seedu.duke.exceptions.FilterEmptyStringTagException;
+import seedu.duke.exceptions.FilterMissingTargetStringsTagException;
+import seedu.duke.exceptions.FilterMissingTargetWordTypeException;
+import seedu.duke.exceptions.FilterWordsInvalidWordType;
 
 import java.util.ArrayList;
 
@@ -79,9 +83,11 @@ public class FilterCommandSlicer {
      *
      * @param command Contains the word types need filtering.
      * @return Array of strings referring to word types.
-     * @throws FilterCommandException When no word type is found in the command.
+     * @throws FilterWordsInvalidWordType When the user enters anything different from -noun, -verb, -adjective
+     * @throws FilterMissingTargetWordTypeException When the user didn't enter any combination of word types
      */
-    public static String[] getTargetedWordTypes(String command) throws FilterCommandException {
+    public static String[] getTargetedWordTypes(String command)
+            throws FilterWordsInvalidWordType, FilterMissingTargetWordTypeException {
         ArrayList<String> types = new ArrayList<>();
         ArrayList<String> availableWordTypes = new ArrayList<>();
         initializeAvailableWordTypes(availableWordTypes);
@@ -105,13 +111,13 @@ public class FilterCommandSlicer {
             if (availableWordTypes.contains(wordType)) {
                 types.add(wordType);
             } else {
-                throw new FilterCommandException();
+                throw new FilterWordsInvalidWordType();
             }
             index = command.indexOf(Tags.DASH, index + 1);
         }
 
         if (types.size() == 0) {
-            throw new FilterCommandException();
+            throw new FilterMissingTargetWordTypeException();
         }
 
         return types.toArray(new String[0]);
@@ -122,9 +128,12 @@ public class FilterCommandSlicer {
      *
      * @param command String that contains the strings need filtering.
      * @return Array of strings referring to the strings need filtering.
-     * @throws FilterCommandException When no string tag is found or when the command format is incorrect.
+     * @throws FilterMissingTargetStringsTagException When no string tag is found
+     *                                                or when the command format is incorrect.
+     * @throws FilterEmptyStringTagException When string tag with length 0 is provided.
      */
-    public static String[] getTargetedStringTags(String command) throws FilterCommandException {
+    public static String[] getTargetedStringTags(String command)
+            throws FilterMissingTargetStringsTagException, FilterEmptyStringTagException {
         ArrayList<String> targetedStrings = new ArrayList<>();
         int index = command.indexOf(Tags.DASH);
 
@@ -141,14 +150,14 @@ public class FilterCommandSlicer {
             if (stringToAdd.length() != 0) {
                 targetedStrings.add(stringToAdd);
             } else {
-                throw new FilterCommandException();
+                throw new FilterEmptyStringTagException();
             }
 
             index = command.indexOf(Tags.DASH, index + 1);
         }
 
         if (targetedStrings.size() == 0) {
-            throw new FilterCommandException();
+            throw new FilterMissingTargetStringsTagException();
         }
 
         return targetedStrings.toArray(new String[0]);

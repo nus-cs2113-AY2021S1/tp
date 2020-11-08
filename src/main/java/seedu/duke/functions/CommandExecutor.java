@@ -4,9 +4,8 @@ import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
 import seedu.duke.commands.CommandChecker;
-import seedu.duke.constants.FluffleMessages;
-import seedu.duke.database.ClearLoader;
-import seedu.duke.database.WordsSaver;
+import seedu.duke.storage.ClearLoader;
+import seedu.duke.storage.WordsSaver;
 import seedu.duke.exceptions.BunnyIdeaMissingException;
 import seedu.duke.exceptions.BunnyIndexOutOfBoundsException;
 import seedu.duke.exceptions.BunnyListEmptyException;
@@ -14,16 +13,15 @@ import seedu.duke.exceptions.CommandInvalidException;
 import seedu.duke.exceptions.CommandMissingArgumentsException;
 import seedu.duke.exceptions.DividerCommandWrongFormatException;
 import seedu.duke.exceptions.DividerIndexOutOfBoundsException;
-import seedu.duke.exceptions.FilterCommandException;
 import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
-import seedu.duke.filters.FilterCommandSlicer;
-import seedu.duke.filters.FilterExecutor;
-import seedu.duke.filters.FilterList;
+import seedu.duke.wordlist.wordfilter.FilterCommandSlicer;
+import seedu.duke.wordlist.wordfilter.FilterExecutor;
+import seedu.duke.wordlist.wordfilter.FilterList;
 import seedu.duke.names.Names;
-import seedu.duke.reminder.WritingReminder;
+import seedu.duke.writing.WritingReminder;
 import seedu.duke.ui.UI;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
@@ -32,8 +30,8 @@ import java.io.IOException;
 
 import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.wordlist.WordList.wordList;
-import static seedu.duke.database.BunnySaver.saveAllBunny;
-import static seedu.duke.database.WordsSaver.saveWordsToFile;
+import static seedu.duke.storage.BunnySaver.saveAllBunny;
+import static seedu.duke.storage.WordsSaver.saveWordsToFile;
 import static seedu.duke.bunnylist.BunnyFilter.filterBunny;
 import static seedu.duke.ui.UI.changeLineDivider;
 import static seedu.duke.ui.UI.printHelpMessage;
@@ -79,11 +77,7 @@ public class CommandExecutor {
             WordList.listWords();
             break;
         case FILTER_WORDS:
-            try {
-                FilterExecutor.executeFilterCommand(userInput);
-            } catch (FilterCommandException e) {
-                System.out.println(FluffleMessages.FILTER_UNKNOWN_TYPE);
-            }
+            FilterExecutor.executeFilterCommand(userInput);
             break;
         case LIST_FILTER:
             int printLimit = FilterCommandSlicer.getWordPrintLimitFromListFilterCommand(userInput);

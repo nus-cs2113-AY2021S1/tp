@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +28,7 @@ import static seedu.duke.constants.DataFileConvention.POSITION_OF_TYPE;
 import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_DIVIDER;
 import static seedu.duke.constants.DataFileConvention.WRITING_COMPONENT_MARK;
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
-import static seedu.duke.database.FileFunctions.autoCreateNewFile;
+import static seedu.duke.storage.FileFunctions.autoCreateNewFile;
 
 public class WritingsLoader {
 

@@ -1,4 +1,4 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import seedu.duke.bunny.Bunny;
 import seedu.duke.exceptions.SettingObjectWrongFormatException;
@@ -17,8 +17,8 @@ import static seedu.duke.constants.FilePaths.DEFAULT_BUNNY_FILE_PATH;
 import static seedu.duke.constants.Tags.BUNNY_GENRE_TAG;
 import static seedu.duke.constants.Tags.BUNNY_IDEA_TAG;
 import static seedu.duke.constants.Tags.NUM_BUNNY_TAG;
-import static seedu.duke.database.FileFunctions.autoCreateNewFile;
-import static seedu.duke.database.FileFunctions.readFileUntilLineContainsString;
+import static seedu.duke.storage.FileFunctions.autoCreateNewFile;
+import static seedu.duke.storage.FileFunctions.readFileUntilLineContainsString;
 import static seedu.duke.parsers.Parsers.getIntFromString;
 
 public class BunnyLoader {

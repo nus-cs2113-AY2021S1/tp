@@ -1,10 +1,9 @@
-package seedu.duke.database;
+package seedu.duke.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
-import seedu.duke.wordlist.WordList;
 import seedu.duke.words.Words;
 import seedu.duke.writing.WritingList;
 
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.duke.filters.WordsFilterTest.initializeTestDatabase;
+import static seedu.duke.wordlisttest.wordfiltertest.WordsFilterTest.initializeTestDatabase;
 
 public class ClearLoaderTest {
     private static WritingList writings;
