@@ -20,6 +20,12 @@ public class SetSettingsCommand extends Command {
     private String fieldName;
     private String newValue;
 
+    /**
+     * Constructs a new SetSettingsCommand instance based on user input.
+     *
+     * @param command The user command input.
+     * @throws ZoomasterException if the user inputs in an invalid format.
+     */
     public SetSettingsCommand(String command) throws ZoomasterException {
         Pattern pattern = Pattern.compile(SET_KW + "\\s+(?<fieldName>\\w+)\\s+(?<newValue>\\w+)");
         Matcher matcher = pattern.matcher(command);
@@ -32,6 +38,14 @@ public class SetSettingsCommand extends Command {
         newValue = matcher.group("newValue");
     }
 
+    /**
+     * Changes one of the user settings.
+     *
+     * @param bookmarks The list of bookmarks.
+     * @param timetable The list of slots.
+     * @param ui The user interface.
+     * @throws ZoomasterException if the user inputs an invalid setting option.
+     */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
         SettingsVariable[] variable = Zoomaster.userSettings.getVariables();
