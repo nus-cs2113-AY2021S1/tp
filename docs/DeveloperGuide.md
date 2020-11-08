@@ -31,11 +31,18 @@ are interested in learning more about the technical details of the various featu
 You can also find CCA Manager's user guide [here](https://ay2021s1-cs2113t-f14-1.github.io/tp/UserGuide.html)
 
 ## 2. Setting up
-Refer to the guide [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/blob/master/README.md).
+For running the software release, refer to the guide [here](https://github.com/AY2021S1-CS2113T-F14-1/tp/blob/master/README.md).
+
+To set up the project for development. Follow the following steps:
+
+* Ensure that Java 11 or higher is installed on the development machine.
+* Download the source code from the CCA Manager repository [here](https://github.com/AY2021S1-CS2113T-F14-1/tp).
+* You may choose to set up an IDE to facilitate easy development of the project. The team uses [Intellij IDEA](https://www.jetbrains.com/idea/) for developing the project. Other IDEs may be used, but have not been verified to work.
+* Import the project folder into your IDE.
 
 ## 3. Design and Implementation
 This section seeks to explain the high-level design of the application. Given below is a quick overview of each component and the explanation of the design architecture in greater detail. 
-Diagrams found in our documentation were generated using PlantUML and references were made to addressbook-level2 for the structure of the classes and packages. The structures have been modified to meet the needs of our application.
+Diagrams found in our documentation were generated using PlantUML, in compliance to the UML standards defined in the module requirements.
 
 ### 3.1. Input Parsing
 ![Parser](BackendDiagram/ParserFlow.png)
@@ -49,8 +56,10 @@ The `Parser` class in `seedu.duke.backend` handles most of the input parsing. Th
 safely for the rest of the program to handle. It implements the following operations:
 
 * `Parser#parse()` - Converts the supplied input `String` to a `UserInput` object
-* `Parser#checkCategory()` - Convert the supplied `String` to a `String` category. This function implements Shorthand category detection.
-* `Parser#sanitize()` - Check for unsupported, illegal or potentially malicious input and remove it from the `String`.
+* `Parser#checkCategory()` - Convert the supplied `String` to a `String` category. This function implements Shorthand category detection.  
+Shorthand Commands is a feature which aims to reduce the amount of typing required to execute commands to improve efficiency. In this case, the key word for a category such as `events` can be shortened to `e`.
+* `Parser#sanitize()` - Check for unsupported, illegal or potentially malicious input and remove it from the `String`.  
+For example the EICAR Test String `X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*` can cause data loss by tricking antivirus software into quarantining data files.
 
 Given below is an explanation on the logical flow of the `parse()` function.
 
@@ -106,7 +115,7 @@ Given below is the logical flow of the `Command` input to execution flow:
 
 **Design Considerations**    
 Aspect: The need to instantiate a `Command`
-* Alternative 1 (Current Choice): `Command` is instantiated on `UI` initialization.
+* Alternative 1 (Current Choice): Classes that inherit `Command` are instantiated on `UI` initialization.
     * Pros: Easy to implement. Less overhead from executing commands. Locality of the code allows for minimal merge conflicts when developing collaboratively.
     * Cons: Requires more memory at load to hold all the objects.
     * Reason for choice: Since we do not have a stateful parser, this option was chosen as the simplest implementation that gets the job done.
@@ -114,7 +123,7 @@ Aspect: The need to instantiate a `Command`
     * Pros: Conceptually more sensible than having exactly one instance of each command.
     * Cons: More complicated to implement, java has no elegant simple way to exploit inheritance and static functions in a list of classes making this option unpractical without implementing a bunch of hacks.
 
-Aspect: `Command` resolution and validation
+Aspect: Design of `Command` criteria checking
 * Alternative 1 (Current Choice): Each class is free to specify its own matching patterns and criterion.
     * Pros: Allows for more complex criteria evaluation without having a dedicated class for resolving commands. Makes good use of abstraction and inheritance and puts all the `Command` related functions in the same class.
     * Cons: Searching of the command list is `O(n)` but the individual validation functions may not be `O(1)`, resulting in higher potential overhead if validation functions are not optimized.
@@ -344,14 +353,14 @@ Step 2.The user executes `event listEvent` command to list the `EventList`. The 
 
 **3.4.2.2. Design Considerations** <br/>
 
- Aspect: Repeated items  <br/>
- *Alternative 1 (Current Choice): `event listEvent` command will only list unique events present in the list. It will not show repeated events.
- When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
- to the event list. <br/>
- *Pros : The resulting event list does not contain duplicates. The number of events in the list will be valid. <br/>
- 
- *Alternative 2 : Program accepts duplicated events and filters the duplicates for the user. <br/>
- *Cons : The duplicate list is redundant to the user. <br/>
+Aspect: Repeated items  <br/>
+* Alternative 1 (Current Choice): `event listEvent` command will only list unique events present in the list. It will not show repeated events.
+When a new event is added, if the event name and date matches to an existing event in the list, it is considered a duplicate event. It will not be added
+to the event list. <br/>
+* Pros : The resulting event list does not contain duplicates. The number of events in the list will be valid. <br/>
+
+* Alternative 2 : Program accepts duplicated events and filters the duplicates for the user. <br/>
+* Cons : The duplicate list is redundant to the user. <br/>
  
 
 The sequence diagram for listing events is as shown below:
@@ -444,14 +453,14 @@ The sequence diagram for deleting a participant from a particular event is as sh
 
 **3.4.6.2. Design Considerations** <br/>
 
- Aspect: Delete participant attendance from an event  <br/>
- *Alternative 1 (Current Choice): `event delAttendance` command will only delete member from each event by the member name. <br/>
- *Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
- *Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
- 
- *Alternative 2 : `event delAttendance` command will only delete member from each event by the member's index in the participant list. <br/>
- *Pros : It is easier to implement.  
- *Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
+Aspect: Delete participant attendance from an event  <br/>
+*Alternative 1 (Current Choice): `event delAttendance` command will only delete member from each event by the member name. <br/>
+*Pros : The user can delete quickly if he is familiar with the name of the targeted participant. <br/>
+*Cons : The user needs to type in the full name of the participant in order to delete the person, might be less convenient if the user is not familiar with the names.
+
+*Alternative 2 : `event delAttendance` command will only delete member from each event by the member's index in the participant list. <br/>
+*Pros : It is easier to implement.  
+*Cons : The user needs to view the participant list of the event first to view the index, hence requires more typing and less convenient. <br/>
 
 **3.4.7. Listing event participants** `CommandViewEventAttendance`
 
@@ -641,7 +650,7 @@ Aspect: Changing member information <br/>
 ![](BackendDiagram/StorageFlow.png)
 
 The storage component is responsible for storing persistent data to disk. This involves objects from all 3 categories of the application.
-The above sequence diagram shows the program flow involving only the `FileManager` component.
+The above sequence diagram shows the program flow involving only the `FileManager` component, other aspects like the callers `Duke`, execution of `Ui` etc are ommitted for simplicity.
 
 The main process of the program in Duke invokes the `readAll()` function on start-up. This reads all the data saved on disk to memory.
 During the program loop, the main process invokes `saveAll()` after every command run. This saves the current state of the application to file automatically.
@@ -649,6 +658,7 @@ During the program loop, the main process invokes `saveAll()` after every comman
 **Current Implementation**
 
 The `FileManager` class in `seedu.duke.backend` manages all the file related operations. Its purpose is to provide an abstraction layer for saving and reading the current state of the application to and from disk.
+It is also used by the `import` command to perform importing of other CSV files.
 
 * `FileManager#getPath()` - Retrieves the working directory of the `FileManager`.
 * `FileManager#setPath()` - Changes the working directory of the `FileManager`.
@@ -657,8 +667,8 @@ The `FileManager` class in `seedu.duke.backend` manages all the file related ope
 * `FileManager#saveEvent()` - Saves the event data to disk.
 * `FileManager#saveFinance()` - Saves the finance data to disk.
 * `FileManager#saveMembers()` - Saves the HR data to disk.
-* `FileManager#saveFile()` - Saves a String to the specified filename.
-* `FileManager#readFile()` - Reads a CSV file from disk and returns a `HashMap<String, ArrayList<String>>` containing the header of each table mapped to an `ArrayList` of all rows in that column.
+* `FileManager#saveFile()` - Saves a `String` to the specified filename.
+* `FileManager#readFile()` - Reads a CSV file from disk and returns a `HashMap<String, ArrayList<String>>` containing the header of each table mapped to an `ArrayList` of all rows in that column. This function is also used by the `import` command.
 * `FileManager#readFinance()` - Reads the finance data from disk.
 * `FileManager#readEvents()` - Reads the event data from disk.
 * `FileManager#readMembers()` - Reads the hr data from the disk.
@@ -681,12 +691,12 @@ Aspect: The format of the file
     * Pros: Commonly used file format, easy to edit. Compatible with other programs.
     * Cons: None
     * Reason for choice: This the best choice as it is an already established file format compatible with other programs.
-* Alternative 2: Use `serializable` java interface
+* Alternative 2: Use `serializable` Java interface
     * Pros: Extremely easy to write and read from file. Very good retention of data and it's relationships. Easy to implement.
     * Cons: Filetype is not user editable as it is written by the java serializer.
 * Alternative 3: Use a proprietary file format designed specifically for CCA Manager
     * Pros: Able to tailor the design of the file format to suit the requirements of the program.
-    * Cons: May not be editable by the user with a text editor. Does not offer compatability with any existing programs.
+    * Cons: May not be editable by the user with a text editor. Does not offer compatibility with any existing programs.
     
 [Return to top](#CCA-manager-developer-guide)
 
@@ -702,7 +712,7 @@ However, our software solution allows us to easily expand the target audience to
 Management software is expensive and complex, training employees to use it is time-consuming. CCA Manager aims to solve these
 problems by offering an all-in-one solution focused on simplicity and efficiency. 
 Our use of industry standard csv format ensures compatibility with leading industry tools. 
-Shorthand Commands and Relative Time allow advanced users to enter up to 70% more commands per minute. 
+Shorthand Commands and Relative Time allow advanced users to enter up to 70% more commands per minute. The import command allows users to migrate existing data quickly and get started in no time.
 
 [Return to top](#CCA-manager-developer-guide)
 ## 5. User Stories
@@ -716,13 +726,13 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 |v1.0|user|add/delete events to the list|so that i can manage the schedule|
 |v1.0|user|view a summary of events |keep track of future and completed events|
 |v1.0|user|add/delete entries|keep track of financial records in the CCA|
-|v1.0|user|view financial summary |keep track of cashflow information at a glance|
+|v1.0|user|view financial summary |keep track of cash flow information at a glance|
 |v2.0|user|view the number of days remaining for the events|remind myself of upcoming events |
 |v2.0|user|perform a search on member/events|find the details of the member/event quickly|
 |v2.0|user|view the list of contacts of the prof/admin|so that i know how to contact them for admin matters|
 |v2.0|user|reassign member roles |so that I can update their roles and responsibilities|
 |v2.0|user|change member phone numbers and emails |so that I can update their contacts|
-|v2.0|user|take attendence | so that I can keep track of members participation in the club|
+|v2.0|user|take attendance | so that I can keep track of members participation in the club|
 |v2.0|user|view members absence rate | so that I can identify members with low participation rate|
 |v2.0|user| import other csv files | So that I can transfer my existing data into the program easily|
 
@@ -738,11 +748,18 @@ Shorthand Commands and Relative Time allow advanced users to enter up to 70% mor
 [Return to top](#CCA-manager-developer-guide)
 ## 7. Glossary
 
-CCA - Co-curricular Activity <br/>
-CLI - Command Line interface <br/>
-UML - Unified Modelling Language <br/>
-CSV - Comma-seperated values <br/>
-OS - Operating Systems  <br/>
+**CCA** - Co-curricular Activity <br/>
+**CLI** - Command Line interface <br/>
+**UML** - Unified Modelling Language <br/>
+**CSV** - Comma-seperated values. This typically refers to the file type with extension .csv <br/>
+**OS** - Operating Systems  <br/>
+**RFC** - Request for Comments, an internet standard specifying various applications of technology or methodology.  
+**IDE** - Integrated Development Environment. A software application that provides facilities for software development, such as IntelliJ.  
+**EICAR** - European Institute for Computer Antivirus Research   
+**Cash flow** - Real or virtual movement of money.  
+**IO** - Input/Output. Also known as the process of communicating within various parts of the operating system. The most common IO task is file related operations such as opening a file.
+**Proprietary format** - A non-standard File format designed by a particular company, organization or individual. Could be designed with the details of the implementation kept secret.
+
 
 [Return to top](#CCA-manager-developer-guide)
 ## 8. Instructions for manual testing
