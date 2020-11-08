@@ -1,69 +1,70 @@
 @startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
 
-hide circle
-skinparam classAttributeIconSize 0
-
-class "{abstract} \n GoCommand"{
-    isExist() : boolean
+Class "{abstract}\nGoCommand" as GoCommand LOGIC_COLOR {
+  + isExist() : boolean
 }
 
-class "{abstract} \n Command"{
-  + isExist() : String {abstract}
-  + execute() : void {abstract}
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+  + {abstract} isExist() : String
+  + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
 }
 
-class "Kaji" {
-    + run() : void
-}
-
-class "Access" {
+Class Access MODEL_COLOR {
     - admin : Admin
     - module : Module
     + getAdmin() : Admin
-    + setAdmin(Admin) : void
-    + setModuleLevel(Module) : void
+    + setModuleLevel(String) : void
+    + setGoModuleLevel(String) : void
     + setModule(Module) : void
 }
 
-class "Admin" {
+Class Admin MODEL_COLOR {
     + getModules() : ModuleList
 }
 
-class "Storage" {
-    + createModule(String) : void
+Class Storage STORAGE_COLOR {
     + loadChapter()
 }
 
-class "ModuleList" {
+Class ModuleList MODEL_COLOR{
     + getAllModules() : ArrayList<Module>
+    + get(int): Module
 }
 
-class "Module" {
+Class Module MODEL_COLOR {
     + getModuleName() : String
     + setChapters(ArrayList<Chapter>) : void
 }
 
-class "Ui" {
+Class Ui UI_COLOR {
     + showToUser(String) : void
 }
 
-"{abstract} \n GoCommand" <|-- GoModuleCommand
+Class GoModuleCommand LOGIC_COLOR {
+    - module : String
+    - goModule(Access, Storage, Ui) : void
+    + execute(Ui, Access, Storage) : void
+}
+
+GoCommand <|-right- GoModuleCommand
 GoModuleCommand : - module : String
 GoModuleCommand : - goModule(Access, Storage, Ui)
 GoModuleCommand : + execute(Ui, Access, Storage)
 
-"{abstract} \n Command" <|-- "{abstract} \n GoCommand"
+Command <|-right- GoCommand
 
-Kaji *- "{abstract} \n Command"
+GoModuleCommand .down[LOGIC_COLOR_T4].> Access
+GoModuleCommand .right[LOGIC_COLOR_T4].> Storage
+GoModuleCommand .down[LOGIC_COLOR_T4].> ModuleList
+GoModuleCommand .up[LOGIC_COLOR_T4].> Ui
 
-Access -> Module
-Access -> Admin
-Admin -> Module
-ModuleList -> Module
-GoModuleCommand ..> Access
-GoModuleCommand ..> Storage
-GoModuleCommand ..> ModuleList
-GoModuleCommand ..> Ui
+Access -[MODEL_COLOR_T4]-> Module
+Access -down[MODEL_COLOR_T4]-> Admin
+Admin -down[MODEL_COLOR_T4]-> Module
+ModuleList -[MODEL_COLOR_T4]-> Module
 
 
 @enduml
