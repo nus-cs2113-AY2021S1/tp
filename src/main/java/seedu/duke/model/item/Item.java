@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents an item in the list.
  */
-public class Item implements Comparable<Item> {
+public class Item {
     public static DateTimeFormatter DATETIME_PARSE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
@@ -125,30 +125,5 @@ public class Item implements Comparable<Item> {
         }
 
         return date.format(formatter);
-    }
-
-
-    /**
-     * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no
-     * priority, is the last). If two tasks have the same priority, sort based on category lexicographically.
-     * positive integer if this task follows the argument task, 0 otherwise.
-     *
-     * @param otherItem The other task to compare to.
-     * @return negative integer if this task precedes the argument task,
-     */
-    @Override
-    public int compareTo(Item otherItem) {
-        if (this.priority != otherItem.priority && this.priority == 0) {
-            return 1;
-        }
-        if (this.priority != otherItem.priority && otherItem.priority == 0) {
-            return -1;
-        }
-        if (this.priority != otherItem.priority) {
-            return this.priority - otherItem.priority;
-        }
-        String thisItemCategory = (this.category == null) ? "" : this.category;
-        String otherItemCategory = (otherItem.category == null) ? "" : otherItem.category;
-        return thisItemCategory.compareTo(otherItemCategory);
     }
 }

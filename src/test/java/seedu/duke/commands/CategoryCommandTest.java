@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
 import seedu.duke.model.Model;
 import seedu.duke.model.ListType;
+import seedu.duke.model.Model;
+import seedu.duke.model.item.Task;
 import seedu.duke.model.itemlist.TaskList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
