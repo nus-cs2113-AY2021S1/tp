@@ -148,16 +148,16 @@ public class PrintTimelineCommand extends Command {
         if (userInputSplit.length == 2) {
             endDate = null;
         } else if (userInputSplit.length == 3) {
-            if (userInputSplit[2] == "week") {
+            if (userInputSplit[2].contains("week")) {
                 endDate = startDate.plusDays(7);
-            } else if (userInputSplit[2] == "month") {
+            } else if (userInputSplit[2].contains("month")) {
                 endDate = startDate.plusDays(31);
             } else {
                 throw new CommandException("invalid command");
             }
-        } else if (userInputSplit.length == 4 && userInputSplit[2] == "date") {
+        } else if (userInputSplit.length == 4 && userInputSplit[2].contains("date")) {
             String[] userInputSplitDate = userInput.split("date", 2);
-            endDate = DateTimeParser.inputDateProcessor(userInputSplit[1].trim());
+            endDate = DateTimeParser.inputDateProcessor(userInputSplit[3].trim());
         } else {
             throw new CommandException("invalid command");
         }
