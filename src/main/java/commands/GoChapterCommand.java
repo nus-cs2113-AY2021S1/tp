@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 
+/**
+ * Access an existing chapter level from module level.
+ */
 public class GoChapterCommand extends GoCommand {
     private static Logger logger = KajiLog.getLogger(GoChapterCommand.class.getName());
 

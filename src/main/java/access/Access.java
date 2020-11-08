@@ -8,6 +8,9 @@ import static common.Messages.ADMIN;
 import static common.Messages.CHAPTER;
 import static common.Messages.MODULE;
 
+/**
+ * Stores temporary data about user's current access level.
+ */
 public class Access {
     protected String level;
     protected String adminLevel;

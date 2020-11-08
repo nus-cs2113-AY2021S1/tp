@@ -16,6 +16,9 @@ import java.util.logging.Logger;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MODULE;
 
+/**
+ * Access an existing module level from admin level.
+ */
 public class GoModuleCommand extends GoCommand {
     private static Logger logger = KajiLog.getLogger(GoModuleCommand.class.getName());
 

@@ -7,8 +7,6 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
-import java.io.IOException;
-
 import static common.Messages.MODULE;
 import static common.Messages.MESSAGE_ITEM_EXISTED;
 
