@@ -69,7 +69,7 @@ public class Ui {
             + "||  \\\\  /   |||   ||  |  |||   ||  ||    ||\\\\ | __/ ||\n"
             + "||   \\\\/    |\\\\__/\\\\__|  |||   \\\\__|\\___ || \\\\\\___| ||\n"
             + "******************************************************\n";
-    public static final String BYE_LOGO =  "_______    _______\n"
+    public static final String BYE_LOGO = "_______    _______\n"
             + "||   \\\\\\  //||\n"
             + "||___//\\\\// ||___\n"
             + "||   \\\\ ||  ||\n"
@@ -376,7 +376,7 @@ public class Ui {
      * Prints the analysis of actual time spent.
      *
      * @param modList module list
-     * @param week week number
+     * @param week    week number
      */
     public void printBreakDownAnalysis(ModuleList modList, int week) {
         ViewTimeBreakdownAnalysis breakDown = new ViewTimeBreakdownAnalysis();

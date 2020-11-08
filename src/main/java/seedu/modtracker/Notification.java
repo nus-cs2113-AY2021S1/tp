@@ -49,7 +49,7 @@ public class Notification {
      * Returns the number of notifications by updating the week number, followed by
      * checking the modules of that week if there is too much or too less time spent on the modules.
      *
-     * @param list   list of modules.
+     * @param list list of modules.
      * @return the number of notifications.
      */
     public int getNumNotification(ModuleList list) {

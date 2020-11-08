@@ -57,7 +57,7 @@ public class ModuleList {
     /**
      * Checks if the module is valid.
      *
-     * @param module  module code typed in by user.
+     * @param module module code typed in by user.
      * @return true if module code is valid, false otherwise.
      */
     public boolean checkIfModuleValid(String module) {
@@ -75,27 +75,20 @@ public class ModuleList {
             pattern = Pattern.compile(regexType1);
             matcher = pattern.matcher(module);
             matchFound = matcher.find();
-            if (matchFound) {
-                return true;
-            }
+            return matchFound;
         } else if (module.length() == (MIN_MOD_LENGTH + 1)) {
             pattern = Pattern.compile(regexType2);
             matcher = pattern.matcher(module);
             secondPattern = Pattern.compile(regexType3);
             secondMatcher = secondPattern.matcher(module);
             matchFound = (matcher.find() || secondMatcher.find());
-            if (matchFound) {
-                return true;
-            }
+            return matchFound;
         } else {
             pattern = Pattern.compile(regexType4);
             matcher = pattern.matcher(module);
             matchFound = matcher.find();
-            if (matchFound) {
-                return true;
-            }
+            return matchFound;
         }
-        return false;
     }
 
     /**
@@ -474,13 +467,11 @@ public class ModuleList {
             if (toPrint) {
                 if (hours > 1) {
                     System.out.println(hours + HOURS_ADD + modCode + FULL_STOP);
-                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
                     System.out.println(hours + HOUR_ADD + modCode + FULL_STOP);
-                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }
+                System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                        + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 storage.appendToFile(input);
             }
         }
@@ -530,15 +521,13 @@ public class ModuleList {
                         if (hours > 1) {
                             System.out.println(hours + HOURS_REMOVAL
                                     + modCode + FULL_STOP);
-                            System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                                    + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
 
                         } else {
                             System.out.println(hours + HOUR_REMOVAL
                                     + modCode + FULL_STOP);
-                            System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                                    + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                         }
+                        System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                                + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                         storage.appendToFile(input);
                     }
                 } else {
@@ -596,13 +585,11 @@ public class ModuleList {
             if (toPrint) {
                 if (hours > 1) {
                     System.out.println(hours + HOURS_EDIT + modCode + FULL_STOP);
-                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 } else {
                     System.out.println(hours + HOUR_EDIT + modCode + FULL_STOP);
-                    System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
-                            + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 }
+                System.out.println(modList.get(index).getActualTimeInSpecificWeek(commandInfo[3])
+                        + SUMMARY + commandInfo[3] + FULL_STOP + System.lineSeparator());
                 storage.appendToFile(input);
             }
         }
