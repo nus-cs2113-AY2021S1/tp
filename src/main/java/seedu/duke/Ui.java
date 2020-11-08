@@ -550,6 +550,9 @@ public class Ui {
         case "command not found":
             System.out.println("Command not found. Please input a valid command.");
             break;
+        case "not enough info":
+            System.out.println("Not enough command info. Type \"help\" to learn the different commands.");
+            break;
         case "invalid recurring number":
             System.out.println("The recurring number is in the range of 0 - 13 only.");
             break;
