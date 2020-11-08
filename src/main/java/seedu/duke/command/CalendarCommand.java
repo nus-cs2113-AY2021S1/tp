@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.EventLogger;
 import seedu.duke.data.UserData;
 import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
@@ -12,6 +13,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 /**
  * Command to print events in a calendar format.
@@ -19,6 +21,7 @@ import java.util.TreeMap;
 public class CalendarCommand extends Command {
     private Map<LocalDate, ArrayList<Event>> calendarMap = new TreeMap<>();
     private int eventsWithoutDateCount = 0;
+    private static Logger logger = EventLogger.getEventLogger();
 
     /**
      * Constructor for calendar command.
@@ -36,6 +39,7 @@ public class CalendarCommand extends Command {
             ArrayList<Event> events = list.getEvents();
             addEventsToCalendar(events);
         }
+        logger.fine("Calendar created successfully.");
         int calendarCount = calendarMap.size();
         ui.printCalendarStart(calendarCount, eventsWithoutDateCount);
         for (Map.Entry<LocalDate, ArrayList<Event>> entry : calendarMap.entrySet()) {
@@ -49,6 +53,7 @@ public class CalendarCommand extends Command {
             calendarCount--;
         }
         ui.printCalendarEnd();
+        logger.fine("Exited calendar mode successfully.");
     }
 
     /**

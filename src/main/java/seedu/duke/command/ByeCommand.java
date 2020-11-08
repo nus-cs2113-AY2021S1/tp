@@ -15,6 +15,13 @@ public class ByeCommand extends Command {
         this.isExit = true;
     }
 
+    /**
+     * Do nothing, exits the program.
+     *
+     * @param data    object of UserData class containing user's data.
+     * @param ui      containing the responses to print.
+     * @param storage with the save file path to write to.
+     */
     @Override
     public void execute(UserData data, Ui ui, Storage storage) {
     }

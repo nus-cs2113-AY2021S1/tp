@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Contents
-- [Introduction]()
+- [Introduction](#introduction)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
     * [Architecture](#architecture)
@@ -23,6 +23,7 @@
     * [Undone](#undone-feature)
     * [Delete](#delete-feature)
     * [Note](#note-feature)
+    * [View](#view-feature)
     * [Reminder](#reminder-feature)
     * [Extract](#extract-feature)    
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -44,6 +45,11 @@
     * [Checking schedule availability](#checking-schedule-availability)
     * [Adding deadline to event](#adding-deadline-to-event)
     * [Setting reminder](#setting-reminder)
+    * [Adding new note for event](#adding-note-for-an-event)
+    * [View note](#viewing-note-for-an-event)
+
+
+## Introduction
 
 ## Setting up, getting started
 1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
@@ -160,26 +166,44 @@ The add feature in the program allows the user to create one of 3 different even
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
 be inserted upon creation. 
 
-Firstly, to begin, the user needs to key in the command `add [event type] [description]; [date]; [time]`
-The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively . For example,
-`add zoom cs2113t meeting; zoom.sg; 16/09/20; 2100`
+Generally, Personal events are meant for non school related events and can be any general task the user wants to do. 
+Zoom events are meant for events that require zoom links and helps the user to store their zoom links easily. 
+Timetable events can contain a location and are meant for school related events like classes.
 
-When a command like this is called, the constructor to `addCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
+Firstly, to begin, the user needs to key in the add command with the general format `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`.
+The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. For example,
+`add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`
 
-Next, when `addCommand#execute` is called from the main, this method will call the respective method to create one of the three events. These methods are `addCommand#addPersonal`, `addCommand#addZoom`, and `addCommand#addTimetable`.
+When a command like this is called, the constructor to `AddCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
+
+Next, when `AddCommand#execute()` is called from the main, this method will call the respective method to create one of the three events. These methods are `AddCommand#addPersonal()`, `AddCommand#addZoom()`, and `AddCommand#addTimetable()`.
+These methods are then used to create events based on the number of fields/parameters entered by the user. Each event has multiple constructors and can contain different combinations of fields which will be stated below.
 
 The personal event can contain the following fields: 
-1. Description
-2. Description and date
-3. Description, date and time
+- Description 
+- Description and date
+- Description, date and time
+
+Examples of user inputs for the respective fields of personal events are:
+- add personal; run
+- add personal; run; 16/7/2020;
+- add personal; run; 16/7/2020; 1600
 
 The zoom event can contain the following fields:
-1. Description and link
-2. Description, link, date and time
+- Description and link
+- Description, link, date and time
+
+Examples of user inputs for the respective fields of zoom events are:
+- add zoom; meeting; zoom.com.sg
+- add zoom; meeting; zoom.com.sg; 17/10/2000; 2100
 
 The Timetable event can contain the following fields:
-1. Description, date and time
-2. Description, location, date and time
+- Description, date and time
+- Description, location, date and time
+
+Examples of user inputs for the respective fields of timetable events are:
+- add timetable; math class; 10/10/2000; 4:00 pm
+- add timetable; math class; NUS engineering; 10/10/2000; 4:00 pm
 
 The fields for what each event can contain were chosen based on what we as a team thought were important fields for the respective event types.
 However, these methods can easily be edited to accept different numbers of fields if we change our minds in the future.
@@ -188,17 +212,18 @@ Given below is an example scenario of the add feature:
  
 Step 1. The user launches the application for the first time. There will be no events stored at the moment.
  
-Step 2. The user executes `add zoom cs2113t meeting; zoom.sg; 16/09/20; 2100`. The `addCommand` instance is created and detects that the event is of Zoom type.
+Step 2. The user inputs `add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`. The `addCommand` instance is created and detects that the event is of Zoom type.
  
-Step 3. `addCommand#execute` is called. The class knows the current addCommand is of Zoom type so it calls `addCommand#addZoom`.
+Step 3. `addCommand#execute()` is called. The class knows the current addCommand is of Zoom type so it calls `addCommand#addZoom()`.
  
-Step 4. `addCommand#addZoom` detects there are 4 fields in the command, separated by semicolons, and uses this to create a new Zoom event.
+Step 4. `addCommand#addZoom()` detects there are 4 fields in the command, separated by semicolons, and uses this to create a new Zoom event.
  
 Step 5. The Zoom event is then added to the user's `UserData` for further use.
  
 The following sequence diagram shows how the whole add feature works: <br>
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
+// to be updated
 
 #### List feature
 
@@ -336,18 +361,33 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 #### Deadline feature
 
-The user executes ```deadline 1; 7/10/20; 11:20 PM``` command to set the deadline for the 1st event in Personal event list
+The deadline feature is implemented using `DeadlineCommand` class. `DeadlineCommand` accesses the Personal `Events` to get the event specified by the user and change the date of the event. It implements the following operations:
+
+- `DeadlineCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, date/time given by the user
+- `DeadlineCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+
+These operations are not exposed, and are used as private methods within the `DeadlineCommand`.
+
+Given below is an example usage scenario and how the deadline feature functions.
+
+Step 1. The user executes `deadline 1; 7/10/20; 11:20 PM` command to set the deadline for the 1st event in Personal event list
 to be on the 7th October 2020 at 11:20 PM. 
-The ```deadline``` command calls ```DeadlineCommand#execute()```, adding/updating the personal event deadline. <br>
+
+Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`
+
+Step 3. After obtaining the event using `EventList#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
+
+The following sequence diagram shows how the deadline operation works: <br>
+
+![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.png)
+
 Given below is how the deadline command behave: <br>
 
 <p align="center">
   <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
 </p>
 
-The following sequence diagram shows how the deadline operation works: <br>
 
-![Sequence Diagram for Deadline Command](./diagrams/DeadlineSequenceDiagram.jpg)
 
 #### Check feature
 
@@ -422,13 +462,141 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 (WIP)
 
 #### Note feature
-(WIP)
+The note feature is implemented using `NoteCommand` class. `NoteCommand` accesses the `Events` to get the event specified by the user and add notes to the event. It implements the following operations:
+
+- `NoteCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, event type given by the user
+- `NoteCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+- `NoteCommand#getNotesFromUser(Ui)` -- Calls `Ui#receiveCommand()` to get user's input for notes
+- `NoteCommand#updatingNotesWithTimestamp(existingNotes,newNotes)` -- Include a timestamp of the time that user create a note
+- `NoteCommand#indicateNewLineUsingDelimeter(notes)` -- ` is used to indicate a new line and form the array list into a string of note
+
+These operations are not exposed, and are used as private methods within the `NoteCommand`.
+
+Given below is an example usage scenario and how the deadline feature functions.
+
+Step 1. The user executes `note personal; 1` command to create the note for the 1st event in Personal event list.
+
+Step 2. `NoteCommand#execute()` is called. The command string is then parsed to `NoteCommand#parseUserCommand(command)`
+
+Step 3. After obtaining the event using `Event#getEventByIndex(index)`,  using the user input we have obtained from `NoteCommand#getNotesFromUser(Ui)` create a note for the event. 
+
+Step 4. Before storing the note, notes have to be tagged with timestamp using `NoteCommand#updatingNotesWithTimestamp(existingNotes,newNotes)` and `NoteCommand#indicateNewLineUsingDelimeter(notes)` reformat notes to use ` as an indicator for new line.
+
+The following sequence diagram shows how the note operation works: <br>
+
+![Sequence Diagram for Note Command](./diagrams/NoteCommandSequenceDiagram.png)
+
+Given below is how the note command behave: <br>
+
+<p align="center">
+  <img width="414" height="562" src="./diagrams/NoteCommandScenario.png">
+</p>
+
+
+#### View feature
+
+The view feature allows user to see the notes they have created for a particular event.
+
+The following is the class diagram for reminder command:
+
+<p align="center">
+  <img width="414" height="562" src="./diagrams/ViewCommandClass.png">
+</p>
+
+
+The view feature is implemented using `ViewCommand` class. `ViewCommand` accesses the `Events` to get the event specified by the user and show the notes created to users. It implements the following operations:
+
+- `ViewCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, event type given by the user
+- `ViewCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+
+These operations are not exposed, and are used as private methods within the `ViewCommand`.
+
+Given below is an example usage scenario and how the reminder feature functions.
+
+Step 1. The user executes `view` command to show events happening today.
+
+Step 2. `ViewCommand#execute()` is called. 
+
+Step 3. After obtaining the event using `EventList#getEventByIndex(index)`, the user notes can be obtained using `Event#getNotes()`
+
+The following sequence diagram shows how the view operation works: <br>
+
+![Sequence diagram for view command execute](./diagrams/ViewCommandSequenceDiagram.png)
+
 
 #### Reminder feature
-(WIP)
+
+The reminder feature allows user list to the user the events that are happening today. Events are sorted according to time if applicable. The remind feature would called at every start of the program.
+
+The following is the class diagram for reminder command:
+
+![Class diagram for reminder command execute](./diagrams/ReminderCommandClass.png)
+
+The reminder feature is implemented using `ReminderCommand` class. `ReminderCommand` accesses `EventList` to get all event and filter out events happening today and sort them according to with/without time. It implements the following operations:
+
+- `ReminderCommand#filterTodayEvents(eventlist)` -- Filter out the events happening today and return an array list of events
+- `ReminderCommand#checkingRepeatedEvent(event)` -- Check for events that have been repeated and is happening today
+
+These operations are not exposed, and are used as private methods within the `ReminderCommand`.
+
+Given below is an example usage scenario and how the reminder feature functions.
+
+Step 1. The user executes `reminder` command to show events happening today.
+
+Step 2. `ReminderCommand#execute()` is called. 
+
+Step 3. After obtaining all the event using `UserData#getAllEventLists()`,  `ReminderCommand#filterTodayEvents(eventlist)` will be called to check event if they are happening today and store the events in an ArrayList if they are. 
+
+Step 4. While checking if the events fall on today in `ReminderCommand#filterTodayEvents(eventlist)`, `ReminderCommand#checkingRepeatedEvent(event)` will also check if there are repeated events that fall on the same day.
+
+Step 5. After getting all the events happening today, `ReminderCommand#execute()` would then sort the events into 2 ArrayList, one with time and one without time.
+
+The following sequence diagram shows how the reminder operation works: <br>
+
+![Sequence diagram for reminder command execute](./diagrams/ReminderCommandSequenceDiagram.png)
+
 
 #### Extract feature
-(WIP)
+The extract feature allows users to copy and paste a body of text like emails and it will help users create either
+a Zoom or a Personal event. It utilizes Regular Expressions (Regex) patterns in order to match dates, times and zoom links
+in the text entered. 
+
+Given below is an example usage scenario to explain how the extract feature works.
+
+Step 1. To begin, the user enters `extract CS2113T Quiz;`. 
+The constructor for `ExtractCommand` will then be called and the `TEXT_SUBJECT` which is `CS2113T Quiz` will be stored in that instance of ExtractCommand.
+
+Step 2. Next, `ExtractCommand#execute()` is called from the main. This method will call `ExtractCommand#receiveTextBody()` which will let the user enter any text and only ends once the user types `extractend` on a new line.
+The user may then input a text copied from email, for example `The quiz will be on October 8 2020 or 9th October at 4pm or 5pm. The zoom link is at https://nus-sg.zoom.com`. After going to the next line, the user has to type `extractend`.
+This is saved as the `textBody` in this instance of `ExtractCommand`. 
+
+Step 3. The `textBody` is then used in multiple methods. These include `ExtractCommand#detectZoomLink()`, `ExtractCommand#detectDate()` and `ExtractCommand#detectTime()` which will use Regex patterns to find and match dates, times and zoom links.
+
+Step 4. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be called which will return dates and times that are valid. In this case, it will detect the 2 dates, 2 timings and 1 zoom link above.
+
+Step 5. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it.
+
+Step 6. If the event has a zoom link, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
+
+The following sequence diagram shows how the Extract Feature works in general:
+
+![Sequence Diagram for Extract Command](./diagrams/extractCommand.jpg)
+
+Design considerations:
+
+For the detection of date, the Regex pattern used detects dates in the DD/Month Name/YYYY format or Month name/DD/YYYY format. The current year can also be added automatically if no year was detected.
+It can also detect if the day portion of the date has any suffixes. This does not detect dates written in other formats like DD/MM/YYYY or DD/MM/YY because upon
+looking at many of the emails sent to us, we found most were of the Regex pattern we chose. However, this could be implemented in the future. 
+
+For the detection of time, the Regex pattern used detects time in the 12 or 24 hour format. It can detect time with AM/PM behind it too. However, it cannot detect 24 hour timings
+with no "." or ":" in it unlike some commands above. This is because it may result in detecting a lot of false timings like if a 4 digit number like 2020 for a date was detected as a time and a year.
+
+For the detection of zoom link, the Regex pattern used first detects any URL starting with https:// or http://. It then checks whether the URL contains ".zoom." which we found the be common in most zoom links.
+
+
+
+
+
 
 
  
@@ -650,3 +818,32 @@ Scheduler--; prints an error message and use case ends.
     1. Type `add personal birthday; <<current date that test is run>>`
     1. Test Case: `reminder`
         The program should show that the personal birthday event is the event that you have for today. 
+
+### Adding note for an event
+1. Add a new note for an event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Test Case:  `note personal; 1`
+        1. Upon Scheduler prompt , type the following
+            ```
+           Teeth polished
+           Cost: 100
+           noteend
+           ```
+        The program should show that the note has been successfully created with the content of the note printed.
+        
+
+### Viewing note for an event 
+1. View note for an event
+    1. Load the program
+    1. Type `add personal dental appointment; 18/09/2020`
+    1. Type `note personal; 1`
+        1. Upon Scheduler prompt , type the following
+            ```
+           Teeth polished
+           Cost: 100
+           noteend
+           ```
+    1. Test Case: `view personal; 1`
+         The program should show that the notes for the dental appointment that you previously created
+        
