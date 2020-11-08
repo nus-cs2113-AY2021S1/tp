@@ -510,7 +510,7 @@ The program will only load the data file in the persistent storage during the in
 If the program fails to load the data file, it will proceed in an empty state. Any subsequent saves invoked by any command that changes the empty state, or exiting the program using `bye` will cause the erroneous data file **to be deleted**.  
 
 The program will fail to load the data file if **any of the following conditions are met**:
-* Input/Output error trying to read the file.
+* I/O error trying to read the file.
 * Error parsing the fail as JSON format.
 * Conversion error due to missing properties.
 * Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
@@ -601,6 +601,7 @@ delivering the product (eg: Team leader in University projects, Project Manager 
 ## Glossary
 The terms listed in this glossary are in alphabetical order.
 * _GUI_ - Graphical User Interface
+* I/O - Input/Output is the communication between the computer and the user through GUI or terminal.
 
 ## Instructions for manual testing
 
