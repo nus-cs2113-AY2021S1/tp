@@ -18,6 +18,7 @@ public abstract class StorageFile {
 
     /**
      * Passes the ApplianceList and LocationList to allow ReadStorageFile and WriteStorageFile to use.
+     *
      * @param applianceList stores the appliances in SmartHomeBot
      * @param locationList stores the locations in SmartHomeBot
      */

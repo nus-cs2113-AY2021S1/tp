@@ -1,5 +1,8 @@
 package seedu.smarthomebot.commons;
 
+/**
+ * Class for all the user visible messages.
+ */
 public class Messages {
 
     public static final String LINE = "-".repeat(Math.max(0, 52)) + "\n";
