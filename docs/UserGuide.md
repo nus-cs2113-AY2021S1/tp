@@ -20,7 +20,7 @@ A CLI, similar to the one shown below, should appear within a few seconds. Follo
 
 ## Features 
 
-**:warning: Please take note of the following:**
+:warning: **Please take note of the following:**
 
 * Words in `UPPER_CASE` are **parameters to be supplied** by the user.<br/> 
 e.g. For `name YOUR_NAME_OR_NICKNAME`, `name Jack` would be a valid command.
@@ -32,11 +32,11 @@ e.g. For `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c
 e.g. For `calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]`,`calculate fat 2020-07-03T23:59 2020-09-03T23:59` is valid but `calculate 2020-07-03T23:59 fat 2020-09-03T23:59` is not.<br/>
 e.g. For `add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]`, `add x/1 i/1 2020-09-03T23:59` is valid but `add i/1 2020-09-03T23:59 x/1 ` is not as time needs to be entered as the last parameter. 
 
-* Command words and parameter indicators are case-sensitive.<br/>
+* Command words and parameter indicators are **case-sensitive**.<br/>
 e.g. `help` is a valid command but `Help` is not.<br/>
 e.g. For `add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]`, `add i/1 x/1 2020-07-03T23:59` is valid but `add I/1 x/1 2020-07-03T23:59` is not.
 
-* Spacing to separate command word and parameters is required.<br/> 
+* **Spacing** to separate command word and parameters is required.<br/> 
 e.g. For `calculate NUTRIENT_TYPE`, `calculate all` is valid but `calculateall` is not.
 
 * Inappropriate usage of `/`, the forward slash, may lead to invalid commands. Only use **one** `/` in parameter tags like `n/`, `a/`, etc and avoid using `/` otherwise.
