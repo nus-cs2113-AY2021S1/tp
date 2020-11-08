@@ -65,7 +65,7 @@ public class Parser {
             return new ViewInfoCommand(userInput);
         } else if (userInput.startsWith(COMMAND_DELETE_INFO)) {
             return new DeleteInfoCommand(userInput);
-        } else if (userInput.startsWith(COMMAND_SHOW_PROGRESS)) {
+        } else if (userInput.equals(COMMAND_SHOW_PROGRESS)) {
             return new PrintProgressCommand(userInput);
         } else if (userInput.startsWith(COMMAND_SHOW_COUNTDOWN)) {
             return new CountdownCommand(userInput);
