@@ -283,7 +283,7 @@ to perform to achieve full operation specified by the user.
 
 ### Storage Component
 Please refer to the section below:
-[Storage Utility](#storage utility)
+[Storage Utility](#storage-utility)
 
 ## Feature-level Implementation
 ### Main Menu
