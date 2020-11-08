@@ -76,6 +76,7 @@ A <b>command line interface (CLI)</b> is a text-based user interface (UI) used t
 
 #### 1.4.1. Content Management
 
+
 #### 1.4.2. Schedule Management
 
 --------------------------------------------------------------------------------------------------------------------
