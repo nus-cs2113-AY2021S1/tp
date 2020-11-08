@@ -83,7 +83,7 @@ The following class diagram briefly explains how different classes in the Logic 
 > XYZCommand represents the different route command classes.
 > The actual class names are written in the notes beside the classes.
 
-<img src="DG_Diagrams/LogicComponent.png" alt="logiccomponent" width=1100 height=500>
+<img src="DG_Diagrams/Components/LogicComponent.png" alt="logiccomponent" width=1200>
 
 #### 2.1.3. Model Component
 The Model component is responsible for the following tasks:
