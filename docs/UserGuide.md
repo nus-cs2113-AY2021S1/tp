@@ -33,6 +33,7 @@ After familiarizing with all the functionalities, you will definitely be able to
         * [Adding recurring tutorial event](#adding-recurring-tutorial-events)
     * [Adding additional information of an event](#adding-additional-information-to-an-event)
     * [Viewing additional information of an event](#viewing-the-additional-information-of-an-event)
+    * [Deleting additional information of an event](#deleting-the-additional-information-of-an-event)
     * [Marking a task as done](#marking-a-task-as-done)
     * [Deleting a calendar item](#deleting-a-calendar-item)
         * [Deleting a task](#deleting-a-task)
@@ -106,6 +107,7 @@ As a first-time user you can always type help in the terminal to view the list o
 Format: `help`
 
 ![Screen_Shot_of_help_command](images/Help_Command.PNG)
+
 ![wanring_message_for_help](images/warning_help_command.PNG)
 
 ### Adding a task:
@@ -127,21 +129,29 @@ Example:
 
 `todo exercise for 10 minutes` adds a todo task of exercising for 10 minutes to the calendar list as demonstrated in the figure below.
 ![todo_command](images/todo_command.png)
+Note: The above figure is for illustration purpose only. The total number of tasks may differ if you have more tasks stored in the program.
 
 ![tips_todo](images/tip_for_todo.PNG)
 
 #### Adding a deadline task:
 
 This function allows you to add a deadline task, such as project submission or assignment submission and the program 
-will keep track of the due date which will definitely make your study life more manageable!
+will keep track of the due date which will definitely make your study life more manageable! The function will also display a 
+warning message if the due date of the deadline item is already due (with respect to today's date), making sure all your deadlines are properly recorded and
+minimise any potential careless typo.
 
 Format: `deadline <task_description> / <due_date>`
 
-Example:
+Example of a passed deadline:
 
-`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020 
+`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020, 
 as illustrated by the figure below.
-![deadline_command](images/deadline_command.png)
+![deadline_command_passed](images/deadline_command.png)
+
+Example of a proper deadline:
+`deadline project video demo /090922` adds a deadline task of project video demo which is due on 09 September 2022, as illustrated 
+by the figure below.
+![deadline_command_proper](images/deadline_command_proper.png)
 
 ![tips_deadline](images/tips_deadline.PNG)
 
@@ -237,10 +247,12 @@ Example of usage:
 ![warning_event_date](images/warning_event_format.PNG)
 
 ### Additional information of an event
+You can add additional information pertaining to an event in your calendar list, 
+view the list of added information and delete irrelevant ones! Use this as a one stop application to store everything you need to know!
 
 #### Adding additional information to an event:
-
-You can add additional information pertaining to an event in your calendar list.
+You can add additional information pertaining to an event in your calendar list. You may use this feature to store
+ the module website for a school event or the things to bring to an event.
 
 Format: `/a <event_number> - <additional information>`
 
@@ -248,22 +260,37 @@ Example of usage:
 
 `/a 1 - This is the additional information for event number 1`
 
-![tip_addtional_info](images/tip_additional_info.PNG)
-
+You may then view the additional information using the view additional information feature below.
+![tip_additional_info](images/tip_additional_info.PNG)
+![warning_add_info](images/warning_add_info.PNG)
 #### Viewing the additional information of an event:
-
-You can view the additional information pertaining to an event in your calendar list.
+After adding the additional information related to the event, you can then view the list of additional information 
+ pertaining to that event. Use this feature to recall what you need to do before the event!
 
 Format: `/v <event_number>`
 
 Example of usage:
 
-`/v 1` - This lists the additional information that you have added for event number 1.
+`/v 1` 
 
+You will be able to see all the additional information that you have added for event number 1 in a form of a list.
+
+#### Deleting the additional information of an event:
+Should you have wrongly added any additional information to an event, fret not, you can delete them using this feature.
+
+Format: `/- <event_number> a <additional_information_number>`
+
+Example of usage:
+
+`/- 1 a 2`
+
+When you view the additional information for event number 1, you will not be able to see additional information
+ number 2 that you have just deleted.
+ 
 ### Marking a task as done:
 
 To help manage your tasks better, you can mark a task on your calendar list as completed by using the `done` command. 
-If the task is done, you will be able to see a small tick [/] beside the task. Else, you will see a cross [X] beside the task
+If the task is done, you will be able to see a small tick [/] beside the task. Else, you will see a cross [X] beside the task.
 
 Format: `done <task_number>`
 
@@ -278,76 +305,79 @@ differ if you have a different task stored in the task index number 1.
 
 ![warning_done](images/warning_done.PNG)
 
-#### Deleting the additional information of an event:
-
-You can view the additional information pertaining to an event in your calendar list.
-
-Format: `/- <event_number> a <additional_information_number>`
-
-Example of usage:
-
-`/- 1 a 2` - When you view the additional information for event number 1, you will not be able to see that additional information that you have just deleted.
-
 ### Deleting a calendar item:
 
-You may delete any calendar item that you deem unnecessary by using the following command:
+You may delete any calendar item you have added wrongly or any items that have become obsolete. It is advisable
+ for you to use this feature frequently to keep your task and event lists uncluttered!
+ ![warning_cal_delete](images/warning_cal_delete.PNG)
 
 #### Deleting a task:
 
-You can delete a task from your calendar list.
+You can delete a task from your calendar list. You can use this to delete the tasks that you have already completed!
 
 Format: `-t <task_number>`
 
 Example of usage:
  
- `-t 1` - This removes task number 1 from your calendar.
+ `-t 1` 
+ 
+ After executing this command, notice that task number 1 has been removed from your calendar.
 
 #### Deleting an event:
 
-You can delete an event from your calendar list.
+You can delete an event from your calendar list. Use this to delete the events that are already over!
 
 Format: `-e <event_number>`
 
 Example of usage:
  
- `-e 1` - This removes event number 1 from your calendar.
+ `-e 1` 
+ After executing this command, notice that event number 1 has been removed from your calendar.
 
 ### Finding a calendar item:
 
-You can find a calendar item based on a specific keyword. Additionally, you may filter the search based on whether it is a task or an event. 
+If you have a long list of calendar items, you may use this feature to find a calendar item based on a specific
+ keyword of the item’s description. Additionally, for a more specific search, you may search based on whether
+  it is a task or an event. 
 
 #### Finding an item from the calendar list:
 
-You can search the entire calendar based on a keyword.
+You can search the entire calendar based on a keyword. For example, you might want to search for the due date of an
+ assignment in your calendar.
 
 Format: `/f <keyword>`
 
 Example of usage: 
 
-`/f Tuition` - the lists of items (both tasks and events) containing the keyword “Tuition” will appear.
-
+`/f assignment` 
+You should be able to see the lists of items (both tasks and events) containing the keyword “assignment”.
 ![tip_find](images/tip_find.PNG)
-
 
 #### Finding an item from the task list: 
 
-You can search the task list based on a keyword.
+You can also search from your task list based on a keyword. This will be useful if you need to narrow your search to
+ just your list of tasks instead of both tasks and events. For example, if you are just searching for your tuition
+  homework tasks, you can use this feature to exclude any events with description containing “tuition”!
 
 Format: `/ft <keyword>`
 
 Example of usage: 
 
-`/ft Tuition` - the lists of tasks containing the keyword “Tuition” will appear.
+`/ft tuition` 
+You should be able to see only the lists of tasks containing the keyword “tuition”.
 
 #### Finding an item from the event list: 
 
-You can search the event list based on a keyword.
+Likewise, you can also search your event list based on a keyword. This is especially useful if you have multiple
+ tasks and events having a similar description. For example, if you are looking for events happening on the same date
+ , you can use this feature to exclude all deadline tasks with the same date!
 
 Format: `/fe <keyword>`
 
 Example of usage: 
 
-`/fe Tuition` - the lists of events containing the keyword “Tuition” will appear.
+`/fe 30-Oct-2020`
+You should be able to see only the lists of events containing the keyword “30-Oct-2020”.
 
 ![tip_find_event](images/tip_find_event.PNG)
 
