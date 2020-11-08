@@ -11,7 +11,7 @@ public class DeleteFavCommand extends Command {
 
     public DeleteFavCommand(String index) throws CustomException {
         if (index.isEmpty() || index.isBlank()) {
-            throw new CustomException(ExceptionType.NO_INPUT);
+            throw new CustomException(ExceptionType.NO_INDEX);
         }
         int indexNum = 0;
         try {
