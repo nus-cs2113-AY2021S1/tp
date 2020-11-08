@@ -70,6 +70,7 @@ The rest of the App consists of:
 * `User`: Contains and handles all information related to user data.
 * `StorageManager`: Reads data from and writes data back into a text file for future use.
 * `ListManager`: Handles all the list operations in Fitr.
+* `Recommed`: Handles the recommendation of the exercises.
 
 Figure 2 below shows how the components work with one another, when a user enters the following command `food chicken rice /600 1`:
 
@@ -99,6 +100,9 @@ When a valid command is keyed in, the `Parser` class returns a `Command` object 
 
 The Command component consists of an abstract `Command` class and the various different commands that inherit the `Command` class.
 Each type of command class (e.g. `addFoodCommand`, `addExerciseCommand` etc) implements an abstract `execute()` method that carries out the command. 
+
+<p align="center"><img src="images/CommandClass.png"></p>
+<p align="center">Figure 5: <code>Command</code> class diagram</p>
 
 #### 3.2.4 User component
 
@@ -144,7 +148,17 @@ Under the `ListManager` component, the `ListManager` class handles operations on
 
 On startup, the `Fitr` class creates a new `ListManager` object, with `StorageManager` as its parameter. The `ListManager` object then creates `ExerciseList`, `FoodList` and `GoalList` objects, and attempt to load the data into the lists through the `StorageManager` object. If no data is found, then an empty list will be created.
 
-#### 3.2.7 Common classes
+#### 3.2.7 Recommender component
+The `Recommender` component handles the recommendation of the exercises. Based on the user inputs, it either returns a list of type `StandardExerciseList` full of general or specific workouts. For example, it either recommends a mix of exercises from the 4 different categories of aerobic, upperbody, lowerbody and stretch, or it chooses only workouts from each of the category.
+
+When the `Recommend` class is instantiated, the constructor calls onto the `Storage` class to load multiple different `StandardExerciseList` instances as attributes. 
+
+The `recommand` method in the class then chooses and adds different permutations or combinations of `StandardExercise` instances from the multiple different `StandardExerciseList` instances to load into a new instance of `StandardExerciseList`, which is then returned.
+
+<p align="center"><img src="images/RecommenderClassDiagram.png"></p>
+<p align="center">Figure 5: <code>Recommender</code> class diagram</p>
+
+#### 3.2.8 Common classes
 
 Classes used by multiple components are in the `fitr.common` package.
 
@@ -215,7 +229,21 @@ Figure 9 below shows the sequence diagram when the user inputs the `delete` comm
 <p align="center"><img src="images/DeleteCommandSequenceDiagram.png"></p>
 <p align="center">Figure 9: Sequence diagram for <code>delete</code> command</p>
 
-### 4.6 Tip of the day
+### 4.6 Recommend command
+
+The `recommend` command allows the user to get either a general recommended workout or a workout to a specific body part or type. The commands that can follow recommend are `aerobic`, `upperbody`, `lowerbody` and `stretch`.
+
+The user's input is first parsed by the `Parser` class, which returns a `RecommendCommand` to `Fitr`. The `RecommendCommand` is then executed to recommend workouts. The `RecommendCommand` calls on the `recommend` method in `Recommender`.
+
+The `Recommender` class then returns a list of type `StandardExerciseList`. The user input is then read in by the `Ui` class to determine which `StandardExercise` objects in the `StandardExerciseList` should be converted to `Exercise` and added to the exerciseList of type `ExerciseList`
+
+<p align="center"><img src="images/RecommendCommandSequenceDiagram.png"></p>
+<p align="center">Figure 5: <code>Recommend Command</code> sequence diagram</p>
+
+
+### Add Command
+
+### 4.8 Tip of the day
 
 Fitr can give an interesting fact or a tip of exercise every time the user opens the app.
 
