@@ -1,11 +1,14 @@
 package seedu.duke.storage;
 
+import seedu.duke.EventLogger;
 import seedu.duke.event.Event;
 import seedu.duke.event.Personal;
 import seedu.duke.event.Timetable;
 import seedu.duke.event.Zoom;
+import seedu.duke.exception.InvalidStatusException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.parser.DateTimeParser;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,9 +16,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 public class StorageParser {
 
+    private static Logger logger = EventLogger.getEventLogger();
 
     public static String eventToString(Event activity, String type) {
 
@@ -204,125 +209,124 @@ public class StorageParser {
 
     }
 
-    public static Event stringToEvent(String line, String type) {
+    public static Event stringToEvent(String line, String type, Ui ui) {
         String[] words = line.split("\\|");
         String[] statuses;
         String[] info;
         String[] notes;
 
-        for (int i = 0; i < words.length; i++) {
-            words[i] = words[i].trim();
+        try {
+            for (int i = 0; i < words.length; i++) {
+                words[i] = words[i].trim();
+            }
+            switch (type) {
+            case "Personal":
+                info = Arrays.copyOfRange(words, 0, 5);
+                notes = Arrays.copyOfRange(words, 5, 6);
+                statuses = Arrays.copyOfRange(words, 6, words.length);
+                return makePersonal(info, statuses, notes);
+            case "Zoom":
+                info = Arrays.copyOfRange(words, 0, 6);
+                notes = Arrays.copyOfRange(words, 6, 7);
+                statuses = Arrays.copyOfRange(words, 7, words.length);
+                return makeZoom(info, statuses, notes);
+            case "Timetable":
+                info = Arrays.copyOfRange(words, 0, 6);
+                notes = Arrays.copyOfRange(words, 6, 7);
+                statuses = Arrays.copyOfRange(words, 7, words.length);
+                return makeTimetable(info, statuses, notes);
+            default:
+                return null;
+            }
+        } catch (Exception e) {
+            logger.warning("Event not loaded due to data corruption.");
         }
-        switch (type) {
-        case "Personal":
-            info = Arrays.copyOfRange(words, 0, 5);
-            notes = Arrays.copyOfRange(words, 5, 6);
-            statuses = Arrays.copyOfRange(words, 6, words.length);
-            return makePersonal(info, statuses, notes);
-        case "Zoom":
-            info = Arrays.copyOfRange(words, 0, 6);
-            notes = Arrays.copyOfRange(words, 6, 7);
-            statuses = Arrays.copyOfRange(words, 7, words.length);
-            return makeZoom(info, statuses, notes);
-        case "Timetable":
-            info = Arrays.copyOfRange(words, 0, 6);
-            notes = Arrays.copyOfRange(words, 6, 7);
-            statuses = Arrays.copyOfRange(words, 7, words.length);
-            return makeTimetable(info, statuses, notes);
-        default:
-            return null;
-        }
+        return null;
     }
 
-    private static Personal makePersonal(String[] info, String[] statuses, String[] notes) {
+    private static Personal makePersonal(String[] info, String[] statuses, String[] notes) throws Exception {
         //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number
-        try {
-            Personal p = new Personal(info[0]);
-            if (info[1].equals("0")) {
-                //no date, event can be returned as is
-                setDone(p, statuses[0]);
-                notesSetter(p, notes[0]);
-                return p;
-            } else if (info[2].equals("0")) {
-                //no time, but got date
-                LocalDate date = DateTimeParser.dateParser(info[1]);
-                LocalTime time = null;
-                p.setDate(date);
-            } else {
-                //has both date and time
-                LocalDate date = DateTimeParser.dateParser(info[1]);
-                LocalTime time = DateTimeParser.timeParser(info[2]);
-                p.setDate(date);
-                p.setTime(time);
-            }
+        Personal p = new Personal(info[0]);
+        if (info[1].equals("0")) {
+            //no date, event can be returned as is
             setDone(p, statuses[0]);
-            repeatSetter(p, statuses, info[3], info[4]);
             notesSetter(p, notes[0]);
             return p;
-        } catch (Exception e) {
-            System.out.println("file corruption detected");
-        }
-        return null;
-    }
-
-    private static Zoom makeZoom(String[] info, String[] statuses, String[] notes) {
-        //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is zoom link
-        try {
-            Zoom z = new Zoom(info[0], info[5]);
-            if (info[1].equals("0")) {
-                //no date, event can be returned as is
-                setDone(z, statuses[0]);
-                notesSetter(z, notes[0]);
-                return z;
-            } else if (info[2].equals("0")) {
-                //no time, but got date
-                LocalDate date = DateTimeParser.dateParser(info[1]);
-                LocalTime time = null;
-                z.setDate(date);
-            } else {
-                //has both date and time
-                LocalDate date = DateTimeParser.dateParser(info[1]);
-                LocalTime time = DateTimeParser.timeParser(info[2]);
-                z.setDate(date);
-                z.setTime(time);
-            }
-            setDone(z, statuses[0]);
-            repeatSetter(z, statuses, info[3], info[4]);
-            notesSetter(z, notes[0]);
-            return z;
-        } catch (Exception e) {
-            System.out.println("file corruption detected");
-        }
-        return null;
-    }
-
-    private static Timetable makeTimetable(String[] info, String[] statuses, String[] notes) {
-        //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is location
-        try {
+        } else if (info[2].equals("0")) {
+            //no time, but got date
+            LocalDate date = DateTimeParser.dateParser(info[1]);
+            LocalTime time = null;
+            p.setDate(date);
+        } else {
+            //has both date and time
             LocalDate date = DateTimeParser.dateParser(info[1]);
             LocalTime time = DateTimeParser.timeParser(info[2]);
-            Timetable t = new Timetable(info[0], date, time);
-            if (!info[5].equals("")) { //location provided
-                t.setLocation(info[5]);
-            }
-            setDone(t, statuses[0]);
-            repeatSetter(t, statuses, info[3], info[4]);
-            notesSetter(t, notes[0]);
-            return t;
-        } catch (Exception e) {
-            System.out.println("file corruption detected");
+            p.setDate(date);
+            p.setTime(time);
         }
-        return null;
+        setDone(p, statuses[0]);
+        repeatSetter(p, statuses, info[3], info[4]);
+        notesSetter(p, notes[0]);
+        return p;
+
+
     }
 
-    private static void setDone(Event e, String doneStatus) {
+    private static Zoom makeZoom(String[] info, String[] statuses, String[] notes) throws Exception {
+        //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is zoom link
+        Zoom z = new Zoom(info[0], info[5]);
+        if (info[1].equals("0")) {
+            //no date, event can be returned as is
+            setDone(z, statuses[0]);
+            notesSetter(z, notes[0]);
+            return z;
+        } else if (info[2].equals("0")) {
+            //no time, but got date
+            LocalDate date = DateTimeParser.dateParser(info[1]);
+            LocalTime time = null;
+            z.setDate(date);
+        } else {
+            //has both date and time
+            LocalDate date = DateTimeParser.dateParser(info[1]);
+            LocalTime time = DateTimeParser.timeParser(info[2]);
+            z.setDate(date);
+            z.setTime(time);
+        }
+        setDone(z, statuses[0]);
+        repeatSetter(z, statuses, info[3], info[4]);
+        notesSetter(z, notes[0]);
+        return z;
+    }
+
+    private static Timetable makeTimetable(String[] info, String[] statuses, String[] notes) throws Exception {
+        //0 is name, 1 is date, 2 is time, 3 is repeat unit, 4 is repeat number, 5 is location
+        LocalDate date = DateTimeParser.dateParser(info[1]);
+        LocalTime time = DateTimeParser.timeParser(info[2]);
+        Timetable t = new Timetable(info[0], date, time);
+        if (!info[5].equals("")) { //location provided
+            t.setLocation(info[5]);
+        }
+        setDone(t, statuses[0]);
+        repeatSetter(t, statuses, info[3], info[4]);
+        notesSetter(t, notes[0]);
+        return t;
+    }
+
+    private static void setDone(Event e, String doneStatus) throws InvalidStatusException {
         boolean isDone = doneStatus.equals("T");
+        boolean isNotDone = doneStatus.equals("F");
         if (isDone) {
             e.markAsDone();
+        } else if (isNotDone) {
+            e.markAsUndone();
+        } else {
+            throw new InvalidStatusException("Status needs to be true or false");
         }
+
     }
 
-    private static void repeatSetter(Event activity, String[] statuses, String timeUnit, String repeatNumber) {
+    private static void repeatSetter(Event activity, String[] statuses, String timeUnit, String repeatNumber)
+            throws Exception {
 
         LocalDate startDate = activity.getDate();
         LocalTime startTime = activity.getTime();
@@ -331,37 +335,34 @@ public class StorageParser {
             return;
         }
         ArrayList<Event> repeatEventList = new ArrayList<>();
-
-        try {
-            for (int i = 1; i <= count; i++) {
-                LocalDate repeatDate;
-                switch (timeUnit) {
-                case "MONTHLY":
-                    repeatDate = startDate.plusMonths(i);
-                    break;
-                case "WEEKLY":
-                    repeatDate = startDate.plusWeeks(i);
-                    break;
-                case "DAILY":
-                    repeatDate = startDate.plusDays(i);
-                    break;
-                default:
-                    throw new InvalidTimeUnitException(timeUnit);
-                }
-                activity.setRepeatType(timeUnit);
-                Event repeatEvent;
-                repeatEvent = activity.clone();
-                repeatEvent.setDate(repeatDate);
-                if (statuses[i].equals("T")) {
-                    repeatEvent.markAsDone();
-                }
-                repeatEventList.add(repeatEvent);
+        for (int i = 1; i <= count; i++) {
+            LocalDate repeatDate;
+            switch (timeUnit) {
+            case "MONTHLY":
+                repeatDate = startDate.plusMonths(i);
+                break;
+            case "WEEKLY":
+                repeatDate = startDate.plusWeeks(i);
+                break;
+            case "DAILY":
+                repeatDate = startDate.plusDays(i);
+                break;
+            default:
+                throw new InvalidTimeUnitException(timeUnit);
             }
-            activity.setRepeatEventList(repeatEventList);
-        } catch (Exception e) {
-            System.out.println("Error, wrong date should not happen, file corrupted");
-            //throw new DukeException("Cant clone");
+            activity.setRepeatType(timeUnit);
+            Event repeatEvent;
+            repeatEvent = activity.clone();
+            repeatEvent.setDate(repeatDate);
+            if (statuses[i].equals("T")) {
+                repeatEvent.markAsDone();
+            }
+            repeatEventList.add(repeatEvent);
         }
+        activity.setRepeatEventList(repeatEventList);
+
+
+
 
     }
 
