@@ -42,49 +42,62 @@ public class FlashcardDeck {
 
     public void listCards() {
         Ui.printDivider();
-        System.out.println("Here is the list of flashcards you have: ");
-        int cardIndex = 1;
-        for (Flashcard flashcard: flashcardDeck) {
-            System.out.println(cardIndex + ". " + flashcard.question + "|" + flashcard.answer);
-            cardIndex++;
+        if (flashcardDeck.size() == 0) {
+            System.out.println("There are no cards in your deck!\n"
+                    + "Use \"add\" to add flashcards.");
+        } else {
+            System.out.println("Here is the list of flashcards you have: ");
+            int cardIndex = 1;
+            for (Flashcard flashcard : flashcardDeck) {
+                System.out.println(cardIndex + ". " + flashcard.question + "|" + flashcard.answer);
+                cardIndex++;
+            }
         }
         Ui.printDivider();
     }
 
     public void testRandomCard() {
-        Scanner in = new Scanner(System.in);
-        int score = 0;
-        Ui.printDivider();
-        System.out.println("You have entered the test mode.");
-        Ui.printDivider();
-        String attempt = "null";
-        while (!attempt.equalsIgnoreCase(BACK)) {
-            Random random = new Random();
-            int randomIndex = random.nextInt(flashcardDeck.size());
-            System.out.println("What is the answer to this question?");
-            System.out.println(flashcardDeck.get(randomIndex).question);
-            attempt = in.nextLine();
-            while (!attempt.equalsIgnoreCase(flashcardDeck.get(randomIndex).answer)
-                    && !attempt.equalsIgnoreCase(BACK) && !attempt.equalsIgnoreCase(SHOW_ANSWER)) {
-                System.out.println("Incorrect! Try again?");
+        if (flashcardDeck.size() > 0) {
+            Scanner in = new Scanner(System.in);
+            int score = 0;
+            Ui.printDivider();
+            System.out.println("You have entered the test mode.\n"
+                    + "Use \"back\" to return to flashcard main, or \"show answer\" to reveal answer.");
+            Ui.printDivider();
+            String attempt = "null";
+            while (!attempt.equalsIgnoreCase(BACK)) {
+                Random random = new Random();
+                int randomIndex = random.nextInt(flashcardDeck.size());
+                System.out.println("What is the answer to this question?");
+                System.out.println(flashcardDeck.get(randomIndex).question);
                 attempt = in.nextLine();
-            }
-            if (attempt.equalsIgnoreCase(BACK)) {
-                Ui.printDivider();
-                System.out.println("Exiting test mode...\n"
-                        + "You are now back in flashcard main.");
-            } else if (attempt.equalsIgnoreCase(SHOW_ANSWER)) {
-                Ui.printDivider();
-                System.out.println("The answer for this question is: " + flashcardDeck.get(randomIndex).answer);
-            } else {
-                score++;
-                System.out.print("This is the right answer! ");
-                if (score == 1) {
-                    System.out.println("You now have " + score + " point.");
-                } else {
-                    System.out.println("You now have " + score + " points.");
+                while (!attempt.equalsIgnoreCase(flashcardDeck.get(randomIndex).answer)
+                        && !attempt.equalsIgnoreCase(BACK) && !attempt.equalsIgnoreCase(SHOW_ANSWER)) {
+                    System.out.println("Incorrect! Try again?");
+                    attempt = in.nextLine();
                 }
+                if (attempt.equalsIgnoreCase(BACK)) {
+                    Ui.printDivider();
+                    System.out.println("Exiting test mode...\n"
+                            + "You are now back in flashcard main.");
+                } else if (attempt.equalsIgnoreCase(SHOW_ANSWER)) {
+                    Ui.printDivider();
+                    System.out.println("The answer for this question is: " + flashcardDeck.get(randomIndex).answer);
+                } else {
+                    score++;
+                    System.out.print("This is the right answer! ");
+                    if (score == 1) {
+                        System.out.println("You now have " + score + " point.");
+                    } else {
+                        System.out.println("You now have " + score + " points.");
+                    }
+                }
+                Ui.printDivider();
             }
+        } else {
+            Ui.printDivider();
+            System.out.println("There are no cards in your deck to test from!\n"
+                    + "Use \"add\" to add flashcards, before testing yourself.");
             Ui.printDivider();
         }
     }
@@ -136,7 +149,7 @@ public class FlashcardDeck {
         System.out.println("Please enter a search term: ");
         String searchItem = in.nextLine();
         ArrayList<Flashcard> cardsFound = (ArrayList<Flashcard>) flashcardDeck.stream()
-                .filter((flashcard) -> flashcard.question.contains(searchItem))
+                .filter((flashcard) -> flashcard.question.toLowerCase().contains(searchItem.toLowerCase()))
                 .collect((Collectors.toList()));
         if (cardsFound.size() == 0) {
             Ui.printDivider();

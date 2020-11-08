@@ -189,6 +189,7 @@ Expected output:
 ## Features 
 
 ## 1. Bookmark
+
 Now that more lessons are moving online, are you managing your links well? You might 
 want to save your time finding your zoom links in your email inbox and save all your 
 links in the bookmark feature to access them easily! The bookmark mode enables you to 
@@ -206,8 +207,7 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link]()
 * 1.8 : [Starring / Unstarring a link]()
 
-### 1.1 Viewing all the bookmarks links: 
-`list`,`list -s`, `list -c`, `list -a`
+### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
 
 Are you trying to find your links by entering into each category to view your links?
 You might want to have an easy way to view the overview of your links. 
@@ -236,8 +236,7 @@ Expected output:
 * Follow the format `list`, `list -s`, `list -c`, `list -a` without adding additional inputs. 
 If additional input is detected, the program will prompt you to input the correct format. 
 
-### 1.2 Going into each category: 
-`bm NUMBER`   
+### 1.2 Going into each category: `bm NUMBER`   
 
 Managing so many links can be a hassle! However, categorising the links into different 
 groups can make it even more efficient to find your links! After entering bookmark mode 
@@ -266,8 +265,7 @@ Error will be shown if the category NUMBER does not exist, or the NUMBER you
 have entered is not a number. To find out the valid category NUMBER, 
 view the list of categories (Refer to 1.1)
 
-### 1.3 Adding category:  
-`cat CATEGORY_NAME `
+### 1.3 Adding category:  `cat CATEGORY_NAME `
 
 If you cannot find the perfect category to place your bookmark, 
 why not create your own category! In addition to the default categories 
@@ -293,8 +291,7 @@ If you encounter any errors, take note of the following warnings. If problems st
 **Warning:** 
 * Ensure that the category name is not empty. Error will be shown if the category name is empty. 
 
-### 1.4 Deleting a category:  
-`delete CATEGORY_NUMBER`  
+### 1.4 Deleting a category:  `delete CATEGORY_NUMBER`  
 
 When you have a category, but you have no important links related to the category, take it out of your bookmark list! Organise and design your bookmark categories to your own personal needs by adding your own category (refer to 1.3) and deleting unnecessary categories using these following commands.
 
@@ -315,8 +312,8 @@ Before deleting a category, take note of the following warnings. If you encounte
 * Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to 1.1)
 * CAUTION: Deleting a category will delete all the bookmarks in the category! 
 
-### 1.5 Going back to bookmark main: 
-`back` 
+### 1.5 Going back to bookmark main: `back` 
+
 There are two modes in bookmark feature: the main bookmark mode (refer to General Command 2) and the category mode (refer to 1.2). To navigate freely from mode to mode, use the following command. This command goes back to the previous mode depending on which mode you are in. 
  
 Instruction: 
@@ -333,8 +330,8 @@ Expected output:
 * Follow the format `back` without adding additional inputs. 
 If additional input is detected, the program will prompt you to input the correct format. 
 
-### 1.6 Adding a link to your chosen category: 
-`add LINK` / `add LINK t->TITLE`
+### 1.6 Adding a link to your chosen category: `add LINK` / `add LINK t->TITLE`
+
 If you have a link to add to your bookmark category, follow these commands. 
 Make sure you have chosen your category (Refer to 1.2) 
 and ensure that you do not add an invalid link or an empty link to your bookmark.
@@ -362,14 +359,15 @@ If you encounter any errors, take note of the following warnings. If problems st
 * Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to 1.2) 
 * Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " " or does not contain “.”). 
 
-### 1.7 Deleting a link: 
-`rm LINK_NUMBER `
+### 1.7 Deleting a link: `rm LINK_NUMBER `
+
 If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked it, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to 1.2)  and ensure that you do not remove an empty, or an invalid link number.
 
 Instruction: 
 1. `rm LINK_NUMBER`
 
-e.g. rm 1
+e.g. `rm 1`
+
 Expected output:   
 ![Bookmark_1.8](Images/BookmarkUG/Figure10.png)
 
@@ -382,7 +380,8 @@ If you encounter any errors, take note of the following warnings. If problems st
 * Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to remove your links. (Refer to 1.2) 
 * Ensure that the link number that you want to remove is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to 1.2 to find out the correct link number. 
 
-### 1.8 Marking/ Unmarking a link as a starred link: star LINK_NUMBER 
+### 1.8 Marking/ Unmarking a link as a starred link: `star LINK_NUMBER`
+
 You might have many links that you need to manage, however, some of the links might be more important than others. If you have such links, you can easily mark them up by following these few commands. Make sure that you have chosen your category (Refer to 1.2)  and ensure that you do not input an empty or invalid link number.
 
 Instruction: 
@@ -502,8 +501,7 @@ Academic tracker provides a convenient experience where you can store
 all the information you need in one place! To access the academic tracker, 
 follow the instructions below.
 
-###3.1 Entering Academic Mode:
-`cd 4` / `cd academic`
+### 3.1 Entering Academic Mode: `cd 4` / `cd academic`
 
 This command allows you to enter academic tracker mode from the main menu or from the other modes.
 After entering this mode, you can then access all the features that the academic tracker offers!
@@ -518,8 +516,7 @@ Expected output:
 **Useful information:**
 * You can use this command from any mode to access the academic mode easily and quickly!
 
-### 3.2 Adding a contact: 
-`add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
+### 3.2 Adding a contact: `add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
 In academic mode, you can add a contact to the current list of contacts, following the instructions below. 
 
@@ -537,8 +534,7 @@ Expected output:
 **Warning:**
 * Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
 
-### 3.3 Listing all contacts: 
-`list contact`
+### 3.3 Listing all contacts: `list contact`
 
 You can view all the contacts that have been added previously 
 and stored on your computer by following these sets of instructions
@@ -549,8 +545,7 @@ Instruction:
 Expected output:
 ![Academic_3_3](Images/AcademicUG/Academic_3_3.png)
 
-### 3.4 Starring a contact:
-`star contact INDEX`
+### 3.4 Starring a contact: `star contact INDEX`
 
 Sometimes you may wish to highlight an important contact, and that's where
 starring a contact come into use. Follow the instructions below to mark an 
@@ -566,8 +561,7 @@ Example of usage:
 Expected output:
 ![Academic_3_4](Images/AcademicUG/Academic_3_4.png)
 
-### 3.5 Deleting a contact:
-`delete contact INDEX`
+### 3.5 Deleting a contact: `delete contact INDEX`
 
 Do you no longer require the contact of the TA of last sem's module? 
 Make use of the delete contact function to clean up your contacts by following the
@@ -583,8 +577,7 @@ Example of usage:
 Expected output:
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
 
-### 3.6 Adding a grade: 
-`add grade n/MODULE_NAME  m/MC  g/GRADE`
+### 3.6 Adding a grade: `add grade n/MODULE_NAME  m/MC  g/GRADE`
 
 In academic mode, you can add a grade to the current list of grades, following the instructions below. 
 
@@ -604,8 +597,7 @@ Expected output:
 Note that there this program doesn't cap how many MCs a module can have.
 * This application is not synced to a module database, so any valid input will be accepted as a module name.
 
-### 3.7 Listing all grades: 
-`list grade`
+### 3.7 Listing all grades: `list grade`
 
 You can view all the grades that have been added previously 
 and stored on your computer by following these sets of instructions
@@ -616,8 +608,7 @@ Instruction:
 Expected output:
 ![Academic_3_7](Images/AcademicUG/Academic_3_7.png)
 
-### 3.8 Checking current cap: 
-`check cap`
+### 3.8 Checking current cap: `check cap`
 
 To calculate your current CAP based on the grades you have entered previously, 
 follow the instructions below
@@ -628,8 +619,7 @@ Instruction:
 Expected output:
 ![Academic_3_8](Images/AcademicUG/Academic_3_8.png)
 
-### 3.9 Starring a grade:
-`star grade INDEX`
+### 3.9 Starring a grade: `star grade INDEX`
 
 The star grade function can be used to highlight a particular grade. 
 Follow the instructions below to mark an 
@@ -645,8 +635,7 @@ Example of usage:
 Expected output:
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
-### 3.10 SUing a grade:
-`su grade INDEX`
+### 3.10 SUing a grade: `su grade INDEX`
 
 SUed a module and want to exclude it from your CAP calculation? The SU grade
 function allows you to do just that through these simple steps.
@@ -661,8 +650,7 @@ Example of usage:
 Expected output:
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
 
-### 3.11 Deleting a grade:
-`delete grade INDEX`
+### 3.11 Deleting a grade: `delete grade INDEX`
 
 The delete grade function can be used to delete a grade from the currently stored
  list of grades by following the instructions below.
@@ -677,8 +665,7 @@ Example of usage:
 Expected output:
 ![Academic_3_11](Images/AcademicUG/Academic_3_11.png)
 
-### 3.12 Listing all the starred items in academic:
-`list star`
+### 3.12 Listing all the starred items in academic: `list star`
 
 The list star function works like the highlight function, but only displaying
 the starred items inside the academic section. 
