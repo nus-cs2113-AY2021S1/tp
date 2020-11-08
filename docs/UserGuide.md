@@ -630,22 +630,20 @@ Example of usage:
 * `launch CS2113`  
 * `launch CS2113 2`
 
+<br>
 
-<a name="plannermode"></a>  
 <a name="plannermode"></a>  
 ### 5.4. Planner Mode  
 
 <a name="loadplanner"></a>  
 #### 5.4.1. Load planner: `load`  
 Loads all the timetables from the `planner` folder and helps you find some common empty slots.
-> :bangbang:
-> * You need to copy the different .txt files manually to the planner folder.
 
 ```
 Format: load
 ```
-
-* This command only displays the common empty time slots.
+* You need to copy the different .txt files manually to the planner folder before entering this command.
+* This command only displays the common empty time slots between.
 
 <br/><br/> 
 <a name="addmeeting"></a>  
@@ -653,9 +651,7 @@ Format: load
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
 
-```
 Format: same as [add time slots](#addtimeslot) command.
-```
 
 * You can only add a new meeting to empty time slots.
 * Note that this command does not automatically store the newly added meeting to the .txt files. 
@@ -664,25 +660,28 @@ Format: same as [add time slots](#addtimeslot) command.
 <br/><br/> 
 <a name="showplanner"></a>  
 #### 5.4.3. Show planner: `show`
-You will be able to see the empty time slots for a certain day or the whole week.  
-**today** can also be a `DAY` input to show the timetable for the current day based on system time.  
-If your selected timetable is the current day, you should be able to see a
-"current time" indicator with your system local time. 
-Else, if you have a lesson ongoing currently, it will instead show a "lesson now" indicator
-*around* your current lesson.  
-
-> :bangbang:
->* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
->The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
->You can see the [command format](#command_format) for more information.
+You will be able to see the empty time slots for a certain day or the whole week. 
+If your selected timetable is the current day, you should be able to see a 
+"current time" indicator with your system local time. Else, if you have a lesson ongoing currently,
+it will instead show a "lesson now" indicator *around* your current lesson.
 
 ```
 Format: show {DAY(optional)}
 ```
+
+* The valid day inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`, and `today`. 
+* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
+* You can see the [command format](#command_format) for more information.
+
 Example of usage:   
 * `show`
 * `show wed`
 * `show today`
+
+Output:
+
+![](./images/showplannercommand.PNG)
+
 
 <br/><br/> 
 <a name="saveplanner"></a>  
@@ -713,7 +712,7 @@ and save the txt file. You can now add the module in Zoomaster.
 ## 7.0 Command Summary
 **Action** | **Format, Examples**
 ------------ | -------------
-**Global**|
+***Global***|
 **help**|`help {COMMAND(optional)}`<br>example: `help`, `help add`
 **mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
 **clear**|`launch now`
@@ -721,13 +720,13 @@ and save the txt file. You can now add the module in Zoomaster.
 **show settings**|`showsettings`
 **set a setting**|`set {SETTING_NAME} {NEW_OPTION}`
 **exit**|`exit`
-**Bookmark Mode**|
+***Bookmark Mode***|
 **show**|`show`
 **add**|`add {DESCRIPTION} {URL}` <br>example: `add cheatsheet www.google.com` <br/><br/>
 **delete**|`delete {INDEX}`<br>example: `delete 2`|
 **find**|`find {MODULE} {DESCRIPTION(optional)}` <br>example: `find CS2113 tutorial`
 **launch**|`launch {MODULE} {DESCRIPTION(optional)}` <br>example: `launch CS2113`
-**Timetable Mode**|
+***Timetable Mode***|
 **show (lessons)**|`show {DAY(optional)}` <br>example: `show`, `show wed`, `show today` 
 **show (bookmarks<br>attatched)**| `show {MODULE} bookmarks(optional)`<br>example: `show CS2113`, `show CS2113 bookmarks`
 **add**|`add {MODULE}` <br>example: `add CS2113T` <br/><br/> `add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME}` <br>example: `add CS2113T tutorial wed 11:00 12:00` <br/><br/>`add {MODULE} {DESCRIPTION} {URL}` <br>example: `add CS2113T tutorial www.yahoo.com` <br/><br/> `add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME} {URL}` <br>example: `add CS2113T tutorial wed 11:00 12:00 www.yahoo.com` <br/><br/>`add {MODULE} {INDEX} {URL}` <br>example: `add CS2113T 2 www.yahoo.com`
