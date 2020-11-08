@@ -174,14 +174,15 @@ arguments, thus reducing code complexity and SLOC.
 
 <!-- @@author iamchenjiajun -->
 ### Command component
+
+The `Command` component represents an abstract object with state corresponding to a single line of the user's input.
+
+<!-- @@author Cao-Zeyu -->
 ![CommandClassDiagram](./images/CommandClassDiagram.png)
 Every basic command inherits the abstract `Command` class, with their own attributes and execute operations. After 
 user input is parsed by `Parser`, `CommandCreator` will create and return the corresponding command to be execute.
 
-The `Command` component represents an abstract object with state that corresponds to a single line of the user's input.
-
-The `Command` component is inherited by other subclasses such as `AddCommand` and `DeleteCommand`.
-
+<!-- @@author iamchenjiajun -->
 The `Command` object:
 - Modifies the state of `Model` object which depends on the state and type of `Command` object.
 - Exposes its `execute()` method so that it can be passed around before the `Command` is executed.
