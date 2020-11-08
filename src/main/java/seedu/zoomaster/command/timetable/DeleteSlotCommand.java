@@ -9,7 +9,7 @@ import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
 import seedu.zoomaster.slot.Timetable;
 
-//@@author
+//@@author xingrong123
 public class DeleteSlotCommand extends Command {
     public static final String DEL_KW = "delete";
     private String moduleCode;
@@ -22,7 +22,6 @@ public class DeleteSlotCommand extends Command {
      * @param command The user input command.
      * @throws ZoomasterException if input command is invalid.
      */
-    //@@ xingrong123
     public DeleteSlotCommand(String command) throws ZoomasterException {
         assert command.startsWith(DEL_KW);
 

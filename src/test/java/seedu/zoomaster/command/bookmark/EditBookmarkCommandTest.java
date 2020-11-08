@@ -11,6 +11,7 @@ import seedu.zoomaster.slot.Timetable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+//@@author
 class EditBookmarkCommandTest {
     Timetable timetable = new Timetable();
     BookmarkList bookmarks;

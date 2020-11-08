@@ -1,5 +1,3 @@
-//@@author fchensan
-
 package seedu.zoomaster.command.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -13,6 +11,7 @@ import seedu.zoomaster.slot.Timetable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//@@author fchensan
 public class EditBookmarkCommand extends Command {
     public static final String EDIT_KW = "edit";
 

@@ -5,7 +5,7 @@
  ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomwhitebg.png) <br/><br/>
 ### Introduction to Zoomaster
 Zoomaster is a Java application for the Command Line. It provides a simple and intuitive way to store Zoom links for 
-online classes abd other useful links for the lesson at hand.<br/>
+online classes and other useful links for the lesson at hand.<br/>
 
 Zoomaster can also intelligently determine the current lesson users are having, allowing them to launch the correct 
 links quickly and elegantly from the command line.
@@ -275,7 +275,7 @@ This feature extends Command class with a way to toggle between different modes 
 
 Given below is a sequence diagram of how changing between modes occur.
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20seq%20dia%20new.png?raw=true) <br/><br/>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ChangeModeCommand%20seq%20dia%20new1.png?raw=true) <br/><br/>
 
 *<center/>Figure 2.01 sequence diagram for ChangeModeCommand</center> <br/></br>*
 
@@ -344,13 +344,13 @@ Additionally, it implements the following operations:
 * getHighlighBoxLowerMessage() - Returns a **String** containing a indicator.
 
 Given below is a sequence diagram of how printing the timetable occurs. <br/></br>
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%201%20new.png?raw=true) <br/></br>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%201%20new2.png?raw=true) <br/></br>
 *<center/>Figure 2.03 sequence diagram for ShowTimetableCommand</center> <br/></br>*
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%202.png?raw=true) <br/></br>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%202%20new2.png?raw=true) <br/></br>
 *<center/>Figure 2.04 sequence diagram for "Initialize ShowTimetableCommand" Block</center> <br/></br>*
 
-![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%203.png?raw=true) <br/></br>
+![](https://github.com/TYS0n1/tp/blob/master/docs/diagrams/ShowTimetableCommand%20seq%20dia%203%20new3.png?raw=true) <br/></br>
 *<center/>Figure 2.05 sequence diagram for "Execute ShowTimetableCommand" Block</center> <br/></br>*
 
 1. When Zoomaster gets a command from the user to show the timetable, a new ShowTimetableCommand object is created.
@@ -405,7 +405,7 @@ If so, it sets **day** variable as that of input parameter and moves on to the E
     additional keyword troublesome.
 
 <!-- @@author -->
-
+<!-- @@author xingrong123-->
 <a name="add-module-slot"></a>
 ### Add Module and Slot feature (Xing Rong)
 This feature allows the user to add modules and lesson slots into the timetable.
@@ -498,7 +498,11 @@ There are four options:
     3. Delete all bookmarks associated with the module.
     4. Delete all bookmarks contained in a slot from the module.  
     
+
+<!-- @@author -->
+
 <!-- @@author fchensan -->
+
 <a name="edit-slot"></a>
 ### Edit Slot feature (Francisco)
 
