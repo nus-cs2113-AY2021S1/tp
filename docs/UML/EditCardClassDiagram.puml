@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+Class "{abstract}\nEditCommand" as EditCommand LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+    # prepareBeforeEdit(type : String, content : String) : String
+    # prepareAfterEdit(type : String, content : String) : String
+}
+Class EditCardCommand LOGIC_COLOR {
+    - editIndex : int
+    - question : String
+    - answer : String
+    + EditCardCommand(editIndex : int, question : String, answer : String)
+    + execute(ui : Ui, access : Access, storage : Storage) : void
+    - editCard(access : Access, storage : Storage) : String
+    - checkCardContent(card : Card) : String
+}
+
+Class Access MODEL_COLOR {
+    + getChapter() : Chapter
+}
+Class Chapter MODEL_COLOR {
+    + getCards() : CardList
+
+}
+Class CardList MODEL_COLOR {
+    + getCard(cardIndex : int) : Card
+    + checkCardExistence(newQuestion : String,
+    newAnswer : String) : boolean
+}
+Class Card MODEL_COLOR {
+    - question : String
+    - answer : String
+    + setQuestion(question : String)
+    + setAnswer(answer : String)
+}
+
+Class Storage STORAGE_COLOR {
+    + saveCards(cards: CardList,
+    module : String, chapter : String) : void
+}
+
+Class Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+EditCommand -up[LOGIC_COLOR_T4]-|> Command
+EditCardCommand -up[LOGIC_COLOR_T4]-|> EditCommand
+
+EditCardCommand .down[LOGIC_COLOR_T4].> Access
+EditCardCommand .down[LOGIC_COLOR_T4].> Storage
+EditCardCommand .down[LOGIC_COLOR_T4].> Ui
+
+Access -left[MODEL_COLOR_T4]--> " 0..1 " Chapter
+
+Chapter *-up[MODEL_COLOR_T4]-> " 0..1 " CardList
+CardList *-up[MODEL_COLOR_T4]-> " * " Card
+
+EditCardCommand .down[LOGIC_COLOR_T4].> Chapter
+EditCardCommand .left[LOGIC_COLOR_T4].> CardList
+EditCardCommand .left[LOGIC_COLOR_T4].> Card
+
+@enduml
