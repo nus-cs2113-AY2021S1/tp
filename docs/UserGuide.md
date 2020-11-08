@@ -584,6 +584,21 @@ Academic tracker provides a convenient experience where you can store
 all the information you need in one place! To access the academic tracker, 
 follow the instructions below.
 
+This section contains 12 commands to navigate the academic mode:
+* [3.1 Entering Academic Mode](#31-entering-academic-mode-cd-4--cd-academic)
+* [3.2 Adding a contact](#32-adding-a-contact-add-contact-ccontact_details-mmobile_number--eemail)
+* [3.3 Listing all contacts](#33-listing-all-contacts-list-contact)
+* [3.4 Starring a contact](#34-starring-a-contact-star-contact-index)
+* [3.5 Deleting a contact](#35-deleting-a-contact-delete-contact-index)
+* [3.6 Adding a grade](#36-adding-a-grade-add-grade-nmodule_name--mmc--ggrade)
+* [3.7 Listing all grades](#37-listing-all-grades-list-grade)
+* [3.8 Checking current cap](#38-checking-current-cap-check-cap)
+* [3.9 Starring a grade](#39-starring-a-grade-star-grade-index)
+* [3.10 SU-ing a grade](#310-su-ing-a-grade-su-grade-index)
+* [3.11 Deleting a grade](#311-deleting-a-grade-delete-grade-index)
+* [3.12 Listing all the starred items in academic](#312-listing-all-the-starred-items-in-academic-list-star)
+
+
 ### 3.1 Entering Academic Mode: `cd 4` / `cd academic`
 
 This command allows you to enter academic tracker mode from the main menu or from the other modes.
@@ -596,8 +611,8 @@ Instruction:
 Expected output:
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
-**Useful information:**
-* You can use this command from any mode to access the academic mode easily and quickly!
+>**Useful information:**
+>* You can use this command from any mode to access the academic mode easily and quickly!
 
 ### 3.2 Adding a contact: `add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
@@ -614,8 +629,8 @@ will add a contact with the name Prof Lim, mobile number 81234567, and email E76
 Expected output:  
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
-**Warning:**
-* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
+>**Warning:**
+>* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
 
 ### 3.3 Listing all contacts: `list contact`
 
@@ -675,10 +690,10 @@ will add a grade with the title CS2101 that has 4 credits and scored an A-.
 Expected output:  
 ![Academic_3_6](Images/AcademicUG/Academic_3_6.png)
 
-**Warning:**
-* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
-Note that there this program doesn't cap how many MCs a module can have.
-* This application is not synced to a module database, so any valid input will be accepted as a module name.
+>**Warning:**
+>* Note that module credits need to be a positive integer, and grade entered must be a valid grade.
+>* This program doesn't cap how many MCs a module can have.
+>* This application is not synced to a module database, so any valid input will be accepted as a module name.
 
 ### 3.7 Listing all grades: `list grade`
 
@@ -733,9 +748,9 @@ Example of usage:
 Expected output:
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
 
-**Warning:**
-* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
-consider deleting the mod and adding a new one.
+>**Warning:**
+>* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
+>consider deleting the mod and adding a new one.
 
 ### 3.11 Deleting a grade: `delete grade INDEX`
 
