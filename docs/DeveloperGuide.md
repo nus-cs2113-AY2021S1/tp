@@ -498,7 +498,7 @@ There are four options:
     3. Delete all bookmarks associated with the module.
     4. Delete all bookmarks contained in a slot from the module.  
     
-
+<!-- @@author fchensan -->
 <a name="edit-slot"></a>
 ### Edit Slot feature (Francisco)
 
@@ -557,6 +557,7 @@ The sequence diagram below explains how this feature is executed:
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
 *<center/> Figure 2.20 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
+<!-- @@author -->
 
 ### Planner feature (Jusuf)
 
