@@ -52,14 +52,14 @@ public class ManualTrackerSaver extends SaveHandler {
         }
         LedgerList ledList = ManualTracker.getLedgerList();
         StringBuilder saveString = new StringBuilder();
-        int size = ledList.getItemsSize();
+        int size = ledList.getListSize();
         for (int i = 0; i < size; i++) {
-            Ledger ledger = (Ledger) ledList.getItemAtCurrIndex(i);
+            Ledger ledger = (Ledger) ledList.getItemAtIndex(i);
             saveString.append(getSaveString(ledger));
             EntryList entryList = ledger.entryList;
-            int entryListSize = entryList.getItemsSize();
+            int entryListSize = entryList.getListSize();
             for (int x = 0; x < entryListSize; x++) {
-                Entry ent = (Entry) entryList.getItemAtCurrIndex(x);
+                Entry ent = (Entry) entryList.getItemAtIndex(x);
                 saveString.append(getSaveString(ent));
             }
         }
@@ -93,7 +93,7 @@ public class ManualTrackerSaver extends SaveHandler {
                     classContents[1] = " -i";
                 }
                 classContents[2] = CategoryMap.categoryToInputMap.get(classContents[2]);
-                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtCurrIndex(ledgerIndex));
+                EntryTracker.setCurrLedger((Ledger) ManualTracker.getLedgerList().getItemAtIndex(ledgerIndex));
                 inputString = "new /time " + classContents[4] + " /cat "
                         + classContents[2] + " /desc " + classContents[5] + " /amt "
                         + classContents[3] + classContents[1];

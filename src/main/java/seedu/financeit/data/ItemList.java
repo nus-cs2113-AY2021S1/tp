@@ -22,7 +22,7 @@ public abstract class ItemList {
     }
 
     public void addItem(Item item) {
-        int index = this.getItemsSize();
+        int index = this.getListSize();
         item.setIndex(index);
         this.items.add(item);
     }
@@ -70,7 +70,7 @@ public abstract class ItemList {
         return tempItem;
     }
 
-    public int getItemsSize() {
+    public int getListSize() {
         return this.items.size();
     }
 
@@ -106,8 +106,7 @@ public abstract class ItemList {
         return this.items.get(index);
     }
 
-    //Manually specify index in the code, if necessary
-    public Item getItemAtCurrIndex(int index) throws IndexOutOfBoundsException {
+    public Item getItemAtIndex(int index) throws IndexOutOfBoundsException {
         assert index < items.size();
         Item item =  this.items.get(index);
         this.isIndexToModifySet = false;

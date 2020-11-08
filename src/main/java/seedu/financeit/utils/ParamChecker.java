@@ -328,6 +328,13 @@ public class ParamChecker {
         return output;
     }
 
+    /**
+     * Checks if user-inputted value is indeed an integer.
+     *
+     * @param paramType Param type that expects an integer
+     * @return int entered by user, if it is a valid integer.
+     * @throws ParseFailParamException If user entered an invalid integer e.g. with alphabets or decimal places
+     */
     public int checkAndReturnInt(String paramType) throws ParseFailParamException {
         String input = packet.getParam(paramType);
         boolean parseSuccess = false;
@@ -340,14 +347,8 @@ public class ParamChecker {
             output = Integer.parseInt(input);
             parseSuccess = true;
         } catch (NumberFormatException | NullPointerException exception) {
-            if (paramType.length() > (int)Math.log(Long.MAX_VALUE) + 1) {
-                LoggerCentre.loggerParamChecker.warning(
-                    String.format("Int format is too long... Err: %s", exception.getMessage()));
-                errorMessage = "Input value is too out of range: 9,223,372,036,854,775,807";
-            } else {
-                LoggerCentre.loggerParamChecker.warning(
-                    String.format("Int not recognised... Err: %s", exception.getMessage()));
-            }
+            LoggerCentre.loggerParamChecker.warning(
+                String.format("Int not recognised... Err: %s", exception.getMessage()));
             errorMessage = getErrorMessageNumberFormatException(input, errorMessage);
         } finally {
             printErrorMessage();
@@ -370,6 +371,14 @@ public class ParamChecker {
         return input;
     }
 
+    /**
+     * Checks if user-inputted value is a valid positive integer.
+     * 
+     * @param paramType Param type that expects a positive integer
+     * @return int entered by user, if it is a valid positive integer.
+     * @throws ParseFailParamException If user entered an invalid input
+     *                                 e.g. negative integer, alphabets, decimal
+     */
     public int checkAndReturnIntSigned(String paramType) throws ParseFailParamException {
         String input = packet.getParam(paramType);
         boolean parseSuccess = false;
@@ -409,7 +418,14 @@ public class ParamChecker {
         return output;
     }
 
-    public void checkAndReturnDuplicateParamTypes(String paramType, HashMap paramMap)
+
+    /**
+     * Checks if user entered a param type twice e.g. /desc Description 1 /desc Description 2
+     * @param paramType param type to check for duplicates
+     * @param paramMap set of params parsed so far to check against
+     * @throws ParseFailParamException If duplicates are found
+     */
+    public void checkForDuplicateParamTypes(String paramType, HashMap paramMap)
         throws ParseFailParamException {
         LoggerCentre.loggerParamChecker.info("Params: " + paramMap);
         LoggerCentre.loggerParamChecker.info("ParamType: " + paramType);

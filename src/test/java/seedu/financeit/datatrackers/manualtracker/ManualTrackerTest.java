@@ -33,8 +33,8 @@ public class ManualTrackerTest {
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleCreateLedger();
         }
-        System.out.println(ManualTracker.ledgerList.getItemsSize());
-        assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
+        System.out.println(ManualTracker.ledgerList.getListSize());
+        assertEquals(correctListNum, ManualTracker.ledgerList.getListSize());
         ManualTracker.ledgerList.removeAllItems();
     }
 
@@ -72,8 +72,8 @@ public class ManualTrackerTest {
             ManualTracker.setTestPacket(testPacket);
             ManualTracker.handleDeleteLedger();
         }
-        System.out.println(ManualTracker.ledgerList.getItemsSize());
-        assertEquals(correctListNum, ManualTracker.ledgerList.getItemsSize());
+        System.out.println(ManualTracker.ledgerList.getListSize());
+        assertEquals(correctListNum, ManualTracker.ledgerList.getListSize());
         ManualTracker.ledgerList.removeAllItems();
     }
 
@@ -92,7 +92,7 @@ public class ManualTrackerTest {
             System.out.println(testPacket);
         }
 
-        assertEquals(2, ManualTracker.ledgerList.getItemsSize());
+        assertEquals(2, ManualTracker.ledgerList.getListSize());
         ManualTracker.ledgerList.removeAllItems();
     }
 }
