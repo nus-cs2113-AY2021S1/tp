@@ -74,7 +74,7 @@ public class EditCommand extends ModificationCommand {
      * Changed the required field of the task.
      *
      * @param model Contains TaskMap and stack(for undo function)
-     * @return CommandResult object.
+     * @return CommandResult object with the task edited message.
      * @throws InvalidTaskNumberException If the task at the index is not found. (Task has not been created)
      * @throws InvalidPriorityException   Priority is not 1,2 or 3.
      * @throws InvalidDatetimeException   Date/time is not in desired format. (eg 2500 or 1236 or abcd).
