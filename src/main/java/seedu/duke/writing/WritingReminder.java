@@ -20,19 +20,13 @@ public class WritingReminder {
             words[i] = words[i].trim();
         }
         try {
-            LocalDate today = LocalDate.now();
             LocalDate date = LocalDate.parse(words[1], DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT));
-            if (date.isBefore(today)) {
-                throw new InvalidReminderDateException();
-            }
             ArrayList<Writings> writingsOnThisDate = (ArrayList<Writings>) writings.stream()
                     .filter((s) -> s.getReminderDate().compareTo(date) == 0)
                     .collect(Collectors.toList());
             printWritingsOnADate(date, writingsOnThisDate);
         } catch (DateTimeParseException e) {
             System.out.println(FluffleMessages.PARSE_DATETIME_EXCEPTION);
-        } catch (InvalidReminderDateException e) {
-            System.out.println(FluffleMessages.INVALID_REMINDER_DATE_EXCEPTION);
         }
     }
 

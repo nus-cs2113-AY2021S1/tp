@@ -46,7 +46,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedWordType_noWordTypeFound_filterCommandExceptionThrown() {
         assertThrows(FilterWordsInvalidWordType.class,
-                () -> FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -adverb -preposition"));
+            () -> FilterCommandSlicer.getTargetedWordTypes("filter words by\\type -adverb -preposition"));
     }
 
     @Test
@@ -90,7 +90,7 @@ class FilterCommandSlicerTest {
     @Test
     public void getTargetedStringTags_noStringTagProvided_filterCommandExceptionThrown() {
         assertThrows(FilterEmptyStringTagException.class,
-                () -> FilterCommandSlicer.getTargetedStringTags("filter words by\\start - "));
+            () -> FilterCommandSlicer.getTargetedStringTags("filter words by\\start - "));
     }
 
 }

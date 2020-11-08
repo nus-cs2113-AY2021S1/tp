@@ -1,6 +1,8 @@
 package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
+import seedu.duke.constants.FluffleMessages;
+import seedu.duke.exceptions.writingexceptions.InvalidReminderDateException;
 import seedu.duke.storage.FileFunctions;
 import seedu.duke.exceptions.storageexceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
@@ -188,13 +190,16 @@ public class WritingList {
                 commandTypeChecker = extractCommandType(newUserInput);
             }
             getInformation(commandTypeChecker);
+        } catch (InvalidReminderDateException e) {
+            System.out.println(FluffleMessages.INVALID_REMINDER_DATE_EXCEPTION);
         } catch (Exception e) {
             System.out.println(e);
         }
         return extractCommandType(userInput);
     }
 
-    public static String getInformation(CommandChecker commandTypeChecker) throws WrongMethodTypeException {
+    public static String getInformation(CommandChecker commandTypeChecker)
+            throws WrongMethodTypeException, InvalidReminderDateException {
         Scanner scanner = new Scanner(System.in);
         String newUserInput;
         WritingList.printAskForTopic();
@@ -213,6 +218,9 @@ public class WritingList {
         WritingList.printAskForReminderDate();
         newUserInput = getUserInput(scanner);
         LocalDate reminderDate = LocalDate.parse(newUserInput, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        if (reminderDate.isBefore(LocalDate.now())) {
+            throw new InvalidReminderDateException();
+        }
         Random rand = new Random();
         int newId = rand.nextInt(MAX_NUM_WRITINGS);
         if (commandTypeChecker == POEM) {
