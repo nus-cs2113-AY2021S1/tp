@@ -195,7 +195,7 @@ Format: clear
 
 <br/><br/> 
 <a name="launchnow"></a>  
-
+<!-- @@author xingrong123-->
 #### 5.1.4 Launch bookmarks of current lesson: `launch now` (Xing Rong)
 You can launch the bookmarks of a current lesson slot in your timetable. 
 The time depends on the system time of your machine with an additional 5 minutes of buffer, 
@@ -207,7 +207,7 @@ Format: launch now
 
 You should expect to see the urls of the current or 5 minutes advance lesson slot launching
 in your native browser. Else you should see a message "no lesson now" like the screenshot below.
-
+<!-- @@author -->
 ![]()
 
 <br/><br/> 
