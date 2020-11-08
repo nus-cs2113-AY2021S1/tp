@@ -513,6 +513,9 @@ public class Ui {
         case "prioritize":
             System.out.println("Error: Please key in the command in this format: *t <task number> ");
             break;
+        case "missing keyword":
+            System.out.println("The keyword cannot be empty or spaces!");
+            break;
         case "keyword not found":
             System.out.println("There are no tasks matching this keyword. Check that you have spelt it correctly.");
             break;
