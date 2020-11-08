@@ -25,10 +25,12 @@ public class RecommenderTest {
     @Test
     public void recommenderParserTest() {
         Recommender recommender = new Recommender();
+        assertEquals(0, recommender.recommendParser(""));
         assertEquals(1, recommender.recommendParser("aerobic"));
         assertEquals(2, recommender.recommendParser("upperbody"));
         assertEquals(3, recommender.recommendParser("lowerbody"));
         assertEquals(4, recommender.recommendParser("stretch"));
         assertEquals(5, recommender.recommendParser("default"));
     }
+
 }
