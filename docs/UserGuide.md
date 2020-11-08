@@ -223,7 +223,7 @@ The types of events available to be added include:
 - NUS timetable/lessons: Timetable
 - Personal Events: Personal
 
-Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
+General Format: `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`
 
 - `EVENT_TYPE` specify the type of event you want to add. These include "zoom", "timetable" and "personal".
 - `EVENT_DESCRIPTION` is the description or name of the event.
@@ -237,23 +237,30 @@ Timetable events can contain:
 - Description, date and time 
 - Description, location, date and time
 
+Timetable Format: `add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM`
+
 Zoom events can contain: 
 - Description and link 
 - Description, link, date and time
+
+Zoom Format: `add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]`
 
 Personal events can contain: 
 - Description 
 - Description and date 
 - Description, date and time
 
+Personal Format: `add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]`
+
 Examples: 
-- `add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` <br>
-- `add personal; Family Meeting; 18/09/20`  <br>
-- `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm` <br>
-- `add zoom; Team meeting; nus.sg.zoom.sg` <br>
+- `add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100` 
+- `add personal; Family Meeting; 18/09/20`  
+- `add Timetable; CS2101 Lecture; NUS Computing; 18/09/20; 3:30 pm` 
+- `add zoom; Team meeting; nus.sg.zoom.sg` 
 - `add timetable; math class; 10/10/2020; 12pm`
 
 Expected Output:
+
 For the first 3 examples above,
 ```
 _________________________________
@@ -278,11 +285,8 @@ _________________________________
 >
 > * When giving the event type, take note that it is case-insensitive:
 > `add Zoom` is the same as `add zoom`
->
 > * Only the full word will be recognized as the event type:
->   add z` will NOT add a zoom event
->
-> * Remember to add the ':' for the time, this is because `4 PM` will not be valid but `4:00 PM` will be.
+>   `add z` will NOT add a zoom event
 
 > **Warning!**
 >
@@ -779,33 +783,34 @@ You’ll be able to choose the dates and times detected and create a Personal or
 
 The extract feature detects dates in the DD/Month Name/YYYY format or the Month Name/DD/YYYY format which is used the most in emails. <br>
 It will detect time in 12 and 24 Hour formats, with ":" or "." in between the time. It can detect time in the format of HH AM/PM too. <br>
-If a valid zoom link is detected, it will try to create a Zoom event for you. 
+If a valid zoom link is detected (links containing '.zoom.' and start with 'https://' or 'http://'), it will try to create a Zoom event for you. 
 
-
-This feature needs a 3 step process to function, please press your enter key (denoted by `<enter key>`) in between all 3 steps for it to work properly.
-
-Format: `extract TEXT_SUBJECT;` `<enter key>` `TEXT_BODY` `<enter key>` `extractend` `<enter key>`
+Format: `extract TEXT_SUBJECT;`
 - `TEXT_SUBJECT` is the subject of the email or the name you want your event to be.
-- `TEXT_BODY` is the body of the email of the text to be scanned through for dates and times.
 
-
-Example: `extract CG2271 Quiz 2;` `<enter key>` <br>
-`Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
-The link is at https://nus-sg.zoom.us/j/2226375MG` `<enter key>`<br>
-`extractend` `<enter key>`
-
-Expected Output:
-
-After `extract CG2271 Quiz 2;` `<enter key>`:
+#### How to use?
+An example will be used to explain how this feature works.
+##### Step 1: Type the command into the terminal
+```
+extract CG2271 Quiz 2;
+```
+##### Step 2: Scheduler will prompt you to copy and paste or enter the text you want to extract from.
 ````
 _________________________________
 Copy and paste or enter the body of the text you want to extract from!
 At the end of your text, press enter to go to the next line, enter 'extractend' with no quotation marks and press enter once more.
 _________________________________
 ````
-After `Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. The link is at https://nus-sg.zoom.us/j/2226375MG` `<enter key>`
-and `extractend` `<enter key>`:
-
+##### Step 3: Copy and paste or type in the text you want to extract from.
+````
+Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
+The link is at https://nus-sg.zoom.us/j/2226375MG`
+````
+##### Step 4: Tell Scheduler you are done by typing `extractend` on a new line.
+````
+extractend
+````
+##### Step 5: Choose from the multiple zoom link/date/time detected if applicable.
 ````
 One zoom link detected and chosen: https://nus-sg.zoom.us/j/2226375MG
 We have detected 2 dates in this text body!
@@ -830,14 +835,19 @@ As shown above, the user can choose the date/time they want for the event as lon
  In the example, the user picks the second option for both date and time, shown by the two times '2' was input.
  
  
-{{box op="start" cssClass="boxed noteBox"}}
 > **Note!**
-> * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
 > * The extract feature can also detect when there are suffixes like st/nd/rd/th for the day portion of the date.
-> * It is also able to attach the current year to the date if it is not specified in the text.
+> * The extract feature has the ability to attach the current year to the date if it is not specified in the text.
 > * The text body can include multiple paragraphs that are copy and pasted from emails.
-> * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected.
-> * The date/time/link has to be in the same line to be detected properly. For example, if the date/time/link is separated in a paragraph/by a new line it may not be detected properly. 
+> * The month name detected can only be detected if spelled fully or is in its 3 letter short form. For example, `20 sep 2020` will be detected while `20 sept 2020` will not be detected. 
+> * Unlike some other commands, 24 Hour time without "." or ":" will not be detected. 
+> * The full date has to be in the same line to be detected properly. If the date is separated by a paragraph/by a new line it may not be detected properly. This goes for the time and zoom links too.
+
+> **Warning!**
+> * It is not advised to edit the copy and pasted text in the command line. It may result in this feature not working as expected.
+> * It is not advised to copy and paste text containing emojis into the command line because the command line may crash. It is recommended to remove these emojis by editing the text in a text editor first like the Notepad app.
+
+
 
 
 
@@ -870,7 +880,7 @@ In this section, you can find some frequently asked questions(FAQ).
 
 | Action | Format, Examples |
 |--------|------------------|
-|Add|add EVENT_TYPE; EVENT_DESCRIPTION; DD/MM/YY <br> Eg: add personal; Family Meeting; 18/09/20 <br> <br> add EVENT_TYPE; EVENT_DESCRIPTION; LINK; DD/MM/YY; HH:MM <br> Eg: add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> add EVENT_TYPE; EVENT_DESCRIPTION; LOCATION; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable; CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
+|Add|Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add personal; Family Meeting; 18/09/20 <br> <br> Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable; CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
 |List|list all <br> <br> list TYPE <br> Eg: list Zoom <br> <br> list from sd/DD/MM/YY to ed/DD/MM/YY <br> Eg: list from sd/12/04/20 to ed/19/04/20 <br>|
 |Check|check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME] <br> Eg: check 20/08/20; 15:05; 25/8/2020; 1 pm; <br>|
 |Repeat|repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT] <br> Eg: repeat timetable 2 weekly 4 <br>|
@@ -881,7 +891,7 @@ In this section, you can find some frequently asked questions(FAQ).
 |Delete|delete EVENT_TYPE EVENT_INDEX [EVENT_DATE] <br> Eg: delete timetable 3 <br>|
 |Notes|note EVENT_TYPE; EVENT_INDEX <br> note personal; 1 <br>|
 |View notes|view EVENT_TYPE; EVENT_INDEX <br> view personal; 1 <br>|
-|Extract|extract TEXT_SUBJECT; `<enter key>` TEXT_BODY  `<enter key>` extractend `<enter key>`<br>|
+|Extract|extract TEXT_SUBJECT; <br>|
 |Reminder|reminder <br>|
 |Save|save <br>|
 |Help|help <br>|

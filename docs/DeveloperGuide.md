@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Contents
-- [Introduction]()
+- [Introduction](#introduction)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
     * [Architecture](#architecture)
@@ -47,6 +47,9 @@
     * [Setting reminder](#setting-reminder)
     * [Adding new note for event](#adding-note-for-an-event)
     * [View note](#viewing-note-for-an-event)
+
+
+## Introduction
 
 ## Setting up, getting started
 1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
@@ -163,26 +166,44 @@ The add feature in the program allows the user to create one of 3 different even
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
 be inserted upon creation. 
 
-Firstly, to begin, the user needs to key in the command `add [event type] [description]; [date]; [time]`
-The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively . For example,
-`add zoom cs2113t meeting; zoom.sg; 16/09/20; 2100`
+Generally, Personal events are meant for non school related events and can be any general task the user wants to do. 
+Zoom events are meant for events that require zoom links and helps the user to store their zoom links easily. 
+Timetable events can contain a location and are meant for school related events like classes.
 
-When a command like this is called, the constructor to `addCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
+Firstly, to begin, the user needs to key in the add command with the general format `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`.
+The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. For example,
+`add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`
 
-Next, when `addCommand#execute` is called from the main, this method will call the respective method to create one of the three events. These methods are `addCommand#addPersonal`, `addCommand#addZoom`, and `addCommand#addTimetable`.
+When a command like this is called, the constructor to `AddCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
+
+Next, when `AddCommand#execute()` is called from the main, this method will call the respective method to create one of the three events. These methods are `AddCommand#addPersonal()`, `AddCommand#addZoom()`, and `AddCommand#addTimetable()`.
+These methods are then used to create events based on the number of fields/parameters entered by the user. Each event has multiple constructors and can contain different combinations of fields which will be stated below.
 
 The personal event can contain the following fields: 
-1. Description
-2. Description and date
-3. Description, date and time
+- Description 
+- Description and date
+- Description, date and time
+
+Examples of user inputs for the respective fields of personal events are:
+- add personal; run
+- add personal; run; 16/7/2020;
+- add personal; run; 16/7/2020; 1600
 
 The zoom event can contain the following fields:
-1. Description and link
-2. Description, link, date and time
+- Description and link
+- Description, link, date and time
+
+Examples of user inputs for the respective fields of zoom events are:
+- add zoom; meeting; zoom.com.sg
+- add zoom; meeting; zoom.com.sg; 17/10/2000; 2100
 
 The Timetable event can contain the following fields:
-1. Description, date and time
-2. Description, location, date and time
+- Description, date and time
+- Description, location, date and time
+
+Examples of user inputs for the respective fields of timetable events are:
+- add timetable; math class; 10/10/2000; 4:00 pm
+- add timetable; math class; NUS engineering; 10/10/2000; 4:00 pm
 
 The fields for what each event can contain were chosen based on what we as a team thought were important fields for the respective event types.
 However, these methods can easily be edited to accept different numbers of fields if we change our minds in the future.
@@ -191,17 +212,18 @@ Given below is an example scenario of the add feature:
  
 Step 1. The user launches the application for the first time. There will be no events stored at the moment.
  
-Step 2. The user executes `add zoom cs2113t meeting; zoom.sg; 16/09/20; 2100`. The `addCommand` instance is created and detects that the event is of Zoom type.
+Step 2. The user inputs `add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`. The `addCommand` instance is created and detects that the event is of Zoom type.
  
-Step 3. `addCommand#execute` is called. The class knows the current addCommand is of Zoom type so it calls `addCommand#addZoom`.
+Step 3. `addCommand#execute()` is called. The class knows the current addCommand is of Zoom type so it calls `addCommand#addZoom()`.
  
-Step 4. `addCommand#addZoom` detects there are 4 fields in the command, separated by semicolons, and uses this to create a new Zoom event.
+Step 4. `addCommand#addZoom()` detects there are 4 fields in the command, separated by semicolons, and uses this to create a new Zoom event.
  
 Step 5. The Zoom event is then added to the user's `UserData` for further use.
  
 The following sequence diagram shows how the whole add feature works: <br>
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
+// to be updated
 
 #### List feature
 
@@ -353,7 +375,7 @@ to be on the 7th October 2020 at 11:20 PM.
 
 Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`
 
-Step 3. After obtaining the event using `Event#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
+Step 3. After obtaining the event using `EventList#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
 
 The following sequence diagram shows how the deadline operation works: <br>
 
@@ -477,7 +499,10 @@ The view feature allows user to see the notes they have created for a particular
 
 The following is the class diagram for reminder command:
 
-![Class diagram for view command execute](./diagrams/ViewCommandClass.png)
+<p align="center">
+  <img width="414" height="562" src="./diagrams/ViewCommandClass.png">
+</p>
+
 
 The view feature is implemented using `ViewCommand` class. `ViewCommand` accesses the `Events` to get the event specified by the user and show the notes created to users. It implements the following operations:
 
@@ -532,7 +557,46 @@ The following sequence diagram shows how the reminder operation works: <br>
 
 
 #### Extract feature
-(WIP)
+The extract feature allows users to copy and paste a body of text like emails and it will help users create either
+a Zoom or a Personal event. It utilizes Regular Expressions (Regex) patterns in order to match dates, times and zoom links
+in the text entered. 
+
+Given below is an example usage scenario to explain how the extract feature works.
+
+Step 1. To begin, the user enters `extract CS2113T Quiz;`. 
+The constructor for `ExtractCommand` will then be called and the `TEXT_SUBJECT` which is `CS2113T Quiz` will be stored in that instance of ExtractCommand.
+
+Step 2. Next, `ExtractCommand#execute()` is called from the main. This method will call `ExtractCommand#receiveTextBody()` which will let the user enter any text and only ends once the user types `extractend` on a new line.
+The user may then input a text copied from email, for example `The quiz will be on October 8 2020 or 9th October at 4pm or 5pm. The zoom link is at https://nus-sg.zoom.com`. After going to the next line, the user has to type `extractend`.
+This is saved as the `textBody` in this instance of `ExtractCommand`. 
+
+Step 3. The `textBody` is then used in multiple methods. These include `ExtractCommand#detectZoomLink()`, `ExtractCommand#detectDate()` and `ExtractCommand#detectTime()` which will use Regex patterns to find and match dates, times and zoom links.
+
+Step 4. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be called which will return dates and times that are valid. In this case, it will detect the 2 dates, 2 timings and 1 zoom link above.
+
+Step 5. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it.
+
+Step 6. If the event has a zoom link, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
+
+The following sequence diagram shows how the Extract Feature works in general:
+
+![Sequence Diagram for Extract Command](./diagrams/extractCommand.jpg)
+
+Design considerations:
+
+For the detection of date, the Regex pattern used detects dates in the DD/Month Name/YYYY format or Month name/DD/YYYY format. The current year can also be added automatically if no year was detected.
+It can also detect if the day portion of the date has any suffixes. This does not detect dates written in other formats like DD/MM/YYYY or DD/MM/YY because upon
+looking at many of the emails sent to us, we found most were of the Regex pattern we chose. However, this could be implemented in the future. 
+
+For the detection of time, the Regex pattern used detects time in the 12 or 24 hour format. It can detect time with AM/PM behind it too. However, it cannot detect 24 hour timings
+with no "." or ":" in it unlike some commands above. This is because it may result in detecting a lot of false timings like if a 4 digit number like 2020 for a date was detected as a time and a year.
+
+For the detection of zoom link, the Regex pattern used first detects any URL starting with https:// or http://. It then checks whether the URL contains ".zoom." which we found the be common in most zoom links.
+
+
+
+
+
 
 
  
@@ -770,7 +834,7 @@ Scheduler--; prints an error message and use case ends.
         
 
 ### Viewing note for an event 
-1. Add a new note for an event
+1. View note for an event
     1. Load the program
     1. Type `add personal dental appointment; 18/09/2020`
     1. Type `note personal; 1`

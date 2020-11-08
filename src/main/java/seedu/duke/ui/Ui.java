@@ -302,27 +302,46 @@ public class Ui {
         System.out.println("The file does not exist or has been corrupted!");
     }
 
+    /**
+     * Prints the message when no date was detected for a personal event.
+     */
     public void printExtractNoDatePersonalEventMessage() {
         System.out.println("Since no date was detected in the text body, "
                 + "the personal event will only contain the description.");
     }
 
+    /**
+     * Prints the message when no date was detected for a zoom event.
+     */
     public void printExtractNoDateZoomEventMessage() {
         System.out.println("Since no date was detected in the text body, "
                 + "the zoom event will only contain the description and zoom link.");
     }
 
+    /**
+     * Prints the message when no time was detected in the zoom event,
+     * resulting in creation of zoom event with only link.
+     */
     public void printExtractNoTimeZoomEventMessage() {
         System.out.println("Even though date was detected, time was not, in Scheduler--; "
                 + "a zoom event cannot have the date without the time. So "
                 + "a zoom event with only the date and zoom link will be created.");
     }
 
+    /**
+     * Prints the message when no time was detected for a personal event.
+     */
     public void printExtractNoTimePersonalEventMessage() {
         System.out.println("Since no time was detected in the text body, "
                 + "the personal event will only contain the description and the date.");
     }
 
+    /**
+     * Prints the message to choose from timings detected.
+     *
+     * @param timeCount The number of timings detected.
+     * @param timeList An ArrayList of LocalTime containing all timings detected.
+     */
     public void printExtractChooseTimeMessage(int timeCount, ArrayList<LocalTime> timeList) {
         System.out.println("We have detected " + timeCount + " timings in this text body!");
         System.out.println("Please select the time you want for this event from the list below!");
@@ -335,10 +354,21 @@ public class Ui {
         printDividerLine();
     }
 
+    /**
+     * Prints message when only 1 time was detected.
+     *
+     * @param finalTime The only LocalTime object detected.
+     */
     public void printExtractSingleTimeDetectedMessage(LocalTime finalTime) {
         System.out.println("One timing detected and chosen: " + finalTime);
     }
 
+    /**
+     * Prints the message to choose from date detected.
+     *
+     * @param dateCount The number of dates detected.
+     * @param dateList An ArrayList of LocalDate containing all dates detected.
+     */
     public void printExtractChooseDateMessage(int dateCount, ArrayList<LocalDate> dateList) {
         System.out.println("We have detected " + dateCount + " dates in this text body!");
         System.out.println("Please select the date you want for this event from the list below!");
@@ -351,25 +381,49 @@ public class Ui {
         printDividerLine();
     }
 
+    /**
+     * Prints the message when only 1 date was detected.
+     *
+     * @param finalDate The only LocalDate object detected.
+     */
     public void printExtractSingleDateDetectedMessage(LocalDate finalDate) {
         System.out.println("One date detected and chosen: " + finalDate);
     }
 
+    /**
+     * Prints the instructions to tell users what to do for the extract feature.
+     */
     public void printExtractTextBodyRequestMessage() {
         System.out.println("Copy and paste or enter the body of the text you want to extract from!");
         System.out.println("At the end of your text, press enter to go to the next line, enter 'extractend' "
                 + "with no quotation marks and press enter once more.");
     }
 
+    /**
+     * Prints the message when an invalid number was chosen from the list.
+     *
+     * @param field A string that could contain the any field that needs this method.
+     */
     public void printExtractInvalidFieldChosenMessage(String field) {
         System.out.println("Invalid " + field + " number to choose! Please choose again!");
         printDividerLine();
     }
 
+    /**
+     * Prints the message when 0 of a field was detected from the text body.
+     *
+     * @param field A string that could contain the any field that needs this method.
+     */
     public void printExtractNoFieldMessage(String field) {
         System.out.println("No " + field + " detected for this text body!");
     }
 
+    /**
+     * Prints a message to choose from all zoom links detected.
+     *
+     * @param zoomLinkCount The number of zoom links detected.
+     * @param zoomLinkList An ArrayList of String containing all the zoom links detected.
+     */
     public void printExtractChooseZoomLinkMessage(int zoomLinkCount, ArrayList<String> zoomLinkList) {
         System.out.println("We have detected " + zoomLinkCount + " zoom links in this text body!");
         System.out.println("Please select the zoom link you want for this event from the list below!");
@@ -382,6 +436,11 @@ public class Ui {
         printDividerLine();
     }
 
+    /**
+     * Prints a message when only 1 zoom link was detected.
+     *
+     * @param zoomLink The only String of zoom link detected.
+     */
     public void printExtractSingleZoomLinkDetectedMessage(String zoomLink) {
         System.out.println("One zoom link detected and chosen: " + zoomLink);
     }
