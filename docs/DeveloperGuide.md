@@ -132,6 +132,20 @@ from ```saveHandler```. The saver classes are primarily used by ```saveManager``
 
 <div style="page-break-after: always;"></div>
 
+## Logging
+
+__Description__
+
+Some classes facilitate critical operations which need to be logged for debugging purposes.
+The `LoggerCentre` class includes all logger instances for such classes throughout the program.
+
+__API__
+* The `LoggerCentre` interacts with `FinanceIt` class directly; it creates log files in the beginning of program execution.
+* The `LoggerCentre` consolidates initial configuration of all `logger` instances used in the program. However,
+those instances will log independently of the `LoggerCentre`. 
+* The `LoggerCentre` creates new log files every time the program runs from the command line. The files are in .log format and
+can be accessed in the `logs` folder.   
+
 # Implementation
 ## Module-level Implementation
 * This section describes generalizable implementations that are similar across features.
