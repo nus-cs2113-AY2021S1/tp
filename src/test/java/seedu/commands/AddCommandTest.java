@@ -8,15 +8,13 @@ import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.MaxNumTaskException;
 import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.UnknowCommandException;
+import seedu.exceptions.UnknownCommandException;
 import seedu.exceptions.EmptyDataStackException;
 import seedu.exceptions.InvalidReminderException;
 import seedu.parser.Parser;
-import seedu.task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.messages.Messages.ADD_MESSAGE;
 
 class AddCommandTest {
 
@@ -70,7 +68,7 @@ class AddCommandTest {
     @Test
     public void addCommand_executeSuccess() throws InvalidCommandException, InvalidDatetimeException,
             InvalidPriorityException, MaxNumTaskException, InvalidTaskNumberException,
-            UnknowCommandException,EmptyDataStackException, InvalidReminderException {
+            UnknownCommandException,EmptyDataStackException, InvalidReminderException {
         TaskMap taskMap = new TaskMap();
         Model model = new Model(taskMap);
         Command add = parser.processRaw("add newTask");
