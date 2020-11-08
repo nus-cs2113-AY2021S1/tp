@@ -33,7 +33,8 @@ public class Storage {
     public static final String LINK_STORAGE_FILEPATH = "links.txt";
     public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
     public static final String EXPENSE_STORAGE_FILEPATH = "expenses.txt";
-    
+
+    // @@author iamchenjiajun
     /**
      * Loads the task list data from the storage, and then returns it.
      *
@@ -57,6 +58,7 @@ public class Storage {
         return tasks;
     }
 
+    // @@author
     /**
      * Loads the book list data from the storage, and then returns it.
      *
@@ -104,6 +106,7 @@ public class Storage {
         return links;
     }
 
+    // @@author iamchenjiajun
     /**
      * Loads the module list data from the storage.
      *
@@ -127,7 +130,7 @@ public class Storage {
         return modules;
     }
 
-    //@@author GuoAi
+    // @@author GuoAi
 
     /**
      * Loads the expense list data from the storage.
@@ -178,9 +181,7 @@ public class Storage {
         }
     }
 
-    //@@author
-
-
+    // @@author iamchenjiajun
     /**
      * Returns a task corresponding to arguments from a line loaded from file.
      *
@@ -218,6 +219,7 @@ public class Storage {
         return newTask;
     }
 
+    // @@author
     /**
      * Returns a book corresponding to arguments from a line loaded from file.
      *

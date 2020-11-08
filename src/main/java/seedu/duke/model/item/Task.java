@@ -31,6 +31,7 @@ public class Task extends Item implements Comparable<Task> {
         super(description, isDone, priority);
     }
 
+    // @@author iamchenjiajun
     /**
      * Retrieves the priority of a task.
      *
@@ -40,6 +41,7 @@ public class Task extends Item implements Comparable<Task> {
         return priority;
     }
 
+    // @@author GuoAi
     /**
      * Retrieves the category of a task.
      *
@@ -49,6 +51,7 @@ public class Task extends Item implements Comparable<Task> {
         return category;
     }
 
+    // @@author iamchenjiajun
     /**
      * Sets the priority of a task.
      *
@@ -60,7 +63,6 @@ public class Task extends Item implements Comparable<Task> {
     }
 
     //@@author GuoAi
-
     public void setCategory(String category) {
         this.category = category;
     }
@@ -86,6 +88,7 @@ public class Task extends Item implements Comparable<Task> {
         return returnString;
     }
 
+    // @@author iamchenjiajun
     /**
      * Converts the attributes of the task into a formatted string to be saved into the storage file.
      *
