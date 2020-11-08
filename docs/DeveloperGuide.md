@@ -27,6 +27,7 @@ enhancements.
   * [3.10. Performing similarity checks](#310-performing-similarity-checks)
   * [3.11. Displaying most searched bus stop](#311-displaying-most-searched-bus-stop-on-start-up)
     + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies-of-bus-stops-reset-feature)
+  * [3.12. Removing specific delete command (`/deletefav` Feature)](#312-removing-specific-delete-command-deletefav-feature)
 - [4. Appendix A: Requirements](#4-appendix-a-requirements)
   * [4.1. Target user profile](#41-target-user-profile)
   * [4.2. Value Proposition](#42-value-proposition)
@@ -443,7 +444,7 @@ index has been deleted.
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
 ![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
 
-## 4. Appendix I: Requirements
+## 4. Appendix A: Requirements
 
 ### 4.1. Target user profile
 
