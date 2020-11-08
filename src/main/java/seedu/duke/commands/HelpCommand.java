@@ -2,8 +2,6 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.model.Model;
-import seedu.duke.model.ListType;
-import seedu.duke.model.itemlist.TaskList;
 import seedu.duke.ui.Ui;
 
 /**
@@ -33,7 +31,9 @@ public class HelpCommand extends Command {
                 + "\n\n     " + FindCommand.MESSAGE_USAGE
                 + "\n\n     " + HelpCommand.MESSAGE_USAGE
                 + "\n\n     " + ListCommand.MESSAGE_USAGE
+                + "\n\n     " + MakeFolderCommand.MESSAGE_USAGE
                 + "\n\n     " + ReturnCommand.MESSAGE_USAGE
+                + "\n\n     " + SpendCommand.MESSAGE_USAGE
                 + "\n\n     " + SetCommand.MESSAGE_USAGE;
        
         Ui.dukePrint(message);

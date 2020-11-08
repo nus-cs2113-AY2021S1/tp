@@ -1,3 +1,5 @@
+// @@author GuoAi
+
 package seedu.duke.model.itemlist;
 
 import seedu.duke.DukeException;

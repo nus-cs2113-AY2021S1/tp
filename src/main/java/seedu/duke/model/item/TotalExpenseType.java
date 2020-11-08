@@ -1,3 +1,5 @@
+// @@author GuoAi
+
 package seedu.duke.model.item;
 
 public enum TotalExpenseType {
