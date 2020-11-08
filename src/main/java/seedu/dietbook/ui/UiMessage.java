@@ -97,57 +97,69 @@ public class UiMessage {
     }
 
     private String getUserInfoRelatedCommands() {
-        return "  userinfo    | To view user information:" + UiHelper.LINE_SEPARATOR
-                + "              | userinfo"
+        return "userinfo    | To view user information:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | userinfo"
                 + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  editinfo    | To edit user information:" + UiHelper.LINE_SEPARATOR
-                + "              | editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
+                + "editinfo    | To edit user information:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
                 + "[o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]";
     }
 
     String getDatabaseRelatedCommands() {
         return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  add         | To add a food from the database:" + UiHelper.LINE_SEPARATOR
-                + "              | add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]"
+                + "add         | To add a food from the database:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]"
                 + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  data        | To view all food in the database:" + UiHelper.LINE_SEPARATOR
-                + "              | data";
+                + "data        | To view all food in the database:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | data";
     }
 
     String getSystemRelatedCommands() {
         return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  help        | To view a list of valid commands:" + UiHelper.LINE_SEPARATOR
-                + "              | help"
+                + "help        | To view a list of valid commands:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | help"
                 + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  exit        | To exit DietBook:" + UiHelper.LINE_SEPARATOR
-                + "              | exit";
+                + "exit        | To exit DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | exit";
     }
 
     String getNutritionalRelatedCommands() {
         return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  recommend   | To get recommended calorie intake:" + UiHelper.LINE_SEPARATOR
-                + "              | recommend"
+                + "recommend   | To get recommended calorie intake:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | recommend"
                 + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  calculate   | To calculate nutritional intake:" + UiHelper.LINE_SEPARATOR
-                + "              | calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
+                + "calculate   | To calculate nutritional intake:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
                 + UiHelper.LINE_SEPARATOR
-                + "              |   Valid NUTRIENT_TYPE: carb, calorie, fat, protein, all";
+                + "            |   Valid NUTRIENT_TYPE: carb, calorie, fat, protein, all";
     }
 
     String getFoodListRelatedCommands() {
         return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  add         | To add a food not in the database:" + UiHelper.LINE_SEPARATOR
-                + "              | add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
+                + "add         | To add a food not in the database:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
                 + "[p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]"
                 + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  list        | To view all food in DietBook:" + UiHelper.LINE_SEPARATOR
-                + "              | list [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
+                + "list        | To view all food in DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | list [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
                 + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  delete      | To delete a food from DietBook:" + UiHelper.LINE_SEPARATOR
-                + "              | delete INDEX"
+                + "delete      | To delete a food from DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | delete INDEX"
                 + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
-                + "  clear       | To delete all food items from the DietBook:" + UiHelper.LINE_SEPARATOR
-                + "              | clear";
+                + "clear       | To delete all food items from the DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | clear";
     }
 
     String getDatabaseMessage(String foodDatabase) {
