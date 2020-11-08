@@ -5,6 +5,7 @@ import seedu.duke.event.Event;
 import seedu.duke.event.EventList;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.InvalidListException;
+import seedu.duke.exception.InvalidTimePeriodException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.TryRegularParserException;
@@ -42,15 +43,16 @@ public class CheckCommand extends Command {
      * @param data    object of UserData class containing user's data.
      * @param ui      containing the responses to print.
      * @param storage with the save file path to write to.
-     * @throws MissingSemicolonException if the input does not contain any semicolons to separate input fields.
+     * @throws MissingSemicolonException if the input does not contain any semicolons to separate input fields
      * @throws DateErrorException the date is not input in a valid format
      * @throws TimeErrorException the time is not input in a valid format
+     * @throws InvalidTimePeriodException the start of the time period is after the end
      * @throws InvalidListException the event list indicated is not valid (should not be thrown in normal operation)
      * @throws WrongNumberOfArgumentsException if insufficient fields are given after the "check" keyword
      */
     @Override
-    public void execute(UserData data, Ui ui, Storage storage) throws MissingSemicolonException,
-            DateErrorException, TimeErrorException, InvalidListException, WrongNumberOfArgumentsException {
+    public void execute(UserData data, Ui ui, Storage storage) throws MissingSemicolonException, DateErrorException,
+            TimeErrorException, InvalidTimePeriodException, InvalidListException, WrongNumberOfArgumentsException  {
         if (!command.contains(";")) {
             throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
         }
@@ -67,6 +69,12 @@ public class CheckCommand extends Command {
             LocalTime endTime = getTime(datesAndTime[3].trim());
             assert startTime != null : "null time read for startTime";
             assert endTime != null : "null time read for endTime";
+
+            boolean isTimePeriodValid = verifyValidStartEndDateTime(startDate, endDate, startTime, endTime);
+
+            if (!isTimePeriodValid) {
+                throw new InvalidTimePeriodException("The start of the time period should be earlier than the end.");
+            }
 
             ArrayList<Event> eventsInTimeRange = new ArrayList<>();
             String[] eventTypes = new String[]{"Personal", "Timetable", "Zoom"};
@@ -175,6 +183,33 @@ public class CheckCommand extends Command {
             time = timeParser(stringTime); // exception will be thrown if invalid non-integer is given
             return time;
         }
+    }
+
+    /**
+     * Checks to make sure the start of the time period is not after the end.
+     *
+     * @param startDate the start date of the time period
+     * @param endDate the end date of the time period
+     * @param startTime the start time of the time period
+     * @param endTime the end time of the time period
+     * @return boolean showing if the time period is valid i.e. the start is before the end
+     */
+    private boolean verifyValidStartEndDateTime(LocalDate startDate, LocalDate endDate,
+                                                LocalTime startTime, LocalTime endTime) {
+        boolean isStartAndEndValid;
+        boolean isStartBeforeEnd;
+        boolean isStartDateBeforeEndDate = startDate.isBefore(endDate);
+
+        if (isStartDateBeforeEndDate) { // if start date is before end date start is before end
+            isStartBeforeEnd = true;
+        } else if (startDate.isEqual(endDate)) { // if start time before end time when start date equal end date
+            isStartBeforeEnd = startTime.isBefore(endTime);
+        } else {
+            isStartBeforeEnd = false;
+        }
+
+        isStartAndEndValid = isStartBeforeEnd;
+        return isStartAndEndValid;
     }
 
     /**

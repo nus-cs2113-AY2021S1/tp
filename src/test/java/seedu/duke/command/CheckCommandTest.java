@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.UserData;
 import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidTimePeriodException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.TimeErrorException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
@@ -183,7 +184,7 @@ class CheckCommandTest {
 
     @Test
     void execute_invalidTimeFormatGiven_TimeErrorExceptionThrown() {
-        // First invalid time format
+        // dot used in date instead of dash or slash
         String inputStringOne = "9/10/2020; 3.00 pm; 10/10/2020; 5.00 pm";
 
         Exception firstE = assertThrows(TimeErrorException.class, () -> {
@@ -198,7 +199,7 @@ class CheckCommandTest {
         String actualMessage = firstE.getMessage();
         assertEquals(expectedMessage, actualMessage);
 
-        // Second invalid time format
+        // time has excess fields
         String inputStringTwo = "9/10/2020; 3:00 pm; 10/10/2020; 5:00 PST pm";
 
         Exception secondE = assertThrows(TimeErrorException.class, () -> {
@@ -209,7 +210,7 @@ class CheckCommandTest {
         actualMessage = secondE.getMessage();
         assertEquals(expectedMessage, actualMessage);
 
-        // Third invalid time format
+        // >12 integer used in 12 hour format
         String inputStringThree = "9/10/2020; 13 pm; 10/10/2020; 5:00 pm";
 
         Exception thirdE = assertThrows(TimeErrorException.class, () -> {
@@ -220,7 +221,7 @@ class CheckCommandTest {
         actualMessage = thirdE.getMessage();
         assertEquals(expectedMessage, actualMessage);
 
-        // Fourth invalid time format
+        // >24 integer used in 24 hour format
         String inputStringFour = "9/10/2020; 2500; 10/10/2020; 5:00 pm";
 
         Exception fourthE = assertThrows(TimeErrorException.class, () -> {
@@ -229,6 +230,18 @@ class CheckCommandTest {
         });
 
         actualMessage = fourthE.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+
+        // start time input is after end time
+        String inputStringFive = "; ; 1/1/2019; 5:00 pm";
+
+        Exception fifthE = assertThrows(InvalidTimePeriodException.class, () -> {
+            Command checkCommand  = new CheckCommand(inputStringFive);
+            checkCommand.execute(data, ui, storage);
+        });
+
+        expectedMessage = "The start of the time period should be earlier than the end.";
+        actualMessage = fifthE.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
 }
