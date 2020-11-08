@@ -20,7 +20,7 @@ Given below are my contributions to the project. <br/>
 
 ## Summary of Contributions
 ### Code contributed:
-[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Jingming517&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Jingming517)
 ### Enhancements implemented:
 #### Enhancements to New features:
 * Added ability to print personal calendar.
