@@ -86,23 +86,21 @@ Instruction:
 
 Expected output:
 
-At main menu:
+At menu:
 ![HelpMessage](Images/GeneralUG/help.png)
 
 At bookmark mode:
 ![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
 
----
 **Useful information:**
 * The message varies in different modes to show you the commands at that mode. 
 Try the command at other modes when you are using the application!
----
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
 
 You can change to different modes of the app by using this command! 
 The following are the modes currently available in the app and their corresponding index:
-1. Main menu
+1. Menu
 1. Bookmark
 1. Timetable
 1. Academic
@@ -122,19 +120,15 @@ Command: `cd academic`
 
 ![CDAcademic](Images/GeneralUG/cdacademic.png)
 
----
 **Warning**
 * An error message will appear when you type an invalid mode index or mode name
 
 ![WrongModeIndex](Images/GeneralUG/wrongmodeindex.png)
 
 * Ensure that your index is within range or you spelt the mode names correctly when using this command!
----
 
----
 **Useful information:**
 * You can use this command anywhere in the app to switch between modes quickly!
----
 
 ### 3. Shows the current location: `location`
 
@@ -198,14 +192,14 @@ After entering the bookmark mode (refer to General Command 2), use the following
 navigate around bookmark mode. 
 
 This section contains 8 commands: 
-* 1.1 : [Viewing all bookmark links / starred links / category]()
-* 1.2 : [Going into each category]()
-* 1.3 : [Adding a category]()
-* 1.4 : [Deleting a category]()
-* 1.5 : [Going back to Bookmark main ]()
-* 1.6 : [Adding a link ]()
-* 1.7 : [Deleting a link]()
-* 1.8 : [Starring / Unstarring a link]()
+* 1.1 : [Viewing all bookmark links / starred links / category](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#11-viewing-all-the-bookmarks-links)
+* 1.2 : [Going into each category](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#12-going-into-each-category)
+* 1.3 : [Adding a category](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#13-adding-category)
+* 1.4 : [Deleting a category](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#14-deleting-a-category)
+* 1.5 : [Going back to Bookmark main ](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#15-going-back-to-bookmark-main)
+* 1.6 : [Adding a link to your chosen category](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#16-adding-a-link-to-your-chosen-category)
+* 1.7 : [Deleting a link](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#17-deleting-a-link)
+* 1.8 : [Starring / Unstarring a link](https://ay2021s1-cs2113t-t12-1.github.io/tp/UserGuide.html#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
 ### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
 
