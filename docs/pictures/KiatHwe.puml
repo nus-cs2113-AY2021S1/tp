@@ -1,0 +1,28 @@
+@startuml
+Command <|-- DeletePatientCommand
+
+Command : {static} String MESSAGE
+Command : {static} String COMMAND_ERROR
+Command : {static} int LEGAL_NRIC_LENGTH
+Command : {static} Set<Character> LEGAL_NRIC_STATUSES
+
+Command : + Command()
+Command : + {abstract} execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage) : void
+Command : + isExit() : boolean
+Command : + isInteger() : boolean
+Command : + extractNric(String trimmedCommand, String commandWord) : String
+
+DeletePatientCommand : {static} String COMMAND_WORD
+DeletePatientCommand : String trimmedCommand
+
+DeletePatientCommand : DeletePatientCommand(String trimmedCommand)
+DeletePatientCommand : execute(PatientList patients, DoctorList doctors, AppointmentList appointments, Ui ui, Storage storage) : void
+
+DeletePatientCommand ..> PatientList
+DeletePatientCommand ..> DoctorList
+DeletePatientCommand ..> AppointmentList
+DeletePatientCommand ..> Ui
+DeletePatientCommand ..> Storage
+
+
+@enduml

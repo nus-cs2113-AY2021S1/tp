@@ -1,0 +1,123 @@
+@startuml
+Create ui
+Rex --> ui 
+
+Create storage
+Rex --> storage 
+
+Create patients
+Rex --> patients  
+
+Create appointments
+Rex --> appointments
+
+Create parser
+Rex --> parser
+
+
+
+Activate Rex
+Rex --> Rex : run()
+Activate Rex
+Activate ui
+loop !isExit
+    Rex --> ui : readCommand()
+    ui --> Rex
+    Deactivate ui
+
+    Rex --> ui : showLine()
+    Rex --> parser : parse(fullCommand)
+    Activate parser
+    Create deletePatientCommand
+    parser --> deletePatientCommand
+    parser --> Rex : Command c
+    Deactivate parser
+    parser --> deletePatientCommand : execute(patients, doctors, appointments, ui, storage)
+    Activate deletePatientCommand
+    deletePatientCommand --> deletePatientCommand : extractNric(trimmedCommand, COMMAND_WORD)
+    Activate deletePatientCommand
+    deletePatientCommand --> deletePatientCommand : String nric
+    Deactivate deletePatientCommand
+
+    deletePatientCommand --> patients : deletePatient(nric)
+    Activate patients
+    patients --> deletePatientCommand : Patient deletedPatient
+    Deactivate patients
+
+    deletePatientCommand --> ui : showPatientDeleted(deletedPatient)
+    Activate ui
+    Deactivate ui
+
+    loop i=0; i<appointments.getSize(); i++
+        deletePatientCommand --> appointments : getappointmentByIndex(i)
+        Activate appointments
+        appointments --> deletePatientCommand : Appointment appointment
+        Deactivate appointments
+        alt appointment.getPatient().getNric() == nric.toLowerCase()
+            deletePatientCommand --> appointment : setPatient(null)
+            Activate appointment
+            Deactivate appointment
+
+            deletePatientCommand --> appointment : removeBooking()
+            Activate appointment
+            Deactivate appointment
+
+            deletePatientCommand --> appointment : setDoctor(null)
+            Activate appointment
+            Deactivate appointment
+        else
+            deletePatientCommand --> ui : printPatientNotFound(nric)
+            Activate ui
+            Deactivate ui
+        deletePatientCommand --> storage : savePatients(patients)
+        Activate storage
+        Deactivate storage
+
+        deletePatientCommand --> storage : saveappointments(patients)
+        Activate storage
+        Deactivate storage
+
+
+
+
+
+end loop
+
+
+
+
+@enduml
+
+alt words[0] == ExitCommand.COMMAND_WORD
+        Create ExitCommand
+        parser --> ExitCommand : new
+    else words[0] == BookApptCommand.COMMAND_WORD
+        Create BookApptCommand
+        parser --> BookApptCommand : new
+    else words[0] == AddPatientCommand.COMMAND_WORD
+            Create AddPatientCommand
+            parser --> AddPatientCommand : new
+    else words[0] == CreateApptCommand.COMMAND_WORD
+            Create CreateApptCommand
+            parser --> CreateApptCommand : new
+    else words[0] == EditPatientCommand.COMMAND_WORD
+                Create EditPatientCommand
+                parser --> EditPatientCommand : new
+    else words[0] == deletePatientCommand.COMMAND_WORD
+                Create deletePatientCommand
+                parser --> deletePatientCommand : new
+    else words[0] == ListApptCommand.COMMAND_WORD
+                    Create ListApptCommand
+                    parser --> ListApptCommand : new
+    else words[0] == ListPatientCommand.COMMAND_WORD
+                    Create ListPatientCommand
+                    parser --> ListPatientCommand : new
+    else words[0] == RetrievePatientCommand.COMMAND_WORD
+                    Create RetrievePatientCommand
+                    parser --> RetrievePatientCommand : new
+    else words[0] == AddDoctorCommand.COMMAND_WORD
+                    Create AddDoctorCommand
+                    parser --> AddDoctorCommand : new
+    else words[0] == EditApptCommand.COMMAND_WORD
+                        Create EditApptCommand
+                        parser --> EditApptCommand : new
