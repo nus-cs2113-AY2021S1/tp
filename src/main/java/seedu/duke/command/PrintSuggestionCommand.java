@@ -37,7 +37,7 @@ public class PrintSuggestionCommand extends Command {
      */
     public Task getEarliestDeadline(CalendarList calendarList) {
         int deadlineCount = 0;
-        Task earliestDeadline = new Deadline(null, null);
+        Deadline earliestDeadline = new Deadline(null, null);
 
         for (int i = 0; i < calendarList.getTotalItems(); i++) {
             CalendarItem item = calendarList.getCalendarList().get(i);

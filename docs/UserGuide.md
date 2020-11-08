@@ -599,11 +599,18 @@ Format: `countdown deadlines`
  Note: The above figure is for illustration purpose only. The desired output will
  differ if you have different items stored in the calendar list.
 
+![warning_countdown](images/warning_countdown.PNG)
+
+
 ### Saving the data
 
 When you close the program or you make some changes to the program such as adding an event, the data for the tasks and events 
 are automatically saved locally. So, there is no need for users to save manually.
 Next time when you open the program, all the data will automatically be loaded from the local file to the program.
+
+![saving_data](images/savingdata.png)
+
+![warning_savingdata](images/warning_savingdata.png)
 
 ### Exiting the program: 
 
