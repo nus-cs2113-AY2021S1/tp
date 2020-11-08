@@ -195,8 +195,7 @@ public class UI {
      * @param eventEdited the Event being edited
      */
     public void printEditEventMessage(Event eventEdited) {
-        System.out.println("I've edited this Event to: ");
-        System.out.println(eventEdited.toString());
+        System.out.println("The event has been edited.");
     }
 
     /**
@@ -363,6 +362,24 @@ public class UI {
             numPrintedEvents++;
             System.out.println(numPrintedEvents + ". " + event.toString());
         }
+    }
+
+    /**
+     * Print the success message after repeating all classes in the current week.
+     *
+     * @param numWeeks number of weeks to repeat.
+     */
+    public void printRepeatAll(int numWeeks) {
+        System.out.println("All classes in this week have been repeated for " + numWeeks + " weeks.");
+    }
+
+    /**
+     * Print the success message after repeating the selected event.
+     *
+     * @param numWeeks number of weeks to repeat.
+     */
+    public void printRepeatEvent(int numWeeks) {
+        System.out.println("The selected event has been repeated for " + numWeeks + " weeks.");
     }
 }
 
