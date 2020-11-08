@@ -33,7 +33,7 @@ public class FindCommand extends Command {
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         assert userInput.startsWith(COMMAND_FIND_EVENT_OR_TASK) : "Find command invalid but passes";
-        String command[];
+        String[] command;
         String findCommand;
         try {
             command = userInput.split(" ", 2);
@@ -59,7 +59,7 @@ public class FindCommand extends Command {
 
     private void find(String command, CalendarList calendarList) throws CommandException {
         boolean isFound = false;
-        String split[];
+        String[] split;
         try {
             split = userInput.split(" ", 2);
             keyword = split[1].trim();
