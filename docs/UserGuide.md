@@ -339,7 +339,7 @@ Let's say you want to add the command to list dining options in business.
 
 These are the steps to follow:
 
-1. Type <code>/dine <strong>buisness</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below 
+1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below 
 
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
