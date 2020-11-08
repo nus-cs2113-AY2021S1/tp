@@ -813,8 +813,9 @@ Expected output:
 If you encounter any errors, take note of the following warning.
 
 **Warning:**
-* “back” cannot be added as an answer for the flashcard.
-This is because “back” is used as a command to exit the test mode later on.
+* “back” and "show answer" cannot be added as an answer for the flashcard.
+This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
+respectively.
 If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 ![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
 
@@ -853,15 +854,20 @@ Expected output:
 Grading your own work is one of the best ways to revise as it helps you effectively retain information.
 After adding the flashcards, you may wish to revise the content by testing yourself. 
 
+If you are unable to answer a question and wish to refer to the answer, use `show answer`.
 When you are done revising, use `back` to exit the test mode, and return to the flashcard main.
 
 Instruction:
 1. `test`
 2. Answer the questions as prompted
-3. `back`
+3. `show answer` / `back`
 
 Expected output:
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+
+**Useful information:**
+* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
+the stored answer, the answer will be accepted as the right answer.
 
 ### 4.6 Finding relevant flashcards: `find`
 
