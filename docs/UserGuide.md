@@ -67,6 +67,8 @@ Format: `order`
 Example of usage:
 'order'
 
+Result is like this:
+
 ![image](img/order.png)
 
 #### 3.2.2 The order method will be activated and print open stalls, user just type the corresponding index before the canteen to select canteen. 
@@ -75,6 +77,8 @@ Format: `[number]`
 
 Example of usage:
 '2'
+
+Result is like this:
 
 ![image](img/canteen.png)
 
@@ -85,6 +89,8 @@ Format: `[number]`
 Example of usage:
 '1'
 
+Result is like this:
+
 ![image](img/stall.png)
 
 #### 3.2.4 Then the available dishes and price in this stall will be printed, user just type number of dishes he wants to order.
@@ -93,6 +99,8 @@ Format: `[number]`
 
 Example of usage:
 '2'
+
+Result is like this:
 
 ![image](img/num.png)
 
@@ -103,6 +111,8 @@ Format: `[number]`
 Example of usage:
 '2'
 
+Result is like this:
+
 ![image](img/dish.png)
 
 #### 3.2.6 User will be asked whether he wants to see the comment of the dish, just type y/n.
@@ -110,8 +120,9 @@ Example of usage:
 Format: `y/n`
 
 Example of usage:
-'y'
-'n'
+'y', 'n'
+
+Result is like this:
 
 ![image](img/comment.png)
 
@@ -121,6 +132,8 @@ Format: `[number]`
 
 Example of usage:
 '2'
+
+Result is like this:
 
 ![image](img/type.png)
 
@@ -133,6 +146,8 @@ Format: `delete [number]`
 Example of usage:
 'delete 1'
 
+Result is like this:
+
 ![image](img/ddlete.png)
 
 ### 3.4 find the specific order: `find [dish name]`
@@ -144,6 +159,8 @@ Format: `find [dish name]`
 Example of usage:
 'find Hawaiian'
 
+Result is like this:
+
 ![image](img/findd.png)
 
 ### 3.5 list all the orders: `list`
@@ -153,6 +170,8 @@ Format: `list`
 
 Example of usage:
 'list'
+
+Result is like this:
 
 ![image](img/lis.png)
 
@@ -172,6 +191,8 @@ Example of usage:
 
 * order type is case sensitive
 
+Result is like this:
+
 ![image](img/changeorderr.png)
 
 ### 3.7 check Canteen Operating Time: `checkcanteen`
@@ -190,6 +211,8 @@ Format: `[number]`
 
 Example of usage:
 '4'
+
+Result is like this:
 
 ![image](img/checkcanteen.png)
 
@@ -217,6 +240,8 @@ Format: `[number]`
 Example of usage:
 '2'
 
+Result is like this:
+
 ![image](img/checkstall.png)
 
 ### 3.9 view all available commands: `help`
@@ -236,6 +261,8 @@ Format: `bye`
 
 Example of usage:
 'bye'
+
+Result is like this:
 
 ![image](img/bye.png)
 
