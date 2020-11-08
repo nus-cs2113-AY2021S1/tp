@@ -15,6 +15,7 @@ import command.PrintFullListCommand;
 import command.PrintLocationCommand;
 import command.ReminderCommand;
 import command.SortCommand;
+import command.AutoClearCommand;
 
 import command.StudyTimeCommand;
 import command.UserInfoCommand;
@@ -93,6 +94,7 @@ public abstract class Parser {
     public static final String REMIND = "reminder";
     public static final String STUDY_TIME = "studyTime";
     public static final String SELF_STUDY = "selfStudy";
+    public static final String AUTO_CLEAR = "autoclear";
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -108,18 +110,20 @@ public abstract class Parser {
         fullCommand = fullCommand.trim();
         // this block deals with single word command
         switch (fullCommand) {
-        case EXIT:
-            return new ExitCommand();
-        case PRINT_EVENT_LIST:
-            return new PrintFullListCommand();
-        case PRINT_LOCATION_LIST:
-            return new PrintLocationCommand();
-        case HELP:
-            return new HelpCommand();
-        case CLEAR:
-            return new ClearCommand();
-        case REMIND:
-            return new ReminderCommand();
+            case EXIT:
+                return new ExitCommand();
+            case PRINT_EVENT_LIST:
+                return new PrintFullListCommand();
+            case PRINT_LOCATION_LIST:
+                return new PrintLocationCommand();
+            case HELP:
+                return new HelpCommand();
+            case CLEAR:
+                return new ClearCommand();
+            case REMIND:
+                return new ReminderCommand();
+            case AUTO_CLEAR:
+                return new AutoClearCommand();
         default:
             break;
         }
