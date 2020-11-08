@@ -177,7 +177,7 @@ Here are some commonly used `browse` commands to get you started. Feel free to e
 
 <br/>
 
-Example of usage: `browse -s name -o asc`.
+Example of usage: `browse -s name -o asc`
 
 The expected outcome:
 ```text
@@ -452,7 +452,7 @@ Changed active watchlist to: "Default".
 <br/>
 
 ### 3.7.5 Add an anime to the current watchlist
-Add an anime to the currently selected watchlist
+Add an anime to the currently selected watchlist.
 
 Format: `add <ANIME_ID>`
 
@@ -470,10 +470,10 @@ Trigun added to watchlist!
 <br/>
 
 ### 3.7.6 Remove an anime from the current watchlist
-Remove an anime from the currently selected watchlist
+Remove an anime from the currently selected watchlist.
 
 Format: `remove <ANIME_ID_IN_WATCHLIST>`
-> :bulb: The index used has to be the anime ID in the watchlist, and not the general anime ID
+> :bulb: The index used has to be the anime ID in the watchlist, and not the general anime ID.
 
 <br/>
 
@@ -487,7 +487,7 @@ Trigun successfully removed from watchlist
 <br/>
 
 ### 3.7.7 View all anime in watchlist
-View all the anime that you have stored in your current watchlist, or in a specific watchlist
+View all the anime that you have stored in your current watchlist, or in a specific watchlist.
 
 Format: `view [-v WATCHLIST_ID]`
 *   If the parameter `-v` is not specified, the anime in the current watchlist you are using will be shown.
@@ -515,7 +515,7 @@ Here are the anime in To Translate watchlist:
 <br/>
 
 ### 3.8 Bookmark
-`Bookmark` is the feature to use when you need your own customised list of anime. It provides you with greater personalisation such as tracking each episode and writing useful notes for each series. These features further enhance the manageability of translation jobs and allow you to easily access important information. 
+`Bookmark` is the feature to use when you need your own customised list of anime(s). It provides you with greater personalisation such as tracking anime episode or writing useful notes for an anime series. These features further enhance the manageability of translation jobs and allow you to easily access important information.
 
 The following subsections below describes the various bookmark-related operations.
 
@@ -545,6 +545,8 @@ Listing all anime in bookmark:
 Add an anime to the bookmark.
 
 Format: `bookmark -a <ANIME_ID>`
+
+> :warning: You cannot add duplicate anime into the same bookmark.
 
 > :memo: Add Bookmark `<ANIME_ID>` is identified using `[Id: 1]` from `1. Cowboy Bebop [Id: 1]` which can be found in both outputs of `search` and `browse` command
 
@@ -596,6 +598,8 @@ Add a note for an anime within the bookmark.
 
 Format: `bookmark <BOOKMARK_ID> -n <NOTE>`
 
+> :warning: The use of "~" is prohibited for notes.
+
 <br/>
 
 Example of usage: `bookmark 2 -n Episode 5: Schedule push back`
@@ -625,7 +629,7 @@ From: Trigun.
 <br/>
 
 #### 3.8.7 View information of a bookmark entry
-View the detailed information for an anime, the current episode you are working on and the important notes you might have.
+View detailed information for an anime, the current episode you are working on and important notes you might have.
 
 Format: `bookmark <BOOKMARK_ID>`
 
