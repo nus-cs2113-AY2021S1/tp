@@ -24,7 +24,7 @@ public class ViewTimeBreakdownAnalysis {
     public static final String MODULE_WEEK = "Module    Week ";
     private static final int NONE = 0;
     public static final String NO_VALID_INPUTS = "None of the modules has any actual time input.";
-    public static final int INDEX_OFFSET = 1;
+    private static final int INDEX_OFFSET = 1;
     private static final int MIN_WEEK_VALUE = 1;
     private static final int MAX_WEEK_VALUE = 13;
     public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";

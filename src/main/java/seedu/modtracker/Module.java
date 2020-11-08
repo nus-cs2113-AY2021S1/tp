@@ -8,9 +8,9 @@ import java.util.Arrays;
  */
 public class Module {
 
-    public static final double NO_INPUT = -1.0;
-    public static final int INDEX_OFFSET = 1;
-    public static final int MAX_TIME = 99;
+    private static final double NO_INPUT = -1.0;
+    private static final int INDEX_OFFSET = 1;
+    private static final int MAX_TIME = 99;
     private String moduleCode;
     private double expected = NO_INPUT;
     private final double[] actualTime = new double[13];

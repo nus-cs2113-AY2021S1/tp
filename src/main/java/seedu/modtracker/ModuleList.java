@@ -12,9 +12,9 @@ import java.util.logging.Logger;
  */
 public class ModuleList {
 
-    public static final int MIN_EXP_HOURS = 1;
-    public static final int MIN_WEEK = 1;
-    public static final int MAX_WEEK = 13;
+    private static final int MIN_EXP_HOURS = 1;
+    private static final int MIN_WEEK = 1;
+    private static final int MAX_WEEK = 13;
     public Ui ui = new Ui();
     public static ArrayList<Module> modList = new ArrayList<>();
     private static final String MODULECODE_LENGTH = "The module code should have 6 - 8 characters without any spacing.";
