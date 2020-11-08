@@ -478,7 +478,8 @@ public class Ui {
      */
     public void printHoursSummary(double hours, String week) {
 
-        System.out.println(hours + " hours have been spent on this module in week " + week + ".");
+        System.out.println(hours + " hours have been spent on this module in week " + week + "."
+                + System.lineSeparator());
     }
 
     /**
