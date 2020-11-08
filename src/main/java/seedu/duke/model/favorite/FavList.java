@@ -35,12 +35,28 @@ public class FavList {
         printClearFavMessage();
     }
 
+    /**
+     * Returns the old description after changing it.
+     *
+     * @param index the element number to be changed in the list.
+     * @param newDesc the new description provided by the user.
+     * @return the old description.
+     * @throws CustomException if index is put of bounds or new description is the same as the old description.
+     */
     public static String changeDesc(int index, String newDesc) throws CustomException {
         String oldDesc = checkIndexAndDesc(index, newDesc);
         favList.get(index - 1).changeDesc(newDesc);
         return oldDesc;
     }
 
+    /**
+     * Returns the old description if all checks succeed.
+     *
+     * @param index the element number to be changed in the list.
+     * @param newDesc the new description provided by the user.
+     * @return the old description.
+     * @throws CustomException if index is put of bounds or new description is the same as the old description.
+     */
     private static String checkIndexAndDesc(int index, String newDesc) throws CustomException {
         if (index == 0 || index > favList.size()) {
             throw new CustomException(ExceptionType.INVALID_INDEX);

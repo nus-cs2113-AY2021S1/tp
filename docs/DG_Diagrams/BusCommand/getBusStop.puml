@@ -1,5 +1,5 @@
 @startuml
-mainframe **sd** get BusStop
+mainframe **sd** get bus stop
 
 box Logic
 participant ":BusCommand"
@@ -27,10 +27,14 @@ deactivate ":SimilarityCheck"
 deactivate ":BusCommand"
 
 alt "possibleLocation empty"
+":BusCommand"->":BusCommand": setBusStop(busStop)
+activate ":BusCommand"
 ":BusCommand"->":BusStops": findBusStop(busStop)
 activate ":BusStops"
 ":BusStops"-->":BusCommand"
 deactivate ":BusStops"
+":BusCommand"-->":BusCommand"
+deactivate ":BusCommand"
 else "possibleLocation not empty"
 ":BusCommand"->":Ui": printPossibleLocsMessage(possibleLocations)
 activate ":Ui"

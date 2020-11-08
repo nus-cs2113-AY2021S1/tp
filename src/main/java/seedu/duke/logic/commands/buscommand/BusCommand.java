@@ -14,13 +14,13 @@ import java.util.EnumSet;
 
 public class BusCommand extends Command {
 
-    private String busStop;
+    private String busStopName;
+    private BusStops busStop;
 
-    public BusCommand(String busStop) throws CustomException {
-        ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(busStop));
+    public BusCommand(String busStopName) throws CustomException {
+        ArrayList<String> possibleLocs = new ArrayList<>(similarLocations(busStopName));
         if (possibleLocs.isEmpty()) {
-            this.busStop = BusStops.formatName(busStop.trim());
-            BusStops.findBusStop(busStop).incrementSearchCount();
+            setBusStop(busStopName);
             super.isValid = true;
         } else {
             Ui.printPossibleLocsMessage(possibleLocs);
@@ -29,10 +29,22 @@ public class BusCommand extends Command {
         }
     }
 
+    private void setBusStop(String busStopName) throws CustomException {
+        assert ! (busStopName == null) : "busStopName not declared";
+        busStop = BusStops.findBusStop(busStopName.trim());
+        if (busStop == null) {
+            throw new CustomException(ExceptionType.INVALID_BUS_STOP);
+        }
+        this.busStopName = busStop.getName();
+        busStop.incrementSearchCount();
+
+
+    }
+
     @Override
     public void executeCommand() {
-        ArrayList<Bus> busList = BusData.getBusAtStop(busStop);
-        Ui.printBusAtBusStop(busList, busStop);
+        ArrayList<Bus> busList = BusData.getBusAtStop(busStopName);
+        Ui.printBusAtBusStop(busList, busStopName);
     }
 
     private ArrayList<String> similarLocations(String location) {

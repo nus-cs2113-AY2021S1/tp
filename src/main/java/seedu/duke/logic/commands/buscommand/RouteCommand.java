@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 import static seedu.duke.model.bus.BusStops.isValidBusStop;
 
+/**
+ * Represents the route command that helps the user to find direct bus routes between 2 given locations.
+ */
 public class RouteCommand extends Command {
 
     private String rawMessage;
@@ -41,6 +44,13 @@ public class RouteCommand extends Command {
         }
     }
 
+    /**
+     * Checks if the given locations are in the list of bus stops at NUS.
+     *
+     * @param locations the locations input by the user after parsing.
+     * @return true if all locations are valid.
+     * @throws CustomException if any or both locations are invalid.
+     */
     private boolean areValidLocations(String[] locations) throws CustomException {
         if (isValidBusStop(locations[0].trim())) {
             if (isValidBusStop(locations[1].trim())) {
@@ -57,6 +67,12 @@ public class RouteCommand extends Command {
         }
     }
 
+    /**
+     * Checks if any of the locations is empty after parsing or if both locations are the same.
+     *
+     * @param locations the locations given by the user after parsing.
+     * @throws CustomException if locations are empty or same.
+     */
     private void checkLocations(String[] locations) throws CustomException {
         if (locations[0].trim().length() == 0 || locations[1].trim().length() == 0) {
             throw new CustomException(ExceptionType.NO_LOCATIONS);
@@ -71,6 +87,13 @@ public class RouteCommand extends Command {
                 + "the same.";
     }
 
+    /**
+     * Returns the list of locations similar to the given locations provided they are not exactly the same as any bus
+     * stop in NUS.
+     *
+     * @param locations the locations given by the user after parsing.
+     * @return the list of possible locations.
+     */
     private ArrayList<String> similarLocations(String[] locations) {
         ArrayList<String> possibleLocs = new ArrayList<>();
         if (!isValidBusStop(locations[0].trim())) {

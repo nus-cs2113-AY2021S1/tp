@@ -3,6 +3,10 @@ package seedu.duke.model.bus;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Represents a particular shuttle bus.
+ * It contains the bus number and the route taken by the bus.
+ */
 public class Bus {
 
     String busNumber;
@@ -18,7 +22,7 @@ public class Bus {
         route.addAll(stops);
     }
 
-    public ArrayList<String> getStopNames() {
+    ArrayList<String> getStopNames() {
 
         ArrayList<String> routeNames = new ArrayList<>();
         route.forEach(stop -> routeNames.add(stop.getName()));
@@ -30,6 +34,14 @@ public class Bus {
     }
 
     //@@author wamikamalik
+
+    /**
+     * Returns the route that the bus takes from the startingLOc to the destination.
+     *
+     * @param startingLoc the location to start from.
+     * @param destination the location to end at.
+     * @return ArrayList of intermediate stops including the startingLoc and destination.
+     */
     ArrayList<BusStops> getPossibleRoute(String startingLoc, String destination) {
         ArrayList<BusStops> allStopsFromStart = new ArrayList<>();
         ArrayList<BusStops> finalRoute = new ArrayList<>();
