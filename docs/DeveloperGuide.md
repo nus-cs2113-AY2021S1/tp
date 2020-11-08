@@ -138,15 +138,23 @@ This section describes the details of how each feature is implemented.
 
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
-The following sequence diagram shows how the `execute()` operation works:<br/>
+The following sequence diagram shows how the `execute()` operation works to add a `Todo` item:<br/>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_SD.JPG" alt="" width="750"/><br/>
 
-Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the `CalendarItem` being added.  
+The following sequence diagram shows how the `execute()` operation works to add `Activity` or `Deadline` item. A
+ `Deadline` item is used as an example.
+:<br/>
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_date_SD.JPG" alt
+="" width="750"/><br/>
 
-`CalendarItems` with deviations to sequence diagram above: 
-1. All `CalendarItems` with a date or time attribute calls the `TimeParser` class to interpret the date and time input of the user. 
-2. `Lecture`, `Lab`, `Tutorial`, or `Exam` type does a self-call for an additional check using the function `isValid(command)`. It ensures the module code included in the item is valid.
-3. `Lecture`, `Lab`, or `Tutorial`can be added as recurring items (multiple addition of the same class).   
+The following sequence diagram shows how the `execute()` operation works to add a`SchoolEvent` item. An `Exam` item
+ is used as an example.
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_module_SD.JPG" alt
+="" width
+="750"/><br/>
+
+Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the
+ `CalendarItem` being added. The `CalendarItem` object created is also based on the `CalendarItem` being added. 
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
