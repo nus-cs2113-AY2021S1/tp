@@ -58,7 +58,7 @@ public class FindCommand extends Command {
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 CalendarItem item = calendarList.getCalendarList().get(i);
                 if (item instanceof Event) {
-                    if (item.toString().contains(keyword)) {
+                    if (item.toString().toLowerCase().contains(keyword.toLowerCase())) {
                         itemCount++;
                         Ui.printFindTaskMessage(command, calendarList, isFound, i, itemCount);
                         isFound = true;
@@ -71,7 +71,7 @@ public class FindCommand extends Command {
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 CalendarItem item = calendarList.getCalendarList().get(i);
                 if (item instanceof Task) {
-                    if (item.toString().contains(keyword)) {
+                    if (item.toString().toLowerCase().contains(keyword.toLowerCase())) {
                         itemCount++;
                         Ui.printFindTaskMessage(command, calendarList, isFound, i, itemCount);
                         isFound = true;
@@ -82,7 +82,7 @@ public class FindCommand extends Command {
         case COMMAND_FIND_EVENT_OR_TASK:
             for (int i = 0; i < calendarList.getTotalItems(); i++) {
                 CalendarItem item = calendarList.getCalendarList().get(i);
-                if (item.toString().contains(keyword)) {
+                if (item.toString().toLowerCase().contains(keyword.toLowerCase())) {
                     itemCount++;
                     Ui.printFindTaskMessage(command, calendarList, isFound, i, itemCount);
                     isFound = true;
