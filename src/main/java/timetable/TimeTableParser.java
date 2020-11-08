@@ -5,6 +5,7 @@ import exceptions.InvalidDayOfTheWeekException;
 import exceptions.InvalidTimeException;
 import studyit.StudyItLog;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 public class TimeTableParser {
@@ -66,7 +67,7 @@ public class TimeTableParser {
                     StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
                 } catch (ClashScheduleException e) {
                     System.out.println("There is a clash in schedule! Please check your schedule and add again");
-                } catch (InvalidTimeException e) {
+                } catch (InvalidTimeException | DateTimeException e) {
                     System.out.println("Input for time of the lesson is invalid Please add class again");
                 }
             } else if (command.contains("delete activity") && words.length == 3) {
