@@ -4,6 +4,7 @@
 * Table of contents
 {:toc}
 
+<!-- @@author MuhammadHoze -->
 ## Introduction
 
 termiNus is an interactive Command Line Interface (CLI) task manager for undergraduate students in NUS. 
@@ -52,7 +53,8 @@ If you plan to use IntelliJ IDEA (highly recommended):
 1. Learn the design
    * When you are ready to start coding, we recommend that you refer to [termiNus's architecture](#architecture-diagram)
    to get a better idea of the overall design.
-   
+<!-- @@author --> 
+ 
 ## Design
 
 <!-- @@author iamchenjiajun -->
@@ -332,11 +334,15 @@ Undergraduate students of National University of Singapore who:
 - wants a timetable planner for easy reference.
 - are lazy to create separate module folders every semester.
 - wish to calculate their CAP.
+<!-- @@author -->
 
+<!-- @@author MuhammadHoze -->
 #### Value proposition
 termiNus is an application which helps NUS undergraduates to better manage their school life, by providing daily task or
 borrowed books tracking, and module-related functions. This increase users' efficiency and make their life more organized.
-
+<!-- @@author -->
+ 
+<!-- @@author MuhammadHoze -->
 ### User Stories
 | Version | Priority | As a ... | I want to ... | So that I can ...|
 | -------- | ---------- | ---------- | --------------- | ------------------ |
@@ -357,8 +363,9 @@ borrowed books tracking, and module-related functions. This increase users' effi
 | v2.0 | * | student | login with a password | my system is protected |
 
 **Take note** : `*` Low priority (Unlikely to implement) , `**` Medium priority (Consider implementing) ,  `***` High priority (Must implement)
- <!-- @@author -->
+<!-- @@author -->
 
+<!-- @@author MuhammadHoze -->
 ### Non-Functional Requirements
 
 1. Should work on any *mainstream OS* as long as it has `Java 11` or above installed.
@@ -366,7 +373,9 @@ borrowed books tracking, and module-related functions. This increase users' effi
 2. Should be able to respond to any command in less than 2 seconds.
 
 3. A user should be able to complete majority of tasks faster using CLI than GUI.
+<!-- @@author -->
 
+<!-- @@author MuhammadHoze -->
 ### Glossary
 
 **CI** - Continuous Integration <br>
@@ -379,6 +388,7 @@ borrowed books tracking, and module-related functions. This increase users' effi
 **SLOC** - Source Lines of Code <br>
 **DRY** - Don't Repeat Yourself *(Every piece of knowledge must have a single, unambiguous, authoritative representation within a system)* <br>
 **CAP** - Cumulative Average Point
+ <!-- @@author -->
 
 ## Appendix: Instructions for manual testing
 Below are the steps required for manual testing of termiNus
