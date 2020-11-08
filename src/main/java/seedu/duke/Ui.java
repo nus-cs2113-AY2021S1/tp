@@ -11,6 +11,7 @@ import seedu.duke.calendar.task.Deadline;
 import seedu.duke.calendar.task.Task;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -256,15 +257,21 @@ public class Ui {
     public static void printAddMessage(CalendarList calendarList, boolean isTask) {
         assert calendarList != null;
         String calendarItem;
+        /* - 1 is catered for array list's index starting from 0. */
+        int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
+
         if (isTask) {
             calendarItem = "task";
+            if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Deadline
+                    && calendarList.getCalendarList().get(lastCalendarItemIndex).getDate().isBefore(LocalDate.now())) {
+                System.out.println("WARNING! The deadline has already passed! "
+                        + "May be you want to double confirm? Good Luck!\n");
+            }
         } else {
             calendarItem = "event";
         }
         System.out.println("Got it. I've added this " + calendarItem + ":");
 
-        /* - 1 is catered for array list's index starting from 0. */
-        int lastCalendarItemIndex = calendarList.getCalendarList().size() - 1;
         /* condition checker; only Lecture, Lab and Tutorial will print the recurring description*/
         if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Lecture) {
             System.out.println(calendarList.getCalendarList().get(lastCalendarItemIndex).getRecurringDescription());

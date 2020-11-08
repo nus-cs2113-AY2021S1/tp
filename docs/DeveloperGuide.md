@@ -331,9 +331,8 @@ There are two ways to run tests.
   - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
 <!-- @@author -->
-### Configuration guide
 
-### DevOps guide
+## DevOps guide
 
 ### 1. Build automation
 This project uses Gradle for **build automation and dependency management.**
