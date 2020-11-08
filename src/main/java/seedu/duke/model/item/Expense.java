@@ -14,7 +14,7 @@ public class Expense extends Item {
     private final double value;
     private String currency;
     private LocalDate date;
-    private LocalDate now = LocalDate.now();
+    private LocalDate now;
 
     /**
      * Constructor used when adding an expense item.
@@ -27,6 +27,7 @@ public class Expense extends Item {
         super(description);
         this.value = value;
         this.currency = "SGD";
+        now = LocalDate.now();
         this.date = now;
     }
 
