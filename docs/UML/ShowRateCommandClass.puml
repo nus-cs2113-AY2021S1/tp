@@ -4,7 +4,7 @@ show member
 skinparam arrowThickness 1.1
 
 class "{abstract} \n Command" as Command LOGIC_COLOR {
-    + {abstract} isExist() : String
+    + {abstract} isExit() : String
     + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
 }
 
@@ -36,7 +36,7 @@ class ShowRateCommand LOGIC_COLOR {
     - hardPercentage : Double
     - cannotAnswerPercentage : Double
     - computePercentage(Chapter, Ui) : int
-    + isExist() : void
+    + isExit() : void
 }
 
 Command <|-right[LOGIC_COLOR_T4]- ShowRateCommand
