@@ -87,6 +87,8 @@ What you should see:
 
 ![about](./images/about.png)
 
+<div style="page-break-after: always;"></div>
+
 
 ### 3.4. Viewing available commands: `help`
 
@@ -101,7 +103,6 @@ What you should see:
 
 ![help](./images/help.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 3.5. Listing all topics: `topics`
 
@@ -317,6 +318,8 @@ What you should see:
 
 ![noteadd](./images/noteadd.png)
 
+<div style="page-break-after: always;"></div>
+
 
 ### 3.14. Deleting a note: `note delete`
 
@@ -331,7 +334,6 @@ What you should see:
 
 ![notedelete](./images/notedelete.png)
 
-<div style="page-break-after: always;"></div>
 
 ### 3.15. Listing out notes: `note list`
 
@@ -346,6 +348,7 @@ What you should see:
 
 ![notelist](./images/notelist.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.16. Exiting the program: `exit`
 
@@ -455,6 +458,9 @@ data might be erased.
 - Do refrain from adding duplicate questions because you can already re-attempt the same question if you start a quiz from the topic the question is from.
 - If duplicate questions are added, then you might find that the same question might appear more than once in your quiz.
 
+<div style="page-break-after: always;"></div>
+
+
 **Q7**: What happens if I modify the user data in `user.json`?
 
 **A7**: If you wish to modify the user data, the application may not be able to load it successfully. You will 
@@ -504,7 +510,6 @@ A new file will be created on start up.
 If the above fixes do not work please download `data.zip` from the [release page](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases) again and use its contents as the `data`
 folder.
 
-<div style="page-break-after: always;"></div>
 
 ## 7. Glossary
 
