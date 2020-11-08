@@ -88,6 +88,9 @@ public class FreqStorage extends Storage {
             int currInt = 0;
             try {
                 currInt = Integer.parseInt(fileScanner.nextLine());
+                if (currInt < 0) {
+                    isCorrupted = true;
+                }
             } catch (NumberFormatException e) {
                 isCorrupted = true;
                 initialiseFile();
