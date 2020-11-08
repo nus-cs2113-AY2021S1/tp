@@ -437,17 +437,16 @@ Acronym | Full form | Meaning
 **DRY** | Don't Repeat Yourself | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
 **CAP** | Cumulative Average Point | The weighted average grade point of all modules taken by a student
  
-<!-- @@author Cao-Zeyu -->
 ## Appendix: Instructions for manual testing
 Below are the steps required for manual testing of termiNus
-
+<!-- @@author Cao-Zeyu -->
 ### Launch and shutdown
-1. Initial launch <br> 
-    - Download the jar file and copy to an empty folder.
-    - Open a command line window in the same directory and type `java -jar termiNus.jar` to launch.
-    
+1. Initial launch <br>
+    1. Download the latest version of `termiNus` from [here](https://github.com/AY2021S1-CS2113-T14-3/tp/releases/latest) 
+    and copy the jar file to an empty folder.
+    2. Open a command line window in the same directory and launch termiNus by typing `java -jar termiNus.jar` and press enter.
 2. Shutdown <br>
-    - Input `bye` to exit the program.
+    1. Input `bye` to exit the program.
 
 ### Adding items
 1. Adding a task
@@ -489,8 +488,12 @@ Below are the steps required for manual testing of termiNus
       `10 Dec 2020`.
       
 6. Adding an expense item
-    - Test case: `spend ....` <br>
-      Expected: ...
+    - Test case: `spend lunch v/4 currency/SGD date/2020-11-08` <br>
+      Expected: a `4.00` `SGD` expense on `lunch` on `Sunday, November 8,2020` is added to the expense list.
+    - Test case: `spend book v/15`
+      Expected: a `15.00` `SGD` expense on `book` on the current day is added to the expense list. 
+      (By default, if `currency/` and `date/` arguments are not specified, termiNus will assume the currency is `SGD` 
+      and the date is the current day.)
       
 ### Creating module folders
 - Test case: `makefolders` <br>
@@ -531,7 +534,13 @@ Below are the steps required for manual testing of termiNus
       
 5. Displaying expenses
     - Test case: `list expenses` <br>
-      Expected: the complete list of expenses is displayed.
+      Expected: the complete list of expenses is displayed, followed by the total expenses calculated for 
+      the current day, week, month, and year.
+    - Test case: `list expenses date/2020-11-09` <br>
+      Expected: the list of expenses on `Sunday, November 8, 2020` is displayed, followed by the total expenses 
+      caculated for the given day.
+    - Test case: `list expenses for/week` <br>
+      Expected: the list of expenses for the current week is displayed.
 
 ### Deleting items
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
@@ -582,6 +591,11 @@ Prerequisite: list the desired item list using `list` command. Multiple items in
       
     - Test case: `delete expense 10` <br>
       Expected: an error message is printed, since the expense index does not exist.
+    - Test case: `delete expenses date/2020-11-09` <br>
+      Expected: all the expenses on `Sunday, November 8, 2020` are removed from the expense list.
+    - Test case: `delete expense date/2020-11-09` <br>
+      Expected: an error message is printed indicating invalid index, since the delete command for expenses on a certain
+      day should be `expenses` instead of `expense` in the input.
 
 ### Marking an item as done
 Prerequisite: list the desired item list using `list` command. Multiple items in the list.
@@ -634,4 +648,5 @@ Prerequisite: list the complete task list using `list` command. Multiple tasks i
   
 ### Getting help
 - Test case: `help` <br>
-  Expected: all the available commands, and their usages are displayed in the help message.
+  Expected: all the available commands and their usages are displayed in the help message.
+ <!-- @@author -->
