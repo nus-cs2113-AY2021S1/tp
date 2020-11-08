@@ -306,6 +306,7 @@ borrowed books tracking, and module-related functions. This increase users' effi
 | v2.0 | *** | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link | 
 | v2.0 | *** | student | add modules and calculate my CAP| have a better projection of my grades and efforts |
 | v2.0 | * | student | login with a password | my system is protected |
+
 **Take note** : `*` Low priority (Unlikely to implement) , `**` Medium priority (Consider implementing) ,  `***` High priority (Must implement)
  <!-- @@author -->
 
