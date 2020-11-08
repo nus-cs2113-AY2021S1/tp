@@ -17,11 +17,16 @@ import seedu.eduke8.exception.Eduke8Exception;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static seedu.eduke8.exception.ExceptionMessages.*;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_INCORRECT_COMMAND;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_QUIZ_TIMER_NEGATIVE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_NFE;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_DELETE_IOB_ERROR;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_NOTE_WRONG_FORMAT;
+import static seedu.eduke8.exception.ExceptionMessages.ERROR_UNRECOGNIZED_COMMAND;
 
 /**
  * Parses user input from the main menu, in order to execute the correct option.
