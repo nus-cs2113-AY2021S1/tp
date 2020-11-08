@@ -1,4 +1,4 @@
-package seedu.duke.filters;
+package seedu.duke.wordlist.wordfilter;
 
 import seedu.duke.constants.FluffleMessages;
 import seedu.duke.wordlist.WordList;
@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
  */
 public class WordsFilter {
 
-    public static ArrayList<Words> filteredWords = new ArrayList<>();
     private static final ArrayList<Words> WORD_LIST = WordList.getWordList();
     private static final Logger LOGGER = Logger.getLogger("WordsFilter");
 
@@ -27,10 +26,10 @@ public class WordsFilter {
      */
     public static void filterByType(boolean isNewFilter, String[] types) {
         if (isNewFilter) {
-            filteredWords.clear();
+            FilterList.filterWords.clear();
             addTagsToFilteredList(FilterType.WORD_TYPE, types);
         } else {
-            filteredWords = (ArrayList<Words>) filteredWords.stream()
+            FilterList.filterWords = (ArrayList<Words>) FilterList.filterWords.stream()
                     .filter((w) -> Arrays.asList(types).contains(w.getType()))
                     .collect(Collectors.toList());
         }
@@ -44,7 +43,7 @@ public class WordsFilter {
      */
     public static void filterByStartingString(boolean isNewFilter, String[] startStrings) {
         if (isNewFilter) {
-            filteredWords.clear();
+            FilterList.filterWords.clear();
             addTagsToFilteredList(FilterType.STARTING_STRING, startStrings);
         } else {
             ArrayList<Words> wordsToRemove = new ArrayList<>();
@@ -61,7 +60,7 @@ public class WordsFilter {
      */
     public static void filterByIncludedString(boolean isNewFilter, String[] includedStrings) {
         if (isNewFilter) {
-            filteredWords.clear();
+            FilterList.filterWords.clear();
             addTagsToFilteredList(FilterType.INCLUDING_STRING, includedStrings);
         } else {
             ArrayList<Words> wordsToRemove = new ArrayList<>();
@@ -72,7 +71,7 @@ public class WordsFilter {
 
     private static void generateListOfRemoveWords(FilterType filterType, String[] patterns,
                                                   ArrayList<Words> wordsToRemove) {
-        for (Words word : filteredWords) {
+        for (Words word : FilterList.filterWords) {
             boolean keepsWord = false;
             for (String pattern : patterns) {
                 switch (filterType) {
@@ -105,19 +104,19 @@ public class WordsFilter {
                 switch (filterType) {
                 case WORD_TYPE:
                     if (WORD_LIST.get(i).getType().equalsIgnoreCase(string)) {
-                        filteredWords.add(WORD_LIST.get(i));
+                        FilterList.filterWords.add(WORD_LIST.get(i));
                     }
                     break;
                 case STARTING_STRING:
                     if (WORD_LIST.get(i).getDescription().startsWith(string)
-                            && !filteredWords.contains(WORD_LIST.get(i))) {
-                        filteredWords.add(WORD_LIST.get(i));
+                            && !FilterList.filterWords.contains(WORD_LIST.get(i))) {
+                        FilterList.filterWords.add(WORD_LIST.get(i));
                     }
                     break;
                 case INCLUDING_STRING:
                     if (WORD_LIST.get(i).getDescription().contains(string)
-                            && !filteredWords.contains(WORD_LIST.get(i))) {
-                        filteredWords.add(WORD_LIST.get(i));
+                            && !FilterList.filterWords.contains(WORD_LIST.get(i))) {
+                        FilterList.filterWords.add(WORD_LIST.get(i));
                     }
                     break;
                 default:
@@ -129,8 +128,8 @@ public class WordsFilter {
 
     private static void removeRedundantWords(ArrayList<Words> wordsToRemove) {
         for (Words wordToRemove : wordsToRemove) {
-            while (filteredWords.contains(wordToRemove)) {
-                filteredWords.remove(wordToRemove);
+            while (FilterList.filterWords.contains(wordToRemove)) {
+                FilterList.filterWords.remove(wordToRemove);
             }
         }
     }

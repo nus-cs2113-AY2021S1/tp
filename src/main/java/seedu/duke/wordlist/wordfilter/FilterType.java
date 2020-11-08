@@ -1,7 +1,8 @@
-package seedu.duke.filters;
+package seedu.duke.wordlist.wordfilter;
 
 import seedu.duke.constants.Tags;
 import seedu.duke.exceptions.FilterCommandException;
+import seedu.duke.exceptions.FilterTypeTagMissingException;
 
 /**
  * An enumeration defining types of filter.
@@ -9,8 +10,7 @@ import seedu.duke.exceptions.FilterCommandException;
 public enum FilterType {
     WORD_TYPE,
     STARTING_STRING,
-    INCLUDING_STRING,
-    UNKNOWN;
+    INCLUDING_STRING;
 
     /**
      * Gets type of filter depending on the command entered.
@@ -19,9 +19,10 @@ public enum FilterType {
      * @return Type of filter found in the command.
      * @throws FilterCommandException When filter type is not specified in the command.
      */
-    public static FilterType getTypeOfFilter(String command) throws FilterCommandException {
+    public static FilterType getTypeOfFilter(String command)
+            throws FilterCommandException, FilterTypeTagMissingException {
         if (!command.toLowerCase().contains(Tags.TYPE_OF_FILTER_TAG)) {
-            throw new FilterCommandException();
+            throw new FilterTypeTagMissingException();
         }
 
         int indexOfTypeTag = command.indexOf(Tags.TYPE_OF_FILTER_TAG);
@@ -35,7 +36,6 @@ public enum FilterType {
         } else if (cutCommand.toLowerCase().trim().startsWith(Tags.INCLUDE_TAG)) {
             filterType = FilterType.INCLUDING_STRING;
         } else {
-            filterType = FilterType.UNKNOWN;
             throw new FilterCommandException();
         }
 

@@ -1,6 +1,5 @@
 package seedu.duke.functions;
 
-import seedu.duke.bunny.Bunny;
 import seedu.duke.bunnylist.BunnyList;
 import seedu.duke.bunnylist.DeleteBunny;
 import seedu.duke.bunnylist.GenBunny;
@@ -20,11 +19,11 @@ import seedu.duke.exceptions.MissingFilterOptionsException;
 import seedu.duke.exceptions.NameException;
 import seedu.duke.exceptions.NoFilteredItemsException;
 import seedu.duke.exceptions.WrongClearCommandFormat;
-import seedu.duke.filters.FilterCommandSlicer;
-import seedu.duke.filters.FilterExecutor;
-import seedu.duke.filters.FilterList;
+import seedu.duke.wordlist.wordfilter.FilterCommandSlicer;
+import seedu.duke.wordlist.wordfilter.FilterExecutor;
+import seedu.duke.wordlist.wordfilter.FilterList;
 import seedu.duke.names.Names;
-import seedu.duke.reminder.WritingReminder;
+import seedu.duke.writing.WritingReminder;
 import seedu.duke.ui.UI;
 import seedu.duke.wordlist.WordList;
 import seedu.duke.writing.WritingList;
@@ -80,11 +79,7 @@ public class CommandExecutor {
             WordList.listWords();
             break;
         case FILTER_WORDS:
-            try {
-                FilterExecutor.executeFilterCommand(userInput);
-            } catch (FilterCommandException e) {
-                System.out.println(FluffleMessages.FILTER_UNKNOWN_TYPE);
-            }
+            FilterExecutor.executeFilterCommand(userInput);
             break;
         case LIST_FILTER:
             int printLimit = FilterCommandSlicer.getWordPrintLimitFromListFilterCommand(userInput);

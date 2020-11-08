@@ -1,4 +1,4 @@
-package seedu.duke.reminder;
+package seedu.duke.writing;
 
 import seedu.duke.constants.FluffleMessages;
 import seedu.duke.writing.WritingList;
