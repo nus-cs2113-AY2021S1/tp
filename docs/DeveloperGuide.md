@@ -438,7 +438,7 @@ correctly by the user or not.
 This value is then stored as an attribute of the question in the JSON file.
 
 Loading back the user data is done in reverse. If the boolean value of the key `correct` is `true` for a
-particular question, then the `markAsAnsweredCorrectly()` method is called on the corresponding `Question` object. This is depicted below.
+particular question, then the `markAsAnsweredCorrectly()` method is called on the corresponding `Question` object. This is depicted below in the sequence diagram.
 
 ![UserStorage::load Sequence Diagram](./images/UserStorage_load.png)
 
