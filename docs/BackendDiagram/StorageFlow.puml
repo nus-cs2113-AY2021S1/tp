@@ -2,7 +2,9 @@
 participant ":Duke" as duke
 participant ":FileManager" as fm
 activate duke
+
 duke -> fm : readAll()
+
 activate fm
 fm -> fm : readEvents()
 activate fm
