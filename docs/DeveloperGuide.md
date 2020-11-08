@@ -317,6 +317,8 @@ There are two ways to run tests.
 - Method 2: Using Gradle
   - Open a console and run the command gradlew checkstyleMain (Mac/Linux: ./gradlew checkstyleMain)  
 
+<!-- @@author -->
+
 ### Logging guide
 
 - We are using the java.util.logging package for logging.
@@ -330,7 +332,7 @@ There are two ways to run tests.
   - INFO : Information showing the noteworthy actions by the App
   - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-<!-- @@author -->
+
 
 ## DevOps guide
 
