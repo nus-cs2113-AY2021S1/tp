@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+//@@author
 public class Module {
     private String moduleCode;
     private BookmarkList bookmarks;

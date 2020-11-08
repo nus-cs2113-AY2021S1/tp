@@ -1,5 +1,3 @@
-//@@author xingrong123
-
 package seedu.zoomaster.command.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -15,6 +13,7 @@ import java.util.List;
 /**
  * Represents the user command exit the Duke program.
  */
+//@@author xingrong123
 public class AddBookmarkCommand extends Command {
     public static final String ADD_KW = "add";
     private final String description;

@@ -3,6 +3,7 @@ package seedu.zoomaster.exception;
 /**
  * Enumeration of all the types of DukeException.
  */
+//@@author
 public enum ZoomasterExceptionType {
     UNKNOWN_INPUT,
     UNKNOWN_HELP_COMMAND,

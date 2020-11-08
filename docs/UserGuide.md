@@ -195,7 +195,7 @@ Format: clear
 
 <br/><br/> 
 <a name="launchnow"></a>  
-
+<!-- @@author xingrong123-->
 #### 5.1.4 Launch bookmarks of current lesson: `launch now` (Xing Rong)
 You can launch the bookmarks of a current lesson slot in your timetable. 
 The time depends on the system time of your machine with an additional 5 minutes of buffer, 
@@ -206,9 +206,8 @@ Format: launch now
 ```
 
 You should expect to see the urls of the current or 5 minutes advance lesson slot launching
-in your native browser. Else you should see a message "no lesson now" like the screenshot below.
-
-![]()
+in your native browser. Otherwise, you should see the message `no lesson now`.
+<!-- @@author -->
 
 <br/><br/> 
 <!-- @@author fchensan -->
@@ -351,17 +350,9 @@ Format: launch {INDEX/DESCRIPTION}
 ``` 
 
 Example of usage:  
-* `launch 1`
-![]()
+* `launch 1`  
 * `launch cs2113t-website`  
-![]()
-* `launch abc`
-![]()
-  
-Else you should see a message "No bookmarks contain the specified keyword!" like the screenshot below.
-![]()
-
-
+* `launch abc`  
 
 
 <br/>
@@ -415,7 +406,7 @@ Example of usage:
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20lesson%20now%20indicator.png?raw=true) <br></br><br></br>
 
 <!-- @@author -->
-
+<!-- @@author xingrong123-->
 <br/><br/>
 <a name="showmoduledetails"></a>
 #### 5.3.2 Show module and slot details: `show` (Xing Rong)
@@ -429,23 +420,14 @@ and using the `bookmarks` keyword will show the bookmarks which are saved in the
 >
 ```
 Format (show module details): show {MODULE} bookmarks(optional)
-
-Format (show slot details): show {MODULE} {INDEX} bookmarks(optional)
 ```
 
 Example of usage:   
-* `show cs2113t`
-![]()
+* `show CS2113T`  
+![](images/showTimetableCommand/showmoduleoutput.PNG)  
 
-* `show cs2113t bookmarks`
-![]()
-
-* `show cs2113t 1`
-![]()
-
-* `show cs2113t 1 bookmarks`
-![]()
-
+* `show CS2113T bookmarks`  
+![](images/showTimetableCommand/showmodulebookmarksoutput.PNG)
 
 <br/><br/> 
 <a name="addtimeslot"></a>
@@ -496,42 +478,36 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
 Example of usage:   
 
 * Adding a module  
-input:  
-![](./images/addmoduleinput.PNG)  
+input: `add CS2113T`  
 output:  
-![](./images/addbookmarktomoduleoutput.PNG)  
-
+![](images/addSlotCommand/addmoduleoutput.PNG)  
 
 * Adding a slot to a module  
-input:  
-![](./images/addslottomoduleinput.PNG)  
+input: `add CS2102 tutorial fri 10:00 12:00`  
 output:  
-![](./images/addslottomoduleoutput.PNG)  
+![](images/addSlotCommand/addslottomoduleoutput.PNG)  
 
 * Adding a bookmark to a module  
-input:  
-![](./images/addbookmarktomoduleinput.PNG)  
+input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
 output:  
-![](./images/addbookmarktomoduleoutput.PNG)  
+![](images/addSlotCommand/addbookmarktomoduleoutput.PNG)  
 
 * Adding a bookmark to a slot  
-input:  
-![](./images/addbookmarktoslotinput.PNG)  
+input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
 output:  
-![](./images/addbookmarktoslotoutput.PNG)  
+![](images/addSlotCommand/addbookmarktoslotoutput.PNG)  
 
 * Chaining commands  
-input:  
-![](./images/addchaincommandinputnew.PNG)  
+input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
 output:  
 (The indentation of each line of the output shows the relationships between the components.
 In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
 higher than the previous line. This means that the bookmark is added to that lecture slot.
 Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
 which suggests that the bookmark is added to the module CG2271.)  
-![](./images/addchaincommandoutput.PNG)  
+![](images/addSlotCommand/addchaincommandoutput.PNG)  
 result:  
-![](./images/addresult.PNG)
+![](images/addSlotCommand/addresult.PNG)
   
 
 
@@ -551,7 +527,7 @@ Deletes module, time slot or their bookmarks.
 
 > :bangbang:
 >* You can only delete a module that is listed on the NUSMods website. 
->You can see the [command format](#command_format) for more information.
+> You can see the [command format](#command_format) for more information.
 
 ```
 Format (deleting a module): delete {MODULE}
@@ -566,15 +542,11 @@ Format (deleting bookmarks of a slot of a module): delete {MODULE} {INDEX} bookm
 * Deleting bookmarks will delete all bookmarks associated with the module or slot.
 
 Example of usage:   
-* `delete cs2113t`  
-![]()
-* `delete cs2113t 1` 
-![]()
-* `delete cs2113t bookmarks` 
-![]()
-* `delete cs2113t 1 bookmarks` 
-![]()
-
+* `delete CS2113T` 
+* `delete CG2271 1` 
+* `delete CS2113T bookmarks` 
+* `delete CS2113T 1 bookmarks` 
+<!-- @@author -->
 <br/><br/> 
 
 <a name="edittimeslot"></a>
@@ -607,8 +579,9 @@ Example of usage:
 * `edit time mon 1 fri 10:00 12:00`
 <br/><br/> 
 
+<!-- @@author xingrong123-->
 <a name="launchtimeslot"></a>
-#### 5.3.6 Launch bookmarks from module, slot: `launch`  
+#### 5.3.6 Launch bookmarks from module, slot: `launch` (Xing Rong)  
 Launches the bookmarks of slots or the bookmarks of a module
 
 > :bangbang:
@@ -631,7 +604,10 @@ Example of usage:
 * `launch CS2113`  
 * `launch CS2113 2`
 
+<!-- @@author -->
+
 <br>
+
 
 <a name="plannermode"></a>  
 ### 5.4. Planner Mode  

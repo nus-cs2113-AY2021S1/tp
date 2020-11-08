@@ -1,5 +1,3 @@
-//@@author fchensan
-
 package seedu.zoomaster.command.settings;
 
 import seedu.zoomaster.Ui;
@@ -11,6 +9,7 @@ import seedu.zoomaster.command.Command;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.slot.Timetable;
 
+//@@author fchensan
 public class ShowSettingsCommand extends Command {
     public static final String SHOW_KW = "showsettings";
 

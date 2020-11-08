@@ -33,16 +33,15 @@ import static org.fusesource.jansi.Ansi.Color.WHITE;
 import static org.fusesource.jansi.Ansi.Color.YELLOW;
 import static org.fusesource.jansi.Ansi.ansi;
 
-//@@author
 /**
  * Represents the user interface on the command line and deals with interactions with the user.
  */
+//@@author Speedweener
 public class Ui {
     public static final String NEW_LINE = System.lineSeparator();
     private static final String LINE = "____________________________________________________________" + NEW_LINE;
     private Scanner scanner;
 
-    //@@author Speedweener
     private String logo2 =
              "                                                                                                 \n"
             + "                                  ████████████████████████████                                   \n"

@@ -10,6 +10,7 @@ import seedu.zoomaster.slot.Timetable;
 import java.time.LocalTime;
 import java.util.List;
 
+//@@author xingrong123
 public class LaunchNowCommand extends Command {
     public static final String LAUNCH_NOW_KW = "launch now";
 
