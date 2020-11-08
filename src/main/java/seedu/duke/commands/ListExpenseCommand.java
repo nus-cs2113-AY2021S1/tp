@@ -13,7 +13,6 @@ import seedu.duke.parser.Parser;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -81,7 +80,10 @@ public class ListExpenseCommand extends Command {
      * @throws DukeException when there are invalid arguments.
      */
     public static ListExpenseCommand createListExpenseCommand(String commandString) throws DukeException {
-        ArrayList<String> allowedArguments = new ArrayList(Arrays.asList("currency", "date", "for"));
+        ArrayList<String> allowedArguments = new ArrayList<>();
+        allowedArguments.add("currency");
+        allowedArguments.add("date");
+        allowedArguments.add("for");
         if (commandString.length() == 0) {
             return new ListExpenseCommand();
         }
