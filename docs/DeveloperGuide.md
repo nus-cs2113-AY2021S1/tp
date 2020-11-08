@@ -119,8 +119,18 @@ different key-value pairs. This ensures that the code follows DRY principles.
 - The regular expressions parsing means that we do not need to manually parse every different command with different
 arguments, thus reducing code complexity and SLOC.
 
-<!-- @@author -->
+<!-- @@author iamchenjiajun -->
 ### Command component
+
+The `Command` component represents an abstract object with state that corresponds to a single line of the user's input.
+
+The `Command` component is inherited by other subclasses such as `AddCommand` and `DeleteCommand`.
+
+The `Command` object:
+- Modifies the state of `Model` object which depends on the state and type of `Command` object.
+- Exposes its `execute()` method so that it can be passed around before the `Command` is executed.
+- Is executed by the `Duke` object.
+- Prints the output to the user through the `Ui` component.
 
 <!-- @@author GuoAi -->
 ### Storage component  
