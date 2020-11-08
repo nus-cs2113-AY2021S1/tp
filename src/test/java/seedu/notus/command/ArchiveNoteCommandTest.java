@@ -67,7 +67,7 @@ class ArchiveNoteCommandTest {
         Note testNote1 = new Note("Default", content, true, false, tag);
         Note testNote2 = new Note("TestNote1", content, false, false);
         Note testNote3 = new Note("TestNote2", content, false, false, tagSet);
-        Note testNote4 = new Note("Random Text", content, true, false, tagSet);
+        Note testNote4 = new Note("random text", content, true, false, tagSet);
 
         notebook.addNote(testNote1);
         notebook.addNote(testNote2);
@@ -78,8 +78,7 @@ class ArchiveNoteCommandTest {
             storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/Default.txt");
             storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/TestNote1.txt");
             storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/TestNote2.txt");
-            storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/Random Text.txt");
-
+            storageManager.createFile(FOLDER_DIR + NOTES_DIR + "/random text.txt");
         } catch (IOException e) {
             // not sure what to do here
         }
