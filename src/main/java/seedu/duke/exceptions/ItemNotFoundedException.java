@@ -1,4 +1,4 @@
 package seedu.duke.exceptions;
 
-public class ItemNotFoundedException extends Exception{
+public class ItemNotFoundedException extends Exception {
 }

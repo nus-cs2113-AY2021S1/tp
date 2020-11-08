@@ -1,6 +1,6 @@
 package seedu.duke.storage;
 
-import seedu.duke.exceptions.FilePathInvalidException;
+import seedu.duke.exceptions.storageexceptions.FilePathInvalidException;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -2,7 +2,7 @@ package seedu.duke.writing;
 
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.storage.FileFunctions;
-import seedu.duke.exceptions.FileEmptyException;
+import seedu.duke.exceptions.storageexceptions.FileEmptyException;
 import seedu.duke.exceptions.ItemNotFoundedException;
 
 import java.lang.invoke.WrongMethodTypeException;
@@ -16,7 +16,6 @@ import java.io.File;
 import static seedu.duke.Duke.user;
 
 //import static seedu.duke.Duke.writings;
-import static seedu.duke.Duke.writings;
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.TYPE;
 import static seedu.duke.commands.CommandChecker.POEM;
@@ -34,10 +33,9 @@ import static seedu.duke.constants.FluffleMessages.CLEAR_DATA_MESSAGE;
 import static seedu.duke.constants.FluffleMessages.EMPTY_WRITING_MESSAGE;
 import static seedu.duke.constants.FluffleMessages.SUCCESSFUL_ADD_WRITING_TO_DATABASE;
 import static seedu.duke.constants.FluffleMessages.TYPE_COMMAND_INSTRUCTION;
-import static seedu.duke.functions.CommandExecutor.executeCommand;
-import static seedu.duke.parsers.Parsers.getUserInput;
+import static seedu.duke.commands.CommandExecutor.executeCommand;
+import static seedu.duke.common.Parsers.getUserInput;
 import static seedu.duke.constants.DataFileConvention.MAX_NUM_WRITINGS;
-import static seedu.duke.storage.WritingsLoader.recordListToFile;
 
 public class WritingList {
 

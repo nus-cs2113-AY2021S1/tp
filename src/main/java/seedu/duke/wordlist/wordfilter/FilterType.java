@@ -1,8 +1,8 @@
 package seedu.duke.wordlist.wordfilter;
 
 import seedu.duke.constants.Tags;
-import seedu.duke.exceptions.FilterCommandException;
-import seedu.duke.exceptions.FilterTypeTagMissingException;
+import seedu.duke.exceptions.wordexceptions.FilterCommandException;
+import seedu.duke.exceptions.wordexceptions.FilterTypeTagMissingException;
 
 /**
  * An enumeration defining types of filter.
