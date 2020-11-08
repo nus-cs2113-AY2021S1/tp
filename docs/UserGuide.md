@@ -264,7 +264,7 @@ The users will include the params that they wish to modify.
 
 >Syntax
 
-    edit /id {INDEX} {{PARAM_TYPE} {PARAM}} ... 
+    edit /id {INDEX} {PARAM_TYPE} {PARAM} ... 
         
 Param Type| Param | Param Format
 ----------|-------|------------|
@@ -809,7 +809,7 @@ No. | Feature | Syntax |
 No. | Feature | Syntax |
 ----|---------|---------|
 1.|New Entry|_new /time {HHMM} /desc {STRING} /cat {STRING:CATEGORY} -[i/e]_|
-2.|Edit Entry|_edit /id {INDEX} {{PARAM_TYPE} {PARAM}}..._|
+2.|Edit Entry|_edit /id {INDEX} {PARAM_TYPE} {PARAM} ..._|
 3.|list Entries|_list_|
 4.|Delete Entry|_delete /id {INDEX}_|
 5.|List Transaction Categories|_cat_|
