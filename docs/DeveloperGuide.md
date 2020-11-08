@@ -122,7 +122,7 @@ Given below is the general architecture of our Word Manager Component.
 ![WordManagerComponent](graphics/diagrams/WordManagerComponent.PNG)
 <p align = "center"><i><b>Figure 2: Word Manager Architecture</b></i></p>
 
-In Fluffle, the words list is stored in the local hard drive location data/words.txt. Fluffle can hold three types of word: Noun, Verb and Adjective. The operations that can be done on the words list are:
+In Fluffle, the words list is stored in the local hard drive location `data/words.txt`. Fluffle can hold three types of word: `Noun`, `Verb` and `Adjective`. The operations that can be done on the words list are:
 - Viewing the words list.
 - Getting three random words.
 - Filtering words (by word types or by substrings).
