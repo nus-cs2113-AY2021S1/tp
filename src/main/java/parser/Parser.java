@@ -94,6 +94,8 @@ public abstract class Parser {
     public static final String REMIND = "reminder";
     public static final String STUDY_TIME = "studyTime";
     public static final String SELF_STUDY = "selfStudy";
+    public static final String REPEAT = "repeat";
+    public static final String ALL = "all";
     public static final String AUTO_CLEAR = "autoclear";
 
     /**
