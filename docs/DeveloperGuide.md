@@ -585,25 +585,25 @@ The following are a few testcases to try out.
 #### 3.5.2. Starting a quiz
 
 1. Giving quiz commands with different input formats
-    1. Test case: `quiz n/2 t/oop s/10`
+    1. Test case: `quiz n/2 t/oop s/10` <br>
        Expected: Starts a quiz successfully ith 2 questions from the topic of [OOP](#34-glossary) and a time limit for 10 seconds for each question.
-    2. Test case: quiz n/2 t/oop
+    2. Test case: `quiz n/2 t/oop` <br>
        Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
-    3. Test case: quiz n/2 hi t/oop s/5   
+    3. Test case: `quiz n/2 hi t/oop s/5` <br>   
        Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
-    4. Other ways to start quiz in wrong format: Use the quiz command but give insufficient inputs or invalid inputs
+    4. Other ways to start quiz in wrong format: Use the quiz command but give insufficient inputs or invalid inputs <br>
        Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
        
 2. Trying to start a quiz with invalid inputs
-   1. Test case: quiz n/2 t/oop a/10
+   1. Test case: `quiz n/2 t/oop a/10` <br>
       Expected: Quiz will not start. Error message will show and the ideal format structure will be displayed to user.
-   2. Test case: quiz n/2 t/oop s/0
+   2. Test case: `quiz n/2 t/oop s/0` <br>
       Expected: Quiz will not start. Error message will show to prompt user to give a valid time limit.
-   3. Test case: quiz n/2 t/none s/5
+   3. Test case: `quiz n/2 t/none s/5` <br>
       Expected: Quiz will not start. Error message will tell user that the topic does not exist in E-Duke-8 and where they can find the available topics.
-   4. Test case: quiz n/0 t/oop s/5
+   4. Test case: `quiz n/0 t/oop s/5` <br>
       Expected: Quiz will not start. Error message will tell user to specify more than 0 quiz questions.
-   4. Other ways to start quiz in wrong format: Use the quiz command but give insufficient inputs or invalid inputs
+   5. Other ways to start quiz in wrong format: Use the quiz command but give insufficient inputs or invalid inputs <br>
       Expected: Similar to previous.
 
 
