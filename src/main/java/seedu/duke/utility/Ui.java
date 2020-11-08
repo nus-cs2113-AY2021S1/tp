@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Ui {
 
     public static final String SAVE_DIRECTORY = "data/userData.txt";
+    public static final String TAB_INDENTATION = "\t";
 
     private Scanner scan;
 
@@ -43,7 +44,7 @@ public class Ui {
         printLine();
         System.out.println("Welcome to WatchNext\n");
         printDailyWatchTracking();
-        System.out.println("Type " + ("help") + " to get started!\n");
+        System.out.println("Type " + "help" + " to get started!\n");
     }
 
     /**
@@ -58,7 +59,7 @@ public class Ui {
      */
     public static void printByeMessage() {
         printSavedList();
-        System.out.println(" Bye. Thank you for using WatchNext <3");
+        System.out.println("Bye. Thank you for using WatchNext <3");
         printLine();
     }
 
@@ -130,41 +131,41 @@ public class Ui {
 
         System.out.println(exampleIcon);
         System.out.println("Example of commands for our available features:");
-        System.out.println(("help") + " -> help\n"
+        System.out.println("help" + " -> help\n"
                 + " \n"
-                + ("add") + " -> add <SHOWNAME> <SEASON> <NUMBER OF EPISODES PER SEASON SEPARATED BY COMMAS> "
+                + "add" + " -> add <SHOWNAME> <SEASON> <NUMBER OF EPISODES PER SEASON SEPARATED BY COMMAS> "
                 + "<DURATION OF EPISODE>\n"
                 + " \n"
-                + ("edit") + " -> edit <SHOWNAME>\n"
+                + "edit" + " -> edit <SHOWNAME>\n"
                 + "Thereafter you will be prompted which fields you would like to change.\n"
                 + "For example: \nname <SHOWNAME> \nseason <SEASON>  "
                 + "\nepisode <NUMBER OF EPISODES PER SEASON SEPARATED BY COMMAS>  \nduration <DURATION OF EPISODE>\n"
                 + " \n"
-                + ("list") + " -> list\n"
+                + "list" + " -> list\n"
                 + "\n"
-                + ("delete") + " -> delete <SHOWNAME>\n"
+                + "delete" + " -> delete <SHOWNAME>\n"
                 + " \n"
-                + ("addreview") + " -> addreview <SHOWNAME> <RATING> / <REVIEW>\n"
+                + "addreview" + " -> addreview <SHOWNAME> <RATING> / <REVIEW>\n"
                 + "\n"
-                + ("changereview") + " -> changereview <SHOWNAME> / <REVIEW>\n"
+                + "changereview" + " -> changereview <SHOWNAME> / <REVIEW>\n"
                 + "\n"
-                + ("deletereview") + " -> deletereview <SHOWNAME>\n"
+                + "deletereview" + " -> deletereview <SHOWNAME>\n"
                 + "\n"
-                + ("deleterating") + " -> deleterating <SHOWNAME>\n"
+                + "deleterating" + " -> deleterating <SHOWNAME>\n"
                 + "\n"
-                + ("changerating") + " -> changerating <SHOWNAME> / <NEWRATING>\n"
+                + "changerating" + " -> changerating <SHOWNAME> / <NEWRATING>\n"
                 + "\n"
-                + ("episode") + " -> episode <SHOWNAME> <EPISODE>\n"
+                + "episode" + " -> episode <SHOWNAME> <EPISODE>\n"
                 + "\n"
-                + ("season") + " -> season <SHOWNAME> <SEASON>\n"
+                + "season" + " -> season <SHOWNAME> <SEASON>\n"
                 + "\n"
-                + ("search") + " -> search <SHOWNAME>\n"
+                + "search" + " -> search <SHOWNAME>\n"
                 + "\n"
-                + ("updatetimelimit") + " -> updatetimelimit <DURATION LIMIT>\n"
+                + "updatetimelimit" + " -> updatetimelimit <DURATION LIMIT>\n"
                 + "\n"
-                + ("watch") + " -> watch <SHOWNAME>\n"
+                + "watch" + " -> watch <SHOWNAME>\n"
                 + "\n"
-                + ("bye") + " -> bye\n");
+                + "bye" + " -> bye\n");
         System.out.println("Refer to our user guide for more explanation on the format!");
         printLine();
     }
@@ -200,7 +201,7 @@ public class Ui {
      */
     public static void printShow(String showName) {
         Show show = ShowList.getShow(showName);
-        System.out.println("\t" + show.toString());
+        System.out.println(TAB_INDENTATION + show.toString());
     }
     /**
      * Prints the watch list of the user.
@@ -210,7 +211,7 @@ public class Ui {
         printLine();
         System.out.println("Your watchlist:");
         for (Show show : ShowList.showList.values()) {
-            System.out.println("\t" + show.toString());
+            System.out.println(TAB_INDENTATION + show.toString());
         }
         printLine();
     }
@@ -253,7 +254,7 @@ public class Ui {
      */
     public static void printReviewAdded(String showName) {
         printLine();
-        System.out.println("Your review for " + (showName) + " has been added.");
+        System.out.println("Your review for " + showName + " has been added.");
 
     }
 
@@ -413,7 +414,7 @@ public class Ui {
         printLine();
         System.out.println("Your shows containing the keyword: " + name + " is found, "
                 + "here is the detailed information: ");
-        System.out.println("\t" + searchResults);
+        System.out.println(TAB_INDENTATION + searchResults);
     }
 
     public static void promptOverwrite() {
