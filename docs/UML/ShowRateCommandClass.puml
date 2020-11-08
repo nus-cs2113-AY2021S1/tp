@@ -1,53 +1,50 @@
 @startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
 
-hide circle
-skinparam classAttributeIconSize 0
-
-class "{abstract} \n Command"{
-  + isExist() : String {abstract}
-  + execute() : void {abstract}
+class "{abstract} \n Command" as Command LOGIC_COLOR {
+    + {abstract} isExit() : String
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
 }
 
-class "Kaji" {
-    + run() : void
-}
-
-class "Access" {
+class "Access" MODEL_COLOR {
     + getChapter() : Chapter
 }
 
-class "CardList" {
+class "CardList" MODEL_COLOR {
     + getAllCards() : ArrayList<Card>
 }
 
-class "Ui" {
+class "Ui" UI_COLOR {
     + showToUser(String) : void
 }
 
-class "Chapter" {
+class "Chapter" MODEL_COLOR {
     - cards : CardList
     + getCards() : CardList
 }
 
-class "Card" {
+class "Card" MODEL_COLOR {
     - rating : int
     + getRating() : int
 }
 
-"{abstract} \n Command" <|-- ShowRateCommand
-ShowRateCommand : - easyPercentage : Double
-ShowRateCommand : - mediumPercentage : Double
-ShowRateCommand : - hardPercentage : Double
-ShowRateCommand : - cannotAnswerPercentage : Double
-ShowRateCommand : - computePercentage(Chapter, Ui) : int
-ShowRateCommand : + isExist() : void
+class ShowRateCommand LOGIC_COLOR {
+    - easyPercentage : Double
+    - mediumPercentage : Double
+    - hardPercentage : Double
+    - cannotAnswerPercentage : Double
+    - computePercentage(Chapter, Ui) : int
+    + isExit() : void
+}
 
-Kaji *- "{abstract} \n Command"
+Command <|-right[LOGIC_COLOR_T4]- ShowRateCommand
 
-ShowRateCommand ..> Access
-Access ..> "1" Chapter
-Chapter ..> "1" CardList
-CardList ..> "*" Card
-ShowRateCommand ..> Ui
+ShowRateCommand .down[LOGIC_COLOR_T4].> Access
+Access -down[MODEL_COLOR_T4]-> "1" Chapter
+Chapter -left[MODEL_COLOR_T4]-> "1" CardList
+CardList -left[MODEL_COLOR_T4]-> "*" Card
+ShowRateCommand .up[LOGIC_COLOR_T4].> Ui
 
 @enduml
