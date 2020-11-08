@@ -56,7 +56,7 @@ public class WatchlistCommand extends Command {
 
     /**
      * Creates a new instance of WatchlistCommand with the specified parameter.
-     * This is meant for listing watchlist.
+     * This is meant for listing all watchlist.
      *
      * @param parameter specified watchlist command type
      */
@@ -145,10 +145,10 @@ public class WatchlistCommand extends Command {
     }
 
     /**
-     * Lists all watchlist created in the workspace in a readable format.
+     * Lists all watchlist created in the current workspace in a readable format.
      *
-     * @param activeWorkspace used to retrieve all watchlist created in the workspace
-     * @return all watchlist created in the workspace
+     * @param activeWorkspace used to retrieve all watchlist in the current workspace
+     * @return details of all watchlist in the current workspace
      */
     private String listAllWatchlist(Workspace activeWorkspace) {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
