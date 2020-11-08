@@ -103,7 +103,7 @@ public class MenuParser implements Parser {
             int numOfQuestions = 0;
             String topicName = "";
             int userTimer = 0;
-            if ((commandArr.length >= 4 && (!commandArr[3].contains("/") || commandArr[4] != ""))
+            if ((commandArr.length > 4 && (!commandArr[3].contains("/") || commandArr[4].equals("")))
                     || commandArr.length < 4) {
                 return new IncorrectCommand(ERROR_QUIZ_WRONG_FORMAT);
             }
