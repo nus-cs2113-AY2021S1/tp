@@ -225,6 +225,7 @@ This section will describe the significant details of how the features in **Kaji
 
 #### 4.1.1. Add Module Feature
 (Jiayi)
+
 ##### Implementation
 The add modules feature allows the user to create new modules at Admin level.
 
@@ -261,7 +262,6 @@ The following diagram shows how the add module command feature works:
   <img src="UML/AddModuleCommand.png" width="800" alt="Sequence Diagram of add module command"/>
   <br/>Figure <>. Sequence Diagram of add module command 
 </p>
-
 
 #### 4.1.2. List Modules Feature
 (Zeyu)
@@ -391,11 +391,11 @@ Given below is an example usage scenario at Admin level and how the access modul
 
 * Step 3: The `go` command creates `GoModuleCommand` which will then be executed.
 
-* Step 4: 
+* Step 4: `GoModuleCommand#goModule()` gets the module via the method `ModuleList#get(int)` based on the index parsed by `GoCommandParser`.
+          
+* Step 5: User's current access level is set to `module` level and a new temporary `CS2113` module object is created via the method `Access#setModule(Module)`.
 
-* Step 5: 
-
-* Step 9: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
+* Step 6: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
 
 The following diagram shows how the add chapter command feature works:
 
@@ -403,10 +403,6 @@ The following diagram shows how the add chapter command feature works:
   <img src="UML/AccessModuleCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
   <br/>Figure <>. Sequence Diagram of add chapter command 
 </p>
-
-#### 4.1.6. Example of the Admin Feature
-
-#### 4.1.7. Conclusion
 
 ##### <a href="#top">Back to Top ^</a>
 
@@ -586,10 +582,6 @@ To support the Return to Admin Level Feature, `BackAdminCommand` implements the 
 * `BackAdminCommand#execute()` - Calls `Access#setModuleLevel()` to set the `Access` Object's `level` attribute's value to `adminLevel` if its current value is the `moduleLevel`
 
 The following sequence Diagrams illustrates how the Return to Admin Level Feature is executed:
-
-#### 4.2.7. Example of the Module Feature
-
-#### 4.2.8. Conclusion
 
 ##### <a href="#top">Back to Top ^</a>
 
@@ -822,12 +814,6 @@ The following diagram shows how the show overall performance feature works:
   <img src="UML/ShowRateCommand.png" width="800" alt="Sequence Diagram of show overall performance command"/>
   <br/>Figure <>. Sequence Diagram of show overall performance command 
 </p>
-
-![Sequence Diagram of show overall performance command](UML/ShowRateCommand.png)
-
-#### 4.3.7. Example of the Chapter Feature
-
-#### 4.3.8. Conclusion
 
 ##### <a href="#top">Back to Top ^</a>
 
