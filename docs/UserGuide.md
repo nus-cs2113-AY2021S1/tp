@@ -1,6 +1,6 @@
 # User Guide
 
-## Table of Contents
+## Table of Contents (Sugandha)
 
 * <a href =#intro>1. Introduction </a>
 * <a href =#start>2. Quick Start </a>
@@ -15,8 +15,8 @@
 ## 1. Introduction <a name="intro"></a>
 
 **revisED** aims to help students to revise their subjects through the creation of flashcards or tasks that have
-to be completed. The users can store the tasks under different subjects and flashcards under different topics, which can be created under the
-subjects. This application ensures that students would be
+to be completed. The users can store the tasks under different subjects and flashcards under different topics, 
+which can be created under the subjects. This application ensures that students would be
 able to revise, even if they are doing it at the last minute.
 
 This user guide provides an in-depth documentation on the installation process, the application features, and
@@ -297,7 +297,7 @@ Type help for all available commands
 ____________________________________________________________
 ```
 
-#### 3.1.8 Starting Subject Quiz: `quiz` (Muthu)
+#### 3.1.8 Starting Subject Quiz: `quiz` (Muthu) <a name="subject_quiz"> </a>
 
 Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>.
 
@@ -319,7 +319,7 @@ Expected output:
 You are about to begin the quiz for CS2113T.You have 2 minutes.
 ```
 
-#### 3.1.8 Viewing results for quizzes on a subject: `results`
+#### 3.1.9 Viewing results for quizzes on a subject: `results`
 
 This command allows you to look at the results for a subject. For more details, see <a href="#result">result</a>.
 
@@ -341,7 +341,7 @@ Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
 ```
 
-#### 3.1.9 Exporting data: `export` <a name="export-command"></a>
+#### 3.1.10 Exporting data: `export` (Chin Hang) <a name="export-command"></a>
 
 This command exports all the data of the application to an external file. For more details, see <a href="#export">Exporting Data section</a>.
 
@@ -362,7 +362,7 @@ Your data has been successfully exported to /home/guest/revised/export/data.json
 ____________________________________________________________
 ```
 
-#### 3.1.10 Saving and exiting: `bye` <a name="bye"></a>
+#### 3.1.11 Saving and exiting: `bye` <a name="bye"></a>
 
 This command will save all the data in the application.
 
@@ -534,6 +534,14 @@ Format: `delete topic [TOPIC_NUMBER]`
 have in the topic list on the command line.
 - `[TOPIC_NUMBER]` must be a **positive integer**.
 
+> 📝️️ **_NOTE:_** The TOPIC_NUMBER` of a topic is the number assigned to each topic when the user uses the 
+>list command to print out the topics.
+
+> 📝️️ **_NOTE:_** After deletion of a topic, the `TOPIC_NUMBER` of topics in the list may change.
+
+> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
+> in this subject before you delete it!
+
 Example of usage: 
 ```
 delete topic 3
@@ -548,13 +556,6 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-> 📝️️ **_NOTE:_** The TOPIC_NUMBER` of a topic is the number assigned to each topic when the user uses the 
->list command to print out the topics.
-
-> 📝️️ **_NOTE:_** After deletion of a topic, the `TOPIC_NUMBER` of topics in the list may change.
-
-> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
-> in this subject before you delete it!
 
 #### 3.2.6 Finding a topic or task: `find` <a name="subject-find"></a>
 
@@ -690,6 +691,9 @@ Format: `delete task [TASK_INDEX]`
 - `[TASK_INDEX]` must be a **positive integer**.
 - Task `[TASK_INDEX]` must **already exist in the task list**.
 
+> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
+> in this subject before you delete it!
+
 Example of usage: 
 ```
 delete task 2
@@ -703,9 +707,6 @@ ____________________________________________________________
  Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
-
-> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
-> in this subject before you delete it!
 
 #### 3.2.12 Marking a task as completed: `done`
 
@@ -732,7 +733,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.2.13 Starting Topic Quiz - `quiz` (Muthu)
+#### 3.2.13 Starting Topic Quiz - `quiz` (Muthu) <a name="topic_quiz"> </a>
 
 This type of quiz helps you to prepare for a particular topic. For more details, see section <a href =#takeQuiz>3.4.1 Taking quizzes</a>.
 
@@ -775,11 +776,16 @@ Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
 ```
 
-#### 3.2.14 Exiting the subject: `exit`
+#### 3.2.15 Exiting the subject: `exit`
 
-Exit the subjects and returns to the main level.
+Exits the subjects and returns to the main level.
 
 Format: `exit`
+
+- Use this command whenever you want to return to the subject level to work with subjects.
+
+> 📝️  **_NOTE:_** The `exit` command is not the same as the `bye` command.
+> The `bye` command saves and closes the application, and can only be accessed on the main level.
 
 Example of usage:
 ```
@@ -792,23 +798,22 @@ ____________________________________________________________
 Going back to the main menu.
 ____________________________________________________________
 ```
-> 📝️  **_NOTE:_** The `exit` command is not the same as the `bye` command.
-> The `bye` command saves and closes the application, and can only be accessed on the main level.
 
-### 3.3 Topic Level Features <a name="topic-level"> </a>
+### 3.3 Topic Level Features <a name="topic-level"> </a> (Sugandha)
 
-Flashcards can be added to take notes, in the form of questions and answers.
-These flashcards can also be used to take quizzes, which is described in the next section.
-This section describes the usage of commands that can be used to list all the available commands, 
-and add, delete and list flashcards. 
+Topic level features can only be used when the user is currently viewing a topic.
+On this level, users are able to add and delete flashcards, in the form of questions and answers.
+These flashcards can also be used to take topic or subject quizzes. For more information on subject quizzes see 
+<a href=#subject_quiz>3.1.8 Starting Subject Quiz</a> and for topic quizzes see <a href =#topic_quiz>3.2.13 Starting Topic Quiz</a>. 
+This section describes the usage of commands that can be used to add, delete and list flashcards. 
 
-> 📝️  **_NOTE:_** Flashcard commands can only be used when looking at a topic.
+#### 3.3.1 Displaying all the available commands: `help`
 
-#### 3.3.1 `help` - Displaying all commands
+Displays all available commands.    
 
-Displays all available commands. Use this command whenever you get confused  or need help to navigate the application.   
-
-Format: `help` 
+Format: `help`   
+- Use this command whenever you get confused or need help to navigate the application.
+- The application will print a list of all the functions available to you at the current level(main) on the command line.
   
 Example of usage:
 ```
@@ -826,14 +831,15 @@ delete 1:          deletes the 1st flashcard in the list
 exit:              exits the topic to return to the subject level, where you can work with tasks and topics
 ________________________________________________________________________________________________________________________
 ```
-> 📝️ ️  **_NOTE:_** Do not add extra spaces after or before help.
 
-#### 3.3.2 `list` - List all flashcards
+#### 3.3.2 Listing all flashcards: `list`
 
-The list command prints a list of all flashcards of the topic you are currently viewing. 
-This will help you to keep track of all the flashcards you have added 
-and to take note of the number of the flashcard you might want to delete.
-  
+Prints a list of all flashcards of the topic you are currently viewing. 
+
+Format: `list`  
+
+- Use this command whenever you need to see all the flashcards you have added or to take note of the index number of the flashcard you might want to delete.
+- The application will print the questions and answers of all the flashcards in your topic on the command line.
 Example of usage: 
 ```
 list
@@ -843,19 +849,27 @@ Expected output:
 
 ```
 ____________________________________________________________
-Here are the flashcard(s) under speed: 
-1.What is the formula for time?; Time = Distance/Speed.
-2.What is the difference between speed and velocity? Speed, being a scalar quantity, is the rate at which an object covers distance. On the other hand, velocity being a vector quantity, is the rate at which the position changes.
+Here are the flashcard(s) under Java: 
+1. Q: Name 3 Java primitive data types. 
+   A: short, int, long.
+2. Q: Is return 0 needed at the end of main method to indicate a successful execution? 
+   A: No, it is considered as a successful execution unless an error is signalled specifically.
+____________________________________________________________
 ```
-> 📝️ ️️ **_NOTE:_** Do not add extra spaces after or before list.
 
 #### 3.3.3 Listing all items: `list all`
 
 Prints a list of all items stored in the application.
 
 Format: `list all`
-+ The tree will show you which topic you are currently accessing.
+- Use this command whenever you need to see a list of all the subjects, topics, tasks and number of flashcards you have keyed into the application.
+- The application will print a tree on the command line, and will also show you that you are accessing the topic level of 
+a specific topic. 
 
+Example of usage:
+```
+list all
+```
 Expected output:
 
 ```
@@ -885,15 +899,18 @@ Here's a list of all items:
 ____________________________________________________________
 ```
 
-#### 3.3.4 `add` - Adding a flashcard
+#### 3.3.4 Adding a flashcard - `add`
 
-The add command allows you to add a flashcard, under the topic you are currently viewing.
+Adds a flashcard under the topic you are currently viewing.
 These flashcards can be added to take notes. 
 They are added in the form of questions and answers.
 
-Format:
-
-`add` `[QUESTION]; [ANSWER]`
+Format: `add` `[QUESTION]; [ANSWER]`
+- Use this command whenever you wish to take notes.
+- This command adds a flashcard with the question, `[QUESTION]` and the answer, `[ANSWER]`.
+- The application will print the question and answer of the flashcard you added along with the 
+total number of flashcards under the current topic.
+> 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
 
 Example of usage: 
 ```
@@ -905,37 +922,72 @@ Expected output:
 ```
 ____________________________________________________________
 Got it. I've added this flashcard:
-  What is the version of Java used in CS2113T; 11.0
-Now you have 3 flashcard in the list.
+  Q: What is the version of Java used in CS2113T
+  A: 11.0
+Now you have 3 flashcards in the list.
 ____________________________________________________________
 ```
-> 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
 
-#### 3.3.5 `delete` - Deleting a flashcard
 
-The delete command deletes the specified flashcard. 
+#### 3.3.5 Deleting a flashcard: `delete`
+
+Deletes the flashcard from the current topic, given the flashcard number.
 This can be used if you make a mistake or no longer need a flashcard.
 You can check the flashcard number from the list of flashcards, which is described next.
 
-Format:
+Format: `delete [FLASHCARD_NUMBER]`
+- Deletes the flashcard with the index number of `[TOPIC_NUMBER]`.
+- The application will print the question and answer of the flashcard you have deleted from the topic list, as well as 
+the number of flashcards you now have under the current topic on the command line.  
 
-`delete` `[FLASHCARD NUMBER]`
+> 📝️️ **_NOTE:_** The FLASHCARD_NUMBER` of a flashcard is the number assigned to each flashcard when the user uses the 
+>list command to print out the flashcards.
+
+> 📝️️ **_NOTE:_** After deletion of a flashcard, the `FLASHCARD_NUMBER` of topics in the list may change.
+
+> ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
+> in this topic before you delete it!
 
 Example of usage: 
 
-`delete 3`
+```
+delete 3
+```
 
 Expected output:
 
 ```
 ____________________________________________________________
- Noted. I've removed this flashcard:
-   What is the version of Java used in CS2113T; 11.0
- Now you have 2 flashcards in the list.
-____________________________________________________________```
+Noted. I've removed this flashcard:
+  Q: What is the version of Java used in CS2113T
+  A: 11.0
+Now you have 2 flashcards in the list.
+____________________________________________________________
 ```
 
-#### 3.3.6 `exit` TODO
+#### 3.3.6 Exiting the topic: `exit` 
+
+Exits the topic and returns the to the subject level.
+
+Format: `exit`
+
+- Use this command whenever you want to return to the subject level to work with topics and tasks.
+
+> 📝️  **_NOTE:_** The `exit` command is not the same as the `bye` command.
+> The `bye` command saves and closes the application, and can only be accessed on the main level.
+
+Example of usage:
+```
+exit
+```
+
+Expected output: 
+```
+____________________________________________________________
+Going back to the topics and tasks list.
+____________________________________________________________
+```
+
 
 ### 3.4 Other Features <a name="other-feat"></a>
 This section expands on the features that are not specific to any part of the previous sections and features that
@@ -954,11 +1006,6 @@ certain time limit. There are two types of quizzes :
 ##### Subject quiz
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
 You have 2 minutes to complete the quiz.
-
-Format: `quiz NAMEOFSUBJECT`<br>
-Example: `quiz Maths`
-
-Expected output: `You are about to begin the quiz for maths.You have 2 minutes.`
 
 ##### Topic quiz
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
@@ -1035,7 +1082,7 @@ The data is stored under the `data/` folder in the same folder where you run the
 
 Instead of storing all data in one file, **revisED** creates a folder hierarchy under `data/` following the logical structure of the
 subjects and topics added. For example, if you add a `CS2113T` subject and a `Java` topic under it, a
-`CS2113T/` folder will be created under the `data/` folder and an `Java` folder will be created under the `Maths/`
+`CS2113T/` folder will be created under the `data/` folder and an `Java` folder will be created under the `CS2113T/`
 folder, as shown in figure 3.4.1 below. 
 
 <pre>
@@ -1218,7 +1265,7 @@ ____________________________________________________________
 Adding the following deadline by `deadline project /by 18:00 07-11-2020` and using the `list` command would yield this output.
 <pre><code>
 ____________________________________________________________
-Here are the tasks(s) under maths: 
+Here are the tasks(s) under CS2113T: 
 1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
 2. [D][✘] project (by: 6:00 PM 7 Nov 2020)
 3. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
