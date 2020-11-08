@@ -45,7 +45,7 @@ allows us to create various topics with questions, options, hints and explanatio
 in the code for E-Duke-8. As such, many of the commands that manipulate the `TopicList` make 
 use of the package `java.util.ArrayList`. 
 
-The `TopicList` is used to store `Topics`. `Topics` themselves implement the interface `Displayable`. 
+The `TopicList` is used to store `Topic` objects. `Topic` objects themselves implement the interface `Displayable`. 
 
 ![TopicList](images/TopicListClassDiagram.png)
 
