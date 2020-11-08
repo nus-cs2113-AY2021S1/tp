@@ -149,6 +149,8 @@ those instances will log independently of the `LoggerCentre`.
 can be accessed in the `logs` folder.   
 <!-- @@author-->
 
+<div style="page-break-after: always;"></div>
+
 # Implementation
 ## Module-level Implementation
 * This section describes generalizable implementations that are similar across features.
@@ -310,7 +312,6 @@ depending on what kind of command it is. E.g. CreateEntryHandler handles creatin
 <div style="page-break-after: always;"></div>
 
 ## Feature-level Implementation
-&nbsp;  
 ### Main Menu
 - Loading up user data
 - Access to various features
