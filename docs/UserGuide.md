@@ -294,13 +294,13 @@ The `addreview` command allows you to add a review for a show, including adding 
  
    Expected outcome:
  
-  <img src = "images/addreview.PNG" width = "450">
+  <img src = "images/addreview.PNG" width = "650">
 
    &nbsp;
    
    Checking with the `list` command: 
    
-   <img src = "images/addreviewlist.PNG" width = "450">
+   <img src = "images/addreviewlist.png" width = "650">
    
    
 ### 4.f. `changereview` - Changing a review
@@ -339,7 +339,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
    Expected outcome: 
    
-  <img src = "images/deletereview.PNG" width = "450">
+  <img src = "images/deletereview.PNG" width = "650">
  
 
 ### 4.h. `delete` - Deletes your show
@@ -355,7 +355,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
  Input:
  
- <img src = "images/delete/input.png" width = "400">  
+ <img src = "images/delete/input.png" width = "650">  
  
   &nbsp;
 
@@ -363,7 +363,9 @@ The `deletereview` command allows you to delete a review for a show that is alre
 
  Expected outcome :
   
- <img src = "images/delete/delete.PNG" width = "450">
+
+ <img src = "images/delete/delete.PNG" width = "650">
+
 
  &nbsp;
   
@@ -380,7 +382,7 @@ The `deleterating` command deletes the rating for an existing show in the watchl
  
  Expected outcome:
   
- <img src = "images/deleterating.PNG" width = "400">
+ <img src = "images/deleterating.PNG" width = "650">
 
  &nbsp;
 
@@ -400,7 +402,7 @@ The `changerating` command changes the rating for an existing show which already
  
  Expected outcome:
   
- <img src = "images/changerating.PNG" width = "600">
+ <img src = "images/changerating.PNG" width = "650">
   
  &nbsp;
  
@@ -427,7 +429,7 @@ If you would only like to change the current season:
  
  Input:
  
-   <img src = "images/season/input.png" width = "450">
+   <img src = "images/season/input.png" width = "650">
     
    &nbsp;
  
@@ -462,7 +464,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Input: 
  
-  <img src = "images/episode/input.png" width = "450">
+  <img src = "images/episode/input.png" width = "650">
    
   &nbsp;
  
