@@ -27,14 +27,7 @@ test {
         showStandardStreams = false
     }
 }
-task Checkstyle(type: Checkstyle) {
-    configFile rootProject.file('config/checkstyle/checkstyle.xml')
-    source 'src/test/java'
-    ignoreFailures false
-    showViolations true
-    include '**/*.java'
-    classpath = files()
-}
+
 application {
     mainClassName = "seedu.duke.Duke"
 }
