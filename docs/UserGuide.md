@@ -527,8 +527,6 @@ The remaining date for the exams is printed in ascending order.
 
 Format: `countdown exams`
 
-![warning_countdown](images/warning_countdown.PNG)
-
 #### Printing countdown for deadline tasks only: 
 
 If you type `countdown deadlines`, you can see the countdown of all unfinished deadlines.
@@ -538,11 +536,17 @@ The remaining dates for the deadlines are printed in ascending order.
 
 Format: `countdown deadlines`
 
+![warning_countdown](images/warning_countdown.PNG)
+
 ### Saving the data
 
 When you close the program or you make some changes to the program such as adding an event, the data for the tasks and events 
 are automatically saved locally. So, there is no need for users to save manually.
 Next time when you open the program, all the data will automatically be loaded from the local file to the program.
+
+![saving_data](images/savingdata.png)
+
+![warning_savingdata](images/warning_savingdata.png)
 
 ### Exiting the program: 
 
