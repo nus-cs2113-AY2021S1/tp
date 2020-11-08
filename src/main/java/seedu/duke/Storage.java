@@ -120,51 +120,70 @@ public class Storage {
             case "T":
                 if (num == 4) {
                     item = new Todo(taskInFile[TASK_DESCRIPTION]);
+                } else {
+                    System.out.println("element in file is lost in " + taskInFile[TASK_DESCRIPTION]);
                 }
                 break;
             case "D":
                 if (num == 5) {
                     item = readDeadlineTask(taskInFile);
+                } else {
+                    System.out.println("element in file is lost in deadline: " + taskInFile[TASK_DESCRIPTION]);
                 }
                 break;
             case "ACT":
                 if (num >= 7) {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        System.out.println("element in file is lost in act: " + taskInFile[EVENT_MODULE_CODE]);
                         break;
                     }
                     item = readActivity(taskInFile);
+                } else {
+                    System.out.println("element in file is lost in act: " + taskInFile[DETAILS]);
                 }
                 break;
             case "LEC":
                 if (num >= 7) {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        System.out.println("date or time in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
                         break;
                     }
                     item = readLectureEvent(taskInFile);
+                } else {
+                    System.out.println("element in file is lost in lec: " + taskInFile[EVENT_MODULE_CODE]);
                 }
                 break;
             case "TUT":
                 if (num >= 7) {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        System.out.println("date or time in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
                         break;
                     }
                     item = readTutorialEvent(taskInFile);
+                } else {
+                    System.out.println("element in file is lost in tut: " + taskInFile[EVENT_MODULE_CODE]);
                 }
                 break;
             case "LAB":
                 if (num >= 7) {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        System.out.println("date or time in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
                         break;
                     }
                     item = readLabEvent(taskInFile);
+                } else {
+                    System.out.println("element in file is lost in lab: " + taskInFile[EVENT_MODULE_CODE]);
                 }
                 break;
             case "EXAM":
                 if (num >= 7) {
                     if (taskInFile[EVENT_DATE].equals("") || taskInFile[EVENT_TIME].equals("")) {
+                        System.out.println("date or time in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
                         break;
                     }
                     item = readExamEvent(taskInFile);
+                } else {
+                    System.out.println("element in file is lost in exam: " + taskInFile[EVENT_MODULE_CODE]);
                 }
                 break;
             default:
@@ -198,7 +217,8 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Exam(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid date");
+            System.out.println("Invalid exam date time" + taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+                    + " for " + taskInFile[EVENT_MODULE_CODE]);
         }
         return item;
     }
@@ -218,7 +238,8 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Lab(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid date");
+            System.out.println("Invalid lab date time " + taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+                    + " for " + taskInFile[EVENT_MODULE_CODE]);
         }
         return item;
     }
@@ -238,7 +259,8 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid date");
+            System.out.println("Invalid tutorial date time "+ taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+                    + " for " + taskInFile[EVENT_MODULE_CODE]);
         }
         return item;
     }
@@ -258,7 +280,8 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid date");
+            System.out.println("Invalid lecture date time "+ taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+                    + " for " + taskInFile[EVENT_MODULE_CODE]);
         }
         return item;
     }
@@ -278,7 +301,8 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid date");
+            System.out.println("Invalid activity date time "+ taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+                    + " for " + taskInFile[DETAILS]);
         }
         return item;
     }
@@ -296,7 +320,8 @@ public class Storage {
             date = LocalDate.parse(taskInFile[TASK_DATE].trim());
             item = new Deadline(taskInFile[TASK_DESCRIPTION], date);
         } catch (DateTimeException e) {
-            System.out.println("Invalid date");
+            System.out.println("Invalid deadline date " + taskInFile[TASK_DATE]
+                    + " for " + taskInFile[TASK_DESCRIPTION]);
         }
         return item;
     }
