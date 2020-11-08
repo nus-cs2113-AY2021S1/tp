@@ -293,8 +293,8 @@ What is your name?
 ```
 5. After entering your name, try typing the `help` command and press Enter to get started.
 6. Some example commands you can try:
-  1. `noun computer d\ a smart machine`: to add a noun to your word list.
-  1. `list word`: to view your word list.
+    1. `noun computer d\ a smart machine`: to add a noun to your word list.
+    1. `list word`: to view your word list.
 7. If you want to shutdown Fluffle, use the command `exit`.
 
 Following are the commands to help you test Fluffle manually.
@@ -318,4 +318,4 @@ On 01/12/2020, you should continue on the following writing(s):
   Title: CS2113T Final
 ```
 
-For a more specific explanation of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html)
+For a more specific explanation of the commands, visit our User Guide [here](https://ay2021s1-cs2113t-w11-4.github.io/tp/UserGuide.html).
