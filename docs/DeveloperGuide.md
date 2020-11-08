@@ -868,7 +868,7 @@ The `Bookmark` class uses three ArrayList to store bookmark entries of the user,
 
 Given below is the example usage scenario and how the `Bookmark` command behaves at each step.
 
-> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. The following example will use one-based to be consistent with the command. 
+> :bulb: The command is using one-based indexing while the program stores and recognises the zero-based indexing. The following example will use one-based to be consistent with the commands. 
 
 **Step 1:** User inputs command `bookmark`,  the application then calls `Parser#getCommand()` and passes the command to it.
 
@@ -903,7 +903,7 @@ Below is a list of bookmark operations:
 
 The sequence diagram presented below depicts the interaction between the components for running the command, bookmark -a 430.
 
-> :memo: The other options follow a similar process, only the list and info bookmark commands does not interact with StorageManager.
+> :memo: The other options follow a similar process, only the list and info bookmark commands does not interact with StorageManager. For example the delete bookmark command calls `deleteBookmarkEntry()` method and modify the bookmark entry using `Bookmark#deleteAnimeBookmark()`.
 
 ![Bookmark Add Command Sequence Diagram](images/Bookmark-Add-Sequence-Diagram.png) <br/>
 *Figure 31: Bookmark Add Command Sequence Diagram*
@@ -917,7 +917,7 @@ Listing all anime in bookmark:
 	3. InuYasha the Movie 2: The Castle Beyond the Looking Glass
 ```
 
-**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID: 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
+**Step 6:** The user executes `bookmark -d 1` command to delete the bookmark entry at bookmark ID 1. `Bookmark#deleteAnimeBookmark()` will then remove the Bookmark index from the `Bookmark`.
 
 ![Bookmark State After Delete Diagram](images/Bookmark-After-Step6.png) <br/>
 *Figure 32: Bookmark Entries After Delete*
@@ -929,7 +929,7 @@ Listing all anime in bookmark:
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 33: Bookmark Entries After Edit Episode*
 
-**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID: 1.
+**Step 8:** The user executes `bookmark 1 -n Schedule push back` command to add a note for a bookmark entry. `Bookmark#addNote()` will then add a note to the bookmark entry at bookmark ID 1.
 
 ![Bookmark State After Add Note Diagram](images/Bookmark-After-Step8.png) <br/>
 *Figure 34: Bookmark Entries After Add Note*
@@ -951,7 +951,7 @@ Notes for anime:
 1. Schedule push back
 ```
 
-**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from a bookmark entry. `Bookmark#removeNote()` will remove the note ID: 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
+**Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from the bookmark entry. `Bookmark#removeNote()` will remove the note ID 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
 ![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
 *Figure 35: Bookmark Entries After Edit Episode*
