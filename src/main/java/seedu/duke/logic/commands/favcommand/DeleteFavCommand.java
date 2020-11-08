@@ -22,6 +22,12 @@ public class DeleteFavCommand extends Command {
         super.isValid = false;
     }
 
+    /**
+     * Checks validity of index
+     *
+     * @throws CustomException If index is not a valid number
+     * @return indexNum Integer of valid index
+     */
     private int checkIndex(String index) throws CustomException {
         int indexNum;
         try {

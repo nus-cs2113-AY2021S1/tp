@@ -89,20 +89,31 @@ public class FreqStorage extends Storage {
 
         while (fileScanner.hasNext() && !isCorrupted) {
             int currInt = 0;
-            try {
-                currInt = Integer.parseInt(fileScanner.nextLine());
-                if (currInt < 0) {
-                    isCorrupted = true;
-                }
-            } catch (NumberFormatException e) {
-                isCorrupted = true;
-                initialiseFile();
-                throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
-            }
+            currInt = parseSearchFreq(fileScanner);
             BusStops.values()[index].setCount(currInt);
             index++;
         }
         handlesCorruptedFile(index);
+    }
+
+    /**
+     * Parses integer from freqList.txt.
+     *
+     * @throws CustomException If file can't be updated
+     */
+    private int parseSearchFreq(Scanner fileScanner) throws CustomException {
+        int currInt;
+        try {
+            currInt = Integer.parseInt(fileScanner.nextLine());
+            if (currInt < 0) {
+                isCorrupted = true;
+            }
+        } catch (NumberFormatException e) {
+            isCorrupted = true;
+            initialiseFile();
+            throw new CustomException(ExceptionType.FREQ_READ_FILE_FAIL);
+        }
+        return currInt;
     }
 
     /**
