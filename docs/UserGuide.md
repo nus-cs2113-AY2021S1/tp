@@ -3,12 +3,15 @@
 ## Introduction
 
 **_25HoursADay_** is a scheduling application optimized for users via a convenient yet powerful Command Line Interface (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **_25 hours a day_** can 
-schedule your tasks and events faster than traditional GUI apps.
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **_25HoursADay_** can 
+schedule your tasks and events faster than traditional GUI applications.
 
 ## Foreword
 
-25HoursADay is targeted towards students from National University of Singapore (NUS). This user guide is designed to provide documentation for potential users who will use 25HoursADay on a day-to-day basis. This document will provide a step-by-step guide to show you how to access following features of the program:
+**_25HoursADay_** is targeted towards students from National University of Singapore (NUS). This user guide is designed 
+to provide documentation for potential users who will use **_25HoursADay_** on a day-to-day basis. This document will provide a 
+step-by-step guide to show you how to access following features of the program:
+
 1)	View available commands of the program
 2)	Add tasks and events to the program
 3)	View your personalized calendar and the items available
@@ -75,22 +78,24 @@ The following table displays the list of terminologies used in this document:
 |--------|----------|
 |Task|A to-do item or a deadline item|
 |Event|An activity or a school event|
-|School event|Lectures, tutorials, laboratory sessions or examinations.|
+|School event|Lecture, tutorial, laboratory session or examination|
 |Task list|List of tasks*|
 |Event list|List of events*|
 |Task number|Refers to the index of the task in the task list|
 |Event number|Refers to the index of the event in the event list|
+|Calendar item| A Task or an Event|
+|Calendar list|List of calendar items|
 
 *You may view your task list and event list using the `print tasks` and `print events` feature respectively.
 
 ## Quick Start
 
-1. Ensure you have Java 11.0.8 or above installed.
+1. Ensure you have Java 11.0.8 installed.
 1. Download the latest version of the project file **_25HoursADay.jar_** and the JSON data file **_NUS_Mod_info.json_** from [here](https://github.com/AY2021S1-CS2113T-T12-2/tp/releases/tag/V1.0).
 1. Copy the JAR file and the JSON data file to the same folder that you want to use as the _home folder_ for the project file.
 1. In the _Command Prompt_, navigate to the working directory of the _home folder_.
-1. type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to strat the programme.
-1. The _Command Prompt_ should display similar output as shown in the figure below:
+1. Type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to start the programme.
+1. The _Command Prompt_ should display a similar output as shown in the figure below:
     ![Screen_Shot_of_welcome_message](images/Verify_setup.PNG)
 1. Type the command in the _Command Prompt_ and press _Enter_ to execute it. 
     * E.g. typing `help` and pressing _Enter_ will display the help information.
@@ -98,11 +103,11 @@ The following table displays the list of terminologies used in this document:
 
 ## Features 
 
-This section provides the features **_25 hours a day_** has to offer. It entails a brief description of what it does and how to use it.
+This section provides the features **_25HoursADay_** has to offer. It entails a brief description of what it does and how to use it.
 
 ### Viewing available commands:
 
-As a first-time user you can always type help in the terminal to view the list of available commands. 
+As a first-time user, you can always type `help` in the terminal to view the list of available commands. 
 
 Format: `help`
 
@@ -113,7 +118,9 @@ Format: `help`
 ### Adding a task:
 
 Are you sometimes overwhelmed by different tasks and not sure how to document them properly? Why not just use our task adding features? This feature allows you to add 2 types of tasks:
+
 •	Todo task which has no specific due date and just serves as a reminder for your day to day matters.
+
 •	Deadline tasks which has a specific due date and the program has a count down feature to monitor them.
 
 The following 2 sub-sections will provide you with the guide on how to add a task to the calendar list.  
@@ -127,7 +134,9 @@ Format: `todo <task_description>`
 
 Example: 
 
-`todo exercise for 10 minutes` adds a todo task of exercising for 10 minutes to the calendar list as demonstrated in the figure below.
+`todo exercise for 10 minutes` 
+
+This adds a todo task of exercising for 10 minutes to the calendar list as demonstrated in the figure below.
 ![todo_command](images/todo_command.png)
 Note: The above figure is for illustration purpose only. The total number of tasks may differ if you have more tasks stored in the program.
 
@@ -137,19 +146,24 @@ Note: The above figure is for illustration purpose only. The total number of tas
 
 This function allows you to add a deadline task, such as project submission or assignment submission and the program 
 will keep track of the due date which will definitely make your study life more manageable! The function will also display a 
-warning message if the due date of the deadline item is already due (with respect to today's date), making sure all your deadlines are properly recorded and
+warning message if the due date of the deadline item is already passed (with respect to today's date), making sure all your deadlines are properly recorded and
 minimise any potential careless typo.
 
 Format: `deadline <task_description> / <due_date>`
 
 Example of a passed deadline:
 
-`deadline project submission /301020` adds a deadline task of project submission which is due on 30 October 2020 (a past date), 
+`deadline project submission /301020` 
+
+This adds a deadline task of project submission which is due on 30 October 2020 (a past date), 
 as illustrated by the figure below.
 ![deadline_command_passed](images/deadline_command.png)
 
 Example of a proper deadline:
-`deadline project video demo /090922` adds a deadline task of project video demo which is due on 09 September 2022 (a future date), as illustrated 
+
+`deadline project video demo /090922` 
+
+This adds a deadline task of project video demo which is due on 09 September 2022 (a future date), as illustrated 
 by the figure below.
 ![deadline_command_proper](images/deadline_command_proper.png)
 
@@ -159,9 +173,9 @@ by the figure below.
 
 ### Adding an event:
 
-When you have new events, you can add them to the calendar list in different types, including school events, 
-such as`lecture`, `tutorial`, `exam`, and `lab` events, and other events in `activitie` type.
-You can add `lecture`, `tutorial`, and `lab` events as recurring events, but the `exam` and `activitie` events cannot be recurring. 
+You can add different events to the calendar list, including school events, 
+such as`lecture`, `tutorial`, `exam`, and `lab` events, and other events in `activity` type.
+You can add `lecture`, `tutorial`, and `lab` events as recurring events, but the `exam` and `activity` events cannot be recurring. 
 When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `act` command in following formats:  
 
 ![tip_event](images/tip_event.PNG)
@@ -170,8 +184,9 @@ When you add events to the list, you can use `lect`, `lab`, `tut`, `exam` or `ac
 
 #### Adding an activity event:
 
-This function allows you to add school activities, such as interview workshops or Co-Curriculum Activities (CCAs). 
-This is definitely the best way to keep track of your commitments and will surely make your student life more colourful and gain the most out of it! 
+This function allows you to add activities, such as interview workshops or Co-Curriculum Activities (CCAs), both past and
+future, so as to keep track of your activity records.
+This is definitely the best way to keep track of your commitments and will surely make your student life more vibrant and gain the most out of it! 
 
 Format: `act <activity_description> @<venue> / <date> <time>`
 

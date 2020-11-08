@@ -264,7 +264,7 @@ public class Ui {
             calendarItem = "task";
             if (calendarList.getCalendarList().get(lastCalendarItemIndex) instanceof Deadline
                     && calendarList.getCalendarList().get(lastCalendarItemIndex).getDate().isBefore(LocalDate.now())) {
-                System.out.println("WARNING! The deadline has already passed! "
+                System.out.println("WARNING! The deadline has already passed!"
                         + "May be you want to double confirm? Good Luck!\n");
             }
         } else {
