@@ -11,10 +11,12 @@ import java.util.ArrayList;
 public class BookmarkCommand extends Command {
     private static final String BOOKMARK_LIST = "listing";
     private static final String BOOKMARK_STORE = "storing";
+    private static final String BOOKMARK_DELETE = "delete";
 
     private BookmarkList bookmarks;
     private Question question;
     private boolean alreadyBookmarked = false;
+    private int deleteIndex = 0;
     String typeOfBookmarkCommand = "";
 
     public BookmarkCommand(Question question, String typeOfBookmarkCommand, BookmarkList bookmarks) {
@@ -35,6 +37,14 @@ public class BookmarkCommand extends Command {
         this.bookmarks = bookmarks;
     }
 
+    public BookmarkCommand(int deleteIndex, String typeOfBookmarkCommand, BookmarkList bookmarks) {
+        this.typeOfBookmarkCommand = typeOfBookmarkCommand;
+        this.bookmarks = bookmarks;
+        this.deleteIndex = deleteIndex;
+        ArrayList<Displayable> bookmarkList = bookmarks.getInnerList();
+        bookmarkList.remove(deleteIndex - 1);
+    }
+
 
     @Override
     public void execute(DisplayableList displayableList, Ui ui) {
@@ -46,6 +56,9 @@ public class BookmarkCommand extends Command {
             } else {
                 ui.printBookmarkedIndicator();
             }
+        } else if (typeOfBookmarkCommand.equals(BOOKMARK_DELETE)) {
+            ui.printDeletedBookmarkIndicator(deleteIndex);
         }
     }
 }
+
