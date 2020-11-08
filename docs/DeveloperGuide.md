@@ -138,7 +138,7 @@ The rest of the App consists of 8 components:
 (Jia Ern)
 
 <p align="center">
-  <img src="DG_Images/ui_component.PNG" width="600" alt="Class Diagram of Ui Component"/>
+  <img src="DG_Images/UiComponent.PNG" width="600" alt="Class Diagram of Ui Component"/>
   <br/>Figure <>. Class diagram of Ui component 
 </p>
 
@@ -195,6 +195,22 @@ The Model,
 
 ### 3.4. Storage Component 
 (Lucas)
+
+The Storage component consists of the `Storage`, `StorageWrite`, `StorageParser` and `StorageLoad` classes.
+
+<p align="center">
+  <img src="DG_Images/storage.png" width="600" alt="Storage Class Diagram"/>
+  <br/>Figure <>. Class diagram of Storage component  
+</p>
+
+The Storage component
+* can save the User's database of Modules, Chapters and Cards as directories, text files and text within the data directory respectively.
+* Can parse the contents of the database stored in the data directory back into the software to load the User's database back into KAJI as Modules, Chapters and Cards
+* can save the due dates for a Chapter into a text file within the dues directory located in the Module directory that contains it 
+* can parse the due dates into LocalDate objects from the dues directory so that KAJI can load utilise them.
+* can save the exclusions from the scheduling feature into a text file "exclusions.txt" within the "admin" directory.
+* can parse the exclusions into an ArrayList<String> so that KAJI can determine which chapters are excluded.
+
 
 ### 3.5. Common Classes
 
@@ -334,10 +350,17 @@ For instance, the user wants to start a remove the module `CS2113T`, a detailed 
 
 * Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
 
+The following diagram shows the class diagram of the remove module feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveModuleCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Module"/>
+  <br/>Figure <>. Class diagram of remove module
+</p>
+
 The following sequence diagram shows how the remove module feature works:
 
 <p align="center">
-  <img src="DG_Images/removemod_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Module"/>
+  <img src="DG_Images/RemoveModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Module"/>
   <br/>Figure <>. Sequence diagram of remove module  
 </p>
 
@@ -518,18 +541,51 @@ For instance, the user wants to start a remove the chapter `Chapter 1` from the 
 
 * Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
 
+The following diagram shows the class diagram of the remove chapter feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveChapterCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Chapter"/>
+  <br/>Figure <>. Class diagram of remove chapter
+</p>
+
 The following sequence diagram shows how the remove chapter feature works:
 
 <p align="center">
-  <img src="DG_Images/removechap_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Chapter"/>
+  <img src="DG_Images/RemoveChapterCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Chapter"/>
   <br/>Figure <>. Sequence diagram of remove chapter
 </p>
 
 #### 4.2.5. Access Chapter Level Feature
 (Lucas)
 
+***Implementation***
+
+If a user wishes to go to the Chapter Level from the Module Level by accessing a Chapter within the Module he is currently in, he can do so with the Access Chapter Level Feature.
+
+To execute this feature, the following class was created:
+* `GoChapterCommand` - extends the abstract class `GoCommand`, brings the User down to the Chapter level if the target Chapter exists.
+
+To support the Access Chapter Level Feature, `GoChapterCommand` implements the following operations:
+* `GoChapterCommand#goChapter()` - Parses through the Module that the User is currently on to search for the specified Chapter. If the Chapter is found but not empty, there will be no output message, while if the found Chapter is empty, a message prompting the user to add Cards to the Chapter will be returned.
+* `GoChapterCommand#execute()` - Calls `GoChapterCommand#goChapter()` and prints the output message returned if there is one.
+
+The following sequence Diagrams illustrates how the Access Chapter Level Feature is executed:
+
+
 #### 4.2.6. Return to Admin Level Feature
 (Lucas)
+
+***Implementation***
+
+If a user has completed the tasks he has on the Module Level and wish to edit Modules from the Admin level, he can do so with the return to Admin Level Feature.
+
+To execute this feature, the following class was created:
+* `BackAdminCommand` - Extends the abstract class `BackCommand`, returns the User to the Admin Level
+
+To support the Return to Admin Level Feature, `BackAdminCommand` implements the following operation:
+* `BackAdminCommand#execute()` - Calls `Access#setModuleLevel()` to set the `Access` Object's `level` attribute's value to `adminLevel` if its current value is the `moduleLevel`
+
+The following sequence Diagrams illustrates how the Return to Admin Level Feature is executed:
 
 #### 4.2.7. Example of the Module Feature
 
@@ -673,10 +729,17 @@ For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` f
 
 * Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
 
+The following diagram shows the class diagram of the remove flashcard feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveCardCommandClassDiagram.png" width="800" alt="Class Diagram of Remove  Flashcard"/>
+  <br/>Figure <>. Class diagram of remove flashcard
+</p>
+
 The following sequence diagram shows how the remove flashcard feature works:
 
 <p align="center">
-  <img src="DG_Images/removecard_seq_diagram.png" width="800" alt="Sequence Diagram of Remove Flashcard"/>
+  <img src="DG_Images/RemoveCardCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Flashcard"/>
   <br/>Figure <>. Sequence diagram of remove flashcard
 </p>
 
@@ -697,10 +760,17 @@ For instance, the user wants to return to the module level from the chapter he i
 
 * Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
 
-The following sequence diagram shows how the return to module level feature works:
+The following diagram shows the class diagram of the return to module feature:
 
 <p align="center">
-  <img src="DG_Images/returnmod_seq_diagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
+  <img src="DG_Images/BackModuleCommandClassDiagram.png" width="600" alt="Class Diagram of Return to Module"/>
+  <br/>Figure <>. Class diagram of return to module
+</p>
+
+The following sequence diagram shows how the return to module feature works:
+
+<p align="center">
+  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
   <br/>Figure <>. Sequence diagram of return to module
 </p>
 
@@ -776,6 +846,13 @@ In addition, it implements the following operations:
 * `ReviseCommand#rateCard()` — gets user input on difficulty of a flashcard.
 * `ReviseCommand#repeatRevision()` — repeats revision for cards which user could not answer. 
 
+The following diagram shows the class diagram of the revise feature:
+
+<p align="center">
+  <img src="DG_Images/ReviseCommandClassDiagram.png" width="800" alt="Class Diagram of Revise"/>
+  <br/>Figure <>. Class diagram of revise
+</p>
+
 For instance, the user wants to start a revision for `Chapter 1` in the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `CS2113T` at the module level.
@@ -790,7 +867,7 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 
 * Step 6: A success message of completing the revision will be shown to the user through `Ui#showToUser()`.
 
-* Step 7: `Scheduler#computeDeckDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
+* Step 7: `Scheduler#computeChapterDeadline()` then calculates the new deadline for the `chapter` and passes the result to `Chapter#setueBy()` to set the new deadline for the `chapter`.
 
 * Step 6: `ReviseCommand#repeatRevision` then repeats the revision session on cards which the user could not answer if any.
 
@@ -799,23 +876,20 @@ For instance, the user wants to start a revision for `Chapter 1` in the module `
 The following sequence diagram shows how the revise feature works:
 
 <p align="center">
-  <img src="DG_Images/revise_seq_diagram.png" width="800" alt="Sequence Diagram of Revise"/>
+  <img src="DG_Images/ReviseCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Revise"/>
   <br/>Figure <>. Sequence diagram of revise
 </p>
 
-* Get Chapter:
 <p align="center">
   <img src="DG_Images/ReviseGetChap.png" width="600" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get chapter for revision
 </p>
 
-* Chapter is not due for revision:
 <p align="center">
   <img src="DG_Images/ReviseNotDue.png" width="600" alt="Sequence Diagram of Revise Not Due"/>
   <br/>Figure <>. Sequence diagram of revise for chapter that is not due
 </p>
  
-* Get Cards:
 <p align="center">
   <img src="DG_Images/ReviseGetCards.png" width="600" alt="Sequence Diagram of Revise Get Chapter"/>
   <br/>Figure <>. Sequence diagram of get cards for revision
@@ -893,6 +967,11 @@ On top of that, `Storage` implements the following operations:
 
 The following sequence Diagrams illustrates how the View Due Chapters Process is executed:
 
+<p align="center">
+  <img src="DG_Images/listDueSeq.png" width="800" alt="Sequence Diagram of the View Due Feature"/>
+  <br/>Figure <>. Sequence Diagram of the View Due Feature 
+</p>
+
 #### 4.5.2. Preview Upcoming Dues Feature
 (Lucas)
 
@@ -921,55 +1000,81 @@ On top of that, the following operations from `Storage` are used:
 
 The following sequence Diagrams illustrates how the Preview Upcoming Dues Process is executed:
 
+<p align="center">
+  <img src="DG_Images/previewSeq.png" width="800" alt="Sequence Diagram of the Preview Upcoming Dues Feature"/>
+  <br/>Figure <>. Sequence Diagram of the Preview Upcoming Dues Feature 
+</p>
+
 #### 4.5.3. Exclusion Feature
 (Lucas)
 
 ***Implementation***
 
-KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of Chapters that KAJI will ignore as it parses for Chapters that are due in the `due` and `preview` commands. This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
+***Implementation***
 
-To support this feature, the following command was added to KAJI:
-* `exclude` - A command that excludes more or less `Chapters` from the Exclusion List.
-A corresponding Class `ExecuteCommand` was also created to carry out the functions related to the command.
+KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of `Chapter`s that KAJI will ignore as it parses for `Chapter`s that are due in the `due` and `preview` commands. 
 
-The `exclude` command can be called with either `exclude more` or `exclude less`, which adds to or removes from the Exclusion List respectively. Furthermore, both modes can be used to edit the Exclusion List a single `Chapter` at a time or every `Chapter` belonging to a `Module` at a time as a secondary option.
+This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
 
-To determine if the Exclusion List is going to be modified by a single `Chapter` or by an entire `Module`, `ExcludeCommand` implements an operation each for `exclude more` and `exclude less`.
-* For `exclude more`:
-    * `ExcludeCommand#addingToExclusion()` - calls `ExcludeCommand#addChapterToExclusion()` if user inputs "chapter", `ExcludeCommand#addModuleToExclusion()` if user inputs "module"
-* For `exclude less`:
-    * `ExcludeCommand#addingToExclusion()` - calls `ExcludeCommand#removeChapterFromExclusion()` if user inputs "chapter", `ExcludeCommand#removeModuleFromExclusion()` if user inputs "module"
+
+To support this feature, the following commands were added to KAJI:
+* `exclude` - A command that adds `Chapter`s to the Exclusion List.
+* `include` - A command that removes `Chapter`s from the Exclusion List.
+Two corresponding Classes `ExecuteCommand` and `IncludeCommand` were also created to carry out the functions related to the commands.
 
 To load and store the Exclusion List, a Exclusion File is created and maintained using these two methods from the `Storage` Class:
 * `Storage#loadExclusionFile()` - Reads the contents of the Exclusion File, parses it into the Exclusion List, stored as a `ArrayList<String>`, and returns it.
 * `Storage#updateExclusionFile()` - Writes the `ArrayList<String>` Exclusion List into the Exclusion File.
 
-The `ArrayList<String>` Exclusion List is modified using four pairs of commands in both `ExcludeCommand` and `Storage`:
+The `exclude` command can be called with either `exclude chapter` or `exclude module`, which adds a `Chapter` or every `Chapter` from a `Module` to the Exclusion List respectively. 
 
+To determine if a single `chapter` or an entire `module` is to be added to the Exclusion List, `excludecommand` implements the operation `excludecommand#attemptToExclude()`.
+* `excludecommand#attemptToExclude()` - responds to various forms of `exclude` command input as follows:
+    * calls `excludecommand#addChapterToExclusion()` if `exclude chapter` is entered
+    * calls `excludecommand#addModuleToExclusion()` if `exclude module` is entered
+    * or throws an exception if the specified command argument is invalid.
+
+Items are added into the `ArrayList<String>` Exclusion List using two pairs of commands in both `ExcludeCommand` and
+ `Storage`:
 * Excluding a Chapter from Scheduling
     * `ExcludeCommand#addChapterToExclusion()` - gets the name of the `Chapter` to be excluded and the name of the `Module` it belongs to, and calls `Storage#appendChapterToExclusionFile()`
     * `Storage#appendChapterToExclusionFile()` - appends the target `Chapter` to the Exclusion File if the target `Chapter` exists and is not already in the Exclusion File
 * Excluding a Module from Scheduling
     * `ExcludeCommand#addModuleToExclusion()` - gets the name of the `Module` to be excluded, and calls `Storage#appendModuleToExclusionFile()`
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
+
+The following sequence Diagrams illustrates how the "include" command is executed:
+
+<p align="center">
+  <img src="DG_Images/excludeSeq.png" width="800" alt="Sequence Diagram of the exclude command"/>
+  <br/>Figure <>. Sequence Diagram using the Exclusion Feature to exclude content from the schedule
+</p>
+
+<br>
+On the other hand, the `include` command can be called with `include chapter` or `include module` which removes a `Chapter` or every `Chapter` from a `Module` from the Exclusion List.
+
+Similarly, to determine if a single `chapter` or an entire `module` is to be removed from the Exclusion List, `includecommand` implements the operation `includecommand#attemptToInclude()`.
+* `includecommand#attemptToInclude()`. - responds to various forms of `exclude` command input as follows:
+    * calls `includecommand#addChapterToExclusion()` if `exclude chapter` is entered
+    * calls `includecommand#addModuleToExclusion()` if `exclude module` is entered
+    * or throws an exception if the specified command argument is invalid.
+    
+Items are removed from the `ArrayList<String>` Exclusion List using two pairs of commands in both `IncludeCommand
+` and `Storage`:
 * Including a Chapter from Scheduling
-    * `ExcludeCommand#removeChapterFromExclusion()` - gets the name of the `Chapter` to be included and the name of the `Module` it belongs to, and calls `Storage#removeChapterFromExclusionFile()`
+    * `IncludeCommand#removeChapterFromExclusion()` - gets the name of the `Chapter` to be included and the name of the `Module` it belongs to, and calls `Storage#removeChapterFromExclusionFile()`
     * `Storage#removeChapterFromExclusionFile()` - removes the target `Chapter` from the Exclusion File if the target `Chapter` is in the Exclusion File
 * Including a Module from Scheduling
-    * `ExcludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
+    * `IncludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
     * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
 
-The following sequence Diagrams illustrates how the Exclusion Process is executed:
+The following sequence Diagrams illustrates how the "include" command is executed:
 
-![](images/ExcludeCommand.png)
+<p align="center">
+  <img src="DG_Images/includeSeq.png" width="800" alt="Sequence Diagram of the include command"/>
+  <br/>Figure <>. Sequence Diagram using the Exclusion Feature to include content into the schedule
+</p>
 
-![](images/addModuleToExclusion.png)
-
-![](images/addChapterToExclusion.png)
-
-![](images/removeModuleFromExclusion.png)
-
-![](images/removeChapterFromExclusion.png)
 <br>
 
 #### 4.5.4. Reschedule Chapter Feature

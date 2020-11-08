@@ -98,20 +98,25 @@ public class StorageWrite {
         fw.close();
     }
 
+    private static void addEntryToExclusionFile(String moduleName, String chapterName,
+                                                ArrayList<String> excludedChapters) {
+        String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
+        if (!excludedChapters.contains(chapterEntry)) {
+            excludedChapters.add(chapterEntry);
+        }
+    }
+
     //@@author Darticune
     protected static void appendModuleToExclusionFile(String moduleName, String filePath)
             throws FileNotFoundException, ExclusionFileException {
-        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
-        String[] chaptersInModule = StorageLoad.loadChaptersFromSpecifiedModule(moduleName, filePath);
+        ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
+        String[] chaptersInModule = Storage.loadChaptersFromSpecifiedModule(moduleName, filePath);
         for (String chapter : chaptersInModule) {
             if (chapter.equals("dues")) {
                 continue;
             }
             chapter = chapter.replace(".txt", "");
-            String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapter;
-            if (!excludedChapters.contains(chapterEntry)) {
-                excludedChapters.add(chapterEntry);
-            }
+            addEntryToExclusionFile(moduleName, chapter, excludedChapters);
         }
         updateExclusionFile(excludedChapters, filePath);
     }
@@ -120,25 +125,27 @@ public class StorageWrite {
     protected static void appendChapterToExclusionFile(String moduleName, String chapterName, String filePath)
             throws FileNotFoundException,
             ExclusionFileException {
-        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
+        ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
         File file = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
         checkExists(file);
-        String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
-        if (!excludedChapters.contains(chapterEntry)) {
-            excludedChapters.add(chapterEntry);
-        }
+        addEntryToExclusionFile(moduleName, chapterName, excludedChapters);
         updateExclusionFile(excludedChapters, filePath);
+    }
+
+    private static void deleteEntryFromExclusionFile(String moduleName, ArrayList<String> excludedChapters,
+                                                     String chapterName) {
+        String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
+        excludedChapters.remove(chapterEntry);
     }
 
     //@@author Darticune
     protected static void removeModuleFromExclusionFile(String moduleName, String filePath)
             throws FileNotFoundException, ExclusionFileException {
-        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
-        String[] chaptersInModule = StorageLoad.loadChaptersFromSpecifiedModule(moduleName, filePath);
+        ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
+        String[] chaptersInModule = Storage.loadChaptersFromSpecifiedModule(moduleName, filePath);
         for (String chapter : chaptersInModule) {
-            chapter = chapter.replace(".txt", "");
-            String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapter;
-            excludedChapters.remove(chapterEntry);
+            String chapterName = chapter.replace(".txt", "");
+            deleteEntryFromExclusionFile(moduleName, excludedChapters, chapterName);
         }
         updateExclusionFile(excludedChapters, filePath);
     }
@@ -146,9 +153,8 @@ public class StorageWrite {
     //@@author Darticune
     protected static void removeChapterFromExclusionFile(String moduleName, String chapterName, String filePath)
             throws FileNotFoundException, ExclusionFileException {
-        ArrayList<String> excludedChapters = StorageLoad.loadExclusionFile(filePath);
-        String chapterEntry = "Module: " + moduleName + "; Chapter: " + chapterName;
-        excludedChapters.remove(chapterEntry);
+        ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
+        deleteEntryFromExclusionFile(moduleName, excludedChapters, chapterName);
         updateExclusionFile(excludedChapters, filePath);
     }
 
@@ -171,8 +177,8 @@ public class StorageWrite {
         try {
             String dirPath = filePath + "/" + moduleName + "/" + "dues";
             String duePath = filePath + "/" + moduleName + "/" + "dues" + "/" + chapterName + "due" + ".txt";
-            if (StorageWrite.createChapterDue(duePath, dirPath)) {
-                StorageWrite.writeDeadlineToChapterDue(dueBy, duePath);
+            if (createChapterDue(duePath, dirPath)) {
+                writeDeadlineToChapterDue(dueBy, duePath);
             } else {
                 System.out.println("Unable to produce ChapterDue");
             }

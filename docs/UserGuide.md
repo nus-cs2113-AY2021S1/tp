@@ -347,13 +347,13 @@ For instance, you are currently at the module level `CS2113T` and want to remove
 
 Proceeds to the Chapter Level with reference to one of the Chapters within the module.
 
-Format: `go CHAPTER_NAME`
+Format: `go CHAPTER_INDEX`
  
 Example: <br>
 For instance, you are currently in Module level `Module` and want to head to Chapter level `Chapter1` , the steps to
  do so are shown below:
 
-* Step 1: Enter the command `go Chapter1` to head down to the Chapter level below: <br>
+* Step 1: Enter the command `go 1` to head down to the Chapter level below: <br>
 
 <p align="center">
   <img src="UG_Images/moduleGo.png" alt="Go Command"/>
