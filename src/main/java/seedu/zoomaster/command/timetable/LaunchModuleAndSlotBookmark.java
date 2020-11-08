@@ -12,6 +12,7 @@ import seedu.zoomaster.slot.Timetable;
 import java.util.Arrays;
 import java.util.List;
 
+//@@author xingrong123
 public class LaunchModuleAndSlotBookmark extends Command {
     public static final String LAUNCH_KW = "launch";
     private List<String>  moduleAndSlotIndex;

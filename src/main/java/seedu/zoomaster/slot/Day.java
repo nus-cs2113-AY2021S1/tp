@@ -2,6 +2,7 @@ package seedu.zoomaster.slot;
 
 import java.time.LocalDate;
 
+//@@author xingrong123
 public enum Day {
     MON,
     TUE,

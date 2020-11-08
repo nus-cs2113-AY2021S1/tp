@@ -1,5 +1,3 @@
-//@@author Speedweener
-
 package seedu.zoomaster;
 
 import org.junit.jupiter.api.Test;
@@ -9,6 +7,7 @@ import seedu.zoomaster.exception.ZoomasterExceptionType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author Speedweener
 class ParserTest {
 
 

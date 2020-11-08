@@ -1,5 +1,3 @@
-//@@author xingrong123
-
 package seedu.zoomaster.bookmark;
 
 import seedu.zoomaster.exception.ZoomasterException;
@@ -14,10 +12,10 @@ import java.util.List;
  * It stores the URL and a description of the webpage.
  * It also contains a method which can extract the URL and description from a given string in a certain format.
  */
+//@@author xingrong123
 public class Bookmark {
     private String description;
     private String url;
-    private static final String SEPARATOR = " | ";
 
     /**
      * Constructs a bookmark object containing a URL and description of the webpage.
@@ -149,32 +147,4 @@ public class Bookmark {
         return  ("[" + description + "] " + url + System.lineSeparator());
     }
 
-    /**
-     * Returns the data of the bookmark in a string.
-     *
-     * @return a string containing the information of the bookmark.
-     */
-    public String getExport() {
-        return description + SEPARATOR + url;
-    }
-
-    /**
-     * Returns the bookmark instance which is created from the data read from the bookmark text file.
-     * This class level method is called at the start of the program to initialize the bookmark.
-     *
-     * @param data The string containing information of the bookmark.
-     * @return the bookmark instance.
-     * @throws ZoomasterException if the URL is invalid.
-     * @throws IndexOutOfBoundsException if the data format is invalid.
-     */
-    public static Bookmark initBookmark(String data) throws ZoomasterException {
-        List<String> details =  Arrays.asList(data.split("\\|"));
-        String description = details.get(0).trim();
-        String url = details.get(1).trim();
-        if (!isUrlValid(url)) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_URL);
-        }
-        Bookmark bookmark = new Bookmark(description, url);
-        return bookmark;
-    }
 }

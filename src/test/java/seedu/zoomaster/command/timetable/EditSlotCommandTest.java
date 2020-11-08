@@ -15,6 +15,7 @@ import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+//@@author
 class EditSlotCommandTest {
 
     private static final String DEFAULT_START_TIME = "10:00";

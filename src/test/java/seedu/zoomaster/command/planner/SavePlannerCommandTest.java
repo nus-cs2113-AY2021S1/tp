@@ -1,5 +1,3 @@
-//@@author jusufnathanael
-
 package seedu.zoomaster.command.planner;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +8,7 @@ import seedu.zoomaster.slot.Timetable;
 
 import java.time.LocalTime;
 
+//@@author jusufnathanael
 class SavePlannerCommandTest {
 
     SavePlannerCommand save = new SavePlannerCommand();

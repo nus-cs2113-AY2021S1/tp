@@ -1,5 +1,3 @@
-//@@author Speedweener
-
 package seedu.zoomaster.command.bookmark;
 
 import seedu.zoomaster.Ui;
@@ -10,6 +8,7 @@ import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
+//@@author Speedweener
 public class LaunchBookmarkCommand extends Command {
     public static final String LAUNCH_KW = "launch";
     private int index;
