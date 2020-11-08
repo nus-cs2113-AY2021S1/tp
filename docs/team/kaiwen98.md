@@ -29,4 +29,4 @@ their finance. <br/>
     
 ### Summary of Contributions: Documentation
 ## Contributions to UG
-## Contributions to DB
+## Contributions to DG
