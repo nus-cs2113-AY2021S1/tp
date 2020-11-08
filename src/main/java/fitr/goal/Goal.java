@@ -45,7 +45,7 @@ public class Goal {
     }
 
     public String getStatus(Goal goal, FoodList foodList, ExerciseList exerciseList, User user) {
-        String rawStatus = checkGoalStatus(goalStatus, goal, foodList, exerciseList, user) + "%";
+        String rawStatus = checkGoalStatus(goalStatus, goal, foodList, exerciseList, user) + SYMBOL_PERCENTAGE;
         if (rawStatus.equals("0.0" + SYMBOL_PERCENTAGE) || rawStatus.equals(SYMBOL_NO + SYMBOL_PERCENTAGE)) {
             return SYMBOL_NO;
         } else if (rawStatus.equals("100.0" + SYMBOL_PERCENTAGE) || rawStatus.equals(SYMBOL_YES + SYMBOL_PERCENTAGE)) {

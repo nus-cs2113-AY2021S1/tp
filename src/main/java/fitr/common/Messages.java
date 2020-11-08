@@ -1,5 +1,7 @@
 package fitr.common;
 
+import fitr.ui.Ui;
+
 /**
  * Container for user visible messages.
  */
@@ -14,13 +16,14 @@ public class Messages {
     public static final String PHRASE_EXTRA_PARAMETERS = "Extra parameters";
 
     //Common strings
-    public static final String LINE_BREAK = "\n";
+    public static final String LINE_BREAK = System.lineSeparator();
     public static final String SPACE_STRING = " ";
     public static final String EMPTY_STRING = "";
     public static final String OPEN_SQUARE_BRACKET = "[";
     public static final String CLOSE_SQUARE_BRACKET = "]";
     public static final String DASH = "-";
     public static final String COLOURED_FORMAT_STRING = "\033[0;32mFormat: \033[0m";
+    public static final String SEPARATOR_LINE = DASH.repeat(136);
 
     //Format messages
     public static final String FORMAT_FOOD = "food NAME_OF_FOOD /NUMBER_OF_CALORIES [QUANTITY]";
