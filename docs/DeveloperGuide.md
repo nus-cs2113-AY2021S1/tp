@@ -336,9 +336,9 @@ as indicated by the user.
 Given below is an example usage scenario and how the add time command behaves at each step.
 
 Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
-to a list of modules. This is done by inputting the command `addMod CS2113T`.
+to a list of modules. This is done by inputting the command `addmod CS2113T`.
 
-Step.2 The user now types in a command: `addTime CS2113T 2 4`. This calls the add time command from `Parser`.
+Step.2 The user now types in a command: `addtime CS2113T 2 4`. This calls the add time command from `Parser`.
 `Parser` then calls the `addTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
 method. 
 > **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
@@ -370,7 +370,8 @@ Step.10 The actual workload is updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `addTime CS2113T 2 4`.
 
-[insert diagram here]
+![addTimeSeq](diagrams/addTimeSeqDiagram.png)  
+<br/> Figure 7. Sequence Diagram of Add Time feature
 
 #### Design Considerations
 
@@ -404,12 +405,12 @@ time from the module as indicated by the user.
 Given below is an example usage scenario and how the minus time command behaves at each step.
 
 Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
-to a list of modules. This is done by inputting the command `addMod CS2113T`.
+to a list of modules. This is done by inputting the command `addmod CS2113T`.
 
 Step.2 The user then does all the required steps to add `2` hours of time spent in academic week `4` on `CS2113T`. This
-is done by inputting the command `addTime CS2113T 2 4`.
+is done by inputting the command `addtime CS2113T 2 4`.
 
-Step.3 The user now types in a command: `minusTime CS2113T 2 4`. This calls the minus time command from `Parser`.
+Step.3 The user now types in a command: `minustime CS2113T 2 4`. This calls the minus time command from `Parser`.
 `Parser` then calls the `minusTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
 method.
 
@@ -446,6 +447,8 @@ Step.11 The actual workload is updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `minusTime CS2113T 2 4`.
 
+![minusTimeSeq](diagrams/minusTimeSeqDiagram.png)  
+<br/> Figure 8. Sequence Diagram of Minus Time feature
 
 #### Design Considerations
 
@@ -471,9 +474,9 @@ The following sequence diagram illustrates what happens when a user executes `mi
  Given below is an example usage scenario and how the edit time command behaves at each step.
  
  Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
- to a list of modules. This is done by inputting the command `addMod CS2113T`.
+ to a list of modules. This is done by inputting the command `addmod CS2113T`.
  
- Step.2 The user now types in a command: `editTime CS2113T 2 4`. This calls the edit time command from `Parser`.
+ Step.2 The user now types in a command: `edittime CS2113T 2 4`. This calls the edit time command from `Parser`.
  `Parser` then calls the `editTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
  method. 
  > **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
@@ -545,7 +548,7 @@ to be printed.
 The following sequence diagram shows how the view module command works. 
 
 ![view-module](diagrams/ModViewSequence.png)
-<br/> Figure 7. Sequence Diagram of View Module feature
+<br/> Figure 9. Sequence Diagram of View Module feature
 
 
 
@@ -585,7 +588,7 @@ of the analysis.
 The following sequence diagram shows how the analysis command works. 
 
 ![analysis](diagrams/AnalysisSequence.png)
-<br/> Figure 8. Sequence Diagram of Analysis feature
+<br/> Figure 10. Sequence Diagram of Analysis feature
 
 
 #### Design Considerations
@@ -625,7 +628,7 @@ valid module code.
 1. The `addTask` method adds the `Task` object to the array list `tasks`.
 
 ![addtask](diagrams/addtask.png)
-<br/> Figure 9. Sequence Diagram of Add Task feature
+<br/> Figure 11. Sequence Diagram of Add Task feature
 
 
 #### Future Implementation
@@ -658,7 +661,7 @@ Given below is an example usage scenario.
 `Section 2` (task number) as done. 
     
 ![markdone](diagrams/markdone.png)  
-<br/> Figure 10. Sequence Diagram of Complete Task feature
+<br/> Figure 12. Sequence Diagram of Complete Task feature
 
    
 #### Future Implementation
