@@ -4,9 +4,6 @@ import access.Access;
 import storage.Storage;
 import ui.Ui;
 
-/**
- * Back to the Module level.
- */
 public class BackModuleCommand extends BackCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Back to module level.\n"
             + "Example: " + COMMAND_WORD + "\n";

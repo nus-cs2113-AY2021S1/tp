@@ -376,7 +376,7 @@ It implements the following operations:
 Shown as the class diagram below, with the inheritance of `GoCommand` and `Command`, `Kaji` is able to execute the operation `GoModuleCommand#execute()` directly. 
 
 <p align="center">
-  <img src="UML/AccessModuleCommandClass.png" width="800" alt="Class Diagram of go module command"/>
+  <img src="UML/GoModuleCommandClass.png" width="800" alt="Class Diagram of go module command"/>
   <br/>Figure <>. Class Diagram of go module command
 </p>
 

@@ -8,9 +8,6 @@ import static common.Messages.ADMIN;
 import static common.Messages.CHAPTER;
 import static common.Messages.MODULE;
 
-/**
- * Stores temporary data about user's current access level.
- */
 public class Access {
     protected String level;
     protected String adminLevel;
@@ -111,11 +108,6 @@ public class Access {
         this.isChapterLevel = true;
     }
 
-    /**
-     * Determines the action to be taken: access a module level or go back to admin level.
-     *
-     * @param moduleLevel the name of the chapter level to be accessed
-     */
     public void setModuleLevel(String moduleLevel) {
         if (isAdminLevel) {
             setGoModuleLevel(moduleLevel);
@@ -125,11 +117,6 @@ public class Access {
 
     }
 
-    /**
-     * Updates user's current access level from admin level to corresponding module level.
-     *
-     * @param moduleLevel the name of the module level to be accessed
-     */
     public void setGoModuleLevel(String moduleLevel) {
         this.moduleLevel = moduleLevel;
         this.level = level + "/" + moduleLevel;
@@ -137,11 +124,6 @@ public class Access {
         setIsModuleLevel();
     }
 
-    /**
-     * Updates user's current access level from module level to admin level.
-     *
-     * @param moduleLevel the name of the module level to be accessed
-     */
     public void setBackAdminLevel(String moduleLevel) {
         this.level = adminLevel;
         this.moduleLevel = moduleLevel;
@@ -149,11 +131,6 @@ public class Access {
         setIsAdminLevel();
     }
 
-    /**
-     * Determines the action to be taken: access a chapter level or go back to module level.
-     *
-     * @param chapterLevel the name of the chapter level to be accessed
-     */
     public void setChapterLevel(String chapterLevel) {
         if (isChapterLevel) {
             setBackModuleLevel(chapterLevel);
@@ -162,11 +139,6 @@ public class Access {
         setGoChapterLevel(chapterLevel);
     }
 
-    /**
-     * Updates user's current access level from module level to corresponding chapter level.
-     *
-     * @param chapterLevel the name of the chapter level to be accessed
-     */
     public void setGoChapterLevel(String chapterLevel) {
         this.chapterLevel = chapterLevel;
         this.level = level + "/" + chapterLevel;
@@ -174,11 +146,6 @@ public class Access {
         setIsChapterLevel();
     }
 
-    /**
-     * Updates user's current access level from chapter level to module level.
-     *
-     * @param chapterLevel the name of the module level to be accessed
-     */
     public void setBackModuleLevel(String chapterLevel) {
         this.level = adminLevel + "/" + moduleLevel;
         this.chapterLevel = chapterLevel;
@@ -186,11 +153,6 @@ public class Access {
         setIsModuleLevel();
     }
 
-    /**
-     * Gets user's current access level.
-     *
-     * @return user's current access level (i.e. admin, module or chapter)
-     */
     public String getAccessLevel() {
         String accessLevel;
         if (isAdminLevel()) {
