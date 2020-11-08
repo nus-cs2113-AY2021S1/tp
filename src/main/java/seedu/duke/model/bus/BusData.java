@@ -57,7 +57,7 @@ public class BusData {
     }
 
     /**
-     *  Get Buses which bus routes contain particular busStop
+     *  Get Buses which bus routes contain particular busStop.
      *
      * @param busStop busStop name to search for the routes of buses
      * @return arraylist of buses which stop at particular busStop

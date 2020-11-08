@@ -9,7 +9,7 @@ import seedu.duke.model.favorite.Fav;
 import seedu.duke.model.favorite.FavList;
 
 /**
- * Represents the execfav command to which allows users to execute specific commands in FavList based on index
+ * Represents the execfav command to which allows users to execute specific commands in FavList based on index.
  */
 public class ExecFavCommand extends Command {
     private int index;
@@ -22,7 +22,7 @@ public class ExecFavCommand extends Command {
     }
 
     /**
-     * Get Fav object from FavList to execute
+     * Get Fav object from FavList to execute.
      *
      * @throws CustomException if Fav object does not exist according to index
      */
@@ -34,7 +34,7 @@ public class ExecFavCommand extends Command {
 
 
     /**
-     * Executes command based on selected fav object
+     * Executes command based on selected fav object.
      *
      * @throws CustomException if selected Fav object command returns an exception
      */

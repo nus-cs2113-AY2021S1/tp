@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 /**
- * Represents the bus command which shows the users the buses available at a specific bus stop
+ * Represents the bus command which shows the users the buses available at a specific bus stop.
  */
 public class BusCommand extends Command {
 
@@ -21,7 +21,7 @@ public class BusCommand extends Command {
     private BusStops busStop;
 
     /**
-     * Initializes BusCommand object
+     * Initializes BusCommand object.
      *
      * @param busStopName busStopName parameter input by user for bus command
      * @throws CustomException if possible locations detected
@@ -39,7 +39,7 @@ public class BusCommand extends Command {
     }
 
     /**
-     * Checks if busStop parameter input by user exists in the list of bus stops at NUS and sets busStop
+     * Checks if busStop parameter input by user exists in the list of bus stops at NUS and sets busStop.
      *
      * @param busStopName the busStop parameter input by the user
      * @throws CustomException if bus stop does not exist

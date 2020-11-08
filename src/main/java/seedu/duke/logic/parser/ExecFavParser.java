@@ -4,7 +4,7 @@ import seedu.duke.exceptions.CustomException;
 import seedu.duke.exceptions.ExceptionType;
 
 /**
- * Parses inputs by users into execfav command
+ * Parses inputs by users into execfav command.
  */
 public class ExecFavParser extends Parser {
 
@@ -22,7 +22,7 @@ public class ExecFavParser extends Parser {
     }
 
     /**
-     * Sets index input by user
+     * Checks and sets index input by user.
      *
      * @throws CustomException if user input cannot be parsed into integer or blank
      */

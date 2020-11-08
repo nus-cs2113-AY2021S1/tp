@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Stores FavList in txt file
+ * Stores FavList in txt file.
  */
 public class FavStorage extends Storage {
     private static final String FILE_READ = "FavList.txt Read with no issues";
@@ -24,7 +24,7 @@ public class FavStorage extends Storage {
     }
 
     /**
-     * Reads file and prints corrupted file message if file corrupted
+     * Reads file and prints corrupted file message if file corrupted.
      *
      * @throws FileNotFoundException if file not found
      */
@@ -42,7 +42,7 @@ public class FavStorage extends Storage {
     }
 
     /**
-     * Reads line in txt file and adds required Fav objects to FavList
+     * Reads line in txt file and adds required Fav objects to FavList.
      *
      * @param entry if number of delimiter not 1 or command does not contain "/"
      */
@@ -61,7 +61,7 @@ public class FavStorage extends Storage {
     }
 
     /**
-     * Updates file based on FavList
+     * Updates file based on FavList.
      *
      * @throws IOException if file cannot be updated
      */
