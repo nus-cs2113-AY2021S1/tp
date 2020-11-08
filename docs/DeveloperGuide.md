@@ -174,8 +174,6 @@ depending on what kind of command it is. E.g. CreateEntryHandler handles creatin
     That is, all params in `requiredParams` is also in `paramsSuccessfullyParsed`.
 1. If all successful, the entry created is returned. Else, throw ```InsufficientParamsException()```.
 
-
-
 ## Feature-level Implementation
 ### Main Menu
 - Loading up user data
@@ -184,6 +182,7 @@ depending on what kind of command it is. E.g. CreateEntryHandler handles creatin
 
 ### Manual Tracker & Entry Tracker
 **Overview** <br />
+
 __Ledgers and Entries__
 
 In this feature, we represent the transactions incurred by the users as ```Entry``` instances.
@@ -229,7 +228,6 @@ The Manual Tracker is capable of executing the following states of operation:
 **Logic Manager and Parser** 
 
 ![](uml_images/images_updated/Handler.png)
-
 
 **Execution** <br />
 1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
@@ -347,7 +345,6 @@ and added into the ```LedgerList``` instance at ```ManualTracker.ledgerList```.
 #### <a name = diag1></a> Sequence Diagram
 
 ![](uml_images/images_updated/manualTrackerCreateLedgerSeqDiagram.png)
-
 
 **Deletion of Ledger ([Sequence Diagram](#diag2))** <br />
 The deletion of a specified ledger is performed in two phases: Ledger Retrieval and Ledger Delete.
