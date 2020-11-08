@@ -60,6 +60,9 @@ public class FindCommand extends Command {
         return Formatter.formatNotes(FIND_NOTE_SUCCESSFUL_MESSAGE, filteredNotes, notebook);
     }
 
+    /**
+     * Sets up Logger files and gets ready to log messages to the file.
+     */
     public void setupLogger() {
         LogManager.getLogManager().reset();
         LOGGER.setLevel(Level.INFO);

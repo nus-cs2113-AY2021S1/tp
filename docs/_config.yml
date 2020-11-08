@@ -5,6 +5,7 @@ header_pages:
   - AboutUs.md
   - UserGuide.md
   - DeveloperGuide.md
+  - [Repository](https://github.com/AY2021S1-CS2113-T13-1/tp)
 
 markdown: kramdown
 

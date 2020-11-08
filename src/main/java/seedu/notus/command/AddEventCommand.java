@@ -52,8 +52,8 @@ public class AddEventCommand extends Command {
         }
 
         tagManager.rebindTags(event);
-        timetable.addEvent(event);
         ArrayList<Event> clashes = timetable.getClashingEvents(event);
+        timetable.addEvent(event);
 
         try {
             storageManager.saveTimetable();
