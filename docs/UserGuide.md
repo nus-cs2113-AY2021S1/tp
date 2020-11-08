@@ -111,29 +111,30 @@ In explaining the syntax, do take note of the following command format which app
 #### 3.1.1. Adding a module: `add`
 (by Jiayi)
 
-Welcome to the first feature of Kaji! In order to use this program, you will first need to create a module deck. Creating a new module deck in Kaji is like getting a new folder to store all the handouts for one module. It is important because it will helps you better manage the mess information you got. 
+Welcome to the first feature of Kaji! In order to use this program, you first will need to create a module deck. Creating a new module deck in Kaji is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. 
 
 ##### Format: `add \MODULE_CODE`
 \MODULE_CODE is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
 
 ##### Key Pointers:
-* Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message
-* Kaji is not case-sentive, therefore, a new module named `module`  will be treated equally as module named `MODULE`. 
-
+* Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message.
+* Kaji is not case-sensitive, therefore, a new module named `module`  will be treated equally to a module named `MODULE`. 
+* Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113T CS2101` will creates a module named `CS2113T CS2101`, instead of two separated modules named `CS2113T` and `CS2101` respectively.
 
 ##### Example: 
-Input: add CS2113
-Output:
-```
----------------------------------------------------------------------
-admin
-Enter command here: add CS2113
-Command Type: add
-Got it. I've added this module:
-CS2113
-Now you have 4 module(s) in the list.
----------------------------------------------------------------------
-```
+For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
+* Step 1: Enter the command `remove 1` to remove the first module in the list which in this case is `CS2113T`: <br>
+![Add Module 1](UG_Images/addModule1.PNG)
+* Step 2: The module as well as the chapters and flashcards in it are removed, and the output message below will be shown: <br>
+![Add Module 2](UG_Images/addModule2.PNG)
+
+
+![Add Module 3](UG_Images/addModule3.PNG)
+![Add Module 4](UG_Images/addModule4.PNG)
+
+
+![Add Module 5](UG_Images/addModule5.PNG)
+![Add Module 6](UG_Images/addModule6.PNG)
 
 #### 3.1.2. Listing modules available: `list` 
 (by Zeyu)
@@ -195,26 +196,19 @@ For instance, you are currently at the admin level and want to remove the module
 
 Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go \MODULE_CODE`.
 
-##### Format: `go \MODULE_CODE`
-\MODULE_CODE is the name of the module that you have created, such as `CS2113`, `Module 1` or `Biology`. 
+##### Format: `go \MODULE_INDEX`
+\MODULE_INDEX is the index of the module that you can find in the list command, such as `1`, `2` or `3`. 
 
 ##### Key Pointers:
-* Kaji only allow access to the existing modules that are shown in the list, therefore, module code that is deleted or has never been created will result in an error message.
-* Kaji is not case-sentive, therefore, a module named `module`  will be treated equally as module named `MODULE`. 
+* Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
+* Kaji does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
 
 ##### Example: 
-Input: `go CS2113`
-Output:
-```
----------------------------------------------------------------------
-admin
-Enter command here: go CS2113
-Command Type: go
-This is a new module, you can try to add chapters inside!
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: 
-```
+For instance, 
+![Go Module 1](UG_Images/goModule1.PNG)
+![Go Module 2](UG_Images/goModule2.PNG)
+![Go Module 3](UG_Images/goModule3.PNG)
+![Go Module 4](UG_Images/goModule4.PNG)
 
 ### 3.2. Module level
 
@@ -228,52 +222,14 @@ You are now at the module level! This command allows you to create a new chapter
 
 ##### Key Pointers:
 * Similar to module, Kaji does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
-* Kaji is not case-sentive, therefore, a new chapter named `chapter`  will be treated equally as module named `CHAPTER`. 
+* Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
 
 ##### Example 1: 
-Input:
-* add Topic1
-* N
-Output:
-```
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: add Topic1
-Command Type: add
-Would you like to rate this new Chapter? (Y/N)
-Enter command here: N
-Got it. I've added this chapter:
-Topic1
-Now you have 1 chapter(s) in the list.
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: 
-```
-
-##### Example 2: 
-Input:
-* add Topic1
-* Y
-* M
-Output:
-```
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: add Topic1
-Command Type: add
-Would you like to rate this new Chapter? (Y/N)
-Enter command here: Y
-Please rate this new Chapter!
-You have the options of: Easy(E), Medium(M) or Hard(H)
-Would your choice be E, M or H?
-Enter command here: M
-Got it. I've added this chapter:
-Topic1
-Now you have 2 chapter(s) in the list.
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: 
-```
+For instance, 
+![Add Chapter 1](UG_Images/addChapter1.PNG)
+![Add Chapter 2](UG_Images/addChapter2.PNG)
+![Add Chapter 3](UG_Images/addChapter3.PNG)
+![Add Chapter 4](UG_Images/addChapter4.PNG)
 
 #### 3.2.2. Listing chapters available: `list`
 (by Zeyu)
@@ -559,7 +515,7 @@ For instance, you are currently in chapter level `Chapter 1` and want to return 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
 
-Congradulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
+Congratulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
 
 It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. 
 
@@ -567,28 +523,18 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 
 
 ##### Key Pointers:
-* This command is only accessible in the chapter level. You will gets an error message if you are in the wrong access level.
-* Only overall performance of your current chapter level is computed.
->:information_source: <b>Note:</b> As you now know, it is the level that you can add/edit/delete cards.
+* This command is only accessible in the chapter level. You will get an error message if you are in the wrong access level.
+* Only overall performance of your current chapter level will be computed.
+* Cards that has yet be answered will be label as <cannot answer>, therefore, if you find a `1.0` for `the percentage of cards that is labeled <cannot answer>`, don't panic, it will be updated as soon as you finish your first revision session of this particular chapter.
+>:information_source: <b>Note:</b> As you now know, it is the level which you can add/edit/delete cards.
 
 ##### Example: 
-Input: showrate
-Output:
-```
----------------------------------------------------------------------
-admin/CS2113/Topic1
-Enter command here: showrate
-Command Type: showrate
-
-Card count: 2
-The percentage of card that is labeled <easy> is: 1.00
-The percentage of card that is labeled <medium> is: 0.00
-The percentage of card that is labeled <hard> is: 0.00
-The percentage of card that is labeled <cannot answer> is: 0.00
----------------------------------------------------------------------
-admin/CS2113/Topic1
-Enter command here: 
-```
+For instance, you would like to check your overall performance after completing several rounds of revision.
+Below are steps of using this `showrate` command.
+* Step 1: Type "showrate" into the command prompt while you are in a chapter level.
+![showrate 1](UG_Images/showrate1.PNG)
+* Step 2: Kaji calculates the percentage of card in different master level (i.e. <easy>, <medium>, <hard>, <cannot answer>).
+![showrate 2](UG_Images/showrate2.PNG)
 
 ### 3.4. General
 
