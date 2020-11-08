@@ -34,7 +34,7 @@ public class RemoveModuleCommand extends RemoveCommand {
         ui.showToUser(result);
     }
 
-    protected String removeModule(Access access, Storage storage) throws IOException {
+    private String removeModule(Access access, Storage storage) throws IOException {
         assert access.isAdminLevel() : "Not admin level";
         try {
             ModuleList modules = access.getAdmin().getModules();
