@@ -259,7 +259,7 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Tutorial(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid tutorial date time "+ taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+            System.out.println("Invalid tutorial date time " + taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
                     + " for " + taskInFile[EVENT_MODULE_CODE]);
         }
         return item;
@@ -280,7 +280,7 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Lecture(taskInFile[EVENT_MODULE_CODE], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid lecture date time "+ taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+            System.out.println("Invalid lecture date time " + taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
                     + " for " + taskInFile[EVENT_MODULE_CODE]);
         }
         return item;
@@ -301,7 +301,7 @@ public class Storage {
             time = LocalTime.parse(taskInFile[EVENT_TIME].trim());
             item = new Activity(taskInFile[DETAILS], date, time, taskInFile[EVENT_VENUE]);
         } catch (DateTimeException e) {
-            System.out.println("Invalid activity date time "+ taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
+            System.out.println("Invalid activity date time " + taskInFile[EVENT_DATE] + " " + taskInFile[EVENT_TIME]
                     + " for " + taskInFile[DETAILS]);
         }
         return item;
