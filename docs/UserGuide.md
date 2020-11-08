@@ -192,7 +192,9 @@ Format: `act <activity_description> @<venue> / <date> <time>`
 
 Example:
 
-`act CCA @NUS UTOWN / 200920 1600` - adds a CCA event held at NUS UTOWN on 20th September 2020, 4pm as shown in the figure below.
+`act CCA @NUS UTOWN / 200920 1600` 
+
+This adds a CCA event held at NUS UTOWN on 20th September 2020, 4pm as shown in the figure below.
 
 ![act_command](images/act_command.png)
 
@@ -284,6 +286,8 @@ Example:
 
 `/a 1 - This is the additional information for event number 1`
 
+This addes "This is the additional information for event number 1" to the event with index of 1.
+
 ![additional_info_command](images/additional_info_command.PNG)
 
 Note: The above figure is for illustration purpose only. The desired output will differ if you have a different event 
@@ -304,9 +308,9 @@ Example:
 
 `/v 1` 
 
-![view_additional_info_command](images/view_addit_info_command.PNG)
+This allows you to view all the additional information that you have added for event number 1 in a form of a list.
 
-You will be able to see all the additional information that you have added for event number 1 in a form of a list.
+![view_additional_info_command](images/view_addit_info_command.PNG)
 
 Note: The above figure is for illustration purpose only. The desired output will differ if you have a different event 
 or different additional information stored in the event index number 1.
@@ -320,13 +324,12 @@ Example:
 
 `/- 1 a 1`
 
+This deletes the additional information number 1 pertaining to the event with index of 1.
+
 ![delete_additional_info_command](images/delete_additional_info_command.PNG)
 
 Note: The above figure is for illustration purpose only. The desired output will differ if you have a different event 
 or different additional information stored in the event index number 1.
-
-When you view the additional information for event number 1, you will not be able to see additional information
- number 1 that you have just deleted.
  
 ### Marking a task as done:
 
@@ -364,7 +367,7 @@ Example:
  
  `-t 1` 
  
-  After executing this command, notice that task number 1 has been removed from your calendar.
+After executing this command, notice that task number 1 has been removed from your calendar.
  
  ![delete_task_command](images/delete_task_command.PNG)
  
@@ -382,10 +385,10 @@ Example:
  
  `-e 1` 
  
+  After executing this command, notice that event number 1 has been removed from your calendar.
+ 
  ![delete_event_command](images/delete_event_command.PNG)
  
- After executing this command, notice that event number 1 has been removed from your calendar.
-
  Note: The above figure is for illustration purpose only. The desired output will
  differ if you have a different event stored in the event index number 1.
  
@@ -406,9 +409,9 @@ Example:
 
 `/f assignment` 
 
-![find_item_command](images/find_item_command.PNG)
+This displays a list of items (both tasks and events) containing the keyword “assignment”.
 
-You should be able to see the lists of items (both tasks and events) containing the keyword “assignment”.
+![find_item_command](images/find_item_command.PNG)
 
 Note: The above figure is for illustration purpose only. The desired output depends on the items stored in the application.
 
@@ -426,7 +429,7 @@ Example:
 
 `/ft tuition` 
 
-You should be able to see only the list of tasks containing the keyword “tuition”.
+This displays a list of tasks containing the keyword “tuition”.
 
 ![find_task_command](images/find_task_command.PNG)
 
@@ -445,9 +448,9 @@ Example:
 
 `/fe 09-Nov-2020`
 
-![find_event_command](images/find_event_command.PNG)
+This displays the list of events containing the keyword “09-Nov-2020”.
 
-You should be able to see only the lists of events containing the keyword “09-Nov-2020”.
+![find_event_command](images/find_event_command.PNG)
 
 Note: The above figure is for illustration purpose only. The desired output depends on the events stored in the application.
 
