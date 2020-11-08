@@ -408,9 +408,9 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
 
 **<a name = entryseq></a>Entry Tracker: Edit of entries** <br />
 The editing of details within the entry is performed in two phases: Entry Retrieval and Entry Edit.
-<br/>
-![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram1.png)
-<br/>
+
+![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram0.png)
+
 1. __Phase 0: Instruction retrieval__ 
     1. At ```EntryTracker.handleMainMenu()```, the user's input is registered via ```java.util.Scanner``` instance.
     1. Input is parsed by ```InputParser.parseInput()```, and ```EntryTracker.packet``` is set to the returned ```CommandPacket``` instance.
