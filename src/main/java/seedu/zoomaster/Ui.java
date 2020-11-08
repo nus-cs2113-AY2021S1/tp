@@ -326,6 +326,19 @@ public class Ui {
         printRedWithBorder("Unknown mode input" + NEW_LINE + "Valid modes: bookmark, timetable, planner" + NEW_LINE);
     }
 
+    //@@author fchensan
+    private void printInvalidSettingInput() {
+        printRedWithBorder("Invalid set setting input format" + NEW_LINE);
+    }
+
+    private void printInvalidSettingField(String invalidSettingName) {
+        printRedWithBorder("Invalid setting name: " + invalidSettingName + NEW_LINE);
+    }
+
+    private void printInvalidSettingOption(String invalidSettingOption) {
+        printRedWithBorder("Invalid setting option: \"" + invalidSettingOption + "\" is not in the list." + NEW_LINE);
+    }
+
     //@@author TYS0n1
     private void printUnknownDayMessage() {
         printRedWithBorder("Unknown day input" + NEW_LINE
@@ -399,19 +412,6 @@ public class Ui {
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
-    }
-
-    //@@author fchensan
-    private void printInvalidSettingInput() {
-        printRedWithBorder("Invalid set setting input format" + NEW_LINE);
-    }
-
-    private void printInvalidSettingField(String invalidSettingName) {
-        printRedWithBorder("Invalid setting name: " + invalidSettingName + NEW_LINE);
-    }
-
-    private void printInvalidSettingOption(String invalidSettingOption) {
-        printRedWithBorder("Invalid setting option: \"" + invalidSettingOption + "\" is not in the list." + NEW_LINE);
     }
 
     //@@author Speedweener
