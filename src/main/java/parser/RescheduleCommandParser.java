@@ -15,10 +15,21 @@ import static common.Messages.MESSAGE_MISSING_ARGS;
 import static common.Messages.MODULE;
 
 //@@author Jane-Ng
+/**
+ * Parses input arguments and creates a new RescheduleCommand object.
+ */
 public class RescheduleCommandParser {
-    private static final String MESSAGE_NO_DUE_DATE = "The due date is missing.\n";
     private static final String MESSAGE_DUE_DATE_BEFORE_TODAY = "You cannot enter a due date that is before today.\n";
 
+    /**
+     * Parses the given arguments in the context of the RescheduleCommand.
+     *
+     * @param commandArgs input arguments of the command
+     * @param accessLevel access level of the user
+     * @return a RescheduleCommand object
+     * @throws InvalidInputException if the user input is not of the expected format
+     * @throws IncorrectAccessLevelException if the command cannot be executed at the access level
+     */
     public Command parse(String commandArgs, String accessLevel)
             throws IncorrectAccessLevelException, InvalidInputException {
         if (!accessLevel.equals(MODULE)) {

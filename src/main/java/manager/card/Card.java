@@ -2,6 +2,9 @@ package manager.card;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a Card in the chapter.
+ */
 public class Card {
     private String question;
     private String answer;
@@ -13,6 +16,12 @@ public class Card {
     public static final int MEDIUM = 2;
     public static final int HARD = 3;
 
+    /**
+     * Constructs a Card.
+     *
+     * @param question A valid question
+     * @param answer A valid answer
+     */
     public Card(String question, String answer) {
         setAnswer(answer);
         setQuestion(question);
@@ -21,6 +30,14 @@ public class Card {
         setRating(CANNOT_ANSWER);
     }
 
+    /**
+     * Constructs a Card when loading from storage file.
+     *
+     * @param question A valid question
+     * @param answer A valid answer
+     * @param previousInterval A valid interval
+     * @param rating A valid rating
+     */
     public Card(String question, String answer, int previousInterval, int rating) {
         setAnswer(answer);
         setQuestion(question);
@@ -28,7 +45,6 @@ public class Card {
         setPreviousInterval(previousInterval);
         setRating(rating);
     }
-
 
     public void setQuestion(String question) {
         this.question = question;
@@ -52,10 +68,6 @@ public class Card {
 
     public String getRevisionAnswer() {
         return "[A] " + answer;
-    }
-
-    public LocalDate getDueBy() {
-        return dueBy;
     }
 
     public int getPreviousInterval() {

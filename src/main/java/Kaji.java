@@ -18,12 +18,22 @@ import java.util.logging.Logger;
 
 import static common.Messages.MESSAGE_HELP;
 
+
+/**
+ * Entry point of the Kaji application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Kaji {
     private Ui ui;
     private Access access;
     private Storage storage;
     private static final Logger logger = KajiLog.getLogger("Kaji");
 
+    /**
+     * Sets up the required objects and loads the data from the storage file.
+     *
+     * @param filePath filepath of the storage file
+     */
     public Kaji(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -36,6 +46,7 @@ public class Kaji {
         }
     }
 
+    /** Runs the program until termination. */
     public void run() {
         logger.info("Starting up Kaji...");
         ui.showWelcome();

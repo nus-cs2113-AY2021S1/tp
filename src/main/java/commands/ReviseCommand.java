@@ -12,6 +12,7 @@ import ui.Ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 import static common.Messages.CHAPTER;
@@ -30,13 +31,14 @@ public class ReviseCommand extends Command {
             + "Parameters: INDEX_OF_CHAPTER\n" + "Example: " + COMMAND_WORD + " 2\n";
 
     public static final String MESSAGE_SUCCESS = "You have completed revision for <%1$s>.";
-    public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in %1$s.";
+    public static final String MESSAGE_NO_CARDS_IN_CHAPTER = "You currently have no cards in <%1$s>.";
     public static final String MESSAGE_CHAPTER_NOT_DUE = "The chapter <%1$s> is not due for revision today.\n";
     public static final String MESSAGE_SHOW_ANSWER_PROMPT = "\n[enter s to show answer]";
     public static final String MESSAGE_SHOW_RATING_PROMPT = "How well did you do for this card?\n"
             + "[enter e(easy), m(medium), h(hard), c(cannot answer)]";
     public static final String MESSAGE_SHOW_REVISE_PROMPT = "Are you sure you want to revise this? (Y/N)";
     public static final String MESSAGE_START_REVISION = "The revision for %s will start now:";
+    public static final String MESSAGE_NOT_REVISING = "You have chosen to not revise the chapter <%1s>.";
     public static final String EASY = "e";
     public static final String MEDIUM = "m";
     public static final String HARD = "h";
@@ -70,19 +72,22 @@ public class ReviseCommand extends Command {
         return allCards;
     }
 
-    private int reviseCard(int count, Card c, Ui ui, ArrayList<Card> repeatCards) {
+    private int reviseCard(int count, Card c, Ui ui, ArrayList<Card> repeatCards, Scanner scanner) {
         ui.showToUser("\nQuestion " + count + ":");
-        ui.showCardRevision(c);
-        String input = ui.getInput(MESSAGE_SHOW_RATING_PROMPT);
-        rateCard(ui, repeatCards, c, input);
+        ui.showCardRevision(c, scanner);
+        String input = ui.getInput(MESSAGE_SHOW_RATING_PROMPT, scanner);
+        rateCard(ui, repeatCards, c, input, scanner);
         return ++count;
     }
 
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IOException {
         Chapter toRevise = getChapter(reviseIndex, access);
+        // re-initialize scanner for testing purposes
+        Scanner scanner = new Scanner(System.in);
         if (!Scheduler.isDeadlineDue(toRevise.getDueBy())) {
-            if (promptNotDue(ui, toRevise)) {
+            if (promptNotDue(ui, toRevise, scanner)) {
+                ui.showToUser(String.format(MESSAGE_NOT_REVISING, toRevise));
                 return;
             }
         }
@@ -101,9 +106,9 @@ public class ReviseCommand extends Command {
         int count = 1;
 
         for (Card c : allCards) {
-            count = reviseCard(count, c, ui, repeatCards);
+            count = reviseCard(count, c, ui, repeatCards, scanner);
         }
-        repeatRevision(ui, repeatCards, count);
+        repeatRevision(ui, repeatCards, count, scanner);
         ui.showToUser(String.format(MESSAGE_SUCCESS, toRevise));
         logger.info("Revision has completed for chapter: " + toRevise);
         toRevise.setDueBy(Scheduler.computeChapterDeadline(toRevise.getCards()), storage, access);
@@ -112,11 +117,11 @@ public class ReviseCommand extends Command {
         HistoryCommand.addHistory(access, storage, reviseIndex);
     }
 
-    private boolean promptNotDue(Ui ui, Chapter toRevise) {
+    private boolean promptNotDue(Ui ui, Chapter toRevise, Scanner scanner) {
         StringBuilder prompt = new StringBuilder();
         prompt.append(String.format(MESSAGE_CHAPTER_NOT_DUE, toRevise));
         prompt.append(MESSAGE_SHOW_REVISE_PROMPT);
-        String input = ui.getInput(prompt.toString()).trim().toUpperCase();
+        String input = ui.getInput(prompt.toString(), scanner).trim().toUpperCase();
         boolean isInvalid = true;
         boolean notRevising = false;
         while (isInvalid) {
@@ -130,16 +135,16 @@ public class ReviseCommand extends Command {
                 notRevising = true;
                 break;
             default:
-                input = ui.getInput("You have entered an invalid input, please try again.")
+                input = ui.getInput("You have entered an invalid input, please try again.", scanner)
                         .trim().toUpperCase();
             }
         }
         return notRevising;
     }
 
-    public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards, Card c, String input) {
+    public static ArrayList<Card> rateCard(Ui ui, ArrayList<Card> repeatCards,
+                                           Card c, String input, Scanner scanner) {
         boolean isInvalid = true;
-
         while (isInvalid) {
             switch (input.trim().toLowerCase()) {
             case EASY:
@@ -163,17 +168,17 @@ public class ReviseCommand extends Command {
                 isInvalid = false;
                 break;
             default:
-                input = ui.getInput("You have entered an invalid input, please try again.");
+                input = ui.getInput("You have entered an invalid input, please try again.", scanner);
             }
         }
         return repeatCards;
     }
 
-    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count) {
+    private void repeatRevision(Ui ui, ArrayList<Card> cards, int count, Scanner scanner) {
         while (cards.size() != 0) {
             ArrayList<Card> repeatCards = new ArrayList<>();
             for (Card c : cards) {
-                count = reviseCard(count, c, ui, repeatCards);
+                count = reviseCard(count, c, ui, repeatCards, scanner);
             }
             cards = new ArrayList<>(repeatCards);
         }

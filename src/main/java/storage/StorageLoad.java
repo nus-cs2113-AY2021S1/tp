@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ *  Manages loading of Kaji data from local storage.
+ */
 public class StorageLoad {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
@@ -167,6 +170,14 @@ public class StorageLoad {
     }
 
     //@@author Jane-Ng
+    /**
+     * Loads all the chapters of the specified {@code module}.
+     *
+     * @param module module name of the chapters
+     * @param filePath of the storage file
+     * @return list of chapters
+     * @throws IOException if there is an error when loading from storage file
+     */
     protected static ArrayList<Chapter> loadChapter(String module, String filePath) throws IOException {
         File f = new File(filePath + "/" + module);
         checkExists(f);
@@ -219,6 +230,15 @@ public class StorageLoad {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Loads all the cards of the specified {@code chapter}.
+     *
+     * @param module module name of the chapters
+     * @param chapter chapter name of the cards
+     * @param filePath of the storage file
+     * @return list of cards
+     * @throws FileNotFoundException if there is not any cards in the storage file
+     */
     protected static ArrayList<Card> loadCard(String module, String chapter, String filePath)
             throws FileNotFoundException {
         File f = new File(filePath + "/" + module + "/" + chapter + ".txt");
@@ -249,6 +269,13 @@ public class StorageLoad {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Loads the revision history.
+     *
+     * @param date the date for the revision
+     * @return list of revision history
+     * @throws FileNotFoundException if there is not any revision in the storage file
+     */
     protected static ArrayList<History> loadHistory(String date) throws FileNotFoundException {
         File f = new File("data/history/" + date + ".txt");
         checkExists(f);
@@ -258,8 +285,7 @@ public class StorageLoad {
         while (s.hasNext()) {
             //to read the history
             String revision = s.nextLine();
-            String[] args = revision.split("\\(", 2);
-            String[] name = args[0].split("/", 2);
+            String[] name = revision.split("/", 2);
             try {
                 String moduleName = StorageParser.parseTaskNameInFile(name[0]);
                 String chapterName = StorageParser.parseTaskNameInFile(name[1]);

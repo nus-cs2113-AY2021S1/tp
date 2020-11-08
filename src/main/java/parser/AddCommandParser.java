@@ -17,10 +17,22 @@ import static common.Messages.MESSAGE_MISSING_ARGS;
 import static common.Messages.MESSAGE_NO_QUESTION_OR_ANSWER;
 import static common.Messages.MODULE;
 
+/**
+ * Parses input arguments and creates a new AddModuleCommand, AddChapterCommand or AddCardCommand object.
+ */
 public class AddCommandParser {
 
     private static final String QUESTION_ANSWER_DIVIDER = " \\| ";
 
+    /**
+     * Parses the given arguments in the context of the AddCommand.
+     *
+     * @param commandArgs input arguments of the command
+     * @param accessLevel access level of the user
+     * @return an AddModuleCommand, AddChapterCommand or AddCardCommand object based on the access level
+     * @throws InvalidInputException if the user input is not of the expected format
+     * @throws IncorrectAccessLevelException if the command cannot be executed at the access level
+     */
     public Command parse(String commandArgs, String accessLevel)
             throws InvalidInputException, IncorrectAccessLevelException {
         switch (accessLevel) {
@@ -46,6 +58,13 @@ public class AddCommandParser {
     }
 
     //@@author gua-guargia
+    /**
+     * Parses arguments in the context of the add module command.
+     *
+     * @param commandArgs full command args string
+     * @return an AddModuleCommand object for execution
+     * @throws InvalidInputException if the user input is not of the expected format
+     */
     private static Command prepareAddModule(String commandArgs) throws InvalidInputException {
         if (!ParserUtil.checkAlphanumericOnly(commandArgs)) {
             throw new InvalidInputException(String.format(MESSAGE_ALPHANUMERIC_CHARACTERS, MODULE));
@@ -53,6 +72,13 @@ public class AddCommandParser {
         return new AddModuleCommand(commandArgs);
     }
 
+    /**
+     * Parses arguments in the context of the add chapter command.
+     *
+     * @param commandArgs full command args string
+     * @return an AddChapterCommand object for execution
+     * @throws InvalidInputException if the user input is not of the expected format
+     */
     private static Command prepareAddChapter(String commandArgs) throws InvalidInputException {
         if (!ParserUtil.checkAlphanumericOnly(commandArgs)) {
             throw new InvalidInputException(String.format(MESSAGE_ALPHANUMERIC_CHARACTERS, CHAPTER));
@@ -61,6 +87,13 @@ public class AddCommandParser {
     }
 
     //@@author Jane-Ng
+    /**
+     * Parses arguments in the context of the add card command.
+     *
+     * @param commandArgs full command args string
+     * @return an AddCardCommand object for execution
+     * @throws InvalidInputException if the user input is not of the expected format
+     */
     private static Command prepareAddCard(String commandArgs) throws InvalidInputException {
         try {
             String[] args = commandArgs.split(QUESTION_ANSWER_DIVIDER, 2);

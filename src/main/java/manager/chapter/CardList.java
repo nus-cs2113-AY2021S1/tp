@@ -4,6 +4,9 @@ import manager.card.Card;
 
 import java.util.ArrayList;
 
+/**
+ * A list of cards.
+ */
 public class CardList {
     private final ArrayList<Card> cards;
 
@@ -35,6 +38,13 @@ public class CardList {
         return cards;
     }
 
+    /**
+     * Checks if the list contains an equivalent card that has the same {@code newQuestion} and {@code newAnswer}.
+     *
+     * @param newQuestion new question for the card
+     * @param newAnswer new answer for the card
+     * @return true if the list contains an equivalent card that has the same content as the given arguments.
+     */
     public boolean checkCardExistence(String newQuestion, String newAnswer) {
         for (Card card : cards) {
             String question = card.getQuestion().toLowerCase();

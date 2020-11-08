@@ -1,19 +1,20 @@
 package parser;
 
 import access.Access;
-import commands.AddCardCommand;
-import commands.AddChapterCommand;
 import commands.AddCommand;
 import commands.AddModuleCommand;
-import commands.EditCardCommand;
-import commands.EditChapterCommand;
+import commands.AddChapterCommand;
+import commands.AddCardCommand;
 import commands.EditCommand;
 import commands.EditModuleCommand;
+import commands.EditChapterCommand;
+import commands.EditCardCommand;
 import commands.ExitCommand;
-import commands.ListCardsCommand;
-import commands.ListChaptersCommand;
+import commands.HistoryCommand;
 import commands.ListCommand;
 import commands.ListModulesCommand;
+import commands.ListChaptersCommand;
+import commands.ListCardsCommand;
 import commands.RescheduleCommand;
 import exception.InvalidInputException;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class ParserTest {
+public class  ParserTest {
 
     @Test
     public void parse_add() throws Exception {
@@ -83,6 +84,12 @@ public class ParserTest {
     }
 
     @Test
+    public void parse_history() throws Exception {
+        Access access = new Access();
+        assertTrue(Parser.parse(HistoryCommand.COMMAND_WORD, access) instanceof HistoryCommand);
+    }
+
+    @Test
     public void parse_exit() throws Exception {
         Access access = new Access();
         assertTrue(Parser.parse(ExitCommand.COMMAND_WORD, access) instanceof ExitCommand);
@@ -108,62 +115,6 @@ public class ParserTest {
         Access access = new Access();
         access.setIsModuleLevel();
         final String[] inputs = {"back args"};
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_removeCommandEmptyArgs_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        final String[] inputs = {
-            "remove",
-            "remove ",
-        };
-        for (String input : inputs) {
-            assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-        }
-    }
-
-    @Test
-    public void parse_removeCommandNonIntegerArgsAdmin_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        String input = "remove two";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-    }
-
-    @Test
-    public void parse_removeCommandNonIntegerArgsModule_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        access.setModuleLevel("module");
-        String input = "remove two";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-    }
-
-    @Test
-    public void parse_removeCommandNonIntegerArgsChapter_exception() {
-        Parser parser = new Parser();
-        Access access = new Access();
-        access.setChapterLevel("chapter");
-        String input = "remove two";
-        assertThrows(InvalidInputException.class, () -> parser.parse(input, access));
-    }
-
-    @Test
-    public void parse_editHistoryInvalidCommandFormat_expectException() {
-        Access access = new Access();
-        final String[] inputs = {
-            "history wrong args format",
-            // not date format
-            "history 20-10-2020",
-            // not yyyy-mm-dd but dd-mm-yyyy
-            "history 10-20-2020",
-            // not yyyy-mm-dd but mm-dd-yyyy
-            "history 1",
-        };
         for (String input : inputs) {
             assertThrows(InvalidInputException.class, () -> Parser.parse(input, access));
         }

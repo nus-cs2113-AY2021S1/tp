@@ -64,12 +64,12 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_validInput_returnsEditChapterCommand() throws Exception {
+    public void parse_validInput_returnsAddChapterCommand() throws Exception {
         assertTrue(parser.parse("Chapter 1", MODULE) instanceof AddChapterCommand);
     }
 
     @Test
-    public void parse_validInput_returnsEditCardCommand() throws Exception {
+    public void parse_validInput_returnsAddCardCommand() throws Exception {
         assertTrue(parser.parse("q:1+1 | a:2", CHAPTER) instanceof AddCardCommand);
     }
 

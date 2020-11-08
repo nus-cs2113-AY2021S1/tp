@@ -17,6 +17,9 @@ import java.util.logging.Logger;
 
 import static storage.StorageLoad.checkExists;
 
+/**
+ *  Manages writing of Kaji data to local storage.
+ */
 public class StorageWrite {
     private static Logger logger = KajiLog.getLogger(Storage.class.getName());
 
@@ -190,6 +193,15 @@ public class StorageWrite {
     }
 
     //@@author Jane-Ng
+    /**
+     * Rename the filename of a chapter.
+     *
+     * @param newChapterName new chapter name to rename to
+     * @param module module of the chapter to be renamed
+     * @param chapter existing chapter to be renamed
+     * @param filePath of the storage file
+     * @throws StorageDataException if there is an error renaming the storage file
+     */
     protected static void renameChapter(String newChapterName, Module module, Chapter chapter, String filePath)
             throws StorageDataException {
         File chapterFile = new File(filePath
@@ -212,6 +224,14 @@ public class StorageWrite {
     }
 
     //@@author Jane-Ng
+    /**
+     * Rename the folder of a module.
+     *
+     * @param newModuleName new module name to rename to
+     * @param module existing module to be renamed
+     * @param filePath of the storage file
+     * @throws StorageDataException if there is an error renaming the storage file
+     */
     protected static void renameModule(String newModuleName, Module module, String filePath)
             throws StorageDataException {
         File file = new File(filePath + "/" + module.getModuleName());
@@ -222,6 +242,12 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Create a txt file to store history.
+     *
+     * @param date the date of the revision
+     * @throws IOException if there is an error creating the storage file
+     */
     protected static void createHistory(String date) throws IOException {
         try {
             File f = new File("data/history/" + date + ".txt");
@@ -232,6 +258,13 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
+    /**
+     * Save revision history into file.
+     *
+     * @param date the date of the revision
+     * @param histories all chapters revised in the date
+     * @throws IOException if there is an error creating the storage file
+     */
     protected static void saveHistory(ArrayList<History> histories, String date) throws IOException {
         FileWriter fw = new FileWriter("data/history/" + date + ".txt");
         for (History h : histories) {
