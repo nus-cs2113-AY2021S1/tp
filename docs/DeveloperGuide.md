@@ -190,8 +190,9 @@ When a `Command` from the [Logic component](#logic-component) is executed, it wi
 * `Sprint` contain one additional ArrayList that are initialise upon its creation:
     * ArrayList of Task IDs to keep track `Tasks` that are allocated to the `Sprint`.
 ### 3.5. Storage Component
-![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML") 
+![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML")  
 API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/storage/StorageManager.java)  
+
 The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
 As shown in the diagram above, `JsonableObject` and `JsonableArray` are interfaces which inherits the `Jsonable` interface. The following model class inherits only one of the two interfaces:  
 - ProjectManager  
@@ -590,22 +591,30 @@ This can be useful in certain scenarios such as fixing the data file in the even
 _Figure X: Running the Jar or in IDE_
 
 As shown in the above diagram, the program will save the data as _"data.json"_. The data file is saved in the _“data/”_ folder that is located in the folder of the program. If you are testing the program using Intellij IDE, the _“data/”_ folder will be in the root of the project folder.  
-When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the program.  
+When you start the program, the program will load the data file from its respective location and deserialise it into its respective objects. Data will be saved when the program exits or whenever the user makes changes to the data.  
 
 #### 4.4.2. Loading Data
 ![Figure X: Loading Data](image/developerguide/storage_load.png "Loading Data")  
+_Figure X: Loading Data_  
 
 The program will only load the data file in the persistent storage during the initialisation process of the program. With reference to the sequence diagram above, the flow of the logic is as follows:  
 1. When the user starts the program, it will first call `init()` to initialise the program. 
 2. A `StorageManager` object will be instantiated with the reference to a `ProjectManager` object that is used during load and save operations.
 3. `load()` will read the data file from the persistent storage, deserialise it into a `JsonObject` object and attempt to convert the object into its respective types.  
   
-The program will exit immediately with an **exit code 1** if any of the conditions are met:
-- Error trying to read the file.
-- Conversion error due to missing properties.
-- Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
+**Failure to Load**  
+If the program fails to load the data file, it will proceed in an empty state. Any subsequent saves invoked by any command that changes the empty state, or exiting the program using `bye` will cause the erroneous data file (if any) **to be deleted**.  
 
-#### 4.4.2.1. Converting and Mapping of JSON to Objects
+The program will fail to load the data file if **any of the following conditions are met**:
+* I/O error trying to read the file.
+* Error parsing due to incorrect JSON format.
+* Conversion error due to missing properties.
+* Mapping error due to invalid property type (e.g. "name" is expecting a `String` but data read is an `Integer`).
+
+#### 4.4.2.1. Converting and Mapping of JSON to Objects  
+![Figure X: Parsing Sequence](image/developerguide/storage_load_parse.png "Parsing Sequence")
+_Figure X: Parsing Sequence_ 
+ 
 Due to the limitations of the library, parsing of the JSON string only converts it into either JsonObject or JsonArray objects which requires additional operations to map the data back to the respective model classes.  
   
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `fromJson()`, which is used to implement the logic for **converting and mapping of JSON to objects of their respective type**.  
@@ -621,11 +630,12 @@ As explained in [Storage Component](#storage-component), each model class except
       3. Call `fromJson()` of the newly created object, passing the property as the parameter (e.g. `Sprint.fromJson()`).
       4. New object's `fromJson()` will **repeat the same process again under Step 4** for its own properties.  
       
-* `Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
+\*`Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
  the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
 
 #### 4.4.3. Saving Data
 ![Figure X: Saving Data](image/developerguide/storage_save.png "Saving Data")  
+_Figure X: Saving Data_  
 
 Data will be saved under two scenarios: 
 1. When the program exits. 
@@ -639,15 +649,18 @@ Changes made to the data during the runtime of the program can only be made by e
    
 As shown in the diagram above, each command class inherits the `shouldSave` property from `Command` class. `shouldSave` is a boolean variable and is initialised inside the constructor. `shouldSave` will be set to `true` if the command results in a change of data (e.g. adding a task, creating a sprint etc.), otherwise it is set to `false` (e.g. viewing projects, sprints etc.).
 
-After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` is set to `true`.
+After executing the command by calling `execute()`, the program will call `save()` from `StorageManager` object if the `shouldSave` property is set to `true`.
 
-##### 4.4.3.3. Serialising Objects to JSON
+##### 4.4.3.3. Serialising Objects to JSON  
+![Figure X: Serialising Sequence](image/developerguide/storage_save_serialise.png "Serialising Sequence")  
+_Figure X: Serialising Sequence_  
+
 As explained in [Storage Component](#storage-component), each model class except for `Priority` will inherit either `JsonableObject` or `JsonableArray` which are custom interfaces inheriting the `Jsonable` interface of _**json.simple**_. This requires the classes to implement the methods `toJson()` and `fromJson()`. This section will focus on `toJson()`, which is used to implement the logic for **serialising objects into JSON string**.  
 When saving the data as JSON file, `StorageManager` will call `Jsoner.serialize()` of the _**json.simple**_, passing in the `ProjectManager` and `FileWriter` (points to the data file) object as the parameters. The library will automatically serialise the objects and sub-objects into JSON string depending on the type of the objects:
  1. **Primitive and Standard Types (e.g. `int`, `String`, `Collection`)**: The library can directly serialise these types into JSON string.
- 2. **Scrumptious Model Types (e.g. `Project`, `Task`)**: The library will serialise these types by calling its `toJson()` method which contains the logic for the serialisation.  
+ 2. **\*Scrumptious Model Types (e.g. `Project`, `Task`)**: The library will serialise these types by calling its `toJson()` method which contains the logic for the serialisation.  
     
-* `Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String
+\*`Priority` is an exception, it is serialised by calling `name()` of the **enum** which will return its `String
 ` representation.
     
 
@@ -691,6 +704,7 @@ delivering the product (eg: Team leader in University projects, Project Manager 
 ## Glossary
 The terms listed in this glossary are in alphabetical order.
 * _GUI_ - Graphical User Interface
+* I/O - Input/Output is the communication between the computer and the user through GUI or terminal.
 
 ## Instructions for manual testing
 
