@@ -102,9 +102,9 @@ Hello from...
      Accepted <type>: task, module
      Example: done task 1
 
-     find: Finds all tasks whose descriptions contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
-     Parameters: KEYWORDS
-     Example: find book
+     find: Finds all items whose descriptions containthe specified keywords (case-insensitive) and displays them as a list with index numbers.
+     Parameters: {tasks, links, books, expenses, modules} k/KEYWORDS
+     Example: find expenses k/buy
 
      help: Shows program usage instructions.
      Example: help
@@ -210,7 +210,7 @@ Hello from...
     ____________________________________________________________
 
     ____________________________________________________________
-     ~Info~ There are no matching tasks in your list.
+     ~Error~ Please input the keyword argument in the format of k/KEYWORD
     ____________________________________________________________
 
     ____________________________________________________________
