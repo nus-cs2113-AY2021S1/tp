@@ -25,23 +25,6 @@ public class BookmarkList {
     }
 
     /**
-     * Constructs the BookmarkList object containing an ArrayList to store Bookmark objects.
-     * This constructor is used when loading bookmarks from a text file.
-     *
-     * @param bookmarkStrings the list of strings of bookmarks.
-     */
-    public BookmarkList(ArrayList<String> bookmarkStrings) {
-        this.bookmarks = new ArrayList<>();
-        loadBookmarkList(bookmarkStrings);
-    }
-
-    private void loadBookmarkList(ArrayList<String> bookmarks) {
-        for (String line : bookmarks) {
-            loadBookmark(line);
-        }
-    }
-
-    /**
      * This method adds the given bookmark object to the bookmark list.
      *
      * @param bookmark the bookmark to be added to the list.
@@ -51,28 +34,6 @@ public class BookmarkList {
         bookmarks.add(bookmark);
         return "Added bookmark: " + "[" + bookmark.getDescription() + "] "
                 +  bookmark.getUrl() + Ui.NEW_LINE;
-    }
-
-    private void loadBookmark(String line) {
-        try {
-            bookmarks.add(Bookmark.initBookmark(line));
-        } catch (IndexOutOfBoundsException | ZoomasterException e) {
-            // Invalid task data, skips to the next entry
-            // logger.log(Level.WARNING, "invalid bookmark data found in file: " + line, e);
-        }
-    }
-
-    /**
-     * Returns the the data of all bookmarks in the list to be saved in the text file.
-     *
-     * @return the data of all the bookmarks.
-     */
-    public String getData() {
-        StringBuilder data = new StringBuilder();
-        for (Bookmark bookmark : bookmarks) {
-            data.append(bookmark.getExport()).append(Ui.NEW_LINE);
-        }
-        return data.toString().trim();
     }
 
     /**
