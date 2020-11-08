@@ -56,19 +56,24 @@ public class ExtractCommand extends Command {
     public void execute(UserData data, Ui ui, Storage storage) throws InvalidExtractCommandException,
             InvalidListException {
         if (textSubject == null) {
+            logger.warning("InvalidExtractCommandException -- Text subject not entered correctly.");
             throw new InvalidExtractCommandException("Text subject was not entered correctly!");
         }
+        if (textSubject.equals("")) {
+            logger.warning("InvalidExtractCommandException -- No text subject entered.");
+            throw new InvalidExtractCommandException("There is no text subject entered!");
+        }
+
         ui.printExtractTextBodyRequestMessage();
         ui.printDividerLine();
         textBody = receiveTextBody(ui);
 
         if (textBody == null) {
+            logger.warning("InvalidExtractCommandException -- Text body not detected or is null.");
             throw new InvalidExtractCommandException("Text body was not entered correctly!");
         }
-        if (textSubject.equals("")) {
-            throw new InvalidExtractCommandException("There is no text subject entered!");
-        }
         if (textBody.equals("")) {
+            logger.warning("InvalidExtractCommandException -- No text body entered.");
             throw new InvalidExtractCommandException("There is no text body entered!");
         }
 
@@ -249,7 +254,7 @@ public class ExtractCommand extends Command {
                 LocalTime localTime = DateTimeParser.timeParser(timeInString.trim());
                 timeList.add(localTime);
             } catch (TimeErrorException e) {
-                logger.fine(timeInString + " was detected but could not parsed");
+                logger.fine(timeInString + " was detected but could not be parsed");
             }
         }
 
@@ -380,7 +385,7 @@ public class ExtractCommand extends Command {
                         assert finalDate != null : "date is null when chosen in extract";
                     }
                 } catch (NumberFormatException e) {
-                    logger.warning("NumberFormatException occured -- User chose an invalid date number from list.");
+                    logger.warning("NumberFormatException occurred -- User chose an invalid date number from list.");
                     ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
@@ -501,8 +506,7 @@ public class ExtractCommand extends Command {
     private String getCurrentYear() {
         Calendar currentDay = Calendar.getInstance();
         int yearInInt = currentDay.get(Calendar.YEAR);
-        String year = String.valueOf(yearInInt);
-        return year;
+        return String.valueOf(yearInInt);
     }
 
 }
