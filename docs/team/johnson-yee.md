@@ -33,7 +33,7 @@ Given below are my contributions to the project.
   (Pull request [#191](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/191))
   * Updated error handling for delete favourite 
   (Pull request [#103](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/103))
-  * Wrote tests for route map command,reset search frequency, and search frequency storage.(Pull requests 
+  * Wrote tests for route map command,reset search frequencies, and search frequencies' storage.(Pull requests 
   [#31](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/31),
    [#200](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/200),
    [#218](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/218))
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `/routemap`, `/reset`, `/deletefav` (Pull requests
     [#81](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/81),
     [#87](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/87),
-    [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/147))
+    [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
     * Designed Nav@NUS logo used in user guide and developer guide.
     ([#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
     * Added sections on introduction and quick start. (Pull request[#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
