@@ -65,9 +65,9 @@ public class FavStorage extends Storage {
     }
 
     /**
-     * Checks if command type is a valid command.
+     * Checks if command type can be added to favlist.
      *
-     * @param command command from favlist.txt
+     * @param command String of command portion of line from favlist.txt
      * @return boolean which indicates if command type is exists in VALID_COMMANDS
      */
     private Boolean isValidCommand(String command) {
