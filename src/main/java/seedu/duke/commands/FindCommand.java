@@ -26,6 +26,6 @@ public class FindCommand extends Command {
     @Override
     public void execute(Model model) throws DukeException {
         TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
-        tasks.findTask(keyword);
+        tasks.findItem(keyword);
     }
 }

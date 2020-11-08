@@ -46,8 +46,12 @@ These are the following sections I contributed to which will be elaborated in th
 #### Contributions to Developer Guide:
 These are the following sections I contributed to:
 
-1. Product Scope
-2. User stories
+1. Introduction
+2. Setting up, Getting started 
+3. Product Scope
+4. User stories
+5. Non-functional Requirements
+6. Glossary
 
 #### Contributions to Team-based tasks:
 These are the following team-tasks done by me:

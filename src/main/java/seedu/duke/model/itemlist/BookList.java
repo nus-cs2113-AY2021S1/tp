@@ -45,18 +45,6 @@ public class BookList extends ItemList<Book> {
         Ui.dukePrint(Messages.MESSAGE_ADD_BOOK + book.toString(false));
     }
 
-    @Override
-    public void addTodo(String description) {
-    }
-
-    /**
-     * Clears all the books in the list.
-     */
-    public void clearBook() {
-        items = new ArrayList<>();
-    }
-
-
     public void markAsReturn(int index) {
         if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_BOOK);
