@@ -454,6 +454,8 @@ Your current fitness level is: Fit
 > * Inputs given for `NEW_FITNESS` can only be integers `0` for unfit, `1` for normal, or `2` for fit. 
 > * The fitness level you set will change the intensity of the exercises recommended by the `recommend` command.
 
+<!-- @@author jerichochua -->
+
 ### 2.3.2 Editing a food entry
 You can edit your previous food entries, for example, if you previously made a mistake when entering a food that you consumed.
 
@@ -461,7 +463,9 @@ Format: `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
 
 For example, you can enter `edit food 31/10/2020 1 apple /100 1`, and you should expect to see the following output:
 ```
-Successfully edited food to: apple, calories: 100, amount: 1
+----------------------------------------------------------------------------------------------------------------------------------------
+Successfully edited food to: apple, calories (per qty): 100, amount: 1
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.3.3 Editing an exercise entry
@@ -471,8 +475,12 @@ Format: `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
 
 For example, you can enter `edit exercise 31/10/2020 1 Push ups /500`, and you should expect to see the following output:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Successfully edited exercise to: Push ups, calories burnt: 500
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
+
+<!-- @@author -->
 
 ### 2.3.4 Editing a goal entry
 You can edit your previous goal entries, for example, if you previously made a mistake when entering the type or description of a goal.
@@ -481,7 +489,9 @@ Format: `edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION`
 
 For example, you can enter `edit goal 1 exercise run 2.4km`, and you should expect to see the following output:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Successfully edited goal to: [E] run 2.4km
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 > :bulb:  **Additional information:** 
@@ -541,7 +551,9 @@ Format: `clear food`
 
 Expected outcome:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Food list is cleared!
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ### 2.5.2 Clearing all exercise entries
@@ -551,7 +563,9 @@ Format: `clear exercise`
 
 Expected outcome:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Exercise list is cleared!
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 <!-- @@author -->
@@ -563,7 +577,9 @@ Format: `clear goal`
 
 Expected outcome:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Goal list is cleared!
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 <!-- @@author jerichochua -->
@@ -575,7 +591,9 @@ Format: `clear`
 
 Expected outcome:
 ```
+----------------------------------------------------------------------------------------------------------------------------------------
 Food, exercise and goal lists are all cleared!
+----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 <!-- @@author -->
@@ -587,7 +605,7 @@ Other than the commands mentioned above, Fitr is also able to give you a workout
 If you wish to be recommended a workout that is tailored to your fitness level, you can use this command. The command will recommend a workout and ask if you wish to accept this workout or reject it.
 
 You can either just type in `recommend`, or you can follow recommend with one of the specified exercise categories. 
-The four categories are upperbody, lowebody, aerobic and stretch. For example, you can key in `recommend upperbody` and a workout that is just for your upperbody will be recommended
+The four categories are `upperbody`, `lowerbody`, `aerobic` and `stretch`. For example, you can key in `recommend upperbody` and a workout that is just for your upperbody will be recommended
 
 If you do accept it, it will automatically be added into your exercise entries, however you can also choose which exercises you want to add to your exercise entries by keying in the index, separated by spaces.
 
@@ -608,9 +626,9 @@ For example, if you key in `recommend`, the expected outcome is as follows:
     Intensity: 4 sets of 0.5 minutes
     Burnt Cal: 5
 Will you be doing this workout?
-type y for yes to add all 4 to your exercise list.
+Type 'y' to add all 4 to your exercise list,
 or you can type in the index of the exercises you want added to you exercise list (separated by a space).
-Any other key will be taken as a no.
+Any other input will be taken as a no.
 ```
 
 or if you key in `recommend upperbody`, the expected output is as follows:
@@ -628,9 +646,9 @@ or if you key in `recommend upperbody`, the expected output is as follows:
     Intensity: 2 sets of 0.5 minutes
     Burnt Cal: 4
 Will you be doing this workout?
-type y for yes to add all 4 to your exercise list.
+Type 'y' to add all 4 to your exercise list,
 or you can type in the index of the exercises you want added to you exercise list (separated by a space).
-Any other key will be taken as a no.
+Any other input will be taken as a no.
 ```
 
 If you follow this up with a `y`, you will then see the exercises added in as follows:
@@ -728,7 +746,7 @@ View Goal Entry | `view goal` |
 View Calorie Summary | `view summary` |
 View Calorie Summary on a Specified Date | `view summary dd/MM/yyyy` | `view summary 31/10/2020`
 Get a recommended general workout | `recommed` | 
-Get a recommended specific workout| `recommend WORKOUT_CATEGORY` | `recommend upperbody` or `recommend lowebody` or `recommend aerobic` or `recommend stretch`
+Get a recommended specific workout| `recommend WORKOUT_CATEGORY` | `recommend upperbody` or `recommend lowerbody` or `recommend aerobic` or `recommend stretch`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
 Edit Food Entry | `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 31/10/2020 1 green apple /50 1`
 Edit Exercise Entry | `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT` | `edit exercise 31/10/2020 1 5km run /360`
