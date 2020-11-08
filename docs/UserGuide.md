@@ -584,6 +584,21 @@ Academic tracker provides a convenient experience where you can store
 all the information you need in one place! To access the academic tracker, 
 follow the instructions below.
 
+This section contains 12 commands to navigate the academic mode:
+* [3.1 Entering Academic Mode](#31-entering-academic-mode-cd-4--cd-academic)
+* [3.2 Adding a contact](#32-adding-a-contact-add-contact-ccontact_details-mmobile_number--eemail)
+* [3.3 Listing all contacts](#33-listing-all-contacts-list-contact)
+* [3.4 Starring a contact](#34-starring-a-contact-star-contact-index)
+* [3.5 Deleting a contact](#35-deleting-a-contact-delete-contact-index)
+* [3.6 Adding a grade](#36-adding-a-grade-add-grade-nmodule_name--mmc--ggrade)
+* [3.7 Listing all grades](#37-listing-all-grades-list-grade)
+* [3.8 Checking current cap](#38-checking-current-cap-check-cap)
+* [3.9 Starring a grade](#39-starring-a-grade-star-grade-index)
+* [3.10 SU-ing a grade](#310-su-ing-a-grade-su-grade-index)
+* [3.11 Deleting a grade](#311-deleting-a-grade-delete-grade-index)
+* [3.12 Listing all the starred items in academic](#312-listing-all-the-starred-items-in-academic-list-star)
+
+
 ### 3.1 Entering Academic Mode: `cd 4` / `cd academic`
 
 This command allows you to enter academic tracker mode from the main menu or from the other modes.
