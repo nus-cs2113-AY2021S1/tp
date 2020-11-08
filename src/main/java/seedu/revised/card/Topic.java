@@ -1,6 +1,6 @@
 package seedu.revised.card;
 
-import seedu.revised.card.quiz.Result;
+import seedu.revised.card.quizcard.Result;
 import seedu.revised.list.ResultList;
 
 import java.util.ArrayList;

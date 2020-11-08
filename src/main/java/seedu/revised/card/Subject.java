@@ -1,8 +1,8 @@
 package seedu.revised.card;
 
-import seedu.revised.card.quiz.Result;
+import seedu.revised.card.quizcard.Result;
 import seedu.revised.list.ResultList;
-import seedu.revised.card.task.Task;
+import seedu.revised.card.taskcard.Task;
 import seedu.revised.list.TaskList;
 import seedu.revised.list.TopicList;
 

@@ -1,13 +1,13 @@
 package seedu.revised.parser;
 
-import seedu.revised.command.flashcard.AddFlashcardCommand;
-import seedu.revised.command.flashcard.ExitFlashcardCommand;
-import seedu.revised.command.flashcard.FlashcardCommand;
-import seedu.revised.command.flashcard.ListAllFlashcardCommand;
-import seedu.revised.command.flashcard.ListFlashcardCommand;
-import seedu.revised.command.flashcard.DeleteFlashcardCommand;
-import seedu.revised.command.flashcard.SorryFlashcardCommand;
-import seedu.revised.command.flashcard.HelpFlashcardCommand;
+import seedu.revised.command.flashcardcommand.AddFlashcardCommand;
+import seedu.revised.command.flashcardcommand.ExitFlashcardCommand;
+import seedu.revised.command.flashcardcommand.FlashcardCommand;
+import seedu.revised.command.flashcardcommand.ListAllFlashcardCommand;
+import seedu.revised.command.flashcardcommand.ListFlashcardCommand;
+import seedu.revised.command.flashcardcommand.DeleteFlashcardCommand;
+import seedu.revised.command.flashcardcommand.SorryFlashcardCommand;
+import seedu.revised.command.flashcardcommand.HelpFlashcardCommand;
 
 public class FlashcardParser {
 
@@ -18,23 +18,29 @@ public class FlashcardParser {
      * @return returns a command instance to execute a command
      */
     public static FlashcardCommand parse(String fullCommand) {
+        fullCommand = fullCommand.trim();
         String[] tokens = fullCommand.split(" ");
-        String command = tokens[0];
+        String fullCommandLowerCase = fullCommand.toLowerCase();
+        String command = tokens[0].toLowerCase();
 
-        if (fullCommand.equals("exit")) {
-            return new ExitFlashcardCommand();
-        } else if (fullCommand.equals("list")) {
-            return new ListFlashcardCommand();
-        } else if (fullCommand.equals("list all")) {
-            return new ListAllFlashcardCommand();
-        } else if (command.equals("add")) {
+        switch (command) {
+        case "add":
             return new AddFlashcardCommand(fullCommand);
-        } else if (command.equals("delete")) {
+        case "delete":
             return new DeleteFlashcardCommand(fullCommand);
-        } else if (fullCommand.equals("help")) {
+        case "help":
             return new HelpFlashcardCommand();
-        } else {
-            return new SorryFlashcardCommand();
+        default:
+            switch (fullCommandLowerCase) {
+            case "exit":
+                return new ExitFlashcardCommand();
+            case "list" :
+                return new ListFlashcardCommand();
+            case "list all":
+                return new ListAllFlashcardCommand();
+            default:
+                return new SorryFlashcardCommand();
+            }
         }
     }
 }

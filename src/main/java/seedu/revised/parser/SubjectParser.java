@@ -1,18 +1,18 @@
 package seedu.revised.parser;
 
-import seedu.revised.command.subject.ListAllSubjectCommand;
-import seedu.revised.command.subject.AddSubjectCommand;
-import seedu.revised.command.subject.DeleteSubjectCommand;
-import seedu.revised.command.subject.ExitSubjectCommand;
-import seedu.revised.command.subject.ExportSubjectCommand;
-import seedu.revised.command.subject.FindSubjectCommand;
-import seedu.revised.command.subject.ListSubjectCommand;
-import seedu.revised.command.subject.AccessSubjectCommand;
-import seedu.revised.command.subject.SorrySubjectCommand;
-import seedu.revised.command.subject.SubjectCommand;
-import seedu.revised.command.subject.QuizSubjectCommand;
-import seedu.revised.command.subject.ResultSubjectCommand;
-import seedu.revised.command.subject.HelpSubjectCommand;
+import seedu.revised.command.subjectcommand.ListAllSubjectCommand;
+import seedu.revised.command.subjectcommand.AddSubjectCommand;
+import seedu.revised.command.subjectcommand.DeleteSubjectCommand;
+import seedu.revised.command.subjectcommand.ExitSubjectCommand;
+import seedu.revised.command.subjectcommand.ExportSubjectCommand;
+import seedu.revised.command.subjectcommand.FindSubjectCommand;
+import seedu.revised.command.subjectcommand.ListSubjectCommand;
+import seedu.revised.command.subjectcommand.AccessSubjectCommand;
+import seedu.revised.command.subjectcommand.SorrySubjectCommand;
+import seedu.revised.command.subjectcommand.SubjectCommand;
+import seedu.revised.command.subjectcommand.QuizSubjectCommand;
+import seedu.revised.command.subjectcommand.ResultSubjectCommand;
+import seedu.revised.command.subjectcommand.HelpSubjectCommand;
 
 /**
  * Allows the parsing of inputs provided by the user.
@@ -26,16 +26,18 @@ public class SubjectParser {
      * @return returns a command instance to execute a command
      */
     public static SubjectCommand parse(String fullCommand) {
+        fullCommand = fullCommand.trim();
         String[] tokens = fullCommand.split(" ");
-        String command = tokens[0];
+        String fullCommandLowerCase = fullCommand.toLowerCase();
+        String command = tokens[0].toLowerCase();
 
-        if (fullCommand.equals("bye")) {
+        if (fullCommandLowerCase.equals("bye")) {
             return new ExitSubjectCommand();
-        } else if (fullCommand.equals("list")) {
+        } else if (fullCommandLowerCase.equals("list")) {
             return new ListSubjectCommand();
-        } else if (fullCommand.equals("list all")) {
+        } else if (fullCommandLowerCase.equals("list all")) {
             return new ListAllSubjectCommand();
-        } else if (fullCommand.equals("export")) {
+        } else if (fullCommandLowerCase.equals("export")) {
             return new ExportSubjectCommand();
         } else if (command.equals("add")) {
             return new AddSubjectCommand(fullCommand);
@@ -43,7 +45,7 @@ public class SubjectParser {
             return new DeleteSubjectCommand(fullCommand);
         } else if (command.equals("find")) {
             return new FindSubjectCommand(fullCommand);
-        } else if (fullCommand.equals("help")) {
+        } else if (fullCommandLowerCase.equals("help")) {
             return new HelpSubjectCommand();
         } else if (command.equals("subject")) {
             return new AccessSubjectCommand(fullCommand);
