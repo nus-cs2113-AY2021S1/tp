@@ -130,6 +130,15 @@ public class UI {
         case "random bunny":
             printHelpRandomBunny();
             break;
+        case "filter words":
+            printHelpFilterWords();
+            break;
+        case "list filter words":
+            printHelpListFilterWords();
+            break;
+        case "remind":
+            printHelpRemind();
+            break;
         default:
             printHelp();
             break;
@@ -141,10 +150,10 @@ public class UI {
             "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny",
             "list", "list filter words", "start", "filter words", "stats", "reset", "name",
             "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
-        System.out.println("Type 'help <function name here>' to view help for each command.");
+        System.out.println("Type 'help FUNCTION_NAME' to view help for each command.");
         System.out.println("Available commands:");
         for (String listCommand : listCommands) {
-            System.out.println(listCommand);
+            System.out.println("- " + listCommand);
         }
     }
 
@@ -211,28 +220,47 @@ public class UI {
     }
 
     private static void printHelpRandomBunny() {
-        System.out.println("pick a random bunny from your list");
+        System.out.println("Pick a random bunny from your list");
         System.out.println("Format: random bunny");
+    }
+
+    private static void printHelpFilterWords() {
+        System.out.println("Get words from your words list.");
+        System.out.println("Format: filter words [-continue] [limit\\PRINT_LIMIT] "
+                + "by\\TYPE_OF_FILTER -TARGET_STRING...");
+        System.out.println("Supported TYPE_OF_FILTER: \"type\", \"start\", \"include\"");
+        System.out.println("If TYPE_OF_FILTER is type: -TARGET_STRINGs are -noun/-verb/-adjective");
+        System.out.println("Example: filter words by\\type -verb -noun");
+    }
+
+    private static void printHelpListFilterWords() {
+        System.out.println("List the words in your filter list.");
+        System.out.println("Format: list filter words [limit\\PRINT_LIMIT]");
+        System.out.println("Example: list filter words limit\\10");
+    }
+
+    private static void printHelpRemind() {
+        System.out.println("Remind you of a piece of writing on a specific date.");
+        System.out.println("Format: remind DATE");
+        System.out.println("Note: DATE should be in the form of dd/MM/yyyy");
+        System.out.println("Example: remind 11/11/2020");
     }
 
     public static void printHelpNoun() {
         System.out.println("Type in the noun you want to save followed by its meaning.");
-        System.out.println("Use the following format for the 'noun' command:");
-        System.out.println("noun <word here> d\\<description>");
+        System.out.println("Format: noun WORD d\\DESCRIPTION");
         System.out.println("Example: noun cat d\\a feline animal");
     }
 
     public static void printHelpVerb() {
         System.out.println("Type in the verb you want to save followed by its meaning.");
-        System.out.println("Use the following format for the 'verb' command:");
-        System.out.println("verb <word here> d\\<description>");
+        System.out.println("Format: verb WORD d\\DESCRIPTION");
         System.out.println("Example: verb eat d\\to consume food");
     }
 
     public static void printHelpAdj() {
         System.out.println("Type in the adjective you want to save followed by its meaning.");
-        System.out.println("Use the following format for the 'adj' command:");
-        System.out.println("adj <word here> d\\<description>");
+        System.out.println("Format: adj WORD d\\DESCRIPTION");
         System.out.println("Example: adj hungry d\\the feeling due to lack of food");
     }
 

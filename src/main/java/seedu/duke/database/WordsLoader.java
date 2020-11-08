@@ -33,7 +33,8 @@ public class WordsLoader {
             try {
                 readDataFromFile(s);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Error reading file due to unexpected format. Please manually check your file.");
+                System.out.println("Error reading file due to unexpected format or invalid word type in database. "
+                        + "Please manually check your file.");
                 LOGGER.log(Level.WARNING, "Program cannot continue reading data from file.");
             }
         } catch (FileNotFoundException e) {
@@ -54,24 +55,28 @@ public class WordsLoader {
                 try {
                     wordsList.add(new Verb(readings[1], readings[2]));
                 } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("No arguments about readings[1] or readings[2] is provided");
+                    LOGGER.log(Level.WARNING, "Noun is missing from data/words.txt");
+                    System.out.println("No information about noun or its description is provided in words.txt");
                 }
                 break;
             case "noun":
                 try {
                     wordsList.add(new Noun(readings[1], readings[2]));
                 } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("No arguments about readings[1] or readings[2] is provided");
+                    LOGGER.log(Level.WARNING, "Verb is missing from data/words.txt");
+                    System.out.println("No information about verb or its description is provided in words.txt");
                 }
                 break;
             case "adjective":
                 try {
                     wordsList.add(new Adjective(readings[1], readings[2]));
                 } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("No arguments about readings[1] or readings[2] is provided");
+                    LOGGER.log(Level.WARNING, "Adjective is missing from data/words.txt");
+                    System.out.println("No information about adjective or its description is provided in words.txt");
                 }
                 break;
             default:
+                LOGGER.log(Level.WARNING, "Invalid word type found in the database");
                 throw new IndexOutOfBoundsException();
             }
         }
