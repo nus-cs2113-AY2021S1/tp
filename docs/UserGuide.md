@@ -967,9 +967,9 @@ Example of ***`exclude chapter`***
 
 | Action | Format, Examples |
 |--------|------------------|
-| Add Flashcard | `add q:QUESTION \| a:ANSWER` <br> e.g. `add q:1+1 \| a:2` |
+| Add Flashcard | `add q:QUESTION | a:ANSWER` <br> e.g. `add q:1+1 | a:2` |
 | List Flashcards | `list` |
-| Edit Flashcard | `edit FLASHCARD_INDEX q:QUESTION \| a:ANSWER` <br> e.g. `edit 1 q:2*1 \| a:2` |
+| Edit Flashcard | `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER` <br> e.g. `edit 1 q:2*1 | a:2` |
 | Remove Flashcard | `remove FLASHCARD_INDEX` <br> e.g. `remove 1` |
 | Return Module Level | `back` |
 | Show Rate | `showrate` |
