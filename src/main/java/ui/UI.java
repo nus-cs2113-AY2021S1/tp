@@ -38,7 +38,7 @@ public class UI {
     public String[] readEditCommand() {
         String[] editFields = {"TYPE: ", "DESC: ", "LOCATION: ", "START: ", "END: "};
         String[] editInformation = new String[5];
-        System.out.println("Enter the fields for each component. Leave as blank if no changes are to be made.");
+        System.out.println("Enter the edits for each component. Leave as blank if no edits are to be made.");
         // populate editinformation with user data
         for (int i = 0; i < 5; i++) {
             System.out.print(editFields[i]);
