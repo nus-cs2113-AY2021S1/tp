@@ -849,11 +849,11 @@ Expected output:
 
 ```
 ____________________________________________________________
-Here are the flashcard(s) under speed: 
-1. Q: What is the formula for time?
-   A: Time = Distance/Speed.
-2. Q: What is the difference between speed and velocity? 
-   A: Speed, being a scalar quantity, is the rate at which an object covers distance. On the other hand, velocity being a vector quantity, is the rate at which the position changes.
+Here are the flashcard(s) under Java: 
+1. Q: Name 3 Java primitive data types. 
+   A: short, int, long.
+2. Q: Is return 0 needed at the end of main method to indicate a successful execution? 
+   A: No, it is considered as a successful execution unless an error is signalled specifically.
 ____________________________________________________________
 ```
 
@@ -962,7 +962,7 @@ Noted. I've removed this flashcard:
   Q: What is the version of Java used in CS2113T
   A: 11.0
 Now you have 2 flashcards in the list.
-____________________________________________________________```
+____________________________________________________________
 ```
 
 #### 3.3.6 Exiting the topic: `exit` 
