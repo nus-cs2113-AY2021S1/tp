@@ -323,7 +323,8 @@ While alternative 2 would place all checks in one place, it can be tedious to te
 was chosen. It also made the code look neater and more readable. 
 <!-- @@author -->
     
-### 3.7. Dining options finder (/dine Feature)
+<!-- @@author mrwsy1 -->
+### 3.7. Dining options finder (/dine Feature) - Shuyi
 
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
@@ -331,14 +332,15 @@ specified faculty.
 The `DineCommand#executeCommand()` method of DineCommand Class executes the command in the following steps:
 1. Checks the user input and throws an exception if the input is empty.
 2. Calls `DineCommand#checkFaculty()` method to check for a match between the data and user input.
-    + Sets the `isFound` parameter to **false** if there is no match.
-    + Sets the `isFound` parameter to **true** if there is a match.
+    + Sets the `isFound` parameter to **true** if there is any match.
         + Calls `Ui#printDineResult()` method to print the matching results.
+    + Sets the `isFound` parameter to **false** if there is no match.
+        + Throws an exception if `isFound` is false.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
 ![bus data](DG_Diagrams/DineSequence.png)
 
-### 3.8 Find specific dining outlets (/dineinfo Feature)
+### 3.8 Find specific dining outlets (/dineinfo Feature) - Shuyi
 
 `/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
 
@@ -346,12 +348,12 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 1. Checks the user input and throws an exception if the input is empty.
 2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
     + Adds any matching data to an ArrayList `searchList`.
-    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList`.
-        + Prints the matching results if size of `searchList` is more than 0.
-        + Prints 'no match' message if size of `searchList` is 0.
+    + Throws an exception if `searchList` is empty.
+    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList` if it is not empty.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
 ![bus data](DG_Diagrams/DineInfoSequence.png)
+<!-- @@author -->
 
 ### 3.9. Bus at bus stop finder (`/bus` Feature)
 
@@ -552,7 +554,8 @@ the needed parameter.<br>
 
 ### E.4 Check for buses at a bus stop
 
-### E.5 Search for dining options within a faculty
+<!-- @@author mrwsy1 -->
+### E.5 Search for dining options within a faculty - Shuyi
 1. Searching for dining options within a faculty.
     - Prerequisites: List all faculties by executing `/faculty` command<br>
     - Test case: `/dine science`<br>
@@ -575,7 +578,7 @@ the needed parameter.<br>
     - Other incorrect commands to test: `/dine schooool` (keyword has been misspelled)<br>
     Expected: Similar to previous.<br>
 
-### E.6 Search for specific dining outlet
+### E.6 Search for specific dining outlet - Shuyi
 1. Searching for specific dining outlet.
     - Test case: `/dineinfo arise & shine`<br>
     Expected: Dining outlets with the name Arise & Shine will be displayed.<br>
@@ -591,6 +594,7 @@ the needed parameter.<br>
     Expected: No dining outlets will be displayed. Error details will be shown.<br>
     - Other incorrect commands to test: `/dineinfo caffe` (keyword has been misspelled)<br>
     Expected: Similar to previous.<br> 
+<!-- @@author -->
     
 ### E.7 Add a favourite command
 
