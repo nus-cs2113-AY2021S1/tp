@@ -416,7 +416,7 @@ public class Ui {
         } else {
             printWithoutLines(INVALID_TOPIC);
             printTopicsError(topicList);
-            printMessage(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
+            printMessage(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
         }
     }
 
