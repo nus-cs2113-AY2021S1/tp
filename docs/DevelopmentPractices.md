@@ -37,7 +37,7 @@ GitHub was used as the host for version control with Git, and GitHub's inbuilt f
   <br><em>Figure 1</em>
 </p>
 
-[Kanban boards](https://en.wikipedia.org/wiki/Kanban_board) are a feature used under the Projects section of each GitHub repository, and are extremely useful in providing an overview of the current state of the project.Additionally, it tracked the work at various stages of the project, giving the team a better sense of what was accomplished and what was left to be done. 
+[Kanban boards](https://en.wikipedia.org/wiki/Kanban_board) are a feature used under the Projects section of each GitHub repository, and are extremely useful in providing an overview of the current state of the project. Additionally, it tracks the work at various stages of the project, giving the team a better sense of what was accomplished and what was left to be done. 
 
 <br>
 
