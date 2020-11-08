@@ -45,6 +45,24 @@ public class InputChecker {
     }
 
     /**
+     * Takes in user input and check if there are multiple slashes.
+     *
+     * @param userInput user input.
+     * @throws DietException when there are more than 1 slash at any one instance.
+     */
+    public static void checkSlashes(String userInput) throws DietException {
+        String parameter = Parser.getCommandParam(userInput);
+        long noOfOptions = parameter.chars().filter(num -> num == '/').count();
+        int slashTracker = parameter.indexOf("/");
+        for (int i = 0; i < noOfOptions; i++) {
+            if (parameter.charAt(slashTracker + 1) == '/') {
+                throw new DietException("Multiple forward slashes should not be in the input!");
+            }
+            slashTracker = parameter.indexOf("/", slashTracker + 1);
+        }
+    }
+
+    /**
      * Takes in user input to check for single word commands.
      *
      * @param input user input.

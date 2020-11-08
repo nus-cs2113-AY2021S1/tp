@@ -1,6 +1,7 @@
 package seedu.dietbook.command;
 
 import seedu.dietbook.Manager;
+import seedu.dietbook.checker.InputChecker;
 import seedu.dietbook.ui.Ui;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.parser.Parser;
@@ -19,6 +20,7 @@ public class EditInfoCommand extends Command {
         } else if (commandCount == 2) {
             throw new DietException("Please enter your basic information first!");
         }
+        InputChecker.checkSlashes(this.userInput);
         Parser.executeEditInfo(this.userInput, manager);
         ui.printEditedPersonInfo(manager.getPerson().toString());
     }

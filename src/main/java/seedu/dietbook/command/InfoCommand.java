@@ -1,6 +1,7 @@
 package seedu.dietbook.command;
 
 import seedu.dietbook.Manager;
+import seedu.dietbook.checker.InputChecker;
 import seedu.dietbook.ui.Ui;
 import seedu.dietbook.exception.DietException;
 import seedu.dietbook.parser.Parser;
@@ -20,6 +21,7 @@ public class InfoCommand extends Command {
         } else if (commandCount != 2) {
             throw new DietException("Basic information has already been input!");
         }
+        InputChecker.checkSlashes(this.userInput);
         Parser.executeProcessedInfo(this.userInput, manager);
         commandCount++;
         ui.printInitialisationCompleteMessage();

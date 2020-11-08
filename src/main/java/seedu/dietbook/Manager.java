@@ -113,7 +113,7 @@ public class Manager {
         Calculator calculator = this.calculator;
         switch (Parser.getCommand(userInput)) {
         case COMMAND_ADD:
-            return new AddCommand(Parser.getProcessedAdd(userInput, getFoodList()));
+            return new AddCommand(userInput);
         case COMMAND_CALCULATE:
             return new CalculateCommand(calculator.calculateCalorie(), calculator.calculateCarb(),
                     calculator.calculateProtein(), calculator.calculateFat(), Parser.getCommandParam(userInput));
