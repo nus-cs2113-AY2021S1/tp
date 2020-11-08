@@ -47,6 +47,7 @@ Given below are my contributions to the project. <br/>
 * Added the documentation guide, testing guide and logging guide to the Developer Guide.
   ([\#114](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/114),
    [\#229](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/229))
+* Added implementation for the feature `print timeline`.
 * Added sequence diagram for feature `print timeline`.
   ([\#140](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/140),
    [\#141](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/141),

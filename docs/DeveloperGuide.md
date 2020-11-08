@@ -280,6 +280,7 @@ valid, FALSE otherwise.
 The following sequence diagram further illustrates the above process. 
 ![ModuleChecker_SD]()
 
+<!-- @@author Jingming517 -->
 ## Documentation
 
 ### Documentation guide
@@ -329,6 +330,7 @@ There are two ways to run tests.
   - INFO : Information showing the noteworthy actions by the App
   - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
+<!-- @@author -->
 ### Configuration guide
 
 ### DevOps guide
