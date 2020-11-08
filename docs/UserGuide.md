@@ -231,8 +231,7 @@ List of `<optional arguments>`:
 
 🚩: By default, the currency is set to "SGD" and date is set to the date when the user executes the `spend` command.
 
-🚩: `currency` is user defined. It does not have to be a legal currency in the world.
-
+🚩: `currency` is user defined. It **does not** have to be a legal currency in the world.
 
 🚩: Optional and compulsory arguments can be typed in **any** order
 
