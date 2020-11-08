@@ -27,7 +27,7 @@ enhancements.
   * [3.10. Performing similarity checks](#310-performing-similarity-checks)
   * [3.11. Displaying most searched bus stop](#311-displaying-most-searched-bus-stop-on-start-up)
     + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies-of-bus-stops-reset-feature)
-- [4. Appendix I: Requirements](#4-appendix-i-requirements)
+- [4. Appendix A: Requirements](#4-appendix-a-requirements)
   * [4.1. Target user profile](#41-target-user-profile)
   * [4.2. Value Proposition](#42-value-proposition)
 - [5. Appendix B: User Stories](#5-appendix-b-user-stories)
