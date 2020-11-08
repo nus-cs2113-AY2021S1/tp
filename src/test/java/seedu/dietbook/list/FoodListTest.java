@@ -133,5 +133,18 @@ class FoodListTest {
 
     }
 
+    @Test
+    @DisplayName("List sorting test")
+    void getSortedItem_listWithItemsAddedAtEarlierDates_getItemsAccordingToDateTimeOrder() {
+        datedList.addFoodAtDateTime(3, food, LocalDateTime.MIN);
+        datedList.addFoodAtDateTime(2, food, LocalDateTime.of(2000, 6, 7, 0, 0));
+        
+        datedList.sort();
+        
+        for (int i = 0; i < datedList.getFoods().size() - 1; i++) {
+            assertTrue(datedList.getDateTimes().get(i).isBefore(datedList.getDateTimes().get(i + 1)));
+        }
+    }
+
 
 }
