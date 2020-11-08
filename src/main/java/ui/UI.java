@@ -383,19 +383,20 @@ public class UI {
     }
 
     /**
-     * Print the success message after the user turned the auto-clear function on
+     * Print the success message after the user input auto clear
      *
      */
     public void printAutoClearOn() {
-        System.out.println("Great! You have turned the auto-clear function on! \nEverything happened one month ago will be automatically cleared :)");
+        System.out.println("Great! All events happened one month ago are cleared :)");
     }
 
     /**
-     * Print the success message after the user turned the auto-clear function off
+     * Print the success message after the user successfully clear all events before a certain date
      *
      */
-    public void printAutoClearOff() {
-        System.out.println("Great! You have turned the auto-clear function off!\nYour past events will be kept :)");
+    public void printClearBefore(LocalDate clearDate) {
+        System.out.println("Great! You have cleared all events before " + clearDate.toString());
     }
+
 }
 

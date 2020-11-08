@@ -17,6 +17,7 @@ import command.ReminderCommand;
 import command.RepeatCommand;
 import command.SortCommand;
 import command.AutoClearCommand;
+import command.ClearBeforeCommand;
 
 import command.StudyTimeCommand;
 import command.UserInfoCommand;
@@ -55,6 +56,7 @@ import exception.UndefinedEventException;
 import exception.UnknownErrorException;
 import exception.WrongCommandException;
 import exception.WrongEditFormatException;
+import exception.EmptyClearDateException;
 import location.Building;
 import location.Hostel;
 import location.LectureTheatre;
@@ -101,6 +103,7 @@ public abstract class Parser {
     public static final String REPEAT = "repeat";
     public static final String ALL = "all";
     public static final String AUTO_CLEAR = "autoclear";
+    public static final String CLEAR_BEFORE = "clearbefore";
 
 
     /**
@@ -131,8 +134,8 @@ public abstract class Parser {
                 return new ReminderCommand();
             case AUTO_CLEAR:
                 return new AutoClearCommand();
-        default:
-            break;
+            default:
+                break;
         }
 
         String[] words = fullCommand.split(SINGLE_SPACE);
@@ -258,6 +261,18 @@ public abstract class Parser {
                     throw new RepeatIndexFormatException();
                 }
                 return new RepeatCommand(index - 1, numWeeks);
+            }
+        }
+
+        //this block deals with clear before
+        if (words[0].equalsIgnoreCase(CLEAR_BEFORE)) {
+            if (fullCommand.substring(11).isBlank()) {
+                throw new EmptyClearDateException();
+            }
+            try {
+                return new ClearBeforeCommand(LocalDate.parse(fullCommand.substring(12)));
+            } catch (DateTimeParseException e) {
+                throw new DateFormatException();
             }
         }
 

@@ -1,7 +1,10 @@
 package command;
 
+import event.Event;
 import eventlist.EventList;
 import exception.EmptyEventListException;
+import exception.NoDateBeforeException;
+import exception.NoEventOneMonthAgoException;
 import exception.NuScheduleException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
@@ -9,19 +12,18 @@ import storage.Storage;
 import ui.UI;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Represents the command call when the user wants to turn on/off the auto-clear function
- * if this function is on, events which ends one month earlier will be cleared
+ * everytime the user input the function, events of one month ago will be cleared
  */
 public class AutoClearCommand extends Command {
 
-    protected boolean isOn;
     protected LocalDate clearDate;
 
     public AutoClearCommand() {
         clearDate = LocalDate.now().minusMonths(1);
-        isOn = false;
     }
 
     /**
@@ -35,12 +37,17 @@ public class AutoClearCommand extends Command {
      * @throws EmptyEventListException the exceptions when the user try to clear an empty list.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws EmptyEventListException{
-        if (!isOn) {
-            ui.printAutoClearOn();
-            events.clearBefore(clearDate);
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) throws EmptyEventListException, NoEventOneMonthAgoException {
+        if (events != null) {
+            ArrayList<Event> filteredEventList = events.filterDateBefore(clearDate);
+            if (filteredEventList.size() == 0) {
+                throw new NoEventOneMonthAgoException();
+            } else {
+                ui.printAutoClearOn();
+                events.clearBefore(clearDate);
+            }
         } else {
-            ui.printAutoClearOff();
+            throw new EmptyEventListException();
         }
     }
 }

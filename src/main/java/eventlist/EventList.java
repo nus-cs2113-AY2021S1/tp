@@ -6,12 +6,7 @@ import event.Class;
 import event.Event;
 import event.PersonalEvent;
 import event.SelfStudy;
-import exception.EditNoEndTimeException;
-import exception.EmptyEventListException;
-import exception.ExistingEventInListException;
-import exception.EndBeforeStartEventException;
-import exception.NoClassWeekException;
-import exception.UndefinedEventException;
+import exception.*;
 import location.Location;
 import location.OnlineLocation;
 
@@ -365,6 +360,20 @@ public class EventList {
     }
 
     /**
+     * Filter the event list to find the events happen before the date looking for by the user.
+     *
+     * @param date the date that the user is looking for.
+     * @return the filtered list. this list contains only the events that satisfy the requirement.
+     */
+    public ArrayList<Event> filterDateBefore(LocalDate date) {
+        ArrayList<Event> filteredEventList = (ArrayList<Event>) events.stream()
+                .filter(s -> (s.getDate().compareTo(date) < 0))
+                .collect(toList());
+
+        return filteredEventList;
+    }
+
+    /**
      * Filter the event list to find the academic related events happen on the date that have been done already.
      *
      * @param date the date that the user is looking for.
@@ -529,9 +538,11 @@ public class EventList {
      *
      * @param clearDate before which all events to be cleared
      */
-    public void clearBefore(LocalDate clearDate) {
+    public void clearBefore(LocalDate clearDate) throws EmptyEventListException {
         if (events != null) {
             events.removeIf(event -> event.getDate().compareTo(clearDate) < 0);
+        } else {
+            throw new EmptyEventListException();
         }
     }
 }
