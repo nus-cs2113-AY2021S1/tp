@@ -224,23 +224,28 @@ The Manual Tracker is capable of executing the following states of operation:
 |```DELETE_LEDGER```|Delete an existing ledger, referenced by date or index.
 |```OPEN_LEDGER```|Go to subroutine "Entry Tracker" for the entries recorded  under the specified ledger.
 
-**Architecture in Context** <br />
+**Architecture in Context** 
 
-**Logic Manager and Parser** <br />
+**Logic Manager and Parser** 
+
 ![](uml_images/images_updated/Handler.png)
+
 
 **Execution** <br />
 1. Logic Managers are implemented with a common method: ```execute()```, which utilizes a `while loop`
 to maintain a cycle of 2 processes: User input processing and Command handling.
+
 **User Input Processing** <br />
 1. Logic Managers depend on InputManager module to read user input, parse user input and produce a 
 meaningful ```CommandPacket``` instance.
 1. The ```CommandPacket``` instance can then be used by the next step of the cycle.
+
 **Command Handling** <br />
 1. Each Logic Manager will have several methods that are dedicated to handle a single operation. They can
 typically be identified by a specific naming convention: `"handle.....()"`.
 1. These methods use ```CommandHandler``` classes to perform `param` dependent operations, which involves evaluation
 of `paramMap` in the provided `CommandPacket` instance to decide the operation to perform, be it on `Data` or `DataList`.
+
 **Error Reporting** <br />
 1. While error handling from `param` parsing is handled by `ParamChecker` singleton class, there is a need
 to identify from the execution methods at Logic Managers, whether an exception has been thrown. 
