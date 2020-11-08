@@ -2,6 +2,9 @@ package seedu.eduke8.option;
 
 import seedu.eduke8.common.Displayable;
 
+/**
+ * Represents an option of a certain question.
+ */
 public class Option implements Displayable {
     private String description;
     private boolean isCorrectAnswer;
