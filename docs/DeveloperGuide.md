@@ -7,6 +7,7 @@
 
 # Design
 
+<!-- @@author kaiwen98 -->
 ## Overview of Architecture
 __Architecture Diagram__
 
@@ -62,7 +63,7 @@ __API__
 associated with the `param`. For instance, `/date` will cause `CreateLedgerCommand` instance to set the date of the
 newly created ledger.  
 * `CommandHandler` in turn uses `ParamChecker` to verify validity of inputs before setting.
-
+<!-- @@author-->
 
 
 
@@ -132,6 +133,7 @@ from ```saveHandler```. The saver classes are primarily used by ```saveManager``
 
 <div style="page-break-after: always;"></div>
 
+<!-- @@author kaiwen98 -->
 ## Logging
 
 __Description__
@@ -145,6 +147,7 @@ __API__
 those instances will log independently of the `LoggerCentre`. 
 * The `LoggerCentre` creates new log files every time the program runs from the command line. The files are in .log format and
 can be accessed in the `logs` folder.   
+<!-- @@author-->
 
 # Implementation
 ## Module-level Implementation
@@ -153,6 +156,7 @@ can be accessed in the `logs` folder.
 
 &nbsp;  
 
+<!-- @@author kaiwen98 -->
 ### Input Manager
 * Note: Refer to [Input Manager Component](#input-manager-component) above for class diagram 
 illustration of the below subsections.
@@ -213,6 +217,7 @@ __ParamsParser class__
         * __Step 5__: Return a ```HashMap``` populated with the aforementioned pairs.
 
 &nbsp;  
+<!-- @@author-->
 
 ### Logic Managers
 * Note: Refer to [Logic Manager Component](#logic-manager-component) above for class diagram 
