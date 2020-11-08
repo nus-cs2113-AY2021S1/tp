@@ -19,6 +19,7 @@ import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.MakeFolderCommand;
 import seedu.duke.commands.ReturnCommand;
 import seedu.duke.commands.SetCommand;
+import seedu.duke.commands.SpendCommand;
 import seedu.duke.common.Messages;
 
 import java.time.DayOfWeek;
@@ -48,8 +49,11 @@ public class Parser {
         String rootCommand = fullCommand.split(" ")[0];
         String commandString = fullCommand.replaceFirst(rootCommand, "").trim();
         String description = removeArgumentsFromCommand(commandString, ARGUMENT_REGEX);
-        HashMap<String, String> argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
-        checkValidDescription(description);
+        HashMap<String, String> argumentsMap = new HashMap<>();
+        if (!rootCommand.trim().toLowerCase().equals("find")) {
+            argumentsMap = getArgumentsFromRegex(commandString, ARGUMENT_REGEX);
+            checkValidDescription(description);
+        }
 
         switch (rootCommand.toLowerCase()) {
         case AddCommand.COMMAND_WORD:
@@ -57,6 +61,9 @@ public class Parser {
         case AddRecurringCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, AddRecurringCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createAddRecurringCommand(description, argumentsMap);
+        case SpendCommand.COMMAND_WORD:
+            checkAllowedArguments(argumentsMap, SpendCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createSpendCommand(description, argumentsMap);
         case SetCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
             return CommandCreator.createSetCommand(fullCommand, argumentsMap);
@@ -84,7 +91,9 @@ public class Parser {
         case ReturnCommand.COMMAND_WORD:
             return CommandCreator.createReturnCommand(commandString);
         case FindCommand.COMMAND_WORD:
-            return CommandCreator.createFindCommand(commandString);
+            String subRootCommandFind = commandString.split(" ")[0];
+            commandString = commandString.replaceFirst(subRootCommandFind, "").trim();
+            return CommandCreator.createFindCommand(fullCommand, subRootCommandFind, commandString);
         case MakeFolderCommand.COMMAND_WORD:
             return new MakeFolderCommand();
         case HelpCommand.COMMAND_WORD:

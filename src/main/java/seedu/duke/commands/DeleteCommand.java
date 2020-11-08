@@ -19,7 +19,8 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the task listing.\n"
+            + ":\n"
+            + "     1. Deletes the task identified by the index number used in the task listing.\n"
             + "     Parameters: INDEX\n"
             + "     Example: " + COMMAND_WORD + " task" + " 1\n"
             + "          Optional parameter 1: p/PRIORITY\n"
@@ -28,9 +29,16 @@ public class DeleteCommand extends Command {
             + "          Optional parameter 2: c/CATEGORY\n"
             + "             Deletes all the tasks with CATEGORY.\n"
             + "             Example: " + COMMAND_WORD + " tasks" + " c/cs2113.\n"
-            + "     Deletes the link identified by the index number used in the link listing.\n"
+            + "     2. Deletes the link identified by the index number used in the link listing.\n"
             + "     Parameters: INDEX\n"
-            + "     Example: " + COMMAND_WORD + " link" + " 1\n";
+            + "     Example: " + COMMAND_WORD + " link" + " 1\n"
+            + "     3. Deletes the expense items identified by the index number used in the expense list.\n"
+            + "          Optional parameter 1: currency/CURRENCY\n"
+            + "             Deletes all the expense items with CURRENCY.\n"
+            + "             Example: " + COMMAND_WORD + " expenses" + " currency/SGD\n"
+            + "          Optional parameter 2: date/yyyy-MM-dd\n"
+            + "             Deletes all the expense items on the date in the format of yyyy-MM-dd\n"
+            + "             Example: " + COMMAND_WORD + " expenses" + " date/2020-11-07";
 
     private boolean hasPriorityValue = false;
     private boolean hasCategoryValue = false;

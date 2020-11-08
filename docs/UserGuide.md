@@ -822,6 +822,9 @@ Output:
      Parameters: BOOK_NAME date/DATE
      Example: borrow example_book  date/10-10-2020
 
+     calendar: Sets the date of a given task in the list.
+     Example: calendar d/<daysToPrint>
+
      category: Sets the category of a task identified by the task index number in the task list
      Parameters: INDEX c/CATEGORY
      Example: category 1 c/Academics
@@ -829,15 +832,22 @@ Output:
      clear: Clears all tasks in the task list.
      Example: clear
 
+     date: Sets the date of a given task in the list.
+     Example: date <taskIndex> date/DD-MM-YYYY
+
      delete: Deletes the task identified by the index number used in the task listing.
      Parameters: INDEX
      Example: delete task 1
           Optional parameter 1: p/PRIORITY
-          Deletes all the tasks with PRIORITY.
-          Example: delete tasks p/1
+             Deletes all the tasks with PRIORITY.
+             Example: delete tasks p/1
           Optional parameter 2: c/CATEGORY
-          Deletes all the tasks with CATEGORY.
-          Example: delete tasks c/cs2113
+             Deletes all the tasks with CATEGORY.
+             Example: delete tasks c/cs2113.
+     Deletes the link identified by the index number used in the link listing.
+     Parameters: INDEX
+     Example: delete link 1
+
 
      done: Marks the task identified by the index number used in the task listing as done.
      Parameters: INDEX
@@ -854,8 +864,8 @@ Output:
      Example: list all
      Displays all items in the list.
           Optional parameter 1: tasks p/PRIORITY
-          Displays all the tasks with PRIORITY as a list.
-          Example: list tasks p/1
+             Displays all the tasks with PRIORITY as a list.
+             Example: list tasks p/1
           Optional parameter 2: tasks c/CATEGORY
           Displays all the tasks with CATEGORY as a list.
           Example: list tasks c/cs2113
