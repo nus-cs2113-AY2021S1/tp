@@ -288,7 +288,7 @@ The following sequence diagram shows how the edit module name feature works:
   <br/>Figure <>. Sequence diagram of edit module name feature  
 </p>
 
->:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>:information_source: <b>Note:</b> The lifeline for `Parser` and `Admin` should end at a destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.1.4. Remove Module Feature
 (Jia Ern)
@@ -323,8 +323,8 @@ The following sequence diagram shows how the remove module feature works:
 `GoModuleCommand` class facilitates the proposed access module level feature. It extends `GoCommand` class. 
 
 It implements the following operations:
-* `GoModuleCommand#execute()` -- Inherites from the abstract `GoCommand`. It is overrided to calls `GoModuleCommand#goModule()` and print message to user.
-* `GoModuleCommand#goModule()` -- Accesses a new module level from admin level based on the module name entered by user. If the module name does not match with any of the existing module, it returns a error message. Otherwise, this operation returns a successful message to the `GoModuleCommand#execute` operation.
+* `GoModuleCommand#execute()` -- Inherits from the abstract `GoCommand`. It is a override to calls `GoModuleCommand#goModule()` and print message to user.
+* `GoModuleCommand#goModule()` -- Accesses a new module level from admin level based on the index entered by user. If the index is out of bounds, KAJI returns an error message to user. Otherwise, this operation returns a successful message to the `GoModuleCommand#execute` operation.
 
 Shown as the class diagram below, with the inheritance of `GoCommand` and `Command`, `Kaji` is able to execute the operation `GoModuleCommand#execute()` directly. 
 
@@ -337,15 +337,15 @@ Given below is an example usage scenario at Admin level and how the access modul
 
 Step 1: The user is currently in admin level.
 
-Step 2: The user want to access a module level named 'CS2113' and enters `go CS2113` command. This example is based on the assumption that the module 'CS2113' already has been added.
+Step 2: The user want to access a module level named 'CS2113' and enters `go 1` command because it appears as the first item in list. This example is based on the assumption that the module 'CS2113' already has been added.
 
 Step 3: The `Kaji` object passes the user's command to the `Parser` object. The `Parser` creates a new `GoModuleCommand` object if the user's current access level is admin level. Then `Parser` returns the `GoModuleCommand` object to `Kaji`.
 
-Step 4: The `Kaji` object uses the public `GoModuleCommand#execute()` to access module level 'CS2113'.
+Step 4: The `Kaji` object uses the public `GoModuleCommand#execute()` to access module level 'CS2113' with the index of '0'.
 
 Step 5: The `GoModuleCommand#execute()` object calls its own private operation `GoModuleCommand#goModule()` to check the existence of the module level entered by user and modify the user's access level if the module level exists. 
 
-Step 6: The reference of both the `Access` and `Storage` objects is passed into `GoModuleCommand#goModule()`.
+Step 6: The reference of both the `Access` and `Storage` objects passes into `GoModuleCommand#goModule()`.
 
 Step 7: The `GoModuleCommand#goModule()` gets all the `Module` objects in the `Access#Admin` via the methods `Access#getAdmin()`, `Admin#getModules()` and `ModuleList#getAllModules()` respectively. 
 
@@ -353,7 +353,7 @@ Step 8: A for loop is used to check the existence of module entered by user. If 
 
 Step 9: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
 
-The following diagam shows how the add chapter command feature works:
+The following diagram shows how the add chapter command feature works:
 
 <p align="center">
   <img src="UML/AddChapterCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
