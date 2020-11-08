@@ -214,4 +214,15 @@ class ModuleListMinusAddTest {
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
+    @Test
+    @Order(19)
+    public void minusTime_checkIfEmptyWorkloadCanStillMinus() {
+        modulesTest.addMod("addMod CS1010E", true, storage);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.minusTime("minustime CS1010E 4 1", true, storage);
+        String expected = "Cannot minus actual time as there is no actual time inputted.";
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
 }
