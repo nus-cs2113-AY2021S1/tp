@@ -5,6 +5,9 @@ import seedu.duke.DukeException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Represents a module.
+ */
 // @@author iamchenjiajun
 public class Module extends Item {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");

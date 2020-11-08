@@ -169,15 +169,29 @@ public abstract class ItemList<T extends Item> {
      * @param keyword the keyword to be searched in the items list
      */
     public void findItem(String keyword) {
+        ArrayList<T> matchingItems = new ArrayList<>();
         int count = 0;
         String message = "";
         for (T item : items) {
             String[] description;
-            description = item.getDescription().toLowerCase().split(" ");
-            if (Arrays.asList(description).contains(keyword)) {
+            description = item.getDescription().trim().toLowerCase().split(" ");
+            if (Arrays.asList(description).contains(keyword.trim().toLowerCase())) {
+                matchingItems.add(item);
                 count++;
                 message = message + "\n     " + count + "." + item.toString();
-
+            } else if (keyword.contains(" ")) {
+                if (!item.getDescription().trim().toLowerCase().contains(keyword.trim().toLowerCase())) {
+                    continue;
+                }
+                String[] keywords = keyword.trim().toLowerCase().split(" ");
+                for (String word : keywords) {
+                    if (!Arrays.asList(description).contains(word)) {
+                        continue;
+                    }
+                }
+                matchingItems.add(item);
+                count++;
+                message = message + "\n     " + count + "." + item.toString();
             }
         }
         if (!message.equals("")) {

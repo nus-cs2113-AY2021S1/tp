@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeException;
+import seedu.duke.model.item.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -44,6 +45,9 @@ class SetCommandTest extends CommandTest {
         Command setCommand = new SetCommand(1, argumentsMap);
 
         tasks.addTaskFromString(TEST_DESCRIPTION);
-        assertThrows(DukeException.class, () -> setCommand.execute(model));
+        assertThrows(DukeException.class, () -> {
+            setCommand.execute(model);
+        });
     }
+
 }

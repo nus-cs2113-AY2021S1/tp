@@ -2,12 +2,13 @@ package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
-import seedu.duke.parser.Parser;
 import seedu.duke.model.ListType;
+import seedu.duke.parser.Parser;
 
 import java.util.HashMap;
 
 public class CommandCreator {
+
     /**
      * Creates and returns an AddCommand with given arguments.
      *
@@ -36,12 +37,24 @@ public class CommandCreator {
         }
     }
 
+    /**
+     * Creates and returns an AddRecurringCommand with given arguments.
+     *
+     * @param description description of the task
+     * @param argumentsMap Hashmap containing compulsory and optional arguments
+     * @return AddRecurringCommand with given arguments.
+     * @throws DukeException When description is empty.
+     */
     public static Command createAddRecurringCommand(String description, HashMap<String, String> argumentsMap)
             throws DukeException {
         if (description.equals("")) {
             throw new DukeException(Messages.EXCEPTION_EMPTY_DESCRIPTION);
         }
         return new AddRecurringCommand(description, argumentsMap);
+    }
+    
+    public static Command createSpendCommand(String description, HashMap<String, String> argumentsMap) {
+        return new SpendCommand(description, argumentsMap);
     }
 
     /**
@@ -50,7 +63,7 @@ public class CommandCreator {
      * @param fullCommand  Full command given by the user.
      * @param argumentsMap HashMap containing optional arguments.
      * @return SetCommand with given arguments.
-     * @throws DukeException When invalid arguments are given.
+     * @throws DukeException  When invalid arguments are given.
      */
     public static Command createSetCommand(String fullCommand, HashMap<String, String> argumentsMap)
             throws DukeException {
@@ -110,6 +123,8 @@ public class CommandCreator {
             return new ListModuleCommand();
         case "books":
             return new ListCommand(false, false, true);
+        case "expenses":
+            return ListExpenseCommand.createListExpenseCommand(commandString);
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_LIST_COMMAND);
         }
@@ -130,7 +145,7 @@ public class CommandCreator {
             throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
         }
         try {
-            value = commandString.split(" ")[1];
+            value = commandString.split(" ", 2)[1].trim();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
         }
@@ -159,6 +174,10 @@ public class CommandCreator {
                 return new DeleteCommand(Integer.parseInt(value));
             case "module":
                 return new DeleteCommand(Integer.parseInt(value), ListType.MODULE_LIST);
+            case "expense":
+                return new DeleteExpenseCommand(Integer.parseInt(value));
+            case "expenses":
+                return new DeleteExpenseCommand(value);
             default:
                 throw new DukeException(Messages.EXCEPTION_INVALID_DELETE_COMMAND);
 
@@ -217,12 +236,9 @@ public class CommandCreator {
         }
     }
 
-    public static Command createFindCommand(String commandString) throws DukeException {
-        if (commandString.isEmpty()) {
-            throw new DukeException(Messages.EXCEPTION_FIND);
-        } else {
-            return new FindCommand(commandString.toLowerCase().trim());
-        }
+    public static Command createFindCommand(String fullCommand, String subRootCommand, String commandString)
+            throws DukeException {
+        return FindCommand.createFindCommand(fullCommand, subRootCommand, commandString);
     }
 
     // @@author MuhammadHoze

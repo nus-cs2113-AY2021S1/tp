@@ -26,6 +26,13 @@ public class Ui {
     }
 
     /**
+     * Shows an empty line.
+     */
+    public static void showEmptyLine() {
+        System.out.println();
+    }
+
+    /**
      * Prints messages to the user in a structured format.
      *
      * @param message the messaged to be printed
