@@ -351,11 +351,12 @@ The class diagram below shows this relationship.
 
 ![TopicsStorage Class Diagram](./images/TopicsStorage.png)
 
+<div style="page-break-after: always;"></div>
+
 The format of the JSON file is important as it is loaded in a particular way. This format has been designed as an array 
 of topics that hold the different properties for questions, options, hints and explanations.
 An example is as such:
 
-<div style="page-break-after: always;"></div>
 
 ```json
 [
@@ -417,6 +418,8 @@ In order to save and load attributes specific to each user, such as the question
 This class requires access to the main `TopicList` and `BookmarkList` from the Model component in order to extract these attributes. The class diagram below shows this relationship.
 
 ![UserStorage Class Diagram](./images/UserStorage.png)
+
+<div style="page-break-after: always;"></div>
 
 The attributes will be saved in the JSON file tied to each question in a topic and is identified by its description.
 A question's presence in the file represents that it has been attempted before while other attributes are stored as boolean values.

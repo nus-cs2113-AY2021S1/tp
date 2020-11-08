@@ -104,7 +104,7 @@ public class SingleTopicQuiz implements Quiz {
                 command = getCommand(ui, optionList, (int) (userTimer - timePassed));
 
                 if (command instanceof IncorrectCommand) {
-                    LOGGER.log(Level.INFO, "Invalid answer given for question");
+                    LOGGER.log(Level.INFO, "Incorrect command given");
                 } else if (command instanceof HintCommand) {
                     LOGGER.log(Level.INFO, "Hint shown");
                 } else if (command instanceof BookmarkCommand) {
