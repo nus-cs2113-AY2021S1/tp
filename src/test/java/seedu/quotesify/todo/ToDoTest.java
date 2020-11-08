@@ -22,9 +22,18 @@ class ToDoTest {
     }
 
     @Test
-    public void toStringTestAfterFormatting() {
+    public void toStringTestWithFormatting() {
         String taskDetails = "[x] Return Harry Potter (by: Nov 11 2020, WEDNESDAY)";
         toDo.updateDateFormat();
+        assertEquals(taskDetails, toDo.toString());
+    }
+
+    @Test
+    public void toStringTestWithDone() {
+        String taskDetails = "[v] Return Harry Potter (by: Nov 11 2020, WEDNESDAY)";
+        toDo.updateDateFormat();
+        toDo.setDone(true);
+
         assertEquals(taskDetails, toDo.toString());
     }
 }
