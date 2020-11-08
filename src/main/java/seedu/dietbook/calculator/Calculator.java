@@ -254,15 +254,15 @@ public class Calculator {
         activityScore = getActivityScore(person);
         switch (person.getGender()) {
         case MALE:
-            requirement = 662 - 9.53 * person.getAge() + 15.91 * activityScore * person.getOriginalWeight()
+            requirement = 662 - 9.53 * person.getAge() + 15.91 * activityScore * person.getCurrentWeight()
                     + 539.6 * person.getHeight() / 100;
             break;
         case FEMALE:
-            requirement = 354 - 6.91 * person.getAge() + 9.36 * activityScore * person.getOriginalWeight()
+            requirement = 354 - 6.91 * person.getAge() + 9.36 * activityScore * person.getCurrentWeight()
                     + 726 * person.getHeight() / 100;
             break;
         case OTHERS:
-            requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getOriginalWeight()
+            requirement = 508 - 8.22 * person.getAge() + 12.635 * activityScore * person.getCurrentWeight()
                     + 632.8 * person.getHeight() / 100;
             break;
         default:
