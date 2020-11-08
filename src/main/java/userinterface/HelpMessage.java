@@ -49,11 +49,17 @@ public class HelpMessage extends Ui {
             + "star <LINK_NUMBER>           - mark the bookmark link as star";
 
     private static final String timetableCommands =  "Here are the timetable commands available:\n"
-            + "add class      - adds a class to the timetable\n"
-            + "add activity   - adds an activity to the timetable\n"
-            + "show link      - displays the links/venues of events occurring\n"
-            + "                 in the next 2 hours\n"
-            + "show schedule  - displays schedule";
+            + "add class                        - adds a class to the timetable\n"
+            + "add activity                     - adds an activity to the timetable\n"
+            + "show link                        - displays the links/venues of events occurring\n"
+            + "                                   in the next 2 hours\n"
+            + "show schedule                    - displays schedule"
+            + "list activity                    - display the list of activities with its date\n"
+            + "list class                       - display the list of class with days of the week\n"
+            + "delete activity <INDEX_NUMBER>   - delete the activity at specific index\n"
+            + "delete class <INDEX_NUMBER>      - delete the class at specific index\n"
+            + "clean up                         - delete all activities that end more than 7 days ago"
+            + "                                   and classes that had its last lesson more than 7 days ago";
 
     private static final String flashcardCommands = "Here are the flashcard commands available:\n"
             + "add     - adds a question and answer to the flashcard deck\n"

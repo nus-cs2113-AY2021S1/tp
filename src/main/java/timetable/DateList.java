@@ -2,6 +2,7 @@ package timetable;
 
 import exceptions.ClashScheduleException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +94,23 @@ public class DateList {
                 System.out.println("There is a clash in schedule");
             }
             storage.writeFile(activity);
+        }
+    }
+
+    public void cleanUpEvent(TimeTableStorage storage) {
+        for (int i = 0; i < activities.size(); i++) {
+            if (activities.get(i).periods.get(0).endDateTime.isBefore(LocalDateTime.now().minusDays(7))) {
+                deleteActivity(i + 1, storage);
+                i--;
+            }
+        }
+        for (int i = 0; i < lessons.size(); i++) {
+            int periodLastIndex = lessons.get(i).periods.size() - 1;
+            LocalDateTime lastDate = lessons.get(i).periods.get(periodLastIndex).endDateTime;
+            if (lastDate.isBefore(LocalDateTime.now().minusDays(7))) {
+                deleteActivity(i + 1, storage);
+                i--;
+            }
         }
     }
 }

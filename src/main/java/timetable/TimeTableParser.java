@@ -24,6 +24,10 @@ public class TimeTableParser {
         case "list class":
             TimeTableCommand.showClass(dateList);
             return;
+        case "clean up":
+            dateList.cleanUpEvent(storage);
+            System.out.println("Clean up completed");
+            return;
         default:
             String[] words = command.split(" ");
             if (words.length == 2) {
