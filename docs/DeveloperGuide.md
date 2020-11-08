@@ -173,17 +173,22 @@ The `options.get(i)` parameter will get the description of the specific option a
 
 ### 2.3. Logic Component
 
-The main application logic, such as provisioning quizes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
+The main application logic, such as provisioning quizzes, is handled by the Logic component. This component also acts as the middleman between the backend and frontend by processing data before passing it to the user interface and parsing user input from the user interface.
 
 #### 2.3.1. Design of Parser
 
 ![Parser Diagram](./images/ParserDiagram.png)
 
-1. After constructing a new MenuParser() in the `Eduke8` class, the parseCommand() method is used to parse the 
+1. After constructing a new `MenuParser` in the `Eduke8` class, the `parseCommand()` method is used to parse the 
    user command.
-2. This results in a `Command` object, which is executed by `Command` class itself, using the execute() method.
+2. This results in a `Command` object, which is executed by `Command` class itself, using the `execute()` method.
 3. The `Ui` object in the `Command` object is used to display the requested information, or to display the required task 
 to be completed as per the user input.
+
+It should be made clear that `parseCommand()` returns a new object from the child class of `Command`. The object's exact 
+class depends on the input typed into the command line, and so since `parseCommand()` returns all these objects from the 
+various specific `Command` classes, the `MenuParser` which has the `parseCommand()` method is dependent on all these 
+specific `Command` classes.
 
 <div style="page-break-after: always;"></div>
 
@@ -200,7 +205,7 @@ named `MenuParser`. The other parser is used during quizzes, in order to answer 
 called `QuizParser`. Given below is an example usage scenario of how the command parsing feature works at each step, 
 when the user types in input to get help in order to see what commands are available to the user.
 
-Step 1. The user launches the program for the first time. The `MenuParser()` will be initialised and awaiting the user’s
+Step 1. The user launches the program for the first time. The `MenuParser` will be initialised and awaiting the user’s
         input to proceed.
         
 Step 2. The user types in "help" into the command line interface and presses enter. This user input “help” is stored as 
@@ -212,8 +217,8 @@ Step 3. The user input string is subjected to the `lang.string.trim()` and `lang
         in the input. The `lang.string.split()` function uses a blank space string, “ “, as the delimiter to split the 
         string into its individual components.
         
-Step 4. Each subsequent string separated by a space is stored in a string array named `commandArr`. The 0th index of the 
-        `commandArr` array is the first word, the 1st index is the second word, and so on. In this case there is only 
+Step 4. Each subsequent string separated by a space is stored in a string array `commandArr[]`. The 0th index of the 
+        `commandArr[]` array is the first word, the 1st index is the second word, and so on. In this case there is only 
         one word stored in the array, at the 0th index, which is “help”.
         
 Step 5. The string at the 0th index is then used in a switch statement, where each case represents the different menu 
