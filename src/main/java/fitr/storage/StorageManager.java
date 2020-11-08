@@ -47,6 +47,7 @@ public class StorageManager {
 
     public ArrayList<Food> loadFoodList() throws IOException {
         try {
+            foodStorage.writeFoodList(new FoodList(foodStorage.loadFoodList()));
             return foodStorage.loadFoodList();
         } catch (InvalidFileFormatException | DateTimeParseException | NumberFormatException e) {
             Ui.printCustomError("Error: Invalid food file - new food list created!");
