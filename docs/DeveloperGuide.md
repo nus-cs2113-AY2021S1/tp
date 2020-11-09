@@ -122,7 +122,9 @@ Given below is the general architecture of our Word Manager Component.
 ![WordManagerComponent](graphics/diagrams/WordManagerComponent.PNG)
 <p align = "center"><i><b>Figure 2: Word Manager Architecture</b></i></p>
 
-In Fluffle, the words list is stored in the local hard drive location `data/words.txt`. Fluffle can hold three types of word: `Noun`, `Verb` and `Adjective`. The operations that can be done on the words list are:
+In Fluffle, the words list is stored in the local hard drive location `data/words.txt`. 
+Fluffle can hold three types of word: `Noun`, `Verb` and `Adjective`. 
+The operations that can be done on the words list are:
 - Viewing the words list.
 - Getting three random words.
 - Filtering words (by word types or by substrings).
@@ -148,8 +150,20 @@ User: Represents the Users registered to the System
 
 The above class diagram describes the overall architecture of Writings class functionalities and associations within the scope of related classes. By checking “start”, “type” command with checkStartCommand() then checkTypeCommand() methods on that sequence respectively, the user should be able to access the process of creating and saving new writings into the database. During this process, the user has the ability of choosing their preferred type of writings(which are either poem or essay at this stage)
 
-![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
+![UML WritingList family sequence diagram](graphics/diagrams/writingList_whileAddingWriting.png)
 <p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
+
+**Implementation**
+
+1. The above sequence diagram illustrate the process of adding a new writing to the database of the application. 
+1. In this case, the database is created under the form of an ArrayList of Writings Objects. 
+1. At the beginning, the user can start the process by typing `start` into the terminal. 
+1. After that, the app will repeatededly asking the using typing in `type` for entering type decision mode.
+    1. During this mode, the user will only have options between `poem` and `essay` to choose before entering the main writing's attribute.
+    1. After that, the user'll go to the stage of inputing the details of the writings such as `topic`, `content`, `reminder date`.
+    1. The name of `author` attribute is taken by the name that the user registered at the beginning of the session.
+<br>
+The main purpose of this approach is not to make the process of configuring the modes more complicated but to prevent careless typos that usually occur while flags are used to indicate too many attributes.
 
 #### Getting reminder for writings scheduled on a specific date
 This feature allows users to be reminded of which writings they should continue on a specific date.
@@ -243,20 +257,40 @@ The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bu
 The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<p align = "center"><i><b>Figure 9: Bunny list UML Sequence Diagram</b></i></p>
+<p align = "center"><b><i>Figure 9:  Bunny list UML Sequence Diagram</i></b></p>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<p = "center"><i><b>Figure 9: Names UML Class Diagram</b></i></p>
+<p = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
 The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
 
 The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
 
 As shown in Figure 10, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
+
+### ClearLoader class
+![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
+<p align = "center"><b><i>Figure 11: Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
+
+**Implementation**
+
+1. The above diagram illustare the mechanism of manipulating objects stored in the database by adding the ability of `clear` certain unwanted subjects from the database
+1. The main targets of the clearing procedure are the writings and words stored in the database as array listes
+1. The process begins when commandChecker detects the command `clear` enter by the users
+1. If the syntax is corrected in the form of `clear type\<TYPE_OF_OBJECT> item\<FLAG (Optional)><OBJECT_INDICATOR>`, the process begin
+    1. If the `<TYPE_OF_OBJECT>` chosen by the user is `writing`, the machine is now going to consider the `<FLAG>`
+        1. If there is no flag, it is detected as the order of the writings stored in the database, the process is going to clear the writings with such order stated by `<OBJECT_INDICATOR>`
+        1.If the flag is `-id`, the machine is going the clear the writing with respective `id` from the database
+        1. Otherwise, the command is considered as invalid (mostly in case `<OBJECT_INDICATOR>` is not an integer or leads to out of bound objects
+    1. If the `<TYPE_OF_OBJECT>` chosen by the user is `word`, the machine is now goin to consider the `<FLAG>`. There are 3 cases of flags available for this mode
+        1. `<FLAG>` is detected as `-noun`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
+        1. `<FLAG>` is detected as `-adj`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
+        1. `<FLAG>` is detected as `-verb`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
+        1. Otherwise, it is considered as invalid command if the `word` with respective `type` does not exist in the database.
 
 ## Testing
 

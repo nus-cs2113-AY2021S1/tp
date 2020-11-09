@@ -1,0 +1,11 @@
+There is/are currently 1 writing(s) in our database
+----------------------------
+*id: 563
+*Author: Minh Thong
+*Type: Poem
+*Title: Der Erlkönig
+*Topic: ghost story
+*Date: 08/11/2020
+*Reminder: 12/02/2002
+*Content: 
+----------------------------
