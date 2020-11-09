@@ -91,25 +91,38 @@ designing of the code, with the help of visual aids.
 The application has been broken down into different levels so that users would find it easy to navigate from one level 
 to the next one. There are three levels within the application, and their hierarchy is ranked as shown below:
 * **Main:** This level edits the list of all the subjects present within the application and takes care of relevant commands 
-such as add subject, delete subject or find subject.
+such as add subject, delete subject or find subject. The parser for this level is invoked in the `Revised` class.
 * **Subject:** This level is accessed through the `subject [NAMEOFSUBJECT]` command. The user would then look at the individual 
-subjects and then would be able to add, delete, list or find either tasks or topics.
+subjects and then would be able to add, delete, list or find either tasks or topics. 
+The parser for this level is invoked in the `AccessSubjectCommand` class.
 * **Topic:** This level is accessed through the `topic [NAMEOFTOPIC]` command. The user can add, delete or list flashcards
-in this level.
+in this level. The parser for this level is invoked in the `AccessTopicCommand` class.
 
 Exiting from the Topic level will result in the program running at the Subject level, while exiting from the Subject level 
 allows the program to run at the Main level. The program can also access the Subject level from the main level, or the Topic level
 from the Subject level via user input.
 
-The code contains the main class Revised, as well as different packages, which combine classes that perform a similar 
-functionality. Here are the list of the main packages:
+### Architecture
+![architecture](https://user-images.githubusercontent.com/50734854/98514327-3be86900-22a4-11eb-9021-8099c536ad0f.png)
 
-* <a href="#card">card</a>
-* <a href="#command">command</a> 
-* <a href="#list">list</a>
-* <a href="#parser">parser</a>
-* <a href="#ui">ui</a>
-* <a href="#storage">storage</a>
+<sub>***Figure 3** Architecture diagram for revisED.*</sub>
+
+The **Architecture Diagram** given above explains the high-level design of the App. Given below is a quick overview of each component.
+
+`Revised` is the Main class and is responsible for:
+* Containing the `SubjectList`
+* Invoking `Parser` on the main level on loop until the user exits
+* Invoking `Storage` to save data when user exits
+
+The rest of the App consists of six packages:
+* <a href="#card">card</a> - main data structures that holds the most of the information of the application.
+* <a href="#command">command</a> - handles the commands
+* <a href="#list">list</a> - contains lists of classes in `card`
+* <a href="#parser">parser</a> - parses instances of `Command`
+* <a href="#ui">ui</a> - handles input and output
+* <a href="#storage">storage</a> - handles loading, saving, and exporting
+
+More details for each package can be accessed in the sections below, or by clicking the links above.
 
 ### 3.1 Card Package <a name="card"></a>
 
@@ -161,7 +174,6 @@ The `taskcard` package stores the information relating to all the tasks in the a
     * `dateTime` - deadline of the task
 * `Event` class - inherits from `Task`. Additionally, it contains:
     * `dateTime` - time of the event
-
 
 ##
 ### 3.2 command Package <a name="command"></a>
