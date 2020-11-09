@@ -170,19 +170,37 @@ The sequence diagram below shows the process of adding a new event.
 
 ### 4.2 Clear events<a id="clear"></a>
   
-This feature allows users to completely delete the existing event information that is previously typed in by users. 
+This feature allows users to completely delete the existing event information that is previously typed in by users.
+Users may choose to delete all events, events happened one month ago, or events happened before a certain date.
 
 Given below is an example usage scenario:
 
-Step 1. The user launches the application and wants to delete everything previously stored by using `clear` command.  
+Step 1. The user launches the application and wants to clear some events that happened a long time ago as there is no
+need to refer to these events anymore. The user types `clearBefore 2020-06-01` to clear all events before 1st June, 2020.
 
-Step 2. If there is no information stored before the user input the `clear` command, the user will be reminded about 
-that the list is already empty. 
+Step 2. The Parser class parses the input and identifies the full command to be a ClearBeforeCommand class, and so
+`clearBeforeCommand()` will be called to create a `clearBeforeCommand` object with parameter `2020-06-01`. 
+
+Step 3. After that, the `execute()` function of `clearBeforeCommand` will be called and as a result `EventList#clearBefore(clearDate)` will
+also be called, where `2020-06-01` will be passed as the parameter `clearDate`.
+
+Step 4. The user wants to clear all the extra information of events but does not want to do it manually, hence the user 
+types in `autoClear` to turn on the autoClear function, which will clear all events happened one month ago automatically.
+
+Note that the other two clear commands `clear` and `autoClear` do not require any paramater input.
+
+The sequence diagram below shows the process of clearing events before a certain date.
+![ClearBeforeCommand Sequence Diagram](diagrams/ClearBeforeCommand.png)<br>
+*Figure 4.2.1 Sequence Diagram for clearBefore function*
 
 The sequence diagram below shows the process of clearing all events.
 ![ClearCommand Sequence Diagram](diagrams/ClearCommand.png)<br>
-*Figure 4.2 Sequence Diagram for clear function*
+*Figure 4.2.2 Sequence Diagram for clear function*
  
+The sequence diagram below shows the process of switching on autoClear function.
+![AutoClearCommand Sequence Diagram](diagrams/AutoClearCommand.png)<br>
+*Figure 4.2.3 Sequence Diagram for autoClear function*
+
 ### 4.3 Edit events<a id="edit"></a>
   
 This feature allows users to edit the information of events that was previously added. 
