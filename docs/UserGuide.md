@@ -305,7 +305,7 @@ The `addreview` command allows you to add a review for a show, including adding 
    
    Checking with the `list` command: 
    
-   <img src = "images/addreviewlist.png" width = "650">
+   <img src = "images/addreviewlist.png" width = "700">
    
    
 ### 4.f. `changereview` - Changing a review
@@ -329,7 +329,7 @@ The `changereview` command allows you to change a review for a show that is alre
   
   Checking with the `list` command:
   
-  <img src = "images/changereviewlist.png" width = "650">
+  <img src = "images/changereviewlist.png" width = "700">
   
 
 ### 4.g. `deletereview` - Deletes a review
@@ -412,7 +412,7 @@ The `changerating` command changes the rating for an existing show which already
  
  Checking with the `list` command :
  
- <img src = "images/changeratinglist.png" width = "600">
+ <img src = "images/changeratinglist.png" width = "700">
  
 
 ### 4.k. `season` - Changes the season of the show you are currently watching
