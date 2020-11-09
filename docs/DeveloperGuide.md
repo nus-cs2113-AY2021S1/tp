@@ -162,7 +162,7 @@ When the `Recommend` class is instantiated, the constructor calls onto the `Stor
 
 The `recommend` method in the class then chooses and adds different permutations or combinations of `StandardExercise` instances from the multiple different `StandardExerciseList` instances to load into a new instance of `StandardExerciseList`.
 
-<p align="center"><img src="images/RecommenderClassDiagram.png"></p>
+<p align="center"><img src="images/RecommendSequence.png"></p>
 <p align="center">Figure 6: <code>Recommender</code> class diagram</p>
 
 <!-- @@author -->
@@ -178,7 +178,7 @@ This section describes how some of the features in Fitr are implemented.
 ### 4.1 Add Exercise and Add Food Command
 The `AddFoodCommand` and `AddExerciseCommand` are similar in implementation. It simply adds the user input into either the `ExerciseList` or the `Foodlist` using the ListManager.
 
-<p align="center"><img src="images/AddExerciseCommandSequence.png"></p>
+<p align="center"><img src="images/AddExerciseSequence.png"></p>
 <p align="center">Figure 7: Sequence diagram for <code>AddExerciseCommand</code></p>
 
 <!-- @@author jerichochua -->
