@@ -340,7 +340,14 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 
 ## Testing
 
-Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
+If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for Fluffle.
+
+### Using JUnit test
+- To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
+- To run test on a separate package/class/method, right click on that package/class/method in `test` directory and choose `Run 'NAME'`.
+
+### Using Gradle
+- To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
 
 ## Appendices
 
