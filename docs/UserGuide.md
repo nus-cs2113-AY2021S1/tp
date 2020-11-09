@@ -156,6 +156,8 @@ Ensure that you are at the **Admin Level** before trying the commands in the nex
   <img src="UG_Images/AdminLevel.png" width="600" alt="Admin Level"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.1. Adding a module: `add`
 (by Jiayi)
 
