@@ -196,7 +196,7 @@ The operations that can be done on the words list are:
 
 After the initial logo printing and registration step, the `main` in the `Duke` class enters a while loop, which will only exit when the `exit` command is detected. This component handles the processing of various commands in Fluffle and makes it easier for developers to add new commands without interfering with implementation of other commands.
 
-For simplicity when the `CommandExecutor` class is referenced in later UML diagrams in this document, you may assume that it is a continuation of this diagram.
+For simplicity when the `CommandExecutor` class is referenced in later UML diagrams in this document, you may assume that it is a continuation of the `excecuteCommand` section of this diagram.
 
 ### Writing Features
 #### Constitution (member classes)
@@ -339,16 +339,16 @@ The user may call upon the `bunny` command to add bunnies to the list. The user 
 This command works similar to how the `saveAllBunny` command in the `BunnySaver` class works. The function called by the `executeCommand` method is the `listBunny` command of the `BunnyList` class. It iterates through the `bunniesList` and passes each one to the `UI` class method `printBunnyInList`. Once all the `Bunny` objects in the list are printed, it concludes by printing the number of `Bunny` objects found in the list so the user can easily tell how many bunny ideas they have left.
 
 #### Filtering bunny ideas: `filter bunny`
-The `filter bunny` command is implemented by the `executeCommand` method passing both the `userinput` String and the `bunniesList` ArrayList to the `filterBunny` method in the `BunnyFilter` class
+The `filter bunny` command is implemented by the `executeCommand` method passing both the `userinput` String and the `bunniesList` ArrayList to the `filterBunny` method in the `BunnyFilter` class. It first checks that the `userinput` has the required arguments using the `parseSingleCharacterTaggedParamsFromUserInput` method to extract the arguments. It then uses streams to filter for the specified keywords in the idea component or the genre component of the `Bunny` and prints the filtered items using the `printFilteredBunny` from the `UI` class.
 
 #### Saving bunny ideas: `save bunny`
-When the `save bunny` command is detected by the `commandChecker` method of the `CommandChecker` class, 
+When the `save bunny` command is detected by the `commandChecker` method of the `CommandChecker` class, it saves the `Bunny` objects from the `bunniesList` to the `bunny.txt` file as mentioned [above](#usage-and-storage).
 
 #### Deleting a bunny idea: `delete bunny`
-To delete a bunny from the list of bunny, the `deleteBunny` method of the `DeleteBunny` class first parses the given user input string to determine the index of the `Bunny` the user wants to remove from the `bunniesList` ArrayList, then it simply uses the remove method on the ArrayList to remove the specified `Bunny` object
+To delete a bunny from the list of bunny, the `deleteBunny` method of the `DeleteBunny` class first parses the given user input string to determine the index of the `Bunny` the user wants to remove from the `bunniesList` ArrayList, then it simply uses the remove method on the ArrayList to remove the specified `Bunny` object.
 
 #### Generating a random bunny idea: `random bunny`
-The `random bunny` command uses the `pickRandomBunny` method of the `GenBunny` class
+The `random bunny` command uses the `pickRandomBunny` method of the `GenBunny` class uses `Random` and the current time to generate a random number, the modulus is used to select the index of the `Bunny` from the `bunniesList`. The method `bunnyRandomlySelected` from the `UI` class handles the retrival and printing of the selected `Bunny`.
 
 #### Resetting the entire list of Bunny ideas: `reset bunny`
 The `reset bunny` command simply calls `clearAllBunny` function to clear the `bunniesList` in the current run of the program. To save the cleared list the function simply reminds the user that they should use the `save bunny` command mentioned above.
@@ -387,7 +387,7 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 ## Aesthetic components
 
 ### Changing line divider in Fluffle: `divider`
-
+The line divider is saved as a static string in the `UI` class. When the `divider` command is detected, the `changeLineDivider` method from the UI class is called to parse the selected line divider option and the `getDivider` method retrives the new divider String from the `Logos` class and saves it as the new `currentLineDivider` String in the `UI`.
 
 ## Testing
 
