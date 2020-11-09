@@ -504,9 +504,9 @@ called to locate the specified bus stop.
 
 The following steps explain how the most searched bus stop is displayed.
 
-1.On start-up, `Ui#printWelcomeMessage()` is called. <br>
-2.`Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
-3.`BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
+1. On start-up, `Ui#printWelcomeMessage()` is called. <br>
+2. `Ui#printMostSearchedBusStop()` is called to retrieve the most searched bus stop and display it.
+3. `BusData#mostSearchedBusStop()`is called to identify the first instance of the bus stop with the highest search frequency.
 
 The following sequence diagram illustrates the steps taken by the program on start-up.
 ![Display_Search_Freq_Sequence_Diagram](DG_Diagrams/ResetSearchFreqCommand/DisplaySearchFreq.png)
