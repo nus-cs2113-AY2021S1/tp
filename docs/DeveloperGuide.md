@@ -111,10 +111,10 @@ instances to perform add, remove or edit operations on the ```Ledgers``` or ```E
 * Utility Model sub-components
     * Goal
         * Used by the `GoalTracker`. The user can set their income or expense goals by creating a `Goal` instance. They can then be compared against with total entry amounts recorded by the user, whereby the `GoalTracker` will report the progress of the user towards the `Goal` that they set. 
-        * More information can be found in the [GoalTracker section](#goalTracker).
+        * More information can be found in the [GoalTracker section](#feat_goalTracker).
     * AccountSaver
         * Stores account information of the user.
-        * More details can be found in the [FinanceTools section](#financeTools).
+        * More details can be found in the [FinanceTools section](#feat_financeTools).
 
 ## Storage Component
 
@@ -159,7 +159,7 @@ can be accessed in the `logs` folder.
 &nbsp;  
 
 <!-- @@author kaiwen98 -->
-### Input Manager
+### <a name = inputManager></a>Input Manager
 * Note: Refer to [Input Manager Component](#input-manager-component) above for class diagram 
 illustration of the below subsections.
 
@@ -429,7 +429,7 @@ The Manual Tracker is capable of executing the following states of operation:
     1. A new instance of ```CreateLedgerHandler``` is created. The input String array will be passed into `CreateLedgerHandler.setRequiredParams()` to set required params for a successful parse.
     1. A new instance of `Ledger` will be instantiated and set to `CreateLedgerHandler.currLedger`.
     1. ```CreateLedgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+        1. Refer to the section on [Param Handling](#inputManager) for more details pertaining to general param handling. 
         1. For `CreateLedgerHandler`, the `handleSingleParam` abstract method will be implemented as shown in the [following table](#table1).
         
 1. From ```ManualTracker```, the configured ```Ledger``` instance will be retrieved from the ```CreateLedgerHandler``` instance
@@ -457,7 +457,7 @@ The deletion of a specified ledger is performed in two phases: Ledger Retrieval 
         1. A new instance of ```RetrieveLedgerHandler``` is created. The input String array will be passed into 
         ```CreateLedgerHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```RetrieveledgerHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+            1. Refer to the section on [Param Handling](#inputManager) for more details pertaining to general param handling. 
             1. For ```CreateLedgerHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table2):
                 * Note that only one of the two params need to be invoked from the input. 
 1. __Phase 2: Ledger Deletion__
@@ -489,7 +489,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. A singleton instance of ```RetrieveEntryHandler``` is retrieved. The input String array will be passed into 
         ```retrieveEntryHandler.setRequiredParams()``` to set required params for a successful parse.
         1. ```retrieveEntryHandler.handlePacket(packet)``` is called to handle params in the packet.
-            1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+            1. Refer to the section on [Param Handling](#inputManager) for more details pertaining to general param handling. 
             1. For ```retrieveEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
             1. From ```EntryTracker```, call ```entryList.popItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
@@ -509,7 +509,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
         1. `editeEntryHandler.setPacket(packet)` is called to set packet.
     1. ```EditEntryHandler.handlePacket()``` is called to handle params in the packet.
-        1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
+        1. Refer to the section on [Param Handling](#inputManager) for more details pertaining to general param handling. 
         1. For ```EditEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
     1. The edited entry is added back into the list.
 #### <a name = table4></a> Param Handling Behavior           
@@ -530,7 +530,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 <div style="page-break-after: always;"></div>
 
 &nbsp;  
-### Recurring Tracker
+### <a name = feat_recurringTracker></a> Recurring Tracker
 **Overview** <br />
 Recurring Tracker handles the creation, deletion and editing of recurring entries.
 
@@ -644,7 +644,7 @@ The sequence diagram below shows how it works:
 &nbsp;  
 
 <!-- @@author bqxy -->
-### <a name = financeTools></a> FinanceTools
+### <a name = feat_financeTools></a> FinanceTools
 **Overview** <br />
 FinanceTools consists of the following features
 1. Simple Interest Calculator
@@ -831,7 +831,7 @@ The results from calculation is stored in the ```ArrayList``` when the implement
 
 &nbsp;  
 
-### <a name = goalTracker></a> Goal Tracker
+### <a name = feat_goalTracker></a> Goal Tracker
 **Set Expense Goal Feature** <br />
 The set expense goal feature is being implemented by ```GoalTracker```. It allows the user to set an expense goal for
 the respective month to ensure that the user does not overspent his budget. 
@@ -867,7 +867,7 @@ This sequence diagram will show the flow of setting of expense goal:
 
 &nbsp;  
 
-### Storage Utility
+### <a name = feat_storageUtility></a> Storage Utility
 **What it does** <br />
 Storage utility is a tool designed for backup and storage of all data associated with Goal tracker, Manual tracker and recurring tracker.
 It performs auto loading and saving of data upon entry and exit of the program as well as allowing multiple saves to be created and loaded
