@@ -494,7 +494,7 @@ as shown in the figure below.<br><br>
 <!-- @@author -->
 
 ### 3.4.2. Reset frequent search data: ```/reset```
-This command resets the data set used to display most frequently search bus stop on application start-up.
+This command resets the data set used to display most frequently searched bus stop on application start-up.
 
 Format:<code>/reset</code>
 
@@ -521,6 +521,10 @@ This section addresses some common questions to aid in possible issues faced.
 
 **Q:** Where can I find the release? <br>
 It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
+
+**Q:** How do I transfer my data to another computer? <br>
+Simply copy your `data` folder from the current directory and paste it in the directory containing the `Nav@NUS.jar` 
+file in the other computer.
 
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
