@@ -499,7 +499,7 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 
 ## <a id="userstories">4. User Stories</a>
 
-| Version | <div style="width:290px;">Target User</div> | Function/Feature | User's Benefit |
+| Version | Target User | Function/Feature | User's Benefit |
 |--------|----------|---------------|------------------|
 |v1.0| As a ... | I want to ... | So that I can ... |
 |v1.0|CEG student|Keep track of my notes|Be organized and find notes easily|
@@ -510,17 +510,20 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 |v1.0|Forgetful student|To obtain reminders about my schedule for the day|So I do not forget what I have on for the day|
 |v1.0|Busy student|Pin important notes, events and todo list|Focus on the important information|
 |v1.0|CEG student|Be able to edit my notes|Update missing information|
+
+| Version | Target User | Function/Feature | User's Benefit |
+|--------|----------|---------------|------------------|
 |v1.0|CEG student|Be able to read my notes|To revise before exams|
 |v1.0|CEG student|Be able to delete my notes|To clear up space and keep it more organized|
-
-| Version | <div style="width:290px;">Target User</div> | Function/Feature | User's Benefit |
-|--------|----------|---------------|------------------|
 |v2.0|Outgoing student|Able to add my social events to the timetable|View all my upcoming events and classes|
 |v2.0|Busy student|Be alerted if there are clashes in between my events and classes|Reschedule my plan|
 |v2.0|Student leader|Be able to share certain events with others|Can get people to join events more conveniently|
 |v2.0|CEG student|Archive old notes|Keep dashboard neat while allowing me to refer to old notes when necessary|
 |v2.0|CEG student|Be able to import my notes|To make edits|
 |v2.0|CEG student|Be able to export my notes|To share my notes with my peers|
+
+| Version | Target User | Function/Feature | User's Benefit |
+|--------|----------|---------------|------------------|
 |v2.0|CEG student|Be able to import my timetable/events|To make adjustments to my schedule|
 |v2.0|CEG student|Be able to export my timetable/events|To share my schedule with my peers|
 
