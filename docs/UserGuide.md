@@ -4,9 +4,9 @@
 ## 1.0 Introduction  
   
 Zoomaster is a desktop app for organizing website links, optimized for use via a 
-Command Line Interface (CLI) while retaining benefits of a Graphical User Interface (GUI). 
+Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Zoomaster can help fetch useful website links for you quicker than the bookmark function on your browser.
-This user guide would help you walkthrough the features of Zoomaster and ways to input commands to it to access these features.
+This user guide will walk you through the features of Zoomaster and ways to input commands to it to access these features.
 
 <br/>
 
@@ -21,9 +21,9 @@ Please also take note of the labels on command formatting:
 | Label | Meaning |
 | --- | --- |
 | `{curly brackets}` | Words contained in `{curly brackets}` are parameters to be supplied by the user. <br> eg. in `delete {BOOKMARK_NUMBER}`, `BOOKMARK_NUMBER` is a parameter which can be used as `delete 1`.
-| `{PARAM1/PARAM2}` | Parameters with `/` inside are parameters which accept different types of inputs. <br> eg. `launch {INDEX/DESCRIPTION}` shows that either `INDEX` or `DESCRIPTION` can be used.
+| `{PARAM1/PARAM2}` | Parameters with `/` inside are parameters that accept different types of inputs. <br> eg. `launch {INDEX/DESCRIPTION}` shows that either `INDEX` or `DESCRIPTION` can be used.
 |`(optional)`| Parameters with `(optional)` are optional inputs. <br> eg. `show {DAY(optional)}` can be used as `show` or as `show mon`.
-| `DAY` | Parameter `DAY` takes three letter abbreviations of days in a week <br> The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**.<br> Your inputs need not be case sensitive. <br> eg. `show {DAY(optional)}` can be used as `show mon`, `show tue` etc.|
+| `DAY` | Parameter `DAY` takes three-letter abbreviations of days in a week <br> The full list of DAY parameters are **mon, tue, wed, thu, fri, sat, sun**.<br> Your inputs need not be case sensitive. <br> eg. `show {DAY(optional)}` can be used as `show mon`, `show tue`, etc.|
 |`MODULE`|Parameter `MODULE` has to be an NUS module recognised by NUSMods.<br> You can go to https://nusmods.com/ to get the full list of NUS modules available. <br> eg. `CS2113`, `CS2101`  |
 |`START TIME`,<br> `END TIME`| Parameters `START TIME` and `END TIME` requires input to be in the format `HH:mm` and in 24 Hours. <br> eg. `12:00`, `14:00`, `00:00`|
 
@@ -66,17 +66,17 @@ Please also take note of the labels on command formatting:
   
 1. Ensure that you have Java 11 or above installed.  
 2. You can download the latest version of `Zoomaster` from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/releases)
- if you are running a older version.
+ if you are running an older version.
 3. Now move the **zoomaster.jar** file into your desired home folder for Zoomaster. <br/><br/> 
 4. Copy the absolute path of your **zoomaster.jar** file by first highlighting your file, then while
-holding the <kbd>Shift</kbd> key on your keyboard, right click on that file and select the option "Copy as path". 
+holding the <kbd>Shift</kbd> key on your keyboard, right-click on that file and select the option "Copy as path". 
 <br/><br/> 
 5. Afterwards, start Command Prompt by pressing <kbd>Windows</kbd> + <kbd>R</kbd> on the keyboard, 
 then type in "cmd" and hit the <kbd>Enter</kbd> key. <br/><br/> 
 6. In the Command Prompt, type in "java -jar", then paste the absolute path you copied previously in step 4. 
 It should look similar to the picture below:  
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommand.png) <br/><br/> 
-7. Finally, press <kbd>Enter</kbd>. You should should see something similar to this Zoomaster logo indicating 
+7. Finally, press <kbd>Enter</kbd>. You should see something similar to this Zoomaster logo indicating 
 that you have successfully started your Zoomaster program. <br/><br/> 
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/zoomastercommandline.PNG)
 
@@ -95,7 +95,7 @@ Zoomaster has three different modes:
 * **Timetable mode**
     Here, you can create a timetable of all of your classes, and assign a bookmark or Zoom link on each of the time slots.
 * **Planner mode**
-    Have you ever had diffulties deciding when to have a meeting as all of your groupmates have different classes? In Planner mode, Zoomaster can help you find common free timings by allowing you to import your teammates' timetables.
+    Have you ever had difficulties deciding when to have a meeting as all of your groupmates have different classes? In Planner mode, Zoomaster can help you find common free timings by allowing you to import your teammates' timetables.
 
 Each mode has its own different sets of features and commands, which will be explained in sections 5.2, 5.3, and 5.4.
 <!-- @@author -->
@@ -108,7 +108,7 @@ These commands can be used by you in every mode of the app.
 
 <a name="help"></a>  
 #### 5.1.1 Show help information: `help` (Yu Shing + Zhan Hao)
-You can see the list of commands available in mode you are currently in.
+You can see the list of commands available in the mode you are currently in.
 ```
 Format: help {COMMAND(optional)}
 ```
@@ -146,8 +146,8 @@ after `help` show you additional information about the commands and how to forma
 Example of usage:   
 * `help add`
 * `help delete`
->The following example represents the case if you require help about the `add` command in timetable mode. 
->First you type the command `help add`.
+>The following example represents the case if you require help with the `add` command in timetable mode. 
+>First, you type the command `help add`.
 >
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20timetable%20add.png?raw=true)
 >
@@ -178,7 +178,7 @@ Example of usage:
 >For the other modes, you should see a similar message like "changing to timetable/planner mode".
 
 
-<!-- @@author -->
+<!-- @@author Speedweener -->
 
 <br/><br/> 
 <a name="clear"></a>  
@@ -209,7 +209,7 @@ Format: launch now
 
 >Here is an example of launching the bookmark of the current lesson. In this case, the URL attached to the slot
 >is www.google.com. <br/><br/> 
->![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/load%20changes.png) <br/><br/> 
+>![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/launchnow.png) <br/><br/> 
 
 You should expect to see the urls of the current or 5 minutes advance lesson slot launching
 in your native browser. Otherwise, you should see the message `no lesson now`.
@@ -243,7 +243,7 @@ You can type in `set def_mode bookmark` and Zoomaster will change your settings,
 
 ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettings.png)
 
-The next time you run Zoomaster, you will automatically enter bookmark mode.
+The next time you run Zoomaster, you will automatically enter `bookmark` mode.
 <!-- @@author -->
 <br/><br/> 
 <a name="exit"></a>  
@@ -253,20 +253,20 @@ You can exit the application by using the exit command.
 ```
 Format: exit    
 ```
->You should see this message on exit  
+>You should see this message on exit.  
 ![](https://github.com/TYS0n1/tp/blob/team-Branch2/docs/diagrams/exit.png?raw=true)
 
 <br/>
----
 <br/> 
 
 
 <a name="bookmarkmode"></a>  
 ### 5.2 Bookmark Mode  
 
-<a name="showbookmark"></a>  
-#### 5.2.1 Show bookmarks: `show`  
-This feature helps you print out all bookmark in your bookmark list.
+<!-- @@author Speedweener -->
+<a name="showbookmark"></a>   
+#### 5.2.1 Show bookmarks: `show` (Zhan Hao)
+This feature helps you print out all bookmarks in your bookmark list.
 ```
 Format: show
 ```
@@ -274,13 +274,13 @@ Example of a printed out bookmark list.
 
 ![](images/showOutput.PNG)
 
-If your bookmark list is empty you will get the message show in the screenshot below  
+If your bookmark list is empty, you will get the message shown in the screenshot below.  
 
 ![](images/showEmptyBookmarks.PNG)
 
 <br/><br/> 
 <a name="addbookmark"></a>  
-#### 5.2.2 Add bookmark: `add`  
+#### 5.2.2 Add bookmark: `add` (Zhan Hao)
 You can add bookmarks to your bookmark list. A bookmark contains its description and URL.
 
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
@@ -300,7 +300,7 @@ Example of usage:
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
-#### 5.2.3 Delete bookmarks: `delete`  
+#### 5.2.3 Delete bookmarks: `delete` (Zhan Hao)
 Deletes a bookmark with the specified index.  
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -319,7 +319,7 @@ You should see a message similar to the screenshot below.
 <!-- @@author fchensan -->
 <br/><br/> 
 <a name="editbookmark"></a>  
-#### 5.2.3 Edit bookmarks: `edit`  
+#### 5.2.3 Edit bookmarks: `edit` (Francisco) 
 This command edits a bookmark's description or URL with the specified index.  
 Just like `delete`, the index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
@@ -334,11 +334,12 @@ You should enter a `desc` or `url` depending on which one you want to edit.
 > You can type in `edit desc 3 straitstimes` to change the description to "straitstimes". The following message will 
 > appear:  
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editbookmark.png)
-<!-- @@author -->
+
 
 <br/><br/> 
+<!-- @@author Speedweener -->
 <a name="findbookmark"></a>  
-#### 5.2.4 Find bookmarks: `find`  
+#### 5.2.4 Find bookmarks: `find` (Zhan Hao) 
 You can use this command to find bookmarks with matching description.
 
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
@@ -360,7 +361,7 @@ Else you should see "No bookmarks contain the specified keyword!".
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
-#### 5.2.5 Launch bookmarks: `launch`  
+#### 5.2.5 Launch bookmarks: `launch` (Zhan Hao)  
 You can use this feature to launch bookmarks in your native browser. <br></br>
 Your selection of bookmark(s) can be via:
 * Index
@@ -384,7 +385,6 @@ Example of usage:
 
 
 <br/>
----
 <br/> 
 
 <a name="timetablemode"></a>  
@@ -405,7 +405,7 @@ Else if you have a lesson ongoing currently, it will instead show a "lesson now"
 > * You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
->* Zoomaster will interpret you command as the [Show module and slot feature](#showmoduledetails) 
+>* Zoomaster will interpret your command as the [Show module and slot feature](#showmoduledetails) 
 >if you do not enter the correct `DAY` input. As such, you would see an error message saying you have entered an invalid module.
 
 ```
@@ -423,14 +423,14 @@ Example of usage:
 >* You will see your entire timetable if you use `show` input. <br></br>
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20all%20timetable.png?raw=true) <br></br><br></br>
 >* You will see the timetable of your selected day if you use `show {day}` input. 
->This example uses wednesday as its selected day input. <br></br>
+>This example uses Wednesday as its selected day input. <br></br>
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20wed%20timetable.png?raw=true) <br></br><br></br>
 >* You will see the timetable for today if you use `show today` input. <br></br>
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20today%20timetable.png?raw=true) <br></br><br></br>
 >* Example of "current time" indicator showing the current time <br></br>
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20current%20time%20indicator.png?raw=true) 
 ><br></br><br></br>
->* Example of "lesson now" indicator hightlighting the current lesson <br></br>
+>* Example of "lesson now" indicator highlighting the current lesson <br></br>
 >![](https://github.com/TYS0n1/tp/blob/master/docs/images/showtimetablecommand%20lesson%20now%20indicator.png?raw=true) <br></br><br></br>
 
 <!-- @@author -->
@@ -472,13 +472,13 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
 >See the [command format](#command_format) for more details.
 >* Your input `URL` has to start with `www.`, `http://` or `https://`.
->* That validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
+>* The validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
 >* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
 >* The period you enter from `{START_TIME}` to `{END_TIME}` cannot cross over midnight. 
 >Eg. 23:30 to 00:30 is not a valid period you can enter.
->You can work around this by splitting up your timeslot into the two period, one before midnight and one after.
+>You can work around this by splitting up your timeslot into two periods, one before midnight and one after.
 >Eg. 23:30 to 23:59 and 00:00 to 00:30
 
 ```
@@ -499,7 +499,7 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
     existing module in the timetable. 
   * To add another bookmark to an existing slot, you can enter the command with the matching details 
     of the existing slot or use the index number of the slot in the module to access the slot. 
-    Index number of the slot can be found by using the command `show {MODULE}`. 
+    The index number of the slot can be found by using the command `show {MODULE}`. 
 * Each command works by checking if each of the components (module, slot, bookmark) 
   exists or is valid from left to right of the input before adding them.
   * In the command `add cs2113t lecture fri 16:00 18:00`, if `cs2113t` module already exists, 
@@ -602,12 +602,11 @@ Format (editing the time of a slot): edit time {DAY} {INDEX} {DAY} {new START_TI
 The second `DAY` parameter is for the new day of the week you wish to set your slot.
 
 <!-- @@author fchensan -->
-> For example, let's say that you have these two slots on wednesday:
+> For example, let's say that you have these two slots on Wednesday: <br>
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotcontext.png)
 >
 > If you want to change the title of the second slot to "tutorial", you can simply type `edit title wed 2 tutorial`.
-> You should then see a message as shown below:  
->
+> You should then see a message as shown below: <br>
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslot.png)
 >
 > More examples of usage:   
@@ -632,9 +631,9 @@ Format (launch slot bookmarks): launch {MODULE} {INDEX}
 ```
 
 * Obtain the `INDEX` of the slot to be launched using the `show {MODULE}` command.
-* `launch {MODULE}` launches the bookmarks tagged to the module itself, for example the module website
+* `launch {MODULE}` launches the bookmarks tagged to the module itself, for example, the module website
 * `launch {MODULE} {INDEX}` launches the bookmarks tagged to the second slot of the module, 
-for example the zoom link for tutorial
+for example, the zoom link for tutorial
 <br/><br/> 
 
 Example of usage:   
@@ -666,7 +665,7 @@ You can try to download some timetable samples from [here](https://github.com/AY
 
 <a name="addmeeting"></a>  
 #### 5.4.2. Add meeting: `add`  
-You can add modules, time slots and bookmarks using this feature.
+You can add modules, time slots, and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
 
 Format: same as [add time slots](#addtimeslot) command.
@@ -706,11 +705,11 @@ Output:
 
 <a name="saveplanner"></a>  
 #### 5.4.4. Save planner: `save`  
-Saves the newly added slot(s) to each individual timetables.
+Saves the newly added slot(s) to each individual timetable.
 ```
 Format: save
 ```
-<!-- @@author -->
+<!-- @@author Speedweener -->
 
 <br/><br/> 
 ## 6.0 FAQ  
@@ -719,9 +718,9 @@ Format: save
 
   
 **A**: Some users might encounter a start-up screen that looks like this. <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/bugphoto.PNG)
+![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/buglogo.png)
 
-This is only a visual bug. Other than the weird looking logo, Zoomaster will work as per normal. No
+This is only a visual bug. Other than the weird-looking logo, Zoomaster will work as per normal. No
 need to worry!
 <br/><br/> 
 
@@ -747,9 +746,9 @@ and save the txt file. You can now add the module in Zoomaster.
 ------------ | -------------
 ***Global***|
 **help**|`help {COMMAND(optional)}`<br>example: `help`, `help add`
-**mode**|`mode {bookmark/timetable}`<br>example: `mode bookmark`
-**clear**|`launch now`
-**launch now**|`clear`
+**mode**|`mode {bookmark/timetable/planner}`<br>example: `mode bookmark`
+**clear**|`clear`
+**launch now**|`launch now`
 **show settings**|`showsettings`
 **set a setting**|`set {SETTING_NAME} {NEW_OPTION}`
 **exit**|`exit`
