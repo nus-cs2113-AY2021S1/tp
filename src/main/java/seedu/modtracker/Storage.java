@@ -108,6 +108,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Clears all module and task data from the external file.
+     */
     public void clearData() {
         String name = getName();
         try {
@@ -120,6 +123,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Clears the whole file.
+     */
     public void reset() {
         try {
             FileWriter fw = new FileWriter(filePath, false);
@@ -131,6 +137,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Sets the file to be writeable.
+     */
     public void unlockFile() {
         boolean unlock = file.setWritable(true);
         if (!unlock) {
@@ -138,6 +147,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Sets the file to be read only.
+     */
     public void lockFile() {
         boolean lock = file.setReadOnly();
         if (!lock) {
