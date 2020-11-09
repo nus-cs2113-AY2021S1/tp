@@ -349,6 +349,8 @@ process to update any changes to the deck to the data file.
 
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 ## Documentation, logging, testing, configuration, dev-ops
 ### Testing guide
 Running tests:  
