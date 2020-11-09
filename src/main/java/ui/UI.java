@@ -5,7 +5,6 @@ import event.Event;
 import exception.EmptyEventListException;
 import location.BusStop;
 import location.Location;
-import locationlist.LocationList;
 import usercommunication.UserInfo;
 
 import java.time.LocalDate;
@@ -38,8 +37,8 @@ public class UI {
     public String[] readEditCommand() {
         String[] editFields = {"TYPE: ", "DESC: ", "LOCATION: ", "START: ", "END: "};
         String[] editInformation = new String[5];
-        System.out.println("Enter the fields for each component. Leave as blank if no changes are to be made.");
-        // populate editinformation with user data
+        System.out.println("Enter the edits for each component. Leave as blank if no edits are to be made.");
+        // populate edit information with user data
         for (int i = 0; i < 5; i++) {
             System.out.print(editFields[i]);
             editInformation[i] = in.nextLine().trim();
@@ -58,14 +57,14 @@ public class UI {
     }
 
     /**
-     * Prints the logo of DUKE and greet the user.
+     * Prints the logo of NUSchedule and greet the user.
      */
     public void printGreetingMessage(UserInfo userInfo) {
         printLine();
-        try {
-            helloWithName(userInfo.getName());
-        } catch (NullPointerException e) {
+        if (userInfo.getName().isBlank()) {
             System.out.println("I am NUSchedule! What's your name?");
+        } else {
+            helloWithName(userInfo.getName());
         }
         System.out.println("Hello from\n" + LOGO);
         System.out.println("What can I do for you?");
@@ -131,16 +130,6 @@ public class UI {
      */
     public void showLoadingError() {
         System.out.println("You edit the file in a wrong format. Please check.");
-    }
-
-    /**
-     * Prints the message during executing commands.
-     * This function is used to make all printing being done in UI.
-     *
-     * @param message determined by the command
-     */
-    public void print(String message) {
-        System.out.print(message);
     }
 
     /**
@@ -254,19 +243,27 @@ public class UI {
      * Relevant command information with reference to the current user guide draft.
      */
     public void printHelp() {
-        System.out.println("Current version: v2.0");
+        System.out.println("Current version: v2.1");
         System.out.println("Below are all the commands and brief descriptions of their functions in the form of "
                 + "command - function: ");
         System.out.println("help - view all the commands");
         System.out.println("assignment - add an assignment event with content, deadline and location");
         System.out.println("class - add a class event with content, deadline and location");
         System.out.println("personalEvent - add a personal event with content, deadline and location");
+        System.out.println("selfStudy - add a self directed study event");
         System.out.println("edit - edit event information");
         System.out.println("locate - find location information");
         System.out.println("locations - view all the locations available");
         System.out.println("list - view all events added");
         System.out.println("clear - clear all events");
         System.out.println("reminder - show events of the day");
+        System.out.println("autoClear - clear all events one month ago");
+        System.out.println("clearBefore - clear all events before the date input");
+        System.out.println("studyTime - show the amount of study time detected by the program of the day");
+        System.out.println("sort - sort all events according to the criteria given");
+        System.out.println("repeat - repeat events that have previously happened");
+        System.out.println("done - mark a certain task/event as done");
+        System.out.println("date - show all events on the date given");
         System.out.println("There will be more upcoming features in later versions.");
         System.out.println("For more information, please refer to detailed user guide: "
                 + "https://ay2021s1-cs2113t-f14-4.github.io/tp/");
@@ -380,6 +377,97 @@ public class UI {
      */
     public void printRepeatEvent(int numWeeks) {
         System.out.println("The selected event has been repeated for " + numWeeks + " weeks.");
+    }
+
+    /**
+     * Print the success message after the user input autoClear on.
+     */
+    public void printAutoClearOn() {
+        System.out.println("Great! Your event happens one month ago will be auto-cleared from the next time you open "
+                + "this app onwards.");
+    }
+
+    /**
+     * Print the success message after the user successfully clear all events before a certain date.
+     */
+    public void printClearBefore(LocalDate clearDate) {
+        System.out.println("Great! You have cleared all events before " + clearDate.toString());
+    }
+
+    public void printFassLocations() {
+        System.out.println("Locations exist at FASS are: \n"
+                + "BLK/AS1~8 \n"
+                + "L/LT8~15"
+        );
+    }
+
+    public void printSdeLocations() {
+        System.out.println("Locations exist at SDE are: \n"
+                + "BLK/SDE1~4 \n"
+                + "BLK/CELC"
+        );
+    }
+
+    public void printFosLocations() {
+        System.out.println("Locations exist at FOS are: \n"
+                + "BLK/S1~17 \n"
+                + "BLK/MD1~11 \n"
+                + "L/LT20~34"
+        );
+    }
+
+    public void printFoeLocations() {
+        System.out.println("Locations exist at FOE are: \n"
+                + "BLK/E1~E6 \n"
+                + "BLK/EA \n"
+                + "BLK/E1A \n"
+                + "BLK/E2A \n"
+                + "BLK/E3A \n"
+                + "BLK/E4A \n"
+                + "BLK/EW1 \n"
+                + "BLK/EW2 \n"
+                + "BLK/IT \n"
+                + "L/LT1~7 \n"
+                + "L/LT7A"
+        );
+    }
+
+    public void printHostelLocations() {
+        System.out.println("Hostels in NUS are: \n"
+                + "H/Raffles Hall \n"
+                + "H/Kent Ridge Hall \n"
+                + "H/King Edward VII Hall \n"
+                + "H/Sheares Hall \n"
+                + "H/Temasek Hall \n"
+                + "H/Eusoff Hall \n"
+                + "H/Cinnamon College \n"
+                + "H/College of Alice & Peter Tan \n"
+                + "H/Residential College 4 \n"
+                + "H/Ridge View Residential College \n"
+                + "H/Tembusu College \n"
+                + "H/Kuok Foundation House \n"
+                + "H/Prince George’s Park \n"
+                + "H/UTown Residence"
+        );
+    }
+
+    public void printSocAndBizLocations() {
+        System.out.println("Locations exist at SOC or BIZ are: \n"
+                + "L/LT16~LT19 \n"
+                + "BLK/COM1 \n"
+                + "BLK/COM2 \n"
+                + "BLK/BIZ1 \n"
+                + "BLK/BIZ2 \n"
+                + "BLK/Shaw Foundation Alumni House \n"
+                + "BLK/I Cube");
+
+    }
+
+    /**
+     * Print the success message after the user input autoClear off.
+     */
+    public void printAutoClearOff() {
+        System.out.println("Great! Your event happens one month ago will not be auto-cleared now.");
     }
 }
 

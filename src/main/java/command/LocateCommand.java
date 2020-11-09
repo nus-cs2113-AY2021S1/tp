@@ -1,18 +1,18 @@
 package command;
 
-import event.Event;
 import eventlist.EventList;
 import location.Location;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
 /**
  * Represents the command call when the user wants to locate an event.
  */
 public class LocateCommand extends Command {
-    private String input;
+    private final String input;
 
     public LocateCommand(String input) {
         this.input = input;
@@ -26,25 +26,21 @@ public class LocateCommand extends Command {
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
+     * @param userInfo  personal information and settings about the user.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage,
+                        UserInfo userInfo) {
         int eventNum;
-        try {
+        if (locations.checkIfInteger(input)) {
             eventNum = Integer.parseInt(input) - 1;
             Location location = events.get(eventNum).getLocation();
             System.out.println(events.get(eventNum).getDescription() + " is located at:");
             System.out.println(location);
-        } catch (NumberFormatException e) {
-            if (locations.checkValidLocation(input)) {
-                Location location = locations.findLocation(input);
-                System.out.println("Location Information: ");
-                System.out.println(location);
-            } else {
-                System.out.println("Please input a valid location or event number.");
-            }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please input an event number that is within the event list.");
+        } else if (locations.checkValidLocation(input)) {
+            Location location = locations.findLocation(input);
+            System.out.println("Location Information: ");
+            System.out.println(location);
         }
     }
 }

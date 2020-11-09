@@ -11,11 +11,15 @@ import command.FindCommand;
 import command.FindDateCommand;
 import command.HelpCommand;
 import command.LocateCommand;
+import command.PrintAreaLocationsCommand;
 import command.PrintFullListCommand;
 import command.PrintLocationCommand;
 import command.ReminderCommand;
 import command.RepeatCommand;
 import command.SortCommand;
+import command.AutoClearCommand;
+import command.ClearBeforeCommand;
+
 import command.StudyTimeCommand;
 import command.UserInfoCommand;
 import event.Assignment;
@@ -37,8 +41,11 @@ import exception.EmptyRepeatException;
 import exception.EmptyStudyTimeDateException;
 import exception.InvalidEditLocationException;
 import exception.InvalidEditTypeException;
+import exception.InvalidEventIndexException;
+import exception.InvalidLocationException;
 import exception.InvalidNumWeekException;
 import exception.InvalidSortCriteriaException;
+import exception.WrongAutoClearArgumentException;
 import exception.NoEndTimeClassException;
 import exception.NoEventLocationException;
 import exception.NoEventTimeException;
@@ -53,6 +60,7 @@ import exception.UndefinedEventException;
 import exception.UnknownErrorException;
 import exception.WrongCommandException;
 import exception.WrongEditFormatException;
+import exception.EmptyClearDateException;
 import location.Building;
 import location.Hostel;
 import location.LectureTheatre;
@@ -60,7 +68,6 @@ import location.Location;
 import location.OnlineLocation;
 import location.OutOfNuS;
 import locationlist.LocationList;
-import usercommunication.UserInfo;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -98,6 +105,16 @@ public abstract class Parser {
     public static final String SELF_STUDY = "selfStudy";
     public static final String REPEAT = "repeat";
     public static final String ALL = "all";
+    public static final String AUTO_CLEAR = "autoClear";
+    public static final String CLEAR_BEFORE = "clearBefore";
+    public static final String FOS = "FOS";
+    public static final String FOE = "FOE";
+    public static final String SDE = "SDE";
+    public static final String SOC = "SOC";
+    public static final String BIZ = "BIZ";
+    public static final String HOSTEL = "HOSTEL";
+    public static final String FASS = "FASS";
+
 
     /**
      * This function calls the correct command the user want to perform, by returning a Command object.
@@ -135,12 +152,61 @@ public abstract class Parser {
         switch (words[0]) {
         case "student":
         case "professor":
-            return new UserInfoCommand(new UserInfo(fullCommand.substring(words[0].length() + 1), words[0]));
+            return new UserInfoCommand(fullCommand.substring(words[0].length() + 1), words[0]);
         default:
             break;
         }
 
+        //this block deals with auto clear command
+        if (words[0].equalsIgnoreCase(AUTO_CLEAR)) {
+            try {
+                fullCommand = fullCommand.substring(AUTO_CLEAR.length() + 1).trim();
+            } catch (StringIndexOutOfBoundsException e) {
+                throw new WrongAutoClearArgumentException();
+            }
+            if (fullCommand.equalsIgnoreCase("ON")) {
+                return new AutoClearCommand(true);
+            } else if (fullCommand.equalsIgnoreCase("OFF")) {
+                return new AutoClearCommand(false);
+            } else {
+                throw new WrongAutoClearArgumentException();
+            }
+        }
+
+        //this block deals with print locations in the area command
+        if (fullCommand.equalsIgnoreCase(FOS) || fullCommand.equalsIgnoreCase(FOE)
+                || fullCommand.equalsIgnoreCase(SDE) || fullCommand.equalsIgnoreCase(SOC)
+                || fullCommand.equalsIgnoreCase(BIZ) || fullCommand.equalsIgnoreCase(HOSTEL)
+                || fullCommand.equalsIgnoreCase(FASS)) {
+            return new PrintAreaLocationsCommand(fullCommand);
+        }
+
         //this block deals with locate command
+        if (words[0].equalsIgnoreCase(LOCATE_EVENT)) {
+            String input = "";
+            int i;
+            for (i = 1; i < words.length; i++) {
+                input = input.concat(words[i]);
+                int j = i;
+                if (j++ != words.length) {
+                    input = input.concat(" ");
+                }
+            }
+            if (words.length == 1) {
+                throw new EmptyLocationException();
+            } else if (locations.checkIfInteger(words[1])) {
+                int eventNum = Integer.parseInt(words[1]) - 1;
+                if (eventNum >= size || eventNum < 0) {
+                    throw new InvalidEventIndexException();
+                } else {
+                    return new LocateCommand(words[1]);
+                }
+            } else if (!locations.checkValidLocation(input)) {
+                throw new InvalidLocationException();
+            } else {
+                return new LocateCommand(input);
+            }
+        }
         if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length > 1) {
             return new LocateCommand(words[1]);
         } else if (words[0].equalsIgnoreCase(LOCATE_EVENT) && words.length == 1) {
@@ -252,6 +318,18 @@ public abstract class Parser {
                     throw new RepeatIndexFormatException();
                 }
                 return new RepeatCommand(index - 1, numWeeks);
+            }
+        }
+
+        //this block deals with clear before
+        if (words[0].equalsIgnoreCase(CLEAR_BEFORE)) {
+            if (fullCommand.substring(11).isBlank()) {
+                throw new EmptyClearDateException();
+            }
+            try {
+                return new ClearBeforeCommand(LocalDate.parse(fullCommand.substring(12)));
+            } catch (DateTimeParseException e) {
+                throw new DateFormatException();
             }
         }
 
@@ -367,8 +445,8 @@ public abstract class Parser {
         //we shall check that the user input is not meant for any other command beforehand
         //because the default block will throw an exception.
         // i.e. when this block is entered, the parser will not go to any other blocks
-        if (words[0].equalsIgnoreCase(ASSIGNMENT) || words[0].equalsIgnoreCase(CLASS)
-                || words[0].equalsIgnoreCase(PERSONAL_EVENT) || words[0].equalsIgnoreCase(SELF_STUDY)) {
+        if (words[0].equals(ASSIGNMENT) || words[0].equals(CLASS)
+                || words[0].equals(PERSONAL_EVENT) || words[0].equals(SELF_STUDY)) {
             if (fullCommand.substring(words[0].length()).isBlank()) {
                 throw new EmptyEventException();
             }

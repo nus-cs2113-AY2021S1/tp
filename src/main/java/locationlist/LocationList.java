@@ -20,7 +20,8 @@ public class LocationList {
      */
     public boolean checkValidLocation(String name) {
         for (Location location : locationList) {
-            if (name.equalsIgnoreCase(location.getName())) {
+            String input = name.toLowerCase().replaceAll("\\s","");
+            if (input.equals(location.getName().toLowerCase().replaceAll("\\s",""))) {
                 return true;
             }
         }
@@ -36,8 +37,9 @@ public class LocationList {
     public Location findLocation(String name) {
         Location locationReturned = null;
         int i = 0;
+        String input = name.toLowerCase().replaceAll("\\s","");
         for (Location location : locationList) {
-            if (name.equalsIgnoreCase(location.getName())) {
+            if (input.equalsIgnoreCase(location.getName().toLowerCase().replaceAll("\\s",""))) {
                 locationReturned = locationList.get(i);
                 return locationReturned;
             }
@@ -49,5 +51,20 @@ public class LocationList {
             locationList.add(locationReturned);
         }
         return locationReturned;
+    }
+
+    /**
+     * Method to check if string can be converted to an integer.
+     *
+     * @param input String to be converted
+     * @return flag if string can be converted
+     */
+    public boolean checkIfInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

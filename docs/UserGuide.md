@@ -12,6 +12,7 @@ Wu Nan
 
 Wan Shi Jie Brendan
 
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -25,8 +26,9 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [View available commands](#view-available-commands)
     * [Add an event](#add-an-event)
     * [Edit an event](#edit-an-event)
-    * [Sort Events](#sort-events)
-    * [Find location](#find-a-location)
+    * [Sort events](#sort-events)
+    * [Find a location](#find-a-location)
+    * [List all locations](#list-all-locations)
     * [List all events](#list-all-events)
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
@@ -115,40 +117,86 @@ Adding an event with a timing clash:
 
 
 ### Edit an event
-With this command, you can edit existing tasks to change their description, start/end date, location and even the
-event type. You can start using this command by entering `edit INDEX`, where INDEX is the number of the task you want to
-edit.  
+The `edit` command allows you to edit the event type, description, start/end date and location for an existing 
+event. You can start using this command by entering `edit INDEX`, where INDEX is the number of the task you want to
+edit. 
 
-Format: `edit INDEX`
+Format: `edit INDEX`  
 
-Example:
+Example:  
+
+Let's say you have one event stored in NuSchedule currently:  
+
+![edit1](diagrams/edit1.png)
+  
+Suppose you entered the timing incorrectly and would like to edit it to the correct timing. Enter the following command
+to edit the event:  
+
+![edit2](diagrams/edit2.png) 
 
 Next, you will be prompted to enter the new values for the 5 fields which are type, description, location start and end 
-date respectively. Enter your desired changes and press the `ENTER` key to go through the fields.
+date respectively. Enter your desired changes and press the `ENTER` key to go through the fields. You can leave a field 
+blank and simply press enter if you do not want to make any changes.  
 
-If you do not wish to make any changes to any specific field, you can just leave the field empty and just press
-enter. The field will then remain unchanged.
+![edit3](diagrams/edit3.png)
 
+Expected Outcome:  
+![edit4](diagrams/edit4.png)
+
+![edit5](diagrams/edit5.png)
 
 
 ### Sort events
-With this command, you can sort all events by either their end time or their description. When sorting by time, events
+With this command, you can sort all events by either their end time, location or their description. When sorting by time, events
 will be sorted in a chronological order. Events with an earlier end date will be sorted on top of events with later end
 dates. This way, you can prioritize the events that are due soon.   
 
 When sorting by description, the events will be sorted in alphabetical order according to their descriptions. Events 
 with descriptions starting with 'a' will be sorted on top of events with descriptions starting with 'z' for example.  
 
+When sorting by location, the events will be sorted in alphabetical order according to their location. Events with
+offline locations will be sorted on top of locations with online locations.  
+
 Format: `sort SORT_CRITERIA`  
 
 Example: `sort description`
 
+Before sorting:  
+![sort1](diagrams/sort1.png)
+
+After sorting:  
+![sort2](diagrams/sort2.png)
+
+Sort by time:  
+![sort3](diagrams/sort3.png)
+
+Sort by location:  
+![sort4](diagrams/sort4.png)
+
 ### Find a location
-Shows you the location of the specified event/task.  
+With this command, you can find out about locations around NUS. Depending on the type of location, different additional 
+information will be shown together with the location (e.g. nearest building, nearest bus stops). 
 
-Format: `locate n/EVENTNAME`  
+Format: `locate LOCATIONNAME` or `locate EVENTINDEX` 
 
-Example: `locate n/CS2113t Tutorial`
+Example: `locate lt1`
+
+Find lecture theatres using location name: 
+![locate1](diagrams/locate1.png)
+
+Find buildings using location name: 
+![locate2](diagrams/locate2.png)
+
+Find locations using event index: 
+![locate3](diagrams/locate3.png)
+
+### List all locations
+Displays a list of all locations within NUS
+
+Format: `locations`
+
+Expected output: (list given here is incomplete) 
+![locations](diagrams/locations.png)
 
 ### List all events
 Shows you a list of all events.  
@@ -159,10 +207,21 @@ Example Output:
 ![list](diagrams/list.png)
 
 ### Clear events
-Deletes all events in the list.  
 
-Format: `clear`  
+Delete events existing in the list, you can choose to delete all, auto delete or delete events before a certain date:
 
+* Clear all events
+  Format: `clear`
+  
+* Switch the autoClear function on so that events happened one month ago will be automatically cleared
+  Format: `autoClear`
+  Note that this function will clear all events which happened one month ago no matter they are done or not.
+  
+* Clear events happened before a certain date
+  Format: `clearBefore CLEAR_DATE`
+  
+  Example: `clearBefore 2020-03-10`
+  
 Example Output:
 ![clear](diagrams/clear.png)
 
@@ -197,11 +256,11 @@ the data of your previous AddressBook home folder.
 |Action|Command|Example|
 |------|-------|-------|
 |add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
-|clear|`clear` |`clear`|
+|clear|`clear` OR `autoClear` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
+|delete|`delete INDEX`|`delete 1`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit`, then fill in each fields when prompted and press `ENTER` to move on to the next field|`edit 1` `ENTER` `class` `ENTER` `cs2113t` `ENTER` `\l school` `ENTER` `2020-10-26 19:00` `ENTER` `2020-10-26 20:00`|
 |help|`help`||
 |list|`list`||
-|locate|`locate n/EVENTNAME` |`locate n/CS2113t Tutorial`|
+|locate|`locate LOCATION_NAME` OR `locate EVENT_INDEX`|`locate LT1`|
 |sort|`sort SORT_CRITERIA` |`sort description`|
-|delete|`delete INDEX`|`delete 1`|

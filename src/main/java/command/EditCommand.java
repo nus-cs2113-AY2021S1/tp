@@ -2,10 +2,8 @@ package command;
 
 import event.Event;
 import eventlist.EventList;
-import exception.EditIndexOutOfBoundsException;
 import exception.EditNoEndTimeException;
 import exception.EndBeforeStartEventException;
-import exception.NuScheduleException;
 import exception.UndefinedEventException;
 import exception.WritingFileException;
 import location.Location;
@@ -14,6 +12,7 @@ import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
 import java.time.LocalDateTime;
 
@@ -24,7 +23,7 @@ public class EditCommand extends Command {
     private final int index;
     private final String[] editInformation;
     private final LocalDateTime[] startEnd;
-    
+
     private final Location location;
     private final OnlineLocation onlineLocation;
 
@@ -45,12 +44,14 @@ public class EditCommand extends Command {
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
+     * @param userInfo  personal information and settings about the user.
      * @throws UndefinedEventException the user trying to operate (delete/edit/done) some events that does not
      *                                 exist.
      * @throws WritingFileException    Represents the exception when the file is not correctly written.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage,
+                        UserInfo userInfo)
             throws UndefinedEventException, WritingFileException, EndBeforeStartEventException, EditNoEndTimeException {
         if (index >= events.getSize() || index == -1) {
             throw new UndefinedEventException(index + 1);

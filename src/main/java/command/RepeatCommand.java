@@ -7,13 +7,14 @@ import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
 /**
  * Represents the command to repeat certain classes for several weeks.
  */
 public class RepeatCommand extends Command {
     private int index;
-    private int numWeeks;//repeat the event for numWeeks weeks
+    private final int numWeeks;//repeat the event for numWeeks weeks
     private boolean isAllClasses = false;
 
     public RepeatCommand(int index, int numWeeks) {
@@ -37,11 +38,13 @@ public class RepeatCommand extends Command {
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
+     * @param userInfo  personal information and settings about the user.
      * @throws NuScheduleException the exceptions can happen in this program,
      *                             to be handled based on the specific exception.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage,
+                        UserInfo userInfo)
             throws NuScheduleException {
         if (isAllClasses) {
             events.repeatAllClasses(numWeeks);

@@ -10,6 +10,6 @@ public class EmptyLocationException extends InvalidCommandException {
      */
     @Override
     public String getMessage() {
-        return "Please input a valid location.";
+        return "Please do not leave the location input empty.";
     }
 }

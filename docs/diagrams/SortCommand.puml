@@ -23,7 +23,7 @@ deactivate Parser
 NuSchedule -> SortCommand : execute(sort)
 activate SortCommand
 
-SortCommand -> EventList : SortCommand(sort type)
+SortCommand -> EventList : sortEvent()
 activate EventList
 
 EventList --> SortCommand : event

@@ -1,8 +1,9 @@
+import command.AutoClearCommand;
 import command.Command;
 import eventlist.EventList;
 import exception.CreatingFileException;
-import exception.DataFileNotFoundException;
 import exception.NuScheduleException;
+import exception.WritingFileException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import parser.Parser;
@@ -20,7 +21,7 @@ public class NuSchedule {
     private static BusStopList busStops;
     private static LocationList locations;
     private final UI ui;
-    private UserInfo userInfo = new UserInfo("", "");
+    private UserInfo userInfo = new UserInfo("", "",false);
 
     public NuSchedule(String... filePaths) {
         ui = new UI();
@@ -53,14 +54,21 @@ public class NuSchedule {
      */
     public void run() {
         ui.printGreetingMessage(userInfo);
+        try {
+            AutoClearCommand.autoClear(events, storage, userInfo);
+        } catch (WritingFileException e) {
+            ui.showError(e.getMessage());
+        }
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
                 ui.printLine(); // show the divider line ("_______")
                 int size = events.getSize();
+                //Command auto_clear = new AutoClearCommand();
+                //auto_clear.execute(events, locations, busStops, ui, storage);
                 Command c = Parser.parse(fullCommand, locations, size);
-                c.execute(events, locations, busStops, ui, storage);
+                c.execute(events, locations, busStops, ui, storage,userInfo);
                 isExit = c.isExit();
             } catch (NuScheduleException e) {
                 ui.showError(e.getMessage());
