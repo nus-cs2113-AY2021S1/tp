@@ -275,6 +275,7 @@ exception, it is thrown from the methods in NamesDB class and Names class and ha
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
 <p align = "center"><b><i>Figure 10: Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
+
 **Implementation**
 
 1. The above diagram illustare the mechanism of manipulating objects stored in the database by adding the ability of `clear` certain unwanted subjects from the database
