@@ -70,7 +70,6 @@ List of `<optional arguments>`:
 
 🚩: Optional arguments can be typed in **any** order.
 
-
 🚩: Duplicate entry of tasks are **allowed**. 
 
 
@@ -163,6 +162,8 @@ List of `<compulsory arguments>`:
 
 🚩: Grades must be in **caps**.
 
+🚩: Modular credits must be **non-negative** and up to 40 is **allowed**.
+
 Example of usage:
 
 `add module CS2113 g/A+ mc/4 ay/2021S1`
@@ -221,7 +222,7 @@ Format: `spend <description> <compulsory arguments> <optional arguments>`
 List of `<compulsory arguments>`:
 - `v/<value>` sets the amount of money spent
 
-🚩: value has **no** limit 
+🚩: value has a limit of **100 million** 
 
 🚩: value must be **non-negative**.
 
