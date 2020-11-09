@@ -476,12 +476,13 @@ public class Ui {
             System.out.println("Error: The description of todo cannot be empty.");
             break;
         case "deadline":
-            System.out.println("Error: Please key in the deadline in this format: deadline <task description> /ddMMyy");
+            System.out.println("Error: Please key in the deadline in this format: deadline <task description> /ddMMyy\n"
+                    + "Command parameters such as `/` are not allowed in <task description>"
+            );
             break;
         case "activity":
-            System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm"
-                    + "Please be reminded that command parameters such as `@`, `/` are not allowed in "
-                    + "<activity description> and <venue>"
+            System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm\n"
+                    + "Command parameters such as `@`, `/` are not allowed in <activity description> and <venue>"
             );
             break;
         case "lecture":
