@@ -142,11 +142,11 @@ By following a specific input format for your command (shown below), you can sta
 
 While on a question, you can choose to answer it, ask for a hint (if you are unsure of the answer) or bookmark it for future reference!
 
-You will have to complete the question within the specified time as well. If you are unable to complete it in time, it will be regarded as an incorrect answer and the correct answer, along with the explanation, will be shown to you. You will then proceed to the next question where the timer will restart. 
+You will have to complete the question within the specified time as well. If you are unable to complete it in time, it will be regarded as an incorrect answer and the correct answer, along with the explanation, will be shown to you. You will then be directed to start the next question where the timer will restart. 
 
-A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. You will not be awarded any points for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a [later section](#311-displaying-stats-stats) of this guide.
+A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. You will not be awarded any points for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a [later section](#312-displaying-stats-stats) of this guide.
 
-Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then proceed to the next question.
+Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then be directed to start the next question.
 
 Note:
 - The maximum time limit for each question that you can choose is 1000 seconds.
@@ -213,7 +213,7 @@ What you should see:
 ![hint](./images/hint.png)
     
 Note: 
-- Once a hint is used for a question, it will be recorded into your [stats](#311-displaying-stats-stats).
+- Once a hint is used for a question, it will be recorded into your [stats](#312-displaying-stats-stats).
 - When a hint is used, getting the question correct will earn you 1 point instead of 2.
 - Refer to [**FAQ**](#4-faq) Q4 to understand why you should use hint despite the penalties.
 
