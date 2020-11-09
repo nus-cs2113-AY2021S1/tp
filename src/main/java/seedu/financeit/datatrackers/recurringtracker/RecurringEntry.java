@@ -3,6 +3,7 @@ package seedu.financeit.datatrackers.recurringtracker;
 import seedu.financeit.common.Common;
 import seedu.financeit.data.Item;
 import seedu.financeit.utils.DateTimeHelper;
+import seedu.financeit.utils.ParamChecker;
 
 import java.time.Month;
 import java.util.HashMap;
@@ -63,6 +64,25 @@ public class RecurringEntry extends Item {
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public Object getParamFromParamType(String paramType) {
+        switch (paramType) {
+        case ParamChecker.PARAM_DAY:
+            return day;
+        case ParamChecker.PARAM_AMOUNT:
+            return amount;
+        case ParamChecker.PARAM_INC:
+        case ParamChecker.PARAM_EXP:
+            return entryType;
+        case ParamChecker.PARAM_DESCRIPTION:
+            return description;
+        case ParamChecker.PARAM_AUTO:
+            return isAuto;
+        case ParamChecker.PARAM_NOTES:
+            return notes;
+        default: return null;
+        }
     }
 
     public boolean equals(Object object) {
