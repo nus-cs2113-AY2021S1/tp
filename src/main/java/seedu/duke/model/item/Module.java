@@ -1,20 +1,30 @@
 package seedu.duke.model.item;
 
 import seedu.duke.DukeException;
+import seedu.duke.common.Messages;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// @@author iamchenjiajun
+
 /**
  * Represents a module.
  */
-// @@author iamchenjiajun
-
 public class Module extends Item {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     public static final Pattern MODULE_SEM_PATTERN = Pattern.compile("(^[\\d]{4}S[12]$)");
     public static final String MODULE_COMPLETED_STRING = "[CM]";
     public static final String MODULE_INCOMPLETE_STRING = "[IC]";
+    public static final String MODULE_PRINT_FORMAT = "%s[%s] %s (%d MC) (AY%s)";
+    public static final String LAST_VALID_AY = "9900";
+    public static final int AY_STRING_LENGTH = 6;
+    public static final int YEAR_ONE_START_INDEX = 0;
+    public static final int YEAR_ONE_END_INDEX = 2;
+    public static final int YEAR_TWO_END_INDEX = 4;
+    public static final int ALLOWED_YEAR_DIFFERENCE = 1;
+    public static final int MIN_ALLOWED_MCS = 0;
+    public static final int MAX_ALLOWED_MCS = 40;
 
     private final String grade;
     private final double gradePoint;
@@ -39,17 +49,17 @@ public class Module extends Item {
         Matcher matcher = MODULE_CODE_PATTERN.matcher(moduleCode);
 
         if (!matcher.find() || !checkValidAy(semester)) {
-            throw new DukeException("~Error~ Format is incorrect. Please refer to the User Guide.");
+            throw new DukeException(Messages.EXCEPTION_INVALID_FORMAT);
         }
 
         if (!checkValidMcs(mc)) {
-            throw new DukeException("~Error~ Please enter a value between 0 and 40, inclusive");
+            throw new DukeException(Messages.EXCEPTION_INVALID_MCS);
         }
     }
 
     @Override
     public String toString() {
-        return String.format("%s[%s] %s (%d MC) (AY%s)", getCompletionString(), getGrade(), getDescription(), getMc(),
+        return String.format(MODULE_PRINT_FORMAT, getCompletionString(), getGrade(), getDescription(), getMc(),
                 getSemester());
     }
 
@@ -60,7 +70,7 @@ public class Module extends Item {
      * @return Boolean corresponding to the conditions.
      */
     public static boolean checkValidMcs(int mc) {
-        return mc >= 0 && mc <= 40;
+        return mc >= MIN_ALLOWED_MCS && mc <= MAX_ALLOWED_MCS;
     }
 
     /**
@@ -74,14 +84,14 @@ public class Module extends Item {
         if (!matcher.find()) {
             return false;
         }
-        if (ay.startsWith("9900")) {
+        if (ay.startsWith(LAST_VALID_AY)) {
             return true;
         }
 
-        assert ay.length() == 6;
-        int start = Integer.parseInt(ay.substring(0, 2));
-        int end = Integer.parseInt(ay.substring(2, 4));
-        return end - start == 1;
+        assert ay.length() == AY_STRING_LENGTH;
+        int start = Integer.parseInt(ay.substring(YEAR_ONE_START_INDEX, YEAR_ONE_END_INDEX));
+        int end = Integer.parseInt(ay.substring(YEAR_ONE_END_INDEX, YEAR_TWO_END_INDEX));
+        return end - start == ALLOWED_YEAR_DIFFERENCE;
     }
 
     /**
@@ -115,6 +125,13 @@ public class Module extends Item {
         return (isDone) ? MODULE_COMPLETED_STRING : MODULE_INCOMPLETE_STRING;
     }
 
+    /**
+     * Gets the grade points from a grade.
+     *
+     * @param grade Grade to get the grade points from.
+     * @return Grade points corresponding to given grade.
+     * @throws DukeException If grade is invalid.
+     */
     private double getCapFromGrade(String grade) throws DukeException {
         switch (grade) {
         case "A+":
@@ -144,7 +161,7 @@ public class Module extends Item {
         case "F":
             return 0.0;
         default:
-            throw new DukeException("~Error~ Invalid grade!");
+            throw new DukeException(Messages.EXCEPTION_INVALID_GRADE);
         }
     }
 }
