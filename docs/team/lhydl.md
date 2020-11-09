@@ -63,7 +63,7 @@ ModuleList class. All these implementations are handled in the Task and TaskList
 * Added the implementations of the `Add Task` (Section 4.8) and `Mark Task as Done` (Section 4.9) features. 
 (Pull request [#76](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/76))
 
-* Added two sequence diagrams under for `Add Task` and `Mark Task as Done` sections respectively. 
+* Added two sequence diagrams under the `Add Task` and `Mark Task as Done` sections respectively. 
 (Pull request [#111](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/111))
 
 ### Contributions to Team-based Tasks
