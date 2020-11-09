@@ -3,6 +3,9 @@ package seedu.duke.commands;
 import seedu.duke.classes.Show;
 import seedu.duke.utility.ShowList;
 
+
+//@@author bryanbeh1998
+
 public class DeleteRatingCommand extends Command {
     String showName;
 

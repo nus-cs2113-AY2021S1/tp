@@ -74,7 +74,7 @@ This will generate all the resources required by the application and tests.
 ## 3. Design
 
 WatchNext was designed drawing from the ideas of the __Event-driven architectural style__. <br>
-The class diagram below describes the relationship between the different components in **WatchNext**
+The class diagram below describes the relationship between the different components in **WatchNext**.<br><br>
 <img src = "images/designDG/designArchitecture.png" width = "700"> <br><br>
 <br>The Ui and the Scanner components work together as event emitters. The `Ui` class prompts the user for input, and the scanner is ready to receive the input. Should the format of the input be unrecognised or incorrect, the `Ui` class guides the user with prompts to rectify the errors.<br>
 <br>Events will be passed onto the `InputParser` which serves as the dispatcher. The `InputParser` uses various string manipulation operations from the `StringOperations` class to recognise the intention of the user input. After recognising the command, the input will be parsed, and the command information will be passed onto the various command classes for processing. The `InputParser` communicates the events to event consumers which are the command classes in this case. <br>
@@ -469,9 +469,6 @@ The following sequence diagram summarises what happens when a user executes a `W
 
 ### UpdateShowEpisodeProgressCommand
 
-<<<<<<< HEAD
-The UpdateShowEpisodeProgressCommand extends by providing 
-=======
 The `UpdateShowEpisodeProgressCommand` class extends `Command` by providing methods to change
  the current episode in the persistent watch history of the user. 
 
@@ -483,7 +480,7 @@ The `UpdateShowEpisodeProgressCommand` class extends `Command` by providing meth
 **Step 2**
 
 *  `processCommand()` is called and the `currentEpisode` field of the specified show is updated via the `setEpisodeWatched()` command.
->>>>>>> 1659e4e7ad715166549f0ff6f5731cc78300cda4
+
 
 ### UpdateShowSeasonCommand
 
@@ -633,7 +630,7 @@ After the project is finalised and released, if you find any bugs or problems, o
 
 **WatchNext** is a program made for teenagers and young adults.For users who use multiple free streaming platforms or other open source stream websites,
 the application will track their progress in the different shows they watch, and the upcoming shows they wish to watch.In addition, it provides a tracker 
-to limit your weekly show progress to help manage your time.
+to limit your daily show progress to help manage your time.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).
 
@@ -841,12 +838,12 @@ Expected: An error message indicating that the input supplied was in a wrong for
 1. Prerequisites: The show name `friends` has already been added into the list. 
 
 2. Test case: `search friends`<br>
-Expected: An acknowledgement message that `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
+Expected: An acknowledgement message that shows containing the keyword `friends` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 
 3. Test case: `search`<br>
 
 Expected: An error message indicating that the input supplied was in a wrong format.
 
-4. Test case: `search a`<br>
-Expected: An error message indicating that the show input was not found in the watch list.
+4. Test case: `search fri`<br>
+Expected: An acknowledgement message that shows containing the keyword `fri` has been found from the watch list. The details for `friends` is also displayed in the terminal.
 

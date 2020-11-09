@@ -6,7 +6,6 @@
 
 ### Summary of Contributions
 
-* Code contributed: Please click the link here to see my code contribution: [code contributed link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=BenardoTang&tabRepo=AY2021S1-CS2113T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * Enhancements implemented:
     * Implement Storage feature: This feature allows **WatchNext** to load information from a file and save current information to a file automatically.
