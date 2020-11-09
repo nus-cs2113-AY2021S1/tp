@@ -10,11 +10,18 @@ import seedu.revised.ui.Ui;
 public class AddFlashcardCommand extends FlashcardCommand {
     private final String fullCommand;
 
-
     public AddFlashcardCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
+    /**
+     * Adds an instance of Flashcard in the list <code>Topic.flashcards</code>.
+     *
+     * @param topic the <code>Topic</code> instance of the Topic class for the user to append to
+     * @throws RepeatedFlashcardException If the program detects the flashcard the user inputs already exists
+     *                                    in the program
+     * @throws InvalidFlashcardException If the program does not detect any flashcard question or answer in user input
+     */
     public void execute(Topic topic) throws RepeatedFlashcardException, InvalidFlashcardException {
         String[] tokens = fullCommand.split(" ", 2);
         String question = "";
@@ -43,6 +50,11 @@ public class AddFlashcardCommand extends FlashcardCommand {
         Ui.printFlashcard(t, topic.getFlashcards());
     }
 
+    /**
+     * Checks whether the the user exits the program.
+     *
+     * @return <code>true</code> If user exits the program
+     */
     public boolean isExit() {
         return false;
     }
