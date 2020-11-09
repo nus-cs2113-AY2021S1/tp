@@ -19,13 +19,13 @@ import static fitr.common.Commands.COMMAND_GOAL;
 import static fitr.common.Messages.ADD_SMART_EXERCISE_GOAL_TIP;
 import static fitr.common.Messages.ADD_SMART_FOOD_GOAL_TIP;
 import static fitr.common.Messages.CLOSE_SQUARE_BRACKET;
-import static fitr.common.Messages.DASH;
 import static fitr.common.Messages.ECHO_ADDED_GOAL;
 import static fitr.common.Messages.ERROR_GOAL_LESS_THAN_UPPERBOUND;
 import static fitr.common.Messages.ERROR_GOAL_MORE_THAN_UPPERBOUND;
 import static fitr.common.Messages.ERROR_IN_FILE;
 import static fitr.common.Messages.PHRASE_SMART_EXERCISE_GOAL;
 import static fitr.common.Messages.PHRASE_SMART_FOOD_GOAL;
+import static fitr.common.Messages.SEPARATOR_LINE;
 import static fitr.common.Messages.SPACE_STRING;
 import static fitr.common.Messages.SYMBOL_EXERCISE;
 import static fitr.common.Messages.SYMBOL_FOOD;
@@ -54,7 +54,7 @@ public class AddGoalCommand extends Command {
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + CLOSE_SQUARE_BRACKET
                             + SPACE_STRING + newGoal.getDescription());
                     if (newGoal.getDescription().equals(command)) {
-                        Ui.printCustomMessage(DASH.repeat(136));
+                        Ui.printCustomMessage(SEPARATOR_LINE);
                         Ui.printMessageInBlue(ADD_SMART_FOOD_GOAL_TIP);
                     }
                 } catch (FitrException e) {
@@ -70,7 +70,7 @@ public class AddGoalCommand extends Command {
                     Ui.printCustomMessage(ECHO_ADDED_GOAL + newGoal.getGoalType() + CLOSE_SQUARE_BRACKET
                             + SPACE_STRING + newGoal.getDescription());
                     if (newGoal.getDescription().equals(command)) {
-                        Ui.printCustomMessage(DASH.repeat(136));
+                        Ui.printCustomMessage(SEPARATOR_LINE);
                         Ui.printMessageInBlue(ADD_SMART_EXERCISE_GOAL_TIP);
                     }
                 } catch (FitrException e) {

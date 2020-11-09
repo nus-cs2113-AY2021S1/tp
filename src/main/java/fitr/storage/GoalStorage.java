@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -95,6 +96,11 @@ public class GoalStorage {
         FileWriter fileWriter = new FileWriter(goalListPath);
         Goal goal;
 
+        assert user != null : "user cannot be null!";
+        assert goalList != null : "goalList cannot be null!";
+        assert foodList != null : "foodList cannot be null!";
+        assert exerciseList != null : "exerciseList cannot be null!";
+
         for (int i = 0; i < goalList.getSize(); i++) {
             goal = goalList.getGoal(i);
             fileWriter.write(goal.getCreatedDate()
@@ -123,8 +129,11 @@ public class GoalStorage {
                     && Double.parseDouble(arguments[2].substring(0, arguments[2].length() - 1)) <= 100) {
                 isValidStatus = true;
             }
+
+            LocalDate date = LocalDate.parse(arguments[0], DateManager.formatter);
+
             return (isValidGoalType && isValidStatus);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | DateTimeException e) {
             return false;
         }
     }
