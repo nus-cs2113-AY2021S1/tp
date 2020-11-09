@@ -229,9 +229,9 @@ Example of usage:
 
 `edit-n /i 2 /add 2 Line 2.1 /add 3 Line 2.2`
 
-`edit-n /i 2 /del 1 /del 2`
-
 <div style="page-break-after: always;"></div>
+
+`edit-n /i 2 /del 1 /del 2`
 
 Expected output:
 
@@ -288,8 +288,6 @@ Format: `archive-n [/i INDEX] [/t TITLE]`
 - The archived note will no longer be visible in the main notebook. To view the list of archived notes refer to [`list-n`](#list-n). 
 - The index refers to the index number shown in the displayed note list. The index must be a **positive integer** (1, 2, 3, …).
 - At least one of the optional fields must be provided.
-
-<div style="page-break-after: always;"></div>
  
 Example of usage: 
 
@@ -335,6 +333,8 @@ Format: `delete-n [/i INDEX] [t/TITLE]`
 
 💡 Partial title input is **NOT** possible.
 
+<div style="page-break-after: always;"></div>
+
 Example of usage: 
 
 `delete-n /i 1`
@@ -359,6 +359,8 @@ Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
 - The user can create multiple tags within a single line.
 
 💡 Creating a tag that already exists will override the tag color.
+
+<div style="page-break-after: always;"></div>
 
 Example of usage: 
 
