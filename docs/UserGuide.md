@@ -234,6 +234,10 @@ List of `<optional arguments>`:
 
 🚩: Optional and compulsory arguments can be typed in **any** order
 
+🚩: It is up to the user to input positive or negative or 0 value for argument `v/<value>`.
+
+🚩: `currency` is user defined. It does not have to be a legal currency in the world.
+
 Example of usage:
 
 `spend lunch v/5`
