@@ -9,7 +9,9 @@ import seedu.eduke8.ui.Ui;
 
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_BOOKMARK_NONE;
 
-
+/**
+ * The specific command to manage bookmarked questions in E-Duke-8.
+ */
 public class BookmarkCommand extends Command {
     private static final String BOOKMARK_LIST = "listing";
     private static final String BOOKMARK_STORE = "storing";
