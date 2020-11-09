@@ -30,7 +30,7 @@ command>Following are the added projects:
 	ID Title 		Description
 	1) MeTube 		video streaming software
 	2) FaceDiary 		Social networking
-command>Please do not enter dashes.
+command>Please enter a project id and do not include any dashes.
 command>Project 1 has been selected.
 command>Invalid index, no corresponding project exists.
 command>============================ PROJECT ============================

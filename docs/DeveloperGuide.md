@@ -144,7 +144,7 @@ The `ParserManager` then returns the command back to `SCRUMptious`, which then e
 
 ### 3.4. Model Component
 ![Figure X: Simplified class diagram for Model Component](./image/developerguide/modelcomponent.png "Storage Component UML")  
-[Model Package](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/model)  
+[Model Package](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/model)  
 The Model package defines all the object classes that are used by SCRUMptious and this section will explain how these objects interact with other components and each other.
 
 #### Initialisation
@@ -201,7 +201,7 @@ When a `Command` from the [Logic component](#logic-component) is executed, it wi
     * ArrayList of Task IDs to keep track `Tasks` that are allocated to the `Sprint`.
 ### 3.5. Storage Component
 ![Figure X: Simplified class diagram for Storage Component, Model and json.simple](./image/developerguide/storagecomponent.png "Storage Component UML")  
-API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/storage/StorageManager.java)  
+API: [StorageManager.java]( https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/storage/StorageManager.java)  
 
 The Storage component is using the JavaScript Object Notation (JSON) to save the data. The library used for serialising and deserializing the data is _json.simple 3.1.1_ by **Clifton Labs**.  
 As shown in the diagram above, `JsonableObject` and `JsonableArray` are interfaces which inherits the `Jsonable` interface. The following model class inherits only one of the two interfaces:  
@@ -225,7 +225,7 @@ This requires the model classes to implement two methods required for JSON seria
 #### 4.1.1. Create Project
 ![Figure X: Sequence diagram of CreateProjectCommand](./image/developerguide/createProjectSequenceDiagram.png
  "Add Project Sequence Diagram") 
- Link: [CreateProjectCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/project/CreateProjectCommand.java) 
+ Link: [CreateProjectCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/command/project/CreateProjectCommand.java) 
 A project is created with a clear title and description of what the team is working on 
 for delivery, as well as the project length and the sprint duration specified. `ProjectManager` stores all the projects
 in a hash table with `projectID`, `project` as key,value pair.
@@ -461,7 +461,7 @@ The following section will explain how the management of Sprints is implemented 
 
 ![Figure X: Sequence diagram of CreateSprintCommand](./image/developerguide/createSprint.png "Create Sprint Sequence Diagram")  
   
-Link: [CreateSprintCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/CreateSprintCommand.java) 
+Link: [CreateSprintCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/command/sprint/CreateSprintCommand.java) 
 
 A Sprint can be created when there is an existing Project.
 When the Project is created, the duration of the Project and length of the Sprints are specified, thus, there will be a finite number of Sprints for each Project.
@@ -517,7 +517,7 @@ Usage scenario:
 
 #### 4.3.2. View Sprint
 
-Link: [ViewSprintCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/ViewSprintCommand.java) 
+Link: [ViewSprintCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/command/sprint/ViewSprintCommand.java) 
 
 A Sprint can only be viewed when there is an existing Sprint. When the user request to view the sprint, the Sprint number is specified and the program will output the information about the Sprint corresponding to the Sprint number.
 
@@ -533,7 +533,7 @@ Implementation:
 
 #### 4.3.3. Add Task to Sprint
 
-Link: [AddSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/AddSprintTaskCommand.java) 
+Link: [AddSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/command/sprint/AddSprintTaskCommand.java) 
 
 Users can add Tasks existing in the Project Backlog to the Sprint, indicating that the Tasks are to be worked on during the iteration. 
 
@@ -554,7 +554,7 @@ Implementation:
 
 #### 4.3.4. Remove Task from Sprint
 
-Link: [RemoveSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/RemoveSprintTaskCommand.java) 
+Link: [RemoveSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/command/sprint/RemoveSprintTaskCommand.java) 
 
 Users can remove Tasks from Sprint, indicating that the Tasks are deemed to not be worked on during the iteration. 
 
@@ -574,7 +574,7 @@ Implementation:
 
 #### 4.3.5. Allocate Sprint Tasks to Members   
 
-Link: [AllocateSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/seedu/duke/command/sprint/AllocateSprintTaskCommand.java) 
+Link: [AllocateSprintTaskCommand.java](https://github.com/AY2021S1-CS2113T-F11-4/tp/tree/master/src/main/java/com/scrumptious/command/sprint/AllocateSprintTaskCommand.java) 
  
 Users can allocate Sprint Tasks to Members, indicating that the Tasks are assigned to the selected member to work on during the iteration. 
 
