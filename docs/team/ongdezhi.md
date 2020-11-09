@@ -9,12 +9,12 @@
 *   **New Feature:** Added the ability to estimate the time needed to translate a script.
     *   What it does: Allows the user to figure out the time needed to translate a script based on the amount of words they can translate in an hour (words per hour), or by using the average translator's speed (3 different words per hour values) to generate 3 timings.
     *   Justification: Being able to estimate the time needed more accurately can help the user in better managing and planning their time.
-    *   Highlights: The challenge in this implementation is in ensuring a single valid file is provided, since the file name is a user input, it could contain special characters, whitespaces, file extensions, and even invalid file name characters. Hence, it needs to consider all these factors to ensure a valid file is provided for estimation. Moreover, it also needs to ensure the optional parameter is not accidentally validated as part of the file name.
+    *   Highlights: The challenge in this implementation is in ensuring a single valid file is provided, since the file name is a user input, it could contain special characters, whitespaces, file extensions, and even invalid file name characters. Hence, it needs to consider all these factors to ensure a valid file name is provided for estimation. Moreover, it also needs to ensure the optional parameter is not accidentally validated as part of the file name.
                     
 *   **New Feature:** Added the ability to create, list, select, and delete watchlist.
     *   What it does: Allows the user to create, list, select, and delete watchlist.
     *   Justification: This feature provides the user with a way to keep track of animes and group them based on their own criteria, and this helps them to be more organized.
-    *   Highlights: This feature modifies the active watchlist which is used by other commands and the input prompt, so it requires an in-depth analysis of the inputs received to ensure the modification made by the user does not turns the active watchlist invalid. This is because an invalid active watchlist can cause other commands, and the application to fail.
+    *   Highlights: This feature maintains the active watchlist which is used by other commands and the input prompt, so it requires an in-depth analysis of the inputs received to ensure the modifications made by the user does not turn the active watchlist invalid. This is because an invalid active watchlist can cause other commands, and the application to fail.
     
 *   **New Feature:** Added the ability to save and load watchlist data automatically.
     *   What it does: Helps the user to automatically save their watchlist data into the file `watchlist.txt`, and load these data automatically when the application is launched.
