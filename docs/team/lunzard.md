@@ -74,8 +74,8 @@ including the UML diagrams.
 * I also maintained the cohesiveness and formatting of the documentation.
 
 ### Contributions to team-based tasks:
-* PRs reviewed: #81, #170, #172, #178, #292
-* I contributed brainstorming in User Stories which can be found [here](https://github.com/dozenmatter/tp-stories/projects/1)
+* I helped given suggestions ot other teammates.
+* I contributed brainstorming in User Stories which can be found [here](https://github.com/dozenmatter/tp-stories/projects/1).
 
 ### Contributions beyond the project team: 
 * I tested applications and reported bugs and offered suggestions for other teams to consider 
