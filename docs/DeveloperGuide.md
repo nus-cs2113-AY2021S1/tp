@@ -489,9 +489,8 @@ While allowing them to automate/monitor their home with smart home devices.
 
 ### Value proposition
 
-This program consolidates all the home appliance’s control into a centralised system. Users can also review and 
-monitor electricity usage; having a clearer picture of their electrical usage patterns. We can extract the latest 
-electricity price to calculate users’ utility bills. A backlog of the usage can also be recorded. 
+This program consolidates all the home appliance’s control into a centralised system. Users with mobility difficulties can easily ON/OFF appliances. 
+They can also review and monitor electricity usage; having a clearer picture of their electrical usage patterns. A backlog of the usage can also be recorded.
 
 ## Appendix B: User Stories
 
