@@ -112,7 +112,8 @@ public abstract class SprintCommand extends Command {
      */
     protected void checkSprintExist() throws ScrumptiousException {
         if (this.projOwner.getSprintList().size() == 0) {
-            throw new ScrumptiousException("Please create a sprint for Project " + this.projOwner.getProjectID() + " first.");
+            throw new ScrumptiousException("Please create a sprint for Project " 
+                    + this.projOwner.getProjectID() + " first.");
         }
     }
 

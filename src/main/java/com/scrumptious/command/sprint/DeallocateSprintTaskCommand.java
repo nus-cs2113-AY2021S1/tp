@@ -89,7 +89,8 @@ public class DeallocateSprintTaskCommand extends SprintCommand {
             Task task = this.projOwner.getBacklog().getTask(taskId);
             List<String> chosenMember = Arrays.asList(this.userIds);
             if (!task.getMemberList().containsAll(chosenMember)) {
-                throw new ScrumptiousException("Not all tasks are allocated to member: " + Arrays.toString(this.userIds));
+                throw new ScrumptiousException("Not all tasks are allocated to member: " 
+                        + Arrays.toString(this.userIds));
             }
         }
     }
