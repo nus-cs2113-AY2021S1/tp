@@ -275,6 +275,7 @@ similiar diaghrams for PersonSaveLoadManager
 NUS students living on campus who would like to track their diet.
 
 ### Value proposition
+
 DietBook is designed to **track the food and different kinds of nutritional intake** of the user. It can also provide the user with a **daily calorie recommendation** based on their personal information. As the application mainly targets _NUS students staying on campus, it has a **database prepopulated with food items commonly found around NUS**. This allows for such food items to be easily added to the list of food items consumed for tracking.
 
 ## User Stories
