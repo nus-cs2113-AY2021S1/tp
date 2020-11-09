@@ -345,7 +345,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
    Expected outcome: 
    
   <img src = "images/deletereview.PNG" width = "600">
- 
+
 
 ### 4.h. `delete` - Deletes your show
 
@@ -385,6 +385,7 @@ The `deleterating` command deletes the rating for an existing show in the watchl
  
  Expected outcome:
   
+
  <img src = "images/deleterating.PNG" width = "600">
 
  &nbsp;
@@ -405,7 +406,7 @@ The `changerating` command changes the rating for an existing show which already
  
  Expected outcome:
   
- <img src = "images/changerating.PNG" width = "600">
+ <img src = "images/changerating.PNG" width = "650">
   
  &nbsp;
  
@@ -433,7 +434,7 @@ If you would only like to change the current season:
  Input:
  
    <img src = "images/season/input.png" width = "600">
-    
+ 
    &nbsp;
  
  The current season you are watching of Friends will be updated to season 3.
@@ -468,7 +469,7 @@ The `episode` command updates the current episode of an existing show in your wa
  Input: 
  
   <img src = "images/episode/input.png" width = "600">
-   
+
   &nbsp;
  
  The current episode you are watch of the show Friends will be updated to 10.
