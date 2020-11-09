@@ -32,7 +32,7 @@ public class AddCommand extends Command {
     private final String type;
 
     /**
-     * Constructor for AddCommand
+     * Constructor for AddCommand.
      *
      * @param name name of Appliance to create.
      * @param location location the Appliance will be placed.
