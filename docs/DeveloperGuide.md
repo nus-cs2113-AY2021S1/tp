@@ -108,7 +108,7 @@ Exiting from the Topic level will result in the program running at the Subject l
 allows the program to run at the Main level. The program can also access the Subject level from the main level, or the Topic level
 from the Subject level via user input.
 
-### Architecture
+### Architecture <a name="architecture"></a>
 ![architecture](https://user-images.githubusercontent.com/50734854/98514327-3be86900-22a4-11eb-9021-8099c536ad0f.png)
 
 <sub>***Figure 3** Architecture diagram for revisED.*</sub>
@@ -744,11 +744,16 @@ The sequence diagram of accessing a `Subject` Maths is shown below.
 
 <sub>***Figure 4.8.1** UML sequence diagram for accessing a subject*</sub>
 
-#### Accessing a Topic
+#### Accessing a Topic <a name="accessing-topic"></a>
 You can access a topic by entering `topic [TOPIC_NAME]`. The topic needs to be a topic that already exists in the list, and you can 
 add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
 
-### 4.9 Implementation of `list all` command
+The sequence diagram of accessing a `Topic` Geometry is shown below.
+![Access Topic](https://user-images.githubusercontent.com/50734854/98531635-94773080-22bb-11eb-8ebd-36c94aeb4438.png)
+
+<sub>***Figure 4.8.2** UML sequence diagram for accessing a topic*</sub>
+
+### 4.9 `list all` command <a name="list-all-imp"></a>
 While the syntax of the `list all` command is the same on the main, subject and topic levels,
 there are 3 separate ListAll___Commands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
 the 3 classes are kept separate so that `printAll()` can recognise what object the user is accessing.

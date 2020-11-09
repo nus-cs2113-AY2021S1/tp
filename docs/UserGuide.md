@@ -106,7 +106,7 @@ Example of usage:
 help
 ```
 
-Expected output:
+Sample output:
 ```
 ________________________________________________________________________________________________________________________
 help:          shows the list of commands available at the main level
@@ -138,7 +138,7 @@ Example of usage:
 list
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Here are the subject(s) in your list:
@@ -164,7 +164,7 @@ Example of usage:
 list all
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Here's a list of all items:
@@ -208,7 +208,7 @@ Example of usage:
 add CS2101
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this subject:
@@ -241,7 +241,7 @@ Example of usage:
 delete 1
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
  Noted. I've removed this subject:
@@ -268,7 +268,7 @@ Example of usage:
 find CS
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
  Here are the matching subject(s) in your list:
@@ -296,7 +296,7 @@ Example of usage:
 subject CS2113T
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Entering the Subject Level for the CS2113T subject.
@@ -323,7 +323,7 @@ Example of usage:
 quiz CS2113T
 ```
 
-Expected output: 
+Sample output: 
 
 ```
 ____________________________________________________________
@@ -347,7 +347,7 @@ Example of usage:
 results CS2113T
 ```
 
-Expected output: 
+Sample output: 
 ```
 ____________________________________________________________
 Quiz 1: 1.0/2.0 -- Pass
@@ -369,7 +369,7 @@ Example of usage:
 export
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Your data has been successfully exported to /home/guest/revised/export/data.json.
@@ -394,7 +394,7 @@ Example of usage:
 bye
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Bye. Hope to see you again soon!
@@ -423,7 +423,7 @@ Example of usage:
 help
 ```
 
-Expected output:
+Sample output:
 ```
 ________________________________________________________________________________________________________________________
 help:                              shows the list of commands available at the subject level
@@ -461,7 +461,7 @@ Example of usage:
 list
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Here are the topic(s) under CS2101: 
@@ -487,7 +487,7 @@ Example of usage:
 list all
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Here's a list of all items:
@@ -528,7 +528,7 @@ Example of usage:
 add Project Pitch
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this topic:
@@ -561,7 +561,7 @@ Example of usage:
 delete topic 3
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
  Noted. I've removed this topic:
@@ -588,7 +588,7 @@ Example of usage:
 find Pro
 ``` 
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
  Here are the matching topic(s) in your list:
@@ -618,7 +618,7 @@ Example of usage:
 topic Oral Presentation
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Entering the topic Level for the Oral Presentation topic.
@@ -639,7 +639,7 @@ Example of usage:
 todo look up on what is active listening
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
@@ -664,7 +664,7 @@ Example of usage:
 deadline assignment /by 23:59 21-10-2020
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
@@ -687,7 +687,7 @@ Example of usage:
 event tutorial /at 16:00 21-10-2020
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
@@ -713,7 +713,7 @@ Example of usage:
 delete task 2
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
  Noted. I've removed this task:
@@ -739,7 +739,7 @@ Example of usage:
 done 2
 ```
 
-Expected output:
+Sample output:
 ```
 ____________________________________________________________
  Nice! I've marked this task as done:
@@ -763,7 +763,7 @@ Example of usage:
 quiz Java
 ```
 
-Expected output: 
+Sample output: 
 ```
 ____________________________________________________________
 You are about to begin the quiz for Java.
@@ -786,7 +786,7 @@ Example of usage:
 results Java
 ```
 
-Expected output: 
+Sample output: 
 ```
 Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
@@ -808,7 +808,7 @@ Example of usage:
 exit
 ```
 
-Expected output: 
+Sample output: 
 ```
 ____________________________________________________________
 Going back to the main level.
@@ -836,7 +836,7 @@ Example of usage:
 help
 ```
 
-Expected output:
+Sample output:
 ```
 ________________________________________________________________________________________________________________________
 help:              shows the list of commands available at the topic level
@@ -861,7 +861,7 @@ Example of usage:
 list
 ```
 
-Expected output:
+Sample output:
 
 ```
 ____________________________________________________________
@@ -886,7 +886,7 @@ Example of usage:
 ```
 list all
 ```
-Expected output:
+Sample output:
 
 ```
 ____________________________________________________________
@@ -933,7 +933,7 @@ Example of usage:
 add What is the version of Java used in CS2113T; 11.0
 ```
 
-Expected output:
+Sample output:
 
 ```
 ____________________________________________________________
@@ -970,7 +970,7 @@ Example of usage:
 delete 3
 ```
 
-Expected output:
+Sample output:
 
 ```
 ____________________________________________________________
@@ -997,7 +997,7 @@ Example of usage:
 exit
 ```
 
-Expected output: 
+Sample output: 
 ```
 ____________________________________________________________
 Going back to the topics and tasks list.
@@ -1062,7 +1062,7 @@ ____________________________________________________________</code></pre>
 
 You can stop the quiz by entering `stop`. The application then prints the score.<br>
 Format: `stop`<br>
-Expected output:`The quiz has been stopped!`.
+Sample output:`The quiz has been stopped!`.
 <pre><code>
 ____________________________________________________________
 The quiz has been stopped!
@@ -1343,7 +1343,7 @@ A summary of all the commands available is shown in the table below.
 
 Action|Examples
 ------|------
-SUBJECT COMMANDS(MAIN LEVEL)|
+SUBJECT COMMANDS (MAIN LEVEL)|
 Add subject|`add CS2113T` 
 Change to the specific subject |`subject CS2113T`
 Start a quiz for a subject| `quiz CS2113T`
@@ -1353,7 +1353,7 @@ Delete Subject | `delete 1`
 List all subjects| `list`
 Export data | `export`
 Exit application|`bye`
-TOPIC AND TASK COMMANDS(SUBJECT LEVEL)| 
+TOPIC AND TASK COMMANDS (SUBJECT LEVEL)| 
 Add topic|`add Java` 
 Delete topic| `delete topic 4`
 Change to the specific topic |`topic Java`
@@ -1367,11 +1367,11 @@ Complete task|`done 4`
 Delete task|`delete task 4`
 List topics and tasks | `list`
 Exit subject | `exit`
-FLASHCARD COMMANDS(TOPIC LEVEL)|
+FLASHCARD COMMANDS (TOPIC LEVEL)|
 Add flashcard|`add What version of Java are you using; 11.0`
 Delete flashcard| `delete 1`
 List flashcards|`list`
 Exit topic | `exit`
-OTHER COMMANDS(All LEVELS)|
+OTHER COMMANDS (All LEVELS)|
 List all the items in the application|`list all`
 List all the commands|`help`
