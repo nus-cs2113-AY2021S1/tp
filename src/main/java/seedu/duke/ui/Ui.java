@@ -49,11 +49,12 @@ public class Ui {
     }
 
     // @@author iamchenjiajun
+
     /**
      * Prints a calendar from a given task list.
      *
      * @param currentDate Date of the current day.
-     * @param taskList ArrayList of Task to print the tasks from.
+     * @param taskList    ArrayList of Task to print the tasks from.
      * @param daysToPrint Number of days of tasks being printed.
      */
     public static void dukePrintCalendar(LocalDate currentDate, ArrayList<Task> taskList, int daysToPrint) {
@@ -68,8 +69,8 @@ public class Ui {
     /**
      * Prints the heading of the calendar.
      *
-     * @param date Date to be printed in the heading.
-     * @param taskList ArrayList of Task to print the tasks from.
+     * @param date        Date to be printed in the heading.
+     * @param taskList    ArrayList of Task to print the tasks from.
      * @param daysToPrint Number of days of tasks being printed.
      */
     private static void dukePrintCalendarHeading(LocalDate date, ArrayList<Task> taskList, int daysToPrint) {
@@ -116,14 +117,16 @@ public class Ui {
     }
 
     // @@author
+
     /**
      * Generates and prints the welcome message upon the start of the application.
      */
     public static void showWelcome() {
         System.out.println("Hello from...");
         System.out.println(Messages.LOGO);
-        dukePrint("How can termiNus assist you today?\n\n \t Unsure what to type? Start of by typing <help> to see the "
-                + "commands and their usage.");
+        dukePrint("How can termiNus assist you today?\n\n"
+                + "     Unsure what to type? Start of by typing <help> to see the commands and their usage.");
+
     }
 
     // @@author GuoAi
@@ -144,6 +147,7 @@ public class Ui {
 
     /**
      * Prints the error message to the user if an error occurs.
+     *
      * @param e the {@code DukeException} representing the error occurred
      */
     public static void showError(DukeException e) {

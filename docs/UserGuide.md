@@ -505,7 +505,9 @@ Output:
 ### Displaying expense items by a certain currency on list: `list expenses (by currency)` 
 List all the expense items in the expense list based on currency and shows total amount of money spent for each currency.
 
-Format: `list expenses currency/currency_name`
+Format: `list expenses currency/<currency_name>`
+
+🚩: currency_name is **case-sensitive**.
 
 Example of usage:
 
@@ -529,7 +531,7 @@ Output:
 ### Displaying expense items on a certain date on list: `list expenses (by date)` 
 List all the expense items in the expense list based on the date and shows total amount of money spent for each currency.
 
-Format: `list expenses date/YYYY-MM-DD`
+Format: `list expenses date/<YYYY-MM-DD>`
 
 Example of usage:
 
@@ -720,7 +722,9 @@ Output:
 ### Deleting all the expense items of a certain currency: `delete expenses (by currency)`
 Delete expense items of the same currency.
 
-Format: `delete expenses currency/<currency>`
+Format: `delete expenses currency/<currency_name>`
+
+🚩: currency_name is **case-sensitive**.
 
 Example of usage:
 
@@ -738,15 +742,6 @@ Output:
      bottle (3.00 SGD) (date: Saturday, November 7, 2020)
     ____________________________________________________________
 
-```
-
-🚩: If there is no expense item to be deleted, the output will be as follows:
-
-```
-    ____________________________________________________________
-     ~Info~ There is no expense item deleted.
-
-    ____________________________________________________________
 ```
 
 ### Deleting all expense items of the same date: `delete expenses (by same date)`
