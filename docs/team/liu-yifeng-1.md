@@ -83,7 +83,7 @@ for more details.
   [\#4](https://github.com/LIU-YiFeng-1/ped/issues/4),
   [\#5](https://github.com/LIU-YiFeng-1/ped/issues/5),
   [\#6](https://github.com/LIU-YiFeng-1/ped/issues/6),
-  [\#7](https://github.com/LIU-YiFeng-1/ped/issues/7),
+  [\#7](https://github.com/LIU-YiFeng-1/ped/issues/7)
   )
 * Shared useful external library on the module Forum.
 ([\#107](https://github.com/nus-cs2113-AY2021S1/forum/issues/107))
