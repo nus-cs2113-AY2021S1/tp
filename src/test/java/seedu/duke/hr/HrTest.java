@@ -128,13 +128,13 @@ public class HrTest {
     public void changeMemberInfo_PhoneNumberWrongFormat() {
         MemberList.addToList(new Member("Harry Potter", 1234567890, "harry_potter@gmail.com", "president"));
         String expected1 = "OOPS!!! The format of the phone number given is incorrect.\n"
-                + "The phone number should be a whole number less than 19 digits.\n";
+                + "The phone number should be a whole number not more than 18 digits.\n";
         Member m = MemberList.findMemberByName("harry potter");
         String actual1 = MemberList.changeMemberInfo(m, "9999999999999999999", null, null);
         assertEquals(expected1, actual1);
 
         String expected2 = "OOPS!!! The format of the phone number given is incorrect.\n"
-                + "The phone number should be a whole number less than 19 digits.\n";
+                + "The phone number should be a whole number not more than 18 digits.\n";
         String actual2 = MemberList.changeMemberInfo(m, "string", null, null);
         assertEquals(expected2, actual2);
 
