@@ -16,11 +16,7 @@ I have implemented a storage manager with the help of a third-party library [**j
 **Pull Request:** [#31](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/31) [#67](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/67) [#81](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/81) [#117](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/117) [#118](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/118) [#187](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/187) [#196](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/196) [#209](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/209) [#215](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/215)
 
 ##### 2. Automated Testing
-SCRUMptious contains components that are dependent on current date, as a result the output of the program may vary. For example, creating the first sprint without specifying the start date will result in the start of the project to be the date of the command being ran. This results in the output of the automated testing to differ when it is run on a different date from the generation of the **expected** outcome. I solve this issue by ensuring that each call for current date will return a fixed date if the automated testing is running. This is achieved by:  
- 1. Adding a static variable `clock` to `Scrumptious` class which allows the `clock` to be explicitly set.   
- 2. The clock can be retrieved by calling `Scrumptious.getClock()` which will return a `clock` object. 
- 3. If `clock` is `null`, the clock returned corresponds to the current datetime. Otherwise, the returned clock will always be fixed to a datetime which is set by `Scrumptious.setClock()`.
- 4. Each call to `LocalDate.now()` or `LocalDateTime.now()` must include the `clock` parameter using `Scrumptious.getClock()`.   
+SCRUMptious contains components that are dependent on current date, as a result the output of the program may vary. For example, creating the first sprint without specifying the start date will result in the start of the project to be the date of the command being ran. This results in the output of the automated testing to differ when it is run on a different date from the generation of the **expected** outcome. I solve this issue by ensuring that each call for current date will return a fixed date if the automated testing is running. This is achieved by ensuring that each `now()` call through `LocalDate` or `LocalDateTime` includes a parameter `Scrumptious.getClock()` that will return a fixed datetime for automated testing, otherwise it returns the current datetime. 
 
 The challenge to this solution is it requires the discipline to ensure that each call to get the current date (`LocalDate.now()`) or datetime (`LocalDateTime.now()`) must include a `clock` parameter. Otherwise, the automated testing results are unexpected and will cause the test to fail.
 
@@ -40,6 +36,8 @@ The challenge to this solution is it requires the discipline to ensure that each
   * Fixed _**Table of Contents**_.
   * Fixed some consistency issues.
   * Add proper link to jar file (Pull Request [#139](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/139))
+* Untracked
+  * Add _**3.4 Sprint**_ section for the first draft (before first commit)
  
   
 ##### Developer Guide  
