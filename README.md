@@ -26,4 +26,4 @@ You can join us in developing this tool by making a fork of this project and mak
 
 ## Acknowledgement
 
-*   [AniList](https://anilist.co/) for providing us anime information
+*   [AniList](https://anilist.co/) for providing us anime information.

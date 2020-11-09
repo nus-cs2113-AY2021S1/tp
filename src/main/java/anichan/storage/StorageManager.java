@@ -21,8 +21,11 @@ import java.util.logging.Logger;
  * Represents the class to manage all of AniChan's data.
  */
 public class StorageManager {
+    private static final String REGEX_ALPHANUMERIC_WITH_SPACE = "^[a-zA-Z0-9\\s]*$";
+    private static final int MAXIMUM_WORKSPACE_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(StorageManager.class.getName());
-    public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder, try deleting manually.";
+    public static final String EXCEPTION_DELETE_FAILED = "Failed to delete workspace folder on file system,"
+            + " if it is still in the data folder, you may try to manually delete it.";
 
     private final String storageDirectory;
     private final UserStorage userStorage;
@@ -45,13 +48,20 @@ public class StorageManager {
     }
 
     /**
-     * Retrieves the list of workspace found in the storage directory.
+     * Retrieves and validates the list of workspace found in the storage directory.
      *
      * @return the list of workspace found in the storage directory
      */
     public String[] retrieveWorkspaceList() {
         File file = new File(storageDirectory);
-        String[] workspaceList = file.list((current, name) -> new File(current, name).isDirectory());
+        String[] workspaceList = file.list((current, name) -> {
+            boolean workspaceValid = name.matches(REGEX_ALPHANUMERIC_WITH_SPACE);
+            if (name.length() <= MAXIMUM_WORKSPACE_NAME_LENGTH && workspaceValid) {
+                return new File(current, name).isDirectory();
+            }
+
+            return false;
+        });
         if (workspaceList == null) {
             LOGGER.log(Level.INFO, "Found 0 workspace.");
             return new String[0];
@@ -81,20 +91,30 @@ public class StorageManager {
      * Deletes directory containing specified workspace.
      *
      * @param name name of workspace
-     * @throws AniException when an error occurred while trying to delete directory
+     * @throws AniException when an error occurred while trying to delete directory or if folder does not exist
      */
     public void deleteWorkspace(String name) throws AniException {
         assert (name != null) : "Workspace name is null.";
         String deletePathString = storageDirectory + name;
 
         try {
+            File deleteFolder = new File(deletePathString);
             Path deletePath = Paths.get(deletePathString);
+
             LOGGER.log(Level.INFO, "Deleting workspace " + name);
 
-            Files.walk(deletePath)
-                    .sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
+            if (deleteFolder.isDirectory()) {
+                Files.walk(deletePath)
+                        .sorted(Comparator.reverseOrder())
+                        .map(Path::toFile)
+                        .forEach(File::delete);
+            }
+
+            // Verifies that Workspace is deleted
+            if (deleteFolder.isDirectory()) {
+                LOGGER.log(Level.WARNING, "Exception: " + EXCEPTION_DELETE_FAILED);
+                throw new AniException(EXCEPTION_DELETE_FAILED);
+            }
         } catch (IOException exception) {
             LOGGER.log(Level.WARNING, "Exception: " + EXCEPTION_DELETE_FAILED);
             throw new AniException(EXCEPTION_DELETE_FAILED);
@@ -138,7 +158,7 @@ public class StorageManager {
     }
 
     /**
-     * Invokes the load method in WatchlistStorage to save the watchlist data.
+     * Invokes the load method in WatchlistStorage to load the watchlist data.
      *
      * @param workspaceName the name of the workspace to load the list from
      * @param watchlistList the watchlist list to load the data into
@@ -151,11 +171,26 @@ public class StorageManager {
 
     // ========================== Bookmark Saving and Loading ==========================
 
-    //@@author
+    //@@author OngXinBin
+    /**
+     * Invokes the save method in bookmarkStorage to save the bookmark data.
+     *
+     * @param workspaceName the name of the workspace to load the list from
+     * @param bookmark      the bookmark list to save
+     * @throws AniException when an error occurred while saving the watchlist list data
+     */
     public void saveBookmark(String workspaceName, Bookmark bookmark) throws AniException {
         bookmarkStorage.save(workspaceName, bookmark);
     }
 
+    /**
+     * Invokes the load method in bookmarkStorage to load the bookmark data.
+     *
+     * @param workspaceName the name of the workspace to load the list from
+     * @param bookmark      the bookmark list to save
+     * @return the load result message
+     * @throws AniException when an error occurred while saving the watchlist list data
+     */
     public String loadBookmark(String workspaceName, Bookmark bookmark) throws AniException {
         return bookmarkStorage.load(workspaceName, bookmark);
     }

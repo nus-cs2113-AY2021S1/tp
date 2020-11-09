@@ -18,12 +18,24 @@ import java.util.logging.Logger;
  * Represents the command to add an anime to active Watchlist.
  */
 public class AddToWatchlistCommand extends Command {
-    protected static final String DUPLICATE_ANIME_ERROR = "Anime is already in this watchlist!";
-    protected static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
-
+    private static final String DUPLICATE_ANIME_ERROR = "Anime is already in this watchlist!";
+    private static final String OUT_OF_BOUND_INDEX_ERROR = "Anime ID is invalid!";
+    private static final String SUCCESSFUL_ADD = "Successfully added and stored anime into active watchlist";
+    private static final String NULL_ANIME_INDEX = "Anime index should not be null";
+    private static final String RESULT_BUILD_SUCCESSFUL = "Result built successfully";
+    
     private Integer animeIndex;
     private static final Logger LOGGER = AniLogger.getAniLogger(AddToWatchlistCommand.class.getName());
 
+    /**
+     * Creates a new instance of AddToWatchlistCommand with the specified anime index.
+     * 
+     * @param animeIndex the specified anime index to add
+     */
+    public AddToWatchlistCommand(Integer animeIndex) {
+        this.animeIndex = animeIndex - 1; // 1-based to 0-based numbering
+    }
+    
     /**
      * Executes addition of anime into active Watchlist.
      * 
@@ -35,11 +47,13 @@ public class AddToWatchlistCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
+        assert animeIndex != null : NULL_ANIME_INDEX;
         Workspace activeWorkspace = user.getActiveWorkspace();
         addToWatchlist(animeData, storageManager, activeWorkspace);
         
         Anime anime = animeData.getAnime(animeIndex);
         String animeName = anime.getAnimeName();
+        LOGGER.log(Level.INFO, RESULT_BUILD_SUCCESSFUL);
 
         return animeName + " added to watchlist!";
     }
@@ -74,15 +88,6 @@ public class AddToWatchlistCommand extends Command {
 
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
         storageManager.saveWatchlistList(activeWorkspace.getName(), watchlistList);
-        LOGGER.log(Level.INFO, "Successfully added and stored anime into active watchlist");
-    }
-
-    /**
-     * Sets the anime index to be added into the active Watchlist.
-     * 
-     * @param animeIndex the specified anime index to be added
-     */
-    public void setAnimeIndex(Integer animeIndex) {
-        this.animeIndex = animeIndex - 1;
+        LOGGER.log(Level.INFO, SUCCESSFUL_ADD);
     }
 }
