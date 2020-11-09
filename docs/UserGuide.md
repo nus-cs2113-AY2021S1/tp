@@ -435,7 +435,7 @@ Example of usage:
 1. `add -q Life is short, smile while you still have teeth`
 2. `add -q Luke, I am your father /by Darth Vader`
 3. `add -q Get schwifty! /from Rick and Morty`
-4. `add -q So everyone’s supposed to sleep every single night now? /from Rick and Morty /by Rick`
+4. `add -q So everyone’s supposed to sleep every single night now? /by Rick /from Rick and Morty`
 
 Expected outcome 1:
 ```
@@ -527,7 +527,7 @@ Lists all quotes tagged under the specified author and reference.
 
 Format: `list -q /by AUTHOR /from REFERENCE`
 
-* Reference and Author fields should not be empty.
+* Author and Reference fields should not be empty.
 
 Example of usage: `list -q /by rick /from rick and morty`
 
@@ -578,7 +578,7 @@ The quote "Life is short, smile while you still have teeth" has been deleted!
 
 #### 4.2.8 Finding quotes: `find -q`
 
-Finds existing quotes related to a keyword.
+Finds existing quotes containing a keyword.
 
 Format: `find -q KEYWORD`
 
@@ -623,7 +623,7 @@ Format: `list -qr QUOTE_NUMBER`
 
 * Quote number field should not be empty.
 * The specified quote should exist in Quotesify.
-* Quote should have a reflection added to it.
+* Quote should contain a reflection.
 
 Example of usage: `list -qr 1`
 
@@ -644,7 +644,7 @@ Format: `edit -qr QUOTE_NUMBER /to UPDATED_REFLECTION`
 
 * Quote number field should not be empty.
 * The specified quote should exist in Quotesify.
-* Quote should have a reflection added to it.
+* Quote should contain a reflection.
 
 Example of usage: `edit -qr 1 /to Who is Yoda’s daddy?`
 
@@ -665,7 +665,7 @@ Format: `delete -qr QUOTE_NUMBER`
 
 * Quote number field should not be empty.
 * The specified quote should exist in Quotesify.
-* Quote should have a reflection added to it.
+* Quote should contain a reflection.
 
 Example of usage: `delete -qr 1`
 

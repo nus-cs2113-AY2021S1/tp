@@ -18,3 +18,16 @@ list -r 5
 find -r oo
 delete -r 1
 delete -b 1
+delete -q 1
+add -q quoteHere /by author
+list -q
+list -q /by author
+edit -q 1 /to quoteThere /from Quotesify
+list -q /by author
+list -q /from Quotesify
+find -q there
+add -qr 1 /reflect reflectionHere
+list -qr 1
+edit -qr 1 /to reflectionThere
+list -qr 1
+delete -qr 1
