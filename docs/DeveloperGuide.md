@@ -822,7 +822,7 @@ The following diagram shows the class diagram of the return to module feature:
 The following sequence diagram shows how the return to module feature works:
 
 <p align="center">
-  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
+  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="600" alt="Sequence Diagram of Return to Module"/>
   <br/>Figure <>. Sequence diagram of return to module
 </p>
 
