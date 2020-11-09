@@ -17,9 +17,11 @@ public class TimeTableCommand {
         boolean isInvalid = true;
         String moduleCode = null;
         while (isInvalid) {
-            moduleCode = in.nextLine();
+            moduleCode = in.nextLine().replace(" ", "");
             if (moduleCode.length() > 8) {
                 System.out.println("The code exceeded the maximum number of characters allowed. Please enter again: ");
+            } else if (moduleCode.length() < 1) {
+                System.out.println("Please enter a valid module code");
             } else {
                 isInvalid = false;
             }
@@ -40,19 +42,32 @@ public class TimeTableCommand {
                 System.out.println("Invalid command command\n Is the class online? (yes/no)");
             }
         }
-        final String linkOrVenue = in.nextLine();
+        isInvalid = true;
+        String linkOrVenue = null;
+        while (isInvalid) {
+            linkOrVenue = in.nextLine();
+            if (isOnline && (!linkOrVenue.contains(".") || linkOrVenue.contains(" "))) {
+                System.out.println("The link you have entered is invalid. Please enter again");
+            } else {
+                isInvalid = false;
+            }
+        }
         System.out.println("What are the days and time of the lesson?\n(e.g. Monday 5-8pm, Tuesday 6-9pm)");
         final String [] periods = in.nextLine().split(", ");
         isInvalid = true;
         int repeat = 0;
         while (isInvalid) {
-            System.out.println("How many weeks is the lesson?");
-            repeat = Integer.parseInt(in.nextLine());
-            if (repeat < 54) {
-                isInvalid = false;
-            } else {
-                System.out.println("Your lesson should not last for more than a year "
-                        + "Please enter a number less than 53");
+            try {
+                System.out.println("How many weeks is the lesson?");
+                repeat = Integer.parseInt(in.nextLine());
+                if (repeat < 54) {
+                    isInvalid = false;
+                } else {
+                    System.out.println("Your lesson should not last for more than a year "
+                            + "Please enter a number less than 53");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("You have enter an invalid value");
             }
         }
         isInvalid = true;
@@ -133,9 +148,17 @@ public class TimeTableCommand {
 
     public static Activity addActivity() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Please enter the activity: ");
-        final String activityName = in.nextLine();
         boolean isInvalid = true;
+        String activityName = null;
+        while (isInvalid) {
+            if  (activityName.replace(" ", "").length() < 1) {
+                System.out.println("Please enter a valid module code");
+            } else {
+                isInvalid = false;
+            }
+        }
+        System.out.println("Please enter the activity: ");
+        isInvalid = true;
         System.out.println("Is the activity online? (yes/no)");
         boolean isOnline = false;
         while (isInvalid) {
@@ -270,7 +293,19 @@ public class TimeTableCommand {
         for (Lesson lesson: dateList.lessons) {
             index++;
             System.out.print(index + ". " + lesson.name + " ");
-            DayOfWeek first = lesson.periods.get(0).startDateTime.getDayOfWeek();
+            DayOfWeek first = null;
+            try {
+                first = lesson.periods.get(0).startDateTime.getDayOfWeek();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("There is error in saved classes, do you want to reformat the data file?");
+                Scanner in = new Scanner(System.in);
+                if (in.nextLine().equals("yes")) {
+                    new TimeTableStorage("data/timetable.txt", dateList).wipeFile();
+                } else {
+                    System.out.println("Please edit the data to fix this this.");
+                }
+                return;
+            }
             int num = 1;
             System.out.print(first);
             try {
