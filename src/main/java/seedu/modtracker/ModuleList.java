@@ -248,7 +248,6 @@ public class ModuleList {
             logger.addHandler(fh);
         } catch (IOException e) {
             ui.printLoggerFileError();
-
         }
 
 
