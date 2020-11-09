@@ -30,7 +30,7 @@ public class ParseFindCommand extends Parser {
     @Override
     public Command parse() throws SystemException {
         Logger loggerFind = Logger.getLogger("ParserPrepareFind");
-        setupLogger(loggerFind, LOGS_DIR + "FindCommandParser.log");
+        setupLogger(loggerFind, LOGS_DIR + "/FindCommandParser.log");
 
         try {
             userMessage = checkBlank(userMessage, ExceptionType.EXCEPTION_MISSING_KEYWORD);
