@@ -74,16 +74,15 @@ Diagrams found in our documentation were generated using <a href="https://plantu
 
 Figure 1 depicts the architecture design of NotUS. The main components of NotUS are:
 
-1. `InterfaceManager`: Manages the user input as well as the message output from application.
-
 <div style="page-break-after: always;"></div>
 
-2\. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
-3\. `Command`: Executes the necessary tasks, depending on the respective command calls.
-4\. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
-5\. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
-6\. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
-7\. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
+1. `InterfaceManager`: Manages the user input as well as the message output from application.
+1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
+1. `Command`: Executes the necessary tasks, depending on the respective command calls.
+1. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
+1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
+1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
+1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
 
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 
@@ -264,6 +263,9 @@ The rationale for overloading such methods are given below:<br>
     3. The third takes in a `String` of the note title, and a `boolean` isArchive.  
 
 - getNote(`int`) returns the Note that is in the position of specified index within the default list of notes.
+
+<div style="page-break-after: always;"></div>
+
 - getNote(`String`) checks if the note of the specified title exists in the default list of notes and returns a `boolean` value.
 - getNote(`String`, `boolean`) checks if the note of the specified title exists and returns a `boolean` value. The `boolean` acts as a flag to determine which of the list of notes (default/archived), will be streamed and filtered.
 
@@ -287,8 +289,10 @@ The rationale for overloading such methods are given below:<br>
 - There are a total of 2 getSortedList() methods.
     1. First one takes in 2 `Boolean` parameters specifying if only pinned notes from the default list of notes are to be filtered, as well as a flag for the sort order.
     2. Second takes in 2 `Boolean` parameters specifying if only pinned notes are to be filtered, as well as a flag for the sort order. A third `ArrayList<Note>` parameter representing the ArrayList to be filtered is also taken in.
-
 - getSortedList(`Boolean`, `Boolean`) returns an `ArrayList<Note>` containing all notes, or just pinned notes found in the default list of notes, in the specified sort order.
+
+<div style="page-break-after: always;"></div>
+
 - getSortedList(`Boolean`, `Boolean`, `ArrayList<Note>`) returns an `ArrayList<Note>` containing all notes, or just pinned notes found in the `ArrayList<Note>` parameter that was passed, in the specified sort order. Used when the user wants to filter the list-n search with tags. The ArrayList would only contain notes with the specific tags.
 
 **5. archiveNotes()**<br>
@@ -328,6 +332,8 @@ The timetable component stores an array of all events and 5 different arrays of 
  1. getYearTimetable(): Wrapper around getMonthTimetable for a specific year.
  1. getClashingEvents(): Checks the input event to all other events in the timetable to check if the timing clashes. Uses getTimetable on that date of the input event.
  
+ <div style="page-break-after: always;"></div>
+ 
  An event holds information about all information about start date time, end date time, name, reminders set and how often to re-occur.
  
  On re-occurrence, a new event will be instantiated for display on the timetable.
@@ -347,6 +353,8 @@ The timetable component stores an array of all events and 5 different arrays of 
   1. toReoccur(): Checks if this event is to reoccur on this date.
   1. getRecurrences(): Get an ArrayList of Events of all instances this event will reoccur during the specified time period.
   1. checkAfterEndRecurrences(): Checks if this Event should still reoccur as of this date.
+  
+<div style="page-break-after: always;"></div>
   
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
@@ -399,6 +407,8 @@ The InterfaceManger receives the input from the user which is then processed by 
    <img alt="InterfaceManager" src="diagrams/out/InterfaceManagerClass.png"/>
    <br><em>Figure 19</em>
 </p>
+
+<div style="page-break-after: always;"></div>
 
 The Formatter class handles the formatting of the Note(s), Event(s) and message(s) into a String which is then passed to InterfaceManager to be printed out through NotUS. Any changes to the layout or information to display will be done in this class. This class only contains static methods to eliminate the need of a Formatter object.
 
