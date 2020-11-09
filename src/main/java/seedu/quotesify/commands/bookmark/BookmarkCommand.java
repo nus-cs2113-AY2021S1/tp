@@ -62,10 +62,9 @@ public class BookmarkCommand extends Command {
         storage.save();
     }
 
-
     /**
      * Decide whether to add or update bookmarks from existence of the bookmark
-     * in the BookmarkList
+     * in the BookmarkList.
      *
      * @param books BookList in Quotesify.
      * @param bookmarks BookmarkList in Quotesify.
