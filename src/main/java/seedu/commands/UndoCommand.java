@@ -8,7 +8,6 @@ import seedu.ui.Ui;
 
 
 public class UndoCommand extends ModificationCommand {
-    // Currently unable to redo undo
     public static final String COMMAND_WORD = "undo";
 
     /**
@@ -24,7 +23,7 @@ public class UndoCommand extends ModificationCommand {
         if (dataStack.size() == 1) {
             return new CommandResult(Messages.NO_PREV_MODIFICATION);
         } else {
-            model.popAndUpdate();
+            model.popCurrentStackAndUpdate();
             return new CommandResult(Messages.UNDO_MESSAGE);
         }
     }

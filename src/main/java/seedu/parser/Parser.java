@@ -9,9 +9,9 @@ import seedu.commands.DeleteCommand;
 import seedu.commands.EditCommand;
 import seedu.commands.HelpCommand;
 import seedu.commands.ListCommand;
+import seedu.commands.RedoCommand;
 import seedu.commands.SearchCommand;
 import seedu.commands.UndoCommand;
-
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidFormatException;
 import seedu.exceptions.InvalidTaskNumberException;
@@ -87,6 +87,8 @@ public class Parser {
             }
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
         default:
             throw new UnknownCommandException();
 

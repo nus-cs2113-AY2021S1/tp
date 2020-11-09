@@ -19,7 +19,7 @@ public class ClearCommand extends ModificationCommand {
         TaskMap tasks = model.getTaskMap();
         tasks.clear();
         Timers.cancel();
-        model.pushAndUpdate(tasks);
+        model.pushCurrentStackAndUpdate(tasks);
         return new CommandResult(CLEAR_MESSAGE);
     }
 }

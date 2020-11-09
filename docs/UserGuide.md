@@ -10,7 +10,9 @@
     - [Searching task](#searching-relevant-tasks--search)
     - [Removing task](#removing-a-task--delete)
     - [Clearing task](#clearing-tasks--clear)
-    - [Reverting command](#reverting-command--undo)
+    - [Undo](#undo--undo)
+    - [Redo](#redo--redo)
+    - [Setting reminder](#setting-a-reminder--reminder)
     - [Exiting program](#exiting-program--bye)
 - [FAQ](#faq)
 - [Java 11 Installation Guide](#java-11-installation-guide)
@@ -311,21 +313,60 @@ Expected outcome:
 *Figure 19. The task that was deleted will be displayed.*
 
 
-### Reverting command : `undo`
+### Undo : `undo`
 
-Reverts modification commands and display a message.
-You can undo until the tasks are the same as current session starts with.
-
-List of modification commands:
-`add`, `edit`, `delete`, `clear`
+Undo the previous action and display a message.
+Only modification commands can be undone: `add`, `edit`, `delete`, `clear`
+You can undo until the data is the same as what the current session started with.
 
 Format: `undo`
 
 Expected outcome:
 
-![undo](images/undo.PNG)
+In this case, the previous action is `add CG2028 final quiz d/11-10-2020 st/1600 et/1700 p/3`.
 
-*Figure 20. Demonstration for undo.*
+![undo](images/undo.png)
+
+*Figure 20. List of tasks before and after the undo command.*
+
+
+### Redo : `redo`
+
+Reverse the undo command and restore the previous action.
+This command can only be executed if at least one action has been undone.
+
+Format: `redo`
+
+Expected outcome:
+
+In this case, the previous action `add CG2028 final quiz d/11-10-2020 st/1600 et/1700 p/3` was undone.
+
+![redo](images/redo.png)
+
+*Figure 21. List of tasks before and after the redo command.*
+
+
+### Setting a reminder : `reminder`
+
+Allows you to set a reminder for any specific task on the list.
+You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
+before the start time of the task.
+
+Format: `reminder INDEX [t/TIME]`
+
+Example of usage: 
+
+`reminder 8833 t/2305`
+
+Expected outcome:
+
+![reminder_set](images/reminder_set.png)
+
+*Figure 22. Setting a reminder for task #8833 at 11.05pm.*
+
+![reminder_popup](images/reminder_popup.png)
+
+*Figure 23. Popup of a reminder.*
 
 
 ### Exiting program : `bye`
@@ -338,7 +379,7 @@ Expected outcome:
 
 ![bye](images/bye.png)
 
-*Figure 21. Exit message.*
+*Figure 24. Exit message.*
 
 
 ### Saving data to file
