@@ -617,7 +617,11 @@ Testing if ATHENA is able to handle corrupted data files.
 | `v2.0`  | student           | see an overview of the week ahead              | make sure that I am staying on top of my tasks    |
 | `v2.0`  | student           | view the details of a task                     | can ensure I am on the right track with tasks     |
 | `v2.0`  | busy student      | know what tasks to work on next                | don’t need to spend time planning                 |
+### Non-Functional Requirements
 
+1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
+2.  A user with above average typing speed for regular English text should be able to use the features of ATHENA faster than by using the mouse.
+3.  A user who wants to manually modify the save file can do so by using a text editor or spreadsheet application.
 
 --------------------------------------------------------------------------------------------------------------------
 
