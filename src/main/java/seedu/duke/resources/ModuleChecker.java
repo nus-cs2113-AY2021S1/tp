@@ -27,7 +27,7 @@ public class ModuleChecker {
 
     public ModuleChecker() {
         this.isValid = false;
-        this.isOnWifi = isConnectedToWifi();
+        this.isOnWifi = true;
     }
 
     /**
@@ -38,7 +38,8 @@ public class ModuleChecker {
      */
     public boolean isModuleValid(String moduleCode) {
         HashMap<String, NusModule> modListMap = new HashMap<>();
-        modListMap = generateNusModsMap();
+        isOnWifi = isConnectedToWifi();
+        modListMap = generateNusModsMap(isOnWifi);
 
         isValid = modListMap.containsKey(moduleCode.toUpperCase());
 
@@ -52,7 +53,7 @@ public class ModuleChecker {
      *
      * @return NUS module HashMap.
      */
-    private HashMap<String, NusModule> generateNusModsMap() {
+    private HashMap<String, NusModule> generateNusModsMap(boolean isOnWifi) {
         if (isOnWifi) {
             return generateNusModsMapFromOnlineApi();
         } else {
@@ -69,7 +70,7 @@ public class ModuleChecker {
         int httpEcho;
         try {
             URL url = new URL(LINK);
-            URLConnection myConnection = url.openConnection();// try to connect and echo back
+            URLConnection myConnection = url.openConnection();
             HttpURLConnection httpUrlConnection = (HttpURLConnection) myConnection;
             httpEcho = httpUrlConnection.getResponseCode();
             if (httpEcho != HttpURLConnection.HTTP_OK) {
@@ -161,10 +162,12 @@ public class ModuleChecker {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("The Json data file does not exist! Please make sure you read the User Guide"
-                    + " and download\nthe Json data file from our Github page!\n"
-                    + "The Json data file and the JAR file must be placed in the same folder!\n"
-                    + "In Command Prompt, navigate to the working directory of the folder where you stored the files.\n"
+            System.out.println("The Json data file does not exist!\n "
+                    + "In order to use `exam`, `lab`, `lect` and `tut` commands,\n"
+                    + "please ensure either one of the following requirements is met:\n"
+                    + " 1. Re-establish your internet connection.\n"
+                    + " 2. Download the Json data file from our Github page.\n"
+                    + "You may refer to `Quick Start` section in the User Guide for more info.\n"
                     + "Please omit the error message below and carry out the above mentioned steps!\n");
         } catch (IOException e) {
             e.printStackTrace();
