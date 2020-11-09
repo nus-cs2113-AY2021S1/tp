@@ -146,9 +146,9 @@ public class User {
         while (ageInput < 1 || ageInput > 130) {
             try {
                 if (isEdit) {
-                    ageInput = Integer.parseInt(argument);
+                    ageInput = Integer.parseInt(argument.trim());
                 } else {
-                    ageInput = Integer.parseInt(Ui.read());
+                    ageInput = Integer.parseInt(Ui.read().trim());
                 }
                 if (ageInput < 1 || ageInput > 130) {
                     Ui.printCustomError(ERROR_INVALID_AGE_INPUT);
@@ -179,9 +179,9 @@ public class User {
         while (heightInput < 0.50 || heightInput > 4.00) {
             try {
                 if (isEdit) {
-                    heightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(argument)));
+                    heightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(argument.trim())));
                 } else {
-                    heightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(Ui.read())));
+                    heightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(Ui.read().trim())));
                 }
                 if (heightInput < 0.50 || heightInput > 4.00) {
                     Ui.printCustomError(ERROR_INVALID_HEIGHT_INPUT);
@@ -215,9 +215,9 @@ public class User {
         while (weightInput < 2.00 || weightInput > 1000.00) {
             try {
                 if (isEdit) {
-                    weightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(argument)));
+                    weightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(argument.trim())));
                 } else {
-                    weightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(Ui.read())));
+                    weightInput = Double.parseDouble(String.format("%.2f", Double.parseDouble(Ui.read().trim())));
                 }
                 if (weightInput < 2.00 || weightInput > 1000.00) {
                     Ui.printCustomError(ERROR_INVALID_WEIGHT_INPUT);
@@ -245,9 +245,9 @@ public class User {
     public void setupGender(String argument, Boolean isEdit) {
         String genderInput;
         if (isEdit) {
-            genderInput = argument;
+            genderInput = argument.trim();
         } else {
-            genderInput = Ui.read();
+            genderInput = Ui.read().trim();
         }
         while (!genderInput.equalsIgnoreCase("m") && !genderInput.equalsIgnoreCase("f")) {
             Ui.printCustomError(ERROR_INVALID_GENDER_INPUT);
@@ -270,9 +270,9 @@ public class User {
         while (fitnessLevelInput != 0 && fitnessLevelInput != 1 && fitnessLevelInput != 2) {
             try {
                 if (isEdit) {
-                    fitnessLevelInput = Integer.parseInt(argument);
+                    fitnessLevelInput = Integer.parseInt(argument.trim());
                 } else {
-                    fitnessLevelInput = Integer.parseInt(Ui.read());
+                    fitnessLevelInput = Integer.parseInt(Ui.read().trim());
                 }
                 if (fitnessLevelInput != 0 && fitnessLevelInput != 1 && fitnessLevelInput != 2) {
                     Ui.printCustomError(ERROR_INVALID_FITNESS_INPUT);
