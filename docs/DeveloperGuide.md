@@ -38,7 +38,7 @@ This document describes the architecture and software design of CEGMods. The goa
 The document is divided into three main parts: design, implementation and documantation. The design includes the architecture diagram and the introduction of each class. The implementation describes some details on how certain features are implemented. The documentation details the logging, testing and configuration of CEGMods. It also includes the requirement and the instructions for manual testing in the appendices.
 ### 1.3 Scope
 The intended audience of this document is the developers, designers, and software testers of CEGMods.
-
+<!-- @@author zhangcaicai123-->
 ## 2. Setting up and getting started
 Setting up the project in your computer
 > <font color=#FF5733>Caution: </font> <font color=#00000><font color=#00000>  **Please follow each steps in the guide carefully.** </font>
@@ -64,7 +64,7 @@ Please ensure you have Java 11 installed in you computer.
     - Click `OK` to accept the default settings but do ensure that the selected version of `Gradle JVM` matches the JDK being used for the project.
     - Wait for importing process to complete
 5. Do the testing. Please follow the testing guide
-   
+<!-- @@author -->
 ## 3. Design 
 ### 3.1 Architecture
 The ***Class diagram*** given below shows the interaction between major classes, and explains the structure of the software system.
@@ -95,7 +95,7 @@ The `Parser` class deals with making sense of the user's command and execute the
     
 #### 3.2.3 Module class
 The Module class contains the information of a module, including the title, description, and time slots of lectures, tutorials and labs.
-
+<!-- @@author zhangcaicai123 -->
 #### 3.2.4 Task class
 The `Task` class contains the information of a task, including the todo, event and deadline tasks.
 - add new `task` 
@@ -122,12 +122,13 @@ The `Timetable` class shows the timetable for all the module slots and tasks. It
 - print `deadline list`
 - clear past `deadline`
 - delete `done task`
-    
+<!-- @@author -->
+<!-- @@author ZhongNingmou -->
 #### 3.2.7 ProjectManager class
 - print the `project tasklist`
 - add `project task` into `project tasklist`
 - print `project progress`
-
+<!-- @@author -->
 ## 4. Implementation
 This section provides details on the implementations of certain features.
     
@@ -137,7 +138,7 @@ The user type in command in `module mod/<MODULE_CODE> lec/<LECTURE_DAY> <LECTURE
 
 The ***sequence diagram*** below shows the interaction between these classes when the user adds a module.
 [![F2bWSp.md.png](https://iili.io/F2bWSp.md.png)](https://freeimage.host/i/F2bWSp)
-
+<!-- @@author ZhongNingmou -->
 ### Feature: Delete a module
 The user enters the command: `delete mod/<MODULE_CODE>` to delete a module in the timetable. The `Parser` class will take this user command and pass it to `Command` class to enable the `deleteModule()` method in the `TimeTable` class.
 
@@ -160,7 +161,7 @@ The user enters the command: `task list` to view the task list. The `Parser` cla
 
 ### Feature: View time table
 The user enters the command: `today timetable` or `this week timetable` to view the the `timetable`. The `Parser` class will take the user command and pass it to the `Command` class to enable the `printTodayTimetable` or `printWeeklyTimetable` method, and then call `printTodayTimetable` or `printWeeklyTimetable` method in `TimeTable` class.
-
+<!-- @@author -->
 ## 5. Documentation and Dev-ops
 
 ### Documentation
@@ -201,6 +202,7 @@ To run all build-related tasks:
 3. A message stating BUILD SUCCESSFUL will be shown in the terminal if all tasks run successfully. Otherwise, use the error report provided to resolve the issue before trying again.
 
 ## Appendix A: Product Scope
+<!-- @@author zhangcaicai123-->
 #### Target user profile
 This application is intended for users who
 - are NUS Computer Engineering Students
@@ -222,9 +224,9 @@ This application is intended for users who
 - Manages Project based on:
     - Deadlines of subtasks (subclass of task but for projects)
     - Percentage of completion 
-    
+<!-- @@author -->
 ## Appendix B: User Stories
-
+<!-- @@author zhangcaicai123-->
 | Priority level| As a/an | I want to | so that I can
 | -------- | -------- | -------- |-------- |
 | must-have    | new user     | add my modules |I can categorise my tasks and schedule
@@ -241,7 +243,7 @@ This application is intended for users who
 |nice-to-have|user|add alarm to remind the upcoming event|I won't forget or miss relevant events
 |nice-to-have|user|add periodic zoom links for online lectures/tutorials|I can join the zoom session quickly before the class
 |nice-to-have|user|share project schedule and details with teammates|I can cooperate with my teammate better
-
+<!-- @@author -->
 ## Appendix C: Non-Functional Requirements
 The following statements describe the non-functional requirements for the application:
 1. CEGMods should be able to work on any mainstream OS which has Java 11 or a higher version of Java installed.
@@ -257,7 +259,7 @@ The following statements describe the non-functional requirements for the applic
 This portion contains instructions on how to perform manual testing.
 *  [Running tests](#Running-tests)
 *  [Types of tests](#Types-of-tests)
-
+<!-- @@author ZhongNingmou -->
 ## Running tests
 There are two ways to run tests.
 
@@ -266,7 +268,7 @@ There are two ways to run tests.
     - To run a subset of tests, you can click `src` -> `test` -> `java` and right-click on a test package, test class, or a test and choose `Run 'ABC'`
 - **Method 2: Using Gradle**
     - Click `Terminal` to open a new console and type in the command `gradlew clean test` to run a test (Mac/Linux: ./gradlew clean test)
-
+<!-- @@author -->
 Types of tests
 -
 This project has 1 type of tests: 
