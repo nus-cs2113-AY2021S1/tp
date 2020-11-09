@@ -164,8 +164,6 @@ public class Messages {
     public static final String MESSAGE_NEW_EXPENSE_FILE = "I have created a new expenses.txt file for you :) "
             + "Type some commands and see it.";
 
-    public static final String EXCEPTION_FIND = "~Error~ The keyword of a find command cannot be empty.\n "
-            + "\t The format is: find <keyword>";
     public static final String EXCEPTION_LINK_TYPE = "~Error~ Please input a correct link type:\n "
             + "\t t/lecture\n"
             + "\t t/tutorial\n"
@@ -194,7 +192,9 @@ public class Messages {
             + "     \"list links\"\n"
             + "     \"list modules\"\n"
             + "     \"list books\"\n"
-            + "     \"list expenses\"";
+            + "     \"list expenses\n"
+            + "     \"list expenses currency/CURRENCY_NAME\"\n"
+            + "     \"list expenses date/YYYY-MM-DD\"";
     public static final String EXCEPTION_INVALID_FIND_COMMAND = "~Error~ Please input a valid find command "
             + "using the format: \n\n"
             + "     \"list tasks k/KEYWORD\"\n"
