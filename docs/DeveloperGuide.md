@@ -496,14 +496,14 @@ At the same time, using anime ID as input would allow the program to be able to 
 <br/>
 
 ### 4.4 Workspace Feature
-Similar to a desktop, **AniChan** has a workspace feature which allows users to organise data in separate containers and switch between them to avoid intermixing of information.
+
+Similar to a desktop, **AniChan** has a workspace feature which allows users to organize data in separate containers and switch between them to avoid intermixing of information.
 
 <br/>
 
-`Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (e.g., `Watchlist`, `Bookmark`). 
+`Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (e.g. `Watchlist`, `Bookmark`). 
 
-As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) 
-and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
+As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
 
 > :memo: Upon running the program for the first time, a workspace named `Default` is created. A similarly named folder will also be created in `/data` directory, managed by our `Storage` class.
 
@@ -511,21 +511,21 @@ and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/sr
 
 #### 4.4.1 Current Implementation
 
-| Command Option        | Workspace Command                      | Description field |
-|---|---|---|
-| `-n`       | `WorkspaceCommand#createWorkspace()`              | Creates new workspace |
-| `-s`       | `WorkspaceCommand#switchWorkspace()`              | Switches to specified workspace |
-| `-l`       | `WorkspaceCommand#listWorkspace()`                | Lists existing workspace(s)           |
-| `-d`       | `WorkspaceCommand#deleteWorkspace()`              | Deletes specified workspace |
+| Command Option | Workspace Command                    | Description field               |
+| -------------- | ------------------------------------ | ------------------------------- |
+| `-n`           | `WorkspaceCommand#createWorkspace()` | Creates new workspace           |
+| `-s`           | `WorkspaceCommand#switchWorkspace()` | Switches to specified workspace |
+| `-l`           | `WorkspaceCommand#listWorkspace()`   | Lists existing workspace(s)     |
+| `-d`           | `WorkspaceCommand#deleteWorkspace()` | Deletes specified workspace     |
 
 The `WorkspaceCommand` is instantiated by `WorkspaceParser`, and it requires 2 parameters: 
+
 *   `commandOption` (mandatory).
 *   `workspaceName` (mandatory unless option `-l` is specified).
 
 <br/>
 
-Given below is an example usage scenario showing how the command behaves at each step when the user tries 
-to **create new** `Workspace`:
+Given below is an example usage scenario showing how the command behaves at each step when the user tries to **create new** `Workspace`:
 
 **Step 1:** User launches the application for the first time. The `User` will be initialized with an initial `Workspace` named `Default`, and the `activeWorkspace` pointing to it and `workspaceList` `ArrayList` containing it.
 
@@ -540,8 +540,7 @@ to **create new** `Workspace`:
 
 **Step 4:** `Main` calls `WorkspaceCommand#execute()` and it checks the `commandOption` before running `WorkspaceCommand#createWorkspace()` accordingly.
 
-**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList()` for the `User`.
-Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
+**Step 5:** `WorkspaceCommand` firstly calls `User#addWorkspace()` to add a new `Workspace` to `User`, then makes an empty `ArrayList` of `Watchlist` using `User#setWatchlistList()` for the `User`. Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to disk.
 
 ![Workspace Command After Creation Diagram](images/WorkspaceCommand-After-Create.png) <br/>
 *Figure 17: Workspace Command After New Workspace Creation*
@@ -552,8 +551,7 @@ Finally, it uses `storageManager#saveWorkspace()` to save the `Workspace` to dis
 
 <br/>
 
-Likewise, the operations to switch, list, and delete follows a similar execution process. 
-The following diagrams will continue **from step 6**, and will illustrate the changes to the `Workspace` `ArrayList`.
+Likewise, the operations to switch, list, and delete follows a similar execution process. The following diagrams will continue **from step 6**, and will illustrate the changes to the `Workspace` `ArrayList`.
 
 **Step 7:** User keys in `workspace -s Netflix Animation Studio` to switch active workspace.
 
@@ -586,10 +584,10 @@ Aspect: **How can `Workspace` be identified?**
 
 As most commands in `WorkspaceCommand` operates on an individual `Workspace`, there needs to be some way to identify each of them uniquely. 
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
+| Approach                    | Pros                                                         | Cons                                                         |
+| --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Identify using a number ID. | Users can quickly `switch` and `delete` `Workspace` just by keying in a number. | Operations like `delete` is irreversible and is not done often, accidentally keying in the wrong number can be catastrophic. |
-| Identify using name.  | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first. | User may waste time typing long workspace names. |
+| Identify using name.        | If user remembers the name, he can easily `switch`/`delete` without using the `List` command first. | User may waste time typing long workspace names.             |
 
 We have decided to use `name` to identify `Workspace` as it is more intuitive for the end-user. 
 This also avoids the need to maintain an integer `ID` for each `Workspace`.
@@ -601,10 +599,10 @@ Aspect: **`Workspace` name restrictions**
 As `Workspace` is identified by their names, and other classes like `Storage` relies on the name to make folders for data storage purposes.
 Should we allow the user full discretion to naming `Workspace`?
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Yes  | Allows user more flexibility. | Confusing or unexpected names may lead to unexpected outcomes. |
-| No   | Eliminate unexpected names which could lead to unexpected outcomes. | Less flexibility and more code required to enforce. |
+| Approach | Pros                                                         | Cons                                                         |
+| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Yes      | Allows user more flexibility.                                | Confusing or unexpected names may lead to unexpected outcomes. |
+| No       | Eliminate unexpected names which could lead to unexpected outcomes. | Less flexibility and more code required to enforce.          |
 
 For example, a user may provide `new workspace__` as a `Workspace` name, this may confuse the user in the future when he tries to list 
 all `Workspace` as the space characters are whitespaces. Hence, enforcing no extra whitespaces was implemented. 
@@ -617,10 +615,10 @@ Aspect: **Loading `Workspace` on program start**
 
 As there needs to be an `activeWorkspace` set at all times for operations such as adding `Watchlist`. How do we determine which `Workspace` should be chosen if the `User` owns multiple `Workspaces`?
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Scan from data folder and pick first result.  | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favourite `Workspace` on each startup, if any. |
-| Store last used `Workspace`.                  | `User` might gain some convenience of not needing to switch to his favourite `Workspace`. | Prone to potential issues from the file system. |
+| Approach                                     | Pros                                                         | Cons                                                         |
+| -------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Scan from data folder and pick first result. | Able to adapt to changes even if malicious or unexpected edits were made to file system. | User may need to switch to his favorite `Workspace` on each startup, if any. |
+| Store last used `Workspace`.                 | `User` might gain some convenience of not needing to switch to his favorite `Workspace`. | Prone to potential issues from the file system.              |
 
 We picked the first approach as it is the safer option. By allowing **AniChan** to scan and adapt to file system changes (e.g. `User` accidentally moves/renames/deletes `Workspace` on his hard drive), we avoid potential issues of relying on old information created in previous runtime which may hinder user experience.
 
