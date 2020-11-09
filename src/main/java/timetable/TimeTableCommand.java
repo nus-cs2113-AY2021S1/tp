@@ -150,14 +150,15 @@ public class TimeTableCommand {
         Scanner in = new Scanner(System.in);
         boolean isInvalid = true;
         String activityName = null;
+        System.out.println("Please enter the activity: ");
         while (isInvalid) {
+            activityName = in.nextLine();
             if  (activityName.replace(" ", "").length() < 1) {
                 System.out.println("Please enter a valid module code");
             } else {
                 isInvalid = false;
             }
         }
-        System.out.println("Please enter the activity: ");
         isInvalid = true;
         System.out.println("Is the activity online? (yes/no)");
         boolean isOnline = false;
