@@ -297,7 +297,8 @@ _________________________________
 ### 3.3 List events: `list` (Marcus Ng)
 
 After you have added your events, it is essential that you can view the events you have added.
-You can do so using the list command to print out a list of your events in the order it was added in. 
+You can do so using the list command to print out a list of your events in the order it was added in.
+You can also see events that you set to repeat in the list.
 
 Format: ```list [EVENT_TYPE]```
 
@@ -317,7 +318,10 @@ Expected output:
 list zoom
 _________________________________
 Here is a list of your Zoom events:
-1. [Z][X] CS2113T Meeting, Link: zoom.com.sg on 2020-09-16, 21:00
+1. [Z][O] CS2113T tutorial, Link: zoom.com.sg on 2020-10-03, 13:30 is also on:
+    1. 2020-10-10 13:30 [X]
+    2. 2020-10-17 13:30 [X]
+    3. 2020-10-24 13:30 [X]
 _________________________________
 ```
 
@@ -332,15 +336,37 @@ _________________________________
 
 You can print a list of all events by executing the following command: ```list all```
 
+Expected output:
+
+```
+list all
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] sleep
+   Type "view Personal 1" to see notes
+_________________________________
+Here is a list of your Timetable events:
+1. [T][X] Science class, Location: S17 on 2020-05-04, 15:00
+_________________________________
+Here is a list of your Zoom events:
+1. [Z][O] CS2113T tutorial, Link: zoom.com.sg on 2020-10-03, 13:30 is also on:
+    1. 2020-10-10 13:30 [X]
+    2. 2020-10-17 13:30 [X]
+    3. 2020-10-24 13:30 [X]
+_________________________________
+```
+
 > **Note!**
 > 
-> * Events will be listed in the order: Personal, Timetable, Zoom.
+> * Events will always be listed in the order: Personal, Timetable, Zoom.
+> * The index of events in the list should be referenced for `EVENT_INDEX` of other commands unless stated otherwise.
 
 
 ### 3.4 Calendar format list: `calendar` (Marcus Ng)
 
 If you feel that the list command does not print the events in a format that you like,
-you can use the calendar command to sort everything by date and time and view your events by date.
+you can use the calendar command to sort events with date and time in chronological order.
+The calendar will also include events that are set to repeat.
 
 Format: ```calendar```
 
@@ -349,23 +375,24 @@ This brings you into calendar printing mode.
 - To exit the calendar printing mode, simply type in ```q```.
 - This mode is exited once you see ```End of calendar``` on pressing enter.
 
-> **Note!**
->
-> * Only events with date and time will be in the calendar.
-> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode.
-
-
 Expected output:
 
 ```
 calendar
 _________________________________
-Calendar has 2 dates to display
+Calendar has 5 dates to display
 1 event not on the calendar because it has no date and time
 ---------------------------------------------------------------------------------------
-16 Sep 2020
+04 May 2020
 ---------------------------------------------------------------------------------------
-Z | 9:00 PM | X | CS2113T Meeting | zoom.com.sg
+T | 3:00 PM | X | Science class | S17
+---------------------------------------------------------------------------------------
+Enter 'q' to exit or enter to continue...
+
+---------------------------------------------------------------------------------------
+03 Oct 2020
+---------------------------------------------------------------------------------------
+Z | 1:30 PM | O | CS2113T tutorial | zoom.com.sg
 ---------------------------------------------------------------------------------------
 Enter 'q' to exit or enter to continue...
 q
@@ -373,6 +400,12 @@ q
 End of calendar
 _________________________________
 ```
+
+> **Note!**
+>
+> * Only events with date and time will be in the calendar.
+> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode.
+
 
 ### 3.5 Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
@@ -585,11 +618,6 @@ When the optional argument `[GOAL]` is omitted, the current goal will be display
 
 When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
-> **Note!**
-> * You can only have one goal at any time.
-> * You can use `na` or `nil` instead of `delete` to remove goal.
-
-
 Examples:
 - ```goal get cap 5.0``` will set your current goal as “get cap 5.0”. 
 - ```goal save up $100``` after executing the above command will change your current goal to “save up $100”. 
@@ -602,6 +630,12 @@ _________________________________
 Goal changed to: save up $100
 _________________________________
 ```
+
+> **Note!**
+>
+> * You can only have one goal at any time.
+> * You can use `na` or `nil` instead of `delete` to remove goal.
+
 
 ### 3.9 Mark events as done: `done` (Marcus Tan)
 If you would like to mark an event as done, you can use the done command to do so. 
