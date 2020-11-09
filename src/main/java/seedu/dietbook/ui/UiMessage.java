@@ -10,7 +10,7 @@ import java.util.logging.Level;
 
 /**
  * Represents a storage that stores all the messages that Ui can utilise and print out.
- * A <code>UiMessage</code> objects contains all the necessary methods required to retrieve the output
+ * A <code>UiMessage</code> object contains all the necessary methods required to retrieve the output
  * messages.
  */
 public class UiMessage {
@@ -85,13 +85,81 @@ public class UiMessage {
     }
 
     String getHelpCommandMessage() {
-        return "Listed below are the valid commands for DietBook:"
-                + UiHelper.LINE_SEPARATOR + UiHelper.LINE_SEPARATOR
-                + getUserInfoRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getDatabaseRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getFoodListRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getNutritionalRelatedCommands() + UiHelper.LINE_SEPARATOR
-                + getSystemRelatedCommands();
+        return "Listed below are the valid commands for DietBook:" + UiHelper.LINE_SEPARATOR
+                + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + getUserInfoRelatedCommands()
+                + getDatabaseRelatedCommands()
+                + getFoodListRelatedCommands()
+                + getNutritionalRelatedCommands()
+                + getSystemRelatedCommands()
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider();
+    }
+
+    private String getUserInfoRelatedCommands() {
+        return "userinfo    | To view user information:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | userinfo"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "editinfo    | To edit user information:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
+                + "[o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]";
+    }
+
+    String getDatabaseRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "add         | To add a food from the database:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "data        | To view all food in the database:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | data";
+    }
+
+    String getSystemRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "help        | To view a list of valid commands:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | help"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "exit        | To exit DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | exit";
+    }
+
+    String getNutritionalRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "recommend   | To get recommended calorie intake:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | recommend"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "calculate   | To calculate nutritional intake:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR
+                + "            |   Valid NUTRIENT_TYPE: carb, calorie, fat, protein, all";
+    }
+
+    String getFoodListRelatedCommands() {
+        return UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "add         | To add a food not in the database:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] "
+                + "[p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "list        | To view all food in DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | list [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "delete      | To delete a food from DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | delete INDEX"
+                + UiHelper.LINE_SEPARATOR + uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + "clear       | To delete all food items from the DietBook:" + UiHelper.LINE_SEPARATOR
+                + "            |" + uiHelper.getShortDivider() + UiHelper.LINE_SEPARATOR
+                + "            | clear";
     }
 
     String getDatabaseMessage(String foodDatabase) {
@@ -136,7 +204,7 @@ public class UiMessage {
     }
 
     String getDeletedFoodMessage(String deletedFood) {
-        return "Noted. I've removed this food item:" + UiHelper.LINE_SEPARATOR  + "  "
+        return "Noted. I've removed this food item:" + UiHelper.LINE_SEPARATOR + "  "
                 + uiHelper.trimString(deletedFood);
     }
 
@@ -170,45 +238,6 @@ public class UiMessage {
                 + "If you require a list of valid commands, you can enter: help";
     }
 
-    String getSystemRelatedCommands() {
-        return "For other system related commands" + UiHelper.LINE_SEPARATOR
-                + "  To view a list of valid commands: help" + UiHelper.LINE_SEPARATOR
-                + "  To exit DietBook: exit";
-    }
-
-    String getNutritionalRelatedCommands() {
-        return "For nutritional intake and recommendation related commands" + UiHelper.LINE_SEPARATOR
-                + "  To get recommended calorie intake: recommend" + UiHelper.LINE_SEPARATOR
-                + "  To calculate nutritional intake: calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] "
-                + "[yyyy-mm-ddTHH:mm]" + UiHelper.LINE_SEPARATOR
-                + "    Valid NUTRIENT_TYPE: carb, calorie, fat, protein, all" + UiHelper.LINE_SEPARATOR;
-    }
-
-    String getUserInfoRelatedCommands() {
-        return "For user information related commands" + UiHelper.LINE_SEPARATOR
-                + "  To view user information: userinfo" + UiHelper.LINE_SEPARATOR
-                + "  To edit user information: editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] "
-                + "[o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]"
-                + UiHelper.LINE_SEPARATOR;
-    }
-
-    String getFoodListRelatedCommands() {
-        return "For food list related commands" + UiHelper.LINE_SEPARATOR
-                + "  To add a food not in the database: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE "
-                + "[c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]" + UiHelper.LINE_SEPARATOR
-                + "  To view all food in DietBook: list [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]"
-                + UiHelper.LINE_SEPARATOR
-                + "  To delete a food from DietBook: delete INDEX" + UiHelper.LINE_SEPARATOR
-                + "  To delete all food items from the DietBook: clear" + UiHelper.LINE_SEPARATOR;
-    }
-
-    String getDatabaseRelatedCommands() {
-        return "For database related commands" + UiHelper.LINE_SEPARATOR
-                + "  To add a food from the database: add INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]"
-                + UiHelper.LINE_SEPARATOR
-                + "  To view all food in the database: data" + UiHelper.LINE_SEPARATOR;
-    }
-
     /**
      * Returns a string representation of the total amount of a nutrient consumed by the user.
      *
@@ -226,7 +255,8 @@ public class UiMessage {
         uiHelper.performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
         uiHelper.performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
 
-        return getNutritionalIntakeMessage(nutrientIntake, nutrientType, nutrientUnit);
+        return getRecalculatedFoodsMessage() + UiHelper.LINE_SEPARATOR +  UiHelper.LINE_SEPARATOR
+                + getNutritionalIntakeMessage(nutrientIntake, nutrientType, nutrientUnit);
     }
 
     /**
@@ -276,31 +306,17 @@ public class UiMessage {
         String stringProteinIntake = getNutritionalIntakeMessage(proteinIntake, "protein", "g");
         String stringFatIntake = getNutritionalIntakeMessage(fatIntake, "fat", "g");
 
-        return stringCalorieIntake + UiHelper.LINE_SEPARATOR
+        return getRecalculatedFoodsMessage() + UiHelper.LINE_SEPARATOR +  UiHelper.LINE_SEPARATOR
+                + stringCalorieIntake + UiHelper.LINE_SEPARATOR
                 + stringCarbIntake + UiHelper.LINE_SEPARATOR
                 + stringProteinIntake + UiHelper.LINE_SEPARATOR
                 + stringFatIntake + UiHelper.LINE_SEPARATOR;
     }
 
-    /**
-     * Returns a string with a header and recalculatedFoods or a string stating that no food items had their
-     * nutritional information recalculated if calculatedFoods is an empty string.
-     *
-     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
-     *         DietBook.
-     * @return A string with a header and recalculatedFoods or a string stating that no food items had their
-     *         nutritional information recalculated if calculatedFoods is an empty string.
-     */
-    String getRecalculatedFoodsMessage(String recalculatedFoods) {
-        String message = "No food items had their nutritional information recalculated by DietBook.";
-        if (!uiHelper.isEmptyString(recalculatedFoods)) {
-            mainLogger.log(Level.FINE, "There are food with their nutritional information"
-                    + " being recalculated");
 
-            message = "Food items which had their nutritional information recalculated by DietBook: "
-                    + UiHelper.LINE_SEPARATOR + recalculatedFoods;
-        }
-        return message;
+    String getRecalculatedFoodsMessage() {
+        return "DietBook has recalculated the nutritional information for some food items with incomplete "
+                + "nutritional information.";
     }
 
     /**
@@ -319,104 +335,6 @@ public class UiMessage {
         mainLogger.log(Level.FINE, "Nutrient unit: " + nutrientUnit);
 
         return "Total " + nutrientType + " intake: " + nutrientIntake + nutrientUnit;
-    }
-
-    /**
-     * Returns a string representation of the total amount of a nutrient consumed by the user and
-     * the list of food items which had their nutritional information recalculated by DietBook if any.
-     *
-     * @param nutrientIntake The amount of a particular type of nutrient consumed.
-     * @param nutrientType A string representation of the type of nutrient consumed.
-     * @param nutrientUnit A string representation of the unit of the nutrient consumed.
-     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
-     *         DietBook.
-     * @return A string representation of the the total amount of a nutrient consumed by the user and
-     *         the list of food items which had their nutritional information recalculated by DietBook if any.
-     */
-    String getOneIntakeAndFoodsMessage(int nutrientIntake, String nutrientType,
-                                       String nutrientUnit, String recalculatedFoods) {
-        mainLogger.log(Level.FINE, "Nutrient intake: " + nutrientIntake);
-        mainLogger.log(Level.FINE, "Nutrient type: " + nutrientType);
-        mainLogger.log(Level.FINE, "Nutrient unit: " + nutrientUnit);
-        mainLogger.log(Level.FINE, "Recalculated food: " + recalculatedFoods);
-
-        uiHelper.performAssertionsForStringInputs(nutrientType, "Nutrient Type");
-        uiHelper.performAssertionsForStringInputs(nutrientUnit, "Nutrient Unit");
-        uiHelper.performAssertionsForNutritionalIntake(nutrientIntake, nutrientType);
-        uiHelper.performAssertionsForNullStringInputs(recalculatedFoods,
-                "List of foods that had their nutritional information recalculated");
-
-        String stringNutrientIntake = getNutritionalIntakeMessage(nutrientIntake, nutrientType, nutrientUnit);
-        String message = getRecalculatedFoodsMessage(recalculatedFoods);
-        return stringNutrientIntake + UiHelper.LINE_SEPARATOR + message;
-    }
-
-    /**
-     * Returns a string representation of the total amount of a nutrient or all nutrientS consumed by the
-     * user  during a given time period and the list of food items recorded during the same time period
-     * which had their nutritional information recalculated by DietBook if any.
-     *
-     * @param intakeAndFoodsWithoutTime A string representation of the the total amount of a nutrient or
-     *         all nutrients consumed by the user and the list of food items which had their nutritional
-     *         information recalculated by DietBook if any.
-     * @param start Starting date time of the time period given.
-     * @param end Ending date time of the time period given.
-     * @return A string representation of the the total amount of a nutrient or all nutrient consumed by the
-     *         user during a given time period and the list of food items recorded during the same time period
-     *         which had their nutritional information recalculated by DietBook if any.
-     */
-    String getIntakeAndFoodsWithTimeMessage(String intakeAndFoodsWithoutTime,
-                                            LocalDateTime start, LocalDateTime end) {
-        mainLogger.log(Level.FINE, "Intake and foods without time: " + intakeAndFoodsWithoutTime);
-        mainLogger.log(Level.FINE, "Start: " + start);
-        mainLogger.log(Level.FINE, "End: " + end);
-
-        uiHelper.performAssertionsForTimePeriod(start, end);
-
-        String timePeriod = "Time period:" + stringDateTimePeriod(start, end);
-        return timePeriod + UiHelper.LINE_SEPARATOR + UiHelper.LINE_SEPARATOR + intakeAndFoodsWithoutTime;
-    }
-
-    /**
-     * Returns a string representation of the total amount of all nutrients consumed by the user and
-     * the list of food items which had their nutritional information recalculated by DietBook if any.
-     *
-     * @param carbIntake The total amount of carbohydrates of all the food in the food list.
-     * @param calorieIntake The total amount of calories of all the food in the food list.
-     * @param proteinIntake The total amount of proteins of all the food in the food list.
-     * @param fatIntake The total amount of fats of all the food in the food list.
-     * @param recalculatedFoods The list of food items which had their nutritional information recalculated by
-     *         DietBook.
-     * @return A string representation of the total amount of all nutrients consumed by the user and
-     *         the list of food items which had their nutritional information recalculated by DietBook if any.
-     */
-    String getAllIntakeAndFoodsMessage(int calorieIntake, int carbIntake, int proteinIntake,
-                                       int fatIntake, String recalculatedFoods) {
-        mainLogger.log(Level.FINE, "Calorie intake: " + calorieIntake);
-        mainLogger.log(Level.FINE, "Carb intake: " + carbIntake);
-        mainLogger.log(Level.FINE, "Protein intake: " + proteinIntake);
-        mainLogger.log(Level.FINE, "Fat intake: " + fatIntake);
-        mainLogger.log(Level.FINE, "Recalculated food: " + recalculatedFoods);
-
-        uiHelper.performAssertionsForNutritionalIntake(carbIntake, "carbohydrate");
-        uiHelper.performAssertionsForNutritionalIntake(calorieIntake, "calorie");
-        uiHelper.performAssertionsForNutritionalIntake(proteinIntake, "protein");
-        uiHelper.performAssertionsForNutritionalIntake(fatIntake, "fat");
-        uiHelper.performAssertionsForNullStringInputs(recalculatedFoods,
-                "List of foods that had their nutritional information recalculated");
-
-        String stringCarbIntake = getNutritionalIntakeMessage(carbIntake, "carbohydrate", "g");
-        String stringCalorieIntake = getNutritionalIntakeMessage(calorieIntake, "calorie", "kcal");
-        String stringProteinIntake = getNutritionalIntakeMessage(proteinIntake, "protein", "g");
-        String stringFatIntake = getNutritionalIntakeMessage(fatIntake, "fat", "g");
-        String message = getRecalculatedFoodsMessage(recalculatedFoods);
-
-        return stringCalorieIntake + UiHelper.LINE_SEPARATOR
-                + stringCarbIntake + UiHelper.LINE_SEPARATOR
-                + stringProteinIntake + UiHelper.LINE_SEPARATOR
-                + stringFatIntake + UiHelper.LINE_SEPARATOR
-                + message;
-
     }
 
     /**

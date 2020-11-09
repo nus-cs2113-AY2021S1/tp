@@ -2,7 +2,7 @@ package seedu.dietbook.ui;
 
 /**
  * Represents a text user interface that is responsible for printing outputs.
- * A <code>UiOutput</code> objects deals with user interaction by showing users the appropriate messages
+ * A <code>UiOutput</code> object deals with user interaction by showing users the appropriate messages
  * after a valid command is executed or when an error occurs.
  */
 public class UiOutput {
@@ -20,13 +20,10 @@ public class UiOutput {
      */
     void print(String message) {
         uiHelper.performAssertionsForStringInputs(message, "Message to print");
-        String divider =
-                "__________________________________________________________________________________________"
-                        + "___________________________________________";
 
-        System.out.println(divider + uiHelper.LINE_SEPARATOR
-                + uiHelper.trimString(message) + uiHelper.LINE_SEPARATOR
-                + divider);
+        System.out.println(uiHelper.getDivider() + UiHelper.LINE_SEPARATOR
+                + uiHelper.trimString(message) + UiHelper.LINE_SEPARATOR
+                + uiHelper.getDivider());
 
     }
 }

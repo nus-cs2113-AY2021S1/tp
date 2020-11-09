@@ -8,7 +8,7 @@ import java.util.logging.Level;
 
 /**
  * Represents a text user interface that deals with taking in user commands.
- * A <code>UiInput</code> objects deals with user interaction by taking in user inputs and processing them.
+ * A <code>UiInput</code> object deals with user interaction by taking in user inputs and processing them.
  */
 public class UiInput {
 
