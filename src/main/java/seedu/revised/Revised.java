@@ -85,7 +85,7 @@ public class Revised {
             } catch (IndexOutOfBoundsException e) {
                 Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
             } catch (NumberFormatException e) {
-                Ui.printErrorMsg(Ui.INDEX_FORMAT_EXCEPTION);
+                Ui.printErrorMsg(Ui.SUBJECT_INDEX_FORMAT_EXCEPTION);
             } catch (Exception e) {
                 Ui.printError(e);
             }

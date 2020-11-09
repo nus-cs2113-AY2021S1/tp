@@ -66,7 +66,7 @@ public class AccessTopicCommand extends TopicCommand {
                 }
                 c.execute(topic);
             } catch (NumberFormatException e) {
-                Ui.printErrorMsg(Ui.INDEX_FORMAT_EXCEPTION);
+                Ui.printErrorMsg(Ui.FLASHCARD_INDEX_FORMAT_EXCEPTION);
             } catch (IndexOutOfBoundsException e) {
                 Ui.printErrorMsg(Ui.INDEX_OUT_OF_BOUND_EXCEPTION);
             } catch (Exception e) {
