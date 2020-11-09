@@ -47,6 +47,7 @@ Wan Shi Jie Brendan<br>
     * [Study time](#study-time) <br>
     * [Done](#done) <br>
     * [User Info](#user-info) <br>
+    * [Exit](#exit) <br>
 * [Documentation](#documentation) <br>
 * [Testing](#testing)<br>
 * [Appendix A. Product scope](#appendix-a-product-scope)<br>
@@ -391,6 +392,11 @@ Step 2: This calls the UserInfoCommand, which stores his name, Harry, and type, 
 1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
 
 2. `Eventlist#remove()` is called which will delete the event with the specified index.
+
+### Exit  
+
+This feature allows users to terminate this app. By inputting `bye`, the isExit flag of the app will be changed to true, and the app will exit with 
+an exit message.  
 
 ## Documentation
   
