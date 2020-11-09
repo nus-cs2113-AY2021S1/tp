@@ -476,7 +476,8 @@ data might be erased.
 - If the title includes a backslash, you may not be able to use the title in anywhere of the program.
 - The description of a question cannot be blank or repeated (not case-sensitive).
 - If you want to re-attempt the same question, you can simply start a new quiz with the topic that the question is from.
-- If you do not want to give a hint or explanation please provide an empty quotation marks `""`, do not remove the key from the question.
+- If you do not want to give a hint or explanation please provide an empty quotation marks, `""`, do not remove the key from the question.
+- Make sure you follow the types of values used which is either a word/sentence enclosed with quotation marks, `""`, or a `true`/`false` value.
 
 <div style="page-break-after: always;"></div>
 
