@@ -16,6 +16,19 @@ import java.util.stream.Collectors;
  * Represents a list of modules.
  */
 public class ModuleList extends ItemList<Module> {
+
+    public static final String CURRENT_CAP_STRING = "Current CAP: %.2f";
+    public static final String PROJECTED_CAP_STRING = "Projected CAP: %.2f";
+    public static final String MCS_COMPLETED_STRING = "Total MCs completed: %d";
+    public static final String GRADE_S = "S";
+    public static final String GRADE_U = "U";
+    public static final String FOLDER_CREATED_STRING = "Created folder(s) for %d module(s).";
+    public static final String CREATE_MODULE_FOLDERS_STRING = "Creating module folders...";
+    public static final String FOLDER_PATH_STRING = "./modules/AY%s/%s/";
+    public static final String LECTURE_PATH_STRING = "/Lecture Notes/";
+    public static final String TUTORIAL_PATH_STRING = "/Tutorial/";
+    public static final String FOLDER_CREATION_SUCCESS_STRING = "Created folder/sub-folders for %s at %s";
+
     public ModuleList() {
         items = new ArrayList<>();
     }
@@ -48,16 +61,16 @@ public class ModuleList extends ItemList<Module> {
      */
     @Override
     public void listTask() {
-        if (items.size() == 0) {
+        if (items.isEmpty()) {
             Ui.dukePrint(Messages.MESSAGE_EMPTY_MODULE_LIST);
             return;
         }
         Ui.showLine();
-        Ui.dukePrintMultiple("Here is a list of your module(s):\n");
-        int count = 1;
+        Ui.dukePrintMultiple(Messages.MESSAGE_MODULE_LIST);
+        int index = 1;
         for (Module module: items) {
-            Ui.dukePrintMultiple(count + "." + module.toString());
-            count++;
+            Ui.dukePrintMultiple(index + "." + module.toString());
+            index++;
         }
 
         double actualCap = computeCapFromModules(items, true);
@@ -65,9 +78,9 @@ public class ModuleList extends ItemList<Module> {
         int totalMcs = computeTotalMcs(items);
 
         Ui.showLine();
-        Ui.dukePrintMultiple(String.format("Current CAP: %.2f", actualCap));
-        Ui.dukePrintMultiple(String.format("Projected CAP: %.2f", projectedCap));
-        Ui.dukePrintMultiple(String.format("Total MCs completed: %d", totalMcs));
+        Ui.dukePrintMultiple(String.format(CURRENT_CAP_STRING, actualCap));
+        Ui.dukePrintMultiple(String.format(PROJECTED_CAP_STRING, projectedCap));
+        Ui.dukePrintMultiple(String.format(MCS_COMPLETED_STRING, totalMcs));
         Ui.showLine();
         System.out.println();
     }
@@ -80,8 +93,8 @@ public class ModuleList extends ItemList<Module> {
      */
     private ArrayList<Module> getGradedModules(ArrayList<Module> modules, boolean isComplete) {
         return modules.stream()
-                .filter(task -> !task.getGrade().equals("S"))
-                .filter(task -> !task.getGrade().equals("U"))
+                .filter(task -> !task.getGrade().equals(GRADE_S))
+                .filter(task -> !task.getGrade().equals(GRADE_U))
                 .filter(task -> !isComplete || task.getIsDone())
                 .collect(Collectors.toCollection(ArrayList::new));
     }
@@ -127,28 +140,28 @@ public class ModuleList extends ItemList<Module> {
      */
     public void createModuleFolders() throws DukeException {
         Ui.showLine();
-        Ui.dukePrintMultiple("Creating module folders...");
+        Ui.dukePrintMultiple(CREATE_MODULE_FOLDERS_STRING);
 
         int createdFolderCount = 0;
         for (Module module : items) {
             String academicYear = module.getSemester();
             String moduleName = module.getDescription();
-            String folderName = String.format("./modules/AY%s/%s/", academicYear, moduleName);
+            String folderName = String.format(FOLDER_PATH_STRING, academicYear, moduleName);
             boolean hasCreatedFolder = new File(folderName).mkdirs();
-            hasCreatedFolder |= new File(folderName + "/Lecture Notes/").mkdirs();
-            hasCreatedFolder |= new File(folderName + "/Tutorial/").mkdirs();
+            hasCreatedFolder |= new File(folderName + LECTURE_PATH_STRING).mkdirs();
+            hasCreatedFolder |= new File(folderName + TUTORIAL_PATH_STRING).mkdirs();
 
             if (hasCreatedFolder) {
                 try {
                     createdFolderCount++;
                     String filePath = new File(folderName).getCanonicalPath();
-                    Ui.dukePrintMultiple("Created folder/sub-folders for " + moduleName + " at " + filePath);
+                    Ui.dukePrintMultiple(String.format(FOLDER_CREATION_SUCCESS_STRING, moduleName, filePath));
                 } catch (IOException e) {
-                    throw new DukeException("Cannot get path");
+                    throw new DukeException(Messages.EXCEPTION_INVALID_PATH);
                 }
             }
         }
-        Ui.dukePrintMultiple("Created folder(s) for " + createdFolderCount + " module(s).");
+        Ui.dukePrintMultiple(String.format(FOLDER_CREATED_STRING, createdFolderCount));
         Ui.showLine();
     }
 
@@ -164,7 +177,7 @@ public class ModuleList extends ItemList<Module> {
                 .filter(existingModule -> existingModule.getDescription().equals(module.getDescription()))
                 .count();
         if (count != 0) {
-            throw new DukeException("~Error~ Module with same code and semester already exists!");
+            throw new DukeException(Messages.EXCEPTION_DUPLICATE_MODULE);
         }
     }
 

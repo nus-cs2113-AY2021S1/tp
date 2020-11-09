@@ -32,6 +32,7 @@ public class Messages {
     public static final String MESSAGE_TASK_LIST = "Here are the task(s) in your list:\n";
     public static final String MESSAGE_BOOK_LIST = "Here are the book(s) in your list:\n";
     public static final String MESSAGE_EXPENSE_LIST = "Here are the expense item(s) in your list:\n";
+    public static final String MESSAGE_MODULE_LIST = "Here is a list of your module(s):\n";
     public static final String MESSAGE_EXPENSE_LIST_CURRENCY = "Here are the expense item(s) in your expense list of "
             + "currency ";
     public static final String MESSAGE_EXPENSE_LIST_DATE = "Here are the expense item(s) in your expense list of "
@@ -147,6 +148,9 @@ public class Messages {
     public static final String EXCEPTION_INVALID_DATE_RANGE = "~Error~ Your ending date is before your starting date!";
     public static final String EXCEPTION_INVALID_MCS = "~Error~ Please enter a value between 0 and 40, inclusive";
     public static final String EXCEPTION_INVALID_GRADE = "~Error~ Invalid grade!";
+    public static final String EXCEPTION_DUPLICATE_MODULE = "~Error~ Module with same code and semester already"
+            + " exists!";
+    public static final String EXCEPTION_INVALID_PATH = "~Error~ Cannot get path";
 
     public static final String MESSAGE_NEW_TASK_FILE = "I have created a new tasks.txt file for you. :) "
             + "Type some commands and see it.";
