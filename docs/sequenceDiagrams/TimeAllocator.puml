@@ -10,7 +10,8 @@ participant "currSlot:TimeSlot" as TimeSlot
 ->timeAllocator++: runAllocate()
 timeAllocator->log**
 activate log
-timeAllocator->log:setFixedTasks()
+return
+timeAllocator->log++:setFixedTasks()
 return dayLog
 timeAllocator->TimeSlot**
 activate TimeSlot
