@@ -901,7 +901,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3_resized.png)
+![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3_resized1000.png)
 
 <div style="page-break-after: always;"></div>
 
