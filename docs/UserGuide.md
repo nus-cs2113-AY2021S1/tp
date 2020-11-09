@@ -267,11 +267,13 @@ This feature helps you print out all bookmark in your bookmark list.
 ```
 Format: show
 ```
-Example of a printed out bookmark list.
+Example of a printed out bookmark list.  
 
-![]()
+![](images/showOutput.PNG)
 
-If your bookmark list is empty you will get message ""
+If your bookmark list is empty you will get the message show in the screenshot below  
+
+![](images/showEmptyBookmarks.PNG)
 
 <br/><br/> 
 <a name="addbookmark"></a>  
@@ -290,11 +292,8 @@ Format: add {DESCRIPTON} {URL}
 
 Example of usage:
 * `add google www.google.com/`  
-![]()
 * `add example http://example.com`  
-![]()
 * `add cs2113t-website https://nus-cs2113-ay2021s1.github.io/website/`  
-![]()
 
 <br/><br/> 
 <a name="deletebookmark"></a>  
@@ -312,7 +311,7 @@ Example of usage:
 * `delete 4`  
 
 You should see a message similar to the screenshot below.
-![]()
+![](images/deletebookmarksoutput.PNG)
 
 <!-- @@author fchensan -->
 <br/><br/> 
@@ -352,10 +351,9 @@ Example of usage:
 * `find notes`  
 
 You should see a message similar to the screenshot below when a successful match is found.
-![]()
+![](images/findBookmarkoutput.PNG)
 
-Else you should see "No bookmarks contain the specified keyword!" like the screenshot below.
-![]()
+Else you should see "No bookmarks contain the specified keyword!".
 
 <br/><br/> 
 <a name="launchbookmark"></a>  
