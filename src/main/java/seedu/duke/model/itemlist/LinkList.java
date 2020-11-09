@@ -110,4 +110,12 @@ public class LinkList extends ItemList<Link> {
             throw new DukeException("~Error~ Link of this lesson already exists!");
         }
     }
+
+    /**
+     * Clears all the links in the list.
+     */
+    @Override
+    public void clearItems() {
+        links = new ArrayList<>();
+    }
 }

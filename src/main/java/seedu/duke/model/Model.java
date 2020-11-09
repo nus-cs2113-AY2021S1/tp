@@ -46,12 +46,14 @@ public class Model {
         BookList books = (BookList) getList(ListType.BOOK_LIST);
         LinkList links = (LinkList) getList(ListType.LINK_LIST);
         ModuleList modules = (ModuleList) getList(ListType.MODULE_LIST);
+        ExpenseList expenses = (ExpenseList) getList(ListType.EXPENSE_LIST);
 
-        if ((links.size() != 0 || books.size() != 0 || modules.size() != 0)) {
+        if (links.size() != 0 || books.size() != 0 || modules.size() != 0 || tasks.size() != 0 || expenses.size() != 0) {
             getList(ListType.TASK_LIST).clearItems();
             getList(ListType.BOOK_LIST).clearItems();
             getList(ListType.LINK_LIST).clearItems();
             getList(ListType.MODULE_LIST).clearItems();
+            getList(ListType.EXPENSE_LIST).clearItems();
             Ui.dukePrint(Messages.MESSAGE_CLEAR);
         } else {
             throw new DukeException(Messages.MESSAGE_CLEARED);
