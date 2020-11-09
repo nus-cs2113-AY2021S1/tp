@@ -172,7 +172,7 @@ public abstract class Parser {
             if (words.length == 1) {
                 throw new EmptyLocationException();
             } else if (locations.checkIfInteger(words[1])) {
-                int eventNum = Integer.parseInt(words[1]);
+                int eventNum = Integer.parseInt(words[1]) - 1;
                 if (eventNum >= size || eventNum < 0) {
                     throw new InvalidEventIndexException();
                 } else {
