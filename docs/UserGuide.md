@@ -367,6 +367,8 @@ Here are some key pointers:
 * Similar to module, KAJI does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
 * KAJI is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
 
 In this example, you are going to add a new chapter called `Chapter 1`. <br>
@@ -404,13 +406,13 @@ Here are some key pointers:
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 
 <p align="center">
-    <img src="UG_Images/list_chapter1.png" alt="List Chapter 1"/>
+    <img src="UG_Images/list_chapter1.png" width="600" alt="List Chapter 1"/>
 </p>
 
 * Step 2: The result for the list of chapters will be displayed as shown.<br>
 
 <p align="center">
-    <img src="UG_Images/list_chapter2.png" alt="List Chapter 2"/>
+    <img src="UG_Images/list_chapter2.png" width="600" alt="List Chapter 2"/>
 </p>
 
 * After listing all chapters, you can try all commands available in **Module Level**.
