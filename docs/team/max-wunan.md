@@ -28,7 +28,7 @@ Given below are my contributions to this project:
     the application stops running.
     <br>
 * __Code Contributed:__ [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=max-wunan&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-    <br>
+    <br><br>
 * __Project Management:__
     * Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
     <br>
