@@ -55,13 +55,13 @@
 
 **Welcome to AniChan!**
 
-AniChan is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage their time more effectively by identifying the time needed to translate a script. Moreover, AniChan comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
+**AniChan** is a free desktop command-line application aimed to improve the efficiency of anime translators. With AniChan, translators could manage their time more effectively by identifying the time needed to translate a script. Moreover, **AniChan** comes with management features such as workspace, watchlist and bookmark that can help them stay organized and focused on their work.
 
-AniChan can also be used on all major operating systems such as Windows and Linux. You can refer to the [Quick Start](#2-quick-start) guide located below for more information on getting your journey started with AniChan!
+**AniChan** can also be used on all major operating systems such as Windows and Linux. You can refer to the [Quick Start](#2-quick-start) guide located below for more information on getting your journey started with **AniChan**!
 
 ### 1.1 Purpose
 
-This guide provides you with in-depth information on setting up AniChan and how to use the various features offered.
+This guide provides you with in-depth information on setting up **AniChan** and how to use the various features offered.
 
 ### 1.2 Using this guide
 
@@ -112,8 +112,8 @@ E.g. Both `browse -s name -p 2` and `browse -p 2 -s name` gives the same result,
 
 <br/>
 
-> :bulb: AniChan's Input Prompt: 
-> <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 2: AniChan's Input Prompt*
+> :bulb: **AniChan**'s Input Prompt: 
+> <br/> <br/> ![AniChan's Input Prompt](images/AniChan-Input-Prompt.png) <br/> *Figure 2: **AniChan**'s Input Prompt*
 
 <br/>
 
@@ -339,7 +339,7 @@ Successfully added new workspace: Crispy Donuts Studio
 
 Switches your currently active workspace.
 
-> :memo: As you may create multiple workspaces to organize your translation work, this command allows you to switch between them. A workspace named `Default` is created when you run AniChan for the first time.
+> :memo: As you may create multiple workspaces to organize your translation work, this command allows you to switch between them. A workspace named `Default` is created when you run **AniChan** for the first time.
 
 Format: `workspace -s <NAME>`
 
@@ -475,7 +475,7 @@ Format: `watchlist -d <WATCHLIST_ID>`
 
 > :bulb: Deletion only works when you have at least two watchlist in the current workspace.
 
-> :warning: If you delete the active watchlist, then the watchlist whose index is 1 in the list after the deletion will become the new active watchlist.
+> :warning: If you delete the active watchlist, then the watchlist whose index is 1 in the list after the deletion will become the new active watchlist (it will also print an additional line indicating that the active watchlist has changed, as shown in the example below).
 
 <br/>
 
