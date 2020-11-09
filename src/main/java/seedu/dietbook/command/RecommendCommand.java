@@ -17,9 +17,9 @@ public class RecommendCommand extends Command {
 
     @Override
     public void execute(Manager manager, Ui ui) throws DietException {
-        if (commandCount == 1) {
+        if (Manager.commandCount == 1) {
             throw new DietException("Please enter your name first!");
-        } else if (commandCount == 2) {
+        } else if (Manager.commandCount == 2) {
             throw new DietException("Please enter your basic information first!");
         }
         InputChecker.checkSingleCommand(this.input);

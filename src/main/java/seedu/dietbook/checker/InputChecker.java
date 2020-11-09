@@ -20,9 +20,11 @@ public class InputChecker {
     public static final int FOOD_CAP = 100000;
     public static final int HEIGHT_CAP = 300;
     public static final int WEIGHT_CAP = 500;
+    public static final int TIME_FORMAT_LENGTH = 16;
     public static final String[] PARAM_FITNESS = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
-    public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/"};
+    public static final String[] PARAM_ADD_DATA = {"i/","x/"};
+    public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/", "i/"};
     public static final String[] PARAM_CALCULATE = {"fat", "carb","protein", "calorie", "all"};
     public static final String[] SINGLE_COMMAND = {"clear", "data","exit", "help", "recommend", "userinfo"};
     public static final String[] PARAM_GENDER = {"M","F","O"};
@@ -40,6 +42,24 @@ public class InputChecker {
         if (userInput.split(command).length < 2
                 || userInput.split(command)[1].trim().equals("")) {
             throw new DietException("Error! Missing command parameters!");
+        }
+    }
+
+    /**
+     * Takes in user input and check if there are multiple slashes.
+     *
+     * @param userInput user input.
+     * @throws DietException when there are more than 1 slash at any one instance.
+     */
+    public static void checkSlashes(String userInput) throws DietException {
+        String parameter = Parser.getCommandParam(userInput);
+        long noOfOptions = parameter.chars().filter(num -> num == '/').count();
+        int slashTracker = parameter.indexOf("/");
+        for (int i = 0; i < noOfOptions; i++) {
+            if (parameter.charAt(slashTracker + 1) == '/') {
+                throw new DietException("Multiple forward slashes should not be in the input!");
+            }
+            slashTracker = parameter.indexOf("/", slashTracker + 1);
         }
     }
 
@@ -171,9 +191,16 @@ public class InputChecker {
      */
     public static boolean checkDate(String userInput) throws DietException {
         String[] processedInput = userInput.split("\\s+");
-        if (processedInput[processedInput.length - 1].contains("T")) {
+        try {
+            String time = processedInput[processedInput.length - 1];
+            LocalDateTime.parse(time);
+            if (time.length() != TIME_FORMAT_LENGTH) {
+                throw new DietException("Wrong date time format!");
+            }
             return true;
-        } else {
+        } catch (DietException e) {
+            throw new DietException(e.getMessage());
+        } catch (Exception e) {
             return false;
         }
     }
@@ -224,10 +251,27 @@ public class InputChecker {
      * @throws DietException when expected parameters are missing.
      */
     public static void checkAddParam(String userInput) throws DietException {
-        for (String param: PARAM_ADD) {
+        String[] paramList = PARAM_ADD;
+        if (userInput.contains("i/")) {
+            paramList = PARAM_ADD_DATA;
+        }
+        for (String param: paramList) {
             if (!userInput.contains(param)) {
                 throw new DietException("Missing or incorrect add statement");
             }
+        }
+    }
+
+    /**
+     * Takes in user input to check if the format of the delete is correct.
+     *
+     * @param userInput user input.
+     * @throws DietException when format of delete command is wrong.
+     */
+    public static void checkDeleteCommand(String userInput) throws DietException {
+        String[] processedInput = userInput.split("\\s+");
+        if (processedInput.length > 2) {
+            throw new DietException("Wrong delete command format!");
         }
     }
 
@@ -239,7 +283,7 @@ public class InputChecker {
      */
     public static void checkCalculateParam(String[] param) throws DietException {
         if (param.length > 3) {
-            throw new DietException("Incorrect calculate statement");
+            throw new DietException("Incorrect calculate command format!");
         }
     }
 
@@ -265,7 +309,7 @@ public class InputChecker {
      */
     public static void checkList(String[] param) throws DietException {
         if (param.length > 3) {
-            throw new DietException("Incorrect list statement");
+            throw new DietException("Incorrect list command format!");
         }
     }
 
