@@ -168,9 +168,9 @@ Delete events existing in the list, you can choose to delete all, auto delete or
 * Clear all events
   Format: `clear`
   
-* Clear events happened one month ago
+* Switch the autoClear function on so that events happened one month ago will be automatically cleared
   Format: `autoClear`
-  Note that this command will clear all events which happened one month ago no matter they are done or not.
+  Note that this function will clear all events which happened one month ago no matter they are done or not.
   
 * Clear events happened before a certain date
   Format: `clearBefore CLEAR_DATE`
