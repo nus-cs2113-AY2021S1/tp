@@ -450,11 +450,11 @@ Format (show module details): show {MODULE} bookmarks(optional)
 ```
 
 Example of usage:   
-* `show CS2113T`  
-![](images/showTimetableCommand/showmoduleoutput.PNG)  
-
-* `show CS2113T bookmarks`  
-![](images/showTimetableCommand/showmodulebookmarksoutput.PNG)
+>* `show CS2113T`  
+>![](images/showTimetableCommand/showmoduleoutput.PNG)  
+>
+>* `show CS2113T bookmarks`  
+>![](images/showTimetableCommand/showmodulebookmarksoutput.PNG)
 
 <br/><br/> 
 <a name="addtimeslot"></a>
@@ -508,37 +508,37 @@ Format (chaining commands): add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_T
 
 Example of usage:   
 
-* Adding a module  
-input: `add CS2113T`  
-output:  
-![](images/addSlotCommand/addmoduleoutput.PNG)  
-
-* Adding a slot to a module  
-input: `add CS2102 tutorial fri 10:00 12:00`  
-output:  
-![](images/addSlotCommand/addslottomoduleoutput.PNG)  
-
-* Adding a bookmark to a module  
-input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
-output:  
-![](images/addSlotCommand/addbookmarktomoduleoutput.PNG)  
-
-* Adding a bookmark to a slot  
-input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
-output:  
-![](images/addSlotCommand/addbookmarktoslotoutput.PNG)  
-
-* Chaining commands  
-input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
-output:  
-(The indentation of each line of the output shows the relationships between the components.
-In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
-higher than the previous line. This means that the bookmark is added to that lecture slot.
-Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
-which suggests that the bookmark is added to the module CG2271.)  
-![](images/addSlotCommand/addchaincommandoutput.PNG)  
-result:  
-![](images/addSlotCommand/addresult.PNG)
+>* Adding a module  
+>input: `add CS2113T`  
+>output:  
+>![](images/addSlotCommand/addmoduleoutput.PNG)  
+>
+>* Adding a slot to a module  
+>input: `add CS2102 tutorial fri 10:00 12:00`  
+>output:  
+>![](images/addSlotCommand/addslottomoduleoutput.PNG)  
+>
+>* Adding a bookmark to a module  
+>input: `add CS2113T module-website https://nus-cs2113-ay2021s1.github.io/website/index.html`  
+>output:  
+>![](images/addSlotCommand/addbookmarktomoduleoutput.PNG)  
+>
+>* Adding a bookmark to a slot  
+>input: `add CS2102 tutorial fri 10:00 12:00 www.google.com`   
+>output:  
+>![](images/addSlotCommand/addbookmarktoslotoutput.PNG)  
+>
+>* Chaining commands  
+>input: `add CG2271 tutorial thu 11:00 12:00, lecture wed 09:00 11:00 www.yahoo.com, example-bookmark https://www.youtube.com`  
+>output:  
+>(The indentation of each line of the output shows the relationships between the components.
+>In the output shown below, `bookmarks added to CG2271 lecture` is one level of indentation 
+>higher than the previous line. This means that the bookmark is added to that lecture slot.
+>Similarly, `bookmark added to module` is one level of indentation higher than `CG2271 added`, 
+>which suggests that the bookmark is added to the module CG2271.)  
+>![](images/addSlotCommand/addchaincommandoutput.PNG)  
+>result:  
+>![](images/addSlotCommand/addresult.PNG)
   
 
 
@@ -573,10 +573,10 @@ Format (deleting bookmarks of a slot of a module): delete {MODULE} {INDEX} bookm
 * Deleting bookmarks will delete all bookmarks associated with the module or slot.
 
 Example of usage:   
-* `delete CS2113T` 
-* `delete CG2271 1` 
-* `delete CS2113T bookmarks` 
-* `delete CS2113T 1 bookmarks` 
+>* `delete CS2113T` 
+>* `delete CG2271 1` 
+>* `delete CS2113T bookmarks` 
+>* `delete CS2113T 1 bookmarks` 
 <!-- @@author -->
 <br/><br/> 
 
