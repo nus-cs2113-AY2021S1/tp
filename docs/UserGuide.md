@@ -131,7 +131,7 @@ Format: `help`
 
 Expected outcome:
 
-![help_command](images/Help_command.png)
+![help_command](images/help.PNG)
 
 *Figure 3. A list of available commands and their formats will be displayed.*
 
@@ -346,29 +346,6 @@ In this case, the previous action `add CG2028 final quiz d/11-10-2020 st/1600 et
 *Figure 21. List of tasks before and after the redo command.*
 
 
-### Setting a reminder : `reminder`
-
-Allows you to set a reminder for any specific task on the list.
-You can specify a time for the reminder, if no time has been specified, the default time will be set to 1 hour
-before the start time of the task.
-
-Format: `reminder INDEX [t/TIME]`
-
-Example of usage: 
-
-`reminder 8833 t/2305`
-
-Expected outcome:
-
-![reminder_set](images/reminder_set.png)
-
-*Figure 22. Setting a reminder for task #8833 at 11.05pm.*
-
-![reminder_popup](images/reminder_popup.png)
-
-*Figure 23. Popup of a reminder.*
-
-
 ### Exiting program : `bye`
 
 Display a goodbye message and exits the program.
@@ -379,7 +356,7 @@ Expected outcome:
 
 ![bye](images/bye.png)
 
-*Figure 24. Exit message.*
+*Figure 22. Exit message.*
 
 
 ### Saving data to file
