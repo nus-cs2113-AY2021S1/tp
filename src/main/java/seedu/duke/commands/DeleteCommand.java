@@ -56,15 +56,29 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
-    public DeleteCommand(String inputValue) {
+    //@@author GuoAi
+
+    public DeleteCommand(String inputValue) throws DukeException {
         if (inputValue.startsWith("p")) {
             this.hasPriorityValue = true;
-            this.priorityIndex = Integer.parseInt(inputValue.substring(2));
+            try {
+                this.priorityIndex = Integer.parseInt(inputValue.substring(2));
+            } catch (NumberFormatException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+            }
         } else if (inputValue.startsWith("c")) {
             this.hasCategoryValue = true;
-            this.categoryValue = inputValue.substring(2);
+            try {
+                this.categoryValue = inputValue.substring(2);
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+            }
         }
     }
+
+    //@author
 
     public DeleteCommand(int index, boolean isLink) {
         assert index > 0 : "Task number should be greater than 0";
