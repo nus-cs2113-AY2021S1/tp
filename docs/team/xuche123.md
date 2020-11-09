@@ -28,6 +28,6 @@ Given below are my contributions to the project.
     * Added sections on Introduction, Architecture, Documentation and Appendix [\#74](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/74), [\#171](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/171)
 
 * **Community**:
-  * Revied developer guide for team [Study It](https://github.com/nus-cs2113-AY2021S1/tp/pulls?q=is%3Aopen+is%3Apr+CS2113T-T12-1+).
+  * Reviewed developer guide for team [Study It](https://github.com/nus-cs2113-AY2021S1/tp/pulls?q=is%3Aopen+is%3Apr+CS2113T-T12-1+).
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/177), [2](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/175), [3](https://github.com/AY2021S1-CS2113T-W12-3/tp/issues/174))
 
