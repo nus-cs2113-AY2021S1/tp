@@ -10,6 +10,8 @@
     - [Searching task](#searching-relevant-tasks--search)
     - [Removing task](#removing-a-task--delete)
     - [Clearing task](#clearing-tasks--clear)
+    - [Undo](#undo--undo)
+    - [Redo](#redo--redo)
     - [Setting reminder](#setting-a-reminder--reminder)
     - [Exiting program](#exiting-program--bye)
 - [FAQ](#faq)
@@ -309,6 +311,33 @@ Expected outcome:
 
 *Figure 19. The task that was deleted will be displayed.*
 
+### Undo : `undo`
+
+Undo the previous action.
+
+Format: `undo`
+
+Expected outcome:
+
+In this case, the previous action is `add CG2028 final quiz d/11-10-2020 st/1600 et/1700 p/3`.
+
+![undo](images/undo.png)
+
+*Figure 20. List of tasks before and after the undo command.*
+
+### Redo : `redo`
+
+Reverse the undo command and restore the previous action.
+
+Format: `redo`
+
+Expected outcome:
+
+In this case, the previous action `add CG2028 final quiz d/11-10-2020 st/1600 et/1700 p/3` was undone.
+
+![redo](images/redo.png)
+
+*Figure 21. List of tasks before and after the redo command.*
 
 ### Setting a reminder : `reminder`
 
@@ -326,11 +355,11 @@ Expected outcome:
 
 ![reminder_set](images/reminder_set.png)
 
-*Figure 20. Setting a reminder for task #8833 at 11.05pm.*
+*Figure 22. Setting a reminder for task #8833 at 11.05pm.*
 
 ![reminder_popup](images/reminder_popup.png)
 
-*Figure 21. Popup of a reminder.*
+*Figure 23. Popup of a reminder.*
 
 
 
@@ -344,7 +373,7 @@ Expected outcome:
 
 ![bye](images/bye.png)
 
-*Figure 22. Exit message.*
+*Figure 24. Exit message.*
 
 
 ### Saving data to file
