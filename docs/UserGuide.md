@@ -356,19 +356,19 @@ For instance, you are currently in Module level `CS2113T` and want to head to Ch
  do so are shown below:
 
 <p align="center">
-  <img src="UG_Images/moduleGoPrompt.png" alt="Go prompt"/>
+  <img src="UG_Images/moduleGoPrompt.png" width="700" alt="Go prompt"/>
 </p>
 
 * Step 1: Enter the command `go 1` to head down to the Chapter level below: <br>
 
 <p align="center">
-  <img src="UG_Images/moduleGo.png" alt="Go Command"/>
+  <img src="UG_Images/moduleGo.png" width="700" alt="Go Command"/>
 </p>
 
 * Step 2: You should return to the Admin level as shown below: <br>
 
 <p align="center">
-  <img src="UG_Images/moduleGoResult.png" alt="Go Result"/>
+  <img src="UG_Images/moduleGoResult.png" width="700" alt="Go Result"/>
 </p>
 
 
@@ -386,13 +386,13 @@ For instance, you are currently in Module level `CS2113T` and want to return to 
 * Step 1: Enter the command `back` to return to the previous level which is the module level: <br>
 
 <p align="center">
-  <img src="UG_Images/back.png" alt="Back Command"/>
+  <img src="UG_Images/back.png" width="700" alt="Back Command"/>
 </p>
 
 * Step 2: You should return to the Admin level as shown below: <br>
 
 <p align="center">
-  <img src="UG_Images/backComplete.png" alt="Back Result"/>
+  <img src="UG_Images/backComplete.png" width="700" alt="Back Result"/>
 </p>
 
 #### 3.2.7. Starting a revision session: `revise`
@@ -683,13 +683,13 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
 * ***Step 1***: Key the **`due`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/due.png" alt="Due Command"/>
+  <img src="UG_Images/due.png" width="700" alt="Due Command"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/dueComplete.png" alt="Due Command Result"/>
+  <img src="UG_Images/dueComplete.png" width="700" alt="Due Command Result"/>
 </p>
 
 [Labeled expected output]
@@ -717,13 +717,13 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 * ***Step 1***: Key the **`preview`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/preview.png" alt="Preview Command"/>
+  <img src="UG_Images/preview.png" width="700" alt="Preview Command"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/previewComplete.png" alt="Preview Command Result"/>
+  <img src="UG_Images/previewComplete.png" width="700" alt="Preview Command Result"/>
 </p>
 
 [Labeled expected output]
@@ -756,44 +756,44 @@ Example of ***`exclude module`***
 * ***Step 1***: Key the **`exclude module`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeModule.png" alt="Exclude Command Module mode: Command"/>
+  <img src="UG_Images/excludeModule.png" width="700" alt="Exclude Command Module mode: Command"/>
 </p>
 
 * ***Step 2***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeModuleModule.png" alt="Exclude Command Module mode: ModuleName Filled"/>
+  <img src="UG_Images/excludeModuleModule.png" width="700" alt="Exclude Command Module mode: ModuleName Filled"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeModuleResult.png" alt="Exclude Command Module mode: Result"/>
+  <img src="UG_Images/excludeModuleResult.png" width="700" alt="Exclude Command Module mode: Result"/>
 </p>
 
 Example of ***`exclude chapter`***
 * ***Step 1***: Key the **`exclude chapter`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeChapter.png" alt="Exclude Command Chapter mode: ChapterName Command"/>
+  <img src="UG_Images/excludeChapter.png" width="700" alt="Exclude Command Chapter mode: ChapterName Command"/>
 </p>
 
 * ***Step 2***: Key the **Module name** of the Module that contains Chapter that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeChapterModule.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
+  <img src="UG_Images/excludeChapterModule.png" width="700" alt="Exclude Command Module mode: ModuleName Prompt"/>
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/excludeChapterChapter.png" alt="Exclude Command Chapter mode: ChapterName Filled"/>
+  <img src="UG_Images/excludeChapterChapter.png" width="700" alt="Exclude Command Chapter mode: ChapterName Filled"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeChapterResult.png" alt="Exclude Command Chapter mode: Result"/>
+  <img src="UG_Images/excludeChapterResult.png" width="700" alt="Exclude Command Chapter mode: Result"/>
 </p>
 
 
@@ -822,19 +822,19 @@ Example of ***`include module`***
 * ***Step 1***: Key the **`include module`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeModule.png" alt="Include Command Module mode: ModuleName Command"/>
+  <img src="UG_Images/includeModule.png" width="700" alt="Include Command Module mode: ModuleName Command"/>
 </p>
 
 * ***Step 2***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeModuleModule.png" alt="Include Command Module mode: ModuleName Filled"/>
+  <img src="UG_Images/includeModuleModule.png" width="700" alt="Include Command Module mode: ModuleName Filled"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/includeModuleResult.png" alt="Include Command Module mode: Result"/>
+  <img src="UG_Images/includeModuleResult.png" width="700" alt="Include Command Module mode: Result"/>
 </p>
 
 
@@ -842,25 +842,25 @@ Example of ***`include chapter`***
 * ***Step 1***: Key the **`include chapter`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeChapter.png" alt="Include Command Chapter mode: ChapterName Command"/>
+  <img src="UG_Images/includeChapter.png" width="700" alt="Include Command Chapter mode: ChapterName Command"/>
 </p>
 
 * ***Step 2***: Key the **Module name** of the Module that contains the Chapter that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeChapterModule.png" alt="Include Command Chapter mode: ModuleName Prompt"/>
+  <img src="UG_Images/includeChapterModule.png" width="700" alt="Include Command Chapter mode: ModuleName Prompt"/>
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
-  <img src="UG_Images/includeChapterChapter.png" alt="Include Command Chapter mode: ChapterName Prompt"/>
+  <img src="UG_Images/includeChapterChapter.png" width="700" alt="Include Command Chapter mode: ChapterName Prompt"/>
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/includeChapterResult.png" alt="Include Command Chapter mode: Result"/>
+  <img src="UG_Images/includeChapterResult.png" width="700" alt="Include Command Chapter mode: Result"/>
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
