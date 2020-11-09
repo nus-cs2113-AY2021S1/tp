@@ -368,7 +368,7 @@ Type of Tests
 This project has 5 types of tests. 4 tests to test each feature and 1 test to test the main integration of the whole application.
 
 ### Logging guide
-We are using java.util.logging package for logging 
+We are using java.util.logging package for logging.
 The StudyItLog class is used to manage the logging levels and logging destinations.
 Log messages are output through the console and to a  .log file.
 The output logging level can be controlled using .setlevel( )
@@ -380,7 +380,7 @@ When choosing a level for a log message, follow the following conventions:
 
 
 ### DevOps Guide 
-Build automation  
+Build automation:
 This project uses Gradle for build automation management.
 ./gradlew build - check for checkstyle error and runs all tests
 Code coverage
