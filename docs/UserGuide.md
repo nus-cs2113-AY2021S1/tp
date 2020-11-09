@@ -1008,10 +1008,10 @@ Format: `bye`
 In this section, you can find some frequently asked questions(FAQ).
 
 **Q**: How do I transfer my data to another computer? <br>
-**A**: Transfer your data by copying the data file and Scheduler.jar
+**A**: Transfer your data by copying the `data` file and `Scheduler.jar`
 
 **Q**: What if I run into bugs while using Scheduler--;? <br>
-**A**: If you run into bugs that cause the program to crash, please contact us at scheduler@gmail.com with the logging.txt. 
+**A**: If you run into bugs that cause the program to crash, please contact us at scheduler@gmail.com with the `logging.txt`. 
 
 **Q**: What if I have any suggestions for Scheduler--? <br>
 **A**: Feel free to drop us an email at scheduler@gmail.com 
