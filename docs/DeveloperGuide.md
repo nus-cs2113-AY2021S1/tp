@@ -1367,7 +1367,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
     Expected: Workspace `Default` and `CrunchyOreo` will be listed.
     
         1.  Other incorrect commands to try: 
-            1.  `workspace`
+            1.  `workspace =l`
 
 <br/>
             
