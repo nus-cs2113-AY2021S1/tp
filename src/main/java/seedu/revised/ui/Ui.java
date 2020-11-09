@@ -31,7 +31,7 @@ public class Ui {
                     + "| |   \\___|  \\____/  |_|/_______/   |_____|_____/\n";
     public static final String HELP_MESSAGE = "Type help for all available commands";
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
-    public static final String OOPS_PREFIX = " ☹ OOPS!!!";
+    public static final String OOPS_PREFIX = " OOPS!!!";
     public static final String OOPS_SUFFIX = ":-(";
 
     public static final String FAILED_PARSE_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I don't know what that means "
