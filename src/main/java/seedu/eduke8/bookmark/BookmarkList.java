@@ -7,6 +7,9 @@ import seedu.eduke8.question.Question;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the structure that stores the bookmarked questions.
+ */
 public class BookmarkList implements DisplayableList, EditableList {
 
     private ArrayList<Displayable> bookmarks;

@@ -4,6 +4,9 @@ import seedu.eduke8.common.DisplayableList;
 import seedu.eduke8.hint.Hint;
 import seedu.eduke8.ui.Ui;
 
+/**
+ * A specific command that displays a question's hint during a quiz.
+ */
 public class HintCommand extends Command {
     private Hint hint;
 

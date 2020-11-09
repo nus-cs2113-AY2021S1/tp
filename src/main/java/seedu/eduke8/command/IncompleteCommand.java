@@ -6,6 +6,9 @@ import seedu.eduke8.option.OptionList;
 import seedu.eduke8.question.Question;
 import seedu.eduke8.ui.Ui;
 
+/**
+ * A specific command that prints out messages if a user is unable to finish a question in a quiz by the time limit.
+ */
 public class IncompleteCommand extends Command {
     private Question question;
     private int userTimer;

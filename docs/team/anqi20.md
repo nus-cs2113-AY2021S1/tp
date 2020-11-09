@@ -25,8 +25,10 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
 - Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=anqi20&tabRepo=AY2021S1-CS2113T-F12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 - **Enhancements to existing features:**
+  - Implemented testing for IncompleteCommand. [#256](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/256)
   - Added explanations class. [#118](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/118)
   - Implemented the UI class to do error handling. [#79](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/79)
+  - Implemented some testing for Option and OptionList classes. [#65](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/65)
  
 - **Documentation:** 
   - User Guide: 

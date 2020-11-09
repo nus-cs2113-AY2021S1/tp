@@ -10,6 +10,9 @@ import seedu.eduke8.ui.Ui;
 
 import java.util.logging.Logger;
 
+/**
+ * A specific command that manages the construction of quizzes for the user.
+ */
 public class QuizCommand extends Command {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 

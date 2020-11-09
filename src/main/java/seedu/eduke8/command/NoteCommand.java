@@ -7,6 +7,9 @@ import seedu.eduke8.note.Note;
 import seedu.eduke8.topic.TopicList;
 import seedu.eduke8.ui.Ui;
 
+/**
+ * A specific command that manages a user's Notes in E-Duke-8.
+ */
 public class NoteCommand extends Command {
 
     private static final String NOTE_ADD = "add";
