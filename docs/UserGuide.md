@@ -10,8 +10,39 @@ The purpose of this user guide is to provide you with all the necessary informat
 around NUS campus via the school's shuttle service.<br>
 
 ## Table of Contents
-* Table of Contents
-{:toc}
+
+- [1. Overview](#1-overview)
+  * [1.1 What is Nav@NUS?](#11-what-is-navnus)
+  * [1.2 About the User Guide](#12-about-the-user-guide)
+  * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
+- [2. Quick Start - Johnson Yee](#2-quick-start---johnson-yee)
+- [3. Features](#3-features)
+  * [3.1. Bus Features](#31-bus-features)
+    + [3.1.1. List available help: ```/help``` -Yuxin](#311-list-available-help-help---yuxin)
+    + [3.1.2. Check for direct bus: ```/route``` - Wamika](#312-check-for-direct-bus-route---wamika)
+    + [3.1.3. Check bus route: ```/routemap``` - Johnson Yee](#313-check-bus-route-routemap---johnson-yee)
+    + [3.1.4. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin](#314-check-for-buses-at-a-bus-stop-bus---wong-heng-chin)
+    + [3.1.5. List all bus available in NUS ```/allbus``` - Shuyi](#315-list-all-bus-available-in-nus-allbus---shuyi)
+    + [3.1.6. List all bus stops in NUS: ```/liststops``` - Yuxin](#316-list-all-bus-stops-in-nus-liststops---yuxin)
+    + [3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi](#317-list-all-faculties-in-nus-faculty---shuyi)
+  * [3.2. Dine Features](#32-dine-features)
+    + [3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi](#321-search-for-dining-options-within-a-faculty-dine---shuyi)
+    + [3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi](#322-search-for-specific-dining-outlet-dineinfo---shuyi)
+  * [3.3. Favourite Features](#33-favourite-features)
+    + [3.3.1. Add a favourite command: `/addfav` -Yuxin](#331-add-a-favourite-command-addfav---yuxin)
+    + [3.3.2. List all favourite commands: `/listfav` - Shuyi](#332-list-all-favourite-commands-listfav---shuyi)
+    + [3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee](#333-delete-a-favourite-command-deletefav---johnson-yee)
+    + [3.3.4. Execute a favourite command: `/execfav` - - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
+    + [3.3.5. Change the description for a favourite command: `/descfav` - Wamika](#335-change-the-description-for-a-favourite-command-descfav---wamika)
+    + [3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi](#336-clear-the-list-of-favourite-commands-clearfav---shuyi)
+  * [3.4. Common Features](#34-common-features)
+    + [3.4.1. Checking for similar locations - Wamika](#341-checking-for-similar-locations---wamika)
+    + [3.4.2. Reset frequent search data: ```/reset``` - Johnson Yee](#342-reset-frequent-search-data-reset---johnson-yee)
+    + [3.4.3. Exit the program: ```/exit```](#343-exit-the-program-exit)
+    + [3.4.4. Display most searched bus stop on start-up - Johnson Yee](#344-display-most-searched-bus-stop-on-start-up---johnson-yee)
+- [4. FAQ](#4-faq)
+- [5. Command Summary](#5-command-summary)
+- [6. Glossary - Wamika](#6-glossary---wamika)
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
@@ -92,7 +123,7 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
 <!-- @@author Lezn0-->
-#### 3.1.1. List available help: ```/help``` -Yuxin
+#### 3.1.1. List available help: ```/help``` - Yuxin
 This command lists a set of features along with their respective commands available to users.
 
 Format:<br> <code>/help</code>
@@ -184,7 +215,7 @@ which is relatively more crowded than other bus stops.<br><br>
 3. With this information, you could explore other bus routes to your destination.
 <!-- @@author -->
 
-#### 3.1.4. Check for buses at a bus stop: ```/bus```
+#### 3.1.4. Check for buses at a bus stop: ```/bus``` - Wong Heng Chin
 This command displays all buses available at a specific bus stop.
 
 Format: <br>
@@ -328,7 +359,7 @@ This section provides the instruction for all features categorised under the mai
 to your needs.
 
 <!-- @@author Lezn0 -->
-#### 3.3.1. Add a favourite command: `/addfav` -Yuxin
+#### 3.3.1. Add a favourite command: `/addfav` - Yuxin
 This command adds a valid command with an optional description to your list of favourites
 
 Format:<br>
@@ -404,7 +435,7 @@ press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 <!-- @@author -->
 
-#### 3.3.4. Execute a favourite command: `/execfav`
+#### 3.3.4. Execute a favourite command: `/execfav` - Wong Heng Chin
 This command executes the specific command in your list of favourite commands.
 
 Format: <br>
