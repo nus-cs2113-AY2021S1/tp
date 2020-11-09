@@ -28,7 +28,8 @@ public class AddSlotCommand extends Command {
     private static final String ADDED_MSG = " added";
     private static final String INCORRECT_SLOT_FORMAT_MSG = "incorrect format for slot: ";
     private static final String ADD_MOD_BOOKMARK_MSG = "  bookmark added to ";
-    private static final String SLOT_FORMAT_ERROR_MSG = ". (please follow the format: add {MODULE} {DESCRIPTION} {DAY} {START_TIME} {END_TIME})";
+    private static final String SLOT_FORMAT_ERROR_MSG = ". (please follow the format: add {MODULE} "
+            + "{DESCRIPTION} {DAY} {START_TIME} {END_TIME})";
     private static final String INVALID_DAY_MSG = "  Invalid day input: ";
     private static final String INVALID_TIME_FORMAT_MSG = "  Invalid time format for slot. (";
     private static final String SLOT_ALREADY_EXISTS_MSG = "  Slot already exists.";
