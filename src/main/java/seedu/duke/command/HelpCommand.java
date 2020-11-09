@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import org.apache.commons.text.WordUtils;
 import seedu.duke.data.UserData;
 import seedu.duke.exception.InvalidHelpTopicException;
 import seedu.duke.storage.Storage;
@@ -7,10 +8,13 @@ import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
+
+
 public class HelpCommand extends Command {
 
     ArrayList<String> helpStuff;
     String helpTopic;
+    WordUtils wrapper = new WordUtils();
 
     /**
      * Creates a help command object to be executed.
@@ -49,6 +53,7 @@ public class HelpCommand extends Command {
 
         for (int i = beginIndex + 1; i < endIndex; i++) {
             String line = helpStuff.get(i);
+            line = wrapper.wrap(line, 80, "\n", false);
             ui.printMessage(line);
         }
 

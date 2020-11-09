@@ -356,6 +356,8 @@ public class StorageParser {
             repeatEvent.setDate(repeatDate);
             if (statuses[i].equals("T")) {
                 repeatEvent.markAsDone();
+            } else {
+                repeatEvent.markAsUndone();
             }
             repeatEventList.add(repeatEvent);
         }

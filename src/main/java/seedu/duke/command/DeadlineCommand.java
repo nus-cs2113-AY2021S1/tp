@@ -108,8 +108,9 @@ public class DeadlineCommand extends Command {
         } else {
             logger.warning("WrongNumberOfArgumentsException encountered -- "
                     + "Deadline have incorrect number of arguments");
-            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Deadline!");
-
+            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Deadline!"
+                    + System.lineSeparator()
+                    + "The format for Deadline is : \"deadline <EVENT_INDEX>; [EVENT_DATE]; [EVENT_TIME]\" ");
         }
 
     }

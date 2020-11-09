@@ -54,6 +54,11 @@ public class ViewCommand extends Command {
 
     }
 
+    /**
+     * Parsing user command.
+     * @param command user input
+     * @throws DukeException catch any exception under Duke.
+     */
     private void parseUserCommand(String command) throws DukeException {
         command = command.trim();
         String[] commandSplit = command.split(";");
@@ -68,7 +73,9 @@ public class ViewCommand extends Command {
         } else {
             logger.warning("WrongNumberOfArgumentsException encountered "
                     + "-- View have incorrect number of arguments");
-            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Note!");
+            throw new WrongNumberOfArgumentsException("Incorrect number of parameters for View!"
+                    + System.lineSeparator()
+                    + "The format for View is : \"view <EVENT_TYPE>; <EVENT_INDEX>;\" ");
         }
     }
 
