@@ -147,7 +147,8 @@ Given the above alternatives, alternative 1 was used considering the implementat
 application.
 <!-- @@author -->
 
-### 3.2. Full Route Display (`/routemap` Feature)
+<!-- @@author Johnson-Yee -->
+### 3.2. Full Route Display (`/routemap` Feature) - Johnson
 
 The `/routemap <bus code>` is the command that has to entered by the user to see the full bus route of a user-specified
 bus route.
@@ -183,6 +184,7 @@ of busStops objects.
     projects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
+<!-- @@author -->
 
 <!-- @@author Lezn0 -->
 ### 3.3. List All stops (/liststops Feature) - Yuxin
@@ -391,7 +393,8 @@ _Credits: The Levenshtein distance algorithm was adapted from
 [this site.](http://rosettacode.org/wiki/Levenshtein_distance#Java)_
 <!-- @@author -->
 
-### 3.11 Displaying most searched bus stop on start-up
+<!-- @@author Johnson-Yee -->
+### 3.11 Displaying most searched bus stop on start-up - Johnson
 This feature informs the user about their most searched bus stop.
 There is no function to explicitly call it and is executed only during Nav@NUS's start up.
 
@@ -409,6 +412,7 @@ The following steps explain how the most searched bus stop is displayed.
 The following sequence diagram illustrates the steps taken by the program on start-up.
 ![Display_Search_Freq_Sequence_Diagram](DG_Diagrams/ResetSearchFreqCommand/DisplaySearchFreq.png)
 #### Design Considerations
+
 ##### Aspect: Implementing search frequencies
 * **Alternative 1 (current choice):** Each value in the BusStops enumeration has a private integer
 variable called searchCount.
@@ -445,10 +449,12 @@ index has been deleted.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
 ![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
+<!-- @@author -->
 
-## 4. Appendix A: Product Scope
+## 4. Appendix A: Product Scope 
 
-### 4.1. Target user profile
+<!-- @@author Johnson-Yee -->
+### 4.1. Target user profile - Johnson
 
 Nav@NUS targets people who are unfamiliar with the shuttle bus service in NUS Kent Ridge Campus 
 including students, professors and visitors.
@@ -457,12 +463,13 @@ These are people who:
  - prefer a desktop CLI app over other types
  - are new to NUS Kent Ridge Campus
   
-### 4.2. Value Proposition
+### 4.2. Value Proposition - Johnson
 
 Nav@NUS seeks to help the intended audience to achieve the following:
  - Efficient checking of bus routes in NUS
  - Fast viewing of dining options available at other locations
  - Personalised application suited to the user's needs
+<!-- @@author -->
 
 <!-- @@author wamikamalik -->
 ## 5. Appendix B: User Stories - Wamika
@@ -527,7 +534,8 @@ This portion contains instructions on how to perform manual testing.
     Expected: An appropriate error message will be displayed.      
 <!-- @@author -->
 
-### E.3 Check for full bus route
+<!-- @@author Johnson-Yee -->
+### E.3 Check for full bus route - Johnson
 1. Executing a route map command to view full route of a selected bus
 - Prerequisites: List all buses available by executing `/allbus` command
 
@@ -542,6 +550,7 @@ Expected: No bus routes will be displayed as there is no such bus in our databas
 - Test case 3: `/routemap`<br>
 Expected: No bus routes will be displayed. Error details will be shown to remind users to type in
 the needed parameter.<br>
+<!-- @@author -->
 
 <!-- @@author EthanWong22 -->
 ### E.4 Check for buses at a bus stop - Wong Heng Chin
@@ -620,7 +629,8 @@ Expected: Message of the command `/liststops` already exists in your favourites 
 Expected: Similar to previous.
 <!-- @@author -->
 
-### E.8 Delete favourite command from favourite list
+<!-- @@author Johnson-Yee -->
+### E.8 Delete favourite command from favourite list - Johnson
 1. Deleting a favourite command from favourite list
 - Prerequisites: List all buses available by executing `/listfav` command. There are existing favourite commands in
 the favourite list.
@@ -636,7 +646,7 @@ Expected: No command executed.Error details will be shown to remind users to typ
 
 - Test case 3: `/deletefav`<br>
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
-
+<!-- @@author -->
 
 <!-- @@author EthanWong22 -->
 ### E.9 Execute a favourite command from favourite list - Wong Heng Chin
