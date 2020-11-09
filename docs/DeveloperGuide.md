@@ -390,7 +390,7 @@ In **Figure 10** above, the flow of the program after it enters the filter proce
 
 ### Bunny class family overivew
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<p= "center"><i><b>Figure 11:  Bunny ideas UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 11:  Bunny ideas UML Class Diagram</b></i></p>
 
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
