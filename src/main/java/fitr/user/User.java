@@ -274,13 +274,13 @@ public class User {
             try {
                 if (isEdit) {
                     // Only single digit input allowed
-                    if(argument.trim().length()==1) {
+                    if (argument.trim().length() == 1) {
                         fitnessLevelInput = Integer.parseInt(argument.trim());
                     }
                 } else {
                     input = Ui.read().trim();
                     // Only single digit input allowed
-                    if(input.length()==1) {
+                    if (input.length() == 1) {
                         fitnessLevelInput = Integer.parseInt(input);
                     }
                 }

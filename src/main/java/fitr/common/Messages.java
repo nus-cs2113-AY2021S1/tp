@@ -38,12 +38,12 @@ public class Messages {
     public static final String FORMAT_VIEW_PROFILE = "view profile";
     public static final String FORMAT_VIEW_BMI = "view bmi";
     public static final String FORMAT_VIEW_FOOD = "view food";
-    public static final String FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE = "view food DATE/MONTH/YEAR (dd/MM/yyyy)";
+    public static final String FORMAT_VIEW_FOOD_ON_SPECIFIED_DATE = "view food dd/MM/yyyy";
     public static final String FORMAT_VIEW_EXERCISE = "view exercise";
-    public static final String FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE = "view exercise DATE/MONTH/YEAR (dd/MM/yyyy)";
+    public static final String FORMAT_VIEW_EXERCISE_ON_SPECIFIED_DATE = "view exercise dd/MM/yyyy";
     public static final String FORMAT_VIEW_GOAL = "view goal";
     public static final String FORMAT_VIEW_SUMMARY = "view summary";
-    public static final String FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE = "view summary DATE/MONTH/YEAR (dd/MM/yyyy)";
+    public static final String FORMAT_VIEW_SUMMARY_ON_SPECIFIED_DATE = "view summary dd/MM/yyyy";
     public static final String FORMAT_EDIT_NAME = "edit name NEW_NAME";
     public static final String FORMAT_EDIT_AGE = "edit age NEW_AGE";
     public static final String RANGE_EDIT_AGE = "Valid range for age: 1 to 130";
@@ -59,8 +59,8 @@ public class Messages {
     public static final String FORMAT_EDIT_EXERCISE =
             "edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT";
     public static final String FORMAT_EDIT_GOAL = "edit goal INDEX TYPE_OF_GOAL GOAL_DESCRIPTION";
-    public static final String FORMAT_DELETE_FOOD = "delete food DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
-    public static final String FORMAT_DELETE_EXERCISE = "delete exercise DATE/MONTH/YEAR (dd/MM/yyyy) INDEX";
+    public static final String FORMAT_DELETE_FOOD = "delete food dd/MM/yyyy INDEX";
+    public static final String FORMAT_DELETE_EXERCISE = "delete exercise dd/MM/yyyy INDEX";
     public static final String FORMAT_DELETE_GOAL = "delete goal INDEX";
     public static final String FORMAT_CLEAR_FOOD = "clear food";
     public static final String FORMAT_CLEAR_EXERCISE = "clear exercise";

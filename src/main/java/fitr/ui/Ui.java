@@ -202,8 +202,8 @@ public class Ui {
             System.out.printf(VIEW_SPACER, COMMAND_FOOD, "View food entries");
             System.out.printf(VIEW_SPACER, COMMAND_FOOD + " " + FORMAT_DATE, "View food entries on specific date");
             System.out.printf(VIEW_SPACER, COMMAND_EXERCISE, "View exercise entries");
-            System.out.printf(VIEW_SPACER, COMMAND_EXERCISE + " " + FORMAT_DATE, "View exercise entries on specific " +
-                    "date");
+            System.out.printf(VIEW_SPACER, COMMAND_EXERCISE + " " + FORMAT_DATE, "View exercise entries on specific "
+                    + "date");
             System.out.printf(VIEW_SPACER, COMMAND_VIEW_SUMMARY, "View calorie summary");
             System.out.printf(VIEW_SPACER, COMMAND_GOAL, "View your food and exercise goals");
             break;
