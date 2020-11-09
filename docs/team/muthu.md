@@ -7,30 +7,39 @@
 
 
 ### Summary of Contributions
+* **Code contributed:** [Reposense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=syncode98)
+* **Features implemented:** 
+    * Implement Quiz Feature which includes the following:
+         - Quiz,SubjectQuiz and TopicQuiz classes which form the quiz.
+         - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes .These 
+         classes were based on the other SubjectCommand classes created by [JiaLerk](https://github.com/jialerk).
+         - Logging (within the respective classes) 
+         - Testing - SubjectQuizTest and TopicQuizTest.
+         - Testing -Two test cases in the SubjectCommandTest and  TopicCommandTest related to quiz. The other methods were
+         created by [JiaLerk](https://github.com/jialerk).
 
-#### Code Contribution
-Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=syncode98)
-
-#### Enhancements 
-- Implement Quiz Feature which includes the following:
-    - Quiz,SubjectQuiz and TopicQuiz classes which form the quiz.
-    - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes.
-    - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz.
-    - Logging (within the respective classes)
-    - Testing - SubjectQuizTest,TopicQuizTest and the two test cases in the SubjectCommandTest and  TopicCommandTest related to quiz.
+    * Implement Quiz Feature which includes the following:
+        - Quiz,SubjectQuiz and TopicQuiz classes which form the quiz.
+        - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes. These
+        command classes were created by [JiaLerk](https://github.com/jialerk).
+        - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz. 
+        - Logging (within the respective classes)
+        - Testing - SubjectQuizTest,TopicQuizTest.
+        - Testing - The two test cases in the SubjectCommandTest and  TopicCommandTest related to results.The other methods were
+         created by [JiaLerk](https://github.com/jialerk).
     
-- Implement Result Feature which includes the following:
-    - Result , ResultList classes.
-    - ResultSubjectCommand and ResultTopicCommand classes to read the input and show the respective results.
-    - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz.
-    - Logging (within the respective classes)
-    - Testing -  The two test cases in the SubjectCommandTest and TopicCommandTest related to results.
+    * Implement Result Feature which includes the following:
+        - Result , ResultList classes.
+        - ResultSubjectCommand and ResultTopicCommand classes to read the input and show the respective results.
+        - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz.
+        - Logging (within the respective classes)
+        - Testing -  The two test cases in the SubjectCommandTest and TopicCommandTest related to results.
        
- - Implement printing of upcoming tasks in the application.
+    * Implement printing of upcoming tasks in the application.
  
- - Implement Date and Time feature in Event and deadline classes. Furthermore, sorted the tasks according to their Date and Time.
+    * Implement Date and Time feature in Event and deadline classes. Furthermore, sorted the tasks according to their Date and Time.
  
- - Implement the logo in the application.
+    * Implement the logo in the application.
  
  #### Contribution to documentation
   Sections contributed: 

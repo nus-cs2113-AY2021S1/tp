@@ -660,7 +660,7 @@ This content format is a result of converting a list of `Subject` objects with p
 
 The parser package contains the following three classes which are responsible for making sense of the user input.
 
-####SubjectParser
+#### SubjectParser
 
 The SubjectParser class parses the user inputs at the main level.
 The diagram below shows how the SubjectParser class is implemented.
@@ -668,7 +668,7 @@ The diagram below shows how the SubjectParser class is implemented.
 ![SUbjectParser](http://www.plantuml.com/plantuml/svg/VTBBIiD05CRn_Jp5q5LRY0zGfBHumOKBjKympPngv2HfvoAjJ-yO8npbEt4JoF_B-AFC9YONKcxP69TJx-hKVBX4jkzCjTxb_JlLwSc5I65r_7xCToaqtQizPEQRlcrTvnV6E4xopHMTikCud-qlD5iOM_x-76MhjRqxDsbyENwrN9hVVmygEEMwgj3GqzGnXZWIn78JawPzB4tLWegrO2Yqg4vhhMEU4c-PLJGUOBVSOZeUw7ew7_kGrBinL9KEEvQBAOIF7RhhVsRdlGRUUgzhPPoWZZli114ZFJ4bqfotGrMfi6Ejc48mxjXyQ3glYUzBKxsWOgqO0Ykg-jLz8pvgseVIL2seM2k6G8ig_btZpqYzj7LDCQfSs35OJ24PTum-vUPJ4p-Nfdf1nLen15PKiJHGp9oYXdqPiig57OF5599n7zKOj-j3kAWsb35DBA5CEuZAS_XS7hYoNMOscn9po-OB)
 <sub>***Figure 4.4.1** UML sequence diagram for subject parser*</sub>
 
-####FlashcardParser
+#### FlashcardParser
 
 The FlashcardParser class parses the user inputs at the topic level.
 The diagram below shows how the FlashcardParser class is implemented.
@@ -676,7 +676,7 @@ The diagram below shows how the FlashcardParser class is implemented.
 ![FlashcardParser](http://www.plantuml.com/plantuml/svg/ZPBTIiD048NlzocMNhM5-015Iei_UE65q2SOCgCDJ9AwFw9lxo1I9CmUpCt2dhCVtu4SSg5KwgWXK2qpzMNue29ndaAtVrJAvvuIlr3AadONEsHzAccOtk9hLRsRnv4ctjXZBNzlRkIzakRrIZw7ijg4QD-25hjzVB3qUltxTBiDLmilTrctNUUNMJ0iY6PnpNN8mFpPKc3kvC3SBRDW63QFf8hjZwfeW5_16xm-YuFqblIB5SJS7d1aHlBB68bxNHQ8yeLPL8gqdUz_SgJjDO1veyw2WUZNEOjUsWkUB0N-JWxitJAB2rkOj_nESqfVID0f04E_pV8FdDXfY2Ls5wUg6WuMrr6_0G00)
 <sub>***Figure 4.4.2** UML sequence diagram for flashcard parser*</sub>
 
-####TopicParser
+#### TopicParser
 
 The TopicParser class parses the user inputs at the topic level.
 This class is implemented in a similar manner as the FlashcardParser and SubjectParser classes.
@@ -741,14 +741,16 @@ for obtaining a score above half of the maximum score and `Excellent` for gettin
  For the results of a subject , the `printSubjectResults` method in the Ui class checks if there are any results of previous subject quizzes for that particular subject. 
  
  ![sr](https://user-images.githubusercontent.com/46095141/98535180-a3141680-22c0-11eb-9e75-519ea76684bd.png)
-<sub>***Figure 4.6.1** UML sequence diagram for requesting results of the Maths subject</sub>
+
+<sub>***Figure 4.7.1** UML sequence diagram for requesting results of the Maths subject*</sub>
 
 ### 4.7.2 Printing out the results for a topic
 For the results of a topic, the `printTopicResults` method checks if the topic has any any results from previous topic quizzes.
 The user has to access the particular subject level to use this command.
 
 ![tr](https://user-images.githubusercontent.com/46095141/98535184-a3acad00-22c0-11eb-94fd-d911a346af11.png)
-<sub>***Figure 4.6.2** UML sequence diagram for requesting results of the Speed topic of the Maths subject*</sub>
+
+<sub>***Figure 4.7.2** UML sequence diagram for requesting results of the Speed topic of the Maths subject*</sub>
 
 ### 4.8 Adding objects <a name="adding-imp"></a>
 
@@ -806,12 +808,13 @@ add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic 
 ### 4.10 `list all` command <a name="listall-imp"> </a>
 
 While the syntax of the `list all` command is the same on the main, subject and topic levels,
-there are 3 separate ListAll___Commands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
+there are 3 separate ListAllXYZCommands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
 the 3 classes are kept separate so that `printAll()` can recognise what object the user is accessing.
 
 The following sequence diagram shows how you can proccess the `list all` command from the subject level.
 
 ![ListAllTopicSequenceDiagram](https://user-images.githubusercontent.com/50734854/98481821-11f95d00-2238-11eb-90c6-9bb081956da5.png)
+
 <sub>***Figure 4.9.1** UML sequence diagram for list all at topic level*</sub>
 
 If the `list all` command is given at the topic level, `printTreeTopic()` will check if each topic is the active topic each loop,
@@ -1159,7 +1162,7 @@ in classes such as Event,Deadline to provide the accurate output .
 1. `ui` - Package which contains the Ui class, in charge of user interactions.
 1.  `updateResult` - Method in Result class which updates the score of a quiz.
 
-## Appendix E: Instructions for Manual Testing
+## Appendix E: Instructions for Manual Testing <a name="manual-testing"></a>
 
 Given below are the instructions to test the app manually.
 

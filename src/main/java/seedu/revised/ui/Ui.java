@@ -31,7 +31,7 @@ public class Ui {
                     + "| |   \\___|  \\____/  |_|/_______/   |_____|_____/\n";
     public static final String HELP_MESSAGE = "Type help for all available commands";
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
-    public static final String OOPS_PREFIX = " ☹ OOPS!!!";
+    public static final String OOPS_PREFIX = " OOPS!!!";
     public static final String OOPS_SUFFIX = ":-(";
 
     public static final String FAILED_PARSE_EXCEPTION = OOPS_PREFIX + " I'm sorry, but I don't know what that means "
@@ -176,19 +176,15 @@ public class Ui {
     }
 
     public static void printFindTask(TaskList taskList, String find) {
-        int taskPresent = 0;
+        boolean isTaskFound = false;
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
-                if (taskPresent == 0) {
-                    System.out.println(DIVIDER);
-                }
-                Ui.printTaskMatch(taskPresent);
+                Ui.printTaskMatch(isTaskFound);
                 System.out.println(task);
-                taskPresent = 1;
+                isTaskFound = true;
             }
         }
-        assert (taskPresent == 1 || taskPresent == 0);
-        if (taskPresent == 0) {
+        if (!isTaskFound) {
             System.out.println(" Sorry! I could not find any tasks with " + find + " in the list.");
         }
         System.out.println(DIVIDER);
@@ -196,11 +192,9 @@ public class Ui {
 
     public static void printFindSubject(SubjectList subjectList, String find) {
         int subjectPresent = 0;
+        System.out.println(DIVIDER);
         for (Subject subject : subjectList.getList()) {
             if (subject.toString().contains(find)) {
-                if (subjectPresent == 0) {
-                    System.out.println(DIVIDER);
-                }
                 Ui.printSubjectMatch(subjectPresent);
                 System.out.println("  " + subject);
                 subjectPresent = 1;
@@ -208,10 +202,8 @@ public class Ui {
         }
         assert (subjectPresent == 1 || subjectPresent == 0);
         if (subjectPresent == 0) {
-            System.out.println(DIVIDER);
             System.out.println(" Sorry! I could not find any subject with " + find + " in the list.");
         }
-
         System.out.println(DIVIDER);
     }
 
@@ -221,8 +213,8 @@ public class Ui {
         }
     }
 
-    public static void printTaskMatch(int taskPresent) {
-        if (taskPresent == 0) {
+    public static void printTaskMatch(boolean isTaskFound) {
+        if(!isTaskFound) {
             System.out.println(" Here are the matching task(s) in your list:");
         }
     }
@@ -262,32 +254,27 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public static void printTopicMatch(int topicPresent) {
-        if (topicPresent == 0) {
-            System.out.println(DIVIDER);
-            System.out.println(" Here are the matching topic(s) in your list:");
+    public static void printTopicMatch(boolean isTopicFound) {
+        if(!isTopicFound){
+            System.out.println("Here are the matching topic(s) in your list:");
         }
     }
 
 
     public static void printFindTopic(TopicList topicList, String query) {
-        int topicPresent = 0;
+        boolean isTopicPresent = false;
+        System.out.println(DIVIDER);
         for (Topic topic : topicList.getList()) {
             if (topic.toString().contains(query)) {
-                if (topicPresent == 0) {
-                    System.out.println(DIVIDER);
-                }
-                Ui.printTopicMatch(topicPresent);
+                Ui.printTopicMatch(isTopicPresent);
                 System.out.println(topic);
-                topicPresent = 1;
+                isTopicPresent = true;
             }
         }
-        assert (topicPresent == 1 || topicPresent == 0);
-        if (topicPresent == 0) {
-            System.out.println(DIVIDER);
-            System.out.println(" Sorry! I could not find any topics with " + query + " in the list.");
+        if (!isTopicPresent) {
+            System.out.println("Sorry! I could not find any topics with " + query + " in the list.");
         }
-        System.out.println();
+        System.out.println(DIVIDER);
     }
 
     public static void printGoToTopic(Topic topic) {
@@ -301,7 +288,7 @@ public class Ui {
 
     public static void printTopicDelete(Topic topic, int total) {
         System.out.println(DIVIDER);
-        System.out.println(" Noted. I've removed this topic:");
+        System.out.println("Noted. I've removed this topic:");
         System.out.println("   " + topic);
         System.out.println(" Now you have " + total + (total == 1 ? " topic " : " topics " + "in the list."));
         System.out.println(DIVIDER);

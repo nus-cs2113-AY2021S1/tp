@@ -174,19 +174,19 @@ Here's a list of all items:
 │  ├─ 1. Pass Transistor Multiplexers
 │  ├─ 2. Arithmetic Logic Unit
 │  │  Tasks
-│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+│  └─ 1. [T][N] revise on Arithmetic Logic Unit
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
 │  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
    ├─ 2. Abstraction
    │  Tasks
-   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+   └─ 1. [D][N] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -308,7 +308,7 @@ ____________________________________________________________
 
 #### 3.1.8 Starting Subject Quiz: `quiz`  <a name="subject_quiz"> </a>
 
-Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>.
+Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">taking quizzes</a>.
 
 Format: `quiz [SUBJECT_NAME]`
 
@@ -469,7 +469,7 @@ Here are the topic(s) under CS2101:
 2. Product Demo
 ____________________________________________________________
 Here are the tasks(s) under CS2101: 
-1. [E][✘] Product Demo (at: 2:00 PM 5 Nov 2020)
+1. [E][N] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 #### 3.2.3 Listing all items: `list all`
@@ -496,21 +496,23 @@ Here's a list of all items:
 │  ├─ 1. Pass Transistor Multiplexers
 │  ├─ 2. Arithmetic Logic Unit
 │  │  Tasks
-│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+│  └─ 1. [T][N] revise on Arithmetic Logic Unit
 ├─ 2. CS2101 (You are currently here)
 │  │  Topics
 │  ├─ 1. Oral Presentation
 │  ├─ 2. Product Demo
 │  │  Tasks
-│  └─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 1. [E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Class Diagram
    ├─ 2. Abstraction
    │  Tasks
-   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+   └─ 1. [D][N] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
 ```
+
+### Topic commands
 #### 3.2.4 Adding a topic: `add` <a name="add-topic"></a>
 
 Adds a topic to the current subject.
@@ -591,12 +593,12 @@ find Pro
 Sample output:
 ```
 ____________________________________________________________
- Here are the matching topic(s) in your list:
+Here are the matching topic(s) in your list:
 Product Demo
 
 ____________________________________________________________
- Here are the matching task(s) in your list:
-[E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
+Here are the matching task(s) in your list:
+[E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -627,6 +629,7 @@ Type help for all available commands
 ____________________________________________________________
 ```
 
+### Task commands
 #### 3.2.8 Adding a 'todo' task: `todo` <a name="todo"></a>
 
 Adds a todo task.
@@ -636,6 +639,13 @@ Format: `todo [DESCRIPTION]`
 - Adds a todo task with a description of `[DESCRIPTION]`.
 - The application will print the description of the todo task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 Example of usage: 
 ```
@@ -646,10 +656,12 @@ Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [T][✘] look up on what is active listening
+  [T][N] look up on what is active listening
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
+
+>
 
 #### 3.2.9 Adding a 'deadline' task - `deadline` <a name="deadline"></a>
 
@@ -661,6 +673,13 @@ Format: `deadline [DESCRIPTION] /by [TIME]`
 - A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 - The application will print the description of the deadline task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -673,7 +692,7 @@ Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [D][✘] assignment (by: 11:59 PM 21 Oct 2020)
+  [D][N] assignment (by: 11:59 PM 21 Oct 2020)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
@@ -688,6 +707,13 @@ Format: `event [DESCRIPTION] /at [TIME]`
 - An event must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
 - The application will print the description of the event task you have added into the task list, 
 as well as the amount of tasks in the task list on the command line.
+- The format for task when the application is printing out information is:
+`[T/D/E][Y/N] TASK DESCRIPTION`
+    * T - Todo
+    * D - Deadline
+    * E - Event
+    * Y - Done
+    * N - Not done yet
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -700,7 +726,7 @@ Sample output:
 ```
 ____________________________________________________________
 Got it. I've added this task:
-  [E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
+  [E][N] tutorial (at: 4:00 PM 21 Oct 2020)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
@@ -733,7 +759,7 @@ Sample output:
 ```
 ____________________________________________________________
  Noted. I've removed this task:
-   [E][✘] tutorial (at: 4:00 PM 21 Oct 2020)
+   [E][N] tutorial (at: 4:00 PM 21 Oct 2020)
  Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
@@ -759,7 +785,7 @@ Sample output:
 ```
 ____________________________________________________________
  Nice! I've marked this task as done:
-   [D][✓] assignment (by: 11:59 PM 21 Oct 2020)
+   [D][Y] assignment (by: 11:59 PM 21 Oct 2020)
 ____________________________________________________________
 ```
 
@@ -804,8 +830,10 @@ results Java
 
 Sample output: 
 ```
+____________________________________________________________
 Quiz 1: 1.0/2.0 -- Pass
 Quiz 2: 2.0/2.0 -- Excellent
+____________________________________________________________
 ```
 
 #### 3.2.15 Exiting the subject: `exit`
@@ -912,14 +940,14 @@ Here's a list of all items:
 │  ├─ 1. Arithmetic Logic Unit
 │  ├─ 2. Pass Transistor Multiplexers
 │  │  Tasks
-│  └─ 1. [T][✘] revise on Arithmetic Logic Unit
+│  └─ 1. [T][N] revise on Arithmetic Logic Unit
 ├─ 2. CS2101
 │  │  Topics
 │  ├─ 1. Oral Presentation
 │  ├─ 2. Product Demo
 │  │  Tasks
-│  ├─ 1. [E][✓] Product Demo (at: 2:00 PM 5 Nov 2020)
-│  └─ 2. [T][✘] look up on what is active listening
+│  ├─ 1. [E][Y] Product Demo (at: 2:00 PM 5 Nov 2020)
+│  └─ 2. [T][N] look up on what is active listening
 └─ 3. CS2113T
    │  Topics
    ├─ 1. Abstraction
@@ -927,7 +955,7 @@ Here's a list of all items:
    ├─ 3. Java (You are currently here)
    │  └─ 1 Flashcard
    │  Tasks
-   └─ 1. [D][✘] Final Project (by: 11:59 PM 11 Nov 2020)
+   └─ 1. [D][N] Final Project (by: 11:59 PM 11 Nov 2020)
 ____________________________________________________________
 ```
 
@@ -943,6 +971,7 @@ Format: `add` `[QUESTION]; [ANSWER]`
 - The application will print the question and answer of the flashcard you added along with the 
 total number of flashcards under the current topic.
 > 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
+
 > ⚠️   **_WARNING:_** `[QUESTION]` and `[ANSWER]` of the flashcards are case-sensitive. 
 Example of usage: 
 ```
@@ -972,7 +1001,7 @@ Format: `delete [FLASHCARD_NUMBER]`
 - The application will print the question and answer of the flashcard you have deleted from the topic list, as well as 
 the number of flashcards you now have under the current topic on the command line.  
 
-> 📝️️ **_NOTE:_** The FLASHCARD_NUMBER` of a flashcard is the number assigned to each flashcard when the user uses the 
+> 📝️️ **_NOTE:_** The `FLASHCARD_NUMBER` of a flashcard is the number assigned to each flashcard when the user uses the 
 >list command to print out the flashcards.
 
 > 📝️️ **_NOTE:_** After deletion of a flashcard, the `FLASHCARD_NUMBER` of topics in the list may change.
@@ -1016,7 +1045,7 @@ exit
 Sample output: 
 ```
 ____________________________________________________________
-Going back to the topics and tasks list.
+Going back to the subject level.
 ____________________________________________________________
 ```
 
@@ -1032,14 +1061,14 @@ to revise your own notes.
  
 In this feature, the application prints the questions from the flashcards stored in the application. You need to complete the quiz within a
 certain time limit. There are two types of quizzes :
-* SubjectQuiz
-* TopicQuiz
+* Quiz for a subject
+* Quiz for a Topic
 
-##### Subject quiz
+##### Quiz for a subject
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
 
 
-##### Topic quiz
+##### Quiz for a Topic
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
 
 
@@ -1049,7 +1078,7 @@ This type of quiz helps you to prepare for a particular topic. The application p
 Once you have entered the type of quiz you want to begin, the application starts the quiz. You
 are expected to answer these questions.
 
-Format: `Question NAMEOFQUESTION`<br>
+Format: `Question [NAMEOFQUESTION]`<br>
 Example: `Question: What is the version of Java used in CS2113T?` <br>
 
 Once the quiz has been completed, the application prints out the scores that you obtained.
@@ -1079,8 +1108,8 @@ ____________________________________________________________</code></pre>
 You can stop the quiz by entering `stop`. The application then prints the score.<br>
 Format: `stop`<br>
 Sample output:`The quiz has been stopped!`.
-<pre><code>
-____________________________________________________________
+
+<pre><code>____________________________________________________________
 The quiz has been stopped!
 ____________________________________________________________
 Result:1/2 -- Pass
@@ -1286,28 +1315,26 @@ of the list, while tasks which are due later are placed at the rear. `Todo` task
 they do not have any deadlines.
 
 Suppose you use the `list` command and get this output:
-<pre><code>
-____________________________________________________________
+<pre><code>____________________________________________________________
 Here are the tasks(s) under CS2113T: 
-1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
-2. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
+2. [E][N] marathon (at: 6:00 PM 9 Nov 2020)
 ____________________________________________________________
 </code></pre>
 
 Adding the following deadline by `deadline project /by 18:00 07-11-2020` and using the `list` command would yield this output.
-<pre><code>
-____________________________________________________________
+<pre><code>____________________________________________________________
 Here are the tasks(s) under CS2113T: 
-1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
-2. [D][✘] project (by: 6:00 PM 7 Nov 2020)
-3. [E][✘] marathon (at: 6:00 PM 9 Nov 2020)
+1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
+2. [D][N] project (by: 6:00 PM 7 Nov 2020)
+3. [E][N] marathon (at: 6:00 PM 9 Nov 2020)
 ____________________________________________________________
 </code></pre>
 
 #### 3.4.7 Printing upcoming tasks <a name="upcoming"> </a> (Muthu)
 Once you open the application, it will print the tasks which are due in the upcoming week. Only tasks which have not been
 completed yet will be printed out. The tasks will be sorted out according to the subjects, then the date and time at which 
-the task occurs(event)/is due(deadlines).
+the task is due.
 
 Example:
 <pre><code>
@@ -1324,9 +1351,9 @@ Hello! I'm revisED
 ____________________________________________________________
 Here are the upcoming tasks for next week!
 CS2113T
-1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
+1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
 CG2027
-2. [E][✘] exam (at: 7:00 PM 9 Nov 2020)
+2. [E][N] exam (at: 7:00 PM 9 Nov 2020)
 ____________________________________________________________
 Alright, What can I do for you?
 ____________________________________________________________
