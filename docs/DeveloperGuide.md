@@ -356,11 +356,11 @@ Use case ends.
     Expected: homework task should be added to the list with date set as 25-12-2020 
     and start time 19:00 and end time 20:00, with a HIGH priority and reminder set to "Yes".
     
-    -Test case: add homework d/25-12-2020 st/1900 et/2000 p/3 r/to 
+    - Test case: add homework d/25-12-2020 st/1900 et/2000 p/3 r/to 
     Expected: Since to is not a valid reminder command, the task is not added to the list,
     and an error message is shown.
     
-    -Test case: add homework d/25-12-2020 st/1900 et/2000 p/3 r/off
+    - Test case: add homework d/25-12-2020 st/1900 et/2000 p/3 r/off
     Expected: homework task should be added to the list with date set as 25-12-2020 
     and start time 19:00 and end time 20:00, with a HIGH priority and reminder set to "No".
     
