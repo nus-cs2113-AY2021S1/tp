@@ -587,7 +587,7 @@ Create tag | `create-t /tag Important red`<br>`create-t /tag NUS /tag CEG yellow
 List tags | `list-t`
 Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /i 1 /tag Important red /tag NUS /tag CEG yellow`
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
-Add event | `add-e /t CS2113 /timing 16-10-2020 16:00`<br>`add-e /t CS2113 Lecture /timing 2020-10-16 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /timing 16-10-2020 16:00 /end 2020-10-16 18:00 /remind ...`<br>Or any combination with `/end`, `/repeat`, `/stop` and `/remind`
+Add event | `add-e /t CS2113 /timing 2020-10-16 16:00`<br>`add-e /t CS2113 Lecture /timing 2020-10-16 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /timing 2020-10-16 16:00 /end 2020-10-16 18:00 /remind ...`<br>Or any combination with `/end`, `/repeat`, `/stop` and `/remind`
 Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /timing 2020-10-16 15:55`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/timing`, `/end`, `/repeat`, `/stop` and `/remind`
 Event Manager | `list-e`<br>`list-e /timing 2020-02`
 Remind | `remind-e`
