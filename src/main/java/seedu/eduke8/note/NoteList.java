@@ -18,7 +18,7 @@ public class NoteList implements DisplayableList, EditableList {
     }
 
     /**
-     * Adds a Note object into the NoteList.
+     * Adds a Displayable object into the NoteList.
      *
      * @param note A note, which is an object that implements the Displayable interface.
      */
@@ -28,7 +28,7 @@ public class NoteList implements DisplayableList, EditableList {
     }
 
     /**
-     * Deletes a note (specified with the provided int index) from the NoteList.
+     * Deletes a Displayable object (specified with the provided int index) from the NoteList.
      *
      * @param index An index, which indicates which note in the NoteList to is to be deleted.
      */
@@ -49,7 +49,7 @@ public class NoteList implements DisplayableList, EditableList {
     }
 
     /**
-     * Finds a note that has a description that matches the description provided in the
+     * Finds a Displayable object that has a description that matches the description provided in the
      * input.
      *
      * @param input A String input, taken from the User's input.
