@@ -179,6 +179,9 @@ Below are steps of using this `add` command: <br>
 <p align="center">
   <img src="UG_Images/addModule1.png" alt="Add Module 1"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module! <br>
 <p align="center">
   <img src="UG_Images/addModule2.png" alt="Add Module 2"/>
