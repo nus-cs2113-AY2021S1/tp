@@ -243,7 +243,7 @@ You can type in `set def_mode bookmark` and Zoomaster will change your settings,
 
 ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettings.png)
 
-The next time you run Zoomaster, you will automatically enter bookmark mode.
+The next time you run Zoomaster, you will automatically enter `bookmark` mode.
 <!-- @@author -->
 <br/><br/> 
 <a name="exit"></a>  
@@ -604,12 +604,11 @@ Format (editing the time of a slot): edit time {DAY} {INDEX} {DAY} {new START_TI
 The second `DAY` parameter is for the new day of the week you wish to set your slot.
 
 <!-- @@author fchensan -->
-> For example, let's say that you have these two slots on wednesday:
+> For example, let's say that you have these two slots on wednesday: <br>
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotcontext.png)
 >
 > If you want to change the title of the second slot to "tutorial", you can simply type `edit title wed 2 tutorial`.
-> You should then see a message as shown below:  
->
+> You should then see a message as shown below: <br>
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslot.png)
 >
 > More examples of usage:   
