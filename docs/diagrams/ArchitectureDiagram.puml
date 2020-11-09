@@ -23,6 +23,7 @@ package "" {
     class StorageManager
     class ListManager
     class Command
+    class Recommender
     class Common #silver
 }
 
@@ -33,6 +34,7 @@ Ui -d-> Fitr
 Fitr -l-> Command
 Fitr --> StorageManager
 Fitr -> ListManager
+Fitr -d-> Recommender
 
 StorageManager ..> "Local storage"
 @enduml
