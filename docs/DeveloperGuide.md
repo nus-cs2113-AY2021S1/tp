@@ -597,3 +597,26 @@ Making sure the name of the appliance is found in the list.
 ### Listing 
 
 ### Saving data to disk: 
+
+#### Dealing with missing data files:
+
+When the program is started for the first time, the directory "data" and the text file "data/SmartHomeBot.txt" should be 
+automatically created to store all the data when the user start entering commands into the application. 
+There are two ways that will cause missing data files:
+
+1. When the "data" directory folder is missing.
+2. When the text file "data/SmartHomeBot.txt" is missing from the "data" directory folder.
+
+These can be stimulated by deleting either the "data" directory folder or the text file "data/SmartHomeBot.txt".<br>
+Expected-printout: Load File does not exist. No contents will be loaded. 
+
+#### Dealing with corrupted data files:
+
+Corrupted data files usually happen when some of the appliance parameters are missing from the .txt storage file. 
+When corrupted data files error occurred, some of the data will not be loaded back into the program when the program 
+start up the next time.
+
+This can be stimulated by removing one of the appliance parameters(Example: the power of the appliance) from the 
+text file "data/SmartHomeBot.txt". <br>
+Expected-printout: Data file is corrupted, some data entry will not be entered.
+
