@@ -439,7 +439,7 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 >* You are required to insert **a space** between each parameter.
 >* The chaining of commands only performs on **one module** which is `{MODULE}`.    
 >* You can only add a module that is listed on the NUSMods website. 
->* You have to format your commands as shown below for Zoomaster to read it properly. <br></br>
+>* You have to format your commands as shown below for Zoomaster to read it properly.
 >You can see the [command format](#command_format) for more information.
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
 >See the [command format](#command_format) for more details.
@@ -448,6 +448,10 @@ You can also chain commands when adding multiple slots and bookmarks to a module
 >* You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
+>* The period you enter from `{START_TIME}` to `{END_TIME}` cannot cross over midnight. 
+>Eg. 23:30 to 00:30 is not a valid period you can enter.
+>You can work around this by splitting up your timeslot into the two period, one before midnight and one after.
+>Eg. 23:30 to 23:59 and 00:00 to 00:30
 
 ```
 Format (adding a module): add {MODULE}
