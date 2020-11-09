@@ -35,23 +35,23 @@
 
 *   **Documentation:**
     *   README.md:
-        * Designed **AniChan** logo.
+        * Designed **AniChan** [logo](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/docs/images/AniChan-Logo.png).
         * Created badges on various DevOps and statuses: [#154](https://github.com/AY2021S1-CS2113T-F12-2/tp/issues/154).
         * Add short writeup to introduce **AniChan** and provide useful links to pages like user guide and developer guide.
     *   User Guide: 
-        *   Contributed to writeup on Quick Start.
-        *   Documented guide on `Workspace` management: [#185](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/185), [#162](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/162), [#302](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/302).
+        *   Contributed to writeup on Quick Start: [#62](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/62).
+        *   Documented guide on `Workspace` management: [#162](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/162), [#185](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/185), [#302](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/302).
     *   Developer Guide:
-        *   Contributed to writeup on `User` architecture and diagram.
+        *   Contributed to writeup on `User` architecture and diagram: [#254](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/254).
         *   Contributed to `Workspace` related user stories and manual testing guide: [#285](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/285).
         *   Documented `Workspace` implementation and its diagrams: [#206](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/206).
         *   Documented the section on '**Documentation, Logging, Testing, and DevOps**': [#195](https://github.com/AY2021S1-CS2113T-F12-2/tp/issues/195).
-        *   Formatting & Grammar fixes and improvements: [#254](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/254), [#302](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/302).
+        *   Formatting & Grammar fixes and improvements: [#254](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/254), [#302](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/302), [#310](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/310).
 
 *   **Team-based Tasks**
     *   Created team organization and GitHub repository.
     *   Contributed to input sanitization and validation of the overall program.
-    *   Refactored common code found in Main and Ui, and assisted to delete redundant imports and variables [#152](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/152), [#256](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/256), [#217](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/217).
+    *   Refactored common code found in `Main` and `Ui`, and assisted to delete redundant imports and variables [#152](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/152), [#217](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/217), [#256](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/256).
     *   Setting up GitHub pages and Gradle.
     *   Maintaining the issue tracker.
     *   Setup of team's Telegram & Discord channel for communication.
@@ -60,12 +60,12 @@
     *   Increased code coverage: [#150](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/150), [#221](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/221).
 
 *   **Beyond Project Team Tasks**
-    *   Reported a substantial amount of bugs in another team's repository: [#101](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/101), [#94](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/94), [#93](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/93), [#96](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/96), [#120](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/120), [#118](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/118).
+    *   Reported a substantial amount of bugs in another team's repository: [#91](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/91), [#93](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/93), [#94](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/94), [#96](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/96), [#101](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/101), [#102](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/102), [#112](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/112), [#118](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/118), [#120](https://github.com/AY2021S1-CS2113-T13-4/tp/issues/120).
     *   Provided helpful feedback for team NavNUS: [#9](https://github.com/nus-cs2113-AY2021S1/tp/pull/9/files/cabbf353f022bfb19f0bdeeeb17ba7572bed1484).
 
 *   **Tools:**
-    *   Integrated **Codacy** static code analysis to improve code and documentation quality within team.
-    *   Integrated **Travis CI** for DevOps purposes.
-    *   Integrated **Codecov** for coverage tracking.
-    *   Added **Discord bot** for GitHub tracking.
+    *   Integrated [Codacy](https://www.codacy.com/) static code analysis to improve code and documentation quality within team.
+    *   Integrated [Travis CI](https://travis-ci.org/) for DevOps purposes.
+    *   Integrated [Codecov](https://codecov.io/) for coverage tracking.
+    *   Added Discord bot using [webhooks](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) for GitHub tracking.
     

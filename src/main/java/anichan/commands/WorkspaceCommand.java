@@ -23,9 +23,10 @@ public class WorkspaceCommand extends Command {
     private static final String DELETE_OPTION = "d";
     private static final Logger LOGGER = AniLogger.getAniLogger(WorkspaceCommand.class.getName());
     private static final String EXPECTED_PARAMETERS_MESSAGE = "Workspace command only accepts the "
-            + "options: -n, -s, -l, and -d.";
+            + "parameters: -n, -s, -l, and -d.";
     private static final String EXCEPTION_WORKSPACE_IN_USE = "Please switch workspace before trying to delete it.";
-    private static final String ASSERTION_INVALID_MESSAGE = "Option should not be null.";
+    private static final String ASSERTION_COMMAND_OPTION_NULL = "Option should not be null.";
+    public static final String ASSERTION_WORKSPACE_NAME_NULL = "Workspace name should not be null.";
 
     private final String commandOption;
     private final String workspaceName;
@@ -44,10 +45,10 @@ public class WorkspaceCommand extends Command {
     /**
      * Depending on the option supplied, it can perform one of the following operations.
      * <ul>
-     *     <li>Creates a new workspace</li>
-     *     <li>Switches to workspace</li>
-     *     <li>Lists all workspace</li>
-     *     <li>Delete a workspace</li>
+     *     <li>Creates a new workspace.</li>
+     *     <li>Switches to workspace.</li>
+     *     <li>Lists all workspace.</li>
+     *     <li>Delete a workspace.</li>
      * </ul>
      *
      * @param animeData      used to retrieve anime information
@@ -58,7 +59,7 @@ public class WorkspaceCommand extends Command {
      */
     @Override
     public String execute(AnimeData animeData, StorageManager storageManager, User user) throws AniException {
-        assert commandOption != null : ASSERTION_INVALID_MESSAGE;
+        assert commandOption != null : ASSERTION_COMMAND_OPTION_NULL;
 
         switch (commandOption) {
         case CREATE_OPTION:
@@ -88,6 +89,8 @@ public class WorkspaceCommand extends Command {
      * @throws AniException when an error occurred while executing the command
      */
     private String createWorkspace(StorageManager storageManager, User user) throws AniException {
+        assert workspaceName != null : ASSERTION_WORKSPACE_NAME_NULL;
+
         Workspace newWorkspace = user.addWorkspace(workspaceName);
 
         // Adds Watchlist ArrayList to Workspace
@@ -110,6 +113,8 @@ public class WorkspaceCommand extends Command {
      * @throws AniException when an error occurred while executing the command
      */
     private String switchWorkspace(User user) throws AniException {
+        assert workspaceName != null : ASSERTION_WORKSPACE_NAME_NULL;
+
         String trimmedName = workspaceName;
         user.switchActiveWorkspace(trimmedName);
 
@@ -126,6 +131,8 @@ public class WorkspaceCommand extends Command {
      * @throws AniException when an error occurred while executing the command
      */
     private String deleteWorkspace(StorageManager storageManager, User user) throws AniException {
+        assert workspaceName != null : ASSERTION_WORKSPACE_NAME_NULL;
+
         if (user.getActiveWorkspace().toString().equals(workspaceName)) {
             throw new AniException(EXCEPTION_WORKSPACE_IN_USE);
         }
