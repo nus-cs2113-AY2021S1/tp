@@ -115,7 +115,6 @@ public class Ui {
             + " to delete?";
     private static final String DELETE_NOTE_SUCCESSFULLY = "The note has been deleted!";
     private static final String DELETE_NOTE_UNSUCCESSFULLY = "The note was not deleted successfully. Try again!";
-    private static final String INVALID_TOPIC = "Please enter a valid topic name";
     private static final String INVALID_TOPIC_INDEX = "Please enter a valid topic index";
     private static final String LIST_NOTE_PROMPT = "Which topic's notes would you like to view?";
     private static final String INPUT_ERROR = "Please provide a valid topic!";
@@ -410,7 +409,7 @@ public class Ui {
         } else if (topicList.doesTopicExist(topicName) && noteCount == 0) {
             printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
-            printMessage(INVALID_TOPIC);
+            printMessage(INPUT_ERROR);
             printTopicsError(topicList);
             printMessage(DELETE_NOTE_UNSUCCESSFULLY);
         }
