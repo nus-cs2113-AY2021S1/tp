@@ -257,22 +257,21 @@ The grade features are facilitated by `Gradebook`, which further make use of `Gr
 Each `Grade` will contain information such as the module's title, credits, grade, status of SU and status of star.
 All grades are stored internally under `AcademicRun` as an array list `ArrayList<Grade>`.
 
-It implements the following operations:
+It implements the following important operations:
 * `addGrade(String[], ArrayList<Grade>)`:Adds a `Grade` to the `ArrayList<Grade>`. 
 * `printCap(ArrayList<Grade>)`:Calculate the current CAP based on the `ArrayList<Grade>`. 
 * `printListOfGrades(ArrayList<Grade>)`:Print out all the `Grade` that are currently stored inside `ArrayList<Grade>`.
 * `deleteGrade(Integer, ArrayList<Grade>)`:Delete a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `suGradeInGradeBook(Integer, ArrayList<Grade>)`:Su a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `starGrade(Integer, ArrayList<Grade>)`:Star a `Grade` from a specified index inside `ArrayList<Grade>`.
-* `combineGradeDetails(Grade)`:Print out the details of a particular `Grade`.
 
-The following sequence diagram demonstrates an example of how the Su Grade function works:
+The following diagram demonstrates an example of how the Su Grade function works:
 
 <p align="center">
     <img width="70%" height="70%" src="Images/Academic_Sequence_Diagram.png">
 </p>
 
-With reference to above, it can be observed that whenever a command modifies the array lists, 
+With reference to above diagram, it can be observed that whenever a command modifies the array lists, 
 `AcademicStorage` is called to update the local storage files.
 
 **PersonBook Features**
