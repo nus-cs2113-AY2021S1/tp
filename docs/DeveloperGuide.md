@@ -1021,7 +1021,7 @@ On top of that, `Storage` implements the following operations:
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
 
 <p align="center">
-  <img src="DG_Images/listDueClass.png" height="600" width="1023" alt="Class Diagram of ListDue"/>
+  <img src="DG_Images/listDueClass.png" width="950" alt="Class Diagram of ListDue"/>
   <br/>Figure <>. Class diagram of ListDue
 </p>
 
@@ -1074,7 +1074,7 @@ On top of that, the following operations from `Storage` are used:
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
 
 <p align="center">
-  <img src="DG_Images/previewClass.png" height="600" width="1023" alt="Class Diagram of Preview"/>
+  <img src="DG_Images/previewClass.png" width="950" alt="Class Diagram of Preview"/>
   <br/>Figure <>. Class diagram of Preview
 </p>
 
