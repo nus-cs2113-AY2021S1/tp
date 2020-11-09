@@ -30,117 +30,18 @@ deactivate Parser
 Zoomaster-> HelpCommand : execute(bookmarks, timetable, ui)
 activate HelpCommand
 
-alt details isEmpty
+alt details is empty
 
-    HelpCommand -> Ui : printHelpMessage()
-    activate Ui
-    Ui -> Parser :
-    activate Parser
-    Parser --> Ui : programMode
-    deactivate Parser
+        ref over Parser, HelpCommand, Ui
+            details is empty
+        end ref
 
-    alt programMode == 0
-    Ui -> Ui : printYellowWithBorder(MainMenuCommands)
-        activate Ui
-        deactivate Ui
-
-    else programMode == 1
-    Ui -> Ui : printYellowWithBorder(BookmarkModeCommands)
-            activate Ui
-            deactivate Ui
-
-    else programMode == 2
-    Ui -> Ui : printYellowWithBorder(TimetableModeCommands)
-            activate Ui
-            deactivate Ui
-
-    else programMode == 3
-    Ui -> Ui : printYellowWithBorder(PlannerModeCommands)
-            activate Ui
-            deactivate Ui
-
+else details not empty
+        ref over Parser, HelpCommand, Ui
+            details not empty
+        end ref
     end alt
     deactivate Ui
-
-
-
-else details not Empty
-
-    HelpCommand -> Ui : printHelpMessage(details)
-    activate Ui
-    Ui -> Parser :
-    activate Parser
-    Parser --> Ui : programMode
-    deactivate Parser
-
-
-
-    alt details == CLEAR_KW
-    Ui -> Ui : printYellowWithBorder(ClearCommandDetails)
-        activate Ui
-        deactivate Ui
-
-    else details == EXIT_KW
-    Ui -> Ui : printYellowWithBorder(ExitCommandDetails)
-        activate Ui
-        deactivate Ui
-
-    else details == MODE_KW
-    Ui -> Ui : printYellow(ModeCommandDetails)
-        activate Ui
-        deactivate Ui
-    Ui -> Ui : printCyan(ModeCommandFormat)
-        activate Ui
-        deactivate Ui
-
-    else details == LAUNCH_NOW_KW
-    Ui -> Ui : printYellow(LaunchNowCommandDetails)
-        activate Ui
-        deactivate Ui
-    Ui -> Ui : printCyan(LaunchNowCommandFormat)
-        activate Ui
-        deactivate Ui
-
-    else details == SHOW_KW
-    Ui -> Ui : printYellow(ShowCommandDetails)
-        activate Ui
-        deactivate Ui
-    Ui -> Ui : printCyan(ShowCommandFormat)
-        activate Ui
-        deactivate Ui
-
-    else details == SET_KW
-    Ui -> Ui : printYellow(SetCommandDetails)
-        activate Ui
-        deactivate Ui
-    Ui -> Ui : printCyan(SetCommandFormat)
-        activate Ui
-        deactivate Ui
-    Ui -> Ui : printGreen(SetCommandExample)
-        activate Ui
-        deactivate Ui
-
-    else programMode == 1
-    Ui -> Ui : printModeOneExtendedHelp(details)
-            activate Ui
-            deactivate Ui
-
-    else programMode == 2
-    Ui -> Ui : printModeTwoExtendedHelp(details)
-            activate Ui
-            deactivate Ui
-
-    else programMode == 3
-    Ui -> Ui : printModeThreeExtendedHelp(details)
-            activate Ui
-            deactivate Ui
-
-    end alt
-    deactivate Ui
-
-end alt
-
-
 
 destroy HelpCommand
 

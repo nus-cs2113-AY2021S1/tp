@@ -173,16 +173,16 @@ The diagrams are colour coded as such:
 * Blue -> Timetable Mode
 * Red -> Planner Mode
 
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode1.png) <br/></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/parsercommand/mode0.png) <br/></br>
 *<center/> Figure 1.4 Class diagram of Commands valid in all modes (Global) </center> <br/></br>*
 <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode2.png) <br/></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/parsercommand/mode1.png) <br/></br>
 *<center/> Figure 1.5 Class diagram of Commands valid in Bookmark Mode </center> <br/></br>*
 <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode3.png) <br/></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/parsercommand/mode2.png) <br/></br>
 *<center/> Figure 1.6 Class diagram of Commands valid in Timetable Mode</center> <br/></br>*
 <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/mode4.png) <br/></br>
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/images/parsercommand/mode3.png) <br/></br>
 *<center/> Figure 1.7 Class diagram of Commands valid in Planner Mode</center> <br/></br>*
 <br></br>
 The Command component is responsible for carrying out the functions of Zoomaster.
@@ -500,6 +500,8 @@ There are four options:
 The whole-relationship between the objects, which can be seen from the class diagram Figure 2.07, would mean that 
 deleting an object would also delete all objects contained in it.  
 <br></br>
+
+
 <!-- @@author -->
 <!-- @@author Speedweener -->   
 <a name="nusmodulelist"></a>
@@ -524,19 +526,24 @@ to illustrate the try-catch block.
 
 <br></br>
 
-1. When the application is launched, the application will try to read the module list from a modulelist.txt file in the same directory. It will read each line as a separate module and add them to an ArrayList.
+1. When the application is launched, the application will try to read the module list from a modulelist.txt file in the same directory. 
+It will read each line as a separate module and add them to an ArrayList.
 
 2. If it cannot find the local file, or the file is empty, **FileNotFoundException** will be thrown.
 
-3. When the **FileNotFoundException** is thrown, the nusModuleListFromNusMods() method will be called. It will first obtain the URL to be accessed using getNusModsUrl(), which creates the URL based on the current year. It will then attempt to connect to the URL. 
+3. When the **FileNotFoundException** is thrown, the nusModuleListFromNusMods() method will be called. It will first obtain the URL to be accessed using 
+getNusModsUrl(), which creates the URL based on the current year. It will then attempt to connect to the URL. 
 
 4. If unable to connect, the method will return null. The importance of this null value will be explained further down.
 
-5. Else if it is able to connect, the application retrieves the JSON file as a string. The jsonToArrayList method is then called to parse the string to a JSONArray, then store the "modulecode" attribute of each JSONArray entry into an ArrayList. This ArrayList is returned to the loadModuleList() method.
+5. Else if it is able to connect, the application retrieves the JSON file as a string. The jsonToArrayList method is then called to parse 
+the string to a JSONArray, then store the "modulecode" attribute of each JSONArray entry into an ArrayList. This ArrayList is returned to the 
+loadModuleList() method.
 
 6. If the ArrayList value is not null (Connection was successful), it is saved locally using the saveModuleList() method.
 7. The ArrayList value is then returned to `Zoomaster`, which stores it as a static ArrayList in `Module`. This ArrayList is then used to validate modules.
-8. To be validated, the module to be added must exists in the ArrayList. However, if the ArrayList is null (Failed to Connect), the validation will always return true. This is to allow the application to still be useable, although without the module validation feature
+8. To be validated, the module to be added must exists in the ArrayList. However, if the ArrayList is null (Failed to Connect), the validation will always 
+return true. This is to allow the application to still be usable, although without the module validation feature.
 
 #### Design consideration:
 
@@ -548,7 +555,8 @@ to illustrate the try-catch block.
     * Pros: Does not require internet connection
     * Cons: Module list might not be updated as per the year which the application is being run, prevent newer modules from being added
 
-Since the application is primarily based on launching URLs, having an internet connection is a general requirement for the rest of the application to function. Hence, the cons of the first alternative is not significant.
+Since the application is primarily based on launching URLs, having an internet connection is a general requirement for the rest of the 
+application to function. Hence, the cons of the first alternative is not significant.
 
 ##### Aspect: How to increase usability among different users
 * **Alternative 1 (Current choice):** Module list is a saved as a editable txt file
@@ -563,23 +571,42 @@ Since the start up time for the app after loading the module list from online is
 
 <a name="extendedhelpcommand"></a>
 ### Extended HelpCommand feature (Zhan Hao)
-This feature allows user to query more about the different commands available in the different modes. This is to allow quick typist to have a fast way to reference the purpose and format of the commands without having to consult the User Guide.
+This feature allows user to query more about the different commands available in the different modes. This is to allow quick typist to 
+have a fast way to reference the purpose and format of the commands without having to consult the User Guide.
 
-This command will be sensitive to the current mode of the application. For example, the command `help add` would print different text in Bookmark, Timetable, or Planner Mode. The command `help edit` would be valid in Timetable mode, but not valid in Bookmark mode as such a command does not exist in that mode.
+This command will be sensitive to the current mode of the application. For example, the command `help add` would print different text in 
+Bookmark, Timetable, or Planner Mode. The command `help edit` would be valid in Timetable mode, but not valid in Bookmark mode as such a 
+command does not exist in that mode.
 
 Below is a sequence diagram of the extended HelpCommand.   
 
 ![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/loadModuleList/helpCommandOverallDiagram.png)  
-*<center/> Figure 2.20 Sequence diagram for extended "HelpCommand" </center> <br/></br>*
+*<center/> Figure 2.20 Sequence diagram for "HelpCommand" </center> <br/></br>*
+<br></br>
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/helpCommandDetailsIsEmpty.png)  
+*<center/> Figure 2.21 Sequence diagram for 
+"details is empty" Block </center> <br/></br>*
+<br></br>
+
+![](https://github.com/AY2021S1-CS2113T-W11-1/tp/blob/master/docs/diagrams/deleteSlotCommand/helpCommandDetailsIsNotEmpty.png)  
+*<center/> Figure 2.22 Sequence diagram for 
+"details not empty" Block </center> <br/></br>*
+<br></br>
 
 <br></br>
 
 
-1. When Zoomaster calls parse on user input and Parser parses it as a HelpCommand, HelpCommand will check if the details are not empty, then validate if the details match a valid command based on the current mode (not shown in diagram). If the details are not valid, an exception is thrown. Zoomaster will then call the execute() method on HelpCommand
+1. From Figure 2.20, when Zoomaster calls parse() on user input and Parser parses it as a HelpCommand, HelpCommand will check if the details 
+are not empty, then validate if the details match a valid command based on the current mode (not shown in diagram). If the details are not valid, 
+an exception is thrown. Zoomaster will then call the execute() method on HelpCommand.
 
-2. If the details are empty, the HelpCommand will call the printHelpMessage() in Ui command without the details. Ui will retrieve the current mode through a call to static variable programMode in Parser. The mode is then used to determine which list of available command is to be printed.  
+2. From Figure 2.21, if the details are empty, the HelpCommand will call the printHelpMessage() in Ui command without the details. Ui will retrieve the 
+current mode through a call to static variable programMode in Parser. The mode is then used to determine which list of available command is to be printed.  
 
-3. Else if the details are not empty, the command HelpCommand will call the printHelpMessage(details) in Ui. Similarly, Ui will retrieve the current mode through a call to static variable programMode in Parser. Ui will check if the details correspond to any of the global command keywords, such as CLEAR_KW or EXIT_KW and print accordingly. If the details do not match any, the mode will be used to determine which print extended help method is to be called. 
+3. Else from Figure 2.22, if the details are not empty, the command HelpCommand will call the printHelpMessage(details) in Ui. Similarly, Ui will retrieve the current 
+mode through a call to static variable programMode in Parser. Ui will check if the details correspond to any of the global command keywords, such as 
+CLEAR_KW or EXIT_KW and print accordingly. If the details do not match any, the mode will be used to determine which print extended help method is to be called. 
 
 4. The HelpCommand then becomes an unused object to be deleted to free up memory.
 
@@ -608,7 +635,7 @@ Given below is an example usage scenario and how the edit mechanism works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotsequence.png)
-*<center/> Figure 2.21 Sequence diagram for EditSlotCommand </center> <br/></br>*
+*<center/> Figure 2.23 Sequence diagram for EditSlotCommand </center> <br/></br>*
 
 <a name="showsettings"></a>
 ### Show settings feature (Francisco)
@@ -628,7 +655,7 @@ the UserSettings object in the main Zoomaster class. It will then convert them i
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettingssequence.png)
-*<center/> Figure 2.22 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.24 Sequence diagram for ShowSettingsCommand </center> <br/></br>*
 
 <a name="setsettings"></a>
 ### Set settings feature (Francisco)
@@ -646,7 +673,7 @@ Given below is an example usage scenario and how the `set` command works.
 The sequence diagram below explains how this feature is executed:
 
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
-*<center/> Figure 2.23 Sequence diagram for SetSettingsCommand </center> <br/></br>*
+*<center/> Figure 2.25 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
 <!-- @@author -->
 <a name="planner"></a>
