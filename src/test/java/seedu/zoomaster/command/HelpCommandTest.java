@@ -16,7 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author Speedweener
 class HelpCommandTest {
-    List<String> modeZeroCommands = new ArrayList<>(Arrays.asList("mode","clear","launch now", "showsettings", "set", "exit"));
+    List<String> modeZeroCommands = new ArrayList<>(Arrays.asList("mode","clear","launch now", "showsettings",
+            "set", "exit"));
     List<String> modeOneCommands =  new ArrayList<>(Arrays.asList("add", "delete", "show","find","launch", "edit"));
     List<String> modeTwoCommands =  new ArrayList<>(Arrays.asList("add", "delete", "show","edit","launch"));
     List<String> modeThreeCommands =  new ArrayList<>(Arrays.asList("load", "add", "show","save"));
