@@ -368,12 +368,10 @@ public class Ui {
                 topic.getNoteList().add(note);
                 printMessage(ADD_NOTE_SUCCESSFULLY);
             } else {
-                printMessage(INVALID_TOPIC);
-                printTopicsError(topicList);
-                printMessage(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
+                throw new Eduke8Exception(ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
-            printError(e.getMessage());
+            printMessage(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
         }
     }
 
@@ -401,17 +399,17 @@ public class Ui {
                     topic.getNoteList().delete(index - 1);
                     printMessage(DELETE_NOTE_SUCCESSFULLY);
                 } else {
-                    printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                    throw new Eduke8Exception(INVALID_TOPIC_INDEX);
                 }
-            } catch (NumberFormatException e) {
-                printWithoutLines(INVALID_TOPIC_INDEX);
+            } catch (Eduke8Exception | NumberFormatException e) {
+                printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
-        } else if (noteCount == 0) {
+        } else if (topicList.doesTopicExist(topicName) && noteCount == 0) {
             printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
-            printWithoutLines(INVALID_TOPIC);
+            printMessage(INVALID_TOPIC);
             printTopicsError(topicList);
-            printWithoutLines(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+            printMessage(DELETE_NOTE_UNSUCCESSFULLY);
         }
     }
 
