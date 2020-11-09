@@ -13,7 +13,6 @@ public class Log {
     private int end;
     private ArrayList<Task> carryOverTasks = new ArrayList<>();
 
-
     /**
      * Makes a record of the task allocation.
      *
@@ -81,7 +80,6 @@ public class Log {
     public int getSpaceNumber() {
         return numberList.indexOf(-1);
     }
-
 
     public int getStart(int start) {
         return numberList.get(start);

@@ -29,7 +29,6 @@ import java.util.regex.Pattern;
  * Handles parsing of user input.
  */
 public class Parser {
-
     public static final String COMMAND_WORD_DELIMITER = " ";
     public static final String NAME_DELIMITER = "n/";
     public static final String TIME_DELIMITER = "t/";
@@ -52,18 +51,16 @@ public class Parser {
      * @throws InvalidCommandException Exception thrown when the the user does not specify a valid command
      */
     public String getParameterDesc(String taskInformation, String delimiter, int paramPosition,
-                                          String defaultValue) throws InvalidCommandException {
+                                   String defaultValue) throws InvalidCommandException {
         String param;
         if (paramPosition == -1) {
             param = defaultValue;
         } else {
             String[] retrieveParamInfo = taskInformation.split(delimiter, 2);
             CharSequence retrievedParamInfo = retrieveParamInfo[1];
-
             String patternStr = "\\s\\w+\\/";
             Pattern pattern = Pattern.compile(patternStr);
             Matcher matcher = pattern.matcher(retrievedParamInfo);
-
             if (matcher.find()) {
                 int nextParam = matcher.start();
                 try {
@@ -90,7 +87,7 @@ public class Parser {
      * @param importancePos int representing position of importance parameter
      * @param addNotesPos   int representing position of additional notes parameter
      * @return command object
-     * @throws InvalidCommandException Exception thrown when the the user does not specify a valid command
+     * @throws InvalidCommandException    Exception thrown when the the user does not specify a valid command
      * @throws InvalidImportanceException Exception thrown when the user does not specify a valid importance
      */
     public Command parseAddCommand(String taskInfo, int namePos, int timePos, int durationPos, int deadlinePos,
@@ -115,7 +112,6 @@ public class Parser {
         }
         String notesDefault = "No notes";
         String notes = getParameterDesc(taskInfo, ADDITIONAL_NOTES_DELIMITER, addNotesPos, notesDefault);
-
         return new AddCommand(name, time, duration, deadline, recurrence, importance, notes, isFlexible);
     }
 
@@ -131,20 +127,18 @@ public class Parser {
      * @param importancePos int representing position of importance parameter
      * @param addNotesPos   int representing position of additional notes parameter
      * @return command object
-     * @throws TaskNotFoundException Exception thrown when the program is unable to find a task at the index
-     *                               specified by the user
-     * @throws EditNoIndexException  Exception thrown when the user does not specify an index of the task they
-     *                               want to edit
-     * @throws InvalidCommandException Exception thrown when the the user does not specify a valid command
+     * @throws TaskNotFoundException      Exception thrown when the program is unable to find a task at the index
+     *                                    specified by the user
+     * @throws EditNoIndexException       Exception thrown when the user does not specify an index of the task they
+     *                                    want to edit
+     * @throws InvalidCommandException    Exception thrown when the the user does not specify a valid command
      * @throws InvalidImportanceException Exception thrown when the user does not specify a valid importance
      */
     public Command parseEditCommand(String taskInfo, int namePos, int timePos, int durationPos, int deadlinePos,
-                                           int recurrencePos, int importancePos, int addNotesPos, TaskList taskList)
+                                    int recurrencePos, int importancePos, int addNotesPos, TaskList taskList)
             throws TaskNotFoundException, EditNoIndexException, InvalidCommandException, InvalidImportanceException {
         int number = getNumber(taskInfo);
-
         Task task = taskList.getTaskFromNumber(number);
-
         String name = getParameterDesc(taskInfo, NAME_DELIMITER, namePos, task.getName());
         String time = getParameterDesc(taskInfo, TIME_DELIMITER, timePos, task.getTimeInfo().getStartTimeString());
         String duration = getParameterDesc(taskInfo, DURATION_DELIMITER, durationPos,
@@ -154,7 +148,6 @@ public class Parser {
                 task.getTimeInfo().getRecurrence());
         String importanceString = getParameterDesc(taskInfo, IMPORTANCE_DELIMITER, importancePos,
                 task.getImportance().toString());
-
         Importance importance;
         try {
             importance = Importance.valueOf(importanceString.toUpperCase());
@@ -163,7 +156,6 @@ public class Parser {
         }
         String notes = getParameterDesc(taskInfo, ADDITIONAL_NOTES_DELIMITER, addNotesPos,
                 taskList.getTaskFromNumber(number).getNotes());
-
         return new EditCommand(number, name, time, duration, deadline, recurrence, importance, notes);
     }
 
@@ -192,8 +184,8 @@ public class Parser {
      * @param importancePos int representing position of importance parameter
      * @param forecastPos   int representing position of forecast parameter
      * @return command object
-     * @throws InvalidCommandException Exception thrown when the the user does not specify a valid command
-     * @throws InvalidForecastException Exception thrown when the user does not specify a valid forecast
+     * @throws InvalidCommandException    Exception thrown when the the user does not specify a valid command
+     * @throws InvalidForecastException   Exception thrown when the user does not specify a valid forecast
      * @throws InvalidImportanceException Exception thrown when the user does not specify a valid importance
      */
     public Command parseListCommand(String taskInfo, int importancePos, int forecastPos)
@@ -203,7 +195,6 @@ public class Parser {
         String importanceString = getParameterDesc(taskInfo, IMPORTANCE_DELIMITER, importancePos, importanceDefault);
         String forecastString = getParameterDesc(taskInfo, FORECAST_DELIMITER, forecastPos, forecastDefault);
         FilterCalculator filterCalculator = new FilterCalculator(importanceString, forecastString);
-
         return new ListCommand(filterCalculator.getImportance(), filterCalculator.getForecast());
     }
 
@@ -230,7 +221,7 @@ public class Parser {
      * @param taskInfo String representing task information
      * @return command object
      * @throws DeleteNoIndexException Exception thrown when the user does not specify an index of the task they
-     *                              want to delete
+     *                                want to delete
      */
     public Command parseDeleteCommand(String taskInfo) throws DeleteNoIndexException {
         try {
@@ -244,7 +235,7 @@ public class Parser {
     /**
      * Parses user input when command is view.
      *
-     * @param taskInfo      String representing task information
+     * @param taskInfo String representing task information
      * @return command object
      * @throws ViewNoIndexException Exception thrown when the user does not specify an index of the task they
      *                              want to view
@@ -279,7 +270,6 @@ public class Parser {
         shortcutCommandsWithDetails.put("lw", "list f/WEEK");
         shortcutCommandsWithDetails.put("ld", "list f/DAY");
         shortcutCommandsWithDetails.put("la", "list f/ALL");
-
         String actualInputMeaning = userInput;
         if (shortcutCommandsWithDetails.get(actualInputMeaning) != null) {
             actualInputMeaning = shortcutCommandsWithDetails.get(actualInputMeaning);
@@ -309,8 +299,8 @@ public class Parser {
      * Parses user input and recognises what type of command
      * and parameters the user typed.
      *
-     * @param userInput    String representing user input
-     * @param taskList Tasks list
+     * @param userInput String representing user input
+     * @param taskList  Tasks list
      * @return new Command object based on what the user input is
      * @throws CommandException Exception thrown when there is an error when the user inputs a command
      */
@@ -322,7 +312,6 @@ public class Parser {
         if (commandAndDetails.length > 1) {
             taskInfo = commandAndDetails[1];
         }
-
         int namePos = taskInfo.indexOf(NAME_DELIMITER);
         int timePos = taskInfo.indexOf(TIME_DELIMITER);
         int durationPos = taskInfo.indexOf(DURATION_DELIMITER);
@@ -331,42 +320,33 @@ public class Parser {
         int importancePos = taskInfo.indexOf(IMPORTANCE_DELIMITER);
         int addNotesPos = taskInfo.indexOf(ADDITIONAL_NOTES_DELIMITER);
         int forecastPos = taskInfo.indexOf(FORECAST_DELIMITER);
-
         switch (commandType) {
         case "add": {
             return parseAddCommand(taskInfo, namePos, timePos, durationPos, deadlinePos,
                     recurrencePos, importancePos, addNotesPos);
         }
-
         case "edit": {
             return parseEditCommand(taskInfo, namePos, timePos, durationPos, deadlinePos,
                     recurrencePos, importancePos, addNotesPos, taskList);
         }
-
         case "list": {
             return parseListCommand(taskInfo, importancePos, forecastPos);
         }
-
         case "done": {
             return parseDoneCommand(taskInfo);
         }
-
         case "delete": {
             return parseDeleteCommand(taskInfo);
         }
-
         case "view": {
             return parseViewCommand(taskInfo);
         }
-
         case "help": {
             return new HelpCommand();
         }
-
         case "exit": {
             return new ExitCommand();
         }
-
         default: {
             throw new InvalidCommandException();
         }

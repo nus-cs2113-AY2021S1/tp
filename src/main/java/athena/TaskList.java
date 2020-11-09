@@ -80,7 +80,6 @@ public class TaskList {
         return task;
     }
 
-
     /**
      * Adds a task to the task list.
      *
@@ -160,7 +159,6 @@ public class TaskList {
         return number;
     }
 
-
     /**
      * Decrements maxNumber.
      */
@@ -201,7 +199,6 @@ public class TaskList {
             checkRecurrenceClash(taskToCompare, task);
         }
     }
-
 
     /**
      * Checks if there is a date clash between tasks.
@@ -245,7 +242,6 @@ public class TaskList {
         return false;
     }
 
-
     /**
      * Checks if times of a task overlap each other.
      *
@@ -276,7 +272,6 @@ public class TaskList {
             maxNumber = number;
         }
     }
-
 
     /**
      * Returns the task description of the task with the given number.
@@ -341,7 +336,6 @@ public class TaskList {
         checkClash(possibleEditedTask);
         task.edit(name, startTime, duration, deadline, recurrence, importance, notes);
         return possibleEditedTask;
-
     }
 
     /**
@@ -428,7 +422,6 @@ public class TaskList {
     public int getMaxNumber() {
         return maxNumber;
     }
-
 
     /**
      * Determines if two objects have the same attributes.

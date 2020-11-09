@@ -2,7 +2,7 @@
 title Allocator
 hide footbox
 
-participant "allocator:timeAllocator" as timeAllocator
+participant "allocator:TimeAllocator" as timeAllocator
 participant "dayLog:Log" as log
 participant "bestLog:Log" as Log
 participant "currSlot:TimeSlot" as TimeSlot
