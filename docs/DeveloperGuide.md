@@ -379,6 +379,7 @@ The sequence diagram for `ListCommand` is shown below:
 <br>
 
 As depicted from the diagram, there are 2 cases for `ListCommand`:
+
 1) `listAppliance` <br>
 This method checks for the user's key in a filteredLocation together with the “list appliance”. If there is no filteredLocation, 
 it will just create a list of all the appliances in all the locations. Vice versa, if it exists a filteredLocation,it will 
@@ -524,25 +525,75 @@ electricity price to calculate users’ utility bills. A backlog of the usage ca
 
 ## Appendix E: Instructions for Manual Testing
 
-*Launch and Shutdown*
-**Initial launch**
+Given below are instructions to test the application manually.
+
+**Starting the program:**
 
     i. Download the jar file from the latest release and copy into an empty folder
     ii. Run the jar file with java -jar SmartHomeBot.jar
         Expected: Shows the GUI with some welcome messages.
 
-*Creating a room and adds a new appliance*
-Creating a new location while it is not existed in the locations list
-Prerequisites: List all locations using the `list location` command. Making sure the name of the new location is not found in the list.
 
-Test case: `create Bedroom`
-Expected-printout: Creating Location "Bedroom".....CREATED!
 
-Test case: `add coolx l/Bedroom w/550 t/fan`
-Expected-printout: ADDING coolx(550W), located at Bedroom ......ADDED!
+### Creating new location:
 
-Test case: `add coolx l/other_room w/500 t/fan`
-Expected-printout: Location does not exist.
+Prerequisites: List all appliances and locations using the `list location` and `list appliance` command. 
+Making sure the name of the new location is not found in both the list.
 
-Other incorrect wattage value used to try: `add coolx l/bedroom w/xyz t/fan` (where wattage has to be in valid integer value)
-Expected-printout: Please enter a valid numerical value ranging from 1-9999 for the wattage.
+1. Test case: `create Bedroom1` <br>
+    Expected-printout: Creating Location "Bedroom1".....CREATED!
+2. Test case: `create Bedroom|2` <br>
+    Expected-printout: Illegal Character space or /  or | detected in [LOCATION_NAME].
+3. Test case: `create` <br>
+    Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
+
+
+### Removing existing location:
+
+Prerequisites: List all locations using the `list location` command. 
+Making sure the name of the location is found in the list.
+
+1. Test case: `remove Bedroom1` <br>
+    Expected-printout: Removing LOCATION "Bedroom1"......REMOVED!
+2. Test case: `remove` <br>
+    Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
+3. Test case: `remove Balcony` , assume `Balcony` was not created.<br>
+    Expected-printout: Location does not exist. Nothing will be deleted.
+
+### Adding new Appliance:
+
+Prerequisites: List all appliances and locations using the `list location` and `list appliance` command. 
+Making sure the name of the new appliance is not found in both the list.
+
+1. Test case: `add Light l/Bedroom1 w/10 t/light` <br>
+    Expected-printout: ADDING Light(10W), located at Bedroom1 ......ADDED!
+2. Test case: `add Light 2 l/Bedroom1 w/10 t/light` <br>
+    Expected-printout: Illegal Character space or /  or | detected in [APPLIANCE_NAME].
+3. Test case: `add Light_2 w/10 l/Bedroom1 t/light` <br>
+    Expected-printout: Please follow this order, add NAME l/[LOCATION_NAME] w/[WATTS] t/[TYPE_OF_APPLIANCE]
+4. Test case: `add Light_2 l/Bedroom2 w/10 t/light`, as Bedroom2 was not created as a location. <br>
+    Expected-printout: Location does not exist.
+5. Test case: `add Light_2 l/Bedroom1 w/10000 t/light` <br>
+    Expected-printout: Appliance wattage is not supported. Please enter between 1 to 9999.
+6. Test case: `add Light_2 l/Bedroom1 w/5000 t/yellowbulbs` <br>
+       Expected-printout: Invalid appliance type is detected. Only aircon, fan, light and smartplug are accepted as type.
+
+### Deleting existing appliance:
+
+Prerequisites: List all appliances using the `list appliance` command. 
+Making sure the name of the appliance is found in the list.
+
+1. Test case: `delete Light` <br>
+    Expected-printout: Deleting Light(10W), located at Bedroom1 .......DELETED.
+2. Test case: `delete` <br>
+    Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
+3. Test case: `remove Light2` , assume `Light2` was not added.<br>
+    Expected-printout: Light2 does not exist.
+
+### Switching On Appliance:
+
+### Switching Off Appliance:
+
+### Listing 
+
+### Saving data to disk: 

@@ -36,9 +36,8 @@ from the text file and loads the appliances' data back.
 
 3.  Copy the file to the folder you want to use as the home folder for your SmartHomeBot.
 
-4.  Open your command prompt as administrator. Then input java -jar **c:pathtojarfile.jar** in 
-Command Prompt and press ENTER. Replace the **c:pathtojarfile.jar** with the actual path and 
-file title of the Jar. The display similar to the below should appear in a few seconds.
+4.  Open your Command Prompt/Terminal. Navigate to the folder which you place the SmartHomeBot.jar. Then input `java -jar SmartHomeBot.jar` and 
+press ENTER.The display similar to the below should appear in a few seconds.
     
     ![](images/user_guide/start_image.PNG)
      
@@ -68,6 +67,7 @@ Some example commands you can try:
    * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` / ` or ` \| ` when `create` or `add`
    * Caution: Please do not type `Ctrl-C or Ctrl-Z` as it may cause the application to terminate due the in-build function 
    on command prompt  
+   
 ### Viewing help: `help`
 Shows all available commands to the user
 
@@ -114,7 +114,7 @@ Adds an appliance to the location created previously.
 Format: `add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]`
 * `[APPLIANCE_NAME]` must be a unique name.
 * `[LOCATION_NAME]` must be an existing location created by `create` command.
-* `[WATTAGE]` must be an `int` value.
+* `[WATTAGE]` must be an `int` value between 1-9999.
 * `[TYPE_OF_APPLIANCE]` must be one of the type in the following list. 
 
 List of `TYPE_OF_APPLIANCE` 
