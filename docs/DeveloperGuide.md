@@ -563,7 +563,7 @@ Expected: The full route of bus AA1 will be displayed.<br>
 
 - Test case 2: `/routemap AA1000`<br>
     -Other incorrect test cases includes all invalid bus codes not included in the list of all buses as displayed
-    by the `/allbus` command
+    by the `/allbus` command <br>
 Expected: No bus routes will be displayed as there is no such bus in our database.<br>
 
 - Test case 3: `/routemap`<br>
