@@ -66,7 +66,7 @@ The following steps will guide you through the process of running **Nav@NUS**.
 follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA).
 2. Download the latest `Nav@NUS.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 3. Open command prompt on your computer.
-4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar bus application. In the example
+4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar application. In the example
 shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br>
 ![Windows CLI](UG_Figures/windowsPath.png)
 5. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
