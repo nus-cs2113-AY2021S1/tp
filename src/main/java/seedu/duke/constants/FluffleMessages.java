@@ -119,6 +119,8 @@ public class FluffleMessages {
     public static final String PARSE_DATETIME_EXCEPTION =
             "Cannot parse date and time. Please enter date in a correct format (dd/MM/yyyy)"
                     + " with valid day, month and year.";
+    public static final String INVALID_REMINDER_DATE_EXCEPTION = "The date you entered is before today. "
+            + "Please give another date in your next try.";
 
     /** Command not recognised message. */
     public static final String COMMAND_UNRECOGNISED_MSG = "Command is not recognised by Fluffle. "

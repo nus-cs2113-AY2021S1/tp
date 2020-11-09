@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.duke.wordlisttest.wordfiltertest.WordsFilterTest.initializeTestDatabase;
+import static seedu.duke.wordlist.wordfilter.WordsFilterTest.initializeTestDatabase;
 
 public class ClearLoaderTest {
     private static WritingList writings;

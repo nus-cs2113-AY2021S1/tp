@@ -1,8 +1,6 @@
 package seedu.duke.writing;
 
 import seedu.duke.constants.FluffleMessages;
-import seedu.duke.writing.WritingList;
-import seedu.duke.writing.Writings;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +13,7 @@ import static seedu.duke.constants.InputFormat.INPUT_DATE_FORMAT;
 public class WritingReminder {
     private static ArrayList<Writings> writings = WritingList.writingList;
 
-    public static void printReminderOnADay(String command) {
+    public static void filterWritingsOnADate(String command) {
         String[] words = command.split(" ", 2);
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].trim();
@@ -25,20 +23,24 @@ public class WritingReminder {
             ArrayList<Writings> writingsOnThisDate = (ArrayList<Writings>) writings.stream()
                     .filter((s) -> s.getReminderDate().compareTo(date) == 0)
                     .collect(Collectors.toList());
-            if (writingsOnThisDate.size() == 0) {
-                System.out.println(FluffleMessages.NO_WRITING_DUE);
-            } else {
-                System.out.printf(FluffleMessages.CONTINUE_WRITINGS,
-                        date.format(DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
-            }
-            int filterCount = 1;
-            for (Writings w : writingsOnThisDate) {
-                System.out.println(filterCount + ".");
-                w.printWritingsReminder();
-                filterCount++;
-            }
+            printWritingsOnADate(date, writingsOnThisDate);
         } catch (DateTimeParseException e) {
             System.out.println(FluffleMessages.PARSE_DATETIME_EXCEPTION);
+        }
+    }
+
+    private static void printWritingsOnADate(LocalDate date, ArrayList<Writings> writingsOnThisDate) {
+        if (writingsOnThisDate.size() == 0) {
+            System.out.println(FluffleMessages.NO_WRITING_DUE);
+        } else {
+            System.out.printf(FluffleMessages.CONTINUE_WRITINGS,
+                    date.format(DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
+        }
+        int filterCount = 1;
+        for (Writings w : writingsOnThisDate) {
+            System.out.println(filterCount + ".");
+            w.printWritingsReminder();
+            filterCount++;
         }
     }
 }
