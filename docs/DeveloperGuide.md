@@ -503,7 +503,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
 
 ![](uml_images/images_updated/entryTrackerEditEntrySeqDiagram2.png)
 
-1. __Phase 2: Entry edit ([Sequence Diagram](#diag4))__ 
+1. __Phase 2: Entry edit ([Sequence Diagram](#diag4))__ <br/>
     1. Following Phase 1, the following processes will be executed:
         1. The singleton instance of ```EditEntryHandler``` is retrieved. There is no need to call ```EditEntryHandler.setRequiredParams()```
         ; this command does not require params to modify. Instead, it acceps any params supplied and performs the edit accordingly.
@@ -512,7 +512,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. Refer to the section on [Param Handling](#inputManager) for more details pertaining to general param handling. 
         1. For ```EditEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
     1. The edited entry is added back into the list.
-#### <a name = table4></a> Param Handling Behavior           
+__<a name = table4></a> Param Handling Behavior__          
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
 |---------|----------------|----------------|-----------|---------------------|
