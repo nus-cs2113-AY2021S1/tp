@@ -12,7 +12,7 @@
 * <a href =#faq>4. FAQ </a>
 * <a href =#summary>5. Command Summary </a>
 
-## 1. Introduction <a name="intro"></a>
+## 1. Introduction <a name="intro"></a> 
 
 **revisED** aims to help students to revise their subjects through the creation of flashcards or tasks that have
 to be completed. The users can store the tasks under different subjects and flashcards under different topics, 
@@ -31,7 +31,7 @@ Symbols / Formatting|Meaning
 `Grey highlight` | Code or terms related to the code/application
 
 
-## 2. Quick Start <a name="start"></a>
+## 2. Quick Start (Chin Hang) <a name="start"></a> 
 
 To setup the application,
 
@@ -65,7 +65,7 @@ ____________________________________________________________
 
 Subsequently, you can begin using the application!
 
-## 3. Features <a name="features"></a>
+## 3. Features (Chin Hang) <a name="features"></a> 
 
 This section elaborates on the features of **revisED** along with their usage. We further break this section down into several
 subsections to better illustrate the design of the application.
@@ -84,7 +84,7 @@ in each level.
 > for each feature that involves the use of a command.
 
 
-### 3.1 Main Level Features <a name="main-level"></a>
+### 3.1 Main Level Features (Jia Lerk) <a name="main-level"></a> 
 
 Main level features can only be used when the user is currently viewing the main section of the program.
 On this level, users are able to add and delete subjects in a subject list. 
@@ -831,7 +831,7 @@ Going back to the main level.
 ____________________________________________________________
 ```
 
-### 3.3 Topic Level Features <a name="topic-level"> </a> (Sugandha)
+### 3.3 Topic Level Features (Sugandha) <a name="topic-level"> </a> 
 
 Topic level features can only be used when the user is currently viewing a topic.
 On this level, users are able to add and delete flashcards, in the form of questions and answers.
@@ -943,7 +943,7 @@ Format: `add` `[QUESTION]; [ANSWER]`
 - The application will print the question and answer of the flashcard you added along with the 
 total number of flashcards under the current topic.
 > 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
-
+> ⚠️   **_WARNING:_** `[QUESTION]` and `[ANSWER]` of the flashcards are case-sensitive. 
 Example of usage: 
 ```
 add What is the version of Java used in CS2113T; 11.0
