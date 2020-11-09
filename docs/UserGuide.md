@@ -749,5 +749,5 @@ Exits the application. Rest assured that your data have been saved by the applic
 | Clear Storage | `storage /clear` | `storage /clear` |
 | Exit program | `bye` | `bye` |
 | Help Menu | `help` | `help` |
-| Help Commands | `help` | `help /1` |
+| Help Commands | `help /<command_number>` | `help /1` |
 
