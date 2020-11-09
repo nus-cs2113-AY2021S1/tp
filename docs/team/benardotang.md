@@ -2,7 +2,6 @@
 
 ## Overview
 
-
 ## About the project
 **WatchNext** is a show tracker designed for users who watch their favourite shows on multiple free streaming platforms and other open source streaming websites.
 **WatchNext** records your progress for the different shows you are currently watching, and even for upcoming shows that you plan to watch.
@@ -14,9 +13,12 @@ Given below are my coding, documentation, and other helpful contributions to the
 * **Feature**: Added the ability to track daily watch time through the `updatetimelimit` and `watch` command.
     * What it does: Allows the user to set a daily time limit to watch shows and maximise productivity. The time limit decreases when the user inputs the `watch` command and alerts the user when he/she has exceeded or reached the daily limit.
     * Justification:  This feature improves the product significantly as the user has an additional benefit of maximising productivity through using the application.
-    * Highlights: This enhancement is an addon to our exisitng product. It required an in-depth analysis of design alternatives. The implementation was challenging as it required additional classes for it to function the way we wanted.
+    * Highlights: This enhancement is an addon to our existing product. It required an in-depth analysis of design alternatives. The implementation was challenging as it required additional classes for it to function the way we wanted.
 
-* **Feature**: Added the ability for the program to intelligently process the user's input and display the correct output into the terminal, using the `InputParser` and `UI` classes.
+* **Feature**: Added an extra functionality in `SearchCommand`, that was initially implemented by teammate [Jiqing](https://github.com/judowha), to be able to recognise case-insensitive or incomplete inputs as keywords.
+    * Justification:  This feature improves the product significantly as the user can still find his/her desired show even if the user does not know the full name of the show.
+    * Highlights: This enhancement is an addon to our existing search feature. The implementation was challenging as it required additional checks in the search algorithm to make sure the enhancement worked.
+
 <div style="page-break-after: always;"></div>
 
 * **Code contributed**: [Reposense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=BenardoTang&tabRepo=AY2021S1-CS2113T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
