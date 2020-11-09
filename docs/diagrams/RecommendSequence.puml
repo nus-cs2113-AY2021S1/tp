@@ -1,16 +1,16 @@
 @startuml
+skinparam Shadowing false
 participant ":Fitr" as fitr
 participant ":Parser" as Parser << class >>
 participant ":RecommendCommand" as RecommendCommand
 participant ":Recommender" as Recommender
 
-
 activate fitr
-fitr -> Parser : parse("Exercise push ups /500")
+fitr -> Parser : parse("recommend")
 activate Parser
 
 create RecommendCommand
-Parser-> RecommendCommand
+Parser -> RecommendCommand
 
 activate RecommendCommand
 return
