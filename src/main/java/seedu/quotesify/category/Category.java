@@ -12,7 +12,6 @@ public class Category implements JsonSerializer {
     private String category;
     private BookList bookList;
     private QuoteList quoteList;
-    private int size;
 
     /**
      * Constructor for category.
@@ -23,7 +22,6 @@ public class Category implements JsonSerializer {
         this.category = category;
         bookList = new BookList();
         quoteList = new QuoteList();
-        size = 0;
     }
 
     /**
@@ -45,21 +43,12 @@ public class Category implements JsonSerializer {
     }
 
     /**
-     * Returns the number of items tagged with the category.
+     * Returns the total number of items tagged under the category.
      *
      * @return Number of items under the category.
      */
     public int getSize() {
         return bookList.getList().size() + quoteList.getList().size();
-    }
-
-    /**
-     * Set the size of the category.
-     *
-     * @param size Any integer value.
-     */
-    public void setSize(int size) {
-        this.size = size;
     }
 
     /**

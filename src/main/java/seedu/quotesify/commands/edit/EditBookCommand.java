@@ -2,7 +2,6 @@ package seedu.quotesify.commands.edit;
 
 import seedu.quotesify.book.Book;
 import seedu.quotesify.book.BookList;
-import seedu.quotesify.commands.edit.EditCommand;
 import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 import seedu.quotesify.rating.Rating;

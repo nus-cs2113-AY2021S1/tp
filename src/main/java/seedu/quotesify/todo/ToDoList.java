@@ -1,8 +1,7 @@
 package seedu.quotesify.todo;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import seedu.quotesify.book.Book;
+
 import seedu.quotesify.lists.QuotesifyList;
 
 import java.util.ArrayList;

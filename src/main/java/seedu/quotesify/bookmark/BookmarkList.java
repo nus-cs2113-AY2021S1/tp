@@ -1,7 +1,6 @@
 package seedu.quotesify.bookmark;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import seedu.quotesify.book.Book;
 import seedu.quotesify.lists.QuotesifyList;
 

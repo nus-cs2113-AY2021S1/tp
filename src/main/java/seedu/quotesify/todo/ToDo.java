@@ -5,8 +5,6 @@ import seedu.quotesify.parser.JsonSerializer;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoField;
-import seedu.quotesify.ui.UiMessage;
 
 //@@author lunzard
 public class ToDo implements JsonSerializer {

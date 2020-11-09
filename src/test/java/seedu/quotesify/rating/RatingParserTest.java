@@ -9,7 +9,6 @@ import seedu.quotesify.exception.QuotesifyException;
 import seedu.quotesify.lists.ListManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -25,13 +24,13 @@ public class RatingParserTest {
      */
     @BeforeEach
     void setUp() {
-        ListManager.initialiseAllLists();
-        books = (BookList) ListManager.getList(ListManager.BOOK_LIST);
+        books = new BookList();
         String title = "Harry Potter";
         String name = "JK Rowling";
         Author author = new Author(name);
         book = new Book(author, title);
         books.add(book);
+        ListManager.addToList(ListManager.BOOK_LIST, books);
     }
 
     /**
@@ -100,13 +99,13 @@ public class RatingParserTest {
 
     /**
      * Tests if the book exists in Quotesify.
-     * If the book exists, the book will be returned.
+     * If the book exists, there will be a valid book title.
      * Uses a valid book in this case (positive test).
      */
     @Test
-    public void checkBookExists_validBook_returnNotNull() throws QuotesifyException {
+    public void checkBookExists_validBook_validBookTitle() throws QuotesifyException {
         String bookNumber = "1";
         Book bookToRate = RatingParser.checkBookExists(bookNumber);
-        assertNotNull(bookToRate);
+        assertEquals(bookToRate.getTitle(), "Harry Potter");
     }
 }

@@ -48,11 +48,9 @@ According to "The forgetting curve", memory for any information decays over time
 By making it more interactive and allowing users to actively engage with the content through their own reflection
 and summary, users are far more likely to internalize the content and remember it in the long run. 
 
-### Contributions to the UG:
+### Contributions to the UG and DG:
 * I have contributed to all parts relating to Quote Management and Reflection in the UG.
 * Additionally, I also contributed to the FAQ section of the UG.
-
-### Contributions to the DG:
 * I have contributed to all parts relating to Quote Management and reflection in the DG, including all UML diagrams.
 * I also contributed to other sections including Product Scope and User Stories.
 
