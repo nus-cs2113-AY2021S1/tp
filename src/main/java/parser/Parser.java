@@ -168,7 +168,9 @@ public abstract class Parser {
                 return new AutoClearCommand(true);
             } else if (fullCommand.equalsIgnoreCase("OFF")) {
                 return new AutoClearCommand(false);
-            } else throw new WrongAutoClearArgumentException();
+            } else {
+                throw new WrongAutoClearArgumentException();
+            }
         }
 
         //this block deals with print locations in the area command
