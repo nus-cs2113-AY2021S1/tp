@@ -272,9 +272,14 @@ The rating of your show will also be shown if you have added it using the [addre
    
    Expected outcome:
     
-   <img src = "images/list.PNG" width = "600">
+   <img src = "images/list.PNG" width = "650">
     
    &nbsp;
+
+  > **[NOTE]**
+  >
+  > * Additional shows have been added to illustrate what your list command would look like after adding a few shows into your watch list.
+
 
  
 ### 4.e. `addreview` - Adding a review
@@ -300,7 +305,7 @@ The `addreview` command allows you to add a review for a show, including adding 
    
    Checking with the `list` command: 
    
-   <img src = "images/addreviewlist.png" width = "600">
+   <img src = "images/addreviewlist.png" width = "650">
    
    
 ### 4.f. `changereview` - Changing a review
@@ -324,7 +329,7 @@ The `changereview` command allows you to change a review for a show that is alre
   
   Checking with the `list` command:
   
-  <img src = "images/changereviewlist.png" width = "600">
+  <img src = "images/changereviewlist.png" width = "650">
   
 
 ### 4.g. `deletereview` - Deletes a review
@@ -540,7 +545,7 @@ The `updatetimelimit` command updates your daily watch time limit.
  
  Expected outcome:
   
- <img src = "images/updatetimelimit.PNG" width = "650"> 
+ <img src = "images/updatetimelimit.PNG" width = "700"> 
 
  &nbsp;
  
@@ -554,10 +559,10 @@ The `updatetimelimit` command updates your daily watch time limit.
  As seen from the expected outcome, you now have a limit of 2 hours to spend on watching shows.To use the allocated limit, use the [watch command](#4ma-watch---watch-a-show-in-your-list) above.
 
 If you have **used up** your allocated time, a prompt will be displayed to you as seen below:<br> 
- <img src = "images/useduptimelimit.PNG" width = "650"> <br>  &nbsp;
+ <img src = "images/useduptimelimit.PNG" width = "700"> <br>  &nbsp;
 
 If you have **exceeded** your allocated time, a prompt will be displayed to you as seen below:<br> 
- <img src = "images/exceededlimit.PNG" width = "650"> <br>  &nbsp;
+ <img src = "images/exceededlimit.PNG" width = "700"> <br>  &nbsp;
  
 The underlined portion shows the prompt to the user, and the circled portion details the amount of time that the user has exceeded.
 
