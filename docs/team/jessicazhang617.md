@@ -1,5 +1,5 @@
 # Zhang Shenjia - Project Portfolio Page
-##Project: CEGMods
+## Project: CEGMods
 
 ### Overview
 CEGMods is a desktop application to manage NUS CEG's courses via a Command Line Interface (CLI). If you are an NUS CEG 
