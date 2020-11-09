@@ -33,7 +33,7 @@ public class LaunchNowCommand extends Command {
         }
 
         if (message.isBlank()) {
-            message = "no lessons now." + System.lineSeparator();
+            message = "no lessons now." + Ui.NEW_LINE;
         }
         ui.print(message);
     }

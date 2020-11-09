@@ -1,5 +1,6 @@
 package seedu.zoomaster.bookmark;
 
+import seedu.zoomaster.Ui;
 import seedu.zoomaster.exception.ZoomasterException;
 import seedu.zoomaster.exception.ZoomasterExceptionType;
 
@@ -8,26 +9,26 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * This class represents a bookmark of a URL of a webpage.
+ * Represents a bookmark of a URL of a webpage.
  * It stores the URL and a description of the webpage.
  * It also contains a method which can extract the URL and description from a given string in a certain format.
  */
 //@@author xingrong123
 public class Bookmark {
     public static final String WWW_KW = "www.";
-    public static final String HTTPS_KW = "https://";
-    public static final String HTTP_KW = "http://";
-    public static final String WINDOWS_LAUNCH_COMMAND = "rundll32 url.dll,FileProtocolHandler ";
-    public static final String MAC_LAUNCH_COMMAND = "open ";
-    public static final String LINUX_LAUNCH_COMMAND = "xdg-open ";
+    private static final String HTTPS_KW = "https://";
+    private static final String HTTP_KW = "http://";
+    private static final String WINDOWS_LAUNCH_COMMAND = "rundll32 url.dll,FileProtocolHandler ";
+    private static final String MAC_LAUNCH_COMMAND = "open ";
+    private static final String LINUX_LAUNCH_COMMAND = "xdg-open ";
     private String description;
     private String url;
 
     /**
      * Constructs a bookmark object containing a URL and description of the webpage.
      *
-     * @param url The URL of the webpage.
      * @param description The description of the webpage.
+     * @param url The URL of the webpage.
      */
     public Bookmark(String description, String url) {
         assert description != null : "description should not be null";
@@ -56,6 +57,13 @@ public class Bookmark {
     }
 
     //@@author Speedweener
+    /**
+     * Returns true if input is a valid url.
+     * A valid url contains no whitespace and starts with "www.", "https://" or "http://".
+     *
+     * @param url The string containing the url.
+     * @return true if the given string is a valid url, else false.
+     */
     public static Boolean isUrlValid(String url) {
         if (url.contains(" ")) {
             return false;
@@ -64,9 +72,10 @@ public class Bookmark {
     }
 
     /**
-     * This method opens the URL of the bookmark in a web browser.
+     * This method opens the URL of the bookmark the default web browser.
+     * Only windows, macOS, linux and unix operating systems will work.
      *
-     * @return a string
+     * @return a string containing the description and url of the launched bookmark in a fixed format.
      * @throws ZoomasterException if there is an error launching the URL.
      */
     public String launch() throws ZoomasterException {
@@ -106,6 +115,7 @@ public class Bookmark {
     }
 
     private String getFullLink() {
+        // macOS, unix and linux requires the https prefix to launch the webpage
         String link;
         if (url.startsWith(WWW_KW)) {
             link = HTTPS_KW + url;
@@ -128,6 +138,7 @@ public class Bookmark {
      * Sets the URL of the bookmark.
      *
      * @param url String of the URL.
+     * @throws ZoomasterException if the given url is invalid.
      */
     public void setUrl(String url) throws ZoomasterException {
         if (!isUrlValid(url)) {
@@ -145,12 +156,22 @@ public class Bookmark {
         return description;
     }
 
+    /**
+     * Sets the description of the bookmark.
+     *
+     * @param description The string which will overwrite the old description.
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Returns the description and url in a fixed format.
+     *
+     * @return a string containing the description and url.
+     */
     public String getBookmarkAsString() {
-        return  ("[" + description + "] " + url + System.lineSeparator());
+        return  ("[" + description + "] " + url + Ui.NEW_LINE);
     }
 
 }

@@ -30,7 +30,7 @@ public class BookmarkList {
     }
 
     /**
-     * This method adds the given bookmark object to the bookmark list.
+     * Adds the given bookmark object to the bookmark list.
      *
      * @param bookmark the bookmark to be added to the list.
      */
@@ -75,7 +75,7 @@ public class BookmarkList {
     }
 
     /**
-     * This method deletes the bookmark from the list. Use the method getBookmark to check if the bookmark exists.
+     * Deletes the bookmark from the list. Use the method getBookmark to check if the bookmark exists.
      *
      * @param bookmark The bookmark to be deleted.
      * @throws NullPointerException if the bookmark does not exist in the list.
@@ -88,9 +88,10 @@ public class BookmarkList {
     }
 
     /**
-     * This method shows all the bookmarks from the list.
+     * Returns a string containing all the bookmarks from the list in a
+     * fixed format to be printed on the user interface.
      *
-     * @return The string message containing the matching bookmarks
+     * @return The string message containing the matching bookmarks.
      */
     public String showBookmarks() {
         String message = SHOW_BOOKMARKS_MESSAGE + Ui.NEW_LINE;
@@ -105,10 +106,11 @@ public class BookmarkList {
     }
 
     /**
-     * This method searches the bookmarks from the list with matching module and description.
+     * Returns a string containing the details of the bookmarks from the list with matching module and description.
+     * The string is in a fixed format to be printed on the user interface.
      *
-     * @param description The description to be searched
-     * @return The string message containing the matching bookmarks
+     * @param description The description to be searched.
+     * @return The string message containing the matching bookmarks.
      */
     public String findBookmarks(String description) {
         assert !description.equals("") : "Description should not be empty!";
@@ -137,11 +139,11 @@ public class BookmarkList {
     }
 
     /**
-     * This method searches the bookmarks from the list with matching module
-     * and description and launches them accordingly.
+     * Returns a string containing the information of the bookmarks from the list with matching description
+     * and launches them accordingly.
      *
-     * @param description The description to be searched
-     * @return The string message containing the matching bookmarks
+     * @param description The description to be searched.
+     * @return The string message containing the matching bookmarks.
      */
     public String launchBookmarks(String description) throws ZoomasterException {
         assert !description.equals("") : "Description should not be empty!";
@@ -179,6 +181,12 @@ public class BookmarkList {
     }
 
     //@@author xingrong123
+    /**
+     * Returns a string containing the information of all the bookmarks in the list and launches the bookmarks.
+     * The string also contains information of the bookmarks which failed to launch.
+     *
+     * @return the string of all the bookmarks in the list.
+     */
     public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
