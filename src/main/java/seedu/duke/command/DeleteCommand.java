@@ -25,14 +25,18 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(CalendarList calendarList, Storage storage) throws CommandException {
         int numberDelete = 0;
-        boolean isTask = false;
+        boolean isTask;
+        String[] command;
 
         try {
             if (userInput.startsWith("-t")) {
-                numberDelete = Integer.parseInt(userInput.replace("-t", "").trim());
+                command = userInput.split("-t",2);
+                numberDelete = Integer.parseInt(command[1].trim());
                 isTask = true;
             } else if (userInput.startsWith("-e")) {
-                numberDelete = Integer.parseInt(userInput.replace("-e", "").trim());
+                command = userInput.split("-e",2);
+                numberDelete = Integer.parseInt(command[1].trim());
+                isTask = false;
             } else {
                 throw new Exception("e");
             }
