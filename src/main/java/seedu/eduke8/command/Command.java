@@ -15,6 +15,8 @@ public abstract class Command {
 
     /**
      * Carries out the command and returns the outcome of the execution.
+     * @param displayableList an object from a class that extends the DisplayableList interface
+     * @param ui              a Ui object to manage user interactions
      */
     public abstract void execute(DisplayableList displayableList, Ui ui);
 
