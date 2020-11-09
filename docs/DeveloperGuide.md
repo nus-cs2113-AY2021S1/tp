@@ -693,6 +693,11 @@ The sequence diagram below explains how the load planner command is executed:
 ![](diagrams/load_planner.png) <br/>
 *<center/>Figure 2.26 Sequence diagram for LoadPlannerCommand</center> <br/></br>*
 
+The sequence diagram below explains how the load planner command is executed:
+
+![](diagrams/save_planner.png) <br/>
+*<center/>Figure 2.27 Sequence diagram for SavePlannerCommand</center> <br/></br>*
+
 
 
 <!-- @@author -->
