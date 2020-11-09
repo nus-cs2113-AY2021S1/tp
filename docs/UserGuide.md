@@ -109,13 +109,13 @@ Expected output:
 
 Example of printing help message at menu:
 
-<p align="center">
-    <img width="70%" height="70%" src="Images/GeneralUG/help.png">
+<p align="left">
+    <img width="50%" height="50%" src="Images/GeneralUG/help.png">
 </p>
 
 Another example of printing help message at bookmark mode:
 
-<p align="center">
+<p align="left">
     <img width="50%" height="50%" src="Images/GeneralUG/bookmarkhelp.png">
 </p>
 
