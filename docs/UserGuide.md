@@ -155,25 +155,25 @@ Welcome to the first feature of Kaji! In order to use this program, you first wi
 ##### Example: 
 In this example, you are going to add a new module called `CS2113T`. <br>
 Below are steps of using this `add` command: <br>
-* Step 1: Enters the command `add CS2113T` into the command prompt. Your new module name comes after the key word `add`.
+* Step 1: Enters the command `add CS2113T` into the command prompt. Your new module name comes after the key word `add`.<br>
 ![Add Module 1](UG_Images/addModule1.PNG)
-* Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module!
+* Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module!<br>
 ![Add Module 2](UG_Images/addModule2.PNG)
 
 This is an additional example to show you the unique property of Kaji's add feature. <br>
 As you may aware from `Key Pointers` section above, Kaji is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example. <br>
 Below are the breakdown of this example: <br>
-* Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters.
+* Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters.<br>
 ![Add Module 3](UG_Images/addModule3.PNG)
-* Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed!
+* Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed!<br>
 ![Add Module 4](UG_Images/addModule4.PNG)
 
 This is an additional example to show you the unique property of Kaji's add feature. <br>
 As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
 Below are the breakdown of this example: <br>
-* Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`.
+* Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`.<br>
 ![Add Module 5](UG_Images/addModule5.PNG)
-* Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. 
+* Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules.<br>
 ![Add Module 6](UG_Images/addModule6.PNG)
 
 #### 3.1.2. Listing modules available: `list` 
@@ -210,13 +210,13 @@ Here are some key points:
 Example of usage: 
 Let's say you want to edit the module name to `CS2113T` for the module `cs2113`.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditModule1.png" width="600" alt="Edit Module 1"/>
+<img src="UG_Images/EditModule1.png" width="600" alt="Edit Module 1"/><br>
 * Step 2: From the list of modules displayed, you can see that the module `MODULE_INDEX` is 1.<br>
-<img src="UG_Images/EditModule2.png" width="600" alt="Edit Module 2"/>
+<img src="UG_Images/EditModule2.png" width="600" alt="Edit Module 2"/><br>
 * Step 3: Next, you can type `edit 1 CS2113T` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditModule3.png" width="600" alt="Edit Module 3"/>
+<img src="UG_Images/EditModule3.png" width="600" alt="Edit Module 3"/><br>
 * Step 4: After the module name has been successfully edited, the result will be displayed as shown.<br>
-<img src="UG_Images/EditModule4.png" width="600" alt="Edit Module 4"/>
+<img src="UG_Images/EditModule4.png" width="600" alt="Edit Module 4"/><br>
 * After editing the module name, you can try all commands available in **Admin Level**.
 
 #### 3.1.4. Removing a module: `remove` 
@@ -253,15 +253,15 @@ Now you have learnt how to create, edit and delete the module deck, let's move t
 ##### Example: 
 In this example, you are going to access the module `CS2113T` that you have created in the previous sections.
 Below are steps of using this `go` command:
-* Step 1: Uses `list` command to check the index of the module that you would like to access.
+* Step 1: Uses `list` command to check the index of the module that you would like to access.<br>
 ![Go Module 1](UG_Images/goModule1.PNG)
-* Step 2: In this example, the module you would like to access is `CS2113T` and its index is `2` as shown as the diagram below.
+* Step 2: In this example, the module you would like to access is `CS2113T` and its index is `2` as shown as the diagram below.<br>
 ![Go Module 2](UG_Images/goModule2.PNG)
-* Step 3: You can type `go 2` to access this module.
+* Step 3: You can type `go 2` to access this module.<br>
 ![Go Module 3](UG_Images/goModule3.PNG)
-* Step 4: As shown below, you are now 
+* Step 4: As shown below, you are now<br>
 ![Go Module 4](UG_Images/goModule4.PNG)
-* Step 5: You may double check your access using the command prompt directory displayed on top of `Enter command here:`. As shown as the diagram, your current access directory is under `Admin/CS2113T`.
+* Step 5: You may double check your access using the command prompt directory displayed on top of `Enter command here:`. As shown as the diagram, your current access directory is under `Admin/CS2113T`.<br>
 ![Go Module 5](UG_Images/goModule5.PNG)
 
 ### 3.2. Module level
@@ -284,13 +284,13 @@ You are now at the module level! This command allows you to create a new chapter
 ##### Example 1: 
 In this example, you are going to add a new chapter called `Chapter 1`. <br>
 Below are steps of using this `add` command: <br>
-* Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`.
+* Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`.<br>
 ![Add Chapter 1](UG_Images/addChapter1.PNG)
-* Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses!
+* Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses!<br>
 ![Add Chapter 2](UG_Images/addChapter2.PNG)
-* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji.
+* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji.<br>
 ![Add Chapter 3](UG_Images/addChapter3.PNG)
-* Step 4: You have just created a new chapter! Good Job!
+* Step 4: You have just created a new chapter! Good Job!<br>
 ![Add Chapter 4](UG_Images/addChapter4.PNG)
 
 #### 3.2.2. Listing chapters available: `list`
@@ -307,7 +307,7 @@ Here are some key points:
 Example of usage: 
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 ![List Chapters 1](UG_Images/list_chapter1.png)
-* Step 2: The result for the list of chapters will be displayed as shown.
+* Step 2: The result for the list of chapters will be displayed as shown.<br>
 ![List Chapters 2](UG_Images/list_chapter2.png)
 * After listing all chapters, you can try all commands available in **Module Level**.
 
@@ -328,11 +328,11 @@ and must be a valid index number for a chapter as displayed from the list of cha
 
 Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap 1`.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditChapter1.png" width="600" alt="Edit Chapter 1"/>
+<img src="UG_Images/EditChapter1.png" width="600" alt="Edit Chapter 1"/><br>
 * Step 2: From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
-<img src="UG_Images/EditChapter2.png" width="600" alt="Edit Chapter 2"/>
+<img src="UG_Images/EditChapter2.png" width="600" alt="Edit Chapter 2"/><br>
 * Step 3: Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/>
+<img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/><br>
 * Step 4: After the chapter name has been successfully edited, the result will be displayed as shown.<br>
 <img src="UG_Images/EditChapter4.png" width="600" alt="Edit Chapter 4"/>
 
@@ -421,7 +421,7 @@ For instance, you are currently in the module level `CS2113T` and want to start 
 ![Revise 1](UG_Images/Revise1.png)
 * Step 2: If the chapter is not due for revision yet, you will be shown the below message: <br>
 ![Revise 2](UG_Images/Revise2.PNG)
-* Step 3: Enter `Y` to start the revision.
+* Step 3: Enter `Y` to start the revision.<br>
 ![Revise 3](UG_Images/Revise3.PNG)
 * Step 4: The message below will be shown at the start of the revision: <br>
 ![Revise 4](UG_Images/Revise4.PNG)
@@ -454,13 +454,13 @@ and must be a valid index number for a chapter as displayed from the list of cha
 
 Let's say you want to reschedule the due date to `2020-12-20` for the chapter `Chapter 1`.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/RescheduleChapter1.png" width="600" alt="Reschedule Chapter 1"/>
+<img src="UG_Images/RescheduleChapter1.png" width="600" alt="Reschedule Chapter 1"/><br>
 * Step 2: From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
-<img src="UG_Images/RescheduleChapter2.png" width="600" alt="Reschedule Chapter 2"/>
+<img src="UG_Images/RescheduleChapter2.png" width="600" alt="Reschedule Chapter 2"/><br>
 * Step 3: Next, you can type `reschedule 1 2020-12-20` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/RescheduleChapter3.png" width="600" alt="Reschedule Chapter 3"/>
+<img src="UG_Images/RescheduleChapter3.png" width="600" alt="Reschedule Chapter 3"/><br>
 * Step 4: After the due date of the chapter has been successfully rescheduled, the result will be displayed as shown.<br>
-<img src="UG_Images/RescheduleChapter4.png" width="600" alt="Reschedule Chapter 4"/>
+<img src="UG_Images/RescheduleChapter4.png" width="600" alt="Reschedule Chapter 4"/><br>
 
 ### 3.3. Chapter Level
 This section introduces the syntax and usages of the commands for the features that are available at the **Chapter Level**.<br>
@@ -486,7 +486,7 @@ Here are some key pointers:
 
 Let's say you want to add a new flashcard with `1+1` as the `QUESTION` and `2` as the `ANSWER`:
 * Step 1: Type `add q:1+1 | a:2` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/AddCard1.png" width="600" alt="Add Card 1"/>
+<img src="UG_Images/AddCard1.png" width="600" alt="Add Card 1"/><br>
 * Step 2: After the flashcard has been successfully added to the chapter, the result will be displayed as shown.<br>
 <img src="UG_Images/AddCard2.png" width="600" alt="Add Card 2"/>
 
@@ -505,7 +505,7 @@ Here are some key pointers:
 
 Let's say you want to view all the flashcards for a chapter:
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/ListCard1.png" width="600" alt="List Card 1"/>
+<img src="UG_Images/ListCard1.png" width="600" alt="List Card 1"/><br>
 * Step 2: The result for the list of flashcards will be displayed as shown.<br>
 <img src="UG_Images/ListCard2.png" width="600" alt="List Card 2"/>
 
@@ -535,11 +535,11 @@ you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
 
 Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditCard1.png" width="600" alt="Edit Card 1"/>
+<img src="UG_Images/EditCard1.png" width="600" alt="Edit Card 1"/><br>
 * Step 2: From the list of flashcards displayed, you can see that the flashcard `FLASHCARD_INDEX` is 1.<br>
-<img src="UG_Images/EditCard2.png" width="600" alt="Edit Card 2"/>
+<img src="UG_Images/EditCard2.png" width="600" alt="Edit Card 2"/><br>
 * Step 3: Next, you can type `edit 1 q:2*1 | a:` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/EditCard3.png" width="600" alt="Edit Card 3"/>
+<img src="UG_Images/EditCard3.png" width="600" alt="Edit Card 3"/><br>
 * Step 4: After the flashcard has been successfully edited, the result will be displayed as shown.<br>
 <img src="UG_Images/EditCard4.png" width="600" alt="Edit Card 4"/>
 
@@ -594,9 +594,9 @@ It is very simple, all you have to do is to enter the command [`showrate`](#) in
 ##### Example: 
 For instance, you would like to check your overall performance after completing several rounds of revision. <br>
 Below are steps of using this `showrate` command: <br>
-* Step 1: Type "showrate" into the command prompt while you are in a chapter level.
+* Step 1: Type "showrate" into the command prompt while you are in a chapter level.<br>
 ![showrate 1](UG_Images/showrate1.PNG)
-* Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
+* Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).<br>
 ![showrate 2](UG_Images/showrate2.PNG)
 
 ### 3.4 Scheduling In KAJI
@@ -873,11 +873,11 @@ Here are some key points:
 Example of usage: 
 Let's say today is 2020-11-09 and you want to view the revision history today:
 * Step 1: Type `history` or `history 2020-11-09` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/history1.png" width="600" alt="history 1"/>
+<img src="UG_Images/history1.png" width="600" alt="history 1"/><br>
 * Step 2: The result for the list of history will be displayed as shown.<br>
-<img src="UG_Images/history2.png" width="600" alt="history 2"/>
+<img src="UG_Images/history2.png" width="600" alt="history 2"/><br>
 * If you have not revised in 2020-11-09 this result will be displayed.<br>
-<img src="UG_Images/history3.png" width="600" alt="history 3"/>
+<img src="UG_Images/history3.png" width="600" alt="history 3"/><br>
 * After knowing the revision you have completed, you can try any commands on the correct level.
 
 #### 3.5.3. Exiting the program: `exit`
@@ -889,7 +889,7 @@ Format: `exit`
 
 Example of usage: 
 * Step 1: Type `exit` into the command prompt and press `Enter` to execute it.<br>
-<img src="UG_Images/exit1.png" width="600" alt="exit 1"/>
+<img src="UG_Images/exit1.png" width="600" alt="exit 1"/><br>
 * Step 2: The result for the exit will be displayed as shown.<br>
 <img src="UG_Images/exit2.png" width="600" alt="exit 2"/>
 
