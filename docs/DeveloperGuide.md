@@ -1127,6 +1127,7 @@ You should see the following:
 
 ## Testing EntryTracker
 1. The following testing guide assumes that [testing above](#testing-manualTracker) is completed.
+
 **Show Command List** <br />
 1. Enter ```commands``` into the console.
 You should see the following:
