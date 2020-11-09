@@ -46,6 +46,7 @@ place it in an empty folder
 </p>
 
 **Setting up the project on your PC**
+
 First, **fork** this repo, and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
