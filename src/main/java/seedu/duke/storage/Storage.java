@@ -24,15 +24,16 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    public static final int EXPECTED_DIVIDER_COUNT = 6;
-    /**
-     * Default file path used.
-     */
     public static final String TASK_STORAGE_FILEPATH = "tasks.txt";
     public static final String BOOK_STORAGE_FILEPATH = "books.txt";
     public static final String LINK_STORAGE_FILEPATH = "links.txt";
     public static final String MODULE_STORAGE_FILEPATH = "modules.txt";
     public static final String EXPENSE_STORAGE_FILEPATH = "expenses.txt";
+    public static final int EXPECTED_TASK_DIVIDER_COUNT = 6;
+    public static final int EXPECTED_EXPENSE_DIVIDER_COUNT = 4;
+    public static final int EXPECTED_MODULE_DIVIDER_COUNT = 5;
+    public static final int EXPECTED_BOOK_DIVIDER_COUNT = 5;
+    public static final int EXPECTED_LINK_DIVIDER_COUNT = 3;
 
     // @@author iamchenjiajun
     /**
@@ -194,7 +195,7 @@ public class Storage {
         String paddedLine = line + " ";
         String[] arguments = paddedLine.split("\\|");
 
-        if (arguments.length != EXPECTED_DIVIDER_COUNT) {
+        if (arguments.length != EXPECTED_TASK_DIVIDER_COUNT) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
 
@@ -231,7 +232,7 @@ public class Storage {
         Book newBook;
         String[] arguments = line.split("\\|");
 
-        if (arguments.length != EXPECTED_DIVIDER_COUNT - 1) {
+        if (arguments.length != EXPECTED_BOOK_DIVIDER_COUNT) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
 
@@ -268,6 +269,11 @@ public class Storage {
         Link newLink;
         String paddedLine = line + " ";
         String[] arguments = paddedLine.split("\\|");
+
+        if (arguments.length != EXPECTED_LINK_DIVIDER_COUNT) {
+            throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
+        }
+
         try {
             String module = arguments[0].trim();
             String type = arguments[1].trim();
@@ -292,7 +298,7 @@ public class Storage {
         String paddedLine = line + " ";
         String[] arguments = paddedLine.split("\\|");
 
-        if (arguments.length != 5) {
+        if (arguments.length != EXPECTED_MODULE_DIVIDER_COUNT) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
 
@@ -322,7 +328,7 @@ public class Storage {
         String paddedLine = line + " ";
         String[] arguments = paddedLine.split("\\|");
 
-        if (arguments.length != 4) {
+        if (arguments.length != EXPECTED_EXPENSE_DIVIDER_COUNT) {
             throw new DukeException(Messages.EXCEPTION_LOAD_FILE);
         }
 
