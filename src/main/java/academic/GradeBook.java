@@ -1,5 +1,6 @@
 package academic;
 
+import exceptions.EmptyInputException;
 import exceptions.RepeatedGradeException;
 
 import java.util.ArrayList;
@@ -15,10 +16,14 @@ public class GradeBook {
      * @param currentGrades array list of grade.
      * @throws RepeatedGradeException when grade added is already present in list of grade.
      */
-    public static void addGrade(String[] args, ArrayList<Grade> currentGrades) throws RepeatedGradeException {
+    public static void addGrade(String[] args, ArrayList<Grade> currentGrades)
+            throws RepeatedGradeException, EmptyInputException {
 
         for (Grade grade : currentGrades) {
-            if (args[0].equals(grade.moduleName)) {
+
+            if (args[0].equals("")) {
+                throw new EmptyInputException();
+            } else if (args[0].equals(grade.moduleName)) {
                 throw new RepeatedGradeException();
             }
         }

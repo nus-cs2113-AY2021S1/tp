@@ -46,7 +46,7 @@ public class TablePrinter {
 
         for (int i = 0; i < 25; i++) {
             for (int j = 0; j < 8; j++) {
-                System.out.printf("%-10s|", table[j][i]);
+                System.out.printf("%-10s|", table[j][i].substring(0, Math.min(table[j][i].length(), 10)));
             }
             System.out.println("");
         }
