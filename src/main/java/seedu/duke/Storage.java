@@ -409,11 +409,9 @@ public class Storage {
      */
     private static void loadAdditionInformation(CalendarItem item, String[] taskInFile, int num) {
         if (item instanceof Event) {
-            if (!taskInFile[EVENT_ADDITION_INFO].equals("0")) {
-                int i;
-                for (i = 1; i <= num - EVENT_ADDITION_INFO - 1; i++) {
-                    ((Event) item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
-                }
+            int i;
+            for (i = 1; i <= num - EVENT_ADDITION_INFO - 1; i++) {
+                ((Event) item).setAdditionalInformation(taskInFile[i + EVENT_ADDITION_INFO]);
             }
         }
     }
