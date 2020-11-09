@@ -344,7 +344,7 @@ the `FlashcardDeck` class.
 
 With reference to the figure above, as an "add card" command is given by the user, `FlashcardRun` will take in the 
 command and call `addCard()` method in `FlashcardDeck` which constructs a new Flashcard object and stores 
-it inside the `FlashcardDeck` object.The `addCard()` function will then show the user the question and 
+it inside the `FlashcardDeck` object. The `addCard()` function will then show the user the question and 
 answer of the flashcard that has been created.
 
 Other possible commands that are not shown in the figure work in a similar way where command is parsed in `FlashcardRun` Class,
