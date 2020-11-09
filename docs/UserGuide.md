@@ -411,7 +411,7 @@ If you attempt to execute the command, Nav@NUS will automatically delete the cor
 Given you have the list of favourite commands:<br>
 <img src="UG_Figures/execfav3.png"><br>
 
-If you attempt to execute the invalid command <code>/Funny command</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br>
+If you attempt to execute the invalid command <code>/bus random place</code> in your favourites list. Nav@NUS will automatically delete the corrupted data from your list as seen below:<br>
 <img src="UG_Figures/execfav4.png"><br>
 
 <!-- @@author wamikamalik -->
