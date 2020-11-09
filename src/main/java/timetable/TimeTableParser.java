@@ -60,15 +60,15 @@ public class TimeTableParser {
                         System.out.print(Message.printInvalidEvent);
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Input for days and time of the lesson is invalid Please add class again");
+                    System.out.println("Input for days and time of the lesson is invalid. Please add the class again.");
                     StudyItLog.logger.warning("Invalid timetable command: Invalid date input");
                 } catch (InvalidDayOfTheWeekException e) {
                     System.out.println("Day of the week input is invalid. Please add the class again.");
                     StudyItLog.logger.warning("Invalid timetable command: Invalid day of the week input");
                 } catch (ClashScheduleException e) {
-                    System.out.println("There is a clash in schedule! Please check your schedule and add again");
+                    System.out.println("There is a clash in schedule! Please check your schedule and add again.");
                 } catch (InvalidTimeException | DateTimeException e) {
-                    System.out.println("Input for time of the lesson is invalid Please add class again");
+                    System.out.println("Input for time of the lesson is invalid! Please add class again.");
                 }
             } else if (command.contains("delete activity") && words.length == 3) {
                 try {
@@ -78,7 +78,7 @@ public class TimeTableParser {
                 } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                     System.out.println(Message.printInvalidEvent);
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("The number you have entered is invalid");
+                    System.out.println("The number you have entered is invalid.");
                 }
             } else if (command.contains("delete class") && words.length == 3) {
                 try {
@@ -88,7 +88,7 @@ public class TimeTableParser {
                 } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                     System.out.println(Message.printInvalidEvent);
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("The number you have entered is invalid");
+                    System.out.println("The number you have entered is invalid.");
                 }
             } else {
                 System.out.print(Message.printInvalidEvent);
@@ -133,7 +133,7 @@ public class TimeTableParser {
             default:
             }
         } catch (ClashScheduleException e) {
-            System.out.println("There is a clash in schedule");
+            System.out.println("There is a clash in schedule!");
         }
     }
 

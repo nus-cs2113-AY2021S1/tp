@@ -22,8 +22,6 @@ This application currently has the following modes that you can access and use:
 1. Academic	    - 	Track your academic performance and store useful contact information
 1. Flashcard	- 	Memorize your study content better with our built-in flashcard
 
-<div style="page-break-after: always;"></div>
-
 ## About
 This app is targeted towards National University of Singapore (NUS) students studying in this current online 
 environment. This user guide will be providing information about how to use the Study It app by 
@@ -471,7 +469,7 @@ Expected output:
 
 If you find it hard to keep track of all your Zoom links with an increasing number of online classes, you can now
 arrange your classes in a systematic manner with this feature. Make sure you are currently in the timetable mode
-(refer to 2.1).
+([refer to 2.1](#21-entering-timetable-mode-cd-3--cd-timetable)).
 
 Instruction:
 
@@ -868,7 +866,7 @@ Expected output:
 
 To assist you in your studies, there needs to be a knowledge base of content to be revised.
 You can do this by adding new flashcards to the flashcard deck with this command, after entering flashcard mode
-(refer to 4.1).
+([refer to 4.1](#41-entering-flashcard-mode-cd-5--cd-flashcard)).
 
 Instruction:
 1. `add`
@@ -968,7 +966,7 @@ and copy it over to the directory in the new computer accordingly after installi
 
 **Q**: Why is my application not starting up properly?
 
-**A**: Please refer to the "Getting Started" section and ensure that 
+**A**: Please refer to the ["Getting Started"](#getting-started) section and ensure that 
 the correct version of java is installed on your computer. If you face any further difficulties, 
 feel free to refer to the About Us page and contact any of the developers.
 
