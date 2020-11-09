@@ -63,7 +63,7 @@ and press `Enter`.
 
     `reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1`
     
-4. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/tag/v2.0).
+4. Download the latest "planus.jar" from [here](https://github.com/AY2021S1-CS2113T-W12-1/tp/releases/tag/v2.1).
     
 5. Open a **new** command prompt in the folder where "planus.jar" is located at.
 For Windows user, you can do so by going to the folder in file explorer,
