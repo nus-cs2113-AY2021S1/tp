@@ -285,7 +285,7 @@ public class ModuleList {
             ui.printAddExpError(toPrint);
             ui.printEmptyline(toPrint);
         } catch (NumberFormatException nfe) {
-            logger.log(Level.INFO, "Invalid number format");
+            logger.log(Level.INFO, "Invalid addexp format");
             ui.printAddExpNfe(toPrint);
         }
     }
@@ -431,17 +431,7 @@ public class ModuleList {
         double initialHours = Double.parseDouble(commandInfo[2]);
         hours = Math.round(initialHours * 10) / 10; // this rounds the hours to the nearest 1dp.
 
-        if (!checkIfModuleValid(modCode)) {
-            ui.printInvalidModule(toPrint);
-            return;
-        }
-        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
-        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
-
-
-        if (!checkIfTimeValid(hours, toPrint)) {
-            return;
-        } else if (!checkIfWeekValid(week, toPrint)) {
+        if (!validateTimeInput(toPrint, modCode, week, hours)) {
             return;
         }
 
@@ -452,7 +442,6 @@ public class ModuleList {
             ui.printNotExist(modCode, toPrint);
         } else if (modList.get(index).doesHoursExceed99(hours, weekNumber)) {
             ui.printHoursExceed();
-            return;
         } else {
             modList.get(index).addActualTime(commandInfo[2], commandInfo[3]);
             if (toPrint) {
@@ -481,16 +470,7 @@ public class ModuleList {
         double initialHours = Double.parseDouble(commandInfo[2]);
         hours = (Math.round(initialHours * 10)) / 10; // this rounds the hours to the nearest 1dp.
 
-        if (!checkIfModuleValid(modCode)) {
-            ui.printInvalidModule(toPrint);
-            return;
-        }
-        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
-        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
-
-        if (!checkIfTimeValid(hours, toPrint)) {
-            return;
-        } else if (!checkIfWeekValid(weekNumber, toPrint)) {
+        if (!validateTimeInput(toPrint, modCode, weekNumber, hours)) {
             return;
         }
 
@@ -539,17 +519,7 @@ public class ModuleList {
         modCode = commandInfo[1].toUpperCase();
         week = commandInfo[3];
 
-
-        if (!checkIfModuleValid(modCode)) {
-            ui.printInvalidModule(toPrint);
-            return;
-        }
-        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
-        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
-
-        if (!checkIfTimeValid(hours, toPrint)) {
-            return;
-        } else if (!checkIfWeekValid(week, toPrint)) {
+        if (!validateTimeInput(toPrint, modCode, week, hours)) {
             return;
         }
 
@@ -565,6 +535,26 @@ public class ModuleList {
                 storage.appendToFile(input);
             }
         }
+    }
+
+    private boolean validateTimeInput(boolean toPrint, String modCode, String week, double hours) {
+        if (!checkIfModuleValid(modCode)) {
+            ui.printInvalidModule(toPrint);
+            return false;
+        }
+
+        assert modCode.length() >= MIN_MOD_LENGTH : MODULECODE_LENGTH;
+        assert modCode.length() <= MAX_MOD_LENGTH : MODULECODE_LENGTH;
+
+        if (!checkIfTimeValid(hours, toPrint)) {
+            return false;
+        }
+
+        if (!checkIfWeekValid(week, toPrint)) {
+            return false;
+        }
+
+        return true;
     }
 
     public ArrayList<Module> getData() {

@@ -344,7 +344,7 @@ Format: `deletetime <module code> <week number>`
 * The `module code` needs to be valid.
 * The `module code` exists in the database.
 * The `week number` must be a whole number between 1 and 13 inclusive.
-* There is an input in the actual time of the `module code`.
+* There is an input in the actual time of the `module code` for that week.
 
 
 Example of usage:
@@ -428,7 +428,8 @@ Opens the notification which contains a randomised encouraging message.
 The notification will give the user an update 
 on the progress of the current week.
 The program determines the current week based on
-the latest week that has at least one actual time input.
+the latest week that has at least one actual time input. 
+If there is no actual time input in any week, it will be considered as week 1.
 
 Format: `open`
 
@@ -436,10 +437,10 @@ Example of usage:
 
 `open`
 
-A possible expected output:
+A possible expected output (when user spends too little time on CS1010 in week 2):
 
 ```
-Oh no! It appears you are spending too little time on CS1010.
+Oh no! It appears you are spending too little time on CS1010 in week 2.
    
 The harder you work, the closer you are to success!
 ````
@@ -468,12 +469,13 @@ Expected output:
 ---WARNING!---
 This will delete all modules and tasks data.
 Type 'yes' if you wish to continue.
-Enter any key to cancel this operation.
+Enter any other key to cancel this operation.
 ````
 
 **Case 1: User enters `yes`**
 
-Note: `yes` is case-insensitive here.
+Note: `yes` is case-insensitive here. 
+The program ignores any leading or trailing spaces.
 
 Expected output:
 ````
@@ -502,12 +504,13 @@ Expected output:
 ---WARNING!---
 This will delete all your past data and reset the whole program.
 Type 'yes' if you wish to continue.
-Enter any key to cancel this operation.
+Enter any other key to cancel this operation.
 ````
 
 **Case 1: User enters `yes`**
 
 Note: `yes` is case-insensitive here.
+The program ignores any leading or trailing spaces.
 
 Expected output:
 ````
@@ -578,8 +581,8 @@ Bye <username>. Hope to see you again soon!
 |Mark task as done|`done <task number>`|
 |Delete a task|`deletetask <task number>`|
 |Open notification|`open`|
-|Clear module and task data|`clear`|
-|Deleting module and task data|`reset`|
+|Delete module and task data|`clear`|
+|Delete all data and restart the program|`reset`|
 |Exiting the program|`exit`|
 
 [Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)
