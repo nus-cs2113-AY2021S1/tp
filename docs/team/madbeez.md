@@ -1,6 +1,6 @@
-#Wan Shi Jie Brendan's Project Portfolio Page
+# Wan Shi Jie Brendan's Project Portfolio Page
 
-# Project: NuSchedule
+# Project: NUSchedule
 
 NuSchedule is a task scheduling app targeted at NUS students and staff. It is written in Java and has about 5 kLoC. 
 The user interacts with the app via a command line interface.
