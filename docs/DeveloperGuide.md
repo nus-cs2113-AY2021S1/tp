@@ -478,6 +478,8 @@ location.
 * `SimilarityCheck#similarLoc()` adds the bus stop name to the list of possible locations if this similarity is greater 
 than a certain threshold (taken as 0.60).
 
+<div style="page-break-after: always;"></div>
+
 Refer to [`/route` feature implementation](#31-finding-a-direct-route-route-feature) and 
 [`/bus` feature implementation](#39-bus-at-bus-stop-finder-bus-feature) for examples of where this feature is used.
 
@@ -515,6 +517,8 @@ variable called searchCount.
     used for locations with many bus stops.
     + _Cons:_ Has to loop through the array of bus stops and obtain their respective search counts.
      
+<div style="page-break-after: always;"></div>
+
 * **Alternative 2:** The search frequency of each bus stop is stored in an array of tuple and is directly accessed.
     + _Pros:_ It is easier and quicker to obtain the most searched bus stop.
     + _Cons:_ It does not blend in well with other features that accesses the BusStops class.
