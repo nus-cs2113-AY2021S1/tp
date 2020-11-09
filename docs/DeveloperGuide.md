@@ -190,6 +190,13 @@ The operations that can be done on the words list are:
 
 ## Implementation
 
+### User interaction overview
+![UML sequence diagram for user interaction](graphics/diagrams/Sequence_diagram_general_command.png)
+
+After the initial logo printing and registration step, the `main` in the `Duke` class enters a while loop, which will only exit when the `exit` command is detected. This component handles the processing of various commands in Fluffle and makes it easier for developers to add new commands without interfering with implementation of other commands.
+
+For simplicity when the `CommandExecutor` class is referenced in later UML diagrams in this document, you may assume that it is a continuation of this diagram.
+
 ### Writing Features
 #### Constitution (member classes)
 WritingList: Represent the objects which are particular lists of Writings to be used in the application.
