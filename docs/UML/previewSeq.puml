@@ -3,15 +3,16 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":PreviewCommand" as P LOGIC_COLOR
-end box
-
-box Ui UI_COLOR_T1
-participant "ui:Ui" as U UI_COLOR
+participant "<<class>>\n:Scheduler" as SC LOGIC_COLOR
 end box
 
 box Storage STORAGE_COLOR_T1
 participant "storage:Storage" as S STORAGE_COLOR
-participant ":StorageLoad" as SL STORAGE_COLOR
+participant ":<<class>>\nStorageLoad" as SL STORAGE_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant "ui:Ui" as U UI_COLOR
 end box
 
 skinparam sequence {
@@ -24,25 +25,47 @@ activate P
     activate P
     P -> S : loadAllDueChapters()
     activate S
-    S -> SL : loadAllChaptersAsDueChapters()
+    S -> SL : loadAllDueChapters()
     activate SL
+    SL -> SL : loadAllChaptersAsDueChapters()
+    activate SL
+    SL --> SL : allDueChapters
+    deactivate SL
     SL --> S : allDueChapters
     deactivate SL
     S --> P : allDueChapters
     deactivate S
     deactivate P
     loop for increment from 0 to 6
-        P -> P : setDueDueChapters()
+        P -> P : setDueDueChapters(increment)
         activate P
+            loop for chapter in allDueChapters
+                P -> P : addIfDue()
+                activate P
+                    P -> SC : isDeadlineDueIn(increment)
+                    activate SC
+                        SC --> P : isDeadlineDueIn
+                    deactivate SC
+                opt isDeadlineDueIn is true
+                    P -> P : dueDueChapters.add(chapter)
+                end
+                deactivate P
+            end
         deactivate P
-        alt if increment equals 0
-            P -> U : printDueByTodayMessage()
-            activate U
-            U --> P
-            deactivate U
-        else increment larger than 0
-            P -> U : printDueByIncrementMessage()
-        end
+        P -> P : printPreviewMessage(0
+        activate P
+            alt if increment equals 0
+                P -> U : printDueByTodayMessage()
+                activate U
+                U --> P
+                deactivate U
+            else increment larger than 0
+                U --> P
+                activate U
+                P -> U : printDueByIncrementMessage()
+                deactivate U
+            end
+        deactivate P
         P -> U : printDueChapters(DueDueChapters)
         activate U
         U --> P

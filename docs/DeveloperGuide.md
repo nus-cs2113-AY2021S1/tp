@@ -200,7 +200,7 @@ The Storage component consists of the `Storage`, `StorageWrite`, `StorageParser`
 
 <p align="center">
   <img src="DG_Images/storage.png" width="600" alt="Storage Class Diagram"/>
-  <br/>Figure <>. Class diagram of Storage component  
+  <br/>Figure <>. Architecture diagram of Storage component  
 </p>
 
 The Storage component
@@ -584,6 +584,13 @@ To support the Access Chapter Level Feature, `GoChapterCommand` implements the f
 * `GoChapterCommand#goChapter()` - Parses through the Module that the User is currently on to search for the specified Chapter. If the Chapter is found but not empty, there will be no output message, while if the found Chapter is empty, a message prompting the user to add Cards to the Chapter will be returned.
 * `GoChapterCommand#execute()` - Calls `GoChapterCommand#goChapter()` and prints the output message returned if there is one.
 
+The following diagram shows the class diagram of the Access Chapter feature:
+
+<p align="center">
+  <img src="DG_Images/AccessChapterClass.png" width="800" alt="Class Diagram of Access Chapter"/>
+  <br/>Figure <>. Class diagram of Access Chapter
+</p>
+
 ***Example***
 
 For instance, the user is currently in the Module `CS2113T` and would like to go to the Chapter 'Chapter 1' on the Chapter level. A detailed description of what happens is shown below:
@@ -604,7 +611,7 @@ Step 6: Lastly, to finish the transition into the Chapter level, `Access#setChap
 The following sequence Diagrams illustrates how the Access Chapter Level Feature is executed:
 
 <p align="center">
-  <img src="DG_Images/goChapter.png" width="600" alt="Go Chapter Sequence Diagram"/>
+  <img src="DG_Images/goChapter.png" width="1000" alt="Go Chapter Sequence Diagram"/>
   <br/>Figure <>. Sequence diagram of Access Chapter Level Feature
 </p>
 
@@ -620,6 +627,13 @@ To execute this feature, the following class was created:
 
 To support the Return to Admin Level Feature, `BackAdminCommand` implements the following operation:
 * `BackAdminCommand#execute()` - Calls `Access#setModuleLevel()` to set the `Access` Object's `level` attribute's value to `adminLevel` if its current value is the `moduleLevel`
+
+The following diagram shows the class diagram of the Return to Admin Level feature:
+
+<p align="center">
+  <img src="DG_Images/BackAdminClass.png" width="800" alt="Class Diagram of Access Chapter"/>
+  <br/>Figure <>. Class diagram of Access Chapter
+</p>
 
 ***Example***
 
@@ -976,7 +990,8 @@ KAJI schedules the user's database automatically for them based on their [revisi
 To utilise this feature, the following commands and their corresponding features are introduced:
 * [`due`](#451-View-Due-Chapters-Feature) - Viewing their schedule for the current day (View Due)
 * [`preview`](#452-Preview-Upcoming-Dues-Feature) - Viewing their schedule for the upcoming week (Preview Upcoming Due)
-* [`exclude`](#453-Exclusion-Feature) - Customising which of their Chapters will be in the Scheduler (Exclusion)
+* [`exclude`](#453-Exclusion-Feature) - Removing Chapters from the Scheduler (Exclusion)
+* [`include`](#453-Exclusion-Feature) - Including Chapters back into the Scheduler (Exclusion)
 
 
 #### 4.5.1. View Due Chapters Feature
@@ -1004,6 +1019,11 @@ On top of that, `Storage` implements the following operations:
 * `Storage#checkChapterDeadline()` - Reads the deadline for each `Chapter`, prompts if they are corrupted, and adds a `DueChapter` formed with the `Chapter` into `ArrayList<DueChapter> allDueChapters`
 * `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
+
+<p align="center">
+  <img src="DG_Images/listDueClass.png" height="600" width="1023" alt="Class Diagram of ListDue"/>
+  <br/>Figure <>. Class diagram of ListDue
+</p>
 
 ***Example***
 
@@ -1053,6 +1073,11 @@ On top of that, the following operations from `Storage` are used:
 * `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
 
+<p align="center">
+  <img src="DG_Images/previewClass.png" height="600" width="1023" alt="Class Diagram of Preview"/>
+  <br/>Figure <>. Class diagram of Preview
+</p>
+
 ***Example***
 
 For instance, the user wants to check what Chapters are due on in the upcoming week.  A detailed description of what happens is shown below:
@@ -1090,8 +1115,6 @@ The following sequence Diagrams illustrates how the Preview Upcoming Dues Proces
 
 ***Implementation***
 
-***Implementation***
-
 KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of `Chapter`s that KAJI will ignore as it parses for `Chapter`s that are due in the `due` and `preview` commands. 
 
 This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
@@ -1105,6 +1128,7 @@ To load and store the Exclusion List, a Exclusion File is created and maintained
 * `Storage#loadExclusionFile()` - Reads the contents of the Exclusion File, parses it into the Exclusion List, stored as a `ArrayList<String>`, and returns it.
 * `Storage#updateExclusionFile()` - Writes the `ArrayList<String>` Exclusion List into the Exclusion File.
 
+#### 4.5.3.1 Excluding Chapters from the Schedule Feature
 The `exclude` command can be called with either `exclude chapter` or `exclude module`, which adds a `Chapter` or every `Chapter` from a `Module` to the Exclusion List respectively. 
 
 To determine if a single `chapter` or an entire `module` is to be added to the Exclusion List, `excludecommand` implements the operation `excludecommand#attemptToExclude()`.
@@ -1121,6 +1145,11 @@ Items are added into the `ArrayList<String>` Exclusion List using two pairs of c
 * Excluding a Module from Scheduling
     * `ExcludeCommand#addModuleToExclusion()` - gets the name of the `Module` to be excluded, and calls `Storage#appendModuleToExclusionFile()`
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
+
+<p align="center">
+  <img src="DG_Images/previewClass.png" height="600" width="1023" alt="Class Diagram of Preview"/>
+  <br/>Figure <>. Class diagram of Preview
+</p>
 
 ***Example***
 
@@ -1152,11 +1181,13 @@ Step 9: After the inclusion of every Chapter in the `CS2113T` into `excludedChap
 The following sequence Diagrams illustrates how the "exclude" command is executed:
 
 <p align="center">
-  <img src="DG_Images/excludeSeq.png" width="800" alt="Sequence Diagram of the exclude command"/>
+  <img src="DG_Images/excludeSeq.png" width="1000" alt="Sequence Diagram of the exclude command"/>
   <br/>Figure <>. Sequence Diagram using the Exclusion Feature to exclude content from the schedule
 </p>
 
 <br>
+
+#### 4.5.3.2 Including Chapters back into the Schedule Feature
 On the other hand, the `include` command can be called with `include chapter` or `include module` which removes a `Chapter` or every `Chapter` from a `Module` from the Exclusion List.
 
 Similarly, to determine if a single `chapter` or an entire `module` is to be removed from the Exclusion List, `includecommand` implements the operation `includecommand#attemptToInclude()`.
@@ -1204,7 +1235,7 @@ Step 9: After the removal of every Chapter in the `CS2113T` from `excludedChapte
 The following sequence Diagrams illustrates how the "include" command is executed:
 
 <p align="center">
-  <img src="DG_Images/includeSeq.png" width="800" alt="Sequence Diagram of the include command"/>
+  <img src="DG_Images/includeSeq.png" width="1000" alt="Sequence Diagram of the include command"/>
   <br/>Figure <>. Sequence Diagram using the Exclusion Feature to include content into the schedule
 </p>
 

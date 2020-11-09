@@ -1,0 +1,47 @@
+@startuml
+
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract} \n Command" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access,
+    storage : Storage) : void
+}
+
+Class Ui UI_COLOR {
+    + printDueByTodayMessage(listSize : int, commandType : String) : void
+    + printDueByIncrementMessage(listSize : int, incrementedDueBy : String) : void
+    + printDueChapters(dueDueChapters : ArrayList<DueChapter>) : void
+}
+
+Class Storage STORAGE_COLOR {
+    + loadAllDueChapters() : ArrayList<DueChapter>
+}
+
+Class StorageLoad STORAGE_COLOR {
+    + loadAllDueChapters() : ArrayList<DueChapter>
+    + loadAllChaptersAsDueChapters() : ArrayList<DueChapter>
+}
+
+Class "PreviewCommand" as PreviewCommand LOGIC_COLOR {
+    - allDueChapters : ArrayList<DueChapter>
+    - dueDueChapters : ArrayList<DueChapter>
+    + execute(ui : Ui , access : Access, storage : Storage) : void
+    - loadAllDueChapters(storage : Storage, ui : Ui) :void
+    - addIfDue(chapter : DueChapter, deadline : LocalDate) : void
+    - setDueDueChapters() : void
+    - printPreviewMessage(ui : Ui, increment : int) : void
+}
+
+Class "Scheduler" as Scheduler LOGIC_COLOR {
+    - isDeadlineDueIn(dueby : LocalDate, increment : int) : boolean
+}
+
+PreviewCommand -left[LOGIC_COLOR_T4]-|> Command
+PreviewCommand .right[LOGIC_COLOR_T4].> Scheduler
+PreviewCommand .down[LOGIC_COLOR_T4].> Storage
+Storage .left[LOGIC_COLOR_T4].> StorageLoad
+PreviewCommand .up[LOGIC_COLOR_T4].> Ui
+
+@enduml

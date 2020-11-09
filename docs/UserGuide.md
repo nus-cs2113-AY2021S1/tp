@@ -77,6 +77,9 @@ A <b>command line interface (CLI)</b> is a text-based user interface (UI) used t
 #### 1.4.1. Content Management
 
 #### 1.4.2. Schedule Management
+Your biggest reason to use KAJI lies in KAJI's ability to provide you with the full benefits of "Spaced Repetition" without you having to do the tedious manual work involved. To accomplish this, KAJI comes with an automated Schedule Management feature that will facilitate the "Spaced Repetition" scheduling process for you. 
+
+To find out more about how you can utilise the feature and even customise it to your liking, find out more [below](#45-viewing-and-customising-the-schedule-feature).
 
 --------------------------------------------------------------------------------------------------------------------
 
