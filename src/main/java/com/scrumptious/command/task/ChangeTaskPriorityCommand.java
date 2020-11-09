@@ -40,6 +40,7 @@ public class ChangeTaskPriorityCommand extends TaskCommand {
         Project proj = projectListManager.getSelectedProject();
         try {
             Task task = proj.getBacklog().getTask(id);
+            assert !(task == null) : "Task is NULL\n";
             if (!proj.getBacklog().checkValidPriority(priority)) {
                 handleInvalidPriority("Syntax error : edit task priority.");
                 return;

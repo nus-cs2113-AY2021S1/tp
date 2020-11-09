@@ -82,6 +82,7 @@ public class ViewTaskCommand extends TaskCommand {
      */
     private void printTask(Project proj, int taskId) {
         Task task = proj.getBacklog().getTask(taskId);
+        assert !(task == null) : "Task is NULL\n";
         ScrumLogger.LOGGER.info(String.format("Viewed task ID : %d", taskId));
         Ui.showToUserLn(task.toString());
     }

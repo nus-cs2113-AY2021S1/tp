@@ -53,6 +53,7 @@ public class AddTaskCommand extends TaskCommand {
      */
     private void displayToUser(Project proj) {
         Task addedTask = proj.getBacklog().getTask(proj.getBacklog().getNextId() - 1);
+        assert !(addedTask == null) : "Task is NULL\n";
         Ui.showToUserLn("Task successfully created.");
         Ui.showToUserLn(addedTask.toString());
         ScrumLogger.LOGGER.info(String.format("Added backlog task, ID : %d",
@@ -71,6 +72,7 @@ public class AddTaskCommand extends TaskCommand {
         }
         for (int i = 1; i <= projectManager.getSelectedProject().getBacklog().size(); i++) {
             Task existingTask = projectManager.getSelectedProject().getBacklog().getTask(i);
+            assert !(existingTask == null) : "Task is NULL\n";
             if (existingTask != null) {
                 String existingTitle = existingTask.getTitle();
                 titleAlreadyExist |= existingTitle.equals(title);

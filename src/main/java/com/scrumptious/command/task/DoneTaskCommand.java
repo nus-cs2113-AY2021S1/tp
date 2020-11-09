@@ -49,6 +49,7 @@ public class DoneTaskCommand extends TaskCommand {
             handleNegativeId(taskId, "Syntax error : task completion.");
         } else if (taskId <= proj.getBacklog().getNextId()) {
             task = proj.getBacklog().getTask(taskId);
+            assert !(task == null) : "Task is NULL\n";
             task.setAsDone();
             displayToUser(task, taskId);
         } else {
