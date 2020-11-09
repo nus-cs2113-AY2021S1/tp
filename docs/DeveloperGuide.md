@@ -49,6 +49,10 @@ finance calculator tools within it.
 * All ```LogicManager``` classes use the ```InputManager``` component to process user input, then use ```Logic``` component
 to perform the operation associated with the param handling.
 
+__Design decisions__ 
+* For each feature that involves some sort of query and response, we wanted a module of classes that handles such in a systematic fashion. 
+Five isolated classes that handles each feature in a self-contained manner helps to reduce overtly complex interactions between user and software.
+
 <div style="page-break-after: always;"></div>
 
 ## Logic Component
@@ -67,6 +71,14 @@ __API__
 associated with the `param`. For instance, `/date` will cause `CreateLedgerCommand` instance to set the date of the
 newly created ledger.  
 * `CommandHandler` in turn uses `ParamChecker` to verify validity of inputs before setting.
+
+__Design decisions__ 
+* The handling of parameters throughout the various features of the software have alot of common key features, including logic, input class (`CommandPacket`) 
+and error cases. Therefore we abstracted out the common behavior into an abstract class called `ParamHandler`, whereby the other `CommandHandler` classes inherit from.
+* Along the same philosophy, we designed the `ParamChecker` singleton class to consolidate a plethora of error handling methods whereby other `CommandHandlers` can use.
+This is fit for the software since many of the features share strong similarities in the handling of errors and exceptions.
+    * The alternative implementation, which is to implement logic of features independently of one another, would result in duplication of code and lack of common error-handling policy. 
+
 <!-- @@author-->
 
 <div style="page-break-after: always;"></div>
