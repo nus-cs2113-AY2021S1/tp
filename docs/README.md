@@ -7,4 +7,3 @@ Useful links:
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
-* [Hung](team/hungvo0603.md)
