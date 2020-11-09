@@ -19,6 +19,7 @@ import static seedu.duke.ui.UI.printFilteredBunny;
 
 public class BunnyFilter {
 
+    /** List of bunnies filtered with the corresponding index still attached. */
     public static HashMap<Integer, Bunny> filteredBunny = new HashMap<>();
 
     /**
