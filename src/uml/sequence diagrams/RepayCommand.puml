@@ -1,0 +1,19 @@
+@startuml
+hide footbox
+->":RepayCommand":execute(data, ui)
+activate ":RepayCommand"
+":RepayCommand"->":DecimalFormatter":convert()
+activate ":DecimalFormatter"
+":DecimalFormatter"-->":RepayCommand":repayment
+deactivate ":DecimalFormatter"
+":RepayCommand"->":RepaymentList":addItem(name, currency, repayment, deadline)
+activate ":RepaymentList"
+":RepaymentList"-->":RepayCommand":
+deactivate ":RepaymentList"
+":RepayCommand"->":Ui":printRepay(repaymentList)
+activate ":Ui"
+":Ui"-->":RepayCommand":
+deactivate ":Ui"
+<--":RepayCommand"
+deactivate ":RepayCommand"
+@enduml

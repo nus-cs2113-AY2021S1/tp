@@ -1,0 +1,39 @@
+@startuml
+hide footbox
+->":ConvertCommand":execute(data, ui)
+alt inputCurrency == defaultCurrency
+activate ":ConvertCommand"
+":ConvertCommand"->":SpendingList":getSpendingList()
+activate ":SpendingList"
+":SpendingList"-->":ConvertCommand":spendingList
+deactivate ":SpendingList"
+":ConvertCommand"->":ConvertCommand":identifyCurrency()
+activate ":ConvertCommand"
+":ConvertCommand"-->":ConvertCommand":currencies
+deactivate ":ConvertCommand"
+":ConvertCommand"->":ConvertCommand":findExchangeRate()
+activate ":ConvertCommand"
+":ConvertCommand"-->":ConvertCommand":
+deactivate ":ConvertCommand"
+":ConvertCommand"->":ConvertCommand":updateList()
+activate ":ConvertCommand"
+":ConvertCommand"-->":ConvertCommand":
+deactivate ":ConvertCommand"
+alt isValid()
+":ConvertCommand"->":Ui":printConvertCurrency(outputCurrency)
+activate ":Ui"
+":Ui"-->":ConvertCommand":
+deactivate ":Ui"
+end
+":ConvertCommand"->":SpendingList":updateSpendingList()
+activate ":SpendingList"
+":SpendingList"-->":ConvertCommand":
+deactivate ":SpendingList"
+":ConvertCommand"->":ConvertCommand":updateBudgetList()
+activate ":ConvertCommand"
+":ConvertCommand"-->":ConvertCommand":
+deactivate ":ConvertCommand"
+<--":ConvertCommand"
+deactivate ":ConvertCommand"
+end
+@enduml

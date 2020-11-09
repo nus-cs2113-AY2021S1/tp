@@ -1,0 +1,32 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Command"{
+    + execute(): void {abstract}
+    + isExit(): boolean
+}
+
+class "SetBudgetCommand" {
+    - budgetLimit: double
+    - currency: String
+    + SetBudgetCommand()
+    + execute(): void
+}
+
+class "ViewBudgetCommand" {
+    + execute(): void
+}
+
+class "ClearBudgetCommand" {
+    + execute(): void
+}
+
+SetBudgetCommand -[hidden]right-> ViewBudgetCommand
+ViewBudgetCommand -[hidden]right-> ClearBudgetCommand
+SetBudgetCommand -up-|> "{abstract} \n Command"
+ViewBudgetCommand -up-|> "{abstract} \n Command"
+ClearBudgetCommand -up-|> "{abstract} \n Command"
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+hide footbox
+->":AddCommand":execute(data, ui)
+activate ":AddCommand"
+alt currency != defaultCurrency
+":AddCommand"->":AmountConverter":updateAmount()
+activate ":AmountConverter"
+":AmountConverter"-->":AddCommand":amount
+deactivate ":AmountConverter"
+":AddCommand"->":AmountConverter":updateCurrency()
+activate ":AmountConverter"
+":AmountConverter"-->":AddCommand":currency
+deactivate ":AmountConverter"
+end
+":AddCommand"->":DecimalFormatter":convert()
+activate ":DecimalFormatter"
+":DecimalFormatter"-->":AddCommand":amount
+deactivate ":DecimalFormatter"
+":AddCommand" -> ":SpendingList": addItem(description,\ncurrency, amount, category)
+activate ":SpendingList"
+":SpendingList" --> ":AddCommand"
+deactivate ":SpendingList"
+":AddCommand" -> ":Ui": printAdd(data)
+activate ":Ui"
+":Ui" --> ":AddCommand"
+deactivate ":Ui"
+opt size%4==0
+":AddCommand" -> ":EncouragementCommand": execute(data)
+activate ":EncouragementCommand"
+":EncouragementCommand" --> ":AddCommand"
+deactivate ":EncouragementCommand"
+end
+opt Budget.hasBudget
+":AddCommand" -> ":WarnCommand": execute(data, ui)
+activate ":WarnCommand"
+":WarnCommand" --> ":AddCommand"
+deactivate ":WarnCommand"
+end
+@enduml

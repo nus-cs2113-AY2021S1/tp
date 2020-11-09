@@ -1,0 +1,30 @@
+@startuml
+hide footbox
+->":WarnCommand":execute(data, ui)
+activate ":WarnCommand"
+":WarnCommand"->":Budget":getCurrency()
+activate ":Budget"
+":Budget"-->":WarnCommand":outputCurrency
+deactivate ":Budget"
+":WarnCommand"->":Budget":getBudgetLimit()
+activate ":Budget"
+":Budget"-->":WarnCommand":budgetLimit
+deactivate ":Budget"
+":WarnCommand"->":SpendingList":getCurrentAmount()
+activate ":SpendingList"
+":SpendingList"-->":WarnCommand":currentAmount
+deactivate ":SpendingList"
+alt currentAmount >= budgetThreshold && currentAmount < budgetLimit
+":WarnCommand"->":Ui":printApproachingWarningMessage(outputCurrency, amountRemaining)
+activate ":Ui"
+":Ui"-->":WarnCommand":
+deactivate ":Ui"
+else currentAmount >= budgetLimit
+":WarnCommand"->":Ui":printExceedingWarningMessage()
+activate ":Ui"
+":Ui"-->":WarnCommand"
+deactivate ":Ui"
+end
+<--":WarnCommand"
+deactivate ":WarnCommand"
+@enduml

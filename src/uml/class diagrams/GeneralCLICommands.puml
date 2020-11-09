@@ -1,0 +1,36 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Command"{
+    + execute(): void {abstract}
+    + isExit(): boolean
+}
+
+class "ExitCommand" {
+    + execute(): void
+    + isExit(): boolean
+}
+
+class "ExportCommand" {
+    - filePath: String
+    + ExitCommand()
+    + execute(): void
+    - exportToExcel(): void
+}
+
+class "HelpCommand" {
+    + execute(): void
+}
+
+class "PurgeDataCommand" {
+    + execute(): void
+}
+
+HelpCommand -down-|> "{abstract} \n Command"
+PurgeDataCommand -right-|> "{abstract} \n Command"
+ExitCommand -left-|> "{abstract} \n Command"
+ExportCommand -up-|> "{abstract} \n Command"
+
+@enduml

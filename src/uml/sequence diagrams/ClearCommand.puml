@@ -1,0 +1,13 @@
+@startuml
+hide footbox
+->":ClearSpendingListCommand":execute(data, ui)
+activate ":ClearSpendingListCommand"
+":ClearSpendingListCommand" -> ":SpendingList": clearAllItems()
+activate ":SpendingList"
+":SpendingList" --> ":ClearSpendingListCommand"
+":ClearSpendingListCommand" -> ":Ui": printClearAllSpendingList();
+activate ":Ui"
+":Ui" --> ":ClearSpendingListCommand"
+deactivate ":Ui"
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+hide circle
+hide members
+skinparam classAttributeIconSize 0
+
+class SpendingList
+class Item
+Enum "<<Enumeration>>\nCategory"
+class "{abstract}\nCommand"
+
+SpendingList *--> "*" Item
+Item -> "<<Enumeration>>\nCategory"
+"{abstract}\nCommand" -right-> SpendingList : execute
+SpendingList -> Storage
+
+@enduml

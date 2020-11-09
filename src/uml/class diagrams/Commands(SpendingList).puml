@@ -1,0 +1,81 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Command"{
+    + execute(): void {abstract}
+    + isExit(): boolean
+}
+
+class "AddCommand" {
+    + description: String
+    + amount: double
+    + currency: String
+    + category: String;
+    - exchangeRates: String[][]
+    + execute(): void
+    - updateAmount(): void
+    - updateCurrency(): void
+}
+
+class "ClearSpendingListCommand" {
+    - isClearAll: boolean
+    - clearIndex: int
+}
+class "ConvertCommand" {
+    - currencies: String
+    - outputCurrency: String
+    - inputCurrency: String
+    - currentString: Item
+    - exchangeRate: double
+    + newSpendingList: static ArrayList<Item>
+    + ConvertCommand()
+    + identifyCurrency(): String
+    - findExchangeRate(): void
+    + execute(): void
+    - updateNewAmount: void
+    - updateCurrency: void
+    + updateBudgetList(): void
+    + updateSpendingList(): ArrayList<Item>
+}
+class "DrawCommand" {
+    - dateFormatter: DateFormatter
+    - timePeriod: String
+    + DrawCommand()
+    + execute(): void
+    - getCategoryMap(): TreeMap<String, Double>
+    - getYearMap(): TreeMap<String, Double>
+    - getMonthMap(): TreeMap<Integer, Double>
+    - getDayMap(): TreeMap<Integer, Double>
+    - drawChart(): void
+}
+
+class "EditCommand" {
+    + description: String;
+    + amount: Double;
+    + currency: String;
+    + index: int;
+    + category: String;
+    + EditCommand()
+    + execute(): void
+}
+
+class "SummaryCommand" {
+    - period: String
+    + SummaryCommand()
+    + execute(): void
+}
+
+AddCommand -[hidden]right-> EditCommand
+EditCommand -[hidden]right-> ConvertCommand
+EditCommand --|> "{abstract} \n Command"
+SummaryCommand -[hidden]right-> DrawCommand
+DrawCommand -[hidden]right-> ClearSpendingListCommand
+DrawCommand -up-|> "{abstract} \n Command"
+AddCommand -|> "{abstract} \n Command"
+ConvertCommand -down-|> "{abstract} \n Command"
+SummaryCommand -up-|> "{abstract} \n Command"
+ClearSpendingListCommand -up-|> "{abstract} \n Command"
+
+@enduml

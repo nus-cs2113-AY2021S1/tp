@@ -1,0 +1,80 @@
+@startuml
+
+hide footbox
+
+->":DrawCommand":execute(data, ui)
+activate ":DrawCommand"
+":DrawCommand" -> ":Workbook"
+activate ":Workbook"
+loop twice
+":Workbook" -> ":Workbook" : createSheet()
+activate ":Workbook"
+":Workbook" --> ":Workbook"
+deactivate ":Workbook"
+end
+":Workbook" --> ":DrawCommand" : workbook
+deactivate ":Workbook"
+
+loop spendingList.size times
+
+
+":DrawCommand" -> ":SpendingList"
+activate ":SpendingList"
+":SpendingList" -> ":SpendingList" : getItem()
+activate ":SpendingList"
+":SpendingList" --> ":SpendingList"
+deactivate ":SpendingList"
+":SpendingList" --> ":DrawCommand" : item
+deactivate ":SpendingList"
+
+end
+
+alt draw charts of yearly data
+
+":DrawCommand" -> ":DrawCommand" : getYearMap()
+activate ":DrawCommand"
+":DrawCommand" <-- ":DrawCommand"
+deactivate ":DrawCommand"
+
+else draw charts of monthly data
+
+":DrawCommand" -> ":DrawCommand" : getMonthMap()
+activate ":DrawCommand"
+":DrawCommand" <-- ":DrawCommand"
+deactivate ":DrawCommand"
+
+else draw charts of daily data
+
+":DrawCommand" -> ":DrawCommand" : getDayMap()
+activate ":DrawCommand"
+":DrawCommand" <-- ":DrawCommand"
+deactivate ":DrawCommand"
+
+end
+
+":DrawCommand" -> ":DrawCommand" : getCategories()
+activate ":DrawCommand"
+":DrawCommand" <-- ":DrawCommand"
+deactivate ":DrawCommand"
+
+loop twice
+":DrawCommand" -> ":DrawCommand" : drawChart(sheet, categories, values)
+activate ":DrawCommand"
+":DrawCommand" <-- ":DrawCommand"
+deactivate ":DrawCommand"
+end
+":DrawCommand" -> ":Workbook"
+activate ":Workbook"
+":Workbook" -> ":Workbook" : write()
+activate ":Workbook"
+":Workbook" --> ":Workbook"
+deactivate ":Workbook"
+":Workbook" --> ":DrawCommand"
+deactivate ":Workbook"
+":DrawCommand" -> ":Ui": printExportMessage()
+activate ":Ui"
+":Ui"-->":DrawCommand":
+deactivate ":Ui"
+<--":DrawCommand"
+deactivate ":DrawCommand"
+@enduml

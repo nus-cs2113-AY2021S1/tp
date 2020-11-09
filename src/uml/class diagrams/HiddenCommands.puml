@@ -1,0 +1,39 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Command"{
+    + execute(): void {abstract}
+    + isExit(): boolean
+}
+
+class "ReminderCommand" {
+    - startWeek: LocalDate
+    - warn: WarnCommand
+    - week: ArrayList<String>
+    + execute(): void
+    - startOfWeek(): LocalDate
+    - saveDatesToList(): void
+    - findRemainingAmount(): double
+}
+
+class "EncouragementCommand" {
+    + execute(): void
+}
+
+class "WarnCommand" {
+    - budgetLimit: double
+    - budgetThreshold: double
+    - outputCurrency: String
+    - threshold: double
+    + execute(): void
+}
+
+EncouragementCommand -[hidden]right-> ReminderCommand
+ReminderCommand -[hidden]right-> WarnCommand
+EncouragementCommand -up-|> "{abstract} \n Command"
+ReminderCommand -up-|> "{abstract} \n Command"
+WarnCommand -up-|> "{abstract} \n Command"
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class "{abstract} \n Command"{
+    + execute(): void {abstract}
+    + isExit(): boolean
+}
+
+class "RepayCommand" {
+    - name: String
+    - currency: String
+    - repayment: double
+    - deadline: String
+    + RepayCommand()
+    + execute(): void
+}
+
+class "RepaymentListCommand" {
+    + execute(): void
+}
+
+class "ClearRepaymentListCommand" {
+    + isClearAll: boolean
+    + clearIndex: Integer
+    + ClearRepaymentListCommand()
+    + execute(): void
+}
+
+RepayCommand -[hidden]right-> RepaymentListCommand
+RepaymentListCommand -[hidden]right-> ClearRepaymentListCommand
+RepayCommand -up-|> "{abstract} \n Command"
+RepaymentListCommand -up-|> "{abstract} \n Command"
+ClearRepaymentListCommand -up-|> "{abstract} \n Command"
+@enduml

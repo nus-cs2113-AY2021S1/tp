@@ -1,0 +1,11 @@
+@startuml
+hide footbox
+->":EncouragementCommand": execute(data, ui)
+activate ":EncouragementCommand"
+":EncouragementCommand" -> ":Ui": printEncouragementMessage()
+activate ":Ui"
+":Ui" --> ":EncouragementCommand"
+deactivate ":EncouragementCommand"
+deactivate ":Ui"
+
+@enduml

@@ -1,0 +1,82 @@
+@startuml
+hide footbox
+
+
+
+-> ":SummaryCommand": execute(data, ui)
+activate ":SummaryCommand"
+
+":SummaryCommand" -> ":SummaryCommand" : updateCurrency(data)
+activate ":SummaryCommand"
+":SummaryCommand" --> ":SummaryCommand"
+deactivate ":SummaryCommand"
+
+":SummaryCommand" -> ":SpendingList": getSpendingAmountTime(period)
+activate ":SpendingList"
+
+":SpendingList" -> ":SpendingList" : amountSpent = 0
+
+loop spendingList.size() times
+
+
+":SpendingList" -> ":Item": getDate()
+activate ":Item"
+":Item" --> ":SpendingList": date
+deactivate ":Item"
+
+opt period == date
+":SpendingList" -> ":Item": getAmount()
+activate ":Item"
+":Item" --> ":SpendingList": amount
+deactivate ":Item"
+":SpendingList" -> ":SpendingList" : amountSpent += amount
+end
+
+end
+
+":SpendingList" --> ":SummaryCommand": amountSpent
+deactivate ":SpendingList"
+":SummaryCommand" -> ":Ui" : printSummaryMessage(currency, amountSpent)
+activate ":Ui"
+":Ui" --> ":SummaryCommand"
+deactivate ":Ui"
+
+loop each category item
+":SummaryCommand" -> ":SpendingList": getSpendingAmountCategory(period, category)
+activate ":SpendingList"
+":SpendingList" -> ":SpendingList" : amountSpent = 0
+
+loop spendingList.size() times
+":SpendingList" -> ":Item": getDate()
+activate ":Item"
+":Item" --> ":SpendingList": date
+deactivate ":Item"
+
+":SpendingList" -> ":Item": getCategory()
+activate ":Item"
+":Item" --> ":SpendingList": category
+deactivate ":Item"
+
+opt period == date && c.toString() == category
+":SpendingList" -> ":Item": getAmount()
+activate ":Item"
+":Item" --> ":SpendingList": amount
+deactivate ":Item"
+":SpendingList" -> ":SpendingList" : amountSpent += amount
+end
+end
+
+":SpendingList" --> ":SummaryCommand": amountSpent
+deactivate ":SpendingList"
+
+":SummaryCommand" -> ":Ui" : printSummaryCategory(currency, category, amountSpent)
+activate ":Ui"
+":Ui" --> ":SummaryCommand"
+deactivate ":Ui"
+end
+
+<-- ":SummaryCommand"
+deactivate ":SummaryCommand"
+
+
+@enduml

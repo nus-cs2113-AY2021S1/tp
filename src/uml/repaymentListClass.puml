@@ -1,0 +1,15 @@
+@startuml
+
+hide circle
+hide members
+skinparam classAttributeIconSize 0
+
+class "{abstract}\nCommand"
+class RepaymentList
+class Repay
+
+RepaymentList *--> "*" Repay
+"{abstract}\nCommand" -right-> RepaymentList : execute
+RepaymentList -> Storage
+
+@enduml

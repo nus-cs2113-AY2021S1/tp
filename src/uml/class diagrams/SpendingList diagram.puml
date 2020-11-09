@@ -1,0 +1,42 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+
+enum "<<Enumeration>>\nCategory" {
+    FOOD
+    EDUCATION
+    ENTERTAINMENT
+    HEALTH
+    TRANSPORTATION
+    UTILITIES
+    OTHER
+    - category: String
+    {static} + categoryName(String): String
+    + toString()
+}
+
+class Item {
+    - description: String
+    - amount: double
+    - symbol: String
+    - date: String
+    - category: String = "Other"
+    # currentDate(): String
+    + editDescription(String): void
+    + editAmount(double): void
+    + editSymbol(String): void
+    + editCategory(String): void
+    + editDate(String): void
+    + getDescription(): String
+    + getAmount(): String
+    + getSymbol(): String
+    + getCategory(): String
+    + toString(): String
+}
+
+
+class SpendingList
+
+@enduml

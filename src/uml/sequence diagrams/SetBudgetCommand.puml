@@ -1,0 +1,29 @@
+@startuml
+hide footbox
+->":SetBudgetCommand":execute(data, ui)
+activate ":SetBudgetCommand"
+alt currency != defaultCurrency
+":SetBudgetCommand"->":AmountConverter":updateAmount()
+activate ":AmountConverter"
+":AmountConverter"-->":SetBudgetCommand":amount
+deactivate ":AmountConverter"
+":SetBudgetCommand"->":AmountConverter":updateCurrency()
+activate ":AmountConverter"
+":AmountConverter"-->":SetBudgetCommand":currency
+deactivate ":AmountConverter"
+end
+":SetBudgetCommand"->":DecimalFormatter":convert()
+activate ":DecimalFormatter"
+":DecimalFormatter"-->":SetBudgetCommand":budgetLimit
+deactivate ":DecimalFormatter"
+":SetBudgetCommand"->":Budget":addBudget(currency, budgetLimit)
+activate ":Budget"
+":Budget"-->":SetBudgetCommand":
+deactivate ":Budget"
+":SetBudgetCommand"->":Ui":printBudgetLimit(currency, budgetLimit)
+activate ":Ui"
+":Ui"-->":SetBudgetCommand":
+deactivate ":Ui"
+<--":SetBudgetCommand"
+deactivate ":SetBudgetCommand"
+@enduml
