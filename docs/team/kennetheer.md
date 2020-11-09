@@ -14,8 +14,8 @@ This app uses a Command Line Interface (CLI).
 - **Enhancements implemented:**
   <br/>&nbsp;Summary of my implemented app functionalities:
   <br/>&nbsp;1. Addition of module and its expected workload
-  <br/>&nbsp;1. Deletion of module, its expected workload and actual time.
-  <br/>&nbsp;1. Notification feature to notify users of their progress
+  <br/>&nbsp;2. Deletion of module, its expected workload and actual time.
+  <br/>&nbsp;3. Notification feature to notify users of their progress
 
 - **Details:** 
   - Addition and Deletion of modules and its contents: 
