@@ -9,6 +9,9 @@ public class Note {
 
     private ArrayList<String> notes;
 
+    /**
+     * Creates a new instance of note.
+     */
     public Note() {
         this.notes = new ArrayList<>();
     }
@@ -22,10 +25,21 @@ public class Note {
         this.notes.add(note);
     }
 
+    /**
+     * Gets the note at note id.
+     *
+     * @param noteIndex the note id of note to retrieve
+     * @return the note in String
+     */
     public String getNote(int noteIndex) {
         return notes.get(noteIndex);
     }
 
+    /**
+     * Gets the size of the notes.
+     *
+     * @return size of notes
+     */
     public int getSize() {
         return notes.size();
     }
