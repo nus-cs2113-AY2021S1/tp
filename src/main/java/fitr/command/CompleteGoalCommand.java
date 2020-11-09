@@ -30,6 +30,7 @@ public class CompleteGoalCommand extends Command {
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
         try {
+            command = command.toLowerCase();
             if (command.split(SPLIT_SPACE, 2)[0].equals(COMMAND_GOAL)) {
                 if (command.split(SPLIT_SPACE).length < 2) {
                     Ui.printCustomError("No index specified!");
