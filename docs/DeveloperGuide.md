@@ -1343,6 +1343,77 @@ There will only be changes to the rating after a revision session.
   
  
  (Jia Ern)
-    
+#### 5.6.10. Starting a revision session
+1. Starting a revision session
+    1. Prerequisites: At least one flashcard is in the chapter to be revised. Ensure that you are at the module level.
+    2. Test case: `revise 1` <br>
+       Expected output: A revision session will start on the first chapter in the module.
+    3. Other incorrect commands to try: `revise Chapter 1` (where chapter name instead of its index integer is provided)<br>
+       Expected output: An error message stating to specify chapter index in integer will be shown.
+       
+#### 5.6.11. Checking percentage of rating for the cards in a chapter
+1. Checking percentage of rating for the cards in a chapter
+    1. Prerequisites: At least one flashcard is in the chapter. Ensure that you are at the chapter level.
+    2. Test case: `showrate` <br>
+       Expected output: A list of the percentage for easy/medium/hard based on the number of cards will be shown.
+    3. Other incorrect commands to try: `showrate blah` (where extra arguments are added)<br>
+       Expected output: An error message stating that there should be no extra arguments will be shown.
+       
+#### 5.6.12. Listing all chapters that are due on current date
+1. Listing all chapters that are due on current date
+    1. Prerequisites: Launch Kaji successfully.
+    2. Test case: `due` <br>
+       Expected output: A list of chapters that are due on the current date will be shown. If no chapters are due, a message stating that no chapters are due for the day will be shown.
+    3. Other incorrect commands to try: `due blah` (where extra arguments are added)<br>
+       Expected output: An error message stating that there should be no extra arguments will be shown.
+       
+#### 5.6.13. Previewing list of chapters due in a week
+1. Previewing list of chapters due in a week
+    1. Prerequisites: Launch Kaji successfully.
+    2. Test case: `preview` <br>
+       Expected output: A list of chapters that are due in a week will be shown. If no chapters are due, every date will be accompanied by a message that no chapters are due.
+    3. Other incorrect commands to try: `preview blah` (where extra arguments are added) <br>
+       Expected output: An error message stating that there should be no extra arguments will be shown.
+
+#### 5.6.14. Viewing history of revision completed in a day
+1. Viewing history of revision completed in a day
+    1. Prerequisites: Launch Kaji successfully.
+    2. Test case: `history` <br>
+       Expected output: List the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
+    3. Test case: `history 2020-11-09`
+       Expected output: List the module and chapter which you have completed revision for on 2020-11-09. If no revision was done on the day, a message stating that no revision for that session will be shown.
+    4. Other incorrect commands to try: `history blah` (where the argument is not in the correct date format) <br>
+       Expected output: An error message stating that the date should be in `yyyy-MM-dd` format will be shown.
+       
+#### 5.6.15. Excluding a module/chapter
+1. Excluding a module
+    1. Prerequisites: Launch Kaji successfully. The module you want to exclude should exist.
+    2. Test case: `exclude module` <br>
+       Expected output: A prompt for which module to be excluded will be shown and you can enter an existing module which you want to exclude.
+    3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+
+2. Excluding a chapter
+    1. Prerequisites: Launch Kaji successfully. The chapter you want to exclude should exist.
+    2. Test case: `exclude chapter` <br>
+       Expected output: A prompt for which chapter to be excluded will be shown and you can enter an existing chapter which you want to exclude.
+    3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+       
+#### 5.6.16. Including a module/chapter
+1. Including a module
+    1. Prerequisites: Launch Kaji successfully. The module you want to include should exist.
+    2. Test case: `include module` <br>
+       Expected output: A prompt for which module to be included will be shown and you can enter an existing module which you want to include.
+    3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+       
+2. Including a chapter
+    1. Prerequisites: Launch Kaji successfully. The chapter you want to include should exist.
+    2. Test case: `include chapter` <br>
+       Expected output: A prompt for which chapter to be included will be shown and you can enter an existing chapter which you want to include.
+    3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+           
 ##### <a href="#top">Back to Top ^</a>
 --------------------------------------------------------------------------------------------------------------------
