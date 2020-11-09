@@ -1,4 +1,4 @@
-package seedu.duke.writinglist;
+package seedu.duke.writing;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.storageexceptions.FileEmptyException;
