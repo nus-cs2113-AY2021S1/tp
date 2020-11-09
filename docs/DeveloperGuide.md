@@ -190,12 +190,15 @@ This feature allows users to edit the information of events that was previously 
 
 Given below is an example usage scenario:
 
-Step 1. The user launches the application and inputs a command to add one event.  
+Step 1. The user launches the application and inputs `assignment homework \t 2020-02-02 20:00 \l home` command to add an event. 
 
 Step 2. The user realises that there was a mistake in the event added and decides to edit the task information by 
-entering `edit 1 class <new event description>` to edit the one existing event.
+entering `edit 1`, which will be parsed by `Parser` and calls an `EditCommand` object.  
 
-Step 3. `editCommand()` function replaces the original event with the edited one. 
+Step 3. The user follows the instructions on screen and enters the desired changes.  
+
+Step 4. `EditCommand#execute()` will call `EventList#editEvents` to edit the event.  
+
 ![EditCommand Sequence Diagram](diagrams/EditCommand.png)<br>
 *Figure 4.3 Sequence Diagram for EditCommand()*
 
@@ -333,7 +336,9 @@ NUSchedule aims to assist the target audience with:
 
 ## Appendix C: Non-Functional Requirements
   
-{Give non-functional requirements}
+1. This application will work on any computers running either Windows, macOS or Unix that has Java 11 or a higher version installed.
+
+2. A user that is proficient in typing will find this application to be faster and more convenient to use than applications that requires mouse clicks.
 
 ## Appendix D: Glossary
   
@@ -341,7 +346,20 @@ NUSchedule aims to assist the target audience with:
 
 ## Appendix E: Instructions for manual testing
   
-Try different inputs with variations of the format, to check whether the exceptions are being correctly thrown.  
-Also edit the stored data of events.txt to see whether the reaction is correct. Do not touch bus_stops.txt and 
-locations.txt for test purposes as they form the data base.
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+1. Initial launch
+   * Download the jar file [here](https://github.com/AY2021S1-CS2113T-F14-4/tp/releases) and place it in an empty folder.
+   * Open the command prompt and enter the command `java -jar NuSchedule.jar`.
+   * Expected: The application shows the NuSchedule logo.
+   
+2. Adding events
+   * Test case: `assignment homework /t 2020-02-02 20:00 /l home`
+   * Expected: Confirmation message to indicate that the assignment has been added successfully.
+   * Test case: `class cs2113 /t 2020-02-02 20:00 /e 2020-02-02 21:00 /o zoom.com /p 123`
+   * Expected: Confirmation message to indicate that the class has been added successfully.
+   * Test case: `personalEvent shopping /t 2020-02-02 21:00 /e 2020-02-02 22:00 /l supermarket`
+   * Expected: Confirmation message to indicate that the personal event has been added successfully.
+   
+3. Editing events
+   * Test case: `edit NUMBER` where `NUMBER` is the index of the event to be editted.
+   * Expected: Confirmation message asking for the desired changes.
+   

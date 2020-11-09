@@ -19,10 +19,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Locale;
 
 
 import static java.util.stream.Collectors.toList;
