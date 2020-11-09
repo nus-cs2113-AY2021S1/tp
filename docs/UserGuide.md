@@ -145,6 +145,8 @@ Command: `cd academic`
 
 >**Useful information:**
 >* You can use this command anywhere in the app to switch between modes quickly!
+>* This command STILL works if you don't have space/have excess space 
+>between `cd` and the `MODE_NAME/MODE_INDEX`
 
 ### 3. Shows the current location: `location`
 
@@ -187,7 +189,7 @@ Expected output:
 
 ![](Images/GeneralUG/exit.png)
 
-If you are in any of the other modes (bookmark/timetable/academic/flashcard), 
+If you are in any of the other modes (i.e. bookmark/timetable/academic/flashcard), 
 calling this command will exit that mode and place you at the Main menu instead, as shown below:
 
 Instruction:
