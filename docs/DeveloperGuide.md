@@ -48,11 +48,13 @@
     * [Adding new note for event](#adding-note-for-an-event)
     * [View note](#viewing-note-for-an-event)
 
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
 
 ## Setting up, getting started
+
 1. Ensure you have version 11 of Java. You can install it from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
 2. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
 3. Clone the fork on to your computer.
@@ -83,7 +85,11 @@ _________________________________
 You have no events today!
 _________________________________
 ````
+
+<div style="page-break-after: always;"></div>
+
 ## Design
+
 ### Architecture
 
 ![Architecture Diagram](./diagrams/Architecture.jpg)
@@ -96,6 +102,8 @@ each component.
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.  
 - At shut down: Stores the user data from memory into the hard disk.
 
+<div style="page-break-after: always;"></div>
+
 The rest of the App consists of five components.
 
 - `Ui`: The Ui of the App.
@@ -105,6 +113,7 @@ The rest of the App consists of five components.
 - `Storage`: Reads data from, and writes data to, the hard disk.
 
 #### Ui Component
+
 The 'Ui' component is in charge of handling input from users and system output.
 
 #### Command Component
@@ -120,11 +129,13 @@ It listens for commands made in the Duke Class and sends the input to the parser
 It is also responsible for printing messages from commands and exception messages. 
 
 #### Parser Component
+
 ![Parser diagram](./diagrams/Parser_diagram.jpg)
 
 The `Parser` object uses its `parse` method to parse inputs passed to it from `Ui`. This method returns a `Command` object to be executed by `Duke`.
 
 #### UserData Component
+
 ![UserData diagram](./diagrams/UserData_diagram.jpg)
 
 The `UserData`
@@ -133,6 +144,7 @@ The `UserData`
 - does not depend on the other components.
 
 #### Storage Component
+
 ![Diagram for storage class](./diagrams/classDiagramStorage.jpg)
 
 API [Storage.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java) 
@@ -155,12 +167,17 @@ How the storage component save files
 - The StorageParser uses its functions to convert the events into string representations
 - The StorageParser then returns these string representations to Storage
 - the Storage class then writes them to the correct Path and the corresponding text(.txt) files are modified. 
+
+<div style="page-break-after: always;"></div>
+
 ## Implementation
 
 In this section, the features implemented will be explained using various UML diagrams and code snippets.
 
 #### Help feature
 (WIP)
+
+<div style="page-break-after: always;"></div>
 
 #### Add feature
 
@@ -227,6 +244,8 @@ The following sequence diagram shows how the whole add feature works: <br>
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
 // to be updated
 
+<div style="page-break-after: always;"></div>
+
 #### List feature
 
 The list feature allows the user to print a list of events added by type.
@@ -257,10 +276,13 @@ The following sequence diagram shows how the `list zoom` command is parsed:
 
 ![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how `ListCommand#execute()` works:
 
 ![Sequence diagram for goal command execute](./diagrams/ListExecuteSequenceDiagram.jpg)
 
+<div style="page-break-after: always;"></div>
 
 #### Calendar feature
 
@@ -296,6 +318,7 @@ The following sequence diagram shows how `CalendarCommand#execute()` works:
 
 ![Sequence diagram for goal command execute](./diagrams/CalendarExecuteSequenceDiagram.jpg)
 
+<div style="page-break-after: always;"></div>
 
 #### Repeat feature
 
@@ -361,12 +384,16 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 ![Sequence Diagram for Repeat Command step 7](./diagrams/repeatstep7.jpg)
 
+<div style="page-break-after: always;"></div>
+
 #### Deadline feature
 
 The deadline feature is implemented using `DeadlineCommand` class. `DeadlineCommand` accesses the Personal `Events` to get the event specified by the user and change the date of the event. It implements the following operations:
 
 - `DeadlineCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, date/time given by the user
 - `DeadlineCommand#parsingNumber(stringIndex)` -- Check whether if index is a number. If it is not, exception would be thrown. If it is, the index will be parse to Integer and returned.
+- `DeadlineCommand#validDateRange(date)` -- Check whether date specified by user is equal or after current date
+- `DeadlineCommand#validTimeRange(time)` -- Check whether time specified by user is equal or after current time 
 
 These operations are not exposed, and are used as private methods within the `DeadlineCommand`.
 
@@ -375,9 +402,13 @@ Given below is an example usage scenario and how the deadline feature functions.
 Step 1. The user executes `deadline 1; 7/10/20; 11:20 PM` command to set the deadline for the 1st event in Personal event list
 to be on the 7th October 2020 at 11:20 PM. 
 
-Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`
+Step 2. `DeadlineCommand#execute()` is called. The command string is then parsed to `DeadlineCommand#parsingNumber(stringIndex)`.
 
-Step 3. After obtaining the event using `EventList#getEventByIndex(index)`,  using the user input we have obtained add/update the personal event deadline. <br>
+Step 3. Event is obtained using `EventList#getEventByIndex(index)`
+
+Step 4. `DeadlineCommand#validDateRange(date)` and `DeadlineCommand#validTimeRange(time)` are used to check if the user specified date and time is valid. 
+
+Step 5. After validating the date and time, `Event#setDate(date)` and `Event#setTime(time)` are used to add/update the deadline.
 
 The following sequence diagram shows how the deadline operation works: <br>
 
@@ -389,7 +420,7 @@ Given below is how the deadline command behave: <br>
   <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
 </p>
 
-
+<div style="page-break-after: always;"></div>
 
 #### Check feature
 
@@ -432,6 +463,8 @@ The following sequence diagram shows how the check operation works:
 
 ![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
 
+<div style="page-break-after: always;"></div>
+
 #### Goal feature
 
 The goal feature is achieved by `GoalCommand`. It either prints the current goal stored internally in
@@ -462,6 +495,8 @@ with `Ui#printGoal()`.
 The following sequence diagram shows how `GoalCommand#execute()` works:
 
 ![Sequence diagram for goal command execute](./diagrams/GoalExecuteSequenceDiagram.jpg)
+
+<div style="page-break-after: always;"></div>
 
 #### Done feature
 (WIP)
@@ -592,7 +627,7 @@ The view feature allows user to see the notes they have created for a particular
 The following is the class diagram for reminder command:
 
 <p align="center">
-  <img width="414" height="562" src="./diagrams/ViewCommandClass.png">
+  <img width="462" height="522" src="./diagrams/ViewCommandClass.png">
 </p>
 
 
@@ -690,9 +725,11 @@ For the detection of zoom link, the Regex pattern used first detects any URL sta
 
 
 
-
+<div style="page-break-after: always;"></div>
  
 ## Documentation, logging, testing, configuration, dev-ops
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Requirements
 
@@ -714,6 +751,8 @@ Manage one's events quickly compared to GUI scheduling applications.
 Users can check when they are free using a simple command 
 and also extract deadlines from any body of text.
 
+<div style="page-break-after: always;"></div>
+
 ### User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
@@ -731,6 +770,8 @@ and also extract deadlines from any body of text.
 |v2.0|user|create deadlines from the email text body|avoid looking through the email to create one by one|
 |v2.0|new user (new to text-based application)|detailed directions on commands I can use|easily navigate through the application|
 |v2.0|new user (expert in using text-based application)|have some useful shortcut keys|speed up common tasks|
+
+<div style="page-break-after: always;"></div>
 
 ### Use Cases
 (For all use cases below, the System is Scheduler--; and the Actor is the user, unless specified otherwise)
@@ -794,6 +835,8 @@ Scheduler--; prints an error message and use case ends.
     <li>Work on any mainstream OS that has Java 11 or above installed</li>
     <li>A user who has faster typing speed than average should be able to use this program with ease</li>
 </ol>
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 

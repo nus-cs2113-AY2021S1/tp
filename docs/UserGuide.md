@@ -1,9 +1,11 @@
 # User Guide
+
 CS2113T – T12 – 04 Scheduler--;
  
 Scheduler--; Does the job
 
 ## Table of Contents
+
 - [1. About Scheduler--;](#1-about-scheduler--) 
     - [1.1 What can it do?](#11-what-can-it-do) 
     - [1.2 About this guide](#12-about-this-guide) 
@@ -43,7 +45,10 @@ Scheduler--; Does the job
 
 - [5. Command Summary](#5-command-summary)
 
+<div style="page-break-after: always;"></div>
+
 ## 1. About Scheduler--;
+
 Hello! Welcome to scheduler--;
 
 Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
@@ -60,13 +65,17 @@ Scheduler--; comes with the following list of features to help you keep organise
 - And many more... 
 
 ### 1.2 About this guide
+
 This user guide is for your reference on how to set up the Scheduler--; program on your computer. It provides you with information on how to get things done with scheduler--; and how to use the commands in the program. 
 
 ### 1.3 How to use this document?
+
 To get started, take a look at the section labelled “Quick Start” to set up the application to run on your computer.  
 
 Once you have set up the application, you may use the table of contents present in this document to help find the correct command, learn how to use it and what it does.  
+
 ### 1.4 Conventions used in this document
+
 Words that are highlighted in grey, for instance, list, indicate that the words are commands to be typed into the command line interface. 
 
 - Words that are highlighted in grey and are in lower case indicates commands that are to be typed exactly. For instance, if the instructions says to type the words `list all` to run a command,  type on the program the exact words “list all” 
@@ -94,9 +103,12 @@ Words that are highlighted in grey, in upper case and are surrounded by square b
 > - Items with ... after them can be used multiple times including zero times.
 > e.g. `[t/TAG]...` can be used as  (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick Start
 
 ### 2.1 System Requirements
+
 To run Scheduler--;, your computer must meet these minimum system requirements:
 
 - Operating System: Windows 7 and above, Mac OS X or Linux 
@@ -139,6 +151,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 1. The welcome message for the program should appear. 
 
 ### 2.3 Test run 
+
 // this may need updating
 
 Type the command in the command box and press Enter to execute. 
@@ -150,10 +163,15 @@ Some examples you can try:
 - `bye`: exit the program 
     
 Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
+
+<div style="page-break-after: always;"></div>
+
 ## 3. Features
+
 This section introduces and explains the features of Scheduler--;!
 
 ### 3.1 Viewing help: help (Colin Ng)
+
 If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler--; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
 
 Format: `help [COMMAND]`
@@ -214,6 +232,8 @@ text in uppercase indicates compulsory arguments that you will need to provide a
 text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
 _________________________________
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Adding an event: `add` (Matthew Gani)
 New to creating your events using Scheduler--;?
@@ -299,7 +319,8 @@ _________________________________
 ### 3.3 List events: `list` (Marcus Ng)
 
 After you have added your events, it is essential that you can view the events you have added.
-You can do so using the list command to print out a list of your events in the order it was added in. 
+You can do so using the list command to print out a list of your events in the order it was added in.
+You can also see events that you set to repeat in the list.
 
 Format: ```list [EVENT_TYPE]```
 
@@ -319,7 +340,10 @@ Expected output:
 list zoom
 _________________________________
 Here is a list of your Zoom events:
-1. [Z][X] CS2113T Meeting, Link: zoom.com.sg on 2020-09-16, 21:00
+1. [Z][O] CS2113T tutorial, Link: zoom.com.sg on 2020-10-03, 13:30 is also on:
+    1. 2020-10-10 13:30 [X]
+    2. 2020-10-17 13:30 [X]
+    3. 2020-10-24 13:30 [X]
 _________________________________
 ```
 
@@ -334,15 +358,38 @@ _________________________________
 
 You can print a list of all events by executing the following command: ```list all```
 
+Expected output:
+
+```
+list all
+_________________________________
+Here is a list of your Personal events:
+1. [P][X] sleep
+   Type "view Personal 1" to see notes
+_________________________________
+Here is a list of your Timetable events:
+1. [T][X] Science class, Location: S17 on 2020-05-04, 15:00
+_________________________________
+Here is a list of your Zoom events:
+1. [Z][O] CS2113T tutorial, Link: zoom.com.sg on 2020-10-03, 13:30 is also on:
+    1. 2020-10-10 13:30 [X]
+    2. 2020-10-17 13:30 [X]
+    3. 2020-10-24 13:30 [X]
+_________________________________
+```
+
 > **Note!**
 > 
-> * Events will be listed in the order: Personal, Timetable, Zoom.
+> * Events will always be listed in the order: Personal, Timetable, Zoom.
+> * The index of events in the list should be referenced for `EVENT_INDEX` of other commands unless stated otherwise.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Calendar format list: `calendar` (Marcus Ng)
 
 If you feel that the list command does not print the events in a format that you like,
-you can use the calendar command to sort everything by date and time and view your events by date.
+you can use the calendar command to sort events with date and time in chronological order.
+The calendar will also include events that are set to repeat.
 
 Format: ```calendar```
 
@@ -351,23 +398,24 @@ This brings you into calendar printing mode.
 - To exit the calendar printing mode, simply type in ```q```.
 - This mode is exited once you see ```End of calendar``` on pressing enter.
 
-> **Note!**
->
-> * Only events with date and time will be in the calendar.
-> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode.
-
-
 Expected output:
 
 ```
 calendar
 _________________________________
-Calendar has 2 dates to display
+Calendar has 5 dates to display
 1 event not on the calendar because it has no date and time
 ---------------------------------------------------------------------------------------
-16 Sep 2020
+04 May 2020
 ---------------------------------------------------------------------------------------
-Z | 9:00 PM | X | CS2113T Meeting | zoom.com.sg
+T | 3:00 PM | X | Science class | S17
+---------------------------------------------------------------------------------------
+Enter 'q' to exit or enter to continue...
+
+---------------------------------------------------------------------------------------
+03 Oct 2020
+---------------------------------------------------------------------------------------
+Z | 1:30 PM | O | CS2113T tutorial | zoom.com.sg
 ---------------------------------------------------------------------------------------
 Enter 'q' to exit or enter to continue...
 q
@@ -375,6 +423,13 @@ q
 End of calendar
 _________________________________
 ```
+
+> **Note!**
+>
+> * Only events with date and time will be in the calendar.
+> * In calendar printing mode, all input except ```q``` is ignored. In other words, commands cannot be executed until you exit this mode.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Deadlines: `deadline` (Qing Ning)
 Want to set a deadline after you have created your personal event? Afraid that you forget your deadlines? Deadline is here to help! You can set the date and time of the task to be completed and on the day itself, we will remind you.  
@@ -447,7 +502,7 @@ You have successfully updated the deadline for this event!
 >
 > The event index keyed in have to be valid so that deadline can be created for the specified event index.
 
-
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
 Sets a specific event to be repeated either weekly or monthly in the calendar. 
@@ -462,6 +517,12 @@ Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]`
 - `[COUNT]` takes an integer which indicates how many units of time will this event repeat itself. For instance, if the unit input is Weekly, placing a number 5 will repeat the event for 5 weeks. 
 
 When the optional arguments of `[UNIT]` and `[COUNT]` are omitted in the code, repeat will instead display the repeat status of the event.  
+
+> **Note!**
+>
+> When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
+> In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on
+> In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on
 
 #### How to use? 
 
@@ -537,6 +598,8 @@ _________________________________
 _________________________________
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### 3.7 Check availability on a specific date and time: `check` (Marcus Tan)
 Would you like to check if you happen to be free at a certain time? The check command allows you to scan through your events to check for any events you might have within a given time period.
 
@@ -573,6 +636,7 @@ _________________________________
 >
 > * Even when you leave a time field (e.g. `[START_DATE]`) as blank, a semicolon (;) should still be used to denote the blank field (e.g. `check ; 2:00 pm; 25/12/2020; 2359`)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.8 Goal setting and viewing: `goal` (Marcus Ng)
 
@@ -587,11 +651,6 @@ When the optional argument `[GOAL]` is omitted, the current goal will be display
 
 When `[GOAL]` is specified as `delete`, the current goal will be removed.
 
-> **Note!**
-> * You can only have one goal at any time.
-> * You can use `na` or `nil` instead of `delete` to remove goal.
-
-
 Examples:
 - ```goal get cap 5.0``` will set your current goal as “get cap 5.0”. 
 - ```goal save up $100``` after executing the above command will change your current goal to “save up $100”. 
@@ -604,6 +663,13 @@ _________________________________
 Goal changed to: save up $100
 _________________________________
 ```
+
+> **Note!**
+>
+> * You can only have one goal at any time.
+> * You can use `na` or `nil` instead of `delete` to remove goal.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.9 Mark events as done: `done` (Marcus Tan)
 If you would like to mark an event as done, you can use the done command to do so. 
@@ -876,6 +942,7 @@ In this section, you can find some frequently asked questions(FAQ).
 **Q**: Can I create 2 events on the same date and time? <br>
 **A**:
 
+<div style="page-break-after: always;"></div>
 
 ## 5. Command Summary
 (Insert preface)
@@ -883,10 +950,11 @@ In this section, you can find some frequently asked questions(FAQ).
 | Action | Format, Examples |
 |--------|------------------|
 |Add|Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add personal; Family Meeting; 18/09/20 <br> <br> Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM] <br> Eg: add Zoom; CS2113T Meeting; zoom.com.sg; 16/09/20; 2100 <br> <br> Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM <br> Eg: add Timetable; CS2101 Lecture; NUS Computing; 18/09/2020; 3:30 pm <br>|
-|List|list all <br> <br> list TYPE <br> Eg: list Zoom <br> <br> list from sd/DD/MM/YY to ed/DD/MM/YY <br> Eg: list from sd/12/04/20 to ed/19/04/20 <br>|
+|List|list all <br> <br> list TYPE <br> Eg: list Zoom <br>|
+|Calendar|calendar <br>|
 |Check|check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME] <br> Eg: check 20/08/20; 15:05; 25/8/2020; 1 pm; <br>|
 |Repeat|repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT] <br> Eg: repeat timetable 2 weekly 4 <br>|
-|Goal|goal USERGOALS <br> Eg: goal “Get CAP 5.0 for year 2” <br>|
+|Goal|goal <br> <br> goal GOAL <br> Eg: goal “Get CAP 5.0 for year 2” <br>|
 |Deadline|deadline EVENT_INDEX; DD/MM/YY; <br> Eg: deadline 2 23/07/20 <br> <br> deadline EVENT_INDEX; DD/MM/YY; [HHMM] <br> Eg: deadline 7 29/08/20 1425 <br> <br> deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM <br> Eg: deadline 7 29/08/20 11:25 PM <br>|
 |Set event as done|done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] <br> Eg: done personal; 1; 1/4/2020 <br>|
 |Set event as undone|undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] <br> Eg: undone zoom; 1; 3/12/2020 <br>|

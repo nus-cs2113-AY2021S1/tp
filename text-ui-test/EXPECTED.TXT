@@ -3,8 +3,11 @@ Welcome to scheduler--;!
 What can I do for you?
 _________________________________
 File Created: Personal
+0/0 loaded successfully for Personal
 File Created: Zoom
+0/0 loaded successfully for Zoom
 File Created: Timetable
+0/0 loaded successfully for Timetable
 File Created: Goal
 The file has successfully been loaded!
 _________________________________

@@ -51,7 +51,10 @@ class StorageTest {
         Command listCommand = ListCommand.parse(inputString);
         listCommand.execute(data, ui, store);
 
-        assertEquals("The file has successfully been loaded!" + System.lineSeparator()
+        assertEquals("3/3 loaded successfully for Personal" + System.lineSeparator()
+                        + "2/2 loaded successfully for Zoom" + System.lineSeparator()
+                        + "3/3 loaded successfully for Timetable" + System.lineSeparator()
+                        + "The file has successfully been loaded!" + System.lineSeparator()
                         + "Here is a list of your Personal events:" + System.lineSeparator()
                         + "1. [P][X] stuff on 2010-01-01, 12:00 is also on:" + System.lineSeparator()
                         + "    1. 2010-01-08 12:00 [X]" + System.lineSeparator()

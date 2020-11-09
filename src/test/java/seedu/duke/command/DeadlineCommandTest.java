@@ -40,14 +40,14 @@ class DeadlineCommandTest {
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
-        DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20");
+        DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 1/12/21");
         testDeadlineWithDateOnly.execute(data, ui, storage);
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
         printWriter.println("[P][X] sleep");
         printWriter.println("You have successfully updated the deadline for this event!");
-        printWriter.println("[P][X] sleep on 2020-10-07");
+        printWriter.println("[P][X] sleep on 2021-12-01");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected,
@@ -60,14 +60,14 @@ class DeadlineCommandTest {
         Command addPersonalEvent = new AddCommand(input);
         addPersonalEvent.execute(data, ui, storage);
 
-        DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 7/10/20; 11:20 PM");
+        DeadlineCommand testDeadlineWithDateOnly = new DeadlineCommand("1; 1/12/21; 11:20 PM");
         testDeadlineWithDateOnly.execute(data, ui, storage);
         StringWriter expectedStringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
         printWriter.println("You have successfully added this event to your list!");
         printWriter.println("[P][X] sleep");
         printWriter.println("You have successfully updated the deadline for this event!");
-        printWriter.println("[P][X] sleep on 2020-10-07, 23:20");
+        printWriter.println("[P][X] sleep on 2021-12-01, 23:20");
         printWriter.close();
         String expected = expectedStringWriter.toString();
         assertEquals(expected,
@@ -101,7 +101,7 @@ class DeadlineCommandTest {
         System.setOut(outputLoc);
 
         assertThrows(InvalidIndexException.class, () -> {
-            DeadlineCommand testDeadlineWithInvalidIndex = new DeadlineCommand("0; 7/10/20; 11:20 PM");
+            DeadlineCommand testDeadlineWithInvalidIndex = new DeadlineCommand("0; 1/12/21; 11:20 PM");
             testDeadlineWithInvalidIndex.execute(data, ui, storage);
         });
     }
@@ -149,7 +149,7 @@ class DeadlineCommandTest {
         System.setOut(outputLoc);
 
         assertThrows(TimeErrorException.class, () -> {
-            DeadlineCommand testDeadlineWithInvalidTimeFormat = new DeadlineCommand("1; 7/10/10; 23:20 PM");
+            DeadlineCommand testDeadlineWithInvalidTimeFormat = new DeadlineCommand("1; 7/11/21; 23:20 PM");
             testDeadlineWithInvalidTimeFormat.execute(data, ui, storage);
         });
     }

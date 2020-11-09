@@ -247,6 +247,8 @@ public class Storage {
      */
     public void loadFile(Path fileName, UserData data, String fileType) {
 
+        int totalEntries = 0;
+        int errorEntries = 0;
         try {
 
             //First, extract out all the file information
@@ -267,14 +269,19 @@ public class Storage {
 
             //extraction of all other events
             for (int i = 0; i < fileLines.size(); i++) {
+                totalEntries++;
                 String line = fileLines.get(i);
-                Event activity = StorageParser.stringToEvent(line,fileType);
+                Event activity = StorageParser.stringToEvent(line, fileType, ui);
                 if (activity == null) {
+                    errorEntries++;
                     continue;
                 }
                 data.addToEventList(fileType, activity);
                 logger.fine(fileType + " information and events successfully loaded");
             }
+
+            ui.printMessage(Integer.toString(totalEntries - errorEntries) + "/" + Integer.toString(totalEntries)
+                    + " loaded successfully for " + fileType);
 
             //finally, store the information in the correct list
         } catch (IOException e) {

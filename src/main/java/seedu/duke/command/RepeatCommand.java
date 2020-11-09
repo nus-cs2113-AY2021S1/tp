@@ -8,6 +8,7 @@ import seedu.duke.exception.DukeException;
 import seedu.duke.exception.InvalidTimeUnitException;
 import seedu.duke.exception.MissingDeadlineRepeatException;
 import seedu.duke.exception.MissingRepeatListException;
+import seedu.duke.exception.NumberOverflowException;
 import seedu.duke.exception.WrongNumberFormatException;
 import seedu.duke.exception.WrongNumberOfArgumentsException;
 import seedu.duke.storage.Storage;
@@ -27,6 +28,7 @@ public class RepeatCommand extends Command {
     private static final String COMMANDTYPE_ERROR = "error";
     private String commandType;
     private static Logger logger = EventLogger.getEventLogger();
+    private static final int MAXIMUM_SIZE = 1000;
 
 
     /**
@@ -96,7 +98,10 @@ public class RepeatCommand extends Command {
             input = String.join(" ", words);
             return new RepeatCommand(input, COMMANDTYPE_ADD);
         default:
-            String errorMessage = "Wrong number of arguments provided";
+
+
+            String errorMessage = "Wrong number of arguments provided, "
+                    + "Format for repeat is: repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]";
             throw new WrongNumberOfArgumentsException(errorMessage);
         }
 
@@ -185,6 +190,10 @@ public class RepeatCommand extends Command {
      */
     private void repeat(Event eventToRepeat, LocalDate startDate, String repeatType, int count) throws DukeException {
         ArrayList<Event> repeatEventList = new ArrayList<>();
+        if (count > MAXIMUM_SIZE) {
+            throw new NumberOverflowException("Repeat amount is too large, please limit to only "
+                    + Integer.toString(MAXIMUM_SIZE) + " repetitions.");
+        }
         for (int i = 1; i <= count; i++) {
             LocalDate repeatDate;
             logger.fine("Repeat repetition number" + Integer.toString(i));

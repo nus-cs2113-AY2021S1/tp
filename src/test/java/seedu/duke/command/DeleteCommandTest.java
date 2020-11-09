@@ -3,10 +3,9 @@ package seedu.duke.command;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Duke;
 import seedu.duke.data.UserData;
-import seedu.duke.exception.DateErrorException;
 import seedu.duke.exception.DukeException;
+import seedu.duke.exception.InvalidEventDateException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.exception.MissingSemicolonException;
 import seedu.duke.exception.WrongNumberFormatException;
@@ -121,7 +120,7 @@ class DeleteCommandTest {
 
         // Event does not fall on the provided date
         String inputStringTwo = "zoom; 1; 5/10/2020";
-        Exception secondE = assertThrows(DateErrorException.class, () -> {
+        Exception secondE = assertThrows(InvalidEventDateException.class, () -> {
             Command deleteCommand  = DeleteCommand.parse(inputStringTwo);
             deleteCommand.execute(data, ui, storage);
         });
