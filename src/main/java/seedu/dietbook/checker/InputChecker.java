@@ -23,7 +23,8 @@ public class InputChecker {
     public static final int TIME_FORMAT_LENGTH = 16;
     public static final String[] PARAM_FITNESS = {"1","2","3","4","5"};
     public static final String[] PARAM_ADD = {"n/","x/","k/"};
-    public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/"};
+    public static final String[] PARAM_ADD_DATA = {"i/","x/"};
+    public static final String[] FULL_PARAM_ADD = {"n/","x/","k/","c/","p/","f/", "i/"};
     public static final String[] PARAM_CALCULATE = {"fat", "carb","protein", "calorie", "all"};
     public static final String[] SINGLE_COMMAND = {"clear", "data","exit", "help", "recommend", "userinfo"};
     public static final String[] PARAM_GENDER = {"M","F","O"};
@@ -250,7 +251,11 @@ public class InputChecker {
      * @throws DietException when expected parameters are missing.
      */
     public static void checkAddParam(String userInput) throws DietException {
-        for (String param: PARAM_ADD) {
+        String[] paramList = PARAM_ADD;
+        if (userInput.contains("i/")) {
+            paramList = PARAM_ADD_DATA;
+        }
+        for (String param: paramList) {
             if (!userInput.contains(param)) {
                 throw new DietException("Missing or incorrect add statement");
             }

@@ -115,9 +115,10 @@ public class DietBook {
                 c.execute(dietBook.manager, dietBook.ui);
             } catch (DietException e) {
                 dietBook.ui.printErrorMessage(e.getMessage());
-            } catch (Exception e) {
-                dietBook.ui.printErrorMessage("Oops something went wrong!");
             }
+            //} catch (Exception e) {
+                //dietBook.ui.printErrorMessage("Oops something went wrong!");
+            //}
         }
     }
 }
