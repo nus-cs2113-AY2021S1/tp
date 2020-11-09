@@ -154,14 +154,12 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 ### 2.3 Test run 
 
-// this may need updating
-
 Type the command in the command box and press Enter to execute. 
 Refer to the [Features](#3-features) section for details of each command. 
 
 Some examples you can try: 
 - `list`: List all events
-- `add EVENT_TYPE; EVENT_DESCRIPTION; DD/MM/YY; HHMM`: Add an event to the scheduler 
+- `add personal; run; 12/10/20; 4pm`: Add a personal event to the scheduler 
 - `bye`: exit the program 
     
 Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
@@ -173,6 +171,7 @@ To input more than one command into Scheduler--;, simply separate each command w
 
 Some examples you can try:
 - `add personal; dental appointment; 2020-05-05; | repeat personal; 1; monthly; 3;` will cause the program to add a new personal event named "Dental Appointment" and subsequently set the event to repeat monthly for three more months as shown below:
+
 ```
 add personal; dental appointment; 2020-05-05; | repeat personal; 1; monthly; 3;
 _________________________________
@@ -206,7 +205,6 @@ Format: `help [COMMAND]`
 
 When you type in `help`, a generic help screen will be printed as shown below 
 
-// everyone update this at the end + help.txt -matthew
 ```
 help
 _________________________________
@@ -231,22 +229,43 @@ _________________________________
 <div style="page-break-after: always;"></div>
 
 If you want to get help for a specific command, type in `help [COMMAND]`. For example, the following screenshot shows what happens if you type in `help add`. 
+
 ```
 help add
 _________________________________
 add - Records a personal, timetable or zoom event into the program
 Format: add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
 
-EVENT_TYPE specify what kind of event you would like to repeat. The accepted arguments for this are “personal”, “timetable” and “zoom”
-EVENT_DESCRIPTION is the name of the event
-[LINK/LOCATION] is an optional argument. provide a zoom link if your event is a zoom conference and provide a location if your event is a timetable event
-DD/MM/YY contains a date string in the format [DD/MM/YY]. This is the date of the deadline for the personal event.
-[HH:MM] is an optional argument containing the time of the deadline for the personal event. It can be written in either 12-hour or 24-hour format.
+
+EVENT_TYPE specify the type of event you want to add. These include “zoom”, “timetable” and “personal”.
+EVENT_DESCRIPTION is the description or name of the event.
+LINK/LOCATION is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively. This field should always be after the event description if used.
+DD/MM/YY is the date associated with the event in the format DD/MM/YY.
+HH:MM AM/PM is the time of the event. It can be written in 12 or 24 hour format.
+
+Timetable events can contain:
+- Description, date and time
+- Description, location, date and time
+
+Timetable Format: add Timetable; EVENT_DESCRIPTION; [LOCATION]; DD/MM/YY; HH:MM AM/PM
+
+Zoom events can contain:
+- Description and link
+- Description, link, date and time
+
+Zoom Format: add Zoom; EVENT_DESCRIPTION; LINK; [DD/MM/YY]; [HH:MM AM/PM]
+
+Personal events can contain:
+- Description
+- Description and date
+- Description, date and time
+
+Personal Format: add Personal; EVENT_DESCRIPTION; [DD/MM/YY]; [HH:MM AM/PM]
 
 _________________________________
 ```
 
-You can even et help on how to use the help command by typing in `help help` as shown in the following screenshot
+You can even get help on how to use the help command by typing in `help help` as shown in the following screenshot
 ```
 help help
 _________________________________
