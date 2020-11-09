@@ -1,5 +1,3 @@
-// @@author GuoAi
-
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
@@ -11,6 +9,8 @@ import seedu.duke.model.itemlist.ExpenseList;
 import seedu.duke.model.itemlist.LinkList;
 import seedu.duke.model.itemlist.ModuleList;
 import seedu.duke.model.itemlist.TaskList;
+
+// @@author GuoAi
 
 /**
  * Finds and lists all items in the item list whose description contains the argument keywords.

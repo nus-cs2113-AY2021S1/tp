@@ -63,9 +63,7 @@ public class DeleteCommand extends Command {
             this.hasPriorityValue = true;
             try {
                 this.priorityIndex = Integer.parseInt(inputValue.substring(2));
-            } catch (NumberFormatException e) {
-                throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
-            } catch (IndexOutOfBoundsException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
             }
         } else if (inputValue.startsWith("c")) {
