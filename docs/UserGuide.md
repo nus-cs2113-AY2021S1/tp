@@ -22,12 +22,13 @@ from the text file and loads the appliances' data back.
   * [Switching on an appliance: `on`](#switching-on-an-appliance-on)
   * [Switching off an appliance: `off`](#switching-off-an-appliance-off)
   * [Listing all the locations/appliances: `list`](#listing-all-the-locations-or-appliances-list)
-  * [Displaying the usage of appliance: `usage`](#displaying-the-usage-of-appliance-usage)
+  * [Displaying the recorded usage of appliance: `usage`](#displaying-the-recorded-usage-of-appliance-usage)
   * [Resetting all power usage in application: `p_reset`](#resetting-all-power-usage-in-application-p_reset)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Saving the data](#saving-the-data)
 * [Command summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
 ## Quick start
 
 1.  Ensure you have Java `11` or above installed in your Computer.
@@ -39,16 +40,16 @@ from the text file and loads the appliances' data back.
 4.  Open your Command Prompt/Terminal. Navigate to the folder which you place the SmartHomeBot.jar. Then input `java -jar SmartHomeBot.jar` and 
 press ENTER. The display similar to the below should appear in a few seconds.
     
-    ![](images/user_guide/start_image.PNG)
+    ![](images/user_guide/startMessage.png)
      
 5.  Type the command in the command box and press Enter to execute it. 
 e.g. typing `exit` and pressing Enter, it will exit the program.
 Some example commands you can try:
     *   `create Bedroom1`: 
-         Creates a 'location' named "Bedroom 1" in SmartHomeBot. 
+         Creates a 'location' named "Bedroom1" in SmartHomeBot. 
          
     *   `remove Bedroom1`: 
-         Remove a 'location' named "Bedroom 1" in SmartHomeBot.
+         Remove a 'location' named "Bedroom1" in SmartHomeBot.
             
     *   `list location`: 
          Lists all the location.
@@ -154,7 +155,7 @@ Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOC
 
 * Range for `TEMPERATURE`: 16 - 30
 * Range for `SPEED`: 1-3
-* If no `PARAMETER` is provided, the appliance will turn on with default.
+* If no `PARAMETER` is provided, the appliance will turn on with their default parameter, which are: 25 for `TEMPERATURE` and 1 for `SPEED`
 
 Example: `on AIRCON1`
 
@@ -235,7 +236,6 @@ Output:
    
    ![](images/user_guide/listCommand3.png) 
 
-
 <br/><br/> 
 ### Displaying the recorded usage of appliance: `usage`
 Display the current power usage of all appliances and total power consumption monitored within SmartHomeBot. 
@@ -245,7 +245,6 @@ Format: `usage`
 Output: 
    
    ![](images/user_guide/usageCommand.png) 
-
 
 <br/><br/> 
 ### Resetting all power usage in application: `p_reset`
@@ -258,19 +257,23 @@ Output:
    
    ![](images/user_guide/p_resetCommand.png) 
 
-
 <br/><br/> 
 ### Exiting the application: `exit`
 Exits the application and switch off all appliances within SmartHomeBot. The monitoring of all appliances will be stop.
 
 Format: `exit`
+
+Output: 
+
+   ![](images/user_guide/ExitMessage.png) 
    
 <br/><br/>
 
-### Saving the data
+## Saving the data
 SmartHomeBot will auto-save the task list data in the hard disk after 
 any command that changes the data. There is no need to save manually.
 
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 

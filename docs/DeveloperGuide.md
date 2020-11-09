@@ -21,6 +21,7 @@
 * [Appendix D: Glossary](#appendix-d-glossary)
 * [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
+<div style="page-break-after: always;"></div>
 ## **Introduction**
 
 SmartHomeBot is a desktop application tailored for users who are comfortable using a Command Line Interface (CLI), it 
@@ -133,7 +134,7 @@ The *Data Component Diagram* shown above explains the high-level design of the D
 
 ### Detailed Data Component 
 
-The *Detailed Data Component* shown above explains the summarised model of SmartHomeBot. The four appliances classes are extended
+The *Detailed Data Component* shown above explains the summarised data of SmartHomeBot. The four appliances classes are extended
 from the abstract appliance class. 
 
 ![Detailed Data Component](images/diagrams/ClassDiagram_DetailedData.png)  <br>
@@ -182,7 +183,6 @@ When the user enters the `create` command, the `prepareCreateCommand(argument)` 
 It will reject the input provided by the user if the `argument` is empty or contain characters such as `/` or `|` or if the argument contains `spaces` in between. 
 If the argument is not rejected, it will return and construct a new CreateCommand object with argument as the parameter to be created.  
 
-For example: user input: `create bedroom1`. `prepareCreateCommand(bedroom1)` will return a new CreateCommand object to be executed to create the location `bedroom1` in the LocationList. 
 
 #### Sequence Diagram for `remove`
 
@@ -191,8 +191,7 @@ For example: user input: `create bedroom1`. `prepareCreateCommand(bedroom1)` wil
 When the user enters the `remove` command, the `prepareRemoveCommand(argument)` is called. 
 It will reject the input provided by the user if the `argument` is empty. 
 If the argument is not rejected, it will return a new RemoveCommand object with argument as the parameter to be used to remove a location in the LocationList. 
-
-For example: user input: `remove bedroom1`. `prepareRemoveCommand(bedroom1)` will return and construct a new RemoveCommand object to be executed to remove the location `bedroom1` in the LocationList.  
+ 
 
 #### Sequence Diagram for `add`
 
@@ -210,9 +209,6 @@ If all these conditions are fulfilled, it will return and construct a new AddCom
 
 When the user enters the `delete` command, the `prepareDeleteCommand(argument)` is called. 
 It will reject the input provided by the user if the `argument` is empty. If the argument is not rejected, it will return a new DeleteCommand object with arguments as the parameter to be used to delete an appliance from the ApplianceList. 
-
-For example: user input: `delete aircon1`. `prepareRemoveCommand(aircon1)` will return and construct a new DeleteCommand object to be executed to remove the location `aircon1` in the LocationList.  
-
 
 #### Sequence Diagram for `on`
 
@@ -482,6 +478,7 @@ The sequence diagram for `ReadStorageFile` is shown below:
 
 ![StorageFile Model Component](images/diagrams/Sequence_ReadStorageFile.png)
 
+<div style="page-break-after: always;"></div>
 
 ## Appendix A: Product scope
 
@@ -539,7 +536,6 @@ Given below are instructions to test the application manually.
         Expected: Shows the GUI with some welcome messages.
 
 
-
 ### Creating new location:
 
 Prerequisites: List all appliances and locations using the `list location` and `list appliance` command. 
@@ -592,13 +588,75 @@ Making sure the name of the appliance is found in the list.
     Expected-printout: Deleting Light(10W), located at Bedroom1 .......DELETED.
 2. Test case: `delete` <br>
     Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
-3. Test case: `remove Light2` , assume `Light2` was not added.<br>
+3. Test case: `delete Light2` , assume `Light2` was not added.<br>
     Expected-printout: Light2 does not exist.
 
 ### Switching On Appliance:
 
+Prerequisites: 
+Ensure that Bedroom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`.
+
+1. Test case: `on ac` <br>
+    Expected-printout: Switching ac(5000W), located at Bedroom1 @ 25 Degrees.....ON
+2. Test case: `on ac2` <br>
+    Expected-printout: Appliance or Location does not exist in the list.
+3. Test case: `on ac p/` <br> 
+    Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
+4. Test case: `on ac p/21` , assume `ac` was not on.<br>
+   Expected-printout: Switching ac(5000W), located at Bedroom1 @ 21 Degrees.....ON
+5. Test case: `on Bedroom1` , assume `ac` was on.<br>
+   Expected-printout: All Appliances in "Bedroom1" are turned on 
+6. Test case: `on ac p/hundred`<br>
+   Expected-printout: Please enter a valid numerical value.
+   
 ### Switching Off Appliance:
 
-### Listing 
+Prerequisites: 
+Ensure that Bedroom1 is created: `create Bedroom1` and ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`. Lastly, ensure that ac is turned on for every test: `on ac`
 
-### Saving data to disk: 
+1. Test case: `off ac` <br>
+    Expected-printout: Switching: ac(5000W), located at Bedroom1 ......OFF
+2. Test case: `off ac2` <br>
+    Expected-printout: Appliance or Location does not exist in the list.
+3. Test case: `off ac p/21` <br> 
+    Expected-printout: There should be no parameter for this command, please refer to 'help' command.
+4. Test case: `off Bedroom1` <br>
+    Expected-printout: All Appliances in "Bedroom1" are turned off 
+
+### Listing Appliances or Locations
+
+1. Test case: `list location`, assume no location is created.<br>
+    Expected-printout: There is currently no Location in the list.
+2. Test case: `list appliance`, assume no appliance is added.<br>
+    Expected-printout: There is currently no Appliance in the list.
+3. Test case: `list Bedroom1`, only `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]` is valid for command.<br>
+    Expected-printout: Please enter either 'list appliance' or 'list location' or 'list appliance l/[LOCATION_NAME]'
+4. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is not created <br>
+    Expected-printout: Location: "Bedroom1" does not exist.   
+5. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is created but no Appliance is added to `Bedroom1`.   
+   Expected-printout: There is no Appliance in "Bedroom1". 
+
+
+### Saving data to disk
+#### Dealing with missing data files:
+
+When the program is started for the first time, the directory "data" and the text file "data/SmartHomeBot.txt" should be 
+automatically created to store all the data when the user start entering commands into the application. 
+There are two ways that will cause missing data files:
+
+1. When the "data" directory folder is missing.
+2. When the text file "data/SmartHomeBot.txt" is missing from the "data" directory folder.
+
+These can be stimulated by deleting either the "data" directory folder or the text file "data/SmartHomeBot.txt".<br>
+Expected-printout: Load File does not exist. No contents will be loaded. 
+
+#### Dealing with corrupted data files:
+
+Corrupted data files usually happen when some of the appliance parameters are missing from the .txt storage file. 
+When corrupted data files error occurred, some of the data will not be loaded back into the program when the program 
+start up the next time.
+
+This can be stimulated by removing one of the appliance parameters(Example: the power of the appliance) from the 
+text file "data/SmartHomeBot.txt". <br>
+Expected-printout: Data file is corrupted, some data entry will not be entered.
+
