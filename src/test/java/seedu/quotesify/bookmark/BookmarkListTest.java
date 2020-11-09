@@ -52,7 +52,7 @@ public class BookmarkListTest {
     @Test
     public void findByIndex_withinSize() {
         Bookmark bookmarkResult = bookmarkList.findByIndex(0);
-        assertEquals(book1, bookmarkResult);
+        assertEquals(bookmark1, bookmarkResult);
     }
 
     @Test
