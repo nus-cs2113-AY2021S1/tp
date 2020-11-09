@@ -79,11 +79,15 @@ The following section details the general commands you can use in the app.
 These commands can be used anywhere in the app to help you navigate around the app.
 
 This section contains the following commands:
-* 1. : [Prints help message](#1-prints-help-message-help)
-* 2. : [Changes the current mode](#2-changes-the-current-mode-cd-mode_name-or-mode_index)
-* 3. : [Shows the current location](#3-shows-the-current-location-location)
-* 4. : [Prints starred items](#4-prints-starred-items-highlight)
-* 5. : [Exits the current mode or application](#5-exits-the-current-mode-or-application-exit)
+* 1 : [Prints help message](#1-prints-help-message-help)
+* 2 : [Changes the current mode](#2-changes-the-current-mode-cd-mode_name-or-mode_index)
+* 3 : [Shows the current location](#3-shows-the-current-location-location)
+* 4 : [Prints starred items](#4-prints-starred-items-highlight)
+* 5 : [Exits the current mode or application](#5-exits-the-current-mode-or-application-exit)
+
+>**Warning**
+>The general commands doesn't work during `add class` or `add activity` sequence in timetable mode
+>and `add` or `test` sequence in flashcard mode
 
 ### 1. Prints help message: `help`
 
@@ -96,11 +100,11 @@ Instruction:
 
 Expected output:
 
-At menu:
+Example of printing help message at menu:
 
 ![HelpMessage](Images/GeneralUG/help.png)
 
-At bookmark mode:
+Another example of printing help message at bookmark mode:
 
 ![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
 
@@ -141,6 +145,8 @@ Command: `cd academic`
 
 >**Useful information:**
 >* You can use this command anywhere in the app to switch between modes quickly!
+>* This command STILL works if you don't have space/have excess space 
+>between `cd` and the `MODE_NAME/MODE_INDEX`
 
 ### 3. Shows the current location: `location`
 
@@ -183,7 +189,7 @@ Expected output:
 
 ![](Images/GeneralUG/exit.png)
 
-If you are in any of the other modes (bookmark/timetable/academic/flashcard), 
+If you are in any of the other modes (i.e. bookmark/timetable/academic/flashcard), 
 calling this command will exit that mode and place you at the Main menu instead, as shown below:
 
 Instruction:
