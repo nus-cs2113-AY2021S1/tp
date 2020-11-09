@@ -27,7 +27,7 @@ command. We hope this guide is user-friendly!
 
 5. Run termiNus by typing `java -jar termiNus.jar` and press enter.
 
-6. A greeting message will be displayed as shown below
+6. A greeting message will be displayed as shown below.
 
 ```
 Hello from...
@@ -160,7 +160,7 @@ List of `<compulsory arguments>`:
 
 🚩: Grades must be in **caps**.
 
-🚩: Optional and compulsory arguments can be typed in **any** order
+🚩: Optional and compulsory arguments can be typed in **any** order.
 
 Example of usage:
 
@@ -183,7 +183,7 @@ Output:
 🚩: `[CM]` indicates a completed module, and `[IC]` indicates an incomplete module.
 
 ### Adding a weblink: `add`
-Add a link for lecture/tutorial sessions through zoom 
+Add a link for lecture/tutorial sessions through zoom.
 
 Format: `add link m/<module code> <compulsory arguments>`
 
@@ -218,7 +218,7 @@ Add an expense item into the expense list.
 Format: `spend <description> <compulsory arguments> <optional arguments>`
 
 List of `<compulsory arguments>`:
-- `v/<value>` sets the amount of money spent
+- `v/<value>` sets the amount of money spent.
 
 🚩: value has a limit of **100 trillion** (100,000,000,000,000). 
 
@@ -232,11 +232,7 @@ List of `<optional arguments>`:
 
 🚩: `currency` is user defined. It **does not** have to be a legal currency in the world.
 
-🚩: Optional and compulsory arguments can be typed in **any** order
-
-🚩: It is up to the user to input positive or negative or 0 value for argument `v/<value>`.
-
-🚩: `currency` is user defined. It does not have to be a legal currency in the world.
+🚩: Optional and compulsory arguments can be typed in **any** order.
 
 Example of usage:
 
@@ -260,7 +256,7 @@ Output:
 ```
 
 ### Borrowing a book: `borrow`
-Loan a book and add into the book list 
+Loan a book and add into the book list. 
 
 Format: `borrow <book name> <compulsory argument>`
 
@@ -596,7 +592,7 @@ Output:
 
 ```
 ### Deleting all tasks of a certain priority: `delete`
-Delete tasks of the same priority
+Delete tasks of the same priority.
 
 Format: `delete tasks p/<priority>`
 
@@ -619,8 +615,9 @@ Output:
     ____________________________________________________________
 
 ```
+
 ### Deleting all tasks of a certain category: `delete`
-Delete tasks of the same category
+Delete tasks of the same category.
 
 Format: `delete tasks c/<category>`
 
@@ -644,7 +641,7 @@ Output:
 
 ```
 ### Deleting a link from the list: `delete`
-Deletes a link from the list 
+Delete a link from the list. 
 
 Format: `delete link <linkIndexNumber>`
 
@@ -667,7 +664,7 @@ Output:
 ```
 
 ### Deleting a module from the list: `delete`
-Deletes a module from the list 
+Delete a module from the list.
 
 Format: `delete module <moduleIndexNumber>`
 
@@ -688,8 +685,7 @@ Output:
 ```
 
 ### Deleting an expense item from the list: `delete`
-
-Deletes an expense items from the list.
+Delete an expense item from the list.
 
 Format: `delete expense <expenseIndexNumber>`
 
@@ -711,8 +707,7 @@ Output:
 ```
 
 ### Deleting all the expense items of a certain currency: `delete`
-
-Delete expense items of the same currency
+Delete expense items of the same currency.
 
 Format: `delete expenses currency/<currency>`
 
@@ -745,8 +740,7 @@ Output:
 ```
 
 ### Deleting all expense items of the same date: `delete`
-
-Deletes expense items of the same date
+Delete expense items of the same date.
 
 Format: `delete expenses date/<yyyy-MM-dd>`
 
@@ -768,7 +762,7 @@ Output:
 ```
 
 ### Deleting expense items on a certain date from the list: `delete`
-Deletes an expense item from the list 
+Delete an expense item from the list. 
 
 Format: `delete expenses date/YYYY-MM-DD`
 
@@ -940,7 +934,6 @@ Output:
 ```
 
 ### Searching for an item with keyword: `find`
-
 Finds all items in the corresponding item list with matching description.
 
 Format: `find {tasks,links,books,expenses,modules} k/<keyword>`
@@ -981,7 +974,7 @@ Output:
 ```
 
 ### Clearing all tasks: `clear`
-Clears all tasks, lists, books, modules from the list 
+Clears all tasks, lists, books, modules, expenses from the list. 
 
 Format: `clear all`
 
