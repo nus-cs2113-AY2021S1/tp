@@ -911,7 +911,7 @@ If you encounter any errors, take note of the following warning.
 >respectively.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 >
->![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="70%" width="70%"}
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="65%" width="65%"}
 
 <div style="page-break-after: always;"></div>
 
