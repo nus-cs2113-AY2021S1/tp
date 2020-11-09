@@ -863,7 +863,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
+![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png){:height="70%" width="70%"}
 
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
@@ -886,7 +886,7 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="80%" width="80%"}
 
 <div style="page-break-after: always;"></div>
 
@@ -954,7 +954,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5_resized.png)
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="70%" width="70%"}
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
