@@ -162,7 +162,7 @@ public class ModuleChecker {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("The Json data file does not exist!\n "
+            System.out.println("The Json data file does not exist!\n"
                     + "In order to use `exam`, `lab`, `lect` and `tut` commands,\n"
                     + "please ensure either one of the following requirements is met:\n"
                     + " 1. Re-establish your internet connection.\n"
