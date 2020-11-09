@@ -115,135 +115,55 @@ functionality. Here are the list of the main packages:
 
 ![cardUML](https://user-images.githubusercontent.com/50734854/98472577-f2aa0200-222e-11eb-9b00-c23280986366.png)
 
-<sub>***Figure 3.1** UML class diagram for card package. quizcard package is omitted.*</sub>
+<sub>***Figure 3.1** UML class diagram for card package. The quizcard package is omitted.*</sub>
 
-The Card package consists of different classes that holds information on the main functionalities of the application,
-and is split into 2 packages, quiz and task, as well as Subject, Topic and Flashcard classes.
-- quizcard package
-    * Quiz class
-    * Result class
-    * TopicQuiz class
-    * SubjectQuiz class
-- taskcard package
-    * Deadline class
-    * Event class
-    * Task class
-    * Todo class
-- Flashcard class
-- Subject class
-- Topic class
+The `card` package contains the main data structures that holds the most of the information of the application.
+It contains:
+- `Flashcard` class - contains a `question` and `answer`
+- `Subject` class - contains a `TopicList`,`TaskList`, and `ResultList`
+- `Topic` class - contains a list of `FlashCards`
+- `quizcard` package - contains classes related to the quiz functions
+- `taskcard` package - contains classes related to the task functions
 
-Each of the classes in the card package contains:
-* Getters and Setters of its own attributes
-* Methods that alter an instance of its own class
+Each of the classes in the card package contains getters and setters for its own attributes.
 
-#### 3.1.1 quizcard Package <a name="quiz"></a>
+#### 3.1.1 Quizcard Package <a name="quiz"></a>
 
 ![QuizUML](https://user-images.githubusercontent.com/50734854/98472580-f76eb600-222e-11eb-92c4-d721895cfd41.png)
 
-<sub>***Figure 3.1.1** UML class diagram for list package*</sub>
+<sub>***Figure 3.1.1** UML class diagram for the quizcard package*</sub>
 
-The `quizcard` package holds the necessary classes for the quiz functionality of this application. The following are
-the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
+The `quizcard` package stores the information relating to all quiz functionality in the application. 
+It also starts the quizes and handles the updating of results. It consists of 4 classes:
+* `Quiz` class - abstract class in the `quizcard` package. It contains:
+    * `result` - the `Result` of the quiz.
+* `TopicQuiz` class - inherits from the `Quiz` class and initiates the quiz for a topic. It contains:
+    * `topic` - the `Topic` that the quiz is on
+* `SubjectQuiz` class - inherits from the `Quiz` class and initiates the quiz for a subject. It contains:
+    * `subject` - the `Subject` that the quiz is on
+* `Result` class - holds information regarding the results of a quiz. It has three class variables:
+    * `score` is the user's current score for the quiz
+    * `maxScore` is the maximum score for the quiz
+    * `desciption` is the grade given to the user depending on their performance.
 
-#### 3.1.1.1 Quiz <a name="Qclass"></a>
-`Quiz` class is an abstract class in the `quizcard` package. It holds the `result` variable to track the result of the quiz,
-the  `flashcards` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
-The list stores the questions which the user did not answer correctly, along with the correct answer for the question and the answer
-provided by the user. The Quiz class also contains a `startQuiz` method and a `checkAnswer` method.
-
-#### 3.1.1.2 SubjectQuiz <a name="Qsubject"></a>
-`SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz for a subject.It also contains a `setupQuiz`method.
-
-#### 3.1.1.3 TopicQuiz <a name="Qtopic"></a>
-`TopicQuiz` class inherits from the `Quiz` class and initiates the quiz for a topic.It also contains a `setupQuiz`method.
-
-##### 3.1.1.4 Result <a name="Qresult"></a>
-`Result` class  stores the result of a quiz . It has three instance variables, namely the `score` variable
-which tracks the score during the quiz, the  `maxScore` variable which is the maximum score that you can get from doing the 
-quiz, while the  `description` variable will be a grade given to you depending on your performance.
-The  `UpdateResult` method  updates the score of the quiz during the quiz and changes the grade of the quiz. 
-
-#### 3.1.2 taskcard Package <a name="task"></a>
+#### 3.1.2 Taskcard Package <a name="task"></a>
 
 ![TaskUML](https://user-images.githubusercontent.com/50734854/98472584-fb023d00-222e-11eb-8513-eb9493cae215.png)
 
 <sub>***Figure 3.1.2** UML class diagram for taskcard package*</sub>
 
-The `taskcard` package holds the necessary classes for the Task functionality of this application. The following are
-the classes in the package. A `Task` class, a `Todo` class, a `Deadline` class and an `Event` class.
-
-##### 3.1.2.1 Task <a name="Ttask"></a>
-The `Task` class is the superclass of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
-and an attribute to check if the task is completed-`Boolean`. It holds basic getters for its attributes, getters such as getting the 
-status icon to check if a Task is done-`String`, and getters for the DateTime features of the Deadline and Event classes. It also has
- a toString methods to print the Task.
- 
-##### 3.1.2.2 Todo <a name="Ttodo"></a>
-The `Todo` class is the class to store information on basic tasks of the user. It contains methods and attributes similar to the
-ones found in its superclass `Task`. It has an additional Override toString method, to differentiate between itself and other
-tasks, such as Deadline and Event.
-
-An example of how a Todo task "return books" will look like in the command line for user intepretation is shown below.
-```
-____________________________________________________________
-Got it. I've added this task:
- [T][✘] return books
-Now you have 1 task in the list.
-____________________________________________________________
-```
-
-##### 3.1.2.3 Deadline <a name="Tdeadline"></a>
-The `Deadline` class is the class to store information on tasks of the user that has a deadline. It contains methods and attributes similar to the
-ones found in its superclass `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
-to keep track of the deadline of the task-`LocalDateTime`, an Override toString method, to differentiate between itself and other tasks, such as Deadline 
-and Event.
-
-An example of how a Deadline task "return books /by 23:59 10-11-2020" will look like in the command line for user intepretation is shown 
-below.
-```
-____________________________________________________________
-Got it. I've added this task:
-  [D][✘] return books (by: 11:59 PM 10 Nov 2020)
-Now you have 2 tasks in the list.
-____________________________________________________________
-```
-
-##### 3.1.2.4 Event <a name="Tevent"></a>
-The `Event` class is the class to store information of tasks of the user that is an event with a specific date and time occurrence. 
-It contains methods and attributes similar to the ones found in its superclass `Task`, and additional attributes to make it a `Deadline`
-Task, such as an additional dateTime attribute to keep track of the date and time of the event-`LocalDateTime`, an Override toString method,
-to differentiate between itself and other tasks, such as `Todo` and `Deadline`.
-
-An example of how an Event task "event CS2113T meeting /at 12:00 10-11-2020" will look like in the command line for user intepretation is shown 
-below.
-```
-____________________________________________________________
-Got it. I've added this task:
-  [E][✘] CS2113T meeting (at: 12:00 PM 10 Nov 2020)
-Now you have 3 tasks in the list.
-____________________________________________________________
-```
-
-#### 3.1.3 Flashcard  <a name="flashcard"></a>
-The `Flashcard` class is a class to store information of flashcards. It has attributes such as the question
-and answer of each flashcard, a constructor, as well as getters for both question and answer of the flashcards.
+The `taskcard` package stores the information relating to all the tasks in the application. It consists of 4 classes:
+* `Task` class - class that the other classes in this package inherits from. It contains:
+    * description - name of the the task
+    * isDone - whether the task is done or not
+* `Todo` class - inherits from `Task`
+* `Deadline` class - inherits from `Task`. Additionally, it contains:
+    * `dateTime` - deadline of the task
+* `Event` class - inherits from `Task`. Additionally, it contains:
+    * `dateTime` - time of the event
 
 
-#### 3.1.4 Subject <a name="subject"></a>
-The `Subject` class is a class to store information of subjects. It has various attributes such as the title of the 
-subject-`String`, a list of various topics in a subject-`TopicList`, a list of various tasks present in a subject-`TaskList`
-and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
-attributes in the `Subject` class and a toString method to return the title of the subject.
-
-#### 3.1.5 Topic <a name="topic"></a>
-The `Topic` class is a class to store information of topics. It has various attributes such as the title of the subject-`String`,
-a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
-contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
-
-An example of how classes in the card package interact with each other is shown in the figure below. 
-In this example, a student has 2 main subjects, mainly Math and Science. Math has topics algebra and calculus, while science has topics speed and light. He also made flashcards the various topics.
-
+##
 ### 3.2 command Package <a name="command"></a>
 The Command package consists of different classes that executes the various commands of the application due to user input,
 and is split into 4 packages, flashcard, subject, task and topic, as well as an abstract command class, that is a superclass of the various classes in the different packages.
