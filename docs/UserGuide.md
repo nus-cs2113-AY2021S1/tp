@@ -135,6 +135,8 @@ Enter Note:
 `Line 2`<br>
 `/end`
 
+<div style="page-break-after: always;"></div>
+
 💡 Note content must have at least 1 line.<br>
 💡 Use `/del` to delete the previous line.<br>
 💡 Use `/end` on a new line to denote the end of the note.
@@ -166,6 +168,9 @@ Example of usage:
 💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
 💡 The archived notes will **ONLY** be listed in chronological order. <br>
 💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
+
+<div style="page-break-after: always;"></div>
+
 💡 Even if you input anything beyond `list-n` or `/archive` without the command delimiter (`/`), the program will execute the command. For example, `list-n the notes` or `list-n /archive test example` will still result in the program listing the notes/archived notes.
 
 Expected output:
@@ -195,6 +200,8 @@ Expected output:
 <p align="center">
    <img alt="viewNote" src="screenshots/viewNote.png"/>
 </p>
+
+<div style="page-break-after: always;"></div>
 
 #### <a id="edit-n"><ins>3.5 Edit Note:</ins> `edit-n`</a>
 Edits an existing note.
