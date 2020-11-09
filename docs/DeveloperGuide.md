@@ -1203,7 +1203,7 @@ removed from the list.
 * The following testing guide assumes that the testing above has been completed. <br />
 Enter `list`. Output:
 
-![](developerGuide_images/screenshots_recurringtracker/list.png)
+<img src="developerGuide_images/screenshots_recurringtracker/list.png" width="800"/>
 
 **Testing Edit Entry** <br />
 * The following testing guide assumes that the testing above has been completed. <br />
@@ -1212,7 +1212,7 @@ Enter `list`. Output:
 ![](developerGuide_images/screenshots_recurringtracker/edit_entry.png)
 1. Enter `list`. Output:
 
-![](developerGuide_images/screenshots_recurringtracker/list_after_edit.png)
+<img src="developerGuide_images/screenshots_recurringtracker/list_after_edit.png" width="800"/>
 
 **Negative Test: No Params to Edit** <br />
 
@@ -1237,7 +1237,7 @@ Enter `list`. Output:
 
 1. Enter `list`. Output:
 
-![](developerGuide_images/screenshots_recurringtracker/list_after_delete.png)
+<img src="developerGuide_images/screenshots_recurringtracker/list_after_delete.png" width="800"/>
 
 **Testing Reminders** <br />
 * The following testing guide assumes that all previous entries have been deleted. This can be achieved by running `delete /id 1` repeatedly until list is empty.
