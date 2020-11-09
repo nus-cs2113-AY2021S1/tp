@@ -306,4 +306,20 @@ public class CommandCreator {
         }
         return new CategoryCommand(index, argumentsMap.get("c"));
     }
+
+    /**
+     * Creates and returns a CalendarCommand with given arguments.
+     *
+     * @param description Parsed description from the user.
+     * @param argumentsMap HashMap containing optional arguments.
+     * @return CalendarCommand with arguments given.
+     * @throws DukeException If arguments are invalid.
+     */
+    public static Command createCalendarCommand(String description, HashMap<String, String> argumentsMap)
+            throws DukeException {
+        if (!description.isEmpty()) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+        }
+        return new CalendarCommand(argumentsMap);
+    }
 }

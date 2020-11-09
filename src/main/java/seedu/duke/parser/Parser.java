@@ -73,7 +73,7 @@ public class Parser {
             return CommandCreator.createDateCommand(description, argumentsMap);
         case CalendarCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
-            return new CalendarCommand(argumentsMap);
+            return CommandCreator.createCalendarCommand(description, argumentsMap);
         case CategoryCommand.COMMAND_WORD:
             return CommandCreator.createCategoryCommand(commandString, argumentsMap);
         case ListCommand.COMMAND_WORD:
