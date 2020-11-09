@@ -1,0 +1,24 @@
+@startuml
+
+-> FoodSaveLoadManager : load()
+activate FoodSaveLoadManager
+
+FoodSaveLoadManager -> Loader : static load()
+
+activate Loader
+Loader -> FileLoader : load()
+
+activate FileLoader
+loop all lines
+    activate Scanner
+    FileLoader -> Scanner : readline()
+    Scanner --> FileLoader : line data
+    destroy Scanner
+end
+FileLoader --> Loader : FileLoader
+deactivate FileLoader
+
+Loader --> FoodSaveLoadManager : FileLoader
+deactivate Loader
+deactivate FoodSaveLoadManager
+@enduml

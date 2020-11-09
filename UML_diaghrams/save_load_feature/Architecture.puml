@@ -1,0 +1,19 @@
+@startuml
+object Saver
+object Loader
+object FoodSaveLoadManager
+object PersonSaveLoadManager
+object Command
+object File
+
+File <-up-> Saver
+File <-up-> Loader
+
+Saver <-up-> FoodSaveLoadManager
+Saver <-up-> PersonSaveLoadManager
+Loader <-up-> FoodSaveLoadManager
+Loader <-up-> PersonSaveLoadManager
+
+FoodSaveLoadManager <-up-> Command
+PersonSaveLoadManager <-up-> Command
+@enduml
