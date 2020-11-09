@@ -79,6 +79,9 @@ public class UI {
         case "adj":
             printHelpAdj();
             break;
+        case "three words":
+            printHelpThreeWords();
+            break;
         case "divider":
             printHelpDivider();
             break;
@@ -146,7 +149,7 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"help", "divider",
+        String[] listCommands = {"help", "divider", "noun", "verb", "adj", "three words",
             "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny",
             "list", "list filter words", "start", "filter words", "stats", "reset", "name",
             "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
@@ -262,6 +265,11 @@ public class UI {
         System.out.println("Type in the adjective you want to save followed by its meaning.");
         System.out.println("Format: adj WORD d\\DESCRIPTION");
         System.out.println("Example: adj hungry d\\the feeling due to lack of food");
+    }
+
+    public static void printHelpThreeWords() {
+        System.out.println("Type 'three words' to generate three random words!");
+        System.out.println("Note: you must have at least three words stored in Fluffle!");
     }
 
     public static void printHelpList() {
