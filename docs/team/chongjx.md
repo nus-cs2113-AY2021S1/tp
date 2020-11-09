@@ -28,6 +28,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 6\. Implemented `SystemException` class which extends from `Exception` class. Enumeration for all possible types of exception that may occur with a unique string as its message.
 
 7\. Implemented `Formatter` class which formats Note, Event and String into a formatted String to be printed.
+
+<div style="page-break-after: always;"></div>
     
 *Code contributed*: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -50,8 +52,4 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 3\. Contributed to forum discussions on usage of Jcolor and jansi libraries. ([#86](https://github.com/nus-cs2113-AY2021S1/forum/issues/86) and [#93](https://github.com/nus-cs2113-AY2021S1/forum/issues/93))
 
-*Tools*
-
-1\. Integrated a third party library [(JColor)](https://github.com/dialex/JColor) to the project. [(#37)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37)
-
-2\. Integrated a third party libaray [(jansi)](https://fusesource.github.io/jansi) to the project. [(#87)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/87)
+*Tools*: Integrated a third party libraries - [(JColor)](https://github.com/dialex/JColor) [(#37)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/37) and [(jansi)](https://fusesource.github.io/jansi) to the project [(#87)](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/87).
