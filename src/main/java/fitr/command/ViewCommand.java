@@ -14,6 +14,7 @@ import fitr.ui.Ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import static fitr.common.Commands.COMMAND_EXERCISE;
 import static fitr.common.Commands.COMMAND_FOOD;
@@ -61,8 +62,11 @@ public class ViewCommand extends Command {
         this.command = command;
     }
 
+    private static final Logger LOGGER = Logger.getLogger("ViewCommand");
+
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
+        assert (command != null);
         if (command.equalsIgnoreCase(COMMAND_FOOD)) {
             viewFood(listManager.getFoodList());
         } else if (command.equalsIgnoreCase(COMMAND_EXERCISE)) {
@@ -100,6 +104,7 @@ public class ViewCommand extends Command {
 
     //View food
     private void viewFood(FoodList foodList) {
+        LOGGER.fine("Displaying food list");
         if (foodList.getSize() == 0) {
             Ui.printCustomMessage(EMPTY_FOOD_LIST);
         } else {
@@ -130,6 +135,7 @@ public class ViewCommand extends Command {
 
     //View exercise
     private void viewExercise(ExerciseList exerciseList) {
+        LOGGER.fine("Displaying exercise list.");
         if (exerciseList.getSize() == 0) {
             Ui.printCustomMessage(EMPTY_EXERCISE_LIST);
         } else {
@@ -158,6 +164,7 @@ public class ViewCommand extends Command {
     }
 
     private void viewSummary(FoodList foodList, ExerciseList exerciseList, Boolean isDate) {
+        LOGGER.fine("Displaying summary");
         int foodIndex = 0;
         int exerciseIndex = 0;
         int totalCalorieConsumed = 0;
@@ -168,6 +175,7 @@ public class ViewCommand extends Command {
         String currentDate;
         ArrayList<String> dateList = new ArrayList<>();
         ArrayList<Integer> calorieList = new ArrayList<>();
+        LOGGER.fine("Sorting calories entries from exercise list and food list together by date.");
         while (exerciseIndex < exerciseList.getSize() && foodIndex < foodList.getSize()) {
             if (Integer.parseInt(dateFormatter(exerciseList.getExercise(exerciseIndex).getDate()))
                     < Integer.parseInt(dateFormatter(foodList.getFood(foodIndex).getDate()))) {
@@ -202,6 +210,8 @@ public class ViewCommand extends Command {
                 exerciseIndex++;
             }
         }
+        LOGGER.fine("Entries successfully sorted.");
+        LOGGER.fine("Displaying sorted calorie entries by date.");
         int index = 0;
         while (index < dateList.size()) {
             currentDate = dateList.get(index);

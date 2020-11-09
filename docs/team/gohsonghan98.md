@@ -25,6 +25,10 @@ Fitr is a command-line application, helping you keep track of your food intake a
     are also implemented here.
     - Ensured that there is sufficient OOP here to support more diverse implementations and scalability of Fitr.
  
+- Implemented StandardExerciseStorage class:
+    - This class loads four different exercise lists from the resources folder into Fitr. The exercise lists is
+    used by the `Recommender` class to recommend exercises.
+     
 - User Experience improvement:
     - For edit profile and view command: Added helpful tips and error messages to give users convenience and improve
      self-sufficiency of the Fitr program.
@@ -50,7 +54,7 @@ Fitr is a command-line application, helping you keep track of your food intake a
     - Edit profile fitness
     
 ### Contributions to developer guide
-- Added detailed description of User component.
+- Added detailed description and class diagram of User component.
 - Added sequence diagram for Edit command (implementation) to illustrate interaction with User class.
 - Added sequence diagram for View command (implementation) to illustrate interaction with User class.
 
