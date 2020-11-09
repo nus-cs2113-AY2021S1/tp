@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=mhchan163&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancement to existing features**:  
-   * Restructured the Parser class to extract the parameters from the user input instead of leaving it to be done in the command classes, with the aim of making it more in accordance with OOP. (Pull Request [/#69](https://github.com/AY2021S1-CS2113T-W12-1/tp/pull/69))
+   * Restructured the Parser class to extract the parameters from the user input instead of leaving it to be done in the command classes, with the aim of making it more in accordance with OOP. (Pull Request [\#69](https://github.com/AY2021S1-CS2113T-W12-1/tp/pull/69))
    * Wrote test for Reminder class after integration to Task object. (Pull Request [\#110](https://github.com/AY2021S1-CS2113T-W12-1/tp/pull/110))
    
 * **Documentation**:
@@ -28,8 +28,8 @@ Given below are my contributions to the project.
         * Added documentation for reminder feature and edit the format for add and edit according (Pull Request [\#115](CS2113T-W12-1/tp/pull/115))
         * Standardised expected outcome photos (Pull request [\#115](CS2113T-W12-1/tp/pull/115))
     * Developer Guide: 
-        * Added manual testing section
-        * Added documentation for reminder feature into design and implementation section
-        * Added reminder class to the task class diagram
+        * Added manual testing section (Done on a 3rd party platform by me and transferred and committed by my teammate Qixing. Pull Request [\#55](https://github.com/AY2021S1-CS2113T-W12-1/tp/pull/55))
+        * Added documentation for reminder feature into design and implementation section (Pull request [\#126](https://github.com/AY2021S1-CS2113T-W12-1/tp/pull/126))
+        * Added reminder class to the task class diagram (Pull request [\#126](https://github.com/AY2021S1-CS2113T-W12-1/tp/pull/126))
         
-     
+ 
