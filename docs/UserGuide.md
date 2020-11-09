@@ -249,7 +249,7 @@ Repeat the selected event for several weeks, or repeat all classes this week for
 
 Format: `repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`
 
-Example Output:
+Example Output:<br>
 ![Repeat1](diagrams/repeat1.png)  
 ![Repeat2](diagrams/repeat2.png)
 
@@ -287,3 +287,4 @@ accuracy. If you really cannot find what is wrong, please report it as an issue 
 |list|`list`||
 |locate|`locate LOCATION_NAME` OR `locate EVENT_INDEX`|`locate LT1`|
 |sort|`sort SORT_CRITERIA` |`sort description`|
+|repeat|`repeat INDEX NUMBER_OF_WEEKS` OR `repeat all NUMBER_OF_WEEKS`|`repeat 1 3`|
