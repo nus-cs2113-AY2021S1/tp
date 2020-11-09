@@ -44,20 +44,10 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     - Allows a convenient way for the user to sort notes by order of importance during a particular time in point.
 
 2\. In the `Notebook` class, the following methods were created:
-- `archivedNotes`
-- `unarchivedNotes`
-- `getArchivedNotes`
-- `getNote`
-- `checkPinned`
-- `getSortedList`
-- `getPinnedNotes`
-- `getUnpinnedNotes`
-- `findNotes`
+`archivedNotes`, `unarchivedNotes`, `getArchivedNotes`, `getNote`, `checkPinned`, `getSortedList`, `getPinnedNotes`, `getUnpinnedNotes`, `findNotes`
 
 3\. In the `Note` class, the following methods were created:
-- `toggleArchived`
-- `getIsArchived`
-- `getPinned`
+`toggleArchived`, `getIsArchived`, `getPinned`
 
 4\. Added a couple of `formatNotes` methods into the `Formatter` class.
 
@@ -65,9 +55,7 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 1\. Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)) to make the application more user-friendly.
 
-<div style="page-break-after: always;"></div>
-
-2\. Refactored code to abstract out the successful/unsuccessful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) from the individual command classes to its own `CommandMessage` class.
+2\. Refactored code to abstract out the (un)successful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) to its own `CommandMessage` class.
 
 *Code contributed*
 
@@ -92,36 +80,14 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 Created the first draft of the [User Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/UserGuide.md) and provided a template for the rest to follow. Also in charge of the overall formatting for the User Guide.
 Filled up the following:
 
-1\. [Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
-
-2\. [Quick Start](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
-
-3\. [Initial draft of the features](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), including description and example codes
-
-4\. [FAQ](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
-
-5\. [Command Summary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
-
-<div style="page-break-after: always;"></div>
+[Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), [Quick Start](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), [Initial draft of the features](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), including description and example codes, [FAQ](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), [Command Summary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
 
 *Contributions to Developer Guide*
 
 Created the first draft of the [Developer Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DeveloperGuide.md) and provided a template for the rest to follow. Also in charge of the overall formatting for the Developer Guide.
 Filled up the following:
 
-1\. [Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55)
-
-2\. Initial draft of [architecture overview](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
-
-3\. [Product Scope](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55) (Target User Persona, Target User Profile and Value Proposition)
-
-4\. [User Stories](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55)
-
-5\. [Non-functional requirements](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103)
-
-6\. [Glossary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103)
-
-7\. Initial [manual testing draft](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/119)
+[Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55), Initial draft of [architecture overview](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), [Product Scope](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55) (Target User Persona, Target User Profile and Value Proposition), [User Stories](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55), [Non-functional requirements](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103), [Glossary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103), Initial [manual testing draft](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/119)
 
 *Community*
 
