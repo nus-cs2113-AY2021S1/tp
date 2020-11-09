@@ -6,7 +6,7 @@ public class StorageParser {
 
     //@@author Zhu-Ze-Yu
     /**
-     * Parses the question in the file
+     * Parses the question in the file.
      *
      * @param arg question with prefix [Q] in the file
      * @return String question without prefix [Q]
@@ -26,7 +26,7 @@ public class StorageParser {
     }
 
     /**
-     * Parses the answer in the file
+     * Parses the answer in the file.
      *
      * @param arg answer with prefix [A] in the file
      * @return String answer without prefix [A]
@@ -46,7 +46,7 @@ public class StorageParser {
     }
 
     /**
-     * Parses the previous interval in the file
+     * Parses the previous interval in the file.
      *
      * @param arg previous interval with prefix [P] in the file
      * @return String previous interval without prefix [P]
