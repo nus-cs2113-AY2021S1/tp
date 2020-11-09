@@ -608,6 +608,8 @@ This portion contains instructions on how to perform manual testing.
     - Type `/exit` followed by enter key to exit<br>
     Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
     
+<div style="page-break-after: always;"></div>
+
 <!-- @@author wamikamalik -->
 ### E.2 Check for direct bus - Wamika
 > Note: The user can list all bus stop names using the `/liststops` command if unsure of the starting location or 
@@ -648,6 +650,8 @@ Expected: No bus routes will be displayed. Error details will be shown to remind
 the needed parameter.<br>
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author EthanWong22 -->
 ### E.4 Check for buses at a bus stop - Wong Heng Chin
 1. Checking for the buses available at a bus stop
@@ -685,6 +689,8 @@ the needed parameter.<br>
     Expected: No dining outlets will be displayed. Error details will be shown.<br>
     - Other incorrect commands to test: `/dine schooool` (keyword has been misspelled)<br>
     Expected: Similar to previous.<br>
+
+<div style="page-break-after: always;"></div>
 
 ### E.6 Search for specific dining outlet - Shuyi
 1. Searching for specific dining outlet.
