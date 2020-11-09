@@ -350,6 +350,8 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command. <br>
 <img src="DG_Diagrams/AddFavSequence.png" alt="add fav" width=650>
 <!-- @@author -->
