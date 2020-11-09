@@ -1,7 +1,6 @@
-package seedu.duke.task;
+package seedu.duke.model.item;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.model.item.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -66,4 +66,24 @@ class ModuleTest {
         boolean result = Module.checkValidAy("2011S1");
         assertFalse(result);
     }
+
+    @Test
+    void checkValidAy_AY9900_returnsTrue() {
+        boolean result = Module.checkValidAy("9900S1");
+        assertTrue(result);
+        result = Module.checkValidAy("9900S2");
+        assertTrue(result);
+    }
+
+    @Test
+    void checkValidAy_AY9900S3_returnsFalse() {
+        boolean result = Module.checkValidAy("9900S3");
+        assertFalse(result);
+    }
+
+    @Test
+    void checkValidAy_AY2021S1A_returnsFalse() {
+        boolean result = Module.checkValidAy("2021S1A");
+        assertFalse(result);
+    }
 }
