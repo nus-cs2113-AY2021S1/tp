@@ -20,12 +20,10 @@ public class Messages {
     public static final String MESSAGE_ADD_TASK = "Got it. I've added this task:\n       ";
     public static final String MESSAGE_ADD_BOOK = "Got it. I've added this book: \n";
     public static final String MESSAGE_ADD_LINK = "Got it. I've added this link:\n       ";
-    public static final String MESSAGE_ADD_NO_TASK = "There are no tasks to add.";
     public static final String MESSAGE_ADD_EXPENSE = "Got it. I've added this expense item:\n       ";
     public static final String MESSAGE_ADD_MULTIPLE_TASK = "Got it. I've added these tasks:\n       ";
     public static final String MESSAGE_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_STATUS_LAST = " task(s) in the list.";
-    public static final String MESSAGE_LINK_STATUS_FIRST = "\n     Now you have ";
     public static final String MESSAGE_LINK_STATUS_LAST = " link(s) in the list.";
     public static final String MESSAGE_EXPENSE_STATUS_LAST = " expense items in the list.";
 
