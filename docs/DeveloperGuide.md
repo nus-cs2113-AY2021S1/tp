@@ -12,7 +12,7 @@
     <br/>&nbsp;1.1 [Purpose](#11-purpose)
     <br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
-2.  [Setting up](#2-setting-up)
+2.  [Setting Up](#2-setting-up)
     <br/>&nbsp;2.1 [Setting up the project in your computer](#21-setting-up-the-project-in-your-computer)
     <br/>&nbsp;2.2 [Before writing code](#22-before-writing-code) 
 
