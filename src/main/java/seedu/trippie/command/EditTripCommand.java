@@ -3,7 +3,6 @@ package seedu.trippie.command;
 import seedu.trippie.Ui;
 import seedu.trippie.data.Trip;
 import seedu.trippie.data.TrippieData;
-import seedu.trippie.exception.TrippieException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,6 +32,11 @@ public class EditTripCommand extends Command {
             try {
                 System.out.print("Which one do you want to edit? Enter the index:");
                 index = Integer.parseInt(ui.getLine());
+
+                if (index <= 0) {
+                    throw new IndexOutOfBoundsException();
+                }
+
                 trippieData.setCurrentTripFromIndex(index - 1);
                 trippieData.loadCurrentTripFromFile();
             } catch (NumberFormatException e) {
@@ -58,7 +62,7 @@ public class EditTripCommand extends Command {
             if (name.isBlank()) {
                 name = currentName;
             } else if (!isFilenameValid(name)) {
-                System.out.println("New trip should not contain invalid characters like <>:\"/\\|?*!");
+                System.out.println("New trip should not contain invalid characters like <>:\"/\\|?*");
                 name = null;
             } else if (name.length() == 0) {
                 System.out.println("Trip name should not be empty!");

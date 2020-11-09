@@ -40,7 +40,7 @@ public class NewTripCommand extends Command {
                 name = ui.getLine();
 
                 if (!isFilenameValid(name)) {
-                    System.out.println("New trip should not contain invalid characters like <>:\"/\\|?*!");
+                    System.out.println("New trip should not contain invalid characters like <>:\"/\\|?*");
                     name = null;
                 } else if (name.length() == 0) {
                     System.out.println("Trip name should not be empty!");

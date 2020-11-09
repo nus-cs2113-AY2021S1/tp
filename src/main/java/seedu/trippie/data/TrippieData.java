@@ -90,7 +90,13 @@ public class TrippieData {
         Trip t = tripList.remove(index);
         storage.deleteTripFile(t.getName());
         updateTripIndices();
-        this.setCurrentTripFromIndex(-1);
+
+        if (this.getTripListSize() > 0) {
+            this.setCurrentTripFromIndex(this.getTripListSize() - 1);
+        } else {
+            this.setCurrentTripFromIndex(-1);
+        }
+
         return t;
     }
 
