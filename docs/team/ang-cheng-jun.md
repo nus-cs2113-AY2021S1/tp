@@ -5,8 +5,9 @@ SmartHomeBot is a **desktop application that consolidates all home appliance’s
 centralized system via a Command Line Interface (CLI)**. Users can switch on or off appliances by using this application
 and review and monitor electricity usage; having a clearer picture of their electrical usage patterns. They will need to 
 create a location and add appliances into the particular location to enable the on/off feature. There is 
-a AutoSave feature which will save all your location, appliances and appliances' electrical usage into a txt file. All the 
-appliances will be switch off when the user exit the application. 
+a AutoSave feature which will save all your location, appliances and appliances' electrical usage into a text file. All the 
+appliances will be switch off when the user exit the application. Upon the start of the application, the data of the text file
+will be imported to the application. 
 
 ### Summary of Contributions
 #### Code Contributed
