@@ -58,11 +58,11 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 4\. Added a couple of `formatNotes` methods into the `Formatter` class.
 
 ### Enhancements to existing features
-1\. Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)) to make the application more user-friendly. 
-
-2\. Refactored code to abstract out the successful/unsuccessful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) from the individual command classes to its own `CommandMessage` class.
+1\. Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)) to make the application more user-friendly.
 
 <div style="page-break-after: always;"></div>
+
+2\. Refactored code to abstract out the successful/unsuccessful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) from the individual command classes to its own `CommandMessage` class.
 
 ### Code contributed
 [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=r-ramana&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) to view a report of the code contribution.
@@ -90,6 +90,7 @@ Filled up the following:
 3\. [Initial draft of the features](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), including description and example codes
 
 4\. [FAQ](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
+
 5\. [Command Summary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89)
 
 ### Contributions to Developer Guide
