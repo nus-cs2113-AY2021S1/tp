@@ -18,8 +18,6 @@ import seedu.financeit.utils.storage.RecurringTrackerSaver;
 import seedu.financeit.utils.storage.SaveHandler;
 import seedu.financeit.utils.storage.SaveManager;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.logging.Level;
 
 //@@author Feudalord
@@ -86,16 +84,11 @@ public class Financeit {
         } catch (Exception e) {
             LoggerCentre.loggerSystemMessages.info("\n\n\nUnknown error......\n\n\n");
             System.out.println("An unknown error has occurred. Refer to the latest log messages.");
-            writeStackTraceToLog(e);
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
 
-    public static void writeStackTraceToLog(Exception e) {
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        e.printStackTrace(pw);
-        LoggerCentre.loggerSystemMessages.severe(sw.toString());
-    }
+
 
     public static void status() {
         System.out.println("Status: " + prompt);

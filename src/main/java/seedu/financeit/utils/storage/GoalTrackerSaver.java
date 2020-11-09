@@ -5,6 +5,7 @@ import seedu.financeit.data.Goal;
 import seedu.financeit.datatrackers.goaltracker.GoalTracker;
 import seedu.financeit.datatrackers.goaltracker.TotalGoalList;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.LoggerCentre;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -70,7 +71,7 @@ public class GoalTrackerSaver extends SaveHandler {
         } catch (Exception e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Goal Tracker dynamic save failed: " + e);
-            e.printStackTrace();
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
 
@@ -99,13 +100,13 @@ public class GoalTrackerSaver extends SaveHandler {
                 } catch (Exception e) {
                     UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                             "saveGt.txt line " + line + " failed to load: " + e);
-                    e.printStackTrace();
+                    LoggerCentre.writeStackTraceToLog(e);
                 }
             }
         } catch (Exception e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Goal Tracker load failed: " + e);
-            e.printStackTrace();
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
 }

@@ -6,6 +6,7 @@ import seedu.financeit.datatrackers.recurringtracker.RecurringEntryList;
 import seedu.financeit.datatrackers.recurringtracker.RecurringTracker;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.LoggerCentre;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -66,7 +67,7 @@ public class RecurringTrackerSaver extends SaveHandler {
 
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Recurring Tracker dynamic save failed: " + e);
-            e.printStackTrace();
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
 
@@ -118,13 +119,13 @@ public class RecurringTrackerSaver extends SaveHandler {
                 } catch (Exception e) {
                     UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                             "saveAt.txt line " + line + " failed to load: " + e);
-                    e.printStackTrace();
+                    LoggerCentre.writeStackTraceToLog(e);
                 }
             }
         } catch (Exception e) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     "Recurring Tracker load failed: " + e);
-            e.printStackTrace();
+            LoggerCentre.writeStackTraceToLog(e);
         }
     }
 }
