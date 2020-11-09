@@ -3,6 +3,8 @@
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 ## Introduction 
 
 **Welcome to Study It User Guide!**
@@ -77,11 +79,15 @@ The following section details the general commands you can use in the app.
 These commands can be used anywhere in the app to help you navigate around the app.
 
 This section contains the following commands:
-* 1. : [Prints help message](#1-prints-help-message-help)
-* 2. : [Changes the current mode](#2-changes-the-current-mode-cd-mode_name-or-mode_index)
-* 3. : [Shows the current location](#3-shows-the-current-location-location)
-* 4. : [Prints starred items](#4-prints-starred-items-highlight)
-* 5. : [Exits the current mode or application](#5-exits-the-current-mode-or-application-exit)
+* 1 : [Prints help message](#1-prints-help-message-help)
+* 2 : [Changes the current mode](#2-changes-the-current-mode-cd-mode_name-or-mode_index)
+* 3 : [Shows the current location](#3-shows-the-current-location-location)
+* 4 : [Prints starred items](#4-prints-starred-items-highlight)
+* 5 : [Exits the current mode or application](#5-exits-the-current-mode-or-application-exit)
+
+>**Warning**
+>The general commands doesn't work during `add class` or `add activity` sequence in timetable mode
+>and `add` or `test` sequence in flashcard mode
 
 ### 1. Prints help message: `help`
 
@@ -94,11 +100,11 @@ Instruction:
 
 Expected output:
 
-At menu:
+Example of printing help message at menu:
 
 ![HelpMessage](Images/GeneralUG/help.png)
 
-At bookmark mode:
+Another example of printing help message at bookmark mode:
 
 ![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
 
@@ -139,6 +145,8 @@ Command: `cd academic`
 
 >**Useful information:**
 >* You can use this command anywhere in the app to switch between modes quickly!
+>* This command STILL works if you don't have space/have excess space 
+>between `cd` and the `MODE_NAME/MODE_INDEX`
 
 ### 3. Shows the current location: `location`
 
@@ -181,7 +189,7 @@ Expected output:
 
 ![](Images/GeneralUG/exit.png)
 
-If you are in any of the other modes (bookmark/timetable/academic/flashcard), 
+If you are in any of the other modes (i.e. bookmark/timetable/academic/flashcard), 
 calling this command will exit that mode and place you at the Main menu instead, as shown below:
 
 Instruction:
@@ -190,6 +198,8 @@ Instruction:
 Expected output:
 
 ![](Images/GeneralUG/exitmode.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Features 
 <!-- @@author lingsihui -->
@@ -212,7 +222,7 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
-###1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
+### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
 
 Are you trying to find your links by entering into each category to view your links?
 You might want to have an easy way to view the overview of your links. 
@@ -227,6 +237,7 @@ Instructions:
 4. if you want to view the entire list of links in every category = `list -a`
 
 Expected output:  
+
 ![Bookmark_List](Images/BookmarkUG/Figure1.png)
 ![Bookmark_List_1Star_Cat](Images/BookmarkUG/Figure2.png)
 
@@ -254,6 +265,7 @@ Instruction:
 
 E.g. `bm 2`  
 Expected output:   
+
 ![Bookmark_bm_cat](Images/BookmarkUG/Figure3.png)
 
 >**Useful Information:**
@@ -283,6 +295,7 @@ Instruction:
 e.g. `cat entertainment`, `cat stocks`
 
 Expected output:   
+
 ![Bookmark_Add Category](Images/BookmarkUG/Figure5.png)
 
 
@@ -307,7 +320,9 @@ Instruction:
 1. `delete CATEGORY_NUMBER`  
 
 e.g. `delete 6`  
+
 Expected output:  
+
 ![Bookmark_1.4](Images/BookmarkUG/Figure6.png)
 
 **Useful Information:**
@@ -329,6 +344,7 @@ Instruction:
 1. `back` 
 
 Expected output:   
+
 ![Bookmark_back command](Images/BookmarkUG/Figure7.png)
 
 >**Useful Information:**
@@ -355,6 +371,7 @@ Instruction:
 2. `add LINK t->TITLE` e.g. `add https://nus-cs2113-ay2021s1.github.io/website/index.html t->Cs2113T`
 
 Expected output:   
+
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
 **Useful Information:**
@@ -378,6 +395,7 @@ Instruction:
 e.g. `rm 1`
 
 Expected output:   
+
 ![Bookmark_1.8](Images/BookmarkUG/Figure10.png)
 
 >**Useful Information:**
@@ -398,6 +416,7 @@ Instruction:
 
 e.g. `star 1`
 Expected output:   
+
 ![Bookmark_star](Images/BookmarkUG/Figure11.png)
 
 >**Useful Information:** 
@@ -409,6 +428,9 @@ If you encounter any errors, take note of the following warnings.
 >**Warning:**
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to mark your links as starred. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
 >* Ensure that the link number that you want to mark as star is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a) to find out the correct link number. 
+
+<div style="page-break-after: always;"></div>
+
 <!-- @@author slightlyharp -->
 ## 2. Timetable
 Do you find it a hassle to keep track of all your activities and Zoom links for online classes?
@@ -443,6 +465,7 @@ Instruction:
 1. `cd 3` / `cd timetable`
 
 Expected output:
+
 ![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
 
 >**Useful information:**
@@ -460,6 +483,7 @@ Instruction:
 2. Answer the questions as prompted
 
 Expected output:
+
 ![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
 
 >**Useful Information:**
@@ -487,6 +511,7 @@ Instruction:
 2. Answer the questions as prompted
 
 Expected output:
+
 ![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
 
 >**Useful Information:** 
@@ -502,6 +527,7 @@ Instruction:
 1. `show link`
 
 Expected output:
+
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
 
 ### 2.5 Showing schedule: `show schedule`
@@ -512,6 +538,7 @@ Instruction:
 1. `show schedule`
 
 Expected output:
+
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
 
 ### 2.6 Showing Activities list: `list activity`
@@ -585,13 +612,15 @@ Instruction:
 
 Expected output:
 
-![To be added]
+![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png)
 
 >**Warning:**
 >* Deletion will be done automatically. All the events that are deleted will not be able to be retrieved. 
 >Only use this if you are sure you do not need your past events.
 
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Academic
 Have you ever had to dig through tons of emails to look for the contact of a particular TA 
@@ -625,6 +654,7 @@ Instruction:
 1. `cd 4` / `academic`
 
 Expected output:
+
 ![Academic_3_1](Images/AcademicUG/Academic_3_1.png)
 
 >**Useful information:**
@@ -643,6 +673,7 @@ Example of usage:
 will add a contact with the name Prof Lim, mobile number 81234567, and email E7654321@u.nus.edu.
 
 Expected output:  
+
 ![Academic_3_2](Images/AcademicUG/Academic_3_2.png)
 
 >**Warning:**
@@ -657,6 +688,7 @@ Instruction:
 1. `list contact`
 
 Expected output:
+
 ![Academic_3_3](Images/AcademicUG/Academic_3_3.png)
 
 ### 3.4 Starring a contact: `star contact INDEX`
@@ -673,6 +705,7 @@ Example of usage:
 `star contact 1` will mark the first contact in the list with a star.
 
 Expected output:
+
 ![Academic_3_4](Images/AcademicUG/Academic_3_4.png)
 
 ### 3.5 Deleting a contact: `delete contact INDEX`
@@ -689,6 +722,7 @@ Example of usage:
 `delete contact 1` will delete the first contact in the list.
 
 Expected output:
+
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
 
 ### 3.6 Adding a grade: `add grade n/MODULE_NAME  m/MC  g/GRADE`
@@ -704,6 +738,7 @@ Example of usage:
 will add a grade with the title CS2101 that has 4 credits and scored an A-.
 
 Expected output:  
+
 ![Academic_3_6](Images/AcademicUG/Academic_3_6.png)
 
 >**Warning:**
@@ -720,6 +755,7 @@ Instruction:
 1. `list grade`
 
 Expected output:
+
 ![Academic_3_7](Images/AcademicUG/Academic_3_7.png)
 
 ### 3.8 Checking current cap: `check cap`
@@ -731,6 +767,7 @@ Instruction:
 1. `check cap`
 
 Expected output:
+
 ![Academic_3_8](Images/AcademicUG/Academic_3_8.png)
 
 ### 3.9 Starring a grade: `star grade INDEX`
@@ -747,6 +784,7 @@ Example of usage:
 `star grade 1` will mark the first grade in the list with a star.
 
 Expected output:
+
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
 ### 3.10 SU-ing a grade: `su grade INDEX`
@@ -762,6 +800,7 @@ Example of usage:
 `su grade 1` will su the first grade in the list.
 
 Expected output:
+
 ![Academic_3_10](Images/AcademicUG/Academic_3_10.png)
 
 >**Warning:**
@@ -781,6 +820,7 @@ Example of usage:
 `delete grade 1` will delete the first grade in the list.
 
 Expected output:
+
 ![Academic_3_11](Images/AcademicUG/Academic_3_11.png)
 
 ### 3.12 Listing all the starred items in academic: `list star`
@@ -792,7 +832,10 @@ Instruction:
 1. `list star`
 
 Expected output:
+
 ![Academic_3_12](Images/AcademicUG/Academic_3_12.png)
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Flashcard
 
@@ -819,6 +862,7 @@ Instruction:
 1. `cd 5` / `cd flashcard`
 
 Expected output:
+
 ![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
 
 >**Useful information:**
@@ -839,6 +883,7 @@ Example of usage:
 `4+4` followed by `8` will create a flashcard with question 4+4 and answer 8.
 
 Expected output:
+
 ![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
 
 If you encounter any errors, take note of the following warning.
@@ -859,6 +904,7 @@ Instruction:
 1. `list`
 
 Expected output:
+
 ![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
 
 ### 4.4 Deleting flashcards: `delete`
@@ -875,6 +921,7 @@ Example of usage:
 `3` will delete the 3rd flashcard in the list.
 
 Expected output:
+
 ![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
 
 >**Useful information:**
@@ -894,6 +941,7 @@ Instruction:
 3. `show answer` / `back`
 
 Expected output:
+
 ![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
 
 >**Useful information:**
@@ -909,7 +957,10 @@ Instruction:
 2. Enter the desired search term as prompted
 
 Expected output:
+
 ![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
