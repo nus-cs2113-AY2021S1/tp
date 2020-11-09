@@ -48,17 +48,18 @@ Given below are my contributions to the project.
     * Ensure that issues are assigned and were done in time for each milestone.
 
 * **Enhancements to existing features**:
-    * Updated repeat command and its data structure. (Pull requests [\#83](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/83))
+    * Add DateTimeParser to accept different formats build upon Java DateTime parse. (Pull request [\#30](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/30))
+    * Updated repeat command and its data structure. (Pull request [\#83](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/83))
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `list`, `goal` and `calendar`. (Pull requests [\#161](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/161))
+        * Added documentation for the features `list`, `goal` and `calendar`. (Pull request [\#161](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/161))
         
     * Developer Guide:
-        * Added the architecture details. (Pull requests [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
-        * Added implementation details of the `list` feature. (Pull requests [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
-        * Added implementation details of the `goal` feature. (Pull requests [\#96](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/96))
-        * Added implementation details of the `calendar` feature. (Pull requests [\#255](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/255))
+        * Added the architecture details. (Pull request [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
+        * Added implementation details of the `list` feature. (Pull request [\#126](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/126))
+        * Added implementation details of the `goal` feature. (Pull request [\#96](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/96))
+        * Added implementation details of the `calendar` feature. (Pull request [\#255](https://github.com/AY2021S1-CS2113T-T12-4/tp/pull/255))
     
 * **Community**:
     * Assisted with peer review for other group's PR 
