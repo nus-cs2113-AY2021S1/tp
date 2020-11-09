@@ -1,5 +1,8 @@
 package anichan.exception;
 
+/**
+ * Represents the exception handler used in this project.
+ */
 public class AniException extends Exception {
 
     /**

@@ -6,7 +6,6 @@ import anichan.exception.AniException;
 import anichan.storage.StorageManager;
 
 public abstract class Command {
-    String description;
     private boolean shouldExit = false;
 
     public boolean getShouldExit() {
