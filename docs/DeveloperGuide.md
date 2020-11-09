@@ -48,7 +48,7 @@ In summary, the `UI` component,
 
 This feature allows users to enter their personal information into the system so that they can be used for tracking diet progress and calorie recommendation calculation. This feature and its associated command words is **only used during the initial setup of the application**. Any subsequent editing of the user information can be done using the [Edit user information feature](#edit-user-information-feature).
 
-**This feature utilises two commands words**:
+**Commands words used**:
 
 * [`name`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#entering-username-name): Saves the user's name or nickname into the application. 
 * [`info`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#entering-user-information-info): Saves the user's age, gender, height, fitness level, original, current and target weight into the application. 
@@ -135,7 +135,7 @@ Aspect: Changing attribute values in `Person` object or creating new `Person` ob
 
 This feature allows users to edit their personal information after it has been entered into the system during the initial set up using the [Enter user information feature](#enter-user-information-feature). This feature was implemented to allow long term users to update their personal information like age, current weight, etc when necessary and also for careless users to edit their personal information if they have entered it wrongly.
 
-**This feature utilises the following command word**:
+**Command word used**:
 
 * [`editinfo`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#editing-user-information-editinfo): Edits the user information stored in the application.<br/>
 The command is implemented in such a way that **one or more changes to the personal information can be made** using a single command. Below are some examples of valid commands. 
@@ -196,6 +196,29 @@ E.g.`Person#setGender(Gender newGender)`: Updates the gender of the `Person` obj
     * Cons: Harder to implement.
 
 Head over to the Design Considerations Section in the [Enter user information feature](#enter-user-information-feature) for more related design considerations.
+
+### View user information feature
+
+#### Implementation
+
+This feature allows users to view their personal information stored in system. It was implemented to allow users to validate their personal information so that they can edit it if necessary using the [Edit user information feature](#edit-user-information-feature).
+
+**Command word used**:
+
+* [`userinfo`](https://ay2021s1-cs2113-t14-4.github.io/tp/UserGuide.html#viewing-user-information-userinfo): Shows the user information stored in the application.
+
+**Main classes and methods used**: 
+
+* [`Person`](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/src/main/java/seedu/dietbook/person/Person.java): Stores all user information provided.
+    * `Person#toString()`: Returns a string representation of all user information.
+                                        
+**Example usage scenario and how the feature work**<br/>
+ 
+**Step 1**. When the user wishes to view their personal information, they can enter`userinfo`. The
+ `userinfo` command would call `Person#toString()`.
+
+_Sequence Diagram:_<br/>
+![User Info sequence diagram](diagrams/UserInfoSequenceDiagram.png)
 
 ## Save/Load Feature
 
@@ -282,7 +305,7 @@ DietBook is designed to **track the food and different kinds of nutritional inta
 * _Mainstream OD_ - Windows, Linux, Unix, OS-X
 * _Food items_ - Includes both food and drinks 
 * _Nutrient / Nutritional intake_ - Includes carbohydrates, fats, proteins and calories
-* _Personal information_ - Includes name, age, gender, height, fitness level, original, current and target weight.
+* _Information / Personal information_ - Includes name, age, gender, height, fitness level, original, current and target weight.
 * _Database_ - Contains a list of commonly found food items in the National University of Singapore
 
 ## Instructions for manual testing
