@@ -127,7 +127,7 @@ public class UiMessage {
     public static final String FIND_QUOTE_COMMAND = "Find quote:                                                   "
             + "   " + "find -q QUOTE_NUMBER";
     public static final String FIND_RATING_COMMAND = "Find ratings:                                                 "
-            + "    " + "find -r KEYWORD";
+            + "   " + "find -r KEYWORD";
     public static final String FIND_CATEGORY_COMMAND = "Find category:                                              "
             + "     " + "find -c KEYWORD";
 
