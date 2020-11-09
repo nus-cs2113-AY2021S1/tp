@@ -225,7 +225,7 @@ public class Ui {
 
     public static void printGoToSubject(Subject subject) {
         System.out.println(DIVIDER);
-        System.out.println("You are currently looking at the subject: " + subject.toString());
+        System.out.println("Entering the Subject Level for the " + subject.toString() + " subject.");
         System.out.println(DIVIDER);
 
         printHelpMessage();
@@ -233,7 +233,7 @@ public class Ui {
 
     public static void printBackToSubjects() {
         System.out.println(DIVIDER);
-        System.out.println("Going back to the main menu.");
+        System.out.println("Going back to the main level.");
         System.out.println(DIVIDER);
 
     }
@@ -288,7 +288,7 @@ public class Ui {
 
     public static void printGoToTopic(Topic topic) {
         System.out.println(DIVIDER);
-        System.out.println("You are currently looking at the topic: " + topic.getTitle());
+        System.out.println("Entering the topic level for the " + topic.getTitle() + " topic.");
         System.out.println(DIVIDER);
 
         printHelpMessage();
@@ -439,7 +439,7 @@ public class Ui {
 
     public static void printBackToTopicsAndTasks() {
         System.out.println(DIVIDER);
-        System.out.println("Going back to the topics and tasks list.");
+        System.out.println("Going back to the subject level.");
         System.out.println(DIVIDER);
     }
 

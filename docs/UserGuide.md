@@ -290,7 +290,7 @@ subject CS2113T
 Expected output:
 ```
 ____________________________________________________________
-You are currently looking at the subject: CS2113T
+Entering the Subject Level for the CS2113T subject.
 ____________________________________________________________
 ____________________________________________________________
 Type help for all available commands
@@ -606,7 +606,7 @@ topic Oral Presentation
 Expected output:
 ```
 ____________________________________________________________
-You are currently looking at the topic: Oral Presentation
+Entering the topic Level for the Oral Presentation topic.
 ____________________________________________________________
 ____________________________________________________________
 Type help for all available commands
@@ -789,7 +789,7 @@ exit
 Expected output: 
 ```
 ____________________________________________________________
-Going back to the main menu.
+Going back to the main level.
 ____________________________________________________________
 ```
 > 📝️  **_NOTE:_** The `exit` command is not the same as the `bye` command.
