@@ -1,4 +1,4 @@
-# Guo Ai - Project Portfolio 
+## Guo Ai - Project Portfolio 
 ## Overview
 termiNus is an interactive task manager for students in NUS.
 ## Summary of Contributions:
@@ -28,8 +28,6 @@ termiNus is an interactive task manager for students in NUS.
      - Allow users to see the summary of the total amount of expenses spent for each currency for all the listed expense 
      items.
      - The expense items listed are sorted.
-        - First sort based on date in descending order (i.e. the latest expense items are shown first).
-        - If multiple expense items have the same date, sort them based on currency lexicographically.
    - Implement the `delete` command.
      - Allow users to delete:
         - One expense item identified by index from the expense list.
