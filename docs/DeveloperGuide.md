@@ -115,6 +115,24 @@ All components can be accessed by the user through Fluffle's UI. On loading Fluf
 ### Writing Manager Component
 
 ### Bunny Manager Component
+There are two methods for the user to load their bunny ideas into the application.
+
+#### Loading bunnies directly into the bunny.txt file
+The bunny ideas can be loaded into Fluffle by the user using the `Bunny` command. This command automatically adds these `Bunny` objects into the `bunniesList` ArrayList which can be found in the BunnyList class.
+
+#### Saving bunnies via the program commands
+All the other functions in the bunny related classes such as BunnyList, DeleteBunny, BunnyFilter and GenBunny can also access this `bunniesList` ArrayList directly as it is passed by reference from the commandExecutor function, which imports the `bunniesList` from the BunnyList class. 
+
+#### Usage and storage
+The diagram above is describes the storage of the Bunny ideas in Fluffle. 
+![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
+<p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
+
+The BunnySaver class handles 
+
+When the program is closed,
+
+Bunny read from storage and added to the new bunniesList ArrayList
 
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
@@ -291,6 +309,8 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
         1. `<FLAG>` is detected as `-adj`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
         1. `<FLAG>` is detected as `-verb`: Remove the corresponding item labelled by the followed `<OBJECT_INDICATOR>`
         1. Otherwise, it is considered as invalid command if the `word` with respective `type` does not exist in the database.
+
+## Aesthetic components
 
 ## Testing
 
