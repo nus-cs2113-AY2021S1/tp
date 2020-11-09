@@ -123,11 +123,11 @@ public class QuoteParser {
         String authorName = "";
         try {
             if (referenceAndAuthor[0].startsWith("from")) {
-                reference = referenceAndAuthor[0].substring(5).trim();
-                authorName = referenceAndAuthor[1].substring(3).trim();
+                reference = referenceAndAuthor[0].substring(4).trim();
+                authorName = referenceAndAuthor[1].substring(2).trim();
             } else {
-                reference = referenceAndAuthor[1].substring(5).trim();
-                authorName = referenceAndAuthor[0].substring(3).trim();
+                reference = referenceAndAuthor[1].substring(4).trim();
+                authorName = referenceAndAuthor[0].substring(2).trim();
             }
         } catch (StringIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_MISSING_REFERENCE_OR_AUTHOR);
