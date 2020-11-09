@@ -110,19 +110,20 @@ Expected output:
 Example of printing help message at menu:
 
 <p align="left">
-    <img width="50%" height="50%" src="Images/GeneralUG/help.png">
+    <img width="80%" height="80%" src="Images/GeneralUG/help.png">
 </p>
+
+<div style="page-break-after: always;"></div>
 
 Another example of printing help message at bookmark mode:
 
 <p align="left">
-    <img width="50%" height="50%" src="Images/GeneralUG/bookmarkhelp.png">
+    <img width="80%" height="80%" src="Images/GeneralUG/bookmarkhelp.png">
 </p>
 
 >**Useful information:**
 >* The message varies in different modes to show you the commands at that mode. 
 >Try it out!
-
 <div style="page-break-after: always;"></div>
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
