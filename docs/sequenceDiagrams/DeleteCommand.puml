@@ -20,7 +20,7 @@ DeleteCommand->AthenaUI++: printTaskDeleted()
 AthenaUI->Task++:getName()
 return String
 AthenaUI-->DeleteCommand--:
-<--DeleteCommand:
+<--DeleteCommand--:
 
 
 @enduml
