@@ -77,7 +77,7 @@ This user guide covers the following:
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
 
-
+<!-- @@author Johnson-Yee -->
 ## 2. Quick Start
 The following steps will guide you through the process of running **Nav@NUS**.
 
@@ -97,7 +97,7 @@ shown in the figure, the home folder is found in the address path of "C:\Users..
 6. Your screen should show the start screen of Nav@NUS as seen in the figure below.<br>
 ![Start Screen](UG_Figures/Nav@NUSstartScreen.png)<br>
 7. Try keying in `/help` and press <kbd>Enter</kbd>!
-
+<!-- @@author -->
 ## 3. Features 
 There are 18 features available in Nav@NUS. The following are instructions for using the features.
 >Notes about command format:  
@@ -155,6 +155,7 @@ below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
 <!-- @@author -->
 
+<!-- @@author Johnson-Yee -->
 ### 3.1.3. Check bus route: ```/routemap```
 This command displays the full route of the bus that you have specified.
 
@@ -194,7 +195,7 @@ which is relatively more crowded than other bus stops.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
 
 3. With this information, you could explore other bus routes to your destination.
-
+<!-- @@author -->
 ### 3.1.4. Check for buses at a bus stop: ```/bus```
 This command displays all buses available at a specific bus stop.
 
@@ -385,9 +386,11 @@ These are the steps to follow:
 <img src="UG_Figures/listfav1.png" alt="output" width=600><br>
 <!-- @@author -->
 
+<!-- @@author Johnson-Yee -->
 ### 3.3.3. Delete a favourite command: `/deletefav`
 This command deletes the command that you have specified from the list of favourite commands.
-
+>Note: Index keyed in must be within the range of 1 - n, where n is the number of favourite commands. <br>
+>
 Format: <br>
 <code>/deletefav<strong> index in list</strong></code> <br>
 
@@ -400,6 +403,7 @@ To delete this command from your favourites list:
 1. Type <code>/deletefav <strong>index</strong></code> into the CLI and 
 press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
+<!-- @@author -->
 
 ### 3.3.4. Execute a favourite command: `/execfav`
 This command executes the specific command in your list of favourite commands.
@@ -516,6 +520,9 @@ The application exits after displaying the following message.<br>
 ```
 So long buddy!
 ```
+
+### 3.4.4. Display most searched bus stop on start-up
+On start-up,
 
 ## 4. FAQ
 This section addresses some common questions to aid in possible issues faced.
