@@ -120,22 +120,22 @@ Format: help {COMMAND(optional)}
 >
 >Then you should see the following message to guide you with the relevant commands.
 >
->![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpmainmenu.PNG)
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20main%20menu.png?raw=true)
 
 <br/><br/> 
 >Typing `help` in bookmark mode will show these commands.
 >
->![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpbookmark.PNG)
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20bookmark.png?raw=true)
 >
 <br/><br/> 
 >Typing `help` in timetable mode will show these commands.
 >
->![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helptimetable.PNG)
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20timetable.png?raw=true)
 
 <br/><br/> 
 >Lastly, typing `help` in planner mode will show these commands.
 >
->![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/helpplannermode.PNG)
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20planner.png?raw=true)
 >
 
 
