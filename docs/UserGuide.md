@@ -75,8 +75,27 @@ A <b>command line interface (CLI)</b> is a text-based user interface (UI) used t
 ### 1.4. Understanding Kaji
 
 #### 1.4.1. Content Management
+Kaji's content management system is similar to a physical folder which you may use to organize your lecture handouts. <br>
+Kaji manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flash Card Level: <br>
+
+![Content Management](UG_Images/contentManagement.PNG)
+
+* **Admin Level** is like your **bookshelf** to keep all the separated module folder in place.
+* **Module Level** is like a **folder** to keep all your lecture notes and materials by different module codes.
+* **Chapter level** is like an **index sticker** which organizes different pieces of information into its relevant chapters.
+* **Flashcard level** is all the **primary notes and material** which you have collected for your modules. With Kaji's assistant, you can easily categorise your messy notes into organized structure.
+
+When you start our program, you begin on the **Admin Level**, indicated by the prompt "admin" as shown here.
+To add/modify/remove elements of a certain level, you have to be on the level above it.
+* E.g. to create a new Module in the **Chapter Level**, you have to be on the **Admin Level**
+* E.g. to create a new Flashcard in the **Flashcards Level**, you have to be on the **Chapter Level**
+
+Refer to [Features](#3-features) below for details of each command.
 
 #### 1.4.2. Schedule Management
+Your biggest reason to use KAJI lies in KAJI's ability to provide you with the full benefits of "Spaced Repetition" without you having to do the tedious manual work involved. To accomplish this, KAJI comes with an automated Schedule Management feature that will facilitate the "Spaced Repetition" scheduling process for you. 
+
+To find out more about how you can utilise the feature and even customise it to your liking, find out more [below](#45-viewing-and-customising-the-schedule-feature).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -119,29 +138,39 @@ Ensure that you are at the **Admin Level** before trying the commands in the nex
 #### 3.1.1. Adding a module: `add`
 (by Jiayi)
 
-Welcome to the first feature of Kaji! In order to use this program, you will first need to create a module deck. Creating a new module deck in Kaji is like getting a new folder to store all the handouts for one module. It is important because it will helps you better manage the mess information you got. 
+Welcome to the first feature of Kaji! In order to use this program, you first will need to create a module deck. Creating a new module deck in Kaji is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. <br>
 
 ##### Format: `add \MODULE_CODE`
 \MODULE_CODE is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
 
 ##### Key Pointers:
-* Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message
-* Kaji is not case-sentive, therefore, a new module named `module`  will be treated equally as module named `MODULE`. 
-
+* Kaji does not allow duplicate of module names, therefore, if the existing module has the same name as the new module, you will get an error message.
+* Kaji is not case-sensitive, therefore, a new module named `module`  will be treated equally to a module named `MODULE`. 
+* Kaji only allows creation of one module with the `add` command. If you enter command `add CS2113T CS2101` will creates a module named `CS2113T CS2101`, instead of two separated modules named `CS2113T` and `CS2101` respectively.
 
 ##### Example: 
-Input: add CS2113
-Output:
-```
----------------------------------------------------------------------
-admin
-Enter command here: add CS2113
-Command Type: add
-Got it. I've added this module:
-CS2113
-Now you have 4 module(s) in the list.
----------------------------------------------------------------------
-```
+In this example, you are going to add a new module called `CS2113T`. <br>
+Below are steps of using this `add` command: <br>
+* Step 1: Enters the command `add CS2113T` into the command prompt. Your new module name comes after the key word `add`.
+![Add Module 1](UG_Images/addModule1.PNG)
+* Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module!
+![Add Module 2](UG_Images/addModule2.PNG)
+
+This is an additional example to show you the unique property of Kaji's add feature. <br>
+As you may aware from `Key Pointers` section above, Kaji is case-insensetive. This example belows shows you what will happen if you try to add a new module called `cs2113t` after completing the previous example. <br>
+Below are the breakdown of this example: <br>
+* Step 1: Types `add cs2113t` to add a new module named `cs2113t` after adding a module named `CS2113T` which essentially have a same name as our new module but in capital letters.
+![Add Module 3](UG_Images/addModule3.PNG)
+* Step 2: Opps, Kaji refuses to add the module `cs2113t` because a module with the same name is already existed!
+![Add Module 4](UG_Images/addModule4.PNG)
+
+This is an additional example to show you the unique property of Kaji's add feature. <br>
+As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
+Below are the breakdown of this example: <br>
+* Step 1: Types `add cs2113t cs2101` and attempts to add a new module named `cs2113t` and another new module `cs2101`.
+![Add Module 5](UG_Images/addModule5.PNG)
+* Step 2: Opps, Kaji has interpreted it as one single module with the name of `cs2113t cs2101`, instead of two seperate modules. 
+![Add Module 6](UG_Images/addModule6.PNG)
 
 #### 3.1.2. Listing modules available: `list` 
 (by Zeyu)
@@ -203,26 +232,26 @@ For instance, you are currently at the admin level and want to remove the module
 
 Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go \MODULE_CODE`.
 
-##### Format: `go \MODULE_CODE`
-\MODULE_CODE is the name of the module that you have created, such as `CS2113`, `Module 1` or `Biology`. 
+##### Format: `go \MODULE_INDEX`
+\MODULE_INDEX is the index of the module that you can find in the list command, such as `1`, `2` or `3`. 
 
 ##### Key Pointers:
-* Kaji only allow access to the existing modules that are shown in the list, therefore, module code that is deleted or has never been created will result in an error message.
-* Kaji is not case-sentive, therefore, a module named `module`  will be treated equally as module named `MODULE`. 
+* Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
+* Kaji does not recognise any index out of bound such as `0` or index numbers that are not present in the list.
 
 ##### Example: 
-Input: `go CS2113`
-Output:
-```
----------------------------------------------------------------------
-admin
-Enter command here: go CS2113
-Command Type: go
-This is a new module, you can try to add chapters inside!
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: 
-```
+In this example, you are going to access the module `CS2113T` that you have created in the previous sections.
+Below are steps of using this `go` command:
+* Step 1: Uses `list` command to check the index of the module that you would like to access.
+![Go Module 1](UG_Images/goModule1.PNG)
+* Step 2: In this example, the module you would like to access is `CS2113T` and its index is `2` as shown as the diagram below.
+![Go Module 2](UG_Images/goModule2.PNG)
+* Step 3: You can type `go 2` to access this module.
+![Go Module 3](UG_Images/goModule3.PNG)
+* Step 4: As shown below, you are now 
+![Go Module 4](UG_Images/goModule4.PNG)
+* Step 5: You may double check your access using the command prompt directory displayed on top of `Enter command here:`. As shown as the diagram, your current access directory is under `Admin/CS2113T`.
+![Go Module 5](UG_Images/goModule5.PNG)
 
 ### 3.2. Module level
 This section introduces the syntax and usages of the commands for the features that are available at the **Module Level**.<br>
@@ -232,59 +261,26 @@ Ensure that you are at the **Module Level** before trying the commands in the ne
 #### 3.2.1. Adding a chapter: `add`
 (by Jiayi)
 
-You are now at the module level! This command allows you to create a new chapter inside your current module deck. It belongs to the module level you are currently in. It is like preparing an empty paper to write notes for a lecture. Let's create a new chapter inside the module!
+You are now at the module level! This command allows you to create a new chapter inside your current module deck. It belongs to the module level you are currently in. It is like preparing an empty paper to write notes for a lecture. Let's create a new chapter inside the module! <br>
 
 ##### Format: `add \CHAPTER_NAME`
 \CHAPTER_NAME is the name of the new chapter that you would like to create, such as `Topic 1`, `Chapter 1` or `Newton's laws of motion`. 
 
 ##### Key Pointers:
 * Similar to module, Kaji does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
-* Kaji is not case-sentive, therefore, a new chapter named `chapter`  will be treated equally as module named `CHAPTER`. 
+* Kaji is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
 
 ##### Example 1: 
-Input:
-* add Topic1
-* N
-Output:
-```
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: add Topic1
-Command Type: add
-Would you like to rate this new Chapter? (Y/N)
-Enter command here: N
-Got it. I've added this chapter:
-Topic1
-Now you have 1 chapter(s) in the list.
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: 
-```
-
-##### Example 2: 
-Input:
-* add Topic1
-* Y
-* M
-Output:
-```
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: add Topic1
-Command Type: add
-Would you like to rate this new Chapter? (Y/N)
-Enter command here: Y
-Please rate this new Chapter!
-You have the options of: Easy(E), Medium(M) or Hard(H)
-Would your choice be E, M or H?
-Enter command here: M
-Got it. I've added this chapter:
-Topic1
-Now you have 2 chapter(s) in the list.
----------------------------------------------------------------------
-admin/CS2113
-Enter command here: 
-```
+In this example, you are going to add a new chapter called `Chapter 1`. <br>
+Below are steps of using this `add` command: <br>
+* Step 1: Enters the command `add Chapter 1` into the command prompt which your new chapter name comes after the key word `add`.
+![Add Chapter 1](UG_Images/addChapter1.PNG)
+* Step 2: In Kaji, you can give new chapters a rate to pre-set its revision schedules. If you would like to keep it as fault state, you can simply enter `N`. To demonstrate this feature fully, you may enter `Y` to rate the new chapter and check out how will Kaji responses!
+![Add Chapter 2](UG_Images/addChapter2.PNG)
+* Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji.
+![Add Chapter 3](UG_Images/addChapter3.PNG)
+* Step 4: You have just created a new chapter! Good Job!
+![Add Chapter 4](UG_Images/addChapter4.PNG)
 
 #### 3.2.2. Listing chapters available: `list`
 (by Zeyu)
@@ -363,14 +359,12 @@ For instance, you are currently in Module level `Module` and want to head to Cha
 
 <p align="center">
   <img src="UG_Images/moduleGo.png" alt="Go Command"/>
-  <br/>Figure <>. Example of the "go" command 
 </p>
 
 * Step 2: You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/moduleGoResult.png" alt="Go Result"/>
-  <br/>Figure <>. Example of the "go" command Result
 </p>
 
 
@@ -389,14 +383,12 @@ For instance, you are currently in Module level `Module` and want to return to t
 
 <p align="center">
   <img src="UG_Images/back.png" alt="Back Command"/>
-  <br/>Figure <>. Example of the "back" command 
 </p>
 
 * Step 2: You should return to the Admin level as shown below: <br>
 
 <p align="center">
   <img src="UG_Images/backComplete.png" alt="Back Result"/>
-  <br/>Figure <>. Example of the "back" command Result
 </p>
 
 #### 3.2.7. Starting a revision session: `revise`
@@ -576,36 +568,25 @@ For instance, you are currently in chapter level `Chapter 1` and want to return 
 #### 3.3.6. Checking overall performance for a chapter: `showrate`
 (by Jiayi)
 
-Congradulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter.
+Congratulations! You have learnt how to add flashcards and revise your flash cards, and now is the time to **check your overall performance** for a chapter. <br>
 
-It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. 
+It is very simple, all you have to do is to enter the command [`showrate`](#) in prompt. <br>
 
 ##### Format: `showrate`
 
-
 ##### Key Pointers:
-* This command is only accessible in the chapter level. You will gets an error message if you are in the wrong access level.
-* Only overall performance of your current chapter level is computed.
->:information_source: <b>Note:</b> As you now know, it is the level that you can add/edit/delete cards.
+* This command is only accessible in the chapter level. You will get an error message if you are in the wrong access level.
+* Only overall performance of your current chapter level will be computed.
+* Cards that has yet be answered will be label as <cannot answer>, therefore, if you find a `1.0` for `the percentage of cards that is labeled <cannot answer>`, don't panic, it will be updated as soon as you finish your first revision session of this particular chapter.
+>:information_source: <b>Note:</b> As you now know, it is the level which you can add/edit/delete cards.
 
 ##### Example: 
-Input: showrate
-Output:
-```
----------------------------------------------------------------------
-admin/CS2113/Topic1
-Enter command here: showrate
-Command Type: showrate
-
-Card count: 2
-The percentage of card that is labeled <easy> is: 1.00
-The percentage of card that is labeled <medium> is: 0.00
-The percentage of card that is labeled <hard> is: 0.00
-The percentage of card that is labeled <cannot answer> is: 0.00
----------------------------------------------------------------------
-admin/CS2113/Topic1
-Enter command here: 
-```
+For instance, you would like to check your overall performance after completing several rounds of revision. <br>
+Below are steps of using this `showrate` command: <br>
+* Step 1: Type "showrate" into the command prompt while you are in a chapter level.
+![showrate 1](UG_Images/showrate1.PNG)
+* Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`).
+![showrate 2](UG_Images/showrate2.PNG)
 
 ### 3.4. General
 This section introduces the syntax and usages of the commands for the features that are available at **All Levels**.<br>
@@ -699,14 +680,12 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
 
 <p align="center">
   <img src="UG_Images/due.png" alt="Due Command"/>
-  <br/>Figure <>. Example of the "due" command 
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/dueComplete.png" alt="Due Command Result"/>
-  <br/>Figure <>. Example of the "due" result
 </p>
 
 [Labeled expected output]
@@ -735,14 +714,12 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 
 <p align="center">
   <img src="UG_Images/preview.png" alt="Preview Command"/>
-  <br/>Figure <>. Example of the "preview" command  
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/previewComplete.png" alt="Preview Command Result"/>
-  <br/>Figure <>. Example of the "preview" result
 </p>
 
 [Labeled expected output]
@@ -776,26 +753,22 @@ Example of ***`exclude module`***
 
 <p align="center">
   <img src="UG_Images/excludeModule.png" alt="Exclude Command Module mode: Command"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: Command
 </p>
 
 * ***Step 2***: Key the **Module name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/excludeModuleModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/excludeModuleModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: ModuleName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/excludeModuleResult.png" alt="Exclude Command Module mode: Result"/>
-  <br/>Figure <>. Example of Exclude Command Module mode: Result
 </p>
 
 Example of ***`exclude chapter`***
@@ -803,38 +776,32 @@ Example of ***`exclude chapter`***
 
 <p align="center">
   <img src="UG_Images/excludeChapter.png" alt="Exclude Command Chapter mode: ChapterName Command"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Command
 </p>
 
 * ***Step 2***: Key the **Module name** of the Module that contains Chapter that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/excludeChapterModulePrompt.png" alt="Exclude Command Module mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/excludeChapterModuleFilled.png" alt="Exclude Command Module mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ModuleName Filled
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/excludeChapterChapterPrompt.png" alt="Exclude Command Chapter mode: ChapterName Prompt"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/excludeChapterChapterFilled.png" alt="Exclude Command Chapter mode: ChapterName Filled"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: ChapterName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/excludeChapterResult.png" alt="Exclude Command Chapter mode: Result"/>
-  <br/>Figure <>. Example of Exclude Command Chapter mode: Result
 </p>
 
 
@@ -864,26 +831,22 @@ Example of ***`include module`***
 
 <p align="center">
   <img src="UG_Images/includeModule.png" alt="Include Command Module mode: ModuleName Command"/>
-  <br/>Figure <>. Example of Include Command Module mode: ModuleName Command
 </p>
 
 * ***Step 2***: Key the **Module name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/includeModuleModulePrompt.png" alt="Include Command Module mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Include Command Module mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/includeModuleModuleFilled.png" alt="Include Command Module mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Include Command Module mode: ModuleName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/includeModuleResult.png" alt="Include Command Module mode: Result"/>
-  <br/>Figure <>. Example of Include Command Module mode: Result
 </p>
 
 
@@ -892,38 +855,32 @@ Example of ***`exclude chapter`***
 
 <p align="center">
   <img src="UG_Images/includeChapter.png" alt="Include Command Chapter mode: ChapterName Command"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Command
 </p>
 
 * ***Step 2***: Key the **Module name** of the Module that contains the Chapter that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/includeChapterModulePrompt.png" alt="Include Command Chapter mode: ModuleName Prompt"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ModuleName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/includeChapterModuleFilled.png" alt="Include Command Chapter mode: ModuleName Filled"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ModuleName Filled
 </p>
 
 * ***Step 3***: Key the **Chapter name** that you wish to include back into your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
   <img src="UG_Images/includeChapterChapterPrompt.png" alt="Include Command Chapter mode: ChapterName Prompt"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Prompt
 </p>
 
 <p align="center">
   <img src="UG_Images/includeChapterChapterFilled.png" alt="Include Command Chapter mode: ChapterName Filled"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: ChapterName Filled
 </p>
 
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
   <img src="UG_Images/includeChapterResult.png" alt="Include Command Chapter mode: Result"/>
-  <br/>Figure <>. Example of Include Command Chapter mode: Result
 </p>
 
 --------------------------------------------------------------------------------------------------------------------

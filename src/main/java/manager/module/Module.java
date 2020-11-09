@@ -1,5 +1,6 @@
 package manager.module;
 
+import manager.admin.ModuleList;
 import manager.chapter.Chapter;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ public class Module {
     public Module(String moduleName) {
         this.moduleName = moduleName;
         chapters = new ChapterList();
+    }
+
+    public Module(ArrayList<Chapter> chapters) {
+        this.chapters = new ChapterList(chapters);
     }
 
     public String getModuleName() {

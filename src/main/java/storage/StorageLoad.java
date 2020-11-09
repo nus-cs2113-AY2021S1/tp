@@ -47,20 +47,24 @@ public class StorageLoad {
     }
 
     //@@author Darticune
-    protected static String retrieveChapterDeadline(String moduleName, String chapterName, String filePath) {
+    private static String retrieveChapterDeadline(String moduleName, String chapterName, String filePath) {
         File f = new File(filePath + "/" + moduleName + "/dues/" + chapterName + "due" + ".txt");
         try {
             Scanner s = new Scanner(f);
-            if (s.hasNext()) {
-                String deadline = s.nextLine();
-                s.close();
-                return deadline;
-            } else {
-                s.close();
-                return "Invalid Date";
-            }
+            return readChapterDeadlineFromDuesFile(s);
         } catch (FileNotFoundException e) {
             return "Does not exist";
+        }
+    }
+
+    private static String readChapterDeadlineFromDuesFile(Scanner s) {
+        if (s.hasNext()) {
+            String deadline = s.nextLine();
+            s.close();
+            return deadline;
+        } else {
+            s.close();
+            return "Invalid Date";
         }
     }
 
@@ -69,23 +73,37 @@ public class StorageLoad {
         File exclusionFile = new File(filePath + "/exclusions.txt");
         ArrayList<String> excludedChapters = new ArrayList<>();
         try {
-            if (!exclusionFile.exists()) {
-                if (!exclusionFile.createNewFile()) {
-                    throw new ExclusionFileException();
-                } else {
-                    return new ArrayList<String>();
-                }
-            }
-            Scanner exclusionFileScanner = new Scanner(exclusionFile);
-            while (exclusionFileScanner.hasNext()) {
-                //to read the card
-                String entry = exclusionFileScanner.nextLine();
-                excludedChapters.add(entry);
-            }
-            exclusionFileScanner.close();
-            return excludedChapters;
+            return extractContentsOfExclusionFile(exclusionFile, excludedChapters);
         } catch (IOException e) {
             throw new ExclusionFileException();
+        }
+    }
+
+    private static ArrayList<String> extractContentsOfExclusionFile(File exclusionFile,
+                                                                    ArrayList<String> excludedChapters)
+            throws IOException, ExclusionFileException {
+        if (!exclusionFile.exists()) {
+            return handleNonExistentExclusionFile(exclusionFile);
+        }
+        Scanner exclusionFileScanner = new Scanner(exclusionFile);
+        readContentsOfExclusionFile(excludedChapters, exclusionFileScanner);
+        exclusionFileScanner.close();
+        return excludedChapters;
+    }
+
+    private static void readContentsOfExclusionFile(ArrayList<String> excludedChapters, Scanner exclusionFileScanner) {
+        while (exclusionFileScanner.hasNext()) {
+            String entry = exclusionFileScanner.nextLine();
+            excludedChapters.add(entry);
+        }
+    }
+
+    private static ArrayList<String> handleNonExistentExclusionFile(File exclusionFile)
+            throws IOException, ExclusionFileException {
+        if (!exclusionFile.createNewFile()) {
+            throw new ExclusionFileException();
+        } else {
+            return new ArrayList<String>();
         }
     }
 
@@ -135,19 +153,21 @@ public class StorageLoad {
         String deadline = retrieveChapterDeadline(module, target, filePath);
         assert !deadline.equals(null) : "Invalid deadline retrieved";
         if (deadline.equals("Invalid Date")) {
-            ui.showToUser("\nThe chapter:");
-            ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                    + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+            handleInvalidDeadline(ui, dueChapters, module, target, deadline);
         } else if (deadline.equals("Does not exist")) {
             deadline = "Invalid Date";
-            ui.showToUser("\nThe chapter:");
-            ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
-                    + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
-            dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
+            handleInvalidDeadline(ui, dueChapters, module, target, deadline);
         } else {
             dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
         }
+    }
+
+    private static void handleInvalidDeadline(Ui ui, ArrayList<DueChapter> dueChapters, String module, String target,
+                                              String deadline) {
+        ui.showToUser("\nThe chapter:");
+        ui.showToUser(String.format(MESSAGE_MODULE_CHAPTER, module, target)
+                + " has a corrupted deadline. Please revise it ASAP! It will be considered due!\n");
+        dueChapters.add(new DueChapter(module, new Chapter(target, Scheduler.parseDate(deadline))));
     }
 
     //@@author gua-guargia

@@ -22,8 +22,8 @@ public class ListDueCommand extends Command {
     public static final String UNABLE_TO_LOAD_EMPTY_DATABASE = "Sorry, you do not have any flashcards in the database"
             + "yet. Please try this command again once you have added some flashcards!";
 
-    public ArrayList<DueChapter> allDueChapters;
-    public ArrayList<DueChapter> dueDueChapters;
+    private ArrayList<DueChapter> allDueChapters;
+    private ArrayList<DueChapter> dueDueChapters;
   
     private void loadAllDueChapters(Storage storage, Ui ui) throws InvalidFileFormatException, ExclusionFileException {
         try {
@@ -33,12 +33,16 @@ public class ListDueCommand extends Command {
         }
     }
 
+    private void addIfDue(DueChapter chapter, LocalDate deadline) {
+        if (Scheduler.isDeadlineDue(deadline)) {
+            dueDueChapters.add(chapter);
+        }
+    }
+
     private void setDueDueChapters() {
         for (DueChapter chapter : allDueChapters) {
             LocalDate deadline = chapter.getChapter().getDueBy();
-            if (Scheduler.isDeadlineDue(deadline)) {
-                dueDueChapters.add(chapter);
-            }
+            addIfDue(chapter, deadline);
         }
     }
 

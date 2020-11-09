@@ -15,6 +15,10 @@ import java.util.logging.Logger;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static common.Messages.MODULE;
 
+//@@author neojiaern
+/**
+ * Removes a module from Kaji.
+ */
 public class RemoveModuleCommand extends RemoveCommand {
     private static Logger logger = KajiLog.getLogger(RemoveModuleCommand.class.getName());
 
@@ -28,12 +32,28 @@ public class RemoveModuleCommand extends RemoveCommand {
         this.removeIndex = removeIndex;
     }
 
+    /**
+     * Executes the RemoveModuleCommand by calling the relevant methods.
+     *
+     * @param ui ui which the command uses to print messages
+     * @param access access which the command uses to get the modules
+     * @param storage storage which the command uses to load or write data to storage files
+     * @throws IOException if there is error in loading or writing data to storage files
+     */
     @Override
     public void execute(Ui ui, Access access, Storage storage) throws IOException {
         String result = removeModule(access, storage);
         ui.showToUser(result);
     }
 
+    /**
+     * Removes a module from Kaji.
+     *
+     * @param access to get the list of module objects
+     * @param storage to remove module from storage
+     * @return result of removing the module
+     * @throws IOException if there is an error removing the module
+     */
     private String removeModule(Access access, Storage storage) throws IOException {
         assert access.isAdminLevel() : "Not admin level";
         try {

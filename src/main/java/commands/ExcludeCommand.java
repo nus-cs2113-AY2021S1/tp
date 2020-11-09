@@ -43,7 +43,7 @@ public class ExcludeCommand extends Command {
         default:
             throw new InvalidInputException("The specified type for the exclude command is invalid.\nThe only valid "
                     + "types are \"" + EXCLUDE_COMMAND_OPTION_CHAPTER + "\" and \"" + EXCLUDE_COMMAND_OPTION_MODULE
-                    + "\"."
+                    + "\".\n"
                     + MESSAGE_USAGE);
         }
     }

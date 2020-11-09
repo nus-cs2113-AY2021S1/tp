@@ -2,6 +2,7 @@ package commands;
 
 import access.Access;
 import common.KajiLog;
+import manager.admin.Admin;
 import manager.admin.ModuleList;
 import manager.chapter.Chapter;
 import manager.module.Module;
@@ -70,7 +71,10 @@ public class GoModuleCommand extends GoCommand {
             logger.info(result);
             return result;
         } catch (FileNotFoundException e) {
-            result = "The module folder cannot be found.";
+            result = "The module folder cannot be found. You may have accidentally deleted it from your folder. "
+                    + "Kaji has updated the list for you.";
+            Admin newAdmin = new Admin(storage.loadModule());
+            access.setAdmin(newAdmin);
             logger.info(result);
             return result;
         }

@@ -39,8 +39,12 @@ public class Storage {
     }
 
     //@@author gua-guargia
-    //create the folder --> 'data/admin'
-    public void createAdmin() {
+    /**
+     * create the initial folder 'data/admin'.
+     *
+     * @throws IOException if there is an error when loading from storage file
+     */
+    public void createAdmin() throws IOException {
         File f = new File(filePath);
         logger.info("Filepath: " + filePath);
 
@@ -51,12 +55,25 @@ public class Storage {
     }
 
     //@@author gua-guargia
-    public void createModule(String moduleName) {
+    /**
+     * Create a new module folder of the specified {@code moduleName}.
+     *
+     * @param moduleName module name of the module to be created
+     * @throws IOException if there is an error when loading from storage file
+     */
+    public void createModule(String moduleName) throws IOException {
         File f = new File(filePath + "/" + moduleName);
         StorageWrite.createDir(f);
     }
 
     //@@author gua-guargia
+    /**
+     * Create a new chapter file of the specified {@code chapterName} under the specified {@code moduleName} folder.
+     *
+     * @param moduleName module name of the chapters
+     * @param chapterName chapter name of the chapter to be created
+     * @throws IOException if there is an error when loading from storage file
+     */
     public void createChapter(String chapterName, String moduleName) throws IOException {
         File f = new File(filePath + "/" + moduleName + "/" + chapterName + ".txt");
         StorageWrite.createFile(f);
@@ -111,6 +128,12 @@ public class Storage {
         StorageWrite.saveChapterDeadline(dueBy, moduleName, chapterName, filePath);
     }
 
+    /**
+     * Deletes a directory recursively.
+     *
+     * @param directoryToBeDeleted file to be deleted
+     * @return boolean result of the deletion
+     */
     public boolean deleteDirectory(File directoryToBeDeleted) {
         return StorageWrite.deleteDirectory(directoryToBeDeleted);
     }
@@ -150,6 +173,13 @@ public class Storage {
         return StorageLoad.loadHistory(date);
     }
 
+    /**
+     * Removes the chapter due file from due folder after chapter is deleted.
+     *
+     * @param module name of module
+     * @param chapter name of chapter
+     * @return boolean result of deletion
+     */
     public boolean removeChapterFromDue(String module, String chapter) {
         return StorageWrite.removeChapterFromDue(module, chapter, filePath);
     }

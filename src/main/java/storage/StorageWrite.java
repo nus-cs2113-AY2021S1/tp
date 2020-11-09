@@ -30,7 +30,7 @@ public class StorageWrite {
     public static final String DIR = "directory";
 
     //@@author gua-guargia
-    protected static void createDir(File f) {
+    protected static void createDir(File f) throws IOException {
         boolean dirExists = f.exists();
         boolean dirCreated = false;
         if (!dirExists) {
@@ -40,6 +40,9 @@ public class StorageWrite {
         }
         if (dirCreated) {
             logger.info(String.format(MESSAGE_CREATED, DIR, f));
+        }
+        if (!(dirExists || dirCreated)) {
+            throw new IOException("Error creating new folder. Please check your directory.");
         }
     }
 
@@ -54,6 +57,10 @@ public class StorageWrite {
         }
         if (fileCreated) {
             logger.info(String.format(MESSAGE_CREATED, FILE, f));
+        }
+
+        if (!(fileExists || fileCreated)) {
+            throw new IOException("Error creating new file. Please check your directory.");
         }
     }
 
@@ -86,7 +93,7 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
-    public static void createHistoryDir() {
+    public static void createHistoryDir() throws IOException {
         File f = new File("data/history");
         createDir(f);
     }
@@ -111,6 +118,12 @@ public class StorageWrite {
             throws FileNotFoundException, ExclusionFileException {
         ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
         String[] chaptersInModule = Storage.loadChaptersFromSpecifiedModule(moduleName, filePath);
+        addModuleEntriesToExclusionFile(moduleName, excludedChapters, chaptersInModule);
+        updateExclusionFile(excludedChapters, filePath);
+    }
+
+    private static void addModuleEntriesToExclusionFile(String moduleName, ArrayList<String> excludedChapters,
+                                                        String[] chaptersInModule) {
         for (String chapter : chaptersInModule) {
             if (chapter.equals("dues")) {
                 continue;
@@ -118,7 +131,6 @@ public class StorageWrite {
             chapter = chapter.replace(".txt", "");
             addEntryToExclusionFile(moduleName, chapter, excludedChapters);
         }
-        updateExclusionFile(excludedChapters, filePath);
     }
 
     //@@author Darticune
@@ -143,11 +155,16 @@ public class StorageWrite {
             throws FileNotFoundException, ExclusionFileException {
         ArrayList<String> excludedChapters = Storage.loadExclusionFile(filePath);
         String[] chaptersInModule = Storage.loadChaptersFromSpecifiedModule(moduleName, filePath);
+        deleteModuleEntriesFromExclusionFile(moduleName, excludedChapters, chaptersInModule);
+        updateExclusionFile(excludedChapters, filePath);
+    }
+
+    private static void deleteModuleEntriesFromExclusionFile(String moduleName, ArrayList<String> excludedChapters,
+                                                             String[] chaptersInModule) {
         for (String chapter : chaptersInModule) {
             String chapterName = chapter.replace(".txt", "");
             deleteEntryFromExclusionFile(moduleName, excludedChapters, chapterName);
         }
-        updateExclusionFile(excludedChapters, filePath);
     }
 
     //@@author Darticune
@@ -188,6 +205,12 @@ public class StorageWrite {
     }
 
     //@@author neojiaern
+    /**
+     * Deletes a directory recursively.
+     *
+     * @param directoryToBeDeleted file to be deleted
+     * @return boolean result of the deletion
+     */
     protected static boolean deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {
@@ -280,6 +303,14 @@ public class StorageWrite {
     }
 
     //@@author neojiaern
+    /**
+     * Removes the chapter due file from due folder after chapter is deleted.
+     *
+     * @param module name of module
+     * @param chapter name of chapter
+     * @param filePath filepath of file to be deleted
+     * @return boolean result of deletion
+     */
     protected static boolean removeChapterFromDue(String module, String chapter, String filePath) {
         File fileToDelete = new File(filePath + "/" + module
                 + "/dues/" + chapter + "due.txt");

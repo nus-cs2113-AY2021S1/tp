@@ -126,11 +126,23 @@ public class Ui {
         out.println(message);
     }
 
+    /**
+     * Prints the contents of the card that is currently being revised.
+     *
+     * @param c flashcard that is currently being revised
+     * @param scanner scanner that was initialized during revision
+     */
     public void showCardRevision(Card c, Scanner scanner) {
         out.println(c.getRevisionQuestion() + MESSAGE_SHOW_ANSWER_PROMPT);
         getAnswerInput(c, scanner);
     }
 
+    /**
+     * Gets input "s" from user to show the answer for the flashcard.
+     *
+     * @param c flashcard that is currently being revised
+     * @param scanner scanner that was initialized during revision
+     */
     public void getAnswerInput(Card c, Scanner scanner) {
         String input = scanner.nextLine();
         while (!input.trim().equalsIgnoreCase("s")) {
@@ -140,7 +152,13 @@ public class Ui {
         out.println(c.getRevisionAnswer());
     }
 
-
+    /**
+     * Gets input from user during revision.
+     *
+     * @param prompt prompt to show user during revision
+     * @param scanner scanner that was initialized during revision
+     * @return user's input
+     */
     public String getInput(String prompt, Scanner scanner) {
         out.println(prompt);
         return scanner.nextLine();
@@ -193,9 +211,10 @@ public class Ui {
 
     public void printDueByTodayMessage(int listSize, String commandType) {
         if (listSize == 0) {
-            showToUser("You have no tasks due today!");
+            showToUser("You have no chapters due today!");
             if (commandType.equals("due")) {
-                showToUser("Please use the \"preview\" command to view upcoming tasks or check back again tomorrow!");
+                showToUser("Please use the \"preview\" command to view the chapters that are due soon or check back "
+                        + "again tomorrow!");
             }
             return;
         }
@@ -213,7 +232,7 @@ public class Ui {
 
     public void printDueByIncrementMessage(int listSize, String incrementedDueBy) {
         if (listSize == 0) {
-            showToUser("You have no tasks due on " + incrementedDueBy + "!");
+            showToUser("You have no chapters due on " + incrementedDueBy + "!");
             return;
         }
         System.out.print("The chapter");

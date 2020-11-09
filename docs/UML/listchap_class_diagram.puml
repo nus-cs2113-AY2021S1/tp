@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class "{abstract}\nListCommand" as ListCommand LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class ListChaptersCommand LOGIC_COLOR {
+    + execute(ui : Ui, access : Access, storage : Storage) : void
+    - listChapters(access : Access) : String
+}
+
+Class Access MODEL_COLOR {
+    + getModule() : Module
+}
+
+Class Module MODEL_COLOR {
+    + getChapters() : ChapterList
+
+}
+
+Class ChapterList MODEL_COLOR {
+    + getAllChapters() : ArrayList<Chapter>
+    + getChapterCount() : int
+}
+
+Class Chapter MODEL_COLOR {
+    # chapterName : String
+}
+
+Class Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+ListCommand -up[LOGIC_COLOR_T4]-|> Command
+ListChaptersCommand -up[LOGIC_COLOR_T4]-|> ListCommand
+
+ListChaptersCommand .down[LOGIC_COLOR_T4].> Access
+ListChaptersCommand .right[LOGIC_COLOR_T4].> Ui
+
+Access -left[MODEL_COLOR_T4]--> " 0..1 " Module
+
+Module *-left[MODEL_COLOR_T4]-> " 0..1 " ChapterList
+ChapterList *-up[MODEL_COLOR_T4]-> " * " Chapter
+
+ListChaptersCommand .down[LOGIC_COLOR_T4].> Module
+ListChaptersCommand .down[LOGIC_COLOR_T4].> ChapterList
+ListChaptersCommand .left[LOGIC_COLOR_T4].> Chapter
+
+@enduml

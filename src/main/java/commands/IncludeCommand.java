@@ -43,7 +43,7 @@ public class IncludeCommand extends Command {
         default:
             throw new InvalidInputException("The specified type for the include command is invalid.\nThe only valid "
                     + "types are \"" + INCLUDE_COMMAND_OPTION_MODULE + "\" and \"" + INCLUDE_COMMAND_OPTION_CHAPTER
-                    + "\"."
+                    + "\".\n"
                     + MESSAGE_USAGE);
         }
     }

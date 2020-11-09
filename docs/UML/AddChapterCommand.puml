@@ -1,31 +1,46 @@
 @startuml
-Kaji -> Parser ++ : parse(userCommand)
-Parser -> Parser ++ : prepareAddCommand
-Parser -> Access ++ : isChapterLevel()
-return True
-return
-create AddChapterCommand
-Parser -> AddChapterCommand ++ : new()
-return
-return AddChapterCommand
-Kaji -> AddChapterCommand ++ : execute
+!include style.puml
 
+box Logic LOGIC_COLOR_T1
+participant ":AddChapterCommand" as AddChapterCommand LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":ChapterList" as ChapterList MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+-> AddChapterCommand ++ : execute(ui, access, storage)
 create Chapter
-AddChapterCommand -> Chapter ++ : new()
-return
-AddChapterCommand -> AddChapterCommand ++ : addChapter()
+AddChapterCommand -> Chapter ++ : new(chapterName)
+return chapter
+AddChapterCommand -> AddChapterCommand ++ : addChapter(access, storage, chapter)
 AddChapterCommand -> Access ++ : getModule()
-return Module
-create ChapterList
-AddChapterCommand -> ChapterList ++ : addChapters()
 return newModule
+AddChapterCommand -> ChapterList ++ : getChapters()
+return chapters
+AddChapterCommand -> ChapterList ++ : addChapters()
+return
 AddChapterCommand -> Access ++ : setModule(newModule)
 return
-AddChapterCommand -> Storage ++: createChapter(String)
+destroy ChapterList
+AddChapterCommand -> Storage ++: createChapter(chapterName)
 return
+AddChapterCommand -> AddCommand ++: prepareResult(MODULE, chapterName, chapterCount)
+return result
 return result
 AddChapterCommand -> Ui ++ : showToUser(result)
 return
 return
-
+destroy AddChapterCommand
 @enduml

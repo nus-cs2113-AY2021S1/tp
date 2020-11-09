@@ -45,22 +45,39 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.8. [Conclusion](#438-conclusion)<br>
 4.4. [Revise Feature](#44-revise-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4.1. [Implementation](#441-implementation)<br>
-4.5. [Scheduler feature](#45-scheduler-feature)<br>
+4.5. [Viewing and Customising the Schedule Feature](#45-viewing-and-customising-the-schedule-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.1. [View Due Chapters Feature](#451-view-due-chapters-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.2. [Preview Upcoming Dues Feature](#452-preview-upcoming-dues-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.3. [Exclusion Feature](#453-exclusion-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.4. [Reschedule Chapter Feature](#454-reschedule-chapter-feature)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5.5. [View Revision History Feature](#455-view-revision-history-feature)<br>
-5. [<b>Appendix: Requirements</b>](#5-appendix-requirements)<br>
-5.1. [Product Scope](#51-product-scope)<br>
+5. [<b>Appendices</b>](#5-appendices)<br>
+5.1. [Appendix A: Product Scope](#51-appendix-a-product-scope)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.1. [Target User Profile](#511-target-user-profile)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1.2. [Value Proposition](#512-value-proposition)<br>
-5.2. [User Stories](#52-user-stories)<br>
-5.3. [Use Cases](#53-use-cases)<br>
-5.4. [Non-Functional Requirements](#54-non-functional-requirements)<br>
-5.5. [Glossary](#55-glossary)<br>
-6. [<b>Appendix: Instructions for Manual Testing</b>](#6-appendix-instructions-for-manual-testing)<br>
+5.2. [Appendix B: User Stories](#52-appendix-b-user-stories)<br>
+5.3. [Appendix C: Use Cases](#53-appendix-c-use-cases)<br>
+5.4. [Appendix D: Non-Functional Requirements](#54-appendix-d-non-functional-requirements)<br>
+5.5. [Appendix E: Glossary](#55-appendix-e-glossary)<br>
+5.6. [Appendix F: Instructions for Manual Testing](#56-appendix-f-instructions-for-manual-testing)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.1. [Launch and Shutdown](#561-launch-and-shutdown)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.2. [Showing a list of commands](#562-showing-a-list-of-commands)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.3. [Adding a module/chapter/flashcard](#563-adding-a-modulechapterflashcard)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.4. [Listing modules/chapters/flashcards](#564-listing-moduleschaptersflashcards)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.5. [Editing a module/chapter/flashcard](#565-editing-a-modulechapterflashcard)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.6. [Removing a module/chapter/flashcard](#566-removing-a-modulechapterflashcard)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.7. [Accessing the next level](#567-accessing-the-next-level)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.8. [Going back to the previous level](#568-going-back-to-the-previous-level)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.9. [Rescheduling a chapter](#569-rescheduling-a-chapter)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.10. [Starting a revision session](#5610-starting-a-revision-session)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.11. [Checking percentage of rating for the cards in a chapter](#5611-checking-percentage-of-rating-for-the-cards-in-a-chapter)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.12. [Listing all chapters that are due on current date](#5612-listing-all-chapters-that-are-due-on-current-date)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.13. [Previewing list of chapters due in a week](#5613-previewing-list-of-chapters-due-in-a-week)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.14. [Viewing history of revision completed in a day](#5614-viewing-history-of-revision-completed-in-a-day)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.15. [Excluding a module/chapter](#5615-excluding-a-modulechapter)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.6.16. [Including a module/chapter](#5616-including-a-modulechapter)<br>
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
@@ -176,22 +193,23 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.3. Model Component
 (Jiayi)
-API: Model.java
 
-The Model,
-
-* stores a Access object that holds temporary data for user's access level and contents of level being accessed.
-* stores a History object that saves revision history of current day.
-* stores a DueChapter object that manages due chapter data.
-* contains an Admin class that can be created and accessed by Access object. The Admin class contains a ModuleList object to manage data for modules.
-* contains a Module class that can be created and accessed by Access object. The Module class contains a ChapterList object to manage data for chapters.
-* contains a Chapter class that can be created and accessed by Access object. The Chapter class contains a CardList object to manage data for cards.
-* contains a Card object that can be created and accessed by CardList. A Card object represents a flashcard with question, answer and master level of revision.
+The Model component consists of the `Access`, `History`, `DueChapter`, `ModuleList`, `ChapterList` and `CardList` classes as shown in the class diagram below:
 
 <p align="center">
-  <img src="UML/model.png" width="800" alt="Architecture Diagram of Model"/>
+  <img src="UML/model.png" width="600" alt="Architecture Diagram of Model"/>
   <br/>Figure <>. Architecture Diagram of Model
 </p>
+
+The Model component
+* stores a `Access` object that holds temporary data for user's access level and contents of level being accessed.
+* stores a `History` object that saves revision history of current day.
+* stores a `DueChapter` object that manages due chapter data.
+* provides an `Admin` class that can be created and accessed by `Access` object. The `Admin` class contains a `ModuleList` object to manage data for modules.
+* provides a `Module` class that can be created and accessed by `Access` object. The `Module` class contains a `ChapterList` object to manage data for chapters.
+* provides a `Chapter` class that can be created and accessed by `Access` object. The `Chapter` class contains a `CardList` object to manage data for cards.
+* provides a `Card` object that can be created and accessed by `CardList`. A `Card` object represents a flashcard with question, answer and master level of revision.
+
 
 ### 3.4. Storage Component 
 (Lucas)
@@ -200,7 +218,7 @@ The Storage component consists of the `Storage`, `StorageWrite`, `StorageParser`
 
 <p align="center">
   <img src="DG_Images/storage.png" width="600" alt="Storage Class Diagram"/>
-  <br/>Figure <>. Class diagram of Storage component  
+  <br/>Figure <>. Architecture diagram of Storage component  
 </p>
 
 The Storage component
@@ -213,6 +231,18 @@ The Storage component
 
 
 ### 3.5. Common Classes
+(Jiayi)
+
+The Common component consists of `KajiLog` and `Messages` as shown in the class diagram below: 
+
+<p align="center">
+  <img src="UML/commonClass.png" width="600" alt="Common Class Diagram"/>
+  <br/>Figure <>. Class diagram of Common component  
+</p>
+
+The Common component
+* stores user visible messages.
+* generates a log for Kaji.
 
 ##### <a href="#top">Back to Top ^</a>
 
@@ -222,10 +252,17 @@ The Storage component
 This section will describe the significant details of how the features in **Kaji** are being implemented.
 
 ### 4.1. Admin Features
-[summary + scenario]
+This section will elaborate the available features to users at **Admin Level**. <br>
+At Admin Level, users are able to: <br>
+* Add module
+* List modules
+* Edit module name
+* Delete module
+* Access module
 
 #### 4.1.1. Add Module Feature
 (Jiayi)
+
 ##### Implementation
 The add modules feature allows the user to create new modules at Admin level.
 
@@ -240,33 +277,28 @@ Shown as the class diagram below, because of the inheritance of `AddCommand`, `C
 
 Given below is an example usage scenario at Admin level and how the add module feature behaves at each step:
 
-* Step 1: The user is currently in admin level.
+* Step 1: The user is currently at admin level and wants to add a new module CS2113 and enters `add CS2113` command.
 
-* Step 2: The user want to add a new module CS2113 and enters `add CS2113` command.
+* Step 2: The `add` command creates `AddModuleCommand` which will then be executed.
 
-* Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `AddModuleCommand` object and return the `AddModuleCommand` object to `Kaji`.
+* Step 3: The `AddModuleCommand` object creates a new `Module` object with the `Module#moduleName` of CS2113. 
 
-* Step 4: The `Kaji` object uses the public `AddModuleCommand#excute()` to add new modules into Kaji application.
+* Step 4: The new `CS2113 : Module` object will be passed into the `AddModuleCommand#addModule()` with `Access` and `Storage`.
 
-* Step 5: The `AddModuleCommand` object creates a new `Module` object with the `Module#moduleName` of CS2113. 
+* Step 5: The `AddModuleCommand#addModule()` gets the current `Admin` object via `Access#getAdmin()` method, then it adds the new `CS2113: Module` object into the `Admin#ModuleList`. 
 
-* Step 6: The new `CS2113 : Module` object will be passed into the `AddModuleCommand#addModule()` with `Access` and `Storage`.
+* Step 6: The new `Admin` object with the `CS2113: Module` object is updated to `Access` via the method `Access#setAdmin(Admin)`.
 
-* Step 7: The `AddModuleCommand#addModule()` gets the current `Admin` object via `Access#getAdmin()` method, then it adds the new `CS2113: Module` object into the `Admin#ModuleList`. 
+* Step 7: The new `Module` is updated in the folder by executing the `Storage#createModule()`. A 'CS2113' folder is created under the 'data/admin' folder.
 
-* Step 8: The new `Admin` object with the `CS2113: Module` object is updated to `Access` via the method `Access#setAdmin(Admin)`.
-
-* Step 9: The new `Module` is updated in the folder by executing the `Storage#createModule()`. A 'CS2113' folder is created under the 'data/admin' folder.
-
-* Step 10: The `AddModuleCommand#addModule()` method returns a result message to the `AddModuleCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+* Step 8: The `AddModuleCommand#addModule()` method returns a result message to the `AddModuleCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
 
 The following diagram shows how the add module command feature works:
 
 <p align="center">
-  <img src="UML/AccessModuleCommand.png" width="800" alt="Sequence Diagram of add module command"/>
+  <img src="UML/AddModuleCommand.png" width="800" alt="Sequence Diagram of add module command"/>
   <br/>Figure <>. Sequence Diagram of add module command 
 </p>
-
 
 #### 4.1.2. List Modules Feature
 (Zeyu)
@@ -284,6 +316,13 @@ For instance, the user wants to list all modules available in `admin`, a detaile
 * Step 1: The user is currently in `admin` level. 
 
 * Step 2: The user enters `list` command to list all modules in `admin` level. 
+
+The following diagram shows the class diagram of the list modules feature:
+
+<p align="center">
+  <img src="DG_Images/listmod_class_diagram.png" width="800" alt="List Modules Class Diagram"/>
+  <br/>Figure <>. Class diagram of list modules feature  
+</p>
 
 The following sequence diagram shows how the list modules feature works:
 
@@ -348,6 +387,13 @@ In addition, it implements the following operations:
 * `RemoveModuleCommand#removeModule()` — removes module from list of modules including the chapters and flashcards under it.
 * `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
 
+The following diagram shows the class diagram of the remove module feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveModuleCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Module"/>
+  <br/>Figure <>. Class diagram of remove module
+</p>
+
 For instance, the user wants to start a remove the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `admin` level. 
@@ -355,13 +401,6 @@ For instance, the user wants to start a remove the module `CS2113T`, a detailed 
 * Step 2: The user enters `remove 1` command to delete the first module in the list of modules — which in this case is `CS2113T`. The `remove` command creates `RemoveModuleCommand` which will then be executed. 
 
 * Step 3: `RemoveModuleCommand#execute` gets the `module` based on the index provided and passes it to `Storage#deleteDirectory` to delete the module folder as well as the chapters and flashcards under it. 
-
-The following diagram shows the class diagram of the remove module feature:
-
-<p align="center">
-  <img src="DG_Images/RemoveModuleCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Module"/>
-  <br/>Figure <>. Class diagram of remove module
-</p>
 
 The following sequence diagram shows how the remove module feature works:
 
@@ -390,39 +429,37 @@ Shown as the class diagram below, with the inheritance of `GoCommand` and `Comma
 
 Given below is an example usage scenario at Admin level and how the access module level feature behaves at each step:
 
-* Step 1: The user is currently in admin level.
+* Step 1: The user is currently at admin level and wants to access a module level named 'CS2113'. 
 
-* Step 2: The user want to access a module level named 'CS2113' and enters `go 1` command because it appears as the first item in list. This example is based on the assumption that the module 'CS2113' already has been added.
+* Step 2: The user enters `go 1` command because module named 'CS2113' is first item on displayed list. This example is based on the assumption that the module 'CS2113' already has been added.
 
-* Step 3: The `Kaji` object passes the user's command to the `Parser` object. The `Parser` creates a new `GoModuleCommand` object if the user's current access level is admin level. Then `Parser` returns the `GoModuleCommand` object to `Kaji`.
+* Step 3: The `go` command creates `GoModuleCommand` which will then be executed.
 
-* Step 4: The `Kaji` object uses the public `GoModuleCommand#execute()` to access module level 'CS2113' with the index of '0'.
+* Step 4: `GoModuleCommand#goModule()` gets the module via the method `ModuleList#get(int)` based on the index parsed by `GoCommandParser`.
+          
+* Step 5: User's current access level is set to `module` level and a new temporary `CS2113` module object is created via the method `Access#setModule(Module)`.
 
-* Step 5: The `GoModuleCommand#execute()` object calls its own private operation `GoModuleCommand#goModule()` to check the existence of the module level entered by user and modify the user's access level if the module level exists. 
-
-* Step 6: The reference of both the `Access` and `Storage` objects passes into `GoModuleCommand#goModule()`.
-
-* Step 7: The `GoModuleCommand#goModule()` gets all the `Module` objects in the `Access#Admin` via the methods `Access#getAdmin()`, `Admin#getModules()` and `ModuleList#getAllModules()` respectively. 
-
-* Step 8: A for loop is used to check the existence of module entered by user. If there is an existing module with same `Module#moduleName` as the module code entered by user, the `GoModuleCommand#goModule()` operation returns an successful message.
-
-* Step 9: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
+* Step 6: `GoModuleCommand#execute()` prints the successful message to the user via `Ui#showToUser()` method.
 
 The following diagram shows how the add chapter command feature works:
 
 <p align="center">
-  <img src="UML/AddChapterCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
+  <img src="UML/AccessModuleCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
   <br/>Figure <>. Sequence Diagram of add chapter command 
 </p>
-
-#### 4.1.6. Example of the Admin Feature
-
-#### 4.1.7. Conclusion
 
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.2. Module Features
-[summary + scenario]
+This section will elaborate the available features to users at **Module Level**. <br>
+At Module Level, users are able to: <br>
+* Add chapter
+* List chapters
+* Edit chapter name
+* Delete chapter
+* Access chapter
+* Return to Admin Level
+
 
 #### 4.2.1. Add Chapter Feature
 (Jiayi)
@@ -442,25 +479,21 @@ Shown as the class diagram below, because of the inheritance of `AddCommand`, `C
 
 Given below is an example usage scenario at Module level and how the add chapter feature behaves at each step:
 
-* Step 1: The user is currently in module level.
+* Step 1: The user is currently at module level and wants to add a new chapter chapter1 and enters `add chapter1` command.
 
-* Step 2: The user want to add a new chapter chapter1 and enters `add chapter1` command.
+* Step 2: The `add` command creates `AddChapterCommand` which will then be executed.
 
-* Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `AddChapterCommand` object and return the `AddChapterCommand` object to `Kaji`.
+* Step 3: The `AddChapterCommand` object creates a new `Chapter` object with the `Chapter#chapterName` of chapter1. 
 
-* Step 4: The `Kaji` object uses the public `AddChapterCommand#excute()` to add new chapters into Kaji application.
+* Step 4: The new `chapter1 : Chapter` object will be passed into the `AddChapterCommand#addChapter()` with `Access` and `Storage`.
 
-* Step 5: The `AddChapterCommand` object creates a new `Chapter` object with the `Chapter#chapterName` of chapter1. 
+* Step 5: The `AddChapterCommand#addChapter()` gets the current `Module` object via `Access#getModule()` method, then it adds the new `chapter1: Chapter` object into the `Module#ChapterList`. 
 
-* Step 6: The new `chapter1 : Chapter` object will be passed into the `AddChapterCommand#addChapter()` with `Access` and `Storage`.
+* Step 6: The new `Module` object with the `chapter1: Chapter` object is updated to `Access` via the method `Access#setModule(Module)`.
 
-* Step 7: The `AddChapterCommand#addChapter()` gets the current `Module` object via `Access#getModule()` method, then it adds the new `chapter1: Chapter` object into the `Module#ChapterList`. 
+* Step 7: The new `Chapter` is updated in the folder by executing the `Storage#createChapter()`. A 'chapter1' folder is being created under the 'data/module' folder.
 
-* Step 8: The new `Module` object with the `chapter1: Chapter` object is updated to `Access` via the method `Access#setModule(Module)`.
-
-* Step 9: The new `Chapter` is updated in the folder by executing the `Storage#createChapter()`. A 'chapter1' folder is being created under the 'data/module' folder.
-
-* Step 10: The `AddChapterCommand#addChapter()` method returns a result message to the `AddChapterCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
+* Step 8: The `AddChapterCommand#addChapter()` method returns a result message to the `AddChapterCommand#execute()` method which uses `Ui#showToUser()` to print the success message.
 
 The following diagram shows how the add chapter command feature works:
 
@@ -485,6 +518,13 @@ For instance, the user wants to list all chapters available in `CS2113T` (module
 * Step 1: The user is currently in `CS2113T` level. 
 
 * Step 2: The user enters `list` command to list all chapters in `CS2113T` level. 
+
+The following diagram shows the class diagram of the list chapters feature:
+
+<p align="center">
+  <img src="DG_Images/listchap_class_diagram.png" width="800" alt="List Chapters Class Diagram"/>
+  <br/>Figure <>. Class diagram of list chapters feature  
+</p>
 
 The following sequence diagram shows how the list chapters feature works:
 
@@ -548,6 +588,13 @@ In addition, it implements the following operations:
 * `RemoveChapterCommand#removeModule()` — removes chapter from list of chapters in a module including the flashcards under it.
 * `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
 
+The following diagram shows the class diagram of the remove chapter feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveChapterCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Chapter"/>
+  <br/>Figure <>. Class diagram of remove chapter
+</p>
+
 For instance, the user wants to start a remove the chapter `Chapter 1` from the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `CS2113T` at the module level. 
@@ -555,13 +602,6 @@ For instance, the user wants to start a remove the chapter `Chapter 1` from the 
 * Step 2: The user enters `remove 1` command to delete the first chapter in the list of chapters — which in this case is `Chapter 1`. The `remove` command creates `RemoveChapterCommand` which will then be executed. 
 
 * Step 3: `RemoveChapterCommand#execute` gets the `chapter` based on the index provided and passes it to `Storage#deleteDirectory` to delete the chapter file as well as the flashcards under it. 
-
-The following diagram shows the class diagram of the remove chapter feature:
-
-<p align="center">
-  <img src="DG_Images/RemoveChapterCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Chapter"/>
-  <br/>Figure <>. Class diagram of remove chapter
-</p>
 
 The following sequence diagram shows how the remove chapter feature works:
 
@@ -584,8 +624,36 @@ To support the Access Chapter Level Feature, `GoChapterCommand` implements the f
 * `GoChapterCommand#goChapter()` - Parses through the Module that the User is currently on to search for the specified Chapter. If the Chapter is found but not empty, there will be no output message, while if the found Chapter is empty, a message prompting the user to add Cards to the Chapter will be returned.
 * `GoChapterCommand#execute()` - Calls `GoChapterCommand#goChapter()` and prints the output message returned if there is one.
 
+The following diagram shows the class diagram of the Access Chapter feature:
+
+<p align="center">
+  <img src="DG_Images/AccessChapterClass.png" width="800" alt="Class Diagram of Access Chapter"/>
+  <br/>Figure <>. Class diagram of Access Chapter
+</p>
+
+***Example***
+
+For instance, the user is currently in the Module `CS2113T` and would like to go to the Chapter 'Chapter 1' on the Chapter level. A detailed description of what happens is shown below:
+
+Step 1: The user enters `go 1` as `CS2113T` is the first Module in list.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `GoCommandParser` object, which in turn
+ creates a `GoChapterCommand` object, with `1` as the command argument.
+
+Step 3: `GoChapterCommand` is executed, and `GoChapterCommand#goChapter()` is called.
+
+Step 4: `GoChapterCommand#goChapter()` calls `Access#getModule()`, `Access#getChapters()` and `ChapterList#getAllChapters()` to obtain an ArrayList of Chapters.
+
+Step 5: Using the command argument as the `chapterIndex`, and all the Cards within the Chapter are loaded with `Storage#loadCard()` into an ArrayList of Cards.
+ 
+Step 6: Lastly, to finish the transition into the Chapter level, `Access#setChapterLevel()`, `Chapter#setCards()` and `Access#setChapter` are called.
+
 The following sequence Diagrams illustrates how the Access Chapter Level Feature is executed:
 
+<p align="center">
+  <img src="DG_Images/goChapter.png" width="1000" alt="Go Chapter Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of Access Chapter Level Feature
+</p>
 
 #### 4.2.6. Return to Admin Level Feature
 (Lucas)
@@ -600,16 +668,44 @@ To execute this feature, the following class was created:
 To support the Return to Admin Level Feature, `BackAdminCommand` implements the following operation:
 * `BackAdminCommand#execute()` - Calls `Access#setModuleLevel()` to set the `Access` Object's `level` attribute's value to `adminLevel` if its current value is the `moduleLevel`
 
+The following diagram shows the class diagram of the Return to Admin Level feature:
+
+<p align="center">
+  <img src="DG_Images/BackAdminClass.png" width="800" alt="Class Diagram of Access Chapter"/>
+  <br/>Figure <>. Class diagram of Access Chapter
+</p>
+
+***Example***
+
+For instance, the user is currently in the Module `CS2113T` and would like to return to the Admin Level.  A detailed description of what happens is shown below:
+
+Step 1: The user enters `back`.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `BackCommandParser` object, which in turn
+ creates a `BackAdminCommand` object
+
+Step 3: `BackAdminCommand` is executed, and `Access#setModuleLevel()` is called.
+
+Step 4: `Access#setModuleLevel()` verifies that the user is not on the Admin level at the moment, and calls `Access#setBackAdminLevel()`, which sets the user back into the Admin Level.
+
 The following sequence Diagrams illustrates how the Return to Admin Level Feature is executed:
 
-#### 4.2.7. Example of the Module Feature
-
-#### 4.2.8. Conclusion
+<p align="center">
+  <img src="DG_Images/backAdmin.png" width="450" alt="Back Admin Sequence Diagram"/>
+  <br/>Figure <>. Sequence diagram of Return to Admin Level Feature
+</p>
 
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.3. Chapter Features
-[summary + scenario]
+This section will elaborate the available features to users at **Chapter Level**. <br>
+At Chapter Level, users are able to: <br>
+* Add flashcard
+* List flashcards
+* Edit question and answer of a flashcard
+* Delete flashcard
+* Return to Module Level
+* Check overall revision performance
 
 #### 4.3.1. Add Flashcard Feature
 (Jane)
@@ -670,6 +766,13 @@ For instance, the user wants to list all flashcards available in `Chapter 1` (ch
 * Step 1: The user is currently in `Chapter 1` level. 
 
 * Step 2: The user enters `list` command to list all flashcards in `Chapter 1` level. 
+
+The following diagram shows the class diagram of the list flashcards feature:
+
+<p align="center">
+  <img src="DG_Images/listcard_class_diagram.png" width="800" alt="List Flashcards Class Diagram"/>
+  <br/>Figure <>. Class diagram of list flashcards feature  
+</p>
 
 The following sequence diagram shows how the list flashcards feature works:
 
@@ -738,6 +841,13 @@ In addition, it implements the following operations:
 * `RemoveFLashcardCommand#removeModule()` — removes flashcard from list of flashcards in a chapter.
 * `RemoveCommand#prepareResult()` — prepares the resulting message of the execution.
 
+The following diagram shows the class diagram of the remove flashcard feature:
+
+<p align="center">
+  <img src="DG_Images/RemoveCardCommandClassDiagram.png" width="800" alt="Class Diagram of Remove  Flashcard"/>
+  <br/>Figure <>. Class diagram of remove flashcard
+</p>
+
 For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` from the chapter `Chapter 1`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `Chapter 1` at the chapter level of the module `CS2113T`. 
@@ -747,13 +857,6 @@ For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` f
 * Step 3: `RemoveCardCommand#execute` gets the `flashcard` based on the index provided and removes it from the `CardList` 
 
 * Step 4: The updated `CardList` is passed to `Storage#saveCards()` to update the contents of the chapter with the removed card. 
-
-The following diagram shows the class diagram of the remove flashcard feature:
-
-<p align="center">
-  <img src="DG_Images/RemoveCardCommandClassDiagram.png" width="800" alt="Class Diagram of Remove  Flashcard"/>
-  <br/>Figure <>. Class diagram of remove flashcard
-</p>
 
 The following sequence diagram shows how the remove flashcard feature works:
 
@@ -771,6 +874,13 @@ The return to module level mechanism is facilitated by `BackModuleCommand`. It e
 In addition, it implements the following operation:
 * `BackModuleCommand#execute` — lowers access level of the user.
 
+The following diagram shows the class diagram of the return to module feature:
+
+<p align="center">
+  <img src="DG_Images/BackModuleCommandClassDiagram.png" width="600" alt="Class Diagram of Return to Module"/>
+  <br/>Figure <>. Class diagram of return to module
+</p>
+
 For instance, the user wants to return to the module level from the chapter he is currently at in the module `CS2113T`, a detailed description of what happens is shown below:
 
 * Step 1: The user is currently in `Chapter 1` at the chapter level in the module `CS2113T`. 
@@ -779,17 +889,10 @@ For instance, the user wants to return to the module level from the chapter he i
 
 * Step 3: `BackModuleCommand#execute` passes an empty string to `Access#setChapterLevel()` to check the chapter level and calls `Access#setIsModuleLevel` to set the user back to module level.
 
-The following diagram shows the class diagram of the return to module feature:
-
-<p align="center">
-  <img src="DG_Images/BackModuleCommandClassDiagram.png" width="600" alt="Class Diagram of Return to Module"/>
-  <br/>Figure <>. Class diagram of return to module
-</p>
-
 The following sequence diagram shows how the return to module feature works:
 
 <p align="center">
-  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Return to Module"/>
+  <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="600" alt="Sequence Diagram of Return to Module"/>
   <br/>Figure <>. Sequence diagram of return to module
 </p>
 
@@ -815,25 +918,21 @@ Shown as the class diagram below, with the inheritance of `Command`, `Kaji` is a
 
 Given below is an example usage scenario at Chapter level and how the show overall performance feature behaves at each step:
 
-* Step 1: The user is currently in chapter level.
+* Step 1: The user is currently at chapter level.
 
-* Step 2: The user want to check overall performance of the current chapter level and enters `showrate` command.
+* Step 2: The user enters `showrate` command to check the overall revision performance of the current chapter. The `showrate` command creates `ShowRateCommand` which will then be executed.
 
-* Step 3: The `Kaji` object passes the user's command to the `Parser` object. Then `Parser` creates a new `ShowRateCommand` object and return the `ShowRateCommand` object to `Kaji`.
+* Step 3: The `ShowRateCommand` object gets the reference of current chapter level via the `Access#getChapter()` and stores the reference as a `Chapter` object. 
 
-* Step 4: The `Kaji` object uses the public `ShowRateCommand#excute()` to compute overall performance and print relevant message to user.
+* Step 4: The `Chapter` object will be passed into the operation `ShowRateCommand#computePercentage()`.
 
-* Step 5: The `ShowRateCommand` object gets the reference of current chapter level via the `Access#getChapter()` and stores the reference as a `Chapter` object. 
+* Step 5: The `ShowRateCommand#computePercentage()` gets all the `Card` objects in the current `Chapter` object via the methods `Chapter#getCards()` and `CardList#getAllCards()` respectively. 
 
-* Step 6: The `Chapter` object will be passed into the operation `ShowRateCommand#computePercentage()`.
+* Step 6: If there is no `Card` object in the current `Chapter`, the `ShowRateCommand#computePercentage()` operation returns int `0` after checking the `ArrayList<Card>` size. If there are `Card` objects, a 'for' loop is used to check the `Card#rating` of every `Card` objects and compute the overall performance. 
 
-* Step 7: The `ShowRateCommand#computePercentage()` gets all the `Card` objects in the current `Chapter` object via the methods `Chapter#getCards()` and `CardList#getAllCards()` respectively. 
+* Step 7: `ShowRateCommand#computePercentage()` updates the variables `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage` at the end and returns the number of cards in the chapter
 
-* Step 8: If there is no `Card` object in the current `Chapter`, the `ShowRateCommand#computePercentage()` operation returns int `0` after checking the `ArrayList<Card>` size. If there are `Card` objects, a 'for' loop is used to check the `Card#rating` of every `Card` objects and compute the overall performance. 
-
-* Step 9: `ShowRateCommand#computePercentage()` updates the variables `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage` at the end and returns the number of cards in the chapter
-
-* Step 10: `GoModuleCommand#execute()` prints the performance message to the user via `Ui#showToUser` if the `ShowRateCommand#computePercentage()` is greater than int `0`.
+* Step 8: `GoModuleCommand#execute()` prints the performance message to the user via `Ui#showToUser` if the `ShowRateCommand#computePercentage()` is greater than int `0`.
 
 The following diagram shows how the show overall performance feature works:
 
@@ -841,12 +940,6 @@ The following diagram shows how the show overall performance feature works:
   <img src="UML/ShowRateCommand.png" width="800" alt="Sequence Diagram of show overall performance command"/>
   <br/>Figure <>. Sequence Diagram of show overall performance command 
 </p>
-
-![Sequence Diagram of show overall performance command](UML/ShowRateCommand.png)
-
-#### 4.3.7. Example of the Chapter Feature
-
-#### 4.3.8. Conclusion
 
 ##### <a href="#top">Back to Top ^</a>
 
@@ -929,26 +1022,6 @@ To support this feature, `Scheduler` implements the following operations:
 
 `Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` and `Scheduler#computeHardInterval()` are exposed in the `ReviseCommand` class as `ReviseCommand#rateCard()` while `Scheduler#computeDeckDeadline()` is exposed as `ReviseCommand#execute()`.
 
-***Example***
-Given below is an example usage scenario on how the Scheduler mechanism behaves at each step when: 
-`revise 1` is called in a `Module` that contains only one `Chapter` with three `Card`s in its `CardList` attribute and confirmation is given to proceed with revision.
-
-\<OBJECT DIAGRAMS\>
-
-Step 1:
-* The user enters `revise 1` within the `Module` and `ReviseCommand` is instantiated. 
-* Upon confirmation to revise and a check that `CardList` of the designated `Chapter` is not empty is complete, `ReviseCommand` proceeds to create a `ArrayList<Card> allCards` comprising of all `Card`s within in the `CardList`.
-
-Step 2:
-* For each `Card` in `allCards`, `ReviseCommand#reviseCard()` is called upon completion of either `ReviseCommand#execute()` or `ReviseCommand#repeateRevision()`.
-* This operation then calls `Scheduler#computeEasyInterval()`, `Scheduler#computeMediumInterval()` or `Scheduler#computeHardInterval()` depending on the user input to compute and update the new value of `previousInteral` for each card.
-
-Step 3:
-* Upon completion of all revision, `ReviseCommand#execute()` will call `Scheduler#computeDeckDeadline()`, which in turn calls `Scheduler#computeDeckInterval()`. `Scheduler#computeDeckInterval()` computes `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of each `Card` in `allCards,` and returns it to `Scheduler#computeDeckDeadline()`.
-
-Step 4:
-* Using `deckInterval`, `Scheduler#computeDeckDeadline()` computes the new value of `dueBy` for the Chapter, which is then returned to `ReviseCommand#execute()`, where it will then update the value of `dueBy` for the `Chapter` that was just revised.
-
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.5. Viewing and Customising the Schedule Feature
@@ -957,7 +1030,8 @@ KAJI schedules the user's database automatically for them based on their [revisi
 To utilise this feature, the following commands and their corresponding features are introduced:
 * [`due`](#451-View-Due-Chapters-Feature) - Viewing their schedule for the current day (View Due)
 * [`preview`](#452-Preview-Upcoming-Dues-Feature) - Viewing their schedule for the upcoming week (Preview Upcoming Due)
-* [`exclude`](#453-Exclusion-Feature) - Customising which of their Chapters will be in the Scheduler (Exclusion)
+* [`exclude`](#453-Exclusion-Feature) - Removing Chapters from the Scheduler (Exclusion)
+* [`include`](#453-Exclusion-Feature) - Including Chapters back into the Scheduler (Exclusion)
 
 
 #### 4.5.1. View Due Chapters Feature
@@ -985,6 +1059,26 @@ On top of that, `Storage` implements the following operations:
 * `Storage#checkChapterDeadline()` - Reads the deadline for each `Chapter`, prompts if they are corrupted, and adds a `DueChapter` formed with the `Chapter` into `ArrayList<DueChapter> allDueChapters`
 * `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
+
+<p align="center">
+  <img src="DG_Images/listDueClass.png" width="950" alt="Class Diagram of ListDue"/>
+  <br/>Figure <>. Class diagram of ListDue
+</p>
+
+***Example***
+
+For instance, the user wants to check what Chapters are due at the moment.  A detailed description of what happens is shown below:
+
+Step 1: The user enters `due`.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `ListDueCommand` object.
+
+Step 3: `ListDueCommand` is executed and calls the method `ListDueCommand#loadAllDueChapters()`, which will call `Storage#loadAllDueChapters()`, which will then call `StorageLoad#loadAllChaptersAsDueChapters()`. The name of every  Chapter, their deadlines, and the name of the Module that they belong to, will be stored as a `DueChapter` and be returned to `ListDueCommand`.
+
+Step 4: `ListDueCommand` will then call `ListDueCommand#setDueDueChapters()` to parse each `DueChapter` for those
+ that are already due by the current date, and add them to its `dueDueChapters` attribute.
+ 
+Step 5: `ListDueCommand` will then call `Ui#printDueByTodayMessage()` to print the prompt, and then call `Ui#printDueChapters()`, to print out the contents of `dueDueChapters`
 
 The following sequence Diagrams illustrates how the View Due Chapters Process is executed:
 
@@ -1019,6 +1113,36 @@ On top of that, the following operations from `Storage` are used:
 * `Storage#checkAllChaptersForDue()` - Obtains the name of every `Chapter` from the list of Modules passed to it and calls `Storage#checkChapterDeadline()` for each of them
 * `Storage#loadAllDueChapters()` - Obtains the names of every `Module` in the user database and calls `Storage#checkAllChaptersForDue()`
 
+<p align="center">
+  <img src="DG_Images/previewClass.png" width="950" alt="Class Diagram of Preview"/>
+  <br/>Figure <>. Class diagram of Preview
+</p>
+
+***Example***
+
+For instance, the user wants to check what Chapters are due on in the upcoming week.  A detailed description of what happens is shown below:
+
+Step 1: The user enters `preview`.
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `PreviewCommand` object.
+
+Step 3: `PreviewCommand` is executed and calls the method `PreviewCommand#loadAllDueChapters()`, which will call
+ `Storage#loadAllDueChapters()`, which will then call `StorageLoad#loadAllChaptersAsDueChapters()`. The name of every
+  Chapter, their deadlines, and the name of the Module that they belong to, will be stored as a `DueChapter` and be
+   returned back to `PreviewCommand`.
+
+Step 4: To check for each day in the upcoming week, `PreviewCommand` runs a for loop with to carry out the following
+ steps for `increment` of value from 0 to 6
+ 
+Step 5: `PreviewCommand` will then call `PreviewCommand#setDueDueChapters()` to parse each `DueChapter` for those
+ that are already due on the current date + `increment` days, and add them to its `dueDueChapters` attribute.
+ 
+Step 5: `PreviewCommand` will then call `Ui#printDueByTodayMessage()` to print the prompt if the value of `increment` is 0, and `Ui#printDueByIncrementMessage()` to print the prompt if the value of `increment` is from 1 to 6.
+
+Step 6: `PreviewCommand` will then finally call `Ui#printDueChapters()`, to print out the contents of `dueDueChapters` for the current iteration.
+
+Step 7: Increment the value of `increment` by 1, and go back to Step 4 if the value of `increment` is smaller than 7.
+
 The following sequence Diagrams illustrates how the Preview Upcoming Dues Process is executed:
 
 <p align="center">
@@ -1028,8 +1152,6 @@ The following sequence Diagrams illustrates how the Preview Upcoming Dues Proces
 
 #### 4.5.3. Exclusion Feature
 (Lucas)
-
-***Implementation***
 
 ***Implementation***
 
@@ -1046,6 +1168,7 @@ To load and store the Exclusion List, a Exclusion File is created and maintained
 * `Storage#loadExclusionFile()` - Reads the contents of the Exclusion File, parses it into the Exclusion List, stored as a `ArrayList<String>`, and returns it.
 * `Storage#updateExclusionFile()` - Writes the `ArrayList<String>` Exclusion List into the Exclusion File.
 
+#### 4.5.3.1 Excluding Chapters from the Schedule Feature
 The `exclude` command can be called with either `exclude chapter` or `exclude module`, which adds a `Chapter` or every `Chapter` from a `Module` to the Exclusion List respectively. 
 
 To determine if a single `chapter` or an entire `module` is to be added to the Exclusion List, `excludecommand` implements the operation `excludecommand#attemptToExclude()`.
@@ -1063,14 +1186,48 @@ Items are added into the `ArrayList<String>` Exclusion List using two pairs of c
     * `ExcludeCommand#addModuleToExclusion()` - gets the name of the `Module` to be excluded, and calls `Storage#appendModuleToExclusionFile()`
     * `Storage#appendModuleToExclusionFile()` - appends every `Chapter` of the target `Module` not already in the Exclusion File to it if the target `Module` exists
 
-The following sequence Diagrams illustrates how the "include" command is executed:
+<p align="center">
+  <img src="DG_Images/excludeClass.png" width="1000" alt="Class Diagram of Exclude"/>
+  <br/>Figure <>. Class diagram of Exclude
+</p>
+
+***Example***
+
+For instance, the user wants to exclude the Module `CS2113T` from his schedule. A detailed description of what happens is shown below:
+
+Step 1: The user enters `exclude module`
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `ExcludeCommand` object.
+
+Step 3: `ExcludeCommand` is executed and calls the method `ExcludeCommand#attemptToExclude()`.
+
+Step 4: `ExcludeCommand#attemptToExclude()` checks the command argument, `module` for the `exclude` command and calls
+ `ExcludeCommand#addModuleToExclusion()`
+
+Step 5: `ExcludeCommand` calls `Ui#getExcludedModuleName()` to obtain the name of the module that is to be excluded from the scheduling process, so the user will enter `CS2113T` here
+
+Step 6: `ExcludeCommand` will then call `Storage#appendModuleToExclusionFile()`, which will in turn call
+ `StorageWrite#appendModuleToExclusionFile()` to begin the process of Updating the Exclusion File.
+ 
+Step 7: `StorageWrite` will load the contents of the Exclusion File into `excludedChapters` using `StorageLoad#loadExclusionFile()` and
+ load the Chapters of the `CS2113T` by calling `StorageLoad#loadChaptersFromSpecifiedModule()`.
+ 
+Step 8: `StorageWrite` will then check through the contents of the Exclusion file for each of the Chapters in `CS2113T`, and
+ add them into `excludedChapters` if it is not already in it.
+ 
+Step 9: After the inclusion of every Chapter in the `CS2113T` into `excludedChapters`, the contents of it are
+ written back by `StorageWrite` into the Exclusion File by calling `StorageWrite#updateExclusionFile()`.
+ 
+The following sequence Diagrams illustrates how the "exclude" command is executed:
 
 <p align="center">
-  <img src="DG_Images/excludeSeq.png" width="800" alt="Sequence Diagram of the exclude command"/>
+  <img src="DG_Images/excludeSeq.png" width="1000" alt="Sequence Diagram of the exclude command"/>
   <br/>Figure <>. Sequence Diagram using the Exclusion Feature to exclude content from the schedule
 </p>
 
 <br>
+
+#### 4.5.3.2 Including Chapters back into the Schedule Feature
 On the other hand, the `include` command can be called with `include chapter` or `include module` which removes a `Chapter` or every `Chapter` from a `Module` from the Exclusion List.
 
 Similarly, to determine if a single `chapter` or an entire `module` is to be removed from the Exclusion List, `includecommand` implements the operation `includecommand#attemptToInclude()`.
@@ -1088,10 +1245,42 @@ Items are removed from the `ArrayList<String>` Exclusion List using two pairs of
     * `IncludeCommand#removeModuleFromExclusion()`- gets the name of the `Module` to be included, and calls `Storage#removeModuleFromExclusionFile()`
     * `Storage#removeModuleFromExclusionFile()` - removes every `Chapter` of the target `Module` that is in the Exclusion File
 
+<p align="center">
+  <img src="DG_Images/includeClass.png" width="1000" alt="Class Diagram of Include"/>
+  <br/>Figure <>. Class diagram of Include
+</p>
+
+***Example***
+
+For instance, the user wants to include the Module `CS2113T` back into his schedule. A detailed description of what happens is shown below:
+
+Step 1: The user enters `include module`
+
+Step 2: The user input is parsed by `Parser`, and `Parser` creates a `IncludeCommand` object.
+
+Step 3: `IncludeCommand` is executed and calls the method `IncludeCommand#attemptToInclude()`.
+
+Step 4: `IncludeCommand#attemptToInclude()` checks the command argument, `module` for the `include` command and calls
+ `IncludeCommand#removeModuleFromExclusion()`
+
+Step 5: `IncludeCommand` calls `Ui#getIncludedModuleName()` to obtain the name of the module that is to be included back into the scheduling process, so the user will enter `CS2113T` here
+
+Step 6: `IncludeCommand` will then call `Storage#removeModuleFromExclusionFile()`, which will in turn call
+ `StorageWrite#removeModuleFromExclusionFile()` to begin the process of Updating the Exclusion File.
+ 
+Step 7: `StorageWrite` will load the contents of the Exclusion File into `excludedChapters` using `StorageLoad#loadExclusionFile()` and
+ load the Chapters of the `CS2113T` by calling `StorageLoad#loadChaptersFromSpecifiedModule()`.
+ 
+Step 8: `StorageWrite` will then check through the contents of the Exclusion file for each of the Chapters in `CS2113T`, and
+ remove them from `excludedChapters` if found.
+ 
+Step 9: After the removal of every Chapter in the `CS2113T` from `excludedChapters`, the contents of it are
+ written back by `StorageWrite` into the Exclusion File by calling `StorageWrite#updateExclusionFile()`.
+
 The following sequence Diagrams illustrates how the "include" command is executed:
 
 <p align="center">
-  <img src="DG_Images/includeSeq.png" width="800" alt="Sequence Diagram of the include command"/>
+  <img src="DG_Images/includeSeq.png" width="1000" alt="Sequence Diagram of the include command"/>
   <br/>Figure <>. Sequence Diagram using the Exclusion Feature to include content into the schedule
 </p>
 
@@ -1159,7 +1348,14 @@ Step 1: The user launches the application and is currently in the admin level.
 
 Step 2: The user executes `history` command to load and list the revision completed in the session/in a day.
 
-The following sequence diagram shows how the list chapters feature works:
+The following diagram shows the class diagram of the list revision history feature:
+
+<p align="center">
+  <img src="DG_Images/listhistory_class_diagram.png" width="800" alt="List Revision History Class Diagram"/>
+  <br/>Figure <>. Class diagram of list revision history feature  
+</p>
+
+The following sequence diagram shows how the list revision history feature works:
 
 <p align="center">
   <img src="UML/listhistory_seq_diagram.png" width="800" alt="Sequence Diagram of List Revision History"/>
@@ -1170,9 +1366,9 @@ The following sequence diagram shows how the list chapters feature works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Appendix: Requirements
-### 5.1. Product Scope
-#### 5.1.1. Target User Profile
+## 5. Appendices
+### 5.1. Appendix A: Product Scope
+#### 5.1.1 Target User Profile
 
 * Students who use a computer often, and are reasonably comfortable with the command line interface
 * Needs to have an effective study schedule
@@ -1181,9 +1377,11 @@ The following sequence diagram shows how the list chapters feature works:
 
 #### 5.1.2. Value Proposition
 
-The application aims to provide students with an effective studying technique. In order to make studying easier for students, the application implements a technique known as spaced repetition, which help with memory retention. Content are scheduled automatically, and information is organised in the form of flashcards which makes it convenient to revise. 
+The application aims to provide students with an effective studying technique. 
+In order to make studying easier for students, the application implements a technique known as spaced repetition, 
+which help with memory retention. Content are scheduled automatically, and information is organised in the form of flashcards which makes it convenient to revise. 
 
-### 5.2. User Stories
+### 5.2. Appendix B: User Stories
 
 | Version | As a ... | I want to ... | So that I can ... |
 |--------|----------|---------------|------------------|
@@ -1212,11 +1410,120 @@ The application aims to provide students with an effective studying technique. I
 | v2.0 | student | get a sense of how well I have mastered each chapter | have an idea of how well I am doing for a module |
 | v2.0 | student | include or exclude certain modules/chapters from the scheduler | revise only the modules/chapters that I need to |
 
-### 5.3. Use Cases
+### 5.3. Appendix C: Use Cases
 
+This section will describe the use cases of Kaji. 
 
+(For all use cases below, the **System** is the `Kaji` application and the **Actor** is the `user`, unless specified otherwise.)
 
-### 5.4. Non-Functional Requirements
+#### Use Case: `add` a new `module`
+**MSS**
+1. User requests to add a new `module`.
+2. Kaji creates and saves the new `module` with the `module` name specified by the user.
+
+    Use case ends.
+    
+#### Use Case: `list` all current `module`s
+**MSS**
+1. User requests to list all current `module`s.
+2. Kaji shows a list of `module`s available.
+
+    Use case ends.
+    
+#### Use Case: `edit` a `module`
+**MSS**
+1. User requests to edit a `module`.
+2. Kaji makes the changes and saves the `module` with the new `module` name specified by the user.
+
+    Use case ends.
+   
+#### Use Case: `remove` a `module` from the current list of `module`s
+**MSS**
+1. User requests to remove an existing `module`.
+2. Kaji deletes the `module` from the list of `module`s.
+
+    Use case ends.
+    
+#### Use Case: `access` a `module` level
+**MSS**
+1. User requests to access a `module` level.
+2. Kaji changes the current `admin` level of the user to the `module` level specified by the user.
+
+    Use case ends.
+    
+#### Use Case: `revise` a `chapter` from the current list of `chapter`s in a particular `module`
+**MSS**
+1. User requests to revise a `chapter` from the current list of `chapter`s in a particular `module`.
+2. Kaji starts a revision session for the user.
+
+    Use case ends.
+    
+**Extensions**
+
+User will be prompted to acknowledge that he wants to start a revision session for a `chapter` that is not due. <br>
+There will be no revision for an empty `chapter`.
+
+#### Use Case: view a list of `chapter`s which are `due`
+**MSS**
+1. User requests to view a list of `chapter`s which are `due`.
+2. Kaji shows a list of `chapter`s that are `due` to the user.
+
+    Use case ends.
+    
+#### Use Case: `preview` a list of `chapter`s that are `due` in the week
+**MSS**
+1. User requests to `preview` a list of `chapter`s that are `due` in the week.
+2. Kaji shows a list of `chapter`s that are `due` in the week to the user.
+
+    Use case ends.
+    
+#### Use Case: `exclude` an existing `module` or `chapter` 
+**MSS**
+1. User requests to `exclude` a `module` or `chapter`.
+2. Kaji `exclude`s the `module` or `chapter` specified by the user so that it will no longer be scheduled for revision.
+
+    Use case ends.
+    
+#### Use Case: `include` an existing `module` or `chapter` 
+**MSS**
+1. User requests to `include` a `module` or `chapter`.
+2. Kaji `include`s the `module` or `chapter` specified by the user so that it will be scheduled for revision once again.
+
+    Use case ends.
+    
+#### Use Case: `reschedule` the due date of an existing `chapter` 
+**MSS**
+1. User requests to `reschedule` the due date of an existing `chapter`.
+2. Kaji `reschedule`s the due date of the `chapter` specified by the user.
+
+    Use case ends.
+    
+#### Use Case: view the `history` of revision completed in a day 
+**MSS**
+1. User requests to view the `history` of revision completed in a day.
+2. Kaji shows the `history` of revision completed by the user in a day.
+
+    Use case ends.
+    
+#### Use Case: check overall performance for an existing chapter using `showrate` 
+**MSS**
+1. User requests to check overall performance for an existing chapter using `showrate`.
+2. Kaji shows the list of number of cards that were rated easy/medium/hard in the chapter to the user.
+
+    Use case ends.
+   
+**Extensions**
+
+There will only be changes to the rating after a revision session. 
+
+#### Use Case: view the list of commands available using `help`
+**MSS**
+1. User requests to view the list of commands available using `help`.
+2. Kaji shows the list of commands available to the user.
+
+    Use case ends.
+
+### 5.4. Appendix D: Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 installed.
 2. Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
@@ -1228,15 +1535,257 @@ The application aims to provide students with an effective studying technique. I
 8. Should be designed for a single user.
 9. Should work on both 32-bit and 64-bit environments.
 
-### 5.5. Glossary
+### 5.5. Appendix E: Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface
 
+### 5.6. Appendix F: Instructions for Manual Testing
+#### 5.6.1. Launch and Shutdown
+1. Initial launch
+    1. Download the jar file from the [release page](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases) and copy into an empty folder.
+    2. Launch a terminal and navigate to the folder containing the jar file.
+    3. Run the jar file by entering command `java -jar kaji.jar` and press enter (replace kaji.jar by the actual file name you downloaded from the release page).
+       Expected output: Welcome message of **Kaji** is displayed.
+    
+2. Shutdown of application
+    1. Test case: `exit`<br>
+       Expected output: **Kaji** program terminates.
+       
+#### 5.6.2. Showing a list of commands
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `help`<br>
+   Expected output: A message listing how to use each command will be shown.
+3. Other incorrect commands to try: `help abcd` (where there are extra arguments)<br>
+   Expected output: An error message stating that there should not be any arguments will be shown.
+
+#### 5.6.3. Adding a module/chapter/flashcard
+1. Adding a module
+    1. Prerequisites: Ensure that you are at the admin level.
+    2. Test case: `add CS2113T`<br>
+       Expected output: A success message stating that there is a new module added will be shown.
+    3. Test case: `add cs2113t` after running the `add` command as stated above<br>
+       Expected output: An error message stating that the module already exist will be shown.
+    4. Other incorrect commands to try: `add ../CS2113T` (where non-alphanumeric characters are present)<br>
+       Expected output: An error message stating that only alphanumeric characters and spaces will be shown.
+2. Adding a chapter
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the module level.
+    2. Test case: `add Chapter 1`<br>
+       Expected output: A success message stating that there is a new chapter added will be shown.
+    3. Test case: `add chapter 1` after running the `add` command as stated above<br>
+       Expected output: An error message stating that the chapter already exist will be shown.
+    4. Other incorrect commands to try: `add ../Chapter 1` (where non-alphanumeric characters are present)<br>
+       Expected output: An error message stating that only alphanumeric characters and spaces will be shown.
+3. Adding a flashcard
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. Ensure that you are at the chapter level.
+    2. Test case: `add q:1+1 | a:2`<br>
+       Expected output: A success message stating that there is a new flashcard added will be shown.
+    3. Test case: `add q:1+1 | a:2` after running the `add` command as stated above<br>
+       Expected output: An error message stating that the flashcard already exist will be shown.
+    4. Other incorrect commands to try: `add q:1+1 | a:` (where parameter is missing)<br>
+       Expected output: An error message stating that the question or answer is missing will be shown.  
+
+#### 5.6.4. Listing modules/chapters/flashcards
+1. Listing all modules
+    1. Prerequisites: At least one module in the list. No chapters in the module list. Ensure that you are at the module level.
+    2. Test case: `list`<br>
+       Expected output: A message stating that there are no chapters will be shown.
+    3. Prerequisites: At least one module in the list. Chapter list contains some chapters. Ensure that you are at the module level.
+    4. Test case: `list`<br>
+       Expected output: A message listing all the chapters will be shown.
+    3. Other incorrect commands to try: `list abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+2. Listing all chapters
+    1. Prerequisites: No modules in the module list. Ensure that you are at the admin level.
+    2. Test case: `list`<br>
+       Expected output: A message stating that there are no modules will be shown.
+    3. Prerequisites: Module list contains some modules. Ensure that you are at the admin level.
+    4. Test case: `list`<br>
+       Expected output: A message listing all the modules will be shown.
+    3. Other incorrect commands to try: `list abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+3. Listing all flashcards
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       No flashcards in the flashcard list. Ensure that you are at the chapter level.
+    2. Test case: `list`<br>
+       Expected output: A message stating that there are no flashcards will be shown.
+    3. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Flashcard list contains some flashcards. Ensure that you are at the chapter level.
+    4. Test case: `list`<br>
+       Expected output: A message listing all the flashcards will be shown.   
+    5. Other incorrect commands to try: `list abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown. 
+ 
+#### 5.6.5. Editing a module/chapter/flashcard
+1. Editing a module
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the admin level.
+    2. Test case: `edit 1 CS2113`<br>
+       Expected output: A message stating the module name before and after the edit will be shown.
+    3. Test case: `edit 0 CS2113`<br>
+       Expected output: No module is edited. An error message will be shown.
+    4. Other incorrect commands to try: `edit`, `edit x CS2113` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+2. Editing a chapter
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Ensure that you are at the module level.
+    2. Test case: `edit 1 Chapter 2`<br>
+       Expected output: A message stating the chapter name before and after the edit will be shown.
+    3. Test case: `edit 0 Chapter 2`<br>
+       Expected output: No chapter is edited. An error message will be shown.
+    4. Other incorrect commands to try: `edit`, `edit x Chapter 2` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+3. Editing a flashcard
+    1. Prerequisites: At least one module, chapter and flashcard in the module, chapter and flashcard list respectively. 
+       Ensure that you are at the chapter level.
+    2. Test case: `edit 1 q:1+1 | a:`<br>
+       Expected output: A message stating the flashcard content before and after the edit will be shown.
+    3. Test case: `edit 0 q:1+1 | a:`<br>
+       Expected output: No flashcard is edited. An error message will be shown.
+    4. Other incorrect commands to try: `edit`, `edit x q:1+1 | a:` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+
+#### 5.6.6. Removing a module/chapter/flashcard
+1. Removing a module
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the admin level. List all modules using the `list` command.
+    2. Test case: `remove 1`<br>
+       Expected output: First module is removed from the module list. A message stating the details of the removed module will be shown.
+    3. Test case: `remove 0`<br>
+       Expected output: No module is removed. An error message will be shown.
+    4. Other incorrect commands to try: `remove`, `remove x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+2. Removing a chapter
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Ensure that you are at the module level. List all modules using the `list` command.
+    2. Test case: `remove 1`<br>
+       Expected output: First chapter is removed from the chapter list. A message stating the details of the removed chapter will be shown.
+    3. Test case: `remove 0`<br>
+       Expected output: No chapter is removed. An error message will be shown.
+    4. Other incorrect commands to try: `remove`, `remove x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+3. Removing a flashcard
+    1. Prerequisites: At least one module, chapter and flashcard in the module, chapter and flashcard list respectively. 
+       Ensure that you are at the chapter level. List all flashcards using the `list` command.
+    2. Test case: `remove 1`<br>
+       Expected output: First flashcard is removed from the chapter list. A message stating the details of the removed flashcard will be shown.
+    3. Test case: `remove 0`<br>
+       Expected output: No flashcard is removed. An error message will be shown.
+    4. Other incorrect commands to try: `remove`, `remove x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+
+#### 5.6.7. Accessing the next level
+1. Accessing module level
+    1. Prerequisites: At least one module in the module list. Ensure that you are at the admin level.
+    2. Test case: `go 1`<br>
+       Expected output: Accessed the first module in the module list. Access level message will be changed.
+    3. Test case: `go 0`<br>
+       Expected output: Still at admin level. An error message will be shown.
+    4. Other incorrect commands to try: `go`, `go x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+2. Accessing chapter level
+    1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+       Ensure that you are at the module level.
+    2. Test case: `go 1`<br>
+       Expected output: Accessed the first chapter in the chapter list. Access level message will be changed.
+    3. Test case: `go 0`<br>
+       Expected output: Still at module level. An error message will be shown.
+    4. Other incorrect commands to try: `go`, `go x` (where x is larger than the list size)<br>
+       Expected output: Similar to previous or a message stating how to use the command will be shown.
+
+#### 5.6.8. Going back to the previous level
+1. Going back to admin level
+    1. Prerequisites: Ensure that you are at module level.
+    2. Test case: `back`<br>
+       Expected output: Back to admin level. Access level message will be changed.
+    3. Other incorrect commands to try: `back abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+2. Going back to module level
+    1. Prerequisites: Ensure that you are at chapter level.
+    2. Test case: `back`<br>
+       Expected output: Back to module level. Access level message will be changed.
+    3. Other incorrect commands to try: `back abcd` (where there are extra arguments)<br>
+       Expected output: An error message stating that there should not be any arguments will be shown.
+
+#### 5.6.9. Rescheduling a chapter
+1. Prerequisites: At least one module and chapter in the module and chapter list respectively. 
+   Ensure that you are at the module level.
+2. Test case: Substitute DATE with the current date<br>
+   `reschedule 1 DATE`<br>
+   Expected output: A message stating the due date of the chapter before and after the rescheduling will be shown.
+3. Test case: Substitute DATE with the date before the current date<br>
+   `reschedule 1 DATE`<br>
+   Expected output: Chapter will not be rescheduled. A message stating that the due date cannot be before the current date will be shown.
+4. Test case: Substitute DATE with the current date<br>
+   `reschedule 0 DATE`<br>
+   Expected output: No chapter will be rescheduled. An error message will be shown.
+5. Other incorrect commands to try: `reschedule`, `reschedule x DATE` (where x is larger than the list size)<br>
+   Expected output: Similar to previous or a message stating how to use the command will be shown.
+
+#### 5.6.10. Starting a revision session
+1. Prerequisites: At least one flashcard is in the chapter to be revised. Ensure that you are at the module level.
+2. Test case: `revise 1` <br>
+   Expected output: A revision session will start on the first chapter in the module.
+3. Other incorrect commands to try: `revise Chapter 1` (where chapter name instead of its index integer is provided)<br>
+   Expected output: An error message stating to specify chapter index in integer will be shown.
+       
+#### 5.6.11. Checking percentage of rating for the cards in a chapter
+1. Prerequisites: At least one flashcard is in the chapter. Ensure that you are at the chapter level.
+2. Test case: `showrate` <br>
+   Expected output: A list of the percentage for easy/medium/hard based on the number of cards will be shown.
+3. Other incorrect commands to try: `showrate blah` (where extra arguments are added)<br>
+   Expected output: An error message stating that there should be no extra arguments will be shown.
+       
+#### 5.6.12. Listing all chapters that are due on current date
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `due` <br>
+   Expected output: A list of chapters that are due on the current date will be shown. If no chapters are due, a message stating that no chapters are due for the day will be shown.
+3. Other incorrect commands to try: `due blah` (where extra arguments are added)<br>
+   Expected output: An error message stating that there should be no extra arguments will be shown.
+       
+#### 5.6.13. Previewing list of chapters due in a week
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `preview` <br>
+   Expected output: A list of chapters that are due in a week will be shown. If no chapters are due, every date will be accompanied by a message that no chapters are due.
+3. Other incorrect commands to try: `preview blah` (where extra arguments are added) <br>
+   Expected output: An error message stating that there should be no extra arguments will be shown.
+
+#### 5.6.14. Viewing history of revision completed in a day
+1. Prerequisites: Launch `Kaji` successfully.
+2. Test case: `history` <br>
+   Expected output: Lists the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
+3. Test case: `history 2020-11-09`
+   Expected output: List the module and chapter which you have completed revision for on 2020-11-09. If no revision was done on the day, a message stating that no revision for that session will be shown.
+4. Other incorrect commands to try: `history blah` (where the argument is not in the correct date format) <br>
+   Expected output: An error message stating that the date should be in `yyyy-MM-dd` format will be shown.
+       
+#### 5.6.15. Excluding a module/chapter
+1. Excluding a module
+    1. Prerequisites: Launch `Kaji` successfully. The module you want to exclude should exist.
+    2. Test case: `exclude module` <br>
+       Expected output: A prompt for which module to be excluded will be shown and you can enter an existing module which you want to exclude.
+    3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+
+2. Excluding a chapter
+    1. Prerequisites: Launch `Kaji` successfully. The chapter you want to exclude should exist.
+    2. Test case: `exclude chapter` <br>
+       Expected output: A prompt for which chapter to be excluded will be shown and you can enter an existing chapter which you want to exclude.
+    3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+       
+#### 5.6.16. Including a module/chapter
+1. Including a module
+    1. Prerequisites: Launch `Kaji` successfully. The module you want to include should exist.
+    2. Test case: `include module` <br>
+       Expected output: A prompt for which module to be included will be shown and you can enter an existing module which you want to include.
+    3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+       
+2. Including a chapter
+    1. Prerequisites: Launch `Kaji` successfully. The chapter you want to include should exist.
+    2. Test case: `include chapter` <br>
+       Expected output: A prompt for which chapter to be included will be shown and you can enter an existing chapter which you want to include.
+    3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
+       Expected output: An error message stating that only module/chapter should be specified will be shown.
+           
 ##### <a href="#top">Back to Top ^</a>
-
 --------------------------------------------------------------------------------------------------------------------
-
-## 6. Appendix: Instructions for Manual Testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}

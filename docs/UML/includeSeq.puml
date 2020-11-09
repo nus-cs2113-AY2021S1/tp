@@ -34,15 +34,15 @@ activate I
             activate U
             U --> I : chapterName
             deactivate U
-            I -> S : removeChapterFromExclusionFile()
+            I -> S : removeChapterFromExclusionFile(moduleName, chapterName)
             activate S
-                S -> SW : removeChapterFromExclusionFile()
+                S -> SW : removeChapterFromExclusionFile(moduleName, chapterName)
                 activate SW
                     SW -> SL : loadExclusionFile()
                     activate SL
                     SL --> SW : excludedChapters
                     deactivate SL
-                    SW -> SW : deleteEntryInExcludedChapters()
+                    SW -> SW : deleteEntryInExcludedChapters(moduleName, chapterName)
                     activate SW
                     deactivate SW
                     SW -> SW : updateExclusionFile()
@@ -54,26 +54,26 @@ activate I
             deactivate S
         deactivate I
     else if type equals "module"
-        I -> I : removeChapterFromExclusion
+        I -> I : removeModuleFromExclusion
         activate I
             I -> U : getIncludedModuleName
             activate U
             U --> I : moduleName
             deactivate U
-            I -> S : removeModuleFromExclusionFile()
+            I -> S : removeModuleFromExclusionFile(moduleName)
             activate S
-                S -> SW : removeModuleFromExclusionFile()
+                S -> SW : removeModuleFromExclusionFile(moduleName)
                 activate SW
                     SW -> SL : loadExclusionFile()
                     activate SL
                     SL --> SW : excludedChapters
                     deactivate SL
-                    SW -> SL : loadChaptersFromSpecifiedModule()
+                    SW -> SL : loadChaptersFromSpecifiedModule(moduleName)
                     activate SL
                     SL --> SW : chaptersInModule
                     deactivate SL
                     loop for chapter in chaptersInModule
-                    SW -> SW : deleteEntryInExcludedChapters(chapter)
+                    SW -> SW : deleteEntryInExcludedChapters(moduleName, chapter)
                     activate SW
                     deactivate SW
                     end

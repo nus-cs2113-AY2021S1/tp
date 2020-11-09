@@ -12,8 +12,20 @@ import static common.Messages.MESSAGE_NON_INTEGER;
 import static common.Messages.MODULE;
 
 //@@author neojiaern
+/**
+ * Parses input arguments and creates a new ReviseCommand.
+ */
 public class ReviseCommandParser {
 
+    /**
+     * Parses the given arguments in the context of the ReviseCommand.
+     *
+     * @param commandArgs input arguments of the command
+     * @param accessLevel access level of the user
+     * @return a ReviseCommand
+     * @throws IncorrectAccessLevelException if the user input is not of the expected format
+     * @throws InvalidInputException if the command cannot be executed at the access levels
+     */
     public Command parse(String commandArgs, String accessLevel)
             throws IncorrectAccessLevelException, InvalidInputException {
         if (!accessLevel.equals(MODULE)) {

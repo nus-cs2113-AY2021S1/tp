@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class "{abstract}\nListCommand" as ListCommand LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class ListModulesCommand LOGIC_COLOR {
+    + execute(ui : Ui, access : Access, storage : Storage) : void
+    - listModules(access : Access) : String
+}
+
+Class Access MODEL_COLOR {
+    + getAdmin() : Admin
+}
+
+Class Admin MODEL_COLOR {
+    + getModules() : ModuleList
+
+}
+
+Class ModuleList MODEL_COLOR {
+    + getAllModules() : ArrayList<Module>
+    + getModuleCount() : int
+}
+
+Class Module MODEL_COLOR {
+    # moduleName : String
+}
+
+Class Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+ListCommand -up[LOGIC_COLOR_T4]-|> Command
+ListModulesCommand -up[LOGIC_COLOR_T4]-|> ListCommand
+
+ListModulesCommand .down[LOGIC_COLOR_T4].> Access
+ListModulesCommand .right[LOGIC_COLOR_T4].> Ui
+
+Access -left[MODEL_COLOR_T4]--> " 1 " Admin
+
+Admin *-left[MODEL_COLOR_T4]-> " 0..1 " ModuleList
+ModuleList *-up[MODEL_COLOR_T4]-> " * " Module
+
+ListModulesCommand .down[LOGIC_COLOR_T4].> Admin
+ListModulesCommand .down[LOGIC_COLOR_T4].> ModuleList
+ListModulesCommand .left[LOGIC_COLOR_T4].> Module
+
+@enduml

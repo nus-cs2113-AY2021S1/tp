@@ -56,10 +56,10 @@ public class AddChapterCommand extends AddCommand {
             return result;
         }
         Chapter newChapter = new Chapter(this.chapter, rateChapter(), storage, access);
+        storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
         chapters.addChapter(newChapter);
         int chapterCount = chapters.getChapterCount();
         access.setModule(newModule);
-        storage.createChapter(chapter.getChapterName(), access.getModuleLevel());
         return prepareResult(CHAPTER, chapter.toString(), chapterCount);
     }
 
