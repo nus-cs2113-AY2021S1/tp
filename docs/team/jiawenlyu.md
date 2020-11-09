@@ -4,7 +4,6 @@
 Our product, **_25HoursADay_** is a scheduling application catered for NUS students. 
 It is optimised for use via the Command Line Interface (CLI) and it serves as an efficient one stop application for our users to manage their time. <br/>
 <br/>
-Given below are my contributions to the project. <br/>
 ## Summary of Contributions
 ### Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiawenlyu)
 ### Enhancements to New features:
@@ -12,7 +11,7 @@ Given below are my contributions to the project. <br/>
  ([\#15](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/15),
   [\#30](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/30))
   * What it does: Add the ability to add new lecture, lab, and tutorial events.
-  * Justification: The feature allows users to manage the lecture, lab, and tutorial events using our app.
+  * Justification: The feature allows users to manage the lecture, lab, and tutorial events.
   * Highlights: This feature is one of the basic features of the program, which is not complex but essential.
 * Added ability to print the progress of tasks.
   ([\#15](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/15),
@@ -20,8 +19,7 @@ Given below are my contributions to the project. <br/>
    [\#41](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/41),
    [\#244](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/244))
    * What it does: Print user's progress of tasks.
-   * Justification: This feature allows users to see their progress of their tasks 
-                    by viewing the proportion of finished tasks on all tasks.
+   * Justification: This feature allows users to view their progress of finished tasks on all tasks.
    * Highlights: This feature print out the result both in percentages and fractions for the users to keep track of.
 * Added ability to prioritize a task.
   ([\#84](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/84),
