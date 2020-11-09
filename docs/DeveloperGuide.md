@@ -13,6 +13,8 @@
     <br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
 2.  [Setting up](#2-setting-up)
+    <br/>&nbsp;2.1 [Setting up the project in your computer](#21-setting-up-the-project-in-your-computer)
+    <br/>&nbsp;2.2 [Before writing code](#22-before-writing-code) 
 
 3.  [Design](#3-design)
     <br/>&nbsp;3.1  [Architecture](#31-architecture)
