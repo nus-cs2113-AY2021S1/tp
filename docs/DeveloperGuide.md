@@ -1249,6 +1249,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.3: Browse 
+
 1.  Utilising the `browse` feature.
     1.  Prerequisite:  None.
 
@@ -1271,6 +1272,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.4: Search by name
+
 1.  Finding an anime series with `search` feature.
     1.  Prerequisite:  None.
 
@@ -1288,6 +1290,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.5: Search by genre
+
 1.  Finding all anime series that has a specific genre with `search` feature.
     1.  Prerequisite:  None.
 
@@ -1305,6 +1308,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.6: Viewing the information of a specific anime
+
 1.  Viewing the information of a specific anime.
     1.  Prerequisite: None.
     
@@ -1321,6 +1325,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.7: Create a new Workspace
+
 1.  Create a new Workspace with `workspace` feature
     1.  Prerequisite:  None.
     
@@ -1337,7 +1342,9 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
             
+
 ### D.8: Switch to a different Workspace
+
 1.  Switch to a different Workspace with `workspace` feature
     1.  Prerequisite:  Workspace must first exist before switching to them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
     
@@ -1355,6 +1362,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.9: List all Workspace
+
 1.  List all Workspace with `workspace` feature
     1.  Prerequisite:  Workspace must first exist to be able to list them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the former.
     
@@ -1366,7 +1374,9 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
             
+
 ### D.10: Delete a Workspace
+
 1.  Delete a Workspace with `workspace` feature
     1.  Prerequisite:  Workspace must first exist before deleting them. In this example we presume Workspace named `Default` and `CrunchyOreo` exists and currently active Workspace is the latter.
     
@@ -1385,6 +1395,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.11: Creating watchlist
+
 1.  Creating a watchlist with a unique name.
     1.  Prerequisite: None.
     
@@ -1399,6 +1410,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.12: Listing all watchlist(s)
+
 1.  Listing all created watchlist(s).
     1.  Prerequisite: None.
     
@@ -1427,6 +1439,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.14: Deleting a watchlist
+
 1.  Deleting a watchlist.
     1.  Prerequisite: The current workspace has at least 2 watchlist, and **the first watchlist is the active watchlist**.
 
@@ -1444,6 +1457,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.15: Adding an anime to active watchlist
+
 1.  Adding an anime to active watchlist.
     1.  Prerequisite: The active watchlist does not contain the anime to be added.
     
@@ -1460,6 +1474,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.16: Removing an anime from active watchlist
+
 1.  Removing an anime from active watchlist.
     1.  Prerequisite: The active watchlist must contain at least one anime.
     
@@ -1476,6 +1491,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.17: Viewing all anime in a specific or active watchlist
+
 1.  Viewing all anime in a specific or active watchlist.
     1.  Prerequisite: The watchlist must contain at least one anime.
     
@@ -1500,6 +1516,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.19: Adding a bookmark entry
+
 1.  Adding a bookmark entry.
     1.  Prerequisite: Look up the anime ID using the `info` command. The anime ID is in `AnimeData` source.
 
@@ -1516,6 +1533,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.20: Deleting a bookmark entry
+
 1.  Deleting a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
@@ -1532,6 +1550,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.21: Editing a bookmark entry episode
+
 1.  Editing a bookmark entry episode.
     1.  Prerequisite: 
         1.  List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
@@ -1552,6 +1571,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.22: Adding a note to a bookmark entry
+
 1.  Adding a note to a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
          
@@ -1570,6 +1590,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.23: Removing a note from a bookmark entry
+
 1.  Removing a note from a bookmark entry.
     1.  Prerequisite:  View the information on bookmark entry using 'bookmark <BOOKMARK_ID>'. Multiple notes for that bookmarked anime.
 
@@ -1588,6 +1609,7 @@ If you wish to add new checks, simply add the check file with a filename `check-
 <br/>
 
 ### D.24: View information of a bookmark entry
+
 1.  View information of a bookmark entry.
     1.  Prerequisite: List all bookmark entries using the `bookmark -l` command. Multiple bookmark entries in the list.
 
