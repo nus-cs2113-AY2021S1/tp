@@ -352,7 +352,7 @@ Proceeds to the Chapter Level with reference to one of the Chapters within the m
 Format: `go CHAPTER_INDEX`
  
 Example: <br>
-For instance, you are currently in Module level `Module` and want to head to Chapter level `Chapter1` , the steps to
+For instance, you are currently in Module level `CS2113T` and want to head to Chapter level `Chapter 1` , the steps to
  do so are shown below:
 
 <p align="center">
@@ -380,7 +380,7 @@ Returns to the Admin level.
 Format: `back`
  
 Example: <br>
-For instance, you are currently in Module level `Module` and want to return to the Admin level, the steps to do so
+For instance, you are currently in Module level `CS2113T` and want to return to the Admin level, the steps to do so
  are shown below:
 
 * Step 1: Enter the command `back` to return to the previous level which is the module level: <br>
