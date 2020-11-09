@@ -198,7 +198,7 @@ public class Ui {
 
         operatingSystem = findUserOperatingSystem();
 
-        //This is for Linus and Mac operating systems because Robot doesn't work on WSL
+        //This is for Linux and Mac operating systems because Robot doesn't work on WSL
         if (operatingSystem.contains(OS_LINUX) || operatingSystem.contains(OS_MAC)) {
             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
             long startingTime = System.currentTimeMillis();
@@ -332,7 +332,6 @@ public class Ui {
                 topicListString += System.lineSeparator();
             }
         }
-
         printMessage(topicListString);
     }
 
@@ -349,26 +348,21 @@ public class Ui {
     public void printAddNote(TopicList topicList) {
         printMessage(ADD_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine().trim();
-
         try {
             if (topicList.doesTopicExist(topicName)) {
                 printMessage(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
 
                 String noteName = SCANNER.nextLine().trim();
-
                 while (noteName.replace(SPACE, EMPTY).isEmpty()) {
                     printMessage(ADD_NOTE_PROMPT_FOR_NOTE_TITLE);
                     noteName = SCANNER.nextLine();
                 }
-
                 printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                 String noteBody = SCANNER.nextLine().trim();
-
                 while (noteBody.replace(SPACE, EMPTY).isEmpty()) {
                     printMessage(ADD_NOTE_PROMPT_FOR_NOTE_BODY);
                     noteBody = SCANNER.nextLine();
                 }
-
                 Note note = new Note(noteName, noteBody);
                 Topic topic = (Topic) topicList.find(topicName);
                 topic.getNoteList().add(note);
@@ -387,10 +381,8 @@ public class Ui {
         int noteCount = 0;
         Topic topic = null;
         NoteList noteList = null;
-
         printMessage(DELETE_NOTE_PROMPT_FOR_TOPIC);
         String topicName = SCANNER.nextLine().trim();
-
         try {
             topic = (Topic) topicList.find(topicName);
             noteList = topic.getNoteList();
@@ -398,13 +390,10 @@ public class Ui {
         } catch (Eduke8Exception e) {
             printError(e.getMessage());
         }
-
         if (topicList.doesTopicExist(topicName) && noteCount > 0) {
             showNotes(noteList);
-
             printWithoutLines(DELETE_NOTE_PROMPT_FOR_INDEX);
             String input = SCANNER.nextLine().trim();
-
             try {
                 if (input.matches(NUMBERS_ONLY) && Integer.parseInt(input) > 0
                         && Integer.parseInt(input) <= noteList.getCount()) {
@@ -417,6 +406,8 @@ public class Ui {
             } catch (NumberFormatException e){
                 printWithoutLines(INVALID_TOPIC_INDEX);
             }
+        } else if (noteCount == 0) {
+            printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
             printWithoutLines(INVALID_TOPIC);
             printTopicsError(topicList);
@@ -427,7 +418,6 @@ public class Ui {
     public void printListNote(TopicList topicList) {
         printMessage(LIST_NOTE_PROMPT);
         String topicName = SCANNER.nextLine().trim();
-
         try {
             if (topicList.doesTopicExist(topicName)) {
                 Topic topic = (Topic) topicList.find(topicName);
@@ -444,7 +434,6 @@ public class Ui {
     }
 
     public void showNotes(NoteList notes) {
-
         if (notes.getCount() == 0) {
             printWithoutLines(HORIZONTAL_LINE);
             printWithoutLines(MESSAGE_PRINT_NOTE_LIST_NONE);

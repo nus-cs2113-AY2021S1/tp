@@ -28,15 +28,15 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 5. Double click on eduke8.jar to start up the program. If the program does not start up, continue to step 6, otherwise skip to step 8.
 6. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
 7. Enter the following command `java -jar eduke8.jar`.
-8. Type a command in the terminal and press Enter to execute it. e.g. typing 'help' and pressing Enter will list all the commands that you can use in this application. For a start, here is a list of commands you can try:
-   - about : Provides information about E-Duke-8.
-   - help : Displays available commands.
-   - topics : Lists CS2113/T topics that E-Duke-8 knows.
-   - textbook : Provides you with a link to the CS2113/T website.
-   - quiz : Starts a quiz. Eg. `quiz t/OOP n/5 s/10` will start a quiz with five questions based on OOP concepts. You will have 10 seconds to complete each question. 
-   - exit : Exits the app.
+8. Type a command in the terminal and press Enter to execute it. e.g. typing `help` and pressing Enter will list all the commands that you can use in this application. For a start, here is a list of basic commands you can try:
+   - `about` : Provides information about E-Duke-8.
+   - `help` : Displays available commands.
+   - `topics` : Lists CS2113/T topics that E-Duke-8 knows.
+   - `textbook` : Provides you with a link to the CS2113/T website.
+   - `quiz` : Starts a quiz. Eg. `quiz t/OOP n/5 s/10` will start a quiz with five questions based on OOP concepts. You will have 10 seconds to complete each question. 
+   - `exit` : Exits the app.
 
-9. Refer to the section on **Features** below for the full list of commands you can use and the details of each.
+9. Refer to the section on [Features](#3-features) below for the full list of commands you can use and the details of each.
 
 <div style="page-break-after: always;"></div>
 
@@ -49,12 +49,12 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 
 ### 3.1. Loading Data 
 
-Data will be automatically loaded from the files in the **data** folder for use in quizzes and notes.
+Data will be automatically loaded from the files in the `data` folder for use in quizzes and notes.
 You will see this message while the data loads:
 
 ![data loading](./images/data_loading.png)
 
-To ensure that data could be loaded successfully, ensure that the data folder that comes along with the eduke8.jar file is placed in the same folder as eduke8.jar. This is part of the setup and is to be done prior to the running of the app. 
+To ensure that data could be loaded successfully, ensure that the data folder that comes along with the `eduke8.jar` file is placed in the same folder as eduke8.jar. This is part of the setup and is to be done prior to the running of the app. 
 If the data has been loaded successfully you should see this message:
 
 ![data loaded](./images/data_loaded.png)
@@ -137,7 +137,7 @@ What you should see:
 
 ### 3.7. Starting a quiz: `quiz`
 
-By following a specific input format for your command (shown below), you can start a quiz where the number of questions, topic and time to complete each question are specified by you.
+By following a specific input format for your command (shown below), you can start a quiz where the number of questions, topic and time limit to complete each question are specified by you.
 
 While on a question, you can choose to answer it, ask for a hint (if you are unsure of the answer) or bookmark it for future reference!
 
@@ -148,12 +148,13 @@ A correct answer without requesting for a hint will earn you **2 points**! Where
 Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then proceed to the next question.
 
 Note:
+- The maximum time limit for each question that you can choose is 1000 seconds.
 - Each of the questions in the quiz will be related to the topic you have chosen.
-- You can choose any topic from the [topic](#35-listing-all-topics-topics) list.
+- You can choose any topic (not case-sensitive) from the [topic](#35-listing-all-topics-topics) list.
 - The [topic](#35-listing-all-topics-topics) list also shows you the number of questions you can choose from for each topic.
 - The first question will be immediately displayed to you once the quiz starts.
 - The quiz will only end when you have attempted all of the questions in it.
-- Refer to [FAQ](#4-faq) to know more about the quiz system and the point system.
+- Refer to [**FAQ**](#4-faq) to know more about the quiz system and the point system.
 
 Input format: `quiz t/TOPIC n/NUM_QUESTIONS s/TIMER`
 
@@ -173,7 +174,9 @@ From here on you can either:
 
 1) Enter in your answer by typing '1', '2', '3' or '4' and pressing enter.
 
-2) If you do not know the answer, you can request for a hint by typing 'hint' and pressing enter. Refer to  the [section on hints](#38-showing-a-hint-hint) for more information.
+2) If you do not know the answer, you can request for a hint by typing `hint` and pressing enter. Refer to  the [section on hints](#38-showing-a-hint-hint) for more information.
+
+3) If you would like to refer to the question in future, you can also `bookmark` it. 
 
 If you have entered the correct answer, this is what you will see:
 ![quiz](./images/quiz_correct.png)
@@ -186,7 +189,7 @@ If you did not answer the question within the specified time, this is what you w
 
 After every question, this is what you will see: 
 ![quiz](./images/question_end.png)
-Please press "Enter" to proceed to the next question. 
+Please press "Enter" to proceed to the next question. Once the new question appears, the timer will then restart! 
 
 After attempting all of the questions, the quiz will automatically end:
 ![quiz](./images/quiz_end.png)
@@ -235,7 +238,7 @@ What you should see:
 
 ### 3.10. Listing out all bookmarked questions: `bookmark list`
 
-Lists out all the bookmarked questions and each of their four options.
+Lists out all the bookmarked questions and each of their four options. The correct answer will be shown too.
 
 Note:
 - Listing out all bookmarked questions can only be done in the main menu
@@ -254,10 +257,7 @@ What you should see:
 
 ### 3.11. Deleting a bookmark: `bookmark delete`
 
-Lists out all the bookmarked questions and each of their four options.
-
-Note:
-- Listing out all bookmarked questions can only be done in the main menu
+You can delete a bookmark by specifying its index. The index can be found in the bookmark list when you use the `bookmark list` command.
 
 Input format: `bookmark delete INDEX`
 
@@ -265,7 +265,6 @@ Example of usage:
 ```
 bookmark delete 2
 ```
-<div style="page-break-after: always;"></div>
 
 What you should see:
 
@@ -275,9 +274,7 @@ What you should see:
 
 ### 3.12. Displaying stats: `stats`
 
-Displays the points you have earned, hints used, and the accumulated statistics of your quiz attempts on E-Duke-8.
-
-Both overall statistics of all your previous quiz attempts and topic-level statistics will be displayed.
+Displays the accumulated statistics of your quiz attempts on E-Duke-8 which includes the points you have earned, questions done, questions answered correctly and hints used. Both overall statistics and topic-level statistics will be displayed.
 
 Example of usage:
 ```
@@ -453,10 +450,10 @@ Note:
 `correct` field. 
 - If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
-- The title of a topic cannot be blank or repeated.
-- The description of a question cannot be blank.
-- Do refrain from adding duplicate questions because you can already re-attempt the same question if you start a quiz from the topic the question is from.
-- If duplicate questions are added, then you might find that the same question might appear more than once in your quiz.
+- The title of a topic cannot be blank or repeated (not case-sensitive).
+- If the title includes a backslash, you may not be able to use the title anywhere else.
+- The description of a question cannot be blank or repeated (not case-sensitive).
+- If you want to re-attempt the same question, you can simply start a new quiz with the topic that the question is from.
 
 <div style="page-break-after: always;"></div>
 

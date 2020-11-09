@@ -17,7 +17,7 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
     - Highlights: This command requires interaction with the `Ui`, `Question` and `Option` classes in order to be able to store and display the questions effectively. It requires altering the code of some pre-existing
     commands, and required some fine-tuning to ensure the `Ui` object was responding with the correct statements whenever prompted.
     
-    Code contributed: [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=josephhhhhhhhh&tabRepo=AY2021S1-CS2113T-F12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+- Code contributed: [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=josephhhhhhhhh&tabRepo=AY2021S1-CS2113T-F12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
     
 - **Enhancements to existing features:**
     - Increased flexibility of parsing quiz commands by allowing the topic field and number of questions field to be interchangeable in position. (Pull request [#126](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/126))
