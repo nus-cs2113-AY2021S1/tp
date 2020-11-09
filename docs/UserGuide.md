@@ -95,7 +95,7 @@ This section provides the instruction for all features categorised under the mai
 #### 3.1.1. List available help: ```/help``` -Yuxin
 This command lists a set of features along with their respective commands available to users.
 
-Format: <code>/help</code>
+Format:<br> <code>/help</code>
 
 The expected outcome is as follows:<br><br>
 <img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
@@ -145,7 +145,7 @@ below.<br><br>
 #### 3.1.3. Check bus route: ```/routemap``` - Johnson Yee
 This command displays the full route of the bus that you have specified.
 
-Format: <code>/routemap <strong>bus code</strong></code> <br>
+Format: <br><code>/routemap <strong>bus code</strong></code> <br>
 
 **Examples of Usage**
 
@@ -301,7 +301,7 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 #### 3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi
 This command finds all dining outlets that contains the keyword, and display their location and operating hours.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/dineinfo <strong>outlet</strong></code>
 
 **Examples of Usage**
@@ -330,6 +330,7 @@ to your needs.
 <!-- @@author Lezn0 -->
 #### 3.3.1. Add a favourite command: `/addfav` -Yuxin
 This command adds a valid command with an optional description to your list of favourites
+
 Format:<br>
 <code>/addfav <strong> [description] </strong> </code>
 
@@ -461,7 +462,7 @@ shown in the figure below and press enter. <br>
 #### 3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi
 This command clears all the commands stored in your list of favourite commands.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/clearfav</code>
 
 **Examples of Usage**
@@ -505,7 +506,7 @@ as shown in the figure below.<br><br>
 #### 3.4.2. Reset frequent search data: ```/reset``` - Johnson Yee
 This command resets the data set used to display most frequently search bus stop on application start-up.
 
-Format:<code>/reset</code>
+Format:<br> <code>/reset</code>
 
 **Examples of usage**
 
@@ -519,7 +520,7 @@ command <code>/reset</code> to reset the data set and start the application on a
 #### 3.4.3. Exit the program: ```/exit```
 This command helps you exit the application.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/exit</code>
 
 The application exits after displaying the following message.<br>
