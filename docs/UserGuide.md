@@ -503,6 +503,8 @@ Your data has been saved successfully.
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Either download `dietbook.jar` on the other computer and overwrite the empty data files with the data files from your previous computer or copy the whole DietBook home folder from the previous computer to the new computer.
+data from v2.1 is **NOT** compatible with earlier data. The data is found in `C/Users/{User name}/dietbook`. As of v2.1 the food list data is found in the folder
+`Food##PORTION###dDATE##folder` and the Personal data is found in the folder `PERSONA_IS_NO_SUCH_PERSOOSOOSNSNSNS`.
 
 ## Command Summary
 
