@@ -13,6 +13,7 @@ import static common.Messages.MODULE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@@author neojiaern
 public class RemoveCommandParserTest {
     private RemoveCommandParser parser = new RemoveCommandParser();
 

@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 import static common.Messages.CHAPTER;
 
+/**
+ * Lists all the chapters in a module.
+ */
 public class ListChaptersCommand extends ListCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of chapters available. \n"
             + "Example: " + COMMAND_WORD + "\n";
@@ -20,6 +23,12 @@ public class ListChaptersCommand extends ListCommand {
         ui.showToUser(result);
     }
 
+    /**
+     * Lists all of the chapters.
+     *
+     * @param access to get the list of chapters
+     * @return result to be displayed
+     */
     private String listChapters(Access access) {
         assert access.isModuleLevel() : "Not module level";
         ChapterList chapters = access.getModule().getChapters();
