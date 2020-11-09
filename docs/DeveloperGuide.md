@@ -142,6 +142,19 @@ The `Storage` object:
 - Expose functions to allow `Model` to pass in the state and saves it to file.
 - Expose functions to load the state of `Model` from file.
 
+<!-- @@author GuoAi -->
+
+### Item component
+
+`Item` is a super class with 5 subclasses inheriting it: `Task`, `Expense`, `Module`, `Link`, `Book`.
+
+Here is the class diagram for `Item` class and its subclasses.
+
+![ItemClassDiagram](./images/ItemClassDiagram.png)
+
+The `Item` class and its subclasses:
+- Contains getters and setters to retrieve and set the attributes.
+
 <!-- @@author iamchenjiajun -->
 ### Model Component
 

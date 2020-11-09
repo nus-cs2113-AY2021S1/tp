@@ -66,23 +66,23 @@ public class FindCommand extends Command {
         switch (listType) {
         case TASK_LIST:
             TaskList tasks = (TaskList) model.getList(ListType.TASK_LIST);
-            tasks.findItem(keyword, false);
+            tasks.findItem(keyword);
             break;
         case EXPENSE_LIST:
             ExpenseList expenses = (ExpenseList) model.getList(ListType.EXPENSE_LIST);
-            expenses.findItem(keyword, false);
+            expenses.findItem(keyword);
             break;
         case MODULE_LIST:
             ModuleList modules = (ModuleList) model.getList(ListType.MODULE_LIST);
-            modules.findItem(keyword, false);
+            modules.findItem(keyword);
             break;
         case LINK_LIST:
             LinkList links = (LinkList) model.getList(ListType.LINK_LIST);
-            links.findItem(keyword, true);
+            links.findItem(keyword);
             break;
         case BOOK_LIST:
             BookList books = (BookList) model.getList(ListType.BOOK_LIST);
-            books.findItem(keyword, false);
+            books.findItem(keyword);
             break;
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_FIND_COMMAND);
