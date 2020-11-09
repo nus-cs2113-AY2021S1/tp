@@ -1030,11 +1030,11 @@ which you can access using the cd command!
 <div align="center">Table: Command Cheatsheet for Study It</div>
 
 <p align="center">
-    <img width="85%" height="85%" src="Images/cheatsheet1.png">
+    <img width="90%" height="90%" src="Images/cheatsheet1.png">
 </p>
 
 <div style="page-break-after: always;"></div>
 
 <p align="center">
-    <img width="85%" height="85%" src="Images/cheatsheet2.png">
+    <img width="90%" height="90%" src="Images/cheatsheet2.png">
 </p>
