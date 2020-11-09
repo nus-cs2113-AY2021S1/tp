@@ -75,8 +75,10 @@ public class EditEntryCommand extends Command {
                 Ui.printInvalidCommandError();
                 break;
             }
-        } catch (NumberFormatException | FitrException | DateTimeParseException e) {
+        } catch (NumberFormatException | FitrException e) {
             Ui.printCustomError("Invalid value entered!");
+        } catch (DateTimeParseException e) {
+            Ui.printCustomError("Invalid date entered!");
         } catch (UpperBoundLessThanException e) {
             Ui.printCustomError(ERROR_GOAL_LESS_THAN_UPPERBOUND);
         } catch (UpperBoundMoreThanException e) {
@@ -138,8 +140,8 @@ public class EditEntryCommand extends Command {
 
         int calories = Integer.parseInt(matcher.group(KEYWORD_CALORIES).trim());
 
-        if (calories < 0) {
-            Ui.printCustomError("Calories cannot be negative!");
+        if (calories < 1 || calories > 10000) {
+            Ui.printCustomError("Calories must be between 0 and 10000 (inclusive)!");
             return;
         }
 
@@ -187,14 +189,14 @@ public class EditEntryCommand extends Command {
 
         int calories = Integer.parseInt(matcher.group("calories").trim());
 
-        if (calories < 0) {
-            Ui.printCustomError("Calories cannot be negative!");
+        if (calories < 0 || calories > 10000) {
+            Ui.printCustomError("Calories must be between 0 and 10000 (inclusive)!");
             return;
         }
 
         int quantity = Integer.parseInt(matcher.group("quantity").trim());
-        if (quantity < 0) {
-            Ui.printCustomError("Quantity cannot be negative!");
+        if (quantity < 1 || quantity > 1000) {
+            Ui.printCustomError("Quantity must be between 1 and 1000 (inclusive)!");
             return;
         }
 

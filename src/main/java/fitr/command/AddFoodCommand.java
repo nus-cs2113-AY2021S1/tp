@@ -75,7 +75,7 @@ public class AddFoodCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException e) {
             Ui.printFormatError(COMMAND_FOOD);
         } catch (FitrException e) {
-            Ui.printCustomError("Sorry, quantity should be a positive integer less than 1000!");
+            Ui.printCustomError("Sorry, quantity should be a positive integer less than or equal to 1000!");
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
         }

@@ -13,6 +13,7 @@ import fitr.user.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import static fitr.common.Commands.COMMAND_DELETE;
 import static fitr.common.Commands.COMMAND_EXERCISE;
@@ -110,6 +111,8 @@ public class DeleteCommand extends Command {
             Ui.printCustomError(ERROR_IN_FILE);
         } catch (FitrException e) {
             Ui.printFormatError(COMMAND_DELETE);
+        } catch (DateTimeParseException e) {
+            Ui.printCustomError("Invalid date entered!");
         }
     }
 
