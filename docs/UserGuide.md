@@ -32,7 +32,7 @@
     * [Printing events](#printing-events)
     * [Printing progress](#printing-progress)
     * [Giving suggestion](#giving-suggestion)
-    * [Printing time line](#printing-timeline)
+    * [Printing timeline](#printing-timeline)
         * [Printing default calendar](#printing-default-calendar)
         * [Printing calendar for the next 7 days](#printing-calendar-for-the-next-7-days)
         * [Printing calendar for the next 31 days](#printing-calendar-for-the-next-31-days)
