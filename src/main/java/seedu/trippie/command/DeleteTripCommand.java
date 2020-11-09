@@ -62,7 +62,7 @@ public class DeleteTripCommand extends Command {
 
         if (confirmation) {
             Trip removedTrip = trippieData.removeTripFromIndex(index - 1);
-            System.out.println("Deleted trip " + removedTrip.getName() + ".");
+            System.out.println("Deleted trip '" + removedTrip.getName() + "'.");
         } else {
             System.out.println("Cancelled trip deletion.");
         }

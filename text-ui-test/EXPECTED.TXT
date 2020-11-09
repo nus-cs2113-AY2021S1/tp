@@ -246,7 +246,7 @@ Here are your existing trips.
 Which one do you want to edit? Enter the index:Current trip is set to 'changed trip'.
 Reading the Trippie files now...
 Are you sure you want to permanently delete 'changed trip'? [Y/N]:Current trip is set to 'Amazing Bali'.
-Deleted trip changed trip.
+Deleted trip 'changed trip'.
 _________________________________________________________________________
 >> _________________________________________________________________________
 Here are your existing trips.
