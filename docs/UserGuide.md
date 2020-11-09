@@ -38,6 +38,8 @@ around NUS campus via the school's shuttle service.<br>
 - [5. Command Summary](#5-command-summary)
 - [6. Glossary](#6-glossary)
 
+{:toc}
+
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
 Are you new to NUS? <br>
