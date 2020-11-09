@@ -8,8 +8,6 @@ title : Nazryl Bin Khairil Idham Lim - Project Portfolio Page
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
-*Roles (short for ‘in charge of role’): Description*
-
 - Architecture: Worked with Jun Xiang on setting up the project, planned on logic of the project structure. Provides coding standards for engineers to follow.
 - In-charge of `add-n`,`delete-n`, `edit-n` of the code:  Handle area of notes and notebook.
 
