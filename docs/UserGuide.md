@@ -495,6 +495,8 @@ Expected output:
 >* You can enter the time in both 12hr and 24hr format. Only entering am/pm at the back of the duration will be assumed 
 >as both starting and ending time are in the same period.
 
+<div style="page-break-after: always;"></div>
+
 If you encounter any errors, take note of the following warning.
 
 >**Warning:**
@@ -504,6 +506,8 @@ If you encounter any errors, take note of the following warning.
 >the schedule and events list and delete the unwanted event accordingly before you can add the new event.
 >* Number of recurring classes are capped at 52 weeks (1 year) to ensure effective processing time. Add your class again one year
 >later if your class recurs for more than a year.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Adding activities: `add activity`
 
@@ -522,6 +526,8 @@ Expected output:
 >**Useful Information:** 
 >* Currently this feature does not support adding activity past 12am. If you wish to schedule an activity overnight, 
 >add the activity in 2 separate sessions.
+>
+<div style="page-break-after: always;"></div>
 
 ### 2.4 Showing links: `show link`
 
@@ -535,6 +541,8 @@ Expected output:
 
 ![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png){:height="80%" width="80%"}
 
+<div style="page-break-after: always;"></div>
+
 ### 2.5 Showing schedule: `show schedule`
 
 If you wish to view your schedule for the next seven days with all the activities, use this command.
@@ -545,6 +553,8 @@ Instruction:
 Expected output:
 
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.6 Showing Activities list: `list activity`
 
@@ -570,6 +580,8 @@ Instruction:
 Expected output:
 
 ![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.8 Deleting an activity: `delete activity INDEX`
 
@@ -605,6 +617,8 @@ Expected output:
 
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
+
+<div style="page-break-after: always;"></div>
 
 ### 2.10 Removing all past events: `clean up`
 
