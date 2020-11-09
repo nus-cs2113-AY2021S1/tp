@@ -352,10 +352,30 @@ Step 3. This filtered list is then printed by calling `printFilteredDateEventLis
 
 ### 4.13 Print locations of a certain group<a id="location_group"></a>
 
+This feature allows users to know locations in a certain faculty, including blocks and lecture theatres when users input
+abbreviations of various faculties (e.g. FOS).
+
+The sequence diagram belows shows what happens when user input any faculty abbreviation: <br>
+![PrintAreaLocationsCommand Sequence Diagram](diagrams/printAreaLocationsCommand.png)<br>
+*Figure 4.13 Sequence Diagram for print area locations function*
+
 ### 4.14 Study time<a id="study_time"></a>
 This feature allows the user to know the amount of time spent on study for certain date. The command is `studyTime DATE`.  
 
 ### 4.15 Done<a id="done"></a>
+
+This feature allows users to mark an event as done, provided the event's time has passed. With the exception of event 
+type `Assignment`, all the other event types cannot be marked as done before event occurs. 
+
+`DoneCommand` marks an event as done with the following steps: 
+
+Step 1. The user will input `done` followed by an integer that represents the index of the event they want to mark as 
+done. 
+
+Step 2. The program will first check if the index is valid. If invalid, application will print an error message. 
+
+Step 3. Then it will check for the type and time of event. If the time of event is later, and the event is not an 
+`Assignment`, then it will print a warning message. Else, it will mark the event as done.
 
 ### 4.16 User Info<a id="user_info"></a>
 
@@ -371,33 +391,6 @@ Step 2: This calls the UserInfoCommand, which stores his name, Harry, and type, 
 1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
 
 2. `Eventlist#remove()` is called which will delete the event with the specified index.
-### 4.11 Find 
-
-### 4.12 Print locations
-This feature allows users to know locations in a certain faculty, including blocks and lecture theatres when users input
-abbreviations of various faculties (e.g. FOS).
-
-The sequence diagram belows shows what happens when user input any faculty abbreviation: <br>
-![PrintAreaLocationsCommand Sequence Diagram](diagrams/printAreaLocationsCommand.png)<br>
-*Figure 4.12 Sequence Diagram for print area locations function*
-
-### 4.13 Study Time
-
-### 4.14 User Info
-
-### 4.15 Done 
-This feature allows users to mark an event as done, provided the event's time has passed. With the exception of event 
-type `Assignment`, all the other event types cannot be marked as done before event occurs. 
-
-`DoneCommand` marks an event as done with the following steps: 
-
-Step 1. The user will input `done` followed by an integer that represents the index of the event they want to mark as 
-done. 
-
-Step 2. The program will first check if the index is valid. If invalid, application will print an error message. 
-
-Step 3. Then it will check for the type and time of event. If the time of event is later, and the event is not an 
-`Assignment`, then it will print a warning message. Else, it will mark the event as done.
 
 ## 5. Documentation
   
