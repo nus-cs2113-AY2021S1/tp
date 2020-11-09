@@ -67,7 +67,7 @@ class AcademicParserTest {
     }
 
     @Test
-    void evaluateInput_getContactCommand_parsedCorrectly() {
+    void evaluateInput_getContactCommand_parsedCorrectly() throws InvalidCommandException {
         AcademicCommandParser parser = new AcademicCommandParser();
         String input = "add contact c/Prof Lim  m/81234567  e/E7654321@u.nus.edu";
         final String[] result = parser.getContact(input);
@@ -76,7 +76,8 @@ class AcademicParserTest {
     }
 
     @Test
-    void evaluateInput_getGradeCommand_parsedCorrectly() throws InvalidGradeException, InvalidMcException {
+    void evaluateInput_getGradeCommand_parsedCorrectly()
+            throws InvalidGradeException, InvalidMcException, InvalidCommandException {
         AcademicCommandParser parser = new AcademicCommandParser();
         String input = "add grade n/CS2101  m/4  g/A-";
         final String[] result = parser.getGrade(input);

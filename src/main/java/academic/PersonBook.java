@@ -1,5 +1,6 @@
 package academic;
 
+import exceptions.EmptyInputException;
 import exceptions.InvalidEmailException;
 
 import java.util.ArrayList;
@@ -14,7 +15,13 @@ public class PersonBook {
      * @param listOfPerson array list of person.
      * @throws InvalidEmailException when email added does not have an @ in it.
      */
-    public static void addPerson(String[] args, ArrayList<Person> listOfPerson) throws InvalidEmailException {
+    public static void addPerson(String[] args, ArrayList<Person> listOfPerson)
+            throws InvalidEmailException, EmptyInputException {
+
+        if (args[0].equals("")) {
+            throw new EmptyInputException();
+        }
+
         if (args[2].contains("@")) {
             listOfPerson.add(new Person(args[0], args[1], args[2]));
             if (args.length == 4) {
