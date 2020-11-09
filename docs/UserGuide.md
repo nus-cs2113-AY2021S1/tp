@@ -30,7 +30,7 @@ around NUS campus via the school's shuttle service.<br>
     + [3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi](#321-search-for-dining-options-within-a-faculty-dine---shuyi)
     + [3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi](#322-search-for-specific-dining-outlet-dineinfo---shuyi)
   * [3.3. Favourite Features](#33-favourite-features)
-    + [3.3.1. Add a favourite command: `/addfav` -Yuxin](#331-add-a-favourite-command-addfav---yuxin)
+    + [3.3.1. Add a favourite command: `/addfav` - Yuxin](#331-add-a-favourite-command-addfav---yuxin)
     + [3.3.2. List all favourite commands: `/listfav` - Shuyi](#332-list-all-favourite-commands-listfav---shuyi)
     + [3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee](#333-delete-a-favourite-command-deletefav---johnson-yee)
     + [3.3.4. Execute a favourite command: `/execfav` - - Wong Heng Chin](#334-execute-a-favourite-command-execfav---wong-heng-chin)
@@ -172,6 +172,8 @@ below.<br><br>
 <img src="UG_Figures/routeOutput3.png" alt="FinalOutput" width=650><br>
 <!-- @@author -->
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author Johnson-Yee -->
 #### 3.1.2. Check bus route: ```/routemap``` - Johnson Yee
 This command displays the full route of the bus that you have specified.
@@ -190,8 +192,6 @@ To find indirect bus routes:
 
 1. You type <code>/routemap <strong> AA2 </strong></code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/routemap4.png" alt="inputRouteMapCommand" width=650><br>
-
-<div style="page-break-after: always;"></div>
 
 2. The result will display the whole bus route of bus AA2.<br><br>
 <img src="UG_Figures/routemap1.png" alt="RouteMapCommand" width=650><br>
@@ -362,7 +362,7 @@ This section provides the instruction for all features categorised under the mai
 to your needs.
 
 <!-- @@author Lezn0 -->
-### 3.3.1. Add a favourite command: `/addfav` -Yuxin
+### 3.3.1. Add a favourite command: `/addfav` - Yuxin
 This command adds a valid command with an optional description to your list of favourites.
 >Note: A valid command is command that does not return an error message and not associated 
 >with any commands related to favourites.
