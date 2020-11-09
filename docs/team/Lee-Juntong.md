@@ -1,9 +1,4 @@
----
-layout: page
-title: Zhuang Mengjin's Project Portfolio Page
----
-
-## Project: NUSchedule
+# Project: NUSchedule
 
 NuSchedule is a desktop task management application used for keeping track of user's events. The user interacts with it using a CLI. It is written in Java and has around 5 kLoC.
 
@@ -62,6 +57,6 @@ Given below are my contributions to the project.
     * Make the hyperlinks work properly [\#92](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/92)
 
 * **Community**:
-  *PRs reviewed (with non-trivial review comments):[\#162](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/162), [\#172](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/172)
+  * PRs reviewed (with non-trivial review comments):[\#162](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/162), [\#172](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/172)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2113-AY2021S1/forum/issues/48#issuecomment-709282848))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lee-Juntong/ped/issues/9), [2](https://github.com/Lee-Juntong/ped/issues/13), [3](https://github.com/Lee-Juntong/ped/issues/14))
