@@ -28,9 +28,10 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     (Pull requests: [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124))
     * Improve handling of command in the case of mistyped inputs (extra spaces, capital letters, etc.)
     (Pull requests: [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124))
-    * Improve format of printing flashcards under list command
+    * Improved format of printing flashcards under list command
     * Added tests for subject-level commands
-    * Fix bugs discovered in PE dry run regarding input and output
+    (Pull requests: [#59](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/59))
+    * Fix bugs discovered in PE dry run regarding user input and 
 * **Contributions to the UG:**  TODO:
     * All [Subject level features](https://ay2021s1-cs2113t-w13-1.github.io/tp/UserGuide.html#subject-level) features.
     * Restructuring of explanation of all the commands to be consistent.
@@ -43,16 +44,11 @@ and keep track of their deadlines, tasks and any other important dates. It is wr
     * [list all](https://ay2021s1-cs2113t-w13-1.github.io/tp/DeveloperGuide.html#list-all-imp) under Implementation and its sequence diagram.
 * **Contributions to team-based tasks:**
     * Fixed general coding standard issues (eg. variable names)
-    * Restructured and reordered UG and DG for more cohesive documentation. 
+    * Restructured and reordered DG design section for more cohesive documentation
+    * Manually test code before release
 * **Review/mentoring contributions:** 
   
-  PRs reviewed: 
-    * [#54](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/54)
-    * [#60](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/60)
-    * [#80](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/80)
-    * [#124](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/124)
-    * [#152](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/152)
-    * [#163](https://github.com/AY2021S1-CS2113T-W13-1/tp/pull/163)
+  [PRs reviewed](https://github.com/AY2021S1-CS2113T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3Arashien3)
 
 * **Contributions beyond the project team:**
   * Posted an [issue](https://github.com/AY2021S1-CS2113-T16-4/tp/issues/63) for T16-4 when their release jar file could not run.
