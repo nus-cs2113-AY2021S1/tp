@@ -13,7 +13,7 @@ import java.util.List;
  * This is a stateful object.
  */
 public class FoodList {
-    private ArrayList<FoodEntry> foodEntries;
+    private List<FoodEntry> foodEntries;
 
     /**
      * Default constructor that instantiates FoodList with an empty foodentry arraylist.
@@ -24,6 +24,7 @@ public class FoodList {
 
     /**
      * Convenience constructor for testing purposes.
+     * This is an unsafe method of building the FoodList as FoodEntry added may not be an instance of DatedFoodEntry.
      */
     protected FoodList(ArrayList<FoodEntry> entries) {
         this.foodEntries = entries;
@@ -165,6 +166,14 @@ public class FoodList {
      */
     public List<LocalDateTime> getDateTimes() {
         return FoodListManager.convertListToLocalDateTimes(foodEntries);
+    }
+
+    /**
+     * Sorts the list based on datetime of the entries.
+     */
+    public String sort() {
+        this.foodEntries = FoodListManager.sortListByDate(foodEntries);
+        return this.toString();
     }
 
     @Override

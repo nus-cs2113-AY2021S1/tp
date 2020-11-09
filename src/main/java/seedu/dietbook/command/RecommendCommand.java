@@ -23,7 +23,7 @@ public class RecommendCommand extends Command {
             throw new DietException("Please enter your basic information first!");
         }
         InputChecker.checkSingleCommand(this.input);
-        int recommendation = manager.getCalculator().calculateRecomendation(this.person);
+        int recommendation = manager.getCalculator().calculateRecommendation(this.person);
         ui.printCalorieRecommendation(this.person.getName(), recommendation);
     }
 }

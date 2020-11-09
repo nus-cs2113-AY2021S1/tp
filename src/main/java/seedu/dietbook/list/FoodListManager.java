@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.time.LocalDateTime;
+import java.util.Collections;
 
 /**
  * Class with static methods to execute "complex commands" on FoodList.
@@ -143,11 +144,17 @@ public class FoodListManager {
         return ListFunction.filterList(list, predicate);
     }
 
-    /**
-     * Sort a list of entries by date.
-     */
+    protected static List<FoodEntry> sortListByDate(List<FoodEntry> list) {
+        Function<FoodEntry, DatedFoodEntry> extractChild = x -> {
+            assert (x instanceof DatedFoodEntry) : "A FoodEntry without a date was unexpectedly added and found";
+            return (DatedFoodEntry) x;
+        };
+        List<DatedFoodEntry> datedList = ListFunction.applyFunctionToList(list, extractChild);
+        Collections.sort(datedList);
+        Function<DatedFoodEntry, FoodEntry> useParent = x -> (FoodEntry) x;
+        return ListFunction.applyFunctionToList(datedList, useParent);
 
+    }
 
 }
 
-// Potential future work: create a functional interface for the functions instead:
