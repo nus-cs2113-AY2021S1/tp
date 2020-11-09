@@ -1,9 +1,4 @@
----
-layout: page
-title: Zhuang Mengjin's Project Portfolio Page
----
-
-## Project: NUSchedule
+# Project: NUSchedule
 
 NuSchedule is a desktop task management application used for keeping track of user's events. The user interacts with it using a CLI. It is written in Java and has around 5 kLoC.
 
@@ -24,7 +19,7 @@ Given below are my contributions to the project.
   recorded. It also considers the case when certain event is across more than one day, the study time will be calculated correctly
   for different dates.
  
-* **New Feature**: Added the ability to mark an event as done.
+* **New Feature**: Added the ability to mark an event as done, as well as reject it if the current time is before the ending time.
 
 * **New Feature**: Added the ability to delete an event.
 
@@ -53,7 +48,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Fix bugs happening to the features. (Pull requests [\#37](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/37), [\#145](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/145))
-
+  * Make Auto Clear as an option that user can turn on or off. (Pull request [\#182](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/182))
+  
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `delete` and `find` [\#72]()
@@ -62,6 +58,6 @@ Given below are my contributions to the project.
     * Make the hyperlinks work properly [\#92](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/92)
 
 * **Community**:
-  *PRs reviewed (with non-trivial review comments):[\#162](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/162), [\#172](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/172)
+  * PRs reviewed (with non-trivial review comments):[\#162](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/162), [\#172](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/172), [\#147](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/147), [\#144](https://github.com/AY2021S1-CS2113T-F14-4/tp/pull/144)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2113-AY2021S1/forum/issues/48#issuecomment-709282848))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/Lee-Juntong/ped/issues/9), [2](https://github.com/Lee-Juntong/ped/issues/13), [3](https://github.com/Lee-Juntong/ped/issues/14))

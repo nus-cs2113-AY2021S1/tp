@@ -1,22 +1,18 @@
 package command;
 
-import event.Event;
 import eventlist.EventList;
-import exception.InvalidEventIndexException;
-import exception.InvalidLocationException;
-import exception.NuScheduleException;
-import exception.UnknownErrorException;
 import location.Location;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
 /**
  * Represents the command call when the user wants to locate an event.
  */
 public class LocateCommand extends Command {
-    private String input;
+    private final String input;
 
     public LocateCommand(String input) {
         this.input = input;
@@ -30,9 +26,11 @@ public class LocateCommand extends Command {
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
+     * @param userInfo  personal information and settings about the user.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage) {
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage,
+                        UserInfo userInfo) {
         int eventNum;
         if (locations.checkIfInteger(input)) {
             eventNum = Integer.parseInt(input) - 1;

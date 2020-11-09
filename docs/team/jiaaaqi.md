@@ -18,13 +18,13 @@ Given below are my contributions to the project:
     list, which saves bus stop data. Users are able to view the entire list by keying in the command `locations` or 
     `busstops`.
     
-*__Storage:__ Added location data of locations within NUS
+* __Storage:__ Added location data of locations within NUS
 
 * __New Feature:__ Added a `locate` command to find a location using location name or event index
     * Justification: This feature will allow user to receive location information. It allows users to find more 
     information using a location name, or an event index based on the event list. 
 
-* __Code Contributed:__ [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiaaaqi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=jiaaaqi&tabRepo=AY2021S1-CS2113T-F14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~other)
+* __Code Contributed:__ [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiaaaqi)
 
 * __Project Management:__ 
     * Managed releases `v1.0` - `v2.0` on GitHub

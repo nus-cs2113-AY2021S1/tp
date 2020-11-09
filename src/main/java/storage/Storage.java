@@ -119,11 +119,11 @@ public class Storage {
             Scanner s = new Scanner(new File(filePaths[1]));
             if (s.hasNext()) {
                 String[] words = s.nextLine().split(REGEX_IN_FILE);
-                userInfo = new UserInfo(words[0], words[1]);
+                userInfo = new UserInfo(words[0], words[1], (Integer.parseInt(words[2]) != 0));
             }
         } catch (FileNotFoundException e) {
             System.out.println("file not found");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new LoadingException();
         }
         return userInfo;

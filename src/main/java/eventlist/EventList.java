@@ -6,6 +6,7 @@ import event.Class;
 import event.Event;
 import event.PersonalEvent;
 import event.SelfStudy;
+import exception.DoneBeforeEndException;
 import exception.ExistingEventInListException;
 import exception.UndefinedEventException;
 import exception.EndBeforeStartEventException;
@@ -68,8 +69,12 @@ public class EventList {
      *                   //     * @throws UndefinedEventException the event is not defined but
      *                   // the user want to mark it as done
      */
-    public void doneEvent(int eventIndex) throws UndefinedEventException {
+    public void doneEvent(int eventIndex) throws UndefinedEventException, DoneBeforeEndException {
         try {
+            if (events.get(eventIndex).getEndDateTime().isAfter(LocalDateTime.now())
+                    && !(events.get(eventIndex) instanceof Assignment)) {
+                throw new DoneBeforeEndException();
+            }
             events.get(eventIndex).markAsDone();
         } catch (IndexOutOfBoundsException e) {
             throw new UndefinedEventException(eventIndex);
@@ -543,7 +548,7 @@ public class EventList {
      */
     public void clearBefore(LocalDate clearDate) throws EmptyEventListException {
         if (events != null) {
-            events.removeIf(event -> event.getDate().compareTo(clearDate) < 0);
+            events.removeIf(event -> event.getEndDate().compareTo(clearDate) < 0);
         } else {
             throw new EmptyEventListException();
         }
