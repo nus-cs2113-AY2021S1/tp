@@ -61,7 +61,7 @@ Prerequisite: Ensure that you have Java 11 installed in your Computer.
 
 5. You will be greeted with this:
 
-<img src = "images/firstopen.PNG" width = "500">
+<img src = "images/firstopen.PNG" width = "600">
 
 &nbsp;  
 
@@ -93,7 +93,7 @@ If you are unfamiliar with the CLI (Command Line Interface), do give this helpfu
   
 Expected outcome:
  
-<img src = "images/help.PNG" width = "500">
+<img src = "images/help.PNG" width = "550">
  
 &nbsp;
 
@@ -110,7 +110,7 @@ To supplement the `help` command, The `example` command provides the correct for
 
 Expected outcome:
  
-<img src = "images/example.PNG" width = "800">
+<img src = "images/example.PNG" width = "750">
 
 &nbsp;
 <div style="page-break-after: always;"></div>
@@ -135,12 +135,12 @@ Expected outcome:
 >
 
   The duration of each episode is `25` minutes.<br>
- <img src = "images/addCommandUG/addInput.PNG" width = "450">
+ <img src = "images/addCommandUG/addInput.PNG" width = "600">
   &nbsp;<br>
   
  After keying in the input as shown in the image above, the next image shows the expected output.<br>
  
- <img src = "images/addCommandUG/addResponse.PNG" width = "450">
+ <img src = "images/addCommandUG/addResponse.PNG" width = "600">
   &nbsp;<br>
   
  If you see the outcome as pictured above, it means that the show has been successfully added to **WatchNext**.
@@ -192,7 +192,7 @@ The process is terminated. Your existing data is kept
   Example of usage:
       `edit Friends`
     
-     <img src = "images/edit_step_1.PNG" width = "550">
+     <img src = "images/edit_step_1.PNG" width = "600">
      
 
 
@@ -233,7 +233,7 @@ Example of usage:
 
 Expected outcome:
    
-  <img src = "images/edit.PNG" width = "550">
+  <img src = "images/edit.PNG" width = "600">
    
   &nbsp;
   
@@ -251,7 +251,7 @@ Expected outcome:
  
  To help you better understand the flow of this command we have included a program flow diagram to illustrate the process.
  
- <img src = "images/programFlowUG.png" width = "450">
+ <img src = "images/programFlowUG.png" width = "500">
  
  <sub><sup>The blue bubbles represent the Program portion of the interaction, while the yellow bubbles indicate the user input</sup></sub>
 
@@ -272,7 +272,7 @@ The rating of your show will also be shown if you have added it using the [addre
    
    Expected outcome:
     
-   <img src = "images/list.PNG" width = "500">
+   <img src = "images/list.PNG" width = "600">
     
    &nbsp;
 
@@ -294,13 +294,13 @@ The `addreview` command allows you to add a review for a show, including adding 
  
    Expected outcome:
  
-  <img src = "images/addreview.PNG" width = "650">
+  <img src = "images/addreview.PNG" width = "600">
 
    &nbsp;
    
    Checking with the `list` command: 
    
-   <img src = "images/addreviewlist.png" width = "650">
+   <img src = "images/addreviewlist.png" width = "600">
    
    
 ### 4.f. `changereview` - Changing a review
@@ -320,11 +320,11 @@ The `changereview` command allows you to change a review for a show that is alre
  
    Expected outcome:
    
-  <img src = "images/changereview.PNG" width = "650">
+  <img src = "images/changereview.PNG" width = "600">
   
   Checking with the `list` command:
   
-  <img src = "images/changereviewlist.png" width = "650">
+  <img src = "images/changereviewlist.png" width = "600">
   
 
 ### 4.g. `deletereview` - Deletes a review
@@ -339,7 +339,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
    Expected outcome: 
    
-  <img src = "images/deletereview.PNG" width = "450">
+  <img src = "images/deletereview.PNG" width = "600">
  
 
 ### 4.h. `delete` - Deletes your show
@@ -355,7 +355,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
  Input:
  
- <img src = "images/delete/input.png" width = "400">  
+ <img src = "images/delete/input.png" width = "600">  
  
   &nbsp;
 
@@ -363,7 +363,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
 
  Expected outcome :
   
- <img src = "images/delete/delete.PNG" width = "350">
+ <img src = "images/delete/delete.PNG" width = "600">
 
  &nbsp;
   
@@ -380,7 +380,7 @@ The `deleterating` command deletes the rating for an existing show in the watchl
  
  Expected outcome:
   
- <img src = "images/deleterating.PNG" width = "400">
+ <img src = "images/deleterating.PNG" width = "600">
 
  &nbsp;
 
@@ -406,7 +406,7 @@ The `changerating` command changes the rating for an existing show which already
  
  Checking with the `list` command :
  
- <img src = "images/changeratinglist.png" width = "650">
+ <img src = "images/changeratinglist.png" width = "600">
  
 
 ### 4.k. `season` - Changes the season of the show you are currently watching
@@ -427,7 +427,7 @@ If you would only like to change the current season:
  
  Input:
  
-   <img src = "images/season/input.png" width = "450">
+   <img src = "images/season/input.png" width = "600">
     
    &nbsp;
  
@@ -435,7 +435,7 @@ If you would only like to change the current season:
  
  Expected outcome :
   
- <img src = "images/season/output.png" width = "650">
+ <img src = "images/season/output.png" width = "600">
   
  &nbsp;
 
@@ -462,7 +462,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Input: 
  
-  <img src = "images/episode/input.png" width = "450">
+  <img src = "images/episode/input.png" width = "600">
    
   &nbsp;
  
@@ -477,7 +477,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
  Expected outcome for the example:
   
- <img src = "images/episode/output.png" width = "650">
+ <img src = "images/episode/output.png" width = "600">
   
  &nbsp;
  
@@ -505,7 +505,7 @@ The `watch` command updates the watching progress for your show, and automatical
  
  Before input:
  
- <img src = "images/watch_before.PNG" width = "800">
+ <img src = "images/watch_before.PNG" width = "650">
  &nbsp;
  
  To illustrate the change in your watch time limit, we have added the time limit to 120 minutes.
@@ -514,7 +514,7 @@ The `watch` command updates the watching progress for your show, and automatical
  
  Expected outcome:
   
- <img src = "images/watch_after.PNG" width = "800">
+ <img src = "images/watch_after.PNG" width = "650">
   
  &nbsp;
  
@@ -540,7 +540,7 @@ The `updatetimelimit` command updates your daily watch time limit.
  
  Expected outcome:
   
- <img src = "images/updatetimelimit.PNG" width = "800"> 
+ <img src = "images/updatetimelimit.PNG" width = "650"> 
 
  &nbsp;
  
@@ -554,10 +554,10 @@ The `updatetimelimit` command updates your daily watch time limit.
  As seen from the expected outcome, you now have a limit of 2 hours to spend on watching shows.To use the allocated limit, use the [watch command](#4ma-watch---watch-a-show-in-your-list) above.
 
 If you have **used up** your allocated time, a prompt will be displayed to you as seen below:<br> 
- <img src = "images/useduptimelimit.PNG" width = "800"> <br>  &nbsp;
+ <img src = "images/useduptimelimit.PNG" width = "650"> <br>  &nbsp;
 
 If you have **exceeded** your allocated time, a prompt will be displayed to you as seen below:<br> 
- <img src = "images/exceededlimit.PNG" width = "800"> <br>  &nbsp;
+ <img src = "images/exceededlimit.PNG" width = "650"> <br>  &nbsp;
  
 The underlined portion shows the prompt to the user, and the circled portion details the amount of time that the user has exceeded.
 
@@ -581,7 +581,7 @@ The `search` command helps you search for a specific show in the watchlist and p
 
  Input:
    
- <img src = "images/search/search_input.png" width = "550"> 
+ <img src = "images/search/search_input.png" width = "600"> 
  
  &nbsp;
  
@@ -606,7 +606,7 @@ Example of usage:
 
 Expected outcome:
  
-<img src = "images/bye.PNG" width = "500">
+<img src = "images/bye.PNG" width = "600">
  
 &nbsp;
 
