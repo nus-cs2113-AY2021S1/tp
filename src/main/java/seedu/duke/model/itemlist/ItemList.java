@@ -178,15 +178,11 @@ public abstract class ItemList<T extends Item> {
         int count = 0;
         String message = "";
         for (T item : items) {
-            System.out.println("check");
             String[] description;
             description = item.getDescription().trim().toLowerCase().split(" ");
             if (isLink) {
-                Class linkClass = Link.class;
-                System.out.println("yes");
                 description = new String[1];
                 description[0] = (((Link) item).getModule().toLowerCase());
-                System.out.println(description[0]);
             }
             if (Arrays.asList(description).contains(keyword.trim().toLowerCase())) {
                 matchingItems.add(item);
