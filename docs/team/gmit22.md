@@ -23,6 +23,7 @@ Our CS2113T product, SCRUMptious makes collaboration for users much easier than 
 [#108](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/108),
 [#111](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/111),
 [#119](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/119).
+\
 Set up the code for Model Component of the project, including following classes:
 * `Project`
 * `Member`
@@ -62,7 +63,7 @@ and [#164](https://github.com/AY2021S1-CS2113T-F11-4/tp/issues/164).
 [#73](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/73),
 [#119](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/119),
 [#124](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/124).
-
+<br>
 Set up the draft of User Guide for initializing the application in `Project`, `Member`
 command. Updated the expected output of commands for V2.0 in 
 [#119](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/119). 
@@ -73,7 +74,7 @@ Many PED Bugs were also solved in [#178](https://github.com/AY2021S1-CS2113T-F11
  * **PR**[#181](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/181)
  [#140](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140)
  [#131](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/131)
- 
+ \
  Created Architecture diagram for the Developer guide, added sequence diagrams and class diagrams to improve
  understanding of the project. Create sequence diagram for `CreateProjectCommand` to better understand the workflow
   and user interaction when the application is run, and project is created. Added [user stories, value proposition and 
