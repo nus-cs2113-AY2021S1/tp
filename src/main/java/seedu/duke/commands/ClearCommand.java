@@ -5,6 +5,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
 
 // @@author MuhammadHoze
+//Reused from https://github.com/GuoAi/ip with minor modifications
 
 /**
  * Clears all tasks in the task list.

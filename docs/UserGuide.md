@@ -220,7 +220,7 @@ Format: `spend <description> <compulsory arguments> <optional arguments>`
 List of `<compulsory arguments>`:
 - `v/<value>` sets the amount of money spent
 
-🚩: value has a limit of **100 million** 
+🚩: value has a limit of **100 trillion** (100,000,000,000,000). 
 
 🚩: value must be **non-negative**.
 
@@ -935,7 +935,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Searching for tasks with keyword: `find`
+### Searching for an item with keyword: `find`
 
 Finds all items in the corresponding item list with matching description.
 

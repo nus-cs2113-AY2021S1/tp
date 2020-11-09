@@ -1,5 +1,3 @@
-// @@author Cao-Zeyu
-
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
@@ -14,6 +12,8 @@ import seedu.duke.model.item.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+// @@author Cao-Zeyu
 
 /**
  * Lists all tasks in the task list to the user.
