@@ -329,8 +329,8 @@ The sequence diagram for `DeleteCommand` is shown below:
 #### On Command
 
 The `OnCommand` shown below explains the Sequence Diagram of the OnCommand. When the Main class calls the execute() function there will be are 2 cases for on command to flow:
-1. `OnByLocation`
-2. `OnByAppliance`
+1. `onByLocation`
+2. `onByAppliance`
 
 The sequence diagram for `OnCommand` is shown below:
 
@@ -339,13 +339,13 @@ The sequence diagram for `OnCommand` is shown below:
 The program will determine if the user inputted: key is a name of an appliance, or a location.This is done by checking 
 the key in the `LocationList`, if it exists, the program will deem it as `OnByLocation` vice versa.
 
-1. `OnByLocation` <br>
+1. `onByLocation` <br>
 The first condition checks if the user types in any parameter into the command, if so, the program will be unable to turn on
 the appliances in the location. This is done as not all parameters are accepted by every appliance, for example,
 `setTemperature` is only accepted for Air Conditioner. Thus, the parameter option is only opened to the `OnByAppliance` method.
 Then, `onByApplianceLoop` will be called to turn on all appliances in the location.
 
-2. `OnByAppliance` <br>
+2. `onByAppliance` <br>
 The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this signifies
 that that key does not exist in the location or appliance list. Else, we will call the `onAppliance` method.
 
@@ -353,8 +353,8 @@ that that key does not exist in the location or appliance list. Else, we will ca
 #### Off Command
 
 When the Main class calls the `execute()` function there are 2 cases for off command:
-1. `OffByLocation`
-2. `OffByAppliance`
+1. `offByLocation`
+2. `offByAppliance`
 
 The sequence diagram for `OffCommand` is shown below: 
 
@@ -363,10 +363,10 @@ The sequence diagram for `OffCommand` is shown below:
 The program will determine if the user inputted: key is a name of an appliance or a location. This is done by checking 
 the key in the LocationList, if it exists, the program will deem it as `OffByLocation` vice versa. 
 
-1. `OffByLocation` <br>
+1. `offByLocation` <br>
 This method will call offByApplianceLoop which turns off every appliance in that location.
 
-2. `OffByAppliance` <br>
+2. `offByAppliance` <br>
 The first condition checks the index of the tagged appliance in the applianceList. If the index is negative, this 
 signifies that that key does not exist in the location or appliance list. Else, we will call the `offAppliance` method.
 
@@ -381,13 +381,9 @@ The sequence diagram for `ListCommand` is shown below:
 
 ![Sequence of List Command](images/diagrams/Sequence_ListCommand.png) 
 
-<br><br>
+<br>
 
-As depicted from the diagram, there are 
-2 cases for `ListCommand`:
-1. `listAppliance`
-2. `listLocation`
-
+As depicted from the diagram, there are 2 cases for `ListCommand`:
 1) `listAppliance` <br>
 This method checks for the user's key in a filteredLocation together with the “list appliance”. If there is no filteredLocation, 
 it will just create a list of all the appliances in all the locations. Vice versa, if it exists a filteredLocation,it will 
@@ -409,7 +405,7 @@ The sequence diagram of `UsageCommand` is shown below when user enters *usage*:
 
 To reset the power consumption of each appliance and total power usage of SmartHomeBot back to zero. This class object is first created by the `Parser` class, where it is then returned to the `Main` class to have its `execute()` 
 method called. When the `Main` class calls the `execute()` function, `ResetCommand` will then access the power class 
-and reset the appliance power. A new CommandResults class will be returned to the main with a feedback message.
+and reset the appliance power. A new `CommandResult` class will be returned to the main with a feedback message.
 
 The sequence diagram of `ResetCommand` is shown below when user enters *p_reset*:
 
