@@ -297,6 +297,13 @@ Use case ends.
 
 ## Glossary
 
+    - JSON: (JavaScript Object Notation) is a lightweight data-interchange format, and a standard text-based format 
+          used for representing structured data based on JavaScript object syntax.
+    
+    - LinkedHashMap: is a Hash table and linked list implementation of the Map interface, with predictable
+     iteration order. This implementation differs from HashMap in that it maintains a doubly-linked list running
+     through all of its entries. 
+
 
 <!-- @@author mhchan163 -->
 ## Instructions for manual testing
@@ -420,3 +427,4 @@ Expected: All pre-existing tasks before the most recent program exit
 should be displayed in the list.
 
 <!-- @@author -->
+
