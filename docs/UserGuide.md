@@ -74,6 +74,7 @@ In this guide, we cover:
 * Common use cases for each command
 * Summary of all the commands
 
+<div style="page-break-after: always;"></div>
 
 ### 1.3. Understanding the Command Line Interface (CLI)
 To use KAJI, you have to first know the Command Line Interface, the platform that KAJI runs on. However, as we have simplified the interface for you, here is a simplified introduction that will cover everything you need to know about the CLI to use KAJI.
@@ -155,12 +156,14 @@ Ensure that you are at the **Admin Level** before trying the commands in the nex
   <img src="UG_Images/AdminLevel.png" width="600" alt="Admin Level"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.1. Adding a module: `add`
 (by Jiayi)
 
 Welcome to the first feature of KAJI! In order to use this program, you first will need to create a module deck. Creating a new module deck in KAJI is like getting a new folder to store all the handouts for one module. This is important because it helps you to organize your messy notes. <br>
 
-##### Format: `add MODULE_NAME`
+**Format:** `add MODULE_NAME`
 MODULE_NAME is the name of the new module that you would like to create, such as `CS2113`, `Module 1` or `Biology`. 
 
 Here are some key pointers:
@@ -176,6 +179,9 @@ Below are steps of using this `add` command: <br>
 <p align="center">
   <img src="UG_Images/addModule1.png" alt="Add Module 1"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 2: As shown below, a new module named `CS2113T` has just been created! You are free to edit, delete and access this module! <br>
 <p align="center">
   <img src="UG_Images/addModule2.png" alt="Add Module 2"/>
@@ -192,6 +198,8 @@ Below are the breakdown of this example: <br>
 <p align="center">
   <img src="UG_Images/addModule4.png" alt="Add Module 4"/>
 </p>
+
+<div style="page-break-after: always;"></div>
 
 This is another additional example to show you the unique property of Kaji's add feature. <br>
 As you may aware from `Key Pointers` section above, Kaji only allows addition of one new module each time. Let's see what will happen if you try to add two modules `cs2113 cs2101` at same time. <br>
@@ -215,6 +223,8 @@ After adding modules to the admin, you can view the list of modules that you hav
 Here are some key pointers:
 * Do not need to add parameter `admin` after `list`.
 * All list commands have the same command word `list`. 
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
@@ -286,6 +296,8 @@ Here are some key pointers:
 * `MODULE_INDEX` refers to the index number shown in the current module list. 
 * Index provided **must be a positive integer** 1, 2, 3, ...
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
 
 For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
@@ -303,11 +315,15 @@ For instance, you are currently at the admin level and want to remove the module
 (by Jiayi)
 
 Now you have learnt how to create, edit and delete the module deck, let's move to the next page. You can now access the module deck you have created by using the command `go MODULE_INDEX`.
-##### Format: `go MODULE_INDEX`
+**Format:** `go MODULE_INDEX`
 
-##### Key Pointers:
+Here are some key pointers:
 * Kaji only allow access to the existing modules that are shown in the list, therefore, module that is deleted or has never been created will result in an error message.
 * `MODULE_INDEX` **must be a positive integer** 1, 2, 3, ..., and must be a valid index number for a module as displayed from the list of module.
+
+<div style="page-break-after: always;"></div>
+
+**Example:**
 
 In this example, you are going to access the module `CS2113T` that you have created in the previous sections.
 Below are steps of using this `go` command:
@@ -344,12 +360,14 @@ Ensure that you are at the **Module Level** before trying the commands in the ne
 
 You are now at the module level! This command allows you to create a new chapter inside your current module deck. It belongs to the module level you are currently in. It is like preparing an empty paper to write notes for a lecture. Let's create a new chapter inside the module! <br>
 
-##### Format: `add CHAPTER_NAME`
+**Format:** `add CHAPTER_NAME`
 CHAPTER_NAME is the name of the new chapter that you would like to create, such as `Topic 1`, `Chapter 1` or `Newton's laws of motion`. 
 
 Here are some key pointers:
 * Similar to module, KAJI does not allow duplicate of chapter names, therefore, if the existing chapter has the same name as the new chapter, you will get an error message
 * KAJI is not case-sensitive, therefore, a new chapter named `chapter`  will be treated equally to a module named `CHAPTER`. 
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
@@ -365,11 +383,11 @@ Below are steps of using this `add` command: <br>
 </p>
 * Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji. <br>
 <p align="center">
-  <img src="UG_Images/addChapter3.png" alt="Add Chapter 3"/>
+  <img src="UG_Images/addChapter3.png" width="600" alt="Add Chapter 3"/>
 </p>
 * Step 4: You have just created a new chapter! Good Job! <br>
 <p align="center">
-  <img src="UG_Images/addChapter4.png" alt="Add Chapter 4"/>
+  <img src="UG_Images/addChapter4.png" width="600" alt="Add Chapter 4"/>
 </p>
 
 #### 3.2.2. Listing chapters available: `list`
@@ -388,16 +406,18 @@ Here are some key pointers:
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 
 <p align="center">
-    <img src="UG_Images/list_chapter1.png" alt="List Chapter 1"/>
+    <img src="UG_Images/list_chapter1.png" width="600" alt="List Chapter 1"/>
 </p>
 
 * Step 2: The result for the list of chapters will be displayed as shown.<br>
 
 <p align="center">
-    <img src="UG_Images/list_chapter2.png" alt="List Chapter 2"/>
+    <img src="UG_Images/list_chapter2.png" width="600" alt="List Chapter 2"/>
 </p>
 
 * After listing all chapters, you can try all commands available in **Module Level**.
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.3. Editing a chapter name: `edit`
 (by Jane)
@@ -427,6 +447,9 @@ Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap
 <p align="center">
   <img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 4: After the chapter name has been successfully edited, the result will be displayed as shown.<br>
 <p align="center">
   <img src="UG_Images/EditChapter4.png" width="600" alt="Edit Chapter 4"/>
@@ -456,6 +479,8 @@ For instance, you are currently at the module level `CS2113T` and want to remove
   <img src="UG_Images/RemoveChap2.PNG" width="600" alt="Remove Chapter 2"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
 
@@ -484,6 +509,7 @@ For instance, you are currently in Module level `CS2113T` and want to head to Ch
   <img src="UG_Images/moduleGoResult.png" width="700" alt="Go Result"/>
 </p>
 
+<div style="page-break-after: always;"></div>
 
 #### 3.2.6. Returning to admin level: `back`
 (by Yan An)
@@ -521,6 +547,8 @@ Here are some key pointers:
 * Starts a revision based on the index provided. 
 * The index refers to the index number shown in the chapter list for the module level you are currently in.  
 * Index provided **must be a positive integer** 1, 2, 3, ...
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
@@ -609,6 +637,8 @@ You can do so by using the `add` command, followed by the details of the flashca
 
 **Format:** `add q:QUESTION | a:ANSWER`
 
+<div style="page-break-after: always;"></div>
+
 Here are some key pointers:
 * `QUESTION` is the question of your flashcard.
 * `ANSWER` is the answer of your flashcard.
@@ -638,6 +668,8 @@ You can do so by using the `list` command.
 
 Here are some key pointers:
 * You cannot type in any parameters after the `list` command.
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
@@ -673,6 +705,8 @@ and must be a valid index number for a flashcard as displayed from the list of f
 * If the question or answer of your flashcard does not need to be edited,
 you do not need to type any content for the parameter `QUESTION` or `ANSWER`.
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
 
 Let's say you want to edit the question to `2*1` for the flashcard that has `1+1` as the question and `2` as the answer.
@@ -699,6 +733,8 @@ Let's say you want to edit the question to `2*1` for the flashcard that has `1+1
 Removes a flashcard from KAJI.
 
 **Format:** `remove FLASHCARD_INDEX`
+
+<div style="page-break-after: always;"></div>
 
 Here are some key pointers:
 * Removes the flashcard based on the index provided.
@@ -731,6 +767,9 @@ For instance, you are currently in chapter level `Chapter 1` and want to return 
 <p align="center">
   <img src="UG_Images/BackMod1.PNG" width="600" alt="Back Module 1"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 2: You should return to the module level as shown below: <br>
 <p align="center">
   <img src="UG_Images/BackMod2.PNG" width="600" alt="Back Module 2"/>
@@ -759,6 +798,9 @@ Below are steps of using this `showrate` command: <br>
 <p align="center">
   <img src="UG_Images/showrate1.png" alt="Show rate 1"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 2: Kaji calculates the percentage of card in different master level (i.e. `easy`, `medium`, `hard` and `cannot answer`). <br>
 <p align="center">
   <img src="UG_Images/showrate2.png" alt="Show rate 2"/>
@@ -772,7 +814,6 @@ Now that you know how to make KAJI manage your Database of revision content for 
 **You don't have to do a thing** to enjoy the benefits of Spaced Repetition. Everything is scheduled for you, so all you have to do is to use the commands `due` and `preview` to view what chapters are due and complete the revision  for them accordingly. 
 
 Despite that, this **does not mean that you cannot customise** the scheduling process. KAJI allows you to `reschedule`, `include` and `exclude` Chapters manually if you wish to do so, but more on that later. First, let us get into the specific introduction of each command.
-<br><br>
 
 ### 3.4.1. Listing the chapters due for today: `due`
 (by Yan An)
@@ -790,6 +831,8 @@ Here are some key pointers:
 * There are **no parameters** for this command.
 * This command can be **called from any Level**
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
  
 At any point, if you want to **see what Chapters are due**, all you have to do is enter the `due` command. Below is an example of an execution of the `due` command.
@@ -805,8 +848,6 @@ At any point, if you want to **see what Chapters are due**, all you have to do i
 <p align="center">
   <img src="UG_Images/dueComplete.png" width="700" alt="Due Command Result"/>
 </p>
-
-<br><br>
 
 ### 3.4.2. Listing the chapters that are due in the upcoming week: `preview`
 (by Yan An)
@@ -827,6 +868,8 @@ Here are some key pointers:
 
 At any point, if you **want to see a preview of which Chapters are going to be due within the upcoming week**, all you have to do is enter the `preview` command. Below is an example of an execution of the `preview` command.
 
+<div style="page-break-after: always;"></div>
+
 * ***Step 1***: Key the **`preview`** command **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
@@ -838,8 +881,6 @@ At any point, if you **want to see a preview of which Chapters are going to be d
 <p align="center">
   <img src="UG_Images/previewComplete.png" width="700" alt="Preview Command Result"/>
 </p>
-
-<br><br>
 
 ### 3.4.3. Adding chapters to your list of excluded modules: `exclude`
 (by Yan An)
@@ -859,6 +900,8 @@ Here are some key pointers:
 * This command can be **called from any Level**
 * This command **checks if the Chapter/Module** you are adding into the Exclusion List **exists**, so the List will not be filled with non-existing exclusions.
 * Do note that the name of the Chapter/Module you provide has to be in the correct case as our check is **case-sensitive**.
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
@@ -890,6 +933,8 @@ Example of ***`exclude chapter`***
   <img src="UG_Images/excludeChapter.png" width="700" alt="Exclude Command Chapter mode: ChapterName Command"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 * ***Step 2***: Key the **Module name** of the Module that contains Chapter that you wish to exclude from your schedule **into the prompt** as shown below and **press *[Enter]***
 
 <p align="center">
@@ -908,8 +953,6 @@ Example of ***`exclude chapter`***
   <img src="UG_Images/excludeChapterResult.png" width="900" alt="Exclude Command Chapter mode: Result"/>
 </p>
 
-
-
 ### 3.4.4. Removing chapters from the list of excluded modules: `include`
 (by Yan An)
 
@@ -922,6 +965,8 @@ The `include` command allows you to **remove** a single Chapter or every Chapter
 The `include` command has two options for MODULE_OR_CHAPTER:
 * ***module***: This option allows you to use `include` to remove all the Chapters from a Module from the Exclusion List.
 * ***chapter***: This option allows you to use `include` to remove a Chpater from the Exclusion List.
+
+<div style="page-break-after: always;"></div>
 
 Here are some key pointers:
 * This command can be **called from any Level**
@@ -950,6 +995,7 @@ Example of ***`include module`***
   <img src="UG_Images/includeModuleResult.png" width="900" alt="Include Command Module mode: Result"/>
 </p>
 
+<div style="page-break-after: always;"></div>
 
 Example of ***`include chapter`***
 * ***Step 1***: Key the **`include chapter`** command **into the prompt** as shown below and **press *[Enter]***
@@ -976,6 +1022,8 @@ Example of ***`include chapter`***
   <img src="UG_Images/includeChapterResult.png" width="900" alt="Include Command Chapter mode: Result"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.5. General
 This section introduces the syntax and usages of the commands for the features that are available at **All Levels**.<br>
 You can use the commands in the next few sections at **Admin, Module and Chapter Level.**
@@ -995,13 +1043,13 @@ Here is a key point:
 * Step 1: Type `help` into the command prompt and press `Enter` to execute it.<br>
 
 <p align="center">
-    <img src="UG_Images/help1.png" alt="Help 1"/>
+    <img src="UG_Images/help1.png" width="600" alt="Help 1"/>
 </p>
 
 * Step 2: Part the result for the list of commands will be displayed as shown.<br>
 
 <p align="center">
-    <img src="UG_Images/help2.png" alt="Help 2"/>
+    <img src="UG_Images/help2.png" width="600" alt="Help 2"/>
 </p>
 
 * After knowing what are the commands, you can try any commands on the correct level.
@@ -1035,7 +1083,9 @@ Let's say today is 2020-11-09 and you want to view the revision history today:
     <img src="UG_Images/history2.png" alt="History 2"/>
 </p>
 
-* If you have not revised in 2020-11-09 this result will be displayed.<br>
+<div style="page-break-after: always;"></div>
+
+* If you have not revised on 2020-11-09 this result will be displayed.<br>
 
 <p align="center">
     <img src="UG_Images/history3.png" alt="History 3"/>
@@ -1112,6 +1162,8 @@ You can exit Kaji by using this command.
 | Preview | `preview` |
 | Exclude | `exclude MODULE_OR_CHAPTER` <br> e.g. `exclude module` or `exclude chapter` |
 | Include | `include MODULE_OR_CHAPTER` <br> e.g. `include module` or `include chapter` |
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5. General
 
