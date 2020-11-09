@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.logging.FileHandler;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Represents a module list. A <code>ModuleList</code> object corresponds to
@@ -25,7 +23,6 @@ public class ModuleList {
     private static final int MIN_MOD_LENGTH = 6;
     private static final int MAX_MOD_LENGTH = 8;
     public static double NO_INPUT = -1.0;
-    private static Logger logger = Logger.getLogger(ModuleList.class.getName());
 
 
     /**
@@ -242,15 +239,7 @@ public class ModuleList {
      * @param storage storage object where data is stored.
      */
     public void addExp(String input, boolean toPrint, Storage storage) {
-        try {
-            FileHandler fh = new FileHandler("logger.log", true);
-            logger.setLevel(Level.INFO);
-            logger.addHandler(fh);
-        } catch (IOException e) {
-            ui.printLoggerFileError();
-        }
-
-
+        
         try {
 
             String[] modInfo = input.trim().split(" ", 3);
@@ -296,7 +285,6 @@ public class ModuleList {
             ui.printAddExpError(toPrint);
             ui.printEmptyline(toPrint);
         } catch (NumberFormatException nfe) {
-            logger.log(Level.INFO, "Invalid addexp format");
             ui.printAddExpNfe(toPrint);
         }
     }
