@@ -76,6 +76,8 @@ Our goal is to create an app which improves users’ ability of writing and crea
 ### Maintainability
 With the aim of increasing maintainability of Fluffle, separated packages and classes were implemented in strict compliance with Object-oriented Programming. Since it is important to be able to easily change functionality of one class without disturbing other dependent classes, each class only serves one purpose to reduce dependency on other classes. With low coupling and high cohesion, subsequent developers can make minimal effort in maintaining Fluffle.
 
+[Jump to top](#developer-guide)
+
 ## Definitions
 
 |Terminology|Explanation|
@@ -402,9 +404,15 @@ The `reset bunny` command simply calls `clearAllBunny` function to clear the `bu
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
 <p align = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
+#### Overview of main function
+
 The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The `Names` class has the protected ArrayList of names, `nameList`, that is accessed by the `Names` class method `getName` which randomly gets a selected name from the `nameList` ArrayList. Similarly, `nameList` is also accessed by the `Names` class which contains the `filterNames` function which can filter through the list and obtain names with specified keywords using the command `filter name <NAME>`, where the user may choose to omit the `NAME` when running the command. Similarly, `nameList` is also accessed by the `Names` class which contains the `listNames` function which displays all the names stored in the `nameList` ArrayList. This is the same as the `filterNames` function when given no input String. Similarly, `nameList` is also accessed by the `Names` class which contains the `addName` function which adds a name to the list of names stored in the `nameList` ArrayList using the command `add name <NAME>`. The `NAME` cannot be omitted. Similarly, `nameList` is also accessed by the `Names` class which contains the `deleteName` function which removes a name from the list of names stored in the `nameList` ArrayList. The command to do this is `delete name <INDEX>`. The `INDEX` cannot be omitted, and the range of the `INDEX` can be determined from the `listNames` function above.
 
+#### Names Storage
+
 The `NamesDB` class accesses the `nameList` and overwrites the current `Names.txt` file in the data directory, saving all String objects in `nameList` into the file using the `updateDB` method. String objects saved in that file can then be read by the `NamesDB` class and saved into the `nameList` ArrayList using the `loadDB` method. In the event of the database `Names.txt` not existing, the `NamesDB` class will create the `Names.txt` database and populate the database with 500 names using the `loadDB` method.
+
+#### Names Exception Handling
 
 As shown in Figure 10, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
 
