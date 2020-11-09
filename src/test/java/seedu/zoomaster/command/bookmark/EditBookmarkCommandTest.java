@@ -9,7 +9,7 @@ import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Timetable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 //@@author
 class EditBookmarkCommandTest {
@@ -25,17 +25,11 @@ class EditBookmarkCommandTest {
     }
 
     @Test
-    void constructor_invalidInput_throwsZoomasterException() {
+    void constructor_invalidInput_throwsZoomasterException() throws ZoomasterException {
         setupBookmarks();
         String input = EditBookmarkCommand.EDIT_KW + " desc";
 
-        try {
-            EditBookmarkCommand command = new EditBookmarkCommand(input);
-            command.execute(bookmarks, timetable, ui);
-            fail();
-        } catch (ZoomasterException e) {
-            assertEquals(e.getError(), ZoomasterExceptionType.INVALID_EDIT_INPUT);
-        }
+        assertThrows(ZoomasterException.class, () -> new EditBookmarkCommand(input));
     }
 
     @Test
