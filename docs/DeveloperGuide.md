@@ -437,6 +437,7 @@ NUSchedule aims to assist the target audience with:
 |2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 |2.0|professor|Know whether my students have another lesson after mine and the expected time of travelling|Pace my lesson appropriately
 |2.0|student using zoom for lessons|record the virtual locations|store the links and passwords of the meetings
+|2.1|student having periodic lessons|repeat the classes on a weekly basis|spend less time in adding same classes but just different weeks  
 
 ## Appendix C: Non-Functional Requirements
   
