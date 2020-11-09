@@ -89,6 +89,8 @@ This class diagram shows how the Storage class is setup as an example.<br>
 <img src = "images/designDG/designSequence.png" width = "700"> <br><br>
 This shows the flow of the program for one user command input.
 
+ <div style="page-break-after: always;"></div>
+
 ## 4. Implementation
 
 ### AddCommand
@@ -662,6 +664,7 @@ actual time they spend watching shows and is a feature that is not provided by m
 |v1.0|user|clear my watch history |I can protect my privacy.|
 |v1.0|student|I want to track which zoom lectures / or webcasts that I have watched| I can make sure I don’t miss any important lessons.|
 
+ <div style="page-break-after: always;"></div>
 
 ##  Appendix C: Non-Functional Requirements
 
