@@ -34,7 +34,7 @@ The code contributed by me can be found in this [link](https://nus-cs2113-ay2021
     * Documented the following features:
         * `list`
         * `done`
-    * Prepared the final pdf file for submission
+    * Prepared the final PDF file for submission
         * Mainly add page breaks where appropriate
         * Ensure proper formatting when converting from Markdown to PDF
     
@@ -45,7 +45,7 @@ The code contributed by me can be found in this [link](https://nus-cs2113-ay2021
         * Implementation for marking a task as done
         * Other guides (Documentation guide, Testing guide, Dev-ops guide)
         * Instructions for manual testing the data storage feature
-    * Prepared the final pdf file for submission
+    * Prepared the final PDF file for submission
         * Mainly add page breaks where appropriate
         * Ensure proper formatting when converting from Markdown to PDF
     
