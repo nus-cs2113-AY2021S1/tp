@@ -10,7 +10,7 @@ As a fast-typing writer, this CLI app is highly suitable for you.
 This product is created on IntelliJ IDE with Java programming language.
 <br>
 ### 1.2.Assignments:
-By making use of milestone and issue features on GitHun, we've created detailed plans with assignments towards team's memebers for certain stage of the development.
+By making use of milestone and issue features on GitHub, we've created detailed plans with assignments towards team's memebers for certain stage of the development.
 <br>
 By accessing to the below link, you can get the track on the allocations within our team along the process of making **Fluffle**.
 <br>

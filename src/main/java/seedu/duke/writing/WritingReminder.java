@@ -1,7 +1,6 @@
 package seedu.duke.writing;
 
 import seedu.duke.constants.FluffleMessages;
-import seedu.duke.exceptions.writingexceptions.InvalidReminderDateException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,11 +8,19 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * This class contains a method to get the writings on a specific date and remind the writers about them.
+ */
 import static seedu.duke.constants.InputFormat.INPUT_DATE_FORMAT;
 
 public class WritingReminder {
     private static ArrayList<Writings> writings = WritingList.writingList;
 
+    /**
+     * Gets the writings which are scheduled on a specific date specified by the command.
+     *
+     * @param command contains the remind keyword and date.
+     */
     public static void filterWritingsOnADate(String command) {
         String[] words = command.split(" ", 2);
         for (int i = 0; i < words.length; i++) {

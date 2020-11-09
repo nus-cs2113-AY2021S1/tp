@@ -634,6 +634,8 @@ Er hält in Armen das ächzende Kind,
 Erreicht den Hof mit Mühe und Not;
 In seinen Armen das Kind war tot.
 end
+Please indicate the date you want to continue with this writing by keying the date in the format "dd/MM/yyyy"
+01/12/2020
 This Poem, Der Erlkönig has been added
 Done! We have added your writing to our storage! You can type "stats" for future reference!
 ```
@@ -659,13 +661,13 @@ Er hält in Armen das ächzende Kind,
 Erreicht den Hof mit Mühe und Not;
 In seinen Armen das Kind war tot.
 
-This writing was created on 2020-10-18
+This writing was created on 18/10/2020
+You want to continue on this writing on 01/12/2020
 --------------------------------------------------------------
 ```
 
-#### Getting reminders for your writings scheduled for a specific day: `remind`
-Let’s say you are a forgetful person, and you would like the program to remind you which writings you are about to 
-continue on a specific day. In this scenario, you can use the `remind` command.
+#### Getting reminders for your writings scheduled for a specific date: `remind`
+Let’s say you are an absent-minded person, and you would like the program to remind you which writings you are about to continue on a specific day. In this scenario, you can use the `remind` command.
 
 **Format**: `remind DATE`
 * `DATE` is the date that you want to continue on some of your writings. `DATE` should be in the form of 
@@ -734,7 +736,7 @@ The following table summarizes all the commands that you need to know when using
 | filter name  | `filter name <NAME>`<br>Gets the list of names after filtering.                                      |
 | add name     | `add name <NAME>`<br>Adds a name to the list of stored names.                                        |
 | delete name  | `delete name <INDEX>`<br>Removes a name from the list of stored names given the index.               |
-| stats        | `stats`<br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..<br>This is a poem  <br>Written by Goethe<br>Id: 5 <br> DER ERLKÖNIG<br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.<br>This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
+| stats        | `stats`<br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..<br>This is a poem  <br>Written by Goethe<br>Id: 5 <br> DER ERLKÖNIG<br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.<br>This writing was created on 18/10/2020<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
 | remind       | `remind DATE`<br> Show you which writings are scheduled on a specific day.<br> Example usage: `remind 30/10/2020`|
 | list         | `list`                                                                                                |
 | reset        | `reset <NAME_OF_CATEGORY>`<br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |                                                                                  |    
