@@ -914,6 +914,8 @@ Expected output:
 
 ![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png){:height="80%" width="80%"}
 
+<div style="page-break-after: always;"></div>
+
 ### 4.4 Deleting flashcards: `delete`
 
 When you have a flashcard that is no longer relevant to you or contains wrong information, you can delete the flashcard
@@ -933,6 +935,8 @@ Expected output:
 
 >**Useful information:**
 >* You can use the `list` command to check the card index.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5 Testing content:`test`
 
