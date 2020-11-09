@@ -78,7 +78,7 @@ the 2-D array of characters for weekly and monthly view. After that,
 the array will be shown to the user by Ui class via the OutputStream. 
 
 Moreover, DayStructure, WeekStructure and MonthStructure extends the DisplayDateStructure.
-DayStructure generate content in tableformat while the other two class will generate 
+DayStructure generate content in table format while the other two class will generate 
 a different size of the 2-D array mentioned in the previous paragraph 
 due the difference in number of days displayed.
 
