@@ -9,6 +9,9 @@ import seedu.duke.words.Words;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class contains an array list of filter words and its print method.
+ */
 public class FilterList {
 
     public static Scanner SCANNER = new Scanner(System.in);
