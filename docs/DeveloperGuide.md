@@ -104,7 +104,7 @@ The Architecture Diagram above provides a high-level view of the design of NUSch
  __API__:`UI.java`  
 The UI consists of various parts, e.g. `printGreetingMessage`, `printEventList`, `showError`, `printNumEvent`, etc.
  
-The `UI` component reads user input using readCommand() and executes user commands according to the Logic component.
+The `UI` component reads user input using readCommand() and then executes user commands according to the Logic component.
 
 ### 3.3 Storage<a id="storage"></a>
 __API__:`Storage.java`
@@ -116,10 +116,10 @@ __API__:`Parser.java`
 
 *Figure 3.4.1 Class diagram for Logic component*
 
-The `logic` component parses the user input and executes commands based on the given input.
+The `Logic` component parses the user input and executes commands based on the given input.
  1.	Parser reads the user input and returns a command to be executed by `NuSchedule`.
  2.	The command execution affects the EventList (e.g. clearing the list).
- 3.	The result passes back to the UI, which then displays relevant feedback to the user.  
+ 3.	The result passes back to the UI, which then displays relevant feedback to the user (e.g. successful execution).  
 
 ### 3.5 Model<a id="model"></a>
 The `Model` component stores an ArrayList, events, that represents the current list of events and available locations.
@@ -166,8 +166,8 @@ Step 1. The user launches the application to add a class to his schedule. The us
 Step 2. The Parser class parses the input as a new class with description ‘CS1010 Lecture’,
 starting time ‘2020-05-05 at 10:00’, ending time ’2020-05-05 at 12:00’, and location ‘LT27’.  
 
-Step 3. `addCommand()` is then called with the above parameters, and adds it to the list of events. This also checks 
-whether there is any event has overlap timing with the newly added event.
+Step 3. `addCommand()` is then called with the above parameters, and calls `addEvent()` from EventList to adds it to the list of events. It also checks 
+whether there are any events that overlap in timing with the newly added event. The newly added event is then printed for the user through `UI`.
 
 The sequence diagram below shows the process of adding a new event.
 ![AddCommand Sequence Diagram](diagrams/AddCommand.png)<br>
@@ -297,7 +297,7 @@ Step 1. The user wants to see a list of all the events he has added so far, and 
 
 Step 2. The command calls the `printEventList` function from `UI`, which then prints the list of events.
 
-The sequence diagram below shows what happens when the list command is executed
+The sequence diagram below shows what happens when the list command is executed.
 ![ListCommand Sequence Diagram](diagrams/ListCommand.png)
 *Figure 4.7 Sequence Diagram for list function*
 
