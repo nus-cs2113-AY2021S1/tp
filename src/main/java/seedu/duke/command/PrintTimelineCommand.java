@@ -38,7 +38,7 @@ public class PrintTimelineCommand extends Command {
                 System.out.println("Your calendar list is empty!");
             } else {
                 if (endDate != null) {
-                    endDate = startDate.plusDays(7);
+                    //endDate = startDate.plusDays(7);
                     for (int i = 0; i < calendarList.getTotalItems(); i++) {
                         if ((calendarList.getItem(i).getDate() == null)
                                 || ((calendarList.getItem(i).getDate().isAfter(startDate))
