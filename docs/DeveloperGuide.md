@@ -583,7 +583,7 @@ Below are the compulsory params; an Exception will be thrown by `CreateEntryHand
 
 Optional params are
 * "-auto"
-* "-notes"
+* "/notes"
 
 The following sequence diagram illustrates the process:
 
@@ -593,7 +593,7 @@ The following sequence diagram illustrates the process:
 
 The only compulsory param is `/id`, the 1-based index of the item to delete.
 
-* Uses`RetrieveEntryHandler`, who will call `ParamChecker` to verify
+* Uses `RetrieveEntryHandler`, who will call `ParamChecker` to verify
 that a valid index was provided. 
 * The handler will then remove the entry at the given index
 by calling `entries#removeItemAtCurrIndex()`.
@@ -605,7 +605,9 @@ Compulsory params are "/id" and at least one other param to edit
 * `RetrieveEntryHandler` is first called to retrieve the entry to be edited, similar to what 
 occurs in `handleDeleteEntry().
 * `EditEntryHandler` is then called to operate on the given entry. The overall process is 
-similar to that of `handleCreateEntry()`.
+similar to that of `handleCreateEntry()`, which is illustrated in the above sequence diagram,
+with the only difference being that there can be any number of paramTypes in the command packet
+depending on how many fields the user wishes to change.
 
 
 
