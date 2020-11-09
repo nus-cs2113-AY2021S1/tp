@@ -34,7 +34,7 @@ public class Kaji {
      *
      * @param filePath filepath of the storage file
      */
-    public Kaji(String filePath) {
+    public Kaji(String filePath) throws IOException {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -72,7 +72,7 @@ public class Kaji {
         logger.info("Exiting Kaji...");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Kaji("data/admin").run();
     }
 }

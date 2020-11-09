@@ -7,6 +7,8 @@ import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
+import java.io.IOException;
+
 import static common.Messages.MODULE;
 import static common.Messages.MESSAGE_ITEM_EXISTED;
 
@@ -31,7 +33,7 @@ public class AddModuleCommand extends AddCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) throws IOException {
         Module module = new Module(this.module);
         String result = addModule(access, storage, module);
         ui.showToUser(result);
@@ -45,7 +47,7 @@ public class AddModuleCommand extends AddCommand {
      * @param module new module that user would like to create
      * @return result to be displayed
      */
-    private String addModule(Access access, Storage storage, Module module) {
+    private String addModule(Access access, Storage storage, Module module) throws IOException {
         Admin newAdmin = access.getAdmin();
         ModuleList modules = newAdmin.getModules();
         boolean isModuleExist = modules.checkModuleExistence(module.getModuleName().toLowerCase());

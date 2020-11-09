@@ -40,7 +40,7 @@ public class Storage {
 
     //@@author gua-guargia
     //create the folder --> 'data/admin'
-    public void createAdmin() {
+    public void createAdmin() throws IOException {
         File f = new File(filePath);
         logger.info("Filepath: " + filePath);
 
@@ -51,7 +51,7 @@ public class Storage {
     }
 
     //@@author gua-guargia
-    public void createModule(String moduleName) {
+    public void createModule(String moduleName) throws IOException {
         File f = new File(filePath + "/" + moduleName);
         StorageWrite.createDir(f);
     }
