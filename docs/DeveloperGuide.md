@@ -142,6 +142,19 @@ The `Storage` object:
 - Expose functions to allow `Model` to pass in the state and saves it to file.
 - Expose functions to load the state of `Model` from file.
 
+<!-- @@author GuoAi -->
+
+### Item component
+
+`Item` is a super class with 5 subclasses inheriting it: `Task`, `Expense`, `Module`, `Link`, `Book`.
+
+Here is the class diagram for `Item` class and its subclasses.
+
+![ItemClassDiagram](./images/ItemClassDiagram.png)
+
+The `Item` class and its subclasses:
+- Contains getters and setters to retrieve and set the attributes.
+
 <!-- @@author iamchenjiajun -->
 ### Model Component
 
@@ -691,7 +704,6 @@ v2.0 | Medium | student | sort my tasks based on highest priority | focus on tho
 v2.0 | High | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link
 v2.0 | High | student | add modules and calculate my CAP| have a better projection of my grades and efforts
 v2.0 | Low | student | login with a password | my system is protected
-<!-- @@author -->
 
 <!-- @@author MuhammadHoze -->
 ### Non-Functional Requirements
@@ -718,8 +730,8 @@ Acronym | Full form | Meaning
 **SLOC** | Source Lines of Code | The number of lines in a program's source code
 **DRY** | Don't Repeat Yourself | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
 **CAP** | Cumulative Average Point | The weighted average grade point of all modules taken by a student
+
 <!-- @@author -->
- 
 ## Appendix: Instructions for manual testing
 Below are the steps required for manual testing of termiNus
 <!-- @@author Cao-Zeyu -->
@@ -743,7 +755,7 @@ Below are the steps required for manual testing of termiNus
       Expected: recurring tasks `tP meeting` are added to the task list, with priority of `2`, category of `CS2113`,
       and the recurring dates of the Tuesdays during the start and end period.
       
-    - Test case: addr game club c/CCA <br>
+    - Test case: `addr game club c/CCA <br>`
       Expected: an error message is printed since the compulsory arguments `s/`, `e/`, `day/` are all required for 
       a recurring task.
       
@@ -775,7 +787,7 @@ Below are the steps required for manual testing of termiNus
     - Test case: `spend lunch v/4 currency/SGD date/2020-11-08` <br>
       Expected: a `4.00` `SGD` expense on `lunch` on `Sunday, November 8,2020` is added to the expense list.
     
-    - Test case: `spend book v/15`
+    - Test case: `spend book v/15` <br>
       Expected: a `15.00` `SGD` expense on `book` on the current day is added to the expense list. 
       (By default, if `currency/` and `date/` arguments are not specified, termiNus will assume the currency is `SGD` 
       and the date is the current day.)
@@ -868,7 +880,7 @@ Prerequisite: list the complete task list using `list` command. Multiple tasks i
 
 ### Searching for tasks with keywords
 - Test case: `find tP` <br>
-  Expected: the tasks containting the keyword `tP` are displayed.
+  Expected: the tasks containing the keyword `tP` are displayed.
   
 - Test case: `find t` <br>
   Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 

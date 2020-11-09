@@ -45,15 +45,6 @@ public class Book extends Item {
         isReturn = true;
     }
 
-    /**
-     * Retrieves whether the task in done.
-     *
-     * @return true if the task is done already, false otherwise
-     */
-    public boolean getIsReturn() {
-        return isReturn;
-    }
-
     @Override
     public void setDateFromString(String dateString) throws DukeException {
         assert dateString != null : "dateString should not be null.";

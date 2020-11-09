@@ -67,15 +67,16 @@ public class Parser {
             return CommandCreator.createSpendCommand(description, argumentsMap);
         case SetCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, SetCommand.ALLOWED_ARGUMENTS);
-            return CommandCreator.createSetCommand(fullCommand, argumentsMap);
+            return CommandCreator.createSetCommand(description, argumentsMap);
         case DateCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, DateCommand.ALLOWED_ARGUMENTS);
-            return CommandCreator.createDateCommand(commandString, argumentsMap);
+            return CommandCreator.createDateCommand(description, argumentsMap);
         case CalendarCommand.COMMAND_WORD:
             checkAllowedArguments(argumentsMap, CalendarCommand.ALLOWED_ARGUMENTS);
-            return new CalendarCommand(argumentsMap);
+            return CommandCreator.createCalendarCommand(description, argumentsMap);
         case CategoryCommand.COMMAND_WORD:
-            return CommandCreator.createCategoryCommand(commandString, argumentsMap);
+            checkAllowedArguments(argumentsMap, CategoryCommand.ALLOWED_ARGUMENTS);
+            return CommandCreator.createCategoryCommand(commandString, argumentsMap, description);
         case ListCommand.COMMAND_WORD:
             HashSet<String> allowedDescrptions = new HashSet<>(Arrays.asList("tasks", "expenses", "modules", "links",
                     "books"));
