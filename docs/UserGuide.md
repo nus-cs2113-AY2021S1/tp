@@ -34,6 +34,9 @@ title : User Guide
 #### [4. FAQ](#faq)
 #### [5. Command Summary](#command)
 
+
+<br>
+
 ## <a id="intro">1. Introduction</a>
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
@@ -42,7 +45,7 @@ This document describes the features found in NotUS, along with example usages. 
 
 Any points with the 💡 emoji represents an additional information. You can access a summary of commands used in the application at the end of this document.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="quickstart">2. Quick Start</a>
 
@@ -55,14 +58,12 @@ Any points with the 💡 emoji represents an additional information. You can acc
    <img alt="startUp" src="screenshots/startUp.png"/>
 </p>
 
-<div style="page-break-after: always;"></div>
-
 5\. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
 💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.
 💡 Recommended to use black background for better color contrast.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="features">3. Features</a>
 
@@ -84,7 +85,7 @@ The parameters for the following commands are **NOT** case-sensitive.
 1. '
 -->
 
-### <a id="help"><ins>3.1 View Command List:</ins> `help`</a>
+#### <a id="help"><ins>3.1 View Command List:</ins> `help`</a>
 Shows a list of all the commands that the user can enter.
 
 💡 Even if you input anything beyond help, the program will understand the command. For example, `help me please` will still result in the program listing the available commands and its usages.
@@ -103,7 +104,7 @@ Expected output:
    <img alt="help" src="screenshots/help_2.png"/>
 </p>
 
-### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
+#### <a id="add-n"><ins>3.2 Add Note:</ins> `add-n`</a>
 Adds a new note to the list of note items (think of it as a notebook).
 
 Format: `add-n /t TITLE [/tag TAG_1] [/tag TAG_2]... [/pin ISPIN] [/archive ISARCHIVE]`
@@ -144,7 +145,7 @@ Expected output:
    <img alt="addNote" src="screenshots/addNote.png"/>
 </p>
 
-### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
+#### <a id="list-n"><ins>3.3 List Notes:</ins> `list-n`</a>
 Shows a list of all the notes in the notebook.
 
 Format: `list-n [/tag TAG_1] [/tag TAG_2]... [/sort DIRECTION] [/archive]`
@@ -173,7 +174,7 @@ Expected output:
    <img alt="listNote" src="screenshots/listNote.png"/>
 </p>
 
-### <a id="view-n"><ins>3.4 View Note:</ins> `view-n`</a>
+#### <a id="view-n"><ins>3.4 View Note:</ins> `view-n`</a>
 View the selected note.
 
 Format: `view-n [/i INDEX] [/t TITLE]`
@@ -195,7 +196,7 @@ Expected output:
    <img alt="viewNote" src="screenshots/viewNote.png"/>
 </p>
 
-### <a id="edit-n"><ins>3.5 Edit Note:</ins> `edit-n`</a>
+#### <a id="edit-n"><ins>3.5 Edit Note:</ins> `edit-n`</a>
 Edits an existing note.
 
 Format: `edit-n /i INDEX [/t TITLE] ([/add INDEX STRING] OR [/ln LINE_INDEX CONTENTS] OR [/del INDEX]) [/c CONTENT] [/tag TAG TAG_COLOR /tag TAG1 TAG_COLOR...]`
@@ -229,7 +230,7 @@ Expected output:
    <img alt="editNote" src="screenshots/editNote.png"/>
 </p>
 
-### <a id="find-n"><ins>3.6 Find Notes:</ins> `find-n`</a>
+#### <a id="find-n"><ins>3.6 Find Notes:</ins> `find-n`</a>
 Finds the notes and return a list of notes that contain the keyword(s) in the title.
 
 Format: `find-n KEYWORDS`
@@ -246,7 +247,7 @@ Expected output:
    <img alt="findNote" src="screenshots/findNote.png"/>
 </p>
 
-### <a id="pin-n"><ins>3.7 Pin Note:</ins> `pin-n`</a>
+#### <a id="pin-n"><ins>3.7 Pin Note:</ins> `pin-n`</a>
 Pins an unpinned note to the top of the note list or unpin a pinned note.
 
 Format: `pin-n [/i INDEX] [/t TITLE]`
@@ -267,7 +268,7 @@ Expected output:
    <img alt="pinNote" src="screenshots/pinNote.png"/>
 </p>
 
-### <a id="archive-n"><ins>3.8 Archive Note:</ins> `archive-n`</a>
+#### <a id="archive-n"><ins>3.8 Archive Note:</ins> `archive-n`</a>
 Archives a note.
 
 Format: `archive-n [/i INDEX] [/t TITLE]`
@@ -289,7 +290,7 @@ Expected output:
    <img alt="archiveNote" src="screenshots/archiveNote.png"/>
 </p>
 
-### <a id="unarchive-n"><ins>3.9 Unarchive Note:</ins> `unarchive-n`</a>
+#### <a id="unarchive-n"><ins>3.9 Unarchive Note:</ins> `unarchive-n`</a>
 Unarchives a note.
 
 Format: `unarchive-n [/i INDEX] [/t TITLE]`
@@ -309,7 +310,7 @@ Expected output:
    <img alt="unarchiveNote" src="screenshots/unarchiveNote.png"/>
 </p>
 
-### <a id="delete-n"><ins>3.10 Delete note:</ins> `delete-n`</a>
+#### <a id="delete-n"><ins>3.10 Delete note:</ins> `delete-n`</a>
 Deletes an existing note.
 
 Format: `delete-n [/i INDEX] [t/TITLE]`
@@ -331,7 +332,7 @@ Expected output:
    <img alt="deleteNote" src="screenshots/deleteNote.png"/>
 </p>
 
-### <a id="create-t"><ins>3.11 Create Tags:</ins> `create-t`</a>
+#### <a id="create-t"><ins>3.11 Create Tags:</ins> `create-t`</a>
 Create tags.
 
 Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
@@ -354,7 +355,7 @@ Expected output:
    <img alt="createTag" src="screenshots/createTag.png"/>
 </p>
 
-### <a id="list-t"><ins>3.12 List Tags:</ins> `list-t`</a>
+#### <a id="list-t"><ins>3.12 List Tags:</ins> `list-t`</a>
 Shows a list of tags that have been created.
 
 Example of usage: 
@@ -367,7 +368,7 @@ Expected output:
    <img alt="listTag" src="screenshots/listTag.png"/>
 </p>
 
-### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag-n`</a>
+#### <a id="tag-n"><ins>3.13 Tag/Untag Notes:</ins> `tag-n`</a>
 Tags or untags a note with the given tag name.
 
 Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
@@ -389,7 +390,7 @@ Expected output:
    <img alt="tagNote" src="screenshots/tagNote.png"/>
 </p>
 
-### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
+#### <a id="tag-e"><ins>3.14 Tag/Untag Events:</ins> `tag-e`</a>
 Tags or untags an event with the given tag name.
 
 Format: `tag-e /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
@@ -412,7 +413,7 @@ Example of usage:
 
 Expected output:
 
-### <a id="delete-t"><ins>3.15 Delete Tags:</ins> `delete-t`</a>
+#### <a id="delete-t"><ins>3.15 Delete Tags:</ins> `delete-t`</a>
 Deletes a tag from the list of tags and remove the tag from the related notes and events.
 
 Format: `delete-t /tag TAG [/tag TAG]...`
@@ -431,7 +432,7 @@ Expected output:
    <img alt="deleteTag" src="screenshots/deleteTag.png"/>
 </p>
 
-### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
+#### <a id="add-e"><ins>3.16 Add Event:</ins> `add-e`</a>
 Adds an event to the list.
 
 Format: `add-e /t TITLE /timing DATETIME [/end DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind REMIND] [/tag TAG_1] [/tag TAG_2]...`
@@ -458,7 +459,7 @@ Expected output:
    <img alt="addEvent" src="screenshots/addEvent.png"/>
 </p>
 
-### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
+#### <a id="edit-e"><ins>3.17 Edit Event:</ins> `edit-e`</a>
 Edits an existing event in the event list/timetable.
 
 Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/end DATETIME] [/repeat REPEAT] [/stop REPEAT_END] [/remind-add REMIND] [/remind-drop REMIND] [/remind-clear]`
@@ -489,7 +490,7 @@ Expected output:
    <img alt="editEvent" src="screenshots/editEvent.png"/>
 </p>
 
-### <a id="list-e"><ins>3.18 List Events:</ins> `list-e`</a>
+#### <a id="list-e"><ins>3.18 List Events:</ins> `list-e`</a>
 Display the module timetable on the current day.
 
 Format: `list-e [/timing Year] [/timing Year-Month]`
@@ -511,7 +512,7 @@ Expected output:
    <img alt="listEvent" src="screenshots/listEvent.png"/>
 </p>
 
-### <a id="remind-e"><ins>3.19 Remind:</ins> `remind-e`</a>
+#### <a id="remind-e"><ins>3.19 Remind:</ins> `remind-e`</a>
 Reminds the specified event from the timetable.
 
 Format: `remind-e`
@@ -528,7 +529,7 @@ Expected output:
    <img alt="remindEvent" src="screenshots/remindEvent.png"/>
 </p>
 
-### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
+#### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
 Format: `delete-e INDEX`
@@ -545,7 +546,7 @@ Expected output:
    <img alt="deleteEvent" src="screenshots/deleteEvent.png"/>
 </p>
 
-### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
+#### <a id="exit"><ins>3.21 Exit:</ins> `exit`</a>
 Exits the program.
 
 💡 Even if you input anything beyond exit, the program will terminate. For example, `exit the program` will still result in the program being terminated.
