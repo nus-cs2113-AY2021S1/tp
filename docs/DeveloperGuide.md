@@ -134,6 +134,7 @@ episodes for each season respectively,Duration of an episode)
 overwrite the duplicate entry.
 * The `Show` is added to the `ShowList`.
 <br><br><br>
+
 **Step 6** 
 
 * The changes will be reflected to the user. Concurrently, the changes will be saved into the showList.txt file.
@@ -334,35 +335,7 @@ The `deleteRating` method in `DeleteRatingCommand` class is called.
 
 **Step 6**
 
-<<<<<<< HEAD
 The changes are reflected back to the user. At the same time, changes are saved into the showList.txt file.
-
-### Add Review Command
-
-The `addreview` command is invoked by the InputParser method parseAddReview. It takes a string as input. 
-Within the AddReview class
-
-**Step 1**
-
-The string is tokenised into separate words.
-
-**Step 2**
-
-The corresponding show is retrieved from the show list.
-
-**Step 3**
-
-The rating of the show is updated.
-
-**Step 4**
-
-The review of the rating is added to the show.
-
-**Step 5**
-
-
-* The changes are reflected back to the user. Concurrently, the changes will be saved to the showList.txt file.
-
 
 ### ChangeReviewCommand
 
