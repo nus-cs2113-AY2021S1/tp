@@ -1,8 +1,8 @@
 # Wu Nan - Project Portfolio Page
 
-## Project: NuSchedule:
+## Project: NUSchedule:
 
-NuSchedule is a desktop task management application used for keeping track of user's events. The user interacts with it 
+NUSchedule is a desktop task management application used for keeping track of user's events. The user interacts with it 
 using a Command Line Interface (CLI). It is written in Java and has around 5 kLoC.
 
 Given below are my contributions to this project:
@@ -11,7 +11,7 @@ Given below are my contributions to this project:
     * What it does: This function allows users to view the current version of this application by typing in `help`, and gives them a brief 
     description of all features. This function also provides users with a link to the detailed user guide.
     * Justification: This feature improves the user-friendliness of this application greatly as users may choose to 
-    refer to help message whenever they feel lost or are unfamiliar yet with the usage of NuSchedule. Also, with further
+    refer to help message whenever they feel lost or are unfamiliar yet with the usage of NUSchedule. Also, with further
     development of NuSchedule, there will be more and more features/commands available, this function will become more 
     and more useful for users to refer to.
     * Highlights: The code for this function needs to be updated everytime there is a new feature, or a new version release.
