@@ -15,31 +15,23 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 *Features implemented*
 
-1\. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. 
-- Taggable objects can have multiple tags and different Taggable objects can share same tag(s).
+1\. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. Taggable objects can have multiple tags and different Taggable objects can share same tag(s).
 
-2\. Implemented `Tag` class which contains the name and of the tag and its color.
-- Added color support for user to better differentiate the tags.
+2\. Implemented `Tag` class which contains the name and of the tag and its color. Added color support for user to better differentiate the tags.
 
-3\. Implemented `TagManager` class which manages all the tags in application. 
-- A hashmap is used where each unique tag is mapped to a Taggable object.
+3\. Implemented `TagManager` class which manages all the tags in application. A hashmap is used where each unique tag is mapped to a Taggable object.
 
 4\. Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
 
 5\. Implemented `ParserManager` class which manages the creation of different parser objects to parse the user input to the required parameters.
 
-6\. Implemented `SystemException` class which extends from `Exception` class.
-- Enumeration for all possible types of exception that may occur with a unique string as its message.
+6\. Implemented `SystemException` class which extends from `Exception` class. Enumeration for all possible types of exception that may occur with a unique string as its message.
 
 7\. Implemented `Formatter` class which formats Note, Event and String into a formatted String to be printed.
     
-*Code contributed*
+*Code contributed*: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-[RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
-*Project management*
-
-Set up the framework of the programme for team members to work on, managed code cleanup before every release, managed releases `v1.0`, `v2.0` and `v2.1` on GitHub.
+*Project management*: Set up the framework of the programme for team members to work on, managed code cleanup before every release, managed releases `v1.0`, `v2.0` and `v2.1` on GitHub.
 
 *Contributions to User Guide*
 
