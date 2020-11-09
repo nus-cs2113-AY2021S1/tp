@@ -1,18 +1,30 @@
 # LIU YIFENG - Project Portfolio Page
 
+## Table of contents
+* [Overview](#overview)
+* [Summary of Contributions](#summary-of-contributions)
+  * [Code contributed](#code-contributed)
+  * [Enhancements implemented](#enhancements-implemented)
+    * [Enhancements to new features](#enhancements-to-new-features)
+    * [Enhancement to existing features](#enhancement-to-existing-features)
+  * [Contributions to documentation](#contributions-to-documentation)
+    * [Contributions to the DG](#contributions-to-the-dg)
+    * [Contributions to the UG](#contributions-to-the-ug)
+    * [Contributions to team-based tasks](#contributions-to-team-based-tasks)
+    * [Contributions beyond the project team](#contributions-beyond-the-project-team)
 ## Overview
 Our product, **_25HoursADay_** is a scheduling application catered for NUS students. 
 It is optimised for use via the Command Line Interface (CLI) and it serves as an efficient one stop application for our users to manage their time. 
 
 Given below are my contributions to the project.
 
-### Summary of Contributions
-#### Code contributed:
+## Summary of Contributions
+### Code contributed:
 For code contribution, please visit this [website](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=liu-yifeng-1&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=LIU-YiFeng-1&tabRepo=AY2021S1-CS2113T-T12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other) 
 for more details.
 
-#### Enhancements implemented:
-#### Enhancements to New features:
+### Enhancements implemented:
+#### Enhancements to new features:
 * Added ability to print all tasks and all events separately.
  ([\#10](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/10))
   * What it does: It allows the user to have an easy overview of all the events and tasks stored in the program.
@@ -45,7 +57,7 @@ for more details.
 * Wrote Junit tests to increase coverage.
   ([\#124](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/124))
   
-#### Contributions to documentation:
+### Contributions to documentation:
 
 #### Contributions to the DG:
 * Added the Setting Up & Getting started section.
@@ -90,6 +102,5 @@ for more details.
   [\#6](https://github.com/LIU-YiFeng-1/ped/issues/6),
   [\#7](https://github.com/LIU-YiFeng-1/ped/issues/7),
   )
-
 * Shared useful external library on the module Forum.
 ([\#107](https://github.com/nus-cs2113-AY2021S1/forum/issues/107))
