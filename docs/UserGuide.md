@@ -398,7 +398,7 @@ The `deleterating` command deletes the rating for an existing show in the watchl
 The `changerating` command changes the rating for an existing show which already has a rating in the watchlist.
 
  Format:
-  `changerating <SHOWNAME> / <NEWRATING>`
+  `changerating <SHOWNAME> <NEWRATING>`
   
   > **[NOTE]**
   >
