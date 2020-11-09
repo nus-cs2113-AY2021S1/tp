@@ -23,7 +23,7 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
 
 **What it does:**
 * The user may use the `add -q` command to add a quote into Quotesify.
-* The user may use the `edit -q` or `delete -q` command to edit or delete an existing quote in Quotesify.
+* The user may use the `edit -q` or `delete -q` command to edit or delete an existing.
 * The user may use the `list -q` command to list all existing quotes, quotes from a specified author, quotes from a 
 specified reference, or both from a specified reference and author.
 * The user may also use the `find -q` command to find quotes containing a specified keyword.
@@ -36,7 +36,7 @@ of those quotes, enabling users to revisit and find them effectively.
 **Highlights:**
 To enable a wider range of use cases, Quotesify accepts multiple formats for quotes. Author and reference are optional 
 flags that can be added to provide more information which will enable users to find and list quotes more efficiently. 
-Users will also be reminded of saved quotes, resurfacing and reminding them so that they can better remember them.
+On launch and exit, users will also be reminded of saved quotes, resurfacing and reminding them so that they can better remember.
     
 #### 2. Quote Reflection feature in Quotesify.
     
