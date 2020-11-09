@@ -49,9 +49,12 @@ public class Ui {
     public static final String DEADLINE_EXCEPTION = OOPS_PREFIX + " The format should be: deadline <taskname> /by "
             + "<datetime>";
     public static final String EVENT_EXCEPTION = OOPS_PREFIX + " The format should be: event <taskname> /at <datetime>";
-    public static final String SUBJECT_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " The index number must be a positive integer \n that belongs to an existing subject.";
-    public static final String TOPIC_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " The index number must be a positive integer \n that belongs to an existing task or topic.";
-    public static final String FLASHCARD_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX + " The index number must be a positive integer \n that belongs to an existing flashcard.";
+    public static final String SUBJECT_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX
+            + " The index number must be a positive integer \n that belongs to an existing subject.";
+    public static final String TOPIC_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX
+            + " The index number must be a positive integer \n that belongs to an existing task or topic.";
+    public static final String FLASHCARD_INDEX_FORMAT_EXCEPTION = OOPS_PREFIX
+            + " The index number must be a positive integer \n that belongs to an existing flashcard.";
     public static final String NO_FLASHCARD_EXCEPTION = "There are no flashcards present yet!";
     public static final String NO_TOPIC_YET_EXCEPTION = "There are no topics present yet!";
     public static final String NO_TOPIC_EXCEPTION = "Please enter an existing topic.";
