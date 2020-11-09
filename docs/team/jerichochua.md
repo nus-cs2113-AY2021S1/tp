@@ -28,6 +28,7 @@ Contributed the following sections in the user guide:
 - Editing an exercise entry
 - Clearing commands (Clearing all food entries, clearing all exercise entries, clearing all entries)
 - Saving your data
+- Parts of the Introduction section
 - Parts of the FAQ section
 
 ### Contributions to DG
