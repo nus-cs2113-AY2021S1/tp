@@ -8,6 +8,7 @@ import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // @@author Cao-Zeyu
 
@@ -109,5 +110,13 @@ public class LinkList extends ItemList<Link> {
         if (count != 0) {
             throw new DukeException("~Error~ Link of this lesson already exists!");
         }
+    }
+
+    /**
+     * Clears all the links in the list.
+     */
+    @Override
+    public void clearItems() {
+        links = new ArrayList<>();
     }
 }

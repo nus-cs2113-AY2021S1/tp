@@ -691,6 +691,7 @@ v2.0 | Medium | student | sort my tasks based on highest priority | focus on tho
 v2.0 | High | student | save zoom links in a centralized place | easily attend my online classes instead of looking through my email for the link
 v2.0 | High | student | add modules and calculate my CAP| have a better projection of my grades and efforts
 v2.0 | Low | student | login with a password | my system is protected
+<!-- @@author -->
 
 <!-- @@author MuhammadHoze -->
 ### Non-Functional Requirements
@@ -717,6 +718,7 @@ Acronym | Full form | Meaning
 **SLOC** | Source Lines of Code | The number of lines in a program's source code
 **DRY** | Don't Repeat Yourself | Every piece of knowledge must have a single, unambiguous, authoritative representation within a system
 **CAP** | Cumulative Average Point | The weighted average grade point of all modules taken by a student
+<!-- @@author -->
  
 ## Appendix: Instructions for manual testing
 Below are the steps required for manual testing of termiNus
@@ -931,3 +933,5 @@ Prerequisite: list the complete task list using `list` command. Multiple tasks i
 - Test case: `help` <br>
   Expected: all the available commands and their usages are displayed in the help message.
  <!-- @@author -->
+
+<h1 align="center">End of termiNus Developer Guide</h1>
