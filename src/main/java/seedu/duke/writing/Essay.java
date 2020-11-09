@@ -35,27 +35,24 @@ public class Essay extends Writings {
         countEssays++;
     }
 
-    public void setNumberOfSentences() {
+    public int setNumberOfSentences() {
         int count = 0;
         for (int i = 0; i < this.content.length(); i++) {
             if (this.content.charAt(i) == '.') {
                 count++;
             }
         }
-        this.numberOfSentences = count;
+        return count;
     }
 
-    public void setNumberOfWords() {
+    public int setNumberOfWords() {
         int count = 0;
         for (int i = 0; i < this.content.length(); i++) {
             if (this.content.charAt(i) == ' ') {
                 count++;
             }
         }
-    }
-
-    public int getCountEssays() {
-        return countEssays;
+        return count;
     }
 
     public void setType() {
@@ -69,22 +66,26 @@ public class Essay extends Writings {
 
     @Override
     public int getNumberOfSentences() {
+        this.numberOfSentences = setNumberOfSentences();
         return this.numberOfSentences;
     }
 
     @Override
     public int getNumberOfWords() {
+        this.numberOfWords = setNumberOfWords();
         return this.numberOfWords;
     }
 
     @Override
-    public void printPoemProperties() {
-
+    public String printPoemProperties() {
+        return null;
     }
 
     @Override
-    public void printEssayProperties() {
-        System.out.println("This essay has " + getNumberOfSentences()
-                + " and " + getNumberOfWords());
+    public String printEssayProperties() {
+        String content = "This essay has " + getNumberOfSentences() + " sentence(s)"
+                + " and " + getNumberOfWords() + " word(s)";
+        System.out.println(content);
+        return content;
     }
 }

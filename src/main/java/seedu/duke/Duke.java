@@ -2,11 +2,9 @@ package seedu.duke;
 
 import seedu.duke.commands.CommandChecker;
 import seedu.duke.constants.Logos;
-import seedu.duke.database.FileFunctions;
-import seedu.duke.database.WordsLoader;
-import seedu.duke.database.WritingsLoader;
-import seedu.duke.user.User;
-import seedu.duke.wordlist.WordList;
+import seedu.duke.storage.FileFunctions;
+import seedu.duke.storage.writing.WritingsLoader;
+import seedu.duke.common.User;
 import seedu.duke.writing.WritingList;
 
 import java.io.File;
@@ -17,15 +15,13 @@ import static seedu.duke.bunnylist.BunnyList.bunniesList;
 import static seedu.duke.commands.CommandChecker.UNRECOGNISED;
 import static seedu.duke.commands.CommandChecker.extractCommandType;
 import static seedu.duke.constants.FilePaths.WRITING_FILE_PATH;
-import static seedu.duke.database.BunnyLoader.loadBunnyFile;
-import static seedu.duke.database.UserSettingsLoader.loadUserSettings;
-import static seedu.duke.database.WordsLoader.loadWordsFile;
-import static seedu.duke.database.WordsSaver.saveWordsToFile;
-import static seedu.duke.database.WritingsLoader.loadWritings;
-import static seedu.duke.database.WritingsLoader.recordListToFile;
-import static seedu.duke.functions.CommandExecutor.executeCommand;
-import static seedu.duke.parsers.Parsers.getUserInput;
-import static seedu.duke.ui.UI.echoInput;
+import static seedu.duke.storage.bunny.BunnyLoader.loadBunnyFile;
+import static seedu.duke.storage.UserSettingsLoader.loadUserSettings;
+import static seedu.duke.storage.word.WordsLoader.loadWordsFile;
+import static seedu.duke.storage.writing.WritingsLoader.loadWritings;
+import static seedu.duke.storage.writing.WritingsLoader.recordListToFile;
+import static seedu.duke.commands.CommandExecutor.executeCommand;
+import static seedu.duke.common.Parsers.getUserInput;
 import static seedu.duke.ui.UI.printAskForName;
 import static seedu.duke.ui.UI.printDivider;
 import static seedu.duke.ui.UI.printFarewellMessage;
@@ -72,7 +68,7 @@ public class Duke {
             //echoInput(userInput); //for testing only
             printDivider();
             commandChecker = extractCommandType(userInput);
-            executeCommand(commandChecker, userInput, writings);
+            executeCommand(commandChecker, userInput);
             printDivider();
         }
         File f = FileFunctions.getFileFromFilePath(WRITING_FILE_PATH);

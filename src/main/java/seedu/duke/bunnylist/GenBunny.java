@@ -1,9 +1,7 @@
 package seedu.duke.bunnylist;
 
 import seedu.duke.bunny.Bunny;
-import seedu.duke.database.NamesDB;
-import seedu.duke.exceptions.BunnyListEmptyException;
-import seedu.duke.exceptions.NameException;
+import seedu.duke.exceptions.bunnyexceptions.BunnyListEmptyException;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;

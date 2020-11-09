@@ -88,16 +88,23 @@ public class FluffleMessages {
     /** Filter messages. */
     public static final String INVALID_FILTER_CODE = "invalid filter type in the code";
     public static final String NO_FILTER_RESULT = "Nothing was found in the filter list!!";
+    public static final String EMPTY_STRING_TAG = "At least an empty string tag is provided.";
     public static final String FILTER_MESSAGE = "Printing all %d word(s) in your filter list:\n";
     public static final String FILTER_MESSAGE_LIMIT = "Printing the first %d out of %d word(s) "
             + "from your filter list:\n";
+    public static final String FILTER_TYPE_TAG_MISSING = "Please provide a filter tag \"\\by\"";
     public static final String PRINT_LIMIT_NOT_FOUND = "There are cases that\n"
             + "- You didn't specify the print limit\n" + "- Your limit is not an integer\n"
             + "The program will print out all the words in your filter list.\n";
-    public static final String FILTER_UNKNOWN_COMMAND = "Filter command format is incorrect.";
-    public static final String FILTER_UNKNOWN_TYPE = "Filter type was not recognized in the command.";
+    public static final String FILTER_UNKNOWN_TYPE = "Filter type was not recognized in the command. "
+            + "Available filter types are: type, start, include.";
     public static final String LONG_FILTER_LIST_MESSAGE = "Your filter list has more than %d word(s)\n"
             + "Do you want to print all the words in the filter list? y/n\n";
+    public static final String PROVIDE_STRING_TAG = "You must provide some string tags in the command";
+    public static final String FILTER_WORDS_EMPTY_TARGET = "The command must provide some combination of"
+            + " the following tags: -noun, -verb, -adjective";
+    public static final String AVAILABLE_WORD_TYPE = "Word type is not recognized. "
+            + "Supported tags: -noun, -verb, -adjective";
     public static final String INVALID_LIST_FILTER_ANSWER = "Your answer is not y/n. "
             + "The filter list will not be printed."
             + "You can use \"list filter words\" command to print out the filter result.";
@@ -112,9 +119,12 @@ public class FluffleMessages {
     public static final String PARSE_DATETIME_EXCEPTION =
             "Cannot parse date and time. Please enter date in a correct format (dd/MM/yyyy)"
                     + " with valid day, month and year.";
+    public static final String INVALID_REMINDER_DATE_EXCEPTION = "The date you entered is before today. "
+            + "Please give another date in your next try.";
 
     /** Command not recognised message. */
-    public static final String COMMAND_UNRECOGNISED_MSG = "Command not recognised?";
+    public static final String COMMAND_UNRECOGNISED_MSG = "Command is not recognised by Fluffle. "
+            + "Please type \"help\" for a list of available command";
 
     /** Writings parsing messages. */
     public static final String ASSERTION_ID_ERROR = "This ID is invalid, please provide an ID from rage 0-1000";

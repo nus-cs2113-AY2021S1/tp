@@ -1,10 +1,9 @@
 package seedu.duke.bunnylist;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.BunnyIdeaMissingException;
-import seedu.duke.exceptions.CommandInvalidException;
-import seedu.duke.exceptions.CommandMissingArgumentsException;
-import seedu.duke.wordlist.WordList;
+import seedu.duke.exceptions.bunnyexceptions.BunnyIdeaMissingException;
+import seedu.duke.exceptions.bunnyexceptions.CommandInvalidException;
+import seedu.duke.exceptions.bunnyexceptions.CommandMissingArgumentsException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

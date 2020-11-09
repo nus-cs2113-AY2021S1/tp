@@ -1,7 +1,7 @@
 package seedu.duke.names;
 
-import seedu.duke.database.NamesDB;
-import seedu.duke.exceptions.NameException;
+import seedu.duke.storage.name.NamesDB;
+import seedu.duke.exceptions.nameexceptions.NameException;
 
 import java.util.ArrayList;
 import java.util.List;
