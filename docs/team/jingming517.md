@@ -46,7 +46,14 @@ Given below are my contributions to the project. <br/>
 * Wrote Junit tests to increase coverage.
   ([\#180](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/180))
 * Wrote the `inputDateProcessor` function that converts input time Strings into LocalDate.
-  
+
+### Contributions to team-based tasks:
+* Reviewed team members' PR, and provided suggestions.
+  ([\#20](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/20),
+   [\#22](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/22))
+* Update the code and test files regularly to make sure it passes CI on GitHub.
+
+
 ### Contributions to documentation:
 #### Contributions to the Developer Guide:
 * Added the documentation guide, testing guide and logging guide to the Developer Guide.
