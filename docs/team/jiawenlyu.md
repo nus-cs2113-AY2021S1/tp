@@ -8,8 +8,7 @@ Given below are my contributions to the project. <br/>
 ## Summary of Contributions
 ### Code contributed:
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiawenlyu)
-### Enhancements implemented:
-#### Enhancements to New features:
+### Enhancements to New features:
 * Added ability to add lecture, lab, and tutorial events.
  ([\#15](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/15),
   [\#30](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/30))
@@ -42,7 +41,7 @@ Given below are my contributions to the project. <br/>
    * Justification: This feature allows users to get simple suggestions when they do not know what to do to manage their time better.
    * Highlights: This function just gives the basic suggestions considering both the importance and the urgency of tasks. 
      The number of suggestions given varies and at most three.
-#### Enhancement to existing features:
+### Enhancement to existing features:
 * Added `isOver` for all events to automatically check whether the event is over.
   ([\#52](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/52))
 * Fixed the input and output format of all events.
@@ -74,7 +73,7 @@ Given below are my contributions to the project. <br/>
 * Documented features `adding an event`, `prioritizing a task`, `printing important tasks`, 
  `printing progress`, and `giving suggestion`.
   ([\#179](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/179))
-#### Contributions beyond the project team:
+### Contributions beyond the project team:
 * Reported bugs in other team's project during PE.
   ([\#1](https://github.com/JiawenLyu/ped/issues/1),
    [\#2](https://github.com/JiawenLyu/ped/issues/2),
