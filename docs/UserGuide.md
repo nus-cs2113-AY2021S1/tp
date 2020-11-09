@@ -878,6 +878,8 @@ Expected output:
 
 ![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2_resized.png)
 
+<div style="page-break-after: always;"></div>
+
 If you encounter any errors, take note of the following warning.
 
 >**Warning:**
