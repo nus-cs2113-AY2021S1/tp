@@ -3,35 +3,36 @@ layout : page
 title : Developer Guide
 ---
 
-### Table of Contents
-##### [1. Introduction](#intro)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting Up](#setup)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Project Management & Development Practices](#management)
-##### [2. Design & Implementation](#design)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser & ParserManager](#parserManager)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Tags](#tag)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Storage](#storage)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.9 User Interface](#ui)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 System Exception](#exception)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.11 Usage of External Libraries](#color)
-##### [3. Product Scope](#scope)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Value Proposition](#value)
-##### [4. User Stories](#userstories)
-##### [5. Non-Functional Requirements](#nfr)
-##### [6. Glossary](#gloss)
-##### [7. Instructions for Manual Testing](#testinstr)
-##### [8. Appendix](#appendix)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 List of ParseCommand Classes](#parseXYZCommands)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 List of Command Classes](#XYZCommands)
+## Table of Contents
+#### [1. Introduction](#intro)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Setting Up](#setup)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Project Management & Development Practices](#management)
+#### [2. Design & Implementation](#design)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture Overview](#overview)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 NotUS](#notus)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Parser & ParserManager](#parserManager)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commands](#commands)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Notebook](#note)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Timetable](#event)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Tags](#tag)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Storage](#storage)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.9 User Interface](#ui)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 System Exception](#exception)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.11 Usage of External Libraries](#color)
+#### [3. Product Scope](#scope)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Target User Persona](#userpersona)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Target User Profile](#userprofile)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Value Proposition](#value)
 
 <div style="page-break-after: always;"></div>
+
+#### [4. User Stories](#userstories)
+#### [5. Non-Functional Requirements](#nfr)
+#### [6. Glossary](#gloss)
+#### [7. Instructions for Manual Testing](#testinstr)
+#### [8. Appendix](#appendix)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.1 List of ParseCommand Classes](#parseXYZCommands)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.2 List of Command Classes](#XYZCommands)
 
 ## <a id="intro">1. Introduction</a>
 
@@ -74,10 +75,13 @@ Figure 1 depicts the architecture design of NotUS. The main components of NotUS 
 1. `InterfaceManager`: Manages the user input as well as the message output from application.
 1. `ParserManager`: Creates a suitable parser, based on the command, to make sense of user message. The respective parsers then make sense of the information and calls the respective commands.
 1. `Command`: Executes the necessary tasks, depending on the respective command calls.
-1. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
-1. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
-1. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
-1. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
+
+<div style="page-break-after: always;"></div>
+
+4\. `TagManager`: Stores and manages the creation and deletion of tags and other tag-related functionality.
+5\. `Timetable`: Stores and manages the creation and deletion of events and other event-related functionality.
+6\. `Notebook`: Stores and manages the creation and deletion of notes and other note-related functionality.
+7\. `StorageManager`: Manages the loading of existing saved files and exporting of data to human-editable files.
 
 #### <a id="notus"><ins>2.2 NotUS</ins></a>
 
@@ -87,6 +91,8 @@ NotUS manages the flow of the application. On launch, it will create the necessa
   <img alt="NotUS" src="diagrams/out/Notus.png" />
   <br><em>Figure 2</em>
 </p>
+
+<div style="page-break-after: always;"></div>
 
 💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document. <br>
 💡 Due to a limitation of PlantUML, some of the sequence diagrams may have the destroy marker (X) immediately at the end of the activation bar when there should be a gap before the object is deleted.
