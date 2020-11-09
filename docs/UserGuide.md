@@ -34,9 +34,9 @@ By: `Team F11-3` Since: `August 2020`
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.6. [Checking overall performance for a chapter: `showrate`](#336-checking-overall-performance-for-a-chapter-showrate)<br>
 3.4. [Scheduling In KAJI](#34-scheduling-in-kaji)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1. [Listing the chapters due for today: `due`](#341-listing-the-chapters-due-for-today-due)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [Listing the chapters due in the upcoming week: `preview`](#342-listing-the-chapters-due-in-the-upcoming-week-preview)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2. [Listing the chapters that are due in the upcoming week: `preview`](#342-listing-the-chapters-that-are-due-in-the-upcoming-week-preview)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Adding chapters to your list of Excluded Modules: `exclude`](#343-adding-chapters-to-your-list-of-excluded-modules-exclude)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3. [Removing chapters from the list of Excluded Modules: `include`](#344-removing-chapters-from-the-list-of-excluded-modules-include)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4. [Removing chapters from the list of Excluded Modules: `include`](#344-removing-chapters-from-the-list-of-excluded-modules-include)<br>
 3.5. [General](#35-general)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1. [Showing a list of commands available: `help`](#351-showing-a-list-of-commands-available-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.2. [Viewing the revision history: `history`](#352-viewing-the-revision-history-history)<br>
