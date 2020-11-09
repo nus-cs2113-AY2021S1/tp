@@ -479,7 +479,10 @@ public class Ui {
             System.out.println("Error: Please key in the deadline in this format: deadline <task description> /ddMMyy");
             break;
         case "activity":
-            System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm");
+            System.out.println("Error: Please follow this format: act <activity description> @<venue> /ddMMyy HHmm"
+                    + "Please be reminded that command parameters such as `@`, `/` are not allowed in "
+                    + "<activity description> and <venue>"
+            );
             break;
         case "lecture":
             System.out.println("Error: Please key in the lecture in this format: \n"
