@@ -146,7 +146,7 @@ You will have to complete the question within the specified time as well. If you
 
 A correct answer without requesting for a hint will earn you **2 points**! Whereas a correct answer with hint requested will earn you **1 point**. You will not be awarded any points for incorrect answers. You can view the points you have accumulated with the `stats` command, which will be further explained in a [later section](#312-displaying-stats-stats) of this guide.
 
-Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then proceed to the next question.
+Regardless of right or wrong answer, an explanation about the question will be displayed after you give an answer. You will then be directed to start the next question.
 
 Note:
 - The maximum time limit for each question that you can choose is 1000 seconds.
