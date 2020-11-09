@@ -675,7 +675,7 @@ The sequence diagram below explains how this feature is executed:
  ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/setsettingssequence.png)
 *<center/> Figure 2.25 Sequence diagram for SetSettingsCommand </center> <br/></br>*
 
-<!-- @@author -->
+<!-- @@author jusufnathanael-->
 <a name="planner"></a>
 ### Planner feature (Jusuf)
 
@@ -688,7 +688,14 @@ Below is the general flow on how the mechanism works:
 4. The user can also call the `add` command to add a new meeting, similar to the timetable feature.
 5. Finally, the user can call the `save` command to store the newly added meeting(s) to each individual timetable.
 
+The sequence diagram below explains how the load planner command is executed:
 
+![](diagrams/load_planner.png) <br/>
+*<center/>Figure 2.26 Sequence diagram for LoadPlannerCommand</center> <br/></br>*
+
+
+
+<!-- @@author -->
 <a name="appendix-a"></a>
 ## **Appendix A: Product scope**
 ### Target user profile

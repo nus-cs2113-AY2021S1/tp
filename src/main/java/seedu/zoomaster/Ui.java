@@ -428,6 +428,7 @@ public class Ui {
         }
         printYellow("You can also check what each command does using: ");
         printCyan("help {command}" + NEW_LINE);
+        System.out.println(LINE);
     }
 
     //@@author Speedweener
