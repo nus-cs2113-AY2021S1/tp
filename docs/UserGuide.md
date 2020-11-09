@@ -3,35 +3,36 @@ layout : page
 title : User Guide
 ---
 
-### Table of Contents
-##### [1. Introduction](#intro)
-##### [2. Quick Start](#quickstart)
-##### [3. Features](#features)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 View Command List](#help)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Add Note](#add-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 List Notes](#list-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.4 View Note](#view-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.5 Edit Note](#edit-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.6 Find Notes](#find-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.7 Pin Note](#pin-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.8 Archive Note](#archive-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.9 Unarchive Note](#unarchive-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.10 Delete Note](#delete-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.11 Create Tags](#create-t)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.12 List Tags](#list-t)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Tag/Untag Notes](#tag-n)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
-##### [4. FAQ](#faq)
-##### [5. Command Summary](#command)
+## Table of Contents
+#### [1. Introduction](#intro)
+#### [2. Quick Start](#quickstart)
+#### [3. Features](#features)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 View Command List](#help)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Add Note](#add-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 List Notes](#list-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.4 View Note](#view-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.5 Edit Note](#edit-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.6 Find Notes](#find-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.7 Pin Note](#pin-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.8 Archive Note](#archive-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.9 Unarchive Note](#unarchive-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.10 Delete Note](#delete-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.11 Create Tags](#create-t)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.12 List Tags](#list-t)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.13 Tag/Untag Notes](#tag-n)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.14 Tag/Untag Events](#tag-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.15 Delete Tags](#delete-t)
 
 <div style="page-break-after: always;"></div>
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.16 Add Event](#add-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.17 Edit Event](#edit-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.18 Event Manager](#list-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.19 Remind](#remind-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.20 Delete Event](#delete-e)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.21 Exit](#exit)
+#### [4. FAQ](#faq)
+#### [5. Command Summary](#command)
 
 ## <a id="intro">1. Introduction</a>
 
