@@ -88,7 +88,7 @@ public class Book extends Item {
                 returnString = "[B][L] " + this.description + "\n";
             }
         } else {
-            returnString = this.description + "\n";
+            returnString = "\t    " + this.description + "\n";
         }
         if (date != null) {
             returnString += "\t   (Loan Date: " + getDateString(Task.DATETIME_PRINT_FORMAT) + ")\n";
