@@ -8,7 +8,7 @@ their project teams efficiently with the help of the SCRUM methodology and digit
 ### Summary of Contributions
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
-**Functionality added**: **`ParserManager` and `Command`**  
+**Functionality added**: `ParserManager` and `Command` 
 
 I created a `ParserManager` and `Command` class with several subclasses for SCRUMptious to handle the user input.  
 The `ParserManager` mainly parses the user input and checks to see what kind of `Command` has been 
