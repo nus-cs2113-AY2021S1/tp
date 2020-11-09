@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+class "{abstract} \n AddCommand" as AddCommand LOGIC_COLOR {
+    + prepareResult() : String
+    + isExit() : boolean
+}
+
+class "{abstract} \n Command" as Command LOGIC_COLOR {
+    + {abstract} isExit() : String
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+class Access MODEL_COLOR {
+    + getAdmin() : Admin
+    + setAdmin(Admin) : void
+}
+
+class Storage STORAGE_COLOR {
+    + createModule(String) : void
+}
+
+class ModuleList MODEL_COLOR {
+    + addModule(Module) : void
+    + getModuleCount() : int
+}
+
+class Module MODEL_COLOR {
+}
+
+class Ui UI_COLOR {
+    + showToUser(String) : void
+}
+
+class AddModuleCommand LOGIC_COLOR {
+    - module : String
+    - addModule(Access, Storage, Module)
+}
+
+AddCommand <|-right[LOGIC_COLOR_T4]- AddModuleCommand
+Command <|-right[LOGIC_COLOR_T4]- AddCommand
+
+AddModuleCommand .down[LOGIC_COLOR_T4].> Access
+AddModuleCommand .right[LOGIC_COLOR_T4].> Storage
+AddModuleCommand -down[LOGIC_COLOR_T4]-> "0..1" ModuleList
+AddModuleCommand .up[LOGIC_COLOR_T4].> Ui
+AddModuleCommand -down[LOGIC_COLOR_T4]-> "1" Module
+
+
+@enduml

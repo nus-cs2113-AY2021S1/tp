@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class HistoryCommand LOGIC_COLOR {
+    - date : String
+    + HistoryCommand(date : String)
+    + execute(ui : Ui, access : Access, storage : Storage) : void
+    - listHistory(storage : Storage) : String
+}
+
+Class History MODEL_COLOR {
+    + History(moduleName : String, chapterName : String)
+}
+
+Class Storage STORAGE_COLOR {
+    + loadHistory(date : String) : ArrayList<History>
+}
+
+Class Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+HistoryCommand -up[LOGIC_COLOR_T4]-|> Command
+
+HistoryCommand .down[LOGIC_COLOR_T4].> Storage
+HistoryCommand .right[LOGIC_COLOR_T4].> Ui
+HistoryCommand *-left[LOGIC_COLOR_T4]-> " * " History
+
+@enduml

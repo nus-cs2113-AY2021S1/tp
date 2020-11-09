@@ -1,0 +1,32 @@
+@startuml
+
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract} \n Command" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access,
+    storage : Storage) : void
+}
+
+Class "{abstract} \n BackCommand" as BackCommand LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access,
+    storage : Storage) : void
+}
+
+Class "BackModuleCommand" as BackModuleCommand LOGIC_COLOR {
+    + execute(ui : Ui , access : Access, storage : Storage) : void
+}
+
+Class "Access" as Access MODEL_COLOR {
+    # chapterLevel : String
+    + setChapterLevel(chapterLevel : String) : void
+    + setBackModuleLevel(chapterLevel : String) : void
+    + setIsModuleLevel() : void
+}
+
+BackCommand -left[LOGIC_COLOR_T4]-|> Command
+BackModuleCommand -up[LOGIC_COLOR_T4]-|> BackCommand
+BackModuleCommand .left[LOGIC_COLOR_T4].> Access
+
+@enduml

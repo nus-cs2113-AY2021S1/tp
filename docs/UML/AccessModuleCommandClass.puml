@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nGoCommand" as GoCommand LOGIC_COLOR {
+  + isExit() : boolean
+}
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+  + {abstract} isExit() : String
+  + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+Class Access MODEL_COLOR {
+    - admin : Admin
+    - module : Module
+    + getAdmin() : Admin
+    + setModuleLevel(String) : void
+    + setGoModuleLevel(String) : void
+    + setModule(Module) : void
+}
+
+Class Admin MODEL_COLOR {
+    + getModules() : ModuleList
+}
+
+Class Storage STORAGE_COLOR {
+    + loadChapter()
+}
+
+Class ModuleList MODEL_COLOR{
+    + getAllModules() : ArrayList<Module>
+    + get(int): Module
+}
+
+Class Module MODEL_COLOR {
+    + getModuleName() : String
+    + setChapters(ArrayList<Chapter>) : void
+}
+
+Class Ui UI_COLOR {
+    + showToUser(String) : void
+}
+
+Class GoModuleCommand LOGIC_COLOR {
+    - module : String
+    - goModule(Access, Storage, Ui) : void
+    + execute(Ui, Access, Storage) : void
+}
+
+GoCommand <|-right[LOGIC_COLOR_T4]- GoModuleCommand
+Command <|-right[LOGIC_COLOR_T4]- GoCommand
+
+GoModuleCommand .down[LOGIC_COLOR_T4].> Access
+GoModuleCommand .right[LOGIC_COLOR_T4].> Storage
+GoModuleCommand .down[LOGIC_COLOR_T4].> ModuleList
+GoModuleCommand .up[LOGIC_COLOR_T4].> Ui
+
+Access -[MODEL_COLOR_T4]-> Module
+Access -down[MODEL_COLOR_T4]-> Admin
+Admin -down[MODEL_COLOR_T4]-> Module
+ModuleList -[MODEL_COLOR_T4]-> Module
+
+
+@enduml

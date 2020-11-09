@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+class "{abstract} \n AddCommand" as AddCommand LOGIC_COLOR{
+    + prepareResult() : String
+    + isExit() : boolean
+}
+
+class "{abstract} \n Command" as Command LOGIC_COLOR{
+    + {abstract} isExit() : String
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+
+class "Access" MODEL_COLOR {
+    + getModule() : Module
+    + setModule(Module) : void
+}
+
+class "Storage" STORAGE_COLOR {
+    + createChapter(String) : void
+}
+
+class "ChapterList" MODEL_COLOR {
+    + addChapter(Chapter) : void
+    + getChapterCount() : int
+}
+
+class "Ui" UI_COLOR {
+    + showToUser(String) : void
+}
+
+class AddChapterCommand LOGIC_COLOR {
+    - Chapter : String
+    - addChapter(Access, Storage, Chapter)
+}
+
+class Chapter MODEL_COLOR {
+}
+
+AddCommand <|-right[LOGIC_COLOR_T4]- AddChapterCommand
+Command <|-right[LOGIC_COLOR_T4]- AddCommand
+
+AddChapterCommand .down[LOGIC_COLOR_T4].> Access
+AddChapterCommand .right[LOGIC_COLOR_T4].> Storage
+AddChapterCommand -down[LOGIC_COLOR_T4]-> "0..1" ChapterList
+AddChapterCommand .up[LOGIC_COLOR_T4].> Ui
+AddChapterCommand -down[LOGIC_COLOR_T4]-> "1" Chapter
+
+@enduml

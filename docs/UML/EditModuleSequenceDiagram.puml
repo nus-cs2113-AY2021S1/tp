@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Admin" as Admin MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> EditModuleCommand : execute(ui, access, storage)
+activate EditModuleCommand
+
+EditModuleCommand -> EditModuleCommand : editModule(access, storage)
+activate EditModuleCommand
+
+EditModuleCommand -> Access : getAdmin()
+activate Access
+
+Access --> EditModuleCommand : admin
+deactivate Access
+
+EditModuleCommand -> Admin : getModules()
+activate Admin
+
+Admin --> EditModuleCommand : modules
+deactivate Admin
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- EditModuleCommand
+destroy Admin
+
+EditModuleCommand -> ModuleList : getModule(moduleIndex)
+activate ModuleList
+
+ModuleList --> EditModuleCommand : module
+deactivate ModuleList
+
+EditModuleCommand -> Storage : renameModule(newModuleName, module)
+activate Storage
+
+Storage --> EditModuleCommand
+deactivate Storage
+
+EditModuleCommand -> Module : setModuleName(moduleName)
+activate Module
+
+Module --> EditModuleCommand
+deactivate Module
+
+EditModuleCommand --> EditModuleCommand : result
+deactivate EditModuleCommand
+
+EditModuleCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> EditModuleCommand
+deactivate Ui
+
+[<-- EditModuleCommand
+deactivate EditModuleCommand
+
+destroy ModuleList
+destroy Module
+@enduml

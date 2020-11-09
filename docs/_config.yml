@@ -1,0 +1,4 @@
+theme: jekyll-theme-cayman
+title: [KAJI]
+plugins:
+  - jemoji

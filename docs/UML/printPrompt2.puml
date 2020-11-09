@@ -1,0 +1,42 @@
+@startuml
+User -> Kaji: launch
+
+create Access
+Kaji -> Access ++ : new
+activate Access
+Access -> Access ++ : set to admin level
+return
+return
+deactivate Access
+
+create Ui
+Kaji -> Ui ++ : new
+activate Ui
+Ui -> Access ++ : getLevel()
+return
+Ui -> Ui ++ : showLevel()
+return
+return
+deactivate Ui
+
+create GoCommand
+Kaji -> GoCommand ++ : new
+activate GoCommand
+GoCommand -> Access ++ : setModuleLevel()
+Access -> Access ++ : setLevel()
+return
+return
+return
+deactivate GoCommand
+
+create Ui
+Kaji -> Ui ++ : new
+activate Ui
+Ui -> Access ++ : getLevel()
+return
+Ui -> Ui ++ : showLevel()
+return
+return
+deactivate Ui
+
+@enduml

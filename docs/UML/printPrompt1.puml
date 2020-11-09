@@ -1,0 +1,34 @@
+@startuml
+
+class Access
+class Ui
+class GoCommand
+class BackCommand
+
+Access <-[dashed]- Ui
+Access <-[dashed]- GoCommand
+Access <-[dashed]- BackCommand
+
+class Access {
+- String level
+- String adminLevel
+- String moduleLevel
+- String chapterLevel
++ String getLevel()
+}
+
+class Ui {
++ showLevel(Access)
+}
+
+class GoCommand {
++ setChapterLevel(String)
++ setModuleLevel(String)
+}
+
+class BackCommand {
++ setChapterLevel(String)
++ setModuleLevel(String)
+}
+
+@enduml

@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":EditChapterCommand" as EditChapterCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":ChapterList" as ChapterList MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> EditChapterCommand : execute(ui, access, storage)
+activate EditChapterCommand
+
+EditChapterCommand -> EditChapterCommand : editChapter(access, storage)
+activate EditChapterCommand
+
+EditChapterCommand -> Access : getModule()
+activate Access
+
+Access --> EditChapterCommand : module
+deactivate Access
+
+EditChapterCommand -> Module : getChapters()
+activate Module
+
+Module --> EditChapterCommand : chapters
+deactivate Module
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+[<-[hidden]- EditChapterCommand
+destroy Module
+
+EditChapterCommand -> ChapterList : getChapter(chapterIndex)
+activate ChapterList
+
+ChapterList --> EditChapterCommand : chapter
+deactivate ChapterList
+
+EditChapterCommand -> Storage : renameChapter(newChapterName, module, chapter)
+activate Storage
+
+Storage --> EditChapterCommand
+deactivate Storage
+
+EditChapterCommand -> Chapter : setChapterName(chapter)
+activate Chapter
+
+Chapter --> EditChapterCommand
+deactivate Chapter
+
+EditChapterCommand --> EditChapterCommand : result
+deactivate EditChapterCommand
+
+EditChapterCommand -> Ui : showToUser(result)
+activate Ui
+
+Ui --> EditChapterCommand
+deactivate Ui
+
+[<-- EditChapterCommand
+deactivate EditChapterCommand
+
+destroy ChapterList
+destroy Chapter
+@enduml

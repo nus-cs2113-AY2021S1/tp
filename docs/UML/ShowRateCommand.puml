@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":ShowRateCommand" as ShowRateCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Access" as Access MODEL_COLOR
+participant ":Chapter" as Chapter MODEL_COLOR
+participant ":CardList" as CardList MODEL_COLOR
+participant ":Card" as Card MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+ShowRateCommand -> Access ++ : getChapter()
+return chapter
+ShowRateCommand -> ShowRateCommand ++ : computePercentage(chapter)
+create Chapter
+ShowRateCommand -> Chapter ++ : getCards()
+create CardList
+Chapter -> CardList ++ : getAllCards()
+return cards
+destroy CardList
+destroy Chapter
+return cards
+    loop cards.size times
+        Create Card
+        ShowRateCommand -> Card ++ : getRating()
+        return
+        destroy Card
+    end
+return
+ShowRateCommand -> Ui ++ : showToUser()
+return
+return
+@enduml

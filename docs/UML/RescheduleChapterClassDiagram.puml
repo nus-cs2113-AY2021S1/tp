@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+show member
+skinparam arrowThickness 1.1
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR {
+    + {abstract} execute(ui : Ui, access : Access, storage : Storage) : void
+}
+Class RescheduleCommand LOGIC_COLOR {
+    - index : int
+    - date : LocalDate
+    + RescheduleCommand(index : int, date : LocalDate)
+    + execute(ui : Ui, access : Access, storage : Storage) : void
+    - reschedule(access : Access, storage : Storage) : String
+}
+
+Class Access MODEL_COLOR {
+    + getModule() : Module
+}
+Class Module MODEL_COLOR {
+    + getChapters() : ChapterList
+
+}
+Class ChapterList MODEL_COLOR {
+    + getChapter(chapterIndex : int) : Chapter
+}
+Class Chapter MODEL_COLOR {
+    # dueBy : LocalDate
+    + setDueBy(dueBy : LocalDate,
+    storage : Storage, access : Access) : void
+}
+
+Class Storage STORAGE_COLOR {
+    + saveChapterDeadline(dueBy : String,
+    moduleName : String, chapterName : String) : void
+}
+
+Class Ui UI_COLOR {
+    + showToUser(message : String) : void
+}
+
+RescheduleCommand -up[LOGIC_COLOR_T4]-|> Command
+
+RescheduleCommand .down[LOGIC_COLOR_T4].> Access
+RescheduleCommand .down[LOGIC_COLOR_T4].> Ui
+
+Access -left[MODEL_COLOR_T4]-> " 0..1 " Module
+
+Module *-left[MODEL_COLOR_T4]-> "0..1" ChapterList
+ChapterList *-up[MODEL_COLOR_T4]-> " * " Chapter
+
+Chapter .up[MODEL_COLOR_T4].> Storage
+
+RescheduleCommand .down[LOGIC_COLOR_T4].> Module
+RescheduleCommand .down[LOGIC_COLOR_T4].> ChapterList
+RescheduleCommand .left[LOGIC_COLOR_T4].> Chapter
+
+
+@enduml

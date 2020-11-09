@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":ListDueCommand" as L LOGIC_COLOR
+participant "<<class>>\n:Scheduler" as SC LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "storage:Storage" as S STORAGE_COLOR
+participant ":<<class>>\nStorageLoad" as SL STORAGE_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant "ui:Ui" as U UI_COLOR
+end box
+
+skinparam sequence {
+  GroupBodyBackgroundColor Transparent
+}
+
+-> L : execute()
+activate L
+    L -> L : loadAllDueChapters()
+    activate L
+    L -> S : loadAllDueChapters()
+    activate S
+    S -> SL : loadAllDueChapters()
+    activate SL
+    SL -> SL : loadAllChaptersAsDueChapters()
+    activate SL
+    SL --> SL : allDueChapters
+    deactivate SL
+    SL --> S : allDueChapters
+    deactivate SL
+    S --> L : allDueChapters
+    deactivate S
+    deactivate L
+        L -> L : setDueDueChapters()
+        activate L
+            loop for chapter in allDueChapters
+                L -> L : addIfDue()
+                activate L
+                    L -> SC : isDeadlineDue()
+                    activate SC
+                        SC --> L : isDeadlineDue
+                    deactivate SC
+                opt isDeadlineDue is true
+                    L -> L : dueDueChapters.add(chapter)
+                end
+                deactivate L
+            end
+        deactivate L
+    L -> U : printDueByTodayMessage()
+    activate U
+    U --> L
+    deactivate U
+    L -> U : printDueChapters(DueDueChapters)
+    activate U
+    U --> L
+    deactivate U
+deactivate L
+@enduml
