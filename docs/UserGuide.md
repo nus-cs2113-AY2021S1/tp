@@ -627,7 +627,9 @@ Exit FinanceTools to Main Menu.
 > Example: 
 
     exit
+    
 ![Example](screenshots/financetools/Exit(1).PNG)
+
 <!-- @@author -->
 
 <div style="page-break-after: always;"></div>  
