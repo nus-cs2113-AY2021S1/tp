@@ -901,7 +901,7 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="80%" width="80%"}
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="70%" width="70%"}
 
 <div style="page-break-after: always;"></div>
 
@@ -913,7 +913,7 @@ If you encounter any errors, take note of the following warning.
 >respectively.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
 >
->![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="80%" width="80%"}
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="70%" width="70%"}
 
 <div style="page-break-after: always;"></div>
 
