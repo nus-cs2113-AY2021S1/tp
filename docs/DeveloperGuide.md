@@ -1,65 +1,61 @@
 # Developer Guide
 
 ## Table of contents
-- [Developer Guide](#developer-guide)
-  * [Introduction](#introduction)
-    + [Introduction to *25HoursADay*](#introduction-to--25hoursaday-)
-    + [Purpose and scope](#purpose-and-scope)
-    + [Developer guide organization](#developer-guide-organization)
-  * [Setting Up & Getting started](#setting-up---getting-started)
-    + [Setting up](#setting-up)
-    + [Getting started](#getting-started)
-  * [Design](#design)
-    + [Architecture](#architecture)
-    + [Ui](#ui)
-    + [Parser](#parser)
-    + [Command](#command)
-    + [Storage](#storage)
-    + [Model](#model)
-      - [Task](#task)
-      - [Event](#event)
-  * [Implementation](#implementation)
-    + [Add a calendar item feature](#add-a-calendar-item-feature)
-    + [Mark a task as done feature](#mark-a-task-as-done-feature)
-    + [Additional information of an event feature](#additional-information-of-an-event-feature)
-      - [Add additional information](#add-additional-information)
-      - [View additional information](#view-additional-information)
-      - [Delete additional information](#delete-additional-information)
-    + [Delete a calendar item feature](#delete-a-calendar-item-feature)
-    + [Find a calendar item feature](#find-a-calendar-item-feature)
-    + [Print tasks feature](#print-tasks-feature)
-    + [Print events feature](#print-events-feature)
-    + [Print personal calendar feature](#print-personal-calendar-feature)
-    + [Prioritize a task feature](#prioritize-a-task-feature)
-    + [Print prioritized tasks feature](#print-prioritized-tasks-feature)
-    + [Print progress feature](#print-progress-feature)
-    + [Print suggestions feature](#print-suggestions-feature)
-    + [Print countdown feature](#print-countdown-feature)
-    + [Saving data feature](#saving-data-feature)
-    + [Check the validity of a module code](#check-the-validity-of-a-module-code)
-  * [Documentation](#documentation)
-    + [Documentation guide](#documentation-guide)
-      - [Introduction](#introduction-1)
-      - [Setting up and maintaining the project website](#setting-up-and-maintaining-the-project-website)
-      - [Style guidance](#style-guidance)
-      - [Editing diagrams](#editing-diagrams)
-      - [Converting a document to the PDF format](#converting-a-document-to-the-pdf-format)
-    + [Testing guide](#testing-guide)
-    + [Logging guide](#logging-guide)
-  * [DevOps guide](#devops-guide)
-    + [1. Build automation](#1-build-automation)
-    + [2. Continuous integration (CI)](#2-continuous-integration--ci-)
-    + [3. Make a release](#3-make-a-release)
-  * [Appendix A: About the product](#appendix-a--about-the-product)
-    + [Product scope](#product-scope)
-    + [Target user profile](#target-user-profile)
-    + [Value proposition](#value-proposition)
-  * [Appendix B: User Stories](#appendix-b--user-stories)
-  * [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements)
-  * [Appendix D: Glossary](#appendix-d--glossary)
-  * [Appendix E: Contact the initial developers](#appendix-e--contact-the-initial-developers)
-  * [Appendix F: Instructions for manual testing](#appendix-f--instructions-for-manual-testing)
-    + [Command summary](#command-summary)
+- [Introduction](#introduction)
+  * [What is *25HoursADay*?](#what-is--25hoursaday--)
+  * [Purpose and scope](#purpose-and-scope)
+- [Setting Up & Getting started](#setting-up---getting-started)
+  * [Setting up](#setting-up)
+  * [Getting started](#getting-started)
+- [Design](#design)
+  * [Architecture](#architecture)
+  * [Ui](#ui)
+  * [Parser](#parser)
+  * [Command](#command)
+  * [Storage](#storage)
+  * [Model](#model)
+    + [Task](#task)
+    + [Event](#event)
+- [Implementation](#implementation)
+  * [Add a calendar item feature](#add-a-calendar-item-feature)
+  * [Mark a task as done feature](#mark-a-task-as-done-feature)
+  * [Additional information of an event feature](#additional-information-of-an-event-feature)
+    + [Add additional information](#add-additional-information)
+    + [View additional information](#view-additional-information)
+    + [Delete additional information](#delete-additional-information)
+  * [Delete a calendar item feature](#delete-a-calendar-item-feature)
+  * [Find a calendar item feature](#find-a-calendar-item-feature)
+  * [Print tasks feature](#print-tasks-feature)
+  * [Print events feature](#print-events-feature)
+  * [Print personal calendar feature](#print-personal-calendar-feature)
+  * [Prioritize a task feature](#prioritize-a-task-feature)
+  * [Print prioritized tasks feature](#print-prioritized-tasks-feature)
+  * [Print progress feature](#print-progress-feature)
+  * [Print suggestions feature](#print-suggestions-feature)
+  * [Print countdown feature](#print-countdown-feature)
+  * [Saving data feature](#saving-data-feature)
+  * [Check the validity of a module code](#check-the-validity-of-a-module-code)
+- [Documentation](#documentation)
+  * [Documentation guide](#documentation-guide)
+    + [Setting up and maintaining the project website](#setting-up-and-maintaining-the-project-website)
+    + [Style guidance](#style-guidance)
+    + [Editing diagrams](#editing-diagrams)
+    + [Converting a document to the PDF format](#converting-a-document-to-the-pdf-format)
+  * [Testing guide](#testing-guide)
+- [DevOps guide](#devops-guide)
+  * [Build automation](#build-automation)
+  * [Continuous integration (CI)](#continuous-integration--ci-)
+  * [Make a release](#make-a-release)
+- [Appendix A: About the product](#appendix-a--about-the-product)
+  * [Product scope](#product-scope)
+  * [Target user profile](#target-user-profile)
+  * [Value proposition](#value-proposition)
+- [Appendix B: User Stories](#appendix-b--user-stories)
+- [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements)
+- [Appendix D: Glossary](#appendix-d--glossary)
+- [Appendix E: Contact the initial developers](#appendix-e--contact-the-initial-developers)
+- [Appendix F: Instructions for manual testing](#appendix-f--instructions-for-manual-testing)
+  * [Command summary](#command-summary)
 
 ## Introduction
 This section provides an introduction to the developer guide for *25HoursADay*.
@@ -341,33 +337,34 @@ This section shows how the developer guide is documented.
 We use Markdown for writing documentation.
 
 #### Setting up and maintaining the project website
-- We use [Cayman](https://pages-themes.github.io/cayman/) to manage documentation.  
-- The docs/ folder is used for documentation.  
-- To learn how to set it up and maintain the project website, follow the guide [[se-edu/guides] Using Jekyll for project documentation](https://se-education.org/guides/tutorials/jekyll.html).
+
+* We use Intellij's inbuilt markdown editor to maintain our documentations of this project
+* And also the [Cayman](https://pages-themes.github.io/cayman/) to manage documentation.  
+* The docs/ folder is used for documentation.  
 
 #### Style guidance
-- Follow the [Google developer documentation style guide](https://developers.google.com/style).
-- Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
+* Follow the [Google developer documentation style guide](https://developers.google.com/style).
+* Also relevant is the [[se-edu/guides] Markdown coding standard](https://se-education.org/guides/conventions/markdown.html)
 
 #### Editing diagrams
-- We use [diagrams.net](https://www.diagrams.net/) to draw UML diagrams used in this document.
+* We use [diagrams.net](https://www.diagrams.net/) to draw UML diagrams used in this document.
 
 #### Converting a document to the PDF format
-- We use Google Chrome for converting documentation to PDF format.  
-- Here are the steps to convert the project documentation to PDF format:
-  - Go to your generated documentation site on GitHub using Chrome.
-  - Within Chrome, click on the Print option in Chrome’s menu.
-  - Set the destination to Save as PDF, then click Save to save a copy of the file in PDF format.
-- See the guide [[se-edu/guides] Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html) for more details.  
+* We use Google Chrome for converting documentation to PDF format.  
+* Here are the steps to convert the project documentation to PDF format:
+  * Go to your generated documentation site on GitHub using Chrome.
+  * Within Chrome, click on the Print option in Chrome’s menu.
+  * Set the destination to Save as PDF, then click Save to save a copy of the file in PDF format.
+* See the guide [[se-edu/guides] Saving web documents as PDF files](https://se-education.org/guides/tutorials/savingPdf.html) for more details.  
 
 ### Testing guide
 
 There are two ways to run tests.
-- Method 1: Using IntelliJ JUnit test runner
-  - To run all tests, right-click on the src/test/java folder and choose Run Tests in `tp.test`
-  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run `DukeTest`
-- Method 2: Using Gradle
-  - Open a console and run the command `gradlew checkstyleMain` (Mac/Linux: ./gradlew checkstyleMain)  
+* Method 1: Using IntelliJ JUnit test runner
+  * To run all tests, right-click on the src/test/java folder and choose Run Tests in `tp.test`
+  * To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run `DukeTest`
+* Method 2: Using Gradle
+  * Open a console and run the command `gradlew checkstyleMain` (Mac/Linux: ./gradlew checkstyleMain)  
 
 <!-- @@author -->
 
