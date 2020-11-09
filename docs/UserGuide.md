@@ -179,6 +179,7 @@ CS2113T, Expected Workload: 10.0h is added.
 ### 2.4 Add actual time spent on a module: `addtime` <a name="addtime"></a>
 Adds to the time you have spent on the indicated module, for that week. 
 After which, a summary of the total hours spent in that week will also be displayed.
+ Time value will be rounded off to 1 decimal place.
 
 Format: `addtime <module code> <time spent> <week number>`
 
@@ -296,7 +297,8 @@ Expected Workload of CS2113T is removed.
 
 ### 2.9 Minus from actual time spent on a module: `minustime` <a name="minus"></a>
 Minus the actual time you have spent on a specified module. 
-After which, a summary of the total hours spent in that week will also be displayed.
+After which, a summary of the total hours spent in that week will also be displayed. 
+Time value will be rounded off to 1 decimal place.
 
 Format: `minustime <module code> <time spent> <week number>` 
 
@@ -316,7 +318,7 @@ Expected output:
 
 ### 2.10 Edit actual time spent on a module: `edittime` <a name="edit"></a>
 Edits the actual time you have spent on a specified module for that week
-to the given value.
+to the given value. Time value will be rounded off to 1 decimal place.
 
 Format: `edittime <module code> <time spent> <week number>` 
 
