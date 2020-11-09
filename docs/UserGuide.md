@@ -466,7 +466,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
+![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use this command from any mode to access the timetable mode easily and quickly!
@@ -484,7 +484,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
+![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png){:height="80%" width="80%"}
 
 >**Useful Information:**
 >* The module code will accept any input between 1-7 characters.
@@ -513,7 +513,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
+![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png){:height="80%" width="80%"}
 
 >**Useful Information:** 
 >* Currently this feature does not support adding activity past 12am. If you wish to schedule an activity overnight, 
@@ -529,7 +529,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
+![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png){:height="80%" width="80%"}
 
 ### 2.5 Showing schedule: `show schedule`
 
@@ -540,7 +540,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
+![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png){:height="80%" width="80%"}
 
 ### 2.6 Showing Activities list: `list activity`
 
@@ -553,7 +553,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png)
+![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png){:height="80%" width="80%"}
 
 ### 2.7 Showing Class list: `list class`
 
@@ -565,7 +565,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png)
+![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png){:height="80%" width="80%"}
 
 ### 2.8 Deleting an activity: `delete activity INDEX`
 
@@ -581,7 +581,7 @@ Example of usage:
 
 Expected output:
 
-![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png)
+![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png){:height="80%" width="80%"}
 
 ### 2.9 Deleting a class: `delete class INDEX`
 
@@ -597,7 +597,7 @@ Example of usage:
 
 Expected output:
 
-![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png)
+![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png){:height="80%" width="80%"}
 
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
@@ -613,7 +613,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png)
+![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png){:height="80%" width="80%"}
 
 >**Warning:**
 >* Deletion will be done automatically. All the events that are deleted will not be able to be retrieved. 
