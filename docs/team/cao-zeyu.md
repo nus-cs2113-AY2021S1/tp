@@ -32,3 +32,4 @@ daily expenses and be reminded of any library loans.
 
 ##### Contributions to Team-based tasks:
 1. Use issue tracker to add necessary issues.
+2. Do some smoke-tests to test the features.
