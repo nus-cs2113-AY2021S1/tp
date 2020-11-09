@@ -665,6 +665,7 @@ This section contains 12 commands to navigate the academic mode:
 * [3.11 Deleting a grade](#311-deleting-a-grade-delete-grade-index)
 * [3.12 Listing all the starred items in academic](#312-listing-all-the-starred-items-in-academic-list-star)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.1 Entering Academic Mode: `cd 4` / `cd academic`
 
@@ -681,6 +682,8 @@ Expected output:
 
 >**Useful information:**
 >* You can use this command from any mode to access the academic mode easily and quickly!
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Adding a contact: `add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
@@ -700,6 +703,8 @@ Expected output:
 
 >**Warning:**
 >* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Listing all contacts: `list contact`
 
@@ -730,6 +735,8 @@ Expected output:
 
 ![Academic_3_4](Images/AcademicUG/Academic_3_4.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.5 Deleting a contact: `delete contact INDEX`
 
 Do you no longer require the contact of the TA of last sem's module? 
@@ -746,6 +753,8 @@ Example of usage:
 Expected output:
 
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Adding a grade: `add grade n/MODULE_NAME  m/MC  g/GRADE`
 
@@ -780,6 +789,8 @@ Expected output:
 
 ![Academic_3_7](Images/AcademicUG/Academic_3_7.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.8 Checking current cap: `check cap`
 
 To calculate your current CAP based on the grades you have entered previously, 
@@ -809,6 +820,8 @@ Expected output:
 
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.10 SU-ing a grade: `su grade INDEX`
 
 SU-ed a module and want to exclude it from your CAP calculation? The SU grade
@@ -828,6 +841,8 @@ Expected output:
 >**Warning:**
 >* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
 >consider deleting the mod and adding a new one.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.11 Deleting a grade: `delete grade INDEX`
 
