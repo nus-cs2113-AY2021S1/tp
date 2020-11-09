@@ -8,7 +8,7 @@ ietBook is a Command Line Interface (CLI) desktop application designed mainly _N
 #### Code contributed
 
 * [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=snowbanana12345&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-* Back end coding [PRs]()
+* Back end coding [PRs](https://github.com/AY2021S1-CS2113-T14-4/tp/pulls?q=is%3Apr+author%3Asnowbanana12345)
 
 #### Features implemented
 
@@ -16,4 +16,12 @@ ietBook is a Command Line Interface (CLI) desktop application designed mainly _N
 and [`database resource`](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/resources)
 * Implemented['saveload package'](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/java/seedu/dietbook/saveload)
 
+#### Documentation
 
+**Developer Guide**
+* Added the saveload section with the UML diagrams
+* added the database section with the UML diagrams
+
+#### Contributions to team-based tasks
+
+* Attend all weekly meetings 
