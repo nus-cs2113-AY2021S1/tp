@@ -195,6 +195,8 @@ bus object contains the list of remaining stops in the route of that bus.
     + _Cons:_ A lot of duplicate data is stored since each bus stop will have a list of the remaining route for every bus 
     that stops there. 
     
+<div style="page-break-after: always;"></div>
+
 Given the above alternatives, alternative 1 was used considering the implementation of other features of the 
 application.
 <!-- @@author -->
@@ -218,6 +220,8 @@ as a string variable in the command)
 returned. Else, null is returned.
 4. Calls `Ui#printFullRoute()` to display full route of the specified bus.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram explains the above steps when the user enters `/routemap busCode`.<br>
 ![Overview](DG_Diagrams/RouteMapCommand/RouteMapCommandOverallSeq.png)<br>
 The following sequence diagrams explain the interactions for bus route retrieval.<br>
@@ -232,6 +236,8 @@ of busStops objects.
     + _Pros:_ It is easy to maintain and updating of bus stops and bus codes are easier to implement.
     + _Cons:_ Has to loop through the array of bus stops and obtain their individual bus description.
      
+<div style="page-break-after: always;"></div>
+
 * **Alternative 2:** The full route of each bus is stored in a string format and is directly accessed.
     + _Pros:_ It is easier and quicker to print out the full route of a user-specified bus.
     + _Cons:_ Alot of manual work is needed if the bus route/ bus stop is updated. It is not scalable for large-scale 
