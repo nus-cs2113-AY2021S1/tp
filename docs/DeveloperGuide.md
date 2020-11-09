@@ -115,24 +115,64 @@ All components can be accessed by the user through Fluffle's UI. On loading Fluf
 ### Writing Manager Component
 
 ### Bunny Manager Component
-There are two methods for the user to load their bunny ideas into the application.
-
-#### Loading bunnies directly into the bunny.txt file
-The bunny ideas can be loaded into Fluffle by the user using the `Bunny` command. This command automatically adds these `Bunny` objects into the `bunniesList` ArrayList which can be found in the BunnyList class.
+There are two methods for the user to load their bunny ideas into the application: loading it using the app or directly editing the `bunny.txt` data file.
 
 #### Saving bunnies via the program commands
-All the other functions in the bunny related classes such as BunnyList, DeleteBunny, BunnyFilter and GenBunny can also access this `bunniesList` ArrayList directly as it is passed by reference from the commandExecutor function, which imports the `bunniesList` from the BunnyList class. 
+The bunny ideas can be loaded into Fluffle by the user using the `bunny` command. This command automatically adds these `Bunny` objects into the `bunniesList` ArrayList which can be found in the BunnyList class. the `bunny` command has separate arguments for the idea and genre so the user can easily key in the two components. 
+
+#### Loading bunnies directly into the bunny.txt file
+The user may directly edit the `bunny.txt` file, though they must be careful to edit it in the correct format similar to how the program works. Specifically for each Bunny, the program will first search for the line with the `BUNNY_IDEA_TAG` as specified in the `Tags` class and parses the idea component of the Bunny. It then searches for the line with the `BUNNY_GENRE_TAG` also specified in the `Tags` class and parses the genre component of the Bunny from there. 
+
+A sample view of what the user might find in the bunny.txt file is as follows:
+
+```
+number of plot bunnies: 2
+--------------------------------------------------------------
+1.
+  idea: some fantasy related idea
+  genre: fantasy
+--------------------------------------------------------------
+2.
+  idea: some random idea
+  genre: none
+--------------------------------------------------------------
+```
+
+Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish. It will read the file until it can no longer has a next line in `bunny.txt` to read from.
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
-![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
+
+![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
-The BunnySaver class handles 
+Transferring `Bunny` ideas from the `bunniesList` to the `bunny.txt` file via the BunnySaver:
+* When the user calls the `save bunny` command from the CLI, the Bunny from bunnies list are read by `saveAllBunny` command.
+* The `bunniesList` ArrayList is passed by the `commandExecutor` function in the `CommandExecutor` class.
+* The `saveAllBunny` command first prints the number of `Bunny` objects found in the `bunnyList` as follows:
+```
+number of plot bunnies: 10
+--------------------------------------------------------------
+```
 
-When the program is closed,
+* The `BunnySaver` class formats the idea and genre into neatly tagged strings, numbered following their index in the ArrayList and seperated by plain line dividers as follows:
+```
+1.
+  idea: bunny idea 1
+  genre: none
+--------------------------------------------------------------
+2.
+  idea: test idea 2
+  genre: none
+--------------------------------------------------------------
+```
 
-Bunny read from storage and added to the new bunniesList ArrayList
+Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via the BunnyLoader:
+* The `BunnyLoader` class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. 
+* The format of each `Bunny` object should consist of an idea and genre component, even if the genre component is "none". 
+* For each of the `Bunny` objects in the printed list in `bunny.txt`, the parsed idea and genre are combined to create a `Bunny` object that is then added to the `bunniesList` ArrayList and can be managed by the user using the bunny related commands.
+
+Note that all the other functions in the bunny related classes such as `BunnyList`, `DeleteBunny`, `BunnyFilter` and `GenBunny` can also access this `bunniesList` ArrayList to perform their various functions as it is passed by reference from the `commandExecutor` function, which imports the `bunniesList` from the `BunnyList` class. Find out more [here](#bunny-class-family).
 
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
@@ -150,6 +190,13 @@ The operations that can be done on the words list are:
 ### Name Manager Component
 
 ## Implementation
+
+### User interaction overview
+![UML sequence diagram for user interaction](graphics/diagrams/Sequence_diagram_general_command.png)
+
+After the initial logo printing and registration step, the `main` in the `Duke` class enters a while loop, which will only exit when the `exit` command is detected. This component handles the processing of various commands in Fluffle and makes it easier for developers to add new commands without interfering with implementation of other commands.
+
+For simplicity when the `CommandExecutor` class is referenced in later UML diagrams in this document, you may assume that it is a continuation of this diagram.
 
 ### Writing Features
 #### Constitution (member classes)
@@ -198,25 +245,29 @@ When the user keys in the command `remind DATE`, where `DATE` is the date the us
 ### Word Features
 Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
 below shows the implementation of the words, as well as the word list classes in the program.
-![UML Words class diagram](graphics/diagrams/Words_UML Diagram.png)
+
+![UML Words class diagram](graphics/diagrams/Words_UML_Diagram.png)
 <p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
 
-WordsList is an ArrayList which stores the objects of Words class. Each object has the following attributes:
-- Description: the word itself
-- Definition: the definition of the word  
+`WordsList` is an ArrayList which stores the objects of `Words` class. Each object has the following attributes:
+- `Description`: the word itself
+- `Definition`: the definition of the word  
 - Getters of the description and definition of the object.
 
-Each Words object is further classified into Noun, Verb, or Adjective class, which have a getter for its type that 
-identifies whether it is a noun, verb, or adjective.
+Each `Words` object is further classified into `Noun`, `Verb`, or `Adjective` class, which have a getter for its type that 
+identifies whether it is a `noun`, `verb`, or `adjective`.
 
-#### Adding a noun
-This feature allows users to add a Noun into the word bank of Fluffle.
+#### Adding a `noun`
+This feature allows users to add a Noun into the word bank of Fluffle. When the user adds a noun using the `noun` command,
+an object of the `Noun` class is created and added into the ArrayList `WordList`.
 
-#### Adding a verb 
-This feature allows users to add a Verb into the word bank of Fluffle.
+#### Adding a `verb` 
+This feature allows users to add a Verb into the word bank of Fluffle. When the user adds a verb using the `verb` command,
+an object of the `Verb` class is created and added into the ArrayList `WordList`.
 
-#### Adding an adjective
-This feature allows users to add an Adjective into the word bank of Fluffle.
+#### Adding an `adjective`
+This feature allows users to add an Adjective into the word bank of Fluffle. When the user adds an adjective using the `adj` command,
+an object of the `Adj` class is created and added into the ArrayList `WordList`.
 
 #### Listing words
 This feature allows users to list all the words that are currently stored in Fluffle.
@@ -260,10 +311,9 @@ In **Figure 7** above, the flow of the program after it enters the filter proces
 1. Filter list is printed by calling `FilterList.printFilterList()`.
 1. The filter process terminates.
    
-### Bunny class family
-
+### Bunny class family overivew
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<p = "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
+<p= "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
 
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
@@ -274,21 +324,38 @@ The `BunnySaver` class accesses the `bunniesList` and overwrites the current `bu
 
 The `GenBunny` class can access the `bunniesList` as well. The function `pickRandomBunny` from the `GenBunny` class first randomly generates an integer between 0 and the max number of `Bunny` idea in the `bunniesList` ArrayList. It then selects that indexed `Bunny` from the `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
+### Bunny command implementations
+
+#### Adding bunny idea `bunny`
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
 <p align = "center"><b><i>Figure 9:  Bunny list UML Sequence Diagram</i></b></p>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
+#### Listing bunny ideas `list bunny` 
+This feature allows users to add a Verb into the word bank of Fluffle. When the user adds a verb using the `verb` command,
+an object of the `Verb` class is created and added into the ArrayList `WordList`.
+
+#### Filtering bunny ideas: `filter bunny`
+
+#### Saving bunny ideas: `save bunny`
+
+#### Deleting a bunny idea: `delete bunny`
+
+#### Generating a random bunny idea: `random bunny`
+
+#### Resetting the entire list of Bunny ideas: `reset bunny`
+
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<p = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
-The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
+The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The `Names` class has the protected ArrayList of names, `nameList`, that is accessed by the `Names` class method `getName` which randomly gets a selected name from the `nameList` ArrayList. Similarly, `nameList` is also accessed by the `Names` class which contains the `filterNames` function which can filter through the list and obtain names with specified keywords using the command `filter name <NAME>`, where the user may choose to omit the `NAME` when running the command. Similarly, `nameList` is also accessed by the `Names` class which contains the `listNames` function which displays all the names stored in the `nameList` ArrayList. This is the same as the `filterNames` function when given no input String. Similarly, `nameList` is also accessed by the `Names` class which contains the `addName` function which adds a name to the list of names stored in the `nameList` ArrayList using the command `add name <NAME>`. The `NAME` cannot be omitted. Similarly, `nameList` is also accessed by the `Names` class which contains the `deleteName` function which removes a name from the list of names stored in the `nameList` ArrayList. The command to do this is `delete name <INDEX>`. The `INDEX` cannot be omitted, and the range of the `INDEX` can be determined from the `listNames` function above.
 
-The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
+The `NamesDB` class accesses the `nameList` and overwrites the current `Names.txt` file in the data directory, saving all String objects in `nameList` into the file using the `updateDB` method. String objects saved in that file can then be read by the `NamesDB` class and saved into the `nameList` ArrayList using the `loadDB` method. In the event of the database `Names.txt` not existing, the `NamesDB` class will create the `Names.txt` database and populate the database with 500 names using the `loadDB` method.
 
-As shown in Figure 10, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
+As shown in Figure 10, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
@@ -312,9 +379,18 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 
 ## Aesthetic components
 
+### Changing line divider in Fluffle: `divider`
+
 ## Testing
 
-Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
+If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for Fluffle.
+
+### Using JUnit test
+- To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
+- To run test on a separate package/class/method, right click on that package/class/method in `test` directory and choose `Run 'NAME'`.
+
+### Using Gradle
+- To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
 
 ## Appendices
 
@@ -366,10 +442,10 @@ The application aims to provide the writer with the following services:
 - Should work for single user.
 - Should work without Internet connection.
 
-## Instructions for manual testing
+### Appendix E: Instructions for manual testing
 Given below are the instructions to test Fluffle manually.
 
-### Launch and Shutdown
+#### Launch and Shutdown
 Following are the instructions to launch and shutdown Fluffle
 
 1. Verify that you have `Java11` or above version installed by typing `java --version` to your computer's terminal (Command Prompt for Windows, Terminal for MacOS)

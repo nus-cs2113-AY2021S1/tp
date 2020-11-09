@@ -19,12 +19,17 @@ Type 'help FUNCTION_NAME' to view help for each command.
 Available commands:
 - help
 - divider
+- noun
+- verb
+- adj
+- three words
 - bunny
 - list bunny
 - filter bunny
 - save bunny
 - delete bunny
 - random bunny
+- reset bunny
 - list
 - list filter words
 - start

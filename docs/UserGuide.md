@@ -26,6 +26,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Deleting a bunny idea: `delete bunny`](#deleting-a-bunny-idea-delete-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Names list commands](#names-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
@@ -60,12 +61,13 @@ You may want to first have a look at the glossary to be clear on the terminology
 [Jump to top](#fluffle-user-guide)
 
 ## Quick Start
-If you are a first-time user of Fluffle, make use you follow the instruction below:
+If you are a first-time user of Fluffle, make use you follow the instructions below:
 
 1. Check that your computer has `Java 11` installed.
 2. Get the latest **Fluffle** from [here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder.
-4. Type in a command prompt `java -jar duke.jar` and press Enter. If the setup is correct, you should see something like below:
+4. Open a command prompt window in the folder by typing 'cmd' in the navigation bar at the top of the window.
+5. In the command prompt window, type`java -jar duke.jar` and press Enter. If the setup is correct, you should see something like below:
 ```
 --------------------------------------------------------------
 Write a story with
@@ -84,15 +86,15 @@ What is your name?
 5. After entering your name, type the `help` command and press Enter to get started.
 6. Some example commands you can try:
     1. `list words`: List the vocabulary stored in the word list.
-    1. `filter bunny g/fantasy`: Filters bunny ideas that are of the fantasy genre.
+    1. `filter bunny g\fantasy`: Filters bunny ideas that are of the fantasy genre.
     1. `exit`: Exits the app.
-7. Refer to the [Features](#features) below for details of each command. A [Command Summry Table](#command-summary) is provided at the end of this User Guide.
+7. Refer to the [Features](#features) below for details of each command. A [Command Summary Table](#command-summary) is provided at the end of this User Guide.
 
 [Jump to top](#fluffle-user-guide)
 
 ## Features 
 
-This section includes five subsections which will guide you through all the commands in five main components of Fluffle: 
+This section includes five subsections which will guide you through all the commands in the five main components of Fluffle: 
 [`Basic CLI`](#basic-cli-commands), [`Words list`](#words-list-commands), [`Bunnies list`](#bunnies-list-commands), [`Names list`](#names-list-commands) and [`Writings list`](#writings-list-commands).
 We will adhere to the following format in explaining the syntax of the commands in Fluffle.
 
@@ -117,17 +119,23 @@ We will adhere to the following format in explaining the syntax of the commands 
 Basic CLI commands consist of commands that are standard CLI application commands such as help and exit, as well as an aesthetic option to change the line divider.
 
 #### Viewing help: `help`
-Shows a list of commands you can use and what the commands do. Print the instructions at each stage of the program.  
+Shows a list of commands you can use and what the commands do. Prints the instructions at each stage of the program.  
 Output:  
 ```
 Type 'help FUNCTION_NAME' to view help for each command.
 Available commands:
 - help
 - divider
+- noun
+- verb
+- adj
+- three words
 - bunny
 - list bunny
 - filter bunny
 - save bunny
+- delete bunny
+- random bunny
 - list
 - list filter words
 - start
@@ -163,12 +171,12 @@ Format: filter name NAME
 
 #### Changing line divider in Fluffle: `divider`
 Allows the user to change the line divider used in Fluffle.
-Format: `divider DIVIDER_OPTION`
-The `DIVIDER_OPTION` is a parameter indicating your preferable type of line divider, and can take values from 1 to 3. The list of dividers is:
+Format: `divider DIVIDER_OPTION`  
+The `DIVIDER_OPTION` is a parameter indicating your preferred type of line divider, and can take values from 1 to 3. The list of dividers is:
 
 1. \----------------------------------------------------------------
 1. =^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^=
-1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+1. +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Example usages:
 * `divider 1` changes divider option to 1
@@ -187,8 +195,8 @@ Changing line divider...
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ```
 
-#### Clearing certain object in the database: `clear`
-Deletes all items from a list in Fluffle. A warning prompt will be generated before deletion.  
+#### Clearing a certain object in the database: `clear`
+Deletes an item of choice from a list in Fluffle. A warning prompt will be generated before deletion.  
 
 Format: 
 - `clear type\TYPE_OF_ITEM item\SPECIFICATION_MARK_OF_THE_OBJECT` 
@@ -197,6 +205,7 @@ Example usage:
 `clear type\word item\-noungrass`  
 Example Output:  
 `Are you sure you want to delete this item grass? Yes/no`
+
 There are two major types of clearing:
 
 **Clearing a writing:**
@@ -205,13 +214,13 @@ There are two major types of clearing:
 
 Format: `clear type\writing item\0`
 
-Expected effect: clear the first writing stored in the database (the writing stays on the top expected to see when use command `stats` before apply command `clear`)
+Expected effect: Clear the first writing stored in the database (the writing stays on the top expected to see when use command `stats` before apply command `clear`)
 
 * <strong>Clear a writing with respective ID number in the arraylist</strong>
 
 Format: `clear type\writing item\-id5`
 
-Expected effect: clear the writing(s) with ID 5 in the database
+Expected effect: Clear the writing(s) with ID 5 in the database
 
 **Clearing a word:**
 
@@ -256,7 +265,7 @@ Adds an adjective, together with its meaning, into the word bank in the program.
 Format: `adj WORD d\DESCRIPTION`
 
 #### Listing words: `list words`
-List all words stored in the program.  
+Lists all words stored in the program.  
 Format: `list words`
 
 #### Generating three random words: `three words`
@@ -265,7 +274,7 @@ Format: `three words`
 
 #### Filtering words in word list: `filter words`
 Suppose you need to list out all the nouns in your word bank, or you want to find out the words starting with the 
-string “st” and “cg”. In such cases, you can use the filter words command to achieve your goal.
+strings “st” and “cg”. In such cases, you can use the `filter words` command to achieve your goal.
 
 **Note**: You must key in the parameters in order for the application to work properly.
 
@@ -368,7 +377,7 @@ This list is not automatically saved.
 Format: `bunny i\IDEA g\[GENRE]`  
 
 Note:
-* If the genre is not indicated it is set as "none" by default.
+* If the genre is not indicated, it is set as "none" by default.
 * The program allows duplicate bunnies as some users may have more than 1 idea for the same writing prompt.
 
 Example usages:
@@ -387,7 +396,7 @@ bunny i\test idea 2 g\ fantasy
 
 #### Listing bunny ideas: `list bunny`
 
-If you want to view the list of bunnies you have collected, you can use the `list bunny` command to print the full list of bunnies.
+If you want to view the list of plot bunnies you have collected, you can use the `list bunny` command to print the full list of bunnies.
 
 Format: `list bunny`  
 
@@ -419,7 +428,7 @@ Format: `filter bunny i\[IDEA] g\[GENRE]`
 
 Note:
 * If you indicate the tag but leave the parameter blank (eg `filter bunny i\`) then it will not restrict the output of filter by that tag (ie in this case all ideas are selected by the filter).
-* You must include either `i\` or `g\` tags in the command but it can be left blank.
+* You must include either the `i\` or `g\` tag in the command, but the remainder of the command can be left blank.
 
 Example usages:
 - filter bunny i\test idea 1  
@@ -442,11 +451,11 @@ number bunny filter: 2
 ```
 
 #### Saving bunny ideas: `save bunny`
-Save the current list of bunnies in the program into the designated text file. The existing text file is automatically read from at the start of the program and is overwritten when the save function is called.
+Saves the current list of bunnies in the program into the designated text file. The existing text file is automatically read at the start of the program, and is overwritten when the save function is called.
 
 Format: `save bunny`  
 
-Example usages:
+Example usage:
 - `save bunny`
 
 Example output:  
@@ -458,12 +467,12 @@ Bunny list saved!
 ```
 
 #### Deleting a bunny idea: `delete bunny`
-You can delete a selected bunny from the list of bunny ideas when you have written it or are no longer interested in writing it.
+You can delete a selected plot bunny from the list of bunny ideas when you have written it or are no longer interested in writing it.
 
 Format: `delete bunny BUNNY_INDEX`
-* `BUNNY_INDEX` is the index of the bunny you want to delete from the list
+* `BUNNY_INDEX` is the index of the plot bunny you want to delete from the list
 
-Example usages:
+Example usage:
 - `delete bunny 2`
 
 Example output:  
@@ -494,11 +503,34 @@ Random Bunny:
 --------------------------------------------------------------
 ```
 
+#### Resetting the entire list of Bunny ideas: `reset bunny`
+The app can help you clear the entire list of Bunny ideas if you decide that you want a fresh start with your ideas.
+
+Note:
+* There is a failsafe such that if you accidentally type in the `reset bunny` command, you can still prevent it from permanatly deleting your list of Bunny ideas saved in `bunny.txt` by typing in `no` when prompted to type save bunny as confirmation. Any Bunny you previously saved would still remain in the list.
+
+Format: `reset bunny`
+
+Example usages:
+- `reset bunny`
+
+Example output:  
+```
+reset bunny
+--------------------------------------------------------------
+Type in "save bunny" to confirm your deletion of the bunny ideas!
+--------------------------------------------------------------
+save bunny
+--------------------------------------------------------------
+Bunny list saved!
+--------------------------------------------------------------
+```
+
 [Jump to top](#fluffle-user-guide)
 
-### Names list commands
+### Names List Commands
 
-Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random, so you can start writing right away.
+Names List commands allow you to look through a pre-built list of character names offline. You may also compile your own list, and the program can help you pick one out at random so you can start writing right away.
 
 #### Generating names from name database: `name`
 You can generate a name randomly from the stored database of names.
@@ -603,14 +635,14 @@ Requires you to type the following commands for your writings’ configurations:
 - `type`
 - `topic`  
 
-After choosing the “type” and the “topic” configuration, we can start writing our poems and essays.
+After choosing the “type” and the “topic” configurations, we can start writing our poems and essays.
 
 #### Choosing the “type” of your writing: `type`
 Currently, our application offers you with 2 options of “type”, which are “poem” or “essay”.
 
 #### Choosing the “topic” of your writing: `topic` 
 #### (Reserved for v2.1, currently you are only able to choose any arbitrary topic for your writing)
-Listing the available topic in the list and pop out the relevant keywords for your writing.
+Lists the available topics in the list and pop out the relevant keywords for your writing.
 ```
 start
 --------------------------------------------------------------
@@ -634,12 +666,14 @@ Er hält in Armen das ächzende Kind,
 Erreicht den Hof mit Mühe und Not;
 In seinen Armen das Kind war tot.
 end
+Please indicate the date you want to continue with this writing by keying the date in the format "dd/MM/yyyy"
+01/12/2020
 This Poem, Der Erlkönig has been added
 Done! We have added your writing to our storage! You can type "stats" for future reference!
 ```
 
 #### Tracking your past writings: `stats`
-Informs the user detailed specifications like IDs, authors, contents, and other attributes of the writings stored in database. 
+Informs the user detailed specifications like IDs, authors, contents, and other attributes of the writings stored in the database. 
  
 ```
 stats
@@ -659,17 +693,17 @@ Er hält in Armen das ächzende Kind,
 Erreicht den Hof mit Mühe und Not;
 In seinen Armen das Kind war tot.
 
-This writing was created on 2020-10-18
+This writing was created on 18/10/2020
+You want to continue on this writing on 01/12/2020
 --------------------------------------------------------------
 ```
 
-#### Getting reminders for your writings scheduled for a specific day: `remind`
-Let’s say you are a forgetful person, and you would like the program to remind you which writings you are about to 
-continue on a specific day. In this scenario, you can use the `remind` command.
+#### Getting reminders for your writings scheduled for a specific date: `remind`
+Let’s say you are an absent-minded person, and you would like the program to remind you which writings you are about to continue on a specific day. In this scenario, you can use the `remind` command.
 
 **Format**: `remind DATE`
 * `DATE` is the date that you want to continue on some of your writings. `DATE` should be in the form of 
-dd/MM/yyyy, where dd is the 2-digit day, MM is the 2-digit month, and yyyy is a 4-digit year.
+dd/MM/yyyy, where dd is a 2-digit day, MM is a 2-digit month, and yyyy is a 4-digit year.
 
 **Example usage and example output:**
 * You want to know which writings you want to continue on 01/11/2020, so you use the command `remind 01/11/2020`. 
@@ -696,7 +730,7 @@ On 01/11/2020, you should continue on the following writing(s):
 **Q**: Do the parameters need to be keyed in in order?
 
 **A**: No. Our code will detect the indicators in any order as long as they are properly spaced out. However, there are 
-still some features that need you to type in the command in the exact order for the program to work properly.
+still some features that will require you to type in the command in the exact order for the program to work properly.
 
 [Jump to top](#fluffle-user-guide)
 
@@ -734,7 +768,7 @@ The following table summarizes all the commands that you need to know when using
 | filter name  | `filter name <NAME>`<br>Gets the list of names after filtering.                                      |
 | add name     | `add name <NAME>`<br>Adds a name to the list of stored names.                                        |
 | delete name  | `delete name <INDEX>`<br>Removes a name from the list of stored names given the index.               |
-| stats        | `stats`<br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..<br>This is a poem  <br>Written by Goethe<br>Id: 5 <br> DER ERLKÖNIG<br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.<br>This writing was created on 2020-10-18<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
+| stats        | `stats`<br>Show the content of past writings as well as their basic specifications, e.g: number of lines/sentences/type of the writings/date created/ …..<br>This is a poem  <br>Written by Goethe<br>Id: 5 <br> DER ERLKÖNIG<br>Wer reitet so spät, durch Nacht und Wind?<br>Es ist der Vater mit seinem Kind<br>Er hält den Knaben wohl in den Armen.<br>Er faßt ihn sicher, er hält ihn warm.<br>This writing was created on 18/10/2020<br>This poem has 4 lines, 31 words.<br>----------------------------------------------------------------|
 | remind       | `remind DATE`<br> Show you which writings are scheduled on a specific day.<br> Example usage: `remind 30/10/2020`|
 | list         | `list`                                                                                                |
 | reset        | `reset <NAME_OF_CATEGORY>`<br>NAME_OF_CATEGORY:<br>- Reset the respective input category database (e.g, bunny, writings, words,...) |                                                                                  |    

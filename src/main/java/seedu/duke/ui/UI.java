@@ -42,6 +42,12 @@ public class UI {
         System.out.println(FluffleMessages.CHANGING_LINE_DIVIDER_MSG);
     }
 
+    /**
+     * Parse the divider option from the user input.
+     * @param userInput user input
+     * @return divider option detected
+     * @throws DividerIndexOutOfBoundsException Invalid divider option entered.
+     */
     public static int getDividerNumFromInput(String userInput) throws DividerIndexOutOfBoundsException {
         int dividerNum;
         try {
@@ -67,7 +73,10 @@ public class UI {
         return divider;
     }
 
-    // Main Help function
+    /**
+     * Main Help function, calls other help desciptions or just list of commands by default.
+     * @param input user input string
+     */
     public static void printHelpMessage(String input) {
         switch (input) {
         case "noun":
@@ -78,6 +87,9 @@ public class UI {
             break;
         case "adj":
             printHelpAdj();
+            break;
+        case "three words":
+            printHelpThreeWords();
             break;
         case "divider":
             printHelpDivider();
@@ -130,6 +142,9 @@ public class UI {
         case "random bunny":
             printHelpRandomBunny();
             break;
+        case "reset bunny":
+            printHelpResetBunny();
+            break;
         case "filter words":
             printHelpFilterWords();
             break;
@@ -146,8 +161,8 @@ public class UI {
     }
 
     public static void printHelp() {
-        String[] listCommands = {"help", "divider",
-            "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny",
+        String[] listCommands = {"help", "divider", "noun", "verb", "adj", "three words",
+            "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny", "reset bunny",
             "list", "list filter words", "start", "filter words", "stats", "reset", "name",
             "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
         System.out.println("Type 'help FUNCTION_NAME' to view help for each command.");
@@ -224,6 +239,13 @@ public class UI {
         System.out.println("Format: random bunny");
     }
 
+
+    private static void printHelpResetBunny() {
+        System.out.println("Reset the list of bunny ideas");
+        System.out.println("Format: random bunny");
+    }
+
+
     private static void printHelpFilterWords() {
         System.out.println("Get words from your words list.");
         System.out.println("Format: filter words [-continue] [limit\\PRINT_LIMIT] "
@@ -262,6 +284,11 @@ public class UI {
         System.out.println("Type in the adjective you want to save followed by its meaning.");
         System.out.println("Format: adj WORD d\\DESCRIPTION");
         System.out.println("Example: adj hungry d\\the feeling due to lack of food");
+    }
+
+    public static void printHelpThreeWords() {
+        System.out.println("Type 'three words' to generate three random words!");
+        System.out.println("Note: you must have at least three words stored in Fluffle!");
     }
 
     public static void printHelpList() {
