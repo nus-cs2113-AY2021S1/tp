@@ -115,5 +115,4 @@ class TaskMapTest {
         taskMap = new TaskMap(tasks);
         assertEquals(tasks.size(), taskMap.size());
     }
-
 }

@@ -8,9 +8,10 @@ import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
 import seedu.exceptions.MaxNumTaskException;
 import seedu.exceptions.InvalidTaskNumberException;
-import seedu.exceptions.UnknowCommandException;
+import seedu.exceptions.UnknownCommandException;
 import seedu.exceptions.EmptyDataStackException;
 import seedu.exceptions.InvalidReminderException;
+import seedu.exceptions.InvalidFormatException;
 import seedu.task.Task;
 import seedu.parser.Parser;
 
@@ -58,7 +59,7 @@ class DeleteCommandTest {
     @Test
     public void deleteCommand_executeTest() throws InvalidTaskNumberException, InvalidCommandException,
             MaxNumTaskException, InvalidDatetimeException, InvalidPriorityException, EmptyDataStackException,
-            UnknowCommandException, InvalidReminderException {
+            UnknownCommandException, InvalidReminderException, InvalidFormatException {
         setup();
         TaskMap taskMap = new TaskMap();
         taskMap.addTask(t1);
@@ -77,7 +78,7 @@ class DeleteCommandTest {
 
     @Test
     public void deleteCommand_invalidTaskNumber() throws
-            InvalidTaskNumberException, InvalidCommandException, UnknowCommandException {
+            InvalidTaskNumberException, InvalidCommandException, UnknownCommandException, InvalidFormatException {
         setup();
         TaskMap taskMap = new TaskMap();
         taskMap.addTask(t3);
