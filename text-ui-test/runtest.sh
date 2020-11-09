@@ -8,11 +8,17 @@ cd ..
 
 cd text-ui-test
 
-java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
+if [ -f "./data/data.json" ] 
+then
+  rm ./data/data.json
+fi
+
+#java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
+java -ea -cp $(find ../build/libs/ -mindepth 1 -print -quit) com.scrumptious.test.TextUiTest < input.txt > ACTUAL.TXT
 
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
 dos2unix EXPECTED-UNIX.TXT ACTUAL.TXT
-diff EXPECTED-UNIX.TXT ACTUAL.TXT
+diff -w EXPECTED-UNIX.TXT ACTUAL.TXT
 if [ $? -eq 0 ]
 then
     echo "Test passed!"
