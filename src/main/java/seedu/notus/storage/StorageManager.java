@@ -380,6 +380,7 @@ public class StorageManager {
                 + event.getStartDateTimeString() + " "
                 + PREFIX_DELIMITER + PrefixSyntax.PREFIX_END_TIMING + " "
                 + event.getEndDateTimeString() + " "
+                + PREFIX_DELIMITER + PREFIX_TAG + " "
                 + tagDetails + " ";
 
         ArrayList<String> reminderPeriods = event.getReminderPeriodsString();
