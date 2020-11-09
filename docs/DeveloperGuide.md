@@ -216,11 +216,11 @@ _Sequence Diagram:_<br/>
 ## Save/Load Feature
 
 The Save/Load feature is implemented by the saveload package.
-At the base of the package, there is the <mark> Saver </mark> 
-and <mark> Loader </mark>  class.
+At the base of the package, there is the `Saver`
+and `Loader` class.
 
-### Architecture
-![Alt text](save_load_feature/saveload_design.png)
+### Design
+![Alt text](UML_diaghrams/save_load_feature/design.puml)
 Note only the Saver and Loader class is flexible. They can be adapted to new situations without modifying
 the code. The FoodSaveLoadManager and PersonSaveLoadManager are written specifically for this version. They
 will have to be modified/replaced for future versions.
@@ -233,40 +233,47 @@ Handles the storage of its data by writing to a text file.
 ##### Constructor
 Specifies the length and height of the internal Saver table
 ##### Main Methods
-* Saver#save() saves the current data to the file in the folder with the given file name
-* Saver#add() Store String data in the x,y position in the table
+* `Saver#save()` saves the current data to the file in the folder with the given file name
+* `Saver#add()` Store String data in the x,y position in the table
 
 #### Loader class
 Loads data from a text file and stores it in a internal table just like the saver
 ##### Constructor
-static method Loader.load(folder name , file name) : creates a Loader object with 
+`static method Loader.load(folder name , file name)` : creates a Loader object with 
 a table storing the data found in the text file
 ##### Main Methods
-* Loader#get() retrives the data stored in the loader
+* `Loader#get()` retrives the data stored in the loader
 
-#### FoodSaveLoadManager class
+#### FoodPortionDateSaveLoadManager class
 Built on top of Saver and Loader class to implement save/load functionality
 for list of food items the user has input into the dietbook. Contains a instance
-of both <mark> Saver </mark> and <mark> Loader </mark>. It has its own folder to work with,
-the user only has to specify the file name.
+of both `Saver` and `Loader`. It has its own folder to work with,
+the user only has to specify the file name. To save the contents of a `FoodList`, call 
+`FoodPortionDateSaveLoadManager#saveFoodList(FoodList foodlist, String fileName)` 
+To load a file, call `FoodPortionDateSaveLoadManager#load()` first to load the contents of the file into
+the `FoodPortionDateSaveLoadManager` and then call `FoodPortionDateSaveLoadManager#saveFoodList()` to
+return the `FoodList` with those contents. 
+
 ##### Main Methods
-* FoodSaveLoadManager#save() saves the list of food objects to the specified file name
-* FoodSaveLoadManager#load() loads the file and returns the list of food objects stored inside it
+* `FoodPortionDateSaveLoadManager#saveFoodList()` saves the contents of the `FoodList` object
+* `FoodPortionDateSaveLoadManager#load()` loads the file and store the contents 
+* `FoodPortionDateSaveLoadManager#saveFoodList()` returns a `FoodList` with the contents of the 'FoodPortionDateSaveLoadManager'
 
 #### PersonSaveLoadManager class
 Built on top of Saver and Loader class to implement save/load functionality for user information
 Same as FoodSaveLoadManager, it has its own folder to work with, the user only has to specify the file name
 Unlike the FoodSaveLoadManager, it stores the data inside itself and can be updated.
 ##### Main Methods
-* PersonSaveLoadManager#save() save the current state into the file
-* PersonSaveLoadManager#load() loads the file 
+* `PersonSaveLoadManager#save()` save the current state into the file
+* `PersonSaveLoadManager#load()` loads the file 
 * Setters and Getters for all the personal data in this current version
 
 #### UML diaghram
-##### FoodSaveLoadManager#save()
-![Alt text](save_load_feature/FoodSaveLoadManager_save.png)
-##### FoodSaveLoadManager#load()
-![Alt text](save_load_feature/FoodSaveLoadManager_load.png)
+
+##### FoodPortionDateSaveLoadManager#save()
+![Alt text](UML_diaghrams/save_load_feature/FoodPortionDateSaveLoadManager_save.puml)
+##### FoodPortionDateSaveLoadManager#load()
+![Alt text](UML_diaghrams/save_load_feature/FoodPortionDateSaveLoadManager_load.puml)
 similiar diaghrams for PersonSaveLoadManager
 
 ## Product scope
