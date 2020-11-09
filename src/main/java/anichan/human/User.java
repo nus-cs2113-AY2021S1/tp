@@ -169,9 +169,9 @@ public class User extends Human {
     }
 
     /**
-     * Gets total number of workspace(s) the User have.
+     * Gets total number of workspace(s) the User owns.
      *
-     * @return size of Workspace(s) the User have
+     * @return size of Workspace(s) the User owns
      */
     public int getTotalWorkspaces() {
         return workspaceList.size();
