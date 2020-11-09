@@ -447,6 +447,9 @@ Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap
 <p align="center">
   <img src="UG_Images/EditChapter3.png" width="600" alt="Edit Chapter 3"/>
 </p>
+
+<div style="page-break-after: always;"></div>
+
 * Step 4: After the chapter name has been successfully edited, the result will be displayed as shown.<br>
 <p align="center">
   <img src="UG_Images/EditChapter4.png" width="600" alt="Edit Chapter 4"/>
@@ -476,6 +479,8 @@ For instance, you are currently at the module level `CS2113T` and want to remove
   <img src="UG_Images/RemoveChap2.PNG" width="600" alt="Remove Chapter 2"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.2.5. Accessing the chapter level: `go` 
 (by Yan An)
 
@@ -504,6 +509,7 @@ For instance, you are currently in Module level `CS2113T` and want to head to Ch
   <img src="UG_Images/moduleGoResult.png" width="700" alt="Go Result"/>
 </p>
 
+<div style="page-break-after: always;"></div>
 
 #### 3.2.6. Returning to admin level: `back`
 (by Yan An)
@@ -541,6 +547,8 @@ Here are some key pointers:
 * Starts a revision based on the index provided. 
 * The index refers to the index number shown in the chapter list for the module level you are currently in.  
 * Index provided **must be a positive integer** 1, 2, 3, ...
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
