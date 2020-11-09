@@ -47,7 +47,7 @@ public class AddCategoryCommand extends BookmarkCommand {
 
     private void checkCategory(ArrayList<BookmarkCategory> categories) throws ExistingBookmarkException {
         for (BookmarkCategory existingCategory : categories) {
-            if (categoryName.equals(existingCategory.getName())) {
+            if (categoryName.toLowerCase().equals(existingCategory.getName().toLowerCase())) {
                 throw new ExistingBookmarkException();
             }
         }

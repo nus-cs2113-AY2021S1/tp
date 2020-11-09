@@ -108,7 +108,7 @@ public class DateList {
             int periodLastIndex = lessons.get(i).periods.size() - 1;
             LocalDateTime lastDate = lessons.get(i).periods.get(periodLastIndex).endDateTime;
             if (lastDate.isBefore(LocalDateTime.now().minusDays(7))) {
-                deleteActivity(i + 1, storage);
+                deleteLesson(i + 1, storage);
                 i--;
             }
         }
