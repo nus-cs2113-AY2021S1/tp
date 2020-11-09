@@ -192,7 +192,7 @@ public class TimeTableCommand {
             try {
                 date = getDate(in.nextLine());
                 isInvalid = false;
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DateTimeException e) {
                 System.out.println("You have entered an invalid date format. Please try again");
             }
         }
