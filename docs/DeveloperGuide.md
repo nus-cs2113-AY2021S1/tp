@@ -550,7 +550,7 @@ However, any prior data stored will be lost.
 
 We define a file to be corrupted when our decoders are unable to decode the data .txt files.
 
-We can simulate this by changing the encoded text in the file. For example, a Class that has the follow parameters:
+We can simulate this by changing the encoded text in the file. For example, a Class that has the following parameters:
 
 * Description: Math tutorial
 * isDone: false
