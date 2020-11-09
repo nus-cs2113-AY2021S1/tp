@@ -741,14 +741,16 @@ for obtaining a score above half of the maximum score and `Excellent` for gettin
  For the results of a subject , the `printSubjectResults` method in the Ui class checks if there are any results of previous subject quizzes for that particular subject. 
  
  ![sr](https://user-images.githubusercontent.com/46095141/98535180-a3141680-22c0-11eb-9e75-519ea76684bd.png)
-<sub>***Figure 4.6.1** UML sequence diagram for requesting results of the Maths subject</sub>
+
+<sub>***Figure 4.7.1** UML sequence diagram for requesting results of the Maths subject*</sub>
 
 ### 4.7.2 Printing out the results for a topic
 For the results of a topic, the `printTopicResults` method checks if the topic has any any results from previous topic quizzes.
 The user has to access the particular subject level to use this command.
 
 ![tr](https://user-images.githubusercontent.com/46095141/98535184-a3acad00-22c0-11eb-94fd-d911a346af11.png)
-<sub>***Figure 4.6.2** UML sequence diagram for requesting results of the Speed topic of the Maths subject*</sub>
+
+<sub>***Figure 4.7.2** UML sequence diagram for requesting results of the Speed topic of the Maths subject*</sub>
 
 ### 4.8 Adding objects <a name="adding-imp"></a>
 
@@ -806,12 +808,13 @@ add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic 
 ### 4.10 `list all` command <a name="listall-imp"> </a>
 
 While the syntax of the `list all` command is the same on the main, subject and topic levels,
-there are 3 separate ListAll___Commands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
+there are 3 separate ListAllXYZCommands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
 the 3 classes are kept separate so that `printAll()` can recognise what object the user is accessing.
 
 The following sequence diagram shows how you can proccess the `list all` command from the subject level.
 
 ![ListAllTopicSequenceDiagram](https://user-images.githubusercontent.com/50734854/98481821-11f95d00-2238-11eb-90c6-9bb081956da5.png)
+
 <sub>***Figure 4.9.1** UML sequence diagram for list all at topic level*</sub>
 
 If the `list all` command is given at the topic level, `printTreeTopic()` will check if each topic is the active topic each loop,
@@ -1159,7 +1162,7 @@ in classes such as Event,Deadline to provide the accurate output .
 1. `ui` - Package which contains the Ui class, in charge of user interactions.
 1.  `updateResult` - Method in Result class which updates the score of a quiz.
 
-## Appendix E: Instructions for Manual Testing
+## Appendix E: Instructions for Manual Testing <a name="manual-testing"></a>
 
 Given below are the instructions to test the app manually.
 

@@ -179,7 +179,7 @@ public class Ui {
         boolean isTaskFound = false;
         for (Task task : taskList.getList()) {
             if (task.toString().contains(find)) {
-                Ui.printTaskMatch();
+                Ui.printTaskMatch(isTaskFound);
                 System.out.println(task);
                 isTaskFound = true;
             }
@@ -213,8 +213,10 @@ public class Ui {
         }
     }
 
-    public static void printTaskMatch() {
-        System.out.println(" Here are the matching task(s) in your list:");
+    public static void printTaskMatch(boolean isTaskFound) {
+        if(!isTaskFound) {
+            System.out.println(" Here are the matching task(s) in your list:");
+        }
     }
 
     public static void printGoToSubject(Subject subject) {
@@ -252,8 +254,10 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public static void printTopicMatch() {
-        System.out.println("Here are the matching topic(s) in your list:");
+    public static void printTopicMatch(boolean isTopicFound) {
+        if(!isTopicFound){
+            System.out.println("Here are the matching topic(s) in your list:");
+        }
     }
 
 
@@ -262,7 +266,7 @@ public class Ui {
         System.out.println(DIVIDER);
         for (Topic topic : topicList.getList()) {
             if (topic.toString().contains(query)) {
-                Ui.printTopicMatch();
+                Ui.printTopicMatch(isTopicPresent);
                 System.out.println(topic);
                 isTopicPresent = true;
             }
@@ -284,7 +288,7 @@ public class Ui {
 
     public static void printTopicDelete(Topic topic, int total) {
         System.out.println(DIVIDER);
-        System.out.println(" Noted. I've removed this topic:");
+        System.out.println("Noted. I've removed this topic:");
         System.out.println("   " + topic);
         System.out.println(" Now you have " + total + (total == 1 ? " topic " : " topics " + "in the list."));
         System.out.println(DIVIDER);
