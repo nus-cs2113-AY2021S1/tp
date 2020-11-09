@@ -102,7 +102,7 @@ respective content will be displayed to User based on the CommandResult.
 
 
 Task class consists of attributes like description, date, start time, end time,
-priority that are important to users. Whereas other attributes like 
+priority, and reminder that are important to users. Whereas other attributes like 
 HASH_VALUE_DIGITS, taskID and internal values of Priority enum class matters
 more to developers. For example, the HASH_VALUE_DIGITS and the color code of 
 Priority could affect the content displayed to User, and the reason why the
@@ -119,6 +119,12 @@ unique identifier (Integer). Another reason of using LinkedHashMap is because
 it is ordered, this allows the container to be sorted. DateSorter and 
 PrioritySorter implements the Task comparator, they are used in the TaskMap
 functions sortListByDate() and sortListByPriority().
+
+Reminder is a class that consists of a class of timer and localtime, as each 
+reminder needs to have its own timer. The timer is created when a reminder 
+is started, and cancelled when the reminder is turned off. As such, having
+individual timers for each task is important so that they will not interfere
+with one another.
 
 
 ### Storage component
@@ -193,7 +199,9 @@ Priority is set to low
    - 1c. User adds task without start and end time  
 Time is set to empty  
    - 1d. User inputs wrong details format  
-PLANus shows invalid command message  
+PLANus shows invalid command message
+   - 1e. User add tasks without any input for 
+   reminder. Reminder is set to off.
 
 
 ### Use case: List task
@@ -340,7 +348,23 @@ Use case ends.
     - Test case: add homework d/25-12-2020 st/1900 et/2000 p/4  
     Expected:  Since the highest priority is HIGH, the task is not added to the list, 
     and an error message is shown.
-
+  
+ 5. Add a task into the lists using add command with description, date, start 
+    and end times and priority and set a reminder.
+    
+    - Test case: add homework d/25-12-2020 st/1900 et/2000 p/3 r/on
+    Expected: homework task should be added to the list with date set as 25-12-2020 
+    and start time 19:00 and end time 20:00, with a HIGH priority and reminder set to "Yes".
+    
+    -Test case: add homework d/25-12-2020 st/1900 et/2000 p/3 r/to 
+    Expected: Since to is not a valid reminder command, the task is not added to the list,
+    and an error message is shown.
+    
+    -Test case: add homework d/25-12-2020 st/1900 et/2000 p/3 r/off
+    Expected: homework task should be added to the list with date set as 25-12-2020 
+    and start time 19:00 and end time 20:00, with a HIGH priority and reminder set to "No".
+    
+        
 ### Deleting a task
 
 Prerequisites: Add some tasks to the list. List all tasks using the list command. 
