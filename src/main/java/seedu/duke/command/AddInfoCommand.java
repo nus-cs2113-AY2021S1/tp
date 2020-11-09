@@ -31,7 +31,8 @@ public class AddInfoCommand extends Command {
         try {
             command = userInput.split("-", 2);
             additionalInformation = command[1].trim();
-            eventNumber = Integer.parseInt(command[0].replace("/a", "").trim());
+            String[] split = command[0].split("/a",2);
+            eventNumber = Integer.parseInt(split[1].trim());
 
         } catch (Exception e) {
             throw new CommandException("invalid add info");
