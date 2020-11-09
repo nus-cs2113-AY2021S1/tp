@@ -75,6 +75,7 @@ public class Messages {
     public static final String WARNING_NO_BOOK = "~Error~ This book index does not exist. Please try again.";
     public static final String WARNING_NO_LINK = "~Error~ This link index does not exist. Please try again.";
     public static final String WARNING_NO_MODULE = "~Error~ This module index does not exist. Please try again.";
+    public static final String WARNING_NO_EXPENSE = "~Error~ This expense item does not exist. Please try again.";
 
     public static final String MESSAGE_DONE = "Nice! I've marked this task as done:\n       [Y] ";
     public static final String MESSAGE_RETURNED = "Nice! I've marked this book as returned:\n       [R] ";
@@ -124,11 +125,13 @@ public class Messages {
     public static final String EXCEPTION_INVALID_INDEX = "~Error~ Please input a valid index.";
     public static final String EXCEPTION_INVALID_LINK_INDEX = "~Error~ Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
-    public static final String EXCEPTION_INVALID_VALUE = "~Error~ Please input a valid value. "
-            + "It must be a non-negative value with up to 15 digits for the integer part.";
+
+    public static final String EXCEPTION_INVALID_VALUE = "Please input a valid value. It must be a non-negative "
+            + "floating point number/integer less than 10^14.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "~Error~ Invalid category.";
     public static final String EXCEPTION_LOAD_FILE = "~Error~ The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
+
     public static final String EXCEPTION_WRONG_DATE_FORMAT = "~Error~ Please input the date string in the format "
             + "\"yyyy-MM-dd\"";
     public static final String EXCEPTION_SAVE_FILE = "~Error~ Cannot save to file.";

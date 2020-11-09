@@ -21,7 +21,7 @@ command. We hope this guide is user-friendly!
 
 3. Copy the jar file to a new folder.
 
-4. Navigate to the directory which contains `termiNus.jar` using the command prompt. Alternatively, on windows, you
+4. Navigate to the directory which contains `termiNus.jar` using the command prompt. Alternatively, on Windows, you
    can open the folder which contains `termiNus.jar` and in the address bar type `cmd` and press enter. It will open up a
    command prompt with that directory.
 
@@ -55,7 +55,7 @@ Hello from...
     1. Priority 0: Default , Priority 1: Highest (As number increases, priority decreases). 
     2. Detailed descriptions are given for each command. Please follow exactly.
 
-### Adding a task: `add`
+### Adding a task: `add task`
 Adds a new item to the list of todo tasks.
 
 Format: `add task <description> <optional arguments>`
@@ -134,7 +134,7 @@ Output:
      Now you have 5 tasks in the list.
     ____________________________________________________________
 ```
-### Adding a module: `add`
+### Adding a module: `add module`
 Add modules to the module list.
 
 Format: `add module <module code> <optional/compulsory arguments>`
@@ -181,7 +181,7 @@ Output:
 
 🚩: `[CM]` indicates a completed module, and `[IC]` indicates an incomplete module.
 
-### Adding a weblink: `add`
+### Adding a weblink: `add link`
 Add a link for lecture/tutorial sessions through zoom.
 
 Format: `add link m/<module code> <compulsory arguments>`
@@ -206,7 +206,7 @@ Output:
     ____________________________________________________________
      Got it. I've added this link:
        CS2113 lecture
-       https://cs2113Lecture.zoom.com
+       https://CS2113Lecture.zoom.com
      Now you have 1 link(s) in the list.
     ____________________________________________________________
 ```
@@ -301,7 +301,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks on list: `list`
+### Displaying tasks on list: `list tasks`
 Lists all the tasks.
 
 Format: `list tasks`
@@ -327,7 +327,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks based on priority: `list`
+### Displaying tasks based on priority: `list tasks (by priority)`
 Lists all the tasks with the same priority.
 
 Format: `list tasks p/<priority>`
@@ -349,7 +349,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying tasks based on category: `list`
+### Displaying tasks based on category: `list tasks (by category)`
 Lists all the tasks with the same category.
 
 Format: `list tasks c/<category>`
@@ -370,7 +370,8 @@ Output:
      2.[T][N] lecture quiz (p:2) (category: cs2113)
     ____________________________________________________________
 ```
-### Displaying weblinks on list: `list`
+
+### Displaying weblinks on list: `list links`
 Lists all the links.
 
 Format: `list links`
@@ -386,13 +387,14 @@ Output:
      Here are the links in your list:
 
      1.CS2113 lecture
-       https://cs2113Lecture.zoom.com
+       https://CS2113Lecture.zoom.com
      2.CS2028 lecture
        https://zoom.com.sg
     ____________________________________________________________
 
 ```
-### Displaying books borrowed and returned on list: `list`
+
+### Displaying books borrowed and returned on list: `list books`
 List all books loaned and returned. 
 
 Format: `list books`
@@ -415,7 +417,8 @@ Output:
          (Due Date: 10 Nov 2020)
     ____________________________________________________________
 ```
-### Displaying modules on list: `list`
+
+### Displaying modules on list: `list modules`
 List all the modules in the module list and shows the computed, projected CAP and completed MCs.
 
 Format: `list modules`
@@ -441,7 +444,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Displaying expense items on list: `list`
+### Displaying expense items on list: `list expenses`
 List all the expense items in the expense list and shows total amount of money spent for each currency and the current 
 day, week, month, and year.
 
@@ -491,7 +494,8 @@ Output:
     ____________________________________________________________
 
 ```
-### Displaying expense items by a certain currency on list: `list` 
+
+### Displaying expense items by a certain currency on list: `list expenses (by currency)` 
 List all the expense items in the expense list based on currency and shows total amount of money spent for each currency.
 
 Format: `list expenses currency/currency_name`
@@ -515,7 +519,7 @@ Output:
     
 ```
 
-### Displaying expense items on a certain date on list: `list` 
+### Displaying expense items on a certain date on list: `list expenses (by date)` 
 List all the expense items in the expense list based on the date and shows total amount of money spent for each currency.
 
 Format: `list expenses date/YYYY-MM-DD`
@@ -539,7 +543,8 @@ Output:
      5.20 USD
     ____________________________________________________________
 ```
-### Displaying expense items for a certain time period on list: `list` 
+
+### Displaying expense items for a certain time period on list: `list expenses (by time period)` 
 List all the expense items in the expense list based on the time period and shows total amount of money spent for each currency.
 
 Format: `list expenses for/<time period>`
@@ -569,7 +574,7 @@ Output:
 ```  
 
 
-### Deleting a task from the list: `delete`
+### Deleting a task from the list: `delete task`
 Deletes a task from the list
 
 Format: `delete task <taskIndexNumber>`
@@ -590,7 +595,7 @@ Output:
     ____________________________________________________________
 
 ```
-### Deleting all tasks of a certain priority: `delete`
+### Deleting all tasks of a certain priority: `delete tasks (by priority)`
 Delete tasks of the same priority.
 
 Format: `delete tasks p/<priority>`
@@ -615,7 +620,7 @@ Output:
 
 ```
 
-### Deleting all tasks of a certain category: `delete`
+### Deleting all tasks of a certain category: `delete tasks (by category)`
 Delete tasks of the same category.
 
 Format: `delete tasks c/<category>`
@@ -639,7 +644,7 @@ Output:
     ____________________________________________________________
 
 ```
-### Deleting a link from the list: `delete`
+### Deleting a link from the list: `delete link`
 Delete a link from the list. 
 
 Format: `delete link <linkIndexNumber>`
@@ -662,7 +667,7 @@ Output:
 
 ```
 
-### Deleting a module from the list: `delete`
+### Deleting a module from the list: `delete module`
 Delete a module from the list.
 
 Format: `delete module <moduleIndexNumber>`
@@ -683,7 +688,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Deleting an expense item from the list: `delete`
+### Deleting an expense item from the list: `delete expense`
 Delete an expense item from the list.
 
 Format: `delete expense <expenseIndexNumber>`
@@ -705,7 +710,7 @@ Output:
 
 ```
 
-### Deleting all the expense items of a certain currency: `delete`
+### Deleting all the expense items of a certain currency: `delete expenses (by currency)`
 Delete expense items of the same currency.
 
 Format: `delete expenses currency/<currency>`
@@ -735,10 +740,9 @@ Output:
      ~Info~ There is no expense item deleted.
 
     ____________________________________________________________
-
 ```
 
-### Deleting all expense items of the same date: `delete`
+### Deleting all expense items of the same date: `delete expenses (by same date)`
 Delete expense items of the same date.
 
 Format: `delete expenses date/<yyyy-MM-dd>`
@@ -760,27 +764,7 @@ Output:
 
 ```
 
-### Deleting expense items on a certain date from the list: `delete`
-Delete an expense item from the list. 
-
-Format: `delete expenses date/YYYY-MM-DD`
-
-Example of usage:
-
-`delete expenses date/2020-11-07`
-
-Output: 
-```
-    ____________________________________________________________
-     Noted. I've removed all these expense item(s)
-
-     pencil (0.30 SGD) (date: Saturday, November 7, 2020)
-     pen (0.40 USD) (date: Saturday, November 7, 2020)
-     sandwich (3.00 SGD) (date: Saturday, November 7, 2020)
-    ____________________________________________________________
-```
-
-### Marking a task as done: `done`
+### Marking a task as done: `done task`
 Marks a given task as done.
 
 Format: `done task <taskIndexNumber>`
@@ -800,7 +784,7 @@ Output:
     ____________________________________________________________
 ```
 
-### Setting a module as complete: `done`
+### Setting a module as complete: `done module`
 Sets a module as complete.
 
 Format: `done module <moduleIndexNumber>`
@@ -839,6 +823,7 @@ Output:
        [R] java book
     ____________________________________________________________
 ```
+
 ### Setting the priority of a task: `set`
 Sets the priority of an existing task.
 
@@ -903,6 +888,7 @@ Output:
        [T][N] study for finals (p:0) (category: st2334) (date: 11 Nov 2020)
     ____________________________________________________________
 ```
+
 ### Printing task calendar: `calendar`
 Prints a calendar with tasks from current date to given number of days.
 
@@ -1168,14 +1154,14 @@ Output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: `./tasks.txt`, `./books.txt`, `./links.txt`, `./expenses.txt` stores the user data, which can be transferred to another computer or instance of the program by
+**A**: `./tasks.txt`, `./books.txt`, `./links.txt`, `./modules.txt` and `./expenses.txt` stores the user data, which can be transferred to another computer or instance of the program by
 putting it in the same folder as `termiNus.jar`.
 
 **Q**: Are all commands case-sensitive?
 
 **A**: The case-sensitivity has been stated for the applicable commands. 
 
- 
+
 
 ## Quick Command Reference
 

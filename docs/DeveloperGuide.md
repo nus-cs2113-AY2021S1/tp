@@ -226,11 +226,11 @@ This section describes how the `Storage` class works
 
 #### High level description
 
-Methods handling data loading (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()` methods) 
-return an `ArrayList` of `Item`s (i.e. `Task`, `Book`, `Link`, `Module`). These will be the initial values of 
-the `ItemList`. The `save()` method takes an `ItemList` and a `String` specifying the path to which the file will be 
-saved. The `ItemList` will be parsed and saved into files (each `ItemList` will be saved to a separate file) at the 
-specified path.  
+Methods handling data loading (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()`, `loadExpense()` methods) 
+return an `ArrayList` of items (i.e. `Task`, `Book`, `Link`, `Module`, `Expense`). These will be the initial values of 
+the item list (i.e. `TaskList`, `BookList`, `LinkList`, `ModuleList`, `ExpenseList`). The `save()` method takes an 
+inherited instance of `ItemList` and a `String` specifying the path to which the file will be saved. The `ItemList` will 
+be parsed and saved into files (each `ItemList` will be saved to a separate file) at the specified path.  
   
 Formats of the files: 
   
@@ -282,6 +282,22 @@ There are 4 fields for each `Module`:
 
 All the fields are separated by `|` with a leading and a trailing space. Each `Module` is stored as one line.  
   
+- `expenses.txt`
+
+There are 4 fields for each `Expense`:
+1. Description
+2. Value
+3. Currency
+4. Date
+
+All the fields are separated by `|` with a leading and a trailing space. Each `Module` is stored as one line.
+
+Currency has default value "SGD".
+
+Date has default value of the date that the `spend` command is executed.
+
+Date will be in the format of `yyyy-MM-dd`, e.g. `2020-11-09`.
+  
 #### Implementation details
 
 The following sequence diagram shows how the `Storage` works.
@@ -289,10 +305,13 @@ The following sequence diagram shows how the `Storage` works.
 ![StorageSequenceDiagram](./images/StorageSequenceDiagram.png)
   
 1. At the start of `Duke`, a new `Storage` object will be created.
-2. `Duke` calls loading methods (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()`) 
+2. `Duke` calls loading methods (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()`, `loadExpense()`) 
 sequentially. Each loading method calls the corresponding helper method (i.e. `loadTaskFromLine()`, `loadBookFromLine()`, 
-`loadLinkFromLine()`, `loadModuleFromLine()`) to load `Item`s from each line in the file. 
+`loadLinkFromLine()`, `loadModuleFromLine()`, `loadExpenseFromLine()`) to load `Item`s from each line in the file. 
 3. After each command, `Duke` calls the `save()` method of `Storage` to save all the `Item`s in the list to files.
+
+
+<!-- @@author -->
 
 ### List feature
 
@@ -339,6 +358,114 @@ This feature is facilitated by `Parser` and `AddCommand`.
 1. The command is excuted and the complete list of links is displayed.
 <!-- @@author -->
 
+<!-- @@author Guo Ai -->
+
+#### List expenses
+
+The list expenses feature allows the user to list all the expense items in the expense list together with a summary 
+message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs `list expenses`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create 
+a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments and returns 
+a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the complete expense list is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+#### List expenses with currency
+
+The list expenses with currency feature allows the user to list expense items of a curtain currency together with a 
+summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses currency/USD`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `currency`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list with `currency` `USD` is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+#### List expenses with date
+
+The list expenses with date feature allows the user to list expense items of a curtain date together with a 
+summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses date/2020-11-09`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `date`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list with `date` `2020-11-09` is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+- The `date` argument must be in the format of `date/<yyyy-MM-dd>`. If the `date` argument does not follow the correct 
+format, an error message `Please input a valid date string in the format "yyyy-MM-dd"` will be displayed.
+
+#### List expenses with date
+
+The list expenses with date feature allows the user to list expense items of a curtain date together with a 
+summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses date/2020-11-09`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `date`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list with `date` `2020-11-09` is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+- The `date` argument must be in the format of `date/<yyyy-MM-dd>`. If the `date` argument does not follow the correct 
+format, an error message `Please input the date string in the format "yyyy-MM-dd"` will be displayed.
+
+#### List expenses for a certain date range
+
+The list expenses for a certain date range feature allows the user to list expense items of a curtain date range (i.e. 
+today/this week/this month/this year) together with a summary message displaying the total amount of expenses listed for each currency.
+
+This feature is facilitated by `Parser` and `ListExpenseCommand`.
+
+1. The user inputs the command `list expenses for/WEEK`.
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to 
+create a `ListExpense Command`.
+1. The method `createListCommand()` in `CommandCreator` further parses the input by identifying the keyword `for`, 
+and calls the static method `createListExpenseCommand()` in class `ListExpenseCommand`.
+1. The static method `creatListExpenseCommand()` in class `ListExpenseCommand` further parses the arguments by 
+identifying keyword `for`, and returns a new `ListExpenseCommand` for the expense list.
+1. The command is executed and the expense list for the currency week is displayed together with the summary information.
+
+- If the expense list is empty, the message `There are no expense items to be listed in your expense list.` will be 
+displayed.
+
+- The `for` argument is case-insensitive. For example, both `list expenses for/MONTH` and `list expenses for/month` are 
+valid commands.
+
+<!-- @@author -->
+
 ### Calendar feature
 
 <!-- @@author iamchenjiajun -->
@@ -368,6 +495,143 @@ The sorting of tasks by date is done using this code, which is also called on a 
 
 This sorts the stream using a `Comparator` which is defined inline. The `Comparator` makes use of the `Task.getDate()` method to do the comparisons.
 This is done instead of defining a new `Comparator` class as `toCompare` is already implemented in the `LocaDate` API, and doing this simplifies the code.
+<!-- @@author -->
+
+<!-- @@author GuoAi -->
+
+### Delete feature
+
+#### Delete tasks by index
+
+The delete tasks by index feature allows the user to delete a task identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete task 2`. (Assuming the task of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `task`, 
+and returns a `DeleteCommand` with the task index.
+1. The command is executed and the task with index `2` is deleted. The deleted task is displayed.
+
+- If the task does not exist in the task list, the error message `~Error~ This task index does not exist. Please try 
+again.` will be displayed.
+
+### Delete tasks with priority
+
+The delete tasks with priority feature allows the user to delete all the tasks of a certain priority.
+
+This feature is facilicated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete tasks p/2`. (Assuming the tasks of priority `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` 
+and `p/`, and returns a `DeleteCommand` for the task list of priority level `2`.
+1. The command is executed and all tasks with priority level `2` are deleted. The deleted tasks are displayed.
+
+- If the priority does not exist in the task list, the error message `~Error~ Invalid priority number.` will be 
+displayed.
+
+### Delete tasks with category
+
+The delete tasks with category feature allows the user to delete all the tasks of a certain category.
+
+This feature is facilicated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete tasks c/cs2113`. (Assuming the tasks of category `cs2113` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `tasks` 
+and `c/`, and returns a `DeleteCommand` for the task list of category `cs2113`.
+1. The command is executed and all tasks with category `cs2113` are deleted. The deleted tasks are displayed.
+
+- If the priority does not exist in the task list, the error message `~Error~ Invalid category.` will be 
+displayed.
+
+#### Delete links by index
+
+The delete links by index feature allows the user to delete a link identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete link 2`. (Assuming the link of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `link`, 
+and returns a `DeleteCommand` with the link index.
+1. The command is executed and the link with index `2` is deleted. The deleted link is displayed.
+
+- If the link does not exist in the link list, the error message `~Error~ This link index does not exist. Please try 
+again.` will be displayed.
+
+#### Delete modules by index
+
+The delete modules by index feature allows the user to delete a module identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteCommand`.
+
+1. The user inputs the command `delete module 2`. (Assuming the module of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `module`, 
+and returns a `DeleteCommand` with the module index.
+1. The command is executed and the module with index `2` is deleted. The deleted module is displayed.
+
+- If the module does not exist in the module list, the error message `~Error~ This module index does not exist. Please 
+try again.` will be displayed.
+
+#### Delete expenses by index
+
+The delete expenses by index feature allows the user to delete an expense item identified by a certain index.
+
+This feature is facilitated by `Parser` and `DeleteExpenseCommand`.
+
+1. The user inputs `delete expense 2`. (Assuming the expense item of index `2` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` method returns a `CommandCreator` object to create 
+a `DeleteExpenseCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses`, 
+and returns a `DeleteExpenseCommand` with the expense index.
+1. The command is executed and the expense item with index `2` is deleted. the deleted expense item is displayed.
+
+- If the expense item does not exist in the expense list, the error message `~Error~ This expense item does not exist. 
+Please try again.` will be displayed.
+
+#### Delete expenses with currency
+
+The delete expenses with currency feature allows the user to delete all the expense items of a certain currency.
+
+This feature is facilicated by `Parser` and `DeleteExpenseCommand`.
+
+1. The user inputs the command `delete expenses currency/USD`. (Assuming the expenses of currency `USD` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteExpenseCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses` 
+and `currency/`, and returns a `DeleteExpenseCommand` for the task list of currency `USD`.
+1. The command is executed and all expense items with currency `USD` are deleted. The deleted expense items are displayed.
+
+- If the currency does not exist in the task list, the error message `There is no expense item deleted.` will be 
+displayed.
+
+#### Deleting expenses with date
+
+The delete expenses with date feature allows the user to delete all the expense items of a certain date.
+
+This feature is facilicated by `Parser` and `DeleteExpenseCommand`.
+
+1. The user inputs the command `delete expenses date/2020-11-09`. (Assuming the expenses of date `2020-11-09` exist.)
+1. The full command string will be parsed by `Parser`, whose `parse()` command returns a `CommandCreator` object to 
+create a `DeleteExpenseCommand`.
+1. The method `createDeleteCommand()` in `CommandCreator` further parses the input by identifying the keyword `expenses` 
+and `date/`, and returns a `DeleteExpenseCommand` for the task list of date `2020-11-09`.
+1. The command is executed and all expense items with date `2020-11-09` are deleted. The deleted expense items are displayed.
+
+- If the currency does not exist in the task list, the error message `There is no expense item deleted.` will be 
+displayed.
+
+- The `date` argument must be in the format of `date/<yyyy-MM-dd>`. If the `date` argument does not follow the correct 
+format, an error message `Please input a valid date string in the format "yyyy-MM-dd"` will be displayed.
+
 <!-- @@author -->
 
 ## Appendix: Requirements
