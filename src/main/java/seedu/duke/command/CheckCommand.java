@@ -60,7 +60,8 @@ public class CheckCommand extends Command {
         logger.fine("Start executing check command: \"" + command + "\"");
         if (!command.contains(";")) {
             logger.warning("MissingSemicolonException: User input fields was not separated with semicolon.");
-            throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
+            throw new MissingSemicolonException("Remember to separate input fields with a ';'." + System.lineSeparator()
+                    + "The format for check is: \"check [<START_DATE>]; [<START_TIME>]; [<END_DATE>]; [<END_TIME>]\".");
         }
 
         String[] datesAndTime = command.split(";");
@@ -76,7 +77,7 @@ public class CheckCommand extends Command {
             assert startTime != null : "null time read for startTime";
             assert endTime != null : "null time read for endTime";
 
-            boolean isTimePeriodValid = verifyValidStartEndDateTime(startDate, endDate, startTime, endTime);
+            boolean isTimePeriodValid = verifyValidTimePeriod(startDate, endDate, startTime, endTime);
 
             if (!isTimePeriodValid) {
                 logger.warning("InvalidTimePeriodException: Start of time period given was not before end of period.");
@@ -96,7 +97,8 @@ public class CheckCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException e) { // if datesAndTime[x] is unable to be accessed
             logger.warning("WrongNumberOfArgumentsException: Not enough date/time fields were given to be processed.");
             throw new WrongNumberOfArgumentsException("Insufficient fields provided to check events. "
-                    + "Remember to put a semicolon even for blank fields.");
+                    + "Remember to put a semicolon even for blank fields." + System.lineSeparator()
+                    + "The format for check is: \"check [<START_DATE>]; [<START_TIME>]; [<END_DATE>]; [<END_TIME>]\".");
         }
     }
 
@@ -167,6 +169,8 @@ public class CheckCommand extends Command {
             return time;
         }
 
+        stringTime = stringTime.toUpperCase();
+
         String[] stringTimeArray = stringTime.split(" ");
 
         try {
@@ -214,8 +218,8 @@ public class CheckCommand extends Command {
      * @param endTime the end time of the time period
      * @return boolean showing if the time period is valid i.e. the start is before the end
      */
-    private boolean verifyValidStartEndDateTime(LocalDate startDate, LocalDate endDate,
-                                                LocalTime startTime, LocalTime endTime) {
+    private boolean verifyValidTimePeriod(LocalDate startDate, LocalDate endDate,
+                                          LocalTime startTime, LocalTime endTime) {
         logger.fine("Start verifying time period validity.");
         logger.info("Start date: \"" + startDate + "\", Start time: \"" + startTime + "\"");
         logger.info("End date: \"" + endDate + "\", End time: \"" + endTime + "\"");
