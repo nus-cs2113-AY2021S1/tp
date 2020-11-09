@@ -39,6 +39,13 @@ Wan Shi Jie Brendan<br>
     * [4.7. View events](#view) <br>
     * [4.8. Help](#help) <br>
     * [4.9 Repeat](#repeat) <br>
+    * [4.10 Delete](#delte) <br>
+    * [4.11 Find](#find) <br>
+    * [4.12 Find base on date](#date) <br>
+    * [4.13 Print locations of a certain group](#location_group) <br>
+    * [4.14 Study time](#study_time) <br>
+    * [4.15 Done](#done) <br>
+    * [4.16 User Info](#user_info) <br>
 * [5. Documentation](#documentation) <br>
 * [6. Testing](#6-testing)<br>
 * [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
@@ -311,6 +318,19 @@ The sequence diagram below shows what happens when user enters `help`:
 ### 4.9 Repeat<a id="repeat"></a>
 This feature allows users to repeat all classes in the current week or a selected event for several weeks.
 
+### 4.10 Delete<a id="delete"></a>
+
+### 4.11 Find<a id="find"></a>
+
+### 4.12 Find base on date<a id="date"></a>
+
+### 4.13 Print locations of a certain group<a id="location_group"></a>
+
+### 4.14 Study time<a id="study_time"></a>
+
+### 4.15 Done<a id="done"></a>
+
+### 4.16 User Info<a id="user_info"></a>
 
 ## 5. Documentation<a id="documentation"></a>
   
