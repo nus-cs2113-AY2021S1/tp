@@ -87,8 +87,7 @@ Lastly, text that is blue like this [example](#12-using-this-guide), are clickab
 6.  Upon completing them, you will be able to start using **AniChan**!
 7.  Type in a command into the **command prompt** and press `Enter` to execute it. For example, typing `help` and pressing `Enter` will display a useful help message to get you started.
 
-![First Time Setup](images/User-Guide-Setting-Up.png)
-
+![First Time Setup](images/User-Guide-Setting-Up.png) <br/>
 *Figure 1: Example of First Time Setup*
 
 <br/>
@@ -749,8 +748,7 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`. For example, if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
 *   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
 
-![Data Loaded on Startup](images/Data-Loaded-On-Startup.png)
-
+![Data Loaded on Startup](images/Data-Loaded-On-Startup.png) <br/> 
 *Figure 4: Example of Data Loaded On Startup*
 
 <br/>

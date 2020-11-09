@@ -40,11 +40,11 @@ public abstract class Storage {
             fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
             LOGGER.log(Level.INFO, "Read from file: " + filePath);
         } catch (IOException exception) {
-            LOGGER.log(Level.INFO, "File does not exist at: " + filePath);
+            LOGGER.log(Level.WARNING, "File does not exist at: " + filePath);
             throw new AniException(FILE_DOES_NOT_EXIST_ERROR);
         } catch (InvalidPathException exception) {
             // Invalid characters not caught in parser.
-            LOGGER.log(Level.INFO, "File name contains invalid characters: " + filePath);
+            LOGGER.log(Level.WARNING, "File name contains invalid characters: " + filePath);
             throw new AniException(FILE_CONTAINS_INVALID_CHARACTER_ERROR);
         }
 
