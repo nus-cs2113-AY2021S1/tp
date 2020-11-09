@@ -737,7 +737,7 @@ Format: `complete goal INDEX`
 
 > :bulb:  **Additional information:**
 > * As goals are ordered based on its created date and progress status, please view your goals before marking a particular one as complete
-> * Marking a goal as complete is irreversible!
+> * Marking a goal as complete is irreversible (even if it is a smart goal marked by Fitr)!
 > * You are able to override the smart goal to mark them as complete
 > * When you mark a goal as complete, it is moved to the bottom of the list
 

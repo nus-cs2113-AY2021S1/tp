@@ -39,13 +39,14 @@ public class CheckGoalStatus {
             }
 
             targetCalorie = Integer.parseInt(goalWords[3]);
-            if (targetCalorie <= 0 || targetCalorie >= 100000) {
+            if (targetCalorie < 0 || targetCalorie >= 100000) {
                 return status;
             }
             if (goalWords[0].equals(KEYWORD_BURN) && goalWords[1].equals(KEYWORD_LESS)
                     && goalWords[2].equals(KEYWORD_THAN)) {
-                if ((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
-                        && !goalWords[4].equals(KEYWORD_CALORIES)) {
+                if (((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
+                        && !goalWords[4].equals(KEYWORD_CALORIES))
+                        || (targetCalorie == 0)) {
                     return status;
                 }
                 calorieDifference = targetCalorie - userBurntCalorie;
@@ -70,8 +71,9 @@ public class CheckGoalStatus {
                         formatter.format((double) userConsumedCalorie / (double) targetCalorie * 100));
             } else if (goalWords[0].equals(KEYWORD_EAT) && goalWords[1].equals(KEYWORD_LESS)
                     && goalWords[2].equals(KEYWORD_THAN)) {
-                if ((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
-                        && !goalWords[4].equals(KEYWORD_CALORIES)) {
+                if (((targetCalorie == 1 && !goalWords[4].equals(KEYWORD_CALORIE))
+                        && !goalWords[4].equals(KEYWORD_CALORIES))
+                        || (targetCalorie == 0)) {
                     return status;
                 }
                 calorieDifference = targetCalorie - userConsumedCalorie;
