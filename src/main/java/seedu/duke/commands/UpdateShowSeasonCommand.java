@@ -17,7 +17,12 @@ public class UpdateShowSeasonCommand extends Command {
         }
     }
 
-    //INPUT : season "show" "season" "episode (optional)"
+
+    /**
+     * Updates the season of the show specified by user.
+     * Calls updateSeasonAndEpisode() or updateSeasonOnly() depending on input.
+     * INPUT : season "show" "season" "episode (optional)"
+     */
     public void processCommand() {
         if (inputs.size() == 3) {
             updateSeasonOnly();

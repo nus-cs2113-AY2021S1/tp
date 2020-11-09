@@ -21,10 +21,10 @@
 but also foster a community where everyone will be able to share their watchlist with like-minded individuals and friends. <br>
 
 ### 1.b. Why use **WatchNext**?
-It is difficult and can be taxing to track your favourite shows through browser bookmarks.
+It can be difficult and taxing to track your favourite shows through browser bookmarks.
 This is especially pertinent for younger teenagers and adults who make up a large part of video entertainment media consumers.
 
-For students, there is also a need to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
+For students like ourselves, there is also a need to manually track lecture videos and webcast progress as lecturers may use different learning management systems.
 
 **WatchNext** is optimized for users who prefer to work with the Command Line Interface (CLI).<br> 
 
@@ -77,7 +77,7 @@ If you are unfamiliar with the CLI (Command Line Interface), do give this helpfu
 
 * The `<SHOWNAME>` to be entered is case-sensitive.<br><br>
 
-<div style="page-break-after: always;"></div>
+
 
 ## 4. Features <br>
 
@@ -91,13 +91,13 @@ If you are unfamiliar with the CLI (Command Line Interface), do give this helpfu
  Example of usage: Let's say you want a quick description of each available command in **WatchNext**. Simply typing `help`
  will display a condensed list of each command and description to you.
   
+  <div style="page-break-after: always;"></div>
+  
 Expected outcome:
  
 <img src = "images/help.PNG" width = "550">
  
 &nbsp;
-
-<div style="page-break-after: always;"></div>
 
  >  **[NOTE]**
  >
@@ -113,11 +113,12 @@ Expected outcome:
 <img src = "images/example.PNG" width = "750">
 
 &nbsp;
-<div style="page-break-after: always;"></div>
 
  >  **[NOTE]**
  >  * The command format listed by the `example` command adheres to the same rules as the [command format in this user guide](#3-command-format).
  >  * The `example` command is meant to be a quick refresher on the correct format, and is in no way meant to replace the user guide.Please refer to the user guide if you want a better understanding of each command.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.b. `add` - Adds a show
  The `add` command adds a show into your existing watchlist.
@@ -128,6 +129,7 @@ Expected outcome:
    Examples of usage: 
      `add RunningMan 2 10,12 90` <br>
      `add Friends 3 10,20,30 25` <br><br>
+     
   Explanation of input: <br>
   For the example input, `add Friends 3 10,20,30 25`, a show named `Friends` is being added.<br> The show has `3` seasons, where season 1 has `10` episodes, season 2 has `20` and season 3 has `30` episodes.
 >**[NOTE]**
@@ -138,7 +140,7 @@ Expected outcome:
  <img src = "images/addCommandUG/addInput.PNG" width = "600">
   &nbsp;<br>
   
- After keying in the input as shown in the image above, the next image shows the expected output.<br>
+ After keying in the input as shown in the image above, you should see th eexpected output shown in the next image.<br>
  
  <img src = "images/addCommandUG/addResponse.PNG" width = "600">
   &nbsp;<br>
@@ -168,7 +170,6 @@ The process is terminated. Your existing data is kept
  ```
 
  >  **[NOTE]**
- >  * The overwrite prompt is not present in v2.0 of **WatchNext**, but will be available in future iterations.
  >
  >  * The `<DURATION OF EPISODE>` input, which is `25` in the Friends example, is in minutes.
  >
@@ -176,7 +177,7 @@ The process is terminated. Your existing data is kept
  >  
  >  * You will need to input `<SHOWNAME>` as one word. If the name of your show contains more than one word you will need to input the name with no spaces (an example would be `<RunningMan>` or you may use `_` to represent a space and use `Running_Man`.)
    
- 
+ <div style="page-break-after: always;"></div>
 
  
 #### 4.c. `edit` - Edits your show details
@@ -214,17 +215,18 @@ Example of usage:
 Example of usage:
      `season 2`
      
-* Suppose the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
+* Let's say that the first season has 10 episodes, and the new season of F.r.i.e.n.d.s has 11 episodes.
 
 Example of usage:
      `episode 10,11`
      
-* The duration of each episode of F.r.i.e.n.d.s is extended to 30 minutes
+* If the duration of each episode of F.r.i.e.n.d.s is extended to 30 minutes, use the following command:
 
 Example of usage:
      `duration 30`
      
 * When you have completed all changes, input `done`.
+<div style="page-break-after: always;"></div>
 
 Example of usage:
     `done`
@@ -237,6 +239,8 @@ Expected outcome:
    
   &nbsp;
   
+* If there is an error in the process, an error message would be printed and you will return to the main landing page.
+The changes that you made before the error occured will still be kept. 
   
 > **[NOTE]**
 >  * If you use edit to add new season(s) but did not edit the episodes numbers to reflect the change, 
@@ -307,6 +311,7 @@ The `addreview` command allows you to add a review for a show, including adding 
    
    <img src = "images/addreviewlist.png" width = "700">
    
+   <div style="page-break-after: always;"></div>
    
 ### 4.f. `changereview` - Changing a review
 
@@ -346,6 +351,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
    
   <img src = "images/deletereview.PNG" width = "600">
 
+<div style="page-break-after: always;"></div>
 
 ### 4.h. `delete` - Deletes your show
 
@@ -362,7 +368,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
  <img src = "images/delete/input.png" width = "600">  
  
-  &nbsp;
+<br><br>
 
  The show Friends will be deleted from the list ,and a success message will be printed.
 
@@ -371,7 +377,6 @@ The `deletereview` command allows you to delete a review for a show that is alre
  <img src = "images/delete/delete.PNG" width = "600">
 
  &nbsp;
-  
  
 ### 4.i. `deleterating` - Deletes rating of your show
 
@@ -387,8 +392,8 @@ The `deleterating` command deletes the rating for an existing show in the watchl
   
 
  <img src = "images/deleterating.PNG" width = "600">
-
- &nbsp;
+<br>
+ <div style="page-break-after: always;"></div>
 
 ### 4.j. `changerating` - Changes rating of your show
 
@@ -431,6 +436,8 @@ If you would only like to change the current season:
  
  If your are going to watch the third season of a show named Friends, you can input `season Friends 3`.
  
+  <div style="page-break-after: always;"></div>
+  
  Input:
  
    <img src = "images/season/input.png" width = "600">
@@ -443,7 +450,7 @@ If you would only like to change the current season:
   
  <img src = "images/season/output.png" width = "600">
   
- &nbsp;
+<br><br>
 
 If you would like to change both the current season and current episode:
 
@@ -470,7 +477,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
   <img src = "images/episode/input.png" width = "600">
 
-  &nbsp;
+  <br><br>
  
  The current episode you are watch of the show Friends will be updated to 10.
  
@@ -487,8 +494,6 @@ The `episode` command updates the current episode of an existing show in your wa
   
  &nbsp;
  
- 
-
 ### 4.m. Managing your watch time limit
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
@@ -528,6 +533,8 @@ The `watch` command updates the watching progress for your show, and automatical
  are now watching S1E2 of Friends!<br>
  
  In addition, the previously set time limit of 120 minutes has been reduced to 60 minutes.
+ 
+
  
 ### 4.m.b. `updatetimelimit` - update your watch time limit
 
@@ -616,6 +623,8 @@ Expected outcome:
  
 &nbsp;
 
+ <div style="page-break-after: always;"></div>
+ 
 ## 5. FAQ 
 <br>
 
@@ -640,6 +649,7 @@ Expected outcome:
 **A**: We suggest you try `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of any format that suits you!<br><br> 
 
 <br>
+ <div style="page-break-after: always;"></div>
 
 ## 6. Command Summary
 
