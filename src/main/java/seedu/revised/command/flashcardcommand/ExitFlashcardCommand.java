@@ -4,6 +4,14 @@ import seedu.revised.card.Topic;
 
 public class ExitFlashcardCommand extends FlashcardCommand {
     @Override
+    /**
+     * Does nothing in this case but needed since this method was implemented
+     * from an abstract class.
+     *
+     * @param topic Does nothing in this case but needed since this method was implemented
+     *                    from an abstract class
+     *
+     */
     public void execute(Topic topic) {
 
     }
