@@ -114,6 +114,16 @@ All components can be accessed by the user through Fluffle's UI. On loading Fluf
 
 ### Writing Manager Component
 
+Given below is the overall architecture of Fluffle's writing component.
+
+![Writing Manager Component](graphics/diagrams/WritingMangerComponent.PNG)
+<p align = "center"><i><b>Figure 2: Writing manager architecture</b></i></p>
+
+In Fluffle, the writings are saved in the local hard drive text file `writings.txt`. Up to now, Fluffle can hold two types of writing: `Poem` and `Essay`. Some operations that can be done on the writings are:
+- Adding writings to the database.
+- Deleting writings from the database.
+- Getting a reminder to continue some writings on a specific date.
+
 ### Bunny Manager Component
 There are two methods for the user to load their bunny ideas into the application: loading it using the app or directly editing the `bunny.txt` data file.
 
