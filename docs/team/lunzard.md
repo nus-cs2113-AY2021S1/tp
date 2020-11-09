@@ -22,7 +22,7 @@ The link to the code contributed by me can be found
 ### Enhancements Implemented
 I implemented the Progress Tracker feature (Bookmark Management and Task Management) of Quotesify:
 
-1. Bookmark Management
+#### 1. Bookmark Management
 
 **What it does:**
 * The user may use the `bookmark -b /pg` command to add bookmarks to existing books in the BookList of Quotesify.
@@ -40,7 +40,7 @@ where they stopped before to continue reading. This makes their reading more tim
 The bookmarks will be automatically removed from the BookmarkList when its respective book object is removed 
 from the BookList. This is to prevent non-pointer errors as the bookmarks will not be able to reference its book.
 
-2. Task Management
+#### 2. Task Management
 
 **What it does:**
 * The user may use the `add -t /by` command to add todos to the TodoList in Quotesify. They have the option to:
