@@ -64,13 +64,24 @@ class DescFavParserTest {
     }
 
     @Test
+    void parseInput_indexNotANumber_expectException() {
+        String message = " 1e /to frequent visits.";
+        DescFavParser p = new DescFavParser(message);
+        try {
+            p.parseInput();
+        } catch (CustomException error) {
+            assertEquals("Yikes! That is not even a number.", error.toString());
+        }
+    }
+
+    @Test
     void parseInput_indexMissing_expectException() {
         String message = "  /to frequent visits.";
         DescFavParser p = new DescFavParser(message);
         try {
             p.parseInput();
         } catch (CustomException error) {
-            assertEquals("Yikes! That is not even a number.", error.toString());
+            assertEquals("Oh no! I cannot detect the input index.", error.toString());
         }
     }
 

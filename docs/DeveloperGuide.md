@@ -1,52 +1,29 @@
-![Logo](DG_Diagrams/Nav@NUSLogo.jpg)
+---
+layout: page
+title: Developer Guide
+---
 
-# Developer Guide
+![Logo](DG_Diagrams/Nav@NUSLogo.jpg)
 
 This developer guide aims to provide an overview of Nav@NUS to aid developers in creating extensions or making 
 enhancements.
 
 ## Table of Contents
 
-- [1. Setting up, getting started](#1-setting-up-getting-started)
-- [2. Design](#2-design)
-  * [2.1. Architecture](#21-architecture)
-    + [2.1.1 Ui Component](#211-ui-component)
-    + [2.1.2. Logic Component](#212-logic-component)
-    + [2.1.3. Model Component](#213-model-component)
-    + [2.1.4. Storage Component](#214-storage-component)
-- [3. Implementation](#3-implementation)
-  * [3.1. Finding a direct route (`/route` Feature)](#31-finding-a-direct-route-route-feature)
-  * [3.2. Full Route Display (`/routemap` Feature)](#32-full-route-display-routemap-feature)
-  * [3.3. List All stops (`/liststops` Feature)](#33-list-all-stops-liststops-feature)
-  * [3.4. Favourite command adder (`/addfav` Feature)](#34-favourite-command-adder-addfav-feature)
-  * [3.5. Favourite command executor (`/execfav` Feature)](#35-favourite-command-executor-execfav-feature)
-  * [3.6. Modifying the description of a favourite command (`/descfav` Feature)](#36-modifying-the-description-of-a-favourite-command-descfav-feature)
-  * [3.7. Dining options finder (`/dine` Feature)](#37-dining-options-finder-dine-feature)
-  * [3.8. Find specific dining outlets (`/dineinfo` Feature)](#38-find-specific-dining-outlets-dineinfo-feature)
-  * [3.9. Bus at bus stop finder (`/bus` Feature)](#39-bus-at-bus-stop-finder-bus-feature)
-  * [3.10. Performing similarity checks](#310-performing-similarity-checks)
-  * [3.11. Displaying most searched bus stop](#311-displaying-most-searched-bus-stop-on-start-up)
-    + [3.11.1 Resetting all search frequencies](#3111-resetting-search-frequencies-of-bus-stops-reset-feature)
-  * [3.12. Removing specific delete command (`/deletefav` Feature)](#312-removing-specific-delete-command-deletefav-feature)
-- [4. Appendix A: Product Scope](#4-appendix-a-product-scope)
-  * [4.1. Target user profile](#41-target-user-profile)
-  * [4.2. Value Proposition](#42-value-proposition)
-- [5. Appendix B: User Stories](#5-appendix-b-user-stories)
-- [6. Appendix C: Non-Functional Requirements](#6-appendix-c-non-functional-requirements)
-- [7. Appendix D: Glossary](#7-appendix-d-glossary)
-- [8. Appendix E: Instructions for manual testing](#8-appendix-e-instructions-for-manual-testing)
+* Table of Contents
+{:toc}
 
 ## 1. Setting up, getting started
 
 Refer to the guide [Setting up and getting started](https://github.com/AY2021S1-CS2113T-F14-3/tp/blob/master/README.md#duke-project-template).
 
 <!-- @@author wamikamalik -->
-## 2. Design
+## 2. Design - Wamika
 
 This section describes the design and implementation of the product. It has been divided into two sections: Architecture 
 and Implementation. 
 
-### 2.1. Architecture - Wamika
+### 2.1. Architecture
 
 The architecture diagram given in the figure below explains the high-level design of the App. 
 
@@ -207,15 +184,31 @@ of busStops objects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
 <!-- @@author Lezn0 -->
-###3.3. List All stops (/liststops Feature)
+###3.3. List All stops (/liststops Feature) - Yuxin
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
 The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class executes the command in the following steps:
 1. Calls `BusStops#listStops()` to print out all stops.
     - The `BusStops#listStops()` method iterate through all bus stops declared in the BusStops enum class.
-    - Alternative names for bus stops will also be printed if it has one.
+    - Close names for bus stops will also be printed if it has one.
     
-### 3.4. Favourite command adder (`/addfav` Feature)
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/liststops` command. <br>
+![add favourites](DG_Diagrams/ListStopsSequence.png)
+
+#### Design Considerations
+##### Aspect: Close names of bus stops
+
+* **Alternative 1 (current choice):** Close names are only mentioned but not implemented for users to use in other functions.
+    + Pros: It is easy to implement and there will be no bugs since it only uses the print function.
+    + Cons: Inconvenient for users as they have to re-enter the command using the full name of the bus stop.
+     
+* **Alternative 2:** Able to use close names in other functions.
+    + Pros: It is quicker and more convenient for the user as they can run commands using close names they prefer.
+    + Cons: It is very time-consuming to implement and can lead to many bugs.
+    
+Given the above alternatives, alternative 1 was used considering the integration of other commands.
+
+### 3.4. Favourite command adder (`/addfav` Feature) - Yuxin
 
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
 list of favourites.
@@ -230,7 +223,7 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command. <br>
 ![add favourites](DG_Diagrams/AddFavSequence.png)
 <!-- @@author -->
 
@@ -339,7 +332,7 @@ The `DineCommand#executeCommand()` method of DineCommand Class executes the comm
     + Sets the `isFound` parameter to **false** if there is no match.
         + Throws an exception if `isFound` is false.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.<br>
 ![bus data](DG_Diagrams/DineSequence.png)
 
 ### 3.8 Find specific dining outlets (/dineinfo Feature) - Shuyi
@@ -353,7 +346,7 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
     + Throws an exception if `searchList` is empty.
     + Calls `Ui#printDineInfoResult()` method to print the data in `searchList` if it is not empty.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command. <br>
 ![bus data](DG_Diagrams/DineInfoSequence.png)
 <!-- @@author -->
 
@@ -611,23 +604,23 @@ the needed parameter.<br>
     Expected: Similar to previous.<br> 
 <!-- @@author -->
 <!-- @@author Lezn0 -->
-### E.7 Add a favourite command
+### E.7 Add a favourite command - Yuxin
 1. Adding a command to the list of favourites.
 - Prerequisites: Executed a command.
 - Test case: <br>
-Step 1.`/liststops`<br>
-Step 2.`/addfav`<br>
-Expected: Message of the command `/liststops` being added to your favourites will be shown.
+    Step 1.`/liststops`<br>
+    Step 2.`/addfav`<br>
+    Expected: Message of the command `/liststops` being added to your favourites will be shown.
 - Test case: <br>
-Step 1.`/liststops`<br>
-Step 2.`/addfav`<br>
-Step 3.`/liststops`<br>
-Step 4.`/addfav`<br>
+    Step 1.`/liststops`<br>
+    Step 2.`/addfav`<br>
+    Step 3.`/liststops`<br>
+    Step 4.`/addfav`<br>
 Expected: Message of the command `/liststops` already exists in your favourites will be shown.
 - Test case: <br>
-Step 1.`/listfav`<br>
-Step 2.`/addfav`<br>
-Expected: Message of command not being detected will be shown as `listfav` is not a valid command.
+    Step 1.`/listfav`<br>
+    Step 2.`/addfav`<br>
+    Expected: Message of command not being detected will be shown as `listfav` is not a valid command.
 - Other incorrect data to test: `/execfav 1`, `/help 3`, `/bus musseeuum`.
 Expected: Similar to previous.
 <!-- @@author -->

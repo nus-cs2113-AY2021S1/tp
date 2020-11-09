@@ -1,4 +1,8 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
+
 ![Logo](UG_Figures/Nav@NUSLogo.jpg)
 ## Opening words
 Welcome to Nav@NUS application's user guide! <br><br>
@@ -6,41 +10,8 @@ The purpose of this user guide is to provide you with all the necessary informat
 around NUS campus via the school's shuttle service.<br>
 
 ## Table of Contents
+* Table of Contents
 {:toc}
-
-
-- [1. Overview](#1-overview)
-  * [1.1 What is Nav@NUS?](#11-what-is-navnus)
-  * [1.2 About the User Guide](#12-about-the-user-guide)
-  * [1.3 Introduction to Command Line Interface (CLI)](#13-introduction-to-command-line-interface-cli)
-- [2. Quick Start](#2-quick-start---johnson-yee)
-- [3. Features](#3-features)
-  + [3.1. Bus Features](#31-bus-features)
-      * [3.1.1. List available help: ```/help```](#311-list-available-help-help)
-      * [3.1.2. Check for direct bus: ```/route```](#312-check-for-direct-bus-route---wamika)
-      * [3.1.3. Check bus route: ```/routemap```](#313-check-bus-route-routemap---johnson-yee)
-      * [3.1.4. Check for buses at a bus stop: ```/bus```](#314-check-for-buses-at-a-bus-stop-bus)
-      * [3.1.5. List all bus available in NUS ```/allbus```](#315-list-all-bus-available-in-nus-allbus)
-      * [3.1.6. List all bus stops in NUS: ```/liststops```](#316-list-all-bus-stops-in-nus-liststops)
-      * [3.1.7. List all faculties in NUS: ```/faculty```](#317-list-all-faculties-in-nus-faculty)
-  + [3.2. Dine Features](#32-dine-features)    
-      * [3.2.1. Search for dining options within a faculty: ```/dine```](#321-search-for-dining-options-within-a-faculty-dine)
-      * [3.2.2. Search for specific dining outlet: ```/dineinfo```](#322-search-for-specific-dining-outlet-dineinfo)
-  + [3.3. Favourite Features](#33-favourite-features)      
-      * [3.3.1. Add a favourite command: `/addfav`](#331-add-a-favourite-command-addfav)
-      * [3.3.2. List all favourite commands: `/listfav`](#332-list-all-favourite-commands-listfav)
-      * [3.3.3. Delete a favourite command: `/deletefav`](#333-delete-a-favourite-command-deletefav---johnson-yee)
-      * [3.3.4. Execute a favourite command: `/execfav`](#334-execute-a-favourite-command-execfav)
-      * [3.3.5. Change the description for a favourite command: `/descfav`](#335-change-the-description-for-a-favourite-command-descfav)
-      * [3.3.6. Clear the list of favourite commands: `/clearfav`](#336-clear-the-list-of-favourite-commands-clearfav)
-  + [3.4. Common Features](#34-common-features)       
-      * [3.4.1. Similarity Checks](#341-similarity-checks)
-      * [3.4.2. Reset frequent search data: ```/reset```](#342-reset-frequent-search-data-reset---johnson-yee)
-      * [3.4.3. Exit the program: ```/exit```](#343-exit-the-program-exit)
-      * [3.4.4. Display most searched bus stop](#344-display-most-searched-bus-stop-on-start-up---johnson-yee)
-- [4. FAQ](#4-faq)
-- [5. Command Summary](#5-command-summary)
-- [6. Glossary](#6-glossary)
 
 ## 1. Overview
 ### 1.1 What is Nav@NUS?
@@ -78,7 +49,7 @@ This user guide covers the following:
 Nav@NUS sets up and runs on the CLI. As the CLI is not commonly used, it can seem daunting to users. 
 To give you a better experience, this section will introduce you to the CLI.
 
-Orientate yourself to the command line interface. As seen in the figure below, the red arrow points to
+Orientate yourself to the command line interface. As seen in each figure below, the red arrow points to
 where you have to type in commands.<br>
 
 For computers running the Windows OS, the red arrow points to where you have to type in commands. 
@@ -95,7 +66,7 @@ The following steps will guide you through the process of running **Nav@NUS**.
 follow the guide [here](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA).
 2. Download the latest `Nav@NUS.jar` from [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 3. Open command prompt on your computer.
-4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar bus application. In the example
+4. Copy the jar file to the folder you want to use as the _home folder_ for Nav@NUS.jar application. In the example
 shown in the figure, the home folder is found in the address path of "C:\Users...\CS2113T Empty folder".<br>
 ![Windows CLI](UG_Figures/windowsPath.png)
 5. In the command prompt, type `cd` and the directory of the _home folder_. Press <kbd>Enter</kbd> to continue.
@@ -116,15 +87,17 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 ### 3.1. Bus Features
 This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
-<!-- @@author wamikamalik -->
-### 3.1.1. List available help: ```/help```
+<!-- @@author Lezn0-->
+### 3.1.1. List available help: ```/help``` -Yuxin
 This command lists a set of features along with their respective commands available to users.
 
 Format: <code>/help</code>
 
 The expected outcome is as follows:<br><br>
 <img src="UG_Figures/help1.png" alt="inputCommand" width=600><br>
+<!-- @@author -->
 
+<!-- @@author wamikamalik -->
 ### 3.1.2. Check for direct bus: ```/route``` - Wamika
 This command displays all bus routes from one location to another that do not require changing buses.
 
@@ -249,8 +222,8 @@ To see the complete list of buses:
 1. Type <code>/allbus</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/allbus1.png" alt="inputCommand" width=700><br>
 <!-- @@author -->
-
-### 3.1.6. List all bus stops in NUS: ```/liststops```
+<!-- @@author Lezn0 -->
+### 3.1.6. List all bus stops in NUS: ```/liststops``` - Yuxin
 This command lists all bus stops in NUS.
 
 The format for this command is as follows:<br> 
@@ -263,7 +236,7 @@ To see the description of each location:
 
 1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
-
+<!-- @@author -->
 <!-- @@author mrwsy1 -->
 ### 3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi
 This command lists out all faculties in NUS.
@@ -340,7 +313,8 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 This section provides the instruction for all features categorised under the main feature of personalisation of application
 to your needs.
 
-### 3.3.1. Add a favourite command: `/addfav`
+<!-- @@author Lezn0 -->
+### 3.3.1. Add a favourite command: `/addfav` -Yuxin
 This command adds a valid command with an optional description to your list of favourites
 
 The format of this command is as follows:<br>
@@ -375,7 +349,7 @@ These are the steps to follow:
 to store the command in to your list of favourites with no description  as shown in the figure below .
 
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
-
+<!-- @@author -->
 <!-- @@author mrwsy1 -->
 ### 3.3.2. List all favourite commands: `/listfav` - Shuyi
 This command displays all the commands in your list of favourite commands, along with their index and description.
@@ -505,6 +479,7 @@ as shown in the figure below.<br><br>
 ><code>/route</code> command or a <code>/bus</code> command. 
 <!-- @@author -->
 
+
 <!-- @@author Johnson-Yee -->
 ### 3.4.2. Reset frequent search data: ```/reset``` - Johnson Yee
 This command resets the data set used to display most frequently search bus stop on application start-up.
@@ -548,6 +523,10 @@ This section addresses some common questions to aid in possible issues faced.
 **Q:** Where can I find the release? <br>
 It can be found at [here](https://github.com/AY2021S1-CS2113T-F14-3/tp/releases).
 
+**Q:** How do I transfer my data to another computer? <br>
+Simply copy your `data` folder from the current directory and paste it in the directory containing the `Nav@NUS.jar` 
+file in the other computer.
+
 ## 5. Command Summary
 The following table provides a summary of features and command formats.
 
@@ -572,9 +551,13 @@ Command | Format | Example
 /help | `/help` | `/help`
 /reset | `/reset` | `/reset`
 
-<!-- @@author wamikamalik -->
-## 6. Glossary - Wamika
+## 6. Glossary
 This section defines key technical terms we have used throughout the user guide.
 1. Case-sensitive: Capital and lower case letters are treated differently.
 2. Command Line Interface(CLI): Processes commands to a computer program in the form of lines of text.
-<!-- @@author -->
+3. Corrupted file: A file containing invalid data or data it should not have.
+4. Dining options/outlets: Places you can eat at.
+5. Direct bus: Commute between two locations does not require changing buses.
+6. Execute: Run the command to display the output.
+7. Similarity check: Check for possible spelling errors.
+
