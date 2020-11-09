@@ -151,7 +151,13 @@ This section describes how certain features are implemented.
 <!-- @@author iamchenjiajun -->
 ### Parser
 
-This section describes how the `Parser` class works.
+The `Parser` class is a class that takes in a single line of the user's command and returns a corresponding `Command` that can be executed.
+
+The `Parser` object:
+- Expose functions to allow `Model` to pass in the user's full command to be parsed.
+- Uses regular expressions to parse the user's arguments into several parts.
+- Passes these parts to `CommandCreator` to create the corresponding command.
+- Returns the `Command` to `Model` that can be executed.
 
 #### High level description
 
