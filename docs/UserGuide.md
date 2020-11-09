@@ -296,6 +296,8 @@ Here are some key pointers:
 * `MODULE_INDEX` refers to the index number shown in the current module list. 
 * Index provided **must be a positive integer** 1, 2, 3, ...
 
+<div style="page-break-after: always;"></div>
+
 **Example:**
 
 For instance, you are currently at the admin level and want to remove the module `CS2113T`, the steps to do so are shown below:
