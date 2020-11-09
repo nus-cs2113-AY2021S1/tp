@@ -23,6 +23,7 @@ import static common.Messages.CHAPTER;
 import static common.Messages.MESSAGE_INVALID_INDEX_RANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author neojiaerm
 public class RemoveChapterCommandTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
