@@ -136,6 +136,32 @@ Aspect: Design of `Command` criteria checking
     * Pros: Further separates the job of command resolution from the `Ui` and `Command`. Simplifies `Command` class.
     * Cons: Would be a class which features a very un-elegant large `if-else` block or `switch` block. Requires every new command to update this class with a substantial amount of new lines. Harder to develop collaboratively, increases chances of merge conflicts.
 
+**Creating a Command**  
+This subsection demonstrates how simple it is to create a new command in the application.
+
+1. Create a new command class. The class should extend the `Command` class in `seedu.duke.`  
+![](BackendDiagram/command1.png)
+2. Override 3 functions, `execute()`, `validate(UserInput)` and `help()`.
+3. In `validate()`, write code to check if the `UserInput` object is intended for your command.  
+![](BackendDiagram/command2.png)
+    1. Check if the category is for your command’s category (Red box in image above)
+    2. Check if the command matches the name of your command (Blue box in image above)
+    3. Optionally you can check the number of arguments if your command accepts arguments.  
+    The figure below shows how to check for the minimum number of arguments  
+    ![](BackendDiagram/command3.png)  
+    The figure below shows how to check if an argument exists and is supplied by the user  
+    ![](BackendDiagram/command4.png)
+    4. Validate should return `ACCEPT`, `NO_MATCH` or `ARGUMENT_ERR`. Refer to the function javadoc for the meaning of each value, shown below.  
+    ![](BackendDiagram/command5.png)  
+    5. You may want to save additional information like the `UserInput` object to a local variable as it is not supplied directly to the `execute()` function.  
+4. Set `help()` to return some useful information when the user enters the command syntax incorrectly.  
+![](BackendDiagram/command6.png)
+5. Write the command working code in `execute()`. It should return a message to be displayed to the user.  
+![](BackendDiagram/command7.png)
+6. Add your command to the `initializeCommands()` section of `seedu.duke.backend.Ui`  
+![](BackendDiagram/command8.png)
+7. If all steps were completed correctly, you should be able to use your new command after compiling and running the program.
+
 [Return to top](#CCA-manager-developer-guide)
 
 ### 3.3. Finance  
