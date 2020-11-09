@@ -15,13 +15,13 @@ public class User extends Human {
     private static final String GENDER_MALE = "male";
     private static final String GENDER_FEMALE = "female";
     private static final String GENDER_OTHER = "other";
+    private static final String HONORIFIC_FEMALE = "-chan";
+    private static final String HONORIFIC_NEUTRAL = "-san";
     private static final Logger LOGGER = getAniLogger(User.class.getName());
     private static final String EXCEPTION_WORKPLACE_NOT_FOUND = "Workspace does not exist!";
     private static final String EXCEPTION_SIMILAR_WORKPLACE_FOUND = "Workspace with similar name found!";
-    private static final String HONORIFIC_FEMALE = "-chan";
-    private static final String HONORIFIC_NEUTRAL = "-san";
-    private static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
     private static final String EXCEPTION_WORKSPACE_ALREADY_EXIST = "Workspace already exist!";
+    private static final String ASSERTION_INVALID_MESSAGE = "Input invalid.";
 
     private Gender gender;
     private Workspace activeWorkspace;
