@@ -347,14 +347,14 @@ Expected output:
 
 ![Bookmark_1.4](Images/BookmarkUG/Figure6.png)
 
-**Useful Information:**
-* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
+>**Useful Information:**
+>* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
 
 Before deleting a category, take note of the following warnings. 
 
-**Warning:**
-* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
-* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
+>**Warning:**
+>* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
+>* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
 
 ### 1.5 Going back to bookmark main: `back` 
 
@@ -396,7 +396,7 @@ Expected output:
 
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
-**Useful Information:**
+>**Useful Information:**
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
 >* You can only bookmark unique links within your category. Refer to the following figure.  
 >![Bookmark_not unique link](Images/BookmarkUG/Figure9.png)
