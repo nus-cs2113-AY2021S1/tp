@@ -192,7 +192,7 @@ public class Messages {
     public static final String VIEW_SUMMARY_TIP = "Tip: You may also view summary by day using the format "
             + "\"view summary dd/MM/yyyy\"";
     public static final String ADD_SMART_FOOD_GOAL_TIP = "Tip: You may also add a smart food goal using the format "
-            + "\"" + FORMAT_SMART_FOOD_GOAL + "\"";
+            + System.lineSeparator() + "\t" + "\"" + FORMAT_SMART_FOOD_GOAL + "\"";
     public static final String ADD_SMART_EXERCISE_GOAL_TIP = "Tip: You may also add a smart exercise goal using "
-            + "the format \"" + FORMAT_SMART_EXERCISE_GOAL + "\"";
+            + "the format" + System.lineSeparator() + "\t" + "\"" + FORMAT_SMART_EXERCISE_GOAL + "\"";
 }

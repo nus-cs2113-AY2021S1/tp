@@ -50,6 +50,10 @@ You can add a food entry to keep track of what you have eaten, and the calories 
 
 Format: `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /NUMBER_OF_CALORIES AMOUNT_OF_FOOD`
 
+> :bulb: **Additional information:** 
+> * `NUMBER_OF_CALORIES` must be between 0 and 10,000 (inclusive)
+> * `AMOUNT_OF_FOOD` must be between 1 and 1000 (inclusive)
+
 For example, you can enter `food apple /50` and this will be the result after the application records the food entry:
 
 ```
@@ -64,6 +68,9 @@ Calorie Consumed: 50
 You can add an exercise entry to keep track of what exercise you have done, as well as the calories burnt from that exercise.
 
 Format: `exercise NAME_OF_EXERCISE /CALORIES_BURNT`
+
+> :bulb: **Additional information:** 
+> * `CALORIES_BURNT` must be between 1 and 10,000 (inclusive)
 
 For example, you can enter `exercise push ups /500` and this will be the result after the application records the exercise entry:
 
@@ -90,7 +97,8 @@ For example, you can enter `goal food eat less food than yesterday` and this wil
 Okay! The following goal has been added: 
     [F] eat less food than yesterday
 ----------------------------------------------------------------------------------------------------------------------------------------
-Tip: You may also add a smart food goal using the format "goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES"
+Tip: You may also add a smart food goal using the format 
+    "goal food < NUMBER_OF_CALORIES or goal food > NUMBER_OF_CALORIES"
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
@@ -128,7 +136,8 @@ For example, you can enter `goal exercise do 50 push ups` and below shows the ex
 Okay! The following goal has been added: 
     [E] do 50 push ups
 ----------------------------------------------------------------------------------------------------------------------------------------
-Tip: You may also add a smart food goal using the format "goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT"
+Tip: You may also add a smart exercise goal using the format
+    "goal exercise < CALORIES_BURNT or goal exercise > CALORIES_BURNT"
 ----------------------------------------------------------------------------------------------------------------------------------------
 ```
 
@@ -498,6 +507,11 @@ You can edit your previous food entries, for example, if you previously made a m
 
 Format: `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
 
+> :bulb: **Additional information:**
+> * `INDEX` must be a positive integer
+> * `NUMBER_OF_CALORIES` must be between 0 and 10,000 (inclusive)
+> * `AMOUNT_OF_FOOD` must be between 1 and 1000 (inclusive)
+
 For example, you can enter `edit food 31/10/2020 1 apple /100 1`, and you should expect to see the following output:
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -509,6 +523,10 @@ Successfully edited food to: apple, calories (per qty): 100, amount: 1
 You can edit your previous exercise entries, for example, if you previously made a mistake when entering an exercise that you performed.
 
 Format: `edit exercise dd/MM/yyyy INDEX NAME_OF_EXERCISE /CALORIES_BURNT`
+
+> :bulb: **Additional information:**
+> * `INDEX` must be a positive integer
+> * `CALORIES_BURNT` must be between 1 and 10,000 (inclusive)
 
 For example, you can enter `edit exercise 31/10/2020 1 Push ups /500`, and you should expect to see the following output:
 ```
@@ -550,6 +568,9 @@ You can delete a food entry using this command. You would need to know the index
 
 Format: `delete food dd/MM/yyyy INDEX_OF_FOOD`
 
+> :bulb: **Additional information:**
+> * `INDEX_OF_FOOD` must be a positive integer
+
 For example, you can enter `delete food 31/10/2020 1`, and you should expect to see the following:
 ```
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -561,6 +582,9 @@ The following food has been deleted for the 31/10/2020: apple
 You can delete an exercise entry using this command. You would need to know the index of that particular exercise entry as well as the date of its entry. You can try to use the view exercise command to find the index of the exercise before deleting.
 
 Format: `delete exercise dd/MM/yyyy INDEX_OF_EXERCISE`
+
+> :bulb: **Additional information:**
+> * `INDEX_OF_EXERCISE` must be a positive integer
 
 For example, you can enter `delete exercise 31/10/2020 1`, and you should expect to see the following:
 ```
@@ -782,19 +806,19 @@ A: Yes, you can edit the text files. Note that if the entries are not recognised
 
 **Q: Can I add my own exercises to add to the standard list of exercise recommendations?**
 
-A: Currently, the standard exercises are maintained by us. The user will not be able to alter or manipulate the list standard exercises.
+A: Currently, the standard exercises are maintained by us. You will not be able to alter or manipulate the list of standard exercises.
 
 **Q: What if I only like certain exercises in the recommendation?**
 
 A: As mentioned above, you can choose to do and add specific exercises that have been recommended to you rather than the whole list. You can also recommend again repeatedly until you add all the exercises that you are comfortable doing.
 
-**Q: Will my Fitness Level be automatically increased for me over time?**
+**Q: Will my fitness level be automatically increased for me over time?**
 
-A: You have to increase your own fitness level according to what you deem fit as Fitr will not do it for you. This is because every single person's body react differently to a different set of exercises, hence automating it may not be the best for users.
+A: You have to increase your own fitness level according to what you deem fit as Fitr will not do it for you. This is because every single person's body react differently to a different set of exercises, hence automating it may not be the best for you.
 
 **Q: Will Fitr automatically know or save the calories for a food?**
 
-A: You will have to know or search the amount of calories for a certain food and key it in respectively. Fitr does not save the calories for specific foods as we have no way of making sure if what you keyed in is an actual food product.
+A: You will have to know or search the amount of calories for a certain food and key it in respectively. Fitr does not save the calories for specific foods as we have no way of making sure if what you entered in is an actual food product.
 
 # 4. Command Summary
 Table 1 below summarises the commands Fitr understands and how they can be used. Examples are also provided for your reference.

@@ -31,12 +31,11 @@ import static fitr.common.Messages.SPLIT_SPACE;
 
 public class RecommendCommand extends Command {
     public RecommendCommand(String command) {
-        this.command = command.trim();
+        this.command = command.trim().toLowerCase();
     }
 
     @Override
     public void execute(ListManager listManager, StorageManager storageManager, User user, Recommender recommender) {
-        command.trim();
         try {
             StandardExerciseList recommendList = recommender.recommend(command);
             int fitnessLevel = user.getFitnessLevel();

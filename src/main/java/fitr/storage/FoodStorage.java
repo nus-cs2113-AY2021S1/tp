@@ -110,7 +110,7 @@ public class FoodStorage {
 
         try {
             int calories = Integer.parseInt(arguments[1]);
-            if (calories < 0 || calories > 10000) {
+            if (calories < 0 || calories > 10000000) {
                 return false;
             }
 
