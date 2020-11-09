@@ -385,14 +385,12 @@ Let's say you want to add the command to list dining options in business.
 
 These are the steps to follow:
 
-1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below 
-
+1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below<br>
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav <strong>dining options in business</strong></code> and press <kbd>Enter</kbd> to execute the command 
 to store the command in to your list of favourites with the description
-"dining options in business"  as shown in the figure below.
-
+"dining options in business"  as shown in the figure below.<br>
 <img src="UG_Figures/addfav1.png" alt="output" width=600><br>
 
 **<u>Example 2</u>**<br>
@@ -400,13 +398,11 @@ Let's say you want to add the command that guided you from PGP to NUS IT to your
 
 These are the steps to follow:
 
-1. Type <code>/route <strong>pgp /to nus it</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. 
-
+1. Type <code>/route <strong>pgp /to nus it</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below. <br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=600><br>
 
 2. Type <code>/addfav</code> into the CLI and press <kbd>Enter</kbd> to execute the command 
-to store the command in to your list of favourites with no description  as shown in the figure below .
-
+to store the command in to your list of favourites with no description  as shown in the figure below .<br>
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 <!-- @@author -->
 
