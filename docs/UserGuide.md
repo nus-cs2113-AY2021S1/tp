@@ -209,7 +209,7 @@ Format: launch now
 
 >Here is an example of launching the bookmark of the current lesson. In this case, the URL attached to the slot
 >is www.google.com. <br/><br/> 
->![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/load%20changes.png) <br/><br/> 
+>![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/launchnow.png) <br/><br/> 
 
 You should expect to see the urls of the current or 5 minutes advance lesson slot launching
 in your native browser. Otherwise, you should see the message `no lesson now`.
@@ -719,7 +719,7 @@ Format: save
 
   
 **A**: Some users might encounter a start-up screen that looks like this. <br></br>
-![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/bugphoto.PNG)
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/bugphoto.png)
 
 This is only a visual bug. Other than the weird looking logo, Zoomaster will work as per normal. No
 need to worry!
