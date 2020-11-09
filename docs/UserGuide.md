@@ -468,12 +468,13 @@ Expected output:
 ---WARNING!---
 This will delete all modules and tasks data.
 Type 'yes' if you wish to continue.
-Enter any key to cancel this operation.
+Enter any other key to cancel this operation.
 ````
 
 **Case 1: User enters `yes`**
 
-Note: `yes` is case-insensitive here.
+Note: `yes` is case-insensitive here. 
+The program ignores any leading or trailing spaces.
 
 Expected output:
 ````
@@ -502,12 +503,13 @@ Expected output:
 ---WARNING!---
 This will delete all your past data and reset the whole program.
 Type 'yes' if you wish to continue.
-Enter any key to cancel this operation.
+Enter any other key to cancel this operation.
 ````
 
 **Case 1: User enters `yes`**
 
 Note: `yes` is case-insensitive here.
+The program ignores any leading or trailing spaces.
 
 Expected output:
 ````
@@ -578,8 +580,8 @@ Bye <username>. Hope to see you again soon!
 |Mark task as done|`done <task number>`|
 |Delete a task|`deletetask <task number>`|
 |Open notification|`open`|
-|Clear module and task data|`clear`|
-|Deleting module and task data|`reset`|
+|Delete module and task data|`clear`|
+|Delete all data and restart the program|`reset`|
 |Exiting the program|`exit`|
 
 [Home Page](https://ay2021s1-cs2113t-f12-4.github.io/tp/)
