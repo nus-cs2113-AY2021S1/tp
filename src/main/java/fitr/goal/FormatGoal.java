@@ -26,10 +26,10 @@ public class FormatGoal {
         Goal newGoal = new Goal(createdDate, goalType, goalDescription);
         String descriptionPart = (goalType.equals(SYMBOL_EXERCISE)) ? KEYWORD_BURN : KEYWORD_EAT;
         String[] arguments = goalDescription.substring(1).trim().split(SPLIT_SPACE);
-        boolean isPositiveNumber = arguments[0].matches("^(|-?\\d+)$");
+        boolean isNumber = arguments[0].matches("^(|-?\\d+)$");
 
         if (Objects.equals(goalDescription.split(SPLIT_SPACE, 2)[0].trim().charAt(0), SYMBOL_MORE_THAN)) {
-            if (isPositiveNumber) {
+            if (isNumber) {
                 if (arguments.length != 1) {
                     throw new FitrException();
                 }
@@ -50,7 +50,7 @@ public class FormatGoal {
                 throw new ArrayIndexOutOfBoundsException();
             }
         } else if (Objects.equals(goalDescription.split(SPLIT_SPACE, 2)[0].trim().charAt(0), SYMBOL_LESS_THAN)) {
-            if (isPositiveNumber) {
+            if (isNumber) {
                 if (arguments.length != 1) {
                     throw new FitrException();
                 }

@@ -40,10 +40,12 @@ public class CompleteGoalCommand extends Command {
                     return;
                 }
                 command = command.split(SPLIT_SPACE, 2)[1];
-                int completedGoalIndex = Integer.parseInt(command) - 1;
-                if (completedGoalIndex < -1) {
-                    throw new NumberFormatException();
+                if (!command.matches("^(|-?\\d+)$") || Integer.parseInt(command) < 0) {
+                    Ui.printCustomError("Sorry, deletion index must be an positive integer.");
+                    return;
                 }
+                int completedGoalIndex = Integer.parseInt(command) - 1;
+
                 Goal completedGoal = listManager.getGoal(completedGoalIndex);
                 if (completedGoal.getStatus(completedGoal, listManager.getFoodList(),
                         listManager.getExerciseList(), user) == SYMBOL_YES) {
@@ -60,10 +62,8 @@ public class CompleteGoalCommand extends Command {
             } else {
                 throw new FitrException();
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             Ui.printCustomError(ERROR_INDEX_DOES_NOT_EXIST);
-        } catch (NumberFormatException e) {
-            Ui.printCustomError("Sorry, deletion index must be an positive integer.");
         } catch (IOException e) {
             Ui.printCustomError(ERROR_IN_FILE);
         } catch (FitrException e) {
