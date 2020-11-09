@@ -941,32 +941,32 @@ terminated.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|Financially prudent user|Keep record of my spendings of the day|I can keep track of my spending habits on a daily basis.|
-|v1.0|As a student who mistypes easily|Edit my transaction details using one line commands|I can correct my mis-types in a easy and intuitive way.|
-|v1.0|As a university student who may have difficulty keeping track of his finances|Monitor my spending habits and income according to various categories of expenditure|I can identify which particular category of spending forms the majority of my daily expenditures.|
-|v1.0|As a person who spends a lot of time in front of a computer|Record my expenses and income using one-line commands|I can monitor my spending habits conveniently and hassle-free.|
-|v1.0|user|calculate interest over a principal amount|know how much interest I can earn|
-|v1.0|user|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
-|v1.0|user|calculate cashback earned|know how much cashback I can earn|
-|v1.0|user|calculate miles credit earned|know how much miles credit I can earn|
-|v1.0|user|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
-|v1.0|user|set income goal for 1 year|know how much I have saved and did I reach my saving target|
-|v1.0|user|know my goal status everytime I made an entry|saved the hassle to go to goal tracker just to check the progress|
-|v1.0|user|add a recurring entry|Keep track of monthly transactions like income or bills|
-|v1.0|user|edit a recurring entry|update details of existing entries without having to re-enter everything|
-|v1.0|user|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
-|v1.0|user|create a save after I exit the program and load that save when I return|shutdown my PC and save electrical bills without losing progress|
-|v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
-|v2.0|user|store account or card information|refer to account features such as interest rate any time|
-|v2.0|user|compare my calculations with different interest rate|decide which account is better|
-|v2.0|user|set expense goal for specific month|manage my expenditure monthly instead of yearly|
-|v2.0|user|set income goal for specific month|know exactly which month I manage to saved up to my target goal|
-|v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
-|v2.0|user|display expense/income goal for specific month|keep track of my progress|
+|v1.0|financially prudent user|Keep record of my spendings of the day|I can keep track of my spending habits on a daily basis.|
+|v1.0|student who mistypes easily|Edit my transaction details using one line commands|I can correct my mis-types in a easy and intuitive way.|
+|v1.0|university student who may have difficulty keeping track of his finances|Monitor my spending habits and income according to various categories of expenditure|I can identify which particular category of spending forms the majority of my daily expenditures.|
+|v1.0|person who spends a lot of time in front of a computer|Record my expenses and income using one-line commands|I can monitor my spending habits conveniently and hassle-free.|
+|v1.0|person who owns a bank account|calculate interest over a principal amount|know how much interest I can earn|
+|v1.0|user planning for my future finances|calculate interest earned over a period time|know how much interest I can earn at the end of a period|
+|v1.0|user who owns a cashback credit card|calculate cashback earned|know how much cashback I can earn|
+|v1.0|user who owns a miles credit card|calculate miles credit earned|know how much miles credit I can earn|
+|v1.0|user who is interested about my expenses|set expense goal for 1 year|manage my expenditure according to the budget I set aside|
+|v1.0|user wants to save money|set income goal for 1 year|know how much I have saved and did I reach my saving target|
+|v1.0|user that wishes to manage my income|know my goal status everytime I made an entry|saved the hassle to go to goal tracker just to check the progress|
+|v1.0|user that has recurring bills from subscription services|add a recurring entry|Keep track of monthly transactions like income or bills|
+|v1.0|user that has recurring bills from subscription services|edit a recurring entry|update details of existing entries without having to re-enter everything|
+|v1.0|user that has multiple recurring subscription services bill|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
+|v1.0|user who wants to know my expenditure|create a save after I exit the program and load that save when I return|shutdown my PC and save electrical bills without losing progress|
+|v2.0|user who is planning for long-term finances|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
+|v2.0|user who has multiple bank accounts and credit cards|store account or card information|refer to account features such as interest rate any time|
+|v2.0|user who is new to credit cards or bank accounts|compare my calculations with different interest rate|decide which account is better|
+|v2.0|user whose expenditure is large for particular months|set expense goal for specific month|manage my expenditure monthly instead of yearly|
+|v2.0|user who wants flexibility for finance-related goals|set income goal for specific month|know exactly which month I manage to saved up to my target goal|
+|v2.0|user who has different income goals for different month|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
+|v2.0|user that is interested in my finances for a particular month|display expense/income goal for specific month|keep track of my progress|
 |v2.0|busy user with many bills to pay|see all my upcoming recurring entries|keep track of bill payment dates and prevent overdue fees|
-|v2.0|user|be assured my saved progress is not lost if program unexpectedly terminates|work long hours without manually saving the program|
-|v2.0|user|keep multiple copies of different saves|load a different save if my friend wishes to use the program on my computer|
-|v2.0|user|reset my program|easily remove all saved progress without having to delete them one at a time|
+|v2.0|user that has a lot of financial-related information|be assured my saved progress is not lost if program unexpectedly terminates|work long hours without manually saving the program|
+|v2.0|user who manages finance for other people|keep multiple copies of different saves|load a different save if my friend wishes to use the program on my computer|
+|v2.0|user who is particular about sensitive information|reset my program|easily remove all saved progress without having to delete them one at a time|
 
 <div style="page-break-after: always;"></div>
 
