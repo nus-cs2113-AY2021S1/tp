@@ -794,6 +794,8 @@ Instruction:
 Expected output:
 ![Academic_3_12](Images/AcademicUG/Academic_3_12.png)
 
+<div style="page-break-after: always;"></div>
+
 ## 4. Flashcard
 
 Do you wish you had a quick way to refer to the content that will be tested in your upcoming tests?
@@ -819,6 +821,7 @@ Instruction:
 1. `cd 5` / `cd flashcard`
 
 Expected output:
+
 ![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1_resized.png)
 
 >**Useful information:**
@@ -839,7 +842,8 @@ Example of usage:
 `4+4` followed by `8` will create a flashcard with question 4+4 and answer 8.
 
 Expected output:
-![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
+
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2_resized.png)
 
 If you encounter any errors, take note of the following warning.
 
@@ -848,7 +852,7 @@ If you encounter any errors, take note of the following warning.
 >This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
 >respectively.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
->![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1_resized.png)
 
 ### 4.3 Listing flashcards: `list`
 
@@ -859,7 +863,8 @@ Instruction:
 1. `list`
 
 Expected output:
-![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
+
+![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3_resized.png)
 
 ### 4.4 Deleting flashcards: `delete`
 
@@ -875,7 +880,8 @@ Example of usage:
 `3` will delete the 3rd flashcard in the list.
 
 Expected output:
-![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
+
+![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4_resized.png)
 
 >**Useful information:**
 >* You can use the `list` command to check the card index.
@@ -894,7 +900,7 @@ Instruction:
 3. `show answer` / `back`
 
 Expected output:
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5_resized.png)
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
@@ -909,7 +915,7 @@ Instruction:
 2. Enter the desired search term as prompted
 
 Expected output:
-![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
+![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6_resized.png)
 
 ## FAQ
 
