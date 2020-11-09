@@ -142,6 +142,7 @@ Since the program only searches for the idea and genre tag, it is lenient when r
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
+
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
@@ -244,7 +245,8 @@ When the user keys in the command `remind DATE`, where `DATE` is the date the us
 ### Word Features
 Fluffle contains a word bank that stores words which are keyed in by the user, together with its meaning. The diagram
 below shows the implementation of the words, as well as the word list classes in the program.
-![UML Words class diagram](graphics/diagrams/Words_UML Diagram.png)
+
+![UML Words class diagram](graphics/diagrams/Words_UML_Diagram.png)
 <p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
 
 `WordsList` is an ArrayList which stores the objects of `Words` class. Each object has the following attributes:
@@ -354,13 +356,13 @@ When the `save bunny` command is detected by the `commandChecker` method of the 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<p= "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
+<p align = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
-The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
+The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The `Names` class has the protected ArrayList of names, `nameList`, that is accessed by the `Names` class method `getName` which randomly gets a selected name from the `nameList` ArrayList. Similarly, `nameList` is also accessed by the `Names` class which contains the `filterNames` function which can filter through the list and obtain names with specified keywords using the command `filter name <NAME>`, where the user may choose to omit the `NAME` when running the command. Similarly, `nameList` is also accessed by the `Names` class which contains the `listNames` function which displays all the names stored in the `nameList` ArrayList. This is the same as the `filterNames` function when given no input String. Similarly, `nameList` is also accessed by the `Names` class which contains the `addName` function which adds a name to the list of names stored in the `nameList` ArrayList using the command `add name <NAME>`. The `NAME` cannot be omitted. Similarly, `nameList` is also accessed by the `Names` class which contains the `deleteName` function which removes a name from the list of names stored in the `nameList` ArrayList. The command to do this is `delete name <INDEX>`. The `INDEX` cannot be omitted, and the range of the `INDEX` can be determined from the `listNames` function above.
 
-The NamesDB class accesses the nameList and overwrites the current Names.txt file in the data directory, saving all String objects in nameList into the file using the updateDB method. String objects saved in that file can then be read by the NamesDB class and saved into the nameList ArrayList using the loadDB method. In the event of the database Names.txt not existing, the NamesDB class will create the Names.txt database and populate the database with 500 names using the loadDB method.
+The `NamesDB` class accesses the `nameList` and overwrites the current `Names.txt` file in the data directory, saving all String objects in `nameList` into the file using the `updateDB` method. String objects saved in that file can then be read by the `NamesDB` class and saved into the `nameList` ArrayList using the `loadDB` method. In the event of the database `Names.txt` not existing, the `NamesDB` class will create the `Names.txt` database and populate the database with 500 names using the `loadDB` method.
 
-As shown in Figure 10, both the NamesDB class and the Names class will create the NameException class. This is a subclass that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
+As shown in Figure 10, both the NamesDB class and the Names class will create the `NameException` class. This is a subclass that inherits from the `Exception` superclass and passes the exception message to the superclass. In the event of an exception, it is thrown from the methods in `NamesDB` class and `Names` class and handled by the `NameException` class.
 
 ### ClearLoader class
 ![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
@@ -388,7 +390,14 @@ As shown in Figure 10, both the NamesDB class and the Names class will create th
 
 ## Testing
 
-Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
+If you are using IntelliJ IDEA with Gradle, there are two ways to run tests for Fluffle.
+
+### Using JUnit test
+- To run all test, in IntelliJ, right click on `test/java/seedu.duke` and choose `Run Tests in 'seedu.duke'`
+- To run test on a separate package/class/method, right click on that package/class/method in `test` directory and choose `Run 'NAME'`.
+
+### Using Gradle
+- To run all test, open the terminal in IntelliJ IDEA, move to the root folder of the project and key in `gradlew clean test` for Windows (`./gradlew clean test` for Mac OS/Linux).
 
 ## Appendices
 

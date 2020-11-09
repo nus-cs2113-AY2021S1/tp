@@ -1,12 +1,8 @@
 # Vo Quang Hung - Project Portfolio Page
 
 ## 1. Overview
-
-### 1.1 Project Overview
 Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you. This product is created on IntelliJ IDE with Java programming language.
 <br>
-
-### 1.2 Accessing Fluffle
 The latest release of Fluffle can be accessed from **[here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v2.1)**.
 
 ## 2. Summary of Contributions
