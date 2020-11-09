@@ -3,6 +3,7 @@ layout : page
 title : Jun Xiang - Project Portfolio Page
 ---
 
+<!-- @@author chongjx -->
 ## Overview
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 

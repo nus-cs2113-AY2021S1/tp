@@ -88,7 +88,8 @@ NotUS manages the flow of the application. On launch, it will create the necessa
   <br><em>Figure 2</em>
 </p>
 
-💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document.
+💡 The lifeline for Parser and Command should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to the rest of the sequence diagrams in the document. <br>
+💡 Due to a limitation of PlantUML, some of the sequence diagrams may have the destroy marker (X) immediately at the end of the activation bar when there should be a gap before the object is deleted.
 
 #### <a id="parserManager"><ins>2.3 Parser & ParserManager</ins></a>
 
@@ -339,7 +340,7 @@ The timetable component stores an array of all events and 5 different arrays of 
   
 #### <a id="tag"><ins>2.7 Tags</ins></a>
 
-Figure 13 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
+Figure 14 below denotes the class diagram for the TagManager and the Taggable Objects (Notes and Events).
 
 <p align="center">
    <img alt="TaggableObject" src="diagrams/out/TaggableObject.png"/>
@@ -379,6 +380,7 @@ When exiting the program, the storageManager saves all the data to the hard disk
    <img alt="StorageManagerSaveEndDiagram" src="diagrams/out/StorageManagerSaveEnd.png"/>
    <br><em>Figure 18</em>
 </p>
+
 #### <a id="ui"><ins>2.9 User Interface</ins></a>
 
 The InterfaceManger receives the input from the user which is then processed by ParserManager, as well as printing the output. The class diagram is as follow.
@@ -421,7 +423,7 @@ IntelliJ's *'Dracula'* and *'High Contrast'* themes print white fonts as black a
 
 - Go under Settings -> Editor -> Color Scheme -> Console Colors -> ANSI colors -> Change the Foreground color for Black and White to the correct RGB value.
 
-Figure 19 below illustrates what you should see on your screen.
+Figure 22 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />

@@ -3,9 +3,8 @@
 hide footbox
 
 participant ":NotUS" as NotUS
-participant ":RemindCommand" as RemindCommand
 participant ":ParserManager" as ParserManager
-participant ":Command" as Command
+participant ":RemindCommand" as RemindCommand
 participant ":Timetable" as Timetable
 participant ":Formatter" as Formatter
 
@@ -19,13 +18,11 @@ activate RemindCommand
 RemindCommand --> NotUS
 deactivate RemindCommand
 
-deactivate ParserManager
+NotUS -> RemindCommand: setData()
 
-NotUS -> Command: setData()
-
-activate Command
-Command --> NotUS
-deactivate Command
+activate RemindCommand
+RemindCommand --> NotUS
+deactivate RemindCommand
 
 NotUS -> NotUS: executeCommand()
 activate NotUS
