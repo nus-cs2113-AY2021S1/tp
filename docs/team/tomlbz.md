@@ -71,14 +71,14 @@ Wrote the initial update for ***all*** features in the feature list. Those are u
 
 ### 2.3 Contributions to DG:
 
-Write up the text descriptions for Setting-up, UI layer, Command Interpreter layer.
-Write up sections for Take feature.
+Write up the text descriptions for Setting-up, UI layer, Command Interpreter layer.<br>
+Write up sections for Take feature.<br>
 Contributed to use cases and project scope.
 
 ### 2.4 Contributions to team-based tasks: 
-Managing PRs after v1.0
-Debugging and fixing the majority of bugs after peer review
-Managing priorities and Severities and Types of issues and PRs after v1.0
-Implement the backbone and overall structure code of Domsun
-Implement APIs of Domsun, such as package `lexical` and `visualize`, `messages`, `io`, etc.
+Managing PRs after v1.0<br>
+Debugging and fixing the majority of bugs after peer review<br>
+Managing priorities and Severities and Types of issues and PRs after v1.0<br>
+Implement the backbone and overall structure code of Domsun<br>
+Implement APIs of Domsun, such as package `lexical` and `visualize`, `messages`, `io`, etc.<br>
 Implement the majority of the features of Actions for Commands.
