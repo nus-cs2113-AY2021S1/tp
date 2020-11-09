@@ -101,7 +101,7 @@ public class RepeatCommand extends Command {
 
 
             String errorMessage = "Wrong number of arguments provided, "
-                    + "Format for repeat is: repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]";
+                    + "The format for repeat is: \"repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT]\"";
             throw new WrongNumberOfArgumentsException(errorMessage);
         }
 
@@ -194,6 +194,11 @@ public class RepeatCommand extends Command {
             throw new NumberOverflowException("Repeat amount is too large, please limit to only "
                     + Integer.toString(MAXIMUM_SIZE) + " repetitions.");
         }
+        if (count <= 0) { //repetition is negative or zero, not possible to repeat
+            eventToRepeat.setRepeatEventList(null);
+            eventToRepeat.setRepeatType(null);
+            return;
+        }
         for (int i = 1; i <= count; i++) {
             LocalDate repeatDate;
             logger.fine("Repeat repetition number" + Integer.toString(i));
@@ -218,6 +223,7 @@ public class RepeatCommand extends Command {
             Event repeatEvent;
             try {
                 repeatEvent = eventToRepeat.clone();
+                repeatEvent.markAsUndone();
                 logger.fine("Event for " + Integer.toString(i) + " has been cloned");
             } catch (CloneNotSupportedException e) {
                 logger.warning("Event cannot be cloned");

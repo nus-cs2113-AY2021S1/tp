@@ -25,7 +25,6 @@ public class ExtractCommand extends Command {
     private int timeCount;
     private int zoomLinkCount;
     private String textSubject = null;
-    private String textBody = null;
     private String eventType;
     private static Logger logger = EventLogger.getEventLogger();
 
@@ -36,7 +35,8 @@ public class ExtractCommand extends Command {
      */
     public ExtractCommand(String command) {
         this.isExit = false;
-        if (command.endsWith(";")) {
+        int semicolonCount = command.length() - command.replace(";", "").length();
+        if (command.endsWith(";") && semicolonCount == 1) {
             textSubject = command.split(";", 2)[0];
         }
         eventType = "Personal";
@@ -56,19 +56,24 @@ public class ExtractCommand extends Command {
     public void execute(UserData data, Ui ui, Storage storage) throws InvalidExtractCommandException,
             InvalidListException {
         if (textSubject == null) {
+            logger.warning("InvalidExtractCommandException -- Text subject not entered correctly.");
             throw new InvalidExtractCommandException("Text subject was not entered correctly!");
         }
-        ui.printExtractTextBodyRequestMessage();
-        ui.printDividerLine();
-        textBody = receiveTextBody(ui);
-
-        if (textBody == null) {
-            throw new InvalidExtractCommandException("Text body was not entered correctly!");
-        }
         if (textSubject.equals("")) {
+            logger.warning("InvalidExtractCommandException -- No text subject entered.");
             throw new InvalidExtractCommandException("There is no text subject entered!");
         }
-        if (textBody.equals("")) {
+
+        ui.printExtractTextBodyRequestMessage();
+        ui.printDividerLine();
+        String textBody = receiveTextBody(ui);
+
+        if (textBody == null) {
+            logger.warning("InvalidExtractCommandException -- Text body not detected or is null.");
+            throw new InvalidExtractCommandException("Text body was not entered correctly!");
+        }
+        if (textBody.trim().equals("extractend") || textBody.equals(" ")) {
+            logger.warning("InvalidExtractCommandException -- No text body entered.");
             throw new InvalidExtractCommandException("There is no text body entered!");
         }
 
@@ -80,10 +85,10 @@ public class ExtractCommand extends Command {
         }
 
         ArrayList<LocalDate> dateList = detectDate(textBody);
-        LocalDate finalDate = chooseFinalDate(dateList, ui);
+        LocalDate finalDate = chooseDate(dateList, ui);
 
         ArrayList<LocalTime> timeList = detectTime(textBody);
-        LocalTime finalTime = chooseFinalTime(timeList, ui);
+        LocalTime finalTime = chooseTime(timeList, ui);
 
         createEvent(data, ui, finalDate, finalTime, zoomLink);
 
@@ -132,6 +137,22 @@ public class ExtractCommand extends Command {
                 }
             }
         }
+    }
+
+    /**
+     * Takes in the textBody from the user.
+     *
+     * @param ui is used to receive Strings the user input.
+     * @return String containing the full text body entered.
+     */
+    private String receiveTextBody(Ui ui) {
+        String bodyLine = "";
+        String fullTextBody = "";
+        while (!bodyLine.equals("extractend")) {
+            bodyLine = ui.receiveCommand().trim();
+            fullTextBody = fullTextBody.concat(" " + bodyLine);
+        }
+        return fullTextBody;
     }
 
     /**
@@ -193,22 +214,6 @@ public class ExtractCommand extends Command {
     }
 
     /**
-     * Takes in the textBody from the user.
-     *
-     * @param ui is used to receive Strings the user input.
-     * @return String containing the full text body entered.
-     */
-    private String receiveTextBody(Ui ui) {
-        String bodyLine = "";
-        String fullTextBody = "";
-        while (!bodyLine.equals("extractend")) {
-            bodyLine = ui.receiveCommand().trim();
-            fullTextBody = fullTextBody.concat(" " + bodyLine);
-        }
-        return fullTextBody;
-    }
-
-    /**
      * Detects 12 and 24 hour time slots from a text.
      *
      * @param textBody A string of the text body that is scanned through.
@@ -249,7 +254,7 @@ public class ExtractCommand extends Command {
                 LocalTime localTime = DateTimeParser.timeParser(timeInString.trim());
                 timeList.add(localTime);
             } catch (TimeErrorException e) {
-                logger.fine(timeInString + " was detected but could not parsed");
+                logger.fine(timeInString + " was detected but could not be parsed");
             }
         }
 
@@ -263,7 +268,7 @@ public class ExtractCommand extends Command {
      * @param ui contains responses to print.
      * @return the LocalTime object chosen by user.
      */
-    private LocalTime chooseFinalTime(ArrayList<LocalTime> timeList, Ui ui) {
+    private LocalTime chooseTime(ArrayList<LocalTime> timeList, Ui ui) {
         LocalTime finalTime = null;
         if (timeCount > 1) {
             ui.printExtractChooseTimeMessage(timeCount, timeList);
@@ -358,13 +363,13 @@ public class ExtractCommand extends Command {
     }
 
     /**
-     * Allows user to choose the dates they want from the dateList.
+     * Allows user to choose the date they want from the dateList.
      *
      * @param dateList An ArrayList containing LocalDate objects to choose from.
      * @param ui contains responses to print.
      * @return A localDate object chosen for the event.
      */
-    private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
+    private LocalDate chooseDate(ArrayList<LocalDate> dateList, Ui ui) {
         LocalDate finalDate = null;
         if (dateCount > 1) {
             ui.printExtractChooseDateMessage(dateCount, dateList);
@@ -380,7 +385,7 @@ public class ExtractCommand extends Command {
                         assert finalDate != null : "date is null when chosen in extract";
                     }
                 } catch (NumberFormatException e) {
-                    logger.warning("NumberFormatException occured -- User chose an invalid date number from list.");
+                    logger.warning("NumberFormatException occurred -- User chose an invalid date number from list.");
                     ui.printErrorMessage("We couldn't detect a number! Please choose again!");
                 }
             }
@@ -501,8 +506,7 @@ public class ExtractCommand extends Command {
     private String getCurrentYear() {
         Calendar currentDay = Calendar.getInstance();
         int yearInInt = currentDay.get(Calendar.YEAR);
-        String year = String.valueOf(yearInInt);
-        return year;
+        return String.valueOf(yearInInt);
     }
 
 }

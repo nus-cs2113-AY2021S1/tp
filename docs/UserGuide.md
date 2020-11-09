@@ -74,6 +74,8 @@ To get started, take a look at the section labelled “Quick Start” to set up 
 
 Once you have set up the application, you may use the table of contents present in this document to help find the correct command, learn how to use it and what it does.  
 
+<div style="page-break-after: always;"></div>
+
 ### 1.4 Conventions used in this document
 
 Words that are highlighted in grey, for instance, list, indicate that the words are commands to be typed into the command line interface. 
@@ -124,7 +126,6 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases) 
 1. Copy the file to the folder you want to use as the folder for the Scheduler— 
 1. Open the command prompt by entering `cmd` into the search bar and press enter 
-1. Type `chcp 65001` into the command prompt and press enter 
 1. Navigate to the folder where you saved the jar file using the command prompt 
 1. Right click the top of the command prompt window, go to 'properties' and change the font to NSimSun to support ticks and crosses used in Scheduler--;. 
 1. Type `java -jar scheduler.jar` into the command prompt and press enter. 
@@ -201,6 +202,8 @@ bye - exits the program
 To find out more about each of these functions, type in "help [COMMAND]" into the terminal where COMMAND is the name of the command you would like more information about
 _________________________________
 ```
+
+<div style="page-break-after: always;"></div>
 
 If you want to get help for a specific command, type in `help [COMMAND]`. For example, the following screenshot shows what happens if you type in `help add`. 
 ```
@@ -315,6 +318,7 @@ _________________________________
 > * Typing in the wrong format for date or time will cause the event to not be made. 
 > * Events cannot contain an empty description.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.3 List events: `list` (Marcus Ng)
 
@@ -353,6 +357,7 @@ _________________________________
 > * You do not need to type the exact event type, it is case-insensitive. In other words,
 > `list Zoom` is the same as `list zoom`
 
+<div style="page-break-after: always;"></div>
 
 #### 3.3.2 List all events
 
@@ -453,6 +458,9 @@ Expected output:
 You have successfully updated the deadline for this event!
 [P][X] sleep on 2020-08-29, 23:20
 ```
+
+<div style="page-break-after: always;"></div>
+
 #### How to use? 
 
 We will use the example of created a deadline for personal event named “sleep”. 
@@ -493,6 +501,7 @@ You have successfully updated the deadline for this event!
 > **Note!**
 >
 > * Deadline can only be used to set/update for Personal events
+> * Date and time must be after the current date and time
 > * The time can be omitted entirely. If you leave time field as blank, the command would not set any time for the event.
 > * You may also omit the minutes in a time. If the minutes(MM) field of any time is empty, the time is read as when the hour begins (e.g. 4 pm would be taken as 4:00 pm)
 > * AM/PM is required for 12 hour format
@@ -523,6 +532,8 @@ When the optional arguments of `[UNIT]` and `[COUNT]` are omitted in the code, r
 > When you repeat an event monthly, the date does not always increment up by 30 days. Incrementing monthly mainly changes the month without changing the day of the date being incremented.
 > In the case of incrementing monthly from 31 Jan, the code will increment to 28 or 29 Feb followed by 31 Mar and 30 April and so on
 > In the case of incrementing monthly from 30 Jan, the code will increment to 28 or 29 Feb followed by 30 Mar and 30 April and so on
+
+<div style="page-break-after: always;"></div>
 
 #### How to use? 
 
@@ -563,6 +574,8 @@ _________________________________
 is now repeating monthly for 3 times
 _________________________________
 ```
+
+<div style="page-break-after: always;"></div>
 
 ##### Step 3: Verify the dates that the event occurs
 To check the status of the repeated event, simply key in repeat personal 4 in this case and you will obtain the status as shown in the following picture. 
@@ -694,6 +707,8 @@ You have successfully marked this event as done!
 _________________________________
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### 3.10 Mark events as not done: `undone` (Marcus Tan)
 Did you accidentally mark an event as done? Not to worry, just use the undone command to set the event status back to undone.
 
@@ -717,6 +732,7 @@ You have successfully marked this event as undone!
 _________________________________
 ```
 
+<div style="page-break-after: always;"></div>
 
 ### 3.11 Deleting an event: `delete` (Marcus Tan)
 Want to remove an event from your schedule? Use the delete command to get rid of unnecessary events.
@@ -735,6 +751,8 @@ You have successfully deleted this event!
 [P][X] test 3 on 2020-01-01
 _________________________________
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### 3.12 Note Taking: `note` (Qing Ning)
 Need to take last minutes meeting notes? Need to write some notes but don’t know where to keep them? Fear not! We have got you covered. Use this command to take notes and attach them to the event you are attending. You can also choose to open an empty note and type the notes. 
@@ -765,12 +783,15 @@ note personal; 1
 
 ##### Step 3: Scheduler will prompt you to type your notes
 ```
-Please type in your notes. To stop note taking, ensure that you are in a new line and type the semicolon key, ';' and press enter 
+Please type in your notes. To stop note taking, ensure that you are in a new line and type 'noteend' and press enter 
 
 ```
 
 ##### Step 4: Tell Scheduler you are done 
-By pressing enter to go to a new line and insert a semicolon `;`
+By pressing enter to go to a new line and type 
+```
+noteend
+```
 
 ##### Step 5: Voilà! Your notes have been saved! 
 ```
@@ -787,6 +808,8 @@ _________________________________
 > **Warning!**
 >
 > The event index keyed in have to be valid so that note can be created for the specified event index.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.13 View note: `view` (Qing Ning)
 Typed your notes but want to view them? Here's how you view them!
@@ -830,7 +853,7 @@ _________________________________
 >
 > The event index keyed in have to be valid so that note can be viewed for the specified event index.
 
-
+<div style="page-break-after: always;"></div>
 
 ### 3.14 Reminder: `reminder` (Qing Ning)
 Fear of forgetting what you have today? Scheduler—is here to show you your events and task to be completed for the day.  Cheers to no more missed deadlines and meetings! 
@@ -844,6 +867,9 @@ You have the following events today:
 [Z][X] math, Link: www.zoom.com/blah on 2010-10-26, 12:00
 [P][X] sleep on 2020-10-26, 23:00
 ```
+
+<div style="page-break-after: always;"></div>
+
 ### 3.15 Extracting events from texts: `extract` (Matthew Gani)
 Ever feel tired of reading long emails everyday? Copy and paste your email into this feature!
 You can use our extract function which will help you read any text and extract out possible dates and times. 
@@ -917,9 +943,15 @@ As shown above, the user can choose the date/time they want for the event as lon
 
 
 
-
+<div style="page-break-after: always;"></div>
 
 ### 3.16 Save events: `save` (Colin)
+Unsure if your files have been saved successfully? Use this function to save it!
+
+Format: `save`
+
+
+<div style="page-break-after: always;"></div>
 
 ### 3.17 Exiting the program: `bye` 
 Time to have a rest? See you later! Do not worry, we will keep your events in Scheduler--.
@@ -945,7 +977,8 @@ In this section, you can find some frequently asked questions(FAQ).
 <div style="page-break-after: always;"></div>
 
 ## 5. Command Summary
-(Insert preface)
+
+Here is a summary of all the commands with the accepted format and short examples for ease of usage.
 
 | Action | Format, Examples |
 |--------|------------------|
@@ -953,7 +986,7 @@ In this section, you can find some frequently asked questions(FAQ).
 |List|list all <br> <br> list TYPE <br> Eg: list Zoom <br>|
 |Calendar|calendar <br>|
 |Check|check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME] <br> Eg: check 20/08/20; 15:05; 25/8/2020; 1 pm; <br>|
-|Repeat|repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT] <br> Eg: repeat timetable 2 weekly 4 <br>|
+|Repeat|repeat EVENT_TYPE; EVENT_INDEX; [UNIT]; [COUNT] <br> Eg: repeat timetable; 2; weekly; 4 <br>|
 |Goal|goal <br> <br> goal GOAL <br> Eg: goal “Get CAP 5.0 for year 2” <br>|
 |Deadline|deadline EVENT_INDEX; DD/MM/YY; <br> Eg: deadline 2 23/07/20 <br> <br> deadline EVENT_INDEX; DD/MM/YY; [HHMM] <br> Eg: deadline 7 29/08/20 1425 <br> <br> deadline EVENT_INDEX; DD/MM/YY; [HH:MM] AM/PM <br> Eg: deadline 7 29/08/20 11:25 PM <br>|
 |Set event as done|done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE] <br> Eg: done personal; 1; 1/4/2020 <br>|
