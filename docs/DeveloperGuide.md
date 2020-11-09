@@ -352,7 +352,18 @@ The sequence diagram belows shows what happens when user input any faculty abbre
 ### 4.14 User Info
 
 ### 4.15 Done 
-This feature allows users to mark an event as done, provided the event's time has passed. 
+This feature allows users to mark an event as done, provided the event's time has passed. With the exception of event 
+type `Assignment`, all the other event types cannot be marked as done before event occurs. 
+
+`DoneCommand` marks an event as done with the following steps: 
+
+Step 1. The user will input `done` followed by an integer that represents the index of the event they want to mark as 
+done. 
+
+Step 2. The program will first check if the index is valid. If invalid, application will print an error message. 
+
+Step 3. Then it will check for the type and time of event. If the time of event is later, and the event is not an 
+`Assignment`, then it will print a warning message. Else, it will mark the event as done.
 
 ## 5. Documentation
   
