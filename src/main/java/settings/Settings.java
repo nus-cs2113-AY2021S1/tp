@@ -13,6 +13,9 @@ public class Settings {
         isDisplayingHelpMessages = true;
     }
 
+    public Settings() {
+    }
+
     public void setDisplayingHelpMessages(boolean isDisplayingHelpMessages, boolean isInit) {
         this.isDisplayingHelpMessages = isDisplayingHelpMessages;
         if (!isInit) {

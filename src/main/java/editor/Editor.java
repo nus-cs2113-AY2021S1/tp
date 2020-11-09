@@ -37,6 +37,9 @@ public class Editor extends JFrame implements ActionListener {
     private String originalContent;
 
     public Editor() {
+    }
+
+    public void init() {
         generateEditorUI();
     }
 

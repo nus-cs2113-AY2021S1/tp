@@ -160,7 +160,7 @@ public class DataFileWriter extends DataFile {
         Document cheatSheetFile = buildFileContents(cheatSheet);
 
         writeToFile(textFile, cheatSheetFile);
-        removeDirectoryIfEmpty(DATA_DIR.toFile());
+        updateDirectory(DATA_DIR.toFile());
     }
 
     /**

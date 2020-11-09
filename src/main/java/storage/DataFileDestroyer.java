@@ -39,7 +39,7 @@ public class DataFileDestroyer extends DataFile {
                     + System.lineSeparator()
                     + e.getMessage());
         } finally {
-            removeDirectoryIfEmpty(DATA_DIR.toFile());
+            updateDirectory(DATA_DIR.toFile());
         }
     }
 
@@ -66,7 +66,7 @@ public class DataFileDestroyer extends DataFile {
                     + System.lineSeparator()
                     + s.getMessage());
         } finally {
-            removeDirectoryIfEmpty(DATA_DIR.toFile());
+            updateDirectory(DATA_DIR.toFile());
         }
     }
 

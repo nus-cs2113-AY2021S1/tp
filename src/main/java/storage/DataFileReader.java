@@ -43,10 +43,14 @@ import java.util.logging.Logger;
 public class DataFileReader extends DataFile {
 
     public static final int MAX_PATH_LENGTH = 250;
+
     private final Logger readLogger = Logger.getLogger("FileReader");
     private final Settings settings;
+
     protected String jarDirectory = JAR_DIR;
     public static final String ALPHA_NUMERIC_REGEX = "^[a-zA-Z0-9]+$";
+
+    private static final ArrayList<String> convertedCheatSheets = new ArrayList<>();
 
     public DataFileReader(Settings settings, Printer printer, CheatSheetList cheatSheetList) {
         this.settings = settings;
@@ -64,6 +68,7 @@ public class DataFileReader extends DataFile {
     @Override
     public void executeFunction() {
         try {
+            convertedCheatSheets.clear();
             loadCheatSheetsAndSettings();
         } catch (FileNotFoundException e) {
             readLogger.log(Level.WARNING, "Missing Data Directory");
@@ -209,7 +214,6 @@ public class DataFileReader extends DataFile {
      * Extracts all cheatsheet and settings files from the given directory.
      */
     private void extractFromDirectory(Path directoryPath) {
-        ArrayList<String> convertedCheatSheets = new ArrayList<>();
         File[] dataDirectoryFiles = directoryPath.toFile().listFiles();
         if (dataDirectoryFiles == null) {
             return;

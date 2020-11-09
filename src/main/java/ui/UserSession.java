@@ -29,6 +29,7 @@ public class UserSession {
     Ui ui;
     Settings settings;
 
+    public boolean isEditorEnabled;
     public boolean isFirstRun;
 
     /**
@@ -46,6 +47,7 @@ public class UserSession {
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
         userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings, fileReader);
 
+        isEditorEnabled = true;
         isFirstRun = false;
     }
 
@@ -53,13 +55,19 @@ public class UserSession {
      * Initializes CheatLogs and greets the user.
      */
     public void start() {
-        AnsiConsole.systemInstall();
-
+        try {
+            AnsiConsole.systemInstall();
+        } catch (Exception e) {
+            printer.print(e.getMessage());
+        }
+        if (isEditorEnabled) {
+            editor.init();
+        }
         if (isFirstRun) {
             fileReader.extractPreloadedCheatSheets();
         }
-        fileReader.executeFunction();
 
+        fileReader.executeFunction();
         printer.printWelcomeScreen();
         if (settings.getDisplayingHelpMessages()) {
             printer.printStartHelpMessage();

@@ -220,7 +220,7 @@ public class Parser {
                 } else if ((map.get(key) == null || map.get(key).isBlank()) && key != CommandFlag.DELETE) {
                     printer.printMissingArgument(key);
 
-                    String newArgVal = ui.getUserInput();
+                    String newArgVal = ui.getUserInput().trim();
                     if (newArgVal.isBlank()) {
                         newArgVal = null;
                     }

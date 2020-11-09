@@ -112,12 +112,16 @@ public abstract class DataFile {
     }
 
     /**
-     * Deletes the input directory if it is found to be empty.
+     * Deletes the input directory if it is found to be empty as well as
+     * XML files that are present in /data directory.
      *
      * @param queriedDirFile Directory file that the method is looking at.
      */
-    protected void removeDirectoryIfEmpty(File queriedDirFile) {
+    protected void updateDirectory(File queriedDirFile) {
         if (!queriedDirFile.isDirectory()) {
+            if (queriedDirFile.getParentFile().equals(DATA_DIR.toFile())) {
+                queriedDirFile.delete();
+            }
             return;
         }
         File[] queriedDirSubFiles = queriedDirFile.listFiles();
@@ -128,7 +132,7 @@ public abstract class DataFile {
         } else {
             for (File queriedDirSubFile : queriedDirSubFiles) {
                 if (queriedDirFile.isDirectory()) {
-                    removeDirectoryIfEmpty(queriedDirSubFile);
+                    updateDirectory(queriedDirSubFile);
                 }
             }
         }

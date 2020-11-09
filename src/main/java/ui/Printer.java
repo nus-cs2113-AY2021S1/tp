@@ -237,7 +237,7 @@ public final class Printer {
     }
 
     public void printMissingArgument(CommandFlag curArg) {
-        System.out.print(textColor + "Please input " + curArg.name() + " [<ENTER> to skip this entry]: " + reset);
+        System.out.print(textColor + "Please input " + curArg.name() + ": " + reset);
     }
 
     public void setColor(int option, boolean isInit) {
