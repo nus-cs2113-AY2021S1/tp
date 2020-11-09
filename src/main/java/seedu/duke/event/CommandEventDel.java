@@ -22,7 +22,7 @@ public class CommandEventDel extends Command {
         if (isInteger) {
             output = output.concat(EventList.deleteEvent(index - 1));
         } else {
-            if (userInput.getArg("").equals("all")) {
+            if (userInput.getArg("").toLowerCase().equals("all")) {
                 output = output.concat(EventList.clearEvents());
             } else {
                 throw new DukeNoMatchException();
