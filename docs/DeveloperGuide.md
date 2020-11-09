@@ -511,6 +511,8 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 |v1.0|Busy student|Pin important notes, events and todo list|Focus on the important information|
 |v1.0|CEG student|Be able to edit my notes|Update missing information|
 
+<div style="page-break-after: always;"></div>
+
 | Version | Target User | Function/Feature | User's Benefit |
 |--------|----------|---------------|------------------|
 |v1.0|CEG student|Be able to read my notes|To revise before exams|
@@ -521,9 +523,6 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 |v2.0|CEG student|Archive old notes|Keep dashboard neat while allowing me to refer to old notes when necessary|
 |v2.0|CEG student|Be able to import my notes|To make edits|
 |v2.0|CEG student|Be able to export my notes|To share my notes with my peers|
-
-| Version | Target User | Function/Feature | User's Benefit |
-|--------|----------|---------------|------------------|
 |v2.0|CEG student|Be able to import my timetable/events|To make adjustments to my schedule|
 |v2.0|CEG student|Be able to export my timetable/events|To share my schedule with my peers|
 
