@@ -29,7 +29,10 @@ with each other in the app.
 
 As the app starts, the main program initialises the Ui, Logic and Storage components.
 Then, the Storage component reads existing data file if it is available, else a fresh copy of 
-data file is created. This step also initialises the content of runtime storage which is store 
+data file is created.The storage component also reads the .ics file that has the user's timetable and
+if it exists imports all the tasks into the TaskMap object. If it does not exist then a warning error
+is given. 
+This step also initialises the content of runtime storage which is store 
 in a TaskMap object.
 
 Now the Ui component is ready to take inputs from the User, and the input is processed and executed
@@ -46,7 +49,7 @@ The sequence diagrams below shows a typical workflow the program.
 
 At the start of the app, tasks are loaded using loadTasks function from Storage class, 
 and writeTasksToFile function is called when the program stops. 
-
+Also at the 
 
 ![ComponentsSeq](diagrams/ComponentsSeq.png)
 
@@ -172,6 +175,7 @@ and these classes are stored in the seedu.commons package.
 |v2.0|Busy student|view tasks in a weekly and monthly view|I know what i have due for that time period|
 |v2.0|Lazy student|revert operation|easily undo if delete all tasks accidentally|
 |v2.0|Forgetful student|be reminded of important tasks|attend the event on time|
+|v2.0|Busy student|View my timetable with my tasks|I know when I have to attend lecture.|
 
 ## Use cases
 

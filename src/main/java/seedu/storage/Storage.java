@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import seedu.data.TaskMap;
 import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidReminderException;
-import seedu.parser.CalParser;
 import seedu.task.Priority;
 import seedu.task.Task;
 
@@ -17,6 +16,7 @@ import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -112,7 +112,7 @@ public class Storage {
         Priority priority;
         if (dirFile.isDirectory()) {
             File calfile = new File(DIRECTORY_NAME + "/" + TIMETABLE);
-            String output = CalParser.lineExtractor(calfile);
+            String output = lineExtractor(calfile);
             String[] splitInputs = output.split("UID:");
             LocalTime startTime;
             LocalTime endTime;
@@ -124,7 +124,7 @@ public class Storage {
             String taskDescription;
             for (int i = 1; i < splitInputs.length; i++) {
                 if (splitInputs[i].contains("RRULE:")) {
-                    repeatCount = CalParser.countExtractor(splitInputs[i]);
+                    repeatCount = countExtractor(splitInputs[i]);
                 } else {
                     repeatCount = 1;
                 }
@@ -133,10 +133,10 @@ public class Storage {
                 } else {
                     priority = Priority.MEDIUM;
                 }
-                taskDescription = CalParser.descriptionExtractor(splitInputs[i]);
-                exceptionDates = CalParser.exceptionExtractor(splitInputs[i]);
-                dates = CalParser.dateExtractor(splitInputs[i], repeatCount);
-                taskDuration = CalParser.timeExtractor(splitInputs[i]);
+                taskDescription = descriptionExtractor(splitInputs[i]);
+                exceptionDates = exceptionExtractor(splitInputs[i]);
+                dates = dateExtractor(splitInputs[i], repeatCount);
+                taskDuration = timeExtractor(splitInputs[i]);
                 startTime = taskDuration[0];
                 endTime = taskDuration[1];
                 taskPrinter(taskMap, dates, startTime, endTime, taskDescription, repeatCount, priority);
@@ -224,5 +224,99 @@ public class Storage {
                 taskMap.addTask(tempTask);
             }
         }
+    }
+    public static String lineExtractor(File textFile) throws IOException {
+        Scanner myReader = new Scanner(textFile);
+        String taskData = "";
+        while (myReader.hasNextLine()) {
+            taskData += ("\n" + myReader.nextLine());
+        }
+        return taskData;
+    }
+
+
+    public static int countExtractor(String splitted) {
+        String[] splitCount = splitted.split("COUNT=");
+        String[] lineSplit = splitCount[1].split(";");
+        int count = Integer.parseInt(lineSplit[0]);
+        return count;
+    }
+
+    public static String descriptionExtractor(String splitted) {
+        String[] splitCount = splitted.split("SUMMARY:");
+        String[] lineSplit = splitCount[1].split("\n");
+        return lineSplit[0];
+    }
+    public static ArrayList<LocalDate> exceptionExtractor(String splitted) throws ParseException {
+        ArrayList<LocalDate> exceptionDates = new ArrayList<LocalDate>();
+        String[] splitCount = splitted.split("\n");
+        for (String i : splitCount) {
+            if (i.contains("EXDATE:")) {
+                String exDate;
+                exDate = i.split("EXDATE:")[1];
+                LocalDate startDate = LocalDate.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                exceptionDates.add(startDate);
+            }
+        }
+        return exceptionDates;
+    }
+
+    public static ArrayList<LocalDate> dateExtractor(String splitString, int count) throws ParseException {
+        String[] splitCount = splitString.split("\n");
+        ArrayList<LocalDate> dates = new ArrayList<LocalDate>();
+        int tempIndex = 0;
+        LocalDate startDate;
+        for (String i : splitCount) {
+            if (i.contains("DTSTART:")) {
+                String exDate;
+                exDate = i.split("DTSTART:")[1];
+                startDate = LocalDate.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                dates.add(startDate);
+                tempIndex++;
+            }
+        }
+        for (int i = 1; i < count; i++) {
+            LocalDate nextWeekDate = dates.get(i - 1).plusDays(7);
+            boolean isNotException = exceptionChecker(dates, nextWeekDate);
+            if (isNotException) {
+                dates.add(nextWeekDate);
+                tempIndex++;
+            }
+        }
+        return dates;
+    }
+
+    public static boolean exceptionChecker(ArrayList<LocalDate> exceptionDates, LocalDate nextWeekDate)
+            throws ParseException {
+        for (LocalDate i : exceptionDates) {
+            if (i.isEqual(nextWeekDate)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static LocalTime[] timeExtractor(String splitted) throws ParseException {
+        LocalTime startTime;
+        LocalTime endTime;
+        LocalTime[] taskDuration = new LocalTime[2];
+        String[] splitCount = splitted.split("\n");
+        for (String i : splitCount) {
+            if (i.contains("DTSTART:")) {
+                String exDate;
+                exDate = i.split("DTSTART:")[1];
+                LocalTime gmtTime = LocalTime.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                startTime = (gmtTime).plusHours(8);
+                taskDuration[0] = startTime;
+            }
+            if (i.contains("DTEND:")) {
+                String exDate;
+                exDate = i.split("DTEND:")[1];
+                LocalTime gmtTime = LocalTime.parse(exDate, DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'"));
+                endTime = (gmtTime).plusHours(8);
+                taskDuration[1] = endTime;
+            }
+        }
+        return taskDuration;
     }
 }
