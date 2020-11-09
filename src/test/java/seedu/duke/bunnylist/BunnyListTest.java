@@ -31,6 +31,7 @@ public class BunnyListTest {
 
     @Test
     void clearAllBunny_clearWholeList_returnListSizeZero() {
+        BunnyList.bunniesList.clear();
         initializeBunnyListTestDatabase();
         assertEquals(7, BunnyList.numBunny());
         BunnyList.clearAllBunny();
