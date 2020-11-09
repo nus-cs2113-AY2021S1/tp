@@ -194,6 +194,9 @@ _________________________________
 ## 3. Features
 
 This section introduces and explains the features of Scheduler-\-;!
+>**Note!**
+>
+> * Do note that some of the expected output for longer code snippets may not be exactly the same. This is because this User Guide was edited due to the code snippets being too long and not translating well when converted to PDF. 
 
 ### 3.1 Viewing help: help (Colin Ng)
 
@@ -218,11 +221,13 @@ done - mark the event as completed
 delete - remove a personal, timetable or zoom event permamently from the program
 note - Add in additional notes associate to the personal, timetable or zoom event
 reminder - prints out events that will be occuring on the present day
-extract - extracts out important event information from text to be recorded as events in the program
+extract - extracts out important event information from text to be recorded as events 
+    in the program
 save - save current changes made to the program
 bye - exits the program 
 
-To find out more about each of these functions, type in "help [COMMAND]" into the terminal where COMMAND is the name of the command you would like more information about
+To find out more about each of these functions, type in "help [COMMAND]" into the
+     terminal where COMMAND is the name of the command you would like more information about
 _________________________________
 ```
 
@@ -237,9 +242,12 @@ add - Records a personal, timetable or zoom event into the program
 Format: add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM
 
 
-EVENT_TYPE specify the type of event you want to add. These include “zoom”, “timetable” and “personal”.
+EVENT_TYPE specify the type of event you want to add. These include “zoom”,
+     “timetable” and “personal”.
 EVENT_DESCRIPTION is the description or name of the event.
-LINK/LOCATION is the website link or the location of the event. This is applicable and optional for zoom and timetable events respectively. This field should always be after the event description if used.
+LINK/LOCATION is the website link or the location of the event. This is applicable and 
+    optional for zoom and timetable events respectively. This field should always be after
+    the event description if used.
 DD/MM/YY is the date associated with the event in the format DD/MM/YY.
 HH:MM AM/PM is the time of the event. It can be written in 12 or 24 hour format.
 
@@ -274,9 +282,12 @@ Format: help [COMMAND]
 
 [COMMAND] - command which you would like to find out more information about. 
 
-text in lowercase indicates that you should type it exactly like this when you type the command in the terminal
-text in uppercase indicates compulsory arguments that you will need to provide and type into the terminal to operate the command
-text in uppercase surrounded by square brackets [] indicates optional arguments that you can choose to provide and type into the terminal to operate the command
+text in lowercase indicates that you should type it exactly like this when you type
+     the command in the terminal
+text in uppercase indicates compulsory arguments that you will need to provide and 
+    type into the terminal to operate the command
+text in uppercase surrounded by square brackets [] indicates optional arguments that 
+    you can choose to provide and type into the terminal to operate the command
 _________________________________
 ```
 
@@ -956,12 +967,14 @@ extract CG2271 Quiz 2;
 ````
 _________________________________
 Copy and paste or enter the body of the text you want to extract from!
-At the end of your text, press enter to go to the next line, enter 'extractend' with no quotation marks and press enter once more.
+At the end of your text, press enter to go to the next line, enter 'extractend' with
+     no quotation marks and press enter once more.
 _________________________________
 ````
 ##### Step 3: Copy and paste or type in the text you want to extract from.
 ````
-Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at either 3pm or 3.30pm. 
+Hi all, we will be having the quiz on either 4th October 2020 or October 15 2020 at 
+    either 3pm or 3.30pm. 
 The link is at https://nus-sg.zoom.us/j/2226375MG`
 ````
 ##### Step 4: Tell Scheduler you are done by typing `extractend` on a new line.
