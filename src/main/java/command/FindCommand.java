@@ -4,11 +4,11 @@ package command;
 import event.Event;
 import eventlist.EventList;
 import exception.NoMatchingEventException;
-import exception.NuScheduleException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
 import java.util.ArrayList;
 
@@ -30,11 +30,13 @@ public class FindCommand extends Command {
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
+     * @param userInfo  personal information and settings about the user.
      * @throws NoMatchingEventException the user trying to find a Task with a certain keyword, but such task does not
      *                                  exist in the list.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage,
+                        UserInfo userInfo)
             throws NoMatchingEventException {
         ArrayList<Event> filteredEventList = events.filterWith(filterString);
         if (filteredEventList.size() == 0) {
