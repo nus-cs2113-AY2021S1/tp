@@ -265,27 +265,27 @@ The following activity diagram summarizes what happens when a user executes `add
 
 Given below is a detailed explanation on how the add module mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time and hence, the list of modules is empty. 
+1. The user launches the application for the first time and hence, the list of modules is empty. 
         The user types in a command: `addmod CS2113T`. 
 
-Step 2. The parser class makes sense of the user input and calls the `addMod()` function in ModuleList class.
+1. The parser class makes sense of the user input and calls the `addMod()` function in ModuleList class.
 
-Step 3. Within the `addMod()` function, it will first check if the module code is valid by calling 
+1. Within the `addMod()` function, it will first check if the module code is valid by calling 
         `checkIfModuleValid()` function. The `checkIfModuleValid()` function will return true if the module code is 
         valid, and return false otherwise. If `checkIfModuleValid()` function returns true, proceed to step 4.
 
-Step 4. Within the addmod function, it will then check if the module already exists in the list of modules by 
+1. Within the addmod function, it will then check if the module already exists in the list of modules by 
         calling `checkIfModuleExist()` function. The `checkIfModuleExist()` function will return true if the module 
         already exists in the modlist, and false otherwise. If `checkIfModuleValid()` function returns true, 
         proceed to step 5.  
 
-Step 5. A new module with module code "CS2113T” is created by calling the constructor of Module class.
+1. A new module with module code "CS2113T” is created by calling the constructor of Module class.
 
-Step 6. The newly created module is added to the list of modules.
+1. The newly created module is added to the list of modules.
 
-Step 7. The `printAdd()` function of the Ui class is called, displaying “CS2113T is added.” to the user.
+1. The `printAdd()` function of the Ui class is called, displaying “CS2113T is added.” to the user.
 
-Step 8. The newly created module is saved to storage.  
+1. The newly created module is saved to storage.  
   
 
 The following sequence diagram shows how the `addmod CS2113T` command works.
@@ -299,16 +299,16 @@ The following sequence diagram shows how the `addmod CS2113T` command works.
 
 ##### Aspect: Checking existence of module by `checkIfModuleExist()` within `addmod()` function
 
-Alternative 1 (Current choice): Checks that module does not exist in the list of modules before adding a new module
--	Pros: Ensure that there will be no duplicate modules in the list of modules
--	Cons: User cannot have 2 same modules in the list of modules.
+* **Alternative 1 (Current choice)**: Checks that module does not exist in the list of modules before adding a new module
+    * Pros: Ensure that there will be no duplicate modules in the list of modules
+    * Cons: User cannot have 2 same modules in the list of modules.
 
-Alternative 2: Always add a new module
--	Pros: The user can have 2 same modules in the list of modules.
--	Cons: If the user had inputted 2 same modules and wants to add the workload for these modules, the current 
+* **Alternative 2**: Always add a new module
+    * Pros: The user can have 2 same modules in the list of modules.
+    * Cons: If the user had inputted 2 same modules and wants to add the workload for these modules, the current 
           application will only update the module that was inputted earlier, ignoring the second module, resulting in 
           inconsistency.
--	Cons: If the user does not want duplicate modules, the user must ensure he/she does not add a module that is 
+    * Cons: If the user does not want duplicate modules, the user must ensure he/she does not add a module that is 
           already in the list of modules.  
           
 ### 4.3 Add Time <a name="4.3"></a>
@@ -335,38 +335,39 @@ as indicated by the user.
 
 Given below is an example usage scenario and how the add time command behaves at each step.
 
-Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
-to a list of modules. This is done by inputting the command `addmod CS2113T`.
-
-Step.2 The user now types in a command: `addtime CS2113T 2 4`. This calls the add time command from `Parser`.
-`Parser` then calls the `addTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
-method. 
 > **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
 >updated.
 >
 
-Step.3 Within the `addTime()` function, it will first check if the module code is valid by calling
+1. The user launches the application and does all the required steps to add a module with module code `CS2113T`
+to a list of modules. This is done by inputting the command `addmod CS2113T`.
+
+1. The user now types in a command: `addtime CS2113T 2 4`. This calls the add time command from `Parser`.
+`Parser` then calls the `addTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
+method. 
+
+1. Within the `addTime()` function, it will first check if the module code is valid by calling
 `checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
 
-Step.4 Within the `addTime()` function, it will then check if the module exists in the module list storage by calling
+1. Within the `addTime()` function, it will then check if the module exists in the module list storage by calling
 `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
-Step.5 Within the `addTime()` function, it will then check if the time input is valid by calling
+1. Within the `addTime()` function, it will then check if the time input is valid by calling
 `checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
 
-Step.6 Within the `addTime()` function, it will then check if the week input is valid by calling
+1. Within the `addTime()` function, it will then check if the week input is valid by calling
 `checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
 
-Step.7 Within the `addTime()` function, it will then check if the hours the user wishes to add will cause the total time
+1. Within the `addTime()` function, it will then check if the hours the user wishes to add will cause the total time
 to exceed 99 hours by 
 calling the `doesTimeExceed99()` function. If the time does exceed 99, the `doesTimeExceed99()`
 function will return true.
 
-Step.8 A time of `2` hours in academic week `4` will now be added to the actual workload of the `CS2113T` module. 
+1. A time of `2` hours in academic week `4` will now be added to the actual workload of the `CS2113T` module. 
 
-Step.9 The system will print the string `2 hours have been added to CS2113T`
+1. The system will print the string `2 hours have been added to CS2113T`
 
-Step.10 The actual workload is updated in storage.
+1. The actual workload is updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `addTime CS2113T 2 4`.
 
@@ -404,46 +405,46 @@ time from the module as indicated by the user.
 
 Given below is an example usage scenario and how the minus time command behaves at each step.
 
-Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
-to a list of modules. This is done by inputting the command `addmod CS2113T`.
-
-Step.2 The user then does all the required steps to add `2` hours of time spent in academic week `4` on `CS2113T`. This
-is done by inputting the command `addtime CS2113T 2 4`.
-
-Step.3 The user now types in a command: `minustime CS2113T 2 4`. This calls the minus time command from `Parser`.
-`Parser` then calls the `minusTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
-method.
-
 > **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
 >updated.
 >
 
-Step.4 Within the `minusTime()` function, it will first check if the module code is valid by calling
+1. The user launches the application and does all the required steps to add a module with module code `CS2113T`
+to a list of modules. This is done by inputting the command `addmod CS2113T`.
+
+1. The user then does all the required steps to add `2` hours of time spent in academic week `4` on `CS2113T`. This
+is done by inputting the command `addtime CS2113T 2 4`.
+
+1. The user now types in a command: `minustime CS2113T 2 4`. This calls the minus time command from `Parser`.
+`Parser` then calls the `minusTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
+method.
+
+1. Within the `minusTime()` function, it will first check if the module code is valid by calling
 `checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
 
-Step.5 Within the `minusTime()` function, it will then check if the module exists in the module list storage by calling
+1. Within the `minusTime()` function, it will then check if the module exists in the module list storage by calling
 `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
-Step.5 Within the `minusTime()` function, it will then check if the time input is valid by calling
+1. Within the `minusTime()` function, it will then check if the time input is valid by calling
 `checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
 
-Step.6 Within the `minusTime()` function, it will then check if the week input is valid by calling
+1. Within the `minusTime()` function, it will then check if the week input is valid by calling
 `checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
 
-Step.7 Within the `minusTime()` function, it will then check if there is an existing actual workload for this module by
+1. Within the `minusTime()` function, it will then check if there is an existing actual workload for this module by
 calling the `doesActualTimeExist()` function. If the module has an existing workload, the `doesActualTimeExist()`
 function will return true.
 
-Step.8 Within the `minusTime()` function, it will then check if the hours the user wish to remove is more than the
+1. Within the `minusTime()` function, it will then check if the hours the user wish to remove is more than the
 existing hours by
 calling the `doesHoursExceedTotal()` function. If the module has an existing workload, the `doesHoursExceedTotal()`
 function will return true.
 
-Step.9 A time of `2` hours in academic week `4` will now be removed from the actual workload of the `CS2113T` module. 
+1. A time of `2` hours in academic week `4` will now be removed from the actual workload of the `CS2113T` module. 
 
-Step.10 The system will print the string `2 hours have been removed from CS2113T`
+1. The system will print the string `2 hours have been removed from CS2113T`
 
-Step.11 The actual workload is updated in storage.
+1. The actual workload is updated in storage.
 
 The following sequence diagram illustrates what happens when a user executes `minusTime CS2113T 2 4`.
 
@@ -459,50 +460,51 @@ The following sequence diagram illustrates what happens when a user executes `mi
     * Pros: Able to cumulatively remove time and manage workload based on overall total time spent.
     * Cons: May not be useful to know total time spent as workload may be better managed weekly.
     
- ### 4.5 Edit Time <a name="4.5"></a>
- The edit time feature edits the actual workload for a specific module as indicated by the user. 
- This is done by replacing the time spent on the module. The actual workload is broken down into academic weeks and
- hours spent in the respective academic weeks.
+### 4.5 Edit Time <a name="4.5"></a>
+The edit time feature edits the actual workload for a specific module as indicated by the user. 
+This is done by replacing the time spent on the module. The actual workload is broken down into academic weeks and
+hours spent in the respective academic weeks.
  
- #### Current Implementation
+#### Current Implementation
  
- The feature will implement the same checks as the add time module feature as shown earlier in _section 4.3_.
+The feature will implement the same checks as the add time module feature as shown earlier in _section 4.3_.
  
- If the module code is valid and exists the edit time feature will proceed to edit the time from the module
- as indicated by the user.
+If the module code is valid and exists the edit time feature will proceed to edit the time from the module
+as indicated by the user.
  
- Given below is an example usage scenario and how the edit time command behaves at each step.
+Given below is an example usage scenario and how the edit time command behaves at each step.
  
- Step.1 The user launches the application and does all the required steps to add a module with module code `CS2113T`
- to a list of modules. This is done by inputting the command `addmod CS2113T`.
+> **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
+>updated.
+>
  
- Step.2 The user now types in a command: `edittime CS2113T 2 4`. This calls the edit time command from `Parser`.
- `Parser` then calls the `editTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
- method. 
- > **_NOTE:_**  The first number is the hours spent in that week. The second number is the academic week that is being
- >updated.
- >
+1. The user launches the application and does all the required steps to add a module with module code `CS2113T`
+to a list of modules. This is done by inputting the command `addmod CS2113T`.
  
- Step.3 Within the `editTime()` function, it will first check if the module code is valid by calling
- `checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
+1. The user now types in a command: `edittime CS2113T 2 4`. This calls the edit time command from `Parser`.
+`Parser` then calls the `editTime()` method in `ModuleList` and passes `CS2113T`,`2` and `4` as parameters into the
+method. 
  
- Step.4 Within the `editTime()` function, it will then check if the module exists in the module list storage by calling
- `checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
+1. Within the `editTime()` function, it will first check if the module code is valid by calling
+`checkIfModuleValid()` function. If the module code is valid, `checkIfModuleValid()` function will return true.
+ 
+1. Within the `editTime()` function, it will then check if the module exists in the module list storage by calling
+`checkIfModuleExist()` function. If the module does exist, the `checkIfModuleExist()` function will return true.
 
- Step.5 Within the `editTime()` function, it will then check if the time input is valid by calling
- `checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
+1. Within the `editTime()` function, it will then check if the time input is valid by calling
+`checkIfTimeValid()` function. If the time input is valid, the `checkIfTimeValid()` function will return true.
 
- Step.6 Within the `editTime()` function, it will then check if the week input is valid by calling
- `checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
+1. Within the `editTime()` function, it will then check if the week input is valid by calling
+`checkIfWeekValid()` function. If the week input is valid, the `checkIfWeekValid()` function will return true.
  
- Step.7 A time of `2` hours in academic week `4` will now be the new actual workload of the `CS2113T` module. 
+1. A time of `2` hours in academic week `4` will now be the new actual workload of the `CS2113T` module. 
  
- Step.8 The system will print the string 
+1. The system will print the string 
  
  `2 hours have been added to CS2113T`
  `2 hours have been spent on this module in week 4`
  
- Step.9 The actual workload is updated in storage.
+1. The actual workload is updated in storage.
  
 #### Design Considerations
 
@@ -630,11 +632,21 @@ valid module code.
 ![addtask](diagrams/addtask.png)
 <br/> Figure 11. Sequence Diagram of Add Task feature
 
-
+#### Design Considerations
+* **Alternative 1 (current choice)**: If module does not exist in module list, do not add the task.
+    * Pros: Able to let users know that the module does not exist in the module list, hence preventing the situation where
+    users type in a module code wrongly and the task is added under that wrong module.
+    * Cons: May be slightly inconvenient as user will need to add a module first before adding the tasks related to that module.
+    
+* **Alternative 2**: If module does not exist in the module list, automatically add the module, then add the task.
+    * Pros: Slightly more convenient as user can add a new module and task at the same time.
+    * Cons: May cause confusion and inconvenience if users type in a module code wrongly, and the module 
+    is automatically added to the module list.
+    
 #### Future Implementation
-A future implementation requires user to enter the expected time required to complete the task. The `addTask` method will split the 
-user input into 4 sections, with `Section 4` as the expected time required to complete the task. `Section 4` will then be
-used in the future implementation of mark task as done feature, as further illustrated in the [mark task as done](#mark-task-as-done)
+A future implementation requires user to enter the expected time required to complete the task, and the week number. The `addTask` method will split the 
+user input into 5 sections, with `Section 4` as the expected time required to complete the task and `Section 5` as the week number. `Section 4`
+and `Section 5` will then be used in the future implementation of mark task as done feature, as further illustrated in the [mark task as done](#4.9)
 section.
 
 ### 4.9 Mark Task as Done <a name="4.9"></a>
@@ -663,12 +675,20 @@ Given below is an example usage scenario.
 ![markdone](diagrams/markdone.png)  
 <br/> Figure 12. Sequence Diagram of Complete Task feature
 
+#### Design Considerations
+* **Alternative 1 (current choice)**: Use `X` and `/` as cross and tick to indicate whether a task is marked as done. 
+    * Pros: Easy to implement and works in all systems without the need for special configurations.
+    * Cons: Does not look as nice.
+    
+* **Alternative 2**: Use actual unicode symbols as cross and tick to indicate whether a task is marked as done.
+    * Pros: Looks nicer.
+    * Cons: Harder to implement and may not work in all systems.
    
 #### Future Implementation
 1. When the `Task` is set as done, the `setDone` method will call the `addTime` method in `ModuleList` class
 to add the expected time required to complete the task to the actual time spent on the module.
-    * This future implementation requires `Section 4` (expected time required to complete the task) from the future 
-    implementation of the `addTask` method to be passed as a parameter to the `setDone` method and then to the 
+    * This future implementation requires `Section 4` (expected time required to complete the task) and
+    `Section 5` (week number) from the future implementation of the `addTask` method to be passed as a parameter to the `setDone` method and then to the 
     `addTime` method.
 
 ## 5. Documentation, Logging, Testing, Dev-Ops <a name="5"></a>
@@ -705,7 +725,7 @@ NUS students
 |v1.0|student|input the expected module workload|keep track of the recommended time I should spend on the module|
 |v1.0|busy student|view breakdown of my time spent on each module|pinpoint in detail where i spend most of time on|
 |v1.0|student|input the actual time spent on each module|keep track of the actual time I spent|
-|v1.0|careless user|edit the data easily|correct any mistakes I inputted wrongly/
+|v1.0|careless user|edit the data easily|correct any mistakes I inputted wrongly|
 |v1.0|user|save my data permanently|save the trouble of re-entering my data everytime I start the app|
 |v2.0|user of ModTracker|add tasks related to a module|know what are the outstanding tasks for each module
 |v2.0|user|save tasks related to a module|be reminded of what tasks I have to do|
@@ -714,7 +734,7 @@ NUS students
 |v2.0|busy user|receive notifications|know immediately which modules I am spending too little or too much time on|
 
 ### 6.3 Use Cases <a name="6.3"></a>
-(For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.)
+For all use cases below, the System is the `ModTracker` and the Actor is the `User`, unless specified otherwise.
 
 #### Use case: UC1 - Add module
 
