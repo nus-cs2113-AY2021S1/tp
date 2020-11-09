@@ -43,7 +43,7 @@ public class CreateCommand extends Command {
             commandLogger.log(Level.INFO, "Created new Location " + userEnteredLocation);
             return new CommandResult("Creating Location \"" + userEnteredLocation + "\".....CREATED!");
         } catch (DuplicateDataException e) {
-            commandLogger.log(Level.WARNING, "Location already exists");
+            commandLogger.log(Level.WARNING, MESSAGE_LOCATION_EXIST);
             return new CommandResult(MESSAGE_LOCATION_EXIST);
         } catch (InvalidLocationException e) {
             commandLogger.log(Level.WARNING, "Duplicate name found in ApplianceList");
