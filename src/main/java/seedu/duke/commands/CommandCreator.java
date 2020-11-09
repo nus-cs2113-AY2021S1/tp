@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class CommandCreator {
 
-    // @@author
+    // @@author iamchenjiajun
     /**
      * Creates and returns an AddCommand with given arguments.
      *
@@ -39,7 +39,6 @@ public class CommandCreator {
     }
 
     // @@author iamchenjiajun
-
     /**
      * Creates and returns an AddRecurringCommand with given arguments.
      *
@@ -62,6 +61,7 @@ public class CommandCreator {
         return new SpendCommand(description, argumentsMap);
     }
 
+    // @@author iamchenjiajun
     /**
      * Creates and returns a SetCommand with given arguments.
      *
@@ -198,8 +198,7 @@ public class CommandCreator {
         }
     }
 
-    // @@author
-
+    // @@author iamchenjiajun
     /**
      * Creates and returns a DateCommand with given arguments.
      *
