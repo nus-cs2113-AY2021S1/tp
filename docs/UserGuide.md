@@ -225,7 +225,8 @@ These are the steps to fix the mistake:
 3. The result will be a message displaying the buses available at the museum.<br><br>
 <img src="UG_Figures/bus1.png"><br>
 
-### 3.1.5. List all bus available in NUS ```/allbus```
+<!-- @@author mrwsy1 -->
+### 3.1.5. List all bus available in NUS ```/allbus``` - Shuyi
 This command lists all buses available in NUS with their respective routes.
 
 The format for this command is as follows:<br> 
@@ -238,6 +239,7 @@ To see the complete list of buses:
 
 1. Type <code>/allbus</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/allbus1.png" alt="inputCommand" width=700><br>
+<!-- @@author -->
 
 ### 3.1.6. List all bus stops in NUS: ```/liststops```
 This command lists all bus stops in NUS.
@@ -253,7 +255,8 @@ To see the description of each location:
 1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 
-### 3.1.7. List all faculties in NUS: ```/faculty```
+<!-- @@author mrwsy1 -->
+### 3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi
 This command lists out all faculties in NUS.
 
 The format of this command is as follows:<br> 
@@ -271,7 +274,7 @@ These are the steps to follow:
 ### 3.2. Dine Features
 This section provides the instruction for all features categorised under the main feature of locating dining options.
 
-### 3.2.1. Search for dining options within a faculty: ```/dine```
+### 3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi
 This command lists out all dining outlets available within a chosen faculty.
 
 The format of this command is as follows:<br> 
@@ -300,7 +303,7 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 > *  For example, `/dine school` will yield results from both School of Business and School of Computing.
 
 
-### 3.2.2. Search for specific dining outlet: ```/dineinfo```
+### 3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi
 This command finds all dining outlets that contains the keyword, and display their location and operating hours.
 
 The format of this command is as follows:<br>
@@ -322,6 +325,7 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 
 1. Type <code>/dineinfo <strong>jewel</strong></code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/dineinfo3.png" alt="output" width=600><br>
+<!-- @@author -->
 
 ### 3.3. Favourite Features
 This section provides the instruction for all features categorised under the main feature of personalisation of application
@@ -339,7 +343,7 @@ Let's say you want to add the command to list dining options in business.
 
 These are the steps to follow:
 
-1. Type <code>/dine <strong>buisness</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below 
+1. Type <code>/dine <strong>business</strong></code> into the CLI and press <kbd>Enter</kbd> to execute the command as shown in the figure below 
 
 <img src="UG_Figures/dine1.png" alt="output" width=600><br>
 
@@ -363,7 +367,8 @@ to store the command in to your list of favourites with no description  as shown
 
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 
-### 3.3.2. List all favourite commands: `/listfav`
+<!-- @@author mrwsy1 -->
+### 3.3.2. List all favourite commands: `/listfav` - Shuyi
 This command displays all the commands in your list of favourite commands, along with their index and description.
 
 The format of this command is as follows:<br>
@@ -377,6 +382,7 @@ These are the steps to follow:
 
 1. Type <code>/listfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/listfav1.png" alt="output" width=600><br>
+<!-- @@author -->
 
 ### 3.3.3. Delete a favourite command: `/deletefav`
 This command deletes the command that you have specified from the list of favourite commands.
@@ -445,7 +451,8 @@ shown in the figure below and press enter. <br>
 <img src="UG_Figures/afterdescfav.png" alt="list after changing" width=600>
 <!-- @@author -->
 
-### 3.3.6. Clear the list of favourite commands: `/clearfav`
+<!-- @@author mrwsy1 -->
+### 3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi
 This command clears all the commands stored in your list of favourite commands.
 
 The format of this command is as follows:<br>
@@ -461,6 +468,7 @@ These are the steps to follow:
 
 1. Type <code>/clearfav</code> into the CLI and press enter to execute the command as shown in the figure below.<br><br>
 <img src="UG_Figures/clearfav1.png" alt="output" width=600><br>
+<!-- @@author -->
 
 ### 3.4. Common Features
 This section provides the instruction for all features categorised under the common features.

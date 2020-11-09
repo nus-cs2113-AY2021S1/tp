@@ -23,6 +23,11 @@ public class FavList {
         favList.remove(index - 1);
     }
 
+    /**
+     * Calls printFavList() to print the favorites list.
+     *
+     * @throws CustomException thrown if list is empty
+     */
     public static void listFav() throws CustomException {
         if (favList.size() == 0) {
             throw new CustomException(ExceptionType.EMPTY_FAVLIST);
@@ -30,6 +35,9 @@ public class FavList {
         printFavList(favList);
     }
 
+    /**
+     * Deletes all existing entries in the favorites list.
+     */
     public static void clearFav() {
         favList.clear();
         printClearFavMessage();

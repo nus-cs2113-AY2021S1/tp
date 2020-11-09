@@ -206,7 +206,7 @@ of busStops objects.
     projects.
     
 Given the above alternatives, alternative 1 was used considering the scalability of the application.
-
+<!-- @@author Lezn0 -->
 ###3.3. List All stops (/liststops Feature)
 `/liststops` is the command which prints all bus stops declared in the BusStops enum.
 
@@ -220,9 +220,6 @@ The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class execute
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
 list of favourites.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
-![add favourites](DG_Diagrams/AddFavSequence.png)
-
 The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the command in the following steps:
 1. The `AddFavCommand#executeCommand` method throws an exception if the command to be saved in FavList is missing.
 2. Calls `AddFavCommand#createFav()` to make a new Fav object to be saved in the FavList.
@@ -233,7 +230,12 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
 
-### 3.5. Favourite command executor (`/execfav` Feature)
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
+![add favourites](DG_Diagrams/AddFavSequence.png)
+<!-- @@author -->
+
+<!-- @@author EthanWong22 -->
+### 3.5. Favourite command executor (`/execfav` Feature) - Wong Heng Chin
 `/execfav <index>` is the command to execute a command with the specific index in the list of favourite commands. <br>
 
 The command is executed in the following steps:
@@ -249,7 +251,7 @@ The command is executed in the following steps:
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/execfav` command.
 ![ExecFav_Sequence_Diagram](DG_Diagrams/ExecFavCommand/ExecFavCommand.png)
-
+<!-- @@author -->
 #### Design Considerations
 ##### Aspect: Choice of command object in FavList to execute
 |**Approach** |**Choosing command by index in list (Current choice)**|**Choosing command by description in list**|
@@ -323,7 +325,8 @@ While alternative 2 would place all checks in one place, it can be tedious to te
 was chosen. It also made the code look neater and more readable. 
 <!-- @@author -->
     
-### 3.7. Dining options finder (/dine Feature)
+<!-- @@author mrwsy1 -->
+### 3.7. Dining options finder (/dine Feature) - Shuyi
 
 `/dine <faculty>` is the command that has to be entered by the user to see all the dining options available in the 
 specified faculty.
@@ -331,14 +334,15 @@ specified faculty.
 The `DineCommand#executeCommand()` method of DineCommand Class executes the command in the following steps:
 1. Checks the user input and throws an exception if the input is empty.
 2. Calls `DineCommand#checkFaculty()` method to check for a match between the data and user input.
-    + Sets the `isFound` parameter to **false** if there is no match.
-    + Sets the `isFound` parameter to **true** if there is a match.
+    + Sets the `isFound` parameter to **true** if there is any match.
         + Calls `Ui#printDineResult()` method to print the matching results.
+    + Sets the `isFound` parameter to **false** if there is no match.
+        + Throws an exception if `isFound` is false.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dine` command.
 ![bus data](DG_Diagrams/DineSequence.png)
 
-### 3.8 Find specific dining outlets (/dineinfo Feature)
+### 3.8 Find specific dining outlets (/dineinfo Feature) - Shuyi
 
 `/dineinfo <outlet>` is the command that has to be entered by the user to see information of a specified dining outlet.
 
@@ -346,12 +350,15 @@ The `DineInfoCommand#executeCommand()` method of DineInfoCommand Class executes 
 1. Checks the user input and throws an exception if the input is empty.
 2. Calls `DineInfoCommand#checkFoodPlace()` method to check for a match between the data and user input.
     + Adds any matching data to an ArrayList `searchList`.
-    + Calls `Ui#printDineInfoResult()` method to print the matching results if size of `searchList` is more than 0.
+    + Throws an exception if `searchList` is empty.
+    + Calls `Ui#printDineInfoResult()` method to print the data in `searchList` if it is not empty.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/dineinfo` command.
 ![bus data](DG_Diagrams/DineInfoSequence.png)
+<!-- @@author -->
 
-### 3.9. Bus at bus stop finder (`/bus` Feature)
+<!-- @@author EthanWong22 -->
+### 3.9. Bus at bus stop finder (`/bus` Feature) - Wong Heng Chin
 
 `/bus <bus stop>` is the command to execute to see buses which stop at a specific bus stop.<br>
 
@@ -371,6 +378,7 @@ The following sequence diagram illustrates the steps taken by the program when t
 
 The following sequence diagram explains the interactions omitted in the main diagram.
 ![getBusStop_Sequence_Diagram](DG_Diagrams/BusCommand/getBusStop.png)
+<!-- @@author -->
 
 <!-- @@author wamikamalik -->
 ### 3.10. Performing similarity checks -Wamika
@@ -500,14 +508,14 @@ This portion contains instructions on how to perform manual testing.
 
 ### E.1 Launch and Shutdown
 1. Initial launch
-- Download the jar file and copy into an empty folder
-- Launch CLI and navigate to home folder of jar file
-- Run jar file, `java -jar Nav@NUS.jar`<br><br>
-Expected: The CLI application will run with the Nav@NUS logo.
+    - Download the jar file and copy into an empty folder
+    - Launch CLI and navigate to home folder of jar file
+    - Run jar file, `java -jar Nav@NUS.jar`<br>
+    Expected: The CLI application will run with the Nav@NUS logo.
 
 2. Shutdown
-- Type `/exit` followed by enter key to exit<br><br>
-Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
+    - Type `/exit` followed by enter key to exit<br>
+    Expected: The CLI application closes with an exit message. List of favourite commands and search frequency will be saved
 
 <!-- @@author wamikamalik -->
 ### E.2 Check for direct bus - Wamika
@@ -547,14 +555,82 @@ Expected: No bus routes will be displayed as there is no such bus in our databas
 Expected: No bus routes will be displayed. Error details will be shown to remind users to type in
 the needed parameter.<br>
 
+<!-- @@author EthanWong22 -->
+### E.4 Check for buses at a bus stop - Wong Heng Chin
+1. Checking for the buses available at a bus stop
+    * Prerequisites: Nill
+    * Test case: `/bus Museum`<br>
+    Expected: Buses available at museum (AA1) will be shown.<br>
+    * Test case: `/bus univarity town`<br>
+    Expected: Suggestion for correct location will be shown.<br>
+    * Test case: `/bus invalid stop` <br>
+    Expected: Error details will be shown<br>
+    * Other incorrect data to test: `/bus`
+    Expected: Similar to previous.
+<!-- @@author -->
 
-### E.4 Check for buses at a bus stop
+<!-- @@author mrwsy1 -->
+### E.5 Search for dining options within a faculty - Shuyi
+1. Searching for dining options within a faculty.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine science`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine sci`<br>
+    Expected: All dining outlets within Science faculty will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine scienceee` (name of faculty has been misspelled)<br>
+    Expected: Similar to previous.<br>
 
-### E.5 Search for dining options within a faculty
+2. Searching for dining options within faculties with similar names.
+    - Prerequisites: List all faculties by executing `/faculty` command<br>
+    - Test case: `/dine school`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine sch`<br>
+    Expected: All dining outlets within both the School of Business and School of Computing will be displayed.<br>
+    - Test case: `/dine`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dine schooool` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br>
 
-### E.6 Search for specific dining outlet
-
+### E.6 Search for specific dining outlet - Shuyi
+1. Searching for specific dining outlet.
+    - Test case: `/dineinfo arise & shine`<br>
+    Expected: Dining outlets with the name Arise & Shine will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo arisee & shiine` (name of outlet has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+    
+2. Searching for dining outlets with similar names.
+    - Test case: `/dineinfo cafe`<br>
+    Expected: Dining outlets with names containing 'cafe' will be displayed.<br>
+    - Test case: `/dineinfo`<br>
+    Expected: No dining outlets will be displayed. Error details will be shown.<br>
+    - Other incorrect commands to test: `/dineinfo caffe` (keyword has been misspelled)<br>
+    Expected: Similar to previous.<br> 
+<!-- @@author -->
+<!-- @@author Lezn0 -->
 ### E.7 Add a favourite command
+1. Adding a command to the list of favourites.
+- Prerequisites: Executed a command.
+- Test case: <br>
+Step 1.`/liststops`<br>
+Step 2.`/addfav`<br>
+Expected: Message of the command `/liststops` being added to your favourites will be shown.
+- Test case: <br>
+Step 1.`/liststops`<br>
+Step 2.`/addfav`<br>
+Step 3.`/liststops`<br>
+Step 4.`/addfav`<br>
+Expected: Message of the command `/liststops` already exists in your favourites will be shown.
+- Test case: <br>
+Step 1.`/listfav`<br>
+Step 2.`/addfav`<br>
+Expected: Message of command not being detected will be shown as `listfav` is not a valid command.
+- Other incorrect data to test: `/execfav 1`, `/help 3`, `/bus musseeuum`.
+Expected: Similar to previous.
+<!-- @@author -->
 
 ### E.8 Delete favourite command from favourite list
 1. Deleting a favourite command from favourite list
@@ -574,16 +650,17 @@ Expected: No command executed.Error details will be shown to remind users to typ
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
 
 
-
-### E.9 Execute a favourite command from favourite list
+<!-- @@author EthanWong22 -->
+### E.9 Execute a favourite command from favourite list - Wong Heng Chin
 1. Executing a favourite command in list of favourites.
-- Prerequisites: List all favourite commands by executing `/listfav` command
-- Test case: `/execfav 1`<br>
-Expected: Command in index 1 of the list of favourites will be executed.<br>
-- Test case: `/execfav 0`<br>
-Expected: No command executed. Error details will be shown. List of favourites will not be modified.<br>
-- Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).
-Expected: Similar to previous.
+    - Prerequisites: List all favourite commands by executing `/listfav` command
+    - Test case: `/execfav 1`<br>
+    Expected: Command in index 1 of the list of favourites will be executed.<br>
+    - Test case: `/execfav 0`<br>
+    Expected: No command executed. Error details will be shown. List of favourites will not be modified.<br>
+    - Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).<br>
+    Expected: Similar to previous.
+<!-- @@author -->
 
 <!-- @@author wamikamalik -->
 ### E.10 Change description of favourite command in favourite list - Wamika
@@ -600,4 +677,21 @@ Expected: Similar to previous.
     (where x is a number bigger than the number of elements in the list), `/descfav 2e /to something`, etc.<br>
     Expected: The appropriate error message will be displayed.
     
+<!-- @@author -->
+
+<!-- @@author EthanWong22-->
+### E.11 Saving of favourite list - Wong Heng Chin
+1. Data is automatically saved in the `/data/FavList.txt` directory of the jar file's home directory.
+
+2. Loading FavList
+    - Prerequisites: `/data/FavList.txt` contains valid commands.
+    - The txt file contains a command along with description in each line.
+    - Expected: All commands can be seen in FavList using `/listfav` command upon running the jar file
+
+3. Dealing with corrupted data
+    - Prerequisite: `FavList.txt` exists
+    - Test case: Corrupted data line has no delimiter "`|`"<br>
+        Step 1. add lines with no delimiter, "`|`" to the `FavList.txt` file.<br>
+        Step 2. Run the jar file<br>
+        Expected output: Message detailing corrupted data detailed at start and corrupted data removed from FavList.
 <!-- @@author -->

@@ -56,6 +56,12 @@ public class BusData {
         return null;
     }
 
+    /**
+     *  Get Buses which bus routes contain particular busStop.
+     *
+     * @param busStop busStop name to search for the routes of buses
+     * @return arraylist of buses which stop at particular busStop
+     */
     public static ArrayList<Bus> getBusAtStop(String busStop) {
         ArrayList<Bus> busList = new ArrayList<>();
         for (Bus bus : buses) {

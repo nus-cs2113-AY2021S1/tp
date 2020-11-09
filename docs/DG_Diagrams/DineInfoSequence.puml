@@ -24,12 +24,12 @@ end
 
 ":DineInfoCommand" -> ":DineInfoCommand": checkFoodPlace()
 activate ":DineInfoCommand"
-":DineInfoCommand" -> "<<class>>\n:Ui" : printDineInfoResult()
-activate "<<class>>\n:Ui"
 
 alt size=0
-"<<class>>\n:Ui" --> ":DineInfoCommand": no match found
+":DineInfoCommand" --> ":Parser"
 else size>0
+":DineInfoCommand" -> "<<class>>\n:Ui" : printDineInfoResult()
+activate "<<class>>\n:Ui"
 "<<class>>\n:Ui" --> ":DineInfoCommand": results
 deactivate "<<class>>\n:Ui"
 end

@@ -33,33 +33,34 @@ Given below are my contributions to the project.
   (Pull request [#191](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/191))
   * Updated error handling for delete favourite 
   (Pull request [#103](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/103))
-  * Wrote tests for route map command and search frequency storage.(Pull requests 
+  * Wrote tests for route map command,reset search frequencies, and search frequencies' storage.(Pull requests 
   [#31](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/31),
-   [#200](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/200))
+   [#200](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/200),
+   [#218](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/218))
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `/routemap`, `/reset`, `/deletefav` (Pull requests
     [#81](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/81),
     [#87](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/87),
-    [#147](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/147))
+    [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
     * Designed Nav@NUS logo used in user guide and developer guide.
-    ([#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
-    * Added sections on introduction and quick start. (Pull request[#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
+    (Pull request [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
+    * Added sections on introduction and quick start. (Pull request [#142](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/142))
   
   * Developer Guide:
     * Added implementation details, class diagrams and sequence diagrams for the `/routemap`, `/deletefav` and `/reset`
      features. (Pull requests [#116](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/116), 
      [#213](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/213)) 
-     * Updated target user profile and value proposition. (Pull request[#91](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/91))
+     * Updated target user profile and value proposition. (Pull request [#91](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/91))
      
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
-   Pull requests[\#23](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/23),
+   Pull requests([\#23](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/23),
    [\#29](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/29),
    [\#78](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/78), 
    [\#195](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/195),
-   [\#205](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/205)
-  * Reported bugs and suggestions for other teams ([Click here](https://github.com/Johnson-Yee/ped/issues)
-  * Reviewed developer guide for team DomNUS ([Click here](https://github.com/nus-cs2113-AY2021S1/tp/pull/8/files/65a23531bf8d85984e3d339cfc455cedb7e0cccc)
+   [\#205](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/205))
+  * Reported bugs and suggestions for other teams ([Click here](https://github.com/Johnson-Yee/ped/issues))
+  * Reviewed developer guide for team DomNUS ([Click here](https://github.com/nus-cs2113-AY2021S1/tp/pull/8/files/65a23531bf8d85984e3d339cfc455cedb7e0cccc))

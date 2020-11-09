@@ -25,7 +25,9 @@ public enum ExceptionType {
     INVALID_LOCATIONS("The starting location and destination you have provided are not the names of any bus\n"
             + "stops in our database :("),
     INVALID_FACULTY("Oh no! Please enter a faculty."),
+    NO_MATCH_FACULTY("No match found. To see the list of faculties in NUS, type /faculty"),
     INVALID_FOODPLACE("Oh no! I cannot detect any inputs."),
+    NO_MATCH_FOODPLACE("No match found. Try searching for another outlet!"),
     INVALID_FAVOURITE("Oh no! I cannot seem to detect the command you want to store as your favourite."),
     UPDATE_FILE_FAIL("Sorry to inform you that the update of frequency list is unsuccessful."),
     FREQ_READ_FILE_FAIL("FreqList.txt Read with corrupted data! Re-initialising file!"),
