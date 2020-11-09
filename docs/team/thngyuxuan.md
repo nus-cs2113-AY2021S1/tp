@@ -26,7 +26,8 @@ https://github.com/AY2021S1-CS2113T-W11-4/tp/issues
 three items in the shuffled WordList. It enables the user to get three random words that may provide inspiration and new ideas.
 
 ### 2.3. Contributions to Documentation
-* Added the Words List Commands section in the User Guide
+* Added the Words List Commands section in the User Guide, which comprises of: Noun, Verb, Adjective, List Words, 
+and Three Words.
 
 ### 2.4 Contributions to DG
 * Added the UML class diagram for the WordList class to show how Words objects are stored in the WordList, and how they 
