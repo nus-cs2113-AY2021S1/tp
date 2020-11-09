@@ -32,7 +32,7 @@
     - [Deleting a task](#deleting-a-task)
     - [Viewing the full details of a task](#viewing-the-full-details-of-a-task)
     - [Help](#help)
-    - [Data storage](#data-storage)
+    - [Data storage](#data-storage-1)
   - [**Appendix: Requirements**](#appendix-requirements)
   - [**Product scope**](#product-scope)
     - [Target user profile](#target-user-profile)
@@ -646,6 +646,7 @@ Testing if ATHENA is able to handle corrupted data files.
 | `v2.0`  | student           | see an overview of the week ahead              | make sure that I am staying on top of my tasks    |
 | `v2.0`  | student           | view the details of a task                     | can ensure I am on the right track with tasks     |
 | `v2.0`  | busy student      | know what tasks to work on next                | don’t need to spend time planning                 |
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
