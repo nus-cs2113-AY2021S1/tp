@@ -24,7 +24,7 @@ public class AddSubjectCommand extends SubjectCommand {
      * @param subjectList               An instance of the <code>SubjectList</code> class for the user to append to
      * @param storage                   Does nothing in this case but needed since this method was implemented
      *                                  from an abstract class
-     * @throws NoSubjectException       If the program does not detect the correct syntax to adding a Subject
+     * @throws InvalidSubjectException  If the program does not detect any subject title in user input
      * @throws RepeatedSubjectException If the program detects the Subject the user inputs already exists
      *                                  in the program
      */
