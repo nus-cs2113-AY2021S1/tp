@@ -192,7 +192,7 @@
         ]
       },
       {
-        "description": "Choose the WRONG statement",
+        "description": "Choose the WRONG statement with regards to the concept of Object-oriented (OO)",
         "hint": "We are using OOP to help model solutions like how objects in real world work, in Java",
         "explanation": "While many languages support the OO paradigm, OO is not a language itself. \nAlso, we are using OOP to help model solutions like how objects in real world work.",
         "options": [
@@ -215,7 +215,7 @@
         ]
       },
       {
-        "description": "Choose the WRONG statement",
+        "description": "Choose the WRONG statement with regards to programming languages",
         "hint": "C language is not an OO language. Java code is able to be written like C code.",
         "explanation": "C follows the procedural paradigm.\nYes, we can write procedural code using OO languages e.g., AddressBook-level1.",
         "options": [
