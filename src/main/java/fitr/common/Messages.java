@@ -18,6 +18,7 @@ public class Messages {
     //Common strings
     public static final String LINE_BREAK = System.lineSeparator();
     public static final String SPACE_STRING = " ";
+    public static final String SPLIT_SPACE = "\\s+";
     public static final String EMPTY_STRING = "";
     public static final String OPEN_SQUARE_BRACKET = "[";
     public static final String CLOSE_SQUARE_BRACKET = "]";
