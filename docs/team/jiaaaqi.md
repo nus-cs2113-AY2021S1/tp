@@ -24,7 +24,7 @@ Given below are my contributions to the project:
     * Justification: This feature will allow user to receive location information. It allows users to find more 
     information using a location name, or an event index based on the event list. 
 
-* __Code Contributed:__ [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiaaaqi&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* __Code Contributed:__ [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jiaaaqi)
 
 * __Project Management:__ 
     * Managed releases `v1.0` - `v2.0` on GitHub
