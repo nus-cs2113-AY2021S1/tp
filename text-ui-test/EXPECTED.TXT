@@ -1,9 +1,107 @@
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+|\\        /|         |======            ||
+||\\      / |  __   __|  ||  __  ___ ___ ||    ___   ____
+|| \\    /  |//  \//  |  ||//  \/  |/    ||// / _ \ //   \
+||  \\  /   |||   ||  |  |||   ||  ||    ||\\ | __/ ||
+||   \\/    |\\__/\\__|  |||   \\__|\___ || \\\___| ||
+******************************************************
+
+Full user guide available at: https://ay2021s1-cs2113t-f12-4.github.io/tp/UserGuide.html
+Enter <help> for a quick view of available commands.
 
 What is your name?
-Hello James Gosling
+
+Hello James Gosling!
+What can I do for you?
+
+CS1000 is added.
+
+CS2113T is added.
+
+CS3000, Expected Workload: 6.0h is added.
+
+CS3200, Expected Workload: 8.0h is added.
+
+CS1000, Expected Workload: 18.0h is added.
+
+7.0 hours have been added to CS1000.
+7.0 hours have been spent on this module in week 1.
+
++------+---------+----------+----------+
+| Week | Module  | Expected |  Actual  |
++------+---------+----------+----------+
+|  02  | CS1000  |   18.0   | No Input |
++------+---------+----------+----------+
+|  02  | CS2113T | No Input | No Input |
++------+---------+----------+----------+
+|  02  | CS3000  |    6.0   | No Input |
++------+---------+----------+----------+
+|  02  | CS3200  |    8.0   | No Input |
++------+---------+----------+----------+
+
+Module    Week 1
+
+CS1000
+Actual   | [][][][][][][] 7.0
+Expected | [][][][][][][][][][][][][][][][][][] 18.0
+
+CS2113T
+Actual   | NO INPUT
+Expected | NO INPUT
+
+CS3000
+Actual   | NO INPUT
+Expected | [][][][][][] 6.0
+
+CS3200
+Actual   | NO INPUT
+Expected | [][][][][][][][] 8.0
+
+Total time spent: 7.0 H
+100% of time is spent on CS1000
+No actual and expected workload for CS2113T
+No actual workload for CS3000
+No actual workload for CS3200
+
+Analysis:
+CS1000
+You seem to be spending too little time on the module.
+Perhaps you should spend more time on this module.
+
+CS2113T
+Insufficient data to compute analysis.
+
+CS3000
+Insufficient data to compute analysis.
+
+CS3200
+Insufficient data to compute analysis.
+
+Got it. I've added this task under CS1000:
+[X] [CS1000] study
+Now you have 1 task in the list.
+
+Nice! I've marked this task as done:
+[/] [CS1000] study
+
+OOPS!!! I'm sorry, but I don't know what that means :-(
+Enter <help> for a quick view of available commands.
+
+CS1000 is removed.
+All tasks under CS1000 are deleted.
+
+CS2113T is removed.
+All tasks under CS2113T are deleted.
+
+CS3200 is removed.
+All tasks under CS3200 are deleted.
+
+All changes saved.
+_______    _______
+||   \\\  //||
+||___//\\// ||___
+||   \\ ||  ||
+||___// ||  ||____
+
+Bye James Gosling. Hope to see you again soon!
+
