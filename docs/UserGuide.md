@@ -832,7 +832,8 @@ _________________________________
 
 > **Warning!**
 >
-> The event index keyed in have to be valid so that note can be created for the specified event index.
+> * The event index keyed in have to be valid so that note can be created for the specified event index.
+> * The grave accent symbol ` is an illegal character. If you use this symbol, the notes program will intepret it as a new line.
 
 <div style="page-break-after: always;"></div>
 
