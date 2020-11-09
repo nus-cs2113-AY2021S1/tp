@@ -26,7 +26,7 @@ public class Parser {
      *
      * @param rawInput the raw user input
      * @return the command to be executed
-     * @throws UnknownCommandException     the the method can't make sense of the input, default case
+     * @throws UnknownCommandException    the the method can't make sense of the input, default case
      * @throws InvalidCommandException    if input format is wrong
      * @throws InvalidTaskNumberException for edit/delete, if task index is wrong
      */
@@ -36,74 +36,67 @@ public class Parser {
         String commandWord = getCommandWord(rawInput);
         String commandArgs = getCommandArgs(rawInput);
         switch (commandWord) {
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        case ListCommand.COMMAND_WORD:
-            matcher = ListCommand.COMMAND_PATTERN.matcher(commandArgs);
-            if (matcher.find()) {
-                return new ListCommand("-d".equals(matcher.group("dateFlag")),
-                        "-p".equals(matcher.group("priorityFlag")),
-                        "-w".equals(matcher.group("displayByWeek")),
-                        "-m".equals(matcher.group("displayByMonth")),
-                        matcher.group("date"));
-            } else {
-                throw new InvalidCommandException();
-            }
-        case ByeCommand.COMMAND_WORD:
-            return new ByeCommand();
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-        case AddCommand.COMMAND_WORD:
-            matcher = AddCommand.COMMAND_PATTERN.matcher(commandArgs);
-            if (matcher.find()) {
-                return new AddCommand(matcher.group("description"), matcher.group("date"), matcher.group("st"),
-                        matcher.group("et"), matcher.group("priority"), matcher.group("reminder"),
-                        matcher.group("t"));
-            } else {
-                throw new InvalidFormatException();
-            }
-        case EditCommand.COMMAND_WORD:
-            matcher = EditCommand.COMMAND_PATTERN.matcher(commandArgs);
-            if (matcher.find()) {
-                return new EditCommand(matcher.group("key"), matcher.group("description"),
-                        matcher.group("date"), matcher.group("st"), matcher.group("et"),
-                        matcher.group("priority"), matcher.group("reminder"), matcher.group("t"));
-            } else {
-                throw new InvalidFormatException();
-            }
-        case SearchCommand.COMMAND_WORD:
-            matcher = SearchCommand.COMMAND_PATTERN.matcher(commandArgs);
-            if (matcher.find()) {
-                return new SearchCommand(matcher.group("toSearch"));
-            } else {
-                throw new InvalidCommandException();
-            }
-        case DeleteCommand.COMMAND_WORD:
-            matcher = DeleteCommand.COMMAND_PATTERN.matcher(commandArgs);
-            if (matcher.find()) {
-                return new DeleteCommand(matcher.group("key"));
-            } else {
-                throw new InvalidCommandException();
-            }
-        case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
-        default:
-            throw new UnknownCommandException();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+            case ListCommand.COMMAND_WORD:
+                matcher = ListCommand.COMMAND_PATTERN.matcher(commandArgs);
+                if (matcher.find()) {
+                    return new ListCommand("-d".equals(matcher.group("dateFlag")),
+                            "-p".equals(matcher.group("priorityFlag")),
+                            "-w".equals(matcher.group("displayByWeek")),
+                            "-m".equals(matcher.group("displayByMonth")),
+                            matcher.group("date"));
+                } else {
+                    throw new InvalidCommandException();
+                }
+            case ByeCommand.COMMAND_WORD:
+                return new ByeCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
+            case AddCommand.COMMAND_WORD:
+                matcher = AddCommand.COMMAND_PATTERN.matcher(commandArgs);
+                if (matcher.find()) {
+                    return new AddCommand(matcher.group("description"), matcher.group("date"), matcher.group("st"),
+                            matcher.group("et"), matcher.group("priority"), matcher.group("reminder"),
+                            matcher.group("t"));
+                } else {
+                    throw new InvalidFormatException();
+                }
+            case EditCommand.COMMAND_WORD:
+                matcher = EditCommand.COMMAND_PATTERN.matcher(commandArgs);
+                if (matcher.find()) {
+                    return new EditCommand(matcher.group("key"), matcher.group("description"),
+                            matcher.group("date"), matcher.group("st"), matcher.group("et"),
+                            matcher.group("priority"), matcher.group("reminder"), matcher.group("t"));
+                } else {
+                    throw new InvalidFormatException();
+                }
+            case SearchCommand.COMMAND_WORD:
+                matcher = SearchCommand.COMMAND_PATTERN.matcher(commandArgs);
+                if (matcher.find()) {
+                    return new SearchCommand(matcher.group("toSearch"));
+                } else {
+                    throw new InvalidCommandException();
+                }
+            case DeleteCommand.COMMAND_WORD:
+                matcher = DeleteCommand.COMMAND_PATTERN.matcher(commandArgs);
+                if (matcher.find()) {
+                    return new DeleteCommand(matcher.group("key"));
+                } else {
+                    throw new InvalidCommandException();
+                }
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
+            default:
+                throw new UnknownCommandException();
         }
     }
 
     /**
-<<<<<<< HEAD
      * Gets the command word from the raw input
      *
      * @param rawInput the user input
      * @return the command word. e.g add/edit/delete
-=======
-     * Returns the command word string. e.g add/edit/delete
-     *
-     * @param rawInput the user input.
-     * @return the command word.
->>>>>>> dd2a3d5e0f0beb279d1fba4730059d32fcfdef99
      */
     public String getCommandWord(String rawInput) {
         String commandWord = rawInput;
@@ -115,17 +108,10 @@ public class Parser {
     }
 
     /**
-<<<<<<< HEAD
-     * Gets everything after the command word
-     *
-     * @param rawInput the user input
-     * @return the string after the command word
-=======
      * Returns the arguments, which is everything after the command word.
      *
      * @param rawInput the user input.
      * @return the argument of the command.
->>>>>>> dd2a3d5e0f0beb279d1fba4730059d32fcfdef99
      */
     public String getCommandArgs(String rawInput) {
         String commandArgs = "";
