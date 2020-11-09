@@ -115,25 +115,9 @@ public class EstimateParser extends CommandParser {
      * @throws AniException when the file name is invalid
      */
     private boolean isValidFileName(String fileName) throws AniException {
+        // If two files are specified, then they are treated as the filename for one file.
         if (fileName.matches(INVALID_FILE_NAME_CHARACTERS_REGEX)) {
             throw new AniException(FILE_NAME_CONTAINS_INVALID_CHARACTERS);
-        }
-
-        String[] fileNameSplit = fileName.split(WHITESPACE);
-        int numberOfTextFiles = 0;
-        boolean hasAdditionalFields = false;
-        for (String fileNameParts : fileNameSplit) {
-            if (numberOfTextFiles == 1) {
-                hasAdditionalFields = true;
-            }
-
-            if (fileNameParts.endsWith(SCRIPT_FILE_FORMAT)) {
-                numberOfTextFiles++;
-            }
-        }
-
-        if (hasAdditionalFields) {
-            throw new AniException(ESTIMATE_COMMAND_TOO_MUCH_FIELDS_ERROR);
         }
 
         return fileName.trim().endsWith(SCRIPT_FILE_FORMAT);

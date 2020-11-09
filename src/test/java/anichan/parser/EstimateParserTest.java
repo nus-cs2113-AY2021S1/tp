@@ -72,8 +72,8 @@ public class EstimateParserTest {
     }
 
     @Test
-    void parse_tooManyScriptFile_throwsAniException() {
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld.txt"));
+    void parse_invalidScriptFileName_throwsAniException() {
+        assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld.t"));
         assertThrows(AniException.class, () -> estimateParser.parse("script.txt helloworld"));
     }
 
@@ -89,13 +89,6 @@ public class EstimateParserTest {
         assertThrows(AniException.class, () -> estimateParser.parse("<.txt"));
         assertThrows(AniException.class, () -> estimateParser.parse(">.txt"));
         assertThrows(AniException.class, () -> estimateParser.parse("|.txt"));
-    }
-
-    @Test
-    void parse_scriptFileTooMuchFields_throwsAniException() {
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt .txt"));
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt .txt -wph 777"));
-        assertThrows(AniException.class, () -> estimateParser.parse("script.txt script_two.txt"));
     }
 
     @Test
