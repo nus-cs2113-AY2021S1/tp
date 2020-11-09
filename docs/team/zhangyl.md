@@ -9,7 +9,6 @@ Given below are my contributions to the project. <br/>
 ### Code contributed:
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhangyilin0203)
 ### Enhancements implemented:
-#### Enhancements to New features:
 * Added ability to save and load data to local file.
  ([\#17](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/17),
   [\#31](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/31),
@@ -33,7 +32,7 @@ Given below are my contributions to the project. <br/>
    * Highlights: This feature is able to print countdown in the ascending order, so that the most urgent task 
                  or event is at the top. If the deadline or exam date is within a day, countdown command will print out
                  messages like *'its time to speed up'* or *'try your best'* to encourage the user.
-#### Enhancement to existing features:
+
 * Added more JavaDoc comments for some public methods.
   ([\#73](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/73))
 * Improved the quality of code by deleting unused methods, avoiding too long methods, magic string and unused exceptions.
