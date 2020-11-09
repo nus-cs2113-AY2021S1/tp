@@ -73,7 +73,7 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.minusTime("minustime CS3030 5 4", true, storage);
-        String expected = "Sorry you are trying to remove too many hours." + System.lineSeparator();
+        String expected = "Sorry you are trying to remove too many hours.";
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -119,7 +119,7 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.addTime("addtime CS3030 4 a", true, storage);
-        String expected = "The week input should be a positive number." + System.lineSeparator();
+        String expected = "The week input should be a valid positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -139,7 +139,7 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.minusTime("minustime CS3030 4 a", true, storage);
-        String expected = "The week input should be a positive number." + System.lineSeparator();
+        String expected = "The week input should be a valid positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -159,7 +159,7 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.editTime("edittime CS3030 4 a", true, storage);
-        String expected = "The week input should be a positive number." + System.lineSeparator();
+        String expected = "The week input should be a valid positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -169,7 +169,7 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.editTime("edittime CS3030 100 4", true, storage);
-        String expected = "Please input a number between 0 and 99 for time." + System.lineSeparator();
+        String expected = "Please input a number between 0 and 99 for time.";
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -190,7 +190,7 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.editTime("edittime CS3030 4 4i", true, storage);
-        String expected = "The week input should be a positive number." + System.lineSeparator();
+        String expected = "The week input should be a valid positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -200,7 +200,7 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.addTime("addtime CS3030 4 4i", true, storage);
-        String expected = "The week input should be a positive number." + System.lineSeparator();
+        String expected = "The week input should be a valid positive number." + System.lineSeparator();
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 
@@ -210,7 +210,18 @@ class ModuleListMinusAddTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         modulesTest.minusTime("minustime CS3030 4 4i", true, storage);
-        String expected = "The week input should be a positive number." + System.lineSeparator();
+        String expected = "The week input should be a valid positive number." + System.lineSeparator();
+        assertEquals(expected + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
+    @Order(19)
+    public void minusTime_checkIfEmptyWorkloadCanStillMinus() {
+        modulesTest.addMod("addMod CS1010E", true, storage);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        modulesTest.minusTime("minustime CS1010E 4 1", true, storage);
+        String expected = "Cannot minus actual time as there is no actual time inputted.";
         assertEquals(expected + System.lineSeparator(), outContent.toString());
     }
 

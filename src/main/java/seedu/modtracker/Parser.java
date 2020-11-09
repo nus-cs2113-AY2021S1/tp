@@ -25,7 +25,6 @@ public class Parser {
     public static final String COMMAND_LISTTASK = "listtask";
     public static final String COMMAND_CLEAR = "clear";
     public static final String COMMAND_RESET = "reset";
-    public static final String EXCEED_WORKLOAD = "Total workload cannot be more than 99 hours.";
 
     /**
      * Parses user inputs.
@@ -58,6 +57,8 @@ public class Parser {
         case COMMAND_EDITTIME:
             try {
                 modList.editTime(input, toPrint, storage);
+            } catch (IllegalArgumentException b) {
+                ui.printInvalidTime();
             } catch (Exception e) {
                 ui.printErrorMessage(COMMAND_EDITTIME);
             }
@@ -79,7 +80,7 @@ public class Parser {
             try {
                 modList.addTime(input, toPrint, storage);
             } catch (IllegalArgumentException b) {
-                System.out.println(EXCEED_WORKLOAD);
+                ui.printInvalidTime();
             } catch (Exception e) {
                 ui.printErrorMessage(COMMAND_ADDTIME);
             }
@@ -87,6 +88,8 @@ public class Parser {
         case COMMAND_MINUSTIME:
             try {
                 modList.minusTime(input, toPrint, storage);
+            } catch (IllegalArgumentException b) {
+                ui.printInvalidTime();
             } catch (Exception e) {
                 ui.printErrorMessage(COMMAND_MINUSTIME);
             }

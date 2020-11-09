@@ -24,7 +24,7 @@ public class Ui {
     private static final String ERROR_EXP = " with expected workload being a number between 1 and 24 "
             + "with a maximum of 1 decimal place.";
     private static final String ERROR_WEEK = "The week number should be between 1 and 13.";
-    private static final String ERROR_ALPHABET_WEEK = "The week input should be a positive number.";
+    private static final String ERROR_ALPHABET_WEEK = "The week input should be a valid positive number.";
     private static final String NO_EXPECTED_WORKLOAD = "There is no input in the expected workload.";
     private static final String NO_ACTUAL_TIME = "There is no input in the actual time.";
     private static final String INVALID_EXP_HOURS = "Please input a number between 1 and 24 for the "
@@ -419,6 +419,102 @@ public class Ui {
         ArrayList<Task> tasks = list.getTaskData();
         System.out.println("Invalid task number.");
         System.out.println("Enter a task number from 1 to " + tasks.size() + "." + System.lineSeparator());
+    }
+
+    /**
+     * Prints invalid time when time entered is invalid.
+     */
+    public void printInvalidTime() {
+        System.out.println("Please enter a valid time.");
+    }
+
+    /**
+     * Prints output when addtime feature is used.
+     *
+     * @param hours  hours input by user
+     * @param module module code input by user
+     */
+    public void printHoursAdded(double hours, String module) {
+        if (hours > 1) {
+            System.out.println(hours + " hours have been added to " + module + ".");
+        } else {
+            System.out.println(hours + " hour has been added to " + module + ".");
+        }
+    }
+
+    /**
+     * Prints output when minustime feature is used.
+     *
+     * @param hours  hours input by user
+     * @param module module code input by user
+     */
+    public void printHoursMinus(double hours, String module) {
+        if (hours > 1) {
+            System.out.println(hours + " hours have been removed from " + module + ".");
+        } else {
+            System.out.println(hours + " hour has been removed from " + module + ".");
+        }
+    }
+
+    /**
+     * Prints output when edittime feature is used.
+     *
+     * @param hours  hours input by user
+     * @param module module code input by user
+     */
+    public void printHoursEditted(double hours, String module) {
+        if (hours > 1) {
+            System.out.println(hours + " hours is the new actual workload for the module " + module + ".");
+        } else {
+            System.out.println(hours + " hour is the new actual workload for the module " + module + ".");
+        }
+    }
+
+    /**
+     * Prints summary when edittime, addtime or minustime feature is used.
+     *
+     * @param hours hours input by user
+     * @param week  module code input by user
+     */
+    public void printHoursSummary(double hours, String week) {
+
+        System.out.println(hours + " hours have been spent on this module in week " + week + "."
+                + System.lineSeparator());
+    }
+
+    /**
+     * Prints the error message when the user wants to add time which totals to more than 99 hours.
+     */
+    public void printHoursExceed() {
+        System.out.println("Total workload cannot be more than 99 hours.");
+    }
+
+    /**
+     * Prints the error message when the user inputs a number out of the valid range.
+     */
+    public void printTimeOutOfRangeError() {
+        System.out.println("Please input a number between 0 and 99 for time.");
+    }
+
+    /**
+     * Prints the error message when the user inputs a number out of the valid range.
+     */
+    public void printNegativeTimeError() {
+        System.out.println("Please input a positive number for time.");
+    }
+
+    /**
+     * Prints the error message when the user wants to minus time when there is no actual workload yet.
+     */
+    public void printWorkloadError() {
+        System.out.println("Cannot minus actual time as there is no actual time inputted.");
+    }
+
+    /**
+     * Prints the error message when the user wants to subtract more time than the current actual workload.
+     */
+    public void printHoursMinusExceed() {
+        System.out.println("Sorry you are trying to remove too many hours.");
     }
 
     /**
