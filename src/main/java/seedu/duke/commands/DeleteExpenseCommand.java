@@ -1,5 +1,3 @@
-// @@author GuoAi
-
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
@@ -15,6 +13,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.HashSet;
+
+// @@author GuoAi
 
 /**
  * Deletes an expense item identified by its index in the expense list.

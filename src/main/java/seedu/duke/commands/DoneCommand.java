@@ -10,6 +10,9 @@ import seedu.duke.model.ListType;
 import seedu.duke.model.itemlist.ModuleList;
 import seedu.duke.model.itemlist.TaskList;
 
+// @@author
+//Reused from https://github.com/GuoAi/ip with minor modifications
+
 /**
  * Marks a Task, identified by its index in the task list, as done.
  */

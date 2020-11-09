@@ -1,9 +1,9 @@
-// @@author GuoAi
-
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
 import seedu.duke.model.Model;
+
+// @@author GuoAi
 
 /**
  * Represents an executable command.

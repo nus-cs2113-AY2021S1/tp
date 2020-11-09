@@ -1,5 +1,8 @@
 package seedu.duke.common;
 
+//@@author GuoAi-reused
+//Reused from https://github.com/GuoAi/ip with minor modifications
+
 /**
  * Container for user visible messages.
  */
@@ -63,7 +66,7 @@ public class Messages {
             + "with the same category:";
     public static final String MESSAGE_DELETE_LINK = "Noted. I've removed this link:\n       ";
     public static final String MESSAGE_DELETE_EXPENSE = "Noted. I've removed all these expense item(s)\n";
-    public static final String MESSAGE_NO_EXPENSE_DELETED = "There is no expense item deleted.\n";
+    public static final String MESSAGE_NO_EXPENSE_DELETED = "~Info~ There is no expense item deleted.";
     public static final String MESSAGE_CLEAR = "Noted. I've cleared everything.";
     public static final String MESSAGE_CLEARED = "~Info~ Everything has already been cleared.";
     public static final String MESSAGE_DELETE_MODULE = "Noted. I've removed this module:\n       ";
@@ -116,21 +119,23 @@ public class Messages {
             + "     Example: mon, tue, wed, thu, fri, sat, sun";
     public static final String EXCEPTION_EMPTY_PRIORITY = "~Error~ The priority cannot be empty.";
     public static final String EXCEPTION_EMPTY_CATEGORY = "~Error~ The category cannot be empty.";
-    public static final String EXCEPTION_EMPTY_VALUE = ":( OOPS!!! The value of an expense item cannot be empty.";
-    public static final String EXCEPTION_EMPTY_CURRENCY = ":( OOPS!!! The currency of an expense item cannot be empty.";
-    public static final String EXCEPTION_EMPTY_DATE = ":( OOPS!!! The date of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_VALUE = "~Error~ The value of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_CURRENCY = "~Error~ The currency of an expense item cannot be empty.";
+    public static final String EXCEPTION_EMPTY_DATE = "~Error~ The date of an expense item cannot be empty.";
     public static final String EXCEPTION_INVALID_INDEX = "~Error~ Please input a valid index.";
     public static final String EXCEPTION_INVALID_LINK_INDEX = "~Error~ Please input a valid link index.";
     public static final String EXCEPTION_INVALID_PRIORITY = "~Error~ Invalid priority number.";
+
     public static final String EXCEPTION_INVALID_VALUE = "Please input a valid value. It must be a non-negative "
             + "floating point number/integer less than 10^14.";
     public static final String EXCEPTION_CATEGORY_NOT_FOUND = "~Error~ Invalid category.";
-    public static final String EXCEPTION_LOAD_FILE = "The file cannot be loaded. "
+    public static final String EXCEPTION_LOAD_FILE = "~Error~ The file cannot be loaded. "
             + "Maybe this is your first time using termiNus?";
-    public static final String EXCEPTION_WRONG_DATE_FORMAT = "Please input a valid date string in the format "
+
+    public static final String EXCEPTION_WRONG_DATE_FORMAT = "~Error~ Please input the date string in the format "
             + "\"yyyy-MM-dd\"";
     public static final String EXCEPTION_SAVE_FILE = "~Error~ Cannot save to file.";
-    public static final String EXCEPTION_EXPENSE_DATERANGE = "Please input a valid date range (one of \"DAY\", "
+    public static final String EXCEPTION_EXPENSE_DATERANGE = "~Error~ Please input a valid date range (one of \"DAY\", "
             + "\"WEEK\", \"MONTH\", \"YEAR\").";
 
     public static final String EXCEPTION_INVALID_CLEAR = "~Error~ The command is: clear all";

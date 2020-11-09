@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
  * Represents a module.
  */
 // @@author iamchenjiajun
+
 public class Module extends Item {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("(^[A-Z]{2,3}[\\d]{4}[A-Z]?$)");
     public static final Pattern MODULE_SEM_PATTERN = Pattern.compile("(^[\\d]{4}S[12]$)");
@@ -37,8 +38,12 @@ public class Module extends Item {
 
         Matcher matcher = MODULE_CODE_PATTERN.matcher(moduleCode);
 
-        if (!matcher.find() || !checkValidAy(semester) || !checkValidMcs(mc)) {
+        if (!matcher.find() || !checkValidAy(semester)) {
             throw new DukeException("~Error~ Format is incorrect. Please refer to the User Guide.");
+        }
+
+        if (!checkValidMcs(mc)) {
+            throw new DukeException("~Error~ Please enter a value between 0 and 40, inclusive");
         }
     }
 
