@@ -116,7 +116,7 @@ Example of printing help message at menu:
 Another example of printing help message at bookmark mode:
 
 <p align="center">
-    <img width="70%" height="70%" src="Images/GeneralUG/bookmarkhelp.png">
+    <img width="50%" height="50%" src="Images/GeneralUG/bookmarkhelp.png">
 </p>
 
 >**Useful information:**
