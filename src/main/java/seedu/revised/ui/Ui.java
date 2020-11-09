@@ -479,7 +479,7 @@ public class Ui {
                         if (index == 1) {
                             System.out.println(subject);
                         }
-                        System.out.println(index + ":" + task);
+                        System.out.println(index + ". " + task);
                         index = index + 1;
                     }
 
