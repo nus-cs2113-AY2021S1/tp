@@ -1,5 +1,7 @@
 package seedu.dietbook.parser;
 
+import seedu.dietbook.database.DataBase;
+import seedu.dietbook.food.Food;
 import seedu.dietbook.list.FoodList;
 import seedu.dietbook.person.Gender;
 import seedu.dietbook.person.FitnessLevel;
@@ -8,6 +10,7 @@ import seedu.dietbook.Manager;
 import seedu.dietbook.checker.InputChecker;
 
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 
 //@@author tikimonarch
 /**
@@ -17,7 +20,7 @@ import java.time.LocalDateTime;
  * @author tikimonarch
  */
 public class Parser {
-    public static final int timeFormatLength = 16;
+    public static final int TIME_FORMAT_LENGTH = 16;
     public static final String COMMAND_ADD = "add";
     public static final String COMMAND_CALCULATE = "calculate";
     public static final String COMMAND_EDIT_INFO = "editinfo";
@@ -48,9 +51,9 @@ public class Parser {
 
         InputChecker.checkEmpty(userInput, command);
         try {
-            return Integer.parseInt(userInput.split(" ")[1]);
+            return Integer.parseInt(userInput.split("\\s+")[1]);
         } catch (NumberFormatException e) {
-            throw new DietException("OOPS!!! No integer index detected!");
+            throw new DietException("No integer index detected!");
         }
     }
 
@@ -93,17 +96,20 @@ public class Parser {
      * @return name of the food that was added.
      * @throws DietException when the user input is of a wrong format.
      */
-    public static String getProcessedAdd(String userInput, FoodList foodList) throws DietException {
+    public static String getProcessedAdd(String userInput, FoodList foodList, DataBase dataBase) throws DietException {
         int portionSize = 1;
-        String foodName = "Food Name";
+        int dataIndex = 0;
         int calorie = 0;
-        int carb = 0;
-        int protein = 0;
-        int fat = 0;
+        int carb = -1;
+        int protein = -1;
+        int fat = -1;
+        String foodName = "Food Name";
         String trimmedParam;
-        //String[] databaseCheck = getCommandParam(userInput).trim().split("/");;
         String[] processedParam;
         String[] paramList = {"x/", "n/", "k/", "c/", "p/", "f/"};
+        if (userInput.contains("i/")) {
+            paramList = new String[]{"x/", "i/"};
+        }
         InputChecker.checkRepeatedOption(getCommand(userInput), getCommandParam(userInput));
         InputChecker.checkValidOptions(userInput, paramList);
         for (String param: paramList) {
@@ -113,9 +119,12 @@ public class Parser {
                 trimmedParam = processedParam[1].trim();
                 if (processedParam[1].contains("/")) {
                     trimmedParam = processedParam[1].substring(0, processedParam[1].indexOf("/") - 1).trim();
+                    if (InputChecker.checkDate(trimmedParam)) {
+                        throw new DietException("Date time stated in the wrong place!");
+                    }
                 } else if (trimmedParam.split("\\s+").length >= 2) {
                     if (InputChecker.checkDate(trimmedParam)) {
-                        int lengthWithoutTime = trimmedParam.length() - timeFormatLength;
+                        int lengthWithoutTime = trimmedParam.length() - TIME_FORMAT_LENGTH;
                         trimmedParam = trimmedParam.substring(0, lengthWithoutTime).trim();
                     }
                 }
@@ -127,6 +136,10 @@ public class Parser {
                     break;
                 case "n/":
                     foodName = trimmedParam;
+                    break;
+                case "i/":
+                    InputChecker.checkValidNumber(trimmedParam, param);
+                    dataIndex = Integer.parseInt(trimmedParam);
                     break;
                 case "k/":
                     InputChecker.checkValidNumber(trimmedParam, param);
@@ -156,13 +169,24 @@ public class Parser {
             InputChecker.checkDateValidity(processedParam[processedParam.length - 1]);
             LocalDateTime time = LocalDateTime.parse(processedParam[processedParam.length - 1]);
             InputChecker.checkFutureDate(time);
+            if (userInput.contains("i/")) {
+                try {
+                    Food searchedFood = dataBase.searchFoodByIndex(dataIndex);
+                    return foodList.addFoodAtDateTime(portionSize, searchedFood, time);
+                } catch (NoSuchElementException e) {
+                    throw new DietException("No such index!");
+                }
+            }
             return foodList.addFoodAtDateTime(portionSize, foodName, calorie, carb, protein, fat, time);
         }
-        //if (databaseCheck.length == 3) {
-        //    DataBase dataBase = new DataBase();
-        //    Food searchedFood = dataBase.searchFoodByName(foodName);
-        //    return  foodList.addFood(portionSize, searchedFood);
-        //}
+        if (userInput.contains("i/")) {
+            try {
+                Food searchedFood = dataBase.searchFoodByIndex(dataIndex);
+                return foodList.addFood(portionSize, searchedFood);
+            } catch (NoSuchElementException e) {
+                throw new DietException("No such index!");
+            }
+        }
         return foodList.addFood(portionSize, foodName, calorie, carb, protein, fat);
     }
 

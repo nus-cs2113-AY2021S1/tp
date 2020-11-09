@@ -1,0 +1,28 @@
+@startuml
+--> DataBase : searchFoodByIndex
+activate DataBase
+DataBase -> Stream : foodStream()
+activate Stream
+Stream --> DataBase : foodStream
+
+DataBase -> Stream : skip()
+Stream --> DataBase : foodStream.skip
+
+DataBase -> Stream : findFirst()
+Stream --> DataBase : optional Food
+
+deactivate Stream
+activate OptionalFood
+
+DataBase -> OptionalFood : orElseThrow()
+alt food is present
+OptionalFood --> DataBase : Food
+end
+alt food is not present
+OptionalFood --> DataBase : NoSuchElementException
+end
+destroy OptionalFood
+
+<-- DataBase : Food
+deactivate DataBase
+@enduml
