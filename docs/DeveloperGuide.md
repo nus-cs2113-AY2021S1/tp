@@ -220,7 +220,7 @@ the main function make the run(command) API call.
 ### **Academic Component**
 
 This section will describe in detail how some features inside the academic tracker section have been implemented.
-The following figure illustrates the general overview, the associations and the multiplicity of the academic classes.
+The following diagram illustrates the general overview, the associations and the multiplicity of the academic classes.
 
 ![Academic_Class_Diagram](Images/Academic_Class_Diagram.png)
 

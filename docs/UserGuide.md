@@ -42,6 +42,8 @@ The following is a list of common notations and symbols you’ll encounter throu
    
    Underlined words or phrases in blue colour are website links that you can press on to access the website
 
+<div style="page-break-after: always;"></div>
+
 ## Getting Started
 
 Let’s get started with using Study It! This section will show you how you can run our app on your computer.
@@ -51,8 +53,8 @@ Firstly, please ensure that your computer fulfills the following requirement:
   * You may refer to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to download the Java 11.0.8 installer
   * The installation guide can be found in the following websites:
     * [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
-    * [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
-    * [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
+    , [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
+    , [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 Once you are done installing Java 11.0.8 onto your PC, you may follow these procedures to start using Study It:
 
@@ -65,13 +67,16 @@ Once you are done installing Java 11.0.8 onto your PC, you may follow these proc
 1. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 1. If the application runs successfully, you’ll be greeted by the following welcome message:
 
-![WelcomeMessage](Images/GeneralUG/welcomemessage.png)
+<p align="center">
+    <img width="70%" height="70%" src="Images/GeneralUG/welcomemessage.png">
+</p>
 
 Congratulations! You are now able to run Study It. To access its various functionalities,
-you would need to type in the command at the Command Prompt and press Enter. 
-
-Whenever you feel lost, refer to the following sections of this User Guide or call the `help` function in the app 
+you would need to type in the command at the Command Prompt and press Enter. Whenever you feel lost, 
+refer to the following sections of this User Guide or call the `help` function in the app 
 for guidance. We hope that you have fun using our app!
+
+<div style="page-break-after: always;"></div>
 
 ## General Commands
 
@@ -89,6 +94,8 @@ This section contains the following commands:
 >The general commands doesn't work during `add class` or `add activity` sequence in timetable mode
 >and `add` or `test` sequence in flashcard mode
 
+<div style="page-break-after: always;"></div>
+
 ### 1. Prints help message: `help`
 
 The app will print out a summarised list of functions you can call at the current mode. 
@@ -102,15 +109,22 @@ Expected output:
 
 Example of printing help message at menu:
 
-![HelpMessage](Images/GeneralUG/help.png)
+<p align="left">
+    <img width="100%" height="100%" src="Images/GeneralUG/help.png">
+</p>
+
+<div style="page-break-after: always;"></div>
 
 Another example of printing help message at bookmark mode:
 
-![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
+<p align="left">
+    <img width="100%" height="100%" src="Images/GeneralUG/bookmarkhelp.png">
+</p>
 
 >**Useful information:**
 >* The message varies in different modes to show you the commands at that mode. 
->Try the command at other modes when you are using the application!
+>Try it out!
+<div style="page-break-after: always;"></div>
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
 
@@ -132,6 +146,8 @@ Command: `cd 2`
 
 ![CDBookmark](Images/GeneralUG/cdBookmark.png)
 
+<div style="page-break-after: always;"></div>
+
 Command: `cd academic`
 
 ![CDAcademic](Images/GeneralUG/cdacademic.png)
@@ -147,6 +163,8 @@ Command: `cd academic`
 >* You can use this command anywhere in the app to switch between modes quickly!
 >* This command STILL works if you don't have space/have excess space 
 >between `cd` and the `MODE_NAME/MODE_INDEX`
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Shows the current location: `location`
 
@@ -165,6 +183,8 @@ At flashcard mode:
 
 ![](Images/GeneralUG/location_flashcard.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4. Prints starred items: `highlight`
 
 This command will print out the starred items in Bookmark and Academic
@@ -175,6 +195,8 @@ Instruction:
 Expected output:
 
 ![](Images/GeneralUG/highlight.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 5. Exits the current mode or application: `exit`
 
@@ -643,6 +665,7 @@ This section contains 12 commands to navigate the academic mode:
 * [3.11 Deleting a grade](#311-deleting-a-grade-delete-grade-index)
 * [3.12 Listing all the starred items in academic](#312-listing-all-the-starred-items-in-academic-list-star)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.1 Entering Academic Mode: `cd 4` / `cd academic`
 
@@ -659,6 +682,8 @@ Expected output:
 
 >**Useful information:**
 >* You can use this command from any mode to access the academic mode easily and quickly!
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Adding a contact: `add contact c/CONTACT_DETAILS m/MOBILE_NUMBER  e/EMAIL`
 
@@ -678,6 +703,8 @@ Expected output:
 
 >**Warning:**
 >* Numbers should be a positive integer with 8 or fewer digits , and email should be in the form abc@xyz.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Listing all contacts: `list contact`
 
@@ -708,6 +735,8 @@ Expected output:
 
 ![Academic_3_4](Images/AcademicUG/Academic_3_4.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.5 Deleting a contact: `delete contact INDEX`
 
 Do you no longer require the contact of the TA of last sem's module? 
@@ -724,6 +753,8 @@ Example of usage:
 Expected output:
 
 ![Academic_3_5](Images/AcademicUG/Academic_3_5.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Adding a grade: `add grade n/MODULE_NAME  m/MC  g/GRADE`
 
@@ -758,6 +789,8 @@ Expected output:
 
 ![Academic_3_7](Images/AcademicUG/Academic_3_7.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.8 Checking current cap: `check cap`
 
 To calculate your current CAP based on the grades you have entered previously, 
@@ -787,6 +820,8 @@ Expected output:
 
 ![Academic_3_9](Images/AcademicUG/Academic_3_9.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.10 SU-ing a grade: `su grade INDEX`
 
 SU-ed a module and want to exclude it from your CAP calculation? The SU grade
@@ -806,6 +841,8 @@ Expected output:
 >**Warning:**
 >* The process of SU-ing a mod is not retractable. Should you accidentally SU a mod unintentionally, 
 >consider deleting the mod and adding a new one.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.11 Deleting a grade: `delete grade INDEX`
 
@@ -981,6 +1018,8 @@ feel free to refer to the About Us page and contact any of the developers.
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
 
+<div style="page-break-after: always;"></div>
+
 ## Command Summary
 
 The following table is a compiled list of all available commands in our application that you can easily refer to! 
@@ -988,6 +1027,6 @@ The following table is a compiled list of all available commands in our applicat
 The commands listed under the sections besides “General” can only be called when you are in that specific mode, 
 which you can access using the cd command!
 
-Table: Command Cheatsheet for Study It
+<div align="center">Table: Command Cheatsheet for Study It</div>
 
 ![](Images/cheatsheet.png)

@@ -30,6 +30,8 @@ Given below are my contributions to the project.
   and SUs.
   * Credits: the program was coded from scratch, but the star grade segment was added by Yuan Bing.
 
+<div style="page-break-after: always;"></div>
+
 ### Code contributed: 
 
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=luziyi9898&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=luziyi9898&tabRepo=AY2021S1-CS2113T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
