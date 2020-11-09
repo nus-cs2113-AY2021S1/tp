@@ -683,20 +683,25 @@ As explained in [Storage Component](#storage-component), each model class except
 \*`Priority` is an **enum** and is the only model which does not follow this strictly. It is mapped by type casting
  the property as `String` first, then calling the `Priority.valueOf()` method to convert it into its respective **enum**.  
 
-#### 4.4.3. <a id="saving-data">Saving Data</a>
-![Figure 4.4.3: Saving Data](image/developerguide/storage_save.png "Saving Data")  
-
-_Figure 4.4.3: Saving Data_  
+#### 4.4.3. <a id="saving-data">Saving Data</a>  
 
 Data will be saved under two scenarios: 
 1. When the program exits. 
 1. Changes made to the data. 
 
 ##### 4.4.3.1. <a id="when-the-program-exits">When the Program Exits</a>
+![Figure 4.4.3.1: Saving Data When Program Exits](image/developerguide/storage_save_1.png "Saving Data When Program Exits")  
+
+_Figure 4.4.3.1: Saving Data When Program Exits_  
+
 `Scrumptious` will call `destroy()` which calls `save()` before it returns.
 
 ##### 4.4.3.2. <a id="changes-made-to-the-data">Changes Made to the Data</a>
-Changes made to the data during the runtime of the program can only be made by executing a command.
+Changes made to the data during the runtime of the program can only be made by executing a command.  
+
+![Figure 4.4.3.2: Saving Data When Changes Made](image/developerguide/storage_save_2.png "Saving Data When Changes Made")  
+
+_Figure 4.4.3.2: Saving Data When Changes Made_  
    
 As shown in the diagram above, each command class inherits the `shouldSave` property from `Command` class. `shouldSave` is a boolean variable and is initialised inside the constructor. `shouldSave` will be set to `true` if the command results in a change of data (e.g. adding a task, creating a sprint etc.), otherwise it is set to `false` (e.g. viewing projects, sprints etc.).
 
