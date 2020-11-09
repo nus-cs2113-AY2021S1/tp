@@ -20,12 +20,12 @@ Summary of my implemented app functionalities:
 3. Notification feature to notify users of their progress
 
 Details: 
-* Addition and Deletion of modules and its contents: 
+- Addition and Deletion of modules and its contents: 
   - Highlights: To support these core features, I created `ModuleList` and `Module` classes, 
   which manages the list of modules and each module details respectively. 
   These laid the foundation so all functionalities in the app are implemented by building upon these basic classes.
 
-* Notification feature <br/>
+- Notification feature <br/>
   - What it does: When the user starts the app, it notifies him if he is spending too little/just right/too much amount of time on the module 
   and displays a randomised encouraging message.
   - Justification: This is a notable enhancement that helps ModTracker achieve its objectives by immediately highlighting to the user the modules that require more attention upon the start of the app. 
@@ -37,21 +37,21 @@ Details:
   which is needed for a comparison to determine the user's progress. Hence, I implemented the logic to derive this value based on the latest week with at least one actual time input.
 
 ### Documentation
-  * User Guide:
+  - User Guide:
     - I added documentations for the features `addmod`, `deletemod`, `addexp`, `deleteexp`, `open`, `deletetime`
-    - I fixed the links in the Table of Contents and formatted the tables: [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/), [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109) 
     
-
-  * Developer Guide:
+  - Developer Guide:
     - Under the Design section, I did the following components
-        * Architecture component (including architecture diagram and high level sequence diagram exemplifying the interaction between different components)
-        * UI component  
-        * Model Component (including class diagram)
+        - Architecture component (including architecture diagram and high level sequence diagram exemplifying the interaction between different components)
+        - UI component  
+        - Model Component (including class diagram)
     - I wrote implementation details of the `addMod` feature and drew activity and sequence diagrams to illustrate.
-    - I also contributed to the target user profile, value proposition and user stories.
+    - I contributed to the target user profile, value proposition and user stories.
+    - I added in the labelling of the diagrams: [#190](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/190)
 
 ### Contributions to Team-based Tasks
 - I conducted manual testing, reported bugs, helped to fix bugs in my team's code and refactor the code: [#42](https://github.com/AY2021S1-CS2113T-F12-4/tp/issues/42) (reported bugs), [#43](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/43) (fixed mismatch in object equality and optimised code), [#123](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/123) (used regex to implement module validity)
+- In the User Guide, I fixed the links in the Table of Contents and formatted the tables: [#110](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/110/), [#109](https://github.com/AY2021S1-CS2113T-F12-4/tp/pull/109) 
 - I enabled java assertions, set up the milestones and labels in the issue tracker.
 
 ### Contributions Beyond the Project Team
