@@ -31,6 +31,8 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
     
 *Code contributed*: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+<div style="page-break-after: always;"></div>
+
 *Project management*: Set up the framework of the programme for team members to work on, managed code cleanup before every release, managed releases `v1.0`, `v2.0` and `v2.1` on GitHub.
 
 *Contributions to User Guide*
