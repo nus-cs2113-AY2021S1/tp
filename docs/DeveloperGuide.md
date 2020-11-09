@@ -107,6 +107,8 @@ storage component:
 **General commands** are commands that takes priority in execution no matter which mode the software is currently
 in.
 
+<div style="page-break-after: always;"></div>
+
 **Modes of the program**
 
 Study It has 5 **modes** that the user can navigate between:
@@ -228,6 +230,8 @@ The timetable component consists of 7 major classes as shown. The above figure i
  1. `EventList` contains a number of `Event`. 
  1. `Event` class is the abstract parent class for `Lesson` and `Activity`. 
  1. `Event` class also contains a number of `Duration` and it has a dependency on the `EvenType` enum.
+
+<div style="page-break-after: always;"></div>
 
 **Timetable Implementation**
 
@@ -381,6 +385,8 @@ This project uses Gradle for build automation management.
 ./gradlew build - check for checkstyle error and runs all tests
 Code coverage
 This project uses code coverage that is in IntelliJ IDE to check for the coverage of the code. 
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Requirement 
 ### Product scope
