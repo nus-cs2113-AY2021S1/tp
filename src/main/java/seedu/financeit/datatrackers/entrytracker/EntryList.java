@@ -4,18 +4,15 @@ import seedu.financeit.data.ItemList;
 import seedu.financeit.datatrackers.manualtracker.Ledger;
 import seedu.financeit.ui.TablePrinter;
 
+/**
+ * Maintains a list of entries.
+ */
 public class EntryList extends ItemList {
     Ledger ledger;
 
     public EntryList(Ledger ledger) {
         this.setLedger(ledger);
     }
-
-    public void addEntry(Entry entry) {
-        entry.setLedger(this.ledger);
-        this.addItem(entry);
-    }
-
 
     @Override
     public void printList() {

@@ -4,6 +4,9 @@ import seedu.financeit.common.CommandPacket;
 
 import java.util.HashMap;
 
+/**
+ * Class that curates utility functions that assist the test methods throughout the test classes.
+ */
 public class TestUtil {
     public static CommandPacket createCommandPacket(String commandString, String[][] paramInput) {
         HashMap<String, String> paramMap = new HashMap<>();

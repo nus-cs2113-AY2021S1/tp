@@ -15,7 +15,7 @@ public class RegexMatcher {
     public static Matcher paramMatcher(String inputString) {
         //Matches <space><PARAMS_PREFIX><string><space>
         String regex = String.format("\\s+[%s]{1}[a-zA-Z]+\\s+",
-                String.join("", Common.DEFAULT_PARAMS_PREFIX));
+                String.join("", Common.DEFAULT_PARAM_TYPE_PREFIX));
         Matcher matcher = regexMatcher(inputString, regex);
         matcher.find();
         return matcher;

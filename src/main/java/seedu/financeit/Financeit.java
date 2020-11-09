@@ -12,7 +12,7 @@ import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
 import seedu.financeit.utils.LoggerCentre;
 import seedu.financeit.utils.RunHistory;
-import seedu.financeit.utils.storage.AutoTrackerSaver;
+import seedu.financeit.utils.storage.ReccuringTrackerSaver;
 import seedu.financeit.utils.storage.GoalTrackerSaver;
 import seedu.financeit.utils.storage.ManualTrackerSaver;
 import seedu.financeit.utils.storage.SaveHandler;
@@ -29,55 +29,61 @@ public class Financeit {
         CommandPacket packet = null;
         Level mode = Level.WARNING;
         LoggerCentre.getInstance().setLevel(mode);
-        setLog();
-        RunHistory.setCurrentRunDateTime();    //Grabs the System DateTime and stores it. Used for reminders
+        LoggerCentre.createLog();
+        LoggerCentre.loggerSystemMessages.info("\n\n\nLogging from Load states......\n\n\n");
+        //Grabs the System DateTime and stores it. Used for reminders
+        RunHistory.setCurrentRunDateTime();
+
         ManualTrackerSaver.getInstance("./data", "./data/saveMt.txt");
         GoalTrackerSaver.getInstance("./data", "./data/saveGt.txt");
-        AutoTrackerSaver.getInstance("./data", "./data/saveAt.txt");
+        ReccuringTrackerSaver.getInstance("./data", "./data/saveAt.txt");
         load();
-        loadLastRunDateTime();                 //Loads the dateTime when the program was last ran
-        saveCurrentRunDateTimeAsLastRun();     //Updates last run dateTime to current dateTime
+
+        //Loads the dateTime when the program was last ran
+        loadLastRunDateTime();
+
+        //Updates last run dateTime to current dateTime
+        saveCurrentRunDateTimeAsLastRun();
+
         UiManager.refreshPage();
         UiManager.printLogo();
-        while (true) {
-            ReminderPrinter.printReminders();    //Print reminder for all upcoming recurring entries
-            printMainMenu();
-            input = UiManager.handleInput();
-            packet = InputParser.getInstance().parseInput(input);
-            UiManager.refreshPage();
-            switch (packet.getCommandString()) {
-            case "manual":
-                ManualTracker.execute();
-                break;
-            case "recur":
-                RecurringTracker.execute();
-                break;
-            case "goal":
-                GoalTracker.execute();
-                break;
-            case "financial":
-                FinanceTools.execute();
-                break;
-            case "saver":
-                SaveManager.main();
-                break;
-            case "exit":
-                save();
-                UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
-                    "Exiting the program. Have a nice day!");
-                return;
-            default:
-                prompt = "Invalid Command";
-                break;
+        LoggerCentre.loggerSystemMessages.info("\n\n\nLogging from user operations......\n\n\n");
+        try {
+            while (true) {
+                ReminderPrinter.printReminders();    //Print reminder for all upcoming recurring entries
+                printMainMenu();
+                input = UiManager.handleInput();
+                packet = InputParser.getInstance().parseInput(input);
+                UiManager.refreshPage();
+                switch (packet.getCommandString()) {
+                case "manual":
+                    ManualTracker.execute();
+                    break;
+                case "recur":
+                    RecurringTracker.execute();
+                    break;
+                case "goal":
+                    GoalTracker.execute();
+                    break;
+                case "financial":
+                    FinanceTools.execute();
+                    break;
+                case "saver":
+                    SaveManager.main();
+                    break;
+                case "exit":
+                    save();
+                    UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
+                        "Exiting the program. Have a nice day!");
+                    return;
+                default:
+                    prompt = "Invalid Command";
+                    break;
+                }
             }
-        }
-    }
-
-
-    public static void setLog() {
-        if (LoggerCentre.logCreated == false) {
-            LoggerCentre.createLog();
-            LoggerCentre.logCreated = true;
+        } catch (Exception e) {
+            LoggerCentre.loggerSystemMessages.info("\n\n\nUnknown error......\n\n\n");
+            System.out.println("An unknown error has occured.");
         }
     }
 
@@ -114,7 +120,7 @@ public class Financeit {
         }
 
         try {
-            AutoTrackerSaver.getInstance().load();
+            ReccuringTrackerSaver.getInstance().load();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to load: " + m);
         }
@@ -135,7 +141,7 @@ public class Financeit {
         }
 
         try {
-            AutoTrackerSaver.getInstance().save();
+            ReccuringTrackerSaver.getInstance().save();
         } catch (Exception m) {
             System.out.println("Auto Tracker failed to save: " + m);
         }

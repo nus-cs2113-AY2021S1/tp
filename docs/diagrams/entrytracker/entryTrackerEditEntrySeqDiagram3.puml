@@ -1,0 +1,69 @@
+@startuml
+autoactivate on
+scale 1094 width
+skinparam shadowing false
+skinparam sequence {
+ActorBorderColor white
+
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
+
+box "Data Tracker" #LightYellow
+participant ":EntryTracker" as entryTracker <<class>>
+endBox
+
+box "Logic" #LightBlue
+participant "editEntryHandler:EditEntryHandler"
+participant ":ParamChecker"
+endBox
+
+box "Data" #LightGreen
+participant "entry:Entry"
+participant "entryList:EntryList"
+endBox
+group "sd [handlePacket (Phase 2)]"
+        == Handling of Params in packet for edit ==
+        entryTracker -> "editEntryHandler:EditEntryHandler" : handlePacket
+        "editEntryHandler:EditEntryHandler" -> "editEntryHandler:EditEntryHandler" : handleParams
+            "editEntryHandler:EditEntryHandler" -> ":ParamChecker" : setPacket(packet)
+            return
+            loop For all paramType in the command packet
+                note left: "Note: Params will be verified for correctness\nby ParamChecker singleton class before being\nset into the entry instance."
+                "editEntryHandler:EditEntryHandler" -> "editEntryHandler:EditEntryHandler" : handleSingleParam
+                    alt "paramType = PARAM_TIME"
+                        "editEntryHandler:EditEntryHandler" ->":ParamChecker": checkAndReturnTime(paramType)
+                        return time
+                        "editEntryHandler:EditEntryHandler" -> "entry:Entry" : setTime(time)
+                        return
+                    else "paramType = PARAM_AMOUNT"
+                        "editEntryHandler:EditEntryHandler" ->":ParamChecker": checkAndReturnDoubleSigned(paramType)
+                        return amount
+                        "editEntryHandler:EditEntryHandler" -> "entry:Entry" : setAmount(amount)
+                        return
+                    else "paramType = PARAM_INC"
+                        "editEntryHandler:EditEntryHandler" -> "entry:Entry" : setEntryType(EntryType.INC)
+                        return
+                    else "paramType = PARAM_EXP"
+                        "editEntryHandler:EditEntryHandler" -> "entry:Entry" : setEntryType(EntryType.EXP)
+                        return
+                    else "paramType = PARAM_DESCRIPTION"
+                        "editEntryHandler:EditEntryHandler" -> "entry:Entry" : setDescription(description)
+                        return
+                    else "paramType = PARAM_CATEGORY"
+                        "editEntryHandler:EditEntryHandler" ->":ParamChecker": checkAndReturnCategory(paramType)
+                        return
+                        "editEntryHandler:EditEntryHandler" -> "entry:Entry" : setCategory()
+                        return
+                    end
+                return
+            end
+        return
+        return
+end
+
+
+
+@enduml

@@ -6,6 +6,9 @@ import seedu.financeit.ui.TablePrinter;
 
 import java.time.LocalDate;
 
+/**
+ * Maintains a list of ledgers.
+ */
 public class LedgerList extends ItemList {
     public LedgerList() {
 

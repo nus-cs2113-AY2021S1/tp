@@ -1,0 +1,59 @@
+@startuml
+autoactivate on
+scale 1094 width
+skinparam shadowing false
+skinparam sequence {
+ActorBorderColor white
+
+ActorBackgroundColor white
+ActorFontColor white
+ActorFontSize 17
+ActorFontName ""
+}
+
+actor User
+
+box "Data Tracker" #LightYellow
+participant entryTracker as entryTracker <<class>>
+endBox
+
+box "Logic" #LightBlue
+participant "retrieveEntryHandler:RetrieveEntryHandler"
+participant "editEntryHandler:EditEntryHandler"
+participant ":ParamChecker"
+endBox
+
+box "Data" #LightGreen
+participant "entry:Entry"
+participant "entryList:EntryList"
+endBox
+
+User -> entryTracker: Edit Entry
+
+entryTracker ->entryTracker: handleCreateEntry()
+    == Phase 1: Retrieve Entry ==
+   entryTracker-> "retrieveEntryHandler:RetrieveEntryHandler" : getInstance()
+    return handler
+
+       entryTracker-> "retrieveEntryHandler:RetrieveEntryHandler" : handlePacket
+            ref over entryTracker, "retrieveEntryHandler:RetrieveEntryHandler", ":ParamChecker","entryList:EntryList" : handlePacket (Phase 1) 
+
+       return
+
+    == Retrieval of entry from entryList ==
+    entryTracker -> "entryList:EntryList" : getItemAtCurrIndex()
+    return entry
+
+    == Phase 2: Edit Entry ==
+       entryTracker-> "editEntryHandler:EditEntryHandler" : getInstance()
+        return handler
+        entryTracker -> "editEntryHandler:EditEntryHandler" : setPacket(packet)
+        return
+        entryTracker -> "editEntryHandler:EditEntryHandler" : handlePacket
+                        ref over entryTracker, "retrieveEntryHandler:RetrieveEntryHandler", ":ParamChecker","entryList:EntryList" : handlePacket (Phase 2) 
+       
+        return
+   == Edit successful ==
+   return
+return
+@enduml
