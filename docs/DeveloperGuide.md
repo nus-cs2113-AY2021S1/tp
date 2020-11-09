@@ -587,7 +587,7 @@ Making sure the name of the appliance is found in the list.
     Expected-printout: Deleting Light(10W), located at Bedroom1 .......DELETED.
 2. Test case: `delete` <br>
     Expected-printout: Empty Parameter detected! Please follow format and enter required parameters.
-3. Test case: `remove Light2` , assume `Light2` was not added.<br>
+3. Test case: `delete Light2` , assume `Light2` was not added.<br>
     Expected-printout: Light2 does not exist.
 
 ### Switching On Appliance:
