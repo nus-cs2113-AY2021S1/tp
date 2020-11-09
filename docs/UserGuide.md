@@ -30,7 +30,7 @@ Nav@NUS consists of 3 main features:
 
 * **Route**: Searches for bus routes from your location to your intended destination.
 * **Dine**: Seeks dining options for you to explore culinary world of NUS.
-* **Fav**: Saves your commands for you to have a personalised user experience catered to your needs.
+* **Favourites**: Saves your commands to text files for you to have a personalised user experience catered to your needs.
 
 Skip the tight squeeze near information boards and use Nav@NUS today!
 
@@ -84,11 +84,15 @@ There are 18 features available in Nav@NUS. The following are instructions for u
 >2. Parameters and commands to be entered by the user are not case-sensitive.
 >3. Location names must be in full for commands that require bus stop location(s).
 
+>Warning:
+>
+>You are recommended not to edit the text files manually.
+
 ### 3.1. Bus Features
 This section provides the instruction for all features categorised under the main feature of navigation by bus.
 
 <!-- @@author Lezn0-->
-### 3.1.1. List available help: ```/help``` -Yuxin
+#### 3.1.1. List available help: ```/help``` -Yuxin
 This command lists a set of features along with their respective commands available to users.
 
 Format: <code>/help</code>
@@ -98,13 +102,14 @@ The expected outcome is as follows:<br><br>
 <!-- @@author -->
 
 <!-- @@author wamikamalik -->
-### 3.1.2. Check for direct bus: ```/route``` - Wamika
+#### 3.1.2. Check for direct bus: ```/route``` - Wamika
 This command displays all bus routes from one location to another that do not require changing buses.
 
-The format of this command is as follows: <br>
+Format: <br>
 <code>/route <strong>location_1</strong> /to <strong>location_2 </strong> </code>
 
-#### Examples of Usage
+**Examples of Usage**
+
 Let's say you are currently at **PGP** and want to find out the buses you can board from **PGP** bus station to get to **NUS IT**.
 
 To find all such bus routes:
@@ -116,7 +121,8 @@ to execute the command as shown in the figure below.<br><br>
 2. The result will be a message displaying the list of buses you can take with their routes as shown in the figure below.<br><br>
 <img src="UG_Figures/routeOutput1.png" alt="output" width=650><br>
 
-#### Common errors
+**Common errors** 
+
 Let's say you are currently at **University Health Centre** and you want to go to **PGPR**. But you accidentally type **"Univerity 
 Health Center"** instead. 
 
@@ -136,12 +142,13 @@ below.<br><br>
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-### 3.1.3. Check bus route: ```/routemap``` - Johnson Yee
+#### 3.1.3. Check bus route: ```/routemap``` - Johnson Yee
 This command displays the full route of the bus that you have specified.
 
 Format: <code>/routemap <strong>bus code</strong></code> <br>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 This command is exceptionally useful to find indirect bus routes.
 Let us suppose that you are at **Raffles Hall** with only bus AA2 available and would like to go to **University Town**. 
@@ -176,14 +183,15 @@ which is relatively more crowded than other bus stops.<br><br>
 
 3. With this information, you could explore other bus routes to your destination.
 <!-- @@author -->
-### 3.1.4. Check for buses at a bus stop: ```/bus```
+
+#### 3.1.4. Check for buses at a bus stop: ```/bus```
 This command displays all buses available at a specific bus stop.
 
 Format: <br>
 <code>/bus<strong> bus stop</strong></code> <br>
 
-#### Examples of Usage
-<br>
+**Examples of Usage**
+
 Let's say that you are at <strong>University Town</strong> bus stop, and you want to know the buses which are available for you to take. Instead of searching for the bus stops which all the buses stop at, you can easily access this information by using the <code>/bus</code> command. 
 
 To search for available buses at **University Town**:
@@ -194,7 +202,8 @@ To search for available buses at **University Town**:
 2. The result will be a message displaying the buses available at University Town. <br><br>
 <img src="UG_Figures/bus3.png" width=650><br>
 
-#### Common errors
+**Common errors**
+
 Let's say that you are at the <strong>museum</strong> bus stop, and you want to know the buses which are available for you to take. However, you make a spelling error and type <strong>"musuem"</strong> instead. <br>
 
 These are the steps to fix the mistake:
@@ -208,13 +217,14 @@ These are the steps to fix the mistake:
 <img src="UG_Figures/bus1.png"><br>
 
 <!-- @@author mrwsy1 -->
-### 3.1.5. List all bus available in NUS ```/allbus``` - Shuyi
+#### 3.1.5. List all bus available in NUS ```/allbus``` - Shuyi
 This command lists all buses available in NUS with their respective routes.
 
-The format for this command is as follows:<br> 
+Format:<br> 
 <code>/allbus</code> <br>
 
-#### Examples of Usage
+**Examples of Usage**
+
 Let's say you want to see a list of all bus routes so that you can plan your trip around NUS accordingly. 
 
 To see the complete list of buses:
@@ -222,14 +232,16 @@ To see the complete list of buses:
 1. Type <code>/allbus</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/allbus1.png" alt="inputCommand" width=700><br>
 <!-- @@author -->
+
 <!-- @@author Lezn0 -->
-### 3.1.6. List all bus stops in NUS: ```/liststops``` - Yuxin
+#### 3.1.6. List all bus stops in NUS: ```/liststops``` - Yuxin
 This command lists all bus stops in NUS.
 
-The format for this command is as follows:<br> 
+Format:<br> 
 <code>/liststops</code> <br>
 
-#### Examples of Usage
+**Examples of Usage**
+
 Let's say you want to know more about the bus stops in NUS. 
 
 To see the description of each location:
@@ -237,14 +249,15 @@ To see the description of each location:
 1. Type <code>/liststops</code> into the CLI and press <kbd>Enter</kbd>.<br><br>
 <img src="UG_Figures/listOutput.png" alt="inputCommand" width=800><br>
 <!-- @@author -->
-<!-- @@author mrwsy1 -->
-### 3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi
-This command lists out all faculties in NUS.
 
-The format of this command is as follows:<br> 
+<!-- @@author mrwsy1 -->
+#### 3.1.7. List all faculties in NUS: ```/faculty``` - Shuyi
+This command lists out all faculties in NUS.
+Format:<br> 
 <code>/faculty</code> <br>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say you want to know the names of all faculties in NUS.
 
@@ -256,13 +269,14 @@ These are the steps to follow:
 ### 3.2. Dine Features
 This section provides the instruction for all features categorised under the main feature of locating dining options.
 
-### 3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi
+#### 3.2.1. Search for dining options within a faculty: ```/dine``` - Shuyi
 This command lists out all dining outlets available within a chosen faculty.
 
-The format of this command is as follows:<br> 
+Format:<br> 
 <code>/dine <strong>faculty</strong></code> <br>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say you want to know all the dining options available in <strong>School of Business</strong>.
 
@@ -284,14 +298,14 @@ You can simply use <strong>Sci</strong> instead of <strong>Science</strong>:
 > * It is possible for the feature to return results from multiple faculties if the keyword used for the search is not specific to the desired faculty.<br>
 > *  For example, `/dine school` will yield results from both School of Business and School of Computing.
 
-
-### 3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi
+#### 3.2.2. Search for specific dining outlet: ```/dineinfo``` - Shuyi
 This command finds all dining outlets that contains the keyword, and display their location and operating hours.
 
 The format of this command is as follows:<br>
 <code>/dineinfo <strong>outlet</strong></code>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say you want to find information of the dining outlet <strong>Arise & Shine</strong>.
 
@@ -314,13 +328,13 @@ This section provides the instruction for all features categorised under the mai
 to your needs.
 
 <!-- @@author Lezn0 -->
-### 3.3.1. Add a favourite command: `/addfav` -Yuxin
+#### 3.3.1. Add a favourite command: `/addfav` -Yuxin
 This command adds a valid command with an optional description to your list of favourites
-
-The format of this command is as follows:<br>
+Format:<br>
 <code>/addfav <strong> [description] </strong> </code>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say you want to add the command to list dining options in business.
 
@@ -350,14 +364,16 @@ to store the command in to your list of favourites with no description  as shown
 
 <img src="UG_Figures/addfav2.png" alt="output" width=600><br>
 <!-- @@author -->
+
 <!-- @@author mrwsy1 -->
-### 3.3.2. List all favourite commands: `/listfav` - Shuyi
+#### 3.3.2. List all favourite commands: `/listfav` - Shuyi
 This command displays all the commands in your list of favourite commands, along with their index and description.
 
-The format of this command is as follows:<br>
+Format:<br>
 <code>/listfav</code>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say you want to take a look at all the commands that was previously added to your list of favourite commands.
 
@@ -368,14 +384,15 @@ These are the steps to follow:
 <!-- @@author -->
 
 <!-- @@author Johnson-Yee -->
-### 3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee
+#### 3.3.3. Delete a favourite command: `/deletefav` - Johnson Yee
 This command deletes the command that you have specified from the list of favourite commands.
 >Note: Index keyed in must be within the range of 1 - n, where n is the number of favourite commands. <br>
 >
 Format: <br>
 <code>/deletefav<strong> index in list</strong></code> <br>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say that you have stored the command <code>/routemap <strong>AA1</strong></code> in your list of favourite commands.
 After reviewing your list of favourite commands, you do not want to have this command in it.
@@ -386,13 +403,14 @@ press <kbd>Enter</kbd> to execute the command as shown in the figure below.<br><
 <img src="UG_Figures/deleteFavExample.png" alt="output of deletefav" width=600><br>
 <!-- @@author -->
 
-### 3.3.4. Execute a favourite command: `/execfav`
+#### 3.3.4. Execute a favourite command: `/execfav`
 This command executes the specific command in your list of favourite commands.
 
 Format: <br>
 <code>/execfav<strong> index in list</strong></code> <br>
 
-#### Examples of Usage
+**Examples of Usage**
+
 Let's say that you have stored the command <code>/route <strong>Opp University Health Centre</strong> /to <strong>Opp Kent Ridge MRT station</strong></code> in your list of favourite commands. Instead of typing the long command using `/route`, you can now conveniently use the `/execfav` command.
 
 Given you have the list of favourite commands:<br>
@@ -404,7 +422,8 @@ To execute the command with the 2nd index in your list of favourite commands:
 Type <code>/execfav <strong>2</strong></code> into the CLI and press enter to execute the command as shown in the figure below. <br><br>
 <img src="UG_Figures/execfav2.png" width=600><br>
 
-#### Common errors and problems
+**Common errors and problems**
+
 Let's say your data has been corrupted and thus your list of favourite commands contains an invalid command.<br>
 If you attempt to execute the command, Nav@NUS will automatically delete the corrupted data from your list.
 
@@ -415,13 +434,14 @@ If you attempt to execute the invalid command <code>/Funny command</code> in you
 <img src="UG_Figures/execfav4.png"><br>
 
 <!-- @@author wamikamalik -->
-### 3.3.5. Change the description for a favourite command: `/descfav` - Wamika
+#### 3.3.5. Change the description for a favourite command: `/descfav` - Wamika
 This command helps you change the description of a command in your list of favourites.
 
 Format:<br>
 <code>/descfav <strong>index</strong> /to <strong>new description</strong></code>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say you have the following list of commands:<br>
 <img src="UG_Figures/beforedescfav.PNG" alt="original list of commands" width=550>
@@ -438,13 +458,14 @@ shown in the figure below and press enter. <br>
 <!-- @@author -->
 
 <!-- @@author mrwsy1 -->
-### 3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi
+#### 3.3.6. Clear the list of favourite commands: `/clearfav` - Shuyi
 This command clears all the commands stored in your list of favourite commands.
 
 The format of this command is as follows:<br>
 <code>/clearfav</code>
 
-#### Examples of Usage
+**Examples of Usage**
+
 **<u>Example 1</u>**<br>
 Let's say you no longer need any of the commands in your list of favourite commands. Instead of using 
 <code>/deletefav</code> to remove the commands one by one, you can use the <code>/clearfav</code> feature to clear 
@@ -460,12 +481,13 @@ These are the steps to follow:
 This section provides the instruction for all features categorised under the common features.
 
 <!-- @@author wamikamalik -->
-### 3.4.1. Similarity Checks - Wamika
+#### 3.4.1. Checking for similar locations - Wamika
 When you enter a location and make a spelling error or a typo in the name, the app performs a similarity check with 
 existing location names and suggests some locations to you. The app executes this command automatically and does not 
 require any explicit input from you.
 
-#### Examples of Usage
+**Examples of Usage**
+
 Let's say you want to find all buses that stop at **Opp HSSML**, but you type <code>/bus <strong>Opp HSML</strong></code> instead.
 
 You will receive a message with suggested location names you can use as shown in the figure below.<br><br>
@@ -479,14 +501,14 @@ as shown in the figure below.<br><br>
 ><code>/route</code> command or a <code>/bus</code> command. 
 <!-- @@author -->
 
-
 <!-- @@author Johnson-Yee -->
-### 3.4.2. Reset frequent search data: ```/reset``` - Johnson Yee
+#### 3.4.2. Reset frequent search data: ```/reset``` - Johnson Yee
 This command resets the data set used to display most frequently search bus stop on application start-up.
 
 Format:<code>/reset</code>
 
-#### Examples of usage
+**Examples of usage**
+
 **<u>Example 1</u>**<br>
 Let us suppose that you are transitioning to a new academic semester, and the locations that you will key in to the
 application changes. To create a new data set that will cater to your needs in this new semester, you will key in the
@@ -494,7 +516,7 @@ command <code>/reset</code> to reset the data set and start the application on a
 <img src="UG_Figures/freq1.png" alt="Correct input message" width=600><br>
 <!-- @@author -->
 
-### 3.4.3. Exit the program: ```/exit```
+#### 3.4.3. Exit the program: ```/exit```
 This command helps you exit the application.
 
 The format of this command is as follows:<br>
@@ -504,14 +526,16 @@ The application exits after displaying the following message.<br>
 ```
 So long buddy!
 ```
+
 <!-- @@author Johnson-Yee -->
-### 3.4.4. Display most searched bus stop on start-up - Johnson Yee
+#### 3.4.4. Display most searched bus stop on start-up - Johnson Yee
 This feature displays the most searched bus stop to remind you of what to type in when using 
 the navigation functions. 
 
 >The application executes this command on start-up and does not require any explicit command to use this feature.
 
-#### Examples of usage
+**Examples of usage**
+
 On start-up, you will receive a prompt of your most searched bus stop. This personalises your application and gives you
 the memory jolt of what to key in. <br>
 <img src="UG_Figures/displayfreq.png" alt="Search Freq Prompt" width=400><br>
