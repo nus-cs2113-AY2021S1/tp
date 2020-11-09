@@ -46,6 +46,13 @@ the DeveloperGuide.
 
 * [DeveloperGuide](https://ay2021s1-cs2113-t14-1.github.io/tp/DeveloperGuide.html)
 
+#### Contributions to team-based tasks
+
+* Help to review teammates pull requests for any errors before their merge.
+* Provided feedbacks to UserGuide and DeveloperGuide when my teammates done their sections.
+* Meet up regularly in project discussion through zoom sessions and telegram group to update on our progress.
+* Provided suggestions and questions to improve the project during project meetings.
+
 #### Contributions beyond the project team:
 I have also provided in other group's project development by reviewing the products during tutorials and PE dry runs.
 
