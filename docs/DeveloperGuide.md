@@ -11,33 +11,37 @@ Wan Shi Jie Brendan<br>
 <br><br>
 
 ## Table of Contents
-1. [Introduction](#intro)
-2. [Getting Started](#getting_started)<br>
-2.1 [Prerequisites](#prerequisites)<br>
-2.2 [Setting Up](#setting_up)<br>
-3. [Design](#design) <br>
-3.1 [Architecture](#architecture) <br>
-3.2 [UI](#ui) <br>
-3.3 [Storage](#storage) <br>
-3.4 [Logic](#logic) <br>
-3.5 [Model](#model) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.5.1 [Event](#event) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;3.5.2 [Location](#location) <br>
-4. [Implementation](#implementation) <br>
-4.1 [Add events](#add_events) <br>
-4.2 [Clear events](#clear) <br>
-4.3 [Edit events](#edit) <br>
-4.4 [Locate](#locate) <br> 
-4.5 [Reminders](#reminder) <br>
-4.6 [Sort events](#sort) <br>
-4.7 [View events](#view) <br>
-4.8 [Help](#help) <br>
-5. [Documentation](#documentation) <br>
-5.1 [Product scope](#product_scope) <br>
-5.2 [Value Proposition](#value_proposition) <br>
-5.3 [User Stories](#stories)<br>
+* [1. Introduction](#intro)
+* [2. Getting Started](#getting_started)<br>
+    * [2.1. Prerequisites](#prerequisites)<br>
+    * [2.2. Setting Up](#setting_up)<br>
+* [3. Design](#design) <br>
+    * [3.1 Architecture](#architecture) <br>
+    * [3.2 UI](#ui) <br>
+    * [3.3 Storage](#storage) <br>
+    * [3.4 Logic](#logic) <br>
+    * [3.5 Model](#model) <br>
+        * [3.5.1. Event](#event) <br>
+        * [3.5.2. Location](#location) <br>
+* [4. Implementation](#implementation) <br>
+    * [4.1. Add events](#add_events) <br>
+    * [4.2. Clear events](#clear) <br>
+    * [4.3. Edit events](#edit) <br>
+    * [4.4. Locate](#locate) <br> 
+    * [4.5. Reminders](#reminder) <br>
+    * [4.6. Sort events](#sort) <br>
+    * [4.7. View events](#view) <br>
+    * [4.8. Help](#help) <br>
+* [5. Documentation](#documentation) <br>
+* [6. Testing](#6-testing)<br>
+* [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
+* [Appendix B.User stories](#appendix-b-user-storiesa-idstoriesa)<br>
+* [Appendix C. Non-functional requirements](#appendix-c-non-functional-requirements)<br>
+* [Appendix D. Glossary](#appendix-d-glossary)<br>
+* [Appendix E. Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 ## 1. Introduction<a id="intro"></a>
+  
 NUSchedule is a Command-Line based application that manages all of your commitments. Built with a clean and intuitive
 interface, NUSchedule will help you manage your commitments without any hassle. If you are a proficient in typing, 
 NUSchedule will prove itself to be the most efficient way to manage your commitments.  
@@ -46,14 +50,17 @@ This developer guide provides information on the architecture and design of the 
 provides information that will not only help you get started as a NUSchedule contributor, but that you will find useful
 to refer to even if you are already a contributor.
 
-## 2. Getting Started <a id="getting_started"></a>
+## 2. Getting Started<a id="getting_started"></a>
+  
 This section provides information to help you get NUSchedule up and running on your own computers.
 
 ### 2.1 Prerequisites<a id="prerequisites"></a>
+  
 1. JDK 11
 2. Intellij IDEA
 
 ### 2.2 Setting Up<a id="setting_up"></a>
+  
 1. Fork [this repo](https://github.com/AY2021S1-CS2113T-F14-4/tp), and clone the fork onto your computer.   
 2. Open IntelliJ (if you are not in the welcome screen, click File > Close Project
 to close the existing project dialog 
@@ -68,6 +75,7 @@ first).
    being used for the project.
 
 ## 3. Design<a id="design"></a>
+  
 This section describes the different components of the application and how each component interact with
 each other to run the program. 
 
@@ -135,9 +143,12 @@ and not edited in any part of the program.
 * checks if a location is being saved in the list and returns the location when asked
 
 ## 4. Implementation<a id="implementation"></a>
+
+
 This section describes the implementation of some noteworthy features. 
 
 ### 4.1 Add events<a id="add_events"></a>
+  
 This feature allows users to add events and relevant information about them (description, time and location) to the list
 . There are three possible types of events that can be added: classes, assignments, and personal events.
 
@@ -158,6 +169,7 @@ The sequence diagram below shows the process of adding a new event.
 
 
 ### 4.2 Clear events<a id="clear"></a>
+  
 This feature allows users to completely delete the existing event information that is previously typed in by users. 
 
 Given below is an example usage scenario:
@@ -172,6 +184,7 @@ The sequence diagram below shows the process of clearing all events.
 *Figure 4.2 Sequence Diagram for clear function*
  
 ### 4.3 Edit events<a id="edit"></a>
+  
 This feature allows users to edit the information of events that was previously added. 
 
 Given below is an example usage scenario:
@@ -186,6 +199,7 @@ Step 3. `editCommand()` function replaces the original event with the edited one
 *Figure 4.3 Sequence Diagram for EditCommand()*
 
 ### 4.4 Locate<a id="locate"></a>
+  
 This feature allows users to add locations as part of the event information. If the place is located within the school, 
 additional information about the location will be provided such as nearest bus stops or buildings. If the place is a 
 bus stop, the buses available will be provided instead. The user will add location name as the last piece of information 
@@ -217,6 +231,7 @@ The sequence diagram below shows exactly which methods, from which classes, are 
 *Figure 4.4 Sequence diagram for locate function*
 
 ### 4.5 Reminder<a id="reminder"></a>
+  
 This feature allows users to get a reminder of the events that will occur today.
 
 Given below is an example usage scenario:
@@ -232,6 +247,7 @@ The sequence diagram belows shows the process of executing the reminder command.
 *Figure 4.5 Sequence Diagram for reminder function*
 
 ### 4.6 Sort events<a id="sort"></a>
+  
 This feature allows users to sort the available task by a sorting criteria. Currently, the sorting criteria available
 are sorting by time, description and location.  
 
@@ -244,6 +260,7 @@ Step 2. The user enters `sort time`, which will call the `sortCommand()` functio
 *Figure 4.6 Sequence diagram for SortCommand()*
 
 ### 4.7 View events<a id="view"></a>
+  
 This feature allows users to view a numbered list of all the events/tasks they have added so far,
 in the order which they were added.
 
@@ -258,6 +275,7 @@ The sequence diagram below shows what happens when the list command is executed
 *Figure 4.7 Sequence Diagram for list function*
 
 ### 4.8 Help<a id="help"></a>
+  
 This feature allows users to view a summary of all the features available for the current version of NUSchedule. 
 When the user inputs `help`, all available commands and a simple description for each of them will be printed.
 
@@ -267,9 +285,23 @@ The sequence diagram below shows what happens when user enters `help`:
 *Figure 4.8 Sequence Diagram for help function*
 
 ## 5. Documentation<a id="documentation"></a>
-This section provides other relevant information about the application.
+  
+All documentation are found in the `docs/` folder.
+* [Jekyll](https://jekyllrb.com/) is used to manage documentation.
+* [Markdown](https://guides.github.com/features/mastering-markdown/) style is used for the documentation.
+* [PlantUML](https://plantuml.com/) is used to create the diagrams.
+  
 
-### 5.1 Product scope<a id="product_scope"></a>
+## 6. Testing
+  
+JUnit is used to write tests for the project. Learn more about JUnit [here](https://se-education.org/guides/tutorials/gradle.html).
+If you are using IntelliJ, you can run all test by right-clicking on the `test/java` folder and selecting `Run 'Tests'` or press `CRTL` + `SHIFT` + `F10`
+on your keyboard. Alternatively, you can open a console and run the command `gradelw clean test` (Mac/linus: `.gradlew clean test`).  
+
+## Appendix A Product scope<a id="product_scope"></a>
+  
+### User profile
+  
 __Target user profile:__
 * NUS student or staff
 * able to type quickly
@@ -278,13 +310,14 @@ __Target user profile:__
 * prefers using Command Line Interface (CLI) apps
 * prefers typing instead of mouse interactions
 
-### 5.2 Value proposition<a id="value_proposition"></a>
+### Value proposition<a id="value_proposition"></a>
+  
 NUSchedule aims to assist the target audience with:  
 * managing all their events in one application (personal or work)
 * easily finding out about the location of their events 
 
-### 5.3 User stories<a id="stories"></a>
-
+## Appendix B User stories<a id="stories"></a>
+  
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |1.0|busy individual|keep track of both personal and school activities|avoid clashing events
@@ -296,16 +329,17 @@ NUSchedule aims to assist the target audience with:
 |2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 |2.0|professor|Know whether my students have another lesson after mine and the expected time of travelling|Pace my lesson appropriately
 |2.0|student using zoom for lessons|record the virtual locations|store the links and passwords of the meetings
-## Non-Functional Requirements
 
+## Appendix C: Non-Functional Requirements
+  
 {Give non-functional requirements}
 
-## Glossary
-
+## Appendix D: Glossary
+  
 * *glossary item* - Definition
 
-## Instructions for manual testing
-
+## Appendix E: Instructions for manual testing
+  
 Try different inputs with variations of the format, to check whether the exceptions are being correctly thrown.  
 Also edit the stored data of events.txt to see whether the reaction is correct. Do not touch bus_stops.txt and 
 locations.txt for test purposes as they form the data base.
