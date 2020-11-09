@@ -19,6 +19,18 @@ public class StarCommand extends BookmarkCommand {
         this.chosenCategory = chosenCategory;
     }
 
+    /**
+     * Mark existing BookmarkLink as star or unstar existing BookmarkLink.
+     *
+     * @param ui prints output message
+     * @param categories star link in array list
+     * @param storage update starred link in file
+     * @throws EmptyBookmarkException if link number is empty
+     * @throws NumberFormatException if number is not the input
+     * @throws IndexOutOfBoundsException if number exceed large number
+     * @throws InvalidBookmarkException if bookmark link number is invalid.
+     */
+
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage storage) {
         try {
             if (chosenCategory == 0) {

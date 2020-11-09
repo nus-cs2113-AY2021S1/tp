@@ -19,6 +19,17 @@ public class ListCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
+    /**
+     * Shows user the list of bookmarks according to the variations of list command.
+     * list -a : shows all the bookmark links in every category.
+     * list: shows the bookmark links in the category the user is in.
+     * list -s : shows all the starred bookmark links
+     * list -c : shows the list of categories available
+     *
+     * @param ui prints output message
+     * @param categories prints category list
+     */
+
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         String line = input.substring(LIST_LENGTH).toLowerCase().trim();
         if (line.contains("-")) {
