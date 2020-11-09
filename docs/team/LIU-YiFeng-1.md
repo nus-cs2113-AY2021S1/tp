@@ -25,12 +25,12 @@ for more details.
 
 ### Enhancements implemented:
 #### Enhancements to new features:
-* Added ability to print all tasks and all events separately.
+* Added ability to print all tasks and all events separately. (`print events` and `print tasks`)
  ([\#10](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/10))
   * What it does: It allows the user to have an easy overview of all the events and tasks stored in the program.
-  * Justification: It allows the user to retrieve the index number for a particular event or task. So that the user can 
+  * Justification: It allows the user to retrieve the index number for a particular event or task quickly. So that the user can 
                     perform other operations (such as deletion, mark as done, adding additional information and viewing additional information etc) easily.
-  * Highlights: It displays all events and tasks with additional information if there is any.
+  * Highlights: It displays all tasks and events with additional information if there is any.
   
  * Integrated a third party library (fastjson) to the project and added the ability to verify the module code entered by the user.
   ([\#126](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/126),
@@ -39,8 +39,8 @@ for more details.
   )
    * What it does: It checks the validity of the module code entered by the user against the NUSMod API.
    If valid, program will proceed as per normal. Else, it will prompt the user with an error message.
-   * Justification: As a task scheduling application, it is crucial for the applicaiton to provide some sanity check to ensure the 
-   user has entered the correct information, so as to present the user with accurate information.
+   * Justification: As a task scheduling application, it is crucial for the application to provide some sanity check to ensure the 
+   user entered the correct information, so as to present the user with accurate information.
    * Highlights: This feature is functional with or without the Internet.
   
 #### Enhancement to existing features:
