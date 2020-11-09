@@ -34,7 +34,7 @@ Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) a
 
 *Contributions to Team Based Task*
 
-Setting up the GitHub team organization and repository, maintained issues and reviewed almost all PRs alongside Jun Xiang, Uudating of User/Developer documents that are not feature specific, set up [PERT Chart](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert), set up and maintained [Gantt Chart](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert), created a [Development Practices Document](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md).
+Set up the GitHub team organization and repository, maintained issues and reviewed almost all PRs alongside Jun Xiang, updated User/Developer documents that are not feature specific, set up and maintained [PERT Chart](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert) and [Gantt Chart](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md#pert), created a [Development Practices Document](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DevelopmentPractices.md).
 
 *Contributions to User Guide*
 
@@ -42,7 +42,7 @@ Created the first draft of the [User Guide](https://github.com/AY2021S1-CS2113-T
 
 *Contributions to Developer Guide*
 
-Created the first draft of the [Developer Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DeveloperGuide.md). Filled up the following: [Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55), Initial draft of [architecture overview](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), [Product Scope](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55) (Target User Persona, Target User Profile and Value Proposition), [User Stories](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55), [Non-functional requirements](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103), [Glossary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103), Initial [manual testing draft](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/119)
+Created the first draft of the [Developer Guide](https://github.com/AY2021S1-CS2113-T13-1/tp/blob/master/docs/DeveloperGuide.md). Filled up the following: [Introduction](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55), [architecture overview](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/89), [Product Scope](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55) (Target User Persona, Target User Profile and Value Proposition), [User Stories](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/55), [Non-functional requirements](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103), [Glossary](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/103), [manual testing draft](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/119)
 
 *Community*
 
