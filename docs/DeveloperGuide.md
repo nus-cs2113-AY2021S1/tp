@@ -1,7 +1,6 @@
 # Developer Guide
 
 ## Table of Contents
-// update later on <br>
 [Introduction](#introduction) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Scope](#scope) <br>
@@ -115,8 +114,7 @@ All components can be accessed by the user through Fluffle's UI. On loading Fluf
 ### Writing Manager Component
 
 Given below is the overall architecture of Fluffle's writing component.
-
-![Writing Manager Component](graphics/diagrams/WritingMangerComponent.PNG)
+<img align = "center" alt = "Writing Manager Component" src = "graphics/diagrams/WritingMangerComponent.PNG"></img>
 <p align = "center"><i><b>Figure 2: Writing manager architecture</b></i></p>
 
 In Fluffle, the writings are saved in the local hard drive text file `writings.txt`. Up to now, Fluffle can hold two types of writing: `Poem` and `Essay`. Some operations that can be done on the writings are:
