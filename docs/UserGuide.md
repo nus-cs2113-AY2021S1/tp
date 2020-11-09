@@ -194,6 +194,9 @@ _________________________________
 ## 3. Features
 
 This section introduces and explains the features of Scheduler-\-;!
+>**Note!**
+>
+> * Do note that some of the expected output for longer code snippets may not be exactly the same. This is because this User Guide was edited due to the code snippets being too long and not translating well when converted to PDF. 
 
 ### 3.1 Viewing help: help (Colin Ng)
 
@@ -243,7 +246,8 @@ EVENT_TYPE specify the type of event you want to add. These include “zoom”,
      “timetable” and “personal”.
 EVENT_DESCRIPTION is the description or name of the event.
 LINK/LOCATION is the website link or the location of the event. This is applicable and 
-    optional for zoom and timetable events respectively. This field should always be after the event description if used.
+    optional for zoom and timetable events respectively. This field should always be after
+    the event description if used.
 DD/MM/YY is the date associated with the event in the format DD/MM/YY.
 HH:MM AM/PM is the time of the event. It can be written in 12 or 24 hour format.
 
