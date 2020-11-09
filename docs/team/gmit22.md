@@ -38,7 +38,7 @@ Following issues addressed in the **PR** mentioned:
 * Refactored code to fit in the recommended design architecture. 
 * Basic project integration.
  
-### Assertions, Logging and Unit testing
+#### Assertions, Logging and Unit testing
 * **PR** [#82](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/82),
 [#86](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/86),
 [#111](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/111),
@@ -50,15 +50,15 @@ Following issues addressed in the **PR** mentioned:
 * Used assertions to double check and making sure that the program state does not violate the assumptions regarding
   behaviour. Helped in finding bugs in code.
   
-### PED issues
-* **PR**[#207](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/207),
+#### PED issues
+* **PR** [#207](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/207),
 [#178](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/178).
 
 Solved bugs addressed in PED Dry Run by other students. There were some bugs which needed to be 
 solved, but most feedback was on user guide section. Some high severity bugs solved by [#158](https://github.com/AY2021S1-CS2113T-F11-4/tp/issues/158)
 and [#164](https://github.com/AY2021S1-CS2113T-F11-4/tp/issues/164).
 
-### User Guide
+#### User Guide
 * **PR** [#70](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/70),
 [#73](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/73),
 [#119](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/119),
@@ -70,8 +70,8 @@ command. Updated the expected output of commands for V2.0 in
 Many PED Bugs were also solved in [#178](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/178), with many of them
 being high severity, and affecting the entire functionality of the program. 
  
- ### Developer Guide
- * **PR**[#181](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/181)
+ #### Developer Guide
+ * **PR** [#181](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/181)
  [#140](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140)
  [#131](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/131)
 
@@ -79,7 +79,7 @@ Created Architecture diagram for the Developer guide, added sequence diagrams an
 understanding of the project. Create sequence diagram for `CreateProjectCommand` to better understand the workflow
 and user interaction when the application is run, and project is created. Added [user stories, value proposition and 
 target user profile with implementaion and usage scenario for 
-commands.](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140).
+commands.](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/140)
   
 #### Other Contributions
   * Reported bugs for other team's program during PE dry run. 
