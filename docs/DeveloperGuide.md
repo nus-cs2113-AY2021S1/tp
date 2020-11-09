@@ -43,8 +43,7 @@ Wan Shi Jie Brendan<br>
 * [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
 * [Appendix B.User stories](#appendix-b-user-storiesa-idstoriesa)<br>
 * [Appendix C. Non-functional requirements](#appendix-c-non-functional-requirements)<br>
-* [Appendix D. Glossary](#appendix-d-glossary)<br>
-* [Appendix E. Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
+* [Appendix D. Instructions for manual testing](#appendix-d-instructions-for-manual-testing)
 
 ## 1. Introduction<a id="intro"></a>
   
@@ -325,7 +324,7 @@ JUnit is used to write tests for the project. Learn more about JUnit [here](http
 If you are using IntelliJ, you can run all test by right-clicking on the `test/java` folder and selecting `Run 'Tests'` or press `CRTL` + `SHIFT` + `F10`
 on your keyboard. Alternatively, you can open a console and run the command `gradelw clean test` (Mac/linus: `.gradlew clean test`).  
 
-## Appendix A Product scope<a id="product_scope"></a>
+## Appendix A: Product scope<a id="product_scope"></a>
   
 ### User profile
   
@@ -343,7 +342,7 @@ NUSchedule aims to assist the target audience with:
 * managing all their events in one application (personal or work)
 * easily finding out about the location of their events 
 
-## Appendix B User stories<a id="stories"></a>
+## Appendix B: User stories<a id="stories"></a>
   
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -363,11 +362,7 @@ NUSchedule aims to assist the target audience with:
 
 2. A user that is proficient in typing will find this application to be faster and more convenient to use than applications that requires mouse clicks.
 
-## Appendix D: Glossary
-  
-* *glossary item* - Definition
-
-## Appendix E: Instructions for manual testing
+## Appendix D: Instructions for manual testing
   
 1. Initial launch
    * Download the jar file [here](https://github.com/AY2021S1-CS2113T-F14-4/tp/releases) and place it in an empty folder.
