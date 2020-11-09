@@ -849,7 +849,7 @@ Example of ***`exclude module`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeModuleResult.png" width="700" alt="Exclude Command Module mode: Result"/>
+  <img src="UG_Images/excludeModuleResult.png" width="800" alt="Exclude Command Module mode: Result"/>
 </p>
 
 Example of ***`exclude chapter`***
@@ -874,7 +874,7 @@ Example of ***`exclude chapter`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/excludeChapterResult.png" width="700" alt="Exclude Command Chapter mode: Result"/>
+  <img src="UG_Images/excludeChapterResult.png" width="800" alt="Exclude Command Chapter mode: Result"/>
 </p>
 
 
@@ -916,7 +916,7 @@ Example of ***`include module`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/includeModuleResult.png" width="700" alt="Include Command Module mode: Result"/>
+  <img src="UG_Images/includeModuleResult.png" width="800" alt="Include Command Module mode: Result"/>
 </p>
 
 
@@ -942,7 +942,7 @@ Example of ***`include chapter`***
 * ***Upon completion***: This is what you will see:
 
 <p align="center">
-  <img src="UG_Images/includeChapterResult.png" width="700" alt="Include Command Chapter mode: Result"/>
+  <img src="UG_Images/includeChapterResult.png" width="800" alt="Include Command Chapter mode: Result"/>
 </p>
 
 ### 3.5. General
