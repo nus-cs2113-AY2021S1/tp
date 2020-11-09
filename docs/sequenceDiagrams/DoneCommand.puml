@@ -22,7 +22,7 @@ DoneCommand->AthenaUI: printTaskDone()
 activate AthenaUI
 AthenaUI->Task++: getName()
 return string
-AthenaUI-->DoneCommand:
-<--DoneCommand
+return
+<--DoneCommand--
 
 @enduml

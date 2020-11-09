@@ -11,7 +11,8 @@ hide footbox
 
 ListCommand->Timetable**:
 activate Timetable
-Timetable -> Timetable: populateTimetable()
+Timetable -> Timetable++: populateTimetable()
+return
 return
 
 ListCommand->AthenaUI++: printTimetable()
