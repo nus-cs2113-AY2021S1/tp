@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+skinparam MinClassWidth 100
+
+hide circle
+hide empty members
+
+abstract class Command{
+# command: String
++//execute//(ListManager, StorageManager, User, Recommender)
++ isExit(): boolean
+}
+
+class Fitr
+class ListManager
+class Recommender
+class User
+class StorageManager
+
+Command .down.> User
+Command .down.> ListManager
+Command .down.> Recommender
+Command .down.> StorageManager
+Command <.up. Fitr
+XYZCommand <.. Fitr
+
+Command <.. Parser
+Parser <.. Fitr
+Parser ..> XYZCommand
+
+class XYZCommand{
++XYZCommand(String)
+}
+
+Command <|-- XYZCommand
+
+
+@enduml

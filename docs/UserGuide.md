@@ -478,7 +478,6 @@ Your current weight (in kg) is: 60.00
 > 2.00 to 1000.00. 
 > * Inputs will be rounded up to 2 decimal places.
 
-
 #### 2.3.1.6 Editing your fitness level
 Format: `edit fitness NEW_FITNESS_LEVEL`
 
@@ -780,6 +779,22 @@ A: Install Fitr on another computer, and overwrite the empty data files that it 
 **Q: Can I edit the text files created by Fitr?**
 
 A: Yes, you can edit the text files. Note that if the entries are not recognised by Fitr, it will be ignored and deleted subsequently.
+
+**Q: Can I add my own exercises to add to the standard list of exercise recommendations?**
+
+A: Currently, the standard exercises are maintained by us. The user will not be able to alter or manipulate the list standard exercises.
+
+**Q: What if I only like certain exercises in the recommendation?**
+
+A: As mentioned above, you can choose to do and add specific exercises that have been recommended to you rather than the whole list. You can also recommend again repeatedly until you add all the exercises that you are comfortable doing.
+
+**Q: Will my Fitness Level be automatically increased for me over time?**
+
+A: You have to increase your own fitness level according to what you deem fit as Fitr will not do it for you. This is because every single person's body react differently to a different set of exercises, hence automating it may not be the best for users.
+
+**Q: Will Fitr automatically know or save the calories for a food?**
+
+A: You will have to know or search the amount of calories for a certain food and key it in respectively. Fitr does not save the calories for specific foods as we have no way of making sure if what you keyed in is an actual food product.
 
 # 4. Command Summary
 Table 1 below summarises the commands Fitr understands and how they can be used. Examples are also provided for your reference.
