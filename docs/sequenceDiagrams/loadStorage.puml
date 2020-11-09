@@ -10,6 +10,8 @@ participant ":File" as File
 Storage->TaskList**:
 activate TaskList
 Storage->File**
+activate File
+return
 loop csvReader.readLine()
     Storage->TaskList: addTask()
     TaskList-->Storage
