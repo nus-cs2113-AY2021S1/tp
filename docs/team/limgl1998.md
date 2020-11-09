@@ -28,7 +28,7 @@ _list_ and _analyse_ features (Section 2.5, 2.6) in the user guide.
 
 #### Contributions to the Developer Guide
 I contributed to the _use cases and Appendix_ (Section 6.3 and 7) part of the developer guide. I 
-added the implementations of the _view modules_ (Section 4.5) and _Breakdown and analysis_ (Section 4.6) features. 
+added the implementations of the _view modules_ (Section 4.6) and _Breakdown and analysis_ (Section 4.7) features. 
 I also added two sequence diagrams under these implementations. 
 
 #### Contributions to Team-based Tasks

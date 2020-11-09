@@ -8,8 +8,8 @@ import java.util.Arrays;
  */
 public class Module {
 
-    public static final double NO_INPUT = -1.0;
-    public static final int INDEX_OFFSET = 1;
+    private static final double NO_INPUT = -1.0;
+    private static final int INDEX_OFFSET = 1;
     private String moduleCode;
     private double expected = NO_INPUT;
     private final double[] actualTime = new double[13];
@@ -62,32 +62,31 @@ public class Module {
 
     public void addActualTime(String time, String week) {
         double d = Double.parseDouble(time);
+        double roundedTime = Math.round(d * 10.0) / 10.0;
         int i = Integer.parseInt(week);
-        double timeDifference = 99 - this.actualTime[i - INDEX_OFFSET];
-        if (timeDifference < d) {
-            throw new IllegalArgumentException("Total workload cannot be more than 99 hours.");
-        }
         if (this.actualTime[i - INDEX_OFFSET] == NO_INPUT) {
-            this.actualTime[i - INDEX_OFFSET] = d;
+            this.actualTime[i - INDEX_OFFSET] = roundedTime;
         } else {
-            this.actualTime[i - INDEX_OFFSET] += d;
+            this.actualTime[i - INDEX_OFFSET] += roundedTime;
         }
-
     }
+
 
     public void minusActualTime(String time, String week) {
         double d = Double.parseDouble(time);
         int i = Integer.parseInt(week);
+        double roundedTime = Math.round(d * 10.0) / 10.0;
         //assert this.actualTime[i - INDEX_OFFSET] != NO_INPUT : "Cannot minus if actual time is not initialised";
         if (this.actualTime[i - INDEX_OFFSET] != NO_INPUT) {
-            this.actualTime[i - INDEX_OFFSET] -= d;
+            this.actualTime[i - INDEX_OFFSET] -= roundedTime;
         }
     }
 
     public void editsActualTime(String time, String week) {
         double d = Double.parseDouble(time);
+        double roundedTime = Math.round(d * 10.0) / 10.0;
         int i = Integer.parseInt(week);
-        this.actualTime[i - INDEX_OFFSET] = d;
+        this.actualTime[i - INDEX_OFFSET] = roundedTime;
     }
 
     @Override
@@ -117,5 +116,9 @@ public class Module {
 
     public boolean doesHoursExceedTotal(double time, int weekNumber) {
         return (actualTime[weekNumber - INDEX_OFFSET] < time);
+    }
+
+    public boolean doesHoursExceed99(double time, int weekNumber) {
+        return ((actualTime[weekNumber - INDEX_OFFSET] + time) > 99);
     }
 }

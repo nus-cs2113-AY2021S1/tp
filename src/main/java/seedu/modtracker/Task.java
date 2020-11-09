@@ -11,7 +11,7 @@ public class Task {
     /**
      * Constructor.
      *
-     * @param modCode module code
+     * @param modCode     module code
      * @param description name of task
      */
     public Task(String modCode, String description) {

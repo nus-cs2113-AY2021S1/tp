@@ -12,18 +12,17 @@ public class ModView {
     public static final String NO_INPUT = " No Input ";
     private static final int MIN_WEEK_VALUE = 1;
     private static final int MAX_WEEK_VALUE = 13;
-    public static final String WEEK_NUMBER_PADDING_CHAR = "0";
-    private static final int FACTOR = 10;
+    private static final String WEEK_NUMBER_PADDING_CHAR = "0";
     private static final int INDEX_OFFSET = 1;
     private static final String REPLACE_BY_WEEK_NUMBER = "WK";
     private static final String REPLACE_BY_MODULE_CODE = "XXXXXX";
     public static final String FIRST_PART_OF_CONTENT = "|  " + REPLACE_BY_WEEK_NUMBER
             + "  | " + REPLACE_BY_MODULE_CODE;
-    public static final String PADDING_CHAR = " ";
-    public static final String REPLACE_BY_EXPECTED_WORKLOAD = "YYYY";
-    public static final String REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND = "   YYYY   ";
-    public static final String REPLACE_BY_ACTUAL_WORKLOAD = "ZZZZ";
-    public static final String REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND = "   ZZZZ   ";
+    private static final String PADDING_CHAR = " ";
+    private static final String REPLACE_BY_EXPECTED_WORKLOAD = "YYYY";
+    private static final String REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND = "   YYYY   ";
+    private static final String REPLACE_BY_ACTUAL_WORKLOAD = "ZZZZ";
+    private static final String REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND = "   ZZZZ   ";
     public static final String SECOND_PART_OF_CONTENT = " |" + REPLACE_BY_NO_EXPECTED_WORKLOAD_FOUND
             + "|" + REPLACE_BY_NO_ACTUAL_WORKLOAD_FOUND + "|" + "\n";
     public static final String INVALID_WEEK_NUMBER = "Please input a week number between 1 and 13 inclusive.";

@@ -1,9 +1,9 @@
 package seedu.modtracker;
 
-import static seedu.modtracker.ModuleList.modList;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+import static seedu.modtracker.ModuleList.modList;
 
 public class Notification {
 
@@ -49,7 +49,7 @@ public class Notification {
      * Returns the number of notifications by updating the week number, followed by
      * checking the modules of that week if there is too much or too less time spent on the modules.
      *
-     * @param list   list of modules.
+     * @param list list of modules.
      * @return the number of notifications.
      */
     public int getNumNotification(ModuleList list) {
@@ -87,7 +87,7 @@ public class Notification {
     public void printNotification(ModuleList list) {
         numOfNotification = getNumNotification(list);
         if (numOfNotification == 0 || currentWeek == 0) {
-            System.out.println(String.format(ON_TRACK, currentWeek));
+            System.out.printf((ON_TRACK) + "%n", currentWeek);
             randomise(lines);
             return;
         }
@@ -100,11 +100,11 @@ public class Notification {
                 analysis = breakDown.computeAnalysisOfTimeSpent(mod, currentWeek);
                 switch (analysis) {
                 case tooMuchTimeSpent:
-                    System.out.println(String.format(TOO_MUCH_TIME, mod.getModuleCode(), currentWeek));
+                    System.out.printf((TOO_MUCH_TIME) + "%n", mod.getModuleCode(), currentWeek);
                     System.out.println();
                     break;
                 case tooLittleTimeSpent:
-                    System.out.println(String.format(TOO_LITTLE_TIME, mod.getModuleCode(), currentWeek));
+                    System.out.printf((TOO_LITTLE_TIME) + "%n", mod.getModuleCode(), currentWeek);
                     System.out.println();
                     isBehind = true;
                     break;

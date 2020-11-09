@@ -203,7 +203,7 @@ class ViewTimeBreakdownAnalysisTest {
         list.getData().add(module1);
 
         Module module2 = new Module("CS2113t", "8");
-        module2.addActualTime("5.55", "2");
+        module2.addActualTime("5.54", "2");
         list.getData().add(module2);
 
         view.printAnalysis(list, 2);
@@ -228,7 +228,7 @@ class ViewTimeBreakdownAnalysisTest {
         list.getData().clear();
 
         Module module1 = new Module("CS1231", "8");
-        module1.addActualTime("10.39", "2");
+        module1.addActualTime("10.34", "2");
         list.getData().add(module1);
 
         Module module2 = new Module("CS2113t", "8");

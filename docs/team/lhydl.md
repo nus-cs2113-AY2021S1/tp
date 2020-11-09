@@ -32,7 +32,7 @@ of the _help, addtask, listtask, done, deletetask_ and _exit_ features (Section 
 
 #### Contributions to the Developer Guide
 I contributed to the _setting up and getting started_ (Section 2) part of the developer guide. As for personal implementations, I 
-added the implementations of the _add task_ (Section 4.7) and _mark task as done_ (Section 4.8) features. I added two sequence
+added the implementations of the _add task_ (Section 4.8) and _mark task as done_ (Section 4.9) features. I added two sequence
 diagrams under these implementations. 
 
 #### Contributions to Team-based Tasks
