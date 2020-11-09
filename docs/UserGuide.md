@@ -53,6 +53,7 @@ Format: `food NAME_OF_FOOD /NUMBER_OF_CALORIES` or `food NAME_OF_FOOD /NUMBER_OF
 > :bulb: **Additional information:** 
 > * `NUMBER_OF_CALORIES` must be between 0 and 10,000 (inclusive)
 > * `AMOUNT_OF_FOOD` must be between 1 and 1000 (inclusive)
+> * If `AMOUNT_OF_FOOD` is omitted, the default amount of food is 1
 
 For example, you can enter `food apple /50` and this will be the result after the application records the food entry:
 
@@ -509,8 +510,8 @@ Format: `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY`
 
 > :bulb: **Additional information:**
 > * `INDEX` must be a positive integer
-> * `NUMBER_OF_CALORIES` must be between 0 and 10,000 (inclusive)
-> * `AMOUNT_OF_FOOD` must be between 1 and 1000 (inclusive)
+> * `CALORIES_OF_FOOD` must be between 0 and 10,000 (inclusive)
+> * `QUANTITY` must be between 1 and 1000 (inclusive)
 
 For example, you can enter `edit food 31/10/2020 1 apple /100 1`, and you should expect to see the following output:
 ```
