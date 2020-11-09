@@ -118,16 +118,19 @@ If you plan to use Intellij IDEA:
 <br/>
 
 ### 2.2 Before writing code
+
 #### 2.2.1 Configuring the Coding Style
 
 If you are using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
+
 #### 2.2.2 Set up CI
-    
+
 There is no set up required as the project comes with GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
     
+
 #### 2.2.3 Learn the Design
-    
+
 Before starting to write any code, we recommend that you have a look at **AniChan**’s overall design by reading about it at [AniChan's architecture](DeveloperGuide.md#31-architecture).
     
 <br/>
@@ -139,6 +142,7 @@ The following section describes the architecture design of **AniChan**. This sec
 <br/>
 
 ### 3.1 Architecture
+
 This section will help provide insight to the general overview of **AniChan**’s architecture.
 
 <br/>
@@ -154,10 +158,12 @@ This section will help provide insight to the general overview of **AniChan**’
 The **Architecture Diagram** presented above explains the high-level design of **AniChan**, and given below is a quick overview of each component involved.
 
 The `Main` class is the starting point of the application and has only one class called `Main`. It is responsible for: 
+
 *   At launch: Initializes the various components in the correct sequence, connects them up with each other, and loads any saved data.
 *   At shut down: Shuts down the components and invokes any clean up methods where necessary.
 
 The rest of **AniChan** consists of 6 components: 
+
 *   `Ui`: Manages the user interface of **AniChan**.
 *   `Parser`: Parses the user input.
 *   `Command`: Executes the command.
@@ -179,22 +185,25 @@ The next sequence diagram shows an instance of command execution.
 
 ![Command Execution Sequence Diagram](images/Command-Execution-Sequence-Diagram.png) <br/>
 *Figure 3: Command Execution Sequence Diagram*
- 
+
 <br/>
 
 ### 3.2 UI Component
+
 ![UI Class Diagram](images/Ui-Class-Diagram.png) <br/>
 *Figure 4: Ui Class Diagram*
 
 The Ui component consists of a `Ui` class which handles all user input and system output. The Ui is only dependent on the `Main` class and does not interact directly with other classes, ensuring a high level of cohesiveness and separation of roles.
 
 The `Ui` component actively listens for: 
+
 *   the execution of commands to print the result of a `Command`.
 *   any exceptions thrown to show an error message to the user, instead of an unexpected program termination.
 
 <br/>
 
 ### 3.3 Parser Component
+
 ![Parser Class Diagram](images/Parser-Class-Diagram.png) <br/>
 *Figure 5: Parser Class Diagram*
 
@@ -209,6 +218,7 @@ The created `XYZParser` will then parse the parameter and perform input validati
 <br/>
 
 ### 3.4 Command Component
+
 ![Command Class Diagram](images/Command-Class-Diagram.png) <br/>
 *Figure 6: Command Class Diagram*
 
@@ -221,12 +231,14 @@ The `Command` component consists of different commands, each represented by `XYZ
 <br/>
 
 ### 3.5 AnimeData Component
+
 ![AnimeData Class Diagram](images/AnimeData-Class-Diagram.png) <br/>
 *Figure 7: AnimeData Class Diagram*
 
 The `AnimeData` component is responsible for retrieving offline json data and parsing it into `Anime` objects that will be stored in program memory. The `AnimeData` will manage an ArrayList of `Anime` objects, providing **AniChan** with an interface for the program to retrieve the source data.
 
 The `AnimeData `component:
+
 *   can retrieve `Anime` objects using their index.
 *   can view detailed  information of each `Anime` object.
 *   can browse the `Anime` catalog with sorting algorithms.
@@ -234,27 +246,32 @@ The `AnimeData `component:
 <br/>
 
 ### 3.6 User Component
+
 ![User Class Diagram](images/User-Class-Diagram.png) <br/>
 *Figure 8: User Class Diagram*
 
 The `User` class inherits from the abstract `Human` class and stores the name and gender of the user. It represents the user's interactions with `Workspace` class.
 
 The `User`component: 
+
 *   can provide user information such as `name`, `gender`, and `honorific name`.
 *   stores an ArrayList of type `Workspace`.
 *   can add, set, and switch between workspaces.
 
 The `Workspace` component:  
+
 *   can allow `User` to create and get the list of `Watchlist` and `Bookmark`.
 *   can allow `User` to change his active `Watchlist`.
 
 <br/>
 
 ### 3.7 StorageManager Component
+
 ![StorageManager Class Diagram](images/StorageManager-Class-Diagram.png) <br/>
 *Figure 9: StorageManager Class Diagram*
 
 The `StorageManager` component:
+
 *   can **save** workspace created by the user as a folder.
 *   can **save** user, watchlist and bookmark data in `.txt` format and **read it back** using their respective storage class: `UserStorage`, `WatchlistStorage`, and `BookmarkStorage`.
 *   can **read** script files that are in `.txt` format using the class `ScriptStorage`.
@@ -264,14 +281,17 @@ The `StorageManager` component:
 <br/>
 
 ## 4. Implementation
+
 This section introduces the specific implementation details and design consideration of some features in **AniChan**.
 
 <br/>
 
 ### 4.1 Estimate Feature
+
 The estimate feature aims to provide translators with better estimates on the time needed to translate a script based on their capability, or by the average translators' capability. Hence, this feature allows users to better manage and plan their time.
 
 #### 4.1.1 Current Implementation
+
 The estimate feature is facilitated by `EstimateCommand`. By running the command `estimate` with the relevant field (and parameter), `EstimateParser` will construct `EstimateCommand` which will be used to execute the user's instruction.
 
 <br/>
@@ -283,6 +303,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 **Step 2:** `EstimateParser` is terminated at this point. The application invokes `EstimateCommand#execute()` to execute the user's instruction.
 
 **Step 3:** `EstimateCommand` first invokes `User#getActiveWorkspace()` to identify the workspace the user is currently using, then it invokes `StorageManager#loadScriptFile()` to read `scriptFileName` (located in the active workspace folder) and store its content in `fileContent`.
+
 > :memo: Every workspace is actually a folder.
 
 > :memo: The application assumes that the user has the file placed in the active (currently using) workspace.
@@ -290,6 +311,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 <br/>
 
 **Step 4:** Once the file has been read, it calculates the estimated time using `fileContent` and `wordsPerHour`, then invokes `EstimateCommand#timeNeededToString()` to convert the estimated time into a human-readable format, and finally, returns the result to `Main` for it to be printed via `Ui#printMessage()`.
+
 > :memo: If `wordsPerHour` was not specified, the values 400, 500, and 600 words per hour (average translator's speed) will be used and this will generate 3 timings, unlike the current scenario, only 1 timing will be generated.
 
 <br/>
@@ -299,6 +321,7 @@ Given below is an example usage scenario showing how the `EstimateCommand` behav
 <br/>
 
 The sequence diagram presented below depicts the interaction between the components for running the command, `estimate script.txt -wph 300`.
+
 > :memo: The sequence diagram shows the interaction from step 2 onward.
 
 ![EstimateCommand Sequence Diagram](images/EstimateCommand-Sequence-Diagram.png)
@@ -308,16 +331,17 @@ The sequence diagram presented below depicts the interaction between the compone
 <br/>
 
 #### 4.1.2 Design Considerations
+
 This section shows the design considerations taken when implementing the estimate feature.
 
 Aspect: **When should the application validate the script file**
 
 Since the script file specified by the user can be non-existent or empty, it is important to determine when the application should validate the file to ensure efficient use of memory resource.
 
-| Approach | Pros | Cons |
-| --- | --- | --- |
-| During command execution. | Easy to implement since `Command` already handle file matters. | Some memory resource are wasted if the file is invalid. |
-| During parsing. | No memory resource wasted since invalid file will be detected early. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
+| Approach                  | Pros                                                         | Cons                                                         |
+| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| During command execution. | Easy to implement since `Command` already handle file matters. | Some memory resource are wasted if the file is invalid.      |
+| During parsing.           | No memory resource wasted since invalid file will be detected early. | Decreases cohesion as `Parser` now has to handle file matters on top of parsing matters. |
 
 Having considered both approach, we have decided to implement the first approach, **validate the script file during command execution** because we do not want to decrease the cohesion of `Parser`, and we find that the memory resource wasted is a worthy exchange for the cohesion preserved.
 
@@ -327,9 +351,9 @@ Aspect: **The way user can specify the script file**
 
 As the user have to specify a script file for the command, there is a need to decide on whether the user needs to include the file extension as well.
 
-| Approach | Pros | Cons |
-| --- | --- | --- |
-| Have to specify file extension. |  Ensures the correct file will be read. | May affect usability as some user may not know how to identify the file extension and might find it troublesome. |
+| Approach                               | Pros                                       | Cons                                                         |
+| -------------------------------------- | ------------------------------------------ | ------------------------------------------------------------ |
+| Have to specify file extension.        | Ensures the correct file will be read.     | May affect usability as some user may not know how to identify the file extension and might find it troublesome. |
 | Do not have to specify file extension. | Users can easily specify the file to read. | May read the wrong file due to identical names but different file extension. |
 
 We have decided to implement the first approach, **users should specify the file extension** because if the wrong timing is provided to the user, it could end up being a costly mistake. In addition, we also find that this accuracy we are assuring our users far outweighs and compensate for the slight inconvenience introduced.
@@ -337,15 +361,18 @@ We have decided to implement the first approach, **users should specify the file
 <br/>
 
 ### 4.2 Browse Feature
+
 The browse feature is a useful feature that will allow users to quickly look through all the different anime series available in a browsing fashion.`browse` is also able to sort the order of how anime are displayed either in alphabetical order or by the anime's rating.
 
 <br/>
 
 #### 4.2.1 Current Implementation
+
 The `BrowseCommand` is executed by `BrowseCommandParser` after parsing the user input. It will then fetch `Anime` objects matching the parameters specified by `BrowseCommandParser` that are stored in `AnimeData`. It extends the `Command` class and implements the following operations:
+
 *   `BrowseCommand#sortBrowseList()` - Handles any sorting of `Anime` objects. 
 *   `BrowseCommand#buildBrowseOutput()` - Creates the output string to be printed to users.
-<br/>
+    <br/>
 
 Given above are the two fundamental operations that will carry out the execution of a `browse` command.
 
@@ -353,15 +380,15 @@ If no additional parameters is provided, `BrowseCommand` will be constructed wit
 
 Before going any further, please refer to this helpful table of the `BrowseCommand` parameters for reference. These are the attributes that will define the scope of a `browse` command.
 
-| Attribute | Value  | Function          |
-| ---       | ---    | ---               |
-| order     | 0      | Ascending         |
-| order	    | 1      | Descending        |
-| sortType  | 0      | No Sort           |
-| sortType  | 1      | by name           |
-| sortType  | 2      | by rating         |
-| sortType  | 3      | back to original  |
-| page      | \>= 1  | page number       |
+| Attribute | Value | Function         |
+| --------- | ----- | ---------------- |
+| order     | 0     | Ascending        |
+| order     | 1     | Descending       |
+| sortType  | 0     | No Sort          |
+| sortType  | 1     | by name          |
+| sortType  | 2     | by rating        |
+| sortType  | 3     | back to original |
+| page      | \>= 1 | page number      |
 
 > :bulb: The values which are magic literals here, have already been refactored out into constant variables within the code.
 
@@ -383,6 +410,7 @@ For this case, since it is a default browse operation, there will be no sorting 
 *Figure 11: Browse Default State Object Diagram*
 
 In this example, it fetches the following `Anime` objects.
+
 ```text
 Charlie
 Echo
@@ -421,16 +449,17 @@ Here is the sequence diagram to better illustrate the lifecycle of a `browse` co
 <br/>
 
 #### 4.2.2 Design Consideration
+
 Here are some various design considerations that was taken when implementing the `browse` feature.
 
 Aspect: **How should the program handle the sorted list**
 
 Since `browse` would require a sorted list, it is important to identify a suitable way to sort the list so that it does not affect the original list and have low complexity.
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
-| Leaving the list unsorted.        | - No complexity at all and is the fastest approach.  | - List will be unsorted and may cause confusion to users and other operations. |
-| Resorting the list again.         | - The list will be back into its original form before browsing.    | - May hinder performance as resorting could take time. <br/> - Requires altering of the main list. |
+| Approach                          | Pros                                                         | Cons                                                         |
+| --------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Leaving the list unsorted.        | - No complexity at all and is the fastest approach.          | - List will be unsorted and may cause confusion to users and other operations. |
+| Resorting the list again.         | - The list will be back into its original form before browsing. | - May hinder performance as resorting could take time. <br/> - Requires altering of the main list. |
 | Cloning a duplicate list to sort. | - The list will be back to its original form. <br/> - The main list will not be affected at all. | - Expensive operation that will require large storage and time complexity. |
 
 We have decided to implement the second approach of **resorting the list** because it is important to have the original order of the list to ensure that other operations will not be affected by `browse`. This approach also is the most cost-effective method that will not incur too many expensive memory usage and complex operations.
@@ -441,19 +470,21 @@ Aspect: **Should the program use an interactive or static browsing approach**
 
 Since `browse` will access anime series in pages, it is important to decide the way users can access or 'flip' through different pages.
 
-| Approach | Pros | Cons  |
-| --- | --- | --- |
+| Approach                                                     | Pros                                                         | Cons                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Interactive browsing, users can `flip` pages and `pick` to view specific anime. | - Fluid and seamless browsing session. <br/>- Very good usability and interactivity. | - Would require `BrowseCommand` to constantly get user input. |
-| Static browsing, users specify the page they want to access. | - Completely decoupled from Ui component. <br/>- Allows for browse to be more precise in finding what the user wants. |  - Not as seamless as the first approach but still usable. |
+| Static browsing, users specify the page they want to access. | - Completely decoupled from Ui component. <br/>- Allows for browse to be more precise in finding what the user wants. | - Not as seamless as the first approach but still usable.    |
 
 We have decided to implement the second approach of having **static browsing** which users specify the page he wants to access. This is because it was important for the project to be OOP and this approach was a good fit for that requirement. This approach also allows for users to access different pages quickly, meaning more experienced users will be able to utilise it quicker than the first approach.
 
 <br/>
 
 ### 4.3 View Anime Information Feature
+
 The `info` command allows the user to view all the relevant information regarding a specific anime that the user specifies. This allows them to know more about a particular anime.
 
 #### 4.3.1 Current Implementation
+
 The view information command is currently implemented by the `InfoCommand`. The user has to give an input of the form `info <ANIME_ID>`, and this would allow users to check all the information available for the ANIME_ID they have specified.
 
 Given below is an example of the usage scenario of view information command and how it behaves at each step.
