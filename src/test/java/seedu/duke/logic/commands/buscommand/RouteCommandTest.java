@@ -48,8 +48,8 @@ class RouteCommandTest {
             com.executeCommand();
         } catch (CustomException error) {
             assertEquals("The starting location you have provided is not the name of any bus stop in our\n"
-                    + "database :( If you are typing a short form of the name, please type the full bus stop\nname and "
-                    + "try again.", error.toString());
+                    + "database :(\nIf you are typing a short form of the name, please type the full bus stop name and"
+                    + "\ntry again.", error.toString());
         }
 
         String locationsInvalidDest = " University Health Centre /to Vivocity ";
@@ -57,10 +57,9 @@ class RouteCommandTest {
         try {
             com.executeCommand();
         } catch (CustomException error) {
-            assertEquals("The destination you have provided is not the name of any bus stop in our database :( "
-                            + "If you are typing a short form of the name, please type the full bus stop\nname and try "
-                            + "again.",
-                    error.toString());
+            assertEquals("The destination you have provided is not the name of any bus stop in our database :("
+                            + "\nIf you are typing a short form of the name, please type the full bus stop name and\n"
+                            + "try again.", error.toString());
         }
 
         String locationsInvalidAll = " Santosa /to West coast park";
@@ -69,8 +68,8 @@ class RouteCommandTest {
             com.executeCommand();
         } catch (CustomException error) {
             assertEquals("The starting location and destination you have provided are not the names of any "
-                    + "bus\nstops in our database :( If you are typing a short form of the name, please type the full "
-                    + "bus stop\nname and try again.", error.toString());
+                    + "bus\nstops in our database :(\nIf you are typing a short form of the name, please type the full "
+                    + "bus stop name and\ntry again.", error.toString());
         }
 
     }
