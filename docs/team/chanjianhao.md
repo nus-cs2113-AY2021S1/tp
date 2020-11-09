@@ -31,6 +31,8 @@
     *   Justification: When `Workspace` is deleted in **AniChan**, the leftover folder and files in `data` should be deleted as well.
     *   Highlights: Implemented a safe recursive delete approach for `Workspace` deletion, where it searches recursively for leftover `Watchlist`/`Bookmark` data to delete first before deleting the folder. Exceptions and input validation built-in for deletion to prevent file system related issues to crash the program or cause unexpected results.
 
+*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+
 *   **Documentation:**
     *   README.md:
         * Designed **AniChan** logo.
@@ -44,7 +46,7 @@
         *   Contributed to `Workspace` related user stories and manual testing guide: [#285](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/285).
         *   Documented `Workspace` implementation and its diagrams: [#206](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/206).
         *   Documented the section on '**Documentation, Logging, Testing, and DevOps**': [#195](https://github.com/AY2021S1-CS2113T-F12-2/tp/issues/195).
-        *   Formatting & Grammar fixes and improvements: [#254](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/254).
+        *   Formatting & Grammar fixes and improvements: [#254](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/254), [#302](https://github.com/AY2021S1-CS2113T-F12-2/tp/pull/302).
 
 *   **Team-based Tasks**
     *   Created team organization and GitHub repository.
@@ -66,5 +68,4 @@
     *   Integrated **Travis CI** for DevOps purposes.
     *   Integrated **Codecov** for coverage tracking.
     *   Added **Discord bot** for GitHub tracking.
-
-*   **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chanjianhao&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ChanJianHao&tabRepo=AY2021S1-CS2113T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+    
