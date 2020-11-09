@@ -863,12 +863,10 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png){:height="70%" width="70%"}
+![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
-
-<div style="page-break-after: always;"></div>
 
 ### 4.2 Adding flashcards: `add`
 
@@ -897,9 +895,7 @@ If you encounter any errors, take note of the following warning.
 >This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
 >respectively.
 >If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
->![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
-
-<div style="page-break-after: always;"></div>
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="80%" width="80%"}
 
 ### 4.3 Listing flashcards: `list`
 
@@ -911,9 +907,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
-
-<div style="page-break-after: always;"></div>
+![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png){:height="80%" width="80%"}
 
 ### 4.4 Deleting flashcards: `delete`
 
@@ -930,12 +924,10 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
+![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use the `list` command to check the card index.
-
-<div style="page-break-after: always;"></div>
 
 ### 4.5 Testing content:`test`
 
@@ -950,11 +942,9 @@ Instruction:
 2. Answer the questions as prompted
 3. `show answer` / `back`
 
-<div style="page-break-after: always;"></div>
-
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="70%" width="70%"}
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
@@ -970,7 +960,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
+![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png){:height="80%" width="80%"}
 
 <div style="page-break-after: always;"></div>
 
