@@ -197,9 +197,6 @@ The `ListStopsCommand#executeCommand()` method of ListStopsCommand Class execute
 `/addfav <description>` is the command that has to be entered by the user to add a previous valid command in to the user's 
 list of favourites.
 
-The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
-![add favourites](DG_Diagrams/AddFavSequence.png)
-
 The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the command in the following steps:
 1. The `AddFavCommand#executeCommand` method throws an exception if the command to be saved in FavList is missing.
 2. Calls `AddFavCommand#createFav()` to make a new Fav object to be saved in the FavList.
@@ -209,6 +206,9 @@ The `AddFavCommand#executeCommand()` method of AddFavCommand Class executes the 
     - The `AddFavCommand#createFav()` method calls the contains method within Favlist to check for any duplicate
     Fav objects within the list that contains the same command.
     - If the there are no duplicate Fav objects, Fav object created will be added to the FavList.
+
+The following sequence diagram illustrates the steps taken by the program when the user calls the `/addfav` command.
+![add favourites](DG_Diagrams/AddFavSequence.png)
 
 ### 3.5. Favourite command executor (`/execfav` Feature)
 `/execfav <index>` is the command to execute a command with the specific index in the list of favourite commands. <br>
@@ -437,6 +437,24 @@ Expected: The CLI application closes with an exit message. List of favourite com
 ### E.6 Search for specific dining outlet
 
 ### E.7 Add a favourite command
+1. Adding a command to the list of favourites.
+- Prerequisites: Executed a command.
+- Test case: <br>
+Step 1.`/liststops`<br>
+Step 2.`/addfav`<br>
+Expected: Message of the command `/liststops` being added to your favourites will be shown.
+- Test case: <br>
+Step 1.`/liststops`<br>
+Step 2.`/addfav`<br>
+Step 3.`/liststops`<br>
+Step 4.`/addfav`<br>
+Expected: Message of the command `/liststops` already exists in your favourites will be shown.
+- Test case: <br>
+Step 1.`/listfav`<br>
+Step 2.`/addfav`<br>
+Expected: Message of command not being detected will be shown as `listfav` is not a valid command.
+- Other incorrect data to test: `/execfav 1`, `/help 3`, `/bus musseeuum`.
+Expected: Similar to previous.
 
 ### E.8 Delete favourite command from favourite list
 
