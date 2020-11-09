@@ -21,6 +21,8 @@ Managed releases v2.1 on GitHub. (1 release)
 1. Wrote JUnit tests for existing features to increase test coverage.
 2. Implemented order class, deliveryOrder class, takeAwayOrder class, dineInOrder class, Dish class, Initializer class and features in Logic class and UI class.
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to team-based tasks: 
 We work as a team, we always meet and work together. Everyone tried to contribute to every part. Thank you!
 
