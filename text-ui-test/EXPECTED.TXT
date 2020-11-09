@@ -33,7 +33,7 @@ Hello from...
     ____________________________________________________________
      How can termiNus assist you today?
 
- 	 Unsure what to type? Start of by typing <help> to see the commands and their usage.
+     Unsure what to type? Start of by typing <help> to see the commands and their usage.
     ____________________________________________________________
 
     ____________________________________________________________
