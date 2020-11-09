@@ -423,7 +423,7 @@ The following sequence diagram shows how the deadline operation works: <br>
 Given below is how the deadline command behave: <br>
 
 <p align="center">
-  <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
+  <img width="414" height="562" src="./diagrams/DeadlineScenario.png">
 </p>
 
 <div style="page-break-after: always;"></div>
