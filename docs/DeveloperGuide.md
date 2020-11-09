@@ -487,7 +487,7 @@ This package contains different list classes used for managing a list of differe
 They are used to abstract the extra processing needed (if any) before or after interacting with the underlying list.
 The relationship between the classes is shown below.
 
-![ListClass](https://user-images.githubusercontent.com/15065550/98441484-79d26b00-20b3-11eb-9899-596db27b8570.png)
+![ListClass](https://user-images.githubusercontent.com/15065550/98496925-98417f00-21f7-11eb-8102-bcaf2ce8dc7a.png)
 
 <sub>***Figure 3.3.1** UML class diagram for list package*</sub>
 
