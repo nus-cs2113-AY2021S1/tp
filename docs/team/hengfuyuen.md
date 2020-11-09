@@ -47,7 +47,7 @@ DietBook is a Command Line Interface (CLI) desktop application designed mainly _
 * Helped in managing `v1.0` release
 * Managed release [DietBook v2.0](https://github.com/AY2021S1-CS2113-T14-4/tp/releases/tag/v2.0.2) on GitHub
 * Authored more than 45 [Issues](https://github.com/AY2021S1-CS2113-T14-4/tp/issues/created_by/HengFuYuen) in the team repo issue tracker
-* Helped in bug catching (examples: [#40](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/40) [#104](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/104) [#61](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/61) [#105](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/105))
+* Helped in bug catching/fixing (examples: [#40](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/40) [#104](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/104) [#61](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/61) [#105](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/105)) [#199](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/199/files)
 * Configure the build.gradle file [#46](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/46/files) [#68](https://github.com/AY2021S1-CS2113-T14-4/tp/pull/68)
 * Helped in setting up the tP Organisation and Team Repo - Set up a `developers` team in the organisation, enabled the issue tracker, updated the labels in issue tracker and created the milestones used for managing the project
 * Refer to [Documentation](#documentation) section for contributions to user guide, developer guide, etc that are not specific to a feature
