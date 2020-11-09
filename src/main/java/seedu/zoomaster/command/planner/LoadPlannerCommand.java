@@ -42,9 +42,9 @@ public class LoadPlannerCommand extends Command {
         try {
             Timetable temp = storage.loadPlanner();
             planner.addModule(initialiseEmptySlots(temp));
-            ui.print("Planner loaded." + System.lineSeparator());
+            ui.print("Planner loaded." + Ui.NEW_LINE);
         } catch (ZoomasterException e) {
-            ui.print("Please insert a non-empty timetable to the planner folder." + System.lineSeparator());
+            ui.print("Please insert a non-empty timetable to the planner folder." + Ui.NEW_LINE);
         }
     }
 

@@ -2,56 +2,26 @@ package seedu.zoomaster.command.timetable;
 
 import org.junit.jupiter.api.Test;
 import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-//@@author
+//@@author xingrong123
 class AddSlotCommandTest {
 
-    //@Test
-    //void constructor_invalidInput_throwsDukeException() {
-    //    String input = AddSlotCommand.ADD_KW;
-    //    try {
-    //        AddSlotCommand command = new AddSlotCommand(input);
-    //        fail();
-    //    } catch (ZoomasterException e) {
-    //        assertEquals(e.getError(), DukeExceptionType.EMPTY_COMMAND);
-    //    }
-    //    input = AddSlotCommand.ADD_KW + "1111 12:00 mon CS1231 lecture";
-    //    try {
-    //        AddSlotCommand command = new AddSlotCommand(input);
-    //        fail();
-    //    } catch (DukeException e) {
-    //        assertEquals(e.getError(), DukeExceptionType.INVALID_TIME_FORMAT);
-    //    }
-    //}
+    @Test
+    void constructor_invalidInput_throwsDukeException() {
+        // empty detail
+        ZoomasterException e = assertThrows(ZoomasterException.class, () -> new AddSlotCommand("add"));
+        assertEquals(ZoomasterExceptionType.EMPTY_COMMAND, e.getError());
+        // blank detail
+        ZoomasterException e2 = assertThrows(ZoomasterException.class, () -> new AddSlotCommand("add  "));
+        assertEquals(ZoomasterExceptionType.EMPTY_COMMAND, e2.getError());
 
+        // no whitespace
+        ZoomasterException e3 = assertThrows(ZoomasterException.class, () -> new AddSlotCommand("addCS2113T"));
+        assertEquals(ZoomasterExceptionType.UNKNOWN_INPUT, e3.getError());
+    }
 
-    //@Test
-    //void execute_validInput_addsSlotInSlotSlit() {
-    //    String startTime = "10:00";
-    //    String endTime = "12:00";
-    //    String title = "CS1231 Lecture";
-    //    String input = AddSlotCommand.ADD_KW + " " + startTime + " " + endTime + " " + Slot.FRI + " " + title;
-    //    SlotList expectedSlots = new SlotList();
-    //    expectedSlots.addSlot(new Slot(LocalTime.parse(startTime),
-    //            LocalTime.parse(endTime),
-    //            Slot.FRI,
-    //            title
-    //            ));
-    //    AddSlotCommand command;
-    //    SlotList slots = new SlotList();
-    //    try {
-    //        command = new AddSlotCommand(input);
-    //        command.execute(new BookmarkList(),
-    //                slots,
-    //                new Ui(),
-    //                new Storage("test.txt"),
-    //                new Storage("test.txt"));
-    //    } catch (DukeException e) {
-    //        fail(e.getMessage());
-    //    }
-    //    assertEquals(expectedSlots.getData(), slots.getData());
-    //}
 }

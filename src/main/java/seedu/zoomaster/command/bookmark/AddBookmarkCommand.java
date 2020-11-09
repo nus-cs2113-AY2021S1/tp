@@ -11,7 +11,7 @@ import seedu.zoomaster.slot.Timetable;
 import java.util.List;
 
 /**
- * Represents the user command exit the Duke program.
+ * Represents the command to add a bookmark.
  */
 //@@author xingrong123
 public class AddBookmarkCommand extends Command {
@@ -22,7 +22,9 @@ public class AddBookmarkCommand extends Command {
     /**
      * Constructs a new AddBookmarkCommand instance and stores the information of the bookmark given by the input.
      *
-     * @throws ZoomasterException if input command is invalid, if the description is empty or if the url is invalid.
+     * @param command The user input.
+     * @throws ZoomasterException if input command format is invalid, if the description is empty or
+     *     if the url is invalid.
      */
     public AddBookmarkCommand(String command) throws ZoomasterException {
         assert command.startsWith(ADD_KW) : "input should always start with \"add\"";
@@ -39,12 +41,11 @@ public class AddBookmarkCommand extends Command {
     }
 
     /**
-     * Adds the bookmark to the bookmark list and saves the bookmarks list in the text file.
+     * Adds the bookmark to the bookmark list.
      *
      * @param bookmarks The list of bookmarks.
      * @param timetable The list of slots.
      * @param ui The user interface.
-     * @throws ZoomasterException if there is an error when saving the bookmark.
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {

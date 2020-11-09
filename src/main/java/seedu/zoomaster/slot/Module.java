@@ -1,5 +1,6 @@
 package seedu.zoomaster.slot;
 
+import seedu.zoomaster.Ui;
 import seedu.zoomaster.bookmark.Bookmark;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.exception.ZoomasterException;
@@ -119,22 +120,22 @@ public class Module {
             message += bookmark.getBookmarkAsString();
         }
         if (!message.isBlank()) {
-            message += System.lineSeparator();
+            message += Ui.NEW_LINE;
         }
         if (bookmarkList.isEmpty()) {
-            message += EMPTY_BOOKMARKLIST_MSG + System.lineSeparator() + System.lineSeparator();
+            message += EMPTY_BOOKMARKLIST_MSG + Ui.NEW_LINE + Ui.NEW_LINE;
         }
         for (int i = 0; i < slots.size(); i++) {
             Slot slot = slots.get(i);
-            message += (i + 1) + ". " + slot.getDay() + " " + slot.toString() + System.lineSeparator();
+            message += (i + 1) + ". " + slot.getDay() + " " + slot.toString() + Ui.NEW_LINE;
             List<Bookmark> slotBookmarkList = slot.getBookmarkList().getBookmarks();
             for (Bookmark bookmark : slotBookmarkList) {
                 message += "  " + bookmark.getBookmarkAsString();
             }
             if (slotBookmarkList.isEmpty()) {
-                message += NO_BOOKMARKS_IN_SLOT + System.lineSeparator();
+                message += NO_BOOKMARKS_IN_SLOT + Ui.NEW_LINE;
             }
-            message += System.lineSeparator();
+            message += Ui.NEW_LINE;
         }
         return message;
     }

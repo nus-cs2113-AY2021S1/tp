@@ -40,13 +40,13 @@ public class ChangeModeCommand extends Command {
             throws ZoomasterException {
         if (setToMode == 1) {
             Parser.programMode = 1;
-            ui.print("Changing to bookmark mode" + System.lineSeparator());
+            ui.print("Changing to bookmark mode" + Ui.NEW_LINE);
         } else if (setToMode == 2) {
             Parser.programMode = 2;
-            ui.print("Changing to timetable mode" + System.lineSeparator());
+            ui.print("Changing to timetable mode" + Ui.NEW_LINE);
         } else if (setToMode == 3) {
             Parser.programMode = 3;
-            ui.print("Changing to planner mode" + System.lineSeparator());
+            ui.print("Changing to planner mode" + Ui.NEW_LINE);
         } else {
             throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODE);
         }

@@ -50,7 +50,7 @@ public class SavePlannerCommand extends Command {
             writeToFile(planner, timetableF);
             storage.writePlanner(timetableF, f);
         }
-        ui.print("Planner saved." + System.lineSeparator());
+        ui.print("Planner saved." + Ui.NEW_LINE);
     }
 
     /**

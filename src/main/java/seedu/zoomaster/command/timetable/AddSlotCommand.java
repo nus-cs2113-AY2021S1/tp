@@ -17,12 +17,36 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Represents the user command exit the Duke program.
+ * Represents the command add a module, slot, module bookmark or slot bookmark to the timetable.
  */
 //@@author xingrong123
 public class AddSlotCommand extends Command {
     public static final String ADD_KW = "add";
-    public String moduleCode;
+
+    // ui messages
+    private static final String ALREADY_EXISTS_MSG = " already exists";
+    private static final String ADDED_MSG = " added";
+    private static final String INCORRECT_SLOT_FORMAT_MSG = "incorrect format for slot: ";
+    private static final String ADD_MOD_BOOKMARK_MSG = "  bookmark added to ";
+    private static final String SLOT_FORMAT_ERROR_MSG = ". (please follow the format: add {MODULE} "
+            + "{DESCRIPTION} {DAY} {START_TIME} {END_TIME})";
+    private static final String INVALID_DAY_MSG = "  Invalid day input: ";
+    private static final String INVALID_TIME_FORMAT_MSG = "  Invalid time format for slot. (";
+    private static final String SLOT_ALREADY_EXISTS_MSG = "  Slot already exists.";
+    private static final String INVALID_TIME_MSG = "  Invalid time for slot. (";
+    private static final String TIME_CLASH_MSG = "  Slot clash. (";
+    private static final String CHECK_TIMETABLE_MSG = " Please check timetable.";
+    private static final String SLOT_ADDED_MSG = " slot added";
+    private static final String INVALID_COMMAND_FORMAT_MSG = "  Invalid command format.";
+    private static final String INVALID_SLOT_INDEX_MSG = "  Invalid slot index.";
+    private static final String SLOT_INDEX_OUT_OF_RANGE_MSG = "  Slot index out of range.";
+    private static final String ADD_SLOT_BOOKMARK_MSG = "    bookmark added to ";
+    private static final String INVALID_URL_FORMAT_MSG = "    Invalid url format. Please provide one valid url.";
+    private static final String INVALID_URL_FORMAT_FOR_SLOT_MSG = "invalid url format: ";
+    private static final String URL_FORMAT_MSG = "URL must start with either 'www.', 'http://' or 'https://'";
+    private static final String BOOKMARK_ADDED_TO_MODULE_MSG = "  bookmark added to module";
+
+    private String moduleCode;
     private List<String> commands;
 
     /**
@@ -47,12 +71,14 @@ public class AddSlotCommand extends Command {
     }
 
     /**
-     * Adds the slot to the slot list and saves the slots list in the text file.
+     * Adds modules, slots, module bookmarks and slot bookmarks into the timetable.
+     * Supports one-shot-command when adding multiple multiple components to a module by using the separator ',' to
+     * separate the addition of each component.
      *
      * @param bookmarks The list of bookmarks
      * @param timetable The timetable
      * @param ui The user interface
-     * @throws ZoomasterException Some exception // ADD MORE COMMENTS
+     * @throws ZoomasterException if the module code is invalid.
      */
     @Override
     public void execute(BookmarkList bookmarks, Timetable timetable, Ui ui) throws ZoomasterException {
@@ -60,12 +86,13 @@ public class AddSlotCommand extends Command {
         Module module;
         if (timetable.moduleExists(moduleCode)) {
             module = timetable.getModule(moduleCode);
-            message += moduleCode + " already exists" + System.lineSeparator();
+            message += moduleCode + ALREADY_EXISTS_MSG + Ui.NEW_LINE;
         } else if (!isValidModule(moduleCode)) {
             throw new ZoomasterException(ZoomasterExceptionType.INVALID_MODULE);
         } else {
-            module = timetable.addModule(moduleCode);
-            message += moduleCode + " added" + System.lineSeparator();
+            module = new Module(moduleCode);
+            timetable.addModule(module);
+            message += moduleCode + ADDED_MSG + Ui.NEW_LINE;
         }
 
         if (commands != null) {
@@ -82,9 +109,9 @@ public class AddSlotCommand extends Command {
         try {
             message += create(command, module, timetable);
         } catch (ZoomasterException e) {
-            message += e.getInfo() + System.lineSeparator();
+            message += e.getInfo() + Ui.NEW_LINE;
         } catch (IndexOutOfBoundsException e) {
-            message += "incorrect format for slot: " + command + System.lineSeparator();
+            message += INCORRECT_SLOT_FORMAT_MSG + command + Ui.NEW_LINE;
         }
         return message;
     }
@@ -98,7 +125,7 @@ public class AddSlotCommand extends Command {
             Slot slot;
             slot = retrieveSlotFromModule(module, slotAndBookmark);
             createBookmark(slotAndBookmark.get(1), slot.getTitle(), slot);
-            message = "  bookmark added to " + moduleCode + " " + slot.getTitle() + System.lineSeparator();
+            message = ADD_MOD_BOOKMARK_MSG + moduleCode + " " + slot.getTitle() + Ui.NEW_LINE;
         } else if (slotAndBookmark.size() >= 4) {
             String lesson = slotAndBookmark.get(0);
             String day = slotAndBookmark.get(1);
@@ -106,37 +133,37 @@ public class AddSlotCommand extends Command {
             LocalTime endTime;
             if (!Day.isDay(day)) {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIMETABLE_DAY,
-                        "  Invalid day input: " + day + ". (make sure that the description only contains one word)");
+                        INVALID_DAY_MSG + day + SLOT_FORMAT_ERROR_MSG);
             }
             try {
                 startTime = LocalTime.parse(slotAndBookmark.get(2));
                 endTime = LocalTime.parse(slotAndBookmark.get(3));
             } catch (DateTimeParseException e) {
                 throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
-                        "  Invalid time format for slot. (" + slotAndBookmark.get(2)
-                        + " " + slotAndBookmark.get(3) + ") Please check format.");
+                        INVALID_TIME_FORMAT_MSG + slotAndBookmark.get(2)
+                        + " " + slotAndBookmark.get(3));
             }
             Slot newSlot;
             if (module.slotExists(lesson, day, startTime, endTime)) {
                 newSlot = module.getSlot(lesson, day, startTime, endTime);
-                message += "  Slot already exists." + System.lineSeparator();
+                message += SLOT_ALREADY_EXISTS_MSG + Ui.NEW_LINE;
             } else {
-                if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
+                if (Timetable.isTimeAGreaterEqualsTimeB(startTime, endTime)) {
                     throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
-                            "  Invalid time for slot. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")");
+                            INVALID_TIME_MSG + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")");
                 } else if (timetable.isOverlapTimeSlot(day, startTime, endTime)) {
                     throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIME_FORMAT,
-                            "  Slot clash. (" + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")"
-                            + " Please check timetable.");
+                            TIME_CLASH_MSG + slotAndBookmark.get(2) + " " + slotAndBookmark.get(3) + ")"
+                            + CHECK_TIMETABLE_MSG);
                 } else {
                     newSlot = new Slot(startTime, endTime, day, lesson);
                     module.addSlot(newSlot);
-                    message +=  "  " + lesson + " slot added" + System.lineSeparator();
+                    message +=  "  " + lesson + SLOT_ADDED_MSG + Ui.NEW_LINE;
                 }
             }
             message += checkForAndAddBookmarkToSlot(slotAndBookmark, lesson, newSlot);
         } else {
-            message = "  Invalid command format." + System.lineSeparator();
+            message = INVALID_COMMAND_FORMAT_MSG + Ui.NEW_LINE;
         }
         return message;
     }
@@ -147,9 +174,9 @@ public class AddSlotCommand extends Command {
             int index = Integer.parseInt(slotAndBookmark.get(0)) - 1;
             slot = module.getSlot(index);
         } catch (NumberFormatException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.NON_INTEGER_INPUT, "  Invalid slot index.");
+            throw new ZoomasterException(ZoomasterExceptionType.NON_INTEGER_INPUT, INVALID_SLOT_INDEX_MSG);
         } catch (ZoomasterException e) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_SLOT_NUMBER, "  Slot index out of range.");
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_SLOT_NUMBER, SLOT_INDEX_OUT_OF_RANGE_MSG);
         }
         return slot;
     }
@@ -159,9 +186,9 @@ public class AddSlotCommand extends Command {
         String message = "";
         if (slotAndBookmark.size() == 5) {
             createBookmark(slotAndBookmark.get(4), lesson, newSlot);
-            message = "    bookmark added to " + moduleCode + " " + lesson + System.lineSeparator();
+            message = ADD_SLOT_BOOKMARK_MSG + moduleCode + " " + lesson + Ui.NEW_LINE;
         } else if (slotAndBookmark.size() > 5) {
-            message = "    Invalid url format. Please provide one valid url." + System.lineSeparator();
+            message = INVALID_URL_FORMAT_MSG + Ui.NEW_LINE;
         }
         return message;
     }
@@ -171,25 +198,23 @@ public class AddSlotCommand extends Command {
         String url = slotAndBookmark.get(1);
         Bookmark bookmark = new Bookmark(description, url);
         module.addBookmark(bookmark);
-        String message = "  bookmark added to module\n";
-        return message;
+        return BOOKMARK_ADDED_TO_MODULE_MSG + Ui.NEW_LINE;
     }
 
     protected boolean isAddModuleBookmark(List<String> slotAndBookmark) {
         try {
-            int num = Integer.parseInt(slotAndBookmark.get(0));
+            int dummy = Integer.parseInt(slotAndBookmark.get(0));
             return false;
         } catch (NumberFormatException e) {
-            return (slotAndBookmark.get(1).startsWith("www.") || slotAndBookmark.get(1).startsWith("https://"))
-                    && slotAndBookmark.size() == 2;
+            return Bookmark.isUrlValid(slotAndBookmark.get(1)) && slotAndBookmark.size() == 2;
         }
     }
 
     private void createBookmark(String url, String lesson, Slot newSlot) throws ZoomasterException {
         if (!Bookmark.isUrlValid(url)) {
-            throw new ZoomasterException(ZoomasterExceptionType.INVALID_URL, "invalid url format: " + url
-                    + "URL must start with either 'www.', 'http://' or 'https://'"
-                    + System.lineSeparator());
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_URL, INVALID_URL_FORMAT_FOR_SLOT_MSG + url
+                    + URL_FORMAT_MSG
+                    + Ui.NEW_LINE);
         }
         Bookmark bookmark = new Bookmark(lesson, url);
         newSlot.addBookmark(bookmark);
