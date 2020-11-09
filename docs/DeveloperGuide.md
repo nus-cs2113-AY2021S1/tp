@@ -13,6 +13,8 @@
     <br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
 2.  [Setting up](#2-setting-up)
+    <br/>&nbsp;2.1 [Setting up the project in your computer](#21-setting-up-the-project-in-your-computer)
+    <br/>&nbsp;2.2 [Before writing code](#22-before-writing-code) 
 
 3.  [Design](#3-design)
     <br/>&nbsp;3.1  [Architecture](#31-architecture)
@@ -1002,8 +1004,8 @@ Notes for anime:
 
 **Step 10:** The user executes `bookmark 1 -r 1` command to remove a note from the bookmark entry. `Bookmark#removeNote()` will remove the note ID 1 from the first bookmark entry. The resulting state of the remove note command will look exactly the same to the state before the note was added.
 
-![Bookmark State After Edit Episode Diagram](images/Bookmark-After-Step7.png) <br/>
-*Figure 35: Bookmark Entries After Edit Episode*
+![Bookmark State After Remove Note](images/Bookmark-After-Step7.png) <br/>
+*Figure 35: Bookmark Entries After Remove Note*
 
 <br/>
 
