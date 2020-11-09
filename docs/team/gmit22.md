@@ -23,7 +23,7 @@ Our CS2113T product, SCRUMptious makes collaboration for users much easier than 
 [#108](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/108),
 [#111](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/111),
 [#119](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/119).
-\
+
 Set up the code for Model Component of the project, including following classes:
 * `Project`
 * `Member`
