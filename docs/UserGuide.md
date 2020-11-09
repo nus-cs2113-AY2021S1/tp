@@ -113,11 +113,12 @@ Expected outcome:
 <img src = "images/example.PNG" width = "750">
 
 &nbsp;
-<div style="page-break-after: always;"></div>
 
  >  **[NOTE]**
  >  * The command format listed by the `example` command adheres to the same rules as the [command format in this user guide](#3-command-format).
  >  * The `example` command is meant to be a quick refresher on the correct format, and is in no way meant to replace the user guide.Please refer to the user guide if you want a better understanding of each command.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.b. `add` - Adds a show
  The `add` command adds a show into your existing watchlist.
@@ -347,6 +348,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
    
   <img src = "images/deletereview.PNG" width = "600">
 
+<div style="page-break-after: always;"></div>
 
 ### 4.h. `delete` - Deletes your show
 
@@ -488,7 +490,6 @@ The `episode` command updates the current episode of an existing show in your wa
   
  &nbsp;
  
- <div style="page-break-after: always;"></div>
 
 ### 4.m. Managing your watch time limit
 
@@ -530,7 +531,7 @@ The `watch` command updates the watching progress for your show, and automatical
  
  In addition, the previously set time limit of 120 minutes has been reduced to 60 minutes.
  
- <div style="page-break-after: always;"></div>
+
  
 ### 4.m.b. `updatetimelimit` - update your watch time limit
 
