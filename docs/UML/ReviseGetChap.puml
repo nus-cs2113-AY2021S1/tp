@@ -11,7 +11,7 @@ participant ":Module" as Module MODEL_COLOR
 participant ":ChapterList" as ChapterList MODEL_COLOR
 end box
 
-mainframe "sd get chapter"
+mainframe sd get chapter
 activate ReviseCommand
 ReviseCommand -> ReviseCommand : getChapter(reviseIndex, access)
 activate ReviseCommand

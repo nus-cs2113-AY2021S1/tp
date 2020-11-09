@@ -29,7 +29,7 @@ Admin -> ModuleList ++: getAllModules()
 return
 return
 return allModules
-GoModuleCommand -> Module ++: get(moduleIndex)
+GoModuleCommand -> ModuleList ++: get(moduleIndex)
 return module
 GoModuleCommand -> Access ++ : setModuleLevel(moduleName)
 alt isAdminLevel == True
