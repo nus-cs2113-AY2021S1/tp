@@ -31,15 +31,15 @@ The latest release of Fluffle can be accessed from **[here](https://github.com/A
 
 #### 2.3.2 Contributions to the User Guide
 - Added the Starting of the User Guide and the Quick Start of the guide.
-- Edited the help function based on feedback received
-- Added the Names family of the User Guide
+- Edited the `help` function based on feedback received
+- Added the `Names` family of the User Guide
 - Helped to format document including team members' part
 - Added parts of the Command Summary
 - Increased the navigability between sections in the User Guide (added a working Table of Contents, ...).
 - Proofread User Guide and gave feedback to team members.
 
 #### 2.3.3 Contributions to the Developer Guide
-- Added the Names class family
+- Added the `Names` class family
 - Added the overview of Fluffle which was later revised.
 - Added Figure 10 UML Class Diagram
 
