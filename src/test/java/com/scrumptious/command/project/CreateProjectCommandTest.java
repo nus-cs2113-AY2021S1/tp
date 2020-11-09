@@ -98,7 +98,7 @@ class CreateProjectCommandTest {
     }
 
     @Test
-    void addProject_zeroSprintDuration_throwsDukeException() {
+    void addProject_zeroSprintDuration_throwsScrumptiousException() {
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put(TITLE, "Test Project");
         parameters.put(DESCRIPTION, "To ensure testing of classes");
@@ -114,7 +114,7 @@ class CreateProjectCommandTest {
     }
 
     @Test
-    void addProject_durationNotMultipleOfSd_throwsDukeException() {
+    void addProject_durationNotMultipleOfSd_throwsScrumptiousException() {
         Hashtable<String, String> parameters = new Hashtable<>();
         parameters.put(TITLE, "Test Project");
         parameters.put(DESCRIPTION, "To ensure testing of classes");

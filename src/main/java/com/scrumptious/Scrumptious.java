@@ -13,7 +13,7 @@ import java.time.Clock;
 
 public class Scrumptious {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the com.scrumptious.Scrumptious application.
      */
 
     private static Clock clock = null;

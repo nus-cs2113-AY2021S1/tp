@@ -15,7 +15,7 @@ class MemberParserTest {
     Hashtable<String, String> parameters = new Hashtable<>();
 
     @Test
-    void parseMultipleCommandsExceptions_missingName_returnsDukeException() {
+    void parseMultipleCommandsExceptions_missingName_returnsScrumptiousException() {
         String add = "add";
         assertThrows(ScrumptiousException.class, () ->
             memberParser.parseMultipleCommandsExceptions(parameters, add, projectManager));

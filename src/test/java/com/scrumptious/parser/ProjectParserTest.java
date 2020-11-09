@@ -15,7 +15,7 @@ class ProjectParserTest {
     Hashtable<String, String> parameters = new Hashtable<>();
 
     @Test
-    void parseMultipleCommandsExceptions_missingParameters_returnsDukeException() {
+    void parseMultipleCommandsExceptions_missingParameters_returnsScrumptiousException() {
         String create = "create";
         assertThrows(ScrumptiousException.class, () ->
             projectParser.parseMultipleCommandsExceptions(parameters, create, projectManager));

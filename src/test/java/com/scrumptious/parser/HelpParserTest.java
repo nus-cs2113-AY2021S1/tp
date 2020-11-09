@@ -15,14 +15,14 @@ class HelpParserTest {
     Hashtable<String, String> parameters = new Hashtable<>();
 
     @Test
-    void parseMultipleCommandsExceptions_helpActionIsNotAnInteger_returnsDukeException() {
+    void parseMultipleCommandsExceptions_helpActionIsNotAnInteger_returnsScrumptiousException() {
         String notNumber = "not number";
         assertThrows(ScrumptiousException.class, () ->
             helpParser.parseMultipleCommandsExceptions(parameters, notNumber, projectManager));
     }
 
     @Test
-    void parseMultipleCommandsExceptions_helpNumberIsNotinList_returnsDukeException() {
+    void parseMultipleCommandsExceptions_helpNumberIsNotinList_returnsScrumptiousException() {
         String number = "6";
         assertThrows(ScrumptiousException.class, () ->
             helpParser.parseMultipleCommandsExceptions(parameters, number, projectManager));
