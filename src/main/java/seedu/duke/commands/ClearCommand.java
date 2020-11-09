@@ -4,7 +4,7 @@ import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
 
-// @@author MuhammadHoze
+// @@author MuhammadHoze-reused
 //Reused from https://github.com/GuoAi/ip with minor modifications
 
 /**
@@ -22,7 +22,7 @@ public class ClearCommand extends Command {
     }
 
     public void execute(Model model) throws DukeException {
-        if (description.isEmpty() | !description.equals("all")) {
+        if (description.isEmpty() || !description.equals("all")) {
             throw new DukeException(Messages.EXCEPTION_INVALID_CLEAR);
         }
         model.clear();
