@@ -16,7 +16,7 @@ Wan Shi Jie Brendan
 
 ## Introduction
 
-NuSchedule is a straightforward yet sophisticated application that helps you manage your events. It allows you 
+NUSchedule is a straightforward yet sophisticated application that helps you manage your events. It allows you 
  to keep track of not only your school events or activities (eg. lectures, tutorials, assignments), but 
 also your personal activities. It utilises a command line interface (CLI), which accepts user input in the form of text. 
 This gives the application both simplicity and speed, setting it apart from other apps such as NUSMods and Luminus. 
@@ -103,16 +103,16 @@ Examples of usage:
 `personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`
 `assignment CS1010 Assignment /t 2020-01-04 23:59 /o Luminus`
 
-Adding a class:
+Adding a class:  
 ![add1](diagrams/add1.png)
 
-Adding a personal event:
+Adding a personal event:  
 ![add2](diagrams/add2.png)
 
-Adding an assignment:
+Adding an assignment:  
 ![add3](diagrams/add3.png)
 
-Adding an event with a timing clash:
+Adding an event with a timing clash:  
 ![add4](diagrams/add4.png)
 
 
@@ -203,7 +203,7 @@ Shows you a list of all events.
 
 Format: `list`  
 
-Example Output:
+Example Output:  
 ![list](diagrams/list.png)
 
 ### Clear events
@@ -222,7 +222,7 @@ Delete events existing in the list, you can choose to delete all, auto delete or
   
   Example: `clearBefore 2020-03-10`
   
-Example Output:
+Example Output:  
 ![clear](diagrams/clear.png)
 
 ### Mark event as done
@@ -232,7 +232,7 @@ Format: `done INDEX`
 
 Example: `done 2`
 
-Example Output:
+Example Output:  
 ![done](diagrams/done.png)  
 
 ### Reminder of deadlines
@@ -240,7 +240,7 @@ Shows a list of all events for today's date.
 
 Format: `reminder`
 
-Example Output:
+Example Output:  
 ![reminder](diagrams/reminder.png)
 
 
@@ -250,6 +250,19 @@ Example Output:
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
 the data of your previous AddressBook home folder.
+
+**Q**: What if I cannot run the application, or the application suddenly stops running unexpectedly?
+
+**A**: If you cannot run the application at the beginning, please refer back to the Quick Start section and check
+whether the jar file is in the correct folder. If you cannot find what is wrong, please take a screenshot of your computer
+and report it as an issue to [this link](https://github.com/AY2021S1-CS2113T-F14-4/tp/issues).
+
+**Q**: What should I do if I cannot get the input format for adding events correctly?
+
+**A**: For all wrong input format, there will be an error message to tell you what exactly you have input wrongly. If
+the error message is not helpful, please refer back to relevant sections in Features. We recommend you to follow the 
+instructions provided closely as the current version of NUSchedule has a relatively high requirement in terms of input 
+accuracy. If you really cannot find what is wrong, please report it as an issue to [this link](https://github.com/AY2021S1-CS2113T-F14-4/tp/issues).
 
 ## Command Summary
 

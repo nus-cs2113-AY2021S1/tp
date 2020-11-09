@@ -1,18 +1,18 @@
 # Project: NUSchedule
 
-NuSchedule is a task management application written in Java. It is operated on the command line interface.
+NUSchedule is a task management application written in Java. It is operated on the command line interface.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to edit previous events.
-  * What it does: Allows the user to edit previous commands. User can choose to edit individual fields of an event such as just choosing to edit the location of an event.
+  * What it does: Allows the user to edit previous commands. The user can choose to edit individual fields of an event such as just choosing to edit the location of an event.
   * Justification: This feature improves the product significantly because it provides the user a quick and simple method to correct any mistakes made in the addition of an event. Instead of deleting the event and creating a new one, the user can just edit that particular event with the correct field information.
-  * Highlights: This command has to be constantly updated whenever a new event class is added to allow for the editing of an event into that event class. Testing and implementation of this command was difficult as the command has to cover for all of the event classes.
+  * Highlights: This command has to be constantly updated whenever a new event class is added to allow for the editing of an event into that event class. Testing and implementation of this command was difficult as the command has to cover for all of the event classes.  
 
-* **New Feature**: Added a history command that allows the user to sort events.
-  * What it does: Allows the user to sort previous commands. User can organise their events to by sorting them in a specified order.
+* **New Feature**: Added a sort command that allows the user to sort events.
+  * What it does: Allows the user to sort previous commands. The user can organise their events to by sorting them in a specified order.
   * Justification: This feature improves the product significantly as it allows the user to order the events, allowing the user to prioritise certain events over others. For example, the user can choose to sort by time, which will cause eventing that are due soon to be sorted on top of events that are due later in the future.
-  * Highlights: This command was implemented by making use of comparators. Sorting by location was challenging to implement as there were two location types, online and offline locations and the command had to account for situations where either of them where null.
+  * Highlights: This command was implemented by making use of comparators. Sorting by location was challenging to implement as there were two location types, online and offline locations and the command had to account for situations where either of them where null.  
 
 * **Code contributed**: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=xuche123&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
