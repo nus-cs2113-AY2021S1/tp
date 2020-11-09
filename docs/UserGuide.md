@@ -42,6 +42,8 @@ The following is a list of common notations and symbols you’ll encounter throu
    
    Underlined words or phrases in blue colour are website links that you can press on to access the website
 
+<div style="page-break-after: always;"></div>
+
 ## Getting Started
 
 Let’s get started with using Study It! This section will show you how you can run our app on your computer.
@@ -51,8 +53,8 @@ Firstly, please ensure that your computer fulfills the following requirement:
   * You may refer to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to download the Java 11.0.8 installer
   * The installation guide can be found in the following websites:
     * [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
-    * [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
-    * [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
+    , [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8) 
+    , [MacOS](https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 Once you are done installing Java 11.0.8 onto your PC, you may follow these procedures to start using Study It:
 
@@ -65,13 +67,16 @@ Once you are done installing Java 11.0.8 onto your PC, you may follow these proc
 1. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 1. If the application runs successfully, you’ll be greeted by the following welcome message:
 
-![WelcomeMessage](Images/GeneralUG/welcomemessage.png)
+<p align="center">
+    <img width="70%" height="70%" src="Images/GeneralUG/welcomemessage.png">
+</p>
 
 Congratulations! You are now able to run Study It. To access its various functionalities,
-you would need to type in the command at the Command Prompt and press Enter. 
-
-Whenever you feel lost, refer to the following sections of this User Guide or call the `help` function in the app 
+you would need to type in the command at the Command Prompt and press Enter. Whenever you feel lost, 
+refer to the following sections of this User Guide or call the `help` function in the app 
 for guidance. We hope that you have fun using our app!
+
+<div style="page-break-after: always;"></div>
 
 ## General Commands
 
@@ -89,6 +94,8 @@ This section contains the following commands:
 >The general commands doesn't work during `add class` or `add activity` sequence in timetable mode
 >and `add` or `test` sequence in flashcard mode
 
+<div style="page-break-after: always;"></div>
+
 ### 1. Prints help message: `help`
 
 The app will print out a summarised list of functions you can call at the current mode. 
@@ -102,15 +109,22 @@ Expected output:
 
 Example of printing help message at menu:
 
-![HelpMessage](Images/GeneralUG/help.png)
+<p align="left">
+    <img width="100%" height="100%" src="Images/GeneralUG/help.png">
+</p>
+
+<div style="page-break-after: always;"></div>
 
 Another example of printing help message at bookmark mode:
 
-![BookmarkHelp](Images/GeneralUG/bookmarkhelp.png)
+<p align="left">
+    <img width="100%" height="100%" src="Images/GeneralUG/bookmarkhelp.png">
+</p>
 
 >**Useful information:**
 >* The message varies in different modes to show you the commands at that mode. 
->Try the command at other modes when you are using the application!
+>Try it out!
+<div style="page-break-after: always;"></div>
 
 ### 2. Changes the current mode: `cd MODE_NAME or MODE_INDEX`
 
@@ -132,6 +146,8 @@ Command: `cd 2`
 
 ![CDBookmark](Images/GeneralUG/cdBookmark.png)
 
+<div style="page-break-after: always;"></div>
+
 Command: `cd academic`
 
 ![CDAcademic](Images/GeneralUG/cdacademic.png)
@@ -147,6 +163,8 @@ Command: `cd academic`
 >* You can use this command anywhere in the app to switch between modes quickly!
 >* This command STILL works if you don't have space/have excess space 
 >between `cd` and the `MODE_NAME/MODE_INDEX`
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Shows the current location: `location`
 
@@ -165,6 +183,8 @@ At flashcard mode:
 
 ![](Images/GeneralUG/location_flashcard.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4. Prints starred items: `highlight`
 
 This command will print out the starred items in Bookmark and Academic
@@ -175,6 +195,8 @@ Instruction:
 Expected output:
 
 ![](Images/GeneralUG/highlight.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 5. Exits the current mode or application: `exit`
 
@@ -222,6 +244,8 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
+<div style="page-break-after: always;"></div>
+
 ### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
 
 Are you trying to find your links by entering into each category to view your links?
@@ -253,6 +277,8 @@ Expected output:
 >**Warning**
 >* Follow the format `list`, `list -s`, `list -c`, `list -a` without adding additional inputs. If additional input is detected, the program will prompt you to input the correct format. 
 
+<div style="page-break-after: always;"></div>
+
 ### 1.2 Going into each category: `bm NUMBER`   
 
 Managing so many links can be a hassle! However, categorising the links into different 
@@ -280,6 +306,8 @@ If you encounter any errors, take note of the following warnings.
 
 >**Warning:**
 >* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of categories (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
+
+<div style="page-break-after: always;"></div>
 
 ### 1.3 Adding category:  `cat CATEGORY_NAME `
 
@@ -311,6 +339,8 @@ If you encounter any errors, take note of the following warnings.
 >* Ensure that the category name is not empty. Error will be shown if the category name is empty. 
 >* You can only add unique category name.
 
+<div style="page-break-after: always;"></div>
+
 ### 1.4 Deleting a category:  `delete CATEGORY_NUMBER`  
 
 When you have a category, but you have no important links related to the category, take it out of your bookmark list! Organise and design your bookmark categories to your own personal needs by adding your own category (refer to [1.3](#13-adding-category--cat-category_name-)) and deleting unnecessary categories using these following commands.
@@ -334,6 +364,8 @@ Before deleting a category, take note of the following warnings.
 * Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
 * CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
 
+<div style="page-break-after: always;"></div>
+
 ### 1.5 Going back to bookmark main: `back` 
 
 There are two modes in bookmark feature: the main bookmark mode (refer to [General Command 2](#2-changes-the-current-mode-cd-mode_name-or-mode_index)), 
@@ -355,6 +387,8 @@ Expected output:
 >**Warning:**
 >* Follow the format `back` without adding additional inputs. 
 >If additional input is detected, the program will prompt you to input the correct format. 
+
+<div style="page-break-after: always;"></div>
 
 ### 1.6 Adding a link to your chosen category: `add LINK` / `add LINK t->TITLE`
 
@@ -385,6 +419,8 @@ If you encounter any errors, take note of the following warnings.
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
 >* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "|" or does not contain “.”). 
 
+<div style="page-break-after: always;"></div>
+
 ### 1.7 Deleting a link: `rm LINK_NUMBER `
 
 If you have a link that you no longer want to bookmark, or if you have a link that you accidentally bookmarked it, you can remove the bookmark easily just by following these few commands. Make sure that you have chosen your category (Refer to [1.2](#12-going-into-each-category-bm-number))  and ensure that you do not remove an empty, or an invalid link number.
@@ -406,6 +442,8 @@ If you encounter any errors, take note of the following warnings.
 >**Warning:**
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to remove your links. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
 >* Ensure that the link number that you want to remove is valid. Error will be shown if the link number you have given is empty or is not valid. Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a) to find out the correct link number. 
+
+<div style="page-break-after: always;"></div>
 
 ### 1.8 Marking/ Unmarking a link as a starred link: `star LINK_NUMBER`
 
@@ -439,7 +477,7 @@ The timetable mode intends to address these issues, helping you keep track of yo
 purposeful productivity.
 
 >**Warning:**
->* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not able to
+>* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not being able to
 >retrieved the saved data, hence deem the data file corrupted and request to format the data file before you can use the timetable 
 >feature again.
 
@@ -455,6 +493,8 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
 * [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
 
+<div style="page-break-after: always;"></div>
+
 ### 2.1 Entering timetable mode: `cd 3` / `cd timetable`
 
 If you find it difficult to make plans due to uncertainties in your schedule, this timetable mode presents your upcoming
@@ -466,16 +506,18 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png)
+![Timetable_2_1](Images/TimetableUG/Timetable_2_1.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use this command from any mode to access the timetable mode easily and quickly!
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Adding classes: `add class`
 
 If you find it hard to keep track of all your Zoom links with an increasing number of online classes, you can now
 arrange your classes in a systematic manner with this feature. Make sure you are currently in the timetable mode
-(refer to 2.1).
+([refer to 2.1](#21-entering-timetable-mode-cd-3--cd-timetable)).
 
 Instruction:
 
@@ -484,21 +526,26 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
+![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png){:height="80%" width="80%"}
 
 >**Useful Information:**
+>* The module code will accept any input between 1-7 characters.
 >* You can enter the time in both 12hr and 24hr format. Only entering am/pm at the back of the duration will be assumed 
 >as both starting and ending time are in the same period.
+
+<div style="page-break-after: always;"></div>
 
 If you encounter any errors, take note of the following warning.
 
 >**Warning:**
 >* Ensure that you follow the format for answering the questions.
 >Error will be shown if the questions are not answered in a suitable format.
->* Adding event that clash with the existing schedule will result in error message. You will need to check through 
+>* Adding events that clash with the existing schedule will result in error message. You will need to check through 
 >the schedule and events list and delete the unwanted event accordingly before you can add the new event.
->* Number of recurring classes are capped at 52 weeks (1year) to ensure effective processing time. Add your class again one year
->later if your class recur for more than a year.
+>* Number of recurring classes are capped at 52 weeks (1 year) to ensure effective processing time. Add your class again one year
+>later if your class recurs for more than a year.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Adding activities: `add activity`
 
@@ -512,11 +559,13 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
+![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png){:height="80%" width="80%"}
 
 >**Useful Information:** 
->* Currently this feature does not support adding activity past 12am if you wish to schedule an activity overnight, 
+>* Currently this feature does not support adding activity past 12am. If you wish to schedule an activity overnight, 
 >add the activity in 2 separate sessions.
+>
+<div style="page-break-after: always;"></div>
 
 ### 2.4 Showing links: `show link`
 
@@ -528,7 +577,9 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png)
+![Timetable_2_4](Images/TimetableUG/Timetable_2_4.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.5 Showing schedule: `show schedule`
 
@@ -539,7 +590,9 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png)
+![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.6 Showing Activities list: `list activity`
 
@@ -552,23 +605,25 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png)
+![Timetable_2_6](Images/TimetableUG/Timetable_2_6.png){:height="80%" width="80%"}
 
 ### 2.7 Showing Class list: `list class`
 
-If you think searching through the time table is too troublesome,
-use this command to see all the classes you have added and other detail of the classes similar to the previous feature.
+If you think searching through the timetable is too troublesome,
+use this command to see all the classes you have added and other details of the classes, similar to the previous feature.
 
 Instruction:
 1. `list class`
 
 Expected output:
 
-![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png)
+![Timetable_2_7](Images/TimetableUG/Timetable_2_7.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 2.8 Deleting an activity: `delete activity INDEX`
 
-If you have accidentally added a wrong activity, or an activity you have added got canceled,
+If you have accidentally added a wrong activity, or an activity you have added has been cancelled,
 use this command to delete an activity with corresponding index according to the activities list ([refer to 2.6](#26-showing-activities-list-list-activity)).
 
 Instruction:
@@ -580,7 +635,7 @@ Example of usage:
 
 Expected output:
 
-![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png)
+![Timetable_2_8](Images/TimetableUG/Timetable_2_8.png){:height="80%" width="80%"}
 
 ### 2.9 Deleting a class: `delete class INDEX`
 
@@ -596,10 +651,12 @@ Example of usage:
 
 Expected output:
 
-![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png)
+![Timetable_2_9](Images/TimetableUG/Timetable_2_9.png){:height="80%" width="80%"}
 
 >**Warning:**
 >* Deleting a class will delete all the lessons of that module on schedule. Use this command with caution. 
+
+<div style="page-break-after: always;"></div>
 
 ### 2.10 Removing all past events: `clean up`
 
@@ -612,7 +669,7 @@ Instruction:
 
 Expected output:
 
-![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png)
+![Timetable_2_10](Images/TimetableUG/Timetable_2_10.png){:height="80%" width="80%"}
 
 >**Warning:**
 >* Deletion will be done automatically. All the events that are deleted will not be able to be retrieved. 
@@ -878,16 +935,18 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png)
+![Flashcard_4_1](Images/FlashcardUG/Flashcard_4_1.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Adding flashcards: `add`
 
 To assist you in your studies, there needs to be a knowledge base of content to be revised.
 You can do this by adding new flashcards to the flashcard deck with this command, after entering flashcard mode
-(refer to 4.1).
+([refer to 4.1](#41-entering-flashcard-mode-cd-5--cd-flashcard)).
 
 Instruction:
 1. `add`
@@ -899,7 +958,7 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png)
+![Flashcard_4_2](Images/FlashcardUG/Flashcard_4_2.png){:height="65%" width="65%"}
 
 If you encounter any errors, take note of the following warning.
 
@@ -907,8 +966,9 @@ If you encounter any errors, take note of the following warning.
 >* “back” and "show answer" cannot be added as an answer for the flashcard.
 >This is because “back” and "show answer" are used as commands to exit and reveal the answer in the test mode
 >respectively.
->If the flashcard answer you wish to use is similar to “back”, rephrase and use another term.
->![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png)
+>If the flashcard answer you wish to use is similar to “back” or "show answer", rephrase and use another term.
+>
+>![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="60%" width="60%"}
 
 ### 4.3 Listing flashcards: `list`
 
@@ -920,7 +980,9 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png)
+![Flashcard_4_3](Images/FlashcardUG/Flashcard_4_3.png){:height="80%" width="80%"}
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Deleting flashcards: `delete`
 
@@ -937,10 +999,12 @@ Example of usage:
 
 Expected output:
 
-![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png)
+![Flashcard_4_4](Images/FlashcardUG/Flashcard_4_4.png){:height="80%" width="80%"}
 
 >**Useful information:**
 >* You can use the `list` command to check the card index.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5 Testing content:`test`
 
@@ -957,11 +1021,13 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png)
+![Flashcard_4_5](Images/FlashcardUG/Flashcard_4_5.png){:height="60%" width="60%"}
 
 >**Useful information:**
 >* User input in the test mode is not case sensitive. If the answer is correct but the case is different from
 >the stored answer, the answer will be accepted as the right answer.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Finding relevant flashcards: `find`
 
@@ -973,7 +1039,7 @@ Instruction:
 
 Expected output:
 
-![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png)
+![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6.png){:height="80%" width="80%"}
 
 <div style="page-break-after: always;"></div>
 
@@ -987,7 +1053,7 @@ and copy it over to the directory in the new computer accordingly after installi
 
 **Q**: Why is my application not starting up properly?
 
-**A**: Please refer to the "Getting Started" section and ensure that 
+**A**: Please refer to the ["Getting Started"](#getting-started) section and ensure that 
 the correct version of java is installed on your computer. If you face any further difficulties, 
 feel free to refer to the About Us page and contact any of the developers.
 
@@ -996,6 +1062,8 @@ feel free to refer to the About Us page and contact any of the developers.
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
 
+<div style="page-break-after: always;"></div>
+
 ## Command Summary
 
 The following table is a compiled list of all available commands in our application that you can easily refer to! 
@@ -1003,6 +1071,14 @@ The following table is a compiled list of all available commands in our applicat
 The commands listed under the sections besides “General” can only be called when you are in that specific mode, 
 which you can access using the cd command!
 
-Table: Command Cheatsheet for Study It
+<div align="center">Table: Command Cheatsheet for Study It</div>
 
-![](Images/cheatsheet.png)
+<p align="center">
+    <img width="80%" height="80%" src="Images/cheatsheet1.png">
+</p>
+
+<div style="page-break-after: always;"></div>
+
+<p align="center">
+    <img width="80%" height="80%" src="Images/cheatsheet2.png">
+</p>
