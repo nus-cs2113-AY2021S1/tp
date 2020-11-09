@@ -35,8 +35,9 @@ public class ExtractCommand extends Command {
      */
     public ExtractCommand(String command) {
         this.isExit = false;
-        if (command.endsWith(";")) {
-            textSubject = command.split(";", 2)[0];
+        int semicolonCount = command.length() - command.replace(";", "").length();
+        if (command.endsWith(";") && semicolonCount == 1) {
+                textSubject = command.split(";", 2)[0];
         }
         eventType = "Personal";
         logger.fine("Extract command successfully constructed.");
@@ -71,7 +72,7 @@ public class ExtractCommand extends Command {
             logger.warning("InvalidExtractCommandException -- Text body not detected or is null.");
             throw new InvalidExtractCommandException("Text body was not entered correctly!");
         }
-        if (textBody.equals("")) {
+        if (textBody.trim().equals("extractend") || textBody.equals(" ")) {
             logger.warning("InvalidExtractCommandException -- No text body entered.");
             throw new InvalidExtractCommandException("There is no text body entered!");
         }

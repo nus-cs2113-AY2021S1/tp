@@ -166,18 +166,12 @@ The add feature in the program allows the user to create one of 3 different even
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
 be inserted upon creation. 
 
+The following is a class diagram to show the structure of the Add feature:
+![Class diagram of Add feature](./diagrams/AddCommandClassDiagram.jpg)
+
 Generally, Personal events are meant for non school related events and can be any general task the user wants to do. 
 Zoom events are meant for events that require zoom links and helps the user to store their zoom links easily. 
 Timetable events can contain a location and are meant for school related events like classes.
-
-Firstly, to begin, the user needs to key in the add command with the general format `add EVENT_TYPE; EVENT_DESCRIPTION; [LINK/LOCATION]; DD/MM/YY; HH:MM AM/PM`.
-The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. For example,
-`add zoom; cs2113t meeting; zoom.sg; 16/09/20; 2100`
-
-When a command like this is called, the constructor to `AddCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand.
-
-Next, when `AddCommand#execute()` is called from the main, this method will call the respective method to create one of the three events. These methods are `AddCommand#addPersonal()`, `AddCommand#addZoom()`, and `AddCommand#addTimetable()`.
-These methods are then used to create events based on the number of fields/parameters entered by the user. Each event has multiple constructors and can contain different combinations of fields which will be stated below.
 
 The personal event can contain the following fields: 
 - Description 
@@ -205,10 +199,17 @@ Examples of user inputs for the respective fields of timetable events are:
 - add timetable; math class; 10/10/2000; 4:00 pm
 - add timetable; math class; NUS engineering; 10/10/2000; 4:00 pm
 
+The optional fields to fill in like the link and location for the zoom and timetable classes can be inserted respectively in the position right after the description field. 
 The fields for what each event can contain were chosen based on what we as a team thought were important fields for the respective event types.
 However, these methods can easily be edited to accept different numbers of fields if we change our minds in the future.
 
-Given below is an example scenario of the add feature:
+Given below is a general explanation of how the add feature works and an example usage scenario:
+
+When a valid format of the add command is called, the constructor to `AddCommand` will be able to detect the event type based on the user's input. It then stores the event type in that instance of the addCommand. <br>
+Next, when `AddCommand#execute()` is called from the main, this method will call the respective method to create one of the three events. These methods are `AddCommand#addPersonal()`, `AddCommand#addZoom()`, and `AddCommand#addTimetable()`. <br>
+These methods are then used to create events based on the number of fields/parameters entered by the user. Each event has multiple constructors and can contain different combinations of fields which was stated above.
+
+Example usage scenario:
  
 Step 1. The user launches the application for the first time. There will be no events stored at the moment.
  
@@ -220,10 +221,10 @@ Step 4. `addCommand#addZoom()` detects there are 4 fields in the command, separa
  
 Step 5. The Zoom event is then added to the user's `UserData` for further use.
  
-The following sequence diagram shows how the whole add feature works: <br>
+The following sequence diagram shows how the add feature works:
 
 ![Sequence Diagram for Add Command](./diagrams/addCommand.jpg)
-// to be updated
+
 
 #### List feature
 
@@ -567,6 +568,9 @@ The extract feature allows users to copy and paste a body of text like emails an
 a Zoom or a Personal event. It utilizes Regular Expressions (Regex) patterns in order to match dates, times and zoom links
 in the text entered. 
 
+The following is a class diagram to show the structure of the Extract feature:
+![Class diagram for Extract command](./diagrams/ExtractCommandClassDiagram.jpg)
+
 Given below is an example usage scenario to explain how the extract feature works.
 
 Step 1. To begin, the user enters `extract CS2113T Quiz;`. 
@@ -574,17 +578,18 @@ The constructor for `ExtractCommand` will then be called and the `TEXT_SUBJECT` 
 
 Step 2. Next, `ExtractCommand#execute()` is called from the main. This method will call `ExtractCommand#receiveTextBody()` which will let the user enter any text and only ends once the user types `extractend` on a new line.
 The user may then input a text copied from email, for example `The quiz will be on October 8 2020 or 9th October at 4pm or 5pm. The zoom link is at https://nus-sg.zoom.com`. After going to the next line, the user has to type `extractend`.
-This is saved as the `textBody` in this instance of `ExtractCommand`. 
 
-Step 3. The `textBody` is then used in multiple methods. These include `ExtractCommand#detectZoomLink()`, `ExtractCommand#detectDate()` and `ExtractCommand#detectTime()` which will use Regex patterns to find and match dates, times and zoom links.
+Step 3. The text body is then used in multiple methods. These include `ExtractCommand#detectZoomLink()`, `ExtractCommand#detectDate()` and `ExtractCommand#detectTime()` which will use Regex patterns to find and match dates, times and zoom links.
 
-Step 4. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be called which will return dates and times that are valid. In this case, it will detect the 2 dates, 2 timings and 1 zoom link above.
+Step 4. `ExtractCommand#detectZoomLink()` will check if the URL found is a valid zoom link. In this case, the link is valid as it contains ".zoom.".
 
-Step 5. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it.
+Step 5. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be called which will return dates and times that are valid. In this case, it will verify the 2 dates and 2 timings detected.
+ 
+Step 6. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it. The user can only choose 1 of each detected.
 
-Step 6. Lastly, `ExtractCommand#createEvent()` will be called. If the event has a zoom link, like the example, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
+Step 7. `ExtractCommand#createEvent()` will be called. If the event has a zoom link, like the example, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
 
-The following sequence diagram shows how the Extract Feature works in general:
+The following sequence diagram shows how the Extract feature works in general like I have explained above:
 
 ![Sequence Diagram for Extract Command](./diagrams/extractCommand.jpg)
 
@@ -595,7 +600,7 @@ It can also detect if the day portion of the date has any suffixes. This does no
 looking at many of the emails sent to us, we found most were of the Regex pattern we chose. However, this could be implemented in the future. 
 
 For the detection of time, the Regex pattern used detects time in the 12 or 24 hour format. It can detect time with AM/PM behind it too. However, it cannot detect 24 hour timings
-with no "." or ":" in it unlike some commands above. This is because it may result in detecting a lot of false timings like if a 4 digit number like 2020 for a date was detected as a time and a year.
+with no "." or ":" in it unlike some commands above. This is because it may result in detecting a lot of false timings like if a 4 digit number like 2020 for a date was detected as a time and a year which may confuse the user.
 
 For the detection of zoom link, the Regex pattern used first detects any URL starting with https:// or http://. It then checks whether the URL contains ".zoom." which we found the be common in most zoom links.
 
