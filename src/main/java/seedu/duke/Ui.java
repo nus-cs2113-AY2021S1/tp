@@ -192,7 +192,7 @@ public class Ui {
         assert event != null;
         int i = 0;
         System.out.println("Event:" + event);
-        if (additionalInformation.isEmpty()){
+        if (additionalInformation.isEmpty()) {
             System.out.println("No existing additional information.");
         } else {
             for (String s : additionalInformation) {

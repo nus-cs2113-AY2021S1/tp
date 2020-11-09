@@ -30,11 +30,11 @@ public class DeleteCommand extends Command {
 
         try {
             if (userInput.startsWith("-t")) {
-                command = userInput.split("-t",2);
+                command = userInput.split("-t", 2);
                 numberDelete = Integer.parseInt(command[1].trim());
                 isTask = true;
             } else if (userInput.startsWith("-e")) {
-                command = userInput.split("-e",2);
+                command = userInput.split("-e", 2);
                 numberDelete = Integer.parseInt(command[1].trim());
                 isTask = false;
             } else {

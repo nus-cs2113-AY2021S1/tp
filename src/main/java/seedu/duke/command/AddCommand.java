@@ -48,8 +48,8 @@ public class AddCommand extends Command {
      * Creates a task in the task list after determining what type of task (event, deadline, todo).
      * Saves the updated calendar list in the storage after the new task is added.
      *
-     * @param calendarList      the calendar list to add the new task to.
-     * @param storage           the storage to be saved to.
+     * @param calendarList the calendar list to add the new task to.
+     * @param storage      the storage to be saved to.
      * @throws CommandException if the add command input is invalid.
      */
     @Override
@@ -154,7 +154,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the lab event to.
      * @param command      the attributes of the lab event.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addLabEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -187,7 +187,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the tutorial event to.
      * @param command      the attributes of the tutorial event.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addTutorialEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -218,7 +218,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the lecture event to.
      * @param command      the attributes of the lecture event.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addLectureEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -250,7 +250,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the exam to.
      * @param command      the attributes of the exam.
-     * @throws Exception   if the module code is empty.
+     * @throws Exception if the module code is empty.
      */
     private void addExamEvent(CalendarList calendarList, String[] command) throws Exception {
         command = command[1].trim().split(" ", 2);
@@ -273,7 +273,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the activity to.
      * @param command      the attributes of the activity.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private void addActivityEvent(CalendarList calendarList, String[] command) throws Exception {
         String eventDescription;
@@ -299,7 +299,7 @@ public class AddCommand extends Command {
      * @param calendarList the calendar list to add the deadline task to.
      * @param command      the attributes of deadline task.
      * @return isTask      true if it is a task.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private boolean addDeadlineTask(CalendarList calendarList, String[] command) throws Exception {
         String taskDescription;
@@ -323,7 +323,7 @@ public class AddCommand extends Command {
      *
      * @param calendarList the calendar list to add the todo task to.
      * @return isTask      to show that is is a task.
-     * @throws Exception   if the description is empty.
+     * @throws Exception if the description is empty.
      */
     private boolean addTodoTask(CalendarList calendarList, String s) throws Exception {
         String taskDescription;
@@ -341,7 +341,7 @@ public class AddCommand extends Command {
     /**
      * Checks if the module code in the command is valid.
      *
-     * @param command   User input command.
+     * @param command User input command.
      * @return isValid  True if the module code is valid, FALSE otherwise.
      */
     private boolean isValid(String[] command) {
