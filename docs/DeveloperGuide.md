@@ -656,12 +656,12 @@ Expected: Similar to previous.
 the favourite list.
 
 - Test case 1: `/deletefav 1`<br>
-    - The range of values accepted is the number of favourite commands there are in the list.
+    - The range of values accepted is the number of favourite commands there are in the list.<br>
 Expected: The favourite command at index 1 will be deleted.<br>
 
 - Test case 2: `/deletefav 0`<br>
-    -Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
-     any string or empty input. 
+    - Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
+     any string or empty input. <br>
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
 
 - Test case 3: `/deletefav`<br>
@@ -728,12 +728,14 @@ Expected: No command executed.Error details will be shown to remind users to typ
 3. Dealing with corrupted data
     - Prerequisite: `FreqList.txt` exists
     - Test case 1: Missing entries in FreqList.txt"<br>
+    
         Step 1. Remove a few entries off the `FreqList.txt` file.<br>
         Step 2. Run the jar file<br>
         Expected output: Error details will be shown to inform users that corrupted data has been detected
         and that all search frequencies will be initialised to zero.<br>
         
     - Test case 3: Senseless data in FreqList.txt <br>
+    
         Step 1. Add random letters into `FreqList.txt` file. <br>
         Step 2. Run the jar file <br>
         Expected output: Error details will be shown to inform users that corrupted data has been detected 
