@@ -158,7 +158,7 @@ the associations and the multiplicity of the bookmark classes.
 
 ![Bookmark Class Diagram](Images/BookmarkDG/BookmarkRun_Class.png)
 
-API: java.bookmarkRun
+**API:** <span style="color:blue">`BookmarkRun`.
 
 The bookmark component consists of six major classes: `BookmarkRun`, `BookmarkStorage`, `BookmarkUi`, 
 `BookmarkCategory`, `BookmarkList` and `BookmarkParser`. 
@@ -169,14 +169,13 @@ As shown in figure 1, `BookmarkRun` is
 Given below, Figure 2, is the sequence diagram of how the classes interact with each 
 other when bookmark mode is accessed from the main function.
 
-![Bookmark Sequence Diagram](Images/BookmarkDG/sequence_bookmark.png)
+![Bookmark Sequence Diagram](Images/BookmarkDG/Sequence_Bookmark.png)
 
 The bookmark component has two modes: the main bookmark mode and the category mode. 
 As shown in Figure 2, when `BookmarkRun` is called, 
 `BookmarkParser` will be called and return a `BookmarkCommand`. 
 Afterwards, `BookmarkRun` will then call `executeCommand` in `BookmarkCommand` which executes 
-the intended actions 
-Then, it will call `getCategorymode` to get the current mode the user is in. 
+the intended actions. Then, it will call `getCategorymode` to get the current mode the user is in. 
 
 **Bookmark Implementation**
 
@@ -191,7 +190,7 @@ Figure 4 shows a more detailed sequence diagram of how the `BookmarkCategory`, `
 and `BookmarkList` interacts with each other for the scenario when the user input an `AddLinkCommand` 
 in Bookmark mode.
 
-![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand_Sequence.png)
+![BookmarkCommand ClassDiagram](Images/BookmarkDG/AddCommand.png)
 
 ### **Timetable Component**
 

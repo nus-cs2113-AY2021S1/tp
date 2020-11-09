@@ -13,6 +13,7 @@ public class BookmarkUi {
         System.out.println("You can use this mode to bookmark your links for easier access!");
         System.out.println("View your list of links by typing \"list\"");
         System.out.println("\nChoose your category by typing \"bm <category index>!\"");
+        System.out.println("\nView your category available by typing \"list -c\"");
         System.out.println("Otherwise, insert \"help\" to find the list of commands available.");
     }
 
@@ -50,6 +51,9 @@ public class BookmarkUi {
             System.out.println((i + 1) + ". Category: " + categories.get(i).getName());
             showBookmarkLinkList(categories.get(i));
         }
+        if (categories.size() == 0) {
+            System.out.println("\t<empty>");
+        }
     }
 
     public void printChooseCategoryMessage() {
@@ -73,7 +77,6 @@ public class BookmarkUi {
     public void showInvalidNumberError() {
         System.out.println("Sorry, the format requires a valid number.");
         System.out.println("Please enter a valid number!");
-        System.out.println("View the number available by using \"list\" or \"list -c\"");
         System.out.println("You can input \"help\" to view the input format.");
     }
 
