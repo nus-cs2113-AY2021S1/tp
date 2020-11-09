@@ -1339,7 +1339,7 @@ A summary of all the commands available is shown in the table below.
 
 Action|Examples
 ------|------
-SUBJECT COMMANDS(MAIN LEVEL)|
+SUBJECT COMMANDS (MAIN LEVEL)|
 Add subject|`add CS2113T` 
 Change to the specific subject |`subject CS2113T`
 Start a quiz for a subject| `quiz CS2113T`
@@ -1349,7 +1349,7 @@ Delete Subject | `delete 1`
 List all subjects| `list`
 Export data | `export`
 Exit application|`bye`
-TOPIC AND TASK COMMANDS(SUBJECT LEVEL)| 
+TOPIC AND TASK COMMANDS (SUBJECT LEVEL)| 
 Add topic|`add Java` 
 Delete topic| `delete topic 4`
 Change to the specific topic |`topic Java`
@@ -1363,11 +1363,11 @@ Complete task|`done 4`
 Delete task|`delete task 4`
 List topics and tasks | `list`
 Exit subject | `exit`
-FLASHCARD COMMANDS(TOPIC LEVEL)|
+FLASHCARD COMMANDS (TOPIC LEVEL)|
 Add flashcard|`add What version of Java are you using; 11.0`
 Delete flashcard| `delete 1`
 List flashcards|`list`
 Exit topic | `exit`
-OTHER COMMANDS(All LEVELS)|
+OTHER COMMANDS (All LEVELS)|
 List all the items in the application|`list all`
 List all the commands|`help`
