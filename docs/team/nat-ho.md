@@ -6,7 +6,7 @@ Command Line Interface (CLI) desktop application for our team project. The appli
 is called Quotesify. I was tasked with the Quote Management and Quote Reflection feature in Quotesify.
 
 ### About the project
-Quotesify is an application to help book readers improve their reading experience. With Quotesify,users can add books 
+Quotesify is an application to help book readers improve their reading experience. With Quotesify, users can add books 
 and quotes they wished to remember into the application. Users can also categorize their books and quotes, as well as 
 rate their books. Quotesify is also built with a progress tracker to manage your reading activities.
 
@@ -25,7 +25,7 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
 * The user may use the `add -q` command to add a quote into Quotesify.
 * The user may use the `edit -q` or `delete -q` command to edit or delete an existing quote.
 * The user may use the `list -q` command to list all existing quotes, quotes from a specified author, quotes from a 
-specified reference, or both from a specified reference and author.
+specified reference, or both from a specified author and reference.
 * The user may also use the `find -q` command to find quotes containing a specified keyword.
 
 **Justification:**
