@@ -36,7 +36,7 @@ The code contributed by me can be found in this [link](https://nus-cs2113-ay2021
         * `done`
     * Prepared the final pdf file for submission
         * Mainly add page breaks where appropriate
-        * Ensure formatting doesn't look weird in pdf
+        * Ensure proper formatting when converting from Markdown to PDF
     
   * Developer Guide:
     * Contributed in the following areas:
@@ -47,7 +47,7 @@ The code contributed by me can be found in this [link](https://nus-cs2113-ay2021
         * Instructions for manual testing the data storage feature
     * Prepared the final pdf file for submission
         * Mainly add page breaks where appropriate
-        * Ensure formatting doesn't look weird in pdf
+        * Ensure proper formatting when converting from Markdown to PDF
     
 ### Contribution to team-based tasks:
 * Reviewed PRs by my teammates. Notable ones include:
