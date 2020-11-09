@@ -37,7 +37,7 @@ public class ExtractCommand extends Command {
         this.isExit = false;
         int semicolonCount = command.length() - command.replace(";", "").length();
         if (command.endsWith(";") && semicolonCount == 1) {
-                textSubject = command.split(";", 2)[0];
+            textSubject = command.split(";", 2)[0];
         }
         eventType = "Personal";
         logger.fine("Extract command successfully constructed.");
