@@ -9,15 +9,15 @@
 ## Table of Contents
 1.  [Introduction](#1-introduction)
 <br/>&nbsp;1.1 [Purpose](#11-purpose)
-<br/>&nbsp;1.2 [Using this guide](#12-using-this-guide)
+<br/>&nbsp;1.2 [Using this Guide](#12-using-this-guide)
 
 2.  [Quick Start](#2-quick-start)
 
 3.  [Features](#3-features)
 <br/>&nbsp;3.1 [View the help](#31-view-the-help)
 <br/>&nbsp;3.2 [Estimate time need to translate the script](#32-estimate-time-needed-to-translate-the-script)
-<br/>&nbsp;3.3 [Browse through all anime](#33-browse-through-anime)
-<br/>&nbsp;3.4 [Search](#34-search-for-anime)
+<br/>&nbsp;3.3 [Browse through all anime](#33-browse-through-all-anime)
+<br/>&nbsp;3.4 [Search for anime](#34-search-for-anime)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1 [Search by anime title](#341-search-by-anime-title)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2 [Search by genre](#342-search-by-genre)
 <br/>&nbsp;3.5 [View the information of an anime](#35-view-the-information-of-an-anime)
@@ -27,7 +27,7 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.3 [List workspaces](#363-list-workspaces)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.4 [Delete workspace](#364-delete-workspace)
 <br/>&nbsp;3.7 [Watchlist management](#37-watchlist-management)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.1 [Create a new watchlist](#371-create-new-watchlist)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.1 [Create new watchlist](#371-create-new-watchlist)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.2 [List all created watchlist(s)](#372-list-all-created-watchlists)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.3 [Select a watchlist to use](#373-select-a-watchlist-to-use)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.4 [Delete a watchlist](#374-delete-a-watchlist)
@@ -63,7 +63,7 @@
 
 This guide provides you with in-depth information on setting up **AniChan** and how to use the various features offered.
 
-### 1.2 Using this guide
+### 1.2 Using this Guide
 
 Along the way you might encounter several icons. These icons will provide you with different types of information that you may find useful.
 
@@ -166,7 +166,7 @@ You would need 2 hour(s) 58 minute(s).
 
 <br/>
 
-### 3.3 Browse through anime
+### 3.3 Browse through all anime
 
 This command provides a realistic **browsing** experience as it first splits the list of all available anime series into pages. You will then be able to ‘flip’ through these pages providing a useful way to get a quick overview of all the different anime and find interesting ones.
 
