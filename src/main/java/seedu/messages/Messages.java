@@ -85,6 +85,8 @@ public class Messages {
     public static final String NO_PREV_MODIFICATION = "There's nothing to undo.";
     public static final String UNDO_MESSAGE = "Previous modification has been undone.";
     public static final String REMINDER_MESSAGE = "Reminder, you have an upcoming task: ";
+    public static final String NO_PREV_MODIFICATION_REDO = "There's nothing to redo.";
+    public static final String REDO_MESSAGE = "Previous modification has been restored.";
 
     private static String padString(char letter, int length) {
         return Util.generatePadStringWithCharAndLength(letter, length);

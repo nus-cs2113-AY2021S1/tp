@@ -4,7 +4,8 @@ import seedu.exceptions.EmptyDataStackException;
 
 public class Model {
     private TaskMap taskMap;
-    private DataStack dataStack;
+    private DataStack currentStack;
+    private DataStack undoStack;
 
     public Model(TaskMap taskMap) {
         this.taskMap = taskMap;
@@ -12,12 +13,13 @@ public class Model {
     }
 
     private void init() {
-        dataStack = new DataStack();
-        dataStack.push(taskMap);
+        currentStack = new DataStack();
+        undoStack = new DataStack();
+        currentStack.push(taskMap);
     }
 
     public DataStack getDataStack() {
-        return dataStack;
+        return currentStack;
     }
 
     public TaskMap getTaskMap() {
@@ -25,18 +27,26 @@ public class Model {
         return new TaskMap(taskMap.getValues());
     }
 
+    public DataStack getUndoStack() {
+        return undoStack;
+    }
 
     public void setTaskMap(TaskMap taskMap) {
         this.taskMap = taskMap;
     }
 
-    public void pushAndUpdate(TaskMap taskMap) {
-        dataStack.push(taskMap);
+    public void pushCurrentStackAndUpdate(TaskMap taskMap) {
+        currentStack.push(taskMap);
         setTaskMap(taskMap);
     }
 
-    public void popAndUpdate() throws EmptyDataStackException {
-        dataStack.pop();
-        setTaskMap(dataStack.peek());
+    public void popCurrentStackAndUpdate() throws EmptyDataStackException {
+        undoStack.push(currentStack.pop());
+        setTaskMap(currentStack.peek());
+    }
+
+    public void popUndoStackAndUpdate() throws EmptyDataStackException {
+        currentStack.push(undoStack.pop());
+        setTaskMap(currentStack.peek());
     }
 }

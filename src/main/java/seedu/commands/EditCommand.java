@@ -114,7 +114,7 @@ public class EditCommand extends ModificationCommand {
         editedTask.reminder.startReminder(editedTask);
         tasks.delete(key);
         tasks.addTask(editedTask);
-        model.pushAndUpdate(tasks);
+        model.pushCurrentStackAndUpdate(tasks);
         return new CommandResult(EDIT_MESSAGE, editedTask);
     }
 }
