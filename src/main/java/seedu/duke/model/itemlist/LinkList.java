@@ -12,22 +12,22 @@ import java.util.ArrayList;
 // @@author Cao-Zeyu
 
 public class LinkList extends ItemList<Link> {
-    private ArrayList<Link> links;
+    //private ArrayList<Link> links;
 
     /**
      * Constructs an empty link list.
      */
     public LinkList() {
-        links = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     /**
      * Constructs a link list with the given links.
      *
-     * @param links An ArrayList of {@code Link}.
+     * @param items An ArrayList of {@code Link}.
      */
-    public LinkList(ArrayList<Link> links) {
-        this.links = links;
+    public LinkList(ArrayList<Link> items) {
+        this.items = items;
     }
 
     /**
@@ -36,7 +36,7 @@ public class LinkList extends ItemList<Link> {
      * @return An ArrayList of {@code Link}.
      */
     public ArrayList<Link> getLinks() {
-        return links;
+        return items;
     }
 
     /**
@@ -46,9 +46,9 @@ public class LinkList extends ItemList<Link> {
      */
     public void addLink(Link link) throws DukeException {
         checkLinkAlreadyExists(link);
-        links.add(link);
+        items.add(link);
         Ui.dukePrint(Messages.MESSAGE_ADD_LINK + link.toString() + Messages.MESSAGE_STATUS_FIRST
-                + links.size() + Messages.MESSAGE_LINK_STATUS_LAST);
+                + items.size() + Messages.MESSAGE_LINK_STATUS_LAST);
     }
 
     /**
@@ -57,7 +57,7 @@ public class LinkList extends ItemList<Link> {
      * @return the size of the link list
      */
     public int size() {
-        return links.size();
+        return items.size();
     }
 
     /**
@@ -67,7 +67,7 @@ public class LinkList extends ItemList<Link> {
      * @return the i-th link in the link list.
      */
     public Link get(int i) {
-        return links.get(i);
+        return items.get(i);
     }
 
     /**
@@ -75,12 +75,12 @@ public class LinkList extends ItemList<Link> {
      */
     public void listLink() {
         String message = "";
-        if (links.size() == 0) {
+        if (items.size() == 0) {
             Ui.dukePrint(Messages.MESSAGE_EMPTY_LINK_LIST);
             return;
         }
-        for (int i = 0; i < links.size(); i++) {
-            message = message + "\n     " + (i + 1) + "." + links.get(i).toString();
+        for (int i = 0; i < items.size(); i++) {
+            message = message + "\n     " + (i + 1) + "." + items.get(i).toString();
         }
         Ui.dukePrint(Messages.MESSAGE_LINK_LIST + message);
     }
@@ -91,18 +91,18 @@ public class LinkList extends ItemList<Link> {
      * @param index the index of the link in the list.
      */
     public void deleteLink(int index) {
-        if (index > links.size() || index < 1) {
+        if (index > items.size() || index < 1) {
             Ui.dukePrint(Messages.WARNING_NO_LINK);
         } else {
-            Link linkRemoved = links.get(index - 1);
+            Link linkRemoved = items.get(index - 1);
             Ui.dukePrint(Messages.MESSAGE_DELETE_LINK + linkRemoved.toString() + Messages.MESSAGE_STATUS_FIRST
-                    + (links.size() - 1) + Messages.MESSAGE_LINK_STATUS_LAST);
-            links.remove(index - 1);
+                    + (items.size() - 1) + Messages.MESSAGE_LINK_STATUS_LAST);
+            items.remove(index - 1);
         }
     }
 
     private void checkLinkAlreadyExists(Link link) throws DukeException {
-        int count = (int) links.stream()
+        int count = (int) items.stream()
                 .filter(existingLink -> existingLink.getModule().equals(link.getModule()))
                 .filter(existingLink -> existingLink.getType().equals(link.getType()))
                 .count();
