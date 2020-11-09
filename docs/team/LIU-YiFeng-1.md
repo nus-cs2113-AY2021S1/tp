@@ -75,13 +75,21 @@ for more details.
   )
 
 #### Contributions to team-based tasks:
-* Provided feedbacks for Oral Presentation.
+* Provided feedbacks for Oral Presentation and volunteered myself doing some submissions on Luminus.
 * Reviewed others' PR and provided feedback.
   ([\#20](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/20))
- 
+* Updated both the user and developer guides that are not specific to my features and enhancements.
+
 #### Contributions beyond the project team:
 * Reported bugs in other team's project during mock PE.
-  ([\#1](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/107))
+  ([\#1](https://github.com/LIU-YiFeng-1/ped/issues/1),
+  [\#2](https://github.com/LIU-YiFeng-1/ped/issues/2),
+  [\#3](https://github.com/LIU-YiFeng-1/ped/issues/3),
+  [\#4](https://github.com/LIU-YiFeng-1/ped/issues/4),
+  [\#5](https://github.com/LIU-YiFeng-1/ped/issues/5),
+  [\#6](https://github.com/LIU-YiFeng-1/ped/issues/6),
+  [\#7](https://github.com/LIU-YiFeng-1/ped/issues/7),
+  )
 
-
-* Shared useful external library on Forum.
+* Shared useful external library on the module Forum.
+([\#107](https://github.com/nus-cs2113-AY2021S1/forum/issues/107))
