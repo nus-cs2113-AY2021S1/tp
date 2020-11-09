@@ -1,65 +1,67 @@
 # DietBook User Guide
 
 ## Introduction
-DietBook is a desktop application targeting NUS students living on campus, optimized for use via a **Command Line Interface**. Not only can DietBook track and show the user's food and nutritional intake, it also provides users with a list of commonly eaten food items around and outside NUS. 
+DietBook is a desktop application, optimized for use via a **Command Line Interface** (CLI). It is designed to **track your food and nutritional intake** as well as provide you with your **daily calorie recommendation**. As the application mainly targets _NUS students staying on campus_, it has a **database prepopulated with food items commonly found around NUS**. This allows for such food items to be easily added to the list of food items consumed for tracking.
 
 * Table of Contents
 {:toc} 
 
 ## Quick Start
-1. Ensure that you have Java 11 or above installed.
+1. Ensure that you have **Java 11** installed.
 1. Download the latest version of `dietbook.jar` from [here](https://github.com/AY2021S1-CS2113-T14-4/tp/releases).
 1. Copy the file to the folder you want to use as the home folder for your DietBook.
-1. Either double-click the jar file to start the application or navigate to the folder containing the jar file on command prompt and run the command `java -jar dietbook.jar`. 
-1. For first time users: <br/>
-A CLI, similar to the one shown below, should appear within a few seconds. Follow the instructions provided to setup DietBook or refer to [name](####Entering username: `name`) and [info](####Entering user information: `info`) for more detailed explanations.<br/>
+1. Navigate to the folder containing the jar file on command prompt and run the command `java -jar dietbook.jar`. 
+1. Enable full-screen for a better experience but rest assure that DietBook will still function normally even in non full-screen mode.
+1. For **first time users**: <br/>
+A CLI, similar to the one shown below, should appear within a few seconds. Follow the instructions provided to setup DietBook or refer to [name](#entering-username-name) and [info](#entering-user-information-info) for more detailed explanations.<br/>
 ![DietBook Welcome Message](images/DietBookWelcomeMessage.PNG)  
 1. Start using DietBook by typing any valid command and pressing Enter to execute it.
-1. Refer to the [Features](##Features) section below for more details of each command.
+1. Refer to the [Features](#features) section below for more details of each command or jump to [Command Summary](#command-summary) section for a list of valid commands.
 
 ## Features 
 
-Notes about the command format:
+:warning: **Please take note of the following:**
 
-* Words in `UPPER_CASE` are parameters to be supplied by the user.<br/> 
-e.g. For `delete INDEX`, `delete 1` would be a valid command.
+* Words in `UPPER_CASE` are **parameters to be supplied** by the user.<br/> 
+e.g. For `name YOUR_NAME_OR_NICKNAME`, `name Jack` would be a valid command.
   
-* Parameters in square brackets are optional. However, if all parameters are optional, at least one parameter needs to be given. In such cases, any one of the parameters would be valid.<br/>
-e.g. For `add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]`, `add x/1 n/Toast k/120`, `add x/1 n/Toast k/120 c/18`,  `add x/1 n/Toast k/120 c/18 p/3`, `add x/1 n/Toast k/120
- c/18 p/3 f/4` are all valid commands.
+* Parameters in **square brackets are optional**. However, if all parameters are optional, **at least one parameter needs to be given**. In such cases, any one of the parameters would be valid.<br/>
+e.g. For `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]`, `editinfo a/31` and `editinfo h/173 o/87` are valid commands but `editinfo` is not.
  
-* For commands with multiple parameters, the parameters can be in any order.<br/>
-e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` and `add x/1 n/mee` are both valid.
+* For commands with multiple parameters, the parameters can be in any order **only if the parameters are attached to a parameter tag** like `n/`, `a/`, etc. Otherwise, they **must be entered in the sequence as shown** in this guide, the [Help Command](#to-view-a-list-of-valid-commands-help) or the [Summary Command](#command-summary).<br/>
+e.g. For `calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]`,`calculate fat 2020-07-03T23:59 2020-09-03T23:59` is valid but `calculate 2020-07-03T23:59 fat 2020-09-03T23:59` is not.<br/>
+e.g. For `add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]`, `add x/1 i/1 2020-09-03T23:59` is valid but `add i/1 2020-09-03T23:59 x/1 ` is not as time needs to be entered as the last parameter. 
 
-* Command words and parameter indicators are case-sensitive.<br/>
+* Command words and parameter indicators are **case-sensitive**.<br/>
 e.g. `help` is a valid command but `Help` is not.<br/>
-e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` is valid but `add N/mee x/1` is not.
+e.g. For `add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]`, `add i/1 x/1 2020-07-03T23:59` is valid but `add I/1 x/1 2020-07-03T23:59` is not.
 
-* A single spacing to separate command words, parameters, command word and parameters is required.<br/>
-e.g. For `calculate all`, `calculate all` is valid but `calculateall` and `calculate` &nbsp; &nbsp; &nbsp; &nbsp; `all` is not.<br/>
-e.g. For `delete INDEX`, `delete 1` is valid if there is a food item with index 1 but`delete1` is not.<br/>
-e.g. For `add n/FOOD_NAME x/PORTION_SIZE`, `add n/mee x/1` is valid but `add n/meex/1` is not.<br/>
+* **Spacing** to separate command word and parameters is required.<br/> 
+e.g. For `calculate NUTRIENT_TYPE`, `calculate all` is valid but `calculateall` is not.
+
+* Inappropriate usage of `/`, the forward slash, may lead to invalid commands. Only use **one** `/` in parameter tags like `n/`, `a/`, etc and avoid using `/` otherwise.
 
 ### Features related to user information
 
 #### Entering username: `name`
 
-Stores the user's name into DietBook during the initial setup.
+Stores the user's name or nickname into DietBook during the initial setup.
 
-Format: `name YOUR_NAME`
+Format: `name YOUR_NAME_OR_NICKNAME`
 
-* The name given must not be empty.
-* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of the name can be done using the [editinfo](#Editing user information: `editinfo`) command.
+* The name given **must not be empty**.
+* The name **can contain any numbers and characters except for `/`**, the forward slash.
+    * FYI: DietBook accepts all characters from Dec 33 - 126 of the [ASCII table](http://www.asciitable.com/), **except Dec 47**, the forward slash `/`.
+* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of the name can be done using the [editinfo](#editing-user-information-editinfo) command.
 
 Example of usage:
 
-* `name Tom and Jerry`<br/>
 * `name Jack`
 
-Output example for usage example 2:
+Output example:
 ```
 Hi Jack!
-Before we get started, I would like to know about about you so that I can make more 
+Before we get started, I would like to know about about you so that I can make more
 accurate calculations for you :). Therefore, could you please share with me the following:
 - Your gender either F for female or M for male or O for others.
 - Your age which is a positive integer.
@@ -67,7 +69,7 @@ accurate calculations for you :). Therefore, could you please share with me the 
 - Your original weight in kg, the weight when you first started using DietBook or you current weight.
 - Your current weight in kg.
 - Your target weight in kg, or your current weight if that is also your target weight.
-- Your activity level, represented by a number from 1 to 5.
+- Your fitness level, represented by a number from 1 to 5.
   1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   2 = You engage in some form of light exercise or have a job that requires some physical activity.
   3 = You engage in moderate amount of exercise or have a job that requires moderate physical activity.
@@ -75,22 +77,22 @@ accurate calculations for you :). Therefore, could you please share with me the 
   5 = You engage in extremely vigorous exercise or have an extremely physically demanding job.
 
 Please input your details in the following format:
-  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL
-  Example: info g/F a/21 h/165 o/65 c/65 t/55 l/2
+  info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT f/FITNESS_LEVEL
+  Example: info g/F a/21 h/165 o/65 c/65 t/55 f/2
 ```
 
-#### Entering user information : `info`
+#### Entering user information: `info`
 
 Stores the user's personal information into DietBook during the initial setup. 
 
-Format: `info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL`
+Format: `info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT f/FITNESS_LEVEL`
 
-* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of user information can be done using the [editinfo](#Editing user information: `editinfo`) command.
+* This command is **only used when setting up DietBook for the first time**. Any subsequent editing of user information can be done using the [editinfo](#editing-user-information-editinfo) command.
 * The gender must be either **`M` for male, `F` for female or `O` for others**.
-* The age must be a positive integer **from 0 to 150, inclusive**.
-* The height in cm must be a positive integer **from 1 to 300, inclusive**.
-* The original, current and target weight in kg must be a positive integer ***from 1 to 500, inclusive**.
-* The activity level must be a positive integer **from 1 to 5, inclusive**.
+* The age must be a positive **integer from 0 to 150, inclusive**.
+* The height in cm must be a positive **integer from 1 to 300, inclusive**.
+* The original, current and target weight in kg must be a positive **integer from 1 to 500, inclusive**.
+* The fitness level must be a positive **integer from 1 to 5, inclusive**.
   * 1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   * 2 = You engage in some form of light exercise or have a job that requires some physical activity.
   * 3 = You engage in moderate amount of exercise or have a job that requires moderate physical activity.
@@ -99,11 +101,11 @@ Format: `info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGE
 
 Example of usage:
 
-* `info g/M a/21 h/175 o/85 c/85 t/75 l/2` stores the user's gender, age, height, original, current and target weight as well as the activity level to `male`, `21`, `175`, `85`, `85`, `75` and `You engage in some form of light exercise  or have a job that requires some physical activity.` respectively.
+* `info g/M a/21 h/175 o/85 c/85 t/75 f/2` stores the user's gender, age, height, original, current and target weight as well as the fitness level to `male`, `21`, `175`, `85`, `85`, `75` and `You engage in some form of light exercise  or have a job that requires some physical activity.` respectively.
 
 Output example:
 ```
-Thank you! DietBook has been initialised and you may start by entering any valid commands. 
+Thank you! DietBook has been initialised and you may start by entering any valid commands.
 If you require a list of valid commands, you can enter: help
 ```
 
@@ -123,24 +125,25 @@ Here is your information:
   Original weight: 85kg
   Current weight: 85kg
   Target weight: 75kg
-  Activity level: You engage in some form of light exercise or have a job that requires some physical activity.
+  Fitness level: You engage in some form of light exercise or have a job that requires some physical activity.
 ```
 
 #### Editing user information: `editinfo`
 
 Edits the user information stored in DietBook.
 
-Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [l/ACTIVITY_LEVEL]` 
+Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]` 
 
 * Although all parameters are listed as optional, **at least one of the optional fields needs to be provided**. In this case, any one of the parameters would work.
-* If more than one parameter is given, they can be in any order.
-* Existing values will be updated to the input values.
-* The name must not be empty.
+* Existing values will be updated to the input values, even if the new value given is the same as the existing value.
+* The name given **must not be empty**.
+* The name **can contain any numbers and characters except for `/`**, the forward slash.
+    * FYI: DietBook accepts all characters from Dec 33 - 126 of the [ASCII table](http://www.asciitable.com/), **except Dec 47**, the forward slash `/`.
 * The gender must be either **`M` for male, `F` for female or `O` for others**.
-* The age must be a positive integer **from 0 to 150, inclusive**.
-* The height must be a positive integer **from 1 to 300, inclusive**.
-* The original, current and target weight must be a positive integer **from 1 to 500, inclusive**.
-* The activity level must be a positive integer **from 1 to 5, inclusive**.
+* The age must be a positive **integer from 0 to 150, inclusive**.
+* The height must be a positive **integer from 1 to 300, inclusive**.
+* The original, current and target weight must be a positive **integer from 1 to 500, inclusive**.
+* The fitness level must be a positive **integer from 1 to 5, inclusive**.
   * 1 = You hardly engage in any exercise or have a job that requires little to no physical activity.
   * 2 = You engage in some form of light exercise or have a job that requires some physical activity.
   * 3 = You engage in moderate amount of exercise or have a job that requires moderate physical activity.
@@ -149,10 +152,9 @@ Format: `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/
 
 Example of usage: 
 
-* `editinfo n/John` edits the name of the user to be `John`.
-* Both `editinfo c/75 l/4` and `editinfo l/4 c/75` edits the current weight and activity level of the user to be `75` and `You engage in vigorous exercise or have a physically demanding job.` respectively.
+* Both `editinfo c/75 f/4` and `editinfo f/4 c/75` edits the current weight and fitness level of the user to be `75` and `You engage in vigorous exercise or have a physically demanding job.` respectively.
  
-Output example for usage example 2: 
+Output example: 
 ```
 Got it! I've updated your personal information:
   Name: Jack
@@ -162,7 +164,7 @@ Got it! I've updated your personal information:
   Original weight: 85kg
   Current weight: 75kg
   Target weight: 75kg
-  Activity level: You engage in vigorous exercise or have a physically demanding job.
+  Fitness level: You engage in vigorous exercise or have a physically demanding job.
 ```
 
 ### Features related to the food database
@@ -200,7 +202,8 @@ Example of Usage:
 * `add n/Prawn Mee x/1` adds the first instance of food with a name that contains Prawn Mee with a portion of 1.
 
 Output example:
-```Here are the food items in DietBook:
+```
+Here are the food items in DietBook:
    1. Prawn Mee Soup(Dry)(Large) | calorie : 490 | protein : 0 | carbohydrate : 0 | fats : 0 -- (1)
 ```
 
@@ -379,7 +382,7 @@ Similar Inputs and outputs for the following
  
 ### Other features
 
-#### To view a list of valid commands: help: `help`
+#### To view a list of valid commands: `help`
 
 Displays the helping guide for commands.
 
@@ -388,51 +391,45 @@ Format: `help`
 Output example: 
 ```
 Listed below are the valid commands for DietBook:
-
-For user information related commands
-  To view user information: userinfo
-  To edit user information: editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [l/ACTIVITY_LEVEL]
-
-For database related commands
-  [Coming Soon] To add a food from the database: add n/FOOD_NAME x/PORTION_SIZE
-  [Coming Soon] To add a food from the database consumed at a certain time: add n/FOOD_NAME x/PORTION_SIZE yyyy-mm-ddTHH:mm
-  To view all food in the database: data
-
-For food list related commands
-  To add a food not in the database that was just consumed: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT]
-  To add a food not in the database consumed at a certain time: add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] yyyy-mm-ddTHH:mm
-  To view all food in DietBook: list
-  To view all food in DietBook recorded within a time period: list yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-  To view all food in DietBook recorded from a certain date until now: list yyyy-mm-ddTHH:mm
-  To delete a food from DietBook: delete INDEX
-  To delete all food items from the DietBook: clear
-
-For nutritional intake and recommendation related commands
-  To get recommended calorie intake: recommend
-
-  To calculate carbohydrate intake: calculate carbohydrate
-  To calculate carbohydrate intake within a time period: calculate carbohydrate yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-  To calculate carbohydrate intake from a certain date until now: calculate carbohydrate yyy-mm-ddTHH:mm
-
-  To calculate calorie intake: calculate calorie
-  To calculate calorie intake within a time period: calculate calorie yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-  To calculate calorie intake from a certain date until now: calculate calorie yyyy-mm-ddTHH:mm
-
-  To calculate protein intake: calculate protein
-  To calculate protein intake within a time period: calculate protein yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-  To calculate protein intake from a certain date until now: calculate protein yyyy-mm-ddTHH:mm
-
-  To calculate fat intake: calculate fat
-  To calculate fat intake within a time period: calculate fat yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-  To calculate fat intake from a certain date until now: calculate fat yyyy-mm-ddTHH:mm
-
-  To calculate all nutritional intake: calculate all
-  To calculate all nutritional intake within a time period: calculate all yyyy-mm-ddTHH:mm yyyy-mm-ddTHH:mm
-  To calculate all nutritional intake from a certain date until now: calculate all yyyy-mm-ddTHH:mm
-
-For other system related commands
-  To view a list of valid commands: help
-  To exit DietBook: exit
+__________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________
+  userinfo    | To view user information:
+              | userinfo
+__________________________________________________________________________________________________________________________________________
+  editinfo    | To edit user information:
+              | editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]
+__________________________________________________________________________________________________________________________________________
+  add         | To add a food from the database:
+              | add i/INDEX x/PORTION_SIZE [yyyy-mm-ddTHH:mm]
+__________________________________________________________________________________________________________________________________________
+  data        | To view all food in the database:
+              | data
+__________________________________________________________________________________________________________________________________________
+  add         | To add a food not in the database:
+              | add x/PORTION_SIZE n/FOOD_NAME k/CALORIE [c/CARBOHYDRATE] [p/PROTEIN] [f/FAT] [yyyy-mm-ddTHH:mm]
+__________________________________________________________________________________________________________________________________________
+  list        | To view all food in DietBook:
+              | list [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]
+__________________________________________________________________________________________________________________________________________
+  delete      | To delete a food from DietBook:
+              | delete INDEX
+__________________________________________________________________________________________________________________________________________
+  clear       | To delete all food items from the DietBook:
+              | clear
+__________________________________________________________________________________________________________________________________________
+  recommend   | To get recommended calorie intake:
+              | recommend
+__________________________________________________________________________________________________________________________________________
+  calculate   | To calculate nutritional intake:
+              | calculate NUTRIENT_TYPE [yyyy-mm-ddTHH:mm] [yyyy-mm-ddTHH:mm]
+              |   Valid NUTRIENT_TYPE: carb, calorie, fat, protein, all
+__________________________________________________________________________________________________________________________________________
+  help        | To view a list of valid commands:
+              | help
+__________________________________________________________________________________________________________________________________________
+  exit        | To exit DietBook:
+              | exit
+__________________________________________________________________________________________________________________________________________
 ```
  #### To exit DietBook: `exit`
  
@@ -465,7 +462,7 @@ For other system related commands
 
 Action | Format, Examples
 ---- | ----
-Enter name | **Note**: Used only when setting up DietBook for the first time.<br/>`name YOUR_NAME` <br/> e.g.,`name Jack`
-Enter info | **Note**: Used only when setting up DietBook for the first time.<br/>`info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT l/ACTIVITY_LEVEL` <br/> e.g.,`info g/M a/21 h/175 o/85 c/85 t/75 l/2`
+Enter name | **Note**: Used only when setting up DietBook for the first time.<br/>`name YOUR_NAME_OR_NICKNAME` <br/> e.g.,`name Jack`
+Enter info | **Note**: Used only when setting up DietBook for the first time.<br/>`info g/GENDER a/AGE h/HEIGHT o/ORIGINAL_WEIGHT c/CURRENT_WEIGHT t/TARGET_WEIGHT f/FITNESS_LEVEL` <br/> e.g.,`info g/M a/21 h/175 o/85 c/85 t/75 f/2`
 View user info | `userinfo`
-Edit user info | `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [l/ACTIVITY_LEVEL]` <br/> e.g.,`editinfo c/75 l/4`
+Edit user info | `editinfo [n/NAME] [g/GENDER] [a/AGE] [h/HEIGHT] [o/ORIGINAL_WEIGHT] [c/CURRENT_WEIGHT] [t/TARGET_WEIGHT] [f/FITNESS_LEVEL]` <br/> e.g.,`editinfo c/75 f/4`

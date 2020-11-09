@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 import seedu.dietbook.food.Food;
 
 
@@ -79,22 +78,13 @@ class FoodListTest {
 
         LocalDateTime timeNow = LocalDateTime.now();
         
-        assertTrue(list.getFoodsAfterDateTime(timeNow).size() == 0);
+        assertTrue(datedList.getFoodsAfterDateTime(timeNow).size() == 0);
+        
         assertEquals(list.getFoods().toString(),
                 list.getFoodsAfterDateTime(LocalDateTime.MIN).toString());
 
-
-        // add new entries:
-        if (! LocalDateTime.now().isAfter(timeNow)) { // Execution is too fast that now() = timeNow.
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                System.out.println("Unexpected Interruption");
-            }
-        }
-        list.addFood(1, food);
-        assertEquals(food.toString(), list.getFoodsAfterDateTime(timeNow).get(0).toString());
-        
+        datedList.addFood(1, food);
+        assertEquals(food.toString(), datedList.getFoodsAfterDateTime(end).get(1).toString());
 
     }
 
@@ -141,6 +131,19 @@ class FoodListTest {
         assertTrue(datedList.toDatedString(end).stripTrailing().endsWith(String.format("[%s]",
                 end.format(DatedFoodEntry.DATE_TIME_FORMAT))));
 
+    }
+
+    @Test
+    @DisplayName("List sorting test")
+    void getSortedItem_listWithItemsAddedAtEarlierDates_getItemsAccordingToDateTimeOrder() {
+        datedList.addFoodAtDateTime(3, food, LocalDateTime.MIN);
+        datedList.addFoodAtDateTime(2, food, LocalDateTime.of(2000, 6, 7, 0, 0));
+        
+        datedList.sort();
+        
+        for (int i = 0; i < datedList.getFoods().size() - 1; i++) {
+            assertTrue(datedList.getDateTimes().get(i).isBefore(datedList.getDateTimes().get(i + 1)));
+        }
     }
 
 
