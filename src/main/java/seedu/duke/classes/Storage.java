@@ -55,9 +55,9 @@ public class Storage implements SaveState {
     }
 
     /**
-     * load the watch time detail from the file
-     * @param s
-     * @return a WatchTime instance
+     * load the watch time detail from the file.
+     * @param s the scanner to scan the file.
+     * @return a WatchTime instance.
      */
     private WatchTime loadWatchTimeDetail(Scanner s) {
         if (s.hasNext()) {
@@ -85,7 +85,7 @@ public class Storage implements SaveState {
     @Override
 
     /**
-     * load the watchlist information and watch time information
+     * load the watchlist information and watch time information.
      */
     public ShowList loadState() throws FileNotFoundException {
         File directory = new File("data");
