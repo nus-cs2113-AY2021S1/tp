@@ -65,8 +65,8 @@ The code contributed by me can be found in this [link](https://nus-cs2113-ay2021
 [#70](https://github.com/AY2021S1-CS2113T-W12-2/tp/issues/70)
 
 ### Contributions beyond the team:
-* Reported the documentation and feature bugs found in another team's project. Notable ones include:
-    * [#2](https://github.com/daniellimws/ped/issues/2)
-    * [#4](https://github.com/daniellimws/ped/issues/4)
-    * [#5](https://github.com/daniellimws/ped/issues/5)
-    * [#6](https://github.com/daniellimws/ped/issues/6)
+* Reported the documentation and feature bugs found in another team's project:
+[#2](https://github.com/daniellimws/ped/issues/2),
+[#4](https://github.com/daniellimws/ped/issues/4),
+[#5](https://github.com/daniellimws/ped/issues/5),
+[#6](https://github.com/daniellimws/ped/issues/6)
