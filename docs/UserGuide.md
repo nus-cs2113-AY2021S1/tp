@@ -637,6 +637,8 @@ You can do so by using the `add` command, followed by the details of the flashca
 
 **Format:** `add q:QUESTION | a:ANSWER`
 
+<div style="page-break-after: always;"></div>
+
 Here are some key pointers:
 * `QUESTION` is the question of your flashcard.
 * `ANSWER` is the answer of your flashcard.
@@ -666,6 +668,8 @@ You can do so by using the `list` command.
 
 Here are some key pointers:
 * You cannot type in any parameters after the `list` command.
+
+<div style="page-break-after: always;"></div>
 
 **Example:**
 
