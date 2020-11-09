@@ -119,6 +119,7 @@ What you should see:
 
 ![topics](./images/topics.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.6. Accessing the CS2113T textbook content: `textbook`
 
@@ -174,9 +175,9 @@ From here on you can either:
 
 1) Enter in your answer by typing '1', '2', '3' or '4' and pressing enter.
 
-2) If you do not know the answer, you can request for a hint by typing `hint` and pressing enter. Refer to  the [section on hints](#38-showing-a-hint-hint) for more information.
+2) If you do not know the answer, you can request for a hint by typing `hint` and pressing enter. Refer to the [section on hints](#38-showing-a-hint-hint) for more information.
 
-3) If you would like to refer to the question in future, you can also `bookmark` it. 
+3) If you would like to refer to the question in future, you can also `bookmark` it. Refer to the [section on bookmark](#39-bookmarking-a-question-bookmark) for more information.
 
 If you have entered the correct answer, this is what you will see:
 ![quiz](./images/quiz_correct.png)
@@ -451,7 +452,7 @@ Note:
 - If you edit the title of existing topics or description of existing questions then their associated user 
 data might be erased.
 - The title of a topic cannot be blank or repeated (not case-sensitive).
-- If the title includes a backslash, you may not be able to use the title anywhere else.
+- If the title includes a backslash, you may not be able to use the title in anywhere of the program.
 - The description of a question cannot be blank or repeated (not case-sensitive).
 - If you want to re-attempt the same question, you can simply start a new quiz with the topic that the question is from.
 
@@ -480,7 +481,8 @@ Therefore, it is recommended that you do not modify the user data. Do build up y
 | Starting a quiz |  `quiz t/TOPIC n/QUESTIONS s/TIMER` <br/> e.g. `quiz t/OOP n/5 s/10`                                              |
 | Showing a hint        |           `hint`                                      |
 | Bookmarking a question | `bookmark` | 
-| Listing out all bookmarked questions | `bookmark` | 
+| Listing out all bookmarked questions | `bookmark list` | 
+| Deleting a bookmark | `bookmark delete` | 
 | Displaying statistics | `stats` | 
 | Adding a note | `note add` | 
 | Deleting a note | `note delete` | 
