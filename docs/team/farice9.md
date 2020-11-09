@@ -30,6 +30,8 @@ The following are my contributions to the project!
     anywhere in the app and is modified to take in index number (for quicker navigation) or mode name (for meaningful interaction).
     * Credits: The general functions are implemented during the design of the system architecture.
    
+<div style="page-break-after: always;"></div>
+   
 * **Streamlined the user interface of the program**
     * What it does: Decided how the general user interface of the program should look like and helped streamlined it across
     multiple modes. 
@@ -69,6 +71,8 @@ The following are my contributions to the project!
     [Main component](https://ay2021s1-cs2113t-t12-1.github.io/tp/DeveloperGuide.html#main-component) sections.
     * Drawn the regular diagrams of major components and system architecture, UML sequence diagram of how the architecture 
     components interact with each other and the UML diagram of the main components in StudyIT class.
+
+<div style="page-break-after: always;"></div>
 
 ### Community:
 * Non-trivial PR reviews: 

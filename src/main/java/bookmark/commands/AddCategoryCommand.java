@@ -22,6 +22,15 @@ public class AddCategoryCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
+    /**
+     * Adds new BookmarkCategory to ArrayList after evaluating category name.
+     *
+     * @param ui prints output message
+     * @param categories add category to array list
+     * @param storage store new category to file
+     * @throws EmptyBookmarkException if category name is empty
+     * @throws ExistingBookmarkException if bookmark category already exist
+     */
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage storage) {
         try {
             evaluateCategory();

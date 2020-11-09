@@ -244,6 +244,11 @@ This section contains 8 commands:
 * 1.7 : [Deleting a link](#17-deleting-a-link-rm-link_number-)
 * 1.8 : [Starring / Unstarring a link](#18-marking-unmarking-a-link-as-a-starred-link-star-link_number)
 
+>**Warning**
+>If you edit the data file wrongly, the bookmark feature will not be able to take in the correct category name, and links. 
+>If you encounter any errors after handling the bookmark data file, refer to [FAQ](#faq)
+
+
 <div style="page-break-after: always;"></div>
 
 ### 1.1 Viewing all the bookmarks links: `list`,`list -s`, `list -c`, `list -a`
@@ -264,6 +269,8 @@ Expected output:
 
 ![Bookmark_List](Images/BookmarkUG/Figure1.png)
 ![Bookmark_List_1Star_Cat](Images/BookmarkUG/Figure2.png)
+
+<div style="page-break-after: always;"></div>
 
 >**Useful Information:**
 >* You can only use this command anywhere after entering the bookmark mode. (Refer to [General Command 2](#2-changes-the-current-mode-cd-mode_name-or-mode_index))
@@ -355,14 +362,14 @@ Expected output:
 
 ![Bookmark_1.4](Images/BookmarkUG/Figure6.png)
 
-**Useful Information:**
-* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
+>**Useful Information:**
+>* You can only use this command in bookmark main.  (Refer to [1.5](#15-going-back-to-bookmark-main-back) to go back to the bookmark main)
 
 Before deleting a category, take note of the following warnings. 
 
-**Warning:**
-* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
-* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
+>**Warning:**
+>* Ensure that the category NUMBER that you have chosen is valid. Error will be shown if the category NUMBER does not exist, or the NUMBER you have entered is not a number. To find out the valid category NUMBER, view the list of category available. (Refer to [1.1](#11-viewing-all-the-bookmarks-links-listlist--s-list--c-list--a))
+>* CAUTION: Make sure to check all your links before deleting. Deleting a category will delete all the bookmarks in the category! 
 
 <div style="page-break-after: always;"></div>
 
@@ -408,7 +415,8 @@ Expected output:
 
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
 
-**Useful Information:**
+
+>**Useful Information:**
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
 >* You can only bookmark unique links within your category. Refer to the following figure.  
 >![Bookmark_not unique link](Images/BookmarkUG/Figure9.png)
@@ -417,7 +425,7 @@ If you encounter any errors, take note of the following warnings.
 
 >**Warning:** 
 >* Ensure that you have chosen a category. You will be prompted to choose a category before you are allowed to add your links. (Refer to [1.2](#12-going-into-each-category-bm-number)) 
->* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "|" or does not contain “.”). 
+>* Ensure that the link added is valid. Error will be shown if the link you have given is empty or is not valid (contains " ", "\|" or does not contain “.”). 
 
 <div style="page-break-after: always;"></div>
 
@@ -453,13 +461,10 @@ Instruction:
 1. `star LINK_NUMBER`  
 
 e.g. `star 1`
+
 Expected output:   
 
-<p align="center">
-    <img width="40%" height="40%" src="Images/GeneralUG/welcomemessage.png">
-</p>
-
-![Bookmark_star](Images/BookmarkUG/Figure11.png)
+![Bookmark_star](Images/BookmarkUG/Figure11.png){:width="30%" height="30%"}
 
 >**Useful Information:** 
 >* It is the same command for marking and unmarking any links. For example, if link 1 is not starred, star 1  will mark the link as starred. And if link 1 is starred, star 1 will unmark link 1. 
@@ -495,7 +500,7 @@ This section contains 10 commands to navigate the Timetable mode:
 * [2.7. Showing classes list](#27-showing-class-list-list-class)
 * [2.8. Deleting an activity](#28-deleting-an-activity-delete-activity-index)
 * [2.9. Deleting a class](#29-deleting-a-class-delete-class-index)
-* [2.10 Removing all past events](#210-removing-all-past-event-clean-up)
+* [2.10 Removing all past events](#210-removing-all-past-events-clean-up)
 
 <div style="page-break-after: always;"></div>
 
@@ -568,7 +573,7 @@ Expected output:
 >**Useful Information:** 
 >* Currently this feature does not support adding activity past 12am. If you wish to schedule an activity overnight, 
 >add the activity in 2 separate sessions.
->
+
 <div style="page-break-after: always;"></div>
 
 ### 2.4 Showing links: `show link`
@@ -595,6 +600,9 @@ Instruction:
 Expected output:
 
 ![Timetable_2_5](Images/TimetableUG/Timetable_2_5.png){:height="80%" width="80%"}
+
+>**Warning:**
+>* If the name of event is more than 10 character only the first 10 character will be shown.
 
 <div style="page-break-after: always;"></div>
 
@@ -974,6 +982,8 @@ If you encounter any errors, take note of the following warning.
 >
 >![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="60%" width="60%"}
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3 Listing flashcards: `list`
 
 If you wish to review the content that is currently in the flashcard deck, this command can display all flashcards that
@@ -1051,7 +1061,7 @@ Expected output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: All of Study It's data are stored under the `ROOT_FOLDER/data` folder.
+**A**: All of Study It's data is stored under the `ROOT_FOLDER/data` folder.
 To transfer these data to another computer, please back up the `data` folder 
 and copy it over to the directory in the new computer accordingly after installing the app.
 
@@ -1066,6 +1076,17 @@ feel free to refer to the About Us page and contact any of the developers.
 **A**: As this app is still under development, there are many features we would like to add in the future.
 Do feedback to us what features you would like to see in Study It!
 
+**Q**: What to do if bookmark data does not load properly after changing the bookmark.txt file?
+
+**A**: This is for users who edited the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
+you can do one of the following steps: 
+* revert the changes in the data file.
+* delete the bookmark data file.
+* ensure the bookmark data file are stored in the correct format. This is the following format: 
+    * CategoryName = links \| links \| \|STAR\|links \| links t->title 
+    * Category name and the links are separated with a " = " and each link is separated with a " \| ". (Take note of the space before and after the symbols)
+    * A starred link has \|STAR\| in front of the link. A link with a title has " t->" infront of the title. (Take note of the space in front of t->)
+
 <div style="page-break-after: always;"></div>
 
 ## Command Summary
@@ -1078,11 +1099,11 @@ which you can access using the cd command!
 <div align="center">Table: Command Cheatsheet for Study It</div>
 
 <p align="center">
-    <img width="80%" height="80%" src="Images/cheatsheet1.png">
+    <img width="90%" height="90%" src="Images/cheatsheet1.png">
 </p>
 
 <div style="page-break-after: always;"></div>
 
 <p align="center">
-    <img width="80%" height="80%" src="Images/cheatsheet2.png">
+    <img width="90%" height="90%" src="Images/cheatsheet2.png">
 </p>

@@ -55,7 +55,11 @@ public class AcademicCommandParser extends CommandParser {
      * @return string array containing the various variables for the contact.
      * @throws NumberFormatException when phone number inputted is not a valid phone number.
      */
-    public static String[] getContact(String command) throws NumberFormatException {
+    public static String[] getContact(String command) throws NumberFormatException, InvalidCommandException {
+
+        if (!command.contains("c/") | !command.contains("m/") | !command.contains("e/")) {
+            throw new InvalidCommandException();
+        }
         String name = command.substring(command.indexOf("c/") + 2,
                 command.indexOf("m/")).trim();
         String number = command.substring(command.indexOf("m/") + 2,
@@ -76,7 +80,12 @@ public class AcademicCommandParser extends CommandParser {
      * @throws InvalidGradeException grade inputted is nto a valid grade.
      * @throws InvalidMcException mc inputted is nto a valid mc.
      */
-    public static String[] getGrade(String command) throws InvalidGradeException, InvalidMcException {
+    public static String[] getGrade(String command)
+            throws InvalidGradeException, InvalidMcException, InvalidCommandException {
+
+        if (!command.contains("n/") | !command.contains("m/") | !command.contains("g/")) {
+            throw new InvalidCommandException();
+        }
         String name = command.substring(command.indexOf("n/") + 2,
                 command.indexOf("m/")).trim();
         String mc = command.substring(command.indexOf("m/") + 2,
