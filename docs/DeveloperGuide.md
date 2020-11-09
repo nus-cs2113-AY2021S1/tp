@@ -467,7 +467,7 @@ One-stop application for Primary 6 students to plan their schedule and do revisi
 |v2.0|Primary 6 student|to remember the contact details of my teachers|I can contact them in case there is an emergency.|
 |v2.0|Primary 6 student|to see the list of questions I have added|I can keep track of the questions I need.|
 |v2.0|Primary 6 student|to practice via short and interactive online trivia|I can revise in an entertaining manner.|
-
+|v2.1|Primary 6 student|set a number of productive hours per day|I can work efficiently and effective without overloading.|
 ## Non-Functional Requirements
 
 * Should work on any Windows, Mac and Linux operating system with Java 11 installed.
