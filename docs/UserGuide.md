@@ -28,7 +28,7 @@
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.6.4 [Delete workspace](#364-delete-workspace)
 <br/>&nbsp;3.7 [Watchlist management](#37-watchlist-management)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.1 [Create new watchlist](#371-create-new-watchlist)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.2 [List all created watchlist(s)](#372-list-all-created-watchlists)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.2 [List all watchlist(s)](#372-list-all-watchlists)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.3 [Select a watchlist to use](#373-select-a-watchlist-to-use)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.4 [Delete a watchlist](#374-delete-a-watchlist)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.7.5 [Add an anime to the current watchlist](#375-add-an-anime-to-the-current-watchlist)
@@ -427,7 +427,7 @@ Watchlist "Adventure Anime" has been created successfully!
 
 <br/>
 
-#### 3.7.2 List all created watchlist(s)
+#### 3.7.2 List all watchlist(s)
 
 List all watchlist(s) in the current workspace.
 
@@ -746,7 +746,7 @@ In the folder where **AniChan** is launched, there will be a `data` folder which
 
 *   User data will be stored in `data/user.txt`.
 *   Watchlist(s) data will be stored in `data/<WORKSPACE-NAME>/watchlist.txt`. For example, if "AniTranslator" is the name of your workspace, then the watchlist data can be found in `data/AniTranslator/watchlist.txt`.
-*   Bookmark(s) data will also be stored in the same location as watchlist data, `data/WORKSPACE-NAME/bookmark.txt`.
+*   Bookmark(s) data will also be stored in the same location as watchlist data, `data/<WORKSPACE-NAME>/bookmark.txt`.
 
 ![Data Loaded on Startup](images/Data-Loaded-On-Startup.png) <br/> 
 *Figure 4: Example of Data Loaded On Startup*
