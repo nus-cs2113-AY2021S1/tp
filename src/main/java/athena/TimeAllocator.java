@@ -101,9 +101,6 @@ public class TimeAllocator {
         }
     }
 
-
-
-
     private ArrayList<Task> getSortedFixedTasks(TaskList taskList) {
         TaskList fixedDayTasks = taskList;
         ArrayList<Task> sortedTimeTasks = fixedDayTasks.getTasks();
@@ -120,41 +117,10 @@ public class TimeAllocator {
         return sortedTimeTasks;
     }
 
-
-
-
-
     private TaskList getFixedDayTasks(LocalDate date) {
         DayFilter filter = new DayFilter(date);
         TaskList fixedDayTask = this.fixedTaskList.getFilteredList(filter);
         return fixedDayTask;
     }
-
-
-    // Psuedocode for allocation runs might refactor into a command class
-    //    public void runAllocate() {
-    //        Collections.sort(fixedTask, earlier());
-    //        Collections.sort(flexibleTask,priority());
-    //        //priority sorts according to importance(high to low) then duration(high to low)
-    //        //might need toposort
-    //
-    //        for (int i = 0; i < fixedTask.size() - 1; i++) {
-    //            currentTime = fixedTask.get(i).getStartTime() + fixedTask.get(i).getDuration();
-    //            nextTime = fixedTask.get(i + 1).getStartTime();
-    //            duration = nextTime-currentTime;
-    //
-    //            // select task with best fit into the time
-    //            // select important task then long tasks then check for space
-    //            // if there is no time left then continue
-    //            // if not then choose another task that can go in
-    //            // ?? not sure if want to go through the entire list to get 0 time wastage
-    //            // failure cases will be unable to meet deadline
-    //            // set time for flexible tasks
-    //            // repeat until all flexible tasks are assigned
-    //
-    //
-    //        }
-    //    }
-
 
 }

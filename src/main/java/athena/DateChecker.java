@@ -73,7 +73,6 @@ public class DateChecker {
         }
     }
 
-
     /**
      * Attempts to set recurrence.
      *
