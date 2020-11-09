@@ -548,13 +548,13 @@ Format: `delete topic [TOPIC_NUMBER]`
 have in the topic list on the command line.
 - `[TOPIC_NUMBER]` must be a **positive integer**.
 
-> 📝️️ **_NOTE:_** The TOPIC_NUMBER` of a topic is the number assigned to each topic when the user uses the 
+> 📝️️ **_NOTE:_** The `[TOPIC_NUMBER]` of a topic is the number assigned to each topic when the user uses the 
 >list command to print out the topics.
 
-> 📝️️ **_NOTE:_** After deletion of a topic, the `TOPIC_NUMBER` of topics in the list may change.
+> 📝️️ **_NOTE:_** After deletion of a topic, the `[TOPIC_NUMBER]` of topics in the list may change.
 
 > ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
-> in this subject before you delete it!
+> in this topic before you delete it!
 
 Example of usage: 
 ```
@@ -633,6 +633,10 @@ Adds a todo task.
 
 Format: `todo [DESCRIPTION]`
 
+- Adds a todo task with a description of `[DESCRIPTION]`.
+- The application will print the description of the todo task you have added into the task list, 
+as well as the amount of tasks in the task list on the command line.
+
 Example of usage: 
 ```
 todo look up on what is active listening
@@ -651,10 +655,12 @@ ____________________________________________________________
 
 Adds a deadline task.
 
-Format:
+Format: `deadline [DESCRIPTION] /by [TIME]`
 
-`deadline [DESCRIPTION] /by [TIME]`
+- Adds a deadline task with a description of `[DESCRIPTION]` and a deadline of `[TIME]`.
 - A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
+- The application will print the description of the deadline task you have added into the task list, 
+as well as the amount of tasks in the task list on the command line.
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -677,7 +683,11 @@ ____________________________________________________________
 Add an event task.
 
 Format: `event [DESCRIPTION] /at [TIME]`
-- A deadline must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
+
+- Adds a deadline task with a description of `[DESCRIPTION]` and a timing of `[TIME]`.
+- An event must have a `[TIME]`. If you do not wish to set a time, add a <a href="#todo">todo</a> instead.
+- The application will print the description of the event task you have added into the task list, 
+as well as the amount of tasks in the task list on the command line.
 
 > 📝️️ **_NOTE:_** Add the time using the HH:MM DD-MM-YYYY format. 
 
@@ -701,11 +711,18 @@ Deletes a task from the current subject, given the task number.
 
 Format: `delete task [TASK_INDEX]`
 
+- Deletes the task with the index number of `[TASK_INDEX]`.
+- The application will print the description of the task you have deleted from the task list, as well as the amount of tasks you 
+have in the topic list on the command line.
 - `[TASK_INDEX]` must be a **positive integer**.
-- Task `[TASK_INDEX]` must **already exist in the task list**.
+
+> 📝️️ **_NOTE:_** The `TASK_INDEX` of a topic is the number assigned to each task when the user uses the 
+>list command to print out the tasks.
+
+> 📝️️ **_NOTE:_** After deletion of a task, the `TASK_INDEX` of tasks in the list may change.
 
 > ⚠️ **_WARNING:_** It is impossible to retrieve data deleted by this command. Make sure you do not need the data
-> in this subject before you delete it!
+> in this task before you delete it!
 
 Example of usage: 
 ```
