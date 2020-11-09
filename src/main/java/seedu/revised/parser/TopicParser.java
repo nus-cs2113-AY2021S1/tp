@@ -21,7 +21,7 @@ import seedu.revised.command.topiccommand.HelpTopicCommand;
 
 
 /**
- * Parses the commands on the topic level.
+ * Parses the commands on the subject level.
  */
 public class TopicParser {
 

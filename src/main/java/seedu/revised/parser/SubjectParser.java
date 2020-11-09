@@ -1,5 +1,6 @@
 package seedu.revised.parser;
 
+import seedu.revised.command.flashcardcommand.*;
 import seedu.revised.command.subjectcommand.ListAllSubjectCommand;
 import seedu.revised.command.subjectcommand.AddSubjectCommand;
 import seedu.revised.command.subjectcommand.DeleteSubjectCommand;
@@ -15,7 +16,7 @@ import seedu.revised.command.subjectcommand.ResultSubjectCommand;
 import seedu.revised.command.subjectcommand.HelpSubjectCommand;
 
 /**
- * Allows the parsing of inputs provided by the user.
+ * Allows the parsing of inputs provided by the user on the main level.
  */
 public class SubjectParser {
 
@@ -31,30 +32,34 @@ public class SubjectParser {
         String fullCommandLowerCase = fullCommand.toLowerCase();
         String command = tokens[0].toLowerCase();
 
-        if (fullCommandLowerCase.equals("bye")) {
-            return new ExitSubjectCommand();
-        } else if (fullCommandLowerCase.equals("list")) {
-            return new ListSubjectCommand();
-        } else if (fullCommandLowerCase.equals("list all")) {
-            return new ListAllSubjectCommand();
-        } else if (fullCommandLowerCase.equals("export")) {
-            return new ExportSubjectCommand();
-        } else if (command.equals("add")) {
-            return new AddSubjectCommand(fullCommand);
-        } else if (command.equals("delete")) {
-            return new DeleteSubjectCommand(fullCommand);
-        } else if (command.equals("find")) {
-            return new FindSubjectCommand(fullCommand);
-        } else if (fullCommandLowerCase.equals("help")) {
-            return new HelpSubjectCommand();
-        } else if (command.equals("subject")) {
-            return new AccessSubjectCommand(fullCommand);
-        } else if (command.equals("quiz")) {
-            return new QuizSubjectCommand(fullCommand);
-        } else if (command.equals("results")) {
-            return new ResultSubjectCommand(fullCommand);
-        } else {
-            return new SorrySubjectCommand();
+        switch (command) {
+            case "results":
+                return new ResultSubjectCommand(fullCommand);
+            case "quiz":
+                return new QuizSubjectCommand(fullCommand);
+            case "subject":
+                return new AccessSubjectCommand(fullCommand);
+            case "find":
+                return new FindSubjectCommand(fullCommand);
+            case "add":
+                return new AddSubjectCommand(fullCommand);
+            case "delete":
+                return new DeleteSubjectCommand(fullCommand);
+            default:
+                switch (fullCommandLowerCase) {
+                    case "export":
+                        return new ExportSubjectCommand();
+                    case "help":
+                        return new HelpSubjectCommand();
+                    case "bye":
+                        return new ExitSubjectCommand();
+                    case "list" :
+                        return new ListSubjectCommand();
+                    case "list all":
+                        return new ListAllSubjectCommand();
+                    default:
+                        return new SorrySubjectCommand();
+                }
         }
     }
 }

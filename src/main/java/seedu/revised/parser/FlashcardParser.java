@@ -8,7 +8,9 @@ import seedu.revised.command.flashcardcommand.ListFlashcardCommand;
 import seedu.revised.command.flashcardcommand.DeleteFlashcardCommand;
 import seedu.revised.command.flashcardcommand.SorryFlashcardCommand;
 import seedu.revised.command.flashcardcommand.HelpFlashcardCommand;
-
+/**
+ * Parses the commands on the topic level.
+ */
 public class FlashcardParser {
 
     /**
