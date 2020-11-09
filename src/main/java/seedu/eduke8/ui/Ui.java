@@ -399,7 +399,7 @@ public class Ui {
                         && Integer.parseInt(input) <= noteList.getCount()) {
                     int index = Integer.parseInt(input);
                     topic.getNoteList().delete(index - 1);
-                    printWithoutLines(DELETE_NOTE_SUCCESSFULLY);
+                    printMessage(DELETE_NOTE_SUCCESSFULLY);
                 } else {
                     printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
                 }
