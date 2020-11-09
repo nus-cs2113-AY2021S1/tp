@@ -13,7 +13,13 @@ import java.util.Stack;
 public class CategoryParser {
     private static final String TAG_BOOK = "-b";
     private static final String TAG_QUOTE = "-q";
+    private static final String TO_FLAG = " /to ";
+    private static final String SPACE = " ";
     private static final String ERROR_INVALID_PARAMS = "Invalid parameters!";
+    private static final String ERROR_TO_FLAG_DETECTED = "The flag \"/to\" is not allowed as a category name!";
+    private static final String ERROR_TAG_BOOK_DETECTED = "The tag \"-b\" is not allowed as a category name!";
+    private static final String ERROR_TAG_QUOTE_DETECTED = "The tag \"-q\" is not allowed as a category name!";
+    private static final String ERROR_NO_SPACE_ALLOWED = "No spaces are allowed in categories, use a - instead!";
 
     /**
      * Converts a string array to a stack.
@@ -101,11 +107,30 @@ public class CategoryParser {
      */
     public static String[] getEditParameters(String information) throws QuotesifyException {
         try {
-            String[] oldAndNewCategory = information.split(" /to ", 2);
+            String[] oldAndNewCategory = information.split(TO_FLAG, 2);
+            validateCategoryName(oldAndNewCategory[1]);
             return new String[]{oldAndNewCategory[0].trim(), oldAndNewCategory[1].trim()};
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new QuotesifyException(ERROR_INVALID_PARAMS
                     + System.lineSeparator() + UiMessage.EDIT_CATEGORY_COMMAND);
+        }
+    }
+
+    /**
+     * Checks category names for invalid input.
+     *
+     * @param name Category name.
+     * @throws QuotesifyException If invalid inputs are detected.
+     */
+    public static void validateCategoryName(String name) throws QuotesifyException {
+        if (name.equals(TO_FLAG.trim())) {
+            throw new QuotesifyException(ERROR_TO_FLAG_DETECTED);
+        } else if (name.contains(SPACE)) {
+            throw new QuotesifyException(ERROR_NO_SPACE_ALLOWED);
+        } else if (name.equals(TAG_BOOK)) {
+            throw new QuotesifyException(ERROR_TAG_BOOK_DETECTED);
+        } else if (name.equals(TAG_QUOTE)) {
+            throw new QuotesifyException(ERROR_TAG_QUOTE_DETECTED);
         }
     }
 
@@ -116,6 +141,6 @@ public class CategoryParser {
      * @return A list of category names.
      */
     public static List<String> parseCategoriesToList(String categories) {
-        return Arrays.asList(categories.split(" "));
+        return Arrays.asList(categories.split(SPACE));
     }
 }
