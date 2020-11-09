@@ -40,6 +40,10 @@ RemoveModuleCommand <-- ModuleList : modules
 deactivate ModuleList
 [<-[hidden]- ModuleList
 destroy ModuleList
+RemoveModuleCommand -> Storage : removeModuleFromExclusionFile(moduleName)
+activate Storage
+RemoveModuleCommand <-- Storage
+deactivate Storage
 RemoveModuleCommand -> Storage : deleteDirectory(directory)
 activate Storage
 RemoveModuleCommand <-- Storage : isRemoved
