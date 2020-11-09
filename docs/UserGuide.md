@@ -77,7 +77,7 @@ If you are unfamiliar with the CLI (Command Line Interface), do give this helpfu
 
 * The `<SHOWNAME>` to be entered is case-sensitive.<br><br>
 
-<div style="page-break-after: always;"></div>
+
 
 ## 4. Features <br>
 
@@ -91,13 +91,13 @@ If you are unfamiliar with the CLI (Command Line Interface), do give this helpfu
  Example of usage: Let's say you want a quick description of each available command in **WatchNext**. Simply typing `help`
  will display a condensed list of each command and description to you.
   
+  <div style="page-break-after: always;"></div>
+  
 Expected outcome:
  
 <img src = "images/help.PNG" width = "550">
  
 &nbsp;
-
-<div style="page-break-after: always;"></div>
 
  >  **[NOTE]**
  >
@@ -176,7 +176,7 @@ The process is terminated. Your existing data is kept
  >  
  >  * You will need to input `<SHOWNAME>` as one word. If the name of your show contains more than one word you will need to input the name with no spaces (an example would be `<RunningMan>` or you may use `_` to represent a space and use `Running_Man`.)
    
- 
+ <div style="page-break-after: always;"></div>
 
  
 #### 4.c. `edit` - Edits your show details
@@ -307,6 +307,7 @@ The `addreview` command allows you to add a review for a show, including adding 
    
    <img src = "images/addreviewlist.png" width = "700">
    
+   <div style="page-break-after: always;"></div>
    
 ### 4.f. `changereview` - Changing a review
 
@@ -487,7 +488,7 @@ The `episode` command updates the current episode of an existing show in your wa
   
  &nbsp;
  
- 
+ <div style="page-break-after: always;"></div>
 
 ### 4.m. Managing your watch time limit
 
@@ -528,6 +529,8 @@ The `watch` command updates the watching progress for your show, and automatical
  are now watching S1E2 of Friends!<br>
  
  In addition, the previously set time limit of 120 minutes has been reduced to 60 minutes.
+ 
+ <div style="page-break-after: always;"></div>
  
 ### 4.m.b. `updatetimelimit` - update your watch time limit
 
