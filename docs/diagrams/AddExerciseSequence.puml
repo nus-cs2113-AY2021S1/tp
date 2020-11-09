@@ -1,4 +1,5 @@
 @startuml
+skinparam Shadowing false
 participant ":Fitr" as fitr
 participant ":Parser" as Parser << class >>
 participant ":AddExerciseCommand" as AddExerciseCommand
@@ -42,5 +43,7 @@ return
 return
 AddExerciseCommand -[hidden]-> fitr
 destroy AddExerciseCommand
+deactivate fitr
+
 hide footbox
 @enduml
