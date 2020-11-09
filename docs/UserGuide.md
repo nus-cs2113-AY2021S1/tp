@@ -487,6 +487,7 @@ Expected output:
 ![Timetable_2_2](Images/TimetableUG/Timetable_2_2.png)
 
 >**Useful Information:**
+>* The module code will accept any input between 1-7 characters.
 >* You can enter the time in both 12hr and 24hr format. Only entering am/pm at the back of the duration will be assumed 
 >as both starting and ending time are in the same period.
 
