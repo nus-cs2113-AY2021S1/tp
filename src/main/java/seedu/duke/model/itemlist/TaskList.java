@@ -1,5 +1,6 @@
 package seedu.duke.model.itemlist;
 
+import seedu.duke.DukeException;
 import seedu.duke.common.Messages;
 import seedu.duke.model.item.Task;
 import seedu.duke.ui.Ui;
@@ -52,13 +53,13 @@ public class TaskList extends ItemList<Task> {
      *
      * @param index the index of the task in the task list
      */
-    public void setCategory(int index, String category) {
-        if (index > items.size() || index < 1) {
-            Ui.dukePrint(Messages.WARNING_NO_TASK);
-        } else {
+    public void setCategory(int index, String category) throws DukeException {
+        try {
             items.get(index - 1).setCategory(category);
-            Ui.dukePrint(Messages.MESSAGE_CATEGORY + items.get(index - 1).toString());
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_INDEX);
         }
+        Ui.dukePrint(Messages.MESSAGE_CATEGORY + items.get(index - 1).toString());
     }
 
     /**
