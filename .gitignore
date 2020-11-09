@@ -8,10 +8,15 @@
 /build/
 src/main/resources/docs/
 
+
 # MacOS custom attributes files created by Finder
 .DS_Store
 *.iml
 bin/
 
 /text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+
+# Data file
+/data/SmartHomeBot.txt
+/log/SmartHomeBotLog.txt
+/log/SmartHomeBotLog.txt.lck
