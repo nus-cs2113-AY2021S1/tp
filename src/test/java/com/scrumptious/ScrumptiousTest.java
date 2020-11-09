@@ -1,10 +1,10 @@
 package com.scrumptious;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
-class DukeTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class ScrumptiousTest {
     @Test
     public void sampleTest() {
         assertTrue(true);
