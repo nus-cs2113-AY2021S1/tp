@@ -188,6 +188,12 @@ public class StorageWrite {
     }
 
     //@@author neojiaern
+    /**
+     * Deletes a directory recursively.
+     *
+     * @param directoryToBeDeleted file to be deleted
+     * @return boolean result of the deletion
+     */
     protected static boolean deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {
@@ -280,6 +286,14 @@ public class StorageWrite {
     }
 
     //@@author neojiaern
+    /**
+     * Removes the chapter due file from due folder after chapter is deleted.
+     *
+     * @param module name of module
+     * @param chapter name of chapter
+     * @param filePath filepath of file to be deleted
+     * @return boolean result of deletion
+     */
     protected static boolean removeChapterFromDue(String module, String chapter, String filePath) {
         File fileToDelete = new File(filePath + "/" + module
                 + "/dues/" + chapter + "due.txt");
