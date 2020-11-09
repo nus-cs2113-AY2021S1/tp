@@ -594,6 +594,17 @@ Making sure the name of the appliance is found in the list.
 
 ### Switching Off Appliance:
 
-### Listing 
+### Listing Appliances or Locations
+
+1. Test case: `list location`, assume no location is created  <br>
+    Expected-printout: There is currently no Location in the list.
+2. Test case: `list appliance`, assume no appliance is added <br>
+    Expected-printout: There is currently no Appliance in the list.
+3. Test case: `list BR_1`, only `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]` is valid for command<br>
+    Expected-printout: Please enter either 'list appliance' or 'list location' or 'list appliance l/[LOCATION_NAME]'
+4. Test case: `list appliance l/BR_1`, assume that `BR_1` is not created<br>
+    Expected-printout: Location: "BR_1" does not exist.   
+5. Test case: `list appliance l/BR_1`, assume that `BR_1` is created but no Appliance is added to `BR_1`<br>   
+    Expected-printout: There is no Appliance in "BR_1". 
 
 ### Saving data to disk: 
