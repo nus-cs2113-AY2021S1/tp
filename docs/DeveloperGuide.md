@@ -115,24 +115,44 @@ All components can be accessed by the user through Fluffle's UI. On loading Fluf
 ### Writing Manager Component
 
 ### Bunny Manager Component
-There are two methods for the user to load their bunny ideas into the application.
-
-#### Loading bunnies directly into the bunny.txt file
-The bunny ideas can be loaded into Fluffle by the user using the `Bunny` command. This command automatically adds these `Bunny` objects into the `bunniesList` ArrayList which can be found in the BunnyList class.
+There are two methods for the user to load their bunny ideas into the application: loading it using the app or directly editing the `bunny.txt` data file.
 
 #### Saving bunnies via the program commands
-All the other functions in the bunny related classes such as BunnyList, DeleteBunny, BunnyFilter and GenBunny can also access this `bunniesList` ArrayList directly as it is passed by reference from the commandExecutor function, which imports the `bunniesList` from the BunnyList class. 
+The bunny ideas can be loaded into Fluffle by the user using the `bunny` command. This command automatically adds these `Bunny` objects into the `bunniesList` ArrayList which can be found in the BunnyList class. the `bunny` command has separate arguments for the idea and genre so the user can easily key in the two components. 
+
+#### Loading bunnies directly into the bunny.txt file
+The user may directly edit the `bunny.txt` file, though they must be careful to edit it in the correct format similar to how the program works. Specifically for each Bunny, the program will first search for the line with the `BUNNY_IDEA_TAG` as specified in the `Tags` class and parses the idea component of the Bunny. It then searches for the line with the `BUNNY_GENRE_TAG` also specified in the `Tags` class and parses the genre component of the Bunny from there. 
+
+A sample view of what the user might find in the bunny.txt file is as follows:
+
+```
+number of plot bunnies: 2
+--------------------------------------------------------------
+1.
+  idea: some fantasy related idea
+  genre: fantasy
+--------------------------------------------------------------
+2.
+  idea: some random idea
+  genre: none
+--------------------------------------------------------------
+```
+
+Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish.
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.PNG)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
-The BunnySaver class handles 
+The BunnySaver class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. The 
 
-When the program is closed,
+When the user calls the `save bunny` command from the CLI, the 
 
 Bunny read from storage and added to the new bunniesList ArrayList
+
+Note that all the other functions in the bunny related classes such as `BunnyList`, `DeleteBunny`, `BunnyFilter` and `GenBunny` can also access this `bunniesList` ArrayList to perform their various functions as it is passed by reference from the `commandExecutor` function, which imports the `bunniesList` from the `BunnyList` class. Find out more [here](#bunny-class-family).
+
 
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
@@ -265,8 +285,9 @@ In **Figure 7** above, the flow of the program after it enters the filter proces
    
 ### Bunny class family
 
+#### overivew
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<p = "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
+<p= "center"><i><b>Figure 8:  Bunny ideas UML Class Diagram</b></i></p>
 
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
@@ -282,10 +303,12 @@ The `GenBunny` class can access the `bunniesList` as well. The function `pickRan
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this method accordingly. The `addBunny` command calls the `parseSingleCharacterTaggedParamsFromUserInput` method from the `Parsers` class to extract the `idea` and `genre` arguments from the command. These are then used to create a new `Bunny` object that is then added to the `bunniesList` ArrayList. The `addBunnyMessage` method from `UI` is then called to print the message that the `Bunny` idea object has been sucessfully added to the ArrayList.
 
+#### Bunny List
+
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<p = "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
+<p= "center"><i><b>Figure 10: Names UML Class Diagram</b></i></p>
 
 The above class diagram (Figure 10) describes the overall architecture of the name list functionalities. The Names class has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets a selected name from the nameList ArrayList. Similarly, nameList is also accessed by the Names class which contains the filterNames function which can filter through the list and obtain names with specified keywords using the command filter name <NAME>, where the user may choose to omit the NAME when running the command. Similarly, nameList is also accessed by the Names class which contains the listNames function which displays all the names stored in the nameList ArrayList. This is the same as the filterNames function when given no input String. Similarly, nameList is also accessed by the Names class which contains the addName function which adds a name to the list of names stored in the nameList ArrayList using the command add name <NAME>. The NAME cannot be omitted. Similarly, nameList is also accessed by the Names class which contains the deleteName function which removes a name from the list of names stored in the nameList ArrayList. The command to do this deletes name <INDEX>. The INDEX cannot be omitted and the range of the INDEX can be determined from the listNames function above.
 
