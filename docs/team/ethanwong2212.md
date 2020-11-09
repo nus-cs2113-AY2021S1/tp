@@ -21,18 +21,23 @@ Given below are my contributions to the project.
 reflects my code contribution.
 
 #### Enhancements implemented   
+* Storage of list of favourite commands on txt file (Pull request [\#92](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/92))
+* Clean corrupted txt file which stores data on list of favourite commands (Pull request [\#223](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/223))
+* Wrote tests for FavStorage, BusCommand and ExecFavCommand (Pull request [\#212](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/212))
 
-#### Contributions to documentation
-* Added documentation for features `/route`and `/descfav`.
+#### Contributions to User Guide
+* Added documentation for features `/route`and `/descfav`. 
 
-#### Contributions to the DG
+#### Contributions to Developer Guide
+* Added implementation details and sequence diagram for `/bus` and `/execfav` feature. (Pull request [\#115](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/115), [\#193](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/193))
+* Added manual testing instructions for E.1, E.4, E.9, E.11. (Pull request [\#220](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/220))
 
 
 #### Contributions to team-based tasks 
-* Skeleton code for favourite features.
+* Skeleton code for favourite features. (Pull request [\#92](https://github.com/AY2021S1-CS2113T-F14-3/tp/pull/92))
 * Maintained the issue tracker for tasks and documentation.
 
 #### Review/mentoring contributions
 
 #### Contributions beyond the project team
-Reported bugs and suggested improvements for product and user guide for other teams [here](https://github.com/EthanWong2212/ped/issues)
+Reported bugs and suggested improvements to product and user guide for other teams [here](https://github.com/EthanWong2212/ped/issues)
