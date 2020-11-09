@@ -1,7 +1,7 @@
+package seedu.duke.model.item;
+
 //@@author GuoAi-reused
 //Reused from https://github.com/GuoAi/ip with minor modifications
-
-package seedu.duke.model.item;
 
 /**
  * Represents a task in the task list.

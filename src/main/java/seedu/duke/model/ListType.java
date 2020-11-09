@@ -1,6 +1,7 @@
 package seedu.duke.model;
 
 // @@author iamchenjiajun
+
 public enum ListType {
     TASK_LIST,
     BOOK_LIST,
