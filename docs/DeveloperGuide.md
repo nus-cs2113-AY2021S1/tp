@@ -53,22 +53,25 @@
 
 ## Introduction
 
+Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
+
 ## Setting up, getting started
 
-1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
-2. Clone the fork on to your computer.
-3. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
+1. Ensure you have version 11 of Java. You can install it from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
+2. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
+3. Clone the fork on to your computer.
+4. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
 to close the existing project dialog. 
-4. Set up the correct JDK version for Gradle.
+5. Set up the correct JDK version for Gradle.
     1. Click `Configure` -> `Project Defaults` -> `Project Structure`
     2. Click `New...` and set it to the directory of the JDK.
-5. Click `Open or Import` in Intellij.
-6. Locate the `build.gradle` file, select it and click `OK`.
-7. If asked, choose to `Open as Project`.
-8. Click `OK` to accept the default settings.
-9. Wait for the importing process to finish.
-10. Locate run the 'Duke.java' file, right click and select `Run Duke.main()`.
-11. Navigate to the `test\java` folder and right click `seedu.duke` and select `Run Tests in 'seedu.duke'`.
+6. Click `Open or Import` in Intellij.
+7. Locate the `build.gradle` file, select it and click `OK`.
+8. If asked, choose to `Open as Project`.
+9. Click `OK` to accept the default settings.
+10. Wait for the importing process to finish.
+11. Locate run the 'Duke.java' file, right click and select `Run Duke.main()`.
+12. Navigate to the `test\java` folder and right click `seedu.duke` and select `Run Tests in 'seedu.duke'`.
 If the setup is successful, you should see this after step 10. All tests should also pass.
 ````
 _________________________________
@@ -432,10 +435,24 @@ Given below is how the deadline command behave: <br>
 
 #### Check feature
 
-The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event` stored within `EventList`s in order to determine if events are occurring within a given time period. It implements the following operations:
+The check feature allows the user to check for events happening during a defined time period. The format for the check command is `check [START_DATE]; [START_TIME]; [END_DATE]; [END_TIME]`.
+
+|Argument| Description |
+|--------|----------|
+|START_DATE|The start date of the defined time period. Accepted formats are: d/M/yyyy, M/yyyy, yyyy, d/M/yy, M/yy, yy. Slashes may also be replaced with dashes. If left blank, the current date is taken by default. Missing fields (e.g. 2020 missing d/M) will be filled in using the current date (i.e if today's date is 15/10/2021, input 2020 will be read as 15/10/2020). |
+|START_TIME|The start time of the defined time period. Accepted formats are: hh:mm a, hhmm a, hh a, HH:mm, HHmm, HH. If left blank, current time is taken by default. If only hour is given, the time at the start of the hour is taken. |
+|END_DATE|The end date of the defined time period. Accepted formats are: d/M/yyyy, M/yyyy, yyyy, d/M/yy, M/yy, yy. Slashes may also be replaced with dashes. If left blank, the current date is taken by default. Missing fields (e.g. 2020 missing d/M) will be filled in using the current date (i.e if today's date is 15/10/2021, input 2020 will be read as 15/10/2020). |
+|END_TIME|The start time of the defined time period. Accepted formats are: hh:mm a, hhmm a, hh a, HH:mm, HHmm, HH. If left blank, current time is taken by default. If only hour is given, the time at the start of the hour is taken. |
+
+The following is the class diagram for CheckCommand:
+
+![CheckCommand Class Diagram](./diagrams/CheckCommandClassDiagram.jpg)
+
+The check feature is implemented using the `CheckCommand` class. `CheckCommand` accesses the `Event` stored within `EventList` in order to determine if events are occurring within a given time period. It implements the following operations:
 
 - `CheckCommand#getDate(stringDate)` -- Parses a given string to get a LocalDate variable (either the start or end date for the time period).
 - `CheckCommand#getTime(stringTime)` -- Parses a given string to get a LocalTime variable (either the start or end time for the time period).
+- `CheckCommand#verifyValidTimePeriod(LocalDate, LocalDate, LocalTime, LocalTime)` -- Verifies that the given start of the time period is before the given end of the time period.
 - `CheckCommand#checkEventsInTimeRange(eventsList, startDate, endDate, startTime, endTime)` -- Checks each event in the eventsList to see if they occur within the time period defined in the command, and saves all coinciding events in an ArrayList.
 
 These operations are not exposed, and are used as private methods within the `CheckCommand` interface.
@@ -452,15 +469,25 @@ This sequence diagram shows how the `getDate` method functions:
 
 ![Sequence Diagram for getDate](./diagrams/getDate_seq_diagram.jpg)
 
-Step 4. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
+![getDate only year](./diagrams/getDate-only-year-given.jpg)
 
-Step 5. The contents of the ArrayLists returned by `CheckCommand#checkEventsInTimeRange()` are combined into a single ArrayList, and a new `EventList` ("coinciding") is created using this combined list of events.
+![getDate only month year](./diagrams/getDate-only-month-year.jpg)
 
-Step 6. `Ui#printList()` is called to print the list of coinciding events.
+![getDate day month year](./diagrams/getDate-day-month-year.jpg)
+
+Step 4. Within `CheckCommand#execute()`, the start date, start time, end date and end time are passed to `CheckCommand#verifyValidTimePeriod()`. This method checks that the start date and time of the time period happen before the end date and time, and returns a boolean indicating the validity of the given time period.
+
+Step 5. Within `CheckCommand#execute()`, the start date time and end date time is passed to `CheckCommand#checkEventsInTimeRange()` along with an `EventList` (i.e. Zoom, Personal or Timetable). This method checks each `Event` in the `EventList` to determine if the event occurs within the time period. If the event date time coincides with the time period, the event is added to an ArrayList that stores all the coinciding events in the current `EventList`. This is done for each `EventList`. 
+
+Step 6. The contents of the ArrayLists returned by `CheckCommand#checkEventsInTimeRange()` are combined into a single ArrayList, and a new `EventList` ("coinciding") is created using this combined list of events.
+
+Step 7. `Ui#printList()` is called to print the list of coinciding events.
 
 The following sequence diagram shows how the check operation works:
 
 ![Sequence Diagram for CheckCommand](./diagrams/CheckCommand_seq_diagram.jpg)
+
+
 
 <div style="page-break-after: always;"></div>
 
@@ -499,12 +526,111 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 
 #### Done feature
 (WIP)
+The done feature allows users to mark events in Scheduler as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be marked done. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be marked done that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to be marked done should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
+The following is the class diagram for DoneCommand:
+
+![DoneCommand Class Diagram](./diagrams/DoneCommandClassDiagram.jpg)
+
+The done feature is implemented using the `DoneCommand` class. `DoneCommand` accesses the `Event` stored within `EventList` and marks it as done. It implements the following operations:
+
+- `DoneCommand#parse(input)` -- Parses the processed input from `Parser` to create a `DoneCommand` with the parsed event list type and event identifier.
+- `DoneCommand#scanRepeatList(repeatEventList, doneEventDate, ui)` -- Scans the `repeatEventList` of a repeat event and marks the matching event as done.
+
+`DoneCommand#parse(input)` is exposed and is used in Parser to create the `DoneCommand`.
+`DoneCommand#scanRepeatList(repeatEventList, doneEventDate, ui)` is not exposed, and is used as a private method within the `DoneCommand` interface.
+
+Given below is an example usage scenario and how the done feature functions.
+
+Step 1. The user inputs `done personal; 4` in order to mark the 4th `Personal` event as done. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "done" from the string and parses the resulting string with `DoneCommand#parse()`. This returns a `DoneCommand`.
+
+![Created DoneCommand](./diagrams/CreatedDoneCommand.jpg)
+
+Step 2. `DoneCommand#execute()` is called. The `command` string is split at semicolons to separate the event index from an event date (if event date is given). The event index for this DoneCommand is 4, and it has no event date.
+
+Step 3. Within `DoneCommand#execute()`, the 4th `Event` is called from the Personal `EventList` and is marked as done.
+
+![DoneCommand state diagram](./diagrams/DoneCommandStates.jpg)
+
+If the called event is a repeat event and an event date is given, `DoneCommand#scanRepeatList()` is called to check for events matching the event date in the repeat event's `repeatEventList`. When a matching event is found, it is marked as done.
+
+Step 4. `Ui#printEventMarkedDoneMessage()` is called to print the event marked as done.
+
+Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Undone feature
 (WIP)
+The undone feature allows users to mark events in Scheduler as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be marked undone. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be marked undone that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to be marked undone should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
+The following is the class diagram for UndoneCommand:
+
+![UndoneCommand Class Diagram](./diagrams/UndoneCommandClassDiagram.jpg)
+
+The undone feature is implemented using the `UndoneCommand` class. `UndoneCommand` accesses the `Event` stored within `EventList` and marks it as undone. It implements the following operations:
+
+- `UndoneCommand#parse(input)` -- Parses the processed input from `Parser` to create an `UndoneCommand` with the parsed event list type and event identifier.
+- `UndoneCommand#scanRepeatList(repeatEventList, doneEventDate, ui)` -- Scans the `repeatEventList` of a repeat event and marks the matching event as undone.
+
+`UndoneCommand#parse(input)` is exposed and is used in Parser to create the `UndoneCommand`.
+`UndoneCommand#scanRepeatList(repeatEventList, undoneEventDate, ui)` is not exposed, and is used as a private method within the `UndoneCommand` interface.
+
+Given below is an example usage scenario and how the done feature functions.
+
+Step 1. The user inputs `undone personal; 4` in order to mark the 4th `Personal` event as undone. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "undone" from the string and parses the resulting string with `UndoneCommand#parse()`. This returns a `UndoneCommand`.
+
+Step 2. `UndoneCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+
+Step 3. Within `UndoneCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `UndoneCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is marked as undone.
+
+Step 4. `Ui#printEventMarkedUndoneMessage()` is called to print the event marked as undone.
+
+Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Delete feature
 (WIP)
+The delete feature allows users to delete events from Scheduler. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+
+|Argument| Description |
+|--------|----------|
+|EVENT_TYPE|The type of event to be deleted. Accepted arguments are `personal`, `timetable` or `zoom`.|
+|EVENT_INDEX|Index number of the event to be deleted that is stored on the Event List.|
+|EVENT_DATE|The date on which the repeated event to deleted should occur. Accepted formats are: d/M/yyyy, d/M/yy, yyyy/M/d, yy/M/d. Slashes may also be replaced by dashes.|
+
+The following is the class diagram for DeleteCommand:
+
+![DeleteCommand Class Diagram](./diagrams/DeleteCommandClassDiagram.jpg)
+
+The delete feature is implemented using the `DeleteCommand` class. `DeleteCommand` accesses the `Event` stored within `EventList` and removes it from the `EventList` to delete it from Scheduler--;. It implements the following operations:
+
+- `DeleteCommand#parse(input)` -- Parses the processed input from `Parser` to create an `DeleteCommand` with the parsed event list type and event identifier.
+- `DeleteCommand#scanRepeatList(repeatEventList, deleteEventDate, ui, deleteEvent)` -- Scans the `repeatEventList` of a repeat event and deletes the matching event from the `repeatEventList`.
+
+`DeleteCommand#parse(input)` is exposed and is used in Parser to create the `DeleteCommand`.
+`DeleteCommand#scanRepeatList(repeatEventList, undoneEventDate, ui)` is not exposed, and is used as a private method within the `DeleteCommand` interface.
+
+Given below is an example usage scenario and how the done feature functions.
+
+Step 1. The user inputs `delete personal; 4` in order to delete the 4th `Personal` event. This input is received by the Ui, which processes it into a string. The string is parsed by the Parser, which removes "delete" from the string and parses the resulting string with `DeleteCommand#parse()`. This returns a `DeleteCommand`.
+
+Step 2. `DeleteCommand#execute()` is called. The event identifier is split to separate the event index from an event date (if event date is given). 
+
+Step 3. Within `DeleteCommand#execute()`, the event indicated by the given event index is called from the indicated event list. If an event date is given and the called event is a repeat event, `DeleteCommand#scanRepeatList()` is called to check for events matching the date in the repeat list. When the target event is found, it is deleted.
+
+Step 4. `Ui#printEventDeletedMessage()` is called to print the event that was deleted.
+
+Step 5. `Storage#saveFile()` is called to save the updated event list to the external file.
 
 #### Note feature
 

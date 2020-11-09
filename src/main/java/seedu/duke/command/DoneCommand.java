@@ -49,14 +49,16 @@ public class DoneCommand extends Command {
 
         if (!input.contains(";")) {
             logger.warning("MissingSemicolonException: User input fields was not separated with semicolon.");
-            throw new MissingSemicolonException("Remember to separate input fields with a ';'.");
+            throw new MissingSemicolonException("Remember to separate input fields with a ';'." + System.lineSeparator()
+                    + "The format for done is: \"done <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".");
         }
 
         String[] inputParameters = input.trim().split(";", 2);
 
         if (inputParameters[0].isBlank() || inputParameters[1].isBlank()) {
             logger.warning("WrongNumberOfArgumentsException: User did not provide event type or event index.");
-            throw new WrongNumberOfArgumentsException("Event type or index is missing.");
+            throw new WrongNumberOfArgumentsException("Event type or index is missing." + System.lineSeparator()
+                    + "The format for done is: \"done <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".");
         }
 
         String listType = capitaliseFirstLetter(inputParameters[0].trim());
@@ -67,7 +69,8 @@ public class DoneCommand extends Command {
             Integer.parseInt(eventIdentifierArray[0]);
         } catch (NumberFormatException e) {
             logger.warning("WrongNumberFormatException: Event index given is not an integer.");
-            throw new WrongNumberFormatException("Event index given is not an integer.");
+            throw new WrongNumberFormatException("Event index given is not an integer." + System.lineSeparator()
+                    + "The format for done is: \"done <EVENT_TYPE>; <EVENT_INDEX>; [<REPEAT_EVENT_DATE>]\".");
         }
 
         logger.fine("Successfully parsed input and created DoneCommand.");
@@ -87,17 +90,17 @@ public class DoneCommand extends Command {
         logger.fine("Start executing done command.");
         logger.info("listType: \"" + listType + "\", command: \"" + command + "\"");
         EventList eventList = data.getEventList(listType);
-        String[] eventIdentifierArray = command.split(";",2);
+        String[] eventIdentifierArray = command.split(";");
 
         int eventIndex = Integer.parseInt(eventIdentifierArray[0]) - 1;
         Event doneEvent = eventList.getEventByIndex(eventIndex);
 
-        if (eventIdentifierArray.length == 1 || doneEvent.getRepeatType() == null) {
+        if (doneEvent.getRepeatType() == null || eventIdentifierArray.length == 1) {
             doneEvent.markAsDone();
             ui.printEventMarkedDoneMessage(doneEvent);
             storage.saveFile(storage.getFileLocation(listType), data, listType);
             logger.fine("Event marked as done: \"" + doneEvent + "\"");
-        } else if (eventIdentifierArray.length == 2 && doneEvent.getRepeatType() != null) { // event is a repeat task
+        } else { // event is a repeat task
             LocalDate doneEventDate = dateParser(eventIdentifierArray[1].trim());
             boolean isDateFound;
 
