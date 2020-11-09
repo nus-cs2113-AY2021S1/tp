@@ -37,7 +37,7 @@ from the text file and loads the appliances' data back.
 3.  Copy the file to the folder you want to use as the home folder for your SmartHomeBot.
 
 4.  Open your Command Prompt/Terminal. Navigate to the folder which you place the SmartHomeBot.jar. Then input `java -jar SmartHomeBot.jar` and 
-press ENTER.The display similar to the below should appear in a few seconds.
+press ENTER. The display similar to the below should appear in a few seconds.
     
     ![](images/user_guide/start_image.PNG)
      
@@ -64,7 +64,7 @@ Some example commands you can try:
    `create Bedroom1`.
    * Words in **[UPPER_CASE]** are case-sensitive.
    * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** has to be unique and not duplicate of each other. 
-   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` / ` or ` \| ` when `create` or `add`
+   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or `/` or `\|` when `create` or `add`
    * Caution: Please do not type `Ctrl-C or Ctrl-Z` as it may cause the application to terminate due the in-build function 
    on command prompt  
    
