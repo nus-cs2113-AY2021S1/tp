@@ -1,0 +1,34 @@
+@startuml
+
+-> FoodPortionDateSaveLoadManager : load()
+activate FoodPortionDateSaveLoadManager
+
+FoodPortionDateSaveLoadManager -> Loader : static load()
+
+activate Loader
+Loader -> FileLoader : load()
+
+activate FileLoader
+loop all lines
+    activate Scanner
+    FileLoader -> Scanner : readline()
+    Scanner --> FileLoader : line data
+    destroy Scanner
+end
+FileLoader --> Loader : FileLoader
+deactivate FileLoader
+
+Loader --> FoodPortionDateSaveLoadManager : FileLoader
+deactivate Loader
+deactivate FoodPortionDateSaveLoadManager
+
+-> FoodPortionDateSaveLoadManager : getFoodList()
+activate FoodPortionDateSaveLoadManager
+
+loop all rows in loader
+FoodPortionDateSaveLoadManager -> FoodPortionDateSaveLoadManager : getFood()
+FoodPortionDateSaveLoadManager -> FoodPortionDateSaveLoadManager : getPortion()
+FoodPortionDateSaveLoadManager -> FoodPortionDateSaveLoadManager : getDateTime()
+end
+<-- FoodPortionDateSaveLoadManager : FoodList
+@enduml

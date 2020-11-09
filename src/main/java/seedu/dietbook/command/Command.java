@@ -13,7 +13,5 @@ import seedu.dietbook.ui.Ui;
  */
 
 public abstract class Command {
-    public static int commandCount = 1;
-    
     public abstract void execute(Manager manager, Ui ui) throws DietException;
 }

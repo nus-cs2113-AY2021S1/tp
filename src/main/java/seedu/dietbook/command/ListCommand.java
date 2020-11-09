@@ -20,21 +20,24 @@ public class ListCommand extends Command {
         LocalDateTime startTime;
         LocalDateTime endTime;
         FoodList foodList = manager.getFoodList();
-        if (commandCount == 1) {
+        if (Manager.commandCount == 1) {
             throw new DietException("Please enter your name first!");
-        } else if (commandCount == 2) {
+        } else if (Manager.commandCount == 2) {
             throw new DietException("Please enter your basic information first!");
         }
         String[] processedInput = this.userInput.split("\\s+");
         InputChecker.checkList(processedInput);
         if (processedInput.length == 1) {
-            ui.printFoodList(manager.getFoodList().toString());
+            ui.printFoodList(manager.getFoodList().toDatedString());
         } else {
             if (processedInput.length == 2) {
+                InputChecker.checkDateValidity(processedInput[1]);
                 startTime = LocalDateTime.parse(processedInput[1]);
                 InputChecker.checkFutureDate(startTime);
                 ui.printFoodList(foodList.getAfterDateTimeToString(startTime), startTime);
             } else if (processedInput.length == 3) {
+                InputChecker.checkDateValidity(processedInput[1]);
+                InputChecker.checkDateValidity(processedInput[2]);
                 startTime = LocalDateTime.parse(processedInput[1]);
                 endTime = LocalDateTime.parse(processedInput[2]);
                 InputChecker.checkFutureDate(startTime);

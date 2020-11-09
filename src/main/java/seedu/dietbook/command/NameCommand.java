@@ -15,10 +15,10 @@ public class NameCommand extends Command {
 
     @Override
     public void execute(Manager manager, Ui ui) throws DietException {
-        if (commandCount != 1) {
+        if (Manager.commandCount != 1) {
             throw new DietException("Name has already been entered!");
         }
-        commandCount++;
+        Manager.commandCount++;
         manager.setName(this.name);
         ui.printAskForUserInfoMessage(manager.getName());
     }

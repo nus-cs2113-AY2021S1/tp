@@ -1,0 +1,42 @@
+@startuml
+
+-> FoodPortionDateSaveLoadManager : readySaver()
+activate FoodPortionDateSaveLoadManager
+FoodPortionDateSaveLoadManager -> Saver : resetSize()
+activate Saver
+Saver --> FoodPortionDateSaveLoadManager
+deactivate Saver
+<-- FoodPortionDateSaveLoadManager
+deactivate FoodPortionDateSaveLoadManager
+
+
+-> FoodPortionDateSaveLoadManager : saveFoodList()
+activate FoodPortionDateSaveLoadManager
+activate FoodList
+FoodPortionDateSaveLoadManager -> FoodList : getFoods()
+FoodList --> FoodPortionDateSaveLoadManager : List<Food>
+FoodPortionDateSaveLoadManager -> FoodList : getPortionSizes()
+FoodList --> FoodPortionDateSaveLoadManager : List<Integer>
+FoodPortionDateSaveLoadManager -> FoodList : getDateTimes()
+FoodList --> FoodPortionDateSaveLoadManager : List<LocalDateTime>
+deactivate FoodList
+loop all food portion date entries
+    activate Saver
+    FoodPortionDateSaveLoadManager -> Saver : add()
+end
+
+FoodPortionDateSaveLoadManager -> Saver : save()
+
+activate FileWriter
+loop all entries in Saver table
+    Saver -> FileWriter : write()
+    FileWriter --> Saver
+end
+Saver -> FileWriter : close()
+destroy FileWriter
+Saver --> FoodPortionDateSaveLoadManager
+deactivate Saver
+
+deactivate FoodPortionDateSaveLoadManager
+
+@enduml
