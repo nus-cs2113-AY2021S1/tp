@@ -40,5 +40,5 @@ quiz and contacts tracker. It is written in Java.
     * Developer Guide:
         * Added implementation details of the `UserInterface`, `list event week/nextweek` and `Storage` features.
         * Added manual testing instructions for missing and corrupted files.
-        * Added UML diagrams for figures 2, 5, 6, 7, 8
+        * Added UML diagrams for figures 2, 6, 7, 8, 9, 19
 
