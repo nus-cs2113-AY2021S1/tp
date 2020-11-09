@@ -144,6 +144,7 @@ This section provides details of how the main features of Nav@NUS have been impl
 
 ### 3.1. Finding a direct route (`/route` Feature) - Wamika
 `/route <location1> /to <location2>` is the command that has to entered by the user to see all direct bus routes 
+<div style="page-break-after: always;"></div>
 available from **location1** to **location2**.
 
 The class diagram in the figure below shows how different classes used for implementation of the `/route` command 
@@ -764,6 +765,8 @@ Expected: No command executed.Error details will be shown to remind users to typ
     - Other incorrect data to test: `/execfav`, `/execfav words`, `/execfav x`(where x is larger than list).<br>
     Expected: Similar to previous.
 <!-- @@author -->
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author wamikamalik -->
 ### E.10 Change description of favourite command in favourite list - Wamika
