@@ -3,6 +3,8 @@
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 ## Introduction 
 
 **Welcome to Study It User Guide!**
@@ -955,6 +957,8 @@ Instruction:
 Expected output:
 
 ![Flashcard_4_6](Images/FlashcardUG/Flashcard_4_6_resized.png)
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
