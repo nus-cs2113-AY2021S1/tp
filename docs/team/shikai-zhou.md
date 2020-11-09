@@ -14,6 +14,7 @@ We have used this project to showcase our ideas and skillset and we believe that
 # Code contributed
 As a core member of the team, I am an active contributor of code both for new functionality and bug fixes, which is detailed below:
 [Link to code contribution](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=shikai-zhou&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
 # Enhancements implemented
 This is a summary of the enhancements I implemented:
 - Wrote AddCommand [#25](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/25), [#47](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/47)
@@ -22,6 +23,7 @@ This is a summary of the enhancements I implemented:
 - Wrote the TimeParser Utility [#121](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/121)
 - JUnit Test Code for the commands above [#38](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/38)
 - Parts of InputParser and Ui that relates to the above functionalities [#211](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/211)
+
 # Issues Fixed
 - Bug Fixes for UpdateShowEpisodeProgressCommand [#147](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/147)
 - Bug Fixes for UpdateShowSeasonCommand [#150](https://github.com/AY2021S1-CS2113T-W12-3/tp/pull/150)
