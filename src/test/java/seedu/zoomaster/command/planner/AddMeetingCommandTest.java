@@ -11,7 +11,7 @@ import java.time.LocalTime;
 //@@author jusufnathanael
 class AddMeetingCommandTest {
 
-    LoadPlannerCommand load = new LoadPlannerCommand();
+    LoadPlannerCommand load = new LoadPlannerCommand("load");
 
     AddMeetingCommandTest() throws ZoomasterException {
     }

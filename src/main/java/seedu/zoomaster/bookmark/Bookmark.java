@@ -14,6 +14,12 @@ import java.util.List;
  */
 //@@author xingrong123
 public class Bookmark {
+    public static final String WWW_KW = "www.";
+    public static final String HTTPS_KW = "https://";
+    public static final String HTTP_KW = "http://";
+    public static final String WINDOWS_LAUNCH_COMMAND = "rundll32 url.dll,FileProtocolHandler ";
+    public static final String MAC_LAUNCH_COMMAND = "open ";
+    public static final String LINUX_LAUNCH_COMMAND = "xdg-open ";
     private String description;
     private String url;
 
@@ -54,7 +60,7 @@ public class Bookmark {
         if (url.contains(" ")) {
             return false;
         }
-        return url.startsWith("www.") || url.startsWith("https://") || url.startsWith("http://");
+        return url.startsWith(WWW_KW) || url.startsWith(HTTPS_KW) || url.startsWith(HTTP_KW);
     }
 
     /**
@@ -86,23 +92,23 @@ public class Bookmark {
     }
 
     private void launchUrlForWindows(Runtime rt) throws IOException {
-        rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+        rt.exec(WINDOWS_LAUNCH_COMMAND + url);
     }
 
     private void launchUrlForMac(Runtime rt) throws IOException {
         String link = getFullLink();
-        rt.exec("open " + link);
+        rt.exec(MAC_LAUNCH_COMMAND + link);
     }
 
     private void launchUrlForLinux(Runtime rt) throws IOException {
         String link = getFullLink();
-        rt.exec("xdg-open " + link);
+        rt.exec(LINUX_LAUNCH_COMMAND + link);
     }
 
     private String getFullLink() {
         String link;
-        if (url.startsWith("www.")) {
-            link = "https://" + url;
+        if (url.startsWith(WWW_KW)) {
+            link = HTTPS_KW + url;
         } else {
             link = url;
         }

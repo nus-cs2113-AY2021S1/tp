@@ -70,7 +70,7 @@ public class Zoomaster {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                if (Parser.programMode == 3) {
+                if (Parser.getProgramMode() == 3) {
                     c.execute(bookmarks, planner, ui);
                 } else {
                     c.execute(bookmarks, timetable, ui);

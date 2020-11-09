@@ -12,7 +12,7 @@ import java.time.LocalTime;
 //@@author jusufnathanael
 class LoadPlannerCommandTest {
 
-    LoadPlannerCommand command = new LoadPlannerCommand();
+    LoadPlannerCommand command = new LoadPlannerCommand("load");
 
     LoadPlannerCommandTest() throws ZoomasterException {
     }

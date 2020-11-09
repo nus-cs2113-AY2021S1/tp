@@ -6,6 +6,7 @@ import seedu.zoomaster.Zoomaster;
 import seedu.zoomaster.bookmark.BookmarkList;
 import seedu.zoomaster.command.Command;
 import seedu.zoomaster.exception.ZoomasterException;
+import seedu.zoomaster.exception.ZoomasterExceptionType;
 import seedu.zoomaster.slot.Day;
 import seedu.zoomaster.slot.Module;
 import seedu.zoomaster.slot.Slot;
@@ -20,7 +21,10 @@ public class LoadPlannerCommand extends Command {
     public static final String LOAD_KW = "load";
     private Storage<Timetable> storage;
 
-    public LoadPlannerCommand() throws ZoomasterException {
+    public LoadPlannerCommand(String command) throws ZoomasterException {
+        if (command.compareTo(LOAD_KW) != 0) {
+            throw new ZoomasterException(ZoomasterExceptionType.UNKNOWN_INPUT);
+        }
     }
 
     /**

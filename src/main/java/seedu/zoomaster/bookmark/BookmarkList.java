@@ -10,8 +10,14 @@ import java.util.logging.Logger;
 /**
  * This class represents the bookmark list used to store and organize bookmarks.
  */
-//@@author xingrong123
+//@@author Speedweener
 public class BookmarkList {
+    public static final String FAILED_TO_LAUNCH_THESE_BOOKMARKS = "Failed to launch these bookmarks:";
+    public static final String BOOKMARK_LIST_IS_EMPTY = "Bookmark list is empty";
+    public static final String LAUNCHED_THESE_BOOKMARKS = "Launched these bookmarks:";
+    public static final String NO_BOOKMARKS_CONTAIN_KEYWORD = "No bookmarks contain the specified keyword!";
+    public static final String SHOW_BOOKMARKS_MESSAGE = "Here are the bookmarks in your list:";
+    public static final String MATCHING_BOOKMARKS_MESSAGE = "Here are your matching bookmarks";
     private ArrayList<Bookmark> bookmarks;
     private static Logger logger = Logger.getLogger(BookmarkList.class.getName());
 
@@ -31,8 +37,8 @@ public class BookmarkList {
     public String addBookmark(Bookmark bookmark) {
         assert bookmark != null : "Added bookmark should not be null!";
         bookmarks.add(bookmark);
-        return "Added bookmark: " + "[" + bookmark.getDescription() + "] "
-                +  bookmark.getUrl() + Ui.NEW_LINE;
+        return "Added bookmark: [" + bookmark.getDescription() + "] "
+                + bookmark.getUrl() + Ui.NEW_LINE;
     }
 
     /**
@@ -50,6 +56,7 @@ public class BookmarkList {
      * @param index The index of the bookmark in the list.
      * @return The bookmark with the corresponding index in the list.
      * @throws IndexOutOfBoundsException if the index is out of range.
+     * @throws ZoomasterException if the bookmarkList is empty.
      */
     public Bookmark getBookmark(int index) throws IndexOutOfBoundsException, ZoomasterException {
         if (bookmarks.isEmpty()) {
@@ -68,15 +75,14 @@ public class BookmarkList {
     }
 
     /**
-     * This method deletes the bookmark from the list.
+     * This method deletes the bookmark from the list. Use the method getBookmark to check if the bookmark exists.
      *
      * @param bookmark The bookmark to be deleted.
      * @throws NullPointerException if the bookmark does not exist in the list.
      */
     //@@author Speedweener
     public String deleteBookmark(Bookmark bookmark) {
-        assert bookmarks.contains(bookmark) : "Bookmark to be"
-                + "deleted not in list!";
+        assert bookmarks.contains(bookmark) : "Bookmark to be deleted not in list!";
         bookmarks.remove(bookmark);
         return "[" + bookmark.getDescription() + "] " + bookmark.getUrl() + "\n";
     }
@@ -87,9 +93,9 @@ public class BookmarkList {
      * @return The string message containing the matching bookmarks
      */
     public String showBookmarks() {
-        String message = "Here are the bookmarks in your list:" + Ui.NEW_LINE;
+        String message = SHOW_BOOKMARKS_MESSAGE + Ui.NEW_LINE;
         if (bookmarks.isEmpty()) {
-            message = message + "Bookmark list is empty" + Ui.NEW_LINE;
+            message = message + BOOKMARK_LIST_IS_EMPTY + Ui.NEW_LINE;
         } else {
             for (int i = 0; i < bookmarks.size(); i++) {
                 message = message + "  " + (i + 1) + "." + bookmarks.get(i).getBookmarkAsString();
@@ -108,13 +114,13 @@ public class BookmarkList {
         assert !description.equals("") : "Description should not be empty!";
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + Ui.NEW_LINE;
+            message = BOOKMARK_LIST_IS_EMPTY + Ui.NEW_LINE;
         } else {
             message = getMatchingBookmarks(description.toUpperCase());
             if (!message.isEmpty()) {
-                message = "Here are your matching bookmarks" + Ui.NEW_LINE + message;
+                message = MATCHING_BOOKMARKS_MESSAGE + Ui.NEW_LINE + message;
             } else {
-                message = "No bookmarks contain the specified keyword!" + Ui.NEW_LINE;
+                message = NO_BOOKMARKS_CONTAIN_KEYWORD + Ui.NEW_LINE;
             }
         }
         return message;
@@ -145,9 +151,9 @@ public class BookmarkList {
         } else {
             message = launchMatchingBookmarks(description.toUpperCase());
             if (!message.isBlank()) {
-                message = "Launched these bookmarks:" + Ui.NEW_LINE + message;
+                message = LAUNCHED_THESE_BOOKMARKS + Ui.NEW_LINE + message;
             } else {
-                message = "No bookmarks contain the specified keyword!" + Ui.NEW_LINE;
+                message = NO_BOOKMARKS_CONTAIN_KEYWORD + Ui.NEW_LINE;
             }
         }
         return message;
@@ -167,7 +173,7 @@ public class BookmarkList {
             }
         }
         if (!errorMessage.isBlank()) {
-            message += "Failed to launch these bookmarks:" + Ui.NEW_LINE + errorMessage;
+            message += FAILED_TO_LAUNCH_THESE_BOOKMARKS + Ui.NEW_LINE + errorMessage;
         }
         return message + Ui.NEW_LINE;
     }
@@ -176,11 +182,11 @@ public class BookmarkList {
     public String launchAllBookmarks() {
         String message = "";
         if (bookmarks.size() == 0) {
-            message = "Empty List" + Ui.NEW_LINE;
+            message = BOOKMARK_LIST_IS_EMPTY + Ui.NEW_LINE;
         } else {
             message = launchBookmarksFromList();
-            if (!message.isEmpty()) {
-                message = "Launched these bookmarks:" + Ui.NEW_LINE + message;
+            if (!message.startsWith(FAILED_TO_LAUNCH_THESE_BOOKMARKS)) {
+                message = LAUNCHED_THESE_BOOKMARKS + Ui.NEW_LINE + message;
             }
         }
         return message;
@@ -198,7 +204,7 @@ public class BookmarkList {
             }
         }
         if (!errorMessage.isBlank()) {
-            message += "Failed to launch these bookmarks:" + Ui.NEW_LINE + errorMessage;
+            message += FAILED_TO_LAUNCH_THESE_BOOKMARKS + Ui.NEW_LINE + errorMessage;
         }
         return message;
     }
