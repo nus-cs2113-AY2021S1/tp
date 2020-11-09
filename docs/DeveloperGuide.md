@@ -116,7 +116,7 @@ The 'Ui' component is in charge of handling input from users and system output.
 
 #### Command Component
 
-![Diagram for command](./diagrams/Command.jpg)
+![Diagram for command](./diagrams/Command.png)
 
 API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
 1. `Parser` class to parse the user command 
@@ -424,7 +424,7 @@ The following sequence diagram shows how the deadline operation works: <br>
 Given below is how the deadline command behave: <br>
 
 <p align="center">
-  <img width="414" height="562" src="./diagrams/DeadlineScenario.jpg">
+  <img width="414" height="562" src="./diagrams/DeadlineScenario.png">
 </p>
 
 <div style="page-break-after: always;"></div>
