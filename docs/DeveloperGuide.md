@@ -39,7 +39,7 @@
     - [Value proposition](#value-proposition)
     - [User Stories](#user-stories)
     - [Non-Functional Requirements](#non-functional-requirements)
-  - [**Other Guides: Documentation, logging, testing, configuration, dev-ops**](#other-guides-documentation-logging-testing-configuration-dev-ops)
+  - [**Other Guides: Documentation, Testing, Dev-ops**](#other-guides-documentation-testing-dev-ops)
   - [**Glossary**](#glossary)
     
 ## Introduction
@@ -138,7 +138,7 @@ The respective Command sequence diagrams are illustrated [here](#implementation)
 
 ### Storage component
 
-![`Storage.java`](structures/StorageStructure.JPG)
+![`Storage.java`](structures/StorageStructure.png)
 
 [`Storage.java`](https://github.com/AY2021S1-CS2113T-W12-2/tp/blob/master/src/main/java/athena/Storage.java)
 
@@ -147,7 +147,7 @@ The respective Command sequence diagrams are illustrated [here](#implementation)
 
 ### TimeAllocator component
 
-![`TimeAllocator.java`](structures/TimeAllocatorStructure.JPG)
+![`TimeAllocator.java`](structures/TimeAllocatorStructure.png)
 
 [`TimeAllocator.java`](https://github.com/AY2021S1-CS2113T-W12-2/tp/blob/master/src/main/java/athena/TimeAllocator.java)
 
