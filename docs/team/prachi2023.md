@@ -8,8 +8,6 @@ title : Prachi - Project Portfolio Page
 
 NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking application for keyboard-inclined users. NotUS allows for users to categorize notes by tagging as well as pinning the more important notes. NotUS is also designed to assist in planning timetables to highlight possible clashes.
 
-*Roles (short for ‘in charge of role’): Description*
-
 - Documentation: responsible for the parts regarding saving and loading of files.
 - Implementation of the data storage (saving and loading data from the hard disk).
 - In charge of `pin-n`, `view-n`.
