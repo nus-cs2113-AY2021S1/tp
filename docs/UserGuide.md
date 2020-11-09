@@ -634,6 +634,8 @@ Er hält in Armen das ächzende Kind,
 Erreicht den Hof mit Mühe und Not;
 In seinen Armen das Kind war tot.
 end
+Please indicate the date you want to continue with this writing by keying the date in the format "dd/MM/yyyy"
+01/12/2020
 This Poem, Der Erlkönig has been added
 Done! We have added your writing to our storage! You can type "stats" for future reference!
 ```
@@ -659,7 +661,8 @@ Er hält in Armen das ächzende Kind,
 Erreicht den Hof mit Mühe und Not;
 In seinen Armen das Kind war tot.
 
-This writing was created on 2020-10-18
+This writing was created on 18/10/2020
+You want to continue on this writing on 01/12/2020
 --------------------------------------------------------------
 ```
 
