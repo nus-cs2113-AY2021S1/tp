@@ -60,7 +60,9 @@ Currently you don't have any event!
 6. Type `help` in the command box as prompted and press Enter to execute it. You will see the  commands available.
 
 6. Refer to the Features below for details of each command.
+
 ## 2. Features
+<!-- @@author JinYixuan-Au -->
 ### 2.1 Adding a Module: `add mod`
 You can add a module to the module list and timetable by typing in the module code and its time slots of lectures and tutorials (the time slot of lab is optional).
 
@@ -328,6 +330,7 @@ ____________________________________________________________
 	1.[T][F]read book
 ____________________________________________________________
 ```
+<!-- @@author -->
 ### 2.10 Adding a Project Task: `project task`
 This will add a subtask of a specific project to the task list.
 
@@ -525,23 +528,35 @@ Format: `help`
 Expected outcome:
 ```
 _______________________________________________________
+Commands are colored green while user input are colored blue.
+Please enter using the format as stated strictly!
 1. Add a module: add mod/<MODULE_CODE>
 2. Delete a module: delete mod/<MODULE_CODE>
-3. Add a task to do: todo <DESCRIPTION>
-4. Add a deadline: deadline <DESCRIPTION> /by <YYYY-MM-DD HH-MM>
-5. Add an event: event <DESCRIPTION> /at <YYYY-MM-DD HH-MM>
-6. View today's timetable: today timetable
-7. View weekly timetable: this week timetable
-8. Add a project subtask: mod/<MODULE_CODE> ptask/<DESCRIPTION> by/<DEADLINE>
-9. View project task list: mod/<MODULE_CODE> project task list
-10. View project progress: mod/<MODULE_CODE> progress
-11. View task list: task list
-12. Delete task: delete <TASK_INDEX>
-13. Mark task as done: done <TASK_INDEX>
-14. Exit CEGMods: exit
+3. View today's timetable: today timetable
+4. View weekly timetable: this week timetable
+5. View task list: task list
+6. Add a todo task: todo <DESCRIPTION>
+7. Add a deadline: deadline <DESCRIPTION> /by <YYYY-MM-DD HH:mm>
+8. Add an event: event <DESCRIPTION> /at <YYYY-MM-DD HH:mm>
+9. Mark a task as done: done task/<TASK_INDEX>
+10. Delete a task: delete task/<TASK_INDEX>
+11. Find a task with keyword: find <KEYWORD>
+12. Add a project subtask: mod/<MODULE_CODE> ptask/<DESCRIPTION> by/<DEADLINE> 
+13. View project task list: mod/<MODULE_CODE> project task list
+14. View project progress: mod/<MODULE_CODE> progress
+15. View today's deadline: today deadline
+16. View this week deadline: this week deadline
+17. View all modules' information: check modules
+18. View to do list: print todo list
+19. View event list: print event list
+20. View deadline list: print deadline list
+21. View undone task list: print undone task list
+22. Clear past deadlines: clear deadlines
+23. Delete done tasks: delete done tasks
+24. Exit CEGMods: exit
 _______________________________________________________
 ```
-
+<!-- @@author JinYixuan-Au -->
 ## 3. FAQ
 **Q:** How can I save my data?
 **A:** **CEGMods** automatically saves your data on every action you take. You can find them in /data folder in the same directory you run **CEGMods** in.
