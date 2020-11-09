@@ -90,6 +90,20 @@ The following table displays the list of terminologies used in this document:
 
 *You may view your task list and event list using the `print tasks` and `print events` feature respectively.
 
+**！！！Caution！！!**
+
+**All command parameters used in **_25HoursADay_** are case-sensitive!**
+
+For example: 
+
+`help` is a valid command while `HELP` is an invalid command!
+
+**All command parameters are not be used as user input!**
+
+For example:
+
+`@`, `/`, `-`, `*` and `-r` are intended command parameters and are not allowed to be used as place holders! 
+
 ## Quick Start
 
 1. Ensure you have Java 11.0.8 installed.
@@ -126,6 +140,8 @@ Are you sometimes overwhelmed by different tasks and not sure how to document th
 •	Deadline tasks which has a specific due date and the application has a count down feature to monitor them.
 
 The following 2 sub-sections will provide you with the guide on how to add a task to the calendar list.  
+
+Note: You can input a task description with or without spaces.
 
 #### Adding a todo task:
 
@@ -199,6 +215,9 @@ Example:
 This adds a CCA event held at NUS UTOWN on 20th September 2020, 4pm as shown in the figure below.
 
 ![act_command](images/act_command.png)
+
+Note: You can input an activity description with or without spaces.
+
 
 ![warning_act](images/warning_act.PNG)
 
@@ -417,6 +436,9 @@ This displays a list of items (both tasks and events) containing the keyword “
 
 Note: The above figure is for illustration purpose only. The desired output depends on the items stored in the application.
 
+Note: The items printed by the find functions are in the order of how the user added them, this is to facilitate other commands 
+such as deleting the item.
+
 ![tip_find](images/tip_find.PNG)
 
 #### Finding an item from the task list: 
@@ -498,6 +520,9 @@ This prints all tasks stored in the application.
 Note: The above figure is for illustration purpose only. The desired output will
 differ if you have different tasks stored in the calendar list.
 
+Note: The events are printed in the order of how the user added them, this is to facilitate other commands such as marking a
+task as done or deleting a task.
+
 ![tips_printtask](images/tip_printTasks.PNG)
 
 ### Printing events:
@@ -517,6 +542,9 @@ This prints all events stored in the application.
 
 Note: The above figure is for illustration purpose only. The desired output will
 differ if you have different events stored in the calendar list.
+
+Note: The events are printed in the order of how the user added them, this is to facilitate other commands such as adding 
+additional information for an event or deleting an event.
 
 ![tips_printevents](images/tip_printEvents.PNG)
 

@@ -64,23 +64,13 @@
 ## Introduction
 This section provides an introduction to the developer guide for *25HoursADay*.
 
-### Introduction to *25HoursADay*
+### What is *25HoursADay*?
 *25HoursADay* is a scheduling app optimized for users via a convenient yet powerful Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *25HoursADay* can schedule your tasks and events faster than traditional GUI apps.
 
 ### Purpose and scope
 The purpose of this developer guide is to describe the architecture and software design decisions for the task scheduling application *25HoursADay*. This developer guide covers an overview of the program architecture, the logical view of major components, and the mechanism of the functions.
 
 The intended audience of this guide are the developers and software testers of *25HoursADay*.
-
-### Developer guide organization
-The table below shows the content of the developer guide.
-
-|Section| Purpose | 
-|--------|----------|
-|[Section 2: Setting up](#setting-up)|To provide instructions on how to download and set up *25HoursADay* on your computer.|
-|[Section 3: Design](#design)|To explain the architecture of *25HoursADay*,  and describe the major components of *25HoursADay*, the roles of major components, as well as their organization and interaction of major components.|
-|[Section 4: Implementation](#implementation)|To explain the mechanism of functions added to *25HoursADay* and the features added to *25HoursADay*.|
-|[Section 5: Documentation](#documentation)|To represent documents describing the system and its parts.|
 
 ## Setting Up & Getting started
 This section provides on setting up the *25HoursADay* application.
@@ -92,7 +82,7 @@ Before diving into the project development and testing, here are some essential 
 1. **JAVA 11.0.8**
     * Launch your terminal and type "java -version" to ensure you have the correct version number
     * If you have no Java installed or different version number, please proceed to this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
-    to download the **Java 11.0.9** installer.
+    to download the **Java 11.0.8** installer.
 1. **Intellij IDEA**
     * If you are new to IntelliJ, please proceed to this [website](https://www.jetbrains.com/help/idea/installation-guide.html)
     to download and install the IDE.
@@ -117,7 +107,7 @@ Now, Open Intellij
     JDK being used for the project.
     * Wait for the importing process to finish (may take a few minutes, so get some :coffee: :relaxed:)
 1. **Verify the set up**:
-    * Run the `..main/java/seedu.duke/Duke`
+    * Run the `..main/java/seedu.duke/Main`
     * Upon a successful configuration, you should be able to see the welcome screen of the project as shown below:
     ![verify_set_up](images/Verify_setup.PNG)
     * Run some tests to ensure it is working properly.
@@ -142,10 +132,10 @@ This section describes the design overview of the *25HoursADay* application.
 ### Architecture
 
 The figure below shows the overall design of the application. 
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Overall_Architecture.JPG" alt="" width="300"/> <br/>
+![overall_architecture](images/Overall_Architecture.JPG)
 
 The sequence diagram below shows how the components interact with each other for the scenario where the user issues the command `todo`.
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Archi_SD.JPG" alt="" width="750"/>
+![Archi_SD](images/Archi_SD.JPG)
 
 An overview of each components is listed below.
 
@@ -160,7 +150,8 @@ The `Parser` class is responsible for interpreting the user's input and calling 
 
 The different `Command` classes are responsible for receiving the user's input from the `Parser` class and executing the corresponding commands. 
 The figure belows shows the class diagram of the command class: <br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/command.JPG" alt="" width="200"/><br/>
+![command.jpg](images/command.JPG)
+
 All Command classes inherit from the `Command` class.
 
 ### Storage
@@ -171,7 +162,7 @@ The `Storage` class is responsible for reading and writing data to the hard disk
 ### Model
 The model is responsible for holding the data of the application in memory. The figure below shows the structure of the Model in this application.
 
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/Model_Class_Diagram.JPG" alt="" width="750"/>
+![Model_class_diagram](images/Model_Class_Diagram.JPG)
 
  When executing commands,the `CalendarItem` class updates the information or provides the information of different types of items if needed. 
 It is split into two subclasses: `Task` and `Event` class.
@@ -181,18 +172,17 @@ The `Task` and `Event` classes are further explained below.
 
 #### Task
 
-The `Task` class stores the information of all task items, including description and status, such as isDone and isImportant. 
+The `Task` class stores the information of all task items, including description and status, such as `isDone` and `isImportant`. 
 It has two subclasses: `Todo` and `Deadline`. `Deadline` items also have the date information and countdown for the deadline date, which are not included in `Todo` tasks. 
 
 #### Event
 
 The `Event` class stores the information of all `Event` items, including date, time, venue, status whether it is overdue, and any other information if added. 
-It has two subclasses: SchoolEvent and Activity. `Activity` items can have other details.
+It has two subclasses: `SchoolEvent` and `Activity`. `Activity` items can have other details.
 All `SchoolEvent` items must have a module code.  
 Furthermore, the `SchoolEvent` class has four subclasses which are `Lecture`, `Tutorial`, `Lab`, and `Exam`. Among them only `Exam` items have a countdown for the exam date. 
-All `Event` items update the information or provide needed information about `Event` items when executing commands related to events or saving the information to `Storage`.
 
-Design consideration: `SchoolEvent` is modelled after NUS modules to cater to our intended users.
+Design consideration: `SchoolEvent` is modelled after classes in NUS to cater to our intended users.
 
 ## Implementation
 This section describes the details of how each feature is implemented.
@@ -200,27 +190,26 @@ This section describes the details of how each feature is implemented.
 ### Add a calendar item feature
 This feature is facilitated by `AddCommand`.
 The following sequence diagram shows how the `execute()` operation works to add a `Todo` item:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_SD.JPG" alt="" width="750"/><br/>
+![add_command_sd](images/add_command_SD.JPG)
 
 The following sequence diagram shows how the `execute()` operation works to add `Activity` or `Deadline` item. A
  `Deadline` item is used as an example.
 :<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_date_SD.JPG" alt
-="" width="750"/><br/>
+![add_command_date_sd](images/add_command_date_SD.JPG)
 
 The following sequence diagram shows how the `execute()` operation works to add a`SchoolEvent` item. An `Exam` item
  is used as an example.
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/add_command_module_SD.JPG" alt
-="" width
-="750"/><br/>
+ 
+ ![add_command_module_sd](images/add_command_module_SD.JPG)
 
-Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the
- `CalendarItem` being added. The `CalendarItem` object created is also based on the `CalendarItem` being added. 
+Note: A self-call to a specific method to add the new `CalendarItem` to the `CalendarList` is done based on the type of
+ `CalendarItem` being added. The `CalendarItem` object created is also based on the type of `CalendarItem` being added. 
 
 ### Mark a task as done feature
 This feature is facilitated by `DoneCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/done_command_SD.JPG" alt="" width="750"/><br/>
+![done_command_sd](images/done_command_SD.JPG)
+
 Note: The command first extracts the task number from the user input prior to `convertTaskNumberToCalendarNumber`. 
 There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure that the calendar item being marked as done is a task. 
 
@@ -229,34 +218,34 @@ There will be a check in the function `markTaskAsDone(calendarNumber)` to ensure
 #### Add additional information
 This feature is facilitated by `AddInfoCommand`.
 The following sequence diagram show how the `execute()` operation of `AddInfoCommand` works:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/addInfoCommand_SD.JPG" alt="" width="750"/><br/>
+![addInfoCommand_sd](images/addInfoCommand_SD.JPG)
 
 #### View additional information
 This feature is facilitated by `ViewInfoCommand`.
 
 The following sequence diagram show how the `execute()` operation of `ViewInfoCommand` works:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/viewInfoCommand_SD.JPG" alt="" width="750"/><br/>
+![viewInfoCommand_SD](images/viewInfoCommand_SD.JPG)
 
 #### Delete additional information
 This feature is facilitated by `DeleteInfoCommand`.
 
 The following sequence diagram show how the `execute()` operation of `DeleteInfoCommand` works:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteInfoCommand_SD.JPG" alt="" width="750"/><br/>
+![deleteInfoCommand_SD](images/deleteInfoCommand_SD.JPG)
 
 Note: The commands first extracts the event number from the user input prior to `convertEventNumberToCalendarNumber`. 
 
 ### Delete a calendar item feature
 This feature is facilitated by `DeleteCommand`.
 The following sequence diagram show how the `execute()` operation works:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/deleteCommand_SD.JPG" alt="" width="750"/><br/>
+![deleteCommand_sd](images/deleteCommand_SD.JPG)
 
 Note: The command first extracts the task/event number from the user input prior to `convertTaskNumberToCalendarNumber` and `convertEventNumberToCalendarNumber` respectively. 
 
 
 ### Find a calendar item feature
 This feature is facilitated by `FindCommand`.
-The following sequence diagram show how the `execute()` operation works when the user searches the entire calendar.:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/findCommand_SD.JPG" alt="" width="500"/><br/>
+The following sequence diagram shows how the `execute()` operation works when the user searches the entire calendar.:<br/>
+![fidCommand_sd](images/findCommand_SD.JPG)
 
 The search for tasks or events feature has a similar sequence diagram with a slight difference to the varying condition. Depending
 on whether the user searches for tasks or events, the condition will check for the instance of either the task or event respectively.
@@ -273,13 +262,13 @@ The following sequence diagram shows how the `execute()` operation works when th
 
 ### Print personal calendar feature
 This feature is facilitated by `PrintTimelineCommand`.
-The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar.:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintTimelineCommand_SD.png" alt="" width="750"/><br>
+The following sequence diagram show how the `execute()` operation works when the user wants to print the personalised calendar:<br/>
+![PrintTimelineCommand_SD](images/PrintTimelineCommand_SD.png)
 
 ### Prioritize a task feature 
 This feature is facilitated by `PrioritizeCommand`. 
 The following sequence diagram shows how the `execute()` operation works when the user wants to prioritize a task:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrioritizeCommand_SD.png" alt="" width="750"/><br/>
+![PrioritizeCommand](images/PrioritizeCommand_SD.png)
 
 Note: It first extracts the task number from the user input prior to convertTaskNumberToCalendarNumber. 
 There will be a check in the function `markTaskAsImportant(calendarNumber)` to ensure that the calendar item being marked as important is a task.
@@ -287,32 +276,32 @@ There will be a check in the function `markTaskAsImportant(calendarNumber)` to e
 ### Print prioritized tasks feature
 This feature is facilitated by `PrintPriorityCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to print all the prioritized tasks:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintPriorityCommand_SD.png" alt="" width="750"/><br/>
+![PrintPriorityCommand_SD](images/PrintPriorityCommand_SD.png)
 
 Note: It uses the `getIsImportant()` function of task items to identify whether it is a prioritized task.
 
 ### Print progress feature
 This feature is facilitated by `PrintProgressCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see the progress of all tasks:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintProgressCommand_SD.png" alt="" width="500"/><br/>
-
-Note: It uses `calculateNumTotal()` and `calculateNumFinshed()` to calculate the numbers of only tasks and finished tasks in the list, not including events. 
-Then it uses these numbers to calculate the progress. 
+![PrintProgressCommand_SD](images/PrintProgressCommand_SD.png)
 
 ### Print suggestions feature
 This feature is facilitated by `PrintSuggestionCommand`.
 The following sequence diagram shows how the `execute()` operation works when the user wants to see suggestions about preparing which tasks:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/PrintSuggestionCommand_SD.png" alt="" width="500"/><br/>
+![PrintSuggestionCommand_SD](images/PrintSuggestionCommand_SD.png)
 
 Note: It uses `getEarliestDeadline()` function to get the earliest ordinary deadline in the list, and `getEarImportantDeadline()` function to get the earliest important deadline in the list.
 Similarly, it uses`getFirstTodo()` function to get the first added todo task in the list, and `getFirImportantTodo()` function to get the first added important todo task in the list.
-If no corresponding items, the functions will return null.
+If no corresponding items, the functions will return null. Then it passes the return results to Ui, and Ui prints suggestions with respect to the importance and urgency of them.
 
 ### Print countdown feature
 This feature is facilitated by `CountdownCommand`.
 
+The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams and deadlines:<br/>
+![countdown_command_SD](images/countdown_command_SD.jpg)
+
 The following sequence diagram shows how the `execute()` operation works when the user decide to see the countdown of exams or deadlines:<br/>
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/countdown_command_SD.jpg" alt="" width="750"/><br/>
+![countdown_deadlines_exams_SD](images/countdown_deadlines_exams_SD.jpg)
 
 Note: Before printing the countdown, `countdown()` function will calculate the countdown of exams or deadlines, and the countdowns for
 exams or deadlines will be sorted in ascending sequence by function `sortDeadlinesAndPrintCountdown()` or `sortExamsAndPrintCountdown()`
@@ -323,24 +312,21 @@ exams or deadlines will be sorted in ascending sequence by function `sortDeadlin
 This feature is facilitated by `Storage` class and saves the data input by the users automatically into file `tasks.txt` in `/data` directory. 
 
 The file `tasks.txt` is loaded when initializing the program by calling the function `readFromFile()`.
+![storage_load_data_SD](images/storage_load_data_SD.jpg)
 
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_load_data_SD.jpg" alt="" width="500"/><br/>
-
-The local file is updated every time when the user adds or deletes and item, 
+The local file is updated every time when the user adds or deletes an item, 
 or changes the attributes of the item by calling the function `writeToFile()`.
-
-<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-T12-2/tp/master/images/storage_store_data_SD.jpg" alt="" width="500"/><br/>
+![storage_store_data_SD](images/storage_store_data_SD.jpg)
 
 Note: if the local file and directory does not exist at the beginning, `createFile()` will be called to create a new 
 directory, and a new text file.
-
 
 
 ### Check the validity of a module code
 This feature is facilitated by `ModuleChecker` class and `NusModule` class.
 
 The `NusModule` class consists of an empty constructor, a getter and setter to retrieve and set the module code of a `NusModule` object.
-The `ModuleChecker` class has a *generateNusModsMap* which generates a HashMap<String, NusModule>. This is achieved by reading
+The `ModuleChecker` class has a `generateNusModsMap()` which generates a `HashMap<String, NusModule>`. This is achieved by reading
 the JSON file from the NUS Mod website and parser it into a list of Module objects.
 
 After which, the isModuleValid function will analyse the module code entered by the user, and returns TRUE if the code is 
@@ -351,10 +337,10 @@ The following sequence diagram further illustrates the above process.
 
 <!-- @@author Jingming517 -->
 ## Documentation
+This section shows how the developer guide is documented.
 
 ### Documentation guide
 
-#### Introduction
 We use Markdown for writing documentation.
 
 #### Setting up and maintaining the project website
@@ -381,31 +367,17 @@ We use Markdown for writing documentation.
 
 There are two ways to run tests.
 - Method 1: Using IntelliJ JUnit test runner
-  - To run all tests, right-click on the src/test/java folder and choose Run 'Tests in 'tp.test''
-  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run 'DukeTest'
+  - To run all tests, right-click on the src/test/java folder and choose Run Tests in `tp.test`
+  - To run a subset of tests, you can right-click on a test package, test class, or a test and choose Run `DukeTest`
 - Method 2: Using Gradle
-  - Open a console and run the command gradlew checkstyleMain (Mac/Linux: ./gradlew checkstyleMain)  
+  - Open a console and run the command `gradlew checkstyleMain` (Mac/Linux: ./gradlew checkstyleMain)  
 
 <!-- @@author -->
-
-### Logging guide
-
-- We are using the java.util.logging package for logging.
-- The LogsCenter class is used to manage the logging levels and logging destinations.
-- The Logger for a class can be obtained using LogsCenter.getLogger(Class) which will log messages according to the specified logging level.
-- Log messages are output through the console and to a .log file.
-- The output logging level can be controlled using the logLevel setting in the configuration file
-- When choosing a level for a log message, follow the conventions given in [[se-edu/guides] Java: Logging conventions](https://se-education.org/guides/conventions/java/logging.html).
-  - SEVERE : Critical problem detected which may possibly cause the termination of the application
-  - WARNING : Can continue, but with caution
-  - INFO : Information showing the noteworthy actions by the App
-  - FINE : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
-
 
 
 ## DevOps guide
 
-### 1. Build automation
+### Build automation
 This project uses Gradle for **build automation and dependency management.**
 **You are highly recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html).
 
@@ -427,16 +399,16 @@ e.g. `./gradlew shadowJar`
     * `./gradlew test` - Runs all tests
     * `./gradlew clean test` - Cleans the project and runs tests
 
-### 2. Continuous integration (CI)
+### Continuous integration (CI)
 This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files 
 (in the `.github/workflows` folder). No further setting up required.
 
-### 3. Make a release
+### Make a release
 Here are the stpes to create a new release after you have implemented new features.
 
 1. Update the version number in `Main.java`.
 1. Generate a fat JAR file using Gradle (i.e. `gradlew shadow`).
-1. Tag the repo with the version number e.g: `V2.0`.
+1. Tag the repo with the version number e.g: `V2.1`.
 1. [Create a new release using Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository).
 1. Upload the JAR file you created.
 
@@ -455,16 +427,16 @@ It is specially catered to NUS students, offering features relevant to a NUS stu
 * has the need to manage a significant number of day-to-day matters
 * prefer desktop command line apps over other types
 * prefer typing to using mouse interactions
-* comfortable with using command line apps
+* comfortable with using command line applications
 * forgetful person who needs reminders
 * a fast typer
 
 
 ### Value proposition
 
-By using *25HoursADay*, it provides an all-in-one app for the users to keep track of his/her day-to-day matters. Without the
-need to search through different platforms for information. *25HoursADay* can manage one's day-to-day matters faster than a 
-typical mouse/GUI driven app.
+By using *25HoursADay*, it provides an all-in-one application for the users to keep track of his/her day-to-day matters. Without the
+need to search through different platforms for information, *25HoursADay* can manage one's day-to-day matters faster than a 
+typical mouse/GUI driven application.
 
 ## Appendix B: User Stories
 This section describes the user stories considered when implementing the features.
@@ -475,7 +447,7 @@ This section describes the user stories considered when implementing the feature
 |v1.0|user|add different tasks and events|better manage my day-to-day matters|
 |v1.0|user|set my tasks as done|track my tasks better|
 |v1.0|user|delete my calendar items|remove unwanted items and organise my calendar better |
-|v1.0|user|print the items added based on their categories|have a clear picture of what I have on hand|
+|v1.0|user|print all events and tasks separately|have a clear picture of what I have on hand|
 |v1.0|user|see my progress of tasks|know the percentage of tasks I have finished and adjust my working pace| 
 |v1.0|user|store all the data locally|load my saved data to the app next time|
 |v2.0|user|find an item in my calendar|locate an item without having to go through the entire list|
@@ -524,47 +496,53 @@ The table below shows the information and contact details of developers.
 ## Appendix F: Instructions for manual testing
 
 General steps for manual testing:
-1. Execute an "Add" action.
+1. Execute an "Add" action.  
 2. Execute a "Delete" / "Find" / "Print" / "Set" / "View" action of the same command type.
 
-Refer to [Command Summary](#command-summary) to view the list of actions, command types and command format. 
+Printing the countdown of exams
+1. Prerequisites: add some `exam` events into the `calendarList`.
+2. Test case: `countdown exams`
+
+   Expected: The countdown of the exams will be calculated for you. And the countdown of all upcoming exams will be printed. 
+   
+3. Test case: `countdown 12345678`
+
+   Expected: No countdown will be calculated and printed. Error details will be shown in the exception message given to you.
+
+Refer to [Command Summary](#command-summary) to view the list of actions, command types and command format.   
+Refer to [User Guide](https://ay2021s1-cs2113t-t12-2.github.io/tp/UserGuide.html) to view the other commands and their expected output.
 
 ### Command summary
 The following table contains the list of commands available in the application.
 
-|Action| Command Type | Command Format | 
-|--------|----------|----------|
+|Term| Meaning | Command Format|
+|--------|----------------|--------|
 |Add|activity event|`act <activity_description> @<venue> / <date> <time>`|
-|Add|additional information for event|`/a <event_number> - <additional_information>`|
-|Add|deadline task|`deadline <task_description>/ <due_date>`|
-|Add| exam event | `exam<module_name> @<venue> / <date> <time>` | 
-|Add| lab event  | `lab <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|Add| lecture event | `lect <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|Add| todo task | `todo <task_description>` | 
-|Add| tutorial event | `tut <module_name> @<venue> -r <recurring_number> / <date> <time>` | 
-|Delete| events | `-e <event_number>` |
+|Add|additional information for an event|`/a <event_number> - <additional_information>`|
+|Add|deadline task|`deadline <task_description> / <due_date>`|
+|Add|exam event|`exam <module_name> @<venue> / <date> <time>`|
+|Add|lab event|`lab <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Add|lecture event|`lect <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Add|todo task|`todo <task_description>`|
+|Add|tutorial event|`tut <module_name> @<venue> -r <recurring_number> / <date> <time>`|
+|Delete|additional information for an event|`/- <event_number> a <additional_information_number>`|
+|Delete|events|`-e <event_number>`|
 |Delete|tasks|`-t <task_number>`|
-|Delete|additional information for event|`/- <event_number> a <additional_information_number>`|
-|Find|all items|`/f <keyword>`|
+|Find|all calendar items|`/f <keyword>`|
 |Find|events|`/fe <keyword>`|
 |Find|tasks|`/ft <keyword>`|
-|Print |countdown for all items|`countdown`|
-|Print |countdown for deadlines|`countdown deadlines`|
-|Print |countdown for exams|`countdown exams`|
-|Print |events|`print events`|
-|Print |important tasks|`print *`|
-|Print |progress|`print progress`|
-|Print |tasks|`print tasks`|
+|Print|countdown for all items|`countdown`|
+|Print|countdown for deadlines|`countdown deadlines`|
+|Print|countdown for exams|`countdown exams`|
+|Print|events|`print events`|
+|Print|important tasks|`print *`|
+|Print|progress|`print progress`|
+|Print|tasks|`print tasks`|
 |Print|timeline (default)|`print timeline`|
-|Print|timeline before a date|`print timeline date <DATE>`|
-|Print|timeline for current month|`print timeline month`|
-|Print|timeline for current week|`print timeline week`|
-|Set|tasks as done|`done <task number>`|
-|Set|tasks as important|`*t <task_number>`|
-|View|additional information|`/v <event_number>`|
-|View|available commands|`help`|
-|View|suggestions|`suggestion`|
-|Quit|exit the program|`bye`|
+|Print|timeline before a date|`print timeline date <date>`|
+|Print|timeline for the next 31 days|`print timeline month`|
+|Print|timeline for the next 7 days|`print timeline week`|
+|Quit|exit the application|`bye`|
 
 
 

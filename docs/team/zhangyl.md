@@ -61,13 +61,13 @@ Given below are my contributions to the project. <br/>
 #### Contributions to the Developer Guide:
 * Added an introduction to the Developer Guide.
   ([\#118](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/118))
-* Added implementation for the feature `save data`, `load data`, `print countdown`.
+* Added implementation for the feature `saving data`, `print countdown`.
   ([\#129](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/129),
    [\#186](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/186),
    [\#187](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/187),
    [\#200](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/200),
    )
-* Added sequence diagram for feature `save data`, `load data`, `print countdown`.
+* Added sequence diagram `save data`, `load data` for feature `saving data` , and feature `print countdown`.
   ([\#128](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/128),
    [\#183](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/183),
    [\#190](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/190))
@@ -75,6 +75,8 @@ Given below are my contributions to the project. <br/>
   ([\#119](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/119))
 * Added part of the user stories.
   ([\#171](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/171))
+* Added part of the user manual testing.
+  ([\#309](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/309))
   
 #### Contributions to the User Guide:
 * Documented features `saving the data`, as well as feature `countdown deadlines`, feature `countdown exams`, and feature `countdown` 
