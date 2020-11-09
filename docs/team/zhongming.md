@@ -12,16 +12,17 @@ ietBook is a Command Line Interface (CLI) desktop application designed mainly _N
 
 #### Features implemented
 
-* Implemented [`dataBase package`](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/java/seedu/dietbook/database)
-and [`database resource`](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/resources)
-* Implemented['saveload package'](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/java/seedu/dietbook/saveload)
+* Implemented [dataBase package](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/java/seedu/dietbook/database)
+and [database resource](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/resources)
+* Implemented[saveload package](https://github.com/AY2021S1-CS2113-T14-4/tp/tree/master/src/main/java/seedu/dietbook/saveload)
 
 #### Documentation
 
 **Developer Guide**
-* Added the saveload section with the UML diagrams
-* added the database section with the UML diagrams
+* Added the [saveload section](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/docs/DeveloperGuide.md#saveload-feature) with the UML diagrams
+* added the [database section](https://github.com/AY2021S1-CS2113-T14-4/tp/blob/master/docs/DeveloperGuide.md#database-feature) with the UML diagrams
+and instructions on how to manually edit the data base text file.
 
 #### Contributions to team-based tasks
 
-* Attend all weekly meetings 
+* Attend weekly meetings
