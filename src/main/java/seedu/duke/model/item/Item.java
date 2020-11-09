@@ -92,12 +92,6 @@ public class Item {
                 + dateString;
     }
 
-
-    public String toFileCredit() {
-
-        return "C | " + description;
-    }
-
     /**
      * Converts the attributes of the task into a formatted string to be displayed to the user.
      *

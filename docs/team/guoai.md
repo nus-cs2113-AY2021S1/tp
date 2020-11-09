@@ -87,8 +87,10 @@ commands, storage, UI, runner, and exception did not change.
 ##### Contributions to Developer Guide:
 
 1. Add a sequence diagram for `Stroage` generated with PlantUML.
-2. Explain usage for the `Storage` component.
-3. Describe implementation details of `list` command for expenses and `delete` command.
+1. Add a class diagram for `Item` class and its subclasses.
+1. Explain usage for the `Storage` component.
+1. Explain the `Item` class and its subclasses.
+1. Describe implementation details of `list` command for expenses and `delete` command.
 
 ##### Contributions to Team-based tasks:
 
@@ -106,6 +108,9 @@ commands, storage, UI, runner, and exception did not change.
    [#184](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/184)
 2. Communicate and explain the refactoring about `Item` and `ItemList` and their subclasses to teammates in group chat, 
 so that more OOP can be applied.
+3. Provide details when creating PR to inform teammates of the updates.
+   - Example:
+   [#214](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/214)
 
 ##### Contributions beyond the project team:
 - Create and host weekly project meetings
@@ -239,7 +244,7 @@ Date will be in the format of `yyyy-MM-dd`, e.g. `2020-11-09`.
 
 The following sequence diagram shows how the `Storage` works.
 
-![StorageSequenceDiagram](./images/StorageSequenceDiagram.png)
+![StorageSequenceDiagram](./../images/StorageSequenceDiagram.png)
   
 1. At the start of `Duke`, a new `Storage` object will be created.
 2. `Duke` calls loading methods (i.e. `loadTask()`, `loadBook()`, `loadLinks()`, `loadModule()`, `loadExpense()`) 
