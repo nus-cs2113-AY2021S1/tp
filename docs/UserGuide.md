@@ -293,9 +293,9 @@ Example of usage:
 
 `archive-n /i 1`
 
-`archive-n /t JavaDoc`
-
 <div style="page-break-after: always;"></div>
+
+`archive-n /t JavaDoc`
 
 Expected output:
 
@@ -341,8 +341,6 @@ Example of usage:
 
 `delete-n /t JavaDocs`
 
-<div style="page-break-after: always;"></div>
-
 Expected output:
 
 <p align="center">
@@ -367,8 +365,6 @@ Example of usage:
 `create-t /tag CS2113`
 
 `create-t /tag important red /tag CS2113 blue`
-
-<div style="page-break-after: always;"></div>
 
 Expected output:
 
