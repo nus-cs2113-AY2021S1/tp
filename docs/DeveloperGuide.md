@@ -53,7 +53,7 @@ The flow for add command is as follows:
 
 #### Book Command
 The flow for the book command is shown in the sequence diagram below:
-![image info](./pictures/bookApptSequenceDiagram.PNG)
+![image info](./pictures/bookCommandSD.PNG)
 1. Book command checks if there are available appointments.
 2. Book command extracts NRIC by calling its own method.
 3. Book command calls Ui to get the corresponding doctor name for the appointment.
