@@ -181,7 +181,7 @@ The Model component consists of the `Access`, `History`, `DueChapter`, `ModuleLi
 
 <p align="center">
   <img src="UML/model.png" width="600" alt="Architecture Diagram of Model"/>
-  <br/>Figure <>. Architecture Diagram of Model
+  <br/>Figure <>. Class diagram of Model components
 </p>
 
 The Model component
@@ -191,7 +191,7 @@ The Model component
 * provides an `Admin` class that can be created and accessed by `Access` object. The `Admin` class contains a `ModuleList` object to manage data for modules.
 * provides a `Module` class that can be created and accessed by `Access` object. The `Module` class contains a `ChapterList` object to manage data for chapters.
 * provides a `Chapter` class that can be created and accessed by `Access` object. The `Chapter` class contains a `CardList` object to manage data for cards.
-* provides a `Card` object that can be created and accessed by `CardList`. A `Card` object represents a flashcard with question, answer and master level of revision.
+* provides a `Card` object that can be created and accessed by `CardList`. A `Card` object represents a flashcard with question, answer and mastery level of revision.
 
 
 ### 3.4. Storage Component 
@@ -213,13 +213,13 @@ The Storage component
 * can parse the exclusions into an ArrayList<String> so that KAJI can determine which chapters are excluded.
 
 
-### 3.5. Common Classes
+### 3.5. Common Component
 (Jiayi)
 
 The Common component consists of `KajiLog` and `Messages` as shown in the class diagram below: 
 
 <p align="center">
-  <img src="UML/commonClass.png" width="600" alt="Common Class Diagram"/>
+  <img src="UML/commonClass.png" width="400" alt="Common Class Diagram"/>
   <br/>Figure <>. Class diagram of Common component  
 </p>
 
@@ -451,7 +451,7 @@ At Module Level, users are able to: <br>
 
 The add chapter feature allows the user to create new chapters at Module level.
 
-`AddChapterCommand` facilitates the proposed add chapter feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formates message about the result of the action to user in `Ui`. 
+`AddChapterCommand` facilitates the proposed add chapter feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formats message about the result of the action to user in `Ui`. 
 
 Shown as the class diagram below, because of the inheritance of `AddCommand`, `Command` and `AddChapterCommand`, `Kaji` is able to execute the operation `AddChapterCommand#excute()`. 
 
@@ -836,13 +836,13 @@ The show rate feature allows the user to check their overall performance of revi
 
 It implements the following operations:
 * `ShowRateCommand#execute()` -- Inherits from the abstract `Command`. It is an override to calls `ShowRateCommand#computePercentage()` and print message that specific to performance checking feature.
-* `ShowRateCommand#computePercentage()` -- Computes the overall performance by master levels and updates the `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage`, then it returns number of cards in the `Chapter`.
+* `ShowRateCommand#computePercentage()` -- Computes the overall performance by mastery levels and updates the `ShowRateCommand#easyPercentage`, `ShowRateCommand#mediumPercentage`, `ShowRateCommand#hardPercentage` and `ShowRateCommand#cannotAnswerPercentage`, then it returns number of cards in the `Chapter`.
 * `ShowRateCommand#isExit()` -- Inherits from the abstract `Command`. It is an override to return `false`.
 
 Shown as the class diagram below, with the inheritance of `Command`, `Kaji` is able to execute the operation `ShowRateCommand#execute()` directly. 
 
 <p align="center">
-  <img src="UML/ShowRateCommandClass.png" width="800" alt="Class Diagram of show overall performance command"/>
+  <img src="UML/ShowRateCommandClass.png" width="400" alt="Class Diagram of show overall performance command"/>
   <br/>Figure <>. Class Diagram of show overall performance command  
 </p>
 
@@ -867,7 +867,7 @@ Given below is an example usage scenario at Chapter level and how the show overa
 The following diagram shows how the show overall performance feature works:
 
 <p align="center">
-  <img src="UML/ShowRateCommand.png" width="800" alt="Sequence Diagram of show overall performance command"/>
+  <img src="UML/ShowRateCommand.png" width="600" alt="Sequence Diagram of show overall performance command"/>
   <br/>Figure <>. Sequence Diagram of show overall performance command 
 </p>
 

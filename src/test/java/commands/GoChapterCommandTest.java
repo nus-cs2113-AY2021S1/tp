@@ -52,6 +52,7 @@ public class GoChapterCommandTest {
     @AfterEach
     public void cleanUp() {
         storageStub.deleteDirectory("/CS2113T/Chapter 1.txt");
+        storageStub.deleteDirectory("/CS2113T");
         System.setOut(standardOut);
     }
 

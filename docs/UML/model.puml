@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR_T4
 skinparam classBackgroundColor MODEL_COLOR
 
-package model {
+package Model {
 
  package manager {
 
@@ -38,11 +38,11 @@ Class Access
 }
 }
 
-package logic {
+package Logic {
     Class HiddenLogic #FFFFFF
 }
 
-package ui {
+package Ui {
     Class HiddenUi #FFFFFF
 }
 
@@ -57,7 +57,7 @@ Chapter .down.> CardList: contains >
 CardList .down.> Card: manages >
 DueChapter .right.> Chapter: uses >
 
-logic .right.> Access
-ui ..> Access
+Logic .right.> Access
+Ui ..> Access
 
 @enduml

@@ -43,4 +43,5 @@ AddChapterCommand -> Ui ++ : showToUser(result)
 return
 return
 destroy AddChapterCommand
+destroy AddCommand
 @enduml

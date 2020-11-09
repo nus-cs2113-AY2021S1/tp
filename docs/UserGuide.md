@@ -78,7 +78,7 @@ A <b>command line interface (CLI)</b> is a text-based user interface (UI) used t
 Kaji's content management system is similar to a physical folder which you may use to organize your lecture handouts. <br>
 Kaji manages content in four different levels, they are the Admin Level, the Module Level, the Chapter Level and the Flash Card Level: <br>
 
-![Content Management](UG_Images/contentManagement.PNG)
+![Content Management](UG_Images/contentManagement.png)
 
 * **Admin Level** is like your **bookshelf** to keep all the separated module folder in place.
 * **Module Level** is like a **folder** to keep all your lecture notes and materials by different module codes.
@@ -87,7 +87,7 @@ Kaji manages content in four different levels, they are the Admin Level, the Mod
 
 When you start our program, you begin on the **Admin Level**, indicated by the prompt "admin" as shown here.
 To add/modify/remove elements of a certain level, you have to be on the level above it.
-* E.g. to create a new Module in the **Chapter Level**, you have to be on the **Admin Level**
+* E.g. to create a new Module in the **Module Level**, you have to be on the **Admin Level**
 * E.g. to create a new Flashcard in the **Flashcards Level**, you have to be on the **Chapter Level**
 
 Refer to [Features](#3-features) below for details of each command.
