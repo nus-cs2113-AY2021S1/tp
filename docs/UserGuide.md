@@ -270,6 +270,8 @@ Expected output:
 ![Bookmark_List](Images/BookmarkUG/Figure1.png)
 ![Bookmark_List_1Star_Cat](Images/BookmarkUG/Figure2.png)
 
+<div style="page-break-after: always;"></div>
+
 >**Useful Information:**
 >* You can only use this command anywhere after entering the bookmark mode. (Refer to [General Command 2](#2-changes-the-current-mode-cd-mode_name-or-mode_index))
 >* If your category does not have any links, it will indicate that the list is empty.
@@ -412,6 +414,7 @@ Instruction:
 Expected output:   
 
 ![Bookmark_add link](Images/BookmarkUG/Figure8.png)
+
 
 >**Useful Information:**
 >* You can only use this command after choosing your category. (Refer to [1.2](#12-going-into-each-category-bm-number))
@@ -979,6 +982,8 @@ If you encounter any errors, take note of the following warning.
 >
 >![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="60%" width="60%"}
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3 Listing flashcards: `list`
 
 If you wish to review the content that is currently in the flashcard deck, this command can display all flashcards that
@@ -1056,7 +1061,7 @@ Expected output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: All of Study It's data are stored under the `ROOT_FOLDER/data` folder.
+**A**: All of Study It's data is stored under the `ROOT_FOLDER/data` folder.
 To transfer these data to another computer, please back up the `data` folder 
 and copy it over to the directory in the new computer accordingly after installing the app.
 
@@ -1073,7 +1078,7 @@ Do feedback to us what features you would like to see in Study It!
 
 **Q**: What to do if bookmark data does not load properly after changing the bookmark.txt file?
 
-**A**: This is for users who editted the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
+**A**: This is for users who edited the bookmark.txt file in the data folder. If you encounter trouble after editing the data file, 
 you can do one of the following steps: 
 * revert the changes in the data file.
 * delete the bookmark data file.
@@ -1094,11 +1099,11 @@ which you can access using the cd command!
 <div align="center">Table: Command Cheatsheet for Study It</div>
 
 <p align="center">
-    <img width="80%" height="80%" src="Images/cheatsheet1.png">
+    <img width="90%" height="90%" src="Images/cheatsheet1.png">
 </p>
 
 <div style="page-break-after: always;"></div>
 
 <p align="center">
-    <img width="80%" height="80%" src="Images/cheatsheet2.png">
+    <img width="90%" height="90%" src="Images/cheatsheet2.png">
 </p>
