@@ -47,13 +47,13 @@ Data of the user's diet is stored in the app's memory via the model: a `FoodList
 Additionally, it is not dependent on the other components listed. Instead, it is dependent on a common `Food` class, which is used by serval components, including the storage, database, and calculator.
 
 ![Diagram of FoodList](diagrams/FoodList_Overall.png)
-<!--- Link to Creately file:  https://app.creately.com/diagram/J8IZgmEohx4/edit --->
+<!---> Link to Creately file:  https://app.creately.com/diagram/J8IZgmEohx4/edit <--->
 
 <details>
     <summary>A more detailed class diagram is availble here</summary>
 
 ![Class diagram of FoodList](diagrams/FoodList_Overall_class.png)
-<!--- Link to Creately file:  https://app.creately.com/diagram/JsQLCacKi4N/edit --->
+<!---> Link to Creately file:  https://app.creately.com/diagram/JsQLCacKi4N/edit <--->
 
 Some attributes and methods of the classes have been truncated for brevity. See the full details in the next subsections on `FoodListManager` and `FoodManager`.
 
@@ -70,7 +70,7 @@ The above functions and the lack of dependency are met through the following mea
     <summary> Fascade pattern of `FoodListManager`</summary>
 
 ![Class diagram of FoodListManager](diagrams/FoodList_Manager_class.png)
-<!--- Link to Creately file:  https://app.creately.com/diagram/JsQLCacKi4N/edit --->
+<!---> Link to Creately file:  https://app.creately.com/diagram/JsQLCacKi4N/edit <--->
 
 `FoodListManager` obscures the operations performed on the individual items of the list of `FoodEntry` objects. These operations are performed using a functional programming paradigm to reduce code repetition, since all operations typically take the form of a list mapping or filtering.
 
@@ -88,7 +88,7 @@ Overall, `FoodList` fulfils the role of being the app's Model component by holdi
     <summary> Fascade pattern of `FoodManager`</summary>
 
 ![Class diagram of FoodManager](diagrams/FoodList_FoodManager_class.png)
-<!--- Link to Creately file:  https://app.creately.com/diagram/JsQLCacKi4N/edit --->
+<!---> Link to Creately file:  https://app.creately.com/diagram/JsQLCacKi4N/edit <--->
 
 `FoodManger` obscures the existence of the class `OptionalFood` from `FoodEntry` and all classes dependent on `Food` from `FoodEntry`.
 It uses an obscured `NutrientCalculator` to handle the missing values from the user by providing a guesstimation/calculation of their value.
