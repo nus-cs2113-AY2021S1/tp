@@ -435,10 +435,11 @@ The classes in this package directly communicate with the command package in ord
 
 ### 3.5 Ui Package <a name="ui"></a>
 
-The ui package deals with printing all the system outputs on the command line. 
+The ui package deals with handling user input and printing all the system outputs on the command line. 
 It consists of one class, Ui. 
 This class is responsible to print all messages to the command line. 
 The command classes call the methods in this class in order to print anything on the command line.
+This class also deaals with printing any messages when exceptions are encountered.
 
 ### 3.6 Storage Package <a name="storage"></a>
 There are two classes inside this package, both of which are inside `Storage.java`. The following diagram shows the
