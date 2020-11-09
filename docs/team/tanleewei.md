@@ -6,7 +6,7 @@ centralized system via a Command Line Interface (CLI)**. Even though the main ta
 SmartHomeBot is disabled home users with mobility issues, it can be used by anyone that wants to have
 a bot to help in controlling household appliances but prefer typing than speaking to the bot. The main goal
 of this application is to help to make the life of the user easier and more convenient by allowing the user to add 
-their household appliances into the appliance, allowing the user to switch on and off their appliances throught the 
+their household appliances into the SmartHomeBot, allowing the user to switch on and off their appliances through the 
 application and also monitor their electrical power usage.
 
 ### Summary of Contributions
