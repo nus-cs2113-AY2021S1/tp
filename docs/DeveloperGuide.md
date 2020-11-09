@@ -368,13 +368,14 @@ The execute() method of the `ListAllSubjectCommand` prints a list of all subject
 The isExit() method determines whether the program exits. The `ListSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
 ##### QuizSubjectCommand
-The execute() method of the `QuizSubjectCommand`
-TODO: Add execute method documentation
+The execute() method of the `QuizSubjectCommand` decodes the user input, and initiates a quiz for the subject that the user requested for.
+For example, if the user enters `quiz Maths`, then the application starts a quiz for the Maths subject.
 
 The isExit() method determines whether the program exits. The `QuizSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
 ##### ResultSubjectCommand
-TODO: Add execute method documentation
+The execute() method of the `ResultSubjectCommand` decodes the user input, and prints out the results of previous SubjectQuizzes for the subject.
+For example, if the user enters `results Maths`, then the application prints out the results of the previous SubjectQuizzes attempted by the user.
 
 The isExit() method determines whether the program exits. The `ResultSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
