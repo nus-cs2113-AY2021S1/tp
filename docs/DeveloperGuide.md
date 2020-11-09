@@ -307,7 +307,7 @@ The isExit() method determines whether the program exits. The `QuizSubjectComman
 
 ##### ResultSubjectCommand
 The execute() method of the `ResultSubjectCommand` decodes the user input, and prints out the results of previous SubjectQuizzes for the subject.
-For example, if the user enters `results Maths`, then the application prints out the results of the previous SubjectQuizzes attempted by the user.
+For example, if the user enters `results Maths`, then the application prints out the results of the previous SubjectQuizzes attempted by the user for the Maths subject.
 
 The isExit() method determines whether the program exits. The `ResultSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
