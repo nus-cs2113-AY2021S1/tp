@@ -121,8 +121,9 @@ public class Ui {
     public static void showWelcome() {
         System.out.println("Hello from...");
         System.out.println(Messages.LOGO);
-        dukePrint("How can termiNus assist you today?\n\n \t Unsure what to type? Start of by typing <help> to see the "
-                + "commands and their usage.");
+        dukePrint("How can termiNus assist you today?\n\n" +
+                "     Unsure what to type? Start of by typing <help> to see the commands and their usage.");
+
     }
 
     // @@author GuoAi
