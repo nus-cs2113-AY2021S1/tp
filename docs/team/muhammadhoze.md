@@ -140,8 +140,5 @@ This command allow students to wipe off all their data.
              **clear all**
     
             Format: 
-                clear all
-                
-<div style="page-break-after: always;"></div>
-
+                clear all               
 9. Quick Command Summary
