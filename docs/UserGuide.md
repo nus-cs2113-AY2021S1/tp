@@ -203,8 +203,6 @@ Expected output:
    <img alt="viewNote" src="screenshots/viewNote.png"/>
 </p>
 
-<div style="page-break-after: always;"></div>
-
 #### <a id="edit-n"><ins>3.5 Edit Note:</ins> `edit-n`</a>
 Edits an existing note.
 
