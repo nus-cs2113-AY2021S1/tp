@@ -45,8 +45,5 @@ The list of the contributions to the developer guide include:
 
 The list of contributions to user guide include:
 * FAQs [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
+* Editing command information [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
 * Formattting [#180](https://github.com/AY2021S1-CS2113T-W13-3/tp/pull/180) 
-
-
-
-
