@@ -111,6 +111,10 @@ public class Timetable {
         ArrayList<Slot> slots = new ArrayList<>();
         ArrayList<String> moduleCodeList = new ArrayList<>();
 
+        if (!Day.isDay(day)) {
+            throw new ZoomasterException(ZoomasterExceptionType.INVALID_TIMETABLE_DAY);
+        }
+
         for (Module module: modules) {
             for (Slot s: module.getSlotList()) {
                 if (s.getDay().equals(day)) {

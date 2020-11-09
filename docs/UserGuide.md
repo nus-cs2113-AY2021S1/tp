@@ -192,7 +192,10 @@ clear your screen.
 Format: clear
 ```
 
-<br/><br/> 
+>Here is an example of clearing the screen using the clear command. <br/><br/> 
+>![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/clear.png) <br/><br/> 
+
+
 <a name="launchnow"></a>  
 <!-- @@author xingrong123-->
 #### 5.1.4 Launch bookmarks of current lesson: `launch now` (Xing Rong)
@@ -203,6 +206,10 @@ allowing you to launch your zoom session ahead of time.
 ```
 Format: launch now    
 ```
+
+>Here is an example of launching the bookmark of the current lesson. In this case, the URL attached to the slot
+>is www.google.com. <br/><br/> 
+>![](https://raw.githubusercontent.com/AY2021S1-CS2113T-W11-1/tp/master/docs/images/load%20changes.png) <br/><br/> 
 
 You should expect to see the urls of the current or 5 minutes advance lesson slot launching
 in your native browser. Otherwise, you should see the message `no lesson now`.
@@ -707,10 +714,22 @@ Format: save
 
 <br/><br/> 
 ## 6.0 FAQ  
+
+**Q**: My Zoomaster logo looks weird! Is there something wrong with my program?   
+
+  
+**A**: Some users might encounter a start-up screen that looks like this. <br></br>
+![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/bugphoto.PNG)
+
+This is only a visual bug. Other than the weird looking logo, Zoomaster will work as per normal. No
+need to worry!
+<br/><br/> 
+
   
 **Q**: How do I transfer my data to another computer?   
   
-**A**: Copy the `data/bookmarks.txt` and `data/slots.txt` file to the **data** directory where the `jar` file is at. <br></br>
+**A**: Simply copy the `data/bookmarks.txt` and `data/slots.txt` file to the **data** directory. This directory should be
+ in the same location where you have stored the `jar` file. <br></br>
 ![](https://raw.githubusercontent.com/Speedweener/ip/master/docs/images/directory.png)
 
 Start the application and all the data should be loaded.
