@@ -103,16 +103,16 @@ Examples of usage:
 `personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`
 `assignment CS1010 Assignment /t 2020-01-04 23:59 /o Luminus`
 
-Adding a class:
+Adding a class:  
 ![add1](diagrams/add1.png)
 
-Adding a personal event:
+Adding a personal event:  
 ![add2](diagrams/add2.png)
 
-Adding an assignment:
+Adding an assignment:  
 ![add3](diagrams/add3.png)
 
-Adding an event with a timing clash:
+Adding an event with a timing clash:  
 ![add4](diagrams/add4.png)
 
 
@@ -203,7 +203,7 @@ Shows you a list of all events.
 
 Format: `list`  
 
-Example Output:
+Example Output:  
 ![list](diagrams/list.png)
 
 ### Clear events
@@ -222,7 +222,7 @@ Delete events existing in the list, you can choose to delete all, auto delete or
   
   Example: `clearBefore 2020-03-10`
   
-Example Output:
+Example Output:  
 ![clear](diagrams/clear.png)
 
 ### Mark event as done
@@ -232,7 +232,7 @@ Format: `done INDEX`
 
 Example: `done 2`
 
-Example Output:
+Example Output:  
 ![done](diagrams/done.png)  
 
 ### Reminder of deadlines
@@ -240,7 +240,7 @@ Shows a list of all events for today's date.
 
 Format: `reminder`
 
-Example Output:
+Example Output:  
 ![reminder](diagrams/reminder.png)
 
 
