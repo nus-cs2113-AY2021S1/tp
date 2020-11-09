@@ -79,7 +79,29 @@ public class AddChapterCommandTest {
         System.setOut(standardOut);
     }
 
-    /*@Test
+    private String getOutput() {
+        String os = System.getProperty("os.name").toLowerCase();
+        String expected = outputStreamCaptor.toString();
+        if (!(os.contains("win"))) {
+            expected = expected.replaceAll("\\r\\n", "\n");
+        }
+        return expected;
+    }
+
+    private String getExpected(String expectedResult) {
+        String os = System.getProperty("os.name").toLowerCase();
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+        printWriter.print(expectedResult);
+        printWriter.close();
+        String expected = expectedStringWriter.toString();
+        if (!(os.contains("win"))) {
+            expected = expected.replaceAll("\\r\\n", "\n");
+        }
+        return expected;
+    }
+
+    @Test
     public void execute_validInput_addSuccessful() throws Exception {
         String chapterName = "Chapter 2";
         addChapterCommand = new AddChapterCommand(chapterName);
@@ -91,8 +113,9 @@ public class AddChapterCommandTest {
                 + String.format(addChapterCommand.MESSAGE_SUCCESS, CHAPTER)
                 + chapterName + "\n"
                 + String.format(addChapterCommand.MESSAGE_COUNT, 2, CHAPTER);
-        assertEquals(expectedResult.trim(), outputStreamCaptor.toString().trim());
-    }*/
+        String expected = getExpected(expectedResult);
+        assertEquals(expected.trim(), getOutput().trim());
+    }
 
     @Test
     public void execute_duplicatedChapter_addFail() throws Exception {
