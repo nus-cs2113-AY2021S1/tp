@@ -15,20 +15,20 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ## Summary of Contributions
 
 ### Features implemented
-1. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. 
-    - Taggable objects can have multiple tags and different Taggable objects can share same tag(s). They can also be filtered by their tags.
-1. Implemented `Tag` class which contains the name and of the tag and its color.
-    - Added color support for user to better differentiate the tags.
-1. Implemented `TagManager` class which manages all the tags in application. 
-    - A hashmap is used where each unique tag are the keys and the arraylist of taggable objects that share the same tag are the mapped values.
-1. Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
-1. Implemented `ParserManager` class which manages the creation of different parser objects to parse the user input to the required parameters.
+1\. Implemented `TaggableObject` class which is inherited by `Note` and `Event`. 
+- Taggable objects can have multiple tags and different Taggable objects can share same tag(s). They can also be filtered by their tags.
+2\. Implemented `Tag` class which contains the name and of the tag and its color.
+- Added color support for user to better differentiate the tags.
+3\. Implemented `TagManager` class which manages all the tags in application. 
+- A hashmap is used where each unique tag are the keys and the arraylist of taggable objects that share the same tag are the mapped values.
+4\. Implemented the functionality to create tag, delete tag, as well as tag or untag taggable objects.
+5\. Implemented `ParserManager` class which manages the creation of different parser objects to parse the user input to the required parameters.
 
 <div style="page-break-after: always;"></div>
 
-6. Implemented `SystemException` class which extends from `Exception` class.
-    - Within it, there is an enumeration for all possible types of exception that may occur and each enum value contains a unique string as its message.
-7. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
+6\. Implemented `SystemException` class which extends from `Exception` class.
+- Within it, there is an enumeration for all possible types of exception that may occur and each enum value contains a unique string as its message.
+7\. Implemented `Formatter` class which formats the different objects, such as Note, Event and String with a specified layout into a String to be printed.
     
 ### Code contributed
 [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chongjx&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -41,11 +41,15 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 ### Contributions to User Guide
 Added documentation for following features:
 
-1. [Section 3.11 Create Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#create-t)
-1. [Section 3.12 List Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#list-t)
-1. [Section 3.13 Tag/Untag Notes](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-n)
-1. [Section 3.14 Tag/Untag Events](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-e)
-1. [Section 3.15 Delete Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-t)
+1\. [Section 3.11 Create Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#create-t)
+
+2\. [Section 3.12 List Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#list-t)
+
+3\. [Section 3.13 Tag/Untag Notes](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-n)
+
+4\. [Section 3.14 Tag/Untag Events](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#tag-e)
+
+5\. [Section 3.15 Delete Tags](https://ay2021s1-cs2113-t13-1.github.io/tp/UserGuide.html#delete-t)
 
 ### Contributions to Developer Guide
 Added implementation details for the following:
@@ -66,8 +70,6 @@ Added implementation details for the following:
 7\. [Section 2.11 Usage of External Libraries](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#color)
 
 8\. [Section 8.1 List of ParseCommand Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#parseXYZCommands)
-
-<div style="page-break-after: always;"></div>
 
 9\. [Section 8.2 List of Command Classes](https://ay2021s1-cs2113-t13-1.github.io/tp/DeveloperGuide.html#XYZCommands)
 
