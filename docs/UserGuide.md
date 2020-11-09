@@ -646,14 +646,16 @@ Shows a list of task commands and examples of how to use them.
    Format: task /del <taskid> [<taskid>...]
    Example: task /del 5 7 9
 3. View task
-   Format: task /view <taskid>
-   Example: task /view 3
+   Format: task /view <taskid> [<taskid>...]
+   Example: task /view 3 4 5
 4. Change task priority
    Format: task /priority -priority <category> -id <taskid>
    Example: task /priority -priority HIGH -id 1
 5. Mark task as complete
-   Format: task /done <taskid>
-   Example: task /done 1
+   Format: task /done <taskid> [<taskid>...]
+   Example: task /done 1 2 3
+6. View tasks in descending priority
+   Format: task /priorityview
 ```
 
 #### 3.6.5 <a id="sprint-help">Sprint Help</a>
