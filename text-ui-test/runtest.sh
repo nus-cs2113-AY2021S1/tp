@@ -14,7 +14,7 @@ then
 fi
 
 #java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
-java -cp $(find ../build/libs/ -mindepth 1 -print -quit) seedu.duke.test.TextUiTest < input.txt > ACTUAL.TXT
+java -ea -cp $(find ../build/libs/ -mindepth 1 -print -quit) seedu.duke.test.TextUiTest < input.txt > ACTUAL.TXT
 
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
 dos2unix EXPECTED-UNIX.TXT ACTUAL.TXT

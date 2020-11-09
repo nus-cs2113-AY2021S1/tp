@@ -29,10 +29,7 @@ public class ScrumLogger {
         logger.setLevel(Level.INFO);
 
         String currentPath = System.getProperty("user.dir");
-        int index = currentPath.indexOf("tp");
-        String pathToTP = currentPath.substring(0, index + 2);
-
-        Path path = Paths.get(pathToTP + File.separator + "logs" + File.separator + "scrum.log");
+        Path path = Paths.get(currentPath + File.separator + "logs" + File.separator + "scrum.log");
         if (!Files.exists(path.getParent())) {
             Files.createDirectory(path.getParent());
         }

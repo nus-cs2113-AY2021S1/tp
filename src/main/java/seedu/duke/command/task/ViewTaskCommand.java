@@ -17,7 +17,6 @@ public class ViewTaskCommand extends TaskCommand {
     }
 
     public void execute() {
-        assert !projectListManager.isEmpty() : "No project found!\n";
         if (projectListManager.isEmpty()) {
             handleMissingProject("No project : task view.");
             return;

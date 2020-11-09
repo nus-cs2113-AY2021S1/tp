@@ -26,11 +26,14 @@ public class Ui {
      */
     public static String getUserCommand() {
         showToUser(Messages.MESSAGE_PROMPT_INPUT.trim());
-        String input = in.nextLine().trim();
-        while (input.isEmpty()) {
-            input = in.nextLine().trim();
+        if (in.hasNextLine()) {
+            String input = in.nextLine().trim();
+            while (input.isEmpty()) {
+                input = in.nextLine().trim();
+            }
+            return input.strip();
         }
-        return input.strip();
+        return "bye";
     }
 
     /**

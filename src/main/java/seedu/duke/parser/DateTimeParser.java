@@ -30,6 +30,12 @@ public class DateTimeParser {
     }
 
     public static String catchDateFormat(String date) throws DukeException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        try {
+            LocalDate.parse(date, formatter);
+        } catch (Exception e) {
+            throw new DukeException("Please indicate a valid date in this following format: YYYYMMDD.");
+        }
         try {
             String monthInString = date.substring(4, 6);
             int month = Integer.parseInt(monthInString.trim());

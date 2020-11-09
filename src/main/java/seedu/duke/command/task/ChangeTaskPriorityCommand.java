@@ -20,7 +20,6 @@ public class ChangeTaskPriorityCommand extends TaskCommand {
     }
 
     public void execute() {
-        assert !projectListManager.isEmpty() : "No project\n";
         if (projectListManager.isEmpty()) {
             handleMissingProject("No project : edit task priority.");
             return;
