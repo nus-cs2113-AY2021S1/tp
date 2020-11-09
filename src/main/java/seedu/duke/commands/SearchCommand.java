@@ -20,6 +20,10 @@ public class SearchCommand extends Command {
         }
     }
 
+    /**
+     * search shows by a key word, print out shows information if found.
+     * @return true when found, else return false.
+     */
     public boolean processCommand() {
         String showName = inputs.get(1);
         String showsWithKeyword = "";

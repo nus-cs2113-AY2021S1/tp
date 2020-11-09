@@ -25,6 +25,11 @@ public class Storage implements SaveState {
         this.filePath = filePath;
     }
 
+
+    /**
+     * save the watchlist and the watch time detail to the userData.txt.
+     * @throws IOException if a problem happens when writing the data to the file.
+     */
     @Override
     public void saveState() throws IOException {
         FileWriter fw = new FileWriter(filePath);
@@ -49,7 +54,11 @@ public class Storage implements SaveState {
         fw.close();
     }
 
-
+    /**
+     * load the watch time detail from the file.
+     * @param s the scanner to scan the file.
+     * @return a WatchTime instance.
+     */
     private WatchTime loadWatchTimeDetail(Scanner s) {
         if (s.hasNext()) {
             String[] splitRecordedDate = s.nextLine().split("recordedDate: ");
@@ -74,6 +83,10 @@ public class Storage implements SaveState {
     }
 
     @Override
+
+    /**
+     * load the watchlist information and watch time information.
+     */
     public ShowList loadState() throws FileNotFoundException {
         File directory = new File("data");
         if (!directory.exists()) {
