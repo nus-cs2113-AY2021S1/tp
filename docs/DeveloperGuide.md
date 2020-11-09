@@ -122,6 +122,15 @@ The `Command` object:
 - Is executed by the `Duke` object.
 - Prints the output to the user through the `Ui` component.
 
+### CommandCreator component
+
+The `CommandCreator` represents a class with methods that generate `Commands` from parsed arguments from `Parser` class.
+
+The `CommandCreator` class:
+- Takes in arguments as needed by `Parser` class.
+- Splits the arguments further into more parts if the `Command` has more arguments in the description.
+- Returns a `Command` subclass object depending on the method that was called.
+
 <!-- @@author GuoAi -->
 ### Storage component  
 
@@ -151,7 +160,13 @@ This section describes how certain features are implemented.
 <!-- @@author iamchenjiajun -->
 ### Parser
 
-This section describes how the `Parser` class works.
+The `Parser` class is a class that takes in a single line of the user's command and returns a corresponding `Command` that can be executed.
+
+The `Parser` object:
+- Expose functions to allow `Model` to pass in the user's full command to be parsed.
+- Uses regular expressions to parse the user's arguments into several parts.
+- Passes these parts to `CommandCreator` to create the corresponding command.
+- Returns the `Command` to `Model` that can be executed.
 
 #### High level description
 
@@ -191,11 +206,13 @@ word removed. This is done using the `split` method of the `String` class, then 
 1. The method then invokes the `removeArgumentsFromCommand` method to parse and remove optional arguments from the full
 command. This is done using regular expression parsing which is detailed in the next section. The results are returned
 to the `parse` method and stored in `description`.
-1. The method then invokes the `getArgumentsFromRegex` method to parse the optional arguments from the full command.
+1. The method then invokes the `getArgumentsFromRegex` method when the `rootCommand` is not `"find"` to parse the optional arguments from the full command.
 The results are stored in a `HashMap<String, String>`, which is a `HashMap` of key-value pairs, similar to the form of the
 optional argument (`<key>/<value>`). The results are returned to the `parse` method and stored as `argumentsMap`.
 1. The method then checks the `rootCommand` and decides which `Command` to return, which calls `CommandCreator`
 methods with the parsed `argumentsMap`, `description`, and `commandString`.
+1. For certain commands, `checkAllowedArguments` method is called to ensure that the user did not pass in invalid arguments for that given command, and throws an error if there are invalid arguments.
+1. For single-word commands like `bye`, `checkFullCommand` method is called to ensure that the full command corresponds to the command word, and rejects commands like `bye 3`.
 1. The results of the `CommandCreator` methods are returned as a `Command` back to the invoker of the `parse` method.
 
 #### Regular expression parsing

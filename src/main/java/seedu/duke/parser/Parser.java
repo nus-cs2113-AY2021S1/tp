@@ -36,8 +36,8 @@ import java.util.regex.Pattern;
  */
 public class Parser {
     public static final String ARGUMENT_REGEX = "([\\w]+/[^\\s]+)";
-    public static final Logger parserLogger = Logger.getLogger(Parser.class.getName());
-    public static final Pattern argumentPattern = Pattern.compile(ARGUMENT_REGEX);
+    public static final Logger PARSER_LOGGER = Logger.getLogger(Parser.class.getName());
+    public static final Pattern ARGUMENT_PATTERN = Pattern.compile(ARGUMENT_REGEX);
 
     /**
      * Parses user input into command for execution.
@@ -101,10 +101,13 @@ public class Parser {
             commandString = commandString.replaceFirst(subRootCommandFind, "").trim();
             return CommandCreator.createFindCommand(fullCommand, subRootCommandFind, commandString);
         case MakeFolderCommand.COMMAND_WORD:
+            checkFullCommand(fullCommand.trim(), MakeFolderCommand.COMMAND_WORD);
             return new MakeFolderCommand();
         case HelpCommand.COMMAND_WORD:
+            checkFullCommand(fullCommand.trim(), HelpCommand.COMMAND_WORD);
             return new HelpCommand();
         case ByeCommand.COMMAND_WORD:
+            checkFullCommand(fullCommand.trim(), ByeCommand.COMMAND_WORD);
             return new ByeCommand();
         default:
             throw new DukeException(Messages.EXCEPTION_INVALID_COMMAND);
@@ -123,7 +126,7 @@ public class Parser {
             throws DukeException {
         HashMap<String, String> argumentsMap = new HashMap<>();
         StringBuilder log = new StringBuilder("Optional arguments: ");
-        Matcher matcher = argumentPattern.matcher(argumentString);
+        Matcher matcher = ARGUMENT_PATTERN.matcher(argumentString);
 
         if (!matcher.find()) {
             return argumentsMap;
@@ -138,7 +141,7 @@ public class Parser {
                 continue;
             }
             log.append(argument).append(" ");
-            if (!argumentPattern.matcher(argument).find()) {
+            if (!ARGUMENT_PATTERN.matcher(argument).find()) {
                 throw new DukeException("'" + argument + "' is not a valid argument!");
             }
             String argumentKey = argument.split("/", 2)[0];
@@ -149,7 +152,7 @@ public class Parser {
             argumentsMap.put(argumentKey, argumentValue);
         }
 
-        parserLogger.log(Level.FINER, log.toString());
+        PARSER_LOGGER.log(Level.FINER, log.toString());
         return argumentsMap;
     }
 
@@ -161,7 +164,7 @@ public class Parser {
      * @return String with matched patterns removed.
      */
     public static String removeArgumentsFromCommand(String argumentString, String argumentRegex) {
-        Matcher matcher = argumentPattern.matcher(argumentString);
+        Matcher matcher = ARGUMENT_PATTERN.matcher(argumentString);
         String description = argumentString.replaceAll(argumentRegex, "").trim();
 
         if (matcher.find()) {
@@ -169,7 +172,7 @@ public class Parser {
             description = argumentString.substring(0, argumentStartIndex).trim();
         }
 
-        parserLogger.log(Level.FINER, "Description: " + description);
+        PARSER_LOGGER.log(Level.FINER, "Description: " + description);
         return description;
     }
 
@@ -197,6 +200,18 @@ public class Parser {
      */
     public static void checkValidDescription(String description) throws DukeException {
         if (description.contains("/")) {
+            throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
+        }
+    }
+
+    /**
+     * Ensures that the full command corresponds to the command word.
+     *
+     * @param fullCommand fullCommand to check against.
+     * @throws DukeException If the full command is not equal to the command word.
+     */
+    public static void checkFullCommand(String fullCommand, String commandWord) throws DukeException {
+        if (!fullCommand.equals(commandWord)) {
             throw new DukeException(Messages.EXCEPTION_INVALID_ARGUMENTS);
         }
     }
