@@ -1,9 +1,68 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Reading your save data. New saves will be created if no saves are found.
 
-What is your name?
-Hello James Gosling
+===============================================================================================================
+===============================================================================================================
+
+  _      _  __ ______          _
+ | |    (_)/ _|  ____|        (_)
+ | |     _| |_| |__   __ _ ___ _  ___ _ __
+ | |    | |  _|  __| / _` / __| |/ _ \ '__|
+ | |____| | | | |___| (_| \__ \ |  __/ |
+ |______|_|_| |______\__,_|___/_|\___|_|
+
+
+===============================================================================================================
+===============================================================================================================
+Hello! What can I do for you today?
+ -Type 'help' for a list the list of available commands
+===============================================================================================================
+
+
+===============================================================================================================
+These are the commands that are available:
+IMPORTANT INFORMATION:
+ * Words in UPPER_CASE are the parameters to be supplied by the user
+ * Commands are CASE SENSITIVE
+ * Command parameters have to be input in the order as stated
+ * Items in square brackets are optional, e.g [DATE]
+ * Commands with the [P] can take partial commands
+   e.g addLesson and addLesson /code CS2113 /to 18:00 are valid commands
+ * All dates are in the DD-MM-YY and times in the HH:MM format
+ * For tasks that end at midnight, enter the time as 24:00
+
+COMMANDS
+***************************************************************************************************************
+help ------------------------------------------------------------------------------ Displays available commands
+addLesson /code MODULE /date DATE /from START /to END /repeats TIMES ------------------------- [P]Adds a lesson
+addEvent EVENT_NAME /date DATE /from START /to END /repeats TIMES ---------------------------- [P]Adds an event
+addDeadline DEADLINE_NAME /by DATETIME /repeats TIMES -------------------------------------- [P]Adds a deadline
+editLesson MODULE --------------------------------------------------------------------------- [P]Edits a lesson
+editEvent EVENT_NAME ------------------------------------------------------------------------ [P]Edits an event
+editDeadline DEADLINE_NAME ---------------------------------------------------------------- [P]Edits a deadline
+deleteTask /type TYPE /name NAME --------------------------------------------------------------- Deletes a task
+addNotes TITLE ----------------------------------------------------------------------------- [P]Adds a new note
+showNotes TITLE ------------------------------------------------------------------------ [P]Shows selected note
+archive --------------------------------------------------------------------------- Archives all existing notes
+editNotes TITLE ---------------------------------------------------------------------- [P]Edits a selected note
+deleteNotes TITLE ------------------------------------------------------------------ [P]Deletes a selected note
+undo TYPE ------------------------------------------------------- [P]Undoes the last edit/deleted task or notes
+display KEYWORD --------------------------------------------------- [P]Displays either weekly or daily schedule
+freeTime ------------------------------------------------------ Tells you your longest block of free time today
+sleepTime ----------------------------------------------------------- Tells you how much time you have to sleep
+exit ----------------------------------------------------------------------------- Closes the LifEasier program
+***************************************************************************************************************
+
+For more detailed information, please visit the online user guide at:
+https://ay2021s1-cs2113t-w13-4.github.io/tp/UserGuide
+===============================================================================================================
+
+
+===============================================================================================================
+Oh no, I do not understand this command! Type 'help' for a list of available commands
+===============================================================================================================
+
+
+===============================================================================================================
+Goodbye, hope to see you again soon!
+===============================================================================================================
+

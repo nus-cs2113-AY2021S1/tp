@@ -1,9 +1,11 @@
-# About us
+# About Us
 
-Display | Name | Github Profile | Portfolio 
---------|:----:|:--------------:|:---------:
-![](https://via.placeholder.com/100.png?text=Photo) | John Doe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Joe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Ron John | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | John Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+ Name | Github Profile | Portfolio 
+:----:|:--------------:|:---------:
+Danzel Ong Jing Hern| [Github](https://github.com/dojh111) | [Portfolio](https://ay2021s1-cs2113t-w13-4.github.io/tp/team/dojh111)
+Daniel Lim Zi-Jie | [Github](https://github.com/daniellimzj) | [Portfolio](https://ay2021s1-cs2113t-w13-4.github.io/tp/team/daniellimzj)
+Edmund Tan Wei Jie| [Github](https://github.com/EdmundEXE) | [Portfolio](https://ay2021s1-cs2113t-w13-4.github.io/tp/team/edmundexe)
+Muhammad Fairuz B Amirhamzah| [Github](https://github.com/skyaxe97) | [Portfolio](https://ay2021s1-cs2113t-w13-4.github.io/tp/team/skyaxe97)
+Enerio Johannine Salvilla | [Github](https://github.com/johan9se) | [Portfolio](https://ay2021s1-cs2113t-w13-4.github.io/tp/team/johan9se)
+
+
