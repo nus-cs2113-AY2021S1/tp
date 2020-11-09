@@ -112,7 +112,7 @@ The 'Ui' component is in charge of handling input from users and system output.
 API: [Command.java](https://github.com/AY2021S1-CS2113T-T12-4/tp/blob/master/src/main/java/seedu/duke/command/Command.java) 
 1. `Parser` class to parse the user command 
 1.  This results in a `Command` object executed by the `Parser`
-1.  The command execution can affect the `Model`
+1.  The command execution can affect the `UserData`
 
 It listens for commands made in the Duke Class and sends the input to the parser class.
 It is also responsible for printing messages from commands and exception messages. 
@@ -361,6 +361,14 @@ Finally, set the `repeatEventList` using the `setRepeatEventList` command as sho
 
 #### Deadline feature
 
+The deadline feature allows user to add/update the deadline for their personal events.
+
+|Argument| Description |
+|--------|----------|
+|index|Index number of the event to change deadline that is stored on the `Personal` List|
+|date|The new deadline for the event [Optional field]|
+|time|The new specified time for deadline [Optional field]|
+
 The deadline feature is implemented using `DeadlineCommand` class. `DeadlineCommand` accesses the Personal `Events` to get the event specified by the user and change the date of the event. It implements the following operations:
 
 - `DeadlineCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, date/time given by the user
@@ -468,6 +476,14 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 (WIP)
 
 #### Note feature
+
+The Note feature allow user to add notes to the event.
+
+|Argument| Description |
+|--------|----------|
+|event type|Type of event. Accepted arguments are `personal`, `timetable` or `zoom` |
+|index|Index number of the event to add note that belongs to the specified `event type` List |
+
 The note feature is implemented using `NoteCommand` class. `NoteCommand` accesses the `Events` to get the event specified by the user and add notes to the event. It implements the following operations:
 
 - `NoteCommand#parseUserCommand(command)` -- Parses the command argument to take out the respective index, event type given by the user
@@ -495,7 +511,7 @@ The following sequence diagram shows how the note operation works: <br>
 Given below is how the note command behave: <br>
 
 <p align="center">
-  <img width="414" height="562" src="./diagrams/NoteCommandScenario.png">
+  <img width="482" height="776" src="./diagrams/NoteCommandScenario.png">
 </p>
 
 
@@ -503,10 +519,15 @@ Given below is how the note command behave: <br>
 
 The view feature allows user to see the notes they have created for a particular event.
 
+|Argument| Description |
+|--------|----------|
+|event type|Type of event. Accepted arguments are `personal`, `timetable` or `zoom` |
+|index|Index number of the event to view note that belongs to the specified `event type` List |
+
 The following is the class diagram for reminder command:
 
 <p align="center">
-  <img width="462" height="522" src="./diagrams/ViewCommandClass.png">
+  <img width="521" height="461" src="./diagrams/ViewCommandClass.png">
 </p>
 
 
@@ -536,7 +557,9 @@ The reminder feature allows user list to the user the events that are happening 
 
 The following is the class diagram for reminder command:
 
-![Class diagram for reminder command execute](./diagrams/ReminderCommandClass.png)
+<p align="center">
+  <img width="521" height="461" src="./diagrams/ReminderCommandClass.png">
+</p>
 
 The reminder feature is implemented using `ReminderCommand` class. `ReminderCommand` accesses `EventList` to get all event and filter out events happening today and sort them according to with/without time. It implements the following operations:
 
@@ -559,7 +582,7 @@ Step 5. After getting all the events happening today, `ReminderCommand#execute()
 
 The following sequence diagram shows how the reminder operation works: <br>
 
-![Sequence diagram for reminder command execute](./diagrams/ReminderCommandSequenceDiagram.png)
+![Sequence diagram for reminder command execute](./diagrams/ReminderCommandSequenceDiagram.jpg)
 
 
 #### Extract feature
@@ -643,6 +666,8 @@ and also extract deadlines from any body of text.
 |v2.0|user|view which events are upcoming in a convenient readable format|locate the events easily by date|
 |v2.0|user|the application to alert me when my deadlines are coming up|be given enough time to work on them and not rush last minute|
 |v2.0|user|create deadlines from the email text body|avoid looking through the email to create one by one|
+|v2.0|user|create notes for the event|avoid creating new notes in word documents for every event|
+|v2.0|user|view notes written for the event|avoid looking through to find notes|
 |v2.0|new user (new to text-based application)|detailed directions on commands I can use|easily navigate through the application|
 |v2.0|new user (expert in using text-based application)|have some useful shortcut keys|speed up common tasks|
 
