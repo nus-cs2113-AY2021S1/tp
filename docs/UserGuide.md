@@ -60,7 +60,7 @@ Any points with the 💡 emoji represents an additional information. You can acc
 
 5\. Use the command `help` to get a list of commands and their usages before using the application (if needed).
 
-💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.
+💡 Supported terminals are: Windows 10 Command Prompt, Windows Powershell, macOS and linux Terminals. Other terminals, such as Cygwin may not support color display.<br>
 💡 Recommended to use black background for better color contrast.
 
 <div style="page-break-after: always;"></div>
@@ -166,11 +166,11 @@ Example of usage:
 
 💡 Use `/sort up` to display the list of notes in ascending order (A-Z).<br>
 💡 Use `/sort down` to display the list of notes in descending order (Z-A). <br>
-💡 The archived notes will **ONLY** be listed in chronological order. <br>
-💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.
+💡 The archived notes will **ONLY** be listed in chronological order.
 
 <div style="page-break-after: always;"></div>
 
+💡 The content of the note is truncated, thus partial content may be displayed when listing the notes. To view the full content of a particular note, use the view note command.<br>
 💡 Even if you input anything beyond `list-n` or `/archive` without the command delimiter (`/`), the program will execute the command. For example, `list-n the notes` or `list-n /archive test example` will still result in the program listing the notes/archived notes.
 
 Expected output:
@@ -195,13 +195,13 @@ Example of usage:
 
 `view-n /t JavaDocs`
 
+<div style="page-break-after: always;"></div>
+
 Expected output:
 
 <p align="center">
    <img alt="viewNote" src="screenshots/viewNote.png"/>
 </p>
-
-<div style="page-break-after: always;"></div>
 
 #### <a id="edit-n"><ins>3.5 Edit Note:</ins> `edit-n`</a>
 Edits an existing note.
@@ -229,6 +229,8 @@ Example of usage:
 
 `edit-n /i 2 /add 2 Line 2.1 /add 3 Line 2.2`
 
+<div style="page-break-after: always;"></div>
+
 `edit-n /i 2 /del 1 /del 2`
 
 Expected output:
@@ -253,6 +255,8 @@ Expected output:
 <p align="center">
    <img alt="findNote" src="screenshots/findNote.png"/>
 </p>
+
+<div style="page-break-after: always;"></div>
 
 #### <a id="pin-n"><ins>3.7 Pin Note:</ins> `pin-n`</a>
 Pins an unpinned note to the top of the note list or unpin a pinned note.
@@ -288,6 +292,8 @@ Format: `archive-n [/i INDEX] [/t TITLE]`
 Example of usage: 
 
 `archive-n /i 1`
+
+<div style="page-break-after: always;"></div>
 
 `archive-n /t JavaDoc`
 
@@ -327,6 +333,8 @@ Format: `delete-n [/i INDEX] [t/TITLE]`
 
 💡 Partial title input is **NOT** possible.
 
+<div style="page-break-after: always;"></div>
+
 Example of usage: 
 
 `delete-n /i 1`
@@ -349,6 +357,8 @@ Format: `create-t /tag TAG [TAG_COLOR] [/tag TAG]...`
 - The user can create multiple tags within a single line.
 
 💡 Creating a tag that already exists will override the tag color.
+
+<div style="page-break-after: always;"></div>
 
 Example of usage: 
 
@@ -385,6 +395,8 @@ Format: `tag-n /i INDEX /tag TAG [TAG COLOR] [/tag TAG]...`
 
 💡 If the user tries to tag a non-existing tag to a note, the application will automatically create a new tag, and add the tag to the note.
 
+<div style="page-break-after: always;"></div>
+
 Example of usage: 
 
 `tag-n /i 1 /tag CS2113`
@@ -414,11 +426,13 @@ Example of usage:
 
 `tag-e /i 1 /tag CS2113 /tag important`
 
+<div style="page-break-after: always;"></div>
+
+Expected output:
+
 <p align="center">
    <img alt="tagEvent" src="screenshots/tagEvent.png"/>
 </p>
-
-Expected output:
 
 #### <a id="delete-t"><ins>3.15 Delete Tags:</ins> `delete-t`</a>
 Deletes a tag from the list of tags and remove the tag from the related notes and events.
@@ -446,6 +460,9 @@ Format: `add-e /t TITLE /timing DATETIME [/end DATETIME] [/repeat REPEAT] [/stop
 
 - Events have a default duration of 1 hour if [/end] is not specified.
 - Events must end on the same day they start.
+
+<div style="page-break-after: always;"></div>
+
 - Events cannot end before they start
 - Specifying [/end DATETIME] will set the event to end a specific time.
 - Specifying [/repeat RECURRING] will set the event as a recurring event.
@@ -475,6 +492,8 @@ Format: `edit-e /i INDEX [/t TITLE] [/timing DATETIME] [/end DATETIME] [/repeat 
 - At least one of the optional fields must be provided [/t TITLE], [/timing DATETIME], [/end DATETIME], [/repeat REPEAT], [/stop REPEAT_END], [/remind-add REMIND], [/remind-drop REMIND], [/remind-clear] [.
 - Existing values will be updated to the input values.
 - End date time must be on the same day as start date time.
+
+<div style="page-break-after: always;"></div>
 
 - Specifying [/timing DATETIME] without [/end DATETIME] will have event duration maintained and end datetime changed. If end datetime would be past 2359, end datetime would be set at 2359.
 - Specifying [/repeat RECURRING] will set the event that type of event.
@@ -509,6 +528,8 @@ Format: `list-e [/timing Year] [/timing Year-Month]`
 - Specifying [/timing Year-Month] will display all events for that month. Will include repeated events. <br>
 💡 Year format pattern "YYYY-MM”.
 
+<div style="page-break-after: always;"></div>
+
 Example of usage: 
 
 `list-e /timing 2020-10`
@@ -536,6 +557,8 @@ Expected output:
    <img alt="remindEvent" src="screenshots/remindEvent.png"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### <a id="delete-e"><ins>3.20 Delete Event:</ins> `delete-e`</a>
 Adds a new item to the list of todo items.
 
@@ -562,7 +585,7 @@ Example of usage:
 
 `exit`
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="faq">4. FAQ</a>
 
@@ -578,11 +601,11 @@ Example of usage:
 
 **A**: Type the command `help` for a list of useful commands.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ## <a id="command">5. Command Summary</a>
 
-Target Action | Example Code(s)
+| Target Action | Example Code(s)
 ------------  | -------------
 View command list | `help`
 Add note | `add-n /t JavaDocs /tag CS2113 /pin true`<br>`add-n /t JavaDocs /pin true`<br>`add-n /t JavaDocs /tag CS2113`<br>`add-n /t JavaDocs`<br><br>`@param refers to param`<br>`@return refers to item to be returned`
@@ -591,6 +614,11 @@ Unarchive note | `unarchive-n /t JavaDocs`<br>`unarchive-n /i 1`
 List notes | `list-n`<br>`list-n /archive`<br>`list-n /tag CS2113`<br>`list-n /sort up`<br>Or any combination with `/tag` and `/sort`
 View note | `view-n /i 1`<br>`view-n /t JavaDocs`<br>`view-n /i 1 /t JavaDocs`
 Edit note | `edit-n /i 2 /t JavaDocs Notes`<br>`edit-n /i 2 /ln 1 /c @param refers to parameters`<br>`edit-n /i 2 /tag Notes`<br> Or any combination with `/t`, [`/ln` + `/c`] and `/tag` 
+
+<div style="page-break-after: always;"></div>
+
+| Target Action | Example Code(s)
+| ------------  | -------------
 Find notes | `find-n Java`
 Pin note | `pin-n /t JavaDocs Notes`<br>`pin-n /i 1`
 Delete note | `delete-n /t JavaDocs Notes`<br>`delete-n /i 1`
@@ -600,6 +628,11 @@ Tag/Untag | `tag /i 1 /tag Important`<br>`tag /i 1 /tag Important red`<br>`tag /
 Delete tag | `delete-t /tag Important`<br>`delete-t /tag Important red`<br>`delete-t /tag NUS /tag CEG yellow`
 Add event | `add-e /t CS2113 /timing 2020-10-16 16:00`<br>`add-e /t CS2113 Lecture /timing 2020-10-16 16:00 /repeat ...`<br>`add-e /t CS2113 Lecture /timing 2020-10-16 16:00 /end 2020-10-16 18:00 /remind ...`<br>Or any combination with `/end`, `/repeat`, `/stop` and `/remind`
 Edit event | `edit-e /i 1 /t CS2113 Lecture`<br>`edit-e /i 1 /timing 2020-10-16 15:55`<br>`edit-e /i 1 /repeat ...`<br>`edit-e /i 1 /remind ...`<br>Or any combination with `/t`, `/timing`, `/end`, `/repeat`, `/stop` and `/remind`
+
+<div style="page-break-after: always;"></div>
+
+| Target Action | Example Code(s)
+------------  | -------------
 Event Manager | `list-e`<br>`list-e /timing 2020-02`
 Remind | `remind-e`
 Delete event | `delete-e 1`
