@@ -478,7 +478,6 @@ Your current weight (in kg) is: 60.00
 > 2.00 to 1000.00. 
 > * Inputs will be rounded up to 2 decimal places.
 
-
 #### 2.3.1.6 Editing your fitness level
 Format: `edit fitness NEW_FITNESS_LEVEL`
 
