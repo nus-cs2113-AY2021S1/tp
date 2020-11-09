@@ -1,8 +1,3 @@
----
-layout: page
-title: Xu Che's Project Portfolio Page
----
-
 ## Project: AddressBook Level 3
 
 NuSchedule is a task management application written in Java. It is operated on the command line interface.
