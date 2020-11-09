@@ -1,3 +1,6 @@
+//@@author GuoAi-reused
+//Reused from https://github.com/GuoAi/ip with minor modifications
+
 package seedu.duke.commands;
 
 import seedu.duke.DukeException;
@@ -43,3 +46,5 @@ public class DoneCommand extends Command {
         }
     }
 }
+
+//@@author

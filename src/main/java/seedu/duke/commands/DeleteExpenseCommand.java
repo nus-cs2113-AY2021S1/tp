@@ -81,7 +81,7 @@ public class DeleteExpenseCommand extends Command {
      * @param model Model representing program data in memory.
      */
     @Override
-    public void execute(Model model) {
+    public void execute(Model model) throws DukeException {
         ExpenseList expenses = (ExpenseList) model.getList(ListType.EXPENSE_LIST);
         HashSet<Expense> expensesDeleted = new HashSet<>();
         if (hasCurrency) {
@@ -99,7 +99,11 @@ public class DeleteExpenseCommand extends Command {
             }
         }
         if (hasIndex) {
-            expensesDeleted.add(expenses.get(index - 1));
+            try {
+                expensesDeleted.add(expenses.get(index - 1));
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException(Messages.WARNING_NO_EXPENSE);
+            }
         }
         if (expensesDeleted.size() == 0) {
             Ui.dukePrint(Messages.MESSAGE_NO_EXPENSE_DELETED);
