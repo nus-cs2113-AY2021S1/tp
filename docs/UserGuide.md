@@ -251,6 +251,19 @@ Example Output:
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
 the data of your previous AddressBook home folder.
 
+**Q**: What if I cannot run the application, or the application suddenly stops running unexpectedly?
+
+**A**: If you cannot run the application at the beginning, please refer back to the Quick Start section and check
+whether the jar file is in the correct folder. If you cannot find what is wrong, please take a screenshot of your computer
+and report it as an issue to [this link](https://github.com/AY2021S1-CS2113T-F14-4/tp/issues).
+
+**Q**: What should I do if I cannot get the input format for adding events correctly?
+
+**A**: For all wrong input format, there will be an error message to tell you what exactly you have input wrongly. If
+the error message is not helpful, please refer back to relevant sections in Features. We recommend you to follow the 
+instructions provided closely as the current version of NUSchedule has a relatively high requirement in terms of input 
+accuracy. If you really cannot find what is wrong, please report it as an issue to [this link](https://github.com/AY2021S1-CS2113T-F14-4/tp/issues).
+
 ## Command Summary
 
 |Action|Command|Example|
