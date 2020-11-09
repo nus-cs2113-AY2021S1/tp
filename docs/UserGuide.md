@@ -226,6 +226,7 @@ Example of usage:
      `duration 30`
      
 * When you have completed all changes, input `done`.
+<div style="page-break-after: always;"></div>
 
 Example of usage:
     `done`
@@ -365,7 +366,7 @@ The `deletereview` command allows you to delete a review for a show that is alre
  
  <img src = "images/delete/input.png" width = "600">  
  
-  &nbsp;
+<br><br>
 
  The show Friends will be deleted from the list ,and a success message will be printed.
 
@@ -374,7 +375,6 @@ The `deletereview` command allows you to delete a review for a show that is alre
  <img src = "images/delete/delete.PNG" width = "600">
 
  &nbsp;
-  
  
 ### 4.i. `deleterating` - Deletes rating of your show
 
@@ -390,8 +390,8 @@ The `deleterating` command deletes the rating for an existing show in the watchl
   
 
  <img src = "images/deleterating.PNG" width = "600">
-
- &nbsp;
+<br>
+ <div style="page-break-after: always;"></div>
 
 ### 4.j. `changerating` - Changes rating of your show
 
@@ -434,6 +434,8 @@ If you would only like to change the current season:
  
  If your are going to watch the third season of a show named Friends, you can input `season Friends 3`.
  
+  <div style="page-break-after: always;"></div>
+  
  Input:
  
    <img src = "images/season/input.png" width = "600">
@@ -446,7 +448,7 @@ If you would only like to change the current season:
   
  <img src = "images/season/output.png" width = "600">
   
- &nbsp;
+<br><br>
 
 If you would like to change both the current season and current episode:
 
@@ -473,7 +475,7 @@ The `episode` command updates the current episode of an existing show in your wa
  
   <img src = "images/episode/input.png" width = "600">
 
-  &nbsp;
+  <br><br>
  
  The current episode you are watch of the show Friends will be updated to 10.
  
@@ -490,7 +492,6 @@ The `episode` command updates the current episode of an existing show in your wa
   
  &nbsp;
  
-
 ### 4.m. Managing your watch time limit
 
  **WatchNext** allows you to set and track your daily watch time with its two commands , `watch` and `updatetimelimit`. 
@@ -620,6 +621,8 @@ Expected outcome:
  
 &nbsp;
 
+ <div style="page-break-after: always;"></div>
+ 
 ## 5. FAQ 
 <br>
 
@@ -644,6 +647,7 @@ Expected outcome:
 **A**: We suggest you try `add <MODULENAME> <TOPICS> <NUMBER OF LECTURES PER TOPIC,SEPERATED BY COMMAS> <DURATION OF LECTURE>`.However, feel free to be creative and think of any format that suits you!<br><br> 
 
 <br>
+ <div style="page-break-after: always;"></div>
 
 ## 6. Command Summary
 
