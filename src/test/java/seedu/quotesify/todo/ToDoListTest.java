@@ -36,23 +36,21 @@ public class ToDoListTest {
     }
 
     @Test
-    public void printQuoteListBeforeFormatting() {
-        String param = "1. " + toDo1.toString() + System.lineSeparator()
-                + "2. " + toDo2.toString() + System.lineSeparator()
-                + "3. " + toDo3.toString() + System.lineSeparator();
-        assertEquals(param, toDoList.toString());
+    public void printToDoListWithoutFormatting() {
+        assertEquals(toDo1, toDoList.find(1));
+        assertEquals(toDo2, toDoList.find(2));
+        assertEquals(toDo3, toDoList.find(3));
     }
 
     @Test
-    public void printQuoteListAfterFormatting() {
+    public void printToDoListWithFormatting() {
         toDo1.updateDateFormat();
         toDo2.updateDateFormat();
         toDo3.updateDateFormat();
         toDoList.sortByDate();
 
-        String param = "1. " + toDo3.toString() + System.lineSeparator()
-                + "2. " + toDo2.toString() + System.lineSeparator()
-                + "3. " + toDo1.toString() + System.lineSeparator();
-        assertEquals(param, toDoList.toString());
+        assertEquals(toDo3, toDoList.find(1));
+        assertEquals(toDo2, toDoList.find(2));
+        assertEquals(toDo1, toDoList.find(3));
     }
 }

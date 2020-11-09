@@ -28,6 +28,8 @@ public class BookmarkListTest {
 
     @BeforeEach
     void setUp() {
+        bookList = new BookList();
+        bookmarkList = new BookmarkList();
         author1 = new Author(authorName1);
         book1 = new Book(author1, bookName1);
         bookList.add(book1);
