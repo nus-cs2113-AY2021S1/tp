@@ -36,5 +36,5 @@ Given below are my contributions to this project.
         - Added implementation details of the `check`, `done`, `undone` and `delete` features.
 
 - Community:
-    - Tested and reviewed other groups project (with non-trivial review comments): ![PR Review](https://github.com/marcursor/ped/issues)
+    - Tested and reviewed other groups project (with non-trivial review comments): [PR Review](https://github.com/marcursor/ped/issues)
     - DG reviewed (with non-trivial review comments): [DG Review](https://github.com/nus-cs2113-AY2021S1/tp/pull/4#pullrequestreview-519320304)
