@@ -5,14 +5,20 @@
 * <a href="#setting-up">2. Setting up the Project</a>
 * <a href="#design">3. Design</a> 
     * <a href="#card">3.1 Card Package</a> 
-        * <a href="#quiz">Quiz Package</a> 
-        * <a href="#task">Task Package</a> 
     * <a href="#command">3.2 Command Package</a> 
     * <a href="#list">3.3 List Package</a> 
     * <a href="#parser">3.4 Parser Package</a> 
     * <a href="#ui">3.5 Ui Package</a> 
     * <a href="#storage">3.6 Storage Package</a> 
 * <a href="#implementation">4. Implementation</a>
+    * <a href="#store-imp">4.1 Storing data implementation</a> 
+    * <a href="#load-imp">4.2 Loading data implementation</a> 
+    * <a href="#export-imp">4.3 Exporting data implementation</a>
+    * <a href="#quiz-imp">4.4 Quiz implementation</a>  
+    * <a href="#sort-imp">4.5 Sorting tasks implementation</a>
+    * <a href="#results-imp">4.6 Results implementation</a> 
+    * <a href="#adding-imp">4.7 Adding objects implementation</a> 
+    * <a href="#accessing-imp">4.8 Accessing subjects/topics implementation</a> 
 * <a href="#logging">5. Logging</a>
 * <a href="#documentation">6. Documentation</a>
 * <a href="#testing">7. Testing</a>
@@ -68,7 +74,11 @@ Hello from
 ____________________________________________________________
 Hello! I'm revisED
 ____________________________________________________________
+____________________________________________________________
 Alright, What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Type help for all available commands
 ____________________________________________________________
 ```
 
@@ -108,14 +118,19 @@ functionality. Here are the list of the main packages:
 * <a href="#storage">storage</a>
 
 ### 3.1 Card Package <a name="card"></a>
+
+![cardUML](https://user-images.githubusercontent.com/50734854/98472577-f2aa0200-222e-11eb-9b00-c23280986366.png)
+
+<sub>***Figure 3.1** UML class diagram for card package. quizcard package is omitted.*</sub>
+
 The Card package consists of different classes that holds information on the main functionalities of the application,
 and is split into 2 packages, quiz and task, as well as Subject, Topic and Flashcard classes.
-- Quiz Package
+- quizcard package
     * Quiz class
     * Result class
     * TopicQuiz class
     * SubjectQuiz class
-- Task Package
+- taskcard package
     * Deadline class
     * Event class
     * Task class
@@ -128,41 +143,49 @@ Each of the classes in the card package contains:
 * Getters and Setters of its own attributes
 * Methods that alter an instance of its own class
 
-#### quizcard Package <a name="quiz"></a>
+#### 3.1.1 quizcard Package <a name="quiz"></a>
+
+![QuizUML](https://user-images.githubusercontent.com/50734854/98472580-f76eb600-222e-11eb-92c4-d721895cfd41.png)
+
+<sub>***Figure 3.1.1** UML class diagram for list package*</sub>
+
 The `quizcard` package holds the necessary classes for the quiz functionality of this application. The following are
 the classes in the package. An abstract`Quiz` class, a `Result` class, a `SubjectQuiz` class and a `TopicQuiz` class.
 
-#### Quiz <a name="Qclass"></a>
-`Quiz` class is an abstract class in the `quizcard` package. It holds the `result ` variable to track the result of the quiz,
-the  `flashcards ` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
+#### 3.1.1.1 Quiz <a name="Qclass"></a>
+`Quiz` class is an abstract class in the `quizcard` package. It holds the `result` variable to track the result of the quiz,
+the  `flashcards` list to store the flashcards for which the quiz is initiated for and the`incorrectAnswers ` list. 
 The list stores the questions which the user did not answer correctly, along with the correct answer for the question and the answer
 provided by the user. The Quiz class also contains a `startQuiz` method and a `checkAnswer` method.
- 
- 
 
-#### SubjectQuiz <a name="Qsubject"></a>
+#### 3.1.1.2 SubjectQuiz <a name="Qsubject"></a>
 `SubjectQuiz` class inherits from the `Quiz` class and initiates the quiz for a subject.It also contains a `setupQuiz`method.
 
-#### TopicQuiz <a name="Qtopic"></a>
+#### 3.1.1.3 TopicQuiz <a name="Qtopic"></a>
 `TopicQuiz` class inherits from the `Quiz` class and initiates the quiz for a topic.It also contains a `setupQuiz`method.
 
-##### Result <a name="Qresult"></a>
+##### 3.1.1.4 Result <a name="Qresult"></a>
 `Result` class  stores the result of a quiz . It has three instance variables, namely the `score` variable
 which tracks the score during the quiz, the  `maxScore` variable which is the maximum score that you can get from doing the 
 quiz, while the  `description` variable will be a grade given to you depending on your performance.
 The  `UpdateResult` method  updates the score of the quiz during the quiz and changes the grade of the quiz. 
 
-#### taskcard Package <a name="task"></a>
+#### 3.1.2 taskcard Package <a name="task"></a>
+
+![TaskUML](https://user-images.githubusercontent.com/50734854/98472584-fb023d00-222e-11eb-8513-eb9493cae215.png)
+
+<sub>***Figure 3.1.2** UML class diagram for taskcard package*</sub>
+
 The `taskcard` package holds the necessary classes for the Task functionality of this application. The following are
 the classes in the package. A `Task` class, a `Todo` class, a `Deadline` class and an `Event` class.
 
-##### Task <a name="Ttask"></a>
+##### 3.1.2.1 Task <a name="Ttask"></a>
 The `Task` class is the superclass of `Todo`, `Deadline` and `Event`. It has attributes such as the description of the task-`String`
 and an attribute to check if the task is completed-`Boolean`. It holds basic getters for its attributes, getters such as getting the 
 status icon to check if a Task is done-`String`, and getters for the DateTime features of the Deadline and Event classes. It also has
  a toString methods to print the Task.
  
-###### Todo <a name="Ttodo"></a>
+##### 3.1.2.2 Todo <a name="Ttodo"></a>
 The `Todo` class is the class to store information on basic tasks of the user. It contains methods and attributes similar to the
 ones found in its superclass `Task`. It has an additional Override toString method, to differentiate between itself and other
 tasks, such as Deadline and Event.
@@ -176,7 +199,7 @@ Now you have 1 task in the list.
 ____________________________________________________________
 ```
 
-###### Deadline <a name="Tdeadline"></a>
+##### 3.1.2.3 Deadline <a name="Tdeadline"></a>
 The `Deadline` class is the class to store information on tasks of the user that has a deadline. It contains methods and attributes similar to the
 ones found in its superclass `Task`, and additional attributes to make it a `Deadline` Task, such as an additional dateTime attribute 
 to keep track of the deadline of the task-`LocalDateTime`, an Override toString method, to differentiate between itself and other tasks, such as Deadline 
@@ -192,7 +215,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
 
-###### Event <a name="Tevent"></a>
+##### 3.1.2.4 Event <a name="Tevent"></a>
 The `Event` class is the class to store information of tasks of the user that is an event with a specific date and time occurrence. 
 It contains methods and attributes similar to the ones found in its superclass `Task`, and additional attributes to make it a `Deadline`
 Task, such as an additional dateTime attribute to keep track of the date and time of the event-`LocalDateTime`, an Override toString method,
@@ -208,23 +231,23 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
 
-#### Flashcard  <a name="flashcard"></a>
+#### 3.1.3 Flashcard  <a name="flashcard"></a>
 The `Flashcard` class is a class to store information of flashcards. It has attributes such as the question
 and answer of each flashcard, a constructor, as well as getters for both question and answer of the flashcards.
 
 
-#### Subject <a name="subject"></a>
+#### 3.1.4 Subject <a name="subject"></a>
 The `Subject` class is a class to store information of subjects. It has various attributes such as the title of the 
 subject-`String`, a list of various topics in a subject-`TopicList`, a list of various tasks present in a subject-`TaskList`
 and a list of various results of the quiz of a subject-`ResultList`. It also consists of a constructor, getters to all of the
 attributes in the `Subject` class and a toString method to return the title of the subject.
 
-#### Topic <a name="topic"></a>
+#### 3.1.5 Topic <a name="topic"></a>
 The `Topic` class is a class to store information of topics. It has various attributes such as the title of the subject-`String`,
 a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
 contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
 
-An example of how classes in the card package interact with each other is shown in the figure below. 
+An example of how classes in the card package interact with each other is shown in the figure below. ADD CARD DIAGRAM
 In this example, a student has 2 main subjects, mainly Math and Science. Math has topics algebra and calculus, while science has topics speed and light. He also made flashcards the various topics.
 
 ### 3.2 command Package <a name="command"></a>
@@ -250,10 +273,13 @@ AccessSubjectCommand and AccessTopicCommand both have an extra method goToSubjec
 allows the program to enter Subject level from the Main level, and to the Topic level from the Subject level respectively.
 
 
-#### subjectcommand package
+#### subjectcommand package <a name="subjectcommand"></a>
 The `subjectcommand` package holds all the necessary classes for executing methods at the main level. The Class that will be created and executed depends 
-on user input. A Class diagram of how the classes interact with each other in the classcommand package is shown below.
-![SubjectCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230549-3fbf7700-1f96-11eb-9b03-12ed2ed16ffb.png)
+on user input. A Class diagram of how the classes interact with each other in the subjectcommand package is shown below.
+
+![SubjectCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98504305-9c21df80-2291-11eb-988a-916430c7270d.jpg)
+
+<sub>***Figure 3.2.1** UML class diagram for subjectcommand package*</sub>
 
 The `subjectcommand` package holds the following classes.
 - AccessSubjectCommand
@@ -287,19 +313,17 @@ available in the subject that is selected via user input.
 
 The isExit() method determines whether the program exits. The `AccessSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-A sequence diagram of accessing a subject is shown below.
-![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
+For more information of the implementation of the AccessCommand Class, refer to <a href="#accessing-imp">4.8 Accessing subjects/topics implementation</a>. 
 
 ##### AddSubjectCommand
 The execute() method of the `AddSubjectCommand` decodes the user input, then adds a subject into the SubjectList, which title depends on the user input. For example, if the 
 user input is `add Maths`, then the title of the Subject created in the SubjectList will be Maths. It also prints the title of the subject that 
 is added to the SubjectList.
 
-A sequence diagram of adding a Maths subject is shown below.
-![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98213500-1c89cd00-1f80-11eb-9b0c-9da37446b530.png)
-
 The isExit() method determines whether the program exits. The `AddSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
+For more information of the implementation of the AddCommand Class, refer to <a href="#adding-imp">4.7 Adding objects implementation</a> 
+. 
 
 ##### DeleteSubjectCommand
 The execute() method of the `DeleteSubjectCommand` decodes the user input, then deletes a subject based on the index the Subject currently in the SubjectList. 
@@ -314,10 +338,10 @@ The isExit() method determines whether the program exits. The `ExitSubjectComman
 will exit.
 
 ##### ExportSubjectCommand
-The execute() method of the `ExportSubjectCommand` 
-TODO: Add execute method documentation
+The execute() method of the `ExportSubjectCommand` calls the export() method of the storage instance to export all
+data to the disk storage. 
 
-The isExit() method determines whether the program exits. The `ExportSubjectCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
+The isExit() method determines whether the program exits. The `ExportSubjectCommand` isExit() method is hard coded to return false, so that when the isExit() command is run, the program does not exit.
 
 
 ##### FindSubjectCommand
@@ -358,9 +382,6 @@ The isExit() method determines whether the program exits. The `ResultSubjectComm
 The execute() method of the `SorrySubjectCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
 to the user.
 
-A sequence diagram of the SorrySubjectCommand can be seen below.
-![SorrySubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98226752-6a5b0100-1f91-11eb-8c11-7963c63dc69c.png)
-
 The isExit() method determines whether the program exits. The `SorrySubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
 ##### SubjectCommand
@@ -370,15 +391,17 @@ even if they are a subclass of the SubjectCommand class.
 
 #### topiccommand package
 The `topiccommand` package holds all the necessary classes for executing methods at the subject level. The Class that will be created and executed depends 
-on user input. A Class diagram of how the classes interact with each other in the classcommand package is shown below.
-![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230523-39c99600-1f96-11eb-9eb2-693f4ab039a1.png)
+on user input. A Class diagram of how the classes interact with each other in the topiccommand package is shown below.
+
+![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98504309-9fb56680-2291-11eb-932d-2ffac059b101.jpg)
+
+<sub>***Figure 3.2.2** UML class diagram for topiccommand package*</sub>
 
 The `topiccommand` package holds the following classes.
 - AccessTopicCommand
 - AddTopicCommand
 - DeleteTopicCommand
 - ExitTopicCommand
-- ExportTopicCommand
 - FindTopicCommand
 - HelpTopicCommand
 - ListAllTopicCommand
@@ -388,98 +411,58 @@ The `topiccommand` package holds the following classes.
 - SorryTopicCommand
 - TopicCommand
 
-##### AccessTopicCommand
-The `AccessTopicCommand` class has 3 methods:
-- execute()
-- goToTopic()
-- isExit()
-
-and is mainly used for entering the Topic level from the Subject Level. This occurs when 
-the execute() method of the `AccessTopicCommand` is first run. It first decodes the full command of the user input, then 
-accesses the topic level of the program. Different Topic class instances have different information contained in them, thus 
-there exists multiple topic levels of the program, each topic class having their own topic level in the program. 
-For example, if there are 2 topics, like Speed and Time, then accessing the Topic level of the Speed instance is different from 
-accessing the Topic level of the Time Topic, since both topics contain different information. Accessing the different topics depend on user input, which 
-will be decoded in the execute() method in `AccessTopicCommand`. The execute() method will then run the goToSubject() command, that will access the information 
-available in the subject that is selected via user input.
-
-The isExit() method determines whether the program exits. The `AccessTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-A sequence diagram of accessing a Topic is shown below.
-TODO: Add sequence diagram
-
-##### AddTopicCommand
-The execute() method of the `AddTopicCommand` decodes the user input, then adds a Topic into the TopicList, which title depends on the user input. For example, if the 
-user input is `add Geometry`, then the title of the Topic created in the TopicList will be Geometry. It also prints the title of the Topic that 
-is added to the TopicList.
-
-A sequence diagram of adding a Geometry Topic is shown below.
-TODO: Add sequence diagram
-
-The isExit() method determines whether the program exits. The `AddTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### DeleteTopicCommand
-The execute() method of the `DeleteTopicCommand` decodes the user input, then deletes a Topic based on the index the Topic currently in the TopicList. 
-For example, when the user input is `delete 1`, the program decodes the input, and deletes the first Topic in the TopicList, which is at index 0 of the TopicList.
-
-The isExit() method determines whether the program exits. The `DeleteTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ExitTopicCommand
-The execute() method of the `ExitTopicCommand` does nothing, but needed since this method was implemented from an abstract class.
-
-The isExit() method determines whether the program exits the subject. The `ExitTopicCommand` isExit() method is hard coded to return true, so that when the isExit() command is run, the program 
-will exit the subject.
-
-##### FindTopicCommand
-The execute() method of the `FindTopicCommand` decodes the user input, then find Topics whose title contains the keywords the user input into the program. 
-It then prints the title of the Topics in the TopicList whose title contains the keyword.
-
-The isExit() method determines whether the program exits. The `FindTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### HelpTopicCommand
-The execute() method of the `HelpTopicCommand` prints a list of available commands at the subject level of the program, 
-for the user to understand the format of inputs, as well as types of input needed for execution.
-
-The isExit() method determines whether the program exits. The `HelpTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ListAllTopicCommand
-The execute() method of the `ListAllTopicCommand` groups different tasks and flashcards under each topic, and different topics under each subject, then prints an organized list 
-of all the subjects, topics, tasks and flashcards.
-
-The isExit() method determines whether the program exits. The `ListAllTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ListTopicCommand
-The execute() method of the `ListAllTopicCommand` prints a list of all Topics in the TopicList instance.
-
-The isExit() method determines whether the program exits. The `ListTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### QuizTopicCommand
-The execute() method of the `QuizTopicCommand` initiates the quiz for a topic .
-
-The isExit() method determines whether the program exits. The `QuizTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### ResultTopicCommand
-The execute() method of the `ResultTopicCommand` prints out all the results for a particular topic.
-
-The isExit() method determines whether the program exits. The `ResultTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### SorryTopicCommand
-The execute() method of the `SorryTopicCommand` throws a `FailedParseException`, meaning the parser has failed to decode the user input. Then, the exception will result in the Ui printing the error back 
-to the user.
-
-A sequence diagram of the SorryTopicCommand can be seen below.
-![SorryTopicSequenceDiagram](https://user-images.githubusercontent.com/47527482/98228071-105b3b00-1f93-11eb-827f-80723a24bfe9.png)
- <sub>***Figure 3.3.1** UML class diagram for list package*</sub>
-The isExit() method determines whether the program exits. The `SorryTopicCommand` isExit() method is hard coded to return false since the command does not exit the subject.
-
-##### TopicCommand
-The `TopicCommand` class is an abstract class that contains an abstract execute() method as well as an abstract isExit() method, and is a super class for all the commands in the topiccommand 
-package. This is to ensure that all other commands in the topiccommand package can have the same method calls, and that execute() can be called on a TopicCommand class, 
-even if they are a subclass of the TopicCommand class.
+All classes in the `topiccommand` package works the same way as the ones found in the `subjectcommand` package, but it deals with the `Topic` class instead of the `Subject` class. Notably, 
+there is a change in parameters, as the `TopicCommand` classes is missing the Storage parameter. This is due to the absence of `ExportCommand` in the TopicCommands, since we did not implement 
+the export command for the subject level. The rest of the TopicCommands do not need the Storage parameter since none of the execute() methods of the Commands require it. 
+For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">SubjectCommand</a> .
 
 #### taskcommand package
+The `taskcommand` package holds all the necessary classes for executing methods at the subject level. The Class that will be created and executed depends 
+on user input. A Class diagram of how the classes interact with each other in the taskcommand package is shown below.
+
+![TaskCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98503905-9e376e80-2290-11eb-90b8-274623ec400b.png)
+ 
+<sub>***Figure 3.2.3** UML class diagram for taskcommand package*</sub>
+ 
+The `taskcommand` package holds the following classes.
+- AddDeadlineCommand
+- AddEventCommand
+- AddTodoCommand
+- DeleteTaskCommand
+- DoneTaskCommand
+- FindTaskCommand
+- TaskCommand
+
+The Classes in the `taskcommand` package is different from the ones found in the other command packages. This is because all the `taskcommand` Classes are parsed by the `TopicParser`, since they work at the 
+Subject level, similar to the Topic Commands. Thus, they do not have their own Exit Commands, List Commands and Help Commands, since all those are handled by the Topic Commands.
+
+There are 3 different Add Task Commands, due to the 3 different formats of the Tasks that the user can save, namely `Event`, `Deadline` and `Todo`. The rest of the Task Commands have similar functionality to 
+the ones found in the `subjectcommand` package. For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">SubjectCommand</a> .
 
 #### flashcardcommand package
+
+The `flashcardcommand` package holds all the necessary classes for executing methods at the topic level. The Class that will be created and executed depends 
+on user input. A Class diagram of how the classes interact with each other in the flashcardcommand package is shown below.
+
+![FlashcardCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98503810-6cbea300-2290-11eb-90c3-e0525258077b.png)
+
+<sub>***Figure 3.2.4** UML class diagram for flashcardcommand package*</sub>
+
+The `flashcardcommand` package holds the following classes.
+- AddFlashcardCommand
+- DeleteFlashcardCommand
+- ExitFlashcardCommand
+- HelpFlashcardCommand
+- ListAllFlashcardCommand
+- ListFlashcardCommand
+- SorryFlashcardCommand
+- FlashcardCommand
+
+All classes in the `Flashcardcommand` package works the same way as the ones found in the `subjectcommand` package, but it deals with the `Flashcard` class instead of the `Subject` class. Notably, 
+there is a change in parameters, as the `FlashcardCommand` classes is missing the Storage parameter. This is due to the absence of `ExportCommand` in the FlashcardCommands, since we did not implement 
+the export command for the subject level. The rest of the FlashcardCommands do not need the Storage parameter since none of the execute() methods of the Commands require it. Additionally, the flashcardcommand 
+package is also missing a few classes such as the `QuizCommand`, `ResultCommand` and `FindCommand` classes. This is due to the fact that at the topic level, there are only flashcards in each topic, and it would not 
+make sense to quiz one flashcard at a time, thus the absence of the implementation. For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">SubjectCommand</a> .
 
 ### 3.3 List Package <a name="list"></a>
 
@@ -487,7 +470,7 @@ This package contains different list classes used for managing a list of differe
 They are used to abstract the extra processing needed (if any) before or after interacting with the underlying list.
 The relationship between the classes is shown below.
 
-![ListClass](https://user-images.githubusercontent.com/15065550/98441484-79d26b00-20b3-11eb-9899-596db27b8570.png)
+![ListClass](https://user-images.githubusercontent.com/15065550/98496925-98417f00-21f7-11eb-8102-bcaf2ce8dc7a.png)
 
 <sub>***Figure 3.3.1** UML class diagram for list package*</sub>
 
@@ -633,7 +616,7 @@ deleted since the rest of the method calls only replace or create data.
 > when the application exits, not to mention the (most of the time) needless deletion of all data before each save. 
 > To speed up the process, the implementation can be changed such that data is saved right after each user command that involves data manipulation.
 
-### 4.2 Loading data
+### 4.2 Loading data <a name="load-imp"></a>
 
 For the data stored in json format, they are loaded using the same [Gson](https://github.com/google/gson/blob/master/UserGuide.md)
 library, whereas for the data `tasks.txt`, they are parsed line by line and converted into corresponding `Task` objects.
@@ -652,7 +635,7 @@ order. This is because subjects and topics are stored as directories, and the or
 guaranteed by the Java, so the sorting is just to fix the inconsistency of the order. The rest of the data, on the
 other hand, is guarenteed to have the same order every time they are loaded, so they are not sorted. 
 
-### 4.3 Exporting data
+### 4.3 Exporting data <a name="export-imp"></a>
 
 The user can export all data of the application to the pre-defined `export/data.json` in the same directory where 
 the application runs. An example of the file content is shown below.
@@ -714,13 +697,13 @@ This content format is a result of converting a list of `Subject` objects with p
 > future versions. However, it may not be straightforward as type conversion is needed to convert the data into the
 > right types 
 > (refer to [Gson documentation](https://github.com/google/gson/blob/master/UserGuide.md#TOC-Collections-Limitations) for more details).
-### 4.4 Implementation of the Quiz class
+### 4.4 Quiz <a name="quiz-imp"></a>
 The abstract quiz class  contains a checkAnswer() method that checks the answer that the user had given with the correct answer of the quiz. 
 If the user enters the correct answer, the existing score is incremented by one. Else, the contents of the flashcards and the incorrect answer provided by
 the user are transferred to the  `incorrectAnswers` list. Once the user finished the quiz, the application would print the 
 questions that the users did not answer correctly, along the the answer that was provided by the user.
 
-#### 4.4.1 Initiating a subject quiz
+#### Initiating a subject quiz
 You can start a subject quiz by entering `quiz NAMEOFSUBJECT`. Subsequently, the application retrieves the QuizSubjectCommand
 after parsing the command and calls for the `startQuiz` method.
 The `startQuiz` method calls for the  `setupQuiz` method checks for the presence of topics or flashcards. Else, the application throws the `NoTopicException` for the former, and the 
@@ -740,7 +723,7 @@ The following diagram shows how you can initiate the quiz for a subject.
 
  <sub>***Figure 4.4.1** UML sequence diagram for subject quiz*</sub>
 
-#### 4.4.2 Initiating a topic quiz
+#### Initiating a topic quiz
 Provided that you have used the `subject NAMEOFSUBJECT` command to access a subject,you can start a subject quiz by entering `quiz NAMEOFTOPIC`. Subsequently, the application retrieves the QuizTopicCommand
 after parsing the command and calls for the `startQuiz` method. This method class for the `setupQuiz`method, which  throws the `NoFlashcardException` for when the topic does not 
 have any flashcards. The application then returns back to the `startQuiz` method. The implementation of the `startQuiz` method is similar
@@ -757,16 +740,82 @@ The following diagram shows how you can initiate the quiz for a topic.
 >show the score obtained by the user. The incorrectAnswers are printed along with the score of the quiz in the `printScore`
 >method.
 
-
-### 4.5 Sorting tasks
+### 4.5 Sorting tasks <a name="sort-imp"></a>
 The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
 while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist
 by assigning the `LocalDateTime` variable to be `LocalDateTimeMax`.
 
-### 4.6 Implementation of Results
+### 4.6 Results <a name="results-imp"></a>
 The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.
 There are three categories of descriptions: `Fail` for getting a score which is lesser than half of the maximum score, `Pass`
 for obtaining a score above half of the maximum score and `Excellent` for getting the maximum score in a quiz.
+
+### 4.7 Adding objects <a name="adding-imp"></a>
+Each of the add commands have an execute() method. The execute() method for AddSubjectCommand add subjects into the subject list, the execute() method for AddTopicCommand 
+add topics in a subject, while the execute() method for AddTodoCommand, AddDeadlineCommand and AddEventCommand adds tasks in a subject.
+subject.
+
+#### Adding a subject
+You can add a subject by entering `add [SUBJECT_NAME]`. The subject will be added to a `SubjectList` created when the program initialises. 
+After the program initialises, the program will ask for user input. The `Ui` will read the user input using the readCommand() method, then the 
+the `SubjectParser` will parse the command. Since the user input is `add [TOPIC_NAME]`, the program will register it as a command to add a `Subject`, 
+and will create a new `AddSubjectCommand`. This `AddSubjectCommand` is then passed back to the main function, where its execute() method will run. 
+The execute method decodes the user input. If the `[SUBJECT_NAME]` is not a title of another `Subject` already on the list, it will create a new `Subject`, 
+and add that new `Subject` created into the `SubjectList` that was created during initialisation of the program. The `Ui` will then print the adding of the 
+`Subject` into the list. The program then returns to the main function, where it waits for next user input.
+
+A Sequence diagram of adding a `Subject` Maths is shown below.
+![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98213500-1c89cd00-1f80-11eb-9b0c-9da37446b530.png)
+
+<sub>***Figure 4.7.1** UML sequence diagram for adding a subject*</sub>
+
+#### Adding a topic/task
+you can add a `Topic` by entering `add [TOPIC_NAME]`. Additionally, you can add a `Todo` task by entering `todo [DESCRIPTION]`, add a `Deadline` 
+task by entering `deadline [DESCRIPTION] /by [TIME]`, and add an `Event` task by entering `event [DESCRIPTION] /at [TIME]`. This command can only 
+be entered in the subject level of the program, which can be accessed using the command `subject [SUBJECT_NAME]`. The documentation of the 
+implementation and how to access a subject can be found in <a href="#accessing-imp">4.8 Accessing subjects/topics implementation</a>.
+
+Otherwise, adding topics and tasks follows the same implementation as adding a subject.
+
+### 4.8 Accessing levels <a name="accessing-imp"></a>
+Each of the access commands have an execute() method and a goToSubject()/goToTopic() method. The AccessSubjectCommand class allows users to 
+access the subject level of a subject specified in the user input from the main level, while the AccessTopicCommand class allows users to access the topic level 
+of a topic specified in the user input from a subject level.
+
+#### Accessing a subject
+You can access a subject by entering `subject [SUBJECT_NAME]`. The subject needs to be a subject that already exists in the list, and you can 
+add the `Subject` into the `SubjectList` by using the `add [SUBJECT_NAME]` feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
+For example, after adding a `Subject` CS2101, the CS2101 `Subject` can be accessed by entering `access CS2101`. The application first reads the command using 
+the Ui class, then parses the user input using the `SubjectParser` class, similar to adding a subject. The program will register the user input as a command to 
+access a subject. The SubjectParser will create a new `AccessSubjectCommand` class, and this class will be returned to the main function. 
+The main program will run the execute() method of `AccessSubjectCommand`. The execute() method checks for subjects in the `SubjectList` whose title 
+matches the `[SUBJECT_NAME]`, and if a subject matches, the subject will be passed as a parameter to the goToSubject() method. The goToSubject() method will then 
+have a loop that reads user inputs and parse these inputs to create new `TopicCommand` or `TaskCommand` classes to execute.
+
+The sequence diagram of accessing a `Subject` Maths is shown below.
+![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
+
+<sub>***Figure 4.8.1** UML sequence diagram for accessing a subject*</sub>
+
+#### Accessing a Topic
+You can access a topic by entering `topic [TOPIC_NAME]`. The topic needs to be a topic that already exists in the list, and you can 
+add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
+
+### 4.9 Implementation of `list all` command
+While the syntax of the `list all` command is the same on the main, subject and topic levels,
+there are 3 separate ListAll___Commands for each level. Although all 3 commands classes call `Ui.printAll(subjects,activeSubject,activeTopic)`,
+the 3 classes are kept separate so that `printAll()` can recognise what object the user is accessing.
+
+The following sequence diagram shows how you can proccess the `list all` command from the subject level.
+
+![ListAllTopicSequenceDiagram](https://user-images.githubusercontent.com/50734854/98481821-11f95d00-2238-11eb-90c6-9bb081956da5.png)
+<sub>***Figure 4.9.1** UML sequence diagram for list all at topic level*</sub>
+
+If the `list all` command is given at the topic level, `printTreeTopic()` will check if each topic is the active topic each loop,
+instead of `Ui.printAll` checking each subject.
+
+> 📝️ **_NOTE:_** This command uses unicode characters such as "├" and "└". You may consider changing the characters to ASCII
+> characters only for the sake of compatibility.
 
 ## 5. Logging <a name = "logging"> </a>
 We use [java.util.logging](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/package-summary.html) 
