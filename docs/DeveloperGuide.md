@@ -131,6 +131,7 @@ The exceptions parsers consist of:
 &nbsp; &nbsp; &nbsp; &nbsp; 3. `TaskParser`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; 4. `SprintParser`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; 5. `HelpParser`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; 6. `StorageParser`<br>
 
 1. The `ProjectParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZProjectCommand` to the `ParserManager`.
 If the command is invalid, the `ProjectParser` returns an appropriate warning message to the user.  
@@ -144,14 +145,17 @@ If the command is invalid, the `TaskParser` returns an appropriate warning messa
 1. The `SprintParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZSprintCommand` to the `ParserManager`.
 If the command is invalid, the `SprintParser` returns an appropriate warning message to the user.  
 
-1. The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZHelpParserCommand` to the `ParserManager`.
+1. The `HelpParser` validates the parameters of the command. If the command is valid, it returns the respective `XYZHelpCommand` to the `ParserManager`.
 If the command is invalid, the `HelpParser` returns an appropriate warning message to the user.
+
+1. The `StorageParser` validates the parameters of the command. If the command is valid, it returns the respective `ClearStorageCommand` to the `ParserManager`.
+If the command is invalid, the `StorageParser` returns an appropriate warning message to the user.
 
 ![Figure 3.3.2: Simplified class diagram for Logic Component](./image/developerguide/commandClassDiagram.png)
 
 _Figure 3.3.2: Simplified class diagram for Logic Component_
 
-The subcommand classes `XYZHelpCommand`, `XYZProjectCommand`, `XYZMemberCommand`, `XYZTaskCommand`, `XYZSprintCommand` all inherit from an abstract `Command` class, 
+The subcommand classes `XYZHelpCommand`, `XYZProjectCommand`, `XYZMemberCommand`, `XYZTaskCommand`, `XYZSprintCommand`, `ClearStorageCommand` all inherit from an abstract `Command` class, 
 which has an execute function and its respective constructors.
 
 The `ParserManager` then returns the command back to `SCRUMptious`, which then executes the command.
