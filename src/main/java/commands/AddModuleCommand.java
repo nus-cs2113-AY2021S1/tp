@@ -55,10 +55,10 @@ public class AddModuleCommand extends AddCommand {
             String result = String.format(MESSAGE_ITEM_EXISTED, MODULE, module.getModuleName(), MODULE);
             return result;
         }
+        storage.createModule(module.getModuleName());
         modules.addModule(module);
         int moduleCount = modules.getModuleCount();
         access.setAdmin(newAdmin);
-        storage.createModule(module.getModuleName());
         return prepareResult(MODULE, module.toString(), moduleCount);
     }
 }

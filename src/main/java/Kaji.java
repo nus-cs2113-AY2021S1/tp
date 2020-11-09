@@ -33,6 +33,7 @@ public class Kaji {
      * Sets up the required objects and loads the data from the storage file.
      *
      * @param filePath filepath of the storage file
+     * @throws IOException if there is an error renaming the storage file
      */
     public Kaji(String filePath) throws IOException {
         ui = new Ui();
