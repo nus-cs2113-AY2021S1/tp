@@ -221,7 +221,13 @@ The Storage component
 This section will describe the significant details of how the features in **Kaji** are being implemented.
 
 ### 4.1. Admin Features
-[summary + scenario]
+This section will elaborate the available features to users at **Admin Level**. <br>
+At Admin Level, users are able to: <br>
+* Add module
+* List modules
+* Edit module name
+* Delete module
+* Access module
 
 #### 4.1.1. Add Module Feature
 (Jiayi)
@@ -407,7 +413,15 @@ The following diagram shows how the add chapter command feature works:
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.2. Module Features
-[summary + scenario]
+This section will elaborate the available features to users at **Module Level**. <br>
+At Module Level, users are able to: <br>
+* Add chapter
+* List chapters
+* Edit chapter name
+* Delete chapter
+* Access chapter
+* Return to Admin Level
+
 
 #### 4.2.1. Add Chapter Feature
 (Jiayi)
@@ -586,7 +600,14 @@ The following sequence Diagrams illustrates how the Return to Admin Level Featur
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.3. Chapter Features
-[summary + scenario]
+This section will elaborate the available features to users at **Chapter Level**. <br>
+At Chapter Level, users are able to: <br>
+* Add flashcard
+* List flashcards
+* Edit question and answer of a flashcard
+* Delete flashcard
+* Return to Module Level
+* Check overall revision performance
 
 #### 4.3.1. Add Flashcard Feature
 (Jane)
