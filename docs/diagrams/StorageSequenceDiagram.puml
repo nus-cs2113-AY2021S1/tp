@@ -1,4 +1,4 @@
-' @@author GuoAi
+'@@author GuoAi
 @startuml
 participant ":Model" as Model
 participant ":Storage" as Storage
@@ -6,6 +6,7 @@ participant ":Task" as Task
 participant ":Book" as Book
 participant ":Link" as Link
 participant ":Module" as Module
+participant ":Expense" as Expense
 
 create Storage
 Model -> Storage : new Storage()
@@ -152,6 +153,31 @@ deactivate Storage
 end
 
 Model <-- Storage : modules
+deactivate Storage
+
+Model -> Storage : loadExpense()
+activate Storage
+
+loop sc.hasNextLine()
+
+Storage -> Storage : loadExpenseFromLine(line)
+activate Storage
+
+create Expense
+Storage -> Expense : new Expense(description, value)
+activate Expense
+
+Storage <-- Expense : newExpense
+deactivate Expense
+
+destroy Expense
+
+Storage <-- Storage : newExpense
+deactivate Storage
+
+end
+
+Model <-- Storage : expenses
 deactivate Storage
 
 Model -> Storage : save(items, path)
