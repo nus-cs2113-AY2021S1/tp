@@ -183,9 +183,13 @@ Due to limitations in what can be estimated, there are only two main scenarios f
 There are essentially two phases to the usuage of `FoodManager` and its associated dependencies: the creation of a `OptionalFood` that has missing values and the retrieval of a guesstimated `Food` object when `FoodEntry#getFood()` needs to be called.
 For brevity, the focus will be on the processes within `FoodList`.
 
+![Sequence diagram of Food creation](diagrams/FoodList_FoodCreation_sequence.png)
+
 **Creation**:
 1. `FoodList#addFood(int portionSize,String name, int calorie, int carbohydrate, int protein, int fat)` (or its variant for backlogs: `FoodList#addFoodAtDateTime(...)`) is called by the Logic component to add a new entry with missing nutritional inputs. The missing inputs are encapsulated by `OptionalFood.EMPTY_VALUE = -1` flags.
 1. `FoodList#addFood(...)` instantiates a new instance of `DatedFoodEntry`, passing on the arguments and flags to it instead. `DatedFoodEntry` uses `FoodManager#createFood(String name, int calorie, int carbohydrate, int protein, int fat)` to instantiate a `Food` object. Because there are missing values, `FoodManager` actually instantiates `OptionalFood`, a child class of `Food` instead. A reference to this `OptionalFood` object is stored in the `DatedFoodEntry`. The newly instantiated `DatedFoodEntry` is also stored in the list of `FoodEntry` objects in `FoodList`.
+
+![Sequence diagram of Food retrieval](diagrams/FoodList_FoodRetrieval_sequence.png)
 
 **Retrieval**:
 1. The method `FoodEntry#getFood()` is only called within functions of `FoodListManager`. When a method such as `FoodList#getPortionedFoods()` is called, `FoodListManager#convertListToPortionedFoods(List list)` is subsequently called.
@@ -198,6 +202,8 @@ For brevity, the focus will be on the processes within `FoodList`.
 
 #### Future work
 Only simple methods of estimating the missing information is used by `NutritionCalculator`. We can allow the user the weight the split of missing nutritional values differently (it is currently all weighed equally and split by calorie contribution). This ought to be performed by the `Calculator` component since that is its main role. However, due to the fascade pattern being used in this implementation, the difficulty to add this feature is increased: in order to maintain the status of `FoodList` being non-dependent on the other components, it is recommended that functions to split the nutrients be passed to FoodManager instead (i.e. use a functional paradigm).
+
+Additionally, storage of the `FoodList` should support the storage and retrieval of such missing values. Currently, only the estimated versions of the Foods are stored, and information on its status as a Food  that had missing values (an `OptionalFood`) is lost.
 
 #### Design Considerations
 
