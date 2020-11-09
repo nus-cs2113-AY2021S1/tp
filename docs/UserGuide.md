@@ -117,18 +117,16 @@ To find out more about how you can utilise the feature and even customise it to 
 To get started on this application, please perform the following steps:
 
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `KAJI` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
-1. Copy the file to an empty folder you want to use as the <I>home folder</I> for your KAJI.
-1. Open a command window in the folder you saved KAJI and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
-<p align="center">
-  <img src="images/kaji.PNG" alt="Welcome screen"/>
-</p>
-1. Type the command in the command window and press Enter to execute it. 
+2. Download the latest version of `KAJI` from [here](https://github.com/AY2021S1-CS2113T-F11-3/tp/releases).
+3. Copy the file to an empty folder you want to use as the <I>home folder</I> for your KAJI.
+4. Open a command window in the folder you saved KAJI and run the command `java -jar kaji.jar`. You should get the output as shown below: <br>
+![Welcome screen](images/kaji.PNG)
+5. Type the command in the command window and press Enter to execute it. 
    e.g. typing `help` and pressing Enter will show the list of commands available.<br>
    Some example commands you can try:
    * `help` : Lists all commands available.
    * `exit` : Exits the app.
-1. Refer to [Features](#3-features) below for details of each command.
+6. Refer to [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
