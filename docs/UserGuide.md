@@ -383,11 +383,11 @@ Below are steps of using this `add` command: <br>
 </p>
 * Step 3: You choose to rate the new chapter from the previous step, therefore, you can rate your chapter as `Easy`, `Medium` or `Hard` by entering `E`, `M` and `H` as shown as the instruction given by Kaji. <br>
 <p align="center">
-  <img src="UG_Images/addChapter3.png" alt="Add Chapter 3"/>
+  <img src="UG_Images/addChapter3.png" width="600" alt="Add Chapter 3"/>
 </p>
 * Step 4: You have just created a new chapter! Good Job! <br>
 <p align="center">
-  <img src="UG_Images/addChapter4.png" alt="Add Chapter 4"/>
+  <img src="UG_Images/addChapter4.png" width="600" alt="Add Chapter 4"/>
 </p>
 
 #### 3.2.2. Listing chapters available: `list`
