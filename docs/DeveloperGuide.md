@@ -499,11 +499,9 @@ At the same time, using anime ID as input would allow the program to be able to 
 
 Similar to a desktop, **AniChan** has a workspace feature which allows users to organize data in separate containers and switch between them to avoid intermixing of information.
 
-<br/>
-
 `Workspace` is primarily the layer of code that sits between the user, and the rest of **AniChan** data management features (e.g. `Watchlist`, `Bookmark`). 
 
-As such, most of the code that manages `Workspace` can be found in [User.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/User.java) and [Workspace.java](https://github.com/AY2021S1-CS2113T-F12-2/tp/blob/master/src/main/java/anichan/human/Workspace.java).
+As such, most of the code that manages `Workspace` can be found in `User.java` and `Workspace.java`.
 
 > :memo: Upon running the program for the first time, a workspace named `Default` is created. A similarly named folder will also be created in `/data` directory, managed by our `Storage` class.
 
