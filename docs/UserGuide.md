@@ -719,13 +719,14 @@ Wanting to find out what is going to happen before a specific date? `print timel
 Format: `print timeline date <date>`
 
 Note: The space in the command above is mandatory and should only have 1 spacing between each command parameters.
+Note: If your input a past date, only the todo items will be shown.  
 
 Example:
 
 `print timeline date <date>`
 
 This prints the personal calendar before a specific date.
-Note: If your input a past date, only the todo items will be shown.
+
 
 ![print_timeline_date](images/printTimeline_date_command.PNG)
 
