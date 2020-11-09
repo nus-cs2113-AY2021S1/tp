@@ -955,6 +955,7 @@ terminated.
 |v1.0|user|add a recurring entry|Keep track of monthly transactions like income or bills|
 |v1.0|user|edit a recurring entry|update details of existing entries without having to re-enter everything|
 |v1.0|user|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
+|v1.0|user|create a save after I exit the program and load that save when I return|shutdown my PC and save electrical bills without losing progress|
 |v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
 |v2.0|user|store account or card information|refer to account features such as interest rate any time|
 |v2.0|user|compare my calculations with different interest rate|decide which account is better|
@@ -963,6 +964,9 @@ terminated.
 |v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
 |v2.0|user|display expense/income goal for specific month|keep track of my progress|
 |v2.0|busy user with many bills to pay|see all my upcoming recurring entries|keep track of bill payment dates and prevent overdue fees|
+|v2.0|user|be assured my saved progress is not lost if program unexpectedly terminates|work long hours without manually saving the program|
+|v2.0|user|keep multiple copies of different saves|load a different save if my friend wishes to use the program on my computer|
+|v2.0|user|reset my program|easily remove all saved progress without having to delete them one at a time|
 
 <div style="page-break-after: always;"></div>
 
