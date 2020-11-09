@@ -19,15 +19,15 @@ public enum ExceptionType {
     MISSING_BUS_CODE("Oh no! You seem to have missed typing in the bus code!"),
     SAME_LOCATIONS("You don't need a bus to get there...You are right there!"),
     INVALID_BUS_STOP("Oh no! I do not understand which bus stop you are looking for. If you are typing a short "
-            + "form of the name, please type the full bus stop name and try again."),
+            + "form of the name, please type the full bus stop\nname and try again."),
     INVALID_START_LOC("The starting location you have provided is not the name of any bus stop in our\n"
-            + "database :( If you are typing a short form of the name, please type the full bus stop name and try "
+            + "database :( If you are typing a short form of the name, please type the full bus stop\nname and try "
             + "again."),
     INVALID_DEST("The destination you have provided is not the name of any bus stop in our database :( If you "
-            + "are typing a short form of the name, please type the full bus stop name and try again."),
+            + "are typing a short form of the name, please type the full bus stop\nname and try again."),
     INVALID_LOCATIONS("The starting location and destination you have provided are not the names of any bus\n"
-            + "stops in our database :( If you are typing a short form of the name, please type the full bus stop name "
-            + "and try again."),
+            + "stops in our database :( If you are typing a short form of the name, please type the full bus stop\nname"
+            + " and try again."),
     INVALID_FACULTY("Oh no! Please enter a faculty."),
     NO_MATCH_FACULTY("No match found. To see the list of faculties in NUS, type /faculty"),
     INVALID_FOODPLACE("Oh no! I cannot detect any inputs."),

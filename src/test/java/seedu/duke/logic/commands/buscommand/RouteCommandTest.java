@@ -48,7 +48,8 @@ class RouteCommandTest {
             com.executeCommand();
         } catch (CustomException error) {
             assertEquals("The starting location you have provided is not the name of any bus stop in our\n"
-                    + "database :(", error.toString());
+                    + "database :( If you are typing a short form of the name, please type the full bus stop\nname and "
+                    + "try again.", error.toString());
         }
 
         String locationsInvalidDest = " University Health Centre /to Vivocity ";
@@ -56,7 +57,9 @@ class RouteCommandTest {
         try {
             com.executeCommand();
         } catch (CustomException error) {
-            assertEquals("The destination you have provided is not the name of any bus stop in our database :(",
+            assertEquals("The destination you have provided is not the name of any bus stop in our database :( "
+                            + "If you are typing a short form of the name, please type the full bus stop\nname and try "
+                            + "again.",
                     error.toString());
         }
 
@@ -66,7 +69,8 @@ class RouteCommandTest {
             com.executeCommand();
         } catch (CustomException error) {
             assertEquals("The starting location and destination you have provided are not the names of any "
-                    + "bus\nstops in our database :(", error.toString());
+                    + "bus\nstops in our database :( If you are typing a short form of the name, please type the full "
+                    + "bus stop\nname and try again.", error.toString());
         }
 
     }

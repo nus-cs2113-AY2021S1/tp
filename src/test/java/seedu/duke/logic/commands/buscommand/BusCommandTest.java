@@ -15,7 +15,8 @@ public class BusCommandTest {
         try {
             BusCommand command = new BusCommand(input);
         } catch (CustomException e) {
-            assertEquals("Oh no! I do not understand which bus stop you are looking for.", e.toString());
+            assertEquals("Oh no! I do not understand which bus stop you are looking for. If you are typing a "
+                    + "short form of the name, please type the full bus stop\nname and try again.", e.toString());
         }
 
     }
@@ -26,7 +27,8 @@ public class BusCommandTest {
         try {
             BusCommand command = new BusCommand(input);
         } catch (CustomException e) {
-            assertEquals("Oh no! I do not understand which bus stop you are looking for.", e.toString());
+            assertEquals("Oh no! I do not understand which bus stop you are looking for. If you are typing a "
+                    + "short form of the name, please type the full bus stop\nname and try again.", e.toString());
         }
     }
 
