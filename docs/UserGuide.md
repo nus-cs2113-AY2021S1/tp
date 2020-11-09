@@ -868,6 +868,8 @@ Expected output:
 >**Useful information:**
 >* You can use this command from any mode to access the flashcard mode easily and quickly!
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 Adding flashcards: `add`
 
 To assist you in your studies, there needs to be a knowledge base of content to be revised.
