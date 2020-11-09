@@ -27,7 +27,8 @@ public class DoneCommand extends Command {
         int taskNumberCompleted;
 
         try {
-            taskNumberCompleted = Integer.parseInt(userInput.replace("done", "").trim());
+            String[] command = userInput.split("done",2);
+            taskNumberCompleted = Integer.parseInt(command[1].trim());
         } catch (Exception e) {
             throw new CommandException("done");
         }

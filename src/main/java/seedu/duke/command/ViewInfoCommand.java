@@ -26,7 +26,8 @@ public class ViewInfoCommand extends Command {
         int eventNumber = 0;
         int calendarNumber;
         try {
-            eventNumber = Integer.parseInt(userInput.replace("/v", "").trim());
+            String[] command = userInput.split("/v", 2);
+            eventNumber = Integer.parseInt(command[1].trim());
         } catch (Exception e) {
             throw new CommandException("invalid view info");
         }

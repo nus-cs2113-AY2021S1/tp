@@ -13,9 +13,9 @@
     * [Adding an event](#adding-an-event)
         * [Adding an activity event](#adding-an-activity-event)
         * [Adding an examination event](#adding-an-examination-event)
-        * [Adding recurring laboratory session event](#adding-recurring-laboratory-session-events)
-        * [Adding recurring lecture event](#adding-recurring-lecture-events)
-        * [Adding recurring tutorial event](#adding-recurring-tutorial-events)
+        * [Adding recurring laboratory events](#adding-recurring-laboratory-events)
+        * [Adding recurring lecture events](#adding-recurring-lecture-events)
+        * [Adding recurring tutorial events](#adding-recurring-tutorial-events)
     * [Adding additional information of an event](#adding-additional-information-to-an-event)
     * [Viewing additional information of an event](#viewing-the-additional-information-of-an-event)
     * [Deleting additional information of an event](#deleting-the-additional-information-of-an-event)
@@ -34,8 +34,8 @@
     * [Giving suggestion](#giving-suggestion)
     * [Printing time line](#printing-timeline)
         * [Printing default calendar](#printing-default-calendar)
-        * [Printing calendar for the current week](#printing-calendar-for-the-current-week)
-        * [Printing calendar for the current month](#printing-calendar-for-the-current-month)
+        * [Printing calendar for the next 7 days](#printing-calendar-for-the-next-7-days)
+        * [Printing calendar for the next 31 days](#printing-calendar-for-the-next-31-days)
         * [Printing calendar before a specific date](#printing-calendar-before-a-specific-date)
     * [Printing countdown](#printing-countdown)
         * [Printing countdown of both deadline and exam events](#printing-countdown-of-both-deadline-and-exam-events)
@@ -92,24 +92,27 @@ The following table displays the list of terminologies used in this document:
 
 **！！！Caution！！!**
 
-**All command parameters used in **_25HoursADay_** are case-sensitive!**
+**1. All command parameters used in **_25HoursADay_** are case-sensitive!**
 
 For example: 
 
 `help` is a valid command while `HELP` is an invalid command!
 
-**All command parameters are not be used as user input!**
+**2. All command parameters are not allowed to be used as user inputs!**
 
 For example:
 
 `@`, `/`, `-`, `*` and `-r` are intended command parameters and are not allowed to be used as place holders! 
+
+
+**3. All user inputs will be trimmed!**
 
 ## Quick Start
 
 1. Ensure you have Java 11.0.8 installed.
 1. Download the latest version of the project file **_25HoursADay.jar_** and the JSON data file **_NUS_Mod_info.json_** from [here](https://github.com/AY2021S1-CS2113T-T12-2/tp/releases/tag/V1.0).
 1. Copy the JAR file and the JSON data file to the same folder that you want to use as the _home folder_ for the project file.
-1. In the _Command Prompt_, navigate to the working directory of the _home folder_.
+1. In the _Command Prompt_, navigate to the working directory of the _home folder_ before starting the application.
 1. Type the command "java -jar" and drag the downloaded **_25HoursADay.jar_** onto the command box and press _Enter_ to start the application.
 1. The _Command Prompt_ should display a similar output as shown in the figure below:
     ![Screen_Shot_of_welcome_message](images/Verify_setup.PNG)
@@ -167,7 +170,9 @@ will keep track of the due date which will definitely make your study life more 
 warning message if the due date of the deadline item is already passed (with respect to today's date), making sure all your deadlines are properly recorded and
 minimise any potential careless typo.
 
-Format: `deadline <task_description> / <due_date>`
+Format: `deadline <task_description> /<due_date>`
+
+Note: The space before and after the `/` is optional!
 
 Example of a passed deadline:
 
@@ -208,6 +213,8 @@ This is definitely the best way to keep track of your commitments and will surel
 
 Format: `act <activity_description> @<venue> / <date> <time>`
 
+Note: The spaces before and after the `@` and `/` are optional! All other spaces are mandatory!
+
 Example:
 
 `act CCA @NUS UTOWN / 200920 1600` 
@@ -227,6 +234,8 @@ You can add an examination event to the calendar list by using the following for
 
 Format: `exam <module_name> @<venue> / <date> <time>`
 
+Note: The spaces before and after the `@` and `/` are optional! All other spaces are mandatory!
+
 Example:
 
 `exam CS1010 @com1-b1-12 / 121220 1700` 
@@ -242,6 +251,8 @@ Note: Only valid modules provided by NUS are allowed to be added!
 When you have new recurring laboratory events and want to add them to the calendar list, you can use `lab` command.
 
 Format: `lab <module_name> @<venue> -r <number of lab session> / <date> <time>`
+
+Note: The spaces before and after the `@`, `-r`, and `/` are optional! All other spaces are mandatory!
 
 Example:
 
@@ -261,6 +272,8 @@ When you have new recurring lecture events and want to add them to the calendar 
 
 Format: `lect <module_name> @<venue> -r <number of lecture> / <date> <time>`
 
+Note: The spaces before and after the `@`, `-r`, and `/` are optional! All other spaces are mandatory!
+
 Example:
 
 `lect CS2113 @lt12 -r 10 / 030220 1200` 
@@ -278,6 +291,8 @@ Note: The value for `<number of lecture>` is in the range of 1 to 13 only!
 When you have new recurring tutorial events and want to add them to the calendar list, you can use `tut` command.
 
 Format: `tut <module_name> @<venue> -r <number of tutorial> / <date> <time>`
+
+Note: The spaces before and after the `@`, `-r`, and `/` are optional! All other spaces are mandatory!
 
 Example:
 
@@ -303,6 +318,8 @@ the module website for a school event or the things to bring to an event.
 
 Format: `/a <event_number> - <additional information>`
 
+Note: All the spaces in the command above are optional!
+
 Example:
 
 `/a 1 - This is the additional information for event number 1`
@@ -325,6 +342,8 @@ After adding the additional information related to the event, you can then view 
 
 Format: `/v <event_number>`
 
+Note: The space in the command above is optional!
+
 Example:
 
 `/v 1` 
@@ -340,6 +359,8 @@ or different additional information stored in the event index number 1.
 Should you have wrongly added any additional information to an event, fret not, you can delete them using this feature.
 
 Format: `/- <event_number> a <additional_information_number>`
+
+Note: All the spaces in the command above are optional!
 
 Example:
 
@@ -358,6 +379,8 @@ To help manage your tasks better, you can mark a task on your calendar list as c
 If the task is done, you will be able to see a small tick [/] beside the task. Else, you will see a cross [X] beside the task.
 
 Format: `done <task_number>`
+
+Note: The space in the command above is optional!
 
 Example:
 
@@ -384,6 +407,8 @@ You can delete a task from your calendar list. You can use this to delete the ta
 
 Format: `-t <task_number>`
 
+Note: The space in the command above is optional!
+
 Example:
  
  `-t 1` 
@@ -401,6 +426,8 @@ After executing this command, notice that task number 1 has been removed from yo
 You can delete an event from your calendar list. Use this to delete the events that are already over!
 
 Format: `-e <event_number>`
+
+Note: The space in the command above is optional!
 
 Example:
  
@@ -426,6 +453,8 @@ assignment in your calendar.
 
 Format: `/f <keyword>`
 
+Note: The space in the command above is mandatory!
+
 Example: 
 
 `/f assignment` 
@@ -449,6 +478,8 @@ homework tasks, you can use this feature to exclude any events with description 
 
 Format: `/ft <keyword>`
 
+Note: The space in the command above is mandatory!
+
 Example: 
 
 `/ft tuition` 
@@ -467,6 +498,8 @@ tasks and events having a similar description. For example, if you are looking f
 , you can use this feature to exclude all deadline tasks with the same date!
 
 Format: `/fe <keyword>`
+
+Note: The space in the command above is mandatory!
 
 Example: 
 
@@ -487,6 +520,8 @@ When you have important tasks, you can prioritize them in the task list to disti
 If you want to prioritize an important task, you can use `*t <task_number>` to mark the task as important. 
     
 Format: `*t <task_number>`
+
+Note: The space in the command above is optional!
     
 Example: 
 
@@ -508,6 +543,8 @@ too many tasks, you can always ask _**25HoursADay**_ to print out all tasks save
 In this way, you can have a better picture of the tasks on hand! 
 
 Format: `print tasks`
+
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -532,6 +569,8 @@ to display all events saved in the application. This feature will definitely sav
 
 Format: `print events`
 
+Note: The space in the command above is mandatory and should only have 1 spacing.
+
 Example:
 
 `print events`
@@ -555,6 +594,8 @@ you can type `print *` command to view the list of important tasks together with
                                                     
 Format: `print *`
 
+Note: The space in the command above is mandatory and should only have 1 spacing.
+
 Example:
 
 `print *`
@@ -572,6 +613,8 @@ If you have a lot of tasks and want to trace the progress of how many of the tas
 you can type  `print progress` command to see the fraction and percentage proportion of the finished tasks among all the tasks.
 
 Format: `print progress`
+
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 
@@ -615,6 +658,8 @@ Print the personal calendar including all calendar items, with todo items (which
 
 Format: `print timeline`
 
+Note: The space in the command above is mandatory and should only have 1 spacing.
+
 Example:
 
 `print timeline`
@@ -631,6 +676,8 @@ differ if you have different items stored in the calendar list.
 Wanting to find out what is going to happen in the next 7 days? `print timeline week` can be of great help.
 
 Format: `print timeline week`
+
+Note: The space in the command above is mandatory and should only have 1 spacing between each command parameters.
 
 Example:
 
@@ -650,6 +697,8 @@ Wanting to find out what is going to happen in the next 31 days? `print timeline
 
 Format: `print timeline month`
 
+Note: The space in the command above is mandatory and should only have 1 spacing between each command parameters.
+
 Example:
 
 `print timeline month`
@@ -668,6 +717,8 @@ differ if you have different items stored in the calendar list.
 Wanting to find out what is going to happen before a specific date? `print timeline date <date>` can be of great help.
 
 Format: `print timeline date <date>`
+
+Note: The space in the command above is mandatory and should only have 1 spacing between each command parameters.
 
 Example:
 
@@ -716,6 +767,8 @@ The exam with the closest date will be printed first.
 
 Format: `countdown exams`
 
+Note: The space in the command above is mandatory and should only have 1 spacing.
+
 Example:
 
 `countdown exams`
@@ -736,6 +789,8 @@ If you type `countdown deadlines`, you can see the countdown of all unfinished d
 The deadline with the closest due date will be printed first.
 
 Format: `countdown deadlines`
+
+Note: The space in the command above is mandatory and should only have 1 spacing.
 
 Example:
 

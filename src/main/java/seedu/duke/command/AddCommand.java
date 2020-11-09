@@ -93,7 +93,7 @@ public class AddCommand extends Command {
                     throw new CommandException("exam");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code exam");
             }
             break;
         case LECTURE:
@@ -107,7 +107,7 @@ public class AddCommand extends Command {
                     throw new CommandException("lecture");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code lect");
             }
             break;
         case TUTORIAL:
@@ -121,7 +121,7 @@ public class AddCommand extends Command {
                     throw new CommandException("tutorial");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code tut");
             }
             break;
         case LAB:
@@ -135,7 +135,7 @@ public class AddCommand extends Command {
                     throw new CommandException("lab");
                 }
             } else {
-                throw new CommandException("invalid module code");
+                throw new CommandException("invalid module code lab");
             }
             break;
         default:
@@ -285,7 +285,8 @@ public class AddCommand extends Command {
         date = DateTimeParser.inputDateProcessor(dateTime[0].trim());
         time = DateTimeParser.inputTimeProcessor(dateTime[1].trim());
 
-        if (eventDescription.isEmpty()) {
+        if (eventDescription.isEmpty() || venue.isEmpty()) {
+            System.out.println("The <activity description> and <venue> cannot be empty!\n");
             throw new CommandException("activity");
         } else {
             calendarList.addEvent(new Activity(eventDescription, date, time, venue));
@@ -308,6 +309,7 @@ public class AddCommand extends Command {
         date = DateTimeParser.inputDateProcessor(command[1].trim());
 
         if (taskDescription.isEmpty()) {
+            System.out.println("The <task description> and ddMMyy cannot be empty!\n");
             throw new CommandException("deadline");
         } else {
             calendarList.addTask(new Deadline(taskDescription, date));
