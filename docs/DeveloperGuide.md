@@ -52,12 +52,12 @@
 
 ## Introduction
 
-Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
+Scheduler-\-; (S-\-) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
 
 ## Setting up, getting started
 
 1. Ensure you have version 11 of Java. You can install it from this [link](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html).
-2. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
+2. Fork the Scheduler-\-; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
 3. Clone the fork on to your computer.
 4. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
 to close the existing project dialog. 
@@ -192,7 +192,7 @@ The help feature in the program allows the user to extract out help information 
 
 #### Add feature
 
-The add feature in the program allows the user to create one of 3 different events in scheduler--;.
+The add feature in the program allows the user to create one of 3 different events in scheduler-\-;.
 These 3 are the Personal, Zoom and Timetable events. These events have varying numbers of arguments or fields that can 
 be inserted upon creation. 
 
@@ -535,7 +535,7 @@ The following sequence diagram shows how `GoalCommand#execute()` works:
 
 #### Done feature
 
-The done feature allows users to mark events in Scheduler as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+The done feature allows users to mark events in Scheduler-\- as done. The format for the done command is `done EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
 |--------|----------|
@@ -575,7 +575,7 @@ Step 5. `Storage#saveFile()` is called to save the updated event list to the ext
 
 #### Undone feature
 
-The undone feature allows users to mark events in Scheduler as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+The undone feature allows users to mark events in Scheduler-\- as undone. The format for the undone command is `undone EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
 |--------|----------|
@@ -615,7 +615,7 @@ Step 5. `Storage#saveFile()` is called to save the updated event list to the ext
 
 #### Delete feature
 
-The delete feature allows users to delete events from Scheduler. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
+The delete feature allows users to delete events from Scheduler-\-. The format for the delete command is `delete EVENT_TYPE; EVENT_INDEX; [EVENT_DATE]`.
 
 |Argument| Description |
 |--------|----------|
@@ -627,7 +627,7 @@ The following is the class diagram for DeleteCommand:
 
 ![DeleteCommand Class Diagram](./diagrams/DeleteCommandClassDiagram.jpg)
 
-The delete feature is implemented using the `DeleteCommand` class. `DeleteCommand` accesses the `Event` stored within `EventList` and removes it from the `EventList` to delete it from Scheduler--;. It implements the following operations:
+The delete feature is implemented using the `DeleteCommand` class. `DeleteCommand` accesses the `Event` stored within `EventList` and removes it from the `EventList` to delete it from Scheduler-\-;. It implements the following operations:
 
 - `DeleteCommand#parse(input)` -- Parses the processed input from `Parser` to create an `DeleteCommand` with the parsed event list type and event identifier.
 - `DeleteCommand#scanRepeatList(repeatEventList, deleteEventDate, ui, deleteEvent)` -- Scans the `repeatEventList` of a repeat event and deletes the matching event from the `repeatEventList`.
@@ -806,7 +806,7 @@ For the detection of zoom link, the Regex pattern used first detects any URL sta
 
 The Bye feature allows user to exit smoothly after saving all the files.
 
-Step 1. The user executes `bye` command to exit Scheduler.
+Step 1. The user executes `bye` command to exit Scheduler-\-.
 
 Step 2. `ByeCommand#execute()` is called and `ByeCommand` will set `isExit` to true.
 
@@ -867,17 +867,17 @@ and also extract deadlines from any body of text.
 <div style="page-break-after: always;"></div>
 
 ### Use Cases
-(For all use cases below, the System is Scheduler--; and the Actor is the user, unless specified otherwise)
+(For all use cases below, the System is Scheduler-\-; and the Actor is the user, unless specified otherwise)
 
 **Use case: Extracting deadlines from an email**
 
 MSS:
 1. User enters extract command for a body of text/email
-2. Scheduler--; shows a list of dates detected
+2. Scheduler-\-; shows a list of dates detected
 3. User chooses one of the dates
-4. Scheduler--; shows a list of the time slots detected
+4. Scheduler-\-; shows a list of the time slots detected
 5. User chooses one of the time slots
-6. Scheduler--; creates a personal event based on the user's choices
+6. Scheduler-\-; creates a personal event based on the user's choices
 
 Use case ends.
 
@@ -885,17 +885,17 @@ Extensions:
 
 2a. There are no dates detected.
 
-Scheduler--; creates a Personal event with no date or time.
+Scheduler-\-; creates a Personal event with no date or time.
 
  3a. User selects an invalid index from the list of dates.
-- 3a1. Scheduler--; requests for the user to pick a valid number.
+- 3a1. Scheduler-\-; requests for the user to pick a valid number.
 - 3a2. User enters new index.
 
 Steps 3a1-3a2 are repeated until the index entered is valid.
 Use case resumes from step 4.
 
  5a. User selects an invalid index from the list of time slots.
-- 5a1. Scheduler--; requests for the user to pick a valid number.
+- 5a1. Scheduler-\-; requests for the user to pick a valid number.
 - 5a2. User enters new index.
 
 Steps 5a1-5a2 are repeated until the index entered is valid.
@@ -906,11 +906,11 @@ Use case resumes from step 6.
 MSS:
 
 1. User uses list command for one of the three types of events.
-2. Scheduler--; prints a list for the event type chosen.
+2. Scheduler-\-; prints a list for the event type chosen.
 3. User enters repeat command for one of the events.
-4. Scheduler--; prints a confirmation message.
+4. Scheduler-\-; prints a confirmation message.
 5. User uses repeat command to check status of the repeated event.
-6. Scheduler--; prints out the status of the repeated event.
+6. Scheduler-\-; prints out the status of the repeated event.
 
 Use case ends.
 
@@ -918,7 +918,7 @@ Extensions:
 
 3a. User selects a personal event that does not have a deadline
 
-Scheduler--; prints an error message and use case ends.
+Scheduler-\-; prints an error message and use case ends.
 
 
 
