@@ -123,11 +123,9 @@ If you plan to use Intellij IDEA:
 
 If you are using IDEA, follow this guide [IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to setup IDEA’s coding style to match ours.
     
-
 #### 2.2.2 Set up CI
 
 There is no set up required as the project comes with GitHub Actions config files, located in `.github/workflows` folder. When GitHub detects these files, it will run the CI for the project automatically at each push to the master branch or to any PR.
-    
 
 #### 2.2.3 Learn the Design
 
@@ -1342,7 +1340,6 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
             
-
 ### D.8: Switch to a different Workspace
 
 1.  Switch to a different Workspace with `workspace` feature
@@ -1374,7 +1371,6 @@ If you wish to add new checks, simply add the check file with a filename `check-
 
 <br/>
             
-
 ### D.10: Delete a Workspace
 
 1.  Delete a Workspace with `workspace` feature
