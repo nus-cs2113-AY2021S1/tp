@@ -913,8 +913,6 @@ If you encounter any errors, take note of the following warning.
 >
 >![Flashcard_4_2_1](Images/FlashcardUG/Flashcard_4_2_1.png){:height="60%" width="60%"}
 
-<div style="page-break-after: always;"></div>
-
 ### 4.3 Listing flashcards: `list`
 
 If you wish to review the content that is currently in the flashcard deck, this command can display all flashcards that
