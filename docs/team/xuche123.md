@@ -1,6 +1,6 @@
 # Project: NUSchedule
 
-NuSchedule is a task management application written in Java. It is operated on the command line interface.
+NUSchedule is a task management application written in Java. It is operated on the command line interface.
 
 Given below are my contributions to the project.
 
