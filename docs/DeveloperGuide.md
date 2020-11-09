@@ -959,7 +959,7 @@ Alright, have a nice day!
    * `bookmark -b 1 /pg`: missing page number field
    * `bookmark -b 0 /pg 123`: incorrect book number input
    
-   Expected: Bookmark will not be updated to any book. A message will error details will be shown.
+   Expected: Bookmark will not be updated to any book. A message with error details will be shown.
 
 #### Adding a task to todo list
 
