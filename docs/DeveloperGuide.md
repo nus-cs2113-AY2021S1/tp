@@ -625,17 +625,19 @@ Ensure that Bedroom1 is created: `create Bedroom1` and ac Appliance is added: `a
 
 ### Listing Appliances or Locations
 
-1. Test case: `list location`, assume no location is created <br>
+1. Test case: `list location`, assume no location is created.<br>
     Expected-printout: There is currently no Location in the list.
-2. Test case: `list appliance`, assume no appliance is added <br>
+2. Test case: `list appliance`, assume no appliance is added.<br>
     Expected-printout: There is currently no Appliance in the list.
-3. Test case: `list Bedroom1`, only `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]` is valid for command <br>
+3. Test case: `list Bedroom1`, only `list appliance` or `list location` or `list appliance l/[LOCATION_NAME]` is valid for command.<br>
     Expected-printout: Please enter either 'list appliance' or 'list location' or 'list appliance l/[LOCATION_NAME]'
 4. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is not created <br>
     Expected-printout: Location: "Bedroom1" does not exist.   
-5. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is created but no Appliance is added to `Bedroom1` <br>   
-    Expected-printout: There is no Appliance in "Bedroom1". 
+5. Test case: `list appliance l/Bedroom1`, assume that `Bedroom1` is created but no Appliance is added to `Bedroom1`.   
+   Expected-printout: There is no Appliance in "Bedroom1". 
 
+
+### Saving data to disk
 #### Dealing with missing data files:
 
 When the program is started for the first time, the directory "data" and the text file "data/SmartHomeBot.txt" should be 
