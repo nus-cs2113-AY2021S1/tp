@@ -30,7 +30,7 @@ public class StorageWrite {
     public static final String DIR = "directory";
 
     //@@author gua-guargia
-    protected static void createDir(File f) {
+    protected static void createDir(File f) throws IOException {
         boolean dirExists = f.exists();
         boolean dirCreated = false;
         if (!dirExists) {
@@ -40,6 +40,9 @@ public class StorageWrite {
         }
         if (dirCreated) {
             logger.info(String.format(MESSAGE_CREATED, DIR, f));
+        }
+        if (!(dirExists || dirCreated)) {
+            throw new IOException("Error creating new folder. Please check your directory.");
         }
     }
 
@@ -54,6 +57,10 @@ public class StorageWrite {
         }
         if (fileCreated) {
             logger.info(String.format(MESSAGE_CREATED, FILE, f));
+        }
+
+        if (!(fileExists || fileCreated)) {
+            throw new IOException("Error creating new file. Please check your directory.");
         }
     }
 
@@ -86,7 +93,7 @@ public class StorageWrite {
     }
 
     //@@author Zhu-Ze-Yu
-    public static void createHistoryDir() {
+    public static void createHistoryDir() throws IOException {
         File f = new File("data/history");
         createDir(f);
     }

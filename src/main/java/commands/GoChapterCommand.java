@@ -5,6 +5,7 @@ import common.KajiLog;
 import manager.card.Card;
 import manager.chapter.Chapter;
 import manager.module.ChapterList;
+import manager.module.Module;
 import storage.Storage;
 import ui.Ui;
 
@@ -33,7 +34,7 @@ public class GoChapterCommand extends GoCommand {
     }
 
     @Override
-    public void execute(Ui ui, Access access, Storage storage) {
+    public void execute(Ui ui, Access access, Storage storage) throws IOException {
         String result = goChapter(access, storage);
         if (result.equals("")) {
             return;
@@ -49,7 +50,7 @@ public class GoChapterCommand extends GoCommand {
      * @return result to be displayed
      * @throws IOException if there is an error writing to the storage file
      */
-    private String goChapter(Access access, Storage storage) {
+    private String goChapter(Access access, Storage storage) throws IOException {
         assert access.isModuleLevel() : "Not module level";
         String result = "";
         try {
@@ -70,7 +71,10 @@ public class GoChapterCommand extends GoCommand {
             logger.info(result);
             return result;
         } catch (FileNotFoundException e) {
-            result = "The chapter file cannot be found.";
+            result = "The chapter file cannot be found. You may have accidentally deleted it from your folder. "
+                    + "Kaji has updated the list for you.";
+            Module newModule = new Module(storage.loadChapter(access.getModuleLevel()));
+            access.setModule(newModule);
             logger.info(result);
             return result;
         }
