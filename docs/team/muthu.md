@@ -34,21 +34,27 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
  
  #### Contribution to documentation
   Sections contributed: 
-  -
- For the user guide, I implemented sections which explained about the quiz and results functionality. These
- sections are: 3.1.8 , 3.1.9 , 3.2.13 , 3.2.14 , 3.4.1 , 3.4.2 . Furthermore, I added section 3.4.6 about how the tasks are sorted.
- Finally, I did the command summary of the UserGuide.
+  - Viewing results for quizzes on a subject - 3.1.9
+  - Viewing results for quizzes on a topic - 3.2.14
+  - Taking quizzes - 3.4.1
+  - Viewing quiz results - 3.4.2
+  - Sorting tasks - 3.4.6
+  - Printing upcoming tasks - 3.4.7
+  - Command Summary
+
  
  #### Contribution to DG
  Sections contributed: 
-    - Implementation of the quiz class
+    - Implementation of the quiz class - 4.4
+    - Sorting Tasks - 4.5
+    - Results - 4.6
     - Target User Profile
     - Value proposition
     - Glossary
-  UML diagrams: Section 4.4 and 4.5
+  UML diagrams: Section 4.4 
  
  #### Team based tasks
- Set up the Github team org and repo <br>
- In charge of release v1.0 and v2.0 <br>
- Link to issues created: Click [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues/created_by/syncode98)
- Link to pull requests reviewed:[here](https://github.com/AY2021S1-CS2113T-W13-1/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3A%40me)
+- Set up the Github team org and repo <br>
+- In charge of release v1.0 and v2.0 <br>
+-  Link to issues created: Click [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues/created_by/syncode98)
+- Link to pull requests reviewed:[here](https://github.com/AY2021S1-CS2113T-W13-1/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3A%40me)

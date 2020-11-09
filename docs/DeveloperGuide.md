@@ -717,9 +717,9 @@ quiz, use the `stop` command. The application will then print out the score that
 then the application not only prints the score, but it also prints the incorrect answers from the quiz.
 
 
-The following diagram shows how you can initiate the quiz for a subject.
+The following diagram shows how you can initiate the quiz for the Maths Subject.
 
-![first](https://user-images.githubusercontent.com/46095141/98369799-7ec3fa00-2074-11eb-9f01-e656fcebc227.png)
+![first](https://user-images.githubusercontent.com/46095141/98517456-e5c9f480-22a8-11eb-98ad-87c08752e1b1.png)
 
  <sub>***Figure 4.4.1** UML sequence diagram for subject quiz*</sub>
 
@@ -729,21 +729,21 @@ after parsing the command and calls for the `startQuiz` method. This method clas
 have any flashcards. The application then returns back to the `startQuiz` method. The implementation of the `startQuiz` method is similar
 to that of the SubjectQuiz class.
 
-The following diagram shows how you can initiate the quiz for a topic.
+The following diagram shows how you can initiate the quiz for a topic speed under the Maths subject.
 
-![topic](https://user-images.githubusercontent.com/46095141/98371459-2b06e000-2077-11eb-85dd-4850dbe7bba8.png)
+![topic](https://user-images.githubusercontent.com/46095141/98517458-e793b800-22a8-11eb-81c9-50581c178043.png)
 
  <sub>***Figure 4.4.2** UML sequence diagram for topic quiz*</sub>
 
 > 📝️ **_NOTE:_** For both the subject quiz and the topic quiz, the application only prints out the incorrectAnswer
 >if the user has completed the quiz. If the user stops the quiz without completing it, then the application will only
->show the score obtained by the user. The incorrectAnswers are printed along with the score of the quiz in the `printScore`
->method.
+>show the score obtained by the user. 
 
 ### 4.5 Sorting tasks <a name="sort-imp"></a>
 The application sorts the tasks according to their dates and times. Tasks which are due soon are placed at the front
-while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist
-by assigning the `LocalDateTime` variable to be `LocalDateTimeMax`.
+while tasks which are due later are placed at the end of the task list. `Todo` tasks are placed at the end of the tasklist.
+Their `LocalDateTime` variables are assigned the  `LocalDateTimeMax` value. This is to ensure that the sorting can be done
+for all tasks. 
 
 ### 4.6 Results <a name="results-imp"></a>
 The `updateResult` method in the `Result`class updates the result for a given quiz by setting the score and the description.

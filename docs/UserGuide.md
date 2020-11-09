@@ -52,6 +52,15 @@ Hello from
 |  __|/ __ \ \    / /| |  /  _____/ |   __| | | |
 | |  |  __/ \ \__/ / | | /_____  /  |  |__| |_| |
 | |   \___|  \____/  |_|/_______/   |_____|_____/
+____________________________________________________________
+Hello! I'm revisED
+____________________________________________________________
+____________________________________________________________
+Alright, What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Type help for all available commands
+____________________________________________________________
 ```
 
 Subsequently, you can begin using the application!
@@ -297,7 +306,7 @@ Type help for all available commands
 ____________________________________________________________
 ```
 
-#### 3.1.8 Starting Subject Quiz: `quiz` (Muthu) <a name="subject_quiz"> </a>
+#### 3.1.8 Starting Subject Quiz: `quiz`  <a name="subject_quiz"> </a>
 
 Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>.
 
@@ -319,7 +328,7 @@ Expected output:
 You are about to begin the quiz for CS2113T.You have 2 minutes.
 ```
 
-#### 3.1.9 Viewing results for quizzes on a subject: `results`
+#### 3.1.9 Viewing results for quizzes on a subject: `results` (Muthu)
 
 This command allows you to look at the results for a subject. For more details, see <a href="#result">result</a>.
 
@@ -733,7 +742,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-#### 3.2.13 Starting Topic Quiz - `quiz` (Muthu) <a name="topic_quiz"> </a>
+#### 3.2.13 Starting Topic Quiz - `quiz`  <a name="topic_quiz"> </a>
 
 This type of quiz helps you to prepare for a particular topic. For more details, see section <a href =#takeQuiz>3.4.1 Taking quizzes</a>.
 
@@ -1272,6 +1281,36 @@ Here are the tasks(s) under CS2113T:
 ____________________________________________________________
 </code></pre>
 
+#### 3.4.7 Printing upcoming tasks <a name="upcoming"> </a> (Muthu)
+Once you open the application, it will print the tasks which are due in the upcoming week. Only tasks which have not been
+completed yet will be printed out. The tasks will be sorted out according to the subjects, then the date and time at which 
+the task occurs(event)/is due(deadlines).
+
+Example:
+<pre><code>
+Hello from
+                                    ___________
+                                    |  __ |  _ \
+ ____  ______      _____   ________ |  |__| | | |
+|  __|/ __ \ \    / /| |  /  _____/ |   __| | | |
+| |  |  __/ \ \__/ / | | /_____  /  |  |__| |_| |
+| |   \___|  \____/  |_|/_______/   |_____|_____/
+
+____________________________________________________________
+Hello! I'm revisED
+____________________________________________________________
+Here are the upcoming tasks for next week!
+CS2113T
+1. [D][✘] homework (by: 6:00 PM 6 Nov 2020)
+CG2027
+2. [E][✘] exam (at: 7:00 PM 9 Nov 2020)
+____________________________________________________________
+Alright, What can I do for you?
+____________________________________________________________
+____________________________________________________________
+Type help for all available commands
+____________________________________________________________
+</code></pre>
 
 ## 4. FAQ <a name = "faq"> </a>
 This section answers some common questions that you may have about **revisED**.
