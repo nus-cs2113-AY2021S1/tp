@@ -20,9 +20,9 @@ class InfoCommandTest {
     StorageManager storageManager;
     User user;
 
-    protected static final String ZERO_ANIME_INDEX = "-a 0";
-    protected static final String LARGE_ANIME_INDEX = "-a 3";
-    protected static final String VALID_ANIME_INDEX = "-a 1";
+    protected static final String ZERO_ANIME_INDEX = "0";
+    protected static final String LARGE_ANIME_INDEX = "3";
+    protected static final String VALID_ANIME_INDEX = "1";
 
     @BeforeEach
     void setUp() throws AniException {
