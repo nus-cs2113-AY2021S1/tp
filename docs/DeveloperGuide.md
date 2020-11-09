@@ -228,7 +228,7 @@ The `Topic` class is a class to store information of topics. It has various attr
 a list of various flashcards in a topic-`List<Flashcard>`, and a list of the results for all topic quizzes-`ResultList`. It also 
 contains various constructors, getters for all its attributes, and a toString method that returns the title of the topic.
 
-An example of how classes in the card package interact with each other is shown in the figure below. 
+An example of how classes in the card package interact with each other is shown in the figure below. ADD CARD DIAGRAM
 In this example, a student has 2 main subjects, mainly Math and Science. Math has topics algebra and calculus, while science has topics speed and light. He also made flashcards the various topics.
 
 ### 3.2 command Package <a name="command"></a>
@@ -254,10 +254,13 @@ AccessSubjectCommand and AccessTopicCommand both have an extra method goToSubjec
 allows the program to enter Subject level from the Main level, and to the Topic level from the Subject level respectively.
 
 
-#### 3.2.1 subjectcommand package <a name="subjectcommand"></a>
+#### subjectcommand package <a name="subjectcommand"></a>
 The `subjectcommand` package holds all the necessary classes for executing methods at the main level. The Class that will be created and executed depends 
 on user input. A Class diagram of how the classes interact with each other in the subjectcommand package is shown below.
-![SubjectCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230549-3fbf7700-1f96-11eb-9b03-12ed2ed16ffb.png)
+
+![SubjectCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98504305-9c21df80-2291-11eb-988a-916430c7270d.jpg)
+
+<sub>***Figure 3.2.1** UML class diagram for subjectcommand package*</sub>
 
 The `subjectcommand` package holds the following classes.
 - AccessSubjectCommand
@@ -291,19 +294,17 @@ available in the subject that is selected via user input.
 
 The isExit() method determines whether the program exits. The `AccessSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
-A sequence diagram of accessing a subject is shown below.
-![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
+For more information of the implementation of the AccessCommand Class, refer to <a href="#accessing-imp">4.8 Accessing subjects/topics implementation</a>. 
 
 ##### AddSubjectCommand
 The execute() method of the `AddSubjectCommand` decodes the user input, then adds a subject into the SubjectList, which title depends on the user input. For example, if the 
 user input is `add Maths`, then the title of the Subject created in the SubjectList will be Maths. It also prints the title of the subject that 
 is added to the SubjectList.
 
-A sequence diagram of adding a Maths subject is shown below.
-![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98213500-1c89cd00-1f80-11eb-9b0c-9da37446b530.png)
-
 The isExit() method determines whether the program exits. The `AddSubjectCommand` isExit() method is hard coded to return false since the command does not exit the code.
 
+For more information of the implementation of the AddCommand Class, refer to <a href="#adding-imp">4.7 Adding objects implementation</a> 
+. 
 
 ##### DeleteSubjectCommand
 The execute() method of the `DeleteSubjectCommand` decodes the user input, then deletes a subject based on the index the Subject currently in the SubjectList. 
@@ -369,10 +370,13 @@ The `SubjectCommand` class is an abstract class that contains a abstract execute
 package. This is to ensure that all other commands in the subjectcommand package can have the same method calls, and that execute() can be called on a SubjectCommand class, 
 even if they are a subclass of the SubjectCommand class.
 
-#### 3.2.2 topiccommand package
+#### topiccommand package
 The `topiccommand` package holds all the necessary classes for executing methods at the subject level. The Class that will be created and executed depends 
 on user input. A Class diagram of how the classes interact with each other in the topiccommand package is shown below.
-![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230523-39c99600-1f96-11eb-9eb2-693f4ab039a1.png)
+
+![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98504309-9fb56680-2291-11eb-932d-2ffac059b101.jpg)
+
+<sub>***Figure 3.2.2** UML class diagram for topiccommand package*</sub>
 
 The `topiccommand` package holds the following classes.
 - AccessTopicCommand
@@ -390,11 +394,16 @@ The `topiccommand` package holds the following classes.
 
 All classes in the `topiccommand` package works the same way as the ones found in the `subjectcommand` package, but it deals with the `Topic` class instead of the `Subject` class. Notably, 
 there is a change in parameters, as the `TopicCommand` classes is missing the Storage parameter. This is due to the absence of `ExportCommand` in the TopicCommands, since we did not implement 
-the export command for the subject level. The rest of the TopicCommands do not need the Storage parameter since none of the execute() methods of the Commands require it.
+the export command for the subject level. The rest of the TopicCommands do not need the Storage parameter since none of the execute() methods of the Commands require it. 
+For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">SubjectCommand</a> .
 
-#### 3.2.3 taskcommand package
+#### taskcommand package
 The `taskcommand` package holds all the necessary classes for executing methods at the subject level. The Class that will be created and executed depends 
 on user input. A Class diagram of how the classes interact with each other in the taskcommand package is shown below.
+
+![TaskCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98503905-9e376e80-2290-11eb-90b8-274623ec400b.png)
+ 
+<sub>***Figure 3.2.3** UML class diagram for taskcommand package*</sub>
  
 The `taskcommand` package holds the following classes.
 - AddDeadlineCommand
@@ -409,13 +418,16 @@ The Classes in the `taskcommand` package is different from the ones found in the
 Subject level, similar to the Topic Commands. Thus, they do not have their own Exit Commands, List Commands and Help Commands, since all those are handled by the Topic Commands.
 
 There are 3 different Add Task Commands, due to the 3 different formats of the Tasks that the user can save, namely `Event`, `Deadline` and `Todo`. The rest of the Task Commands have similar functionality to 
-the ones found in the `subjectcommand` package. For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">3.2.1 SubjectCommand</a> 
+the ones found in the `subjectcommand` package. For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">SubjectCommand</a> .
 
-#### 3.2.4 flashcardcommand package
+#### flashcardcommand package
 
 The `flashcardcommand` package holds all the necessary classes for executing methods at the topic level. The Class that will be created and executed depends 
 on user input. A Class diagram of how the classes interact with each other in the flashcardcommand package is shown below.
-![TopicCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98230523-39c99600-1f96-11eb-9eb2-693f4ab039a1.png)
+
+![FlashcardCommandClassDiagram](https://user-images.githubusercontent.com/47527482/98503810-6cbea300-2290-11eb-90c3-e0525258077b.png)
+
+<sub>***Figure 3.2.4** UML class diagram for flashcardcommand package*</sub>
 
 The `flashcardcommand` package holds the following classes.
 - AddFlashcardCommand
@@ -431,7 +443,7 @@ All classes in the `Flashcardcommand` package works the same way as the ones fou
 there is a change in parameters, as the `FlashcardCommand` classes is missing the Storage parameter. This is due to the absence of `ExportCommand` in the FlashcardCommands, since we did not implement 
 the export command for the subject level. The rest of the FlashcardCommands do not need the Storage parameter since none of the execute() methods of the Commands require it. Additionally, the flashcardcommand 
 package is also missing a few classes such as the `QuizCommand`, `ResultCommand` and `FindCommand` classes. This is due to the fact that at the topic level, there are only flashcards in each topic, and it would not 
-make sense to quiz one flashcard at a time, thus the absence of the implementation.
+make sense to quiz one flashcard at a time, thus the absence of the implementation. For more information of the `subjectcommand` package, please refer to <a href="#subjectcommand">SubjectCommand</a> .
 
 ### 3.3 List Package <a name="list"></a>
 
@@ -718,7 +730,7 @@ Each of the add commands have an execute() method. The execute() method for AddS
 add topics in a subject, while the execute() method for AddTodoCommand, AddDeadlineCommand and AddEventCommand adds tasks in a subject.
 subject.
 
-#### 4.7.1 Adding a subject
+#### Adding a subject
 You can add a subject by entering `add [SUBJECT_NAME]`. The subject will be added to a `SubjectList` created when the program initialises. 
 After the program initialises, the program will ask for user input. The `Ui` will read the user input using the readCommand() method, then the 
 the `SubjectParser` will parse the command. Since the user input is `add [TOPIC_NAME]`, the program will register it as a command to add a `Subject`, 
@@ -730,7 +742,9 @@ and add that new `Subject` created into the `SubjectList` that was created durin
 A Sequence diagram of adding a `Subject` Maths is shown below.
 ![AddSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98213500-1c89cd00-1f80-11eb-9b0c-9da37446b530.png)
 
-#### 4.7.2 Adding a topic/task
+<sub>***Figure 4.7.1** UML sequence diagram for adding a subject*</sub>
+
+#### Adding a topic/task
 you can add a `Topic` by entering `add [TOPIC_NAME]`. Additionally, you can add a `Todo` task by entering `todo [DESCRIPTION]`, add a `Deadline` 
 task by entering `deadline [DESCRIPTION] /by [TIME]`, and add an `Event` task by entering `event [DESCRIPTION] /at [TIME]`. This command can only 
 be entered in the subject level of the program, which can be accessed using the command `subject [SUBJECT_NAME]`. The documentation of the 
@@ -743,7 +757,7 @@ Each of the access commands have an execute() method and a goToSubject()/goToTop
 access the subject level of a subject specified in the user input from the main level, while the AccessTopicCommand class allows users to access the topic level 
 of a topic specified in the user input from a subject level.
 
-#### 4.8.1 Accessing a subject
+#### Accessing a subject
 You can access a subject by entering `subject [SUBJECT_NAME]`. The subject needs to be a subject that already exists in the list, and you can 
 add the `Subject` into the `SubjectList` by using the `add [SUBJECT_NAME]` feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
 For example, after adding a `Subject` CS2101, the CS2101 `Subject` can be accessed by entering `access CS2101`. The application first reads the command using 
@@ -756,7 +770,9 @@ have a loop that reads user inputs and parse these inputs to create new `TopicCo
 The sequence diagram of accessing a `Subject` Maths is shown below.
 ![AccessSubjectSequenceDiagram](https://user-images.githubusercontent.com/47527482/98199431-171f8900-1f66-11eb-9dfe-fc263ccfe15f.png)
 
-#### 4.8.2 Accessing a Topic
+<sub>***Figure 4.8.1** UML sequence diagram for accessing a subject*</sub>
+
+#### Accessing a Topic
 You can access a topic by entering `topic [TOPIC_NAME]`. The topic needs to be a topic that already exists in the list, and you can 
 add the `Topic` into the `TopicList` of a `Subject` by using the adding a topic feature, elaborated further in <a href="#adding-imp">4.7 Adding objects implementation</a>.
 
