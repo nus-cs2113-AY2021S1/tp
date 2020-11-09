@@ -423,7 +423,7 @@ _Credits: The Levenshtein distance algorithm was adapted from
 
 
 <!-- @@author Johnson-Yee -->
-### 3.12.1 Displaying most searched bus stop on start-up - Johnson
+### 3.12 Displaying most searched bus stop on start-up - Johnson
 
 This feature informs the user about their most searched bus stop.
 There is no function to explicitly call it and is executed only during Nav@NUS's start up.
@@ -458,7 +458,7 @@ variable called searchCount.
     
 Given the above alternatives, alternative 1 was used considering the integration of other commands.
 
-#### 3.12.1 Resetting search frequencies of bus stops (`/reset` Feature)
+#### 3.13 Resetting search frequencies of bus stops (`/reset` Feature)
 This feature allows the user to reset the search frequencies of all bus stops.
 
 The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand Class executes the command in the following steps:
@@ -467,7 +467,7 @@ The `ResetSearchFreqCommand#executeCommand()` method of ResetSearchFreqCommand C
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/reset` command.
 ![Sequence ](DG_Diagrams/ResetSearchFreqCommand/ResetSearchFreqSeq.png)
-
+<!-- @@author -->
 ## 4. Appendix A: Product Scope
 
 <!-- @@author Johnson-Yee -->
