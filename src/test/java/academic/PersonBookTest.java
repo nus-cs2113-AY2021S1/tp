@@ -1,5 +1,6 @@
 package academic;
 
+import exceptions.EmptyInputException;
 import exceptions.InvalidEmailException;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ class PersonBookTest {
 
 
     @Test
-    void evaluateInput_addPerson_success() throws InvalidEmailException {
+    void evaluateInput_addPerson_success() throws InvalidEmailException, EmptyInputException {
         String[] inputVars = {"Prof Lim","81234567","E7654321@u.nus.edu","false"};
         personBook.addPerson(inputVars,listOfPerson);
         assertEquals(Person.printIndividualPerson(testPerson),Person.printIndividualPerson(listOfPerson.get(0)));
@@ -34,7 +35,7 @@ class PersonBookTest {
     }
 
     @Test
-    void evaluateInput_printPersonBook_success() throws InvalidEmailException {
+    void evaluateInput_printPersonBook_success() throws InvalidEmailException, EmptyInputException {
         String[] inputVars = {"Prof Lim","81234567","E7654321@u.nus.edu","false"};
         personBook.addPerson(inputVars,listOfPerson);
         String result = personBook.printPersonBook(listOfPerson);
@@ -48,7 +49,7 @@ class PersonBookTest {
     }
 
     @Test
-    void evaluateInput_deletePerson_success() throws InvalidEmailException {
+    void evaluateInput_deletePerson_success() throws InvalidEmailException, EmptyInputException {
         String[] inputVars = {"Prof Lim","81234567","E7654321@u.nus.edu","false"};
         personBook.addPerson(inputVars,listOfPerson);
         personBook.deletePerson(1,listOfPerson);
