@@ -103,7 +103,7 @@ public class Task extends Item implements Comparable<Task> {
                 + dateString;
     }
 
-    //@@author GuoAi
+    //@@author GuoAiTa
 
     /**
      * Defines how tasks are sorted. First sort tasks based on priority in ascending order (priority 0, i.e. no

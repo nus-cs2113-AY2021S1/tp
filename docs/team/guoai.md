@@ -106,6 +106,9 @@ commands, storage, UI, runner, and exception did not change.
    [#184](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/184)
 2. Communicate and explain the refactoring about `Item` and `ItemList` and their subclasses to teammates in group chat, 
 so that more OOP can be applied.
+3. Provide details when creating PR to inform teammates of the updates.
+   - Example:
+   [#214](https://github.com/AY2021S1-CS2113-T14-3/tp/pull/214)
 
 ##### Contributions beyond the project team:
 - Create and host weekly project meetings
