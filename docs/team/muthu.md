@@ -1,9 +1,10 @@
 # I MUTHUKUMAR - Project Portfolio Page
 
 ## Overview
-**revisED** aims to help students to revise their subjects through the creation of flashcards or tasks that have
-to be completed.  This product has been implemented in a short span of 6 weeks by a team of 5 students. This application
-aims to provide students with a one stop solution to manage their tasks and their notes, to improve their efficiency.
+**revisED** is an application which aims aims to provide students with a one stop solution to manage their tasks, to take  notes
+ and to improve their efficiency.
+ This product has been implemented in a short span of 6 weeks by a team of 5 students. This application
+
 
 ### Summary of Contributions
 
@@ -32,15 +33,22 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
  - Implement the logo in the application.
  
  #### Contribution to documentation
+  Sections contributed: 
+  -
  For the user guide, I implemented sections which explained about the quiz and results functionality. These
  sections are: 3.1.8 , 3.1.9 , 3.2.13 , 3.2.14 , 3.4.1 , 3.4.2 . Furthermore, I added section 3.4.6 about how the tasks are sorted.
  Finally, I did the command summary of the UserGuide.
  
  #### Contribution to DG
- Sections contributed: 4.4, 4.5
- UML diagrams: Section 4.4 and 4.5
+ Sections contributed: 
+    - Implementation of the quiz class
+    - Target User Profile
+    - Value proposition
+    - Glossary
+  UML diagrams: Section 4.4 and 4.5
  
  #### Team based tasks
- Set up the Github team org and repo
- In charge of release v1.0 and v2.0
+ Set up the Github team org and repo <br>
+ In charge of release v1.0 and v2.0 <br>
  Link to issues created: Click [here](https://github.com/AY2021S1-CS2113T-W13-1/tp/issues/created_by/syncode98)
+ Link to pull requests reviewed:[here](https://github.com/AY2021S1-CS2113T-W13-1/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3A%40me)
