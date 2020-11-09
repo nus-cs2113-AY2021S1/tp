@@ -933,6 +933,8 @@ Format: `find {tasks,links,books,expenses,modules} k/<keyword>`
 
 🚩: Incomplete keywords will **not be matched**. e.g `mee`, `t` etc.
 
+🚩: `<keyword>` for finding modules or links can only be the related **module name**.
+
 Example of usage:
 
 `find tasks k/tp meeting`
@@ -1176,16 +1178,16 @@ Add web link | `add link m/<module code> <compulsory arguments>` | `add link m/C
 Add book | `borrow <book name> <compulsory argument>` | `borrow cooking book date/11-11-2011`
 Add expense item | `spend <description> <compulsory arguments> <optional arguements>` | `spend lunch v/5 currency/SGD date/29-10-2020`
 Create module folders | `makefolders` | `makefolders`
-List tasks | `list` | `list tasks`
-List tasks with priority | `list p/<priority>` | `list p/2`
-List tasks with category | `list c/<category>` | `list c/CS2113`
-List links | `list` | `list links`
-List books | `list` | `list books`
-List modules | `list` | `list modules`
-List expense items | `list` | `list expenses`
-List expense items with currency | `list` | `list expenses currency/USD`
-List expense items with date | `list` | `list expenses date/2020-11-08`
-List expense items with date range | `list` | `list expenses for/WEEK`
+List tasks | `list tasks` | `list tasks`
+List tasks with priority | `list tasks p/<priority>` | `list tasks p/2`
+List tasks with category | `list tasks c/<category>` | `list tasks c/CS2113`
+List links | `list links` | `list links`
+List books | `list books` | `list books`
+List modules | `list modules` | `list modules`
+List expense items | `list expenses` | `list expenses`
+List expense items with currency | `list expenses currency/<currency_name>` | `list expenses currency/USD`
+List expense items with date | `list expenses date/<YYYY-MM-DD>` | `list expenses date/2020-11-08`
+List expense items with date range | `list expenses for/<time period>` | `list expenses for/WEEK`
 Delete task | `delete task <taskIndexNumber>` | `delete task 2`
 Delete tasks by priority | `delete p/<priority>` | `delete tasks p/2`
 Delete tasks by category  | `delete c/<category>` | `delete tasks c/cs2113`

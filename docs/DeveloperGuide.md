@@ -755,7 +755,7 @@ Below are the steps required for manual testing of termiNus
       Expected: recurring tasks `tP meeting` are added to the task list, with priority of `2`, category of `CS2113`,
       and the recurring dates of the Tuesdays during the start and end period.
       
-    - Test case: addr game club c/CCA <br>
+    - Test case: `addr game club c/CCA <br>`
       Expected: an error message is printed since the compulsory arguments `s/`, `e/`, `day/` are all required for 
       a recurring task.
       
@@ -787,7 +787,7 @@ Below are the steps required for manual testing of termiNus
     - Test case: `spend lunch v/4 currency/SGD date/2020-11-08` <br>
       Expected: a `4.00` `SGD` expense on `lunch` on `Sunday, November 8,2020` is added to the expense list.
     
-    - Test case: `spend book v/15`
+    - Test case: `spend book v/15` <br>
       Expected: a `15.00` `SGD` expense on `book` on the current day is added to the expense list. 
       (By default, if `currency/` and `date/` arguments are not specified, termiNus will assume the currency is `SGD` 
       and the date is the current day.)
@@ -880,7 +880,7 @@ Prerequisite: list the complete task list using `list` command. Multiple tasks i
 
 ### Searching for tasks with keywords
 - Test case: `find tP` <br>
-  Expected: the tasks containting the keyword `tP` are displayed.
+  Expected: the tasks containing the keyword `tP` are displayed.
   
 - Test case: `find t` <br>
   Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
