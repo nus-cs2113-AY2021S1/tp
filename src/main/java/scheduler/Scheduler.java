@@ -96,7 +96,7 @@ public class Scheduler {
         int newInterval = (int) Math.round(previousInterval * EASY_MULTIPLIER);
         assert newInterval > 0 : "Invalid new Interval";
         if (newInterval > MAX_INTERVAL) {
-            return previousInterval;
+            return MAX_INTERVAL;
         } else {
             return newInterval;
         }
@@ -111,7 +111,7 @@ public class Scheduler {
         int newInterval = (int) Math.round(previousInterval * MEDIUM_MULTIPLIER);
         assert newInterval > 0 : "Invalid new Interval";
         if (newInterval > MAX_INTERVAL) {
-            return previousInterval;
+            return MAX_INTERVAL;
         } else {
             return newInterval;
         }
@@ -126,7 +126,7 @@ public class Scheduler {
         int newInterval = (int) Math.round(previousInterval * HARD_MULTIPLIER);
         assert newInterval > 0 : "Invalid new Interval";
         if (newInterval > MAX_INTERVAL) {
-            return previousInterval;
+            return MAX_INTERVAL;
         } else {
             return newInterval;
         }
