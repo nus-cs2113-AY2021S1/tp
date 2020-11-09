@@ -12,12 +12,8 @@ This user guide would help you walkthrough the features of Zoomaster and ways to
 
 ## 2.0 About this Document
 
-Please take note of the symbols used throughout the document:
-
-| Icon | Meaning |
-| --- | --- |
-| :bangbang: | Alert on important thing to take note of |
-|:information_source: | Useful tip to know |
+Please take note that the ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
+symbol is used to indicate important warnings throughout the document.
 
 <a name="command_format"></a>
 Please also take note of the labels on command formatting:
@@ -278,7 +274,7 @@ If your bookmark list is empty you will get message ""
 #### 5.2.2 Add bookmark: `add`  
 You can add bookmarks to your bookmark list. A bookmark contains its description and URL.
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* The validity of the `URL` you entered cannot be checked. Please ensure that you entered the correct link. 
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). You can use underscore("_") or dashes("-"") to string
 >multiple words together. Eg. "github_team_repo" or "cs2113t-website".
@@ -339,7 +335,7 @@ You should enter a `desc` or `url` depending on which one you want to edit.
 #### 5.2.4 Find bookmarks: `find`  
 You can use this command to find bookmarks with matching description.
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
 >See the [command format](#command_format) for more details.
 
@@ -368,7 +364,7 @@ Your selection of bookmark(s) can be via:
 The index will correspond to the index of that bookmark in the list. 
 You can do a `show` command to check the bookmark indexes.  
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* Your `DESCRIPTION` must only contain one word (no whitespace inside). 
 >See the [command format](#command_format) for more details.
 >
@@ -400,7 +396,7 @@ Else if you have a lesson ongoing currently, it will instead show a "lesson now"
 *around* your current lesson.
 
 >  
->:bangbang: 
+>![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png) 
 > * You have to enter `DAY` input according to the command format else it will not be recognised as a valid date. 
 >The valid inputs are `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`and `today`. 
 >You can see the [command format](#command_format) for more information.
@@ -441,7 +437,7 @@ Shows the details of a module or slot that has been added.
 You can see the respective indexes of each of the slots from the module 
 and using the `bookmarks` keyword will show the bookmarks which are saved in the module and its slots.
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 > * You can only see modules that are listed on the NUSMods website. 
 > You can see the [command format](#command_format) for more information.
 >
@@ -462,7 +458,7 @@ Example of usage:
 You can add modules, time slots and bookmarks using this feature.
 You can also chain commands when adding multiple slots and bookmarks to a module by using `,` as a separator.
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* You are required to insert **a space** between each parameter.
 >* The chaining of commands only performs on **one module** which is `{MODULE}`.    
 >* You can only add a module that is listed on the NUSMods website. 
@@ -556,7 +552,7 @@ More examples:
 #### 5.3.4 Delete module, time slot and bookmarks: `delete` (Xing Rong)
 Deletes module, time slot or their bookmarks.
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* You can only delete a module that is listed on the NUSMods website. 
 > You can see the [command format](#command_format) for more information.
 
@@ -584,13 +580,9 @@ Example of usage:
 #### 5.3.5 Edit slot's module, title, time: `edit`  (Francisco) 
 Edits the module, title or time for a specific slot.
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* You can only edit a module that is listed on the NUSMods website. 
->You can see the [command format](#command_format) for more information.
->* You cannot change the time of a slot to a period which is currently occupied in the timetable. <br></br>
->Eg. You wish to change a timeslot from friday 16:00 to 18:00 into friday 17:00 to 18:00, you cannot change it directly 
->using the edit command. <br></br> We recommend you to either change the timeslot to a period which is unoccupied then to your 
->desired period or deleting the current timeslot and adding a new timeslot in your desired period. 
+>You can see the [command format](#command_format) for more information. 
 
 ```
 Format (editing the module of a slot): edit module {DAY} {INDEX} {new MODULE}
@@ -604,12 +596,15 @@ Format (editing the time of a slot): edit time {DAY} {INDEX} {DAY} {new START_TI
 * For editing the time of a slot, the first `DAY` parameter is to choose the slot you wish to edit.
 The second `DAY` parameter is for the new day of the week you wish to set your slot.
 
+<!-- @@author fchensan -->
 > For example, let's say that you have these two slots on wednesday:
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslotcontext.png)
+>
 > If you want to change the title of the second slot to "tutorial", you can simply type `edit title wed 2 tutorial`.
 > You should then see a message as shown below:
+>
 > ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/editslot.png)
-
+>
 > More examples of usage:   
 >* `edit module mon 1 CS1010`  
 >* `edit title mon 1 lecture`
@@ -621,7 +616,7 @@ The second `DAY` parameter is for the new day of the week you wish to set your s
 #### 5.3.6 Launch bookmarks from module, slot: `launch` (Xing Rong)  
 Launches the bookmarks of slots or the bookmarks of a module
 
-> :bangbang:
+> ![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/bangbang.png)
 >* You can only launch a module that is listed on the NUSMods website. 
 >You can see the [command format](#command_format) for more information.
 
@@ -745,6 +740,7 @@ and save the txt file. You can now add the module in Zoomaster.
 **show**|`show`
 **add**|`add {DESCRIPTION} {URL}` <br>example: `add cheatsheet www.google.com` <br/><br/>
 **delete**|`delete {INDEX}`<br>example: `delete 2`|
+**edit**|`edit {desc/url} {INDEX} {NEW_VALUE}`<br>example: `edit desc 1 math`, `edit url 3 www.google.com`|
 **find**|`find {MODULE} {DESCRIPTION(optional)}` <br>example: `find CS2113 tutorial`
 **launch**|`launch {MODULE} {DESCRIPTION(optional)}` <br>example: `launch CS2113`
 ***Timetable Mode***|
