@@ -11,17 +11,22 @@
 * **Features implemented:** 
     * Implement Quiz Feature which includes the following:
          - Quiz,SubjectQuiz and TopicQuiz classes which form the quiz.
-         - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes.
-         - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz.
-         - Logging (within the respective classes)
-         - Testing - SubjectQuizTest,TopicQuizTest and the two test cases in the SubjectCommandTest and  TopicCommandTest related to quiz.
+         - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes .These 
+         classes were based on the other SubjectCommand classes created by [JiaLerk](https://github.com/jialerk).
+         - Logging (within the respective classes) 
+         - Testing - SubjectQuizTest and TopicQuizTest.
+         - Testing -Two test cases in the SubjectCommandTest and  TopicCommandTest related to quiz. The other methods were
+         created by [JiaLerk](https://github.com/jialerk).
 
     * Implement Quiz Feature which includes the following:
         - Quiz,SubjectQuiz and TopicQuiz classes which form the quiz.
-        - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes.
-        - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz.
+        - QuizSubjectCommand and QuizTopicCommand classes to read the input and initiate the respective quizzes. These
+        command classes were created by [JiaLerk](https://github.com/jialerk).
+        - NoFlashcardException to inform the users if there are no flashcards present in a topic or a quiz. 
         - Logging (within the respective classes)
-        - Testing - SubjectQuizTest,TopicQuizTest and the two test cases in the SubjectCommandTest and  TopicCommandTest related to quiz.
+        - Testing - SubjectQuizTest,TopicQuizTest.
+        - Testing - The two test cases in the SubjectCommandTest and  TopicCommandTest related to results.The other methods were
+         created by [JiaLerk](https://github.com/jialerk).
     
     * Implement Result Feature which includes the following:
         - Result , ResultList classes.
