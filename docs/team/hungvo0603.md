@@ -3,24 +3,20 @@
 ## 1. Overview
 
 ### 1.1 Project Overview
-
 Fluffle is a **desktop app for creative writers**, optimized for **use via a Command Line Interface** (CLI). It aids users in creating and managing their writings and ideas. As a fast-typing writer, this CLI app is highly suitable for you. This product is created on IntelliJ IDE with Java programming language.
 <br>
 
 ### 1.2 Accessing Fluffle
-
 The latest release of Fluffle can be accessed from **[here](https://github.com/AY2021S1-CS2113T-W11-4/tp/releases/tag/v2.1)**.
 
 ## 2. Summary of Contributions
 
 ### 2.1 Code contributed
-
 - The functional and test code contributed can be accessed via **[here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hungvo0603&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)**.
 
 ### 2.2 Enhancement Implemented
 
 #### 2.2.1 Main features enhancements
-
 - Implemented storage for words by `WordsLoader` and `WordsSaver` classes. [#204](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/204)
     - Functionality: This helps store the words in the user's customized words list into the hard drive location and load them whenever the user enters the program. The word types that the program can save and load are Noun, Verb and Adjective.
     - Justification: This is necessary because when an expert writer uses the application frequently, their words list increases in size. In order to help him manage the words list better, local storage was implemented.
@@ -32,7 +28,6 @@ The latest release of Fluffle can be accessed from **[here](https://github.com/A
     - Justification: Some writers end up writing a part of their whole story and totally forget about it later on. This helps encourage the writers to develop their short pieces to a full-length story and continuously practice their creative writing skills. 
 
 #### 2.2.2 Miscellaneous enhancements
-
 - Fixed print format for `noun`, `verb` and `adjective` commands. [#293](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/293)
 - Enhanced print format for some word-related `help` commands and make them in sync with the User Guide. [#306](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/306)
 - Added JUnit test methods for filter-words-related classes. [#150](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/150)
@@ -40,11 +35,9 @@ The latest release of Fluffle can be accessed from **[here](https://github.com/A
 ### 2.3 Contributions to documentation
 
 #### 2.3.1 Contributions to Javadoc comments
-
 Java-doc comments are provided for most of the public classes and methods that I implemented. This helps subsequent developers to catch up with the project easily.
 
 #### 2.3.2 Contributions to the User Guide
-
 - Added the Preface and Command format sections for Feature section.
 - Added "Filtering words in word list: `filter word`" and "Listing your filter list: `list filter words`" sections.
 - Added "Getting reminders for your writings scheduled for a specific date: `remind`" section.
@@ -52,7 +45,6 @@ Java-doc comments are provided for most of the public classes and methods that I
 - Proofread User Guide and gave feedback to team members.
 
 #### 2.3.3 Contributions to the Developer Guide
-
 - Provided the skeleton for the whole document (headings, subheadings, etc...) [#309](https://github.com/AY2021S1-CS2113T-W11-4/tp/pull/309)
 - Added "Introduction/Background" section and modified "Setting up the project in your computer" section.
 - Added "Design/Architecture" section together with "Figure 1: Overview of Fluffle Architecture".
@@ -62,7 +54,6 @@ Java-doc comments are provided for most of the public classes and methods that I
 - Added Appendix D and Appendix E.
 
 ### 2.5 Contributions to team-based tasks
-
 - Setup the team repo as instructed by the details on the module website.
 - Kept an eye on the module's requirements and remind team members to finish their tasks and credit on the tP progress dashboard.
 - Assigned team members to their issues.
