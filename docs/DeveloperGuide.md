@@ -53,6 +53,7 @@
 ## Introduction
 
 ## Setting up, getting started
+
 1. Fork the Scheduler--; repo from this [link](https://github.com/AY2021S1-CS2113T-T12-4/tp).
 2. Clone the fork on to your computer.
 3. Open Intellij. If you are not in the welcome screen, click `File` -> 'Close project' 
@@ -98,6 +99,8 @@ each component.
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.  
 - At shut down: Stores the user data from memory into the hard disk.
+
+<div style="page-break-after: always;"></div>
 
 The rest of the App consists of five components.
 
@@ -267,8 +270,6 @@ Step 3. `ListCommand#execute()` calls `Ui#printList()` and passes the list of Zo
 
 Step 4. `Ui#printList()` loops through every event in the Zoom event arraylist and prints it.
 
-<div style="page-break-after: always;"></div>
-
 The following sequence diagram shows how the `list zoom` command is parsed:
 
 ![Sequence diagram for parsing list command](./diagrams/ListParseSequenceDiagram.jpg)
@@ -310,8 +311,6 @@ Step 5. The user can choose to end the calendar with the input `q` or press **En
 
 Step 6. `CalendarCommand#execute()` calls `Ui#printCalendarEnd()` to print that it is the end of the calendar when the
 last date is listed or the user ends it.
-
-<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how `CalendarCommand#execute()` works:
 
@@ -481,8 +480,6 @@ The `goal` command is passed through a parser to return the GoalCommand with bla
 
 Step 5.  `GoalCommand#execute()` is called, to retrieve the current goal in `UserData` and print it
 with `Ui#printGoal()`.
-
-<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how `GoalCommand#execute()` works:
 
