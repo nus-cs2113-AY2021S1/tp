@@ -543,7 +543,7 @@ public class EventList {
      */
     public void clearBefore(LocalDate clearDate) throws EmptyEventListException {
         if (events != null) {
-            events.removeIf(event -> event.getDate().compareTo(clearDate) < 0);
+            events.removeIf(event -> event.getEndDate().compareTo(clearDate) < 0);
         } else {
             throw new EmptyEventListException();
         }

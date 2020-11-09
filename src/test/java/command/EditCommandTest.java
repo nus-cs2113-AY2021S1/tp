@@ -7,10 +7,7 @@ import event.SelfStudy;
 import eventlist.EventList;
 import exception.CreatingFileException;
 import exception.DataFileNotFoundException;
-import exception.EditIndexOutOfBoundsException;
 import exception.EmptyEventIndexException;
-import exception.ExistingEventInListException;
-import exception.NoEditEventDescriptionException;
 import exception.UndefinedEventException;
 import exception.WrongEditFormatException;
 import location.Location;
@@ -24,9 +21,8 @@ import exception.NuScheduleException;
 import parser.Parser;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.time.LocalDateTime;
 
 
@@ -56,7 +52,7 @@ class EditCommandTest {
         storage.loadLocationData(locations.getLocationList());
         Assertions.assertThrows(UndefinedEventException.class, () -> {
             Parser.parse("edit 1", locations, 0)
-                    .execute(new EventList(), new LocationList(), new BusStopList(), new UI(), storage);
+                    .execute(new EventList(), new LocationList(), new BusStopList(), new UI(), storage, new UserInfo());
         });
     }
 
@@ -67,12 +63,12 @@ class EditCommandTest {
         LocalDateTime by = LocalDateTime.parse("2020-02-02T20:00");
         event.Event existing = new Assignment("existing", location, by);
         events.addEvent(existing);
-        String[] editInformation = {"","something","","",""};
+        String[] editInformation = {"", "something", "", "", ""};
         LocalDateTime[] startEnd = new LocalDateTime[2];
 
         Command c = new EditCommand(0, editInformation, startEnd, null, null);
         Storage storage = new Storage("data/events.txt", "data/UserInfo.txt");
-        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage, new UserInfo());
         Assertions.assertEquals("something", events.get(0).getDescription());
     }
 
@@ -84,27 +80,27 @@ class EditCommandTest {
         LocalDateTime end = LocalDateTime.parse("2020-02-02T21:00");
         event.Event existing = new Class("existing", location, start, end);
         events.addEvent(existing);
-        String[] editInformation = {"personalEvent","","","",""};
+        String[] editInformation = {"personalEvent", "", "", "", ""};
         LocalDateTime[] startEnd = new LocalDateTime[2];
 
         Command c = new EditCommand(0, editInformation, startEnd, null, null);
         Storage storage = new Storage("data/events.txt", "data/UserInfo.txt");
-        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage, new UserInfo());
         Assertions.assertTrue(events.get(0) instanceof PersonalEvent);
 
         editInformation[0] = "class";
         Command d = new EditCommand(0, editInformation, startEnd, null, null);
-        d.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        d.execute(events, new LocationList(), new BusStopList(), new UI(), storage, new UserInfo());
         Assertions.assertTrue(events.get(0) instanceof Class);
 
         editInformation[0] = "selfStudy";
         Command e = new EditCommand(0, editInformation, startEnd, null, null);
-        e.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        e.execute(events, new LocationList(), new BusStopList(), new UI(), storage, new UserInfo());
         Assertions.assertTrue(events.get(0) instanceof SelfStudy);
 
         editInformation[0] = "assignment";
         Command f = new EditCommand(0, editInformation, startEnd, null, null);
-        f.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        f.execute(events, new LocationList(), new BusStopList(), new UI(), storage, new UserInfo());
         Assertions.assertTrue(events.get(0) instanceof Assignment);
     }
 
@@ -116,13 +112,13 @@ class EditCommandTest {
         LocalDateTime end = LocalDateTime.parse("2020-02-02T21:00");
         event.Event existing = new Class("existing", location, start, end);
         events.addEvent(existing);
-        String[] editInformation = {"","","","",""};
+        String[] editInformation = {"", "", "", "", ""};
         LocalDateTime[] startEnd = new LocalDateTime[2];
         Location location1 = new Location("location1");
         OnlineLocation onlineLocation = new OnlineLocation("zoom.com");
-        events.editEvent(0,editInformation,startEnd,location1,null);
+        events.editEvent(0, editInformation, startEnd, location1, null);
         Assertions.assertEquals(events.get(0).getLocation().getName(), "location1");
-        events.editEvent(0,editInformation,startEnd,null,onlineLocation);
+        events.editEvent(0, editInformation, startEnd, null, onlineLocation);
         Assertions.assertEquals(events.get(0).getLink().getLink(), "zoom.com");
     }
 
@@ -140,15 +136,15 @@ class EditCommandTest {
         LocalDateTime[] startEnd = new LocalDateTime[2];
         startEnd[0] = start;
         startEnd[1] = end;
-        String[] editInformation = {"","","","",""};
-        events.editEvent(0, editInformation, startEnd,null,null);
-        Assertions.assertEquals(events.get(0).getStartDateTime(),start);
+        String[] editInformation = {"", "", "", "", ""};
+        events.editEvent(0, editInformation, startEnd, null, null);
+        Assertions.assertEquals(events.get(0).getStartDateTime(), start);
         Assertions.assertEquals(events.get(0).getEndDateTime(), end);
 
         editInformation[4] = "nil";
         Command c = new EditCommand(0, editInformation, startEnd, null, null);
         Storage storage = new Storage("data/events.txt", "data/UserInfo.txt");
-        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage);
+        c.execute(events, new LocationList(), new BusStopList(), new UI(), storage, new UserInfo());
         // end set to null, getEndDate will get start if end is null
         Assertions.assertEquals(start, events.get(0).getEndDateTime());
     }

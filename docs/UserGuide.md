@@ -12,6 +12,7 @@ Wu Nan
 
 Wan Shi Jie Brendan
 
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -25,8 +26,9 @@ This gives the application both simplicity and speed, setting it apart from othe
     * [View available commands](#view-available-commands)
     * [Add an event](#add-an-event)
     * [Edit an event](#edit-an-event)
-    * [Sort Events](#sort-events)
-    * [Find location](#find-a-location)
+    * [Sort events](#sort-events)
+    * [Find a location](#find-a-location)
+    * [List all locations](#list-all-locations)
     * [List all events](#list-all-events)
     * [Clear events](#clear-events)
     * [Mark event as done](#mark-event-as-done)
@@ -150,11 +152,29 @@ Sort by location:
 ![sort4](diagrams/sort4.png)
 
 ### Find a location
-Shows you the location of the specified event/task.  
+With this command, you can find out about locations around NUS. Depending on the type of location, different additional 
+information will be shown together with the location (e.g. nearest building, nearest bus stops). 
 
-Format: `locate n/EVENTNAME`  
+Format: `locate LOCATIONNAME` or `locate EVENTINDEX` 
 
-Example: `locate n/CS2113t Tutorial`
+Example: `locate lt1`
+
+Find lecture theatres using location name: 
+![locate1](diagrams/locate1.png)
+
+Find buildings using location name: 
+![locate2](diagrams/locate2.png)
+
+Find locations using event index: 
+![locate3](diagrams/locate3.png)
+
+### List all locations
+Displays a list of all locations within NUS
+
+Format: `locations`
+
+Expected output: (list given here is incomplete) 
+![locations](diagrams/locations.png)
 
 ### List all events
 Shows you a list of all events.  
@@ -168,9 +188,9 @@ Delete events existing in the list, you can choose to delete all, auto delete or
 * Clear all events
   Format: `clear`
   
-* Clear events happened one month ago
+* Switch the autoClear function on so that events happened one month ago will be automatically cleared
   Format: `autoClear`
-  Note that this command will clear all events which happened one month ago no matter they are done or not.
+  Note that this function will clear all events which happened one month ago no matter they are done or not.
   
 * Clear events happened before a certain date
   Format: `clearBefore CLEAR_DATE`
@@ -203,10 +223,10 @@ the data of your previous AddressBook home folder.
 |------|-------|-------|
 |add|`EVENTTYPE EVENTNAME /t DATE TIME` `/e DATE TIME`(optional personal event, compulsory for class, must not have for assignment) `/l LOCATION` OR `/o LINK` `/p PASSWORD`(optional)|`personalEvent Mom’s Birthday /t 2020-10-26 19:00 /l home`|
 |clear|`clear` OR `autoClear` OR `clearBefore CLEAR_DATE` |`clearBefore 2020-10-22`|
+|delete|`delete INDEX`|`delete 1`|
 |done|`done INDEX` |`done 1` |
 |edit|`edit`, then fill in each fields when prompted and press `ENTER` to move on to the next field|`edit 1` `ENTER` `class` `ENTER` `cs2113t` `ENTER` `\l school` `ENTER` `2020-10-26 19:00` `ENTER` `2020-10-26 20:00`|
 |help|`help`||
 |list|`list`||
-|locate|`locate n/EVENTNAME` |`locate n/CS2113t Tutorial`|
+|locate|`locate LOCATION_NAME` OR `locate EVENT_INDEX`|`locate LT1`|
 |sort|`sort SORT_CRITERIA` |`sort description`|
-|delete|`delete INDEX`|`delete 1`|

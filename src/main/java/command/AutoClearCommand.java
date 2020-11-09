@@ -3,11 +3,12 @@ package command;
 import event.Event;
 import eventlist.EventList;
 import exception.EmptyEventListException;
-import exception.NoEventOneMonthAgoException;
+import exception.WritingFileException;
 import locationlist.BusStopList;
 import locationlist.LocationList;
 import storage.Storage;
 import ui.UI;
+import usercommunication.UserInfo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,35 +19,52 @@ import java.util.ArrayList;
  */
 public class AutoClearCommand extends Command {
 
-    protected LocalDate clearDate;
+    protected boolean isAutoClear;
 
-    public AutoClearCommand() {
-        clearDate = LocalDate.now().minusMonths(1);
+    public AutoClearCommand(boolean isAutoClear) {
+        this.isAutoClear = isAutoClear;
     }
 
     /**
-     * Execute the command based on the specific command type.
+     * Set the AutoClear flag as ON or OFF.
      *
      * @param events    the list of Events.
      * @param locations the list of Locations.
      * @param busStops  the list of BusStops.
      * @param ui        do outputs.
      * @param storage   store the data.
-     * @throws EmptyEventListException the exceptions when the user try to clear an empty list.
+     * @param userInfo  personal information and settings about the user.
      */
     @Override
-    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage)
-            throws EmptyEventListException, NoEventOneMonthAgoException {
-        if (events != null) {
-            ArrayList<Event> filteredEventList = events.filterDateBefore(clearDate);
-            if (filteredEventList.size() == 0) {
-                throw new NoEventOneMonthAgoException();
-            } else {
-                ui.printAutoClearOn();
-                events.clearBefore(clearDate);
-            }
+    public void execute(EventList events, LocationList locations, BusStopList busStops, UI ui, Storage storage,
+                        UserInfo userInfo) throws WritingFileException {
+        userInfo.setAutoClear(isAutoClear);
+        storage.writeUserInfo(userInfo);
+        if (isAutoClear) {
+            ui.printAutoClearOn();
         } else {
-            throw new EmptyEventListException();
+            ui.printAutoClearOff();
+        }
+    }
+
+    /**
+     * Clear all events one month ago.
+     *
+     * @param events   the list of Events.
+     * @param storage  store the data.
+     * @param userInfo User's information.
+     * @throws WritingFileException the file is not correctly written.
+     */
+    public static void autoClear(EventList events, Storage storage, UserInfo userInfo) throws WritingFileException {
+        if (userInfo.isAutoClear() && events != null) {
+            if (events.getSize() != 0) {
+                try {
+                    events.clearBefore(LocalDate.now().minusMonths(1));
+                } catch (EmptyEventListException e) {
+                    return;//this exception is unreachable because of the if condition
+                }
+                storage.writeFile(events.getEventList());
+            }
         }
     }
 }

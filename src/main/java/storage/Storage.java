@@ -119,11 +119,11 @@ public class Storage {
             Scanner s = new Scanner(new File(filePaths[1]));
             if (s.hasNext()) {
                 String[] words = s.nextLine().split(REGEX_IN_FILE);
-                userInfo = new UserInfo(words[0], words[1]);
+                userInfo = new UserInfo(words[0], words[1], (Integer.parseInt(words[2]) != 0));
             }
         } catch (FileNotFoundException e) {
             System.out.println("file not found");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new LoadingException();
         }
         return userInfo;
@@ -338,31 +338,34 @@ public class Storage {
     }
 
     private String locationData = "BLK/EA/EA\n"
-            + "BLK/EA/Information Technology\n"
-            + "BLK/E1A/EA\n"
-            + "BLK/EW1/EA,Information Technology\n"
-            + "BLK/EW1A/EA\n"
-            + "BLK/E2/EA\n"
-            + "BLK/E3/EA,Raffles Hall\n"
-            + "BLK/E3A/EA\n"
-            + "BLK/E4/Information Technology\n"
-            + "BLK/E4A/Opp YIH,YIH\n"
-            + "BLK/E5/Information Technology\n"
-            + "BLK/E5A/Raffles Hall\n"
-            + "BLK/E6/Opp YIH,YIH\n"
-            + "BLK/IT/Information Technology,CLB\n"
-            + "H/Raffles Hall/Raffles Hall,NUS Museum\n"
-            + "L/LT1/E2\n"
-            + "L/LT2/E2\n"
-            + "L/LT6/E4\n"
-            + "L/LT7/EA\n"
-            + "L/LT7A/EA";
+            + "BLK/EA/Information Technology\n" + "BLK/E1A/EA\n" + "BLK/EW1/EA,Information Technology\n"
+            + "BLK/EW1A/EA\n" + "BLK/E2/EA\n" + "BLK/E3/EA,Raffles Hall\n" + "BLK/E3A/EA\n"
+            + "BLK/E4/Information Technology\n" + "BLK/E4A/Opp YIH,YIH\n" + "BLK/E5/Information Technology\n"
+            + "BLK/E5A/Raffles Hall\n" + "BLK/E6/Opp YIH,YIH\n" + "BLK/IT/Information Technology,CLB\n"
+            + "BLK/AS1/CLB,LT13\n" + "BLK/AS2/Ventus,LT13\n" + "BLK/AS3/Ventus,LT13\n"
+            + "BLK/AS4/LT13,AS5\n" + "BLK/AS5/AS5\n" + "BLK/AS6/CLB,COM2\n" + "BLK/AS7/Ventus,LT13\n" + "BLK/AS8/CLB\n"
+            + "BLK/SDE1/IT\n" + "BLK/SDE2/IT\n" + "BLK/SDE3/EA\n" + "BLK/SDE4/IT\n" + "BLK/CELC/IT\n" + "BLK/S1/LT27\n"
+            + "BLK/S2/LT27\n" + "BLK/S3/LT27\n" + "BLK/S4/LT27\n" + "BLK/S5/LT27\n" + "BLK/S6/LT27\n" + "BLK/S7/LT27\n"
+            + "BLK/S8/LT27\n" + "BLK/S9/LT27\n" + "BLK/S10/LT27\n" + "BLK/S11/LT27\n" + "BLK/S12/LT27\n"
+            + "BLK/S13/LT27\n" + "BLK/S14/LT27\n" + "BLK/S15/LT27\n" + "BLK/S16/LT27\n" + "BLK/S17/S17,LT27\n"
+            + "BLK/MD1/LT27\n" + "BLK/MD2/LT27\n" + "BLK/MD3/LT27\n" + "BLK/MD4/LT27\n" + "BLK/MD5/LT27\n"
+            + "BLK/MD6/LT27\n" + "BLK/MD7/LT27\n" + "BLK/MD8/LT27\n" + "BLK/MD9/LT27\n" + "BLK/MD10/LT27\n"
+            + "BLK/MD11/LT27\n" + "BLK/COM1/COM2\n" + "BLK/COM2/COM2\n" + "BLK/BIZ1/BIZ2,COM2\n" + "BLK/BIZ2/BIZ2\n"
+            + "BLK/Shaw Foundation Alumni House/Opp NUSSU\n" + "H/Raffles Hall/Raffles Hall,NUS Museum\n"
+            + "H/Kent Ridge Hall/Opp HSSML\n" + "H/King Edward VII Hall/PGP\n" + "H/Sheares Hall/Opp HSSML\n"
+            + "H/Eusoff Hall/Ventus\n" + "H/Temasek Hall/Opp NUSSU\n" + "H/Cinnamon College/UTown\n"
+            + "H/College of Alice and Peter Tan/UTown\n" + "H/Residental College 4/UTown\n" + "H/RVRC/Opp UHC\n"
+            + "H/Tembusu College/UTown\n" + "H/Prince George's Park/PGP\n" + "H/UTown Residence/UTown\n"
+            + "L/LT1/E2\n" + "L/LT2/E2\n" + "L/LT6/E4\n" + "L/LT7/EA\n" + "L/LT7A/EA\n" + "L/LT8/AS5\n" + "L/LT9/AS1\n"
+            + "L/LT10/AS1\n" + "L/LT11/AS2\n" + "L/LT12/AS3\n" + "L/LT13/AS3\n" + "L/LT14/AS6\n" + "L/LT15/AS6\n"
+            + "L/LT16/COM2\n" + "L/LT17/COM2\n" + "L/LT18/COM2\n" + "L/LT19/COM2\n" + "L/LT20/S3\n" + "L/LT21/S5\n"
+            + "L/LT24/MD4\n" + "L/LT25/MD7\n" + "L/LT26/MD9\n" + "L/LT27/LT27\n" + "L/LT28/LT27\n" + "L/LT29/LT27\n"
+            + "L/LT31/S16\n" + "L/LT32/S1\n" + "L/LT33/S17\n" + "L/LT34/S17";
 
     private String busStopData = "EA:B2,C,BTC2\n"
-            + "Raffles Hall:B2,C\n"
-            + "Information Technology:A2,B1,B2,D1\n"
-            + "Opp YIH:A2,B1,B2,D1\n"
-            + "NUS Museum:A2,BTC1,BTC2,C,D1,D2\n"
-            + "YIH:A1,B1,BTC1,D1\n"
-            + "CLB:A1,B1,BTC1,D1";
+            + "Raffles Hall:B2,C\n" + "Information Technology:A2,B1,B2,D1\n" + "Opp YIH:A2,B1,B2,D1\n"
+            + "NUS Museum:A2,BTC1,BTC2,C,D1,D2\n" + "YIH:A1,B1,BTC1,D1\n" + "CLB:A1,B1,BTC1,D1\n"
+            + "LT13:A1,B,D1,BTC1\n" + "AS5:A1,B,D1,BTC1\n" + "Ventus:A2,A2E,B,D1\n" + "BIZ2:A1,A1E,D1,BTC1\n"
+            + "Opp NUSSU:A2,D1\n" + "Opp HSSML:A2,D1\n" + "Opp UHC:A1,C,D2\n" + "COM2:A1,A2,B,D1\n"
+            + "UTown:D1,D2,B1,B1,C,BTC\n" + "PGP:A1\n" + "LT27:A1,A1E,C,D2\n" + "S17:A2,A2E,C,D2";
 }
