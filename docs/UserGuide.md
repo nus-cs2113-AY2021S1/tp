@@ -439,7 +439,7 @@ The timetable mode intends to address these issues, helping you keep track of yo
 purposeful productivity.
 
 >**Warning:**
->* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not able to
+>* Do not try to edit the data file for the timetable if you are unsure. Doing so may result in the application not being able to
 >retrieved the saved data, hence deem the data file corrupted and request to format the data file before you can use the timetable 
 >feature again.
 
@@ -496,10 +496,10 @@ If you encounter any errors, take note of the following warning.
 >**Warning:**
 >* Ensure that you follow the format for answering the questions.
 >Error will be shown if the questions are not answered in a suitable format.
->* Adding event that clash with the existing schedule will result in error message. You will need to check through 
+>* Adding events that clash with the existing schedule will result in error message. You will need to check through 
 >the schedule and events list and delete the unwanted event accordingly before you can add the new event.
->* Number of recurring classes are capped at 52 weeks (1year) to ensure effective processing time. Add your class again one year
->later if your class recur for more than a year.
+>* Number of recurring classes are capped at 52 weeks (1 year) to ensure effective processing time. Add your class again one year
+>later if your class recurs for more than a year.
 
 ### 2.3 Adding activities: `add activity`
 
@@ -516,7 +516,7 @@ Expected output:
 ![Timetable_2_3](Images/TimetableUG/Timetable_2_3.png)
 
 >**Useful Information:** 
->* Currently this feature does not support adding activity past 12am if you wish to schedule an activity overnight, 
+>* Currently this feature does not support adding activity past 12am. If you wish to schedule an activity overnight, 
 >add the activity in 2 separate sessions.
 
 ### 2.4 Showing links: `show link`
@@ -557,8 +557,8 @@ Expected output:
 
 ### 2.7 Showing Class list: `list class`
 
-If you think searching through the time table is too troublesome,
-use this command to see all the classes you have added and other detail of the classes similar to the previous feature.
+If you think searching through the timetable is too troublesome,
+use this command to see all the classes you have added and other details of the classes, similar to the previous feature.
 
 Instruction:
 1. `list class`
@@ -569,7 +569,7 @@ Expected output:
 
 ### 2.8 Deleting an activity: `delete activity INDEX`
 
-If you have accidentally added a wrong activity, or an activity you have added got canceled,
+If you have accidentally added a wrong activity, or an activity you have added has been cancelled,
 use this command to delete an activity with corresponding index according to the activities list ([refer to 2.6](#26-showing-activities-list-list-activity)).
 
 Instruction:
