@@ -472,7 +472,7 @@ For instance, you are currently in Module level `CS2113T` and want to head to Ch
   <img src="UG_Images/moduleGoPrompt.png" width="700" alt="Go prompt"/>
 </p>
 
-* Step 1: Enter the command `go 1` to head down to the Chapter level below: <br>
+* Step 1: Enter the command `go 1` and **press *[Enter]*** to head down to the Chapter level below: <br>
 
 <p align="center">
   <img src="UG_Images/moduleGo.png" width="700" alt="Go Command"/>
@@ -497,7 +497,7 @@ Returns to the Admin level.
 
 For instance, you are currently in Module level `CS2113T` and want to return to the Admin level, the steps to do so are shown below:
 
-* Step 1: Enter the command `back` to return to the previous level which is the module level: <br>
+* Step 1: Enter the command `back`and **press *[Enter]*** to return to the previous level which is the module level: <br>
 
 <p align="center">
   <img src="UG_Images/back.png" width="700" alt="Back Command"/>
