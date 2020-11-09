@@ -141,7 +141,7 @@ public class GoalStorage {
             LocalDate date = LocalDate.parse(createdDate, DateManager.formatter);
 
             return (isValidGoalType && isValidStatus);
-        } catch (NumberFormatException | DateTimeException e) {
+        } catch (NumberFormatException | DateTimeException | StringIndexOutOfBoundsException e) {
             return false;
         }
     }
