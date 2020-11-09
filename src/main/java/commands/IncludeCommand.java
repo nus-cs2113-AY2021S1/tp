@@ -55,8 +55,8 @@ public class IncludeCommand extends Command {
         try {
             boolean result = storage.removeChapterFromExclusionFile(moduleName,chapterName);
             if (!result) {
-                throw new InvalidInputException("Sorry, the Chapter: " + chapterName + " could not " +
-                        "be included as it does not exist.");
+                throw new InvalidInputException("Sorry, the Chapter: " + chapterName + " could not "
+                        + "be included as it does not exist.");
             }
             String exclusionTarget = String.format(PRINT_FORMAT_CHAPTER, moduleName, chapterName);
             return String.format(INCLUSION_SUCCESS_MESSAGE, exclusionTarget);
