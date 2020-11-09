@@ -41,6 +41,8 @@ Class "Ui" as Ui UI_COLOR {
 
 Class "Storage" as Storage STORAGE_COLOR {
     + deleteDirectory(directoryToBeDeleted : File) : boolean
+    + removeChapterFromExclusionFile(moduleName : String,
+    chapterName : String) : boolean
     + removeChapterFromDue(module : String, chapter : String)
 }
 

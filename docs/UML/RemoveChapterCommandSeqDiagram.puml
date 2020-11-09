@@ -42,6 +42,10 @@ RemoveChapterCommand <-- ChapterList : chapters
 deactivate ChapterList
 [<-[hidden]- ChapterList
 destroy ChapterList
+RemoveChapterCommand -> Storage : removeChapterFromExclusionFile(moduleName, chapterName)
+activate Storage
+RemoveChapterCommand <-- Storage : result
+deactivate Storage
 RemoveChapterCommand -> Storage : deleteDirectory(directory)
 activate Storage
 RemoveChapterCommand <-- Storage : isRemoved

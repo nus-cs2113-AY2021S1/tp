@@ -41,6 +41,7 @@ Class "Ui" as Ui UI_COLOR {
 
 Class "Storage" as Storage STORAGE_COLOR {
     + deleteDirectory(directoryToBeDeleted : File) : boolean
+    + removeModuleFromExclusionFile(moduleName : String) : void
 }
 
 RemoveCommand -left[LOGIC_COLOR_T4]-|> Command

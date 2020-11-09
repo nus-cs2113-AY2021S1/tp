@@ -85,13 +85,13 @@ By: `Team CS2113T-F11-3` Since: `August 2020`
 ## 1. Introduction
 
 ### 1.1. Overview
-Kaji is a schedule manager that implements Spaced Repetition for students, optimised for use via a Command Line Interface (CLI).
+KAJI is a schedule manager that implements Spaced Repetition for students, optimised for use via a Command Line Interface (CLI).
 
 ### 1.2. Purpose
-This document describes the architecture and system design for the application, Kaji.
+This document describes the architecture and system design for the application, KAJI.
 
 ### 1.3. Scope
-This documentation describes the software architecture and software design decisions for the implementation of Kaji. The intended audience of this document is the developers, designers, and software testers of Kaji.
+This documentation describes the software architecture and software design decisions for the implementation of KAJI. The intended audience of this document is the developers, designers, and software testers of Kaji.
 ##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -116,24 +116,23 @@ If asked, choose to `Open as Project` (not `Open as File`).
 ### 2.3. Verifying the Setup
 1. In an IntelliJ terminal, run `gradlew build`.
 2. Navigate to the folder `build` > `libs` by executing `cd build/libs/` and then run: `java -jar kaji.jar`.
-    1. To use **Kaji**, type a valid command into the terminal and press the enter key to run the command.<br> 
+    1. To use **KAJI**, type a valid command into the terminal and press the enter key to run the command.<br> 
     e.g. Typing `help` and pressing the enter key will show the list of commands available.
-    2. Some example commands you can try to get familiar with **Kaji**:
-        * `help`: Lists the commands that **Kaji** supports.
+    2. Some example commands you can try to get familiar with **KAJI**:
+        * `help`: Lists the commands that **KAJI** supports.
         * `add CS2113T`: Adds a module **CS2113T**.
         * `list`: Shows a list of modules available.
-        * `exit`: Exits **Kaji**.
+        * `exit`: Exits **KAJI**.
 
 ##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Design (Architecture)
-(Zeyu)
 
 <p align="center">
-  <img src="DG_Images/Architecture.png" width="600" alt="Architecture Diagram"/>
-  <br/>Figure <>. Architecture Diagram of Kaji 
+  <img src="DG_Images/Architecture.png" width="500" alt="Architecture Diagram"/>
+  <br/>Figure 1. Architecture diagram of KAJI 
 </p>
 
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
@@ -152,14 +151,13 @@ The rest of the App consists of 8 components:
 The sections below give more details of each component.
 
 ### 3.1. Ui Component 
-(Jia Ern)
 
 <p align="center">
   <img src="DG_Images/UiComponent.PNG" width="600" alt="Class Diagram of Ui Component"/>
-  <br/>Figure <>. Class diagram of Ui component 
+  <br/>Figure 2. Class diagram of Ui component 
 </p>
 
-The Ui component consists of a main class — `Ui.java`. While `Kaji` has `Ui` as its class variable so that it can instantiate a `Ui` object at each run of the program, the `Model`, `Logic` and `Storage` components have a dependency on the Ui component due to the need to take in user input and show the results of execution.
+The Ui component consists of a main class — `Ui.java`. While `KAJI` has `Ui` as its class variable so that it can instantiate a `Ui` object at each run of the program, the `Model`, `Logic` and `Storage` components have a dependency on the Ui component due to the need to take in user input and show the results of execution.
 
 The Ui component is responsible for:
 * Taking in user input.
@@ -167,17 +165,16 @@ The Ui component is responsible for:
 * Printing error messages when certain exceptions occur. 
 
 ### 3.2. Logic Component 
-(Jane)
 
 The Logic component consists of the `Parser`, `Command` and `Scheduler` classes as shown in the class diagram below:
 
 <p align="center">
   <img src="DG_Images/LogicClassDiagram.png" width="700" alt="Logic Class Diagram"/>
-  <br/>Figure <>. Class diagram of Logic component  
+  <br/>Figure 3. Class diagram of Logic component  
 </p>
 
-1. `Kaji` uses the `Parser` class to parse the user command.
-2. This results in a `Command` object which is executed by `Kaji`.
+1. `KAJI` uses the `Parser` class to parse the user command.
+2. This results in a `Command` object which is executed by `KAJI`.
 3. The command execution can affect the `Model` and `Storage` (e.g. adding a module).
 4. The `Scheduler` is used in some command execution to schedule the due date of a chapter.
 5. The result of the command execution is passed to the `Ui`.
@@ -186,19 +183,18 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <p align="center">
   <img src="DG_Images/LogicSequenceDiagram.png" width="800" alt="Logic Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of Logic component  
+  <br/>Figure 4. Sequence diagram of Logic component  
 </p>
 
 >:information_source: <b>Note:</b> The lifeline for `Parser` and `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### 3.3. Model Component
-(Jiayi)
 
 The Model component consists of the `Access`, `History`, `DueChapter`, `ModuleList`, `ChapterList` and `CardList` classes as shown in the class diagram below:
 
 <p align="center">
   <img src="UML/model.png" width="600" alt="Architecture Diagram of Model"/>
-  <br/>Figure <>. Class diagram of Model components
+  <br/>Figure 5. Class diagram of Model component
 </p>
 
 The Model component
@@ -212,13 +208,12 @@ The Model component
 
 
 ### 3.4. Storage Component 
-(Lucas)
 
 The Storage component consists of the `Storage`, `StorageWrite`, `StorageParser` and `StorageLoad` classes.
 
 <p align="center">
   <img src="DG_Images/storage.png" width="600" alt="Storage Class Diagram"/>
-  <br/>Figure <>. Class diagram of Storage component  
+  <br/>Figure 6. Class diagram of Storage component  
 </p>
 
 The Storage component
@@ -231,25 +226,24 @@ The Storage component
 
 
 ### 3.5. Common Component
-(Jiayi)
 
 The Common component consists of `KajiLog` and `Messages` as shown in the class diagram below: 
 
 <p align="center">
   <img src="UML/commonClass.png" width="400" alt="Common Class Diagram"/>
-  <br/>Figure <>. Class diagram of Common component  
+  <br/>Figure 7. Class diagram of Common component  
 </p>
 
 The Common component
 * stores user visible messages.
-* generates a log for Kaji.
+* generates a log for KAJI.
 
 ##### <a href="#top">Back to Top ^</a>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. Implementation
-This section will describe the significant details of how the features in **Kaji** are being implemented.
+This section will describe the significant details of how the features in **KAJI** are being implemented.
 
 ### 4.1. Admin Features
 This section will elaborate the available features to users at **Admin Level**. <br>
@@ -261,7 +255,6 @@ At Admin Level, users are able to: <br>
 * Access module
 
 #### 4.1.1. Add Module Feature
-(Jiayi)
 
 ##### Implementation
 The add modules feature allows the user to create new modules at Admin level.
@@ -272,7 +265,7 @@ Shown as the class diagram below, because of the inheritance of `AddCommand`, `C
 
 <p align="center">
   <img src="UML/AddModuleCommandClass.png" width="800" alt="Class Diagram of add module command"/>
-  <br/>Figure <>. Class Diagram of add module command
+  <br/>Figure 8. Class diagram of add module command
 </p>
 
 Given below is an example usage scenario at Admin level and how the add module feature behaves at each step:
@@ -297,12 +290,12 @@ The following diagram shows how the add module command feature works:
 
 <p align="center">
   <img src="UML/AddModuleCommand.png" width="800" alt="Sequence Diagram of add module command"/>
-  <br/>Figure <>. Sequence Diagram of add module command 
+  <br/>Figure 9. Sequence diagram of add module command 
 </p>
 
 #### 4.1.2. List Modules Feature
-(Zeyu)
 
+##### Implementation
 The list modules feature allows the user to list all modules in admin level 
 
 The list modules mechanism is facilitated by `ListModulesCommand`. It extends from the abstract class `ListCommand`. 
@@ -315,7 +308,7 @@ The following diagram shows the class diagram of the list modules feature:
 
 <p align="center">
   <img src="DG_Images/listmod_class_diagram.png" width="800" alt="List Modules Class Diagram"/>
-  <br/>Figure <>. Class diagram of list modules feature  
+  <br/>Figure 10. Class diagram of list modules feature  
 </p>
 
 For instance, the user wants to list all modules available in `admin`, a detailed description of what happens is shown below:
@@ -328,11 +321,11 @@ The following sequence diagram shows how the list modules feature works:
 
 <p align="center">
   <img src="UML/listmod_seq_diagram.png" width="800" alt="Sequence Diagram of List Modules"/>
-  <br/>Figure <>. Sequence Diagram of List Modules
+  <br/>Figure 11. Sequence diagram of list modules
 </p>
 
 #### 4.1.3. Edit Module Name Feature
-(Jane)
+
 ##### Implementation
 The edit module name feature allows the user to edit the name of any existing module.
 
@@ -347,7 +340,7 @@ The following diagram shows the class diagram of the edit module name feature:
 
 <p align="center">
   <img src="DG_Images/EditModuleClassDiagram.png" width="800" alt="Edit Module Class Diagram"/>
-  <br/>Figure <>. Class diagram of edit module name feature  
+  <br/>Figure 12. Class diagram of edit module name feature  
 </p>
 
 For instance, the user wants to edit the module `CS2113`, a detailed description of what happens is shown below:
@@ -370,14 +363,14 @@ The following sequence diagram shows how the edit module name feature works:
 
 <p align="center">
   <img src="DG_Images/EditModuleSequenceDiagram.png" width="800" alt="Edit Module Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of edit module name feature
+  <br/>Figure 13. Sequence diagram of edit module name feature
 </p>
 
 >:information_source: <b>Note:</b> The lifeline for `Admin` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.1.4. Remove Module Feature
-(Jia Ern)
 
+##### Implementation
 The remove module feature allows the user to remove a module by specifying the index of the module in the list. 
 
 The remove module mechanism is facilitated by `RemoveModuleCommand`. It extends from the abstract class `RemoveCommand`. 
@@ -391,7 +384,7 @@ The following diagram shows the class diagram of the remove module feature:
 
 <p align="center">
   <img src="DG_Images/RemoveModuleCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Module"/>
-  <br/>Figure <>. Class diagram of remove module
+  <br/>Figure 14. Class diagram of remove module
 </p>
 
 For instance, the user wants to start a remove the module `CS2113T`, a detailed description of what happens is shown below:
@@ -406,12 +399,12 @@ The following sequence diagram shows how the remove module feature works:
 
 <p align="center">
   <img src="DG_Images/RemoveModuleCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Module"/>
-  <br/>Figure <>. Sequence diagram of remove module  
+  <br/>Figure 15. Sequence diagram of remove module  
 </p>
 
 #### 4.1.5. Access Module Level Feature
-(Jiayi)
 
+##### Implementation
 The go modules feature allows the user to access the existing module from Admin level.
 
 `GoModuleCommand` class facilitates the proposed access module level feature. It extends `GoCommand` class. 
@@ -424,7 +417,7 @@ Shown as the class diagram below, with the inheritance of `GoCommand` and `Comma
 
 <p align="center">
   <img src="UML/AccessModuleCommandClass.png" width="800" alt="Class Diagram of go module command"/>
-  <br/>Figure <>. Class Diagram of go module command
+  <br/>Figure 16. Class diagram of go module command
 </p>
 
 Given below is an example usage scenario at Admin level and how the access module level feature behaves at each step:
@@ -445,7 +438,7 @@ The following diagram shows how the add chapter command feature works:
 
 <p align="center">
   <img src="UML/AccessModuleCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
-  <br/>Figure <>. Sequence Diagram of add chapter command 
+  <br/>Figure 17. Sequence diagram of add chapter command 
 </p>
 
 ##### <a href="#top">Back to Top ^</a>
@@ -462,10 +455,8 @@ At Module Level, users are able to: <br>
 
 
 #### 4.2.1. Add Chapter Feature
-(Jiayi)
 
 ##### Implementation
-
 The add chapter feature allows the user to create new chapters at Module level.
 
 `AddChapterCommand` facilitates the proposed add chapter feature. It extends `AddCommand` with an `AddCommand#prepareResult()` method. This method formats message about the result of the action to user in `Ui`. 
@@ -474,7 +465,7 @@ Shown as the class diagram below, because of the inheritance of `AddCommand`, `C
 
 <p align="center">
   <img src="UML/AddChapterCommandClass.png" width="800" alt="Class Diagram of add chapter command"/>
-  <br/>Figure <>. Class Diagram of add chapter command  
+  <br/>Figure 18. Class diagram of add chapter command  
 </p>
 
 Given below is an example usage scenario at Module level and how the add chapter feature behaves at each step:
@@ -499,12 +490,12 @@ The following diagram shows how the add chapter command feature works:
 
 <p align="center">
   <img src="UML/AddChapterCommand.png" width="800" alt="Sequence Diagram of add chapter command"/>
-  <br/>Figure <>. Sequence Diagram of add chapter command  
+  <br/>Figure 19. Sequence diagram of add chapter command  
 </p>
 
 #### 4.2.2. List Chapters Feature
-(Zeyu)
 
+##### Implementation
 The list chapters feature allows the user to list all chapters in module level 
 
 The list chapters mechanism is facilitated by `ListChaptersCommand`. It extends from the abstract class `ListCommand`. 
@@ -517,7 +508,7 @@ The following diagram shows the class diagram of the list chapters feature:
 
 <p align="center">
   <img src="DG_Images/listchap_class_diagram.png" width="800" alt="List Chapters Class Diagram"/>
-  <br/>Figure <>. Class diagram of list chapters feature  
+  <br/>Figure 20. Class diagram of list chapters feature  
 </p>
 
 For instance, the user wants to list all chapters available in `CS2113T` (module name), a detailed description of what happens is shown below:
@@ -530,11 +521,11 @@ The following sequence diagram shows how the list chapters feature works:
 
 <p align="center">
   <img src="UML/listchap_seq_diagram.png" width="800" alt="Sequence Diagram of List Chapters"/>
-  <br/>Figure <>. Sequence Diagram of List Chapters
+  <br/>Figure 21. Sequence diagram of list chapters
 </p>
 
 #### 4.2.3. Edit Chapter Name Feature
-(Jane)
+
 ##### Implementation
 The edit chapter name feature allows the user to edit the name of any existing chapter.
 
@@ -549,7 +540,7 @@ The following diagram shows the class diagram of the edit chapter name feature:
 
 <p align="center">
   <img src="DG_Images/EditChapterClassDiagram.png" width="800" alt="Edit Chapter Class Diagram"/>
-  <br/>Figure <>. Class diagram of edit chapter name feature  
+  <br/>Figure 22. Class diagram of edit chapter name feature  
 </p>
  
 For instance, the user wants to edit the chapter `chap 1` from the module `CS2113T`, a detailed description of what happens is shown below:
@@ -572,14 +563,14 @@ The following sequence diagram shows how the edit chapter name feature works:
 
 <p align="center">
   <img src="DG_Images/EditChapterSequenceDiagram.png" width="800" alt="Edit Chapter Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of edit chapter name feature  
+  <br/>Figure 23. Sequence diagram of edit chapter name feature  
 </p>
 
 >:information_source: <b>Note:</b> The lifeline for `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.2.4. Remove Chapter Feature
-(Jia Ern)
 
+##### Implementation
 The remove chapter feature allows the user to remove a chapter by specifying the index of the chapter in the list. 
 The remove chapter mechanism is facilitated by `RemoveChapterCommand`. It extends from the abstract class `RemoveCommand`. 
 
@@ -592,7 +583,7 @@ The following diagram shows the class diagram of the remove chapter feature:
 
 <p align="center">
   <img src="DG_Images/RemoveChapterCommandClassDiagram.png" width="800" alt="Class Diagram of Remove Chapter"/>
-  <br/>Figure <>. Class diagram of remove chapter
+  <br/>Figure 24. Class diagram of remove chapter
 </p>
 
 For instance, the user wants to start a remove the chapter `Chapter 1` from the module `CS2113T`, a detailed description of what happens is shown below:
@@ -607,14 +598,12 @@ The following sequence diagram shows how the remove chapter feature works:
 
 <p align="center">
   <img src="DG_Images/RemoveChapterCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Chapter"/>
-  <br/>Figure <>. Sequence diagram of remove chapter
+  <br/>Figure 25. Sequence diagram of remove chapter
 </p>
 
 #### 4.2.5. Access Chapter Level Feature
-(Lucas)
 
-***Implementation***
-
+##### Implementation
 If a user wishes to go to the Chapter Level from the Module Level by accessing a Chapter within the Module he is currently in, he can do so with the Access Chapter Level Feature.
 
 To execute this feature, the following class was created:
@@ -628,7 +617,7 @@ The following diagram shows the class diagram of the Access Chapter feature:
 
 <p align="center">
   <img src="DG_Images/AccessChapterClass.png" width="800" alt="Class Diagram of Access Chapter"/>
-  <br/>Figure <>. Class diagram of Access Chapter
+  <br/>Figure 26. Class diagram of access chapter
 </p>
 
 ***Example***
@@ -652,13 +641,12 @@ The following sequence Diagrams illustrates how the Access Chapter Level Feature
 
 <p align="center">
   <img src="DG_Images/goChapter.png" width="1000" alt="Go Chapter Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of Access Chapter Level Feature
+  <br/>Figure 27. Sequence diagram of access chapter level feature
 </p>
 
 #### 4.2.6. Return to Admin Level Feature
-(Lucas)
 
-***Implementation***
+##### Implementation
 
 If a user has completed the tasks he has on the Module Level and wish to edit Modules from the Admin level, he can do so with the return to Admin Level Feature.
 
@@ -672,7 +660,7 @@ The following diagram shows the class diagram of the Return to Admin Level featu
 
 <p align="center">
   <img src="DG_Images/BackAdminClass.png" width="800" alt="Class Diagram of Access Chapter"/>
-  <br/>Figure <>. Class diagram of Access Chapter
+  <br/>Figure 28. Class diagram of access chapter
 </p>
 
 ***Example***
@@ -692,7 +680,7 @@ The following sequence Diagrams illustrates how the Return to Admin Level Featur
 
 <p align="center">
   <img src="DG_Images/backAdmin.png" width="450" alt="Back Admin Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of Return to Admin Level Feature
+  <br/>Figure 29. Sequence diagram of return to admin level feature
 </p>
 
 ##### <a href="#top">Back to Top ^</a>
@@ -708,7 +696,7 @@ At Chapter Level, users are able to: <br>
 * Check overall revision performance
 
 #### 4.3.1. Add Flashcard Feature
-(Jane)
+
 ##### Implementation
 The add flashcard feature allows the user to add a flashcard to a chapter.
 
@@ -722,7 +710,7 @@ The following diagram shows the class diagram of the add flashcard feature:
 
 <p align="center">
   <img src="DG_Images/AddCardClassDiagram.png" width="800" alt="Add Card Class Diagram"/>
-  <br/>Figure <>. Class diagram of add flashcard feature  
+  <br/>Figure 30. Class diagram of add flashcard feature  
 </p>
  
 For instance, the user wants to add a flashcard `[Q] 1+1 | [A] 2` to the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
@@ -745,14 +733,14 @@ The following sequence diagram shows how the add flashcard feature works:
 
 <p align="center">
   <img src="DG_Images/AddCardSequenceDiagram.png" width="600" alt="Add Card Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of add flashcard feature  
+  <br/>Figure 31. Sequence diagram of add flashcard feature  
 </p>
 
 >:information_source: <b>Note:</b> The lifeline for `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.2. List Flashcards Feature
-(Zeyu)
 
+##### Implementation
 The list flashcards feature allows the user to list all flashcards in chapter level 
 
 The list flashcards mechanism is facilitated by `ListCardsCommand`. It extends from the abstract class `ListCommand`. 
@@ -765,7 +753,7 @@ The following diagram shows the class diagram of the list flashcards feature:
 
 <p align="center">
   <img src="DG_Images/listcard_class_diagram.png" width="800" alt="List Flashcards Class Diagram"/>
-  <br/>Figure <>. Class diagram of list flashcards feature  
+  <br/>Figure 32. Class diagram of list flashcards feature  
 </p>
 
 For instance, the user wants to list all flashcards available in `Chapter 1` (chapter name), a detailed description of what happens is shown below:
@@ -778,11 +766,11 @@ The following sequence diagram shows how the list flashcards feature works:
 
 <p align="center">
   <img src="UML/listcard_seq_diagram.png" width="800" alt="Sequence Diagram of List Cards"/>
-  <br/>Figure <>. Sequence Diagram of List Cards
+  <br/>Figure 33. Sequence diagram of list cards
 </p>
 
 #### 4.3.3. Edit Flashcard Content Feature
-(Jane)
+
 ##### Implementation
 The edit flashcard content feature allows the user to edit the content of any existing flashcard.
 
@@ -798,7 +786,7 @@ The following diagram shows the class diagram of the edit flashcard content feat
 
 <p align="center">
   <img src="DG_Images/EditCardClassDiagram.png" width="800" alt="Edit Flashcard Class Diagram"/>
-  <br/>Figure <>. Class diagram of edit flashcard content feature  
+  <br/>Figure 34. Class diagram of edit flashcard content feature  
 </p>
 
 For instance, the user wants to edit the flashcard `[Q] 2*1 | [A] 2` from the chapter `Chapter 1` for module `CS2113T`, a detailed description of what happens is shown below:
@@ -825,14 +813,14 @@ The following sequence diagram shows how the edit flashcard content feature work
 
 <p align="center">
   <img src="DG_Images/EditCardSequenceDiagram.png" width="800" alt="Edit Card Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of edit flashcard content feature  
+  <br/>Figure 35. Sequence diagram of edit flashcard content feature  
 </p>
 
 >:information_source: <b>Note:</b> The lifeline for `Chapter` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.3.4. Remove Flashcard Feature
-(Jia Ern)
 
+##### Implementation
 The remove flashcard feature allows the user to remove a flashcard by specifying the index of the flashcard in the list. 
 The remove flashcard mechanism is facilitated by `RemoveFlashcardCommand`. It extends from the abstract class `RemoveCommand`. 
 
@@ -845,7 +833,7 @@ The following diagram shows the class diagram of the remove flashcard feature:
 
 <p align="center">
   <img src="DG_Images/RemoveCardCommandClassDiagram.png" width="800" alt="Class Diagram of Remove  Flashcard"/>
-  <br/>Figure <>. Class diagram of remove flashcard
+  <br/>Figure 36. Class diagram of remove flashcard
 </p>
 
 For instance, the user wants to start a remove the flashcard `[Q] 1+1 | [A] 2` from the chapter `Chapter 1`, a detailed description of what happens is shown below:
@@ -862,12 +850,12 @@ The following sequence diagram shows how the remove flashcard feature works:
 
 <p align="center">
   <img src="DG_Images/RemoveCardCommandSeqDiagram.png" width="800" alt="Sequence Diagram of Remove Flashcard"/>
-  <br/>Figure <>. Sequence diagram of remove flashcard
+  <br/>Figure 37. Sequence diagram of remove flashcard
 </p>
 
 #### 4.3.5. Return to Module Level Feature
-(Jia Ern)
 
+##### Implementation
 The return to module level feature allows the user to return to the module level from the chapter level.
 The return to module level mechanism is facilitated by `BackModuleCommand`. It extends from the abstract class `BackCommand`. 
 
@@ -878,7 +866,7 @@ The following diagram shows the class diagram of the return to module feature:
 
 <p align="center">
   <img src="DG_Images/BackModuleCommandClassDiagram.png" width="600" alt="Class Diagram of Return to Module"/>
-  <br/>Figure <>. Class diagram of return to module
+  <br/>Figure 38. Class diagram of return to module
 </p>
 
 For instance, the user wants to return to the module level from the chapter he is currently at in the module `CS2113T`, a detailed description of what happens is shown below:
@@ -893,13 +881,12 @@ The following sequence diagram shows how the return to module feature works:
 
 <p align="center">
   <img src="DG_Images/BackModuleCommandSeqDiagram.png" width="600" alt="Sequence Diagram of Return to Module"/>
-  <br/>Figure <>. Sequence diagram of return to module
+  <br/>Figure 39. Sequence diagram of return to module
 </p>
 
 #### 4.3.6. Check Overall Performance for a Chapter Feature
-(Jiayi)
-##### Implementation
 
+##### Implementation
 The show rate feature allows the user to check their overall performance of revision with the chapter they are currently accessing.
 
 `ShowRateCommand` facilitates the proposed check overall performance feature. It extends an abstract `Command` class with the abstract `Command#execute()` and `Command#isExit()`.
@@ -912,8 +899,8 @@ It implements the following operations:
 Shown as the class diagram below, with the inheritance of `Command`, `Kaji` is able to execute the operation `ShowRateCommand#execute()` directly. 
 
 <p align="center">
-  <img src="UML/ShowRateCommandClass.png" width="400" alt="Class Diagram of show overall performance command"/>
-  <br/>Figure <>. Class Diagram of show overall performance command  
+  <img src="UML/ShowRateCommandClass.png" width="600" alt="Class Diagram of show overall performance command"/>
+  <br/>Figure 40. Class diagram of show overall performance command  
 </p>
 
 Given below is an example usage scenario at Chapter level and how the show overall performance feature behaves at each step:
@@ -938,17 +925,18 @@ The following diagram shows how the show overall performance feature works:
 
 <p align="center">
   <img src="UML/ShowRateCommand.png" width="600" alt="Sequence Diagram of show overall performance command"/>
-  <br/>Figure <>. Sequence Diagram of show overall performance command 
+  <br/>Figure 41. Sequence diagram of show overall performance command 
 </p>
 
 ##### <a href="#top">Back to Top ^</a>
 
 ### 4.4. Revise with Scheduling Feature
-(Jia Ern)
 
 The revise feature allows the user to start a revision on a chapter and can only be done when the user is in the module level. 
 
 #### 4.4.1. Revise Feature
+
+##### Implementation
 The revise mechanism is facilitated by `ReviseCommand`. It extends from the abstract class `Command`. 
 
 In addition, it implements the following operations:
@@ -964,7 +952,7 @@ The following diagram shows the class diagram of the revise feature:
 
 <p align="center">
   <img src="DG_Images/ReviseCommandClassDiagram.png" height="600" width="1023" alt="Class Diagram of Revise"/>
-  <br/>Figure <>. Class diagram of revise
+  <br/>Figure 42. Class diagram of revise
 </p>
 
 For instance, the user wants to start a revision for `Chapter 1` in the module `CS2113T`, a detailed description of what happens is shown below:
@@ -991,25 +979,27 @@ The following sequence diagram shows how the revise feature works:
 
 <p align="center">
   <img src="DG_Images/ReviseCommandSeqDiagram.png" height="700" width="1200" alt="Sequence Diagram of Revise"/>
-  <br/>Figure <>. Sequence diagram of revise
+  <br/>Figure 43. Sequence diagram of revise
 </p>
 
 <p align="center">
   <img src="DG_Images/ReviseGetChap.png" width="500" alt="Sequence Diagram of Revise Get Chapter"/>
-  <br/>Figure <>. Sequence diagram of get chapter for revision
+  <br/>Figure 44. Sequence diagram of get chapter for revision
 </p>
 
 <p align="center">
   <img src="DG_Images/ReviseNotDue.png" width="400" alt="Sequence Diagram of Revise Not Due"/>
-  <br/>Figure <>. Sequence diagram of revise for chapter that is not due
+  <br/>Figure 45. Sequence diagram of revise for chapter that is not due
 </p>
  
 <p align="center">
   <img src="DG_Images/ReviseGetCards.png" width="500" alt="Sequence Diagram of Revise Get Chapter"/>
-  <br/>Figure <>. Sequence diagram of get cards for revision
+  <br/>Figure 46. Sequence diagram of get cards for revision
 </p>
 
 #### 4.4.2. Scheduling The Chapters Feature
+
+##### Implementation
 In KAJI, each `Chapter` stores a `CardList` of `Card`s, each with their own `int` attribute `previousInterval`. Each `Chapter` also has a `LocalDate` attribute named `dueBy` that determines when the `Chapter` is due for revision. 
 At the end of a revision session, the `Scheduler` class implements Spaced Repetition by computing the `deckInterval`, the mean (rounded off to the nearest integer) of the `previousInterval`s of every `Card` within the `Chapter`, and updates the `dueBy` attribute of the `Chapter` to `deckInterval` days after the day of revision.
 
@@ -1035,10 +1025,8 @@ To utilise this feature, the following commands and their corresponding features
 
 
 #### 4.5.1. View Due Chapters Feature
-(Lucas)
 
-***Implementation***
-
+##### Implementation
 Each Chapter has a [`deadline assigned to it`](#) from the point of creation, which forms the core of the Scheduling process. The View Due Chapters Feature builds on that by allowing users to view every chapter in the database that is due on the current day with a single command.
 
 To support this feature, the following command was added to KAJI:
@@ -1062,7 +1050,7 @@ On top of that, `Storage` implements the following operations:
 
 <p align="center">
   <img src="DG_Images/listDueClass.png" width="950" alt="Class Diagram of ListDue"/>
-  <br/>Figure <>. Class diagram of ListDue
+  <br/>Figure 47. Class diagram of ListDue
 </p>
 
 ***Example***
@@ -1084,14 +1072,12 @@ The following sequence Diagrams illustrates how the View Due Chapters Process is
 
 <p align="center">
   <img src="DG_Images/listDueSeq.png" width="800" alt="Sequence Diagram of the View Due Feature"/>
-  <br/>Figure <>. Sequence Diagram of the View Due Feature 
+  <br/>Figure 48. Sequence Diagram of the view due Feature 
 </p>
 
 #### 4.5.2. Preview Upcoming Dues Feature
-(Lucas)
 
-***Implementation***
-
+##### Implementation
 Similar to the View Due Chapters Feature, the Preview Upcoming Dues Feature builds on the Scheduling process by allowing users to view every chapter in the database that is due in the upcoming week with a single command.
 
 To support this feature, the following command was added to KAJI:
@@ -1115,7 +1101,7 @@ On top of that, the following operations from `Storage` are used:
 
 <p align="center">
   <img src="DG_Images/previewClass.png" width="950" alt="Class Diagram of Preview"/>
-  <br/>Figure <>. Class diagram of Preview
+  <br/>Figure 49. Class diagram of preview
 </p>
 
 ***Example***
@@ -1147,14 +1133,12 @@ The following sequence Diagrams illustrates how the Preview Upcoming Dues Proces
 
 <p align="center">
   <img src="DG_Images/previewSeq.png" width="800" alt="Sequence Diagram of the Preview Upcoming Dues Feature"/>
-  <br/>Figure <>. Sequence Diagram of the Preview Upcoming Dues Feature 
+  <br/>Figure 50. Sequence diagram of the preview upcoming dues feature 
 </p>
 
 #### 4.5.3. Exclusion Feature
-(Lucas)
 
-***Implementation***
-
+##### Implementation
 KAJI allows users to customise which Chapters are to be excluded from their scheduling by maintaining an Exclusion List: a list of `Chapter`s that KAJI will ignore as it parses for `Chapter`s that are due in the `due` and `preview` commands. 
 
 This is to allow users to exclude and include `Chapter`s from and to their schedules without having to remove and add the `Chapter`s from their database, which can be tedious.
@@ -1188,7 +1172,7 @@ Items are added into the `ArrayList<String>` Exclusion List using two pairs of c
 
 <p align="center">
   <img src="DG_Images/excludeClass.png" width="1000" alt="Class Diagram of Exclude"/>
-  <br/>Figure <>. Class diagram of Exclude
+  <br/>Figure 51. Class diagram of exclude
 </p>
 
 ***Example***
@@ -1222,7 +1206,7 @@ The following sequence Diagrams illustrates how the "exclude" command is execute
 
 <p align="center">
   <img src="DG_Images/excludeSeq.png" width="1000" alt="Sequence Diagram of the exclude command"/>
-  <br/>Figure <>. Sequence Diagram using the Exclusion Feature to exclude content from the schedule
+  <br/>Figure 52. Sequence diagram using the exclusion feature to exclude content from the schedule
 </p>
 
 <br>
@@ -1247,7 +1231,7 @@ Items are removed from the `ArrayList<String>` Exclusion List using two pairs of
 
 <p align="center">
   <img src="DG_Images/includeClass.png" width="1000" alt="Class Diagram of Include"/>
-  <br/>Figure <>. Class diagram of Include
+  <br/>Figure 53. Class diagram of include
 </p>
 
 ***Example***
@@ -1281,13 +1265,13 @@ The following sequence Diagrams illustrates how the "include" command is execute
 
 <p align="center">
   <img src="DG_Images/includeSeq.png" width="1000" alt="Sequence Diagram of the include command"/>
-  <br/>Figure <>. Sequence Diagram using the Exclusion Feature to include content into the schedule
+  <br/>Figure 54. Sequence diagram using the exclusion feature to include content into the schedule
 </p>
 
 <br>
 
 #### 4.5.4. Reschedule Chapter Feature
-(Jane)
+
 ##### Implementation
 The reschedule chapter feature allows the user to reschedule the due date of any existing chapter.
 
@@ -1302,7 +1286,7 @@ The following diagram shows the class diagram of the reschedule chapter feature:
 
 <p align="center">
   <img src="DG_Images/RescheduleChapterClassDiagram.png" width="800" alt="Reschedule Chapter Class Diagram"/>
-  <br/>Figure <>. Class diagram of reschedule chapter feature  
+  <br/>Figure 55. Class diagram of reschedule chapter feature  
 </p>
  
 For instance, the user wants to reschedule the due date `2020-12-12` of the chapter `Chapter 1`  from the module `CS2113T`, a detailed description of what happens is shown below:
@@ -1325,14 +1309,14 @@ The following sequence diagram shows how the reschedule chapter feature works:
 
 <p align="center">
   <img src="DG_Images/RescheduleChapterSequenceDiagram.png" width="800" alt="Reschedule Chapter Sequence Diagram"/>
-  <br/>Figure <>. Sequence diagram of reschedule chapter feature  
+  <br/>Figure 56. Sequence diagram of reschedule chapter feature  
 </p>
 
 >:information_source: <b>Note:</b> The lifeline for `Module` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### 4.5.5. View Revision History Feature
-(Zeyu)
 
+##### Implementation
 The view revision history feature allows the user to list the revision completed in the session/in a day. In case the user enters `history` follow by a `date(example: 2020-10-10)`, `Kaji` will list the revision completed in `October 10, 2020`. Otherwise, `Kaji` will list the revision completed in the day the user uses `HelpCommand`. This feature can be accessed at any level.
 
 The history mechanism is facilitated by `HistoryCommand`. It extends from the abstract class `Command`. 
@@ -1346,7 +1330,7 @@ The following diagram shows the class diagram of the list revision history featu
 
 <p align="center">
   <img src="DG_Images/listhistory_class_diagram.png" width="800" alt="List Revision History Class Diagram"/>
-  <br/>Figure <>. Class diagram of list revision history feature  
+  <br/>Figure 57. Class diagram of list revision history feature  
 </p>
 
 Given below is an example usage scenario and how the history mechanism behaves at each step:
@@ -1361,7 +1345,7 @@ The following sequence diagram shows how the list revision history feature works
 
 <p align="center">
   <img src="UML/listhistory_seq_diagram.png" width="800" alt="Sequence Diagram of List Revision History"/>
-  <br/>Figure <>. Sequence Diagram of List Revision History
+  <br/>Figure 58. Sequence Diagram of List Revision History
 </p>
 
 ##### <a href="#top">Back to Top ^</a>
@@ -1382,6 +1366,8 @@ The following sequence diagram shows how the list revision history feature works
 The application aims to provide students with an effective studying technique. 
 In order to make studying easier for students, the application implements a technique known as spaced repetition, 
 which help with memory retention. Content are scheduled automatically, and information is organised in the form of flashcards which makes it convenient to revise. 
+
+##### <a href="#top">Back to Top ^</a>
 
 ### 5.2. Appendix B: User Stories
 
@@ -1412,51 +1398,53 @@ which help with memory retention. Content are scheduled automatically, and infor
 | v2.0 | student | get a sense of how well I have mastered each chapter | have an idea of how well I am doing for a module |
 | v2.0 | student | include or exclude certain modules/chapters from the scheduler | revise only the modules/chapters that I need to |
 
+##### <a href="#top">Back to Top ^</a>
+
 ### 5.3. Appendix C: Use Cases
 
-This section will describe the use cases of Kaji. 
+This section will describe the use cases of KAJI. 
 
-(For all use cases below, the **System** is the `Kaji` application and the **Actor** is the `user`, unless specified otherwise.)
+(For all use cases below, the **System** is the `KAJI` application and the **Actor** is the `user`, unless specified otherwise.)
 
 #### Use Case: `add` a new `module`
 **MSS**
 1. User requests to add a new `module`.
-2. Kaji creates and saves the new `module` with the `module` name specified by the user.
+2. KAJI creates and saves the new `module` with the `module` name specified by the user.
 
     Use case ends.
     
 #### Use Case: `list` all current `module`s
 **MSS**
 1. User requests to list all current `module`s.
-2. Kaji shows a list of `module`s available.
+2. KAJI shows a list of `module`s available.
 
     Use case ends.
     
 #### Use Case: `edit` a `module`
 **MSS**
 1. User requests to edit a `module`.
-2. Kaji makes the changes and saves the `module` with the new `module` name specified by the user.
+2. KAJI makes the changes and saves the `module` with the new `module` name specified by the user.
 
     Use case ends.
    
 #### Use Case: `remove` a `module` from the current list of `module`s
 **MSS**
 1. User requests to remove an existing `module`.
-2. Kaji deletes the `module` from the list of `module`s.
+2. KAJI deletes the `module` from the list of `module`s.
 
     Use case ends.
     
 #### Use Case: `access` a `module` level
 **MSS**
 1. User requests to access a `module` level.
-2. Kaji changes the current `admin` level of the user to the `module` level specified by the user.
+2. KAJI changes the current `admin` level of the user to the `module` level specified by the user.
 
     Use case ends.
     
 #### Use Case: `revise` a `chapter` from the current list of `chapter`s in a particular `module`
 **MSS**
 1. User requests to revise a `chapter` from the current list of `chapter`s in a particular `module`.
-2. Kaji starts a revision session for the user.
+2. KAJI starts a revision session for the user.
 
     Use case ends.
     
@@ -1468,49 +1456,49 @@ There will be no revision for an empty `chapter`.
 #### Use Case: view a list of `chapter`s which are `due`
 **MSS**
 1. User requests to view a list of `chapter`s which are `due`.
-2. Kaji shows a list of `chapter`s that are `due` to the user.
+2. KAJI shows a list of `chapter`s that are `due` to the user.
 
     Use case ends.
     
 #### Use Case: `preview` a list of `chapter`s that are `due` in the week
 **MSS**
 1. User requests to `preview` a list of `chapter`s that are `due` in the week.
-2. Kaji shows a list of `chapter`s that are `due` in the week to the user.
+2. KAJI shows a list of `chapter`s that are `due` in the week to the user.
 
     Use case ends.
     
 #### Use Case: `exclude` an existing `module` or `chapter` 
 **MSS**
 1. User requests to `exclude` a `module` or `chapter`.
-2. Kaji `exclude`s the `module` or `chapter` specified by the user so that it will no longer be scheduled for revision.
+2. KAJI `exclude`s the `module` or `chapter` specified by the user so that it will no longer be scheduled for revision.
 
     Use case ends.
     
 #### Use Case: `include` an existing `module` or `chapter` 
 **MSS**
 1. User requests to `include` a `module` or `chapter`.
-2. Kaji `include`s the `module` or `chapter` specified by the user so that it will be scheduled for revision once again.
+2. KAJI `include`s the `module` or `chapter` specified by the user so that it will be scheduled for revision once again.
 
     Use case ends.
     
 #### Use Case: `reschedule` the due date of an existing `chapter` 
 **MSS**
 1. User requests to `reschedule` the due date of an existing `chapter`.
-2. Kaji `reschedule`s the due date of the `chapter` specified by the user.
+2. KAJI `reschedule`s the due date of the `chapter` specified by the user.
 
     Use case ends.
     
 #### Use Case: view the `history` of revision completed in a day 
 **MSS**
 1. User requests to view the `history` of revision completed in a day.
-2. Kaji shows the `history` of revision completed by the user in a day.
+2. KAJI shows the `history` of revision completed by the user in a day.
 
     Use case ends.
     
 #### Use Case: check overall performance for an existing chapter using `showrate` 
 **MSS**
 1. User requests to check overall performance for an existing chapter using `showrate`.
-2. Kaji shows the list of number of cards that were rated easy/medium/hard in the chapter to the user.
+2. KAJI shows the list of number of cards that were rated easy/medium/hard in the chapter to the user.
 
     Use case ends.
    
@@ -1521,9 +1509,11 @@ There will only be changes to the rating after a revision session.
 #### Use Case: view the list of commands available using `help`
 **MSS**
 1. User requests to view the list of commands available using `help`.
-2. Kaji shows the list of commands available to the user.
+2. KAJI shows the list of commands available to the user.
 
     Use case ends.
+
+##### <a href="#top">Back to Top ^</a>
 
 ### 5.4. Appendix D: Non-Functional Requirements
 
@@ -1537,10 +1527,14 @@ There will only be changes to the rating after a revision session.
 8. Should be designed for a single user.
 9. Should work on both 32-bit and 64-bit environments.
 
+##### <a href="#top">Back to Top ^</a>
+
 ### 5.5. Appendix E: Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface
+
+##### <a href="#top">Back to Top ^</a>
 
 ### 5.6. Appendix F: Instructions for Manual Testing
 #### 5.6.1. Launch and Shutdown
@@ -1552,10 +1546,10 @@ There will only be changes to the rating after a revision session.
     
 2. Shutdown of application
     1. Test case: `exit`<br>
-       Expected output: **Kaji** program terminates.
+       Expected output: **KAJI** program terminates.
        
 #### 5.6.2. Showing a list of commands
-1. Prerequisites: Launch `Kaji` successfully.
+1. Prerequisites: Launch `KAJI` successfully.
 2. Test case: `help`<br>
    Expected output: A message listing how to use each command will be shown.
 3. Other incorrect commands to try: `help abcd` (where there are extra arguments)<br>
@@ -1737,21 +1731,21 @@ There will only be changes to the rating after a revision session.
    Expected output: An error message stating that there should be no extra arguments will be shown.
        
 #### 5.6.12. Listing all chapters that are due on current date
-1. Prerequisites: Launch `Kaji` successfully.
+1. Prerequisites: Launch `KAJI` successfully.
 2. Test case: `due` <br>
    Expected output: A list of chapters that are due on the current date will be shown. If no chapters are due, a message stating that no chapters are due for the day will be shown.
 3. Other incorrect commands to try: `due blah` (where extra arguments are added)<br>
    Expected output: An error message stating that there should be no extra arguments will be shown.
        
 #### 5.6.13. Previewing list of chapters due in a week
-1. Prerequisites: Launch `Kaji` successfully.
+1. Prerequisites: Launch `KAJI` successfully.
 2. Test case: `preview` <br>
    Expected output: A list of chapters that are due in a week will be shown. If no chapters are due, every date will be accompanied by a message that no chapters are due.
 3. Other incorrect commands to try: `preview blah` (where extra arguments are added) <br>
    Expected output: An error message stating that there should be no extra arguments will be shown.
 
 #### 5.6.14. Viewing history of revision completed in a day
-1. Prerequisites: Launch `Kaji` successfully.
+1. Prerequisites: Launch `KAJI` successfully.
 2. Test case: `history` <br>
    Expected output: Lists the module and chapter which you have completed revision for. If no revision was done on the day, a message stating that no revision for that session will be shown.
 3. Test case: `history 2020-11-09`
@@ -1761,14 +1755,14 @@ There will only be changes to the rating after a revision session.
        
 #### 5.6.15. Excluding a module/chapter
 1. Excluding a module
-    1. Prerequisites: Launch `Kaji` successfully. The module you want to exclude should exist.
+    1. Prerequisites: Launch `KAJI` successfully. The module you want to exclude should exist.
     2. Test case: `exclude module` <br>
        Expected output: A prompt for which module to be excluded will be shown and you can enter an existing module which you want to exclude.
     3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
        Expected output: An error message stating that only module/chapter should be specified will be shown.
 
 2. Excluding a chapter
-    1. Prerequisites: Launch `Kaji` successfully. The chapter you want to exclude should exist.
+    1. Prerequisites: Launch `KAJI` successfully. The chapter you want to exclude should exist.
     2. Test case: `exclude chapter` <br>
        Expected output: A prompt for which chapter to be excluded will be shown and you can enter an existing chapter which you want to exclude.
     3. Other incorrect commands to try: `exclude blah` (where the argument is not module/chapter)
@@ -1776,14 +1770,14 @@ There will only be changes to the rating after a revision session.
        
 #### 5.6.16. Including a module/chapter
 1. Including a module
-    1. Prerequisites: Launch `Kaji` successfully. The module you want to include should exist.
+    1. Prerequisites: Launch `KAJI` successfully. The module you want to include should exist.
     2. Test case: `include module` <br>
        Expected output: A prompt for which module to be included will be shown and you can enter an existing module which you want to include.
     3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
        Expected output: An error message stating that only module/chapter should be specified will be shown.
        
 2. Including a chapter
-    1. Prerequisites: Launch `Kaji` successfully. The chapter you want to include should exist.
+    1. Prerequisites: Launch `KAJI` successfully. The chapter you want to include should exist.
     2. Test case: `include chapter` <br>
        Expected output: A prompt for which chapter to be included will be shown and you can enter an existing chapter which you want to include.
     3. Other incorrect commands to try: `include blah` (where the argument is not module/chapter)
