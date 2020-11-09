@@ -48,6 +48,7 @@ public class TaskList extends ItemList<Task> {
             Ui.dukePrintMultiple(Messages.MESSAGE_STATUS_FIRST + items.size() + Messages.MESSAGE_STATUS_LAST);
         }
         Ui.showLine();
+        Ui.showEmptyLine();
     }
 
     /**
