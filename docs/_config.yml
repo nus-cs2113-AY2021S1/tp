@@ -1,3 +1,15 @@
+title: "Nav@NUS"
 theme: jekyll-theme-slate
 
+header_pages:
+  - UserGuide.md
+  - DeveloperGuide.md
+  - AboutUs.md
+
 markdown: kramdown
+
+repository: "AY2021S1-CS2113T-F14-3/tp"
+
+plugins:
+  - jemoji
+  
