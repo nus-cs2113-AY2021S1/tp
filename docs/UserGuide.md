@@ -1,5 +1,6 @@
 # KAJI - User Guide
-By: `Team F11-3` Since: `August 2020`
+By: `Team CS2113T-F11-3` Since: `August 2020`
+
 ## Table of Contents
 1. [Overview](#1-overview)<br>
 1.1. [About KAJI](#11-about-kaji)<br>
@@ -567,9 +568,9 @@ You can edit the question and/or answer of an existing flashcard from the list o
 You can do so by using the `edit` command, followed by the details of the flashcard.
 
 **Format:** <br>
-Editing question and answer: `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER`<br>
-Editing question only: `edit FLASHCARD_INDEX q:QUESTION | a:`<br>
-Editing answer only: `edit FLASHCARD_INDEX q: | a:ANSWER`<br>
+* Editing question and answer: `edit FLASHCARD_INDEX q:QUESTION | a:ANSWER`<br>
+* Editing question only: `edit FLASHCARD_INDEX q:QUESTION | a:`<br>
+* Editing answer only: `edit FLASHCARD_INDEX q: | a:ANSWER`<br>
 
 Here are some key pointers:
 * `FLASHCARD_INDEX` **must be a positive integer** 1, 2, 3, ...,
