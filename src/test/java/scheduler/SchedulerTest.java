@@ -20,4 +20,49 @@ class SchedulerTest {
         assertFalse(Scheduler.isDeadlineDue(Scheduler.getCurrentDate().plusDays(1)));
     }
 
+    @Test
+    void computeEasyInterval_intervalWithinMaxInterval_incrementedInterval() {
+        assertEquals(Scheduler.computeEasyInterval(1), 4);
+    }
+
+    @Test
+    void computeEasyInterval_previousIntervalEqualsMaxInterval_MaxInterval() {
+        assertEquals(Scheduler.computeEasyInterval(365), 365);
+    }
+
+    @Test
+    void computeEasyInterval_previousIntervalBeyondMaxInterval_MaxInterval() {
+        assertEquals(Scheduler.computeEasyInterval(1000), 365);
+    }
+
+    @Test
+    void computeMediumInterval_intervalWithinMaxInterval_incrementedInterval() {
+        assertEquals(Scheduler.computeMediumInterval(1), 2);
+    }
+
+    @Test
+    void computeMediumInterval_previousIntervalEqualsMaxInterval_MaxInterval() {
+        assertEquals(Scheduler.computeMediumInterval(365), 365);
+    }
+
+    @Test
+    void computMediumInterval_previousIntervalBeyondMaxInterval_MaxInterval() {
+        assertEquals(Scheduler.computeMediumInterval(1000), 365);
+    }
+
+    @Test
+    void computeHardInterval_intervalWithinMaxInterval_incrementedInterval() {
+        assertEquals(Scheduler.computeHardInterval(1), 1);
+    }
+
+    @Test
+    void computeHardInterval_previousIntervalEqualsMaxInterval_MaxInterval() {
+        assertEquals(Scheduler.computeHardInterval(365), 365);
+    }
+
+    @Test
+    void computeHardInterval_previousIntervalBeyondMaxInterval_MaxInterval() {
+        assertEquals(Scheduler.computeHardInterval(1000), 365);
+    }
+
 }
