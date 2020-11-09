@@ -37,7 +37,7 @@ public class SaveManager {
             case "list":
                 listSaves(packet);
                 break;
-            case "new":
+            case "add":
                 if (checkValidity(packet) == true) {
                     addSave(packet);
                 }
@@ -176,7 +176,7 @@ public class SaveManager {
                 }
             }
             FileWriter fileWriter = new FileWriter(fullPath, true);
-            fileWriter.write("\n" + name);
+            fileWriter.write(name + "\n");
             fileWriter.close();
             prompt = name + " has been added!";
 

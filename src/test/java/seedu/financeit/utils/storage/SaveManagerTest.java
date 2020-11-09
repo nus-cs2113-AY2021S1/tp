@@ -18,7 +18,6 @@ public class SaveManagerTest {
         try {
             List<String> first = Files.readAllLines(firstFile);
             List<String> second = Files.readAllLines(secondFile);
-
             return first.equals(second);
         } catch (IOException e) {
             e.printStackTrace();
