@@ -376,7 +376,7 @@ public class Ui {
             } else {
                 printMessage(INVALID_TOPIC);
                 printTopicsError(topicList);
-                printMessage(INPUT_ERROR + "\n" + ADD_NOTE_UNSUCCESSFULLY);
+                printMessage(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
             printError(e.getMessage());
@@ -420,7 +420,7 @@ public class Ui {
         } else {
             printWithoutLines(INVALID_TOPIC);
             printTopicsError(topicList);
-            printWithoutLines(INPUT_ERROR + "\n" + DELETE_NOTE_UNSUCCESSFULLY);
+            printWithoutLines(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
         }
     }
 
