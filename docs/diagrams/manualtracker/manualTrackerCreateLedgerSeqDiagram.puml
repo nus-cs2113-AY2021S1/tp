@@ -1,7 +1,7 @@
 @startuml
 autoactivate on
 actor User
-scale 1094 width
+scale 900 width
 
 skinparam shadowing false
 skinparam sequence {
