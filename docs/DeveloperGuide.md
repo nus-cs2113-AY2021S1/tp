@@ -698,8 +698,8 @@ the favourite list.
 Expected: The favourite command at index 1 will be deleted.<br>
 
 - Test case 2: `/deletefav 0`<br>
-    -Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
-     any string or empty input. 
+    - Other incorrect test cases includes all numbers out of range (0 or more than size of favourite list),
+     any string or empty input.<br> 
 Expected: No command executed.Error details will be shown to remind users to type in the needed parameter.<br>
 
 - Test case 3: `/deletefav`<br>
