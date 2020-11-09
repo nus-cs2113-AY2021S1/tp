@@ -94,7 +94,7 @@ public class Parser {
     }
 
     /**
-     * Gets the command word from the raw input
+     * Gets the command word from the raw input.
      *
      * @param rawInput the user input
      * @return the command word. e.g add/edit/delete
@@ -109,7 +109,7 @@ public class Parser {
     }
 
     /**
-     * Gets everything after the command word
+     * Gets everything after the command word.
      *
      * @param rawInput the user input
      * @return the string after the command word
