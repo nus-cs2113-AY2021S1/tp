@@ -906,7 +906,7 @@ Prerequisite: list the complete task list using `list` command. Multiple tasks i
   Expected: an information is printed out to informing there is no matching tasks, since there is no keyword `t` in 
   any task in the list and incomplete keywords are not allowed.
   
-- Test case: `find books k/harry`
+- Test case: `find books k/harry` <br>
   Expected: the books containing the keyword `harry` are displayed.
 
 ### Clearing all items
