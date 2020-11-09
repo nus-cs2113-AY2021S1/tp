@@ -1201,4 +1201,18 @@ abc3 (Default) #> Currently, you have 7 workspace(s):
 6. abc7
 7. abc8
 
+abc3 (Default) #> Successfully added new workspace: hello dave
+
+abc3 (Default) #> OOPS!!! Workspace with similar name found!
+
+abc3 (Default) #> Currently, you have 8 workspace(s):
+1. RED VELVET Crumblesss
+2. COOKIES N CREME CH33SECAKE
+3. APPLES ORANGES OREOS PANCAKESS
+4. Triple Fromage Cheesecake
+5. abc3
+6. abc7
+7. abc8
+8. hello dave
+
 abc3 (Default) #> Sayonara Abec Steiner 77th-chan!
