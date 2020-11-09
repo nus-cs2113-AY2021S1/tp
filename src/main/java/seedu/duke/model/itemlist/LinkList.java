@@ -8,6 +8,7 @@ import seedu.duke.model.item.Link;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // @@author Cao-Zeyu
 
@@ -117,5 +118,39 @@ public class LinkList extends ItemList<Link> {
     @Override
     public void clearItems() {
         links = new ArrayList<>();
+    }
+
+    @Override
+    public void findItem(String keyword) {
+        ArrayList<Link> matchingItems = new ArrayList<>();
+        int count = 0;
+        String message = "";
+        for (Link link : links) {
+            String[] description;
+            description = link.getDescription().trim().toLowerCase().split(" ");
+            if (Arrays.asList(description).contains(keyword.trim().toLowerCase())) {
+                matchingItems.add(link);
+                count++;
+                message = message + "\n     " + count + "." + link.toString();
+            } else if (keyword.contains(" ")) {
+                if (!link.getDescription().trim().toLowerCase().contains(keyword.trim().toLowerCase())) {
+                    continue;
+                }
+                String[] keywords = keyword.trim().toLowerCase().split(" ");
+                for (String word : keywords) {
+                    if (!Arrays.asList(description).contains(word)) {
+                        continue;
+                    }
+                }
+                matchingItems.add(link);
+                count++;
+                message = message + "\n     " + count + "." + link.toString();
+            }
+        }
+        if (!message.equals("")) {
+            Ui.dukePrint(Messages.MESSAGE_FIND + message);
+        } else {
+            Ui.dukePrint(Messages.MESSAGE_NOT_FOUND);
+        }
     }
 }
