@@ -12,7 +12,7 @@ During peak hours, people may not be able to know the dining situation and the d
 #### User Guide:
 Created the table of content of User Guide and wrote the detailed explanation after content 3.5. Added pictures and managed their links.
 #### Developer Guide: 
-Created the table of content of Developer Guide and wrote the detailed explanation except content 4, which is implementation part. Added pictures including UML diagrams of find, delete, and print order.
+Created the table of content of Developer Guide and wrote the detailed explanation except content 4, which is implementation part. Added pictures including UML diagrams of find, delete, and print order and managed their links.
 
 ### Project management:
 Managed releases v2.1 on GitHub. (1 release)
@@ -21,4 +21,4 @@ Managed releases v2.1 on GitHub. (1 release)
 Wrote tests for existing features to increase test coverage.
 
 ### Contributions to team-based tasks (main features of our project): 
-We work as a team, we always meet and work together. Everyone tried to contribute to every part.  Thank you!
+We work as a team, we always meet and work together. Everyone tried to contribute to every part. Thank you!
