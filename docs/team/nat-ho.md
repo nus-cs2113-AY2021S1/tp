@@ -23,20 +23,20 @@ Please click [here](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdow
 
 **What it does:**
 * The user may use the `add -q` command to add a quote into Quotesify.
-* The user may use the `edit -q` or `delete -q` command to edit or delete an existing.
+* The user may use the `edit -q` or `delete -q` command to edit or delete an existing quote.
 * The user may use the `list -q` command to list all existing quotes, quotes from a specified author, quotes from a 
 specified reference, or both from a specified reference and author.
 * The user may also use the `find -q` command to find quotes containing a specified keyword.
 
 **Justification:**
 The Quote Management system is designed to help users log important and meaningful quotes from books and information 
-found on the web, as they are usually read and forgotten after a short period. This feature creates a personal repository 
+found on the web, as they are usually read and forgotten after a short period of time. This feature creates a personal repository 
 of those quotes, enabling users to revisit and find them effectively.
 
 **Highlights:**
 To enable a wider range of use cases, Quotesify accepts multiple formats for quotes. Author and reference are optional 
 flags that can be added to provide more information which will enable users to find and list quotes more efficiently. 
-On launch and exit, users will also be reminded of saved quotes, resurfacing and reminding them so as to better remember.
+On launch and exit, users will also be reminded of saved quotes, resurfacing and reminding users so as to better remember.
     
 #### 2. Quote Reflection feature in Quotesify.
     
