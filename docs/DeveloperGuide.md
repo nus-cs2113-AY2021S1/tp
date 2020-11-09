@@ -587,6 +587,8 @@ A all-in-one solution for note-taking and managing your schedule. NotUS solves t
 |ParseCreateOrDeleteTagCommand|Creates a CreateTagCommand or DeleteTagCommand|
 |ParseTagCommand|Creates a TagNoteCommand or TagEventCommand|
 
+<div style="page-break-after: always;"></div>
+
 #### <a id="XYZCommands"><ins>8.2 List of Command Classes</ins></a>
 
 The list of Command classes is as follow:
