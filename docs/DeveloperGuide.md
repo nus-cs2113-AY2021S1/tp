@@ -170,14 +170,15 @@ The sequence diagram below shows the process of adding a new event.
 
 ### 4.2 Clear events<a id="clear"></a>
   
-This feature allows users to completely delete the existing event information that is previously typed in by users. 
+This feature allows users to completely delete the existing event information that is previously typed in by users.
+Users may choose to delete all events, events happened one month ago, or events happened before a certain date.
 
 Given below is an example usage scenario:
 
-Step 1. The user launches the application and wants to delete everything previously stored by using `clear` command.  
+Step 1. The user launches the application and wants to clear some events that happened a long time ago as there is no
+need to refer to these events anymore. The user types `clearBefore 2020-06-01` to clear all events before 1st June, 2020.
 
-Step 2. If there is no information stored before the user input the `clear` command, the user will be reminded about 
-that the list is already empty. 
+Step 2. 
 
 The sequence diagram below shows the process of clearing all events.
 ![ClearCommand Sequence Diagram](diagrams/ClearCommand.png)<br>
