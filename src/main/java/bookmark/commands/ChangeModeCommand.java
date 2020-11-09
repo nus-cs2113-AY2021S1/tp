@@ -3,6 +3,7 @@ package bookmark.commands;
 import bookmark.BookmarkCategory;
 import bookmark.BookmarkStorage;
 import bookmark.BookmarkUi;
+import exceptions.ExistingBookmarkException;
 import exceptions.InvalidBookmarkException;
 import exceptions.EmptyBookmarkException;
 
@@ -20,6 +21,12 @@ public class ChangeModeCommand extends BookmarkCommand {
         assert categoryNumber >= 0 : "Missing category number";
     }
 
+    /**
+     * Change mode from bookmark main to each bookmark category
+     *
+     * @param ui prints output message
+     * @param categories prints list of links in category chosen.
+     */
     public void executeCommand(BookmarkUi ui, ArrayList<BookmarkCategory> categories, BookmarkStorage bookmarkStorage) {
         try {
             int category = getChosenCategory(categories);
