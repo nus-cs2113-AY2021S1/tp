@@ -218,7 +218,7 @@ public class AddCommand extends Command {
         } else {
             logger.warning("WrongNumberOfArgumentsException -- Incorrect number of parameters for Zoom event!");
             throw new WrongNumberOfArgumentsException("Incorrect number of parameters for Zoom event! A Zoom event"
-                    + "can contain description and link or description, link, date and time.");
+                    + " can contain description and link or description, link, date and time.");
         }
     }
 }

@@ -139,6 +139,22 @@ public class ExtractCommand extends Command {
     }
 
     /**
+     * Takes in the textBody from the user.
+     *
+     * @param ui is used to receive Strings the user input.
+     * @return String containing the full text body entered.
+     */
+    private String receiveTextBody(Ui ui) {
+        String bodyLine = "";
+        String fullTextBody = "";
+        while (!bodyLine.equals("extractend")) {
+            bodyLine = ui.receiveCommand().trim();
+            fullTextBody = fullTextBody.concat(" " + bodyLine);
+        }
+        return fullTextBody;
+    }
+
+    /**
      * Detects zoom links from the text the user inputs.
      *
      * @param textBody A string of the text body that is scanned through for zoom links.
@@ -194,22 +210,6 @@ public class ExtractCommand extends Command {
             ui.printExtractSingleZoomLinkDetectedMessage(zoomLink);
         }
         return zoomLink;
-    }
-
-    /**
-     * Takes in the textBody from the user.
-     *
-     * @param ui is used to receive Strings the user input.
-     * @return String containing the full text body entered.
-     */
-    private String receiveTextBody(Ui ui) {
-        String bodyLine = "";
-        String fullTextBody = "";
-        while (!bodyLine.equals("extractend")) {
-            bodyLine = ui.receiveCommand().trim();
-            fullTextBody = fullTextBody.concat(" " + bodyLine);
-        }
-        return fullTextBody;
     }
 
     /**
