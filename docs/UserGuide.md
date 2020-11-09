@@ -130,7 +130,7 @@ Format: help {COMMAND(optional)}
 <br/><br/> 
 >Typing `help` in timetable mode will show these commands.
 >
->![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20timetable.png?raw=true)
+>![](https://github.com/TYS0n1/tp/blob/master/docs/images/showhelpcommand%20timetable1.png?raw=true)
 
 <br/><br/> 
 >Lastly, typing `help` in planner mode will show these commands.
