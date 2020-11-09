@@ -25,7 +25,7 @@ The challenge to this solution is it requires the discipline to ensure that each
 
 #### Contributions to Team-Based Tasks
 * Added technique to allow teammates to conduct JUnit testing on stdin and stdout. (Pull Request [#189](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/189))  
-* Standardize package naming convention (Pull Request [#190](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/190) Issue [#23](https://github.com/AY2021S1-CS2113T-F11-4/tp/issues/23))
+* Standardize package naming convention (Pull Request [#228](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/228) Issue [#23](https://github.com/AY2021S1-CS2113T-F11-4/tp/issues/23))
 
 #### Contributions to Documentation
 ##### User Guide  
@@ -38,6 +38,8 @@ The challenge to this solution is it requires the discipline to ensure that each
 ##### Developer Guide  
 * Storage component ([#109](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/109) [#117](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/117) [#186](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/186))  
 * Storage related implementation (Pull Requests [#109](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/109) [#138](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/138))  
+
+##### README (Pull Request [#236](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/236))
 
 #### Other Contributions
 * Reviewed bugs for other team's developer guide. [[CS2113T-F14-2] Cent Wise Dollar Wise](https://github.com/nus-cs2113-AY2021S1/tp/pull/7)  
