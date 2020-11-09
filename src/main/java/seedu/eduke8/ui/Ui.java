@@ -115,7 +115,6 @@ public class Ui {
             + " to delete?";
     private static final String DELETE_NOTE_SUCCESSFULLY = "The note has been deleted!";
     private static final String DELETE_NOTE_UNSUCCESSFULLY = "The note was not deleted successfully. Try again!";
-    private static final String INVALID_TOPIC = "Please enter a valid topic name";
     private static final String INVALID_TOPIC_INDEX = "Please enter a valid topic index";
     private static final String LIST_NOTE_PROMPT = "Which topic's notes would you like to view?";
     private static final String INPUT_ERROR = "Please provide a valid topic!";
@@ -150,6 +149,7 @@ public class Ui {
     public static final String OS_MAC = "mac";
     public static final String NUMBERS_ONLY = "[0-9]+";
     public static final String EMPTY = "";
+    public static final String NOTE_LIST_ERROR = "Please try again!";
 
     private static String operatingSystem = null;
 
@@ -368,12 +368,12 @@ public class Ui {
                 topic.getNoteList().add(note);
                 printMessage(ADD_NOTE_SUCCESSFULLY);
             } else {
-                printMessage(INVALID_TOPIC);
-                printTopicsError(topicList);
-                printMessage(INPUT_ERROR + System.lineSeparator() + ADD_NOTE_UNSUCCESSFULLY);
+                throw new Eduke8Exception(ADD_NOTE_UNSUCCESSFULLY);
             }
         } catch (Eduke8Exception e) {
-            printError(e.getMessage());
+            printMessage(INPUT_ERROR);
+            printTopicsError(topicList);
+            printMessage(ADD_NOTE_UNSUCCESSFULLY);
         }
     }
 
@@ -399,19 +399,19 @@ public class Ui {
                         && Integer.parseInt(input) <= noteList.getCount()) {
                     int index = Integer.parseInt(input);
                     topic.getNoteList().delete(index - 1);
-                    printWithoutLines(DELETE_NOTE_SUCCESSFULLY);
+                    printMessage(DELETE_NOTE_SUCCESSFULLY);
                 } else {
-                    printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+                    throw new Eduke8Exception(INVALID_TOPIC_INDEX);
                 }
-            } catch (NumberFormatException e) {
-                printWithoutLines(INVALID_TOPIC_INDEX);
+            } catch (Eduke8Exception | NumberFormatException e) {
+                printMessage(INVALID_TOPIC_INDEX + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
             }
-        } else if (noteCount == 0) {
+        } else if (topicList.doesTopicExist(topicName) && noteCount == 0) {
             printMessage(MESSAGE_PRINT_NOTE_LIST_NONE);
         } else {
-            printWithoutLines(INVALID_TOPIC);
+            printMessage(INPUT_ERROR);
             printTopicsError(topicList);
-            printWithoutLines(INPUT_ERROR + System.lineSeparator() + DELETE_NOTE_UNSUCCESSFULLY);
+            printMessage(DELETE_NOTE_UNSUCCESSFULLY);
         }
     }
 
@@ -424,12 +424,12 @@ public class Ui {
                 NoteList noteListTopic = topic.getNoteList();
                 showNotes(noteListTopic);
             } else {
-                printMessage(INVALID_TOPIC);
-                printTopicsError(topicList);
-                printMessage(INPUT_ERROR);
+                throw new Eduke8Exception(INPUT_ERROR);
             }
         } catch (Eduke8Exception e) {
-            printError(e.getMessage());
+            printMessage(INPUT_ERROR);
+            printTopicsError(topicList);
+            printMessage(NOTE_LIST_ERROR);
         }
     }
 
