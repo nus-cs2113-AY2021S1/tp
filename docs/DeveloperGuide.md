@@ -100,7 +100,7 @@ as it is easier for users to directly refer to and edit their saved files.
 The following figure describes the overall architecture of Fluffle.
 
 ![UML Fluffle class diagram](graphics/diagrams/Architecture.PNG)
-<center><i><b>Figure 1: Overview of Fluffle Architecture</b></i></center>
+<p align = "center"><i><b>Figure 1: Overview of Fluffle Architecture</b></i></p>
 
 The design of Fluffle contains four main components:
 - Writing Manager component
@@ -152,7 +152,7 @@ methods on that sequence respectively, the user should be able to access the pro
 into the database. During this process, the user has the ability of choosing their preferred type of writings(which are 
 either poem or essay at this stage)
 
-![UML WritingList family sequence diagram](graphics/diagrams/UMLSequenceDiagram_WritingList.png)
+![UML WritingList family sequence diagram](graphics/diagrams/writingList_whileAddingWriting.png)
 <p align = "center"><i><b>Figure 4: General interactions between member classes when generating a new writing</b></i></p>
 
 ### Word Features
@@ -203,7 +203,7 @@ In **Figure 6** above, the flow of the program is as follow:
    
 ### Bunny class family
 ![UML Bunny class diagram](graphics/diagrams/Class_diagram_bunny.png)
-<center><i>Figure 7:  Bunny ideas UML Class Diagram</i></center>
+<p align = "center"><b><i>Figure 7:  Bunny ideas UML Class Diagram</i></b><p>
 The above class diagram describes the overall architecture of the bunny list functionalities. Recall that the term bunny refers to  plot ideas that have yet to be devloped. 
 The above classes provide the functionality of storing such ideas in an organised manner that can easily be searched, saved and loaded.
 
@@ -223,10 +223,10 @@ generates an integer between 0 and the max number of `Bunny` idea in the `bunnie
 `bunniesList` and returns it to the user. This allows the user to easily choose an idea to start working on without struggling to decide which idea to use.
 
 ![UML BunnyList sequence diagram](graphics/diagrams/Sequence_diagram_bunny.png)
-<center><i>
+<p align = "center"><i>
   
   
-  8:  Bunny list UML Sequence Diagram</i></center>
+  8:  Bunny list UML Sequence Diagram</i></p>
 
 The user may call upon the `bunny` command to add bunnies to the list. The user input is first processed by the `extractCommandType` method from 
 the `CommandChecker` class, and the command type detected is sent to the `executeCommand` method from the `CommandExecutor` class. The `addBunny` function is called by this 
@@ -237,7 +237,7 @@ to print the message that the `Bunny` idea object has been sucessfully added to 
 ### Names class family
 
 ![Names UML Class Diagram](graphics/diagrams/classDiagram_Names.png)
-<center><i>Figure 8: Names UML Class Diagram</i></center>
+<p align = "center><b><i>Figure 8: Names UML Class Diagram</i></b><p>
 
 The above class diagram (Figure 8) describes the overall architecture of the name list functionalities. The Names class 
 has the protected ArrayList of names, nameList, that is accessed by the Names class method getName which randomly gets 
@@ -261,6 +261,9 @@ As shown in Figure 8, both the NamesDB class and the Names class will create the
 that inherits from the Exception superclass and passes the exception message to the superclass. In the event of an 
 exception, it is thrown from the methods in NamesDB class and Names class and handled by the NameException class.
 
+### ClearLoader class
+![ClearLoader Class sequence diagram](graphics/diagrams/ClearLoader_Sequencediagram.png)
+<p align = "center><b><i>Sequence diagram of Clear Loader while operating the removing method for the app's writings and words</i></b></p>
 ## Testing
 
 Put methods of testing here !!! JUnit test, Unit testing, integration testing, ...
