@@ -660,7 +660,7 @@ Format: load
 * You need to copy the different .txt files manually to the planner folder before entering this command.
 * This command only displays the common empty time slots between.
 
-You can try to download some timetable samples from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/tree/master/docs/timetable_samples)
+You can try to download some timetable samples from [here](https://github.com/AY2021S1-CS2113T-W11-1/tp/tree/master/docs/timetable_samples).
 
 <br/>
 
