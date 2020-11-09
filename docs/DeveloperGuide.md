@@ -266,10 +266,12 @@ It implements the following operations:
 * `starGrade(Integer, ArrayList<Grade>)`:Star a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `combineGradeDetails(Grade)`:Print out the details of a particular `Grade`.
 
-<div style="page-break-after: always;"></div>
-
 The following sequence diagram demonstrates an example of how the Su Grade function works:
-![Academic_Sequence_Diagram](Images/Academic_Sequence_Diagram.png)
+
+<p align="center">
+    <img width="50%" height="50%" src="Images/Academic_Sequence_Diagram.png">
+</p>
+
 With reference to above, it can be observed that whenever a command modifies the array lists, 
 `AcademicStorage` is called to update the local storage files.
 
