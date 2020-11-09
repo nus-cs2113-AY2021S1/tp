@@ -988,11 +988,13 @@ We have decided to implement the first approach, **the bookmark will keep the an
 <br/>
 
 ## 5. Documentation, Logging, Testing, and DevOps
+
 This section details the documentation, logging, testing and dev-ops setup used in this project as well as information on how to use them.
 
 <br/>
 
 ### 5.1 Documentation
+
 We use **Jekyll** to manage documentation. We recommend that you document your feature implementations and code changes so that other developers are aware of its architecture.
 
 The `docs/` folder stores the documentation of this project. You can learn more about how to setup and maintain the project website using [this guide](https://se-education.org/guides/tutorials/jekyll.html).
@@ -1000,15 +1002,17 @@ The `docs/` folder stores the documentation of this project. You can learn more 
 <br/>
 
 ### 5.2 Logging
+
 We encourage the use of logger in this project as they provide deeper insights as compared to error messages which can greatly help developers identify bugs and simplify their logging process.
 
 We are using `java.util.logging`  package for logging. The logger can be accessed using the  `AniLogger`  class. 
 
 `AniLogger` is used to manage the logging levels and logging destinations. Based on the default settings, logs will be written to both console and file `data/AniChan.log`.
 
-The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class)`  which will log messages according to the specified logging level.
+The  `Logger`  for a class can be obtained using  `AniLogger.getAniLogger(Class.class.getName())`  which will log messages according to the specified logging level.
 
 We use the following log levels:
+
 *   `Level.SEVERE`: A critical failure, which prevents normal execution of the program.
 *   `Level.WARNING`: Indicates a potential problem, but can proceed with caution.
 *   `Level.INFO`: General noteworthy information of the program.
@@ -1016,6 +1020,7 @@ We use the following log levels:
 <br/>
 
 ### 5.3 Testing
+
 Testing is integral to the development of a reliable software. Before making a pull request, please ensure that all tests pass. You are recommended to write tests as you add new code to the program.
 
 We employ both unit and integration tests for our codes. They are located in `./src/test` directory.
@@ -1023,13 +1028,16 @@ We employ both unit and integration tests for our codes. They are located in `./
 <br/>
 
 #### 5.3.1 Running Tests
+
 There are primarily 2 ways to run the tests.
 
 **Method 1: Using IntelliJ**
+
 *   To run all tests, right-click on the `src/test/java` folder in the project panel and choose `Run Tests`.
-<br/>
+    <br/>
 
 **Method 2: Using Gradle**
+
 *   Open a terminal and navigate to project directory, run command `./gradlew clean checkstyleMain checkstyleTest test`.
 
 <br/>
@@ -1046,6 +1054,7 @@ These tools allow us to detect and mitigate bugs before they are merged to the r
 This project uses Gradle for build automation and dependency management.
 
 It automates tasks such as:
+
 *   Managing library dependencies.
 *   Analyzing code for style compliance.
 *   Running tests.
@@ -1061,6 +1070,7 @@ We use [GitHub Actions](https://github.com/features/actions) and [Travis CI](htt
 Their configuration is complete and there is no need to modify them, these CI will automatically run checks on every commit to **AniChan** repository.
 
 If you wish to modify these tools, you may find their configurations at:
+
 *   **GitHub Workflow:** `.github/workflows`
 *   **Travis CI:** `.travis.yml`
 
