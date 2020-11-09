@@ -308,7 +308,7 @@ ____________________________________________________________
 
 #### 3.1.8 Starting Subject Quiz: `quiz`  <a name="subject_quiz"> </a>
 
-Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">takeQuiz</a>.
+Starts a quiz for a particular subject. For more details, see <a href="#takeQuiz">taking quizzes</a>.
 
 Format: `quiz [SUBJECT_NAME]`
 
@@ -969,6 +969,7 @@ Format: `add` `[QUESTION]; [ANSWER]`
 - The application will print the question and answer of the flashcard you added along with the 
 total number of flashcards under the current topic.
 > 📝️ ️  **_NOTE:_** Do not forget the semicolon, as it separates the question and the answer.
+
 > ⚠️   **_WARNING:_** `[QUESTION]` and `[ANSWER]` of the flashcards are case-sensitive. 
 Example of usage: 
 ```
@@ -998,7 +999,7 @@ Format: `delete [FLASHCARD_NUMBER]`
 - The application will print the question and answer of the flashcard you have deleted from the topic list, as well as 
 the number of flashcards you now have under the current topic on the command line.  
 
-> 📝️️ **_NOTE:_** The FLASHCARD_NUMBER` of a flashcard is the number assigned to each flashcard when the user uses the 
+> 📝️️ **_NOTE:_** The `FLASHCARD_NUMBER` of a flashcard is the number assigned to each flashcard when the user uses the 
 >list command to print out the flashcards.
 
 > 📝️️ **_NOTE:_** After deletion of a flashcard, the `FLASHCARD_NUMBER` of topics in the list may change.
@@ -1042,7 +1043,7 @@ exit
 Sample output: 
 ```
 ____________________________________________________________
-Going back to the topics and tasks list.
+Going back to the subject level.
 ____________________________________________________________
 ```
 
@@ -1058,14 +1059,14 @@ to revise your own notes.
  
 In this feature, the application prints the questions from the flashcards stored in the application. You need to complete the quiz within a
 certain time limit. There are two types of quizzes :
-* SubjectQuiz
-* TopicQuiz
+* Quiz for a subject
+* Quiz for a Topic
 
-##### Subject quiz
+##### Quiz for a subject
 This type of quiz helps you prepare for a particular subject.The application prints out the questions from the topics present in a subject.
 
 
-##### Topic quiz
+##### Quiz for a Topic
 This type of quiz helps you to prepare for a particular topic. The application prints out all the questions that have been saved in the specific topic .
 
 
@@ -1075,7 +1076,7 @@ This type of quiz helps you to prepare for a particular topic. The application p
 Once you have entered the type of quiz you want to begin, the application starts the quiz. You
 are expected to answer these questions.
 
-Format: `Question NAMEOFQUESTION`<br>
+Format: `Question [NAMEOFQUESTION]`<br>
 Example: `Question: What is the version of Java used in CS2113T?` <br>
 
 Once the quiz has been completed, the application prints out the scores that you obtained.
@@ -1105,8 +1106,8 @@ ____________________________________________________________</code></pre>
 You can stop the quiz by entering `stop`. The application then prints the score.<br>
 Format: `stop`<br>
 Sample output:`The quiz has been stopped!`.
-<pre><code>
-____________________________________________________________
+
+<pre><code>____________________________________________________________
 The quiz has been stopped!
 ____________________________________________________________
 Result:1/2 -- Pass
@@ -1312,8 +1313,7 @@ of the list, while tasks which are due later are placed at the rear. `Todo` task
 they do not have any deadlines.
 
 Suppose you use the `list` command and get this output:
-<pre><code>
-____________________________________________________________
+<pre><code>____________________________________________________________
 Here are the tasks(s) under CS2113T: 
 1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
 2. [E][N] marathon (at: 6:00 PM 9 Nov 2020)
@@ -1321,8 +1321,7 @@ ____________________________________________________________
 </code></pre>
 
 Adding the following deadline by `deadline project /by 18:00 07-11-2020` and using the `list` command would yield this output.
-<pre><code>
-____________________________________________________________
+<pre><code>____________________________________________________________
 Here are the tasks(s) under CS2113T: 
 1. [D][N] homework (by: 6:00 PM 6 Nov 2020)
 2. [D][N] project (by: 6:00 PM 7 Nov 2020)
@@ -1333,7 +1332,7 @@ ____________________________________________________________
 #### 3.4.7 Printing upcoming tasks <a name="upcoming"> </a> (Muthu)
 Once you open the application, it will print the tasks which are due in the upcoming week. Only tasks which have not been
 completed yet will be printed out. The tasks will be sorted out according to the subjects, then the date and time at which 
-the task occurs(event)/is due(deadlines).
+the task is due.
 
 Example:
 <pre><code>
