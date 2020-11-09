@@ -18,35 +18,36 @@ Wan Shi Jie Brendan<br>
 
 ## Table of Contents
 
-* [1. Introduction](#1-introduction)
-* [2. Getting Started](#2-getting-started)<br>
-    * [2.1. Prerequisites](#21-prerequisites)<br>
-    * [2.2. Setting Up](#22-setting-up)<br>
-* [3. Design](#3-design) <br>
-    * [3.1 Architecture](#31-architecture) <br>
-    * [3.2 UI](#32-ui) <br>
-    * [3.3 Storage](#33-storage) <br>
-    * [3.4 Logic](#34-logic) <br>
-    * [3.5 Model](#35-model) <br>
-        * [3.5.1. Event](#351-event) <br>
-        * [3.5.2. Location](#352-location) <br>
-* [4. Implementation](#4-implementation) <br>
-    * [4.1. Add events](#41-add-events) <br>
-    * [4.2. Clear events](#42-clear-events) <br>
-    * [4.3. Edit events](#43-edit-events) <br>
-    * [4.4. Locate](#44-locate) <br> 
-    * [4.5. Reminders](#45-reminder) <br>
-    * [4.6. Sort events](#46-sort-events) <br>
-    * [4.7. View events](#47-view-events) <br>
-    * [4.8. Help](#48-help) <br>
-    * [4.9. Repeat](#49-repeat) <br>
-    * [4.10. Delete](#410-delete) <br>
-    * [4.11. Find](#411-find) <br>
-    * [4.12. Print Locations](#412-print-locations) <br>
-    * [4.13. Study Time](#413-study-time) <br>
-    * [4.14. User Info](#414-user-info) <br>
-    * [4.15. Done](#415-done) <br>
-* [5. Documentation](#5-documentation) <br>
+* [1. Introduction](#intro)
+* [2. Getting Started](#getting_started)<br>
+    * [2.1. Prerequisites](#prerequisites)<br>
+    * [2.2. Setting Up](#setting_up)<br>
+* [3. Design](#design) <br>
+    * [3.1 Architecture](#architecture) <br>
+    * [3.2 UI](#ui) <br>
+    * [3.3 Storage](#storage) <br>
+    * [3.4 Logic](#logic) <br>
+    * [3.5 Model](#model) <br>
+        * [3.5.1. Event](#event) <br>
+        * [3.5.2. Location](#location) <br>
+* [4. Implementation](#implementation) <br>
+    * [4.1. Add events](#add_events) <br>
+    * [4.2. Clear events](#clear) <br>
+    * [4.3. Edit events](#edit) <br>
+    * [4.4. Locate](#locate) <br> 
+    * [4.5. Reminders](#reminder) <br>
+    * [4.6. Sort events](#sort) <br>
+    * [4.7. View events](#view) <br>
+    * [4.8. Help](#help) <br>
+    * [4.9 Repeat](#repeat) <br>
+    * [4.10 Delete](#delte) <br>
+    * [4.11 Find](#find) <br>
+    * [4.12 Find base on date](#date) <br>
+    * [4.13 Print locations of a certain group](#location_group) <br>
+    * [4.14 Study time](#study_time) <br>
+    * [4.15 Done](#done) <br>
+    * [4.16 User Info](#user_info) <br>
+* [5. Documentation](#documentation) <br>
 * [6. Testing](#6-testing)<br>
 * [Appendix A. Product scope](#appendix-a-product-scopea-idproduct_scopea)<br>
 * [Appendix B.User stories](#appendix-b-user-storiesa-idstoriesa)<br>
@@ -318,8 +319,24 @@ The sequence diagram below shows what happens when user enters `help`:
 ### 4.9 Repeat
 This feature allows users to repeat all classes in the current week or a selected event for several weeks.
 
-### 4.10 Delete
+### 4.10 Delete<a id="delete"></a>
+This feature allows the user to delete unwanted events. `DeleteCommand#Execute` deletes the specified event in the following steps:  
 
+### 4.11 Find<a id="find"></a>
+
+### 4.12 Find base on date<a id="date"></a>
+
+### 4.13 Print locations of a certain group<a id="location_group"></a>
+
+### 4.14 Study time<a id="study_time"></a>
+
+### 4.15 Done<a id="done"></a>
+
+### 4.16 User Info<a id="user_info"></a>
+
+1. The user enters `delete NUMBER` where `NUMBER` refers to the index of the command to be deleted. The user input is parsed by the Parser class which creates a new `DeleteCommand` object.
+
+2. `Eventlist#remove()` is called which will delete the event with the specified index.
 ### 4.11 Find 
 
 ### 4.12 Print locations
