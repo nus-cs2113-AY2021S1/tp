@@ -8,9 +8,9 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
 
 - **New Feature:** Added the functionality to be able to bookmark questions during a quiz.
     - What it does: Store's a question of the user's choice in an array list of type `Displayable`. Whenever the user is in a quiz and wishes to store a particular question of interest for the future, the user can
-    type in "bookmark" in the command-line, and the question will be stored. Once the user finishes the quiz, the user may type "bookmark" in the main menu to view the list of bookmarked question,
+    type in `bookmark` in the command-line, and the question will be stored. Once the user finishes the quiz, the user may type `bookmark list` in the main menu to view the list of bookmarked question,
     at which point, each question's options will be printed under the question, with the words "[Correct Answer]" next to the option whose attribute `isCorrectAnswer` is true.
-    The user may also delete a bookmark by typing "bookmark delete <index number of the question>", at which point the question indicated will be deleted.
+    The user may also delete a bookmark by typing `bookmark delete <index number of the question>`, at which point the question indicated will be deleted.
     - Justification: This feature is important in terms of using the product, as from time to time questions that are hard to figure out may get tested, and the user
     would want to have a way to store this question for perusal later. By consolidating all these bookmarks in one place, the user is capable of referring to all the questions that they have had doubts about
     in one central location. This makes revising an easier process as well.
@@ -21,6 +21,8 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
     
 - **Enhancements to existing features:**
     - Increased flexibility of parsing quiz commands by allowing the topic field and number of questions field to be interchangeable in position. (Pull request [#126](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/126))
+    - Added parser logic in order to be able to read in additional white spaces without losing the user input. (Pull request [#227](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/227))
+    - Implemented JUnit Testing for some Command classes, BookmarkList class and Parser classes  . (Pull request [#226](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/226)), [#132](https://github.com/AY2021S1-CS2113T-F12-3/tp/pull/132))
     
 - **Documentation:**
     - User Guide:
