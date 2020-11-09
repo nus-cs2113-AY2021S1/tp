@@ -300,11 +300,11 @@ The following sequence diagram illustrates the steps taken by the program when t
 user to customise the list of favourite commands to the user's liking.
 
 The DeleteFavCommand#executeCommand() method of DeleteFavCommand Class executes the command in the following steps:
-1.`Parser#extractType()` is called to instantiate `DeleteFavCommand`. During instantiation, if the user specified
+1. `Parser#extractType()` is called to instantiate `DeleteFavCommand`. During instantiation, if the user specified
 index is empty or blank, an exception would be thrown.
-2.`Ui#printDeleteFavMessage(<index>)` is called to inform the user that the favourite command corresponding to the
+2. `Ui#printDeleteFavMessage(<index>)` is called to inform the user that the favourite command corresponding to the
 index has been deleted.
-3.`FavList#deleteFav(<index>)` is executed to remove the favourite command from the list of favourite commands.
+3. `FavList#deleteFav(<index>)` is executed to remove the favourite command from the list of favourite commands.
 
 The following sequence diagram illustrates the steps taken by the program when the user calls the `/deletefav` command.
 ![Sequence ](DG_Diagrams/DeleteFavCommand/DeleteFavSeq.png)
