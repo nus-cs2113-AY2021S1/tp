@@ -217,6 +217,8 @@ the main function make the run(command) API call.
 
 ![timetable_sequence diagram](Images/timetable_sequence%20diagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Academic Component**
 
 This section will describe in detail how some features inside the academic tracker section have been implemented.
@@ -233,6 +235,7 @@ The functions of the academic tracker will be called through the `AcademicRun` c
 when the program is in academic mode, which will subsequently call 
 the functions in `PersonBook` or `GradeBook`. 
 
+
 The academic component:
 * initialises two arraylists, `ArrayList<Grade>` and `ArrayList<People>` 
 to store the relevant `Grade` and `People` objects.
@@ -240,6 +243,8 @@ to store the relevant `Grade` and `People` objects.
 * identifies `AcademicCommandType` to decide 
 which of the commands under `PersonBook` or `GradeBook` is to be executed.
 * calls `AcademicStorage` to store the current set of data into the local storage file.
+
+<div style="page-break-after: always;"></div>
 
 **Academic Implementation**
 
@@ -261,6 +266,8 @@ It implements the following operations:
 * `starGrade(Integer, ArrayList<Grade>)`:Star a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `combineGradeDetails(Grade)`:Print out the details of a particular `Grade`.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram demonstrates an example of how the Su Grade function works:
 ![Academic_Sequence_Diagram](Images/Academic_Sequence_Diagram.png)
 With reference to above, it can be observed that whenever a command modifies the array lists, 
@@ -270,6 +277,8 @@ With reference to above, it can be observed that whenever a command modifies the
 
 The contact features are facilitated by `Personbook`, which further make use of `Person`. 
 In terms of general structure, it is largely similar to that of `GradeBook`'s.
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author hailqueenflo -->
 ### **Flashcard Component**
