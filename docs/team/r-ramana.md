@@ -17,27 +17,18 @@ NotUS is a quick and simple, Command Line Interface (CLI) based, note-taking app
 
 *Features implemented*
 
-1\. Completed the following features and test code for them
-- `archive-n`
-    - Allows the user to archive a note so their notebook is more organized and less cluttered. Users now have a more organized and neater notebook list and are able to access the more pertinent notes quicker. The user may not want to delete the note as the note may become more relevant at a later time.
-- `find-n`
-    - Allows the user to filter and find a note by the note title. Users are able to find for notes and retrieve them as opposed to scanning for them in the list. It makes the process more efficient for the user.
-- `help`
-    - Allows the user a quick access on the list of commands available and how to use them. As the application has a myriad of commands, the user might not recall all of them and this is a simple way to assist the user.      
-- `list-n`
-    - Allows the user to see all available notes, regardless of if it is pinned or not. User can also sort the notes in ascending or descending order for convenience. User can view all archived notes, or list out notes by tags. Ensures an all round convenient design and product for the user.
-- `unarchive-n`
-    - Allows the user to unarchive a note in an event the user wants to view/make changes to such a note. Allows a convenient way for the user to sort notes by order of importance during a particular time in point.
+1\. Completed the following features and test code for them:
+- `archive-n`: Allows the user to archive a note so their notebook is more organized and less cluttered. Users now have a more organized and neater list and can access pertinent notes quicker.
+- `find-n`: Allows the user to filter and find a note by the note title, and retrieve them as opposed to scanning for them in the list. It makes the process more efficient.
+- `help`: Allows the user a quick access on the list of commands available and how to use them. The user might not recall all of the commands and this is to assist them.      
+- `list-n`: Allows the user to see all available notes, regardless of if it is pinned or not. User can also sort the notes in ascending or descending order for convenience. User can view all archived notes, or list out notes by tags. Ensures an all round convenient design and product for the user.
+- `unarchive-n`: Allows the user to unarchive a note in an event the user wants to view/make changes to such a note.
 
-2\. In the `Notebook` class, the following methods were created: `archivedNotes`, `unarchivedNotes`, `getArchivedNotes`, `getNote`, `checkPinned`, `getSortedList`, `getPinnedNotes`, `getUnpinnedNotes`, `findNotes`
-
-3\. In the `Note` class, the following methods were created: `toggleArchived`, `getIsArchived`, `getPinned`
-
-4\. Added a couple of `formatNotes` methods into the `Formatter` class.
+2\. In the `Notebook` class, created: `archivedNotes`, `unarchivedNotes`, `getArchivedNotes`, `getNote`, `checkPinned`, `getSortedList`, `getPinnedNotes`, `getUnpinnedNotes`, `findNotes`. In the `Note` class, created: `toggleArchived`, `getIsArchived`, `getPinned`. Added a couple of `formatNotes` methods into the `Formatter` class.
 
 *Enhancements to existing features*
 
-Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)) to make the application more user-friendly. Refactored code to abstract out the (un)successful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) to its own `CommandMessage` class.
+Added ASCII art (PR [#90](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/90) and [#80](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/80)). Refactored code to abstract out the (un)successful execution messages (PR [#143](https://github.com/AY2021S1-CS2113-T13-1/tp/pull/143)) to its own `CommandMessage` class.
 
 *Code contributed*
 
