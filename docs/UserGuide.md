@@ -369,6 +369,8 @@ To find the information of a dining outlet with the name containing <strong>Jewe
 This section provides the instruction for all features categorised under the main feature of personalisation of application
 to your needs.
 
+<div style="page-break-after: always;"></div>
+
 <!-- @@author Lezn0 -->
 ### 3.3.1. Add a favourite command: `/addfav` - Yuxin
 This command adds a valid command with an optional description to your list of favourites.
@@ -392,6 +394,8 @@ These are the steps to follow:
 to store the command in to your list of favourites with the description
 "dining options in business"  as shown in the figure below.<br>
 <img src="UG_Figures/addfav1.png" alt="output" width=600><br>
+
+<div style="page-break-after: always;"></div>
 
 **<u>Example 2</u>**<br>
 Let's say you want to add the command that guided you from PGP to NUS IT to your list of favourites.
