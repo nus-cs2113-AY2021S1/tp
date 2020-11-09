@@ -20,7 +20,7 @@ public class FavStorage extends Storage {
     private File file;
     private boolean isCorrupted = false;
     private static final List<String> VALID_COMMANDS = Arrays.asList("/help", "/route", "/routemap", "/bus",
-            "allbus", "liststops", "/faculty", "/dine", "/dineinfo", "/reset");
+            "/allbus", "/liststops", "/faculty", "/dine", "/dineinfo", "/reset");
 
     public FavStorage(String dir) {
         super(dir);
