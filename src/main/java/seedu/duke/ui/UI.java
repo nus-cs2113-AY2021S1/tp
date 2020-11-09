@@ -42,6 +42,12 @@ public class UI {
         System.out.println(FluffleMessages.CHANGING_LINE_DIVIDER_MSG);
     }
 
+    /**
+     * Parse the divider option from the user input.
+     * @param userInput user input
+     * @return divider option detected
+     * @throws DividerIndexOutOfBoundsException Invalid divider option entered.
+     */
     public static int getDividerNumFromInput(String userInput) throws DividerIndexOutOfBoundsException {
         int dividerNum;
         try {
@@ -67,7 +73,10 @@ public class UI {
         return divider;
     }
 
-    // Main Help function
+    /**
+     * Main Help function, calls other help desciptions or just list of commands by default.
+     * @param input user input string
+     */
     public static void printHelpMessage(String input) {
         switch (input) {
         case "noun":
