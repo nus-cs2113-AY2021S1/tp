@@ -220,8 +220,8 @@ Once you are comfortable using Zoomaster, this command, along with the `set` com
 ```
 Format: showsettings
 ```
-When you type in this command, you will see two settings that you can adjust:
-![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettings.png)
+When you type in this command, you will see two settings that you can adjust: <br></br>
+![](https://raw.githubusercontent.com/fchensan/tp/docs-images/docs/images/showsettings.png) <br></br>
 The two settings are:
 * Default mode on start-up.
     You can choose between `mainmenu`, `timetable`, or `bookmark` as the first mode you will enter when you start Zoomaster.
