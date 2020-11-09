@@ -138,21 +138,24 @@ number of plot bunnies: 2
 --------------------------------------------------------------
 ```
 
-Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish.
+Since the program only searches for the idea and genre tag, it is lenient when reading in the bunny such that if the user keys in the wrong line divider or index it can still read it in. It can excuse spacing and typo as long as each Bunny is listed with an idea tag followed by its corresponding genre tag. This makes it easy for the user to directly edit the `bunny.txt` file if they wish. It will read the file until it can no longer has a next line in `bunny.txt` to read from.
 
 #### Usage and storage
 The diagram above is describes the storage of the Bunny ideas in Fluffle. 
 ![Bunny Manager Component](graphics/diagrams/Bunny_manager_component.png)
 <p align = "center"><i><b>Figure 3: Bunny manager architecture</b></i></p>
 
-The BunnySaver class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. The 
+Transferring `Bunny` ideas from the `bunniesList` to the `bunny.txt` file via the BunnySaver:
+* When the user calls the `save bunny` command from the CLI, the Bunny from bunnies list are read by `saveAllBunny` command.
+* The `bunniesList` ArrayList is passed by the `commandExecutor` function in the `CommandExecutor` class
+* 
 
-When the user calls the `save bunny` command from the CLI, the 
-
-Bunny read from storage and added to the new bunniesList ArrayList
+Transferring `Bunny` ideas from the `bunny.txt` to the `bunniesList` file via the BunnyLoader:
+* The `BunnyLoader` class handles the loading of saved `Bunny` objects from the `bunny.txt` file into the `bunniesList`. 
+* The format of each `Bunny` object should consist of an idea and genre component, even if the genre component is "none". 
+* For each of the `Bunny` objects in the printed list in `bunny.txt`, the parsed idea and genre are combined to create a `Bunny` object that is then added to the `bunniesList` ArrayList and can be managed by the user using the bunny related commands.
 
 Note that all the other functions in the bunny related classes such as `BunnyList`, `DeleteBunny`, `BunnyFilter` and `GenBunny` can also access this `bunniesList` ArrayList to perform their various functions as it is passed by reference from the `commandExecutor` function, which imports the `bunniesList` from the `BunnyList` class. Find out more [here](#bunny-class-family).
-
 
 ### Word Manager Component
 Given below is the general architecture of our Word Manager Component.
