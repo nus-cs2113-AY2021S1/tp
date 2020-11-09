@@ -47,10 +47,8 @@ for more details.
   ([\#148](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/148),
   [\#149](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/149)
 )
-* Added the DevOps guide and non-functional requirements
-* Added the Product Scope section and updated User Stories
-* Added implementation for `print events` and `print tasks`
-* Added sequence diagram for`print events` and `print tasks`  
+* Added the DevOps guide, Non-functional Requirements, Product Scope and User Stories
+* Added implementation and sequence diagram for `print events` and `print tasks`
   ([\#164](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/149))
 * Added implementation sequence diagram for ModuleChecker
   ([\#185](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/185),
@@ -70,7 +68,6 @@ for more details.
   )
 
 ### Contributions to team-based tasks:
-* Provided feedbacks for Oral Presentation and volunteered myself doing some submissions on Luminus.
 * Reviewed others' PR and provided feedback.
   ([\#20](https://github.com/AY2021S1-CS2113T-T12-2/tp/pull/20))
 * Updated both the user and developer guides that are not specific to my features and enhancements.
@@ -83,7 +80,7 @@ for more details.
   [\#4](https://github.com/LIU-YiFeng-1/ped/issues/4),
   [\#5](https://github.com/LIU-YiFeng-1/ped/issues/5),
   [\#6](https://github.com/LIU-YiFeng-1/ped/issues/6),
-  [\#7](https://github.com/LIU-YiFeng-1/ped/issues/7),
+  [\#7](https://github.com/LIU-YiFeng-1/ped/issues/7)
   )
 * Shared useful external library on the module Forum.
 ([\#107](https://github.com/nus-cs2113-AY2021S1/forum/issues/107))
