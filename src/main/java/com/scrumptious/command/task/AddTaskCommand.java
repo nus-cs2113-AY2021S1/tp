@@ -72,7 +72,6 @@ public class AddTaskCommand extends TaskCommand {
         }
         for (int i = 1; i <= projectManager.getSelectedProject().getBacklog().size(); i++) {
             Task existingTask = projectManager.getSelectedProject().getBacklog().getTask(i);
-            assert !(existingTask == null) : "Task is NULL\n";
             if (existingTask != null) {
                 String existingTitle = existingTask.getTitle();
                 titleAlreadyExist |= existingTitle.equals(title);

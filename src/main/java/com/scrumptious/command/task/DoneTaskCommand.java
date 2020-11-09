@@ -22,6 +22,7 @@ public class DoneTaskCommand extends TaskCommand {
             return;
         }
         Project proj = projectListManager.getSelectedProject();
+        assert !(proj == null) : "Project is NULL";
         if (parameters.size() == 0) {
             handleMissingParams("Syntax error : task completion.");
             return;
@@ -49,7 +50,6 @@ public class DoneTaskCommand extends TaskCommand {
             handleNegativeId(taskId, "Syntax error : task completion.");
         } else if (taskId <= proj.getBacklog().getNextId()) {
             task = proj.getBacklog().getTask(taskId);
-            assert !(task == null) : "Task is NULL\n";
             task.setAsDone();
             displayToUser(task, taskId);
         } else {
