@@ -9,7 +9,7 @@ and export it to a text file. Upon the start of the application, it will import 
 from the text file and loads the appliances' data back.
 
 
-##### Disclaimer: SmartHomeBot V2.1 does not interface with actual Appliances, instead, Appliances are simulated in the program. 
+##### Disclaimer: SmartHomeBot V2.1 does not interface with actual Appliances. Instead, Appliances are simulated in this program. 
 
 ## Table of Contents
 * [Quick start](#quick-start)
@@ -65,8 +65,9 @@ Some example commands you can try:
    `create Bedroom1`.
    * Words in **[UPPER_CASE]** are case-sensitive.
    * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** has to be unique and not duplicate of each other. 
-   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` / ` or ` \| ` .
-
+   * Words in **[LOCATION_NAME]** and **[APPLIANCE_NAME]** cannot contain `space` or ` / ` or ` \| ` when `create` or `add`
+   * Caution: Please do not type `Ctrl-C or Ctrl-Z` as it may cause the application to terminate due the in-build function 
+   on command prompt  
 ### Viewing help: `help`
 Shows all available commands to the user
 
@@ -151,6 +152,9 @@ Format: `on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOC
 3. `on [APPLIANCE_NAME] p/[SPEED]`: Switch ON the appliance by its name with parameter for fan.
 4. `on [LOCATION]`: Switch ON every appliance in the location. 
 
+* Range for `TEMPERATURE`: 16 - 30
+* Range for `SPEED`: 1-3
+* If no `PARAMETER` is provided, the appliance will turn on with default.
 
 Example: `on AIRCON1`
 
@@ -275,6 +279,10 @@ any command that changes the data. There is no need to save manually.
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
 that contains the data of your previous SmartHomeBot folder.
 
+**Q**: Does the program interface with the appliance? 
+
+**A**: Current SmartHomeBot v2.1 does not interface with actual Appliances. Instead the Appliances are simulated 
+as a proof of concept for future implementation.
 
 ## Command summary
 
@@ -285,9 +293,9 @@ Create location|`create [LOCATION_NAME]`|`create Bedroom1`
 Remove location|`remove [LOCATION_NAME]`|`remove Bedroom1`
 Add appliance|`add [APPLIANCE_NAME] l/[LOCATION_NAME] w/[WATTAGE] t/[TYPE_OF_APPLIANCE]`|`add AIRCON1 l/Bedroom1 w/3500 t/aircon`
 Delete appliance|`delete [APPLIANCE_NAME]`|`delete AIRCON1`
-Switch On|`on [APPLIANCE_NAME]`|`on AIRCON1`
-Switch Off|`off [APPLIANCE_NAME]`|`off AIRCON1`
-List|`list appliance` or `list location`
+Switch On|`on [APPLIANCE_NAME]` or `on [APPLIANCE_NAME] p/[PARAMETER]` or `on [LOCATION_NAME]`|`on AIRCON1`  or `on AIRCON1 p/27` or `on Bedroom1`
+Switch Off|`off [APPLIANCE_NAME]` or `off [LOCATION]`|`off AIRCON1` or `off Bedroom1`
+List|`list appliance` or `list location` or `list appliance l/[LOCATION_NAME]`|`list appliance l/Bedroom1`
 Usage|`usage`
 Reset|`p_reset`
 Exit|`exit`
