@@ -133,6 +133,9 @@ public class UI {
         case "random bunny":
             printHelpRandomBunny();
             break;
+        case "reset bunny":
+            printHelpResetBunny();
+            break;
         case "filter words":
             printHelpFilterWords();
             break;
@@ -150,7 +153,7 @@ public class UI {
 
     public static void printHelp() {
         String[] listCommands = {"help", "divider", "noun", "verb", "adj", "three words",
-            "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny",
+            "bunny", "list bunny", "filter bunny", "save bunny", "delete bunny", "random bunny", "reset bunny",
             "list", "list filter words", "start", "filter words", "stats", "reset", "name",
             "list name", "filter name", "add name", "delete name", "remind", "clear", "exit"};
         System.out.println("Type 'help FUNCTION_NAME' to view help for each command.");
@@ -226,6 +229,13 @@ public class UI {
         System.out.println("Pick a random bunny from your list");
         System.out.println("Format: random bunny");
     }
+
+
+    private static void printHelpResetBunny() {
+        System.out.println("Reset the list of bunny ideas");
+        System.out.println("Format: random bunny");
+    }
+
 
     private static void printHelpFilterWords() {
         System.out.println("Get words from your words list.");
