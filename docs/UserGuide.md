@@ -1,12 +1,12 @@
 # User Guide
 
-CS2113T – T12 – 04 Scheduler--;
+CS2113T – T12 – 04 Scheduler-\-;
  
-Scheduler--; Does the job
+Scheduler-\-; Does the job
 
 ## Table of Contents
 
-- [1. About Scheduler--;](#1-about-scheduler--) 
+- [1. About Scheduler-\-;](#1-about-scheduler--) 
     - [1.1 What can it do?](#11-what-can-it-do) 
     - [1.2 About this guide](#12-about-this-guide) 
     - [1.3 How to use this document?](#13-how-to-use-this-document) 
@@ -48,15 +48,15 @@ Scheduler--; Does the job
 
 <div style="page-break-after: always;"></div>
 
-## 1. About Scheduler--;
+## 1. About Scheduler-\-;
 
-Hello! Welcome to scheduler--;
+Hello! Welcome to scheduler-\-;
 
-Scheduler--; (S--) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
+Scheduler-\-; (S-\-) is a desktop app for managing deadlines from different sources. The user will use a Command Line Interface to control it. It is specially designed for Computing students who are comfortable in using CLI and have Git project deadlines as well as consolidated Zoom session links due which will suit home based learning in this COVID period. 
 
 ### 1.1 What can it do?
 
-Scheduler--; comes with the following list of features to help you keep organised of your schedule.  
+Scheduler-\-; comes with the following list of features to help you keep organised of your schedule.  
 - Check if your schedule is free between a certain date and time period
 - Prioritize important task on your schedule
 - Categorise your events into personal events, zoom meetings or school timetable events. 
@@ -67,7 +67,7 @@ Scheduler--; comes with the following list of features to help you keep organise
 
 ### 1.2 About this guide
 
-This user guide is for your reference on how to set up the Scheduler--; program on your computer. It provides you with information on how to get things done with scheduler--; and how to use the commands in the program. 
+This user guide is for your reference on how to set up the Scheduler-\-; program on your computer. It provides you with information on how to get things done with scheduler-\-; and how to use the commands in the program. 
 
 ### 1.3 How to use this document?
 
@@ -112,7 +112,7 @@ Words that are highlighted in grey, in upper case and are surrounded by square b
 
 ### 2.1 System Requirements
 
-To run Scheduler--;, your computer must meet these minimum system requirements:
+To run Scheduler-\-;, your computer must meet these minimum system requirements:
 
 - Operating System: Windows 7 and above, Mac OS X or Linux 
 - Java 11 installed on computer 
@@ -125,10 +125,10 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 1. Install Java 11 or above in your computer if you have not done so 
 1. Download the latest scheduler.jar from [here](https://github.com/AY2021S1-CS2113T-T12-4/tp/releases) 
-1. Copy the file to the folder you want to use as the folder for the Scheduler— 
+1. Copy the file to the folder you want to use as the folder for the Scheduler. 
 1. Open the command prompt by entering `cmd` into the search bar and press enter 
 1. Navigate to the folder where you saved the jar file using the command prompt 
-1. Right click the top of the command prompt window, go to 'properties' and change the font to NSimSun to support ticks and crosses used in Scheduler--;. 
+1. Right click the top of the command prompt window, go to 'properties' and change the font to NSimSun to support ticks and crosses used in Scheduler-\-;. 
 1. Type `java -jar scheduler.jar` into the command prompt and press enter. 
 1. The welcome message for the program should appear. 
 
@@ -136,7 +136,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 1. Install Java 11 or above in your computer if you have not done so 
 1. Download the latest scheduler.jar from here 
-1. Copy the file to the folder you want to use as the folder for the Scheduler--; 
+1. Copy the file to the folder you want to use as the folder for the Scheduler-\-; 
 1. Open the terminal by clicking on Launchpad->Utilities->Terminal 
 1. Navigate to the folder you have stored the jar file in the command prompt 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
@@ -146,7 +146,7 @@ You can install version 11 of Java from this [link](https://docs.aws.amazon.com/
 
 1. Install Java 11 or above in your computer if you have not done so 
 1. Download the latest scheduler.jar from here 
-1. Copy the file to the folder you want to use as the folder for the Scheduler--; 
+1. Copy the file to the folder you want to use as the folder for the Scheduler-\-; 
 1. Open the terminal in your linux distribution
 1. Navigate to the folder you have stored the jar file in the command prompt 
 1. Type `java -jar scheduler.jar` into the terminal and press enter. 
@@ -162,12 +162,12 @@ Some examples you can try:
 - `add personal; run; 12/10/20; 4pm`: Add a personal event to the scheduler 
 - `bye`: exit the program 
     
-Congratulations! You have just finished setting up Scheduler--; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
+Congratulations! You have just finished setting up Scheduler-\-; Feel free to explore the program, or if you would like some assistance, take a look at the subsequent sections for instructions on how to use the available features of this program. Happy scheduling!
 
 ### 2.4 For Experienced users
 
-If you are familiar with the commands used in the program, Scheduler--; now supports the processing of multiple commands
-To input more than one command into Scheduler--;, simply separate each command with a pipe character '|'
+If you are familiar with the commands used in the program, Scheduler-\-; now supports the processing of multiple commands
+To input more than one command into Scheduler-\-;, simply separate each command with a pipe character '|'
 
 Some examples you can try:
 - `add personal; dental appointment; 2020-05-05; | repeat personal; 1; monthly; 3;` will cause the program to add a new personal event named "Dental Appointment" and subsequently set the event to repeat monthly for three more months as shown below:
@@ -193,11 +193,11 @@ _________________________________
 
 ## 3. Features
 
-This section introduces and explains the features of Scheduler--;!
+This section introduces and explains the features of Scheduler-\-;!
 
 ### 3.1 Viewing help: help (Colin Ng)
 
-If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler--; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
+If you are ever unsure on how to use a command, or you would like to learn more about the uses of a command, the help command is scheduler-\-; onboard help line for getting information. The help command allows you to get more information when you are unsure on how to use the program. It can also assist you with getting more information on how to use a specific command in the program. 
 
 Format: `help [COMMAND]`
 
@@ -283,7 +283,7 @@ _________________________________
 <div style="page-break-after: always;"></div>
 
 ### 3.2 Adding an event: `add` (Matthew Gani)
-New to creating your events using Scheduler--;?
+New to creating your events using Scheduler-\-;?
 Utilize our simple to use yet effective add feature which comprises of 3 different event types. 
 You can add dates and times to these events and even website links and locations to some of them! 
 
@@ -560,7 +560,7 @@ You have successfully updated the deadline for this event!
 ### 3.6 Repeat on daily/weekly/monthly basis: `repeat` (Colin Ng)
 Sets a specific event to be repeated either weekly or monthly in the calendar. 
 
-Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler--; will record down the event for you.  
+Do you have any events that repeat frequently? For example, a dental appointment every month, or perhaps a math lesson every week? The repeat command in the program allows you to easily schedule such events into your event planner. Just select the event that you want to repeat, type in how often this event repeats and Scheduler-\-; will record down the event for you.  
 
 Format: `repeat EVENT_TYPE EVENT_INDEX [UNIT] [COUNT]` 
 
@@ -999,7 +999,7 @@ Format: `save`
 <div style="page-break-after: always;"></div>
 
 ### 3.17 Exiting the program: `bye` 
-Time to have a rest? See you later! Do not worry, we will keep your events in Scheduler--.
+Time to have a rest? See you later! Do not worry, we will keep your events in Scheduler-\-.
 
 Format: `bye`
 
@@ -1010,10 +1010,10 @@ In this section, you can find some frequently asked questions(FAQ).
 **Q**: How do I transfer my data to another computer? <br>
 **A**: Transfer your data by copying the `data` file and `Scheduler.jar`
 
-**Q**: What if I run into bugs while using Scheduler--;? <br>
+**Q**: What if I run into bugs while using Scheduler-\-;? <br>
 **A**: If you run into bugs that cause the program to crash, please contact us at scheduler@gmail.com with the `logging.txt`. 
 
-**Q**: What if I have any suggestions for Scheduler--? <br>
+**Q**: What if I have any suggestions for Scheduler-\-? <br>
 **A**: Feel free to drop us an email at scheduler@gmail.com 
 
 **Q**: Can I create 2 events on the same date and time? <br>
