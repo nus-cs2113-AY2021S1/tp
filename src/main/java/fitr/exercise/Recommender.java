@@ -8,6 +8,8 @@ import fitr.ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static fitr.common.Commands.WORD_AEROBIC;
 import static fitr.common.Commands.WORD_LOWERBODY;
@@ -19,6 +21,7 @@ public class Recommender {
     protected StandardExerciseList lowerBodyList;
     protected StandardExerciseList aerobicList;
     protected StandardExerciseList stretchingList;
+    private static final Logger recommenderLogger = Logger.getLogger("RecommenderLogger");
 
     public Recommender() {
         Boolean isSuccessful = false;
@@ -38,7 +41,9 @@ public class Recommender {
 
     public StandardExerciseList recommend(String command) throws InvalidRecommendationException {
         int recommendationType = this.recommendParser(command);
+        recommenderLogger.fine(command + " " + recommendationType);
         if (recommendationType == 5) {
+            recommenderLogger.fine("Invalid Recommendation:" + command);
             throw new InvalidRecommendationException();
         }
         assert recommendationType >= 0 && recommendationType < 5;
@@ -112,6 +117,10 @@ public class Recommender {
             finalList.addExercise(stretchingList.getExercise(fourthIndex));
             break;
         }
+        recommenderLogger.fine(firstIndex + " "
+                                    + secondIndex + " "
+                                    + thirdIndex + " "
+                                    + fourthIndex);
         return finalList;
     }
 
