@@ -26,13 +26,13 @@ public class WatchlistCommand extends Command {
     private static final String WATCHLIST_LIST_IS_NULL = "Watchlist list should not be null.";
     private static final String WATCHLIST_LIST_IS_EMPTY = "Watchlist list should not be empty.";
 
-    private static final String INVALID_PARAMETER = "Watchlist command only accepts the parameters: "
-                                                    + "-n, -l, -s, and -d.";
-    private static final String WATCHLIST_NAME_IS_NOT_UNIQUE = "Watchlist name is used already!";
-    private static final String INVALID_WATCHLIST_INDEX = "This is not a valid watchlist index.";
-    private static final String CANNOT_SELECT_ACTIVE_WATCHLIST = "You cannot select the active watchlist..";
-    private static final String CANNOT_DELETE_LAST_WATCHLIST = "You cannot delete the last watchlist!";
-    private static final String WATCHLIST_NAME_TOO_LONG = "Watchlist name should not be longer than 30 characters!";
+    private static final String INVALID_PARAMETER_ERROR = "Watchlist command only accepts the parameters: "
+                                                          + "-n, -l, -s, and -d.";
+    private static final String WATCHLIST_NAME_IS_NOT_UNIQUE_ERROR = "Watchlist name is used already!";
+    private static final String INVALID_WATCHLIST_INDEX_ERROR = "This is not a valid watchlist index.";
+    private static final String CANNOT_SELECT_ACTIVE_WATCHLIST_ERROR = "You cannot select the active watchlist..";
+    private static final String CANNOT_DELETE_LAST_WATCHLIST_ERROR = "You cannot delete the last watchlist!";
+    private static final String WATCHLIST_NAME_TOO_LONG_ERROR = "Watchlist name should not exceed 30 characters!";
 
     private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
@@ -81,16 +81,16 @@ public class WatchlistCommand extends Command {
     /**
      * Depending on the parameter supplied, it can perform one of the following operations.
      * <ul>
-     *     <li>Creates a watchlist</li>
-     *     <li>List all watchlist</li>
-     *     <li>Select a watchlist to be the new active watchlist</li>
-     *     <li>Delete a watchlist</li>
+     *     <li>Create a watchlist.</li>
+     *     <li>List all watchlist.</li>
+     *     <li>Select a watchlist to be the new active watchlist.</li>
+     *     <li>Delete a watchlist.</li>
      * </ul>
      *
      * @param animeData used to retrieve anime information
      * @param storageManager used to save or read AniChan data
      * @param user used to modify user data
-     * @return result after executing the command
+     * @return result of the command executed
      * @throws AniException when an error occurred while executing the command
      */
     @Override
@@ -114,7 +114,7 @@ public class WatchlistCommand extends Command {
             LOGGER.log(Level.INFO, "Attempting to delete watchlist now..");
             return deleteWatchlist(storageManager, activeWorkspace);
         default:
-            throw new AniException(INVALID_PARAMETER);
+            throw new AniException(INVALID_PARAMETER_ERROR);
         }
     }
 
@@ -123,7 +123,7 @@ public class WatchlistCommand extends Command {
      *
      * @param storageManager used to save watchlist data
      * @param activeWorkspace used to update watchlist list and save watchlist data to correct folder
-     * @return result after executing the command
+     * @return result of the command executed
      * @throws AniException when an error occurred while creating the watchlist
      */
     private String createWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
@@ -131,11 +131,11 @@ public class WatchlistCommand extends Command {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
 
         if (watchlistList.contains(createdWatchlist)) {
-            throw new AniException(WATCHLIST_NAME_IS_NOT_UNIQUE);
+            throw new AniException(WATCHLIST_NAME_IS_NOT_UNIQUE_ERROR);
         }
 
         if (watchlistName.length() > MAX_WATCHLIST_NAME_LENGTH) {
-            throw new AniException(WATCHLIST_NAME_TOO_LONG);
+            throw new AniException(WATCHLIST_NAME_TOO_LONG_ERROR);
         }
 
         watchlistList.add(createdWatchlist);
@@ -148,7 +148,7 @@ public class WatchlistCommand extends Command {
      * Lists all watchlist created in the current workspace in a readable format.
      *
      * @param activeWorkspace used to retrieve all watchlist in the current workspace
-     * @return details of all watchlist in the current workspace
+     * @return names of all watchlist in the current workspace
      */
     private String listAllWatchlist(Workspace activeWorkspace) {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
@@ -170,8 +170,8 @@ public class WatchlistCommand extends Command {
     /**
      * Selects a watchlist in the current workspace to be the new active watchlist.
      *
-     * @param activeWorkspace used to update the active watchlist for the active workspace
-     * @return result after executing the command
+     * @param activeWorkspace used to update the active watchlist in the active workspace
+     * @return result of the command executed
      * @throws AniException when an error occurred while selecting a new active watchlist
      */
     private String selectWatchlist(Workspace activeWorkspace) throws AniException {
@@ -182,7 +182,7 @@ public class WatchlistCommand extends Command {
         Watchlist activeWatchlist = activeWorkspace.getActiveWatchlist();
         if (selectedWatchlist.equals(activeWatchlist)) {
             LOGGER.log(Level.INFO, "Select failed because the active watchlist is selected.");
-            throw new AniException(CANNOT_SELECT_ACTIVE_WATCHLIST);
+            throw new AniException(CANNOT_SELECT_ACTIVE_WATCHLIST_ERROR);
         }
 
         activeWorkspace.setActiveWatchlist(selectedWatchlist);
@@ -195,8 +195,8 @@ public class WatchlistCommand extends Command {
      *
      * @param storageManager used to save watchlist data
      * @param activeWorkspace used to update watchlist list and save watchlist data to correct folder
-     * @return result after executing the command
-     * @throws AniException when an error occurred while deleting a watchlist
+     * @return result of the command executed
+     * @throws AniException when an error occurred while deleting the watchlist
      */
     private String deleteWatchlist(StorageManager storageManager, Workspace activeWorkspace) throws AniException {
         ArrayList<Watchlist> watchlistList = activeWorkspace.getWatchlistList();
@@ -221,9 +221,10 @@ public class WatchlistCommand extends Command {
 
     /**
      * Validates that the watchlist index supplied for the select and delete watchlist command is valid.
+     * It checks.
      * <ul>
-     *     <li>Watchlist index specified is out of range.</li>
-     *     <li>Attempts to delete the last watchlist.</li>
+     *     <li>If watchlist index specified is out of range.</li>
+     *     <li>If it is an attempts to delete the last watchlist in the list.</li>
      * </ul>
      *
      * @param watchlistList a list containing all of the watchlist for the active workspace
@@ -232,11 +233,11 @@ public class WatchlistCommand extends Command {
      */
     private void validateWatchlistIndex(ArrayList<Watchlist> watchlistList, int index) throws AniException {
         if (index >= watchlistList.size()) {
-            throw new AniException(INVALID_WATCHLIST_INDEX);
+            throw new AniException(INVALID_WATCHLIST_INDEX_ERROR);
         }
 
         if (watchlistList.size() == 1 && parameter.equals(DELETE_PARAM)) {
-            throw new AniException(CANNOT_DELETE_LAST_WATCHLIST);
+            throw new AniException(CANNOT_DELETE_LAST_WATCHLIST_ERROR);
         }
     }
 }

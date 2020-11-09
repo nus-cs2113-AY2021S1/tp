@@ -42,7 +42,7 @@ public class WatchlistParser extends CommandParser {
     private int watchlistIndex;
 
     /**
-     * Parses the specified command description.
+     * Parses the string parameters and creates an initialised {@code WatchlistCommand} according to the parameters.
      *
      * @param description the specified command description
      * @return initialised {@code WatchlistCommand} object
@@ -112,6 +112,8 @@ public class WatchlistParser extends CommandParser {
      * Validates that watchlist creation parameters are valid.
      * <ul>
      *     <li>Have the exact required parameter count.</li>
+     *     <li>Watchlist name is not empty.</li>
+     *     <li>Watchlist name does not contain special characters.</li>
      * </ul>
      *
      * @param parsedParts the parsed parameters and the value
@@ -148,6 +150,7 @@ public class WatchlistParser extends CommandParser {
      * Validates that the watchlist modification (select and delete) parameters are valid.
      * <ul>
      *     <li>Have the exact required parameter count.</li>
+     *     <li>Provided only one parameter value.</li>
      *     <li>Provided a parameter value that can be parsed to a positive integer.</li>
      * </ul>
      *

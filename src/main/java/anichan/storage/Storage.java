@@ -32,7 +32,7 @@ public abstract class Storage {
      *
      * @param filePath the path of the file to read from
      * @return {@code String} containing the file content
-     * @throws AniException when unable to read from the file
+     * @throws AniException when unable to read from the file or the file name is invalid
      */
     public String readFile(String filePath) throws AniException {
         String fileContent = EMPTY_STRING;
