@@ -40,7 +40,8 @@ public class StorageWrite {
         }
         if (dirCreated) {
             logger.info(String.format(MESSAGE_CREATED, DIR, f));
-        } else {
+        }
+        if (!(dirExists || dirCreated)) {
             throw new IOException("Error creating new folder. Please check your directory.");
         }
     }
@@ -56,6 +57,10 @@ public class StorageWrite {
         }
         if (fileCreated) {
             logger.info(String.format(MESSAGE_CREATED, FILE, f));
+        }
+
+        if (!(fileExists || fileCreated)) {
+            throw new IOException("Error creating new file. Please check your directory.");
         }
     }
 
