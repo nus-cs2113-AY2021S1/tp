@@ -26,6 +26,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Saving bunny ideas: `save bunny`](#saving-bunny-ideas-save-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Deleting a bunny idea: `delete bunny`](#deleting-a-bunny-idea-delete-bunny) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating a random bunny idea: `random bunny`](#generating-a-random-bunny-idea-random-bunny) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Resetting the entire list of Bunny ideas: `reset bunny`](#resetting-the-entire-list-of-bunny-ideas) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Names list commands](#names-list-commands) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Generating names from name database: `name`](#generating-names-from-name-database-name) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Listing names from name database: `list name`](#listing-names-from-name-database-list-name) <br>
@@ -491,6 +492,29 @@ random bunny
 Random Bunny: 
   idea: some very funny idea
   genre: humor
+--------------------------------------------------------------
+```
+
+#### Resetting the entire list of Bunny ideas: `reset bunny`
+The app can help you clear the entire list of Bunny ideas if you decide that you want a fresh start with your ideas.
+
+Note:
+* There is a failsafe such that if you accidentally type in the `reset bunny` command, you can still prevent it from permanatly deleting your list of Bunny ideas saved in `bunny.txt` by typing in `no` when prompted to type save bunny as confirmation. Any Bunny you previously saved would still remain in the list.
+
+Format: `reset bunny`
+
+Example usages:
+- `reset bunny`
+
+Example output:  
+```
+reset bunny
+--------------------------------------------------------------
+Type in "save bunny" to confirm your deletion of the bunny ideas!
+--------------------------------------------------------------
+save bunny
+--------------------------------------------------------------
+Bunny list saved!
 --------------------------------------------------------------
 ```
 
