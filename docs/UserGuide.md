@@ -70,6 +70,11 @@ In this guide, we cover:
 
 
 ### 1.3. Understanding the Command Line Interface (CLI)
+When you first launch Kaji, you will be greeted by the CLI. In this section, we shall learn about what each section of this CLI is responsible for.
+
+
+
+In Kaji, the user interactions occurs via the <b>command line interface (CLI)</b>
 A <b>command line interface (CLI)</b> is a text-based user interface (UI) used to view and manage computer files. Command line interfaces are also called command-line user interfaces, console user interfaces and character user interfaces.
 
 ### 1.4. Understanding Kaji
@@ -318,6 +323,7 @@ and must be a valid index number for a chapter as displayed from the list of cha
 Let's say you want to edit the chapter name to `Chapter 1` for the chapter `chap 1`.
 * Step 1: Type `list` into the command prompt and press `Enter` to execute it.<br>
 <img src="UG_Images/EditChapter1.png" width="600" alt="Edit Chapter 1"/>
+![Edit Chapter](UG_Images/EditChapter1.png)
 * Step 2: From the list of chapters displayed, you can see that the chapter `CHAPTER_INDEX` is 1.<br>
 <img src="UG_Images/EditChapter2.png" width="600" alt="Edit Chapter 2"/>
 * Step 3: Next, you can type `edit 1 Chapter 1` into the command prompt and press `Enter` to execute it.<br>
