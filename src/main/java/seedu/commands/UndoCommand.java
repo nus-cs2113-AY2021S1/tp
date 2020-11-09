@@ -15,7 +15,7 @@ public class UndoCommand extends ModificationCommand {
      * Updates the current list of tasks to the previous version.
      *
      * @param model Contains TaskMap and stack.
-     * @return A CommandResult, depending on whether there was an undo.
+     * @return A CommandResult, depending on whether there was an undo, with the relevant message.
      * @throws EmptyDataStackException if stack is empty.
      */
     public CommandResult execute(Model model) throws EmptyDataStackException {

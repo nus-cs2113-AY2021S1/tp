@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CalParser {
+
     public static int countExtractor(String splitted) {
         String[] splitCount = splitted.split("COUNT=");
         String[] lineSplit = splitCount[1].split(";");

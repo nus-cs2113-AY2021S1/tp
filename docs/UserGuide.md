@@ -141,11 +141,12 @@ Add a task to the task list and display task that was added.
 
 If the date and priority are omitted,
 default date will be the day when the tasked is added and
-default priority will be low. If the timings are omitted, the time displayed will be empty.
-A reminder can be set for the task, which will be displayed at a given time. If no time is given for the reminder, it will
-be set to its default which is one hour before the start time of the task. If both are omitted, an error is given.
+default priority will be low. If the timings are omitted, the time displayed will be empty.  
+A reminder can be set for the task, which will be displayed at a given time. If no time is given for the reminder, 
+it will be set to its default which is one hour before the start time of the task. 
+If both are omitted, an error is given.
 
-Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]`
+Format: `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/ON|OFF] [t-REMINDER_TIME]`
 
 Example of usage: 
 
@@ -182,7 +183,7 @@ Format: `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/
 Example of usage: 
 
 `edit 875 des/reading`  
-`edit 4075 st/1400 et/1600 p/3`
+`edit 4075 st/1400 et/1600 p/3`  
 `edit 875 r/off`
 
 Expected outcome:
@@ -311,9 +312,12 @@ Expected outcome:
 
 *Figure 19. The task that was deleted will be displayed.*
 
+
 ### Undo : `undo`
 
-Undo the previous action.
+Undo the previous action and display a message.
+Only modification commands can be undone: `add`, `edit`, `delete`, `clear`
+You can undo until the data is the same as what the current session started with.
 
 Format: `undo`
 
@@ -325,9 +329,11 @@ In this case, the previous action is `add CG2028 final quiz d/11-10-2020 st/1600
 
 *Figure 20. List of tasks before and after the undo command.*
 
+
 ### Redo : `redo`
 
 Reverse the undo command and restore the previous action.
+This command can only be executed if at least one action has been undone.
 
 Format: `redo`
 
@@ -338,6 +344,7 @@ In this case, the previous action `add CG2028 final quiz d/11-10-2020 st/1600 et
 ![redo](images/redo.png)
 
 *Figure 21. List of tasks before and after the redo command.*
+
 
 ### Setting a reminder : `reminder`
 
@@ -360,7 +367,6 @@ Expected outcome:
 ![reminder_popup](images/reminder_popup.png)
 
 *Figure 23. Popup of a reminder.*
-
 
 
 ### Exiting program : `bye`
@@ -428,9 +434,10 @@ and run the batch file by typing `SwitchJava.bat` and press `Enter`.
 Action | Format | Example
 ------ | ------ | -------
 add | `add DESCRIPTION [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]` | `add meeting st/1400`
-edit | `edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/(ON/OFF)] [t-REMINDER_TIME]` | `edit 1234 p/3`
+edit | <code>edit INDEX [des/DESCRIPTION] [d/DATE] [st/START_TIME] [et/END_TIME] [p/PRIORITY] [r/ON&#124;OFF] [t-REMINDER_TIME]</code> | `edit 1234 p/3`
 list | <code>list [-d&#124;-p&#124;-w&#124;-m&#124;d/DATE]</code> | `list -d`, `list d/10-10-2020`
 search | `search KEYWORD` | `search meet`
 delete | `delete INDEX` | `delete 212`
 clear | `clear` | `clear`
+undo | `undo` | `undo`
 bye | `bye` | `bye`
