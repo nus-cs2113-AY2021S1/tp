@@ -30,7 +30,7 @@ public class SearchCommand extends Command {
         boolean searchSuccess = false;
 
         for (Show show : ShowList.showList.values()) {
-            if (show.toString().contains(showName.toLowerCase())) {
+            if (show.toString().toLowerCase().contains(showName.toLowerCase())) {
                 showsWithKeyword += show.toString() + "\n\t";
                 searchSuccess = true;
             }
