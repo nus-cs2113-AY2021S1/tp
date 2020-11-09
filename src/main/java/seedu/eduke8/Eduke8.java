@@ -31,8 +31,8 @@ public class Eduke8 {
 
     private MenuParser menuParser;
     private TopicsStorage topicsStorage;
-    private LogStorage logStorage;
     private UserStorage userStorage;
+    private LogStorage logStorage;
     private TopicList topicList;
     private BookmarkList bookmarkList;
     private Ui ui;

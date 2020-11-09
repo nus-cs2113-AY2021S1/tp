@@ -83,7 +83,7 @@ public class UserStorage extends LocalStorage {
         }
         assert file.exists();
 
-        JSONArray topicsAsJsonArray = getJsonArrayFromFile();
+        JSONArray topicsAsJsonArray = getJsonArrayFromFile(null);
 
         ArrayList<Topic> topicObjects = new ArrayList<>();
         for (Object topic : topicsAsJsonArray) {

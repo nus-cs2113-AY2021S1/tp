@@ -403,6 +403,9 @@ Users may choose to edit this data as well and are provided with the following r
 and there must be one and only one option chosen as the correct answer by specifying `true` as the value of the
 `correct` key.
 
+Note that a default data file is packaged together with the jar file such that the application can still run without downloading the data file.
+If users want to edit the data they are instructed to on how to download and set up the external custom file which will be loaded with a higher priority than the one packaged.
+
 <div style="page-break-after: always;"></div>
 
 #### 2.4.2. Implementation of TopicsStorage

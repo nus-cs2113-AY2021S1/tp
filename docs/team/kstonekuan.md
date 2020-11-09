@@ -9,14 +9,19 @@ E-Duke-8 (pronounced "Educate") helps CS2113/T students learn and understand sof
 - **New Feature:** Implemented and maintained the Storage component.
   - What it does: `LogStorage` saves logging data, `TopicsStorage` loads topic data and `UserStorage` saves and loads user data locally.
   - Justification: This feature improves the product significantly because a user does not need to add questions manually for the quiz through the CLI, the user's statistics will be stored which enhances gamification, and user logs are available to identfy causes of bugs in the application.
-  - Highlights: The saving of user data does not actually require the implementation of a `User` class as the user attributes for each question are extracted directly from the question. This design was chosen so as to not increase the overall complexity of the system. The error handling was also challenging as the files save locally are easily editable by the user. For `TopicsStorage`, if the format of the JSON file is not correct then the program will not startup and users will be directed to instructions to fix this instead. For `UserStorage`, if the user chooses to tamper with the user data, badly formatted data will result in a safe loss of data and the program will continue to run.
+  - Highlights: The saving of user data does not actually require the implementation of a `User` class as the user attributes for each question are extracted directly from the question.
+  This design was chosen so as to not increase the overall complexity of the system.
+  The error handling was also challenging as the files save locally are easily editable by the user.
+  For `TopicsStorage`, if the format of the JSON file is not correct then the program will not startup and users will be directed to instructions to fix this instead.
+  For `UserStorage`, if the user chooses to tamper with the user data, badly formatted data will result in a safe loss of data and the program will continue to run.
+  Furthermore, as it is not guaranteed that users will download the default data file, this was included as a resource in the jar file to allow normal operation while still allowing edits though the external path.
   - Credits: This feature relies heavily on the use of the `JSON.simple` library as data is stored in JSON format.
-- **New Feature:** Implemented the initial quiz logic to be a seperate interface from the main menu.
+- **New Feature:** Implemented the initial quiz logic to be a separate interface from the main menu.
 
 - **Code contributed:** [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kstonekuan&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 - **Project management:**
-  - Managed releases `v1.0` - `v2.0` (2 releases) on GitHub
+  - Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
 
 <div style="page-break-after: always;"></div>
 

@@ -28,6 +28,7 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_TOO_MAN
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_TOPIC;
 
 public class TopicsStorage extends LocalStorage {
+    public static final String FALLBACK_TOPICS_JSON_PATH = "/main/resources/topics.json";
     private boolean wasCorrectAnswerMarked;
     private String currentQuestionDescription;
     private String currentTopicTitle;
@@ -56,7 +57,7 @@ public class TopicsStorage extends LocalStorage {
     @Override
     public ArrayList<Displayable> load()
             throws Eduke8Exception, IOException, ParseException, ClassCastException, NullPointerException {
-        JSONArray topicsAsJsonArray = getJsonArrayFromFile();
+        JSONArray topicsAsJsonArray = getJsonArrayFromFile(FALLBACK_TOPICS_JSON_PATH);
 
         ArrayList<Displayable> topicsAsObjects = new ArrayList<>();
         for (Object topic : topicsAsJsonArray) {

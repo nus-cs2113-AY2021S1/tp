@@ -13,14 +13,16 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TopicsStorageTest extends Eduke8Test {
     private static final String DATA_TEST_TOPICS_JSON = "data/test/topics.json";
 
     @Test
-    void load_invalidPath_expectIoException() {
+    void load_invalidPath_expectNoError() throws ParseException, Eduke8Exception, IOException {
         TopicsStorage topicsStorage = new TopicsStorage(DATA_TEST_INVALID_PATH);
-        assertThrows(IOException.class, topicsStorage::load);
+        topicsStorage.load();
+        assertTrue(true); // Should fall back on file in resources
     }
 
     @Test

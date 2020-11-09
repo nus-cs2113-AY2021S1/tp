@@ -24,11 +24,10 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of **E-Duke-8** from [here](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
 3. Copy the files to the folder you want to use for the application.
-4. If you have downloaded the jar file by itself, you will also need the question file, `topics.json`, found in `data.zip`. Therefore, after extracting `data.zip`, include the `data` folder and the `eduke8.jar` file in the same folder for E-Duke-8 to run smoothly. Alternatively, you can simply download `eduke8.zip`, which includes both the jar file along with the data folder, and extract it. See section [**3.1 Loading Data**](#31-loading-data) for more infomation.
-5. Double click on eduke8.jar to start up the program. If the program does not start up, continue to step 6, otherwise skip to step 8.
-6. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
-7. Enter the following command `java -jar eduke8.jar`.
-8. Type a command in the terminal and press Enter to execute it. e.g. typing `help` and pressing Enter will list all the commands that you can use in this application. For a start, here is a list of basic commands you can try:
+4. Double click on `eduke8.jar` to start up the program. If the program does not start up, continue to step 6, otherwise skip to step 8.
+5. If double clicking on the jar file does not work, open up the command prompt in the same folder used in step 3.
+6. Enter the following command `java -jar eduke8.jar`.
+7. Type a command in the terminal and press Enter to execute it. e.g. typing `help` and pressing Enter will list all the commands that you can use in this application. For a start, here is a list of basic commands you can try:
    - `about` : Provides information about E-Duke-8.
    - `help` : Displays available commands.
    - `topics` : Lists CS2113/T topics that E-Duke-8 knows.
@@ -36,7 +35,7 @@ Understand more about E-Duke-8, and how you can use it to aid your learning, thr
    - `quiz` : Starts a quiz. Eg. `quiz t/OOP n/5 s/10` will start a quiz with five questions based on OOP concepts. You will have 10 seconds to complete each question. 
    - `exit` : Exits the app.
 
-9. Refer to the section on [Features](#3-features) below for the full list of commands you can use and the details of each.
+8. Refer to the section on [Features](#3-features) below for the full list of commands you can use and the details of each.
 
 <div style="page-break-after: always;"></div>
 
@@ -408,7 +407,29 @@ Furthermore, hints might give you an alternative perspective to think about the 
 
 **Q6**: How do I change the questions in the quizzes?
 
-**A6**: Open `topics.json` in any text editor to edit the questions, make sure to follow the format of the questions
+**A6**: You may download the sample `topics.json` from the [releases page](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases).
+Make sure to include this file in the `main` folder located in the `data` folder.
+If these folder does not exist yet please run the application once to create it.
+
+The directory structure should look like this:
+
+```
+root
+│   eduke8.jar
+│
+└───data
+    │
+    └───main
+    │   │   topics.json
+    │   │   ...
+    │
+    └───logs
+        │   ...
+```
+
+Your changes will not be reflected if the directory structure does not match that above.
+
+Open `topics.json` in any text editor to edit the questions, make sure to follow the format of the questions
 already provided. An example is shown below.
 
 ```json
@@ -494,11 +515,7 @@ Therefore, it is recommended that you do not modify the user data. Do build up y
 ## 6. Troubleshooting
 
 If you have trouble starting the application there could be two sources of error for loading data.
-Firstly, `topics.json` may not be present in the right folder.
-There should a `data` folder in the same folder as `eduke8.jar`.
-Please check inside the `data` folder followed by the `main` folder that the `topics.json` file is present.
-
-Next, it is possible that the format of data inside `topics.json` or `user.json` is wrong and thus cannot be parsed
+It is possible that the data for `topics.json` or `user.json` has been tampered with wrongly and thus cannot be parsed
 correctly. Please ensure that if you wish to edit the data in `topics.json`, such as to add questions, then you should follow the instructions found in [**FAQ**](#4-faq) Q6 carefully.
 
 On the other hand, `user.json` should not be manually edited.
@@ -506,9 +523,8 @@ If you have accidentally changed this file, you may delete
 the file to reset the data.
 A new file will be created on start up.
 
-If the above fixes do not work please download `data.zip` from the [release page](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases) again and use its contents as the `data`
-folder.
-
+If the above fixes do not work you may delete the `data` folder and use the default questions or 
+download `topics.json` from the [releases page](https://github.com/AY2021S1-CS2113T-F12-3/tp/releases) again.
 
 ## 7. Glossary
 
