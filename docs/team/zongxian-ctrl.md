@@ -28,7 +28,7 @@ Implemented the `Parser` to ensure that User entered the correct format for Comm
 Functions include:  
 1. Ensuring that User enter the correct format as stated in User Guide.
 2. Ensuring that User does not give empty parameter or illegal parameter if the command requires it. 
-3. Detecting any Illegal character such as `space` or `\|` or `/` which might ensure in error of the CLI program. 
+3. Detecting any Illegal character such as `spaces` or `|` or `/` which might ensure in error of the CLI program. 
 4. Implemented `StringUtils.replaceOnce` to prevent special character from ending the program, as Java String Library .replaceFirst 
 only supports regex.
 * Implementation of Parser involved frequent updates from v1.0 to v2.1 as any changes to the implementation and functions
