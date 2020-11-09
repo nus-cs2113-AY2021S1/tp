@@ -217,10 +217,12 @@ the main function make the run(command) API call.
 
 ![timetable_sequence diagram](Images/timetable_sequence%20diagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Academic Component**
 
 This section will describe in detail how some features inside the academic tracker section have been implemented.
-The following figure illustrates the general overview, the associations and the multiplicity of the academic classes.
+The following diagram illustrates the general overview, the associations and the multiplicity of the academic classes.
 
 ![Academic_Class_Diagram](Images/Academic_Class_Diagram.png)
 
@@ -233,6 +235,7 @@ The functions of the academic tracker will be called through the `AcademicRun` c
 when the program is in academic mode, which will subsequently call 
 the functions in `PersonBook` or `GradeBook`. 
 
+
 The academic component:
 * initialises two arraylists, `ArrayList<Grade>` and `ArrayList<People>` 
 to store the relevant `Grade` and `People` objects.
@@ -240,6 +243,8 @@ to store the relevant `Grade` and `People` objects.
 * identifies `AcademicCommandType` to decide 
 which of the commands under `PersonBook` or `GradeBook` is to be executed.
 * calls `AcademicStorage` to store the current set of data into the local storage file.
+
+<div style="page-break-after: always;"></div>
 
 **Academic Implementation**
 
@@ -252,24 +257,29 @@ The grade features are facilitated by `Gradebook`, which further make use of `Gr
 Each `Grade` will contain information such as the module's title, credits, grade, status of SU and status of star.
 All grades are stored internally under `AcademicRun` as an array list `ArrayList<Grade>`.
 
-It implements the following operations:
+It implements the following important operations:
 * `addGrade(String[], ArrayList<Grade>)`:Adds a `Grade` to the `ArrayList<Grade>`. 
 * `printCap(ArrayList<Grade>)`:Calculate the current CAP based on the `ArrayList<Grade>`. 
 * `printListOfGrades(ArrayList<Grade>)`:Print out all the `Grade` that are currently stored inside `ArrayList<Grade>`.
 * `deleteGrade(Integer, ArrayList<Grade>)`:Delete a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `suGradeInGradeBook(Integer, ArrayList<Grade>)`:Su a `Grade` from a specified index inside `ArrayList<Grade>`.
 * `starGrade(Integer, ArrayList<Grade>)`:Star a `Grade` from a specified index inside `ArrayList<Grade>`.
-* `combineGradeDetails(Grade)`:Print out the details of a particular `Grade`.
 
-The following sequence diagram demonstrates an example of how the Su Grade function works:
-![Academic_Sequence_Diagram](Images/Academic_Sequence_Diagram.png)
-With reference to above, it can be observed that whenever a command modifies the array lists, 
+The following diagram demonstrates an example of how the Su Grade function works:
+
+<p align="center">
+    <img width="70%" height="70%" src="Images/Academic_Sequence_Diagram.png">
+</p>
+
+With reference to above diagram, it can be observed that whenever a command modifies the array lists, 
 `AcademicStorage` is called to update the local storage files.
 
 **PersonBook Features**
 
 The contact features are facilitated by `Personbook`, which further make use of `Person`. 
 In terms of general structure, it is largely similar to that of `GradeBook`'s.
+
+<div style="page-break-after: always;"></div>
 
 <!-- @@author hailqueenflo -->
 ### **Flashcard Component**
