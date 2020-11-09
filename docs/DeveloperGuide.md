@@ -582,7 +582,7 @@ Step 4. `ExtractCommand#verifyDate()` and `ExtractCommand#verifyTime()` will be 
 
 Step 5. `ExtractCommand#chooseZoomLink()`, `ExtractCommand#chooseDate()` and `ExtractCommand#chooseTime()` will be called and will print out a list of valid zoom links/dates/times and allow the user to input the number of the link/date/time they want to select it.
 
-Step 6. If the event has a zoom link, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
+Step 6. If the event has a zoom link, like the example, a `Zoom` event will be created using the link, date, time and `TEXT_SUBJECT` as its description. Otherwise, a `Personal` event will be created with the date, time and description fields. The event will be added to the user's `UserData`.
 
 The following sequence diagram shows how the Extract Feature works in general:
 

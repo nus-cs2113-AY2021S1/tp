@@ -25,7 +25,6 @@ public class ExtractCommand extends Command {
     private int timeCount;
     private int zoomLinkCount;
     private String textSubject = null;
-    private String textBody = null;
     private String eventType;
     private static Logger logger = EventLogger.getEventLogger();
 
@@ -66,7 +65,7 @@ public class ExtractCommand extends Command {
 
         ui.printExtractTextBodyRequestMessage();
         ui.printDividerLine();
-        textBody = receiveTextBody(ui);
+        String textBody = receiveTextBody(ui);
 
         if (textBody == null) {
             logger.warning("InvalidExtractCommandException -- Text body not detected or is null.");
@@ -85,10 +84,10 @@ public class ExtractCommand extends Command {
         }
 
         ArrayList<LocalDate> dateList = detectDate(textBody);
-        LocalDate finalDate = chooseFinalDate(dateList, ui);
+        LocalDate finalDate = chooseDate(dateList, ui);
 
         ArrayList<LocalTime> timeList = detectTime(textBody);
-        LocalTime finalTime = chooseFinalTime(timeList, ui);
+        LocalTime finalTime = chooseTime(timeList, ui);
 
         createEvent(data, ui, finalDate, finalTime, zoomLink);
 
@@ -268,7 +267,7 @@ public class ExtractCommand extends Command {
      * @param ui contains responses to print.
      * @return the LocalTime object chosen by user.
      */
-    private LocalTime chooseFinalTime(ArrayList<LocalTime> timeList, Ui ui) {
+    private LocalTime chooseTime(ArrayList<LocalTime> timeList, Ui ui) {
         LocalTime finalTime = null;
         if (timeCount > 1) {
             ui.printExtractChooseTimeMessage(timeCount, timeList);
@@ -363,13 +362,13 @@ public class ExtractCommand extends Command {
     }
 
     /**
-     * Allows user to choose the dates they want from the dateList.
+     * Allows user to choose the date they want from the dateList.
      *
      * @param dateList An ArrayList containing LocalDate objects to choose from.
      * @param ui contains responses to print.
      * @return A localDate object chosen for the event.
      */
-    private LocalDate chooseFinalDate(ArrayList<LocalDate> dateList, Ui ui) {
+    private LocalDate chooseDate(ArrayList<LocalDate> dateList, Ui ui) {
         LocalDate finalDate = null;
         if (dateCount > 1) {
             ui.printExtractChooseDateMessage(dateCount, dateList);
