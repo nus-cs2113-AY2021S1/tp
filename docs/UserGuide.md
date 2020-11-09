@@ -1,4 +1,7 @@
+![layout_labelled](images/logo.png)
+--
 # User Guide
+
 - [What is PlaNUS](#what-is-planus)
 - [About this document](#about-this-document)
 - [Quick start](#quick-start)
