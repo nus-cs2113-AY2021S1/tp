@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 - **Code Contributed:** [RepoSense Link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=matthewgani&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 - **Project Management**
-    - Managed releases `v1.0` - `v2.0` (2 releases) on GitHub
+    - Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
     
 - **Documentation:**
     - User guide:
@@ -28,10 +28,11 @@ Given below are my contributions to the project.
         - Added and maintained the table of contents with hyperlinks, made the headings with numberings
     
     - Developer Guide:
-        - Added implementation details for the `add` and `extract` feature, with UML diagrams.
-        - Added and maintained the table of contents with hyperlinks
-        - Wrote the Setting up, getting started section
-        - Wrote the first 2 Use cases
+        - Added implementation details for the `add` feature, with a sequence diagram and class diagram.
+        - Added implementation details for the `extract` feature, with a sequence diagram and class diagram.
+        - Added and maintained the table of contents with hyperlinks.
+        - Added the Setting up, getting started section.
+        - Added Use cases.
         
 - **Community:**
     - Assisted with peer review for other group's PR [1](https://github.com/nus-cs2113-AY2021S1/tp/pull/1/files)
