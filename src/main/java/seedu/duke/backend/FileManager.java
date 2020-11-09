@@ -38,7 +38,8 @@ public class FileManager {
         try {
             Files.createDirectories(Paths.get(path));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.log(Level.INFO, "Error initializing. No write permissions?");
         }
     }
 

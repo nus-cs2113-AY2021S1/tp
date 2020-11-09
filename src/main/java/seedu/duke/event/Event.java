@@ -142,7 +142,7 @@ public class Event {
             }
             if (start != null) {
                 start = start.withHour(23).withMinute(59).withSecond(59).withNano(0);
-                eventTime = "23:59:59";
+                eventTime = "23-59";
             }
         }
         if (start != null) {
