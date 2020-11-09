@@ -82,7 +82,7 @@ public class User {
         Ui.printCustomMessage(USER_SETUP_GREET);
         Ui.printCustomMessage(INPUT_NAME);
         LOGGER.fine("Setting up profile name.");
-        setName(Ui.read(), false);
+        setName(Ui.read().trim(), false);
         Ui.printCustomMessage(INPUT_AGE);
         LOGGER.fine("Setting up profile age.");
         setupAge(null, false);
@@ -130,7 +130,7 @@ public class User {
                 return;
             }
             Ui.printCustomMessage(INPUT_NAME);
-            name = Ui.read();
+            name = Ui.read().trim();
         }
         this.name = name;
     }
@@ -270,7 +270,7 @@ public class User {
                 return;
             }
             Ui.printCustomMessage(INPUT_GENDER);
-            genderInput = Ui.read();
+            genderInput = Ui.read().trim();
         }
         if (genderInput.equalsIgnoreCase(MALE_SYMBOL)) {
             setGender(MALE_STRING);
