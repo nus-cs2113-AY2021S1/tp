@@ -348,6 +348,8 @@ The timetable component stores an array of all events and 5 different arrays of 
   1. occursDuringEvent(): Returns true if another event is occurring during this event's time duration.
   1. equals(): Checks if the title of another event is the same and has a clashing time period. If both conditions are satisfied, return true.
   
+  <div style="page-break-after: always;"></div>
+  
   RecurringEvent Class Key Methods Provided:
   1. timeStep(): Returns a LocalDateTime with one time step depending on what the event is.
   1. toReoccur(): Checks if this event is to reoccur on this date.
@@ -368,6 +370,8 @@ Figure 14 below denotes the class diagram for the TagManager and the Taggable Ob
 💡 As the focus of this diagram is on Tag, TaggableObject and TagManager, the variables and methods of Notes and Events are omitted.
  
 Notes and Events inherit from the abstract class, TaggableObject, and TagManager contains a map of individual unique tags to an ArrayList of TaggableObjects. The TagManager also handles the creation, deletion as well as the tagging and untagging of tags from notes or events.
+
+<div style="page-break-after: always;"></div>
 
 #### <a id="storage"><ins>2.8 Storage</ins></a>
 
@@ -419,6 +423,8 @@ The Formatter class handles the formatting of the Note(s), Event(s) and message(
 
 There are few overloaded functions such as formatNotes, formatTimetable and formatString. These functions are overloaded due to the different format that is to be printed for the different Commands.
 
+<div style="page-break-after: always;"></div>
+
 A notable function is the `encloseRow(String)` which is a recursive function. It takes in the string to be formatted and split the string if it exceeds the maximum character display length, which is then recursively formatted. One additional consideration to take note of is the ANSI escape code for color as they have to be accounted when splitting the string as well as adding spaces to fill up the gap.
 
 #### <a id="exception"><ins>2.10 System Exception</ins></a>
@@ -427,8 +433,12 @@ The System Exception Enumeration contains all the possible types of exception wi
 
 <p align="center">
    <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum1.png"/>
-   <img alt="SystemExceptionEnum2" src="diagrams/out/SystemExceptionEnum2.png"/>
    <br><em>Figure 21</em>
+</p>
+
+<p align="center">
+   <img alt="SystemExceptionEnum1" src="diagrams/out/SystemExceptionEnum2.png"/>
+   <br><em>Figure 22</em>
 </p>
 
 💡 As there are various types of exception, the diagram is split into two.
@@ -447,7 +457,7 @@ Figure 22 below illustrates what you should see on your screen.
 
 <p align="center">
   <img alt="Changing console color" src="diagrams/out/ConsoleColor.png" />
- <br><em>Figure 22</em>
+ <br><em>Figure 23</em>
 </p>
 
 <ins>Note on usage of Jansi library:</ins>
