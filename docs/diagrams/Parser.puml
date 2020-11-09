@@ -57,6 +57,8 @@ destroy ParseDeleteNoteCommand
 
 @startuml
 
+hide footbox
+
 participant ":ParserManager" as ParserManager
 participant ":ParseAddNoteCommand" as ParseAddNoteCommand
 participant ":AddNoteCommand" as AddNoteCommand
