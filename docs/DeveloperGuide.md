@@ -491,7 +491,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
         1. ```retrieveEntryHandler.handlePacket(packet)``` is called to handle params in the packet.
             1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
             1. For ```retrieveEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table3).
-            1. From ```EntryTracker```, call ```entryList.getItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
+            1. From ```EntryTracker```, call ```entryList.popItemAtCurrIndex``` to retrieve the entry specified by the index set to modify earlier.
 
 #### <a name = table3></a> Param Handling Behavior
 
@@ -511,7 +511,7 @@ The editing of details within the entry is performed in two phases: Entry Retrie
     1. ```EditEntryHandler.handlePacket()``` is called to handle params in the packet.
         1. Refer to the section on [Param Handling](#impl_logic) for more details pertaining to general param handling. 
         1. For ```EditEntryHandler```, the ```handleSingleParam``` abstract method will be implemented as shown in the [following table](#table4).
-
+    1. The edited entry is added back into the list.
 #### <a name = table4></a> Param Handling Behavior           
 
 |ParamType|ParamType String| Expected Param | Operation | Verification method |
@@ -911,18 +911,18 @@ terminated.
 
 ## Value proposition
  
-**Expenditure Tracker**
-* Input itemised spending on a daily basis
-* Sum the monthly/weekly expenditure, as well as average weekly/daily expenditure
-* Categorise expenditures (e.g. food, transport etc) and sort by category
+**ManualTracker and EntryTracker**
+* Input itemised spending on a daily basis.
+* Summarise the daily expenditure.
+* Categorise expenditures (e.g. food, transport etc) 
 
-**Budget Management**
+**GoalTracker**
 * Set a budget (monthly)
 * Remind users of how much budget they have left for that month
 * Edit the budget (monthly)
 * Display the budget for that month
 
-**Recurring Expenditure/Income**
+**RecurringTracker**
 * Keep track of expenditure/income that occur on a monthly basis e.g. bills and income
 * Remind users of upcoming entries, e.g. a bill payment which is due tomorrow
 
@@ -955,6 +955,7 @@ terminated.
 |v1.0|user|add a recurring entry|Keep track of monthly transactions like income or bills|
 |v1.0|user|edit a recurring entry|update details of existing entries without having to re-enter everything|
 |v1.0|user|delete a recurring entry|remove recurring entries that are no longer valid e.g. cancelled subscription|
+|v1.0|user|create a save after I exit the program and load that save when I return|shutdown my PC and save electrical bills without losing progress|
 |v2.0|user|calculate interest over a principal amount with yearly or monthly deposit|know how much interest I can earn with regular deposits|
 |v2.0|user|store account or card information|refer to account features such as interest rate any time|
 |v2.0|user|compare my calculations with different interest rate|decide which account is better|
@@ -963,6 +964,9 @@ terminated.
 |v2.0|user|edit expense/income goal for specific month|adjust my expenditure/saving target according to the situation|
 |v2.0|user|display expense/income goal for specific month|keep track of my progress|
 |v2.0|busy user with many bills to pay|see all my upcoming recurring entries|keep track of bill payment dates and prevent overdue fees|
+|v2.0|user|be assured my saved progress is not lost if program unexpectedly terminates|work long hours without manually saving the program|
+|v2.0|user|keep multiple copies of different saves|load a different save if my friend wishes to use the program on my computer|
+|v2.0|user|reset my program|easily remove all saved progress without having to delete them one at a time|
 
 <div style="page-break-after: always;"></div>
 
@@ -983,6 +987,15 @@ terminated.
     * _IntelliJ_ - An Integrated Development Environment (IDE) used to develop FinanceIt
     * _CLI_ - Command Line Interface
     * _UML_ - Unified Modeling Language
+* __Technical__
+    * _Param types_ - A keyword to a parameter that serves as input to a particular command. eg. `/date`
+    * _Param_ - The parameter to the command. Is associated with a param type. eg. `200404`
+    * _Param Map_ - A HashMap that maps Param types to their respective Params.
+    * _CommandPacket_ - Class that represents the user input in distinct attributes that are easier to be accessed by the program.
+    * _Command Handlers_ - Component of classes that implements a command.
+    * _Logic Managers_ - Component of classes that implements the high-level logical sequence of events and operations within a certain feature.
+    * _Logic_ - Component of classes that interprets CommandPacket attributes to control the low-level operation flow of a command.
+    * _Input Manager_ - Component of classes that handles input by user and output to user. 
 * __Manual Tracker and Entry Tracker__
     * _Entries_ - The class designed to represent a unit of transaction of the user. 
     * _Ledger_ - A collection of entries which are incurred on the same day.

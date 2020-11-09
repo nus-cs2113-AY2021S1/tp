@@ -23,8 +23,8 @@ participant ":ParamChecker"
 endBox
 
 box "Data" #LightGreen
-participant ":ledger:Ledger"
-participant "ledger:LedgerList"
+participant "ledger:Ledger"
+participant "ledgerList:LedgerList"
 endBox
 
 User-> manualTracker: Create Ledger
@@ -36,8 +36,8 @@ manualTracker ->manualTracker: handleCreateLedger()
 
    manualTracker-> "handler:CreateLedgerHandler" : handlePacket(packet)
 
-        create ":ledger:Ledger"
-        "handler:CreateLedgerHandler" -> ":ledger:Ledger" : Ledger()
+        create "ledger:Ledger"
+        "handler:CreateLedgerHandler" -> "ledger:Ledger" : Ledger()
         return
         == Handling of Params in packet ==
         "handler:CreateLedgerHandler" -> "handler:CreateLedgerHandler" : handleParams(packet)
@@ -49,7 +49,7 @@ manualTracker ->manualTracker: handleCreateLedger()
                     alt "paramType = PARAM_DATE"
                         "handler:CreateLedgerHandler" ->":ParamChecker": checkAndReturnDate(paramType)
                         return date
-                        "handler:CreateLedgerHandler" -> ":ledger:Ledger" : setDate(date)
+                        "handler:CreateLedgerHandler" -> "ledger:Ledger" : setDate(date)
                         return
                     end
                 return
@@ -60,7 +60,7 @@ manualTracker ->manualTracker: handleCreateLedger()
    manualTracker-> "handler:CreateLedgerHandler" : getCurrLedger()
    return ledger
    == Storing of ledger into ledgerList ==
-   manualTracker-> "ledger:LedgerList" : addItem(ledger)
+   manualTracker-> "ledgerList:LedgerList" : addItem(ledger)
     return
 return state
 return

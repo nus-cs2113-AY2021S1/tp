@@ -3,10 +3,8 @@ package seedu.financeit.datatrackers.recurringtracker;
 import seedu.financeit.common.Common;
 import seedu.financeit.data.Item;
 import seedu.financeit.utils.DateTimeHelper;
-import seedu.financeit.utils.ParamChecker;
 
 import java.time.Month;
-import java.util.Arrays;
 import java.util.HashMap;
 
 //@@author Artemis-Hunt
@@ -18,7 +16,7 @@ public class RecurringEntry extends Item {
     Month start = Month.of(1);
     Month end = Month.of(12);
     boolean isAuto = false;
-    String notes = " ";
+    String notes = "";
 
     //Attributes in String form, for table printing
     String expenditureAmount = null;
@@ -34,6 +32,7 @@ public class RecurringEntry extends Item {
     public void setAmount(double amount) {
         assert amount > 0;
         this.amount = amount;
+        convertAttributesToString();
     }
 
     public void setEntryType(Common.EntryType entryType) {
@@ -100,9 +99,9 @@ public class RecurringEntry extends Item {
     public void convertAttributesToString() {
         //One string is filled and the other is left blank, based on whether the entry is income or expenditure
         expenditureAmount = entryType == Common.EntryType.EXP ? "-$"
-                + String.format("%.2f", amount) : "";
+                + String.format("%.2f", this.amount) : "";
         incomeAmount = entryType == Common.EntryType.INC ? "+$"
-                + String.format("%.2f", amount) : "";
+                + String.format("%.2f", this.amount) : "";
         String[] monthsWithoutDay = DateTimeHelper.monthsWithoutDayOfMonth(day);
         duration = "Every month";
         if (monthsWithoutDay.length >= 1) {

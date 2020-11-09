@@ -1,0 +1,6 @@
+Ledger;2020-01-01
+Entry;Expense;TRANSPORT;$11500.00;11:51;test test test
+Entry;Income;SALARY;$31500.00;11:31;test test test
+Ledger;2020-01-02
+Entry;Income;SALARY;$21500.00;11:21;test test test
+Entry;Expense;TRANSPORT;$41500.00;11:11;test test test

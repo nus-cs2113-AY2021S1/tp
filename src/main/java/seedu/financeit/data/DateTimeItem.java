@@ -32,7 +32,6 @@ public abstract class DateTimeItem extends Item {
 
     public void setTime(LocalTime time) {
         this.time = time;
-        this.dateTimeOutputManager = new DateTimeOutputManager();
         this.dateTimeOutputManager.setTime(time);
     }
 

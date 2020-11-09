@@ -52,7 +52,8 @@ Given below are my contributions to the project. <br/>
     * Added class and sequence diagram for the features ```set goal```.
       ([#88](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/88),
        [#91](https://github.com/AY2021S1-CS2113-T16-1/tp/pull/91))
-     
+       
+  <div style="page-break-after: always;"></div>
 * **Community**
   * Review other groups project during PED, reported bugs and suggested improvements.
   ([#1](https://github.com/dixoncwc/ped/issues/1),

@@ -3,6 +3,8 @@ package seedu.financeit.utils;
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.utils.storage.SaveHandler;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -70,6 +72,13 @@ public class LoggerCentre {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void writeStackTraceToLog(Exception e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        LoggerCentre.loggerSystemMessages.severe(sw.toString());
     }
 
     public static void addHandler(StreamHandler consoleHandler) {

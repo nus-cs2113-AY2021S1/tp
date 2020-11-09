@@ -1,6 +1,6 @@
 @startuml
 autoactivate on
-scale 1094 width
+scale 500 width
 skinparam shadowing false
 skinparam sequence {
 ActorBorderColor white

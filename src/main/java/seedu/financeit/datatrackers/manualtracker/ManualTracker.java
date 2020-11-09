@@ -12,6 +12,8 @@ import seedu.financeit.datatrackers.manualtracker.ledgerhandlers.RetrieveLedgerH
 import seedu.financeit.parser.InputParser;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.ManualTrackerSaver;
+
 
 /**
  * Class to handle routine for manual ledger management.
@@ -106,7 +108,8 @@ public class ManualTracker {
 
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("%s created!", ledger.getName()));
-        } catch (InsufficientParamsException exception) {
+            ManualTrackerSaver.getInstance().save();
+        } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());
         } catch (DuplicateInputException exception) {
@@ -133,6 +136,7 @@ public class ManualTracker {
             ledgerList.removeItemAtCurrIndex();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                 String.format("%s deleted!", deletedLedger.getName()));
+            ManualTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                 exception.getMessage());

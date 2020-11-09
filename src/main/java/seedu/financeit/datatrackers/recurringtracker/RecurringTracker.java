@@ -12,6 +12,8 @@ import seedu.financeit.datatrackers.recurringtracker.recurringhandlers.CreateEnt
 import seedu.financeit.datatrackers.recurringtracker.recurringhandlers.EditEntryHandler;
 import seedu.financeit.ui.TablePrinter;
 import seedu.financeit.ui.UiManager;
+import seedu.financeit.utils.storage.RecurringTrackerSaver;
+
 
 public class RecurringTracker {
     static String WelcomeMessage = "Welcome to Recurring Tracker!";
@@ -77,6 +79,7 @@ public class RecurringTracker {
             String entryName = entry.getName();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s created!", entryName));
+            RecurringTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
@@ -107,6 +110,7 @@ public class RecurringTracker {
             entries.removeItemAtCurrIndex();
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s deleted!", entryName));
+            RecurringTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
@@ -134,6 +138,7 @@ public class RecurringTracker {
             editEntryHandler.handlePacket(packet);
             UiManager.printWithStatusIcon(Common.PrintType.SYS_MSG,
                     String.format("%s edited!", entry.getName()));
+            RecurringTrackerSaver.getInstance().save();
         } catch (InsufficientParamsException | ItemNotFoundException exception) {
             UiManager.printWithStatusIcon(Common.PrintType.ERROR_MESSAGE,
                     exception.getMessage());
