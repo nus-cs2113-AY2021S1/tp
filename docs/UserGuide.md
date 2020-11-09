@@ -844,7 +844,7 @@ View Exercise Entries on a Specified Date | `view exercise dd/MM/yyyy` | `view e
 View Goal Entry | `view goal` | 
 View Calorie Summary | `view summary` |
 View Calorie Summary on a Specified Date | `view summary dd/MM/yyyy` | `view summary 31/10/2020`
-Get a recommended general workout | `recommed` | 
+Get a recommended general workout | `recommend` | 
 Get a recommended specific workout| `recommend WORKOUT_CATEGORY` | `recommend upperbody` or `recommend lowerbody` or `recommend aerobic` or `recommend stretch`
 Edit User Profile | `edit name` or `edit age` or `edit gender` or  `edit height` or `edit weight` or `edit fitness` |
 Edit Food Entry | `edit food dd/MM/yyyy INDEX NAME_OF_FOOD /CALORIES_OF_FOOD QUANTITY` | `edit food 31/10/2020 1 green apple /50 1`
