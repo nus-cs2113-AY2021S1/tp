@@ -32,9 +32,7 @@ public class WatchlistCommand extends Command {
     private static final String INVALID_WATCHLIST_INDEX_ERROR = "This is not a valid watchlist index.";
     private static final String CANNOT_SELECT_ACTIVE_WATCHLIST_ERROR = "You cannot select the active watchlist..";
     private static final String CANNOT_DELETE_LAST_WATCHLIST_ERROR = "You cannot delete the last watchlist!";
-    private static final String WATCHLIST_NAME_TOO_LONG_ERROR = "Watchlist name should not exceed 30 characters!";
 
-    private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
     private static final Logger LOGGER = AniLogger.getAniLogger(WatchlistCommand.class.getName());
 
     private final String parameter;
@@ -132,10 +130,6 @@ public class WatchlistCommand extends Command {
 
         if (watchlistList.contains(createdWatchlist)) {
             throw new AniException(WATCHLIST_NAME_IS_NOT_UNIQUE_ERROR);
-        }
-
-        if (watchlistName.length() > MAX_WATCHLIST_NAME_LENGTH) {
-            throw new AniException(WATCHLIST_NAME_TOO_LONG_ERROR);
         }
 
         watchlistList.add(createdWatchlist);

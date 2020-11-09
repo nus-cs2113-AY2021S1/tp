@@ -22,6 +22,7 @@ public class WatchlistParser extends CommandParser {
     private static final String WATCHLIST_COMMAND_TOO_MANY_PARAMETERS_ERROR = "Watchlist command"
                                                                               + TOO_MUCH_PARAMETERS;
     private static final String WATCHLIST_NAME_IS_EMPTY_ERROR = "Watchlist name cannot be empty!";
+    private static final String WATCHLIST_NAME_TOO_LONG_ERROR = "Watchlist name should not exceed 30 characters!";
     private static final String WATCHLIST_NAME_IS_INVALID_ERROR = "Watchlist name can only consist of up to "
                                                                   + "30 alphanumeric characters and/or spaces!";
     private static final String WATCHLIST_INDEX_IS_EMPTY_ERROR = "Watchlist index cannot be empty!";
@@ -30,6 +31,7 @@ public class WatchlistParser extends CommandParser {
     private static final String INVALID_PARAMETER_ERROR = "Watchlist command only accepts the parameters: "
                                                     + "-n, -l, -s, and -d.";
 
+    private static final int MAX_WATCHLIST_NAME_LENGTH = 30;
     private static final int DEFAULT_WATCHLIST_INDEX = -1;
     private static final int CREATION_REQUIRED_PARAMETER_COUNT = 2;
     private static final int LIST_REQUIRED_PARAMETER_COUNT = 1;
@@ -125,7 +127,12 @@ public class WatchlistParser extends CommandParser {
             throw new AniException(WATCHLIST_NAME_IS_EMPTY_ERROR);
         }
 
-        if (!parsedParts[1].trim().matches(REGEX_ALPHANUMERIC_WITH_SPACE)) {
+        String watchlistName = parsedParts[1].trim();
+        if (watchlistName.length() > MAX_WATCHLIST_NAME_LENGTH) {
+            throw new AniException(WATCHLIST_NAME_TOO_LONG_ERROR);
+        }
+
+        if (!watchlistName.matches(REGEX_ALPHANUMERIC_WITH_SPACE)) {
             throw new AniException(WATCHLIST_NAME_IS_INVALID_ERROR);
         }
     }

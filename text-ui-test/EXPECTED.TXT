@@ -709,7 +709,7 @@ Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much pa
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist command has too much parameters.
 
-Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name should not be longer than 30 characters!
+Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name should not exceed 30 characters!
 
 Triple Fromage Cheesecake (Default) #> OOPS!!! Watchlist name is used already!
 
