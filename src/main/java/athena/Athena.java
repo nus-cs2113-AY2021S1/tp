@@ -37,30 +37,25 @@ public class Athena {
      */
     public void runProgram() {
         String inputString;
-
         athenaUi.printAthenaLogo();
         athenaUi.printWelcomeMessage();
-
         boolean isExit = false;
         try {
             taskList = storage.loadTaskListData();
-            timeAllocator = new TimeAllocator(taskList);
         } catch (StorageException e) {
             e.printErrorMessage();
             isExit = true;
         }
         Scanner input = new Scanner(System.in);
-
         while (!isExit) {
             try {
+                timeAllocator = new TimeAllocator(taskList);
                 timeAllocator.runAllocate();
                 athenaUi.printNewline();
                 athenaUi.printUserInputIndicator();
-
                 inputString = athenaUi.detectInput(input);
                 Command userCommand = parser.parse(inputString, taskList);
                 userCommand.execute(taskList, athenaUi);
-
                 storage.saveTaskListData(taskList);
                 isExit = userCommand.getIsExit();
             } catch (CommandException e) {

@@ -13,7 +13,6 @@ public class Log {
     private int end;
     private ArrayList<Task> carryOverTasks = new ArrayList<>();
 
-
     /**
      * Makes a record of the task allocation.
      *
@@ -82,7 +81,6 @@ public class Log {
         return numberList.indexOf(-1);
     }
 
-
     public int getStart(int start) {
         return numberList.get(start);
     }
@@ -94,17 +92,18 @@ public class Log {
     public Log(TimeSlot currSlot, ArrayList<Task> undefinedTimeTasks) {
         this.start = currSlot.getStart();
         this.end = currSlot.getEnd();
+        this.carryOverTasks = (ArrayList<Task>) undefinedTimeTasks.clone();
         Log currentLog = new Log(currSlot.getStart(), currSlot.getEnd());
         Log bestLog = currentLog;
         boolean hasUsableVacancy = true;
         while (hasUsableVacancy) {
+            currentLog = new Log(currSlot.getStart(), currSlot.getEnd());
             currentLog.setNumberList(undefinedTimeTasks);
             hasUsableVacancy = currentLog.hasSpace();
             if ((bestLog.getSpaceNumber() < currentLog.getSpaceNumber()) | !hasUsableVacancy) {
                 bestLog = currentLog;
             }
             if (!undefinedTimeTasks.isEmpty()) {
-                this.carryOverTasks.add(undefinedTimeTasks.get(0));
                 undefinedTimeTasks.remove(0);
             } else {
                 break;

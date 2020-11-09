@@ -112,9 +112,6 @@ class TaskListTest {
 
     @Test
     void getFilteredList_highImportance_returnTasksWithHighImportance() throws CommandException {
-        // Filter list using high, low, medium importance
-        // Filter list using today, week, all forecast
-        // TODO ^^
         TaskList expectedTaskList = getImportanceTestExpectedTasks(Importance.HIGH);
         ImportanceFilter highFilter = new ImportanceFilter(Importance.HIGH);
         assertEquals(testTaskList.getFilteredList(highFilter), expectedTaskList);

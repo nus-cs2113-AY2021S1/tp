@@ -124,7 +124,6 @@ public class TimetableDrawer {
             }
 
             int duration = task.getTimeInfo().getDuration();
-            // TODO: better handle tasks exceeding sleep time, currently it just cuts off at sleep time
             duration = Math.min(duration, endHour - hour);
             hour += duration - 1;
             int boxWidth = duration * (TASK_BOX_HORIZONTAL_BORDER + BOX_CORNER).length() - 2;
