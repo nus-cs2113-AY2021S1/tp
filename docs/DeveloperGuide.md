@@ -610,6 +610,9 @@ Prerequisites:
    Expected-printout: Please enter a valid numerical value.
    
 ### Switching Off Appliance:
+1. Ensure that BedRoom1 is created: `create Bedroom1`
+2. Ensure that ac Appliance is added: `add ac l/Bedroom1 w/5000 t/aircon`
+3. Ensure that ac is turned on for every test: `on ac`
 1. Test case: `off ac` <br>
     Expected-printout: Switching: ac(5000W), located at BedRoom1 ......OFF
 2. Test case: `off ac2` <br>
