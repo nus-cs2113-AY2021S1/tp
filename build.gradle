@@ -37,6 +37,8 @@ application {
 shadowJar {
     archiveBaseName = "eduke8"
     archiveClassifier = null
+    sourceSets.main.resources.srcDirs = [ "src/" ]
+    sourceSets.main.resources.includes = [ "**/*.json" ]
 }
 
 checkstyle {
@@ -46,4 +48,6 @@ checkstyle {
 run{
     standardInput = System.in
     enableAssertions = true
+    sourceSets.main.resources.srcDirs = [ "src/" ]
+    sourceSets.main.resources.includes = [ "**/*.json" ]
 }

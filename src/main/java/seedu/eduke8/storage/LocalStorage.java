@@ -9,6 +9,9 @@ import seedu.eduke8.exception.Eduke8Exception;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -47,14 +50,25 @@ public abstract class LocalStorage implements Storage {
         return new ArrayList<>();
     }
 
-    protected JSONArray getJsonArrayFromFile() throws IOException, ParseException {
+    protected JSONArray getJsonArrayFromFile(String fallbackResource) throws IOException, ParseException {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
-        FileReader reader = new FileReader(filePath);
+        if (file.exists()) {
+            FileReader reader = new FileReader(filePath);
 
-        //Read JSON file
-        return (JSONArray) jsonParser.parse(reader);
+            //Read JSON file
+            return (JSONArray) jsonParser.parse(reader);
+        } else {
+            InputStream is = getClass().getResourceAsStream(fallbackResource);
+            if (is == null) {
+                throw new IOException();
+            }
+            InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8);
+
+            //Read JSON file
+            return (JSONArray) jsonParser.parse(reader);
+        }
     }
 
     private String appendRelativePath(String originalPath, String relativePath) {

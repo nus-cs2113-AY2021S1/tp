@@ -28,6 +28,7 @@ import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_TOO_MAN
 import static seedu.eduke8.exception.ExceptionMessages.ERROR_TOPICS_JSON_TOPIC;
 
 public class TopicsStorage extends LocalStorage {
+    public static final String FALLBACK_TOPICS_JSON_PATH = "/main/resources/topics.json";
     private boolean wasCorrectAnswerMarked;
     private String currentQuestionDescription;
     private String currentTopicTitle;
@@ -56,7 +57,7 @@ public class TopicsStorage extends LocalStorage {
     @Override
     public ArrayList<Displayable> load()
             throws Eduke8Exception, IOException, ParseException, ClassCastException, NullPointerException {
-        JSONArray topicsAsJsonArray = getJsonArrayFromFile();
+        JSONArray topicsAsJsonArray = getJsonArrayFromFile(FALLBACK_TOPICS_JSON_PATH);
 
         ArrayList<Displayable> topicsAsObjects = new ArrayList<>();
         for (Object topic : topicsAsJsonArray) {
@@ -70,7 +71,8 @@ public class TopicsStorage extends LocalStorage {
         return topicsAsObjects;
     }
 
-    private Topic parseToTopicObject(JSONObject topic) throws Eduke8Exception {
+    private Topic parseToTopicObject(JSONObject topic)
+            throws Eduke8Exception, ClassCastException, NullPointerException {
         currentTopicTitle = ((String) topic.get(KEY_TOPIC)).trim().replaceAll(" ", "_");
 
         checkIfBlankOrDuplicate(currentTopicTitle, topicTitles);
@@ -89,7 +91,8 @@ public class TopicsStorage extends LocalStorage {
         return new Topic(currentTopicTitle, questionList);
     }
 
-    private Question parseToQuestionObject(JSONObject question) throws Eduke8Exception {
+    private Question parseToQuestionObject(JSONObject question)
+            throws Eduke8Exception, ClassCastException, NullPointerException {
         currentQuestionDescription = ((String) question.get(KEY_DESCRIPTION)).trim();
 
         checkIfBlankOrDuplicate(currentQuestionDescription, questionDescriptions);
@@ -149,7 +152,8 @@ public class TopicsStorage extends LocalStorage {
 
     }
 
-    private Option parseToOptionObject(JSONObject option) throws Eduke8Exception {
+    private Option parseToOptionObject(JSONObject option)
+            throws Eduke8Exception, ClassCastException, NullPointerException {
         String optionDescription = ((String) option.get(KEY_DESCRIPTION)).trim();
         boolean isCorrectAnswer = (boolean) option.get(KEY_CORRECT);
 

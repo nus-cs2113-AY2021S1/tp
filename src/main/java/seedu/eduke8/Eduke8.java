@@ -31,8 +31,8 @@ public class Eduke8 {
 
     private MenuParser menuParser;
     private TopicsStorage topicsStorage;
-    private LogStorage logStorage;
     private UserStorage userStorage;
+    private LogStorage logStorage;
     private TopicList topicList;
     private BookmarkList bookmarkList;
     private Ui ui;
@@ -48,7 +48,7 @@ public class Eduke8 {
 
             logStorage.save();
             topicList = new TopicList(topicsStorage.load());
-        } catch (ParseException | IOException | ClassCastException e) {
+        } catch (ParseException | IOException | ClassCastException | NullPointerException e) {
             ui.printError(ERROR_STORAGE_LOAD_FAIL);
             LOGGER.log(Level.WARNING, ERROR_STORAGE_LOAD_FAIL);
             System.exit(1);
@@ -61,7 +61,7 @@ public class Eduke8 {
         userStorage = new UserStorage(userPath, topicList, bookmarkList);
         try {
             userStorage.load();
-        } catch (IOException | ParseException e) {
+        } catch (IOException | ParseException | ClassCastException | NullPointerException e) {
             ui.printError(ERROR_USER_JSON_LOAD);
             LOGGER.log(Level.WARNING, ERROR_USER_JSON_LOAD);
         } catch (Eduke8Exception e) {
