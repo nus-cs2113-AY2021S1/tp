@@ -201,22 +201,25 @@ below shows the implementation of the words, as well as the word list classes in
 ![UML Words class diagram](graphics/diagrams/Words_UML Diagram.png)
 <p align = "center"><i><b>Figure 5: Words UML Class Diagram</b></i></p>
 
-WordsList is an ArrayList which stores the objects of Words class. Each object has the following attributes:
-- Description: the word itself
-- Definition: the definition of the word  
+`WordsList` is an ArrayList which stores the objects of `Words` class. Each object has the following attributes:
+- `Description`: the word itself
+- `Definition`: the definition of the word  
 - Getters of the description and definition of the object.
 
-Each Words object is further classified into Noun, Verb, or Adjective class, which have a getter for its type that 
-identifies whether it is a noun, verb, or adjective.
+Each `Words` object is further classified into `Noun`, `Verb`, or `Adjective` class, which have a getter for its type that 
+identifies whether it is a `noun`, `verb`, or `adjective`.
 
-#### Adding a noun
-This feature allows users to add a Noun into the word bank of Fluffle.
+#### Adding a `noun`
+This feature allows users to add a Noun into the word bank of Fluffle. When the user adds a noun using the `noun` command,
+an object of the `Noun` class is created and added into the ArrayList `WordList`.
 
-#### Adding a verb 
-This feature allows users to add a Verb into the word bank of Fluffle.
+#### Adding a `verb` 
+This feature allows users to add a Verb into the word bank of Fluffle. When the user adds a verb using the `verb` command,
+an object of the `Verb` class is created and added into the ArrayList `WordList`.
 
-#### Adding an adjective
-This feature allows users to add an Adjective into the word bank of Fluffle.
+#### Adding an `adjective`
+This feature allows users to add an Adjective into the word bank of Fluffle. When the user adds an adjective using the `adj` command,
+an object of the `Adj` class is created and added into the ArrayList `WordList`.
 
 #### Listing words
 This feature allows users to list all the words that are currently stored in Fluffle.
