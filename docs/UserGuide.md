@@ -16,7 +16,7 @@ Wan Shi Jie Brendan
 
 ## Introduction
 
-NuSchedule is a straightforward yet sophisticated application that helps you manage your events. It allows you 
+NUSchedule is a straightforward yet sophisticated application that helps you manage your events. It allows you 
  to keep track of not only your school events or activities (eg. lectures, tutorials, assignments), but 
 also your personal activities. It utilises a command line interface (CLI), which accepts user input in the form of text. 
 This gives the application both simplicity and speed, setting it apart from other apps such as NUSMods and Luminus. 
