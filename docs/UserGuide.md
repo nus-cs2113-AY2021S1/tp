@@ -42,6 +42,8 @@ The following is a list of common notations and symbols you’ll encounter throu
    
    Underlined words or phrases in blue colour are website links that you can press on to access the website
 
+<div style="page-break-after: always;"></div>
+
 ## Getting Started
 
 Let’s get started with using Study It! This section will show you how you can run our app on your computer.
@@ -65,7 +67,7 @@ Once you are done installing Java 11.0.8 onto your PC, you may follow these proc
 1. Type `java -jar tp.jar` into the command prompt and press Enter to execute it
 1. If the application runs successfully, you’ll be greeted by the following welcome message:
 
-![WelcomeMessage](Images/GeneralUG/welcomemessage.png)
+![WelcomeMessage](Images/GeneralUG/welcomemessage.png){:height="60%" width="60%"}
 
 Congratulations! You are now able to run Study It. To access its various functionalities,
 you would need to type in the command at the Command Prompt and press Enter. 
@@ -990,6 +992,6 @@ The following table is a compiled list of all available commands in our applicat
 The commands listed under the sections besides “General” can only be called when you are in that specific mode, 
 which you can access using the cd command!
 
-Table: Command Cheatsheet for Study It
+<div align="center">Table: Command Cheatsheet for Study It</div>
 
 ![](Images/cheatsheet.png)
