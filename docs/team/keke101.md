@@ -10,18 +10,13 @@ This section summarises my contributions in terms of documentation, coding and o
 
 #### Enhancements Implemented
 The main enhancement I have added is storage manager and automated testing.
-##### 1. Storage Manager
-I have implemented a storage manager with the help of a third-party library [**json-simple 3.1.1**](https://cliftonlabs.github.io/json-simple/) by _Clifton Labs_. The storage manager helps to save data to and load data from a local persistent storage. I have added logic to allow the objects to serialise its data to a string in JSON format, and allow the objects to de-serialise JSON objects to map the values to its own properties. These JSON objects comes from parsing JSON formatted string. This allows the user to retain their data even after closing their program, therefore the user do not need to manually reenter their data. 
+##### 1. Storage Manager (Pull Request [#31](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/31) [#67](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/67) [#81](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/81) [#117](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/117) [#118](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/118) [#187](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/187) [#196](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/196) [#209](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/209) [#215](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/215))
+I have implemented a storage manager with the help of a third-party library [**json-simple 3.1.1**](https://cliftonlabs.github.io/json-simple/) by _Clifton Labs_. The storage manager helps to save data to and load data from a local persistent storage. I have added logic to allow the objects to serialise its data to a string in JSON format, and allow the objects to de-serialise JSON objects to map the values to its own properties. These JSON objects comes from parsing JSON formatted string. This allows the user to retain their data even after closing their program, therefore the user do not need to manually reenter their data.  
 
-**Pull Request:** [#31](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/31) [#67](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/67) [#81](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/81) [#117](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/117) [#118](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/118) [#187](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/187) [#196](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/196) [#209](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/209) [#215](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/215)
-
-##### 2. Automated Testing
+##### 2. Automated Testing (Pull Request [#208](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/208))
 SCRUMptious contains components that are dependent on current date, as a result the output of the program may vary. For example, creating the first sprint without specifying the start date will result in the start of the project to be the date of the command being ran. This results in the output of the automated testing to differ when it is run on a different date from the generation of the **expected** outcome. I solve this issue by ensuring that each call for current date will return a fixed date if the automated testing is running. This is achieved by ensuring that each `now()` call through `LocalDate` or `LocalDateTime` includes a parameter `Scrumptious.getClock()` that will return a fixed datetime for automated testing, otherwise it returns the current datetime. 
 
-The challenge to this solution is it requires the discipline to ensure that each call to get the current date (`LocalDate.now()`) or datetime (`LocalDateTime.now()`) must include a `clock` parameter. Otherwise, the automated testing results are unexpected and will cause the test to fail.
-
-**Pull Request:** [#208](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/208)
-
+The challenge to this solution is it requires the discipline to ensure that each call to get the current date (`LocalDate.now()`) or datetime (`LocalDateTime.now()`) must include a `clock` parameter. Otherwise, the automated testing results are unexpected and will cause the test to fail.  
 
 #### Contributions to Team-Based Tasks
 * Added technique to allow teammates to conduct JUnit testing on stdin and stdout. (Pull Request [#189](https://github.com/AY2021S1-CS2113T-F11-4/tp/pull/189))  
